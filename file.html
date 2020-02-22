@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="static/css/base.css" />
+    <title>Document</title>
+
+    
+    <script>
+    	var width = 100;
+    	var data = {width}
+    	function test() {
+    		console.log(data.width);
+    	}
+    </script>
+</head>
+<body>
+	<div style="width:500px;margin: auto;">
+		
+		<div class="bm-checkbox">
+			<input type="checkbox" id="语文">
+			<label for="语文"></label>
+			<span>语文</span>
+		</div> 
+		
+	    <div class="bm-checkbox">
+			<input type="checkbox" id="数学">
+			<label for="数学"></label>
+			<span>数学</span>
+		</div> 
+	  
+		<div class="bm-radio">
+		  	<input type="radio" name="sex" id="男" checked/>
+		    <label for="男"></label> 
+		    <span>男</span>
+		</div>
+	
+		<div class="bm-radio">
+		  	<input type="radio" name="sex"  id="女" />
+		    <label for="女"></label> 
+		    <span>女</span>
+		</div>
+		
+		<select class="bm-select">
+		    <option>A</option>
+		    <option>B</option>
+		    <option>C</option>
+		</select>
+	</div>
+</body>
+</html>
