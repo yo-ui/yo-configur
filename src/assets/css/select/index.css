@@ -1,0 +1,10 @@
+.bm-select {
+  border: 1px solid #ccc;
+  padding: 5px 12px;
+  line-height: 1.42857143;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+/*# sourceMappingURL=index.css.map */

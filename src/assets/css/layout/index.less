@@ -1,0 +1,84 @@
+@import "./../style/bm";
+
+.bm-layout {
+  height: 100%;
+
+  &__header {
+    height: 50px;
+    line-height: 50px;
+    font-size: @font-size-lg;
+    background-color: #4a5053;
+    color: @white;
+    display: flex;
+
+    &__back {
+      cursor: pointer;
+      width: 60px;
+      text-align: center;
+      background-color: @gray-8;
+
+      & > img {
+        width: 30px;
+        vertical-align: middle;
+      }
+    }
+
+    &__name {
+      font-size: 18px;
+      text-align: center;
+      flex: 1;
+      vertical-align: top;
+    }
+
+    &__view {
+      width: 60px;
+      text-align: center;
+
+      & > img {
+        width: 30px;
+        vertical-align: middle;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__main {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 50px);
+    display: flex;
+    -webkit-user-select: none;
+
+    &__left {
+      width: 240px;
+      height: 100%;
+      background-color: @white;
+    }
+
+    &__body {
+      flex: 1;
+      height: 100%;
+      border-left: 1px solid @gray-3;
+      border-right: 1px solid @gray-3;
+      overflow: auto;
+    }
+
+    &__right {
+      width: 240px;
+      height: 100%;
+    }
+  }
+
+  &__floor {
+    line-height: 40px;
+    background-color: @gray-3;
+    border-top: 1px solid @gray-5;
+  }
+}
+
+.bm-back {
+
+
+
+}
+

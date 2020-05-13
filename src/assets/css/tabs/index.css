@@ -1,0 +1,22 @@
+.bm-nav-tabs {
+  border-bottom: 1px solid #fff;
+}
+.bm-nav-tabs > li {
+  float: left;
+}
+.bm-nav-tabs > li > a {
+  margin-right: 2px;
+  line-height: 1.42857143;
+  border: 1px solid transparent;
+  border-radius: 4px 4px 0 0;
+}
+.bm-nav-tabs > li > a:hover {
+  color: #000;
+}
+.bm-nav-tabs > li.active > a,
+.bm-nav-tabs > li.active > a:hover {
+  color: #555;
+  cursor: default;
+  border-bottom: 2px solid #12a3ff;
+}
+/*# sourceMappingURL=index.css.map */

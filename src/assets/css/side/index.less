@@ -1,0 +1,31 @@
+@import "./../style/bm";
+
+.bm-side {
+  display: inline-block;
+  width: 60px;
+  height: 100%;
+  background-color: #4a5053;
+  font-size: 15px;
+
+  & > li {
+    width: 50px;
+    padding: 20px 5px;
+    text-align: center;
+    cursor: pointer;
+    color: #999ea8;
+
+    & > p {
+      margin-top: 2px;
+    }
+  }
+
+  & > li.active {
+    background-color: #4c84ff;
+    color: #fff;
+  }
+
+  & > li:not(.active):hover {
+    background-color: #545B5E;
+    color: #fff;
+  }
+}

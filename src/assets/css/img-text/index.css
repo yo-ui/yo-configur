@@ -1,0 +1,19 @@
+.bm-img-text {
+  display: inline-block;
+  vertical-align: top;
+  line-height: 24px;
+  margin-left: 6px;
+  margin-top: 8px;
+}
+.bm-img-text > p {
+  text-align: left;
+  color: #6c6c6c;
+}
+.bm-img-text > span {
+  font-weight: bold;
+}
+.bm-img-text > small {
+  color: #6c6c6c;
+  font-size: 80%;
+}
+/*# sourceMappingURL=index.css.map */

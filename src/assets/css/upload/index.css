@@ -1,0 +1,24 @@
+.bm-upload {
+  position: relative;
+  height: 24px;
+  line-height: 24px;
+  background: #2fc7c9;
+  text-align: center;
+  color: #FFF;
+  padding: 0px 5px;
+  display: inline-block;
+}
+.bm-upload > form {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  cursor: pointer;
+}
+.bm-upload > form > input {
+  width: 100%;
+  cursor: pointer;
+}
+/*# sourceMappingURL=index.css.map */

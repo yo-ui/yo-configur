@@ -1,0 +1,12 @@
+.bm-search-group {
+  display: inline-block;
+}
+.bm-search-group > input {
+  width: 150px;
+  line-height: 28px;
+  border: 1px solid #12a3ff;
+  padding-left: 5px;
+  padding-right: 25px;
+  float: right;
+}
+/*# sourceMappingURL=index.css.map */

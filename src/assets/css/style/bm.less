@@ -1,0 +1,236 @@
+// Color Palette
+@brand-primary:         darken(#428bca, 6.5%); // #337ab7
+@brand-success:         #5cb85c;
+@brand-info:            #5bc0de;
+@brand-warning:         #f0ad4e;
+@brand-danger:          #d9534f;
+
+@black: #000;
+@white: #fff;
+@gray-1: #f7f8fa;
+@gray-2: #f2f3f5;
+@gray-3: #ebedf0;
+@gray-4: #dcdee0;
+@gray-5: #c8c9cc;
+@gray-6: #969799;
+@gray-7: #646566;
+@gray-8: #323233;
+@red: #ee0a24;
+@blue: #12a3ff;
+@orange: #ff976a;
+@orange-dark: #ed6a0c;
+@orange-light: #fffbe8;
+@green: #07c160;
+
+// Gradient Colors
+@gradient-red: linear-gradient(to right, #ff6034, #ee0a24);
+@gradient-orange: linear-gradient(to right, #ffd01e, #ff8917);
+
+// Component Colors
+@text-color: @gray-8;
+@active-color: @gray-2;
+@active-opacity: 0.7;
+@disabled-opacity: 0.5;
+@background-color: @gray-1;
+@background-color-light: #fafafa;
+
+// Padding
+@padding-base: 5px;
+@padding-xs: @padding-base * 2;
+@padding-sm: @padding-base * 3;
+@padding-md: @padding-base * 4;
+@padding-lg: @padding-base * 5;
+@padding-left-right: 0 @padding-base*2;
+@padding-top-bottom: @padding-base*2 0;
+
+// Margin
+@margin-base: 5px;
+@margin-xs: @margin-base * 2;
+@margin-sm: @margin-base * 3;
+@margin-md: @margin-base * 4;
+@margin-lg: @margin-base * 5;
+@margin-left-right: 0 @margin-base*2;
+@margin-top-bottom: @margin-base*2 0;
+
+// Font
+@font-size-xs: 10px;
+@font-size-sm: 12px;
+@font-size-md: 14px;
+@font-size-lg: 16px;
+@font-weight-bold: 500;
+
+// Animation
+@animation-duration-base: 0.3s;
+@animation-duration-fast: 0.2s;
+
+// Border
+@border-color: @gray-3;
+@border-width-base: 1px;
+@border-radius-sm: 2px;
+@border-radius-md: 4px;
+@border-radius-lg: 8px;
+@border-radius-max: 999px;
+
+// Components
+@padding-base-vertical:     6px;
+@padding-base-horizontal:   12px;
+@padding-large-vertical:    10px;
+@padding-large-horizontal:  16px;
+@padding-small-vertical:    5px;
+@padding-small-horizontal:  10px;
+@padding-xs-vertical:       1px;
+@padding-xs-horizontal:     5px;
+@line-height-large:         1.3333333;
+@line-height-small:         1.5;
+@border-radius-base:        4px;
+@border-radius-large:       6px;
+@border-radius-small:       3px;
+@caret-width-base:          4px;
+@caret-width-large:         5px;
+
+//## Font, line-height, and color for body text, headings, and more.
+@font-family-sans-serif: Microsoft YaHei sans-serif ;
+@font-family-base:        @font-family-sans-serif;
+@font-size-base:          14px;
+@font-size-large:         ceil((@font-size-base * 1.25)); // ~18px
+@font-size-small:         ceil((@font-size-base * 0.85)); // ~12px
+@font-size-h1:            floor((@font-size-base * 2.6)); // ~36px
+@font-size-h2:            floor((@font-size-base * 2.15)); // ~30px
+@font-size-h3:            ceil((@font-size-base * 1.7)); // ~24px
+@font-size-h4:            ceil((@font-size-base * 1.25)); // ~18px
+@font-size-h5:            @font-size-base;
+@font-size-h6:            ceil((@font-size-base * 0.85)); // ~12px
+@line-height-base:        1.428571429; // 20/14
+@line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
+@line-height: 24px;
+
+//** By default, this inherits from the `<body>`.
+@headings-font-family:    inherit;
+@headings-font-weight:    500;
+@headings-line-height:    1.1;
+@headings-color:          inherit;
+
+// Button
+@button-mini-height: 22px;
+@button-mini-min-width: 50px;
+@button-mini-font-size: @font-size-xs;
+@button-mini-line-height: 20px;
+@button-small-height: 30px;
+@button-small-font-size: @font-size-sm;
+@button-small-min-width: 60px;
+@button-small-line-height: 28px;
+@button-normal-font-size: @font-size-md;
+@button-large-height: 50px;
+@button-large-line-height: 48px;
+@button-default-height: 32px;
+@button-default-line-height: 32px;
+@button-default-font-size: @font-size-lg;
+@button-default-color: @text-color;
+@button-default-background-color: @white;
+@button-default-border-color: @border-color;
+@button-primary-color: @white;
+@button-primary-background-color: @green;
+@button-primary-border-color: @green;
+@button-info-color: @white;
+@button-info-background-color: @blue;
+@button-info-border-color: @blue;
+@button-danger-color: @white;
+@button-danger-background-color: @red;
+@button-danger-border-color: @red;
+@button-warning-color: @white;
+@button-warning-background-color: @orange;
+@button-warning-border-color: @orange;
+@button-border-width: @border-width-base;
+@button-border-radius: @border-radius-sm;
+@button-round-border-radius: @border-radius-max;
+@button-plain-background-color: @white;
+@button-disabled-opacity: @disabled-opacity;
+
+// Cell
+@cell-font-size: @font-size-md;
+@cell-line-height: @line-height;
+@cell-vertical-padding: 10px;
+@cell-horizontal-padding: @padding-md;
+@cell-text-color: @text-color;
+@cell-background-color: @white;
+@cell-border-color: @border-color;
+@cell-active-color: @active-color;
+@cell-required-color: @red;
+@cell-label-color: @gray-6;
+@cell-label-font-size: @font-size-sm;
+@cell-label-line-height: 18px;
+@cell-label-margin-top: 3px;
+@cell-value-color: @gray-6;
+@cell-icon-size: 16px;
+@cell-right-icon-color: @gray-6;
+@cell-large-vertical-padding: @padding-sm;
+@cell-large-title-font-size: @font-size-lg;
+@cell-large-label-font-size: @font-size-md;
+
+// component-list
+@component-list-padding: 20px 10px 10px 10px;
+@component-list-div-margin-bottom: 20px;
+
+// conf-panel
+@conf-panel-line-height: @line-height;
+@conf-panel-padding: @padding-base;
+@conf-panel-font-size: 22px;
+@conf-panel-close-padding: 5px 10px;
+@conf-panel-floor-padding: @padding-left-right;
+@conf-panel-floor-line-height: 44px;
+
+// kv
+@kv-font-size: @font-size-sm;
+@kv-padding: @padding-base;
+@kv-line-height: @line-height;
+@kv-min-width: 40px;
+@kv-text-align-left: left;
+@kv-text-align-right: right;
+
+// Forms
+@input-bg:                       @white;
+@input-bg-disabled:              @black;
+@input-color:                    @black;
+@input-border:                   #ccc;
+@input-border-radius:            @border-radius-base;
+@input-border-radius-large:      @border-radius-large;
+@input-border-radius-small:      @border-radius-small;
+@input-border-focus:             #66afe9;
+@input-color-placeholder:        #999;
+@input-height-base:              (@line-height-computed + (@padding-base-vertical * 2) + 2);
+@input-height-large:             (ceil(@font-size-large * @line-height-large) + (@padding-large-vertical * 2) + 2);
+@input-height-small:             (floor(@font-size-small * @line-height-small) + (@padding-small-vertical * 2) + 2);
+@form-group-margin-bottom:       15px;
+@legend-color:                   @black;
+@legend-border-color:            #e5e5e5;
+@input-group-addon-bg:           @black;
+@input-group-addon-border-color: @input-border;
+@cursor-disabled:                not-allowed;
+
+// Toast
+@toast-max-width: 70%;
+@toast-font-size: @font-size-md;
+@toast-text-color: @white;
+@toast-loading-icon-color: @white;
+@toast-line-height: 20px;
+@toast-border-radius: @border-radius-md;
+@toast-background-color: fade(@text-color, 88%);
+@toast-icon-size: 40px;
+@toast-text-min-width: 96px;
+@toast-text-padding: @padding-xs @padding-sm;
+@toast-default-padding: @padding-md;
+@toast-default-width: 90px;
+@toast-default-min-height: 90px;
+@toast-position-top-distance: 50px;
+@toast-position-bottom-distance: 50px;
+
+// Slider
+@slider-active-background-color: @blue;
+@slider-inactive-background-color: @gray-3;
+@slider-disabled-opacity: @disabled-opacity;
+@slider-bar-height: 2px;
+@slider-button-width: 24px;
+@slider-button-height: 24px;
+@slider-button-border-radius: 50%;
+@slider-button-background-color: @white;
+@slider-button-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);

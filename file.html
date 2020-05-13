@@ -4,10 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="static/css/base.css" />
+
+    <link rel="stylesheet" href="src/assets/css/base.css" />
+
     <title>Document</title>
 
-    
+    <style>
+
+    	.cell {
+    		position: relative;
+		    display: -webkit-box;
+		    display: -webkit-flex;
+		    display: flex;
+		    box-sizing: border-box;
+		    width: 100%;
+		    padding: 10px 16px;
+		    overflow: hidden;
+		    color: #323233;
+		    font-size: 14px;
+		    line-height: 24px;
+		    background-color: #fff;
+    	}
+
+    	.van-cell__title, .van-cell__value {
+    		-webkit-box-flex: 1;
+		    -webkit-flex: 1;
+		    flex: 1;
+    	}
+    </style>
+
     <script>
     	var width = 100;
     	var data = {width}
@@ -18,36 +43,43 @@
 </head>
 <body>
 	<div style="width:500px;margin: auto;">
-		
+
 		<div class="bm-checkbox">
-			<input type="checkbox" id="语文">
+			<input type="checkbox" id="语文" checked>
 			<label for="语文"></label>
 			<span>语文</span>
-		</div> 
-		
+		</div>
+
 	    <div class="bm-checkbox">
 			<input type="checkbox" id="数学">
 			<label for="数学"></label>
 			<span>数学</span>
-		</div> 
-	  
+		</div>
+
 		<div class="bm-radio">
 		  	<input type="radio" name="sex" id="男" checked/>
-		    <label for="男"></label> 
+		    <label for="男"></label>
 		    <span>男</span>
 		</div>
-	
+
 		<div class="bm-radio">
 		  	<input type="radio" name="sex"  id="女" />
-		    <label for="女"></label> 
+		    <label for="女"></label>
 		    <span>女</span>
 		</div>
-		
+
 		<select class="bm-select">
 		    <option>A</option>
 		    <option>B</option>
 		    <option>C</option>
 		</select>
+	</div>
+
+	<div style="width: 300px;">
+		<div class="cell">
+			<div class="van-cell__title">1</div>
+			<div class="van-cell__value">2</div>
+		</div>
 	</div>
 </body>
 </html>

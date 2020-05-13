@@ -1,0 +1,32 @@
+/**
+ * Normalize
+ */
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  margin: 0;
+}
+a {
+  text-decoration: none;
+}
+a:focus,
+input:focus,
+button:focus,
+textarea:focus,
+[class*='van-']:focus {
+  outline: none;
+}
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+input,
+button,
+textarea {
+  color: inherit;
+  font: inherit;
+}
+/*# sourceMappingURL=normalize.css.map */

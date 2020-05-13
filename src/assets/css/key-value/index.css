@@ -1,0 +1,14 @@
+.bm-kv {
+  display: inline-block;
+  line-height: 24px;
+  margin-right: 10px;
+}
+.bm-kv__text {
+  min-width: 42px;
+  text-align: right;
+}
+.bm-kv__value {
+  min-width: 42px;
+  text-align: left;
+}
+/*# sourceMappingURL=index.css.map */
