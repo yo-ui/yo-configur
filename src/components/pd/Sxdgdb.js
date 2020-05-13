@@ -12,16 +12,18 @@ class Sxdgdb extends Spirit {
 	    this.width = width;
 	    this.height = height;
 	    this.moveType = 4; 
-	    this.minWidth = 50;
-	    this.minHeight = 50;
+	    this.minWidth = 20;
+	    this.minHeight = 20;
+		this.zIndex = 2;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
+	    this.bindDevice = {};
 	    this.config = {bindPoint: {id:'',unit:''}}
 	}
 
 	template(){
-		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index:3;border:1px solid transparent">
+		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
 		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
 					 viewBox="0 0 92 60" style="enable-background:new 0 0 92 60;" xml:space="preserve">
 				<style type="text/css">
@@ -65,12 +67,13 @@ class Sxdgdb extends Spirit {
 
 	toJson() {
 		let json = {
-			title:this.title,
-			className:this.className,
-			moveType:this.moveType,
-			linkage:this.linkage,
-			minWidth:this.minWidth,
-			minHeight:this.minHeight
+			title: this.title,
+			className: this.className,
+			moveType: this.moveType,
+			linkage: this.linkage,
+			minWidth: this.minWidth,
+			minHeight: this.minHeight,
+			zIndex: this.zIndex
 		};
 		return Object.assign(super.toJson(),json);
 	}
@@ -78,7 +81,7 @@ class Sxdgdb extends Spirit {
 	viewPanel(device) {
 		let that = this;
 		if(device) {							
-			$('.view-panel').html('');
+			$('.bm-view-panel').html('');
 			let point = {name:'',value:'',unit:''}
 			if(device.points) {
 				device.points.forEach(function(data) {					
@@ -90,18 +93,18 @@ class Sxdgdb extends Spirit {
 				});
 			}
 			if(point.unit) {							
-				let vpt = $(`<div class="view-panel-title">${that.lengthFormat(device.name,12)}</div>`);
-			    let vpc = $(`<div class="view-panel-content" style="height: 50px;overflow: hidden;"></div>`);
+				let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,12)}</div>`);
+			    let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
 			    let img = $(`<img height="50"/>`);
-			    img.attr('src',"static/images/device/device-1.png");
-			    let div = $(`<div class="base-img-text">
-			                 <p style="text-align:left">${point.name}</p>
-			                 <span style="font-weight: bold;">${parseFloat(point.value)}</span><small>&nbsp;${point.unit}</small>
-			                </div>`)
+			    img.attr('src',"static/images/device/icon-dt1.png");
+			    let div = $(`<div class="bm-img-text">
+			                     <p>${point.name}</p>
+			                     <span>${parseFloat(point.value)}</span><small>&nbsp;${point.unit}</small>
+			                 </div>`)
 			    vpc.append(img).append(div) 
-				$('.view-panel').append(vpt).append(vpc);
-				$('.view-panel').css({width:200});
-				$('.view-panel').show();
+				$('.bm-view-panel').append(vpt).append(vpc);
+				$('.bm-view-panel').css({width:200});
+				$('.bm-view-panel').show();
 			}
 		}	
 	}

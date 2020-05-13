@@ -8,10 +8,11 @@ class LDMeter extends Spirit {
 	    this.className = "LDMeter";
 	    this.width = 10;
 	    this.height = 10;
+	    this.zIndex = 2;
 	}
 
 	template(){
-		return `<div id="${this.id}" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index:2;border:1px solid transparent">
+		return `<div id="${this.id}" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
 		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 		        width = "10" height="20" xml:space="preserve">
 				<radialGradient id="XMLID_LD_" cx="294.8083" cy="-271.2963" r="7.9785" gradientTransform="matrix(-1 0 0 -1 304.7776 -271.3311)" gradientUnits="userSpaceOnUse">
@@ -26,7 +27,8 @@ class LDMeter extends Spirit {
 	toJson(){
 		let json = {
 			title:this.title,
-			className:this.className
+			className:this.className,
+			zIndex: this.zIndex
 		};
 		return Object.assign(super.toJson(),json);
 	}

@@ -13,10 +13,12 @@ class LineChart extends Spirit {
 	    this.height = height; 
 	    this.minWidth = 200;   
 	    this.minHeight = 100;
+		this.zIndex = 3;
 	    this.moveType = 4;
 	    this.linkage = false;
 	    this.isBind = true;
 	    this.bindType = 2;
+	    this.bindDevice = {}
 	    this.config = {
 	    	bindPoint: {
     	        id:'',
@@ -25,47 +27,51 @@ class LineChart extends Spirit {
     	        endTime:''}
 	    }
 	    this.option = {
+	    	title: {
+				text: '时间轴折线图实例',
+				padding: 10
+			},
 		    color: ['#3398DB'],
 		    tooltip : {
 		        trigger: 'axis',
-		        formatter: "{b}<br/>{c} ",
 		    },
+			legend: {
+				data: ['总量']
+			},
 		    grid: {
-		        left: '3%',
-		        right: '3%',
+		        left: '5%',
+		        right: '5%',
 		        bottom: '10px',
-		        top: '10px',
+		        top: '50px',
 		        containLabel: true
 		    },
 		    xAxis : [
 		        {
 		            type : 'category',
-		            data : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-		            axisTick: {
-		                alignWithLabel: true
-		            }
+					boundaryGap: false,
+		            data : ['2020-01-01', '2020-01-02', '2020-01-03', '2020-01-04', '2020-01-05', '2020-01-06', '2020-01-07'],
 		        }
 		    ],
 		    yAxis : [
 		        {
-		            type : 'value'
+					type: 'value'
 		        }
 		    ],
 		    series : [
 		        {
-		            name:'',
-		            type:'line',
-		            data:[1, 2, 3, 4, 5, 6, 7]
+					name: '正向有功电量',
+					type: 'line',
+					stack: '总量',
+					data: [120, 132, 101, 134, 90, 230, 210]
 		        }
 		    ]
 	    }
 	}
 
-	template(){
-		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index:3;border:1px solid transparent;">
+	template() {
+		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg">
 				        <div style="width:${this.width-2}px;height:${this.height-2}px;border: 1px solid #ddd;background-color: #fff;">
-				            <div class="chart-title" style="height:30px;line-height:30px;background-color: #f5f5f5;padding-left:5px">标题</div>
-				            <div id="${this.id}_chart" style="width:100%;height:calc(100% - 30px)"></div>
+				            <div id="${this.id}_chart" style="width:100%;height:100%"></div>
 				        </div>
 			        </div>`)
 		return div;
@@ -78,10 +84,9 @@ class LineChart extends Spirit {
 		this.chart = echarts.init(document.getElementById(this.id+"_chart"));		
         this.chart.setOption(this.option);
 	}
-	
-	init(config) {
+
+	refresh() {
 		let that = this;
-		this.config = config; 
 		if(this.config.bindPoint.id) {			
 			let timeList = [];
 			let valueList = [];
@@ -92,13 +97,13 @@ class LineChart extends Spirit {
 			this.stage.option.devicePointHstData(deviceId,point,startTime,endTime,function(data) {
 				$('#'+that.id).find('.chart-title').text(data.name);
 				data.dataList.forEach(function(item) {
-					timeList.push(new Date(item.time).Format("hh:mm:ss"));
+					timeList.push(item.time);
 					valueList.push(parseFloat(item.value));
 				});
 				that.option.xAxis[0].data = timeList;
 				that.option.series[0].data = valueList;
 				that.option.series[0].name = data.descr;
-				that.option.tooltip.formatter = "{a}<br/>{b} {c} "+config.bindPoint.unit
+				that.option.tooltip.formatter = "{a}<br/>{b} {c} "+that.config.bindPoint.unit
 	            that.chart.setOption(that.option);
 	            that.chart.resize();	            
 			});
@@ -125,20 +130,6 @@ class LineChart extends Spirit {
 		});
 	}
 	
-	refresh() {
-		/**let that = this;
-		this.count= 0;
-        setTimeout(() => {
-            if(this.count==0) {  
-                this.myChart.resize();
-            }
-            this.count++;
-        }, 50)**/
-       //this.config.option.color = ['#2398DB']
-       //this.myChart.setOption(this.config.option);
-       this.chart.resize();
-	}
-	
 	toJson() {
 		let json = {
 			title: this.title,
@@ -146,6 +137,7 @@ class LineChart extends Spirit {
 			moveType: this.moveType,
 			minWidth: this.minWidth,
 			isBind: this.isBind,
+			zIndex: this.zIndex
 		};
 		return Object.assign(super.toJson(),json);
 	}	

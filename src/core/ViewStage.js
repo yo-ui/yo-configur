@@ -1,9 +1,10 @@
-import Paw from '@/core/Paw.js' 
-import Move from '@/core/Move.js' 
-import SpiritFactory from '@/core/SpiritFactory.js' 
-import WaterPipe from '@/core/WaterPipe.js' 
-import Project from '@/components/Project.js'  
+import '@/assets/css/index.css'
 
+import SpiritFactory from '@/core/SpiritFactory.js'
+
+/**
+ * 预览舞台
+ */
 class ViewStage {
 
 	constructor(option) {
@@ -29,51 +30,23 @@ class ViewStage {
 			width: width+'px', 
 			height: height+'px',
 			margin: 'auto',
-			transform: 'scale(1)'
+			transform: 'scale(1)',
+			'background-color': background.color
 		});							
 		this.element = element;
 		this.capacity = [];//容器 
 		this.element.on('click',function(e) {
-			$('.view-panel').hide();
+			$('.bm-view-panel').hide();
 			e.stopPropagation();
 		});
-		$('#root').append(this.element);	
-		if(background) {
-			element.css({
-			'background-image': 'url('+background.url+')',
-		    'background-color': background.color});
-			that.pattern(background.pattern);
-		}
-		element.on('mousemove',function() {
-            
-		});
-	}
-
-
-	
-	pattern(pattern) {
-		if(pattern=="1") {
-			$('#configur_stage').css({
-			'background-repeat': 'no-repeat',
-			'background-size': 'auto',
-		    'background-position': 'center'});				
-		}else if(pattern=="2") {
-			$('#configur_stage').css({
-			'background-repeat': 'no-repeat',
-			'background-size': '100% 100%',
-		    'background-position': 'center'});				
-		}else if(pattern=="3") {
-			$('#configur_stage').css({
-			'background-size': 'cover',
-			'background-position': 'center',
-			'background-repeat': 'no-repeat'});
-		}	
+		$('#root').append(this.element);
 	}
 	
 	//创建
-	create(className,x,y,width,height) {
+	create(className,x,y,width,height,rotate=0) {
 		let that = this;	
-    	let spirit = SpiritFactory.getInstance(className,x,y,width,height);    	
+    	let spirit = SpiritFactory.getInstance(className,x,y,width,height);
+		spirit.rotate = rotate;
 		spirit.arrangement(this);
 		this.addEvent(spirit);	
 		return spirit;
@@ -83,19 +56,19 @@ class ViewStage {
 		let that = this;
 		if(spirit.isPanel) {
 			let el = spirit.getEl();
-			el.data("id",spirit.id);
-			el.on('click',function(e) {					
+			el.data("id", spirit.id);
+			el.on('click',function(e) {
 				let id = $(this).data('id');
 				that.capacity.forEach(function(property) {
 					if(property.id==id) {
 						that.spirit = property;
 					}
-				});				
+				});
 				if(that.spirit.bindDevice) {		
 					that.option.getDevice(that.spirit.bindDevice.id,function(device) {	
 						let left = el.offset().left+el.width();
 						let top = el.offset().top-60;
-						$('.view-panel').css({left:left,top:top});
+						$('.bm-view-panel').css({left:left,top:top});
 						that.spirit.viewPanel(device);																				
 					})					
 					e.stopPropagation();
@@ -115,9 +88,11 @@ class ViewStage {
 				let y = property.y;
 				let width = property.width;
 				let height = property.height;
-				let spirit = that.create(className,x,y,width,height);
+				let rotate= property.rotate;
+				let spirit = that.create(className,x,y,width,height,rotate);
 				spirit.bindDevice = property.bindDevice;
-				spirit.init(property.config);
+				spirit.config = property.config
+				spirit.refresh();
 				that.capacity.push(spirit);
 			})
 			
@@ -136,10 +111,10 @@ class ViewStage {
 				    }
 				});
 			}
-			
+
 			this.option.devicePoints(devices,function(deviceList) {
 				deviceList.forEach(function(device) {				
-					that.capacity.forEach(function(spirit) {						
+					that.capacity.forEach(function(spirit) {
 						if(spirit.bindDevice) {		
 							if(spirit.bindDevice.id==device.id) {
 						    	spirit.reveal(device,spirit.config);
@@ -161,7 +136,7 @@ class ViewStage {
 			
 			$('.password-input input').each(function() {
 				$(this).on('input propertychange',function() {
-					if($(this).val()!="") { 
+					if($(this).val()!="") {
 						$(this).next().focus();
 					}else {
 						$(this).prev().focus();
@@ -169,6 +144,15 @@ class ViewStage {
 				});
 			})
 		}	
+	}
+
+	toast(text) {
+		$('.bm-toast').show();
+		$('.bm-toast__text').text(text);
+		const timer = setInterval(() => {
+			clearInterval(timer);
+			$('.bm-toast').hide()
+		}, 2000);
 	}
 }
 

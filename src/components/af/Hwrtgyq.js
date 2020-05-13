@@ -12,13 +12,14 @@ class Hwrtgyq extends Spirit {
 	    this.width = width;
 	    this.height = height;
 	    this.moveType = 4; 
-	    this.minWidth = 50;
-	    this.minHeight = 50;
+	    this.minWidth = 20;
+	    this.minHeight = 20;
+	    this.zIndex = 2;
 	    this.linkage = true;
 	}
 
 	template(){
-		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index:3;border:1px solid transparent">
+		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
 		      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
 					 viewBox="0 0 43 41" style="enable-background:new 0 0 43 41;" xml:space="preserve">
 				<style type="text/css">
@@ -53,7 +54,8 @@ class Hwrtgyq extends Spirit {
 			moveType:this.moveType,
 			linkage:this.linkage,
 			minWidth:this.minWidth,
-			minHeight:this.minHeight
+			minHeight:this.minHeight,
+			zIndex:this.zIndex
 		};
 		return Object.assign(super.toJson(),json);
 	}

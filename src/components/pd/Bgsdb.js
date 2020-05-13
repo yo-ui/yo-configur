@@ -12,16 +12,18 @@ class Bgsdb extends Spirit {
 	    this.width = width;
 	    this.height = height;
 	    this.moveType = 4; 
-	    this.minWidth = 50;
-	    this.minHeight = 50;
+	    this.minWidth = 20;
+	    this.minHeight = 20;
+		this.zIndex = 2;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
+	    this.bindDevice = {};
 	    this.config = {bindPoint: {id:'',unit:''}}
 	}
 
 	template(){
-		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index:3;border:1px solid transparent">
+		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
 		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
 	               viewBox="0 0 58 75" style="enable-background:new 0 0 58 75;" xml:space="preserve">
 				<style type="text/css">
@@ -60,12 +62,13 @@ class Bgsdb extends Spirit {
 
 	toJson() {
 		let json = {
-			title:this.title,
-			className:this.className,
-			moveType:this.moveType,
-			linkage:this.linkage,
-			minWidth:this.minWidth,
-			minHeight:this.minHeight
+			title: this.title,
+			className: this.className,
+			moveType: this.moveType,
+			linkage: this.linkage,
+			minWidth: this.minWidth,
+			minHeight: this.minHeight,
+			zIndex: this.zIndex
 		};
 		return Object.assign(super.toJson(),json);
 	}
@@ -73,17 +76,18 @@ class Bgsdb extends Spirit {
 	viewPanel(device) {
 		if(device) {					
 			let that = this;
-			$('.view-panel').html('');
-			let vpt = $(`<div class="view-panel-title">${device.name}</div>`);
-		    let vpc = $(`<div class="view-panel-content" style="height: 60px;overflow: hidden;"></div>`);
-		    let img = $(`<img src="static/images/device/icon-1.png"/>`);
-		    let div = $(`<div style="display: inline-block;vertical-align: top;line-height: 24px;padding: 6px;">
-		                 <p style="text-align:left">正向有功电能</p>
-		                 <span style="font-size: 18px;font-weight: bold;">${device.points[0].value}</span><small>&nbsp;${device.points[0].unit}</small>
+			$('.bm-view-panel').html('');
+			let vpt = $(`<div class="bm-view-panel__title">${device.name}</div>`);
+		    let vpc = $(`<div class="bm-view-panel__content" style="height: 60px;overflow: hidden;"></div>`);
+		    let img = $(`<img src="static/images/device/icon-dt1.png"/>`);
+		    let div = $(`<div class="bm-img-text">
+		                    <p>正向有功电能</p>
+		                    <span>${device.points[0].value}</span><small>&nbsp;${device.points[0].unit}</small>
 		                </div>`)
-		    vpc.append(img).append(div) 
-			$('.view-panel').append(vpt).append(vpc);  
-			$('.view-panel').css({width:200});
+		    vpc.append(img).append(div);
+			$('.bm-view-panel').append(vpt).append(vpc);
+			$('.bm-view-panel').css({width:200});
+			$('.bm-view-panel').show();
 		}
 	}
 }

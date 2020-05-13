@@ -12,15 +12,17 @@ class Dengg extends Spirit {
 	    this.width = width;
 	    this.height = height;
 	    this.moveType = 4; 
-	    this.minWidth = 50;
-	    this.minHeight = 50;
+	    this.minWidth = 20;
+	    this.minHeight = 20;
+		this.zIndex = 2;
 	    this.linkage = true;
 	    this.isBind = true;
+	    this.bindDevice = {};
 	    this.config = {bindPoint: {id:'',unit:''}};
 	}
 
 	template(){
-		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index:3;border:1px solid transparent"></div>`);
+		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg"></div>`);
 		div.append(this.close())
 		return div;
 	}
@@ -123,7 +125,8 @@ class Dengg extends Spirit {
 			moveType: this.moveType,
 			linkage: this.linkage,
 			minWidth: this.minWidth,
-			minHeight: this.minHeight
+			minHeight: this.minHeight,
+			zIndex: this.zIndex
 		};
 		return Object.assign(super.toJson(),json);
 	}

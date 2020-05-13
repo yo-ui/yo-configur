@@ -12,16 +12,18 @@ class Kg extends Spirit {
 	    this.width = width;
 	    this.height = height;
 	    this.moveType = 4; 
-	    this.minWidth = 50;
-	    this.minHeight = 50;
+	    this.minWidth = 20;
+	    this.minHeight = 20;
+		this.zIndex = 2;
 	    this.linkage = true;
 	    this.isPanel = true;
-	    this.isBind = true;  
-	    this.config = {bindPoint: {id:'',unit:'kWh'}}
+	    this.isBind = true;
+	    this.bindDevice = {};
+	    this.config = {bindPoint: {id:'',unit:''}}
 	}
 
 	template(){
-		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index:3;border:1px solid transparent"></div>`);
+		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg"></div>`);
 	    div.append(this.close())
 	    return div;
 	}
@@ -92,7 +94,8 @@ class Kg extends Spirit {
 			moveType: this.moveType,
 			linkage: this.linkage,
 			minWidth: this.minWidth,
-			minHeight: this.minHeight
+			minHeight: this.minHeight,
+			zIndex: this.zIndex
 		};
 		return Object.assign(super.toJson(),json);
 	}
@@ -111,40 +114,45 @@ class Kg extends Spirit {
 	viewPanel(device) {
 		if(device) {					
 			let that = this;
-			$('.view-panel').html('');
-			let point = {id:'',value:''}
+			that.point = {id:'',value:''}
 			if(device.points) {
 				device.points.forEach(function(data) {	
 					if(data.id=="SwSts") {
-						point.id = data.id;
-						point.value = parseFloat(data.value);
+						that.point.id = data.id;
+						that.point.value = parseFloat(data.value);
 					}
 				});
 			}
-			
-			let title = $(`<div class="view-panel-title">${device.name}</div>`);
-		    let content = $(`<div class="view-panel-content" style="text-align:center;cursor:pointer;"></div>`);
-		    if(point.value) {
-				let img = $(`<img src="static/images/start.png" style="height: 20px;vertical-align: middle;"/>`);
-				img.on('click',function() {
-					let btn = $(this);
-					that.stage.option.control(device.id,point.id,point.value,function(msg) {
-						if(msg.status=="ok") {
-							if(msg.value==1) {
-								btn.attr('src', 'static/images/start.png')
-								$('#'+that.id).html(that.open())
-							}else {
-								btn.attr('src', 'static/images/end.png')
-								$('#'+that.id).html(that.close())
-							}						
+
+			$('.bm-password-panel__input input').each(function() {
+				$(this).val('');
+			})
+			$('.bm-password-panel').show();
+
+			$('.bm-password-affirm').on('click',function(e) {
+				let text = '';
+				$('.bm-password-panel__input input').each(function() {
+					text+=$(this).val()
+				})
+				if(text.length<6) {
+					that.stage.toast('请输入正确密码');
+					return;
+				}
+				that.stage.option.control(device.id,that.point.id,that.point.value==1?0:1,function(msg) {
+					let result = JSON.parse(msg);
+					if(result.success) {
+						let message = JSON.parse(result.message);
+						if(message.status.code==100000) {
+							that.point.value = that.point.value==1?0:1;
+							that.stage.toast("控制成功");
+							$('#'+that.id).html(that.point.value==1?that.open():that.close())
 						}
-					})
-				});
-				content.append(img)
-			}
-		    $('.view-panel').append(title).append(content)
-			$('.view-panel').css({width:120});
-			$('.view-panel').show();
+					}else {
+						that.stage.toast("控制失败");
+					}
+					$('.bm-password-panel').hide();
+				})
+			})
 		}
 	}
 }

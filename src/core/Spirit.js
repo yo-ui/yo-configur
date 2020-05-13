@@ -1,3 +1,6 @@
+/**
+ * 所有组件的父类
+ */
 class Spirit {
 	
 	constructor(x=0,y=0,width=10,height=10) {
@@ -6,6 +9,8 @@ class Spirit {
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.isRotate = true;
+		this.rotate = 0;
 		this.isMove = true;
 		this.bindType = 1;
 	}
@@ -14,18 +19,18 @@ class Spirit {
 	
 	toJson() {
 		return {
-			id:this.id,
-			x:this.x,
-			y:this.y,
-			width:this.width,
-			height:this.height,
-			isMove:this.isMove 
+			id: this.id,
+			x: this.x,
+			y: this.y,
+			width: this.width,
+			height: this.height,
+			isMove: this.isMove,
+			rotate: this.rotate,
+			isRotate: this.isRotate
 		}
 	}
-	
-	init(config) {
-		this.config = config
-	}
+
+	refresh() {}
 	
 	getEl() {
 		return $('#'+this.id);
@@ -39,72 +44,102 @@ class Spirit {
 	reveal(device,config) {}
 	
 	renderer() {
+		let that = this;
 		$('#configur_property').html('');	
-		let html = `<div class="configur-property-title"><img src="static/images/angle-right.png" width="9"/>&nbsp;${this.title}</div>
-		            <div>
-			            <div class="property-group">
-					        <div class="property-row">
-			                    <span>X：</span><span style="text-align:left">${this.x}</span>
-			                </div>
-			                <div class="property-row">
-			                    <span>Y：</span><span style="text-align:left">${this.y}</span>
-			                </div>
-				        </div>
-				        <div class="property-group">
-				            <div class="property-row">
-				                <span>W：</span><span style="text-align:left">${this.width}</span>
-					        </div>
-				            <div class="property-row">
-				                <span>H：</span><span style="text-align:left">${this.height}</span>
-				            </div>	
-				        </div>
-			        </div>`;
-		$('#configur_property').html(html);
+		let html = $(`<div class="bm-tree">位置</div>		             
+					<div class="bm-cell no-hover">
+						<div class="bm-cell__title">
+							<div class="bm-kv">
+								<span class="bm-kv__text">X：</span>
+								<span class="bm-kv__value bm-site-x">${this.x}</span>
+							</div>                                						
+						</div>						
+						<div class="bm-cell__value">                             
+							<div class="bm-kv">
+								<span class="bm-kv__text">Y：</span>
+								<span class="bm-kv__value bm-site-y">${this.y}</span>
+							</div>
+						</div>	
+					</div>
+                    <div class="bm-tree">尺寸</div>
+                    <div class="bm-cell no-hover bm-size">
+						<div class="bm-cell__title">
+							<div class="bm-kv">
+								<span class="bm-kv__text">W：</span>
+								<span class="bm-kv__value bm-size-w">${this.width}</span>
+							</div>						                            
+						</div>						
+						<div class="bm-cell__value">
+							<div class="bm-kv">
+								<span class="bm-kv__text">H：</span>
+								<span class="bm-kv__value bm-size-h">${this.height}</span>
+							</div>                               
+						</div>
+                    </div>`);
+		$('#configur_property').append(html);
+		if(this.isRotate) {
+			let roteta = $(`<div class="bm-tree">旋转</div>
+						    <div class="bm-cell no-hover">
+								<div class="bm-cell__title">					
+									<div class="bm-range">
+										<input class="rotate-value" type="range" step="1" min="0" max="359" value="${that.rotate}">							    
+									</div>							
+								</div>
+								<div class="bm-cell__value" style="flex: none;width: 40px;text-align: center">
+									<span class="rotate-text">${that.rotate}</span>
+								</div>
+						    </div>`)
+			roteta.find('.rotate-value').on('input propertyChange',function () {
+				roteta.find('.rotate-text').text($(this).val());
+				that.stage.property.rotate = $(this).val();
+				$('.resize-panel').css({transform: 'rotate('+$(this).val()+'deg)'})
+			})
+
+			$('#configur_property').append(roteta);
+		}
 	}
 	
 	viewPanel(device) {
-		if(device) {					
+		if(device) {
 			let that = this;
-			$('.view-panel').html('');
-			let vpt = $(`<div class="view-panel-title">${that.lengthFormat(device.name,24)}</div>`);
-		    let vpc = $(`<div class="view-panel-content"></div>`);
+			$('.bm-view-panel').html('');
+			let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,24)}</div>`);
+		    let vpc = $(`<div class="bm-view-panel__content"></div>`);
 		    let ul = $('<ul></ul>');	      
 		    device.points.forEach(function(point) {
-		    	let li = $(`<li>
-		    	              <span class="text">${point.name}</span>
-		    	          </li>`);
+		    	let li = $(`<li><span class="text">${point.name}</span></li>`);
 		    	if(point.id=="SwSts") {
 		    		let img = $('<img style="height: 20px;vertical-align: middle;"/>')
 		    		if(point.value==1) {
-		    			img.attr("src","static/images/start.png");
+		    			img.attr("src","static/images/start.png")
 		    			img.data("value", 1)
 		    		}else {
-		    			img.attr("src","static/images/end.png");
+		    			img.attr("src","static/images/end.png")
 		    			img.data("value", 0)
 		    		}
 		    		img.on('click',function(e) {
 		    			let value = img.data("value");	
-		    			$('.password-affirm').unbind();		    			
-		    			$('.password-input input').each(function() {
+		    			$('.bm-password-affirm').unbind();
+		    			$('.bm-password-input input').each(function() {
 						    $(this).val('');
 						})
-						$('.password-panel').show();								
-						$('.password-cancel').on('click',function() {
-							$('.password-panel').hide();
+						$('.bm-password-panel').show();
+						$('.bm-password-cancel').on('click',function() {
+							$('.bm-password-panel').hide();
 						})								
-						$('.password-affirm').on('click',function(e) {
+						$('.bm-password-affirm').on('click',function(e) {
 							let text = '';
-						    $('.password-input input').each(function() {
+						    $('.bm-password-input input').each(function() {
 						    	text+=$(this).val()
 						    })
 						    if(text.length<6) {
-						    	alert('请输入正确密码！');
+								that.stage.toast('请输入正确密码');
 						    	return;
 						    }							
 							that.stage.option.control(device.id,point.id,value==1?0:1,function(msg) {
-								var result = JSON.parse(msg);
+								let result = JSON.parse(msg);
                                 if(result.success) {
-                                	var message = JSON.parse(result.message);
+									let message = JSON.parse(result.message);
                                     if(message.status.code==100000){
 										if(value==1) {
 						    				img.attr("src","static/images/end.png")
@@ -117,9 +152,9 @@ class Spirit {
 						    			}
 					    		    }
 								}else {
-									alert(msg.message);
+									that.stage.toast("控制失败");
 								}
-								$('.password-panel').hide();
+								$('.bm-password-panel').hide();
 							})														    			
 						})	    			
 		    		})
@@ -134,9 +169,9 @@ class Spirit {
 		    	ul.append(li);
 		    });
 		    vpc.append(ul);
-			$('.view-panel').append(vpt).append(vpc);  
-			$('.view-panel').css({width:350});
-			$('.view-panel').show();	
+			$('.bm-view-panel').append(vpt).append(vpc);
+			$('.bm-view-panel').css({width:350});
+			$('.bm-view-panel').show();
 		}
 	}
 	
@@ -144,7 +179,7 @@ class Spirit {
 		if(value) {
 			return parseFloat(value)
 		}
-		return "";
+		return '';
 	}
 	
 	undefinedToString(value) {

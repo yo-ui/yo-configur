@@ -16,19 +16,19 @@ class Images extends Spirit {
 	    this.moveType = 4;
 	    this.linkage = false;
 	    this.isMove = true;
-	    this.config = {url:'static/images/configur/img.png'} 
+	    this.zIndex = 0;
+	    this.config = {url:'static/images/background/background.jpg'}
 	}
 
 	template(){
-		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index:0;border:1px solid transparent;">
+		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg">
 		        <img src="${this.config.url}" style="width:${this.width}px;height:${this.height}px;"/>
 		        <div class="images-shade" style="position:absolute;top:0;width:${this.width}px;height:${this.height}px;"></div>
 		        </div>`)
 		return div;
 	}
-	
-	init(config) {
-		this.config = config; 
+
+	refresh() {
 		$('#'+this.id).find('img').attr('src', this.config.url);			
 	}
 	
@@ -38,8 +38,8 @@ class Images extends Spirit {
 			className: this.className, 
 			moveType: this.moveType,
 			minWidth: this.minWidth,
-			isBind: this.isBind,
-			isMove: this.isMove
+			isMove: this.isMove,
+			zIndex: this.zIndex
 		};
 		return Object.assign(super.toJson(),json);
 	}
@@ -47,25 +47,21 @@ class Images extends Spirit {
 	renderer() {
 		let that = this;
 		super.renderer();
-		let html = `<div class="configur-property-title"><img src="static/images/angle-right.png" width="9"/>&nbsp;更换</div>
-		            <div class="property-group">	
-						  <div class="upload">
-				              <span>选择图片</span>
-				              <form id="uploadBg">
-				                <input type="file" name="bg"/>
-				              </form>
-				              
+		let html = `<div class="bm-tree">${that.title}</div>
+                    <div>
+		                <div class="bm-cell no-hover">
+		                  <div class="bm-cell__title">
+		                      <form id="uploadBg">
+								  <div class="bm-upload">
+									  <span>选择图片</span>								 
+									  <input type="file" name="bg"/>								 	              
+								  </div>
+							  </form>		
 					      </div>
-					      <span class="reset">${that.isMove?'置底':'恢复'}</span>
-			            </div>`;
-		$('#configur_property').append(html);	
-		$('#configur_property').find('.reset').on('click',function(e) {	
-			that.isMove = !that.stage.property.isMove;
-			that.stage.property.isMove = that.isMove;
-			let text = that.stage.property.isMove?"置底":"恢复";
-			$('#configur_property').find('.reset').text(text)
-			that.stage.layDown();
-		});
+					     
+			            </div>			             
+			        </div>`;
+		$('#configur_property').append(html);
 	}	
 }
 

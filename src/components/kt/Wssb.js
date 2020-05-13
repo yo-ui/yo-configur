@@ -12,16 +12,18 @@ class Wssb extends Spirit {
 	    this.width = width;
 	    this.height = height;
 	    this.moveType = 4; 
-	    this.minWidth = 50;
-	    this.minHeight = 50;
+	    this.minWidth = 20;
+	    this.minHeight = 20;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
+		this.zIndex = 2;
+	    this.bindDevice = {};
 	    this.config = {bindPoint: {id:'',unit:''}};
 	}
 
 	template(){
-		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index:3;border:1px solid transparent"></div>`);
+		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)"></div>`);
 		div.append(this.close());
 		return div;
 	}
@@ -71,12 +73,12 @@ class Wssb extends Spirit {
 					.wssb-st38{fill:#2CA3F7;}
 					.wssb-st40{fill:#CCD1E2;}
 				
-					.show {display:default;}
-				    .hide {display:none;}
-				    .f1 {display:default;}
-				    .f2 {display:none;}
-				    .f3 {display:none;}
-					.f4 {display:none;}
+					.open-show {display:default;}
+				    .open-hide {display:none;}
+				    .open-f1 {display:default;}
+				    .open-f2 {display:none;}
+				    .open-f3 {display:none;}
+					.open-f4 {display:none;}
 				</style>
 				<g id="wssb_101_">
 					<linearGradient id="wssb_2_" gradientUnits="userSpaceOnUse" x1="37.6785" y1="83.882" x2="37.6785" y2="64.1733">
@@ -349,46 +351,39 @@ class Wssb extends Spirit {
 						<circle id="wssb_352_" class="wssb-st4" cx="78.2" cy="65.2" r="1.1"/>
 						<circle id="wssb_351_" class="wssb-st4" cx="101.1" cy="65.2" r="1.1"/>
 					</g>
-					<polygon id="wssb_347_" class="wssb-st37" points="81.9,40.4 98.6,40.4 102.2,43.6 102.2,60.8 98.4,65.5 81.8,65.5 77.8,62.6 
-						77.8,44.2 	"/>
-					<polygon id="wssb_345_" class="wssb-st38" points="82.2,43.3 98.3,43.3 101.8,46.1 101.8,60.5 99,63.8 82.2,63.8 79.3,61.5 79.3,45.9 	
-						"/>
+					<polygon id="wssb_347_" class="wssb-st37" points="81.9,40.4 98.6,40.4 102.2,43.6 102.2,60.8 98.4,65.5 81.8,65.5 77.8,62.6 77.8,44.2"/>
+					<polygon id="wssb_345_" class="wssb-st38" points="82.2,43.3 98.3,43.3 101.8,46.1 101.8,60.5 99,63.8 82.2,63.8 79.3,61.5 79.3,45.9"/>
 					<path id="wssb_410_" class="wssb-st0" d="M17.2,22.5c0,0-2.1,6.7-2.5,20.1c-0.2,9,2,18.8,2,18.8h11.8c0,0-1.2-9.3-1.2-19.5
 						s1.6-19.5,1.6-19.5H17.2z"/>
-				</g>
-				
-					<g  class="f1">
-						<animate values="show;hide;hide;hide;" dur="0.5s" attributeName="class" repeatCount="indefinite"/>
+				</g>				
+					<g  class="open-f1">
+						<animate values="open-show;open-hide;open-hide;open-hide;" dur="0.5s" attributeName="class" repeatCount="indefinite"/>
 						<path id="wssb_418_" class="wssb-st40" d="M18,27.7h10.2c0.1-1,0.2-1.9,0.3-2.7h-10C18.4,25.7,18.2,26.6,18,27.7z"/>
 						<path id="wssb_420_" class="wssb-st40" d="M27.4,37.7c0-0.9,0.1-1.8,0.1-2.7H17.1c-0.1,0.9-0.1,1.7-0.2,2.7H27.4z"/>
 						<path id="wssb_421_" class="wssb-st40" d="M28.1,57.8c-0.1-0.8-0.2-1.7-0.2-2.7H17.6c0.1,1,0.3,1.9,0.4,2.7H28.1z"/>
 						<path id="wssb_422_" class="wssb-st40" d="M27.4,47.7c0-0.9-0.1-1.8-0.1-2.7H16.7c0,0.9,0.1,1.8,0.1,2.7H27.4z"/>
-					</g>
-				
-					<g  class="f2">
-						<animate values="hide;show;hide;hide;" dur="0.5s" attributeName="class" repeatCount="indefinite"/>
+					</g>				
+					<g  class="open-f2">
+						<animate values="open-hide;open-show;open-hide;open-hide;" dur="0.5s" attributeName="class" repeatCount="indefinite"/>
 						<path id="wssb_423_" class="wssb-st40" d="M18.4,25.7h10.1c0.2-1.2,0.3-2.2,0.4-2.7H19C18.9,23.5,18.7,24.4,18.4,25.7z"/>
 						<path id="wssb_424_" class="wssb-st40" d="M27.3,43.1H16.7c0,0.9,0,1.8,0,2.7h10.6C27.3,44.9,27.3,44,27.3,43.1z"/>
 						<path id="wssb_425_" class="wssb-st40" d="M27.5,35.7c0.1-0.9,0.1-1.8,0.2-2.7H17.3c-0.1,0.8-0.2,1.7-0.3,2.7H27.5z"/>
 						<path id="wssb_426_" class="wssb-st40" d="M27.9,55.8c-0.1-0.8-0.1-1.7-0.2-2.7H17.3c0.1,0.9,0.2,1.8,0.4,2.7H27.9z"/>
-					</g>
-				
-					<g  class="f3">
-						<animate values="hide;hide;show;hide;" dur="0.5s" attributeName="class" repeatCount="indefinite"/>
+					</g>		
+					<g  class="open-f3">
+						<animate values="open-hide;open-hide;open-show;open-hide;" dur="0.5s" attributeName="class" repeatCount="indefinite"/>
 						<path id="wssb_427_" class="wssb-st40" d="M28.5,61.5c0,0-0.1-0.5-0.2-1.3h-9.9c0.2,0.8,0.3,1.3,0.3,1.3H28.5z"/>
 						<path id="wssb_428_" class="wssb-st40" d="M27.3,42.7c0-0.3,0-0.5,0-0.8c0-0.6,0-1.3,0-1.9H16.8c0,0.8-0.1,1.7-0.1,2.6c0,0,0,0.1,0,0.1H27.3z"/>
 						<path id="wssb_429_" class="wssb-st40" d="M27.7,32.7c0.1-0.9,0.2-1.8,0.2-2.7H17.7c-0.1,0.8-0.2,1.7-0.3,2.7H27.7z"/>
 						<path id="wssb_430_" class="wssb-st40" d="M27.7,52.8c-0.1-0.8-0.1-1.7-0.2-2.7H17c0.1,0.9,0.2,1.8,0.3,2.7H27.7z"/>
-					</g>
-				
-					<g  class="f4">
-						<animate values="hide;hide;hide;show;" dur="0.5s" attributeName="class" repeatCount="indefinite"/>
+					</g>				
+					<g  class="open-f4">
+						<animate values="open-hide;open-hide;open-hide;open-show;" dur="0.5s" attributeName="class" repeatCount="indefinite"/>
 						<path id="wssb_413_" class="wssb-st40" d="M27.3,39.7c0-0.9,0.1-1.8,0.1-2.7H17c-0.1,0.9-0.1,1.7-0.2,2.7H27.3z"/>
 						<path id="wssb_416_" class="wssb-st40" d="M28,29.7c0.1-1,0.2-1.9,0.3-2.7H18.1c-0.1,0.8-0.3,1.7-0.4,2.7H28z"/>
 						<path id="wssb_431_" class="wssb-st40" d="M28.3,59.8c-0.1-0.7-0.2-1.6-0.3-2.7H17.9c0.2,1.1,0.3,2,0.5,2.7H28.3z"/>
 						<path id="wssb_432_" class="wssb-st40" d="M27.5,49.8c0-0.9-0.1-1.8-0.1-2.7H16.8c0,0.9,0.1,1.8,0.2,2.7H27.5z"/>
-					</g>
-				
+					</g>				
 				</svg>`;
 	}
 	
@@ -437,12 +432,12 @@ class Wssb extends Spirit {
 					.wssb-st38{fill:#2CA3F7;}
 					.wssb-st40{fill:#CCD1E2;}
 				
-					.show {display:default;}
-				    .hide {display:none;}
-				    .f1 {display:default;}
-				    .f2 {display:none;}
-				    .f3 {display:none;}
-					.f4 {display:none;}
+					.close-show {display:default;}
+				    .close-hide {display:none;}
+				    .close-f1 {display:default;}
+				    .close-f2 {display:none;}
+				    .close-f3 {display:none;}
+					.close-f4 {display:none;}
 				</style>
 				<g id="wssb_101_">
 					<linearGradient id="wssb_2_" gradientUnits="userSpaceOnUse" x1="37.6785" y1="83.882" x2="37.6785" y2="64.1733">
@@ -476,9 +471,7 @@ class Wssb extends Spirit {
 						<stop  offset="1" style="stop-color:#0D3A70"/>
 					</linearGradient>
 					<path id="wssb_96_" class="wssb-st6" d="M33.8,16.8H16.5c-2.1,0-5,11.9-5,26.5s3,26.5,5,26.5h17.3V16.8z"/>
-					<path id="wssb_98_" class="wssb-st7" d="M33.8,69.8c-2.1,0-3.1-11.9-3.1-26.5s1-26.5,3.1-26.5s3.1,11.9,3.1,26.5S35.9,69.8,33.8,69.8z"
-						/>
-					
+					<path id="wssb_98_" class="wssb-st7" d="M33.8,69.8c-2.1,0-3.1-11.9-3.1-26.5s1-26.5,3.1-26.5s3.1,11.9,3.1,26.5S35.9,69.8,33.8,69.8z"/>					
 						<linearGradient id="wssb_7_" gradientUnits="userSpaceOnUse" x1="100.5005" y1="-9.8223" x2="100.5005" y2="5.1373" gradientTransform="matrix(4.489659e-011 -1 1 4.489659e-011 26.8768 115.1236)">
 						<stop  offset="0" style="stop-color:#0D3A70"/>
 						<stop  offset="0.3957" style="stop-color:#17A1E5"/>
@@ -519,8 +512,7 @@ class Wssb extends Spirit {
 						<stop  offset="0.5187" style="stop-color:#17A1E5"/>
 						<stop  offset="1" style="stop-color:#0D3A70"/>
 					</radialGradient>
-					<path id="wssb_335_" class="wssb-st14" d="M123.1,65.8c7.7,0,13.9-11,13.9-24.6s-6.2-24.6-13.9-24.6S115.4,65.8,123.1,65.8z"/>
-					
+					<path id="wssb_335_" class="wssb-st14" d="M123.1,65.8c7.7,0,13.9-11,13.9-24.6s-6.2-24.6-13.9-24.6S115.4,65.8,123.1,65.8z"/>					
 						<linearGradient id="wssb_12_" gradientUnits="userSpaceOnUse" x1="-63.9638" y1="17.1001" x2="-63.9638" y2="65.1866" gradientTransform="matrix(-1 0 0 1 55.5088 0)">
 						<stop  offset="0" style="stop-color:#0D3A70"/>
 						<stop  offset="0.1979" style="stop-color:#17A1E5"/>
@@ -529,8 +521,7 @@ class Wssb extends Spirit {
 						<stop  offset="1" style="stop-color:#0D3A70"/>
 					</linearGradient>
 					<path id="wssb_339_" class="wssb-st15" d="M107.1,16.6h16.1c2.6,0,8.8,11,8.8,24.6s-6.2,24.6-8.8,24.6h-16.1V16.6z"/>
-					<ellipse id="wssb_338_" class="wssb-st7" cx="107.1" cy="41.2" rx="6" ry="24.6"/>
-					
+					<ellipse id="wssb_338_" class="wssb-st7" cx="107.1" cy="41.2" rx="6" ry="24.6"/>					
 						<linearGradient id="wssb_13_" gradientUnits="userSpaceOnUse" x1="-30.3359" y1="18.4012" x2="-30.3359" y2="63.8908" gradientTransform="matrix(-1 0 0 1 55.5088 0)">
 						<stop  offset="0" style="stop-color:#0D3A70"/>
 						<stop  offset="9.478467e-003" style="stop-color:#0E4077"/>
@@ -724,41 +715,36 @@ class Wssb extends Spirit {
 						"/>
 					<path id="wssb_410_" class="wssb-st0" d="M17.2,22.5c0,0-2.1,6.7-2.5,20.1c-0.2,9,2,18.8,2,18.8h11.8c0,0-1.2-9.3-1.2-19.5
 						s1.6-19.5,1.6-19.5H17.2z"/>
-				</g>
-				
-					<g  class="f1">
+				</g>				
+					<g  class="close-f1">
 						<path id="wssb_418_" class="wssb-st40" d="M18,27.7h10.2c0.1-1,0.2-1.9,0.3-2.7h-10C18.4,25.7,18.2,26.6,18,27.7z"/>
 						<path id="wssb_420_" class="wssb-st40" d="M27.4,37.7c0-0.9,0.1-1.8,0.1-2.7H17.1c-0.1,0.9-0.1,1.7-0.2,2.7H27.4z"/>
 						<path id="wssb_421_" class="wssb-st40" d="M28.1,57.8c-0.1-0.8-0.2-1.7-0.2-2.7H17.6c0.1,1,0.3,1.9,0.4,2.7H28.1z"/>
 						<path id="wssb_422_" class="wssb-st40" d="M27.4,47.7c0-0.9-0.1-1.8-0.1-2.7H16.7c0,0.9,0.1,1.8,0.1,2.7H27.4z"/>
-					</g>
-				
-					<g  class="f2">
+					</g>				
+					<g  class="close-f2">
 						<path id="wssb_423_" class="wssb-st40" d="M18.4,25.7h10.1c0.2-1.2,0.3-2.2,0.4-2.7H19C18.9,23.5,18.7,24.4,18.4,25.7z"/>
 						<path id="wssb_424_" class="wssb-st40" d="M27.3,43.1H16.7c0,0.9,0,1.8,0,2.7h10.6C27.3,44.9,27.3,44,27.3,43.1z"/>
 						<path id="wssb_425_" class="wssb-st40" d="M27.5,35.7c0.1-0.9,0.1-1.8,0.2-2.7H17.3c-0.1,0.8-0.2,1.7-0.3,2.7H27.5z"/>
 						<path id="wssb_426_" class="wssb-st40" d="M27.9,55.8c-0.1-0.8-0.1-1.7-0.2-2.7H17.3c0.1,0.9,0.2,1.8,0.4,2.7H27.9z"/>
-					</g>
-				
-					<g  class="f3">
+					</g>			
+					<g  class="close-f3">
 						<path id="wssb_427_" class="wssb-st40" d="M28.5,61.5c0,0-0.1-0.5-0.2-1.3h-9.9c0.2,0.8,0.3,1.3,0.3,1.3H28.5z"/>
 						<path id="wssb_428_" class="wssb-st40" d="M27.3,42.7c0-0.3,0-0.5,0-0.8c0-0.6,0-1.3,0-1.9H16.8c0,0.8-0.1,1.7-0.1,2.6c0,0,0,0.1,0,0.1H27.3z"/>
 						<path id="wssb_429_" class="wssb-st40" d="M27.7,32.7c0.1-0.9,0.2-1.8,0.2-2.7H17.7c-0.1,0.8-0.2,1.7-0.3,2.7H27.7z"/>
 						<path id="wssb_430_" class="wssb-st40" d="M27.7,52.8c-0.1-0.8-0.1-1.7-0.2-2.7H17c0.1,0.9,0.2,1.8,0.3,2.7H27.7z"/>
-					</g>
-				
-					<g  class="f4">
+					</g>			
+					<g  class="close-f4">
 						<path id="wssb_413_" class="wssb-st40" d="M27.3,39.7c0-0.9,0.1-1.8,0.1-2.7H17c-0.1,0.9-0.1,1.7-0.2,2.7H27.3z"/>
 						<path id="wssb_416_" class="wssb-st40" d="M28,29.7c0.1-1,0.2-1.9,0.3-2.7H18.1c-0.1,0.8-0.3,1.7-0.4,2.7H28z"/>
 						<path id="wssb_431_" class="wssb-st40" d="M28.3,59.8c-0.1-0.7-0.2-1.6-0.3-2.7H17.9c0.2,1.1,0.3,2,0.5,2.7H28.3z"/>
 						<path id="wssb_432_" class="wssb-st40" d="M27.5,49.8c0-0.9-0.1-1.8-0.1-2.7H16.8c0,0.9,0.1,1.8,0.2,2.7H27.5z"/>
-					</g>
-				
+					</g>				
 				</svg>`;
 	}
 	
 	reveal(device,config) {
-		let that = this;		
+		let that = this;
 		if(device) {
 			device.points.forEach(function(point) {
 				if(point.id=="SwSts") {	
@@ -775,7 +761,8 @@ class Wssb extends Spirit {
 			moveType: this.moveType,
 			linkage: this.linkage,
 			minWidth: this.minWidth,
-			minHeight: this.minHeight
+			minHeight: this.minHeight,
+			zIndex: this.zIndex
 		};
 		return Object.assign(super.toJson(),json);
 	}

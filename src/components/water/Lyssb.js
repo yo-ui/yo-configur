@@ -12,16 +12,17 @@ class Lyssb extends Spirit {
 	    this.width = width;
 	    this.height = height;
 	    this.moveType = 4; 
-	    this.minWidth = 50;
-	    this.minHeight = 50;
+	    this.minWidth = 20;
+	    this.minHeight = 20;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
+	    this.zIndex = 2;
 	    this.config = {bindPoint: {id:'',unit:''}}
 	}
 
 	template(){
-		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index:3;border:1px solid transparent">
+		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg">
 		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
 				 viewBox="0 0 72 68" style="enable-background:new 0 0 72 68;" xml:space="preserve">
 				<style type="text/css">
@@ -99,12 +100,13 @@ class Lyssb extends Spirit {
 
 	toJson() {
 		let json = {
-			title:this.title,
-			className:this.className,
-			moveType:this.moveType,
-			linkage:this.linkage,
-			minWidth:this.minWidth,
-			minHeight:this.minHeight
+			title: this.title,
+			className: this.className,
+			moveType: this.moveType,
+			linkage: this.linkage,
+			minWidth: this.minWidth,
+			minHeight: this.minHeight,
+			zIndex: this.zIndex
 		};
 		return Object.assign(super.toJson(),json);
 	}
@@ -112,7 +114,7 @@ class Lyssb extends Spirit {
 	viewPanel(device) {
 		let that = this;
 		if(device) {							
-			$('.view-panel').html('');
+			$('.bm-view-panel').html('');
 			let point = {name:'',value:'',unit:''}
 			if(device.points) {
 				device.points.forEach(function(data) {	
@@ -126,20 +128,20 @@ class Lyssb extends Spirit {
 			}
 			let src = "static/images/device/device-defult.png";
 			if(point.categId) {
-				src = "static/images/device/device-"+point.categId+".png";
+				src = "static/images/device/icon-dt"+point.categId+".png";
 			}
-			let vpt = $(`<div class="view-panel-title">${that.lengthFormat(device.name,12)}</div>`);
-		    let vpc = $(`<div class="view-panel-content" style="height: 50px;overflow: hidden;"></div>`);
+			let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,12)}</div>`);
+		    let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
 		    let img = $(`<img height="50"/>`);
 		    img.attr('src', src);
-		    let div = $(`<div style="display: inline-block;vertical-align:top;line-height:18px;margin-left: 6px;margin-top:8px">
-		                 <p style="text-align:left">${point.name}</p>
-		                 <span style="font-weight: bold;">${parseFloat(point.value)}</span><small>&nbsp;${point.unit}</small>
+		    let div = $(`<div class="bm-img-text">
+		                 <p>${point.name}</p>
+		                 <span>${parseFloat(point.value)}</span><small>&nbsp;${point.unit}</small>
 		                </div>`)
 		    vpc.append(img).append(div) 
-			$('.view-panel').append(vpt).append(vpc);  
-			$('.view-panel').css({width:200});
-			$('.view-panel').show();
+			$('.bm-view-panel').append(vpt).append(vpc);
+			$('.bm-view-panel').css({width:200});
+			$('.bm-view-panel').show();
 		}
 	}	
 }

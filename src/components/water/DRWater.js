@@ -10,11 +10,13 @@ class DRWater extends Spirit {
 	    this.title = "水管（右下）";
 	    this.className = "DRWater";
 	    this.width = 10;
-	    this.height = 10;	    
+	    this.height = 10;
+	    this.zIndex = 2;
+	    this.isRotate = false
 	}
 
 	template(){
-		return `<div id="${this.id}" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index:2;border:1px solid transparent">
+		return `<div id="${this.id}" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex};">
 		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 		        width = "10" height="20" xml:space="preserve">
 				<radialGradient id="XMLID_LR_" cx="296.8083" cy="-271.2963" r="7.9785" gradientTransform="matrix(4.489659e-011 1 -1 4.489659e-011 -271.3311 -296.7776)" gradientUnits="userSpaceOnUse">
@@ -26,10 +28,18 @@ class DRWater extends Spirit {
 				</svg></div>`;
 	}
 
+	transform() {
+		$('#'+this.id).css({left:this.x,top:this.y});
+		$('#'+this.id).find("svg").css({left:this.x,top:this.y});
+		$('#'+this.id).find("rect").css({left:this.x,top:this.y});
+	}
+
 	toJson(){
 		let json = {
-			title:this.title,
-			className:this.className
+			title: this.title,
+			className: this.className,
+			zIndex: this.zIndex,
+			isRotate: this.isRotate
 		};
 		return Object.assign(super.toJson(),json);
 	}

@@ -1,5 +1,7 @@
+import Rotate from '@/core/Rotate.js'
+
 /**
- * 
+ * 操作（移动，改变大小）
  */
 class Paw {
 	
@@ -9,11 +11,17 @@ class Paw {
         this.x = x;
         this.y = y;
         this.stage = stage;
+        this._x = 0;
+        this._y = 0;
+        this.rotate = new Rotate(this);
 	}
 	
 	resizePanel(property) {
 		let that = this;
+		that.isRotate = false;
 		this.property = property;
+		that._x = property.x
+		that._y = property.y;
 		let resizePanel = $('.resize-panel');	
 		resizePanel.unbind();
 		resizePanel.html('');
@@ -21,10 +29,16 @@ class Paw {
         	position: 'absolute',              
             border: '2px dashed #12a3ff',
             cursor: 'move',  
-            'z-index': 10,
+            'z-index': property.zIndex+1,
             display: 'none',
-            'user-select': 'none'
-        });  
+            'user-select': 'none',
+			transform: 'rotate('+property.rotate+'deg)'
+        });
+
+		if(property.isRotate) {
+			//旋转
+			this.rotate.create();
+		}
         
         let content = $('<div class="resize-panel-content"></div>');
         content.css({
@@ -33,41 +47,6 @@ class Paw {
             left: '0px'     
         })
         resizePanel.append(content);
-        resizePanel.on('dblclick',function(e) {       	
-        	if(that.property.className=="Text") {
-        		let html = $('#'+that.property.id).html();
-        		let width = $('#'+that.property.id).width();
-        		let height = $('#'+that.property.id).height();
-        		let input = $(`<input type="text"
-	        		style="width:${width-2}px;
-	        		height: ${height-4}px;
-	        		line-height: ${height-4}px;
-	        		background-color: #fff;
-	        		color: ${that.property.config.color};
-	        		font-size: ${that.property.config.fontSize-2}px;
-	        		border: 1px solid transparent;"/>`)
-	        	input.css({width:width});
-        		$('.resize-panel').css({width:width+14});
-        		let text = $('#'+that.property.id).find('span').text();
-        		input.val(text);
-                input.on('dblclick',function(event) {
-                	event.stopPropagation();		
-                });
-        		input.on('mouseleave',function() {
-        			let value = $(this).val()==""?"标题":$(this).val();       			
-        			let text = $(html).text(value)
-        			let fontSize = $(html).css('font-size');
-                    let width = $('#temp_value').css({'font-size':fontSize+"px"}).text(value).width()+4;
-        			$('#'+that.property.id).html(text);
-        			$('#'+that.property.id).find('span').css({width:width})
-        			resizePanel.css({width:width})
-        			that.property.width = width;
-        			that.property.config.text = value
-	                that.stage.setProperty(that.property);       
-        		});       		
-        		$('#'+that.property.id).html(input);      		
-        	}
-        });    
         
         resizePanel.on('click',function(e) {
         	e.stopPropagation();	
@@ -89,9 +68,9 @@ class Paw {
         return resizePanel;
 	}
 	
-	changeWidth(resizePanel) {	
-        var w = $('<div class="w"></div>');//西  
-        var e = $('<div class="e"></div>');//东       
+	changeWidth(resizePanel) {
+		let w = $('<div class="w"></div>');//西
+		let e = $('<div class="e"></div>');//东
         e.css({top: '50%','margin-top': '-3px',right: '-4px','cursor':'e-resize'});  
         w.css({top: '50%','margin-top': '-3px',left: '-4px','cursor': 'w-resize'});  
         this.addHandlerCss([w, e]); 
@@ -99,8 +78,8 @@ class Paw {
 	}
 	
 	changeHeight(resizePanel) {
-		var n = $('<div class="n"></div>');//北  
-        var s = $('<div class="s"></div>');//南      
+		let n = $('<div class="n"></div>');//北
+		let s = $('<div class="s"></div>');//南
         n.css({top: '-4px','margin-left': '-3px',left: '50%','cursor': 'n-resize'}); 
         s.css({bottom: '-4px','margin-left': '-3px',left: '50%','cursor': 's-resize'});      
         this.addHandlerCss([n, s]);
@@ -108,10 +87,10 @@ class Paw {
 	}
 	
 	quadrangle(resizePanel) {
-		var ne = $('<div class="ne"></div>');//东北  
-        var nw = $('<div class="nw"></div>');//西北  
-        var se = $('<div class="se"></div>');//东南  
-        var sw = $('<div class="sw"></div>');//西南  
+		let ne = $('<div class="ne"></div>');//东北
+		let nw = $('<div class="nw"></div>');//西北
+		let se = $('<div class="se"></div>');//东南
+		let sw = $('<div class="sw"></div>');//西南
         ne.css({top: '-4px',right: '-4px',cursor: 'ne-resize'});
         nw.css({top: '-4px',left: '-4px',cursor: 'nw-resize'});  
         se.css({bottom: '-4px',right: '-4px',cursor: 'se-resize'});  
@@ -121,30 +100,30 @@ class Paw {
 	}
 		
 	bindResizeEvent() {
-		var that = this;
-		let resizePanel = $('.resize-panel');			
-	    var ox = 0; //原始事件x位置  
-	    var oy = 0; //原始事件y位置  
-	    var ow = 0; //原始宽度  
-	    var oh = 0; //原始高度    
-	    var oleft = 0; //原始元素位置  
-	    var otop = 0;  
+		let that = this;
+		let resizePanel = $('.resize-panel');
+		let ox = 0; //原始事件x位置
+		let oy = 0; //原始事件y位置
+		let ow = 0; //原始宽度
+		let oh = 0; //原始高度
+		let oleft = 0; //原始元素位置
+		let otop = 0;
 	    //东  
-	    var emove = false;  
+		let emove = false;
 	    resizePanel.on('mousedown','.e', function(e) {  
 	        ox = e.pageX; 
             ow = resizePanel.width();  
             emove = true;  
 	    });  
 	    //南  
-	    var smove = false;  
+		let smove = false;
 	    resizePanel.on('mousedown','.s', function(e) {  
 	        oy = e.pageY;
             oh = resizePanel.height();  
             smove = true;  
 	    });    
 	    //西  
-	    var wmove = false;  
+		let wmove = false;
 	    resizePanel.on('mousedown','.w', function(e) {  
 	        ox = e.pageX;  
 	        ow = resizePanel.width();  
@@ -152,7 +131,7 @@ class Paw {
 	        oleft = parseInt(resizePanel.css('left').replace('px', ''));  
 	    });  	  
 	    //北  
-	    var nmove = false;  
+		let nmove = false;
 	    resizePanel.on('mousedown','.n', function(e) {  
 	        oy = e.pageY;
 	        oh = resizePanel.height();  
@@ -160,7 +139,7 @@ class Paw {
 	        otop = parseInt(resizePanel.css('top').replace('px', ''));  
 	    });    
 	    //东北  
-	    var nemove = false;  
+		let nemove = false;
 	    resizePanel.on('mousedown','.ne', function(e) {  
 	        ox = e.pageX;
 	        oy = e.pageY;  
@@ -170,7 +149,7 @@ class Paw {
 	        otop = parseInt(resizePanel.css('top').replace('px', ''));  
 	    });    
 	    //西北  
-	    var nwmove = false;  
+		let nwmove = false;
 	    resizePanel.on('mousedown','.nw', function(e) {  
 	        ox = e.pageX;
 	        oy = e.pageY;  
@@ -181,7 +160,7 @@ class Paw {
 	        nwmove = true;  
 	    });  	  
 	    //东南  
-	    var semove = false;  
+		let semove = false;
 	    resizePanel.on('mousedown','.se', function(e) {  
 	        ox = e.pageX;
             oy = e.pageY;  
@@ -191,7 +170,7 @@ class Paw {
 	    });  
 	  
 	    //西南  
-	    var swmove = false;  
+		let swmove = false;
 	    resizePanel.on('mousedown','.sw', function(e) {  
 	        ox = e.pageX;
 	        oy = e.pageY;  
@@ -202,7 +181,7 @@ class Paw {
 	    });  
 	  
 	    //拖拽  
-	    var drag = false;  
+		let drag = false;
 	    resizePanel.on('mousedown', function(e) {  
 	        ox = e.pageX;
 	        oy = e.pageY;  
@@ -214,7 +193,7 @@ class Paw {
 	    $(document).on('mousemove', function(e) {  
 	    	that.isMove = false;
 	        if(emove) {//右  
-	            var x = e.pageX-ox;  
+				let x = e.pageX-ox;
 	            let width = ow+x;
 	            let left = that.property.x;
         		let top = that.property.y;
@@ -231,7 +210,8 @@ class Paw {
 	            	}else {	            		
 	            		if(that.boundary(left,top,width,height)) {
 	            	        resizePanel.css({width:width});
-		                    resizePanel.find('.configur-spirit').children().css({width:width-4});	
+		                    resizePanel.find('.configur-spirit').children().css({width:width-2});
+							resizePanel.find("svg").css({width:width});
 		                    if(that.property.className=="LevelWater") {
 			                    resizePanel.find("rect").css({width:width});
 		            		}
@@ -241,7 +221,7 @@ class Paw {
 	            	}	            	
 	            }	            
 	        } else if(smove) {//下
-	            var y = e.pageY-oy;     
+				let y = e.pageY-oy;
 	            let height = oh+y;
 	            let left = that.property.x;
         		let top = that.property.y;
@@ -270,7 +250,7 @@ class Paw {
 	            	}
             	}
 	        } else if(wmove) {//左  
-	            var x = e.pageX-ox;
+				let x = e.pageX-ox;
 	            let width = ow-x;	 
 	            let left = oleft+x;   
         		let top = that.property.y;
@@ -290,19 +270,19 @@ class Paw {
 	            	}else {	        	            		            		
 	            		if(that.boundary(left,top,width,height)) {
 	            			resizePanel.css({width:width,left:left});
-		            		resizePanel.find('.configur-spirit').children().css({width:width});		            		
+		            		resizePanel.find('.configur-spirit').children().css({width:width-2});
 		                    resizePanel.find("svg").css({width:width});
 		            		if(that.property.className=="LevelWater") {
 			                    resizePanel.find("rect").css({width:width,left:left});
 		            		}
 		                    that.property.x = left;
-		                    that.property.width = width;
+		                    that.property.width = width-2;
 		                    that.stage.setProperty(that.property);
 	            		}		            		
 	            	}
 	            }	           
 	        } else if(nmove) {//上
-	            var y = e.pageY-oy; 	 
+				let y = e.pageY-oy;
 	            let height = oh-y;
 	            let top = otop+y;
 	            let width = that.property.width;
@@ -321,20 +301,20 @@ class Paw {
 	            	}else {
 	            		if(that.boundary(left,top,width,height)) {
 		            		resizePanel.css({height:height,top:top});
-		            		resizePanel.find('.configur-spirit').children().css({height:height});            		
+		            		resizePanel.find('.configur-spirit').children().css({height:height-2});
 		            		resizePanel.find("svg").css({height:height});
 		            		if(that.property.className=="VerticalWater") {
 		            			resizePanel.find("rect").css({height:height});
 		            		}                    
-		                    that.property.y = top;
-			                that.property.height = height;
+		                    that.property.y = top+2;
+			                that.property.height = height-2;
 			                that.stage.setProperty(that.property);
 		                }
 	            	}
             	}
 	        } else if(nemove) {//右上角  
-	            var x = e.pageX - ox;  
-	            var y = e.pageY - oy;
+				let x = e.pageX - ox;
+				let y = e.pageY - oy;
 	            
 	            resizePanel.css({height:oh-y,top:otop+y,width:ow+x});  
 	            resizePanel.find('.configur-spirit').children().css({height:oh-y,width:ow+x});	            
@@ -343,8 +323,8 @@ class Paw {
 	            that.property.height = oh-y;
 	            that.stage.setProperty(that.property);
 	        } else if(nwmove) {//左上角  
-	            var x = e.pageX - ox;  
-	            var y = e.pageY - oy;  
+				let x = e.pageX - ox;
+				let y = e.pageY - oy;
 	            
 	            resizePanel.css({height:oh-y,top:otop+y,width:ow-x,left:oleft+x});  	            
 	            that.property.y = otop+y;
@@ -353,38 +333,42 @@ class Paw {
 	            that.property.height = oh-y;
 	            that.stage.setProperty(that.property);
 	        } else if(semove) {//右下角  
-	            var x = e.pageX - ox;
-	            var y = e.pageY - oy;  
+				let x = e.pageX - ox;
+				let y = e.pageY - oy;
 	            
 	            resizePanel.css({width:ow+x,height:oh+y});  	            
 	            that.property.width = ow+x;
 	            that.property.height = oh+y;
 	            that.stage.setProperty(that.property);
 	        } else if(swmove) {//左下角  
-	            var x = e.pageX - ox;  
-	            var y = e.pageY - oy;	 
+				let x = e.pageX - ox;
+				let y = e.pageY - oy;
 	            	
 	            resizePanel.css({width:ow-x,left:oleft+x,height:oh+y}); 	            
 	            that.property.x = oleft+x;
 	            that.property.width = ow-x;
 	            that.property.height = oh+y;
 	            that.stage.setProperty(that.property);
-	        } else if(drag) {          	
-	            var x = e.pageX - ox;  
-	            var y = e.pageY - oy; 
+	        } else if(drag) {
+	            let x = e.pageX - ox;
+				let y = e.pageY - oy;
 	            let left = oleft + x;
 		        let top = otop + y;
 		        let width = that.property.width;
-		        let height = that.property.height;		        
+		        let height = that.property.height;
+
 	            if(that.boundary(left,top,width,height)) {		            
-		            resizePanel.css({left:left,top:top});	
+		            resizePanel.css({left:left,top:top});
 		            that.property.x = left+2;
 				    that.property.y = top+2;
-				    that.stage.setProperty(that.property);		    
-			    }	            	            
+				    that.stage.setProperty(that.property);
+			    }
 	            that.isMove = true;
 				that.subline(that.property.x,that.property.y);
-			    e.stopPropagation();
+				if(that._x!=that.property.x||that._y!=that.property.y) {
+					that.moveRecord({x:that._x,y:that._y});
+				}
+				e.stopPropagation();
 	        }  	        
 	    }).on('mouseup', function(e) {  
 	       emove = false;  
@@ -395,22 +379,39 @@ class Paw {
 	       nwmove = false;  
 	       swmove = false;  
 	       semove = false;  
-	       drag = false; 
+	       drag = false;
 	       e.preventDefault();
 	    });
 	    resizePanel.show();
 	}
+
+	moveRecord(before) {
+		let that = this;
+		if (this.delayTimer) {
+			clearInterval(this.delayTimer);
+		}
+		this.delayTimer = setInterval(() => {
+			let left = before.x;
+			let top = before.y;
+			let data = {left:left,top:top}
+			let record = {id:that.property.id,type:'move',name:'移动',data:data}
+			that.stage.handleRecord.add(record);
+			that._x = that.property.x;
+			that._y = that.property.y;
+			clearInterval(this.delayTimer);
+		}, 1000);
+	}
 	
 	boundary(left,top,width,height) {
-		let stage_width = $('#configur_stage').width();
-		let stage_height = $('#configur_stage').height();
-		let isB = (left>=0&&left<=stage_width-width-4)&&
-		          (top>=0&&top<=stage_height-height-4)
-		return isB;	
+		let stageWidth = $('#configur_stage').width();
+		let stageHeight = $('#configur_stage').height();
+		let isB = (left>0&&left<=stageWidth-width-4)&&
+		          (top>0&&top<=stageHeight-height-4)
+		return true;
 	}
 	
 	addHandlerCss(els) {
-		for(var i = 0; i < els.length; i++) {  
+		for(let i = 0; i < els.length; i++) {
 	        let el = els[i];  
 	        el.css({  
 	            position: 'absolute',
@@ -424,7 +425,7 @@ class Paw {
 	}
 	
 	appendHandler(handlers, target) {
-		for(var i = 0; i < handlers.length; i++) {  
+		for(let i = 0; i < handlers.length; i++) {
 	        this.el = handlers[i];  
 	        target.append(this.el);  
 	    }
@@ -440,6 +441,15 @@ class Paw {
         	$('.resize-panel-content').find('span').css({width:width});
         	$('.resize-panel').css({width:width});
         }
+		$('.resize-panel').on('contextmenu',function (e) {
+			let left = e.pageX;
+			let top = e.pageY;
+			$('.bm-context-menu').css({left: left,top: top});
+			$('.bm-context-menu').show();
+			that.stage.contextmenu();
+			e.preventDefault();
+			e.stopPropagation();
+		})
 	}
 	
 	site(x,y,width,height) {
@@ -448,57 +458,65 @@ class Paw {
 	
 	up() {
 		let that = this;
-		let top = String($('.resize-panel').css('top')).replace('px', '');
-		let left = that.property.x;
-		let width = that.property.width;
-		let height = that.property.height;
-		let y = Number(top)-1;
-		if(that.boundary(left,y,width,height)) {			
-		    $('.resize-panel').css({top:y});
-		    this.property.y = y+2;
-			this.stage.setProperty(this.property);
-		}		
+		if(that.property) {
+			let top = String($('.resize-panel').css('top')).replace('px', '');
+			let x = that.property.x;
+			let width = that.property.width;
+			let height = that.property.height;
+			let y = Number(top)-1;
+			if(that.boundary(x,y,width,height)) {
+				$('.resize-panel').css({top:y});
+				this.property.y = y+2;
+				this.stage.setProperty(this.property);
+			}
+		}
 	}
 	
 	down() {
 		let that = this;
-		let top = String($('.resize-panel').css('top')).replace('px', '');
-		let left = that.property.x;
-		let width = that.property.width;
-		let height = that.property.height;
-		let y = Number(top)+1;
-		if(that.boundary(left,y,width,height)) {			
-		    $('.resize-panel').css({top:y});
-		    this.property.y = y+2;
-			this.stage.setProperty(this.property);
-		}			
+		if(that.property) {
+			let top = String($('.resize-panel').css('top')).replace('px', '');
+			let x = that.property.x;
+			let width = that.property.width;
+			let height = that.property.height;
+			let y = Number(top)+1;
+			if(that.boundary(x,y,width,height)) {
+				$('.resize-panel').css({top:y});
+				this.property.y = y+2;
+				this.stage.setProperty(this.property);
+			}
+		}
 	}
 	
 	left() {
 		let that = this;
-		let left = String($('.resize-panel').css('left')).replace('px', '');
-		let x = Number(left)-1;
-		let width = that.property.width;
-		let height = that.property.height;
-		let top = that.property.y;
-		if(that.boundary(x,top,width,height)) {		
-		    $('.resize-panel').css({left:x});
-		    this.property.x = x+2;
-			this.stage.setProperty(this.property);
+		if(that.property) {
+			let left = String($('.resize-panel').css('left')).replace('px', '');
+			let x = Number(left)-1;
+			let width = that.property.width;
+			let height = that.property.height;
+			let y = that.property.y;
+			if(that.boundary(x,y,width,height)) {
+				$('.resize-panel').css({left:x});
+				this.property.x = x+2;
+				this.stage.setProperty(this.property);
+			}
 		}
 	}
 	
 	right() {
 		let that = this;
-		let left = String($('.resize-panel').css('left')).replace('px', '');
-		let x = Number(left)+1;
-		let width = that.property.width;
-		let height = that.property.height;
-		let top = that.property.y;
-		if(that.boundary(x,top,width,height)) {
-		    $('.resize-panel').css({left:x});
-		    this.property.x = x+2;
-			this.stage.setProperty(this.property);
+		if(that.property) {
+			let left = String($('.resize-panel').css('left')).replace('px', '');
+			let x = Number(left)+1;
+			let width = that.property.width;
+			let height = that.property.height;
+			let y = that.property.y;
+			if(that.boundary(x,y,width,height)) {
+				$('.resize-panel').css({left:x});
+				this.property.x = x+2;
+				this.stage.setProperty(this.property);
+			}
 		}
 	}
 	
@@ -525,6 +543,8 @@ class Paw {
 			$('#h_subline').hide();
 		} 
 	}
+
+
 }
 
 export default Paw;

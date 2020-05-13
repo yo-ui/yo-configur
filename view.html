@@ -4,28 +4,33 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>组态</title>
-    <link rel="stylesheet" href="static/css/normalize.css" />
-    <link rel="stylesheet" href="static/css/common.css" />
-    <link rel="stylesheet" href="static/css/base.css" />
-    <link rel="stylesheet" href="static/css/style.css" />
-    <script type="text/javascript" src="static/lib/ezuikit.js"></script>
-    <script type="text/javascript" src="static/lib/jquery-1.11.2.js"></script>
-    <script type="text/javascript" src="static/lib/echarts.min.js"></script>
-    <script type="text/javascript" src="static/lib/DateUtils.js"></script>
-    
+	<style>
+		.view-stage {
+			position: relative;
+			width:100%;
+			height:100%;
+			-webkit-user-select: none;
+			display: flex;
+		}
+		#root {
+			width:100%;height: 100%;overflow: auto;
+		}
+	</style>
   </head>
-  <body> 	
-  	<div class="configur-view-main">	    	
-  		  <!---->
-		    <div id="root" style="height: 100%;"></div> 	
+  <body>
+  	<div class="view-stage">
+  		    <!---->
+		    <div id="root"></div>
+		    <div class="bm-view-panel"></div>
+			<div style="display: none" class="bm-toast bm-toast--text bm-toast--top">
+				<span class="bm-toast__text"></span>
+			</div>
 		    <!---->
-		    <div class="view-panel"></div>
-		    <!---->
-		    <div class="password-panel">
-		    	<div class="password-shade">&nbsp;</div>
-		    	<div class="password-content">
-		    		<div class="password-header">控制密码<span>×</span></div>
-		    		<div class="password-input">
+		    <div class="bm-password-panel">
+		    	<div class="bm-password-panel__shade">&nbsp;</div>
+		    	<div class="bm-password-panel__content">
+		    		<div class="bm-password-panel__header">控制密码<span>×</span></div>
+		    		<div class="bm-password-panel__input">
 		    			<input type="text" maxlength="1"/>
 		    			<input type="text" maxlength="1"/>
 		    			<input type="text" maxlength="1"/>
@@ -33,29 +38,34 @@
 		    			<input type="text" maxlength="1"/>
 		    			<input type="text" maxlength="1"/>
 		    		</div>
-		    		<div class="password-floor">
-		    			<div class="password-cancel">取消</div>
-		    			<div class="password-affirm">确定</div>
+		    		<div class="bm-password-panel__floor">
+		    			<div class="bm-password-cancel">取消</div>
+		    			<div class="bm-password-affirm">确定</div>
 		    		</div>
 		    	</div>
 		    </div>
-		</div>	
-		
-		<div class="configur-panel"> 			
-			<div class="configur-panel-content" style="position: relative;">
-				<div class="configur-panel-h"><span>&nbsp;</span><div class="close">×</div></div>
-				<div class="configur-panel-c">
-					<div id="playWind" style="width: 800px;height: 445px;"></div>
+		</div>
+
+		<div class="bm-configur-panel" style="display: none">
+			<div class="bm-configur-panel__body">
+				<div class="bm-configur-panel__header"><span>&nbsp;</span><div class="bm-configur-panel__close">×</div></div>
+				<div class="bm-configur-panel__content">
+					<div id="playWind"></div>
 				</div>
-				<div class="vision-h">
-	      <div class="vision-btn direction btn">
-	          <div class="top"><img src="static/images/common/arrow_up.png"/></div>
-	          <div class="left"><img src="static/images/common/arrow_left.png"/></div>
-	          <div class="right"><img src="static/images/common/arrow_right.png"/></div>
-	          <div class="bottom"><img src="static/images/common/arrow_down.png"/></div>
-	      </div>
-	      </div>
+				<div class="vision-btn">
+				    <div class="bm-direction">
+					    <div class="bm-direction--top" data-value="0"><img src="static/images/common/arrow_up.png"/></div>
+					    <div class="bm-direction--left" data-value="2"><img src="static/images/common/arrow_left.png"/></div>
+					    <div class="bm-direction--right" data-value="3"><img src="static/images/common/arrow_right.png"/></div>
+					    <div class="bm-direction--bottom" data-value="1"><img src="static/images/common/arrow_down.png"/></div>
+				    </div>
+				</div>
 			</div>
 		</div>
+	<script type="text/javascript" src="static/lib/jquery-1.11.2.js"></script>
+	<script type="text/javascript" src="static/lib/ezuikit.js"></script>
+	<script type="text/javascript" src="static/lib/echarts.min.js"></script>
+	<script type="text/javascript" src="static/lib/DateUtils.js"></script>
+	<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=69cde24b534b2228abd4fc6a03c9f045"></script>
   </body>
 </html>

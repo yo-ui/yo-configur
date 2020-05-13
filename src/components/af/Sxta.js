@@ -12,16 +12,18 @@ class Sxta extends Spirit {
 	    this.width = width;
 	    this.height = height;
 	    this.moveType = 4; 
-	    this.minWidth = 50;
-	    this.minHeight = 50;
+	    this.minWidth = 20;
+	    this.minHeight = 20;
+		this.zIndex = 2;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.config = {bindPoint: {id:'WPP',unit:'kWh'}}
+	    this.bindDevice = {};
+	    this.config = {bindPoint: {id:'',unit:'kWh'}}
 	}
 
 	template(){
-		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index:3;border:1px solid transparent">
+		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
 		      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
 					 viewBox="0 0 74 58" style="enable-background:new 0 0 74 58;" xml:space="preserve">
 				<style type="text/css">
@@ -114,32 +116,29 @@ class Sxta extends Spirit {
 
 	toJson() {
 		let json = {
-			title:this.title,
-			className:this.className,
-			moveType:this.moveType,
-			linkage:this.linkage,
-			minWidth:this.minWidth,
-			minHeight:this.minHeight
+			title: this.title,
+			className: this.className,
+			moveType: this.moveType,
+			linkage: this.linkage,
+			minWidth: this.minWidth,
+			minHeight: this.minHeight,
+			zIndex: this.zIndex
 		};
 		return Object.assign(super.toJson(),json);
 	}
 	
-	viewPanel(device) {	 
+	viewPanel(device) {
 		let that = this;
-        $('.configur-panel-content').css({width: 820,height: 500})
-        $('.configur-panel').show();
-        $('.configur-panel').find('.close').on('click',function() {
-		    $('.configur-panel').hide();
-	    });	 	   
+		let decoder;
 	    this.stage.option.token(device.id, function(message) {	 
 	    	if(message.name) {
-	    		$('.configur-panel').find('.configur-panel-h span').text(message.name)
+	    		$('.bm-configur-panel__header').text(message.name)
 	    	}
 	    	if(message.serial) {
-	    		var dataList = [];
-				var url = "ezopen://open.ys7.com/"+message.serial+"/1.live";
-		        var accessToken = message.accessToken;
-		        var decoder = new EZUIKit.EZUIPlayer({
+	    		let dataList = [];
+				let url = "ezopen://open.ys7.com/"+message.serial+"/1.live";
+				let accessToken = message.accessToken;
+		        decoder = new EZUIKit.EZUIPlayer({
 		            id: 'playWind',
 		            autoplay: true,
 		            url: url,
@@ -147,36 +146,32 @@ class Sxta extends Spirit {
 		            decoderPath: 'static/lib',
 		            width: 800,
 		            height: 445,
-		        });		        		        
+		        });
 	    	}			
 		})
-	    $('.configur-panel').find('.top').on('mousedown',function() {
-	    	that.startVideoControl(device.id,0);
-	    });
-	    $('.configur-panel').find('.top').on('mouseup',function() {
-	    	that.stopVideoControl(device.id,0);
-	    });
-	    
-	    $('.configur-panel').find('.left').on('mousedown',function() {
-	    	that.startVideoControl(device.id,1);
-	    });
-	    $('.configur-panel').find('.left').on('mouseup',function() {
-	    	that.stopVideoControl(device.id,1);
-	    });
-	    
-	    $('.configur-panel').find('.right').on('mousedown',function() {
-	    	that.startVideoControl(device.id,2);
-	    });
-	    $('.configur-panel').find('.right').on('mouseup',function() {
-	    	that.stopVideoControl(device.id,2);
-	    });
-	    
-	    $('.configur-panel').find('.bottom').on('mousedown',function() {
-	    	that.startVideoControl(device.id,3);
-	    });
-	    $('.configur-panel').find('.bottom').on('mouseup',function() {
-	    	that.stopVideoControl(device.id,3);
-	    });
+
+		$('.bm-configur-panel__body').css({width: 820,height: 500})
+		$('.bm-configur-panel').show();
+
+		$('.bm-configur-panel__close').on('click',function() {
+			if(decoder) {
+				decoder.stop();
+			}
+			$('.bm-configur-panel').hide();
+		});
+
+		$('.direction > div').each(function () {
+			 $(this).on('mousedown',function () {
+				 let value = $(this).data("value")
+				 console.log(value);
+				 //that.startVideoControl(device.id,value);
+			 })
+			 $(this).on('mouseup',function () {
+				 let value = $(this).data("value")
+				 console.log(value);
+				 //that.stopVideoControl(device.id,value);
+			 })
+		});
 	}
 	
 	startVideoControl(deviceId,value) {

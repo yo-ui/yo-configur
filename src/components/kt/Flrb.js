@@ -12,16 +12,18 @@ class Flrb extends Spirit {
 	    this.width = width;
 	    this.height = height;
 	    this.moveType = 4; 
-	    this.minWidth = 50;
-	    this.minHeight = 50;
+	    this.minWidth = 20;
+	    this.minHeight = 20;
+		this.zIndex = 2;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
+	    this.bindDevice = {};
 	    this.config = {bindPoint: {id:'',unit:''}};
 	}
 
 	template(){
-		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index:3;border:1px solid transparent"></div>`);
+		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)"></div>`);
 		div.append(this.close());
 		return div;
 	}
@@ -606,8 +608,7 @@ class Flrb extends Spirit {
 								C354.5,21.7,355.8,27.3,356.2,28.9z			">
 							</path>
 						</g>
-					</g>
-				
+					</g>				
 				</svg> `;
 	}
 	
@@ -624,12 +625,13 @@ class Flrb extends Spirit {
 
 	toJson() {
 		let json = {
-			title:this.title,
-			className:this.className,
-			moveType:this.moveType,
-			linkage:this.linkage,
-			minWidth:this.minWidth,
-			minHeight:this.minHeight
+			title: this.title,
+			className: this.className,
+			moveType: this.moveType,
+			linkage: this.linkage,
+			minWidth: this.minWidth,
+			minHeight: this.minHeight,
+			zIndex: this.zIndex
 		};
 		return Object.assign(super.toJson(),json);
 	}

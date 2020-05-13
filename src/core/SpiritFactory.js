@@ -2,9 +2,7 @@
 import TextBox from '@/components/TextBox.js'
 import Text from '@/components/Text.js'
 import Images from '@/components/Images.js'
-import BarChart from '@/components/BarChart.js'
 import LineChart from '@/components/LineChart.js'
-import PieChart from '@/components/PieChart.js'
 //给水系统
 import Lyssb from '@/components/water/Lyssb.js'
 import Sbfkg from '@/components/water/Sbfkg.js'
@@ -60,6 +58,12 @@ import Hjjccgqa from '@/components/hj/Hjjccgqa.js'
 import Hjjccgqb from '@/components/hj/Hjjccgqb.js'
 import Xxqxz from '@/components/hj/Xxqxz.js'
 
+import Map from '@/components/Map.js'
+import LinkPoint from '@/components/water/LinkPoint.js'
+
+/**
+ * 组件工厂
+ */
 class SpiritFactory {
   //静态方法
   static getInstance(className,x,y,width,height) {
@@ -214,15 +218,15 @@ class SpiritFactory {
 	    case 'Images':
 	        return new Images(x,y,width,height);
 	        break;
-	    case 'BarChart':
-	        return new BarChart(x,y,width,height);
-	        break;
 	    case 'LineChart':
-	        return new LineChart(x,y,width,height);
-	        break;
-	    case 'PieChart':
-	        return new PieChart(x,y,width,height);
-	        break;
+			return new LineChart(x,y,width,height);
+			break;
+		case 'Map':
+			return new Map(x,y,width,height);
+			break;
+		case 'LinkPoint':
+			return new LinkPoint(x,y,width,height);
+			break;
 	    default:
         console.log("className:"+className);
     }

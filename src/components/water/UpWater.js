@@ -1,7 +1,7 @@
 import Spirit from '@/core/Spirit.js'
 
 /**
- * 水管（左）
+ * 水管（上）
  */
 class UpWater extends Spirit {
 
@@ -10,14 +10,16 @@ class UpWater extends Spirit {
 	    this.title = "水管（上）";
 	    this.className = "UpWater";
 	    this.width = 10;
-	    this.height = 20;
+	    this.height = 16;
 	    this.isSplice = true;
+	    this.zIndex = 2;
+	    this.isRotate = false;
 	}
 
 	template(){
-		return `<div id="${this.id}" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index:2;border:1px solid transparent">
+		return `<div id="${this.id}" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex}">
 		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-					 xml:space="preserve" width = "10" height="10">
+					 xml:space="preserve" width="10" height="10">
 					<style type="text/css">
 						.upWater-st0{fill:url(#upWater_6_);}
 						.upWater-st1{fill:url(#upWater_7_);}
@@ -33,8 +35,7 @@ class UpWater extends Spirit {
 							<stop  offset="0.5" style="stop-color:#FFFFFF"/>
 							<stop  offset="0.9803" style="stop-color:#777C7F"/>
 						</linearGradient>
-						<rect id="XMLID_4_" x="0" y="2" class="upWater-st0" width="10" height="6"/>
-						
+						<rect id="XMLID_4_" x="0" y="2" class="upWater-st0" width="10" height="6"/>						
 							<linearGradient id="upWater_7_" gradientUnits="userSpaceOnUse" x1="-143.9816" y1="991.9756" x2="-143.9816" y2="997.9756" gradientTransform="matrix(4.489659e-011 1 1 -4.489659e-011 -989.9756 152.4816)">
 							<stop  offset="0" style="stop-color:#777C7F"/>
 							<stop  offset="0.1755" style="stop-color:#ABAEB0"/>
@@ -44,20 +45,17 @@ class UpWater extends Spirit {
 						</linearGradient>
 						<rect id="XMLID_551_" x="2" y="7" class="upWater-st1" width="6" height="3"/>
 						<g id="XMLID_1_">
-							<rect id="XMLID_558_" x="2" y="2" class="upWater-st2" width="6" height="6"/>
-							
+							<rect id="XMLID_558_" x="2" y="2" class="upWater-st2" width="6" height="6"/>							
 								<radialGradient id="upWater_8_" cx="-433.2491" cy="397.6036" r="13.4118" gradientTransform="matrix(2.648001e-011 0.5898 0.5898 -2.648001e-011 -224.8701 265.2069)" gradientUnits="userSpaceOnUse">
 								<stop  offset="0.2906" style="stop-color:#777C7F"/>
 								<stop  offset="0.62" style="stop-color:#777C7F;stop-opacity:0"/>
 							</radialGradient>
-							<rect id="XMLID_555_" x="2" y="2" class="upWater-st3" width="6" height="6"/>
-							
+							<rect id="XMLID_555_" x="2" y="2" class="upWater-st3" width="6" height="6"/>							
 								<radialGradient id="upWater_9_" cx="-432.986" cy="381.6428" r="13.4117" gradientTransform="matrix(2.648001e-011 0.5898 0.5898 -2.648001e-011 -224.8701 265.2069)" gradientUnits="userSpaceOnUse">
 								<stop  offset="0.3103" style="stop-color:#777C7F"/>
 								<stop  offset="0.62" style="stop-color:#777C7F;stop-opacity:0"/>
 							</radialGradient>
-							<rect id="XMLID_554_" x="2" y="2" class="upWater-st4" width="6" height="6"/>
-							
+							<rect id="XMLID_554_" x="2" y="2" class="upWater-st4" width="6" height="6"/>							
 								<linearGradient id="upWater_10_" gradientUnits="userSpaceOnUse" x1="-444.0012" y1="393.7758" x2="-438.0012" y2="393.7758" gradientTransform="matrix(4.489659e-011 1 1 -4.489659e-011 -388.7758 446.0012)">
 								<stop  offset="0" style="stop-color:#777C7F"/>
 								<stop  offset="0.5" style="stop-color:#777C7F;stop-opacity:0"/>
@@ -75,8 +73,10 @@ class UpWater extends Spirit {
 	
 	toJson(){
 		let json = {
-			title:this.title,
-			className:this.className
+			title: this.title,
+			className: this.className,
+			zIndex: this.zIndex,
+			isRotate: this.isRotate
 		};
 		return Object.assign(super.toJson(),json);
 	}

@@ -3,34 +3,34 @@ import RemoteObject from '@/assets/js/RemoteObject'
 
 $(document).ready(function() {
 
-	var debug = true;
+	const DEBUG = true;
 
-	var websocket;
+	let websocket;
 
-	var option = {
+	let option = {
         canvas: function (callback) {
         	if(websocket) {
         		websocket.close();
         	}
-        	if(debug) {
+        	if(DEBUG) {
         		let data = localStorage.getItem("data");
         		if(!data) {
         			data = JSON.stringify({background:{url:'',pattern:1,color: '#fff'},capacity:[]})
         		}
         		let canvas = {id:1,name:'卜米物联A楼',width:1024,height:768,data:data}
-        	    callback.call(this, canvas)
+        		callback.call(this, canvas)
         	}else {
 	        	let data = {}
 	        	RemoteObject.ajax("./canvas/get","get",data,function(msg) {
-	                var result = JSON.parse(msg);
+	                let result = JSON.parse(msg);
 	                if(result.success) {
-			        	callback.call(this, result.message)
+	                	callback.call(this, result.message)
 	                }
 		        })
         	}
         },
         control: function(deviceId,point,value,callback) {
-        	if(debug) {
+        	if(DEBUG) {
         		callback.call(this,JSON.stringify({success:true,message:JSON.stringify({status:{code:100000}})}));
         	}else {
         		let data = {}
@@ -38,7 +38,7 @@ $(document).ready(function() {
         		data.point = point;
         		data.value = value;
 	        	RemoteObject.ajax("./canvas/control","post",data,function(msg) {
-	                var result = JSON.parse(msg);
+	                let result = JSON.parse(msg);
 	                if(result.success) {
 			        	callback.call(this, result.message)
 	                }
@@ -46,18 +46,18 @@ $(document).ready(function() {
         	}
         },
         devicePoints: function(devices,callback) {
-        	if(debug) {
+        	if(DEBUG) {
         		let devices = [
         		{id:'00653D5730048000',name:'设备A',
         		  points:[
-        		    {id:'WPP',name:'累积用量',value:0,unit:'t'},
+        		    {id:'TF',name:'累积用量',value:33444.22,unit:'t'},
         		    {id:'SwSts',name:'设备状态',value:1}]}]
         		callback.call(this, devices);
         	}else {
 	        	if(websocket) {
 	        		websocket.close();
 	        	}
-	        	if(debug) {
+	        	if(DEBUG) {
 	        		websocket = new WebSocket("ws://127.0.0.1:8080/configur/websocket");
 	        	} else {
 	        		websocket = new WebSocket("wss://viz.energyiot.cn/configur/websocket");
@@ -83,22 +83,22 @@ $(document).ready(function() {
 	        }
         },
         getDevice(id,callback) {
-        	if(debug) {
-        		let device = {id:'00653D5730048000',name:'设备A',points:[{id:'WPP',name:'累积用量',value:1,unit:'kWh'},{id:'SwSts',name:'设备状态',value:1}]}
+        	if(DEBUG) {
+        		let device = {id:'00653D5730048001',name:'设备A',points:[{id:'WPP',name:'累积用量',value:33.22,unit:'kWh'},{id:'SwSts',name:'设备状态',value:1}]}
         		callback.call(this, device);
         	}else {
         		let data = {}
 	        	data.deviceId = id;
 	        	RemoteObject.ajax("./common/getDevice","get",data,function(msg){
-	                var result = JSON.parse(msg);
+					let result = JSON.parse(msg);
 	                if(result.success) {
-			        	callback.call(this, result.message);
+	                  callback.call(this, result.message);
 	                }
 	            })
         	}
         },
         devicePointHstData(deviceId,point,startTime,endTime,callback) {
-        	if(debug) {
+        	if(DEBUG) {
         		let dataList = [
         		{value:1,time:'00:01:00'},{value:2,time:'00:02:00'},{value:5,time:'00:03:00'},{value:2,time:'00:04:00'},
         		{value:2,time:'00:05:00'},{value:2,time:'00:06:00'},{value:3,time:'00:07:00'},{value:2,time:'00:08:00'}]
@@ -111,7 +111,7 @@ $(document).ready(function() {
 	        	data.startTime = startTime;
 	        	data.endTime = endTime;
 	        	RemoteObject.ajax("./common/devicePointHstData","get",data,function(msg){
-	                var result = JSON.parse(msg);
+					let result = JSON.parse(msg);
 	                if(result.success) {
 			        	callback.call(this, result.message);
 	                }
@@ -119,14 +119,16 @@ $(document).ready(function() {
         	}
         },
         token(deviceId,callback) {
-        	if(debug) {
-        		let token = "";
+        	if(DEBUG) {
+        		let token = {};
+				token.serial = "D73596223";
+				token.accessToken = "ra.1xcgrtv83096z4p45cv8f1jf1h1wyvf2-8abffatz2c-1fzrsp8-ym9mbj7is";
         		callback.call(this, token);
         	}else {
-        		var data = {}
+				let data = {}
         		data.deviceId = deviceId;
         		RemoteObject.ajax("./canvas/token","get",data,function(msg){
-	                var result = JSON.parse(msg);
+					let result = JSON.parse(msg);
 	                if(result.success) {
 			        	callback.call(this, result.message);
 	                }
@@ -134,15 +136,15 @@ $(document).ready(function() {
         	}
         },
         start(deviceId,value,callback) {
-        	if(debug) {
+        	if(DEBUG) {
         		let data = {}
         		callback.call(this, data);
         	}else {
-        		var data = {}
+				let data = {}
         		data.deviceId = deviceId;
         		data.direction = value;
         		RemoteObject.ajax("./canvas/start","post",data,function(msg){
-	                var result = JSON.parse(msg);
+					let result = JSON.parse(msg);
 	                if(result.success) {
 			        	callback.call(this, result.message);
 	                }
@@ -150,15 +152,15 @@ $(document).ready(function() {
         	}
         },
         stop(deviceId,value,callback) {
-        	if(debug) {
+        	if(DEBUG) {
         		let data = {}
         		callback.call(this, data);
         	}else {
-        		var data = {}
+				let data = {}
         		data.deviceId = deviceId;
         		data.direction = value;
         		RemoteObject.ajax("./canvas/stop","post",data,function(msg){
-	                var result = JSON.parse(msg);
+					let result = JSON.parse(msg);
 	                if(result.success) {
 			        	callback.call(this, result.message);
 	                }
@@ -167,5 +169,23 @@ $(document).ready(function() {
         }
     }
 
-    var stage = new ViewStage(option);
+	new ViewStage(option);
+
+	$('.bm-password-panel__input input').each(function() {
+		$(this).on('input propertychange',function() {
+			if($(this).val()!="") {
+				$(this).next().focus();
+			}else {
+				$(this).prev().focus();
+			}
+		});
+	})
+
+	$('.bm-password-panel__header').find('span').on('click',function () {
+		$('.bm-password-panel').hide();
+	})
+
+	$('.bm-password-cancel').on('click',function() {
+		$('.bm-password-panel').hide();
+	})
 })

@@ -10,12 +10,14 @@ class LeftWater extends Spirit {
 	    this.title = "水管（左）";
 	    this.className = "LeftWater";
 	    this.width = 10;
-	    this.height = 20;
+	    this.height = 14;
 	    this.isSplice = true;
+	    this.zIndex = 2;
+	    this.isRotate = false;
 	}
 
 	template(){
-		return `<div id="${this.id}" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index:2;border:1px solid transparent">
+		return `<div id="${this.id}" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex}">
 		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 					 viewBox="0 0 10 10" xml:space="preserve" width = "10" height="10">
 				<style type="text/css">
@@ -76,7 +78,9 @@ class LeftWater extends Spirit {
 	toJson(){
 		let json = {
 			title:this.title,
-			className:this.className
+			className:this.className,
+			zIndex: this.zIndex,
+			isRotate: this.isRotate
 		};
 		return Object.assign(super.toJson(),json);
 	}
