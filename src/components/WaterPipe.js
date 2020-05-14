@@ -257,6 +257,7 @@ class WaterPipe {
 		})
 	}
 
+    //清空
 	empty() {
 		this.water = {start:true,direction:''};
 		this.isDraw = true;
@@ -272,7 +273,7 @@ class WaterPipe {
 			$('#board').hide();
 		}
 	}
-	
+	//计算角度
 	angle(start,end) {
 	    return Math.atan2((end.y-start.y), (end.x-start.x))*(180/Math.PI);
 	}

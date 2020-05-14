@@ -2,7 +2,7 @@
  * 所有组件的父类
  */
 class Spirit {
-	
+
 	constructor(x=0,y=0,width=10,height=10) {
 		this.id = "c_"+Math.random().toString().substr(2,10);
 		this.x = x;
@@ -14,9 +14,9 @@ class Spirit {
 		this.isMove = true;
 		this.bindType = 1;
 	}
-	
+
 	toString() {}
-	
+
 	toJson() {
 		return {
 			id: this.id,
@@ -31,21 +31,21 @@ class Spirit {
 	}
 
 	refresh() {}
-	
+
 	getEl() {
 		return $('#'+this.id);
 	}
-	
+
 	arrangement(stage) {
 		this.stage = stage;
 		stage.element.append(this.template());
 	}
-	
+
 	reveal(device,config) {}
-	
+
 	renderer() {
 		let that = this;
-		$('#configur_property').html('');	
+		$('#configur_property').html('');
 		let html = $(`<div class="bm-tree">位置</div>		             
 					<div class="bm-cell no-hover">
 						<div class="bm-cell__title">
@@ -98,73 +98,28 @@ class Spirit {
 			$('#configur_property').append(roteta);
 		}
 	}
-	
+
 	viewPanel(device) {
+    let that = this;
 		if(device) {
-			let that = this;
+		  let el = $('#'+that.id);
+      let left = el.offset().left+el.width();
+      let top = el.offset().top-60;
+      $('.bm-view-panel').css({left:left,top:top});
 			$('.bm-view-panel').html('');
 			let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,24)}</div>`);
 		    let vpc = $(`<div class="bm-view-panel__content"></div>`);
-		    let ul = $('<ul></ul>');	      
+		    let ul = $('<ul></ul>');
 		    device.points.forEach(function(point) {
 		    	let li = $(`<li><span class="text">${point.name}</span></li>`);
 		    	if(point.id=="SwSts") {
-		    		let img = $('<img style="height: 20px;vertical-align: middle;"/>')
-		    		if(point.value==1) {
-		    			img.attr("src","static/images/start.png")
-		    			img.data("value", 1)
-		    		}else {
-		    			img.attr("src","static/images/end.png")
-		    			img.data("value", 0)
-		    		}
-		    		img.on('click',function(e) {
-		    			let value = img.data("value");	
-		    			$('.bm-password-affirm').unbind();
-		    			$('.bm-password-input input').each(function() {
-						    $(this).val('');
-						})
-						$('.bm-password-panel').show();
-						$('.bm-password-cancel').on('click',function() {
-							$('.bm-password-panel').hide();
-						})								
-						$('.bm-password-affirm').on('click',function(e) {
-							let text = '';
-						    $('.bm-password-input input').each(function() {
-						    	text+=$(this).val()
-						    })
-						    if(text.length<6) {
-								that.stage.toast('请输入正确密码');
-						    	return;
-						    }							
-							that.stage.option.control(device.id,point.id,value==1?0:1,function(msg) {
-								let result = JSON.parse(msg);
-                                if(result.success) {
-									let message = JSON.parse(result.message);
-                                    if(message.status.code==100000){
-										if(value==1) {
-						    				img.attr("src","static/images/end.png")
-						    			    img.data("value", 0)
-						    			    $('#'+that.id).html(that.close())
-						    			}else {
-						    				img.attr("src","static/images/start.png")
-						    			    img.data("value", 1)
-						    			    $('#'+that.id).html(that.open())
-						    			}
-					    		    }
-								}else {
-									that.stage.toast("控制失败");
-								}
-								$('.bm-password-panel').hide();
-							})														    			
-						})	    			
-		    		})
-		    	    li.append(img)
+		    		let text = $(`<span class="value">${point.value==0?'关':'开'}</span>`)
+            li.append(text)
 		    	}else {
 		    		if(point.value) {
-		    			let span = $(`<span class="value">${that.floatFormat(point.value)}</span>`)
-				    	let small = $(`<small class="unit">${that.undefinedToString(point.unit)}</small>`)
-				    	li.append(span).append(small);
-		    		}		    		
+		    			let span = $(`<span class="value">${that.floatFormat(point.value)}<small class="unit">${that.undefinedToString(point.unit)}</small></span>`)
+				    	li.append(span);
+		    		}
 		    	}
 		    	ul.append(li);
 		    });
@@ -174,18 +129,18 @@ class Spirit {
 			$('.bm-view-panel').show();
 		}
 	}
-	
+
 	floatFormat(value) {
 		if(value) {
 			return parseFloat(value)
 		}
 		return '';
 	}
-	
+
 	undefinedToString(value) {
 		return value==undefined?'':value;
 	}
-	
+
 	lengthFormat(text,length) {
 		return text.length>length?text.substr(0,length)+"...":text
 	}

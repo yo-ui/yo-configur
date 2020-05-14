@@ -3,6 +3,7 @@ import TextBox from '@/components/TextBox.js'
 import Text from '@/components/Text.js'
 import Images from '@/components/Images.js'
 import LineChart from '@/components/LineChart.js'
+import ViewPanel from '@/components/ViewPanel.js'
 //给水系统
 import Lyssb from '@/components/water/Lyssb.js'
 import Sbfkg from '@/components/water/Sbfkg.js'
@@ -76,13 +77,13 @@ class SpiritFactory {
 	        break;
 	    case 'TextBox':
 	        return new TextBox(x,y,width,height);
-	        break; 
+	        break;
 	    case 'Bgsdb':
 	        return new Bgsdb(x,y,width,height);
 	        break;
 	    case 'Byq':
 	        return new Byq(x,y,width,height);
-	        break; 
+	        break;
 	    case 'Dldrq':
 	        return new Dldrq(x,y,width,height);
 	        break;
@@ -184,13 +185,13 @@ class SpiritFactory {
 	        break;
 	    case 'LevelWater':
 	        return new LevelWater(x,y,width,height);
-	        break; 
+	        break;
 	    case 'VerticalWater':
 	        return new VerticalWater(x,y,width,height);
 	        break;
 	    case 'DRWater':
 	        return new DRWater(x,y);
-	        break;      
+	        break;
 	    case 'LDWater':
 	        return new LDWater(x,y);
 	        break;
@@ -202,7 +203,7 @@ class SpiritFactory {
 	        break;
 	    case 'LeftWater':
 	        return new LeftWater(x,y);
-	        break;  
+	        break;
 	    case 'DownWater':
 	        return new DownWater(x,y);
 	        break;
@@ -211,7 +212,7 @@ class SpiritFactory {
 	        break;
 	    case 'UpWater':
 	        return new UpWater(x,y);
-	        break;    
+	        break;
 	    case 'Text':
 	        return new Text(x,y,width,height);
 	        break;
@@ -219,17 +220,20 @@ class SpiritFactory {
 	        return new Images(x,y,width,height);
 	        break;
 	    case 'LineChart':
-			return new LineChart(x,y,width,height);
-			break;
-		case 'Map':
-			return new Map(x,y,width,height);
-			break;
-		case 'LinkPoint':
-			return new LinkPoint(x,y,width,height);
-			break;
-	    default:
-        console.log("className:"+className);
-    }
+        return new LineChart(x,y,width,height);
+        break;
+      case 'Map':
+        return new Map(x,y,width,height);
+        break;
+      case 'LinkPoint':
+        return new LinkPoint(x,y,width,height);
+        break;
+      case 'ViewPanel':
+        return new ViewPanel(x,y,width,height);
+        break;
+      default:
+          console.log("className:"+className);
+      }
   }
 }
 

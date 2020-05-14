@@ -6,15 +6,15 @@ import Spirit from '@/core/Spirit.js'
 class Kg extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
-        super(x, y);
+	    super(x, y);
 	    this.title = "开关";
 	    this.className = "Kg";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4; 
+	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
-		this.zIndex = 2;
+		  this.zIndex = 2;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
@@ -27,7 +27,7 @@ class Kg extends Spirit {
 	    div.append(this.close())
 	    return div;
 	}
-	
+
 	open() {
 		return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
 					 viewBox="0 0 43 41" style="enable-background:new 0 0 43 41;" xml:space="preserve">
@@ -57,7 +57,7 @@ class Kg extends Spirit {
 				</g>
 				</svg>`;
 	}
-	
+
 	close() {
 		return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
 					 viewBox="0 0 43 41" style="enable-background:new 0 0 43 41;" xml:space="preserve">
@@ -99,60 +99,50 @@ class Kg extends Spirit {
 		};
 		return Object.assign(super.toJson(),json);
 	}
-	
+
 	reveal(device,config) {
-		let that = this;		
+		let that = this;
 		if(device) {
 			device.points.forEach(function(point) {
-				if(point.id=="SwSts") {	
+				if(point.id=="SwSts") {
 				  $('#'+that.id).html(point.value==1?that.open():that.close())
 				}
 			})
-		}		
+		}
 	}
-	
+
 	viewPanel(device) {
-		if(device) {					
+		if(device) {
 			let that = this;
 			that.point = {id:'',value:''}
 			if(device.points) {
-				device.points.forEach(function(data) {	
+				device.points.forEach(function(data) {
 					if(data.id=="SwSts") {
 						that.point.id = data.id;
 						that.point.value = parseFloat(data.value);
 					}
 				});
 			}
-
-			$('.bm-password-panel__input input').each(function() {
-				$(this).val('');
-			})
-			$('.bm-password-panel').show();
-
-			$('.bm-password-affirm').on('click',function(e) {
-				let text = '';
-				$('.bm-password-panel__input input').each(function() {
-					text+=$(this).val()
-				})
-				if(text.length<6) {
-					that.stage.toast('请输入正确密码');
-					return;
-				}
-				that.stage.option.control(device.id,that.point.id,that.point.value==1?0:1,function(msg) {
-					let result = JSON.parse(msg);
-					if(result.success) {
-						let message = JSON.parse(result.message);
-						if(message.status.code==100000) {
-							that.point.value = that.point.value==1?0:1;
-							that.stage.toast("控制成功");
-							$('#'+that.id).html(that.point.value==1?that.open():that.close())
-						}
-					}else {
-						that.stage.toast("控制失败");
-					}
-					$('.bm-password-panel').hide();
-				})
-			})
+			that.stage.password.show();
+      that.stage.password.confirm(function () {
+        that.stage.option.control(device.id,that.point.id,that.point.value==1?0:1,function(msg) {
+          let result = JSON.parse(msg);
+          if(result.success) {
+            let message = JSON.parse(result.message);
+            if(message.status.code==100000) {
+              that.point.value = that.point.value==1?0:1;
+              that.stage.toast("控制成功");
+              let data = {}
+              data.id = device.id;
+              data.points = [{id:that.point.id,value:that.point.value}]
+              that.stage.linkage(data);
+            }
+          }else {
+            that.stage.toast("控制失败");
+          }
+          that.stage.password.hide();
+        })
+      });
 		}
 	}
 }

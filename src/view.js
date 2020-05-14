@@ -40,7 +40,7 @@ $(document).ready(function() {
 	        	RemoteObject.ajax("./canvas/control","post",data,function(msg) {
 	                let result = JSON.parse(msg);
 	                if(result.success) {
-			        	callback.call(this, result.message)
+			        	    callback.call(this, result.message)
 	                }
 		        })
         	}
@@ -84,13 +84,13 @@ $(document).ready(function() {
         },
         getDevice(id,callback) {
         	if(DEBUG) {
-        		let device = {id:'00653D5730048001',name:'设备A',points:[{id:'WPP',name:'累积用量',value:33.22,unit:'kWh'},{id:'SwSts',name:'设备状态',value:1}]}
+        		let device = {id:'00653D5730048000',name:'设备A',points:[{id:'WPP',name:'累积用量',value:33.22,unit:'kWh'},{id:'SwSts',name:'设备状态',value:1}]}
         		callback.call(this, device);
         	}else {
         		let data = {}
 	        	data.deviceId = id;
 	        	RemoteObject.ajax("./common/getDevice","get",data,function(msg){
-					let result = JSON.parse(msg);
+					    let result = JSON.parse(msg);
 	                if(result.success) {
 	                  callback.call(this, result.message);
 	                }
@@ -111,28 +111,28 @@ $(document).ready(function() {
 	        	data.startTime = startTime;
 	        	data.endTime = endTime;
 	        	RemoteObject.ajax("./common/devicePointHstData","get",data,function(msg){
-					let result = JSON.parse(msg);
-	                if(result.success) {
-			        	callback.call(this, result.message);
-	                }
-	            })
+	        	  let result = JSON.parse(msg);
+              if(result.success) {
+                callback.call(this, result.message);
+              }
+	        	})
         	}
         },
         token(deviceId,callback) {
         	if(DEBUG) {
         		let token = {};
-				token.serial = "D73596223";
-				token.accessToken = "ra.1xcgrtv83096z4p45cv8f1jf1h1wyvf2-8abffatz2c-1fzrsp8-ym9mbj7is";
+            token.serial = "D73596223";
+            token.accessToken = "ra.1xcgrtv83096z4p45cv8f1jf1h1wyvf2-8abffatz2c-1fzrsp8-ym9mbj7is";
         		callback.call(this, token);
         	}else {
-				let data = {}
+				    let data = {}
         		data.deviceId = deviceId;
         		RemoteObject.ajax("./canvas/token","get",data,function(msg){
-					let result = JSON.parse(msg);
-	                if(result.success) {
-			        	callback.call(this, result.message);
-	                }
-	            })
+					      let result = JSON.parse(msg);
+                if(result.success) {
+                    callback.call(this, result.message);
+                }
+	          })
         	}
         },
         start(deviceId,value,callback) {
@@ -140,15 +140,15 @@ $(document).ready(function() {
         		let data = {}
         		callback.call(this, data);
         	}else {
-				let data = {}
-        		data.deviceId = deviceId;
-        		data.direction = value;
-        		RemoteObject.ajax("./canvas/start","post",data,function(msg){
-					let result = JSON.parse(msg);
-	                if(result.success) {
-			        	callback.call(this, result.message);
-	                }
-	            })
+            let data = {}
+            data.deviceId = deviceId;
+            data.direction = value;
+            RemoteObject.ajax("./canvas/start","post",data,function(msg){
+                let result = JSON.parse(msg);
+                if(result.success) {
+                    callback.call(this, result.message);
+                }
+            })
         	}
         },
         stop(deviceId,value,callback) {
@@ -156,36 +156,23 @@ $(document).ready(function() {
         		let data = {}
         		callback.call(this, data);
         	}else {
-				let data = {}
+				    let data = {}
         		data.deviceId = deviceId;
         		data.direction = value;
         		RemoteObject.ajax("./canvas/stop","post",data,function(msg){
-					let result = JSON.parse(msg);
-	                if(result.success) {
-			        	callback.call(this, result.message);
-	                }
-	            })
+					    let result = JSON.parse(msg);
+              if(result.success) {
+                callback.call(this, result.message);
+              }
+        		})
         	}
         }
     }
 
-	new ViewStage(option);
+	let stage = new ViewStage(option);
 
-	$('.bm-password-panel__input input').each(function() {
-		$(this).on('input propertychange',function() {
-			if($(this).val()!="") {
-				$(this).next().focus();
-			}else {
-				$(this).prev().focus();
-			}
-		});
-	})
+  $(window).resize(function() {
+    stage.location();//页面改变时调整舞台位置
+  })
 
-	$('.bm-password-panel__header').find('span').on('click',function () {
-		$('.bm-password-panel').hide();
-	})
-
-	$('.bm-password-cancel').on('click',function() {
-		$('.bm-password-panel').hide();
-	})
 })

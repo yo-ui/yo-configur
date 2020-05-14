@@ -9,8 +9,8 @@ class TextBox extends Spirit {
         super(x, y);
 	    this.title = "显示框";
 	    this.className = "TextBox";
-	    this.width = 80;
-		this.minWidth = 80;
+	    this.width = 90;
+		this.minWidth = 90;
 	    this.height = 30;
 	    this.moveType = 0;
 	    this.isBind = true;
@@ -29,11 +29,11 @@ class TextBox extends Spirit {
                 z-index: ${this.zIndex};
                 transform: rotate(${this.rotate}deg)">
 		        <span style="
-		            min-width: ${this.width-10}px;
+		            min-width: ${this.width}px;
 					line-height: ${this.height}px;
 					height: ${this.height}px;
 					text-align: center;
-					background-color: ${this.config.backgroundColor};padding: 0 5px">
+					background-color: ${this.config.backgroundColor};">
 		            <span class="value" style="font-weight:bold;font-family: electronicFont;font-size: ${this.config.fontSize}px;height: 29px">00.00</span>
 		            <small class="configur-unit" style="text-align:center;font-size: ${this.config.fontSize*0.5}px">${this.config.bindPoint.unit}</small>
 			    </span>
@@ -47,7 +47,7 @@ class TextBox extends Spirit {
 			device.points.forEach(function(point) {
 				if(config.bindPoint.id==point.id) {
 				  $('#'+that.id).find('.value').text(parseFloat(point.value));
-				  $('#'+that.id).find('.configur-unit').text(config.bindPoint.unit);
+				  //$('#'+that.id).find('.configur-unit').text(config.bindPoint.unit);
 				}
 			})
 		}		

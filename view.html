@@ -4,21 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>组态</title>
-	<style>
-		.view-stage {
-			position: relative;
-			width:100%;
-			height:100%;
-			-webkit-user-select: none;
-			display: flex;
-		}
-		#root {
-			width:100%;height: 100%;overflow: auto;
-		}
-	</style>
   </head>
   <body>
-  	<div class="view-stage">
   		    <!---->
 		    <div id="root"></div>
 		    <div class="bm-view-panel"></div>
@@ -29,7 +16,7 @@
 		    <div class="bm-password-panel">
 		    	<div class="bm-password-panel__shade">&nbsp;</div>
 		    	<div class="bm-password-panel__content">
-		    		<div class="bm-password-panel__header">控制密码<span>×</span></div>
+		    		<div class="bm-password-panel__header"><small class="text">控制密码</small><span>×</span></div>
 		    		<div class="bm-password-panel__input">
 		    			<input type="text" maxlength="1"/>
 		    			<input type="text" maxlength="1"/>
@@ -60,8 +47,7 @@
 					    <div class="bm-direction--bottom" data-value="1"><img src="static/images/common/arrow_down.png"/></div>
 				    </div>
 				</div>
-			</div>
-		</div>
+
 	<script type="text/javascript" src="static/lib/jquery-1.11.2.js"></script>
 	<script type="text/javascript" src="static/lib/ezuikit.js"></script>
 	<script type="text/javascript" src="static/lib/echarts.min.js"></script>
