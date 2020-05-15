@@ -2,17 +2,17 @@
  * 水管
  */
 class WaterPipe {
-	
+
 	constructor(stage) {
-		this.stage = stage; 
+		this.stage = stage;
 		this.water = {start:true,direction:""};
 		this.isDraw = false;
 		this.isMove = true;
 		this.init();
 		this.tempList = []
 		this.linkPointList = []
-	}	
-	
+	}
+
 	init() {
 		let that = this;
 		$('#board').on('click',function(e) {
@@ -26,14 +26,14 @@ class WaterPipe {
 			}
 			if(that.isDraw) {
 				if(that.water.start) {
-		            that.stage.capacity.forEach(function(data) {
+				  that.stage.capacity.forEach(function(data) {
 						if(data.className=="LinkPoint") {
 							that.linkPointList.push(data);
 							if((e.offsetX>data.x-30&&e.offsetX<data.x+30)||
 								(e.offsetY>data.y-30&&e.offsetY<data.y+30)) {
 								let start = {x:data.x,y:data.y}
 								let end = {x:e.offsetX,y:e.offsetY}
-								let angle= that.angle(start,end);
+								let angle = that.angle(start,end);
 								if(((angle>-45&&angle<0)||(angle>=0&&angle<45))&&(e.offsetX>data.x&&e.offsetX<data.x+30)) {
 									that.water.startX = data.x+4;
 									that.water.startY = data.y-1;
@@ -264,7 +264,7 @@ class WaterPipe {
 		this.tempList = [];
 		this.linkPointList = [];
 	}
-	
+
 	setDraw(draw) {
 		this.isDraw = draw;
 		if(this.isDraw) {

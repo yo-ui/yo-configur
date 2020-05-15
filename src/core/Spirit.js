@@ -13,6 +13,7 @@ class Spirit {
 		this.rotate = 0;
 		this.isMove = true;
 		this.bindType = 1;
+		this.isLinkPoint = false
 	}
 
 	toString() {}
@@ -26,7 +27,8 @@ class Spirit {
 			height: this.height,
 			isMove: this.isMove,
 			rotate: this.rotate,
-			isRotate: this.isRotate
+			isRotate: this.isRotate,
+      isLinkPoint: this.isLinkPoint,
 		}
 	}
 

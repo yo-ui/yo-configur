@@ -11,13 +11,15 @@ class Ckssb extends Spirit {
 	    this.className = "Ckssb";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4; 
+	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.zIndex = 2;
+	    this.isLinkPoint = true;
+	    this.zIndex = 3;
+	    this.bindDevice = {};
 	    this.config = {bindPoint: {id:'',unit:''}}
 	}
 
@@ -119,14 +121,28 @@ class Ckssb extends Spirit {
 			linkage: this.linkage,
 			minWidth: this.minWidth,
 			minHeight: this.minHeight,
-			zIndex: this.zIndex
+			zIndex: this.zIndex,
+      isLinkPoint: this.isLinkPoint
 		};
 		return Object.assign(super.toJson(),json);
 	}
-	
+
+  createLinkPoint() {
+    let x = this.x+this.width-8;
+    let y = this.y+this.height/2-4
+    let spirit = this.stage.create("LinkPoint",x,y,10,10);
+    spirit.isAuto = true;
+    this.stage.capacity.push(spirit);
+    let x2 = this.x-3;
+    let y2 = this.y+this.height/2-4;
+    let spirit2 = this.stage.create("LinkPoint",x2,y2,10,10);
+    spirit2.isAuto = true;
+    this.stage.capacity.push(spirit2);
+  }
+
 	viewPanel(device) {
 		let that = this;
-		if(device) {								
+		if(device) {
 			$('.bm-view-panel').html('');
 			let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,12)}</div>`);
 		    let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
@@ -135,7 +151,7 @@ class Ckssb extends Spirit {
 		                 <p>累积流量</p>
 		                 <span>${parseFloat(device.points[0].value)}</span><small>&nbsp;${device.points[0].unit}</small>
 		                </div>`)
-		    vpc.append(img).append(div) 
+		    vpc.append(img).append(div)
 			$('.bm-view-panel').append(vpt).append(vpc);
 			$('.bm-view-panel').css({width:200});
 			$('.bm-view-panel').show();

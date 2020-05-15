@@ -10,12 +10,13 @@ class LinkPoint extends Spirit {
 	    this.title = "连接点";
 	    this.className = "LinkPoint";
 	    this.width = width;
-	    this.height = height; 
+	    this.height = height;
 	    this.minWidth = 6;
 	    this.minHeight = 6;
 	    this.isMove = true;
 	    this.zIndex = 4;
 	    this.isRotate = false;
+	    this.isAuto = false;
 	}
 
 	template(){
@@ -25,16 +26,17 @@ class LinkPoint extends Spirit {
 		        </div>`)
 		return div;
 	}
-	
+
 	toJson() {
 		let json = {
 			title: this.title,
-			className: this.className, 
+			className: this.className,
 			moveType: this.moveType,
 			minWidth: this.minWidth,
 			isMove: this.isMove,
 			zIndex: this.zIndex,
-			isRotate: this.isRotate
+			isRotate: this.isRotate,
+      isAuto: this.isAuto
 		};
 		return Object.assign(super.toJson(),json);
 	}

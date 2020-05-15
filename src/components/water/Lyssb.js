@@ -11,13 +11,15 @@ class Lyssb extends Spirit {
 	    this.className = "Lyssb";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4; 
+	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.zIndex = 2;
+	    this.zIndex = 3;
+      this.isLinkPoint = true;
+	    this.bindDevice = {};
 	    this.config = {bindPoint: {id:'',unit:''}}
 	}
 
@@ -106,18 +108,32 @@ class Lyssb extends Spirit {
 			linkage: this.linkage,
 			minWidth: this.minWidth,
 			minHeight: this.minHeight,
-			zIndex: this.zIndex
+			zIndex: this.zIndex,
+      isLinkPoint: this.isLinkPoint
 		};
 		return Object.assign(super.toJson(),json);
 	}
-	
+
+  createLinkPoint() {
+    let x = this.x+this.width-8;
+    let y = this.y+this.height/2-3
+    let spirit = this.stage.create("LinkPoint",x,y,10,10);
+    spirit.isAuto = true;
+    this.stage.capacity.push(spirit);
+    let x2 = this.x-3;
+    let y2 = this.y+this.height/2-3
+    let spirit2 = this.stage.create("LinkPoint",x2,y2,10,10);
+    spirit2.isAuto = true;
+    this.stage.capacity.push(spirit2);
+  }
+
 	viewPanel(device) {
 		let that = this;
-		if(device) {							
+		if(device) {
 			$('.bm-view-panel').html('');
 			let point = {name:'',value:'',unit:''}
 			if(device.points) {
-				device.points.forEach(function(data) {	
+				device.points.forEach(function(data) {
 					if(data.id==that.config.bindPoint.id) {
 						point.value = parseFloat(data.value);
 						point.unit = data.unit;
@@ -138,12 +154,12 @@ class Lyssb extends Spirit {
 		                 <p>${point.name}</p>
 		                 <span>${parseFloat(point.value)}</span><small>&nbsp;${point.unit}</small>
 		                </div>`)
-		    vpc.append(img).append(div) 
+		    vpc.append(img).append(div)
 			$('.bm-view-panel').append(vpt).append(vpc);
 			$('.bm-view-panel').css({width:200});
 			$('.bm-view-panel').show();
 		}
-	}	
+	}
 }
 
 export default Lyssb;

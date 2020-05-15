@@ -27,6 +27,7 @@ class ViewStage {
 			position: 'relative',
 			width: width+'px',
 			height: height+'px',
+      'user-select:': 'none',
 			'background-color': background.color
 		});
 		this.element = element;

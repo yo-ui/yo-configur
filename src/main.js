@@ -17,7 +17,7 @@ $(document).ready(function() {
         	}else {
         		let data = {}
 	        	RemoteObject.ajax("./canvas/get","get",data,function(msg){
-				    let result = JSON.parse(msg);
+				          let result = JSON.parse(msg);
 	                if(result.success) {
 	              	    callback.call(this, result.message);
 	                }

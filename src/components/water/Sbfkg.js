@@ -11,13 +11,15 @@ class Sbfkg extends Spirit {
 	    this.className = "Sbfkg";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4; 
+	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.zIndex = 2;
+	    this.zIndex = 3;
+	    this.isLinkPoint = true;
+	    this.bindDevice = {}
 	    this.config = {bindPoint: {id:'',unit:''}}
 	}
 
@@ -122,26 +124,40 @@ class Sbfkg extends Spirit {
 			linkage: this.linkage,
 			minWidth: this.minWidth,
 			minHeight: this.minHeight,
-			zIndex: this.zIndex
+			zIndex: this.zIndex,
+      isLinkPoint: this.isLinkPoint
 		};
 		return Object.assign(super.toJson(),json);
 	}
-	
+
+	createLinkPoint() {
+	  let x = this.x+this.width-8;
+	  let y = this.y+this.height/2-4
+    let spirit = this.stage.create("LinkPoint",x,y,10,10);
+	  spirit.isAuto = true;
+    this.stage.capacity.push(spirit);
+    let x2 = this.x-2;
+    let y2 = this.y+this.height/2-4
+    let spirit2 = this.stage.create("LinkPoint",x2,y2,10,10);
+    spirit2.isAuto = true;
+    this.stage.capacity.push(spirit2);
+  }
+
 	viewPanel(device) {
-		if(device) {					
+		if(device) {
 			let that = this;
 			$('.bm-view-panel').html('');
 			let vpt = $(`<div class="bm-view-panel__title">${device.name}</div>`);
-		    let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
-		    let img = $(`<img src="static/images/device/icon-dt3.png" height="50"/>`);
-		    let div = $(`<div class="bm-img-text">
-		                 <p>累积流量</p>
-		                 <span>${that.floatFormat(device.points[0].value)}</span><small>&nbsp;${device.points[0].unit}</small>
-		                </div>`)
-		    let div2 = $(`<div style="display: inline-block;vertical-align:top;margin-left: 40px;margin-top:8px">
-		                 <img src="static/images/start.png" style="vertical-align: middle;"/>
-		                </div>`)
-		    vpc.append(img).append(div).append(div2);
+      let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
+      let img = $(`<img src="static/images/device/icon-dt3.png" height="50"/>`);
+      let div = $(`<div class="bm-img-text">
+                   <p>累积流量</p>
+                   <span>${that.floatFormat(device.points[0].value)}</span><small>&nbsp;${device.points[0].unit}</small>
+                  </div>`)
+      let div2 = $(`<div style="display: inline-block;vertical-align:top;margin-left: 40px;margin-top:8px">
+                   <img src="static/images/start.png" style="vertical-align: middle;"/>
+                  </div>`)
+      vpc.append(img).append(div).append(div2);
 			$('.bm-view-panel').append(vpt).append(vpc);
 			$('.bm-view-panel').css({width:260});
 			$('.bm-view-panel').show();

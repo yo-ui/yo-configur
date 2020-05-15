@@ -30,8 +30,7 @@ class Stage {
 		this.zoom = new Zoom(this);//缩放
 		this.align = new Align(this);//对齐
 		this.handleRecord = new HandleRecord(this);
-        this.bindD = new BindDevice(this);
-
+		this.bindD = new BindDevice(this);
 		this.option.canvas(function(data) {
 			$('.bm-layout__header__name').text(data.name);
 			that.canvasId = data.id;
@@ -52,7 +51,6 @@ class Stage {
 		this.isCreate = false;
 		this.dw = 50;
 		this.dh = 50;
-
 		let element = $('<div id="configur_stage"></div>').css({
 			position: 'relative',
 			width: width+'px',
@@ -70,7 +68,6 @@ class Stage {
 			display: 'none'
 		});
 		element.append(board);
-
 		let rotate = $('<div id="rotate">&nbsp;</div>').css({
 			position: 'absolute',
 			width: width+'px',
@@ -112,13 +109,11 @@ class Stage {
 			'z-index': '1',
 		})
 		element.append(rectangle);
-
 		let selectedPanel = $(`<div class="bm-selected-panel">&nbsp;</div>`)
 		selectedPanel.on('mouseup',function (e) {
 			that.rectangle.selected = false;
 			e.stopPropagation();
 		});
-
 		selectedPanel.on('contextmenu',function (e) {
 			let left = $(this).offset().left+e.offsetX+5;
 			let top = $(this).offset().top+e.offsetY+5;
@@ -128,9 +123,7 @@ class Stage {
 			e.preventDefault();
 			e.stopPropagation();
 		});
-
 		element.append(selectedPanel);
-
 		element.on('mouseover',function(e) {
 			if(that.isCreate) {
 				that.isCreate = false;
@@ -265,13 +258,12 @@ class Stage {
 		});
 
 		this.element = element;
-
 		this.capacity = [];
 		$('.bm-toolbar_zoom').on('mouseleave',function() {
 			$('.bm-toolbar_zoom').hide();
 		});
 		$('#root').append(this.element);
-		this.waterPipe = new WaterPipe(this);
+    this.waterPipe = new WaterPipe(this);
 	}
 
 	selectedPanel(dataList) {
@@ -408,20 +400,44 @@ class Stage {
 				if(index==0) {
 					that.toolType = 1;
 					$(this).addClass('active')
-					that.waterPipe.setDraw(false);
+          if(that.waterPipe) {
+            that.waterPipe.setDraw(false);
+            that.removeLinkPoints();
+          }
 				}else if(index==1) {
 					that.toolType = 2;
 					$(this).addClass('active')
 					if(that.waterPipe) {
 						that.waterPipe.setDraw(true);
+            that.createLinkPoints();
 					}
 				}
 				$(this).siblings().each(function () {
-                    $(this).removeClass('active')
+				  $(this).removeClass('active')
 				})
 			})
 		});
 	}
+
+  removeLinkPoints() {
+	  let tempList = []
+    this.capacity.forEach(function (property) {
+      if(property.isAuto) {
+        $('#'+property.id).remove();
+      }else {
+        tempList.push(property)
+      }
+    })
+    this.capacity = tempList;
+  }
+
+	createLinkPoints() {
+	  this.capacity.forEach(function (property) {
+      if(property.isLinkPoint) {
+        property.createLinkPoint();
+      }
+    })
+  }
 
 	shortcutsKey(type) {
 		let that = this;
@@ -438,10 +454,6 @@ class Stage {
 			case 10:that.align.lock();break;
 			case 11:that.remove();break;
 		}
-	}
-
-	init() {
-
 	}
 
 	location() {
@@ -689,29 +701,33 @@ class Stage {
 			})
 
 			$('.colpick').remove()
-			$('.text-color').colpick({
-				colorScheme:'dark',
-				layout:'rgbhex',
-				color:that.property.config.color,
-				onSubmit:function(hsb,hex,rgb,el) {
-					$(el).css('background-color', '#'+hex);
-					that.property.config.color = '#'+hex;
-					$('#'+that.property.id).find('span').css({color:'#'+hex});
-					$(el).colpickHide();
-				}
-			}).css('background-color', that.property.config.color);
+      if(that.property.config) {
+        $('.text-color').colpick({
+          colorScheme:'dark',
+          layout:'rgbhex',
+          color:that.property.config.color,
+          onSubmit:function(hsb,hex,rgb,el) {
+            $(el).css('background-color', '#'+hex);
+            that.property.config.color = '#'+hex;
+            $('#'+that.property.id).find('span').css({color:'#'+hex});
+            $(el).colpickHide();
+          }
+        }).css('background-color', that.property.config.color);
+      }
 
-			$('.bg-color').colpick({
-				colorScheme:'dark',
-				layout:'rgbhex',
-				color:that.property.config.backgroundColor,
-				onSubmit:function(hsb,hex,rgb,el) {
-					$(el).css('background-color', '#'+hex);
-					that.property.config.backgroundColor = '#'+hex;
-					$('#'+that.property.id).find('span').css({'background-color':'#'+hex});
-					$(el).colpickHide();
-				}
-			}).css('background-color', that.property.config.backgroundColor);
+      if(that.property.config) {
+        $('.bg-color').colpick({
+          colorScheme:'dark',
+          layout:'rgbhex',
+          color:that.property.config.backgroundColor,
+          onSubmit:function(hsb,hex,rgb,el) {
+            $(el).css('background-color', '#'+hex);
+            that.property.config.backgroundColor = '#'+hex;
+            $('#'+that.property.id).find('span').css({'background-color':'#'+hex});
+            $(el).colpickHide();
+          }
+        }).css('background-color', that.property.config.backgroundColor);
+      }
 
 			$('#configur_property').find('[name=bg]').on('change',function() {
 				let form = $("#uploadBg")[0]
@@ -775,7 +791,6 @@ class Stage {
 				that.capacity.push(spirit);
 				property.id = spirit.id;
 			})
-
 			$('#configur_stage').trigger('click')
 			that.location();
 		}
@@ -784,33 +799,34 @@ class Stage {
 	save() {
 		let that = this;
 		if(this.capacity) {
-			let keys = ['className','x','y','width','height','title']
 			let capacity = [];
 			this.capacity.forEach(function(data) {
-				let spirit = {}
-				spirit.className = data.className;
-				spirit.x = data.x;
-				spirit.y = data.y;
-				spirit.width = data.width;
-				spirit.height = data.height;
-				spirit.rotate = data.rotate;
-				spirit.isMove = data.isMove;
-				spirit.zIndex = data.zIndex;
-				spirit.title = data.title;
-				spirit.bindDevice = data.bindDevice;
-				spirit.config = data.config;
-				capacity.push(spirit);
+			  if(data.className!="LinkPoint") {
+          let spirit = {}
+          spirit.className = data.className;
+          spirit.x = data.x;
+          spirit.y = data.y;
+          spirit.width = data.width;
+          spirit.height = data.height;
+          spirit.rotate = data.rotate;
+          spirit.isMove = data.isMove;
+          spirit.zIndex = data.zIndex;
+          spirit.title = data.title;
+          spirit.bindDevice = data.bindDevice;
+          spirit.config = data.config;
+          capacity.push(spirit);
+        }
 			});
 			let data = {
 				width: this.width,
 				height: this.height,
-			    background: {color: this.background.color},
-			    capacity: capacity
+        background: {color: this.background.color},
+        capacity: capacity
 			}
 			if(this.canvasId) {
 				this.option.saveCanvas({
 					id: this.canvasId,
-			        data: JSON.stringify(data)
+          data: JSON.stringify(data)
 				},function(msg) {
 					if(msg=="ok") {
 						that.toast('保存成功');
