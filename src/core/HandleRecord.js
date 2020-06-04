@@ -44,7 +44,6 @@ class HandleRecord {
 				let spirit = that.stage.create(className,x,y,width,height);
 				that.stage.configurId = spirit.id;
 				that.stage.capacity.push(spirit)
-				that.stage.configurList(spirit);
 			}
 		}
 	}

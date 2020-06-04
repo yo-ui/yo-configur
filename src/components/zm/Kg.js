@@ -18,8 +18,7 @@ class Kg extends Spirit {
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.bindDevice = {};
-	    this.config = {bindPoint: {id:'',unit:''}}
+	    this.config = {bindDevice: {id:'',point:'',unit:''}}
 	}
 
 	template(){
@@ -124,23 +123,26 @@ class Kg extends Spirit {
 				});
 			}
 			that.stage.password.show();
-      that.stage.password.confirm(function () {
-        that.stage.option.control(device.id,that.point.id,that.point.value==1?0:1,function(msg) {
-          let result = JSON.parse(msg);
-          if(result.success) {
-            let message = JSON.parse(result.message);
-            if(message.status.code==100000) {
-              that.point.value = that.point.value==1?0:1;
-              that.stage.toast("控制成功");
-              let data = {}
-              data.id = device.id;
-              data.points = [{id:that.point.id,value:that.point.value}]
-              that.stage.linkage(data);
-            }
-          }else {
-            that.stage.toast("控制失败");
+      that.stage.password.confirm(function (text) {
+        let data = {}
+        data.deviceId = device.id;
+        data.point = that.point.id;
+        data.value = that.point.value==1?0:1;
+        data.ctrlPwd = text;
+        that.stage.option.control(data,function(msg) {
+          let message = JSON.parse(msg);
+          console.log(message);
+          if(message.status.code==100000) {
+            that.point.value = that.point.value==1?0:1;
+            that.stage.toast("控制成功");
+            let data = {}
+            data.id = device.id;
+            data.points = [{id:that.point.id,value:that.point.value}]
+            that.stage.linkage(data);
+            that.stage.password.hide();
+          }else if(message.status.code==120020) {
+            that.stage.toast("密码错误");
           }
-          that.stage.password.hide();
         })
       });
 		}

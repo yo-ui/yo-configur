@@ -19,7 +19,7 @@ class Paw {
   resizePanel(property) {
     let that = this;
     that.isRotate = false;
-    this.property = property;
+    that.property = property;
     that._x = property.x
     that._y = property.y;
     let resizePanel = $('.resize-panel');
@@ -36,8 +36,7 @@ class Paw {
     });
 
     if(property.isRotate) {
-      //旋转
-      this.rotate.create();
+      this.rotate.create();//旋转
     }
 
     let content = $('<div class="resize-panel-content"></div>');
@@ -47,7 +46,6 @@ class Paw {
       left: '0px'
     })
     resizePanel.append(content);
-
     resizePanel.on('click',function(e) {
       e.stopPropagation();
     });
@@ -454,6 +452,11 @@ class Paw {
 
   site(x,y,width,height) {
     $('.resize-panel').css({top:y-2,left:x-2,width:width+2,height:height+2});
+    if(this.property.className == "TextBox") {
+      $('#temp_value').html($('#'+this.property.id).find('div').html());
+      let width = $('#temp_value').width()+2;
+      $('.resize-panel').css({width:width});
+    }
   }
 
   up() {

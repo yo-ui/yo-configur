@@ -11,15 +11,14 @@ class Sxta extends Spirit {
 	    this.className = "Sxta";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4; 
+	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
-		this.zIndex = 2;
+		  this.zIndex = 2;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.bindDevice = {};
-	    this.config = {bindPoint: {id:'',unit:'kWh'}}
+	    this.config = {bindDevice: {id:'',point:'',unit:''}}
 	}
 
 	template(){
@@ -126,28 +125,28 @@ class Sxta extends Spirit {
 		};
 		return Object.assign(super.toJson(),json);
 	}
-	
+
 	viewPanel(device) {
 		let that = this;
 		let decoder;
-	    this.stage.option.token(device.id, function(message) {	 
+	    this.stage.option.token(device.id, function(message) {
 	    	if(message.name) {
 	    		$('.bm-configur-panel__header').text(message.name)
 	    	}
 	    	if(message.serial) {
 	    		let dataList = [];
-				let url = "ezopen://open.ys7.com/"+message.serial+"/1.live";
-				let accessToken = message.accessToken;
-		        decoder = new EZUIKit.EZUIPlayer({
-		            id: 'playWind',
-		            autoplay: true,
-		            url: url,
-		            accessToken: accessToken,
-		            decoderPath: 'static/lib',
-		            width: 800,
-		            height: 445,
-		        });
-	    	}			
+          let url = "ezopen://open.ys7.com/"+message.serial+"/1.live";
+          let accessToken = message.accessToken;
+          decoder = new EZUIKit.EZUIPlayer({
+              id: 'playWind',
+              autoplay: true,
+              url: url,
+              accessToken: accessToken,
+              decoderPath: 'static/lib',
+              width: 800,
+              height: 445,
+          });
+	    	}
 		})
 
 		$('.bm-configur-panel__body').css({width: 820,height: 500})
@@ -173,15 +172,15 @@ class Sxta extends Spirit {
 			 })
 		});
 	}
-	
+
 	startVideoControl(deviceId,value) {
-		this.stage.option.start(deviceId,value, function(message) {	 
+		this.stage.option.start(deviceId,value, function(message) {
 	    	console.log(message);
 		})
 	}
-	
+
 	stopVideoControl(deviceId,value) {
-		this.stage.option.stop(deviceId,value, function(message) {	 
+		this.stage.option.stop(deviceId,value, function(message) {
 	    	console.log(message);
 		})
 	}

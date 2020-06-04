@@ -7,19 +7,20 @@ class Rotate {
 
     create() {
         let that = this;
-        let rotate = $(`<div style="margin-top: -20px;text-align: center;cursor: default;">
-							<img src="/static/images/rotate.png" width="12" style="cursor: pointer;"></div>`);
-        rotate.on('mousedown',function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-        })
-        rotate.find('img').on('mousedown',function (e) {
-            $('#rotate').show()
+        let panel = $(`<div style="margin-top: -20px;text-align: center;cursor: default;"><img src="static/images/rotate.png" width="12" style="cursor: pointer;"></div>`);
+        panel.on('mousedown',function (e) {
             e.preventDefault();
             e.stopPropagation();
         })
 
-        $('#rotate').on('mousemove',function (e) {
+        let rotate = $('#rotate');
+        panel.find('img').on('mousedown',function (e) {
+            rotate.show()
+            e.preventDefault();
+            e.stopPropagation();
+        })
+
+        rotate.on('mousemove',function (e) {
             let property = that.paw.property;
             let left = e.pageX-$(this).offset().left;
             let top = e.pageY-$(this).offset().top;
@@ -39,10 +40,10 @@ class Rotate {
             e.stopPropagation();
         })
 
-        $('#rotate').on('mouseup',function () {
-            $('#rotate').hide()
+        rotate.on('mouseup',function () {
+            $(this).hide()
         })
-        $('.resize-panel').append(rotate);
+        $('.resize-panel').append(panel);
     }
 
     angle(end) {

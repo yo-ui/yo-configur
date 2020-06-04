@@ -11,7 +11,7 @@ class Sx extends Spirit {
 	    this.className = "Sx";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4; 
+	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 	    this.linkage = true;
@@ -661,8 +661,6 @@ class Sx extends Spirit {
 		};
 		return Object.assign(super.toJson(),json);
 	}
-	
-	
 }
 
 export default Sx;

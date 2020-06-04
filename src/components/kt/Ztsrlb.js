@@ -11,11 +11,15 @@ class Ztsrlb extends Spirit {
 	    this.className = "Ztsrlb";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4; 
+	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 	    this.linkage = true;
-	    this.zIndex = 2;
+	    this.zIndex = 3;
+      this.isPanel = true;
+      this.isBind = true;
+      this.isLinkPoint = true;
+      this.config = {bindDevice: {id:'',point:'',unit:''}}
 	}
 
 	template(){
@@ -87,11 +91,23 @@ class Ztsrlb extends Spirit {
 			linkage: this.linkage,
 			minWidth: this.minWidth,
 			minHeight: this.minHeight,
-			zIndex: this.zIndex
+			zIndex: this.zIndex,
 		};
 		return Object.assign(super.toJson(),json);
 	}
-	
+
+  createLinkPoint() {
+    let x = this.x+this.width*0.9-3;
+    let y = this.y+this.height*0.6-2
+    let spirit = this.stage.create("LinkPoint",x,y,10,10);
+    spirit.isAuto = true;
+    this.stage.capacity.push(spirit);
+    let x2 = this.x+this.width*0.1-8;
+    let y2 = this.y+this.height*0.6-2
+    let spirit2 = this.stage.create("LinkPoint",x2,y2,10,10);
+    spirit2.isAuto = true;
+    this.stage.capacity.push(spirit2);
+  }
 }
 
 export default Ztsrlb;

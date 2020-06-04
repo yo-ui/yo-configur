@@ -43,52 +43,50 @@ class Text extends Spirit {
 	toJson() {
 		let json = {
 			title: this.title,
-			className: this.className, 
+			className: this.className,
 			moveType: this.moveType,
 			minWidth: this.minWidth,
 			zIndex: this.zIndex
 		};
 		return Object.assign(super.toJson(),json);
 	}
-	
+
 	renderer() {
 		let that = this;
 		super.renderer();
 		let html = `<div class="bm-tree">字体</div>
-                    <div>
-                        <div class="bm-cell no-hover">
-							<div class="bm-cell__title">
-							    <div>字体颜色</div>
-								<div class="bm-color-box text-color" title="字体颜色"></div>
-							</div>													
-                        </div>
-                        <div class="bm-cell no-hover">
-							<div class="bm-cell__title">
-							    <div>字体大小</div>
-								<select class="bm-select" name="textFontSize" title="字体大小"></select>	
-							</div>							
-                        </div>
-                        <div class="bm-cell no-hover">
-							<div class="bm-cell__title">
-							    <div>修改文本</div>
-								<input type="text" class="text form-control" value="${this.config.text}" maxlength="32" title="字体文本" />
-							</div>							
-                        </div>                                       
-                    </div>`;
-		$('#configur_property').append(html);	
-		var dataList = [11,12,13,14,15,16,18,24,30]
-	    dataList.forEach(function(data) {
-	    	let option = $('<option></option>')
-	    	option.val(data)
-	    	option.text(data)
-	    	$('#configur_property').find('[name=textFontSize]').append(option)
-	    });
-	    $('#configur_property').find('[name=textFontSize]').val(this.config.fontSize)
+                  <div class="bm-cell no-hover">
+                    <div class="bm-cell__title">
+                        <div>字体颜色</div>
+                      <div class="bm-color-box text-color" title="字体颜色"></div>
+                    </div>													
+                  </div>
+                  <div class="bm-cell no-hover">
+                    <div class="bm-cell__title">
+                        <div>字体大小</div>
+                      <select class="bm-select" name="textFS" title="字体大小"></select>	
+                    </div>							
+                  </div>
+                  <div class="bm-cell no-hover">
+                    <div class="bm-cell__title">
+                        <div>修改文本</div>
+                      <input type="text" class="text form-control" value="${this.config.text}" maxlength="32" title="字体文本" />
+                    </div>							
+                  </div>`;
+		$('#configur_property').append(html);
+		let dataList = [11,13,14,15,16,18,24,30]
+    let element = $('#configur_property').find('[name=textFS]');
+    dataList.forEach(function(data) {
+      let option = $('<option></option>')
+      option.val(data)
+      option.text(data)
+      element.append(option)
+    });
+    element.val(this.config.fontSize)
 		$('#configur_property').find('.text').on('input propertyChange',function () {
 			let value = $(this).val();
 			that.update(value);
 		})
-
 		$('#configur_property').find('.text').on('blur',function () {
 			let value = $(this).val();
 			if(value=="") {

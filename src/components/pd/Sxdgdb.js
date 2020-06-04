@@ -11,15 +11,14 @@ class Sxdgdb extends Spirit {
 	    this.className = "Sxdgdb";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4; 
+	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
-		this.zIndex = 2;
+		  this.zIndex = 2;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.bindDevice = {};
-	    this.config = {bindPoint: {id:'',unit:''}}
+	    this.config = {bindDevice: {id:'',point:'',unit:''}}
 	}
 
 	template(){
@@ -77,14 +76,14 @@ class Sxdgdb extends Spirit {
 		};
 		return Object.assign(super.toJson(),json);
 	}
-	
+
 	viewPanel(device) {
 		let that = this;
-		if(device) {							
+		if(device) {
 			$('.bm-view-panel').html('');
 			let point = {name:'',value:'',unit:''}
 			if(device.points) {
-				device.points.forEach(function(data) {					
+				device.points.forEach(function(data) {
 					if(data.id=="WPP") {
 						point.value = parseFloat(data.value);
 						point.unit = data.unit;
@@ -92,7 +91,7 @@ class Sxdgdb extends Spirit {
 					}
 				});
 			}
-			if(point.unit) {							
+			if(point.unit) {
 				let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,12)}</div>`);
 			    let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
 			    let img = $(`<img height="50"/>`);
@@ -101,12 +100,12 @@ class Sxdgdb extends Spirit {
 			                     <p>${point.name}</p>
 			                     <span>${parseFloat(point.value)}</span><small>&nbsp;${point.unit}</small>
 			                 </div>`)
-			    vpc.append(img).append(div) 
+			    vpc.append(img).append(div)
 				$('.bm-view-panel').append(vpt).append(vpc);
 				$('.bm-view-panel').css({width:200});
 				$('.bm-view-panel').show();
 			}
-		}	
+		}
 	}
 }
 

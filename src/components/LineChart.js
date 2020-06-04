@@ -10,137 +10,142 @@ class LineChart extends Spirit {
 	    this.title = "折线图";
 	    this.className = "LineChart";
 	    this.width = width;
-	    this.height = height; 
-	    this.minWidth = 200;   
-	    this.minHeight = 100;
-		this.zIndex = 3;
+	    this.height = height;
+	    this.minWidth = 200;
+	    this.minHeight = 120;
+		  this.zIndex = 3;
 	    this.moveType = 4;
 	    this.linkage = false;
 	    this.isBind = true;
-	    this.bindType = 2;
-	    this.bindDevice = {}
-	    this.config = {
-	    	bindPoint: {
-    	        id:'',
-    	        unit:'',
-    	        startTime:'',
-    	        endTime:''}
-	    }
+	    this.bindType = 1;
+	    this.config = {bindDevice: {id:'',point:'', unit:''}};
 	    this.option = {
-	    	title: {
-				text: '时间轴折线图实例',
-				padding: 10
-			},
-		    color: ['#3398DB'],
 		    tooltip : {
 		        trigger: 'axis',
 		    },
-			legend: {
-				data: ['总量']
-			},
 		    grid: {
 		        left: '5%',
 		        right: '5%',
 		        bottom: '10px',
-		        top: '50px',
+		        top: '20px',
 		        containLabel: true
 		    },
-		    xAxis : [
-		        {
-		            type : 'category',
-					boundaryGap: false,
-		            data : ['2020-01-01', '2020-01-02', '2020-01-03', '2020-01-04', '2020-01-05', '2020-01-06', '2020-01-07'],
+		    xAxis : [{
+		        type : 'category',
+					  boundaryGap: false,
+            data : ['2020-05-01','2020-05-02','2020-05-03','2020-05-04'],
 		        }
 		    ],
-		    yAxis : [
-		        {
-					type: 'value'
-		        }
-		    ],
-		    series : [
-		        {
-					name: '正向有功电量',
-					type: 'line',
-					stack: '总量',
-					data: [120, 132, 101, 134, 90, 230, 210]
-		        }
+		    yAxis : [{type: 'value'}],
+		    series : [{
+            name: '正向有功电量',
+            type: 'line',
+            stack: '总量',
+            data: [10,22,33,44]
+          }
 		    ]
 	    }
+
+    this.isLast = false;
 	}
 
 	template() {
 		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg">
 				        <div style="width:${this.width-2}px;height:${this.height-2}px;border: 1px solid #ddd;background-color: #fff;">
-				            <div id="${this.id}_chart" style="width:100%;height:100%"></div>
+				            <div style="line-height: 40px;padding-left: 5px;background-color: #F5F5F5">
+                      <span class="chart-name">设备</span>
+                      <select class="bm-select" style="width: 100px;display: none"></select>
+                      <span>实时数据</span>
+				            </div>
+				            <div id="${this.id}_chart" style="width:100%;height:calc(100% - 40px)"></div>
 				        </div>
 			        </div>`)
 		return div;
 	}
 
 	arrangement(stage) {
-		let that = this;
 		this.stage = stage;
 		stage.element.append(this.template());
-		this.chart = echarts.init(document.getElementById(this.id+"_chart"));		
-        this.chart.setOption(this.option);
+		this.chart = echarts.init(document.getElementById(this.id+"_chart"));
+    this.chart.setOption(this.option);
 	}
 
-	refresh() {
-		let that = this;
-		if(this.config.bindPoint.id) {			
-			let timeList = [];
-			let valueList = [];
-			let deviceId = this.bindDevice.id;
-			let point = this.config.bindPoint.id;
-			let startTime = new Date().Format("yyyy-MM-dd 00:00");
-			let endTime = new Date().Format("yyyy-MM-dd hh:mm:ss");
-			this.stage.option.devicePointHstData(deviceId,point,startTime,endTime,function(data) {
-				$('#'+that.id).find('.chart-title').text(data.name);
-				data.dataList.forEach(function(item) {
-					timeList.push(item.time);
-					valueList.push(parseFloat(item.value));
-				});
-				that.option.xAxis[0].data = timeList;
-				that.option.series[0].data = valueList;
-				that.option.series[0].name = data.descr;
-				that.option.tooltip.formatter = "{a}<br/>{b} {c} "+that.config.bindPoint.unit
-	            that.chart.setOption(that.option);
-	            that.chart.resize();	            
-			});
-		}
-	}
-	
 	reveal(device,config) {
-		let that = this;
-		let timeList = that.option.xAxis[0].data;
-		let valueList = that.option.series[0].data;
-		device.points.forEach(function(point) {
-			if(that.config.bindPoint.id==point.id) {
-				let time = new Date(point.time).Format("hh:mm:ss");
-				let value = parseFloat(point.value);
-				if(time!=timeList[timeList.length-1]) {
-					timeList.push(time);
-					valueList.push(value);
-					that.option.xAxis[0].data = timeList;
-				    that.option.series[0].data = valueList;
-				    that.chart.setOption(that.option);
-	                that.chart.resize();
-				}
-			}
-		});
+    let that = this;
+    if(device) {
+      $('#'+that.id).find('.bm-select').show();
+      if(this.isLast) {
+        device.points.forEach(function(point,index) {
+          let value = $('#'+that.id).find('.bm-select').val();
+          let timeList = that.option.xAxis[0].data;
+          let valueList = that.option.series[0].data;
+          let lastTime = timeList[timeList.length-1];
+          if(value==point.id) {
+            let time = new Date(point.time).Format("hh:mm:ss")
+            if(lastTime!=time) {
+              timeList.push(time)
+              that.option.xAxis[0].data = timeList;
+              valueList.push(point.value);
+              that.option.series[0].data = valueList;
+              that.chart.setOption(that.option);
+              that.chart.resize();
+            }
+          }
+        })
+      }else {
+        this.isLast = true;
+        device.points.forEach(function(point,index) {
+          if(point.id!="err") {
+            let option = $(`<option>${point.name}</option>`)
+            option.val(point.id);
+            $('#'+that.id).find('.bm-select').append(option)
+          }
+        })
+        that.devicePointHstData();
+        $('#'+this.id).find('.bm-select').on('change',function () {
+          that.devicePointHstData();
+        });
+      }
+    }
 	}
-	
+
+  devicePointHstData() {
+	  let that = this;
+    let deviceId = that.config.bindDevice.id
+    let point = $('#'+that.id).find('.bm-select').val();
+    let text = $('#'+that.id).find('.bm-select').text();
+    if(deviceId&&point) {
+      let timeList = [];
+      let valueList = [];
+      let startTime = new Date().Format("yyyy-MM-dd 00:00");
+      let endTime = new Date().Format("yyyy-MM-dd hh:mm:ss");
+      this.stage.option.devicePointHstData(deviceId,point,startTime,endTime,function(data) {
+        data.dataList.forEach(function(item) {
+          timeList.push(new Date(item.time).Format("hh:mm:ss"));
+          valueList.push(parseFloat(item.value));
+        });
+        that.option.xAxis[0].data = timeList;
+        that.option.series[0].data = valueList;
+        that.option.series[0].name = data.name;
+        that.option.tooltip.formatter = "{b}<br/>{c} "+data.unit;
+        that.chart.setOption(that.option);
+        that.chart.resize();
+        $('#'+that.id).find('.chart-name').text(data.name);
+      });
+    }
+  }
+
 	toJson() {
 		let json = {
 			title: this.title,
-			className: this.className, 
+			className: this.className,
 			moveType: this.moveType,
 			minWidth: this.minWidth,
 			isBind: this.isBind,
 			zIndex: this.zIndex
 		};
 		return Object.assign(super.toJson(),json);
-	}	
+	}
 }
 
 export default LineChart;

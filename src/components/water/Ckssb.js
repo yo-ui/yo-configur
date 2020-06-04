@@ -19,8 +19,7 @@ class Ckssb extends Spirit {
 	    this.isBind = true;
 	    this.isLinkPoint = true;
 	    this.zIndex = 3;
-	    this.bindDevice = {};
-	    this.config = {bindPoint: {id:'',unit:''}}
+	    this.config = {bindDevice: {id:'',point:'',unit:''}}
 	}
 
 	template(){
@@ -142,20 +141,28 @@ class Ckssb extends Spirit {
 
 	viewPanel(device) {
 		let that = this;
-		if(device) {
-			$('.bm-view-panel').html('');
-			let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,12)}</div>`);
-		    let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
-		    let img = $(`<img src="static/images/device/icon-dt3.png" height="50"/>`);
-		    let div = $(`<div class="bm-img-text">
-		                 <p>累积流量</p>
-		                 <span>${parseFloat(device.points[0].value)}</span><small>&nbsp;${device.points[0].unit}</small>
-		                </div>`)
-		    vpc.append(img).append(div)
-			$('.bm-view-panel').append(vpt).append(vpc);
-			$('.bm-view-panel').css({width:200});
-			$('.bm-view-panel').show();
-		}
+    let point = {name:'',value:0,unit:''}
+    if(device.points) {
+      device.points.forEach(function(data) {
+        if(data.id=="TF") {
+          point.value = parseFloat(data.value);
+          point.unit = data.unit;
+          point.name = data.name;
+        }
+      });
+    }
+    $('.bm-view-panel').html('');
+    let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,12)}</div>`);
+    let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
+    let img = $(`<img src="static/images/device/icon-dt3.png" height="50"/>`);
+    let div = $(`<div class="bm-img-text">
+                 <p>累积流量</p>
+                 <span>${that.floatFormat(point.value)}</span><small>&nbsp;${point.unit}</small>
+                </div>`)
+    vpc.append(img).append(div)
+    $('.bm-view-panel').append(vpt).append(vpc);
+    $('.bm-view-panel').css({width:200});
+    $('.bm-view-panel').show();
 	}
 }
 

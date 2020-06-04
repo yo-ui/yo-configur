@@ -11,15 +11,14 @@ class Bgsdb extends Spirit {
 	    this.className = "Bgsdb";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4; 
+	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
-		this.zIndex = 2;
+		  this.zIndex = 2;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.bindDevice = {};
-	    this.config = {bindPoint: {id:'',unit:''}}
+	    this.config = {bindDevice: {id:'',point:'',unit:''}}
 	}
 
 	template(){
@@ -72,19 +71,19 @@ class Bgsdb extends Spirit {
 		};
 		return Object.assign(super.toJson(),json);
 	}
-	
+
 	viewPanel(device) {
-		if(device) {					
+		if(device) {
 			let that = this;
 			$('.bm-view-panel').html('');
 			let vpt = $(`<div class="bm-view-panel__title">${device.name}</div>`);
-		    let vpc = $(`<div class="bm-view-panel__content" style="height: 60px;overflow: hidden;"></div>`);
-		    let img = $(`<img src="static/images/device/icon-dt1.png"/>`);
-		    let div = $(`<div class="bm-img-text">
-		                    <p>正向有功电能</p>
-		                    <span>${device.points[0].value}</span><small>&nbsp;${device.points[0].unit}</small>
-		                </div>`)
-		    vpc.append(img).append(div);
+      let vpc = $(`<div class="bm-view-panel__content" style="height: 60px;overflow: hidden;"></div>`);
+      let img = $(`<img src="static/images/device/icon-dt1.png"/>`);
+      let div = $(`<div class="bm-img-text">
+                      <p>正向有功电能</p>
+                      <span>${device.points[0].value}</span><small>&nbsp;${device.points[0].unit}</small>
+                  </div>`)
+      vpc.append(img).append(div);
 			$('.bm-view-panel').append(vpt).append(vpc);
 			$('.bm-view-panel').css({width:200});
 			$('.bm-view-panel').show();

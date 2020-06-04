@@ -63,8 +63,8 @@ class Spirit {
 							</div>
 						</div>	
 					</div>
-                    <div class="bm-tree">尺寸</div>
-                    <div class="bm-cell no-hover bm-size">
+           <div class="bm-tree">尺寸</div>
+           <div class="bm-cell no-hover bm-size">
 						<div class="bm-cell__title">
 							<div class="bm-kv">
 								<span class="bm-kv__text">W：</span>
@@ -76,11 +76,10 @@ class Spirit {
 								<span class="bm-kv__text">H：</span>
 								<span class="bm-kv__value bm-size-h">${this.height}</span>
 							</div>                               
-						</div>
-                    </div>`);
+						</div></div>`);
 		$('#configur_property').append(html);
 		if(this.isRotate) {
-			let roteta = $(`<div class="bm-tree">旋转</div>
+			let roteta = $(`<div class="bm-tree">旋转角度</div>
 						    <div class="bm-cell no-hover">
 								<div class="bm-cell__title">					
 									<div class="bm-range">
@@ -104,28 +103,24 @@ class Spirit {
 	viewPanel(device) {
     let that = this;
 		if(device) {
-		  let el = $('#'+that.id);
-      let left = el.offset().left+el.width();
-      let top = el.offset().top-60;
-      $('.bm-view-panel').css({left:left,top:top});
 			$('.bm-view-panel').html('');
 			let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,24)}</div>`);
-		    let vpc = $(`<div class="bm-view-panel__content"></div>`);
-		    let ul = $('<ul></ul>');
-		    device.points.forEach(function(point) {
-		    	let li = $(`<li><span class="text">${point.name}</span></li>`);
-		    	if(point.id=="SwSts") {
-		    		let text = $(`<span class="value">${point.value==0?'关':'开'}</span>`)
-            li.append(text)
-		    	}else {
-		    		if(point.value) {
-		    			let span = $(`<span class="value">${that.floatFormat(point.value)}<small class="unit">${that.undefinedToString(point.unit)}</small></span>`)
-				    	li.append(span);
-		    		}
-		    	}
-		    	ul.append(li);
-		    });
-		    vpc.append(ul);
+      let vpc = $(`<div class="bm-view-panel__content"></div>`);
+      let ul = $('<ul></ul>');
+      device.points.forEach(function(point) {
+        let li = $(`<li><span class="text">${point.name}</span></li>`);
+        if(point.id=="SwSts") {
+          let text = $(`<span class="value">${point.value==0?'关':'开'}</span>`)
+          li.append(text)
+        }else {
+          if(point.value) {
+            let span = $(`<span class="value">${that.floatFormat(point.value)}<small class="unit">${that.undefinedToString(point.unit)}</small></span>`)
+            li.append(span);
+          }
+        }
+        ul.append(li);
+      });
+      vpc.append(ul);
 			$('.bm-view-panel').append(vpt).append(vpc);
 			$('.bm-view-panel').css({width:350});
 			$('.bm-view-panel').show();

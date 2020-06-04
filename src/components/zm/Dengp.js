@@ -11,14 +11,13 @@ class Dengp extends Spirit {
 	    this.className = "Dengp";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4; 
+	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
-		this.zIndex = 2;
+		  this.zIndex = 2;
 	    this.linkage = true;
 	    this.isBind = true;
-	    this.bindDevice = {};
-	    this.config = {bindPoint: {id:'',unit:''}};
+	    this.config = {bindDevice: {id:'',point:'',unit:''}};
 	}
 
 	template(){
@@ -26,7 +25,7 @@ class Dengp extends Spirit {
 		div.append(this.close());
 		return div;
 	}
-	
+
 	open() {
 		return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
 					 viewBox="0 0 53 60" style="enable-background:new 0 0 53 60;" xml:space="preserve">
@@ -65,7 +64,7 @@ class Dengp extends Spirit {
 				<ellipse id="XMLID_1400_" class="dengp-st3" cx="25.8" cy="1" rx="2" ry="1"/>
 				</svg>`;
 	}
-	
+
 	close() {
 		return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
 					 viewBox="0 0 53 60" style="enable-background:new 0 0 53 60;" xml:space="preserve">
@@ -110,16 +109,17 @@ class Dengp extends Spirit {
 		};
 		return Object.assign(super.toJson(),json);
 	}
-	
+
 	reveal(device,config) {
-		let that = this;		
+	  console.log(device);
+		let that = this;
 		if(device) {
 			device.points.forEach(function(point) {
 				if(point.id=="SwSts") {
 				  $('#'+that.id).html(point.value==1?that.open():that.close())
 				}
 			})
-		}		
+		}
 	}
 }
 

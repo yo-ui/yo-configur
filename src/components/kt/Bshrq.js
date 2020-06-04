@@ -11,15 +11,14 @@ class Bshrq extends Spirit {
 	    this.className = "Bshrq";
 	    this.width = width;
 	    this.height = height;
-		this.zIndex = 2;
-	    this.moveType = 4; 
+		  this.zIndex = 2;
+	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.bindDevice = {};
-	    this.config = {bindPoint: {id:'',unit:''}};
+	    this.config = {bindDevice: {id:'',point:'',unit:''}};
 	}
 
 	template(){
@@ -27,7 +26,7 @@ class Bshrq extends Spirit {
 		div.append(this.close());
 		return div;
 	}
-	
+
 	open() {
 		return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
 					 viewBox="0 0 123 123" style="enable-background:new 0 0 123 123;" xml:space="preserve">
@@ -450,7 +449,7 @@ class Bshrq extends Spirit {
 				</g>
 				</svg>`;
 	}
-	
+
 	close() {
 		return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
 					 viewBox="0 0 123 123" style="enable-background:new 0 0 123 123;" xml:space="preserve">
@@ -720,16 +719,16 @@ class Bshrq extends Spirit {
 				</g>
 				</svg>`;
 	}
-	
+
 	reveal(device,config) {
-		let that = this;		
+		let that = this;
 		if(device) {
 			device.points.forEach(function(point) {
-				if(point.id=="SwSts") {	
+				if(point.id=="SwSts") {
 				  $('#'+that.id).html(point.value==1?that.open():that.close())
 				}
 			})
-		}		
+		}
 	}
 
 	toJson() {
@@ -744,7 +743,7 @@ class Bshrq extends Spirit {
 		};
 		return Object.assign(super.toJson(),json);
 	}
-	
+
 }
 
 export default Bshrq;

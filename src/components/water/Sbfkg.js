@@ -19,8 +19,7 @@ class Sbfkg extends Spirit {
 	    this.isBind = true;
 	    this.zIndex = 3;
 	    this.isLinkPoint = true;
-	    this.bindDevice = {}
-	    this.config = {bindPoint: {id:'',unit:''}}
+	    this.config = {bindDevice: {id:'',point:'',unit:''}}
 	}
 
 	template(){
@@ -144,24 +143,32 @@ class Sbfkg extends Spirit {
   }
 
 	viewPanel(device) {
-		if(device) {
-			let that = this;
-			$('.bm-view-panel').html('');
-			let vpt = $(`<div class="bm-view-panel__title">${device.name}</div>`);
-      let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
-      let img = $(`<img src="static/images/device/icon-dt3.png" height="50"/>`);
-      let div = $(`<div class="bm-img-text">
+    let that = this;
+    let point = {name:'',value:0,unit:''}
+    if(device.points) {
+      device.points.forEach(function(data) {
+        if(data.id=="TF") {
+          point.value = parseFloat(data.value);
+          point.unit = data.unit;
+          point.name = data.name;
+        }
+      });
+    }
+    $('.bm-view-panel').html('');
+    let vpt = $(`<div class="bm-view-panel__title">${device.name}</div>`);
+    let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
+    let img = $(`<img src="static/images/device/icon-dt3.png" height="50"/>`);
+    let div = $(`<div class="bm-img-text">
                    <p>累积流量</p>
-                   <span>${that.floatFormat(device.points[0].value)}</span><small>&nbsp;${device.points[0].unit}</small>
+                   <span>${that.floatFormat(point.value)}</span><small>&nbsp;${point.unit}</small>
                   </div>`)
-      let div2 = $(`<div style="display: inline-block;vertical-align:top;margin-left: 40px;margin-top:8px">
+    let div2 = $(`<div style="display: inline-block;vertical-align:top;margin-left: 40px;margin-top:8px">
                    <img src="static/images/start.png" style="vertical-align: middle;"/>
                   </div>`)
-      vpc.append(img).append(div).append(div2);
-			$('.bm-view-panel').append(vpt).append(vpc);
-			$('.bm-view-panel').css({width:260});
-			$('.bm-view-panel').show();
-		}
+    vpc.append(img).append(div).append(div2);
+    $('.bm-view-panel').append(vpt).append(vpc);
+    $('.bm-view-panel').css({width:200});
+    $('.bm-view-panel').show();
 	}
 }
 

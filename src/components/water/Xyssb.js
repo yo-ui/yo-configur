@@ -19,8 +19,7 @@ class Xyssb extends Spirit {
 	    this.isPanel = true;
 	    this.isBind = true;
       this.isLinkPoint = true;
-	    this.bindDevice = {};
-	    this.config = {bindPoint: {id:'',unit:''}}
+	    this.config = {bindDevice: {id:'',point:'',unit:''}}
 	}
 
 	template(){

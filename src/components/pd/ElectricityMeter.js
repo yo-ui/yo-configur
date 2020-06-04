@@ -14,12 +14,11 @@ class ElectricityMeter extends Spirit {
 	    this.moveType = 4;
 	    this.minWidth = 24;
 	    this.minHeight = 24;
-		this.zIndex = 2;
+		  this.zIndex = 2;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.bindDevice = {};
-	    this.config = {bindPoint: {id:'',unit:'kWh'}}
+	    this.config = {bindDevice: {id:'',point:'',unit:''}}
 	}
 
 	template(){
@@ -75,17 +74,17 @@ class ElectricityMeter extends Spirit {
 			minHeight: this.minHeight,
 			linkage: this.linkage,
 			zIndex: this.zIndex
-		};	
+		};
 		return Object.assign(super.toJson(),json);
 	}
-	
+
 	viewPanel(device) {
 		let that = this;
-		if(device) {							
+		if(device) {
 			$('.bm-view-panel').html('');
 			let point = {name:'',value:'',unit:''}
 			if(device.points) {
-				device.points.forEach(function(data) {					
+				device.points.forEach(function(data) {
 					if(data.id=="WPP") {
 						point.value = parseFloat(data.value);
 						point.unit = data.unit;
@@ -93,24 +92,24 @@ class ElectricityMeter extends Spirit {
 					}
 				});
 			}
-			if(point.unit) {							
+			if(point.unit) {
 				let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,12)}</div>`);
-			    let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
-			    let img = $(`<img height="50"/>`);
-			    img.attr('src',"static/images/device/icon-dt2.png");
-			    let div = $(`<div class="bm-img-text">
-			                 <p>${point.name}</p>
-			                 <span>${parseFloat(point.value)}</span><small>&nbsp;${point.unit}</small>
-			                </div>`)
-			    vpc.append(img).append(div) 
+        let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
+        let img = $(`<img height="50"/>`);
+        img.attr('src',"static/images/device/icon-dt2.png");
+        let div = $(`<div class="bm-img-text">
+                     <p>${point.name}</p>
+                     <span>${parseFloat(point.value)}</span><small>&nbsp;${point.unit}</small>
+                    </div>`)
+        vpc.append(img).append(div)
 				$('.bm-view-panel').append(vpt).append(vpc);
 				$('.bm-view-panel').css({width:200});
 				$('.bm-view-panel').show();
 			}
 		}
-			
+
 	}
-	
+
 }
 
 export default ElectricityMeter;

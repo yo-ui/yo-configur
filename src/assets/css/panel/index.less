@@ -150,8 +150,7 @@
     padding: 5px;
     background-color: @white;
     width: calc(100% - 12px);
-    max-height: 240px;
-    overflow: auto;
+
     border: 1px solid @gray-3;
 
     & > input {
@@ -161,12 +160,20 @@
     }
 
     & > ul {
-      padding: 5px 0px;
+      max-height: 240px;
+      overflow: auto;
+      margin-top: 5px;
+      padding-right: 5px;
 
       & > li {
         line-height: 24px;
         cursor: pointer;
         padding: 5px;
+        border-bottom: 1px solid #F5F5F5;
+      }
+
+      & > li:last-child {
+        border-bottom: 1px solid transparent;
       }
 
       & > li:not(.active):hover {

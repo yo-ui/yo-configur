@@ -17,7 +17,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
   },
-  devtool: config.dev.devtool,
+  devtool: 'cheap-module-eval-source-map',
   devServer: {
     clientLogLevel: 'warning',
     historyApiFallback: {
@@ -38,7 +38,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     proxy: config.dev.proxyTable,
     quiet: true,
     watchOptions: {
-      poll: config.dev.poll,
+      poll: false,
     }
   },
   plugins: [
@@ -52,12 +52,6 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       filename: 'index.html',
       template: 'index.html',
       chunks: ['app'],
-      inject: true
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'view.html',
-      template: 'view.html',
-      chunks: ['view'],
       inject: true
     }),
     new CopyWebpackPlugin([

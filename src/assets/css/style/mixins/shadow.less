@@ -1,0 +1,12 @@
+//阴影
+.box-shadow (@x: 0px, @y: 0px, @blur: 5px, @color:#999) {
+  -webkit-box-shadow: @x @y @blur @color;
+  -moz-box-shadow: @x @y @blur @color;
+  box-shadow: @x @y @blur @color;
+}
+//内阴影
+.box-shadow-inset (@x: 0px, @y: 0px, @blur: 5px, @color:#999) {
+  -webkit-box-shadow: @x @y @blur @color inset;
+  -moz-box-shadow: @x @y @blur @color inset;
+  box-shadow: @x @y @blur @color inset;
+}

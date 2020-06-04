@@ -11,16 +11,20 @@ class Zhsrlb extends Spirit {
 	    this.className = "Zhsrlb";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4; 
+	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 	    this.linkage = true;
-	    this.zIndex = 2;
+	    this.zIndex = 3;
+      this.isPanel = true;
+      this.isBind = true;
+      this.isLinkPoint = true;
+      this.config = {bindDevice: {id:'',point:'',unit:''}}
 	}
 
 	template() {
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
-		        <svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
+		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
 					 viewBox="0 0 82 68" style="enable-background:new 0 0 82 68;" xml:space="preserve">
 				<style type="text/css">
 					.zhsrlb-st0{fill:url(#zhsrlb_3_);}
@@ -54,8 +58,7 @@ class Zhsrlb extends Spirit {
 						<stop  offset="0.6084" style="stop-color:#EACA9B"/>
 						<stop  offset="1" style="stop-color:#BF7600"/>
 					</linearGradient>
-					<rect id="XMLID_991_" y="35.3" class="zhsrlb-st1" width="8.2" height="18.1"/>
-					
+					<rect id="XMLID_991_" y="35.3" class="zhsrlb-st1" width="8.2" height="18.1"/>					
 						<linearGradient id="zhsrlb_5_" gradientUnits="userSpaceOnUse" x1="-896.4429" y1="37.0145" x2="-896.4429" y2="51.3401" gradientTransform="matrix(-1 0 0 1 -825.0268 0)">
 						<stop  offset="0" style="stop-color:#0E255A"/>
 						<stop  offset="0.508" style="stop-color:#1456BB"/>
@@ -107,11 +110,23 @@ class Zhsrlb extends Spirit {
 			linkage: this.linkage,
 			minWidth: this.minWidth,
 			minHeight: this.minHeight,
-			zIndex: this.zIndex
+			zIndex: this.zIndex,
 		};
 		return Object.assign(super.toJson(),json);
 	}
 
+  createLinkPoint() {
+    let x = this.x+this.width-8;
+    let y = this.y+this.height*0.6-4
+    let spirit = this.stage.create("LinkPoint",x,y,10,10);
+    spirit.isAuto = true;
+    this.stage.capacity.push(spirit);
+    let x2 = this.x-2;
+    let y2 = this.y+this.height*0.6-4
+    let spirit2 = this.stage.create("LinkPoint",x2,y2,10,10);
+    spirit2.isAuto = true;
+    this.stage.capacity.push(spirit2);
+  }
 }
 
 export default Zhsrlb;

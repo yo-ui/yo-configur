@@ -19,8 +19,7 @@ class Lyssb extends Spirit {
 	    this.isBind = true;
 	    this.zIndex = 3;
       this.isLinkPoint = true;
-	    this.bindDevice = {};
-	    this.config = {bindPoint: {id:'',unit:''}}
+	    this.config = {bindDevice: {id:'',point:'',unit:''}}
 	}
 
 	template(){
@@ -116,49 +115,44 @@ class Lyssb extends Spirit {
 
   createLinkPoint() {
     let x = this.x+this.width-8;
-    let y = this.y+this.height/2-3
+    let y = this.y+this.height*0.6-6
     let spirit = this.stage.create("LinkPoint",x,y,10,10);
     spirit.isAuto = true;
     this.stage.capacity.push(spirit);
     let x2 = this.x-3;
-    let y2 = this.y+this.height/2-3
+    let y2 = this.y+this.height*0.6-6
     let spirit2 = this.stage.create("LinkPoint",x2,y2,10,10);
     spirit2.isAuto = true;
     this.stage.capacity.push(spirit2);
   }
 
 	viewPanel(device) {
-		let that = this;
-		if(device) {
-			$('.bm-view-panel').html('');
-			let point = {name:'',value:'',unit:''}
-			if(device.points) {
-				device.points.forEach(function(data) {
-					if(data.id==that.config.bindPoint.id) {
-						point.value = parseFloat(data.value);
-						point.unit = data.unit;
-						point.name = data.name;
-						point.categId = data.categId
-					}
-				});
-			}
-			let src = "static/images/device/device-defult.png";
-			if(point.categId) {
-				src = "static/images/device/icon-dt"+point.categId+".png";
-			}
-			let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,12)}</div>`);
-		    let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
-		    let img = $(`<img height="50"/>`);
-		    img.attr('src', src);
-		    let div = $(`<div class="bm-img-text">
-		                 <p>${point.name}</p>
-		                 <span>${parseFloat(point.value)}</span><small>&nbsp;${point.unit}</small>
-		                </div>`)
-		    vpc.append(img).append(div)
-			$('.bm-view-panel').append(vpt).append(vpc);
-			$('.bm-view-panel').css({width:200});
-			$('.bm-view-panel').show();
-		}
+    let that = this;
+    let point = {name:'',value:0,unit:''}
+    if(device.points) {
+      device.points.forEach(function(data) {
+        if(data.id=="TF") {
+          point.value = parseFloat(data.value);
+          point.unit = data.unit;
+          point.name = data.name;
+        }
+      });
+    }
+    $('.bm-view-panel').html('');
+    let vpt = $(`<div class="bm-view-panel__title">${device.name}</div>`);
+    let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
+    let img = $(`<img src="static/images/device/icon-dt3.png" height="50"/>`);
+    let div = $(`<div class="bm-img-text">
+                     <p>累积流量</p>
+                     <span>${that.floatFormat(point.value)}</span><small>&nbsp;${point.unit}</small>
+                  </div>`)
+    let div2 = $(`<div style="display: inline-block;vertical-align:top;margin-left: 40px;margin-top:8px">
+                     <img src="static/images/start.png" style="vertical-align: middle;"/>
+                  </div>`)
+    vpc.append(img).append(div).append(div2);
+    $('.bm-view-panel').append(vpt).append(vpc);
+    $('.bm-view-panel').css({width:200});
+    $('.bm-view-panel').show();
 	}
 }
 

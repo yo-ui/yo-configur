@@ -13,10 +13,6 @@ var RemoteObject = {
             url:url,
             data:data,
             dataType:dataType,
-            beforeSend:function(xhr) {
-                xhr.setRequestHeader("clientId",'web_property_mgt');
-                xhr.setRequestHeader("clientTime",1500000000000);
-            },
             success:function(msg){
             back.call(this,msg);
             },

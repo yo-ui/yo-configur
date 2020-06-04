@@ -40,16 +40,16 @@ const webpackConfig = merge(baseWebpackConfig, {
       sourceMap: config.build.productionSourceMap,
       parallel: true
     }),
-    
+
     new ExtractTextPlugin({
-      filename: utils.assetsPath('css/[name].[contenthash].css'),     
+      filename: utils.assetsPath('css/[name].[contenthash].css'),
       allChunks: true,
     }),
     new OptimizeCSSPlugin({
       cssProcessorOptions: config.build.productionSourceMap
         ? { safe: true, map: { inline: false } }
         : { safe: true }
-    }),   
+    }),
     new HtmlWebpackPlugin({
       filename: config.build.index,
       template: 'index.html',
@@ -58,22 +58,10 @@ const webpackConfig = merge(baseWebpackConfig, {
       minify: {
         removeComments: true,
         collapseWhitespace: true,
-        removeAttributeQuotes: true       
-      },    
+        removeAttributeQuotes: true
+      },
       chunksSortMode: 'dependency'
     }),
-    new HtmlWebpackPlugin({
-      filename: config.build.view,
-      template: 'view.html',
-      chunks: ['view','manifest','vendor'],
-      inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true        
-      },      
-      chunksSortMode: 'dependency'
-    }),   
     new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
@@ -87,7 +75,7 @@ const webpackConfig = merge(baseWebpackConfig, {
           ) === 0
         )
       }
-    }),    
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       minChunks: Infinity

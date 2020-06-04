@@ -220,17 +220,17 @@ class SpiritFactory {
 	        return new Images(x,y,width,height);
 	        break;
 	    case 'LineChart':
-        return new LineChart(x,y,width,height);
-        break;
+          return new LineChart(x,y,width,height);
+          break;
       case 'Map':
-        return new Map(x,y,width,height);
-        break;
+          return new Map(x,y,width,height);
+          break;
       case 'LinkPoint':
-        return new LinkPoint(x,y,width,height);
-        break;
+          return new LinkPoint(x,y,width,height);
+          break;
       case 'ViewPanel':
-        return new ViewPanel(x,y,width,height);
-        break;
+          return new ViewPanel(x,y,width,height);
+          break;
       default:
           console.log("className:"+className);
       }

@@ -8,14 +8,14 @@ import Password from '@/core/Password.js'
 class ViewStage {
 
 	constructor(option) {
+    let that = this;
 		this.option = option;
-		let that = this;
 		this.option.canvas(function(data) {
 			that.canvas = {id:data.id};
 			that.analysis(data.width,data.height,JSON.parse(data.data));
+      that.location();
 		})
     this.password = new Password(this);
-		this.location()
 	}
 
 	createStage(width,height,background) {
@@ -31,7 +31,7 @@ class ViewStage {
 			'background-color': background.color
 		});
 		this.element = element;
-		this.capacity = [];//容器
+		this.capacity = [];
 		this.element.on('click',function(e) {
 			$('.bm-view-panel').hide();
 			e.stopPropagation();
@@ -70,7 +70,8 @@ class ViewStage {
 
   location() {
     let stage = $('#configur_stage');
-    let rootHeight = Number($('#root').height());
+    let root = $('#root');
+    let rootHeight = Number(root.height());
     let height = stage.height();
     if(height<rootHeight) {
       stage.css({top:(rootHeight-height)/2});
@@ -108,15 +109,19 @@ class ViewStage {
 						that.spirit = property;
 					}
 				});
-				if(that.spirit.bindDevice) {
-					that.option.getDevice(that.spirit.bindDevice.id,function(device) {
+				if(that.spirit.config) {
+					that.option.getDevice(that.spirit.config.bindDevice.id,function(device) {
             $('.bm-view-panel').hide();
-						that.spirit.viewPanel(device);
+            if(device) {
+              let left = el.offset().left+el.width();
+              let top = el.offset().top-60;
+              $('.bm-view-panel').css({left:left,top:top});
+              that.spirit.viewPanel(device);
+            }
 					})
           e.stopPropagation();
           e.preventDefault();
 				}
-
 			});
 		}
 	}
@@ -134,48 +139,43 @@ class ViewStage {
 				let height = property.height;
 				let rotate= property.rotate;
 				let spirit = that.create(className,x,y,width,height,rotate);
-				spirit.bindDevice = property.bindDevice;
 				spirit.config = property.config
 				spirit.refresh();
 				that.capacity.push(spirit);
 			})
-
 			let ids = new Set();
+			console.log(this.capacity);
 			this.capacity.forEach(function(data) {
-			    if(data.bindDevice) {
-			    	ids.add(data.bindDevice.id);
+			    if(data.isBind) {
+			    	ids.add(data.config.bindDevice.id);
 			    }
 			});
-
 			let devices = []
 			for(let id of ids.keys()) {
 			    that.capacity.forEach(function(data) {
-				    if(data.bindDevice&&data.bindDevice.id==id) {
-				    	devices.push(data.bindDevice);
+				    if(data.isBind) {
+				    	devices.push(data.config.bindDevice);
 				    }
 				});
 			}
-
 			this.option.devicePoints(devices,function(deviceList) {
 				deviceList.forEach(function(device) {
 					that.capacity.forEach(function(spirit) {
-						if(spirit.bindDevice) {
-							if(spirit.bindDevice.id==device.id) {
+						if(spirit.isBind) {
+							if(spirit.config.bindDevice.id==device.id) {
 						    	spirit.reveal(device,spirit.config);
 						    }
 						}
 					});
 				})
 			})
-
-			//$('#configur_stage').css({top:'50%','margin-top':-height/2+'px'});
 		}
 	}
   //联动 改变点位时联动关联的绑定设备
   linkage(device) {
     this.capacity.forEach(function(spirit) {
-      if(spirit.bindDevice) {
-        if(spirit.bindDevice.id==device.id) {
+      if(spirit.isBind) {
+        if(spirit.config.bindDevice.id==device.id) {
           spirit.reveal(device,spirit.config);
         }
       }

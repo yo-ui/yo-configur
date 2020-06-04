@@ -11,14 +11,13 @@ class Dengg extends Spirit {
 	    this.className = "Dengg";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4; 
+	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
-		this.zIndex = 2;
+		  this.zIndex = 2;
 	    this.linkage = true;
 	    this.isBind = true;
-	    this.bindDevice = {};
-	    this.config = {bindPoint: {id:'',unit:''}};
+	    this.config = {bindDevice: {id:'',point:'',unit:''}};
 	}
 
 	template(){
@@ -26,7 +25,7 @@ class Dengg extends Spirit {
 		div.append(this.close())
 		return div;
 	}
-	
+
 	open() {
 		return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
 					viewBox="0 0 163 46" xml:space="preserve">
@@ -67,9 +66,9 @@ class Dengg extends Spirit {
 					</linearGradient>
 					<path id="XMLID_1410_" class="dengg-st5" d="M151.8,13.7H10.9c-1.3,0-2.4,2.5-2.4,5.6S9.6,25,10.9,25h140.9c1.3,0,2.4-2.5,2.4-5.6
 						S153.2,13.7,151.8,13.7z"/>
-					</svg>`;		
+					</svg>`;
 	}
-	
+
 	close() {
 		return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
 					 viewBox="0 0 163 46" xml:space="preserve">
@@ -104,18 +103,18 @@ class Dengg extends Spirit {
 					</linearGradient>
 					<path id="XMLID_1395_" class="dengg-close-st4" d="M151.8,13.8H10.9c-1.3,0-2.4,2.5-2.4,5.6s1.1,5.6,2.4,5.6h140.9c1.3,0,2.4-2.5,2.4-5.6
 						S153.2,13.8,151.8,13.8z"/>
-					</svg>`;		
+					</svg>`;
 	}
-	
+
 	reveal(device,config) {
-		let that = this;		
+		let that = this;
 		if(device) {
 			device.points.forEach(function(point) {
 				if(point.id=="SwSts") {
 				  $('#'+that.id).html(point.value==1?that.open():that.close())
 				}
 			})
-		}		
+		}
 	}
 
 	toJson() {

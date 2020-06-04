@@ -11,15 +11,15 @@ class Lssb extends Spirit {
 	    this.className = "Lssb";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4; 
+	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
-		this.zIndex = 2;
+		  this.zIndex = 3;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.bindDevice = {};
-	    this.config = {bindPoint: {id:'',unit:''}};
+	    this.isLinkPoint = true;
+	    this.config = {bindDevice: {id:'',point:'',unit:''}};
 	}
 
 	template(){
@@ -27,7 +27,7 @@ class Lssb extends Spirit {
 		div.append(this.close());
 		return div;
 	}
-	
+
 	open() {
 		return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
 					 viewBox="0 0 83 104" style="enable-background:new 0 0 83 104;" xml:space="preserve">
@@ -184,7 +184,7 @@ class Lssb extends Spirit {
 				</g>
 				</svg>`;
 	}
-	
+
     close() {
     	return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
 					 viewBox="0 0 83 104" style="enable-background:new 0 0 83 104;" xml:space="preserve">
@@ -341,17 +341,30 @@ class Lssb extends Spirit {
 				</g>
 				</svg>`;
     }
-    
-    reveal(device,config) {
-		let that = this;		
+
+  reveal(device,config) {
+		let that = this;
 		if(device) {
 			device.points.forEach(function(point) {
 				if(point.id=="SwSts") {
 				  $('#'+that.id).html(point.value==1?that.open():that.close())
 				}
 			})
-		}		
+		}
 	}
+
+  createLinkPoint() {
+    let x = this.x+this.width*0.9-8;
+    let y = this.y+this.height*0.8-2
+    let spirit = this.stage.create("LinkPoint",x,y,10,10);
+    spirit.isAuto = true;
+    this.stage.capacity.push(spirit);
+    let x2 = this.x+this.width*0.1-3;
+    let y2 = this.y+this.height*0.8-2
+    let spirit2 = this.stage.create("LinkPoint",x2,y2,10,10);
+    spirit2.isAuto = true;
+    this.stage.capacity.push(spirit2);
+  }
 
 	toJson() {
 		let json = {
@@ -361,11 +374,12 @@ class Lssb extends Spirit {
 			linkage: this.linkage,
 			minWidth: this.minWidth,
 			minHeight: this.minHeight,
-			zIndex: this.zIndex
+			zIndex: this.zIndex,
+      isLinkPoint: this.isLinkPoint
 		};
 		return Object.assign(super.toJson(),json);
 	}
-	
+
 }
 
 export default Lssb;

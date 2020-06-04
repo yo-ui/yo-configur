@@ -4,79 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>组态</title>
-    <link rel="stylesheet" href="static/css/colpick.css" />
   </head>
   <body>
-    <div class="bm-layout">
-      <div class="bm-layout__header">
-          <span class="bm-layout__header__back">
-              <img src="static/images/back.png">
-          </span>
-          <span class="bm-layout__header__name"></span>
-          <span class="bm-layout__header__view">
-              <img src="static/images/preview.png">
-          </span>
-      </div>
-      <div class="bm-layout__main">
-        <div class="bm-global-panel"></div>
-        <div class="bm-layout__main__left" id="configur_library">
-          <ul class="bm-side"></ul>
-          <div class="bm-component-list"></div>
-        </div>
-        <div class="bm-layout__main__body">
-          <div class="bm-stage">
-            <div id="root"></div>
-          </div>
-          <div style="display: none" class="bm-toast bm-toast--text bm-toast--top">
-              <span class="bm-toast__text"></span>
-          </div>
-        </div>
-        <div class="bm-layout__main__right">
-            <div class="bm-tabs-custom">
-                <ul id="property_tabs" class="bm-tabs">
-                    <li class="active"><a href="javaScript:">基本设置</a></li>
-                    <li><a href="javaScript:">高级设置</a></li>
-                </ul>
-            </div>
-            <div class="bm-tabs-content">
-                <div id="tab_1" data-value="1">
-                    <div id="configur_property"></div>
-                </div>
-                <div id="tab_2" data-value="2" style="display: none;">
-                    <div id="configur_list"></div>
-                </div>
-            </div>
-        </div>
-      </div>
-      <div class="bm-context-menu">
-          <ul></ul>
-      </div>
-      </div>
-      <div class="menu-panel"></div>
-        <div class="bm-configur-panel" style="display: none;">
-            <div class="bm-configur-panel__body">
-                <div class="bm-configur-panel__header"><span>&nbsp;</span><div class="bm-configur-panel__close">×</div></div>
-                <div class="bm-configur-panel__content">
-                    <div class="configur-file">
-                        <ul></ul>
-                    </div>
-                    <div class="configur-canvas"></div>
-                </div>
-                <div class="bm-configur-panel__floor">
-                    <div class="close bm-button bm-button--small bm-button--default">关闭</div>
-                    <div class="confirm bm-button bm-button--small bm-button--primary">确定</div>
-                </div>
-            </div>
-        </div>
-
-        <div id="temp_value" style="display: none;"></div>
-
-        <script type="text/javascript" src="static/lib/jquery-1.11.2.js"></script>
-        <script type="text/javascript" src="static/lib/colpick.js"></script>
-        <script type="text/javascript" src="static/lib/echarts.min.js"></script>
-        <script type="text/javascript" src="static/lib/DateUtils.js"></script>
-        <script type="text/javascript" src="static/lib/Tooltip.js"></script>
-        <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=69cde24b534b2228abd4fc6a03c9f045"></script>
-        <script type="text/javascript" src="https://webapi.amap.com/demos/js/liteToolbar.js"></script>
-    </body>
+    <div class="main-content" style="width: 100%;height: 100%"></div>
+    <script type="text/javascript" src="static/lib/jquery-1.11.2.js"></script>
+    <script type="text/javascript" src="static/lib/colpick.js"></script>
+    <script type="text/javascript" src="static/lib/echarts.min.js"></script>
+    <script type="text/javascript" src="static/lib/DateUtils.js"></script>
+    <script type="text/javascript" src="static/lib/Tooltip.js"></script>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.3&key=69cde24b534b2228abd4fc6a03c9f045"></script>
+    <script type="text/javascript" src="https://webapi.amap.com/demos/js/liteToolbar.js"></script>
+  </body>
 </html>

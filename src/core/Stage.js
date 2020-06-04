@@ -1,5 +1,5 @@
 import '@/assets/css/index.css'
-
+import './../../static/css/colpick.css'
 import Paw from '@/core/Paw.js'
 import Move from '@/core/Move.js'
 import SpiritFactory from '@/core/SpiritFactory.js'
@@ -17,7 +17,6 @@ import WaterPipe from '@/components/WaterPipe.js'
 class Stage {
 
 	constructor(option) {
-		let that = this;
 		this.option = option;
 		this.toolType = 1;// 1 移动方式 2 拼装方式
 		this.selectedType = 1;//选择类型1:默认2:框选
@@ -30,15 +29,7 @@ class Stage {
 		this.zoom = new Zoom(this);//缩放
 		this.align = new Align(this);//对齐
 		this.handleRecord = new HandleRecord(this);
-		this.bindD = new BindDevice(this);
-		this.option.canvas(function(data) {
-			$('.bm-layout__header__name').text(data.name);
-			that.canvasId = data.id;
-			if(!data.data) {
-				data.data = JSON.stringify({background:{url:'',color: '#fff'},capacity:[]})
-			}
-			that.analysis(data.width,data.height,JSON.parse(data.data));
-		})
+		this.organizList();
 	}
 
 	createStage(width,height,background) {
@@ -64,7 +55,7 @@ class Stage {
 			position: 'absolute',
 			width: width+'px',
 			height: height+'px',
-			'z-index': 4,
+			'z-index': 10,
 			display: 'none'
 		});
 		element.append(board);
@@ -85,18 +76,18 @@ class Stage {
 			position: 'absolute',
 			'border-left': '1px dashed red',
 			width: '1px',
-			height: that.height+'px',
-			'z-index': '1',
+			height: height+'px',
+			'z-index': 1,
 		})
 		element.append(vLine);
-	    let hLine = $('<div id="h_subline">&nbsp;</div>')
+	  let hLine = $('<div id="h_subline">&nbsp;</div>')
 		hLine.css({
 			display: 'none',
 			position: 'absolute',
 			'border-top': '1px dashed red',
-			width: that.width+'px',
+			width: width+'px',
 			height: '1px',
-			'z-index': '1',
+			'z-index': 1,
 		})
 		element.append(hLine);
 		let rectangle = $('<div id="selected_subline">&nbsp;</div>')
@@ -106,7 +97,7 @@ class Stage {
 			border: '1px dashed #12a3ff',
 			width: '0px',
 			height: '0px',
-			'z-index': '1',
+			'z-index': 1,
 		})
 		element.append(rectangle);
 		let selectedPanel = $(`<div class="bm-selected-panel">&nbsp;</div>`)
@@ -310,10 +301,10 @@ class Stage {
 							<div class="bm-img handle">
 							    <div><img src="static/images/move.png" width="30" title="移动组件"></div>
 							    <div><img src="static/images/water.png" width="30" title="拼装水管"></div>						    				    
-                            </div>
+              </div>
 						</div>					
 					</div>
-                    <div class="bm-tree">画布</div>
+          <div class="bm-tree">画布</div>
 					<div class="bm-cell no-hover" style="text-align: left">
 						<div class="bm-cell__title">
 							<div class="bm-kv">
@@ -328,7 +319,7 @@ class Stage {
 							</div> 
 						</div>				
 					</div>
-		            <div class="bm-tree">背景</div>
+		      <div class="bm-tree">背景</div>
 					<div class="bm-cell no-hover">
 						<div class="bm-cell__title">
 							<div>背景颜色</div>
@@ -344,17 +335,16 @@ class Stage {
 							</div>
 						</div>
 					</div>
-                    <div class="bm-cell no-hover">
+          <div class="bm-cell no-hover">
 						<div class="bm-cell__title">
 							<div>缩放</div>
 							<div class="bm-zoom">
 							    <img src="static/images/magnify.png"/>							    
 							    <img src="static/images/shrink.png"/>
 							    <span></span>
-                            </div>
+              </div>
 						</div>
-					</div>
-                    `;
+					</div>`;
 		$('#configur_property').html(html);
 		that.zoom.init();
 		Tooltip.init();
@@ -442,17 +432,17 @@ class Stage {
 	shortcutsKey(type) {
 		let that = this;
 		switch(type) {
-		    case 1:that.handleRecord.lastStep();break;
-		    case 2:that.save();break;
-		    case 3:that.clone();break;
-		    case 4:that.remove();break;
-		    case 5:that.align.left();break;
-		    case 6:that.align.right();break;
-		    case 7:that.align.up();break;
-		    case 8:that.align.down();break;
-			case 9:that.align.lock();break;
-			case 10:that.align.lock();break;
-			case 11:that.remove();break;
+      case 1:that.handleRecord.lastStep();break;
+      case 2:that.save();break;
+      case 3:that.clone();break;
+      case 4:that.remove();break;
+      case 5:that.align.left();break;
+      case 6:that.align.right();break;
+      case 7:that.align.up();break;
+      case 8:that.align.down();break;
+      case 9:that.align.lock();break;
+      case 10:that.align.lock();break;
+      case 11:that.remove();break;
 		}
 	}
 
@@ -551,51 +541,51 @@ class Stage {
 	create(className,x,y,width,height,rotate=0) {
 		let that = this;
 		this.className = className;
-    	let spirit = SpiritFactory.getInstance(className,x,y,width,height);
-    	spirit.rotate = rotate;
+    let spirit = SpiritFactory.getInstance(className,x,y,width,height);
+    spirit.rotate = rotate;
 		spirit.arrangement(this);
 		this.addEvent(spirit.getEl());
 		this.move.move = false;
 		return spirit;
-    }
+  }
     //给组件添加事件
-    addEvent(el) {
-        let that = this;
-        el.on('click',function(e) {
-            if(that.toolType==1) {
-				that.layDown();
-				$('#configur_list').html('');
-				$('.bm-context-menu').hide();
-                that.configurId = $(this).attr('id');
-                that.property = that.getProperty();
-                $(this).css({left:0,top:0,transform: 'rotate(0deg)'});
-                if(that.property.isMove) {
-                    that.propertyStyle();
-                    that.paw.resizePanel(that.property);
-                    that.paw.bindResizeEvent();
-                    let x = that.property.x;
-                    let y = that.property.y;
-                    let width = that.property.width;
-                    let height = that.property.height;
-                    that.paw.site(x,y,width,height);
-                    that.paw.register(el);
-                    that.isMove = true;
-                    el.unbind();
-                }else {
-                    that.setProperty(that.property)
-                    that.propertyStyle();
-                    let x = that.property.x;
-                    let y = that.property.y;
-                    let rotate = that.property.rotate;
-                    $('#'+that.property.id).css({left:x,top:y,transform: 'rotate('+rotate+'deg)'});
-                    that.layDown();
-                }
-                if(that.property.isBind) {
-					that.bindD.create();
-				}
-				e.stopPropagation();
-            }
-        });
+  addEvent(el) {
+    let that = this;
+    el.on('click',function(e) {
+      if(that.toolType==1) {
+        that.layDown();
+        $('#configur_list').html('');
+        $('.bm-context-menu').hide();
+        that.configurId = $(this).attr('id');
+        that.property = that.getProperty();
+        $(this).css({left:0,top:0,transform: 'rotate(0deg)'});
+        if(that.property.isMove) {
+            that.propertyStyle();
+            that.paw.resizePanel(that.property);
+            that.paw.bindResizeEvent();
+            let x = that.property.x;
+            let y = that.property.y;
+            let width = that.property.width;
+            let height = that.property.height;
+            that.paw.site(x,y,width,height);
+            that.paw.register(el);
+            that.isMove = true;
+            el.unbind();
+        }else {
+            that.setProperty(that.property)
+            that.propertyStyle();
+            let x = that.property.x;
+            let y = that.property.y;
+            let rotate = that.property.rotate;
+            $('#'+that.property.id).css({left:x,top:y,transform: 'rotate('+rotate+'deg)'});
+            that.layDown();
+        }
+        if(that.property.isBind) {
+          that.bindD.create();
+        }
+        e.stopPropagation();
+      }
+    });
 
 		el.on('contextmenu',function(e) {
 			if(that.toolType==1) {
@@ -669,18 +659,20 @@ class Stage {
 
 			$('#configur_property select').on('change',function() {
 				let name = $(this).attr("name");
-				if(name=="textFontSize") {
+				if(name=="textFS") {
 					that.property.config.fontSize = $(this).val();
 					$('#'+that.property.id).find('span').css({'font-size':that.property.config.fontSize+"px"});
 					let text = that.property.config.text;
-                    let width = $('#temp_value').css({'font-size':$(this).val()+"px"}).text(text).width()+4;
-                    $('#'+that.property.id).find('span').css({width:width});
-                    $('.resize-panel').css({width:width});
-				}else if(name=="textBoxFontSize") {
+          let width = $('#temp_value').css({'font-size':$(this).val()+"px"}).text(text).width()+4;
+          $('#'+that.property.id).find('span').css({width:width});
+          $('.resize-panel').css({width:width});
+				}else if(name=="textBoxFS") {
 					that.property.config.fontSize = $(this).val();
-					$('#'+that.property.id).find('span').css({'font-size':that.property.config.fontSize+"px"});
+					$('#'+that.property.id).find('span').css({'font-size':$(this).val()+"px"});
+          $('#temp_value').html($('#'+that.property.id).find('div').html());
+          let width = $('#temp_value').width()+4;
+          $('.resize-panel').css({width:width});
 				}
-
 				that.capacity.forEach(function(property) {
 					if(that.property.id==property.id) {
 						property.config.color = that.property.config.color;
@@ -723,7 +715,7 @@ class Stage {
           onSubmit:function(hsb,hex,rgb,el) {
             $(el).css('background-color', '#'+hex);
             that.property.config.backgroundColor = '#'+hex;
-            $('#'+that.property.id).find('span').css({'background-color':'#'+hex});
+            $('#'+that.property.id).find('div').css({'background-color':'#'+hex});
             $(el).colpickHide();
           }
         }).css('background-color', that.property.config.backgroundColor);
@@ -731,11 +723,11 @@ class Stage {
 
 			$('#configur_property').find('[name=bg]').on('change',function() {
 				let form = $("#uploadBg")[0]
-	            let file = $(this).get(0).files[0]
-	            that.option.upload(form,file,function(msg) {
-					that.property.config.url = msg;
-					$('#'+that.property.id).find('img').attr('src',msg);
-	            })
+        let file = $(this).get(0).files[0]
+        that.option.upload(form,file,function(msg) {
+          that.property.config.url = msg;
+          $('#'+that.property.id).find('img').attr('src',msg);
+        })
 			})
 		}
 	}
@@ -785,7 +777,6 @@ class Stage {
 
 				spirit.isMove = property.isMove;
 				spirit.zIndex = property.zIndex;
-				spirit.bindDevice = property.bindDevice;
 				spirit.config = property.config;
 				spirit.refresh();
 				that.capacity.push(spirit);
@@ -812,7 +803,6 @@ class Stage {
           spirit.isMove = data.isMove;
           spirit.zIndex = data.zIndex;
           spirit.title = data.title;
-          spirit.bindDevice = data.bindDevice;
           spirit.config = data.config;
           capacity.push(spirit);
         }
@@ -823,6 +813,7 @@ class Stage {
         background: {color: this.background.color},
         capacity: capacity
 			}
+			console.log(capacity);
 			if(this.canvasId) {
 				this.option.saveCanvas({
 					id: this.canvasId,
@@ -835,6 +826,37 @@ class Stage {
 			}
 		}
 	}
+
+  organizList() {
+    let that = this;
+    that.option.organizList(function(dataList) {
+      if(dataList.length>0) {
+        let id = dataList[0].id;
+        that.devicePoints(id)
+      }
+    })
+  }
+
+  devicePoints(id) {
+    let that = this;
+    that.option.devicePoints(id,function(deviceList) {
+      that.deviceList = deviceList;
+      that.bindD = new BindDevice(that);
+      that.canvas();
+    })
+  }
+
+  canvas() {
+	  let that = this;
+    this.option.canvas(function(data) {
+      $('.bm-layout__header__name').text(data.name);
+      that.canvasId = data.id;
+      if(!data.data) {
+        data.data = JSON.stringify({background:{url:'',color: '#fff'},capacity:[]})
+      }
+      that.analysis(data.width,data.height,JSON.parse(data.data));
+    })
+  }
 
 	toast(text) {
 		$('.bm-toast').show();
