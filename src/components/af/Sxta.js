@@ -1,4 +1,5 @@
 import Spirit from '@/core/Spirit.js'
+import Video from '@/core/Video.js'
 
 /**
  * 摄像头
@@ -18,7 +19,7 @@ class Sxta extends Spirit {
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.config = {bindDevice: {id:'',point:'',unit:''}}
+	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}}
 	}
 
 	template(){
@@ -128,60 +129,15 @@ class Sxta extends Spirit {
 
 	viewPanel(device) {
 		let that = this;
-		let decoder;
-	    this.stage.option.token(device.id, function(message) {
-	    	if(message.name) {
-	    		$('.bm-configur-panel__header').text(message.name)
-	    	}
-	    	if(message.serial) {
-	    		let dataList = [];
-          let url = "ezopen://open.ys7.com/"+message.serial+"/1.live";
-          let accessToken = message.accessToken;
-          decoder = new EZUIKit.EZUIPlayer({
-              id: 'playWind',
-              autoplay: true,
-              url: url,
-              accessToken: accessToken,
-              decoderPath: 'static/lib',
-              width: 800,
-              height: 445,
-          });
-	    	}
-		})
-
-		$('.bm-configur-panel__body').css({width: 820,height: 500})
-		$('.bm-configur-panel').show();
-
-		$('.bm-configur-panel__close').on('click',function() {
-			if(decoder) {
-				decoder.stop();
-			}
-			$('.bm-configur-panel').hide();
-		});
-
-		$('.direction > div').each(function () {
-			 $(this).on('mousedown',function () {
-				 let value = $(this).data("value")
-				 console.log(value);
-				 //that.startVideoControl(device.id,value);
-			 })
-			 $(this).on('mouseup',function () {
-				 let value = $(this).data("value")
-				 console.log(value);
-				 //that.stopVideoControl(device.id,value);
-			 })
-		});
-	}
-
-	startVideoControl(deviceId,value) {
-		this.stage.option.start(deviceId,value, function(message) {
-	    	console.log(message);
-		})
-	}
-
-	stopVideoControl(deviceId,value) {
-		this.stage.option.stop(deviceId,value, function(message) {
-	    	console.log(message);
+    let video = new Video(that.stage,820,500,device.id);
+    let decoder;
+    this.stage.option.token(device.id, function(message) {
+      if(message.serial) {
+        let name = message.name;
+        let accessToken = message.accessToken;
+        let serial = message.serial;
+        video.create(name,accessToken,serial)
+      }
 		})
 	}
 }

@@ -53,7 +53,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: config.build.index,
       template: 'index.html',
-      chunks: ['app','manifest','vendor'],
+      chunks: ['main','manifest','vendor'],
       inject: true,
       minify: {
         removeComments: true,
@@ -81,7 +81,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       minChunks: Infinity
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'app',
+      name: 'main',
       async: 'vendor-async',
       children: true,
       minChunks: 3

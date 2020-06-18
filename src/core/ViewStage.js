@@ -104,21 +104,24 @@ class ViewStage {
 			el.data("id", spirit.id);
 			el.on('click',function(e) {
 				let id = $(this).data('id');
-				that.capacity.forEach(function(property) {
-					if(property.id==id) {
-						that.spirit = property;
+				that.capacity.forEach(function(spirit) {
+					if(spirit.id==id) {
+						that.spirit = spirit;
 					}
 				});
-				if(that.spirit.config) {
-					that.option.getDevice(that.spirit.config.bindDevice.id,function(device) {
-            $('.bm-view-panel').hide();
-            if(device) {
-              let left = el.offset().left+el.width();
-              let top = el.offset().top-60;
-              $('.bm-view-panel').css({left:left,top:top});
-              that.spirit.viewPanel(device);
-            }
-					})
+				if(that.spirit.config.bindData) {
+				  let deviceId = that.spirit.config.bindData.deviceId;
+				  if(deviceId) {
+            that.option.getDevice(deviceId,function(device) {
+              $('.bm-view-panel').hide();
+              if(device) {
+                let left = el.offset().left+el.width();
+                let top = el.offset().top-60;
+                $('.bm-view-panel').css({left:left,top:top});
+                that.spirit.viewPanel(device);
+              }
+            })
+          }
           e.stopPropagation();
           e.preventDefault();
 				}
@@ -143,26 +146,22 @@ class ViewStage {
 				spirit.refresh();
 				that.capacity.push(spirit);
 			})
-			let ids = new Set();
-			console.log(this.capacity);
+      let devices = []
 			this.capacity.forEach(function(data) {
 			    if(data.isBind) {
-			    	ids.add(data.config.bindDevice.id);
+            let device = {}
+            device.id = data.config.bindData.deviceId;
+            if(device.id) {
+              devices.push(device);
+            }
 			    }
 			});
-			let devices = []
-			for(let id of ids.keys()) {
-			    that.capacity.forEach(function(data) {
-				    if(data.isBind) {
-				    	devices.push(data.config.bindDevice);
-				    }
-				});
-			}
+			console.log(devices);
 			this.option.devicePoints(devices,function(deviceList) {
 				deviceList.forEach(function(device) {
 					that.capacity.forEach(function(spirit) {
 						if(spirit.isBind) {
-							if(spirit.config.bindDevice.id==device.id) {
+							if(spirit.config.bindData.deviceId==device.id) {
 						    	spirit.reveal(device,spirit.config);
 						    }
 						}
@@ -175,7 +174,9 @@ class ViewStage {
   linkage(device) {
     this.capacity.forEach(function(spirit) {
       if(spirit.isBind) {
-        if(spirit.config.bindDevice.id==device.id) {
+        console.log(spirit.config.bindData.deviceId);
+        if(spirit.config.bindData.deviceId==device.id) {
+          console.log("...");
           spirit.reveal(device,spirit.config);
         }
       }

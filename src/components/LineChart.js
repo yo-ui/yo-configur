@@ -18,7 +18,7 @@ class LineChart extends Spirit {
 	    this.linkage = false;
 	    this.isBind = true;
 	    this.bindType = 1;
-	    this.config = {bindDevice: {id:'',point:'', unit:''}};
+	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}};
 	    this.option = {
 		    tooltip : {
 		        trigger: 'axis',
@@ -111,7 +111,7 @@ class LineChart extends Spirit {
 
   devicePointHstData() {
 	  let that = this;
-    let deviceId = that.config.bindDevice.id
+    let deviceId = that.config.bindData.deviceId
     let point = $('#'+that.id).find('.bm-select').val();
     let text = $('#'+that.id).find('.bm-select').text();
     if(deviceId&&point) {

@@ -19,7 +19,7 @@ class Csbllj extends Spirit {
 	    this.isBind = true;
       this.isLinkPoint = true;
 	    this.zIndex = 3;
-	    this.config = {bindDevice: {id:'',point:'',unit:''}}
+	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}}
 	}
 
 	template(){
@@ -129,13 +129,13 @@ class Csbllj extends Spirit {
 	}
 
   createLinkPoint() {
-    let x = this.x+this.width*0.8-6;
-    let y = this.y+this.height*3/4-5;
+    let x = parseInt(this.x+this.width*0.8-6);
+    let y = parseInt(this.y+this.height*3/4-5);
     let spirit = this.stage.create("LinkPoint",x,y,10,10);
     spirit.isAuto = true;
     this.stage.capacity.push(spirit);
-    let x2 = this.x+this.width*0.2-4;
-    let y2 = this.y+this.height*3/4-5;
+    let x2 = parseInt(this.x+this.width*0.2-4);
+    let y2 = parseInt(this.y+this.height*3/4-5);
     let spirit2 = this.stage.create("LinkPoint",x2,y2,10,10);
     spirit2.isAuto = true;
     this.stage.capacity.push(spirit2);

@@ -9,20 +9,23 @@ class Text extends Spirit {
         super(x, y);
 	    this.title = "静态文本";
 	    this.className = "Text";
+	    this.height = height;
 	    this.width = width;
-	    this.height = 30;
 	    this.minWidth = 20;
 	    this.zIndex = 4;
 	    this.config = {text:'文本',color:'#000',fontSize:24}
 	}
 
 	template(){
-		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg">
-		        <span style="min-width: 20px;
-			        line-height: 30px;
-			        border-radius: 2px;
-			        color: ${this.config.color};
-			        font-size: ${this.config.fontSize}px">${this.config.text}</span></div>`)
+		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg">
+		        <div style="min-width: 20px;
+			        line-height: ${this.height}px;
+              height: ${this.height}px;
+              width: ${this.width}px;
+			        border-radius: 2px;">
+			        <span style="color: ${this.config.color};font-size: ${this.config.fontSize}px">${this.config.text}</span>
+			      </div>			  
+			  </div>`)
 		return div;
 	}
 
@@ -74,7 +77,7 @@ class Text extends Spirit {
                     </div>							
                   </div>`;
 		$('#configur_property').append(html);
-		let dataList = [11,13,14,15,16,18,24,30]
+		let dataList = [11,13,14,15,16,18,24,30,60,100]
     let element = $('#configur_property').find('[name=textFS]');
     dataList.forEach(function(data) {
       let option = $('<option></option>')
@@ -83,11 +86,24 @@ class Text extends Spirit {
       element.append(option)
     });
     element.val(this.config.fontSize)
-		$('#configur_property').find('.text').on('input propertyChange',function () {
+    element.on('change',function () {
+      let property = that.stage.property;
+      property.config.fontSize = $(this).val();
+      $('#'+property.id).find('span').css({'font-size':property.config.fontSize+"px"});
+      $('#temp_value').html($('#'+property.id).find('div').html());
+      let width = $('#temp_value').width()+2;
+      let height = $('#temp_value').height();
+      $('.resize-panel').css({width:width,height:height});
+      $('#'+property.id).find('div').css({width:width,'line-height': height+"px",height: height+"px"});
+      property.height = height;
+      property.width = width;
+    });
+    let input = $('#configur_property').find('.text');
+    input.on('input propertyChange',function () {
 			let value = $(this).val();
 			that.update(value);
 		})
-		$('#configur_property').find('.text').on('blur',function () {
+    input.on('blur',function () {
 			let value = $(this).val();
 			if(value=="") {
 				let text = "文本";
@@ -98,11 +114,14 @@ class Text extends Spirit {
 	}
 
 	update(text) {
-		let width = $('#temp_value').css({'font-size':this.config.fontSize+"px"}).text(text).width()+4;
-		$('#'+this.stage.property.id).find('span').css({width:width})
+	  let property = this.stage.property;
+    property.config.text = text;
+    $('#'+property.id).find('span').text(text);
+    $('#temp_value').html($('#'+property.id).find('div').html());
+    let width = $('#temp_value').width()+2;
 		$('.resize-panel').css({width:width})
-		this.stage.property.width = width;
-		this.stage.property.config.text = text;
+    $('#'+property.id).find('div').css({width:width});
+    property.width = width;
 		this.refresh();
 	}
 }

@@ -18,7 +18,7 @@ class ElectricityMeter extends Spirit {
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.config = {bindDevice: {id:'',point:'',unit:''}}
+	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}}
 	}
 
 	template(){

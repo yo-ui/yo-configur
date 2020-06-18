@@ -58,6 +58,33 @@
   line-height: 44px;
   border-top: 1px solid #ebedf0;
 }
+.bm-configur-panel__floor > div {
+  width: 80px;
+}
+.bm-configur-panel .bind-device {
+  display: flex;
+  height: calc(100% - 50px);
+}
+.bm-configur-panel .bind-device .device-list {
+  flex: 1;
+  margin-top: 5px;
+  height: calc(100% - 36px);
+}
+.bm-configur-panel .bind-device .device-list > ul {
+  height: 100%;
+  overflow: auto;
+}
+.bm-configur-panel .bind-device .device-list > ul > li.active {
+  background-color: #12a3ff;
+  color: #fff;
+}
+.bm-configur-panel .bind-device .point-list {
+  width: 120px;
+  margin-top: 5px;
+  height: 100%;
+  overflow: auto;
+  margin-left: 5px;
+}
 /**视图面板**/
 .bm-view-panel {
   display: none;
@@ -110,35 +137,29 @@
 .bm-select-panel > span {
   padding: 3px 5px;
   border: 1px solid #ddd;
-  line-height: 24px;
+  line-height: 30px;
   width: calc(100% - 12px);
   cursor: pointer;
+  user-select: none;
 }
 .bm-select-panel > span > img {
   float: right;
   width: 12px;
-  margin-top: 7px;
+  margin-top: 10px;
 }
 .bm-select-panel > div {
   display: none;
   position: absolute;
-  top: 32px;
-  margin-top: -1px;
-  padding: 5px;
+  top: 39px;
+  margin-top: -2px;
   background-color: #fff;
-  width: calc(100% - 12px);
+  width: calc(100% - 2px);
   border: 1px solid #ebedf0;
-}
-.bm-select-panel > div > input {
-  padding: 5px;
-  width: calc(100% - 12px);
-  background-color: #fff;
 }
 .bm-select-panel > div > ul {
   max-height: 240px;
   overflow: auto;
-  margin-top: 5px;
-  padding-right: 5px;
+  padding: 5px;
 }
 .bm-select-panel > div > ul > li {
   line-height: 24px;

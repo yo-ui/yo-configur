@@ -7,15 +7,14 @@ class View {
 
   constructor(config) {
     this.config = config;
-    this.websocket = '';
   }
 
-  init() {
+  init(websocket) {
     let that = this;
     let option = {
       canvas: function (callback) {
-        if(that.websocket) {
-          that.websocket.close();
+        if(websocket) {
+          websocket.close();
         }
         if(that.config.debug) {
           let data = localStorage.getItem("data");
@@ -29,7 +28,7 @@ class View {
           if(canvasId) {
             let data = {}
             data.id = canvasId;
-            RemoteObject.ajax("api/canvas/get", "get", data, function (msg) {
+            RemoteObject.ajax(that.config.canvasGet, "get", data, function (msg) {
               let result = JSON.parse(msg);
               if (result.success) {
                 callback.call(this, result.message)
@@ -40,7 +39,7 @@ class View {
       },
       control: function(data,callback) {
         if(that.config.debug) {
-          callback.call(this,JSON.stringify({success:true,message:JSON.stringify({status:{code:100000}})}));
+          callback.call(this,JSON.stringify({status:{code:100000}}));
         }else {
           RemoteObject.ajax("api/canvas/control","post",data,function(msg) {
             let result = JSON.parse(msg);
@@ -55,46 +54,51 @@ class View {
           let devices = [
             {id:'00653D5730048000',name:'设备A',
               points:[
-                {id:'TF',name:'累积用量',value:4.22,unit:'t',time:'00:09:00'},
+                {id:'TF',name:'累积用量',value:344.55,unit:'℃',time:'00:09:00'},
                 {id:'SwSts',name:'设备状态',value:1,time:'00:09:00'}]}]
           callback.call(this, devices);
         }else {
-          if(that.websocket) {
-            that.websocket.close();
-          }
           if(that.config.debug) {
-            that.websocket = new WebSocket("ws://127.0.0.1:8080/configur/websocket");
+            websocket = new WebSocket("ws://127.0.0.1:8080/configur/websocket");
           } else {
             //websocket = new WebSocket("wss://viz.energyiot.cn/configur/websocket");
-            that.websocket = new WebSocket(that.config.websocketUrl);
+            websocket = new WebSocket(that.config.websocketUrl);
           }
           //连接发生错误的回调方法
-          that.websocket.onerror = function() {
+          websocket.onerror = function() {
             console.log("WebSocket连接发生错误");
           };
           //连接成功建立的回调方法
-          that.websocket.onopen = function() {
+          websocket.onopen = function() {
             console.log("WebSocket连接成功");
-            that.websocket.send(JSON.stringify(devices));
+            websocket.send(JSON.stringify(devices));
           }
           //接收到消息的回调方法
-          that.websocket.onmessage = function(event) {
+          websocket.onmessage = function(event) {
             callback.call(this,JSON.parse(event.data));
           }
           //连接关闭的回调方法
-          that.websocket.onclose = function() {
+          websocket.onclose = function() {
             console.log("WebSocket连接关闭");
           }
         }
       },
       getDevice(id,callback) {
         if(that.config.debug) {
-          let device = {id:'00653D5730048000',name:'设备A',points:[{id:'TF',name:'累积用量',value:33.22,unit:'t'},{id:'SwSts',name:'设备状态',value:1}]}
+          let device = {id:'00653D5730048000',name:'设备A',
+            points:[
+              {id:'TF',name:'累积用量',value:33.22,unit:'t',type: 1,},
+              {id:'SwSts',name:'开关状态',value:1,type: 2,
+                optionValList:[
+                  {id:'',value:0,descr:'关'},
+                  {id:'',value:1,descr:'开'}
+                ]
+              }]}
           callback.call(this, device);
         }else {
           let data = {}
           data.deviceId = id;
-          RemoteObject.ajax("api/common/getDevice","get",data,function(msg){
+          RemoteObject.ajax(that.config.getDevice,"get",data,function(msg){
             let result = JSON.parse(msg);
             if(result.success) {
               callback.call(this, result.message);
@@ -115,7 +119,7 @@ class View {
           data.point = point;
           data.startTime = startTime;
           data.endTime = endTime;
-          RemoteObject.ajax("api/common/devicePointHstData","get",data,function(msg){
+          RemoteObject.ajax(that.config.devicePointHstData,"get",data,function(msg){
             let result = JSON.parse(msg);
             if(result.success) {
               callback.call(this, result.message);
@@ -132,7 +136,7 @@ class View {
         }else {
           let data = {}
           data.deviceId = deviceId;
-          RemoteObject.ajax("api/canvas/token","get",data,function(msg){
+          RemoteObject.ajax(that.config.token,"get",data,function(msg){
             let result = JSON.parse(msg);
             if(result.success) {
               callback.call(this, result.message);
@@ -148,7 +152,7 @@ class View {
           let data = {}
           data.deviceId = deviceId;
           data.direction = value;
-          RemoteObject.ajax("api/canvas/start","post",data,function(msg){
+          RemoteObject.ajax(that.config.start,"post",data,function(msg){
             let result = JSON.parse(msg);
             if(result.success) {
               callback.call(this, result.message);
@@ -164,7 +168,7 @@ class View {
           let data = {}
           data.deviceId = deviceId;
           data.direction = value;
-          RemoteObject.ajax("api/canvas/stop","post",data,function(msg){
+          RemoteObject.ajax(that.config.stop,"post",data,function(msg){
             let result = JSON.parse(msg);
             if(result.success) {
               callback.call(this, result.message);
@@ -223,7 +227,8 @@ class View {
             </div>
         </div>
       </div>
-    </div>`;
+    </div>
+    <div id="temp_value" style="display: none;"></div>`;
     return html;
   }
 }

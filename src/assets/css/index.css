@@ -309,7 +309,7 @@ span {
 }
 @font-face {
   font-family: 'FontIcon';
-  src: url('../font/icomoon.eot?afd1x4') format('embedded-opentype'), url('../font/icomoon.ttf?afd1x4') format('truetype'), url('../font/icomoon.woff?afd1x4') format('woff'), url('../font/icomoon.svg?afd1x4') format('svg');
+  src: url('../font/icomoon.ttf?afd1x4') format('truetype');
 }
 .fa {
   display: inline-block;
@@ -377,6 +377,15 @@ span {
 .fa-align-up:before {
   content: "\e90b";
 }
+.fa-icon-assist:before {
+  content: "\e913";
+}
+.fa-icon-device:before {
+  content: "\e914";
+}
+.fa-icon-configur:before {
+  content: "\e915";
+}
 /**布局**/
 .bm-layout {
   height: 100%;
@@ -385,7 +394,7 @@ span {
   height: 50px;
   line-height: 50px;
   font-size: 16px;
-  background-color: #4a5053;
+  background-color: #323233;
   color: #fff;
   display: flex;
 }
@@ -424,18 +433,17 @@ span {
 .bm-layout__main__left {
   width: 240px;
   height: 100%;
-  background-color: #fff;
+  background-color: #f0f2f3;
 }
 .bm-layout__main__body {
   flex: 1;
   height: 100%;
-  border-left: 1px solid #ebedf0;
-  border-right: 1px solid #ebedf0;
   overflow: auto;
 }
 .bm-layout__main__right {
   width: 240px;
   height: 100%;
+  background-color: #f0f2f3;
 }
 .bm-layout__floor {
   line-height: 40px;
@@ -446,6 +454,7 @@ span {
 #root {
   width: 100%;
   height: 100%;
+  background-color: #e2e5ec;
 }
 .bm-stage {
   height: 100%;
@@ -458,8 +467,7 @@ span {
 }
 .bm-text-header {
   line-height: 24px;
-  margin: 5px 0;
-  padding-left: 5px;
+  margin-bottom: 5px;
   font-weight: bold;
 }
 .bm-zoom {
@@ -490,40 +498,37 @@ span {
 /**侧面导航**/
 .bm-side {
   display: inline-block;
-  width: 60px;
+  width: 44px;
   height: 100%;
-  background-color: #4a5053;
+  background-color: #A9ADB0;
   font-size: 15px;
+  text-align: center;
 }
 .bm-side > li {
-  width: 50px;
-  padding: 20px 5px;
+  width: 24px;
+  padding: 20px 10px;
   text-align: center;
   cursor: pointer;
-  color: #999ea8;
+  color: #000;
 }
 .bm-side > li > p {
   margin-top: 2px;
 }
 .bm-side > li.active {
-  background-color: #4c84ff;
-  color: #fff;
+  background-color: #f0f2f3;
+  color: #000;
 }
 .bm-side > li:not(.active):hover {
-  background-color: #545B5E;
+  background-color: #12a3ff;
   color: #fff;
 }
 /**tabs**/
-.bm-tabs {
-  border-bottom: 1px solid #fff;
-}
 .bm-tabs > li {
   float: left;
 }
 .bm-tabs > li > a {
   margin-right: 2px;
   line-height: 1.42857143;
-  border: 1px solid transparent;
   border-radius: 4px 4px 0 0;
 }
 .bm-tabs > li > a:hover {
@@ -557,13 +562,10 @@ span {
 }
 .bm-tabs-custom {
   margin-bottom: 0px;
-  background: #fff;
 }
 .bm-tabs-custom > .bm-tabs {
   margin: 0;
   height: 45px;
-  background-color: #fff;
-  border-bottom: 1px solid #f7f8fa;
 }
 .bm-tabs-custom > .bm-tabs > li {
   margin-top: 10px;
@@ -585,9 +587,6 @@ span {
   background: transparent;
   margin: 0;
 }
-.bm-tabs-custom > .bm-tabs > li.active {
-  background-color: #fff;
-}
 .bm-tabs-custom > .bm-tabs > li:not(.active) > a:hover,
 .bm-tabs-custom > .bm-tabs > li:not(.active) > a:active {
   border-color: transparent;
@@ -596,11 +595,13 @@ span {
   background-color: #fff;
   height: calc(100% - 56px);
   padding: 5px;
+  border: 1px solid #f0f2f3;
+  overflow: auto;
 }
 /**组件列表**/
 .bm-component-list {
   display: inline-block;
-  width: 155px;
+  width: 171px;
   vertical-align: top;
   height: calc(100% - 20px);
   padding: 10px;
@@ -609,16 +610,39 @@ span {
 .bm-component-list > div {
   text-align: center;
   margin-bottom: 20px;
+  width: 80px;
+  display: inline-block;
 }
 .bm-component-list > div > img {
-  max-width: 80px;
+  max-width: 50px;
   cursor: move;
   border: 2px solid transparent;
   border-radius: 2px;
   padding: 2px;
 }
 .bm-component-list > div > img:hover {
-  border: 2px solid #ebedf0;
+  border: 2px solid #12a3ff;
+}
+.bm-list > li {
+  line-height: 30px;
+  margin: 1px;
+  border: 1px solid #dcdee0;
+  padding: 3px 5px;
+  display: flex;
+}
+.bm-list > li > .text {
+  flex: 1;
+}
+.bm-list > li > .value > img {
+  width: 18px;
+  vertical-align: middle;
+}
+.bm-list > li:hover {
+  background-color: #f7f8fa;
+  cursor: pointer;
+}
+.bm-list > li.active {
+  border: 1px solid #12a3ff;
 }
 /**按钮**/
 .bm-button {
@@ -774,6 +798,99 @@ span {
 }
 .bm-button--hairline.van-button--square::after {
   border-radius: 0;
+}
+.button {
+  color: #666;
+  background-color: #EEE;
+  border-color: #EEE;
+  font-weight: 300;
+  font-size: 16px;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  text-decoration: none;
+  text-align: center;
+  padding: 0 10px;
+  margin: 0;
+  display: inline-block;
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.button:visited {
+  color: #666;
+}
+.button:hover,
+.button:focus {
+  background-color: #f6f6f6;
+  text-decoration: none;
+  outline: none;
+}
+.button:active,
+.button.active,
+.button.is-active {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+  background-color: #eeeeee;
+  border-color: #cfcfcf;
+  color: #d4d4d4;
+  -webkit-transition-duration: 0s;
+  transition-duration: 0s;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.button.disabled,
+.button.is-disabled,
+.button:disabled {
+  top: 0 !important;
+  background: #EEE !important;
+  border: 1px solid #DDD !important;
+  text-shadow: 0 1px 1px white !important;
+  color: #CCC !important;
+  cursor: default !important;
+  appearance: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  opacity: 0.8 !important;
+}
+.button-raised {
+  border-color: #e1e1e1;
+  border-style: solid;
+  border-width: 1px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f6f6f6), to(#e1e1e1));
+  background: linear-gradient(#f6f6f6, #e1e1e1);
+  -webkit-box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+.button-raised:hover,
+.button-raised:focus {
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(gainsboro));
+  background: linear-gradient(top, white, gainsboro);
+}
+.button-raised:active,
+.button-raised.active,
+.button-raised.is-active {
+  background: #eeeeee;
+  -webkit-box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2), 0px 1px 0px white;
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2), 0px 1px 0px white;
+}
+.button-raised.button-primary {
+  border-color: #088ef0;
+  background: -webkit-gradient(linear, left top, left bottom, from(#34a5f8), to(#088ef0));
+  background: linear-gradient(#34a5f8, #088ef0);
+}
+.button-primary {
+  background-color: #1B9AF7;
+  border-color: #1B9AF7;
+  color: #FFF;
+}
+.button-pill {
+  border-radius: 20px;
 }
 /**cell单元格**/
 .bm-cell {
@@ -944,10 +1061,9 @@ span {
 .bm-select {
   width: calc(100% - 12px);
   border: 1px solid #c8c9cc;
-  padding: 6px 5px;
-  line-height: 24px;
+  padding: 7px 5px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 15px;
   -webkit-appearance: button;
 }
 .bm-select:focus {
@@ -1033,6 +1149,33 @@ span {
   line-height: 44px;
   border-top: 1px solid #ebedf0;
 }
+.bm-configur-panel__floor > div {
+  width: 80px;
+}
+.bm-configur-panel .bind-device {
+  display: flex;
+  height: calc(100% - 50px);
+}
+.bm-configur-panel .bind-device .device-list {
+  flex: 1;
+  margin-top: 5px;
+  height: calc(100% - 36px);
+}
+.bm-configur-panel .bind-device .device-list > ul {
+  height: 100%;
+  overflow: auto;
+}
+.bm-configur-panel .bind-device .device-list > ul > li.active {
+  background-color: #12a3ff;
+  color: #fff;
+}
+.bm-configur-panel .bind-device .point-list {
+  width: 120px;
+  margin-top: 5px;
+  height: 100%;
+  overflow: auto;
+  margin-left: 5px;
+}
 /**视图面板**/
 .bm-view-panel {
   display: none;
@@ -1085,35 +1228,29 @@ span {
 .bm-select-panel > span {
   padding: 3px 5px;
   border: 1px solid #ddd;
-  line-height: 24px;
+  line-height: 30px;
   width: calc(100% - 12px);
   cursor: pointer;
+  user-select: none;
 }
 .bm-select-panel > span > img {
   float: right;
   width: 12px;
-  margin-top: 7px;
+  margin-top: 10px;
 }
 .bm-select-panel > div {
   display: none;
   position: absolute;
-  top: 32px;
-  margin-top: -1px;
-  padding: 5px;
+  top: 39px;
+  margin-top: -2px;
   background-color: #fff;
-  width: calc(100% - 12px);
+  width: calc(100% - 2px);
   border: 1px solid #ebedf0;
-}
-.bm-select-panel > div > input {
-  padding: 5px;
-  width: calc(100% - 12px);
-  background-color: #fff;
 }
 .bm-select-panel > div > ul {
   max-height: 240px;
   overflow: auto;
-  margin-top: 5px;
-  padding-right: 5px;
+  padding: 5px;
 }
 .bm-select-panel > div > ul > li {
   line-height: 24px;
@@ -1380,7 +1517,7 @@ input[type="checkbox"]:focus {
   display: block;
   width: calc(100% - 10px*2);
   height: 1.42857143;
-  padding: 5px 10px;
+  padding: 8px 10px;
   font-size: 14px;
   line-height: 1.42857143;
   color: #000;
@@ -1487,39 +1624,39 @@ fieldset[disabled] .checkbox label {
   padding-right: 0;
 }
 .input-sm {
-  height: 30px;
-  padding: 5px 10px;
+  height: 36px;
+  padding: 8px 10px;
   font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
 }
 select.input-sm {
-  height: 30px;
-  line-height: 30px;
+  height: 36px;
+  line-height: 36px;
 }
 textarea.input-sm,
 select[multiple].input-sm {
   height: auto;
 }
 .form-group-sm .form-control {
-  height: 30px;
-  padding: 5px 10px;
+  height: 36px;
+  padding: 8px 10px;
   font-size: 12px;
   line-height: 1.5;
   border-radius: 3px;
 }
 .form-group-sm select.form-control {
-  height: 30px;
-  line-height: 30px;
+  height: 36px;
+  line-height: 36px;
 }
 .form-group-sm textarea.form-control,
 .form-group-sm select[multiple].form-control {
   height: auto;
 }
 .form-group-sm .form-control-static {
-  height: 30px;
+  height: 36px;
   min-height: 32px;
-  padding: 6px 10px;
+  padding: 9px 10px;
   font-size: 12px;
   line-height: 1.5;
 }
@@ -1588,9 +1725,9 @@ select[multiple].input-lg {
 .input-sm + .form-control-feedback,
 .input-group-sm + .form-control-feedback,
 .form-group-sm .form-control + .form-control-feedback {
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
 }
 .has-feedback label ~ .form-control-feedback {
   top: 25px;

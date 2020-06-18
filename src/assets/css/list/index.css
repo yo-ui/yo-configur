@@ -1,0 +1,45 @@
+.bm-component-list {
+  display: inline-block;
+  width: 171px;
+  vertical-align: top;
+  height: calc(100% - 20px);
+  padding: 10px;
+  overflow: auto;
+}
+.bm-component-list > div {
+  text-align: center;
+  margin-bottom: 20px;
+  width: 80px;
+  display: inline-block;
+}
+.bm-component-list > div > img {
+  max-width: 50px;
+  cursor: move;
+  border: 2px solid transparent;
+  border-radius: 2px;
+  padding: 2px;
+}
+.bm-component-list > div > img:hover {
+  border: 2px solid #12a3ff;
+}
+.bm-list > li {
+  line-height: 30px;
+  margin: 1px;
+  border: 1px solid #dcdee0;
+  padding: 3px 5px;
+  display: flex;
+}
+.bm-list > li > .text {
+  flex: 1;
+}
+.bm-list > li > .value > img {
+  width: 18px;
+  vertical-align: middle;
+}
+.bm-list > li:hover {
+  background-color: #f7f8fa;
+  cursor: pointer;
+}
+.bm-list > li.active {
+  border: 1px solid #12a3ff;
+}

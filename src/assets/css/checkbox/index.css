@@ -1,11 +1,11 @@
 .bm-checkbox {
   position: relative;
   height: 18px;
+  margin-left: -1px;
 }
 .bm-checkbox > input {
   position: absolute;
   left: 0;
-  top: 0;
   width: 14px;
   height: 14px;
   opacity: 0;
@@ -13,18 +13,17 @@
 .bm-checkbox > label {
   position: absolute;
   left: 24px;
-  top: 0;
   height: 16px;
   line-height: 16px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  cursor: pointer;
 }
 .bm-checkbox > label:before {
   content: '';
   position: absolute;
   left: -22px;
-  top: 0;
   width: 16px;
   height: 16px;
   border: 1px solid #c8c9cc;
@@ -34,7 +33,7 @@
   content: '';
   position: absolute;
   left: -16px;
-  top: 1px;
+  top: 2px;
   width: 5px;
   height: 10px;
   border-right: 2px solid #fff;
@@ -52,4 +51,3 @@
 .bm-checkbox > input:checked + label:after {
   background-color: #12a3ff;
 }
-/*# sourceMappingURL=index.css.map */

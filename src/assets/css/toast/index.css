@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: center;
   box-sizing: content-box;
+  z-index: 101;
   width: 90px;
   max-width: 70%;
   min-height: 90px;
@@ -31,8 +32,8 @@
   min-height: unset;
   padding: 10px 15px;
 }
-.bm-toast--text .van-toast__text,
-.bm-toast--html .van-toast__text {
+.bm-toast--text .bm-toast__text,
+.bm-toast--html .bm-toast__text {
   margin-top: 0;
 }
 .bm-toast--top {
@@ -52,4 +53,3 @@
 .bm-toast__text {
   margin-top: 10px;
 }
-/*# sourceMappingURL=index.css.map */

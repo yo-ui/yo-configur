@@ -6,7 +6,6 @@ class Edit {
 
   constructor(config) {
     this.config = config;
-    this.prefix = ""
   }
 
   init() {
@@ -196,8 +195,8 @@ class Edit {
         <div class="bm-layout__main__right">
             <div class="bm-tabs-custom">
                 <ul id="property_tabs" class="bm-tabs">
-                    <li class="active"><a href="javaScript:">基本设置</a></li>
-                    <li><a href="javaScript:">高级设置</a></li>
+                    <li class="active"><a href="javaScript:">基本样式</a></li>
+                    <li><a href="javaScript:">画布元素</a></li>
                 </ul>
             </div>
             <div class="bm-tabs-content">
@@ -205,7 +204,7 @@ class Edit {
                     <div id="configur_property"></div>
                 </div>
                 <div id="tab_2" data-value="2" style="display: none;">
-                    <div id="configur_list"></div>
+                    <div id="configur_list"><ul class="bm-list"></ul></div>
                 </div>
             </div>
         </div>
@@ -217,12 +216,9 @@ class Edit {
       <div class="menu-panel"></div>
       <div class="bm-configur-panel" style="display: none;">
           <div class="bm-configur-panel__body">
-              <div class="bm-configur-panel__header"><span>&nbsp;</span><div class="bm-configur-panel__close">×</div></div>
+              <div class="bm-configur-panel__header"><span>&nbsp;数据绑定</span><div class="bm-configur-panel__close">×</div></div>
               <div class="bm-configur-panel__content">
-                  <div class="configur-file">
-                      <ul></ul>
-                  </div>
-                  <div class="configur-canvas"></div>
+                  
               </div>
               <div class="bm-configur-panel__floor">
                   <div class="close bm-button bm-button--small bm-button--default">关闭</div>

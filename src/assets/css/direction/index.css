@@ -1,3 +1,9 @@
+.vision-btn {
+  position: absolute;
+  right: 30px;
+  top: 60px;
+  z-index: 999;
+}
 .bm-direction {
   width: 60px;
   height: 60px;
@@ -5,7 +11,7 @@
   background-color: #fff;
   border-radius: 30px;
   opacity: 0.5;
-  padding: 0px;
+  filter: alpha(opacity=50);
 }
 .bm-direction--top,
 .bm-direction--bottom {
@@ -38,10 +44,10 @@
 }
 .bm-direction--left {
   margin-left: 0px;
-  top: 0;
+  margin-top: 2px;
 }
 .bm-direction--right {
   float: right;
   margin-right: 0px;
+  margin-top: 2px;
 }
-/*# sourceMappingURL=index.css.map */

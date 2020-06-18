@@ -1,9 +1,10 @@
 import '@/assets/css/index.css'
 import './../../static/css/colpick.css'
+
 import Paw from '@/core/Paw.js'
 import Move from '@/core/Move.js'
 import SpiritFactory from '@/core/SpiritFactory.js'
-import BindDevice from '@/components/BindDevice.js'
+import BindData from '@/components/BindData.js'
 import Zoom from '@/core/Zoom.js'
 import Library from '@/core/Library.js'
 import Keydown from '@/core/Keydown.js'
@@ -18,7 +19,7 @@ class Stage {
 
 	constructor(option) {
 		this.option = option;
-		this.toolType = 1;// 1 移动方式 2 拼装方式
+		this.toolType = 1;//1移动方式 2 拼装方式
 		this.selectedType = 1;//选择类型1:默认2:框选
 		this.move = new Move(this);//全局移动
 		this.paw = new Paw(0,0,0,0,this);//舞台移动
@@ -29,7 +30,8 @@ class Stage {
 		this.zoom = new Zoom(this);//缩放
 		this.align = new Align(this);//对齐
 		this.handleRecord = new HandleRecord(this);
-		this.organizList();
+    this.bindD = new BindData(this);
+		this.canvas();
 	}
 
 	createStage(width,height,background) {
@@ -47,9 +49,8 @@ class Stage {
 			width: width+'px',
 			height: height+'px',
 			transform: 'scale(1)',
-			'transform-origin': '0 0',
-			border: '1px solid #f5f5f5',
-			'background-color': background.color
+      'transform-origin': '0 0',
+			'background-color': background.color,
 		});
 		let board = $('<div id="board">&nbsp;</div>').css({
 			position: 'absolute',
@@ -125,6 +126,7 @@ class Stage {
 					let top = e.pageY-offsetTop;
 					let spirit = that.create(that.className,left,top,that.dw,that.dh);
 					that.capacity.push(spirit)
+          that.configurList();
 					let data = {id:spirit.id,left:spirit.x,top:spirit.y}
 					let record = {type:'add',name:'添加',data:data}
 					that.handleRecord.add(record);
@@ -140,7 +142,9 @@ class Stage {
 			$('#h_subline').hide();
 			$('#selected_subline').hide();
 			$('.bm-context-menu').hide();
-			$('#configur_list').html('');
+			$('#configur_list li').each(function () {
+        $(this).removeClass('active');
+      });
 			e.stopPropagation();
 		});
 
@@ -161,9 +165,6 @@ class Stage {
 		element.on('mousedown',function(e) {
 			if(that.toolType==1) {
 				$('.bm-context-menu').hide();
-				that.capacity.forEach(function(data) {
-					$('#'+data.id).css({border:'1px solid transparent'})
-				});
 				if(that.selectedType==1) {
 					that.selectedList = [];
 				}
@@ -362,9 +363,9 @@ class Stage {
 		}).css('background-color', that.background.color);
 
 		$('#subline').on('change',function () {
-            if($(this).is(':checked')) {
-            	$('#configur_stage').css({'background-image': 'url(static/images/background/background.png)'});
-            	that.background.url = "static/images/background/background.png"
+      if($(this).is(':checked')) {
+        $('#configur_stage').css({'background-image': 'url(static/images/background/background.png)'});
+        that.background.url = "static/images/background/background.png"
 			}else {
 				$('#configur_stage').css({'background-image': ''});
 				that.background.url = ""
@@ -391,14 +392,14 @@ class Stage {
 					that.toolType = 1;
 					$(this).addClass('active')
           if(that.waterPipe) {
-            that.waterPipe.setDraw(false);
+            that.waterPipe.draw(false);
             that.removeLinkPoints();
           }
 				}else if(index==1) {
 					that.toolType = 2;
 					$(this).addClass('active')
 					if(that.waterPipe) {
-						that.waterPipe.setDraw(true);
+						that.waterPipe.draw(true);
             that.createLinkPoints();
 					}
 				}
@@ -475,9 +476,9 @@ class Stage {
     	if(id) {
     		that.configurId = id;
 	    	el.css({
-				left: Number(left)+2,
-				top: Number(top)+2,
-				transform: 'rotate('+that.property.rotate+'deg)'
+          left: Number(left)+2,
+          top: Number(top)+2,
+          transform: 'rotate('+that.property.rotate+'deg)'
 	    	});
 	    	this.addEvent(el);
 	    	this.element.append(el);
@@ -497,7 +498,8 @@ class Stage {
 			let height = this.property.height;
 			let rotate = this.property.rotate;
 			let spirit = this.create(this.className,x,y,width,height,rotate);
-			spirit.bindDevice = this.property.bindDevice;
+			spirit.config = this.property.config;
+			spirit.refresh();
 			this.capacity.push(spirit);
 			spirit.getEl().trigger('click');
 			let data = {id:spirit.id,left:spirit.x,top:spirit.y}
@@ -554,7 +556,6 @@ class Stage {
     el.on('click',function(e) {
       if(that.toolType==1) {
         that.layDown();
-        $('#configur_list').html('');
         $('.bm-context-menu').hide();
         that.configurId = $(this).attr('id');
         that.property = that.getProperty();
@@ -580,9 +581,7 @@ class Stage {
             $('#'+that.property.id).css({left:x,top:y,transform: 'rotate('+rotate+'deg)'});
             that.layDown();
         }
-        if(that.property.isBind) {
-          that.bindD.create();
-        }
+        that.configurList();
         e.stopPropagation();
       }
     });
@@ -648,50 +647,6 @@ class Stage {
 		if(this.property){
 			this.property.renderer();
 			Tooltip.init();
-			$('#configur_property input').on('change',function() {
-				that.capacity.forEach(function(property) {
-					if(that.property.id==property.id) {
-						property.config.color = that.property.config.color;
-						property.config.fontSize = that.property.config.fontSize;
-					}
-				})
-			});
-
-			$('#configur_property select').on('change',function() {
-				let name = $(this).attr("name");
-				if(name=="textFS") {
-					that.property.config.fontSize = $(this).val();
-					$('#'+that.property.id).find('span').css({'font-size':that.property.config.fontSize+"px"});
-					let text = that.property.config.text;
-          let width = $('#temp_value').css({'font-size':$(this).val()+"px"}).text(text).width()+4;
-          $('#'+that.property.id).find('span').css({width:width});
-          $('.resize-panel').css({width:width});
-				}else if(name=="textBoxFS") {
-					that.property.config.fontSize = $(this).val();
-					$('#'+that.property.id).find('span').css({'font-size':$(this).val()+"px"});
-          $('#temp_value').html($('#'+that.property.id).find('div').html());
-          let width = $('#temp_value').width()+4;
-          $('.resize-panel').css({width:width});
-				}
-				that.capacity.forEach(function(property) {
-					if(that.property.id==property.id) {
-						property.config.color = that.property.config.color;
-						property.config.fontSize = that.property.config.fontSize;
-					}
-				})
-			});
-
-			$('#configur_property .bm-tree').each(function() {
-				$(this).on('click',function() {
-					$(this).next().toggle();
-					if($(this).next().is(':hidden')) {
-						$(this).find('img').attr('src', "static/images/angle-down.png");
-					}else {
-						$(this).find('img').attr('src', "static/images/angle-right.png");
-					}
-				});
-			})
-
 			$('.colpick').remove()
       if(that.property.config) {
         $('.text-color').colpick({
@@ -763,7 +718,6 @@ class Stage {
 	analysis(width,height,data) {
 		let that = this;
 		$('#root').html('');
-		$('#configur_list ul').html('');
 		if(data) {
 			this.createStage(width,height,data.background);
 			data.capacity.forEach(function(property) {
@@ -774,7 +728,6 @@ class Stage {
 				let height = property.height;
 				let rotate= property.rotate;
 				let spirit = that.create(className,x,y,width,height,rotate);
-
 				spirit.isMove = property.isMove;
 				spirit.zIndex = property.zIndex;
 				spirit.config = property.config;
@@ -784,8 +737,47 @@ class Stage {
 			})
 			$('#configur_stage').trigger('click')
 			that.location();
+			that.configurList();
 		}
 	}
+
+  configurList() {
+    $('#configur_list ul').html('');
+	  let that = this;
+	  if(that.capacity) {
+      that.capacity.forEach(function (data) {
+        let li = $('<li></li>');
+        li.data('id',data.id)
+        li.on('click',function () {
+          $(this).addClass('active');
+          $(this).siblings().each(function () {
+            $(this).removeClass('active');
+          })
+          $('#'+$(this).data('id')).trigger('click')
+        })
+        let text = $(`<span class="text">${data.title}</span>`)
+        let value = $(`<span class="value"></span>`);
+        if(data.isBind) {
+          let src = "static/images/bind-0.png"
+          if(data.config.bindData.deviceId) {
+            src = "static/images/bind-1.png"
+          }
+          let img = $(`<img src="${src}"/>`)
+          img.on('click',function (e) {
+            $(this).parent().parent().trigger('click')
+            that.bindD.create();
+            e.stopPropagation();
+          });
+          value.append(img);
+        }
+        li.append(text).append(value);
+        if(that.property.id == data.id) {
+          li.addClass('active');
+        }
+        $('#configur_list ul').append(li);
+      })
+    }
+  }
 
 	save() {
 		let that = this;
@@ -826,25 +818,6 @@ class Stage {
 			}
 		}
 	}
-
-  organizList() {
-    let that = this;
-    that.option.organizList(function(dataList) {
-      if(dataList.length>0) {
-        let id = dataList[0].id;
-        that.devicePoints(id)
-      }
-    })
-  }
-
-  devicePoints(id) {
-    let that = this;
-    that.option.devicePoints(id,function(deviceList) {
-      that.deviceList = deviceList;
-      that.bindD = new BindDevice(that);
-      that.canvas();
-    })
-  }
 
   canvas() {
 	  let that = this;

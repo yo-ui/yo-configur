@@ -5,6 +5,10 @@
   border-radius: 999px;
   cursor: pointer;
 }
+.bm-slider__interval {
+  padding-bottom: 15px;
+  margin-top: 15px;
+}
 .bm-slider::before {
   position: absolute;
   top: -10px;
@@ -51,4 +55,3 @@
   bottom: 0;
   transform: translate3d(50%, 50%, 0);
 }
-/*# sourceMappingURL=index.css.map */

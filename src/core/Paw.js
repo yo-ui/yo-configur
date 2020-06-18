@@ -191,6 +191,7 @@ class Paw {
     $(document).on('mousemove', function(e) {
       that.isMove = false;
       if(emove) {//右
+        console.log("...");
         let x = e.pageX-ox;
         let width = ow+x;
         let left = that.property.x;
@@ -432,13 +433,7 @@ class Paw {
   register(el) {
     let that = this;
     $('.resize-panel').find('.resize-panel-content').append(el);
-    if(this.property.className=="Text") {
-      let text = that.property.config.text;
-      let fontSize = that.property.config.fontSize;
-      let width = $('#temp_value').css({'font-size':fontSize+"px"}).text(text).width()+4;
-      $('.resize-panel-content').find('span').css({width:width});
-      $('.resize-panel').css({width:width});
-    }
+
     $('.resize-panel').on('contextmenu',function (e) {
       let left = e.pageX;
       let top = e.pageY;
@@ -454,8 +449,16 @@ class Paw {
     $('.resize-panel').css({top:y-2,left:x-2,width:width+2,height:height+2});
     if(this.property.className == "TextBox") {
       $('#temp_value').html($('#'+this.property.id).find('div').html());
+      let height = $('#temp_value').height();
       let width = $('#temp_value').width()+2;
-      $('.resize-panel').css({width:width});
+      $('.resize-panel').css({width:width,height:height});
+      $('#'+this.property.id).find('div').css({'line-height': height+"px",height: height+"px"});
+    }else if(this.property.className=="Text") {
+      $('#temp_value').html($('#'+this.property.id).find('div').html());
+      let height = $('#temp_value').height();
+      let width = $('#temp_value').width();
+      $('.resize-panel').css({width:width+2,height:height});
+      $('#'+this.property.id).find('div').css({width:width+4,'line-height': height+"px",height: height+"px"});
     }
   }
 

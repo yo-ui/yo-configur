@@ -1,18 +1,17 @@
 .bm-tooltip {
   font-size: 12px;
-  font-family: \5b8b\4f53;
-  line-height: 1.5;
   position: absolute;
   padding: 5px;
-  z-index: 100003;
-  opacity: 0.8;
+  z-index: 999999;
+  opacity: 0.9;
+  min-width: 50px;
 }
 .bm-tooltip__tipsy-arrow {
   position: absolute;
   width: 0;
   height: 0;
   line-height: 0;
-  border: 6px dashed #FFA500;
+  border: 6px dashed #ff976a;
   top: 0;
   left: 20%;
   margin-left: -5px;
@@ -22,14 +21,12 @@
   border-right-color: transparent;
 }
 .bm-tooltip__tipsy-arrow-n {
-  border-bottom-color: #FFA500;
+  border-bottom-color: #ff976a;
 }
 .bm-tooltip__tipsy-inner {
-  background-color: #FFA500;
+  background-color: #ff976a;
   color: #fff;
-  max-width: 200px;
-  padding: 5px 8px 4px 8px;
+  padding: 5px;
   text-align: center;
-  border-radius: 3px;
+  border-radius: 4px;
 }
-/*# sourceMappingURL=index.css.map */

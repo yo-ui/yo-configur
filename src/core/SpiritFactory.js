@@ -4,6 +4,8 @@ import Text from '@/components/Text.js'
 import Images from '@/components/Images.js'
 import LineChart from '@/components/LineChart.js'
 import ViewPanel from '@/components/ViewPanel.js'
+import Button from '@/components/Button.js'
+import Display from '@/components/Display.js'
 //给水系统
 import Lyssb from '@/components/water/Lyssb.js'
 import Sbfkg from '@/components/water/Sbfkg.js'
@@ -20,8 +22,16 @@ import LeftWater from '@/components/water/LeftWater.js'
 import UpWater from '@/components/water/UpWater.js'
 import DownWater from '@/components/water/DownWater.js'
 import RightWater from '@/components/water/RightWater.js'
+import Shsb from '@/components/water/Shsb.js'
+import Jsj from '@/components/water/Jsj.js'
+import Sx from '@/components/water/Sx.js'
+import Xfsb from '@/components/water/Xfsb.js'
+import Cyfj from '@/components/water/Cyfj.js'
+import Zysfj from '@/components/water/Zysfj.js'
+import Xszz from '@/components/water/Xszz.js'
+import Sdsf from '@/components/water/Sdsf.js'
 //配电系统
-import ElectricityMeter from '@/components/pd/ElectricityMeter.js'
+import Db from '@/components/pd/Db.js'
 import ElectricBox from '@/components/pd/ElectricBox.js'
 import Bgsdb from '@/components/pd/Bgsdb.js'
 import Byq from '@/components/pd/Byq.js'
@@ -38,11 +48,11 @@ import Ztsrlb from '@/components/kt/Ztsrlb.js'
 import Zhsrlb from '@/components/kt/Zhsrlb.js'
 import Gskt from '@/components/kt/Gskt.js'
 import Lskt from '@/components/kt/Lskt.js'
-import Sx from '@/components/kt/Sx.js'
 import Flrb from '@/components/kt/Flrb.js'
 import Bshrq from '@/components/kt/Bshrq.js'
 import Wssb from '@/components/kt/Wssb.js'
-import Lssb from '@/components/kt/Lssb.js'
+import Lqt from '@/components/kt/Lqt.js'
+import Pfj from '@/components/kt/Pfj.js';//排风机
 //安防系统
 import Ywbjcgq from '@/components/af/Ywbjcgq.js'
 import Hwrtgyq from '@/components/af/Hwrtgyq.js'
@@ -69,8 +79,8 @@ class SpiritFactory {
   //静态方法
   static getInstance(className,x,y,width,height) {
     switch (className) {//
-	    case 'ElectricityMeter':
-	        return new ElectricityMeter(x,y,width,height);
+	    case 'Db':
+	        return new Db(x,y,width,height);
 	        break;
 	    case 'ElectricBox':
 	        return new ElectricBox(x,y,width,height);
@@ -144,8 +154,8 @@ class SpiritFactory {
 	    case 'Wssb':
 	        return new Wssb(x,y,width,height);
 	        break;
-	    case 'Lssb':
-	        return new Lssb(x,y,width,height);
+	    case 'Xfsb':
+	        return new Xfsb(x,y,width,height);
 	        break;
 	    case 'Ywbjcgq':
 	        return new Ywbjcgq(x,y,width,height);
@@ -230,6 +240,36 @@ class SpiritFactory {
           break;
       case 'ViewPanel':
           return new ViewPanel(x,y,width,height);
+          break;
+      case 'Shsb':
+          return new Shsb(x,y,width,height);
+          break;
+      case 'Jsj':
+          return new Jsj(x,y,width,height);
+          break;
+      case 'Cyfj':
+          return new Cyfj(x,y,width,height);
+          break;
+      case 'Zysfj':
+          return new Zysfj(x,y,width,height);
+          break;
+      case 'Lqt':
+          return new Lqt(x,y,width,height);
+          break;
+      case 'Xszz':
+          return new Xszz(x,y,width,height);
+          break;
+      case 'Button':
+          return new Button(x,y,width,height);
+          break;
+      case 'Display':
+          return new Display(x,y,width,height);
+          break;
+      case 'Sdsf':
+          return new Sdsf(x,y,width,height);
+          break;
+      case 'Pfj':
+          return new Pfj(x,y,width,height);
           break;
       default:
           console.log("className:"+className);

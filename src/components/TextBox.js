@@ -9,24 +9,23 @@ class TextBox extends Spirit {
         super(x, y);
 	    this.title = "显示框";
 	    this.className = "TextBox";
-	    this.height = 30;
+	    this.height = height;
 	    this.moveType = 0;
 	    this.isBind = true;
 	    this.bindType = 2;
 	    this.zIndex = 4;
-	    this.config = {bindDevice: {id:'',point:'',unit:''},color:'#000',fontSize:24,backgroundColor:'transparent'}
+	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''},color:'#000',fontSize:24,backgroundColor:'transparent'}
 	}
 
 	template(){
-		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
+		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
                 <div style="
-                    line-height: ${this.height}px;
+                    line-height: ${this.height}px; 
                     height: ${this.height}px;
                     text-align: center;
-                    background-color: ${this.config.backgroundColor};
-                    border-radius: 2px">
-                    <span class="value" style="font-weight:bold;font-family: electronicFont;font-size: ${this.config.fontSize}px;height: 29px;">00.00</span>
-                    <small class="unit" style="text-align:center;font-size: ${this.config.fontSize*0.5}px">${this.config.bindDevice.unit}</small>
+                    background-color: ${this.config.backgroundColor}">
+                    <span class="value" style="font-weight:bold;font-family: electronicFont;font-size: ${this.config.fontSize}px;">00.00</span>
+                    <small class="unit" style="text-align:center;font-size: ${this.config.fontSize*0.5}px"></small>
                 </div>
                </div>`);
 	}
@@ -36,9 +35,9 @@ class TextBox extends Spirit {
 		let that = this;
 		if(device) {
 			device.points.forEach(function(point) {
-				if(config.bindDevice.point==point.id) {
+				if(config.bindData.devicePoint==point.id) {
 				  $('#'+that.id).find('.value').text(parseFloat(point.value));
-          $('#'+that.id).find('.unit').text(that.config.bindDevice.unit);
+          $('#'+that.id).find('.unit').text(point.unit);
 				}
 			})
 		}
@@ -63,6 +62,7 @@ class TextBox extends Spirit {
 	}
 
 	renderer() {
+	  let that = this;
 		super.renderer();
 		let html = `<div class="bm-tree">字体</div>					
 					<div class="bm-cell no-hover">
@@ -94,6 +94,18 @@ class TextBox extends Spirit {
       element.append(option)
 		});
     element.val(this.config.fontSize)
+
+    element.on('change',function () {
+      let property = that.stage.property;
+      property.config.fontSize = $(this).val();
+      $('#'+property.id).find('span').css({'font-size':$(this).val()+"px"});
+      $('#temp_value').html($('#'+property.id).find('div').html());
+      let width = $('#temp_value').width()+4;
+      let height = $('#temp_value').height();
+      $('.resize-panel').css({width:width,height:height});
+      $('#'+property.id).find('div').css({'line-height': height+"px",height: height+"px"});
+      property.height = height;
+    });
 	}
 }
 

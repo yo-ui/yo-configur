@@ -3,5 +3,10 @@
   padding: 5px;
   margin-bottom: 1px;
   cursor: pointer;
+  background-color: #f2f3f5;
+  font-weight: bold;
 }
-/*# sourceMappingURL=index.css.map */
+.bm-tree > div {
+  display: inline-block;
+  width: 10px;
+}

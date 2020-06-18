@@ -18,8 +18,7 @@ class ViewPanel extends Spirit {
     this.isMove = true;
     this.isBind = true;
     this.zIndex = 4;
-    this.bindDevice = {}
-    this.config = {}
+    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}}
   }
 
   template(){

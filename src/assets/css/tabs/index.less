@@ -1,7 +1,6 @@
 @import "./../style/bm";
 
 .bm-tabs {
-  border-bottom: 1px solid #fff;
 
   & > li {
     float: left;
@@ -9,7 +8,6 @@
     & > a {
       margin-right: 2px;
       line-height: 1.42857143;
-      border: 1px solid transparent;
       border-radius: 4px 4px 0 0;
     }
 
@@ -52,13 +50,10 @@
 
 .bm-tabs-custom {
   margin-bottom: 0px;
-  background: #fff;
 
   & > .bm-tabs {
     margin: 0;
     height: 45px;
-    background-color: #fff;
-    border-bottom: 1px solid @gray-1;
 
     & > li {
       margin-top: 10px;
@@ -84,7 +79,7 @@
     }
 
     & > li.active {
-      background-color: #fff;
+
     }
 
     & > li:not(.active) > a:hover,
@@ -98,4 +93,6 @@
   background-color: #fff;
   height: calc(100% - 56px);
   padding: 5px;
+  border: 1px solid #f0f2f3;
+  overflow: auto;
 }

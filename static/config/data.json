@@ -2,10 +2,15 @@
   "debug": true,
   "websocketUrl": "ws://127.0.0.1:8082/configur/websocket",
   "verifyInfo": "api/common/verifyInfo",
-  "canvasGet": "api/canvas/get",
-  "canvasSave": "api/canvas/save",
   "organizList": "api/common/organizList",
   "devicePoints": "api/common/devicePoints",
-  "upload": "api/file/upload",
-  "devicePointHstData": "api/common/devicePointHstData"
+  "devicePointHstData": "api/common/devicePointHstData",
+  "getDevice":"api/common/getDevice",
+  "canvasGet": "api/canvas/get",
+  "canvasSave": "api/canvas/save",
+  "control": "api/canvas/control",
+  "token": "api/canvas/token",
+  "start": "api/canvas/start",
+  "stop": "api/canvas/stop",
+  "upload": "api/file/upload"
 }

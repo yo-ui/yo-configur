@@ -68,6 +68,39 @@
     padding: @conf-panel-floor-padding;
     line-height: @conf-panel-floor-line-height;
     border-top: 1px solid @gray-3;
+
+    & > div {
+      width: 80px;
+    }
+  }
+
+  .bind-device {
+    display: flex;
+    height: calc(100% - 50px);
+
+    & .device-list {
+      flex: 1;
+      margin-top: 5px;
+      height: calc(100% - 36px);
+
+      & > ul {
+        height: 100%;
+        overflow: auto;
+
+        & > li.active {
+          background-color: #12a3ff;
+          color: #fff;
+        }
+      }
+    }
+
+    & .point-list {
+      width: 120px;
+      margin-top: 5px;
+      height: 100%;
+      overflow: auto;
+      margin-left: 5px;
+    }
   }
 }
 
@@ -131,39 +164,31 @@
   & > span {
     padding: 3px 5px;
     border: 1px solid #ddd;
-    line-height: @line-height;
+    line-height: 30px;
     width: calc(100% - 12px);
     cursor: pointer;
+    user-select: none;
 
     & > img {
       float: right;
       width: 12px;
-      margin-top: 7px;
+      margin-top: 10px;
     }
   }
 
   & > div {
     display: none;
     position: absolute;
-    top: 32px;
-    margin-top: -1px;
-    padding: 5px;
+    top: 39px;
+    margin-top: -2px;
     background-color: @white;
-    width: calc(100% - 12px);
-
+    width: calc(100% - 2px);
     border: 1px solid @gray-3;
-
-    & > input {
-      padding: 5px;
-      width: calc(100% - 12px);
-      background-color: @white;
-    }
 
     & > ul {
       max-height: 240px;
       overflow: auto;
-      margin-top: 5px;
-      padding-right: 5px;
+      padding: 5px;
 
       & > li {
         line-height: 24px;

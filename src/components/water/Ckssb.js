@@ -19,7 +19,7 @@ class Ckssb extends Spirit {
 	    this.isBind = true;
 	    this.isLinkPoint = true;
 	    this.zIndex = 3;
-	    this.config = {bindDevice: {id:'',point:'',unit:''}}
+	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}}
 	}
 
 	template(){

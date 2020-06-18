@@ -41,6 +41,7 @@ class Spirit {
 	arrangement(stage) {
 		this.stage = stage;
 		stage.element.append(this.template());
+    this.state(0);
 	}
 
 	reveal(device,config) {}
@@ -109,12 +110,28 @@ class Spirit {
       let ul = $('<ul></ul>');
       device.points.forEach(function(point) {
         let li = $(`<li><span class="text">${point.name}</span></li>`);
-        if(point.id=="SwSts") {
-          let text = $(`<span class="value">${point.value==0?'关':'开'}</span>`)
-          li.append(text)
+        if(point.type==2||point.type==4) {
+          let span = $('<span class="value"></span>')
+          let select = $('<select class="bm-select" style="padding: 0px;width: 80px;display: inline-block;vertical-align: middle"></select>')
+          point.optionValList.forEach(function (data) {
+            let option = $('<option></option>');
+            option.val(data.value);
+            option.text(data.descr);
+            select.append(option);
+          })
+          select.val(1);
+          let button = $(`<a class="button button-raised button-primary button-pill" 
+                           style="line-height: 22px;font-size: 11px;margin-left: 2px">确定</a>`)
+
+          button.on('click', function () {
+            that.control(device.id,point.id,select.val());
+          });
+          span.append(select);
+          span.append(button);
+          li.append(span)
         }else {
           if(point.value) {
-            let span = $(`<span class="value">${that.floatFormat(point.value)}<small class="unit">${that.undefinedToString(point.unit)}</small></span>`)
+            let span = $(`<span class="value">&nbsp;${that.floatFormat(point.value)}<small class="unit">&nbsp;${that.undefinedToString(point.unit)}</small></span>`)
             li.append(span);
           }
         }
@@ -126,6 +143,68 @@ class Spirit {
 			$('.bm-view-panel').show();
 		}
 	}
+
+  control(deviceId,point,value) {
+	  let that = this;
+    that.stage.password.show();
+    that.stage.password.confirm(function (text) {
+      let data = {}
+      data.deviceId = deviceId;
+      data.point = point;
+      data.value = value;
+      data.ctrlPwd = text;
+      that.stage.option.control(data,function(msg) {
+        let message = JSON.parse(msg);
+        console.log(message);
+        if(message.status.code==100000) {
+          that.stage.toast("控制成功");
+          let item = {}
+          item.id = deviceId;
+          item.points = [{id:point,value:value}]
+          console.log(item);
+          that.stage.linkage(item);
+          that.stage.password.hide();
+        }else if(message.status.code==120020) {
+          that.stage.toast("密码错误");
+        }
+      })
+    });
+  }
+
+  state(value) {
+	  let element = $("#"+this.id);
+    if(value == 0){ //正常
+      if(element.find('.SVG_alert')){
+        element.find('.SVG_alert').hide();
+      }
+      if(element.find('.SVG_sta')){
+        element.find('.SVG_sta').show();
+      }
+      if(element.find('.SVG_ani')){
+        element.find('.SVG_ani').hide();
+      }
+    }else if(value == 1){ //运行
+      if(element.find('.SVG_alert')){
+        element.find('.SVG_alert').hide();
+      }
+      if(element.find('.SVG_sta')){
+        element.find('.SVG_sta').hide();
+      }
+      if(element.find('.SVG_ani')){
+        element.find('.SVG_ani').show();
+      }
+    }else if(value == 2){ //报警
+      if(element.find('.SVG_alert')){
+        element.find('.SVG_alert').show();
+      }
+      if(element.find('.SVG_sta')){
+        element.find('.SVG_sta').show();
+      }
+      if(element.find('.SVG_ani')){
+        element.find('.SVG_ani').hide();
+      }
+    }
+  }
 
 	floatFormat(value) {
 		if(value) {

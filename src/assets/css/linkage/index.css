@@ -1,10 +1,8 @@
 .bm-linkage__content {
   width: 100%;
   display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  align-items: center;
   box-sizing: border-box;
+  padding: 5px 0;
 }
 .bm-linkage__left {
   -webkit-box-flex: 1;
@@ -12,24 +10,24 @@
   flex: 1;
 }
 .bm-linkage__right {
-  width: 100px;
+  width: 226px;
+  margin-left: 5px;
 }
 .bm-linkage__list {
   padding: 10px;
 }
 .bm-linkage__item {
   line-height: 24px;
-  background-color: #F5F5F5;
+  background-color: #f7f8fa;
   margin-bottom: 5px;
   padding: 5px;
   cursor: pointer;
 }
 .bm-linkage__item.active {
-  background-color: #316AC5;
+  background-color: #12a3ff;
   color: #fff;
 }
-.bm-linkage__item:hover {
-  background-color: #FFE6B0;
+.bm-linkage__item:not(.active):hover {
+  background-color: #c8c9cc;
   color: #000;
 }
-/*# sourceMappingURL=index.css.map */
