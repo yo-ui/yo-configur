@@ -1,14 +1,14 @@
 @font-face {
-  font-family: 'electronicFont';
-  src: url("../font/LcdD.ttf");
+  font-family: 'lcdD';
+  src: url("../font/lcdD.ttf");
 }
 @font-face {
-  font-family: 'FontIcon';
-  src: url('../font/icomoon.ttf?afd1x4') format('truetype');
+  font-family: 'fontIcon';
+  src: url('../font/font.ttf?afd1x4') format('truetype');
 }
 .fa {
   display: inline-block;
-  font-family: FontIcon;
+  font-family: fontIcon;
   font-style: normal;
   font-weight: normal;
   line-height: 1;

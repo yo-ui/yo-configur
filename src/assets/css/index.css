@@ -304,16 +304,16 @@ span {
 }
 /**font 字体**/
 @font-face {
-  font-family: 'electronicFont';
-  src: url("../font/LcdD.ttf");
+  font-family: 'lcdD';
+  src: url("../font/lcdD.ttf");
 }
 @font-face {
-  font-family: 'FontIcon';
-  src: url('../font/icomoon.ttf?afd1x4') format('truetype');
+  font-family: 'fontIcon';
+  src: url('../font/font.ttf?afd1x4') format('truetype');
 }
 .fa {
   display: inline-block;
-  font-family: FontIcon;
+  font-family: fontIcon;
   font-style: normal;
   font-weight: normal;
   line-height: 1;
@@ -483,10 +483,11 @@ span {
   height: 23px;
   display: inline-block;
   vertical-align: middle;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
+  border-radius: 2px;
 }
 .bm-zoom > img:hover {
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
 }
 .bm-color-box {
   float: left;

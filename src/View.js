@@ -9,12 +9,12 @@ class View {
     this.config = config;
   }
 
-  init(websocket) {
+  init(webSocket) {
     let that = this;
     let option = {
       canvas: function (callback) {
-        if(websocket) {
-          websocket.close();
+        if(webSocket) {
+          webSocket.close();
         }
         if(that.config.debug) {
           let data = localStorage.getItem("data");
@@ -59,26 +59,26 @@ class View {
           callback.call(this, devices);
         }else {
           if(that.config.debug) {
-            websocket = new WebSocket("ws://127.0.0.1:8080/configur/websocket");
+            webSocket = new WebSocket("ws://127.0.0.1:8080/configur/websocket");
           } else {
-            //websocket = new WebSocket("wss://viz.energyiot.cn/configur/websocket");
-            websocket = new WebSocket(that.config.websocketUrl);
+            //socket = new WebSocket("wss://viz.energyiot.cn/configur/websocket");
+            webSocket = new WebSocket(that.config.websocketUrl);
           }
           //连接发生错误的回调方法
-          websocket.onerror = function() {
+          webSocket.onerror = function() {
             console.log("WebSocket连接发生错误");
           };
           //连接成功建立的回调方法
-          websocket.onopen = function() {
+          webSocket.onopen = function() {
             console.log("WebSocket连接成功");
-            websocket.send(JSON.stringify(devices));
+            webSocket.send(JSON.stringify(devices));
           }
           //接收到消息的回调方法
-          websocket.onmessage = function(event) {
+          webSocket.onmessage = function(event) {
             callback.call(this,JSON.parse(event.data));
           }
           //连接关闭的回调方法
-          websocket.onclose = function() {
+          webSocket.onclose = function() {
             console.log("WebSocket连接关闭");
           }
         }

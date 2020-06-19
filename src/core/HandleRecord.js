@@ -25,6 +25,13 @@ class HandleRecord {
 			let handle = handles.shift();
 			if(handle.type=="add") {
 				$('#'+handle.data.id).remove();
+				let tempList = []
+        that.stage.capacity.forEach(function (spirit) {
+          if(spirit.id != handle.data.id) {
+            tempList.push(spirit)
+          }
+        })
+        that.stage.capacity = tempList;
 			}else if(handle.type=="move") {
 				let left = handle.data.left;
 				let top = handle.data.top;

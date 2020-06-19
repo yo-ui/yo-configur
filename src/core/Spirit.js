@@ -161,7 +161,6 @@ class Spirit {
           let item = {}
           item.id = deviceId;
           item.points = [{id:point,value:value}]
-          console.log(item);
           that.stage.linkage(item);
           that.stage.password.hide();
         }else if(message.status.code==120020) {

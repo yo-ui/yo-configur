@@ -1,16 +1,17 @@
 import '@/assets/css/index.css'
-import './../../static/css/colpick.css'
+import '@/assets/css/colpick.css'
 
-import Paw from '@/core/Paw.js'
-import Move from '@/core/Move.js'
-import SpiritFactory from '@/core/SpiritFactory.js'
-import BindData from '@/components/BindData.js'
-import Zoom from '@/core/Zoom.js'
-import Library from '@/core/Library.js'
-import Keydown from '@/core/Keydown.js'
-import Align from '@/core/Align.js'
-import HandleRecord from '@/core/HandleRecord.js'
-import WaterPipe from '@/components/WaterPipe.js'
+import '@/assets/js/colpick.js';
+import Paw from '@/core/Paw.js';
+import Move from '@/core/Move.js';
+import SpiritFactory from '@/core/SpiritFactory.js';
+import BindData from '@/core/BindData.js';
+import Zoom from '@/core/Zoom.js';
+import Library from '@/core/Library.js';
+import Keydown from '@/core/Keydown.js';
+import Align from '@/core/Align.js';
+import HandleRecord from '@/core/HandleRecord.js';
+import WaterPipe from '@/components/common/WaterPipe.js';
 
 /**
  * 舞台
@@ -261,26 +262,26 @@ class Stage {
 	selectedPanel(dataList) {
 		let data = {x:0,y:0,x2:0,y2:0}
 		dataList.forEach(function (selected,index) {
-           let x2 = selected.x+selected.width;
-           let y2 = selected.y+selected.height;
-           if(data.x==0&&data.y==0) {
-           	   data.x = selected.x;
-           	   data.y = selected.y;
-           	   data.x2 = x2;
-           	   data.y2 = y2;
-		   }
-           if(selected.x<data.x) {
-           	   data.x = selected.x
-		   }
-           if(selected.y<data.y) {
-           	   data.y = selected.y
-           }
-           if(x2>data.x2) {
-           	   data.x2 = x2
-           }
-           if(y2>data.y2) {
+      let x2 = selected.x+selected.width;
+      let y2 = selected.y+selected.height;
+      if(data.x==0&&data.y==0) {
+        data.x = selected.x;
+        data.y = selected.y;
+        data.x2 = x2;
+        data.y2 = y2;
+		  }
+      if(selected.x<data.x) {
+        data.x = selected.x
+		  }
+      if(selected.y<data.y) {
+        data.y = selected.y
+      }
+      if(x2>data.x2) {
+        data.x2 = x2
+      }
+      if(y2>data.y2) {
 			   data.y2 = y2
-		   }
+		  }
 		})
 		return {x:data.x,y:data.y,width:data.x2-data.x,height:data.y2-data.y+2}
 	}

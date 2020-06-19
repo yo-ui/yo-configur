@@ -216,10 +216,8 @@ class Edit {
       <div class="menu-panel"></div>
       <div class="bm-configur-panel" style="display: none;">
           <div class="bm-configur-panel__body">
-              <div class="bm-configur-panel__header"><span>&nbsp;数据绑定</span><div class="bm-configur-panel__close">×</div></div>
-              <div class="bm-configur-panel__content">
-                  
-              </div>
+              <div class="bm-configur-panel__header"><span>数据绑定</span><div class="bm-configur-panel__close">×</div></div>
+              <div class="bm-configur-panel__content"></div>
               <div class="bm-configur-panel__floor">
                   <div class="close bm-button bm-button--small bm-button--default">关闭</div>
                   <div class="confirm bm-button bm-button--small bm-button--primary">确定</div>

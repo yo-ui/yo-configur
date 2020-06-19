@@ -30,10 +30,11 @@
   height: 23px;
   display: inline-block;
   vertical-align: middle;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
+  border-radius: 2px;
 }
 .bm-zoom > img:hover {
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
 }
 .bm-color-box {
   float: left;

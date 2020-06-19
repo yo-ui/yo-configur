@@ -191,7 +191,6 @@ class Paw {
     $(document).on('mousemove', function(e) {
       that.isMove = false;
       if(emove) {//右
-        console.log("...");
         let x = e.pageX-ox;
         let width = ow+x;
         let left = that.property.x;
@@ -201,20 +200,20 @@ class Paw {
           if(that.property.linkage) {
             if(that.boundary(left,top,width,height)) {
               resizePanel.css({width:width,height:height});
-              resizePanel.find('.configur-spirit').children().css({width:width-2,height:height-2});
-              that.property.width = width-2;
-              that.property.height = width-2;
+              resizePanel.find('.configur-spirit').children().css({width:width,height:height});
+              that.property.width = width;
+              that.property.height = width;
               that.stage.setProperty(that.property);
             }
           }else {
             if(that.boundary(left,top,width,height)) {
               resizePanel.css({width:width});
-              resizePanel.find('.configur-spirit').children().css({width:width-2});
+              resizePanel.find('.configur-spirit').children().css({width:width});
               resizePanel.find("svg").css({width:width});
               if(that.property.className=="LevelWater") {
                 resizePanel.find("rect").css({width:width});
               }
-              that.property.width = width-2;
+              that.property.width = width;
               that.stage.setProperty(that.property);
             }
           }
@@ -229,21 +228,21 @@ class Paw {
           if(that.property.linkage) {
             if(that.boundary(left,top,width,height)) {
               resizePanel.css({width:height,height:height});
-              resizePanel.find('.configur-spirit').children().css({width:height-2,height:height-2});
+              resizePanel.find('.configur-spirit').children().css({width:height,height:height});
 
-              that.property.width = height-2;
-              that.property.height = height-2;
+              that.property.width = height;
+              that.property.height = height;
               that.stage.setProperty(that.property);
             }
           }else {
             if(that.boundary(left,top,width,height)) {
               resizePanel.css({height:height});
-              resizePanel.find('.configur-spirit').children().css({height:height-2});
+              resizePanel.find('.configur-spirit').children().css({height:height});
               resizePanel.find("svg").css({height:height});
               if(that.property.className=="VerticalWater") {
                 resizePanel.find("rect").css({height:height});
               }
-              that.property.height = height-2;
+              that.property.height = height;
               that.stage.setProperty(that.property);
             }
           }
@@ -259,23 +258,23 @@ class Paw {
           if(that.property.linkage) {
             if(that.boundary(left,top,width,height)) {
               resizePanel.css({width:width,height:width,left:oleft+x});
-              resizePanel.find('.configur-spirit').children().css({width:width-2,height:width-2});
+              resizePanel.find('.configur-spirit').children().css({width:width,height:width});
 
-              that.property.width = width-2;
-              that.property.height = width-2;
-              that.property.x = left+2;
+              that.property.width = width;
+              that.property.height = width;
+              that.property.x = left;
               that.stage.setProperty(that.property);
             }
           }else {
             if(that.boundary(left,top,width,height)) {
               resizePanel.css({width:width,left:left});
-              resizePanel.find('.configur-spirit').children().css({width:width-2});
+              resizePanel.find('.configur-spirit').children().css({width:width});
               resizePanel.find("svg").css({width:width});
               if(that.property.className=="LevelWater") {
                 resizePanel.find("rect").css({width:width,left:left});
               }
               that.property.x = left;
-              that.property.width = width-2;
+              that.property.width = width;
               that.stage.setProperty(that.property);
             }
           }
@@ -290,23 +289,23 @@ class Paw {
         if(that.property.minHeight<=height) {
           if(that.property.linkage) {
             if(that.boundary(left,top,width,height)) {
-              resizePanel.css({width:height,height:height,top:top-2});
-              resizePanel.find('.configur-spirit').children().css({width:height-2,height:height-2});
+              resizePanel.css({width:height,height:height,top:top});
+              resizePanel.find('.configur-spirit').children().css({width:height,height:height});
               that.property.y = top;
-              that.property.width = height-2;
-              that.property.height = height-2;
+              that.property.width = height;
+              that.property.height = height;
               that.stage.setProperty(that.property);
             }
           }else {
             if(that.boundary(left,top,width,height)) {
               resizePanel.css({height:height,top:top});
-              resizePanel.find('.configur-spirit').children().css({height:height-2});
+              resizePanel.find('.configur-spirit').children().css({height:height});
               resizePanel.find("svg").css({height:height});
               if(that.property.className=="VerticalWater") {
                 resizePanel.find("rect").css({height:height});
               }
-              that.property.y = top+2;
-              that.property.height = height-2;
+              that.property.y = top;
+              that.property.height = height;
               that.stage.setProperty(that.property);
             }
           }
@@ -446,7 +445,7 @@ class Paw {
   }
 
   site(x,y,width,height) {
-    $('.resize-panel').css({top:y-2,left:x-2,width:width+2,height:height+2});
+    $('.resize-panel').css({top:y-2,left:x-2,width:width,height:height});
     if(this.property.className == "TextBox") {
       $('#temp_value').html($('#'+this.property.id).find('div').html());
       let height = $('#temp_value').height();
