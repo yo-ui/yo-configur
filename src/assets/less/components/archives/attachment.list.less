@@ -1,0 +1,52 @@
+@import (reference) "./../../common.less";
+.bm-archives-attachment-list-com{
+  .el-dialog__body{
+    .pt(5);
+    .pb(15);
+  }
+  .operate-box{
+    .df;
+    justify-content: space-between;;
+    align-items: center;
+    .left{
+      .df;
+      .el-input{
+        .mr(15);
+      }
+    }
+    .el-form{
+      .el-form-item{
+        .mb(0);
+      }
+    }
+  }
+  .el-table{
+    .m(15px 0);
+    width: auto;
+    // .mb(15);
+    .bor(1px solid @grayE);
+    .df;
+    flex-direction: column;
+    &::before{
+      .bc(transparent);
+    }
+    .el-table__body-wrapper{
+      .flex(1);
+      .touch;
+      .posr;
+      min-height: 400px;
+      .el-table__body{
+        .posa;
+      }
+    }
+    .el-table__header{
+      th{
+        .bc(@grayE);
+      }
+    }
+  }
+  .el-pagination{
+    // .p(15px);
+    .tr;
+  }
+}

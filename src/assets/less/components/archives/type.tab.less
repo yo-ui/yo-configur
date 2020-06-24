@@ -1,0 +1,128 @@
+@import (reference) "./../../common.less";
+.bm-archives-type-tab-com{
+  .flex(1);
+  .df;
+  // .posa;
+  // left:10px;
+  // right: 10px;
+  // bottom: 10px;
+  .m(0);
+  .bor(1px solid @grayD);
+  // top:10px;
+  flex-direction: row;
+  // .touch-x;
+  .bc(@white);
+  &.flex-content{
+    .content-box{
+      top:0;
+      left:0;
+      bottom: 0;
+      right: 0;
+    }
+  }
+  .table-container{
+    .w(100%);
+    .df;
+    .touch-x;
+  }
+  .table-box{
+    .flex(1);
+    &:first-child{
+      .flex(none);
+    }
+    // min-width:490px;
+    .borl(1px solid @grayE);
+    &.full{
+      .flex(1);
+    }
+    &:last-child{
+      .borr(1px solid @grayE);
+    }
+    .head-box{
+      .df;
+      justify-content: space-between;
+      align-items: center;
+      .borb(1px solid @grayE);
+      // .bc(@themes);
+      .bc(@white);
+      .h(45);
+      .title{
+        .ml(15);
+        .fz(14);
+        .fw(500);
+      }
+      .el-input{
+        // .flex(1);
+        // .m(0 15px);
+        .mr(10);
+        .el-input__inner{
+          .lh(35);
+          .h(35);
+        }
+        .el-input__icon{
+          .lh(35);
+        }
+      }
+      .icon-box{
+        .mr(15);
+        .ml(30);
+        // .click;
+        .df;
+        align-items: center;
+        justify-content: flex-end;
+        .el-icon-d-arrow-right,.el-icon-d-arrow-left{
+          .ml(10);
+          .click;
+        }
+        // i:not(.el-input__icon){
+        //   .m(0 3px);
+        //   .fz(12);
+        //   // .click;
+        //   // .tran(all .5 linear);
+        //   // &:hover{
+        //   //   .tranf(scale(1.2));
+        //   // }
+        // }
+      }
+    }
+    .el-table{
+      .w(100%);
+      .el-table__header{
+        th{
+          // .bc(@grayE);
+          .fz(14);
+        }
+      }
+      .el-table__row{
+        .pointer;
+        &.active{
+          .bc(@table-active);
+          // .c(@white);
+          &:hover,&.hover-row{
+            td{
+              .bc(@table-active);
+              // .c(@white);
+            }
+          }
+        }
+        // .ellipsis-name{
+        //   .ellipsis;
+        // }
+        td{
+          .borb(none);
+          i{
+            .mr(5);
+          }
+        }
+      }
+
+    .el-table__empty-block{
+      .h(500)!important;
+      .df;
+      align-items: center;
+      justify-content: center;
+      .w(100%)!important;
+    }
+    }
+  }
+}

@@ -1,121 +1,101 @@
-import Stage from '@/core/Stage'
-import RemoteObject from '@/assets/js/RemoteObject'
+/* eslint-disable no-undef */
+import App from "./App";
+import "./registerServiceWorker";
+import router from "./router";
+import store from "./store";
+import bmCommon from "@/common/common";
+import Plugins from "@/vue/plugins";
+import Filters from "@/vue/filters";
+import Directives from "@/vue/directives";
+import RouterURL from "@/router/routers.conf";
+import { Constants } from "@/common/env";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 
-$(document).ready(function() { 
-	
-	var debug = true;
-	
-	var option = {		
-        canvas: function (callback) {
-        	if(debug) {
-        		let data = localStorage.getItem("data");
-        		if(!data) {
-        			data = JSON.stringify({background:{url:'',pattern:1,color: '#fff'},capacity:[]})
-        		}
-        		let canvas = {id:1,name:'画布',width:1024,height:768,data:data}
-        	    callback.call(this, canvas);
-        	}else {
-        		let data = {}
-	        	RemoteObject.ajax("./canvas/get","get",data,function(msg){   
-	                var result = JSON.parse(msg);
-	                if(result.success) {
-			        	callback.call(this, result.message);
-	                }
-		        })
-        	}       	
-        },
-        saveCanvas: function(data,callback) {
-        	if(debug) {
-        		localStorage.setItem("data", data.data);
-        		callback.call(this, "ok");
-        	}else {
-        		RemoteObject.ajax("./canvas/save","post",data,function(msg){
-	                var result = JSON.parse(msg);
-	                if(result.success) {
-			        	callback.call(this, "ok");
-	                }
-	            })
-        	}       	
-        },
-        organizList: function(callback) {
-        	if(debug) {
-        		let dataList = [{id:1,name:'A楼',pid:0},{id:2,name:'B楼',pid:1}]
-	            callback.call(this, dataList);
-        	}else {
-        		RemoteObject.ajax("./common/organizList","get","",function(msg){
-	                var result = JSON.parse(msg);
-	                if(result.success) {
-			        	callback.call(this, result.message);
-	                }
-	            })
-        	}
-        },
-        devicePoints: function (orgId,callback) {
-        	if(debug) {
-        		let devices = [
-        		{id:'00653D5730048000',name:'电表',points:[{id:'WPP',name:'正向有功电能',unit:'kWh'},{id:'err',name:'错误参数'},{id:'SwSts',name:'状态',value:1}]},
-	            {id:'0057C62C50048000',name:'水表',points:[{id:'TF',name:'累积流量',unit:'t'},{id:'SwSts',name:'状态',value:1}]}]
-	            callback.call(this, devices);
-        	}else {
-        		var data = {}
-        		data.orgId = orgId;
-        		RemoteObject.ajax("./common/devicePoints","get",data,function(msg){
-	                var result = JSON.parse(msg);
-	                if(result.success) {
-			        	callback.call(this, result.message);
-	                }
-	            })
-        	}           
-        },
-        upload(form,file,callback) {
-        	var imageForm = new FormData(form);
-	        imageForm.append("file", file);
-	        $.ajax({
-	            url:'file/upload',
-	            type:'post',
-	            data:imageForm,
-	            contentType:false,
-	            processData:false,
-	            success:function(msg){
-	                callback.call(this, msg);
-	            },
-	            error:function(err){
-	                console.log(err)
-	            }
-	        });
-        },
-        preview(callback) {
-        	if(debug) {
-        		window.open('./view')
-        	}else {
-        		window.open('./preview')
-        	}
-        },
-        devicePointHstData(deviceId,point,startTime,endTime,callback) {      	
-        	if(debug) {
-        		let dataList = [{value:1,time:'00:01:00'},{value:2,time:'00:02:00'},
-				        		{value:5,time:'00:03:00'},{value:2,time:'00:04:00'},
-				        		{value:2,time:'00:05:00'},{value:2,time:'00:06:00'},
-				        		{value:3,time:'00:07:00'},{value:2,time:'00:08:00'}]
-        		let device = {id:1,name:'设备A',dataList:dataList}       		
-        		callback.call(this, device);
-        	}else {
-        		let data = {}
-	        	data.deviceId = deviceId;
-	        	data.point = point;
-	        	data.startTime = startTime;
-	        	data.endTime = endTime;
-	        	RemoteObject.ajax("./common/devicePointHstData","get",data,function(msg){
-	                var result = JSON.parse(msg);
-	                if(result.success) {
-			        	callback.call(this, result.message);
-	                }
-	            })
-        	}
-        }
+Vue.use(Plugins);
+Vue.use(Filters);
+Vue.use(Directives);
+
+NProgress.configure({
+  easing: "ease", // 动画方式
+  speed: 500, // 递增进度条的速度
+  showSpinner: false, // 是否显示加载ico
+  trickleSpeed: 100, // 自动递增间隔
+  minimum: 0.3 // 初始化时的最小百分比
+});
+
+Vue.prototype.$ELEMENT = { size: "small", zIndex: 3000 };
+
+router.beforeEach((to, from, next) => {
+  let $vm = window.$vm;
+  NProgress.start();
+  bmCommon.log("判断路由切换检测是否强行中断，");
+  //路由切换检测是否强行中断，
+  $vm &&
+    $vm.$httpRequestList &&
+    $vm.$httpRequestList.forEach(cancel => {
+      cancel(Constants.INTERRUPT); //给个标志，中断请求
+    });
+
+  let $store = router.app.$store || store;
+  let langObj = $store ? $store.getters.getLangObj : null;
+  let accountMenuMap = $store.getters.getAccountMenuMap || {};
+  let { name = "", meta = {}, fullPath = "" } = to || {};
+  let { requireAuth = "" } = meta || {};
+  let { name: fromName = "" } = from || {};
+  // bmCommon.log("可访问的路由地址",accountMenuMap,to);
+  let docTitle = meta.title;
+  if (docTitle) {
+    document.title = bmCommon.langKey(langObj, "能源云 | 组态平台"); //+langKey(langObj,docTitle)
+  }
+  bmCommon.log("beforeEach,当前路由to=", to, ",from:", from);
+  if (!RouterURL[name]) {
+    //如果路由配置不存在则跳到404页
+    next({
+      name: RouterURL.not.name
+    });
+    return;
+  }
+  let userInfo = $store.getters.getUserInfo;
+  if (requireAuth) {
+    // 判断该路由是否需要登录权限
+    if (userInfo && userInfo.entId) {
+      // 通过vuex state获取当前的token是否存在
+      if (!accountMenuMap[name] && name != RouterURL.not.name) {
+        //如果为真说明当前路由可以被访问
+        next({
+          name: RouterURL.not.name
+        });
+      } else {
+        next();
+      }
+    } else {
+      if (fromName == RouterURL.login.name) {
+        next();
+      } else {
+        next({
+          name: RouterURL.login.name,
+          query: { redirecturl: encodeURIComponent(fullPath) } // 将跳转的路由path作为参数，登录成功后跳转到该路由
+        });
+      }
     }
-	
-    var stage = new Stage(option);	  
-})
+  } else {
+    next();
+  }
+});
 
+router.afterEach(() => {
+  let loading = document.getElementById("bm-loading");
+  loading && (loading.style.display = "none");
+  NProgress.done();
+});
 
+Vue.prototype.$NProgress = NProgress;
+
+window.$vm = new Vue({
+  router,
+  store,
+  render: h => h(App)
+});
+window.$vm.$httpRequestList = [];
+window.$vm.$mount("#app");

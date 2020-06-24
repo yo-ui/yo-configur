@@ -1,0 +1,93 @@
+@import (reference) "./../common.less";
+.bm-login-page{
+  .bg-img;
+  .bi("./../../img/login/login-bg-new.png");
+  .bz(cover);
+  .h(100%);
+  .content-box{
+    .mt(-50);
+    .posa;
+    left:50%;
+    top:50%;
+    .tranf(translate(-50%,-50%));
+    .title{
+      letter-spacing: 2px;
+      .tc;
+      .fw(700);
+      .c(@white);
+      .fz(30);
+    }
+    .form-box{
+      .mt(65);
+      .wh(810;440);
+      .br(2px);
+      .posr;
+      .bg-img;
+      .bi("./../../img/login/form-bg-new.png");
+      .bz(810px 440px);
+      .bp(center bottom);
+      .box-s(0 0 30px rgba(0,0,0,.3));
+      &::before{
+        content: "";
+        .bg-img;
+        .posa;
+        top:-14px;
+        // bottom: 0;    
+        .w(10);
+        .h(470);
+        right:360px;
+        .bi("./../../img/login/login-tixing-new.png");
+        .bz(10px 100%);
+        z-index:-1;
+      }
+    }
+    .el-form{
+      .mt(-13);
+      .wh(310;466);
+      .box-s(-5px -5px 20px rgba(0,0,0,.2));
+      .posa;
+      right: 50px;
+      .bc(@white);
+
+      // .icon-user,.icon-password{
+      // }
+      .icon-user{
+        .p(9px);
+        .bg-img;
+        .bi("./../../img/login/login-user-new.png");
+      }
+      .icon-password{
+        .bg-img;
+        .p(8px);
+        .bi("./../../img/login/login-pass-new.png");
+      }
+      .form-title{
+        .c(@themes);
+        .tc;
+        .m(35px auto);
+      }
+      .el-form-item{
+        .m(0 20px 20px);
+        .el-input__prefix{
+          .w(40);
+        }
+        .el-input__inner{
+          .h(45);
+          .lh(45);
+          .pl(50);
+        }
+      }
+      .err-msg{
+        .h(20);
+        .c(@red);
+        .m(0 20px);
+      }
+      .btn-box{
+        .m(70px 20px 0);
+        .el-button{
+          .w(100%);
+        }
+      }
+    }
+  }
+}

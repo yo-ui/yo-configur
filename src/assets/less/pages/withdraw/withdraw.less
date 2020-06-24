@@ -1,0 +1,80 @@
+@import (reference) "./../../common.less";
+.bm-withdraw-page{
+  .posa;
+  left:15px;
+  right: 15px;
+  bottom: 15px;
+  top:15px;
+  .operator-box{
+    .fz(15);
+    .df;
+    align-items: center;
+    .el-select{
+      .w(300);
+      .mr(15);
+    }
+  }
+
+  .el-table__fixed-right-patch{
+    .bc(@grayE);
+  }
+  .el-table{
+    .mt(15);
+    .bor(1px solid @grayE);
+    .w(100%);
+    .el-table__header{
+      th{
+        .bc(@grayE);
+        .fz(14);
+      }
+    }
+  }
+  .el-dialog__wrapper{
+    // &.enterprise-detail-dialog,{
+    .el-dialog__body{
+      .df;
+      flex-wrap: wrap;
+      // .pb(20);
+      .oh;
+      min-height: 400px;
+      .item-box{
+        .mb(10);
+        max-width: 50%;
+        min-width: 50%;
+        .h(30);
+        .df;
+        align-items: center;
+        &.desc{
+          max-width: 100%;
+          min-width: 50%;
+          .w(100%);
+          // .h(50);
+          min-height: 60px;
+          .mb(15);
+          height: auto;
+          align-items: flex-start;
+          span{
+            .pt(3);
+          }
+        }
+        .el-select{
+          .mt(10);
+          .flex(1);
+          .mr(0);
+        }
+        label{
+          .fz(18);
+          .fw(700);
+          .w(120);
+          .tr;
+        }
+        span{
+          .fz(15);
+          .c(@gray6);
+          .flex(1);
+        }
+      }
+    }
+  // }
+  }
+}

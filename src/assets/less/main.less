@@ -1,0 +1,147 @@
+
+
+@import (reference) "./common.less";
+
+html * {
+	outline: 0;
+	-webkit-text-size-adjust: none;
+	.m; .p;
+}
+
+body {
+	font: 14px/1.5 @font!important;
+	-webkit-font-smoothing: antialiased;
+	-webkit-tap-highlight-color: @tran;
+	// -webkit-user-select: none;
+	.posa;
+	.h(100%);
+	.w(100%);
+	min-width:1280px;
+}
+ul, li {
+	list-style: none
+}
+a{
+	.c(@themes-bg-c);
+	text-decoration: none;
+	&:hover{
+		text-decoration:none;
+	}
+}
+
+i, em {
+	font-style: normal;
+}
+input, textarea {
+	outline: none;
+}
+[lazy=loading],[lazy=error]{
+	.bz(contain)!important;
+	.bp(center)!important;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type="number"]{
+  -moz-appearance: textfield;
+}
+object{
+	pointer-events: none;
+}
+
+.icon{
+	.bz(contain);
+	.bp(center);
+	background-repeat: no-repeat;
+}
+.flex-content-box{
+	// min-height:100vh;
+	// min-width: 1280px;
+	.df;
+	flex-direction: column;
+	// .h(100%);
+	.flex(1);
+	.touch-y;
+	.flex-content{
+		.flex(1);
+		.posr;
+		// -ms-flex: none;
+		// .flex-content-inner{
+		// 	.posa;
+		// }
+		.content-box{
+			.posa;
+			.df;
+			left:15px;
+			bottom: 15px;
+			right: 15px;
+			top:15px;
+		}
+	}
+}
+#app{
+  .posa;
+  left:0;
+  right: 0;
+  bottom: 0;
+  top:0;
+}
+
+
+// a, a:hover {
+// 	text-decoration: none;
+// }
+img {
+	.db;
+}
+
+::-webkit-scrollbar {/*滚动条整体样式*/
+	.squ(4);     /*高宽分别对应横竖滚动条的尺寸*/
+}
+::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+  .bc(@grayD);
+  .br(10px);
+  .squ(16);
+}
+::-webkit-scrollbar-thumb:hover{
+  // background: #333;
+  .bc(@themes);
+}
+::-webkit-scrollbar-track {/*滚动条里面轨道*/
+	.bc(@grayE);
+}
+
+// /*修改滚动条样式*/
+// div::-webkit-scrollbar{
+//   .squ(1);
+//   /**/
+// }
+// div::-webkit-scrollbar-track{
+//   // .bc(rgb(239, 239, 239));
+//   .bc(@left-bg);
+//   // border-radius:2px;
+// }
+// div::-webkit-scrollbar-thumb{
+//   .bc(@left-bg);
+//   // border-radius:10px;
+// }
+// div::-webkit-scrollbar-thumb:hover{
+//   // background: #333;
+//   .bc(@gray3);
+// }
+// div::-webkit-scrollbar-corner{
+//   .bc(#179a16);
+// }
+
+.click{
+  .click;
+}
+.el-input{
+	.el-input__inner{
+		.br(0);
+	}
+}
+.el-dialog__footer{
+	.tc;
+}

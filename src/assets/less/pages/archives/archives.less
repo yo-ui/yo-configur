@@ -1,0 +1,38 @@
+@import (reference) "./../../common.less";
+.bm-archives-page{
+  .bc(@body-bg);
+  .el-tabs{
+    .df;
+    flex-direction: column;
+    .flex(1);
+    .oh;
+    .el-tabs__header{
+      .m(15px);
+      .bc(@white);
+      .el-tabs__nav-wrap{
+        .ml(15);
+      }
+    }
+    .el-tabs__content{
+      .flex(1);
+      .df;
+      // .bc(@white);
+      // .oh;
+      .m(0 15px 15px);
+      flex-direction: column;
+      .el-tab-pane{
+        .df;
+        flex-direction: column;
+        .flex(1);
+        .el-button{
+          span{
+            .df;
+            i{
+              .mr(5);
+            }
+          }
+        }
+      }
+    }
+  }
+}

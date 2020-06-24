@@ -1,0 +1,115 @@
+@import (reference) "./../common.less";
+.bm-layout-page{
+  .h(100%);
+  flex-direction: row;
+  .el-aside{
+    .posr;
+    .bc(@left-bg);
+    .w(180);
+    .logo{
+      .m(30px auto 0);
+      .w(52);
+    }
+    .user-img{
+      .w(70);
+      .m(30px auto 0);
+    }
+    .user-name{
+      .c(@white);
+      .fw(700);
+      .fz(16);
+      .tc;
+      .mt(15);
+    }
+    .icon{
+      .p(12px);
+      .dib;
+      .mr(10);
+    }
+    .icon-provider{
+      .bi("../../img/nav/provider.png");
+    }
+    .icon-archives{
+      .bi("../../img/nav/archives.png");
+    }
+    .icon-withdraw{
+      .bi("../../img/nav/withdraw.png");
+    }
+    .el-menu{
+      .mt(30);
+      .bc(@opacity);
+      .w(100%);
+      .el-menu-item{
+        .fz(16);
+        .h(65);
+        .lh(65);
+        .pointer;
+        .p(0)!important;
+        a{
+          .df;
+          align-items: center;
+          .c(@white);
+          .p(0 20px);
+          .db;
+        }
+        &.is-active,&:hover{
+          .c(@white);
+          background: -webkit-gradient(linear,100% 30%,30% 0,from(#1d2f41),to(#1a92ff));
+          .icon-provider{
+            .bi("../../img/nav/provider-h.png");
+          }
+          .icon-archives{
+            .bi("../../img/nav/archives-h.png");
+          }
+          .icon-withdraw{
+            .bi("../../img/nav/withdraw-h.png");
+          }
+        }
+      }
+    }
+    .el-button{
+      .posa;
+      bottom: 0;
+      .w(100%);
+      .c(@white);
+      .lh(50);
+      .fz(16);
+      .tc;
+      .icon-logout{
+        .bi("../../img/nav/custom-h.png");
+        .mr(8);
+      }
+      &:hover{
+        .c(@themes);
+        .icon-logout{
+          .bi("../../img/nav/custom-s.png");
+        }
+      }
+      span{
+        .df;
+        align-items: center;
+        justify-content: center;
+      }
+      //   // .icon{
+      //   //   .squ(20);
+      //   //   .db;
+      //   // }
+      // }
+    }
+  }
+  .el-main{
+    .posr;
+    .p(0); 
+    .oh;
+    .df;
+    flex-direction: column;
+    // .child-view{
+    //   // .m(20px);
+    //   .posa;
+    //   left:20px;
+    //   right: 20px;
+    //   bottom: 20px;
+    //   top:20px;
+    // }
+  }
+}
