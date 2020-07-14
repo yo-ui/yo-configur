@@ -18,7 +18,10 @@ class Pfj extends Spirit {
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}};
+      this.config = {
+        bindData: {orgId:'',deviceId:'',devicePoint:''},
+        state: {expr:'SwSts',stop:0,start:1,alarm:2}
+      };
 	}
 
 	template(){
@@ -398,14 +401,21 @@ class Pfj extends Spirit {
 	}
 
 	reveal(device,config) {
-		let that = this;
-		if(device) {
-			device.points.forEach(function(point) {
-				if(point.id=="SwSts") {
-				  that.state(point.value)
-				}
-			})
-		}
+    let that = this;
+    let state = that.config.state;
+    if(device) {
+      device.points.forEach(function(point) {
+        if(point.id==state.expr) {
+          if(point.value==state.alarm) {
+            that.alarm();
+          }else if(point.value==state.stop) {
+            that.stop();
+          }else if(point.value==state.start) {
+            that.start();
+          }
+        }
+      })
+    }
 	}
 
 	toJson() {

@@ -18,13 +18,24 @@ class Kg extends Spirit {
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}}
+      this.isAnimation = true;
+      this.animationList = [
+        {name: '触发链接',
+         dataList: [{type: 11,name: '开关状态'},
+                     {type: 12,name: '动作'}]
+        }
+      ]
+      this.config = {
+        bindData: {orgId: '', deviceId: '', devicePoint: ''},
+        animations: [{type: 11,name:'开关状态',data: {expr: 'SwSts', off: 0, on: 1}},
+                      {type: 12,name: '动作',event:'click',data: {expr: 'SwSts'}}]
+      }
 	}
 
 	template(){
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg">
                   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-                         viewBox="0 0 43 40" style="enable-background:new 0 0 43 40;" xml:space="preserve">
+                         viewBox="0 0 43 40" xml:space="preserve">
                       <style type="text/css">
                         .kg-st0{fill:#B0B9C1;}
                         .kg-st1{fill:#DFE3E8;}
@@ -88,52 +99,68 @@ class Kg extends Spirit {
 		return Object.assign(super.toJson(),json);
 	}
 
+  animation() {
+	  let that = this;
+    $('.bm-config-panel__content').html('');
+	  let animationList = this.animationList;
+	  let animations = this.config.animations;
+    super.animation(animationList,animations,function (result) {
+      that.config.animations.forEach(function (data) {
+        if(data.type==result.type) {
+          data = result;
+        }
+      })
+    });
+  }
+
+  initialize(device,config) {
+	  let that = this;
+    let animations = this.config.animations;
+    animations.forEach(function (animation) {
+      if(animation.type==12) {
+        $('#'+that.id).on(animation.event,function () {
+          that.event(device,animation.data);
+        });
+      }
+    })
+    that.reveal(device,config)
+  }
+
 	reveal(device,config) {
-		let that = this;
-		if(device) {
-			device.points.forEach(function(point) {
-				if(point.id=="SwSts") {
-				  that.state(point.value)
-				}
-			})
-		}
+    let that = this;
+    let animations = that.config.animations;
+    animations.forEach(function (animation) {
+      if(animation.type==11) {
+        device.points.forEach(function(point) {
+          if(point.id==animation.data.expr) {
+            if(point.value==animation.data.off) {
+              that.stop();
+            }else if(point.value==animation.data.on) {
+              that.start();
+            }
+          }
+        })
+      }
+    })
 	}
 
-	viewPanel(device) {
+  event(device,data) {
+	  console.log(data)
 		if(device) {
 			let that = this;
 			that.point = {id:'',value:''}
 			if(device.points) {
-				device.points.forEach(function(data) {
-					if(data.id=="SwSts") {
-						that.point.id = data.id;
-						that.point.value = data.value;
+				device.points.forEach(function(item) {
+					if(item.id==data.expr) {
+						that.point.id = item.id;
+						that.point.value = item.value;
 					}
 				});
 			}
-			that.stage.password.show();
-      that.stage.password.confirm(function (text) {
-        let data = {}
-        data.deviceId = device.id;
-        data.point = that.point.id;
-        data.value = that.point.value==1?0:1;
-        data.ctrlPwd = text;
-        that.stage.option.control(data,function(msg) {
-          let message = JSON.parse(msg);
-          if(message.status.code==100000) {
-            that.point.value = that.point.value==1?0:1;
-            that.stage.toast("控制成功");
-            let data = {}
-            data.id = device.id;
-            data.points = [{id:that.point.id,value:that.point.value}]
-            console.log(data);
-            that.stage.linkage(data);
-            that.stage.password.hide();
-          }else if(message.status.code==120020) {
-            that.stage.toast("密码错误");
-          }
-        })
-      });
+			let deviceId = device.id;
+			let point = that.point.id;
+			let value = that.point.value;
+			that.control(deviceId,point,value==0?1:0)
 		}
 	}
 }

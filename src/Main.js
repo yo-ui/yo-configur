@@ -1,18 +1,16 @@
+import '@/assets/css/index.css'
+import '@/assets/css/colpick.css'
+
+import '@/assets/js/colpick';
 import RemoteObject from '@/assets/js/RemoteObject';
-import View from './View.js';
-import Edit from './Edit.js';
+import View from './View';
+import Edit from './Edit';
 
 $(document).ready(function() {
 
-  let webSocket;
-
   $.getJSON('./static/config/data.json',function(config){
-    if(webSocket) {
-      webSocket.close();
-    }
     if(config.debug) {
-      let type = 1;
-      content(type);
+      content(1);
     }else {
       RemoteObject.ajax(config.verifyInfo,"get","",function(msg){
         let result = JSON.parse(msg);
@@ -32,7 +30,7 @@ $(document).ready(function() {
       }else {
         let view = new View(config);
         $('.main-content').html(view.template());
-        view.init(webSocket);
+        view.init();
       }
     }
   })

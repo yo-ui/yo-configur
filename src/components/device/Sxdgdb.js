@@ -18,7 +18,7 @@ class Sxdgdb extends Spirit {
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}}
+	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
 	}
 
 	template(){

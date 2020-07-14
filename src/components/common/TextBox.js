@@ -9,18 +9,19 @@ class TextBox extends Spirit {
         super(x, y);
 	    this.title = "显示框";
 	    this.className = "TextBox";
+      this.width = width;
 	    this.height = height;
 	    this.moveType = 0;
 	    this.isBind = true;
 	    this.bindType = 2;
 	    this.zIndex = 4;
-	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''},color:'#000',fontSize:24,backgroundColor:'transparent'}
+	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''},color:'#000',fontSize:24,backgroundColor:'transparent'}
 	}
 
 	template(){
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
                 <div style="
-                    line-height: ${this.height}px; 
+                    line-height: ${this.height}px;
                     height: ${this.height}px;
                     text-align: center;
                     background-color: ${this.config.backgroundColor}">
@@ -100,11 +101,15 @@ class TextBox extends Spirit {
       property.config.fontSize = $(this).val();
       $('#'+property.id).find('span').css({'font-size':$(this).val()+"px"});
       $('#temp_value').html($('#'+property.id).find('div').html());
-      let width = $('#temp_value').width()+4;
+      let width = $('#temp_value').width();
       let height = $('#temp_value').height();
-      $('.resize-panel').css({width:width,height:height});
-      $('#'+property.id).find('div').css({'line-height': height+"px",height: height+"px"});
+      $('.resize-panel').css({width:width+2,height:height});
+      property.width = width;
       property.height = height;
+      if($(this).val()<14) {
+        height = height-2;
+      }
+      $('#'+property.id).find('div').css({width: width,'line-height': height+"px",height: height});
     });
 	}
 }

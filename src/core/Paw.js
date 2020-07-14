@@ -452,6 +452,8 @@ class Paw {
       let width = $('#temp_value').width()+2;
       $('.resize-panel').css({width:width,height:height});
       $('#'+this.property.id).find('div').css({'line-height': height+"px",height: height+"px"});
+      this.property.width = width;
+      this.property.height = height;
     }else if(this.property.className=="Text") {
       $('#temp_value').html($('#'+this.property.id).find('div').html());
       let height = $('#temp_value').height();

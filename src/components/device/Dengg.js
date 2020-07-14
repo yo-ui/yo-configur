@@ -17,13 +17,16 @@ class Dengg extends Spirit {
 		  this.zIndex = 2;
 	    this.linkage = false;
 	    this.isBind = true;
-	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}};
+	    this.config = {
+	      bindData: {orgId:'',deviceId:'',devicePoint:''},
+        state: {expr:'SwSts',stop:0,start:1,alarm:2}
+	    };
 	}
 
 	template(){
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-                 viewBox="0 0 164 30" style="enable-background:new 0 0 164 30;" xml:space="preserve" preserveAspectRatio="none">
+                 viewBox="0 0 164 30" xml:space="preserve" preserveAspectRatio="none">
               <style type="text/css">
                 .dengg-st0{fill:#98A1A8;}
                 .dengg-st1{fill:#C2C8CE;}
@@ -97,14 +100,21 @@ class Dengg extends Spirit {
 	}
 
 	reveal(device,config) {
-		let that = this;
-		if(device) {
-			device.points.forEach(function(point) {
-				if(point.id=="SwSts") {
-          that.state(point.value);
-				}
-			})
-		}
+    let that = this;
+    let state = that.config.state;
+    if(device) {
+      device.points.forEach(function (point) {
+        if (point.id == state.expr) {
+          if (point.value == state.alarm) {
+            that.alarm();
+          } else if (point.value == state.stop) {
+            that.stop();
+          } else if (point.value == state.start) {
+            that.start();
+          }
+        }
+      })
+    }
 	}
 
 	toJson() {

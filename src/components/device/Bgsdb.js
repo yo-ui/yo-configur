@@ -18,13 +18,13 @@ class Bgsdb extends Spirit {
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}}
+	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
 	}
 
 	template(){
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
 		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-	               viewBox="0 0 58 75" style="enable-background:new 0 0 58 75;" xml:space="preserve">
+	               viewBox="0 0 58 75" xml:space="preserve">
 				<style type="text/css">
 					.bgsdb-st0{fill:#C1C7CC;}
 					.bgsdb-st1{fill:#DFE2E8;}

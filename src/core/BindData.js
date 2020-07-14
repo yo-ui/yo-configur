@@ -5,13 +5,11 @@ class BindData {
 
 	constructor(stage) {
     this.stage = stage;
-    this.bindData = {organizId:'',deviceId:'',devicePoint:''}
-    this.points = []
+    this.bindData = {orgId:'',deviceId:'',devicePoint:''}
 	}
 
 	create() {
-    $('.bm-configur-panel').show();
-    $('.bm-configur-panel__body').css({width:400});
+    this.points = []
 		let that = this;
 		if(that.stage.property) {
       that.bindData = that.stage.property.config.bindData;
@@ -68,7 +66,8 @@ class BindData {
       let devicePanel = $('.bm-configur-panel').find('.device-panel');
       devicePanel.find('.select').on('click',function () {
         $(this).next().toggle();
-        that.createDevice();
+        $('.device-list input').val('');
+        that.createDevice(that.deviceList);
       });
       devicePanel.find('.content').on('mouseleave',function (e) {
         $(this).hide();
@@ -77,7 +76,8 @@ class BindData {
       let pointPanel = $('.bm-configur-panel').find('.point-panel');
       pointPanel.find('.select').on('click',function () {
         $(this).next().toggle();
-        that.createPoint();
+        $('.point-list input').val('');
+        that.createPoint(that.points);
       });
       pointPanel.find('.content').on('mouseleave',function (e) {
         $(this).hide();
@@ -122,12 +122,12 @@ class BindData {
     let that = this;
     that.stage.option.organizList(function(dataList) {
       if(dataList.length>0) {
-        if(!that.bindData.organizId) {
-          that.bindData.organizId = dataList[0].id;
+        if(!that.bindData.orgId) {
+          that.bindData.orgId = dataList[0].id;
         }
         that.organizs = dataList;
         that.createOrganiz();
-        that.devicePoints()
+        that.deviceList()
       }
     })
   }
@@ -142,7 +142,7 @@ class BindData {
       li.attr('title', data.name);
       li.text(data.name);
       li.css({'padding-left': (data.level*20+5)+"px"});
-      if(that.bindData.organizId == data.id) {
+      if(that.bindData.orgId == data.id) {
         $('.organiz-panel').find('.text').text(data.name);
         li.addClass('active')
       }
@@ -154,27 +154,29 @@ class BindData {
         $(this).parent().parent().hide();
         let id = $(this).data('id');
         let name = $(this).attr('title');
-        that.bindData.organizId = id;
+        that.bindData.orgId = id;
         $('.organiz-panel').find('.text').text(name);
-        that.devicePoints();
+        that.deviceList();
       });
       $('.bm-select-panel ul').append(li);
     })
+    $('.bm-configur-panel').show();
+    $('.bm-configur-panel__body').css({width:400});
   }
 
-  devicePoints() {
+  deviceList() {
     let that = this;
-    let id = that.bindData.organizId;
+    let id = that.bindData.orgId;
     that.stage.option.devicePoints(id,function(deviceList) {
       that.deviceList = deviceList;
-      that.createDevice();
+      that.createDevice(that.deviceList);
     })
   }
 
-  createDevice() {
+  createDevice(deviceList) {
     $('.device-list ul').html('');
 	  let that = this;
-    that.deviceList.forEach(function (device,index) {
+    deviceList.forEach(function (device,index) {
       let li = $('<li></li>')
       li.data('id', device.id)
       li.data('points', device.points);
@@ -189,23 +191,23 @@ class BindData {
         $(this).parent().parent().hide();
         that.points = $(this).data('points');
         $('.device-panel').find('.text').text($(this).attr('title'));
-        that.createPoint();
+        that.createPoint(that.points);
       });
       if(that.bindData.deviceId == device.id) {
         li.addClass('active');
         that.points = device.points;
         $('.device-panel').find('.text').text(device.name);
-        that.createPoint();
+        that.createPoint(that.points);
       }
       $('.device-list ul').append(li);
     })
   }
 
-  createPoint() {
+  createPoint(points) {
     let that = this;
     $('.point-list ul').html('');
     let isSelected = true;
-	  that.points.forEach(function (point,index) {
+	  points.forEach(function (point,index) {
       let li = $('<li></li>')
       li.data('id', point.id)
       li.text(point.name);

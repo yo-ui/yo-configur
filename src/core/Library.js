@@ -14,25 +14,26 @@ class Library {
 		this.libraryList = [
 		  {name:'基本',type:1,icon:'fa-base',
 			    subList:[
-					{className:'TextBox',title:'动态数据',url:'static/images/configur/dataing.png',width:100,height:24},
+					{className:'TextBox',title:'动态数据',url:'static/images/configur/dataing.png',width:50,height:24},
 					{className:'Text',title:'静态文本',url:'static/images/configur/text.png',width:50,height:24},
 					{className:'Images',title:'图片',url:'static/images/configur/img.png',width:50,height:50},
           {className:'Button',title:'按钮',url:'static/images/configur/button.png',width:48,height:28},
-          {className:'Display',title:'显示器',url:'static/images/configur/display.png',width:70,height:36}]},
-      {name:'组件',type:1,icon:'fa-icon-configur',
+          {className:'Display',title:'显示屏',url:'static/images/configur/display.png',width:70,height:36},
+          {className:'Lump',title:'块状',url:'static/images/configur/text.png',width:50,height:24},]},
+      {name:'组件',type:1,icon:'fa-icon-conf',
         subList:[
           {className:'LineChart',title:'折线图',url:'static/images/configur/line.png',width:400,height:240},
           {className:'Map',title:'地图',url:'static/images/configur/map.png',width:400,height:200}]},
 			{name:'设备',type:1,icon:'fa-icon-device',
 				subList:[
-				  //配电
+				   //配电
 					{className:'Db',title:'电表',url:'static/images/configur/db.png',width:50,height:50},
 					{className:'ElectricBox',title:'断路器',url:'static/images/configur/dlq.png',width:50,height:50},
 					{className:'Bgsdb',title:'壁挂式电表',url:'static/images/configur/bgsdb.png',width:50,height:50},
 					{className:'Jddz',title:'接地刀闸',url:'static/images/configur/jddz.png',width:50,height:50},
 					{className:'Dldrq',title:'电力电容器',url:'static/images/configur/dldrq.png',width:50,height:50},
 					{className:'Byq',title:'变压器',url:'static/images/configur/byq.png',width:50,height:50},
-          //给水
+           //给水
           {className:'Lyssb',title:'螺翼式水表',url:'static/images/configur/lyssb.png',width:50,height:50},
           {className:'Sbfkg',title:'阀控水表',url:'static/images/configur/sbfk.png',width:50,height:50},
           {className:'Xyssb',title:'旋翼式水表',url:'static/images/configur/xyssb.png',width:50,height:50},
@@ -40,7 +41,7 @@ class Library {
           {className:'Ckssb',title:'插卡式水表',url:'static/images/configur/ckssb.png',width:50,height:50},
           {className:'Shsb',title:'生活水泵',url:'static/images/configur/shsb.png',width:50,height:50},
           {className:'Jsx',title:'集水井',url:'static/images/configur/jsj.png',width:50,height:50},
-          {className:'Sx',title:'水箱',url:'static/images/configur/sx.png',width:50,height:50},
+          {className:'Sx',title:'水箱',url:'static/images/configur/sx.png',width:100,height:100},
           {className:'Xfsb',title:'消防水泵',url:'static/images/configur/xfsb.png',width:50,height:50},
           {className:'Cyfj',title:'抽烟风机',url:'static/images/configur/cyfj.png',width:50,height:50},
           {className:'Zysfj',title:'正压送风机',url:'static/images/configur/zysfj.png',width:50,height:50},
@@ -51,7 +52,7 @@ class Library {
            //照明
           {className:'Kg',title:'开关',url:'static/images/configur/kg.png',width:50,height:50},
           {className:'Dengg',title:'灯管',url:'static/images/configur/dengg.png',width:50,height:20},
-          {className:'Dengp',title:'灯炮',url:'static/images/configur/dengp.png',width:30,height:30},
+          {className:'Dengp',title:'灯炮',url:'static/images/configur/dengp.png',width:20,height:30},
            //空调
           {className:'Ztsrlb',title:'整体式热量表',url:'static/images/configur/ztsrlb.png',width:50,height:50},
           {className:'Zhsrlb',title:'组合式热量表',url:'static/images/configur/zhsrlb.png',width:50,height:50},
@@ -59,9 +60,10 @@ class Library {
           {className:'Lskt',title:'立式空调',url:'static/images/configur/lskt.png',width:70,height:160},
           {className:'Flrb',title:'风冷热器',url:'static/images/configur/flrb.png',width:50,height:50},
           {className:'Bshrq',title:'板式换热器',url:'static/images/configur/bshrq.png',width:50,height:50},
-          {className:'Lqt',title:'冷却塔',url:'static/images/configur/lqt.png',width:50,height:50},
+          {className:'Lqt',title:'冷却塔',url:'static/images/configur/lqt.png',width:150,height:150},
           {className:'Pfj',title:'排风机',url:'static/images/configur/pfj.png',width:50,height:50},
           {className:'Rqgl',title:'燃气锅炉',url:'static/images/configur/rqgl.png',width:70,height:50},
+          {className:'Ssbjf',title:'湿式报警阀',url:'static/images/configur/ssbjf.png',width:50,height:50},
            //安防
           {className:'Ywbjcgq',title:'烟雾报警传感器',url:'static/images/configur/ywbjcgq.png',width:50,height:50},
           {className:'Hwrtgyq',title:'红外人体感应器',url:'static/images/configur/hwrtgyq.png',width:50,height:50},
@@ -74,11 +76,11 @@ class Library {
            //环境
           {className:'Lsscj',title:'拉绳式测距',url:'static/images/configur/lsscj.png',width:50,height:50},
           {className:'Csbcj',title:'超声波测距',url:'static/images/configur/csbcj.png',width:50,height:50},
-          {className:'Hjjccgqa',title:'带液晶屏的环境监测传感器',url:'static/images/configur/hjjccgqa.png',width:50,height:50},
-          {className:'Hjjccgqb',title:'无液晶屏的环境监测传感器',url:'static/images/configur/hjjccgqb.png',width:50,height:50},
+          {className:'Hjjccgqa',title:'液晶屏传感器',url:'static/images/configur/hjjccgqa.png',width:50,height:50},
+          {className:'Hjjccgqb',title:'传感器',url:'static/images/configur/hjjccgqb.png',width:50,height:50},
           {className:'Xxqxz',title:'小型气象站',url:'static/images/configur/xxqxz.png',width:50,height:50},
 
-          {className:'Kydt',title:'客用电梯',url:'static/images/configur/kydt.png',width:50,height:70}
+          {className:'Kydt',title:'客用电梯',url:'static/images/configur/kydt.png',width:100,height:140}
           ]},
 			{name:'辅助',type:1,icon:'fa-icon-assist',
 				subList:[

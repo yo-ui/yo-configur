@@ -7,6 +7,7 @@ import ViewPanel from '@/components/common/ViewPanel.js';
 import Button from '@/components/common/Button.js';
 import Display from '@/components/common/Display.js';
 import Map from '@/components/common/Map.js';
+import Lump from '@/components/common/Lump.js';
 //给水系统
 import Lyssb from '@/components/device/Lyssb.js';//螺翼式水表
 import Sbfkg from '@/components/device/Sbfkg.js';//阀控水表
@@ -31,6 +32,7 @@ import Byq from '@/components/device/Byq.js';//变压器
 import Dldrq from '@/components/device/Dldrq.js';//电力电容器
 import Sxdgdb from '@/components/device/Sxdgdb.js';//三相导轨电表
 import Jddz from '@/components/device/Jddz.js';//接地刀闸
+import Ssbjf from '@/components/device/Ssbjf.js';//湿式报警阀
 //照明系统
 import Iokzmk from '@/components/device/Iokzmk.js';//I/O控制模块
 import Kg from '@/components/device/Kg.js';//开关
@@ -93,6 +95,9 @@ class SpiritFactory {
 	    case 'TextBox':
 	        return new TextBox(x,y,width,height);
 	        break;
+      case 'Lump':
+          return new Lump(x,y,width,height);
+          break;
 	    case 'Bgsdb':
 	        return new Bgsdb(x,y,width,height);
 	        break;
@@ -287,6 +292,9 @@ class SpiritFactory {
           break;
       case 'Kydt':
           return new Kydt(x,y,width,height);
+          break;
+      case 'Ssbjf':
+          return new Ssbjf(x,y,width,height);
           break;
       default:
           console.log("className:"+className);

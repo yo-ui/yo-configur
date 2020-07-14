@@ -53,3 +53,41 @@
   border: 1px solid #c8c9cc;
   border-radius: 2px;
 }
+
+.bm-lump {
+  display: flex;
+
+  & > .icon {
+    width: 36px;
+    height: 40px;
+
+    & > img {
+      width: 36px;
+      height: 40px;
+    }
+  }
+
+  & > .text {
+    flex: 1;
+    height: 32px;
+    line-height: 16px;
+    padding: 4px 5px;
+    font-size: 11px;
+
+    & > p {
+      color: #3f3f3f;
+      font-size: 11px;
+    }
+
+    & > span {
+      color: #000;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    & > small {
+      font-size: 11px;
+      color: #484848;
+    }
+  }
+}

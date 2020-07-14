@@ -18,7 +18,7 @@ class ViewPanel extends Spirit {
     this.isMove = true;
     this.isBind = true;
     this.zIndex = 4;
-    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}}
+    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
   }
 
   template(){
@@ -37,7 +37,6 @@ class ViewPanel extends Spirit {
   }
 
   reveal(device,config) {
-    console.log(device);
     let that = this;
     if(device) {
       $('#'+that.id).find('.bm-view-panel__title').text(device.name);

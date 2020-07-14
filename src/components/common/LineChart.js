@@ -18,7 +18,7 @@ class LineChart extends Spirit {
 	    this.linkage = false;
 	    this.isBind = true;
 	    this.bindType = 1;
-	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}};
+	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}};
 	    this.option = {
 		    tooltip : {
 		        trigger: 'axis',

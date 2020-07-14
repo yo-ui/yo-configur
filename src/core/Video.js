@@ -30,7 +30,7 @@ class Video {
       autoplay: true,
       url: url,
       accessToken: accessToken,
-      decoderPath: 'static/lib',
+      decoderPath: 'static/js',
       width: 800,
       height: 445,
     });

@@ -18,7 +18,10 @@ class Kydt extends Spirit {
 	    this.linkage = false;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}}
+	    this.config = {
+	      bindData: {orgId:'',deviceId:'',devicePoint:''},
+        state: {expr:'SwSts',alarm:0,normal:1,start:2}
+	    }
 	}
 
 	template(){
@@ -185,10 +188,17 @@ class Kydt extends Spirit {
 
   reveal(device,config) {
     let that = this;
+    let state = that.config.state;
     if(device) {
       device.points.forEach(function(point) {
-        if(point.id=="SwSts") {
-          that.state(point.value);
+        if(point.id==state.expr) {
+          if(point.value==state.alarm) {
+            that.alarm();
+          }else if(point.value==state.normal) {
+            that.normal();
+          }else if(point.value==state.start) {
+            that.start();
+          }
         }
       })
     }

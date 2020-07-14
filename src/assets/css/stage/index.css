@@ -43,3 +43,34 @@
   border: 1px solid #c8c9cc;
   border-radius: 2px;
 }
+.bm-lump {
+  display: flex;
+}
+.bm-lump > .icon {
+  width: 36px;
+  height: 40px;
+}
+.bm-lump > .icon > img {
+  width: 36px;
+  height: 40px;
+}
+.bm-lump > .text {
+  flex: 1;
+  height: 32px;
+  line-height: 16px;
+  padding: 4px 5px;
+  font-size: 11px;
+}
+.bm-lump > .text > p {
+  color: #3f3f3f;
+  font-size: 11px;
+}
+.bm-lump > .text > span {
+  color: #000;
+  font-weight: bold;
+  font-size: 16px;
+}
+.bm-lump > .text > small {
+  font-size: 11px;
+  color: #484848;
+}

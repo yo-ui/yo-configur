@@ -138,19 +138,23 @@
     }
 
     & li > .text {
+      flex: 1;
       background-color: @gray-1;
       padding-right: 5px;
       text-align: right;
-      flex: 1;
     }
 
     & li > .value {
-      padding: 0px 5px;
       flex: 1;
+      padding: 0px 5px;
 
-      & > .unit {
+      & > small {
         font-size: 8px;
-        padding-left: 2px;
+        font-weight: 100;
+      }
+
+      & > span {
+        font-weight: bold;
       }
     }
   }
@@ -306,6 +310,62 @@
 
     & > div:hover {
       background-color: @gray-1;
+    }
+  }
+}
+
+/**配置面板**/
+.bm-config-panel {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  border-radius: 2px;
+  padding: 0px 5px;
+
+  &__shade {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &__content {
+    position: relative;
+    margin: auto;
+    background-color: #b7b7b7;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -80px;
+    margin-left: -153px;
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px #888;
+    padding: 10px;
+
+    & > .text {
+      position: absolute;
+      top: 3px;
+      left: 18px;
+      background-color: #b7b7b7;
+      display: block;
+      padding: 0 2px;
+      text-align: center;
+    }
+
+    & > .content {
+      padding: 10px;
+      border: 1px inset #fff;
+      font-size: 11px;
+      padding-bottom: 5px;
+
+      & > div {
+        margin-bottom: 2px;
+      }
     }
   }
 }

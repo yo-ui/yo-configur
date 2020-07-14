@@ -24,7 +24,7 @@ class Edit {
           if(canvasId) {
             let data = {}
             data.id = canvasId;
-            RemoteObject.ajax(that.config.canvasGet,"get",data,function(msg){
+            RemoteObject.ajax(that.config.get,"get",data,function(msg){
               let result = JSON.parse(msg);
               if(result.success) {
                 callback.call(this, result.message);
@@ -38,7 +38,7 @@ class Edit {
           localStorage.setItem("data", data.data);
           callback.call(this, "ok");
         }else {
-          RemoteObject.ajax(that.config.canvasSave,"post",data,function(msg){
+          RemoteObject.ajax(that.config.save,"post",data,function(msg){
             let result = JSON.parse(msg);
             if(result.success) {
               callback.call(this, "ok");
@@ -187,6 +187,10 @@ class Edit {
         <div class="bm-layout__main__body">
           <div class="bm-stage">
             <div id="root"></div>
+            <div class="bm-config-panel">
+               <div class="bm-config-panel__shade">&nbsp;</div>
+               <div class="bm-config-panel__content"></div>
+            </div>
           </div>
           <div style="display: none" class="bm-toast bm-toast--text bm-toast--top">
               <span class="bm-toast__text"></span>
@@ -201,10 +205,12 @@ class Edit {
             </div>
             <div class="bm-tabs-content">
                 <div id="tab_1" data-value="1">
-                    <div id="configur_property"></div>
+                  <div id="configur_property"></div>
                 </div>
                 <div id="tab_2" data-value="2" style="display: none;">
-                    <div id="configur_list"><ul class="bm-list"></ul></div>
+                  <div id="configur_list">
+                    <ul class="bm-list"></ul>
+                  </div>
                 </div>
             </div>
         </div>

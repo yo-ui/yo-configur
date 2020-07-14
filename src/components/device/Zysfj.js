@@ -18,7 +18,10 @@ class Zysfj extends Spirit {
 	    this.isPanel = true;
 	    this.isBind = true;
 	    this.zIndex = 3;
-	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}}
+	    this.config = {
+	      bindData: {orgId:'',deviceId:'',devicePoint:''},
+        state: {expr:'SwSts',stop:0,start:1,alarm:2}
+	    }
 	}
 
 	template(){
@@ -576,38 +579,19 @@ class Zysfj extends Spirit {
 		return Object.assign(super.toJson(),json);
 	}
 
-	viewPanel(device) {
-		let that = this;
-    let point = {name:'',value:0,unit:''}
-    if(device.points) {
-      device.points.forEach(function(data) {
-        if(data.id=="TF") {
-          point.value = parseFloat(data.value);
-          point.unit = data.unit;
-          point.name = data.name;
-        }
-      });
-    }
-    $('.bm-view-panel').html('');
-    let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,12)}</div>`);
-    let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
-    let img = $(`<img src="static/images/device/icon-dt3.png" height="50"/>`);
-    let div = $(`<div class="bm-img-text">
-                 <p>累积流量</p>
-                 <span>${that.floatFormat(point.value)}</span><small>&nbsp;${point.unit}</small>
-                </div>`)
-    vpc.append(img).append(div)
-    $('.bm-view-panel').append(vpt).append(vpc);
-    $('.bm-view-panel').css({width:200});
-    $('.bm-view-panel').show();
-	}
-
   reveal(device,config) {
     let that = this;
+    let state = that.config.state;
     if(device) {
       device.points.forEach(function(point) {
-        if(point.id=="SwSts") {
-          that.state(point.value);
+        if(point.id==state.expr) {
+          if(point.value==state.alarm) {
+            that.alarm();
+          }else if(point.value==state.stop) {
+            that.stop();
+          }else if(point.value==state.start) {
+            that.start();
+          }
         }
       })
     }

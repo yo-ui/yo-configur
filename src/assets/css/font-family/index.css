@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'lcdD';
-  src: url("../font/lcdD.ttf");
+  src: url('../fonts/lcdD.ttf?afd1x4') format('truetype');
 }
 @font-face {
   font-family: 'fontIcon';
-  src: url('../font/font.ttf?afd1x4') format('truetype');
+  src: url('../fonts/font.ttf?afd1x4') format('truetype');
 }
 .fa {
   display: inline-block;
@@ -24,7 +24,7 @@
 .fa-water:before {
   content: "\e900";
 }
-.fa-environment:before {
+.fa-env:before {
   content: "\e901";
 }
 .fa-air:before {
@@ -78,6 +78,6 @@
 .fa-icon-device:before {
   content: "\e914";
 }
-.fa-icon-configur:before {
+.fa-icon-conf:before {
   content: "\e915";
 }

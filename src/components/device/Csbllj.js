@@ -19,7 +19,7 @@ class Csbllj extends Spirit {
 	    this.isBind = true;
       this.isLinkPoint = true;
 	    this.zIndex = 3;
-	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}}
+	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
 	}
 
 	template(){

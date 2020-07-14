@@ -19,7 +19,7 @@ class Lyssb extends Spirit {
 	    this.isBind = true;
 	    this.zIndex = 3;
       this.isLinkPoint = true;
-	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}}
+	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
 	}
 
 	template(){

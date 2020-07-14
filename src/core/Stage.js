@@ -1,17 +1,13 @@
-import '@/assets/css/index.css'
-import '@/assets/css/colpick.css'
-
-import '@/assets/js/colpick.js';
 import Paw from '@/core/Paw.js';
 import Move from '@/core/Move.js';
 import SpiritFactory from '@/core/SpiritFactory.js';
-import BindData from '@/core/BindData.js';
 import Zoom from '@/core/Zoom.js';
 import Library from '@/core/Library.js';
 import Keydown from '@/core/Keydown.js';
 import Align from '@/core/Align.js';
 import HandleRecord from '@/core/HandleRecord.js';
 import WaterPipe from '@/components/common/WaterPipe.js';
+import BindData from '@/core/BindData.js';
 
 /**
  * 舞台
@@ -445,6 +441,7 @@ class Stage {
       case 9:that.align.lock();break;
       case 10:that.align.lock();break;
       case 11:that.remove();break;
+      case 12:that.property.animation();break;
 		}
 	}
 
@@ -516,12 +513,12 @@ class Stage {
 			that.selectedList.forEach(function(selected) {
 				set.add(selected.id);
 				$('#'+selected.id).remove();
-		    });
+		  });
 			that.capacity = Array.from(that.capacity.filter(v => !set.has(v.id)));
 			$('.bm-selected-panel').hide();
 		}else {
 			$('.resize-panel').find('.resize-panel-content').html('');
-		    $('.resize-panel').hide();
+		  $('.resize-panel').hide();
 			let dataList = [];
 			that.capacity.forEach(function(data) {
 				if(data.id!=that.property.id) {
@@ -538,6 +535,7 @@ class Stage {
 			that.handleRecord.add(record);
 		}
 		$('#configur_stage').trigger('click');
+		that.configurList();
 	}
 
 	//创建
@@ -599,9 +597,9 @@ class Stage {
 			e.preventDefault();
 			e.stopPropagation();
 		})
-    }
+  }
 
-    contextmenu() {
+  contextmenu() {
 		$('.bm-context-menu ul').html('')
 		let that = this;
 		let menus = []
@@ -614,6 +612,9 @@ class Stage {
 				}else {
 					menus = [{name:'解锁',icon:'fa-uplock',type: 10,key:'Ctrl+L'}]
 				}
+				if(that.property.isAnimation) {
+          menus.push({name:'动画链接',icon:'fa-lock',type: 12,key:''})
+        }
 			}else {
 				menus = [{name:'保存',icon:'fa-save',type: 2,key:'Ctrl+S'}]
 				if(that.handleRecord.handles.length>0) {
@@ -621,6 +622,7 @@ class Stage {
 					menus.push(menu);
 				}
 			}
+
 		}else {
 			menus = [{name:'左对齐',icon:'fa-align-left',type: 5,key:'Ctrl+←'},
 				     {name:'右对齐',icon:'fa-align-right',type: 6,key:'Ctrl+→'},

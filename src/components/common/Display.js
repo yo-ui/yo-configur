@@ -16,7 +16,7 @@ class Display extends Spirit {
 	    this.isBind = true;
 	    this.bindType = 2;
 	    this.zIndex = 4;
-	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}}
+	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
 	}
 
 	template(){

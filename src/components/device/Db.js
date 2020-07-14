@@ -18,13 +18,16 @@ class Db extends Spirit {
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''}}
+      this.config = {
+        bindData: {orgId:'',deviceId:'',devicePoint:''},
+        state: {expr:'SwSts',stop:0,start:1,alarm:2}
+      }
 	}
 
 	template(){
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
 		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-                 viewBox="0 0 70 69" style="enable-background:new 0 0 70 69;" xml:space="preserve">
+                 viewBox="0 0 70 69" xml:space="preserve">
               <style type="text/css">
                 .db-st0{fill:url(#db_1_);}
                 .db-st1{fill:#DFE3E8;}
@@ -91,6 +94,24 @@ class Db extends Spirit {
 		        </div>`);
 	}
 
+  reveal(device,config) {
+	  console.log(device);
+    let that = this;
+    let state = that.config.state;
+    if(device) {
+      device.points.forEach(function(point) {
+        if(point.id==state.expr) {
+          if(point.value==state.alarm) {
+            that.alarm();
+          }else if(point.value==state.stop) {
+            that.stop();
+          }else if(point.value==state.start) {
+            that.start();
+          }
+        }
+      })
+    }
+  }
 
 	toJson() {
 		let json = {
@@ -104,39 +125,6 @@ class Db extends Spirit {
 		};
 		return Object.assign(super.toJson(),json);
 	}
-
-	viewPanel(device) {
-		let that = this;
-		if(device) {
-			$('.bm-view-panel').html('');
-			let point = {name:'',value:'',unit:''}
-			if(device.points) {
-				device.points.forEach(function(data) {
-					if(data.id=="WPP") {
-						point.value = parseFloat(data.value);
-						point.unit = data.unit;
-						point.name = data.name;
-					}
-				});
-			}
-			if(point.unit) {
-				let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,12)}</div>`);
-        let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
-        let img = $(`<img height="50"/>`);
-        img.attr('src',"static/images/device/icon-dt2.png");
-        let div = $(`<div class="bm-img-text">
-                     <p>${point.name}</p>
-                     <span>${parseFloat(point.value)}</span><small>&nbsp;${point.unit}</small>
-                    </div>`)
-        vpc.append(img).append(div)
-				$('.bm-view-panel').append(vpt).append(vpc);
-				$('.bm-view-panel').css({width:200});
-				$('.bm-view-panel').show();
-			}
-		}
-
-	}
-
 }
 
 export default Db;

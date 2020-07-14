@@ -11,7 +11,7 @@ class Button extends Spirit {
 	    this.title = "按钮";
 	    this.className = "Button";
 	    this.width = width;
-	    this.height = height;
+	    this.height = 30;
 	    this.minWidth = 50;
 	    this.moveType = 0;
 	    this.linkage = false;
@@ -19,19 +19,28 @@ class Button extends Spirit {
       this.isPanel = true;
       this.isBind = true;
 	    this.zIndex = 0;
-	    this.config = {bindData: {organizId:'',deviceId:'',devicePoint:''},text:'控制',type:1}
+      this.isAnimation = false;
+      this.animationList = [
+        {name: '触发链接',
+          dataList: [{type: 12,name: '动作'}]
+        }
+      ]
+      this.config = {
+        bindData: {orgId: '', deviceId: '', devicePoint: ''},text:'控制',type:1,
+        animations: [{type: 12,name: '动作',event:'click',data: {expr: 'SwSts'}}]
+      }
 	}
 
 	template(){
-		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg">		                
-		        <div style="
-			        line-height: ${this.height-2}px;
-			        height: ${this.height-2}px;
-              width: ${this.width}px;">
-			        <span class="button button-raised button-primary button-pill" style="font-size: 13px">${this.config.text}</span>
-			      </div>	
-		        </div>`)
-		return div;
+		let html = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg">		                
+                  <div style="
+                    line-height: 28px;
+                    height: ${this.height}px;
+                    width: ${this.width}px;">
+                    <span class="button button-raised button-primary button-pill" style="font-size: 13px">${this.config.text}</span>
+                  </div>	
+                </div>`)
+		return html;
 	}
 
   refresh() {
@@ -50,40 +59,37 @@ class Button extends Spirit {
 		return Object.assign(super.toJson(),json);
 	}
 
-  viewPanel(device) {
+  animation() {
+    let that = this;
+    $('.bm-config-panel__content').html('');
+    let animationList = this.animationList;
+    let animations = this.config.animations;
+    that.action(animationList,animations,function (result) {
+      that.config.animations.forEach(function (data) {
+        if(data.type==result.type) {
+          data = result;
+        }
+      })
+    });
+  }
+
+  event(device,data) {
 	  let that = this;
-	  if(this.config.type==1) {
+    if(this.config.type==1) {
+      let that = this;
       that.point = {id:'',value:''}
       if(device.points) {
-        device.points.forEach(function(data) {
-          if(data.id=="SwSts") {
-            that.point.id = data.id;
-            that.point.value = data.value;
+        device.points.forEach(function(item) {
+          if(item.id==data.expr) {
+            that.point.id = item.id;
+            that.point.value = item.value;
           }
         });
       }
-      that.stage.password.show();
-      that.stage.password.confirm(function (text) {
-        let data = {}
-        data.deviceId = device.id;
-        data.point = that.point.id;
-        data.value = that.point.value==1?0:1;
-        data.ctrlPwd = text;
-        that.stage.option.control(data,function(msg) {
-          let message = JSON.parse(msg);
-          if(message.status.code==100000) {
-            that.point.value = that.point.value==1?0:1;
-            that.stage.toast("控制成功");
-            let data = {}
-            data.id = device.id;
-            data.points = [{id:that.point.id,value:that.point.value}]
-            that.stage.linkage(data);
-            that.stage.password.hide();
-          }else if(message.status.code==120020) {
-            that.stage.toast("密码错误");
-          }
-        })
-      });
+      let deviceId = device.id;
+      let point = that.point.id;
+      let value = that.point.value;
+      that.control(deviceId,point,value==0?1:0)
     }else if(this.config.type==2) {
       let video = new Video(that.stage,820,500,device.id);
       this.stage.option.token(device.id, function(message) {
@@ -95,6 +101,19 @@ class Button extends Spirit {
         }
       })
     }
+  }
+
+  initialize(device,config) {
+    let that = this;
+    let animations = this.config.animations;
+    animations.forEach(function (animation) {
+      if(animation.type==12) {
+        $('#'+that.id).on(animation.event,function () {
+          that.event(device,animation.data);
+        });
+      }
+    })
+    that.reveal(device,config)
   }
 
 	renderer() {
@@ -142,8 +161,8 @@ class Button extends Spirit {
     $('#'+property.id).find('span').text(text);
     $('#temp_value').html($('#'+property.id).find('div').html());
     let width = $('#temp_value').width()+2;
-    $('.resize-panel').css({width:width})
-    $('#'+property.id).find('div').css({width:width});
+    $('.resize-panel').css({width})
+    $('#'+property.id).find('div').css({width});
     property.width = width-2;
     this.refresh();
   }

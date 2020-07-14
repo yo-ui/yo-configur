@@ -9,8 +9,9 @@ class View {
     this.config = config;
   }
 
-  init(webSocket) {
+  init() {
     let that = this;
+    let webSocket;
     let option = {
       canvas: function (callback) {
         if(webSocket) {
@@ -28,7 +29,7 @@ class View {
           if(canvasId) {
             let data = {}
             data.id = canvasId;
-            RemoteObject.ajax(that.config.canvasGet, "get", data, function (msg) {
+            RemoteObject.ajax(that.config.get, "get", data, function (msg) {
               let result = JSON.parse(msg);
               if (result.success) {
                 callback.call(this, result.message)
@@ -41,7 +42,7 @@ class View {
         if(that.config.debug) {
           callback.call(this,JSON.stringify({status:{code:100000}}));
         }else {
-          RemoteObject.ajax("api/canvas/control","post",data,function(msg) {
+          RemoteObject.ajax(that.config.control,"post",data,function(msg) {
             let result = JSON.parse(msg);
             if(result.success) {
               callback.call(this, result.message)
@@ -49,7 +50,25 @@ class View {
           })
         }
       },
-      devicePoints: function(devices,callback) {
+      deviceList(ids,callback) {
+        if(that.config.debug) {
+          let devices = [{id:'00653D5730048000',name:'设备A',
+            points:[
+              {id:'TF',name:'累积用量',value:33.22,unit:'t',time:'00:09:00'},
+              {id:'SwSts',name:'开关状态',value:2,time:'00:09:00'}]}]
+          callback.call(this, devices);
+        }else {
+          let data = {}
+          data.ids = JSON.stringify(ids);
+          RemoteObject.ajax(that.config.deviceList,"get",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.success) {
+              callback.call(this, result.message);
+            }
+          })
+        }
+      },
+      socket: function(ids,callback) {
         if(that.config.debug) {
           let devices = [
             {id:'00653D5730048000',name:'设备A',
@@ -71,7 +90,7 @@ class View {
           //连接成功建立的回调方法
           webSocket.onopen = function() {
             console.log("WebSocket连接成功");
-            webSocket.send(JSON.stringify(devices));
+            webSocket.send(JSON.stringify(ids));
           }
           //接收到消息的回调方法
           webSocket.onmessage = function(event) {
