@@ -1,4 +1,4 @@
-// import '@/assets/css/index.css'
+import '@/assets/css/index.css'
 import '@/assets/css/colpick.css'
 
 import '@/assets/js/colpick';
