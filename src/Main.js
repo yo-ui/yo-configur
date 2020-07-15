@@ -8,8 +8,6 @@ import Edit from './Edit';
 
 $(document).ready(function() {
 
-  // $.getJSON('./static/config/data.json',function(config){
-    console.log(config);
     if(config.debug) {
       content(1);
     }else {
@@ -34,7 +32,6 @@ $(document).ready(function() {
         view.init();
       }
     }
-  // })
 })
 
 

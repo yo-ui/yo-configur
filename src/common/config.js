@@ -1,6 +1,6 @@
 
-let wsHost=process.env.NODE_ENV==='production'?'ws://127.0.0.1:8082/configur':'/configur';
-let host=process.env.NODE_ENV==='production'?'/configur':'';
+let wsHost=process.env.NODE_ENV==='production'?'ws://127.0.0.1:8082/configur':'';
+let host=process.env.NODE_ENV==='production'?'/configur':'/configur';
 let debug=process.env.NODE_ENV==='production'?false:true
 export default
 {

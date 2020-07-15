@@ -12,7 +12,7 @@ module.exports = {
         changeOrigin:true,
         withCredentials: true,
         pathRewrite: {
-          '^/configur': '/'
+          '/configur': '/configur'
         }
       }
     },
