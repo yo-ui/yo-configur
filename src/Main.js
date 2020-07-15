@@ -1,6 +1,6 @@
 import '@/assets/css/index.css'
 import '@/assets/css/colpick.css'
-
+import config from '@/common/config'
 import '@/assets/js/colpick';
 import RemoteObject from '@/assets/js/RemoteObject';
 import View from './View';
@@ -8,7 +8,8 @@ import Edit from './Edit';
 
 $(document).ready(function() {
 
-  $.getJSON('./static/config/data.json',function(config){
+  // $.getJSON('./static/config/data.json',function(config){
+    console.log(config);
     if(config.debug) {
       content(1);
     }else {
@@ -33,7 +34,7 @@ $(document).ready(function() {
         view.init();
       }
     }
-  })
+  // })
 })
 
 
