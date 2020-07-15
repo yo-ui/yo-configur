@@ -242,7 +242,11 @@ class Stage {
 				that.selectedType = 2;
 				let data = that.selectedPanel(that.selectedList);
 				$('.bm-selected-panel').show();
-				$('.bm-selected-panel').css({left: data.x,top: data.y,width: data.width,height: data.height})
+				let left = data.x;
+				let top = data.y;
+				let width = data.width;
+				let height = data.height;
+				$('.bm-selected-panel').css({left,top,width,height})
 			}
 		});
 
@@ -266,18 +270,10 @@ class Stage {
         data.x2 = x2;
         data.y2 = y2;
 		  }
-      if(selected.x<data.x) {
-        data.x = selected.x
-		  }
-      if(selected.y<data.y) {
-        data.y = selected.y
-      }
-      if(x2>data.x2) {
-        data.x2 = x2
-      }
-      if(y2>data.y2) {
-			   data.y2 = y2
-		  }
+      if(selected.x<data.x) {data.x = selected.x}
+      if(selected.y<data.y) {data.y = selected.y}
+      if(x2>data.x2) {data.x2 = x2}
+      if(y2>data.y2) {data.y2 = y2}
 		})
 		return {x:data.x,y:data.y,width:data.x2-data.x,height:data.y2-data.y+2}
 	}
