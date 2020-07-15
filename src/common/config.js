@@ -1,22 +1,22 @@
 
 let wsHost=process.env.NODE_ENV==='production'?'ws://127.0.0.1:8082/configur':'/configur';
-let host=process.env.NODE_ENV==='production'?'':'/configur';
+let host=process.env.NODE_ENV==='production'?'/configur':'';
 let debug=process.env.NODE_ENV==='production'?false:true
 export default
 {
   "debug": debug,
   "websocketUrl":wsHost+ "/websocket",
-  "verifyInfo": host+"api/common/verifyInfo",
-  "organizList": host+"api/common/organizList",
-  "devicePoints": host+"api/common/devicePoints",
-  "devicePointHstData":host+ "api/common/devicePointHstData",
-  "deviceList":host+"api/common/deviceList",
-  "getDevice":host+"api/common/getDevice",
-  "get": host+"api/canvas/get",
-  "save": host+"api/canvas/save",
-  "control":host+ "api/canvas/control",
-  "token":host+ "api/canvas/token",
-  "start":host+ "api/canvas/start",
-  "stop":host+ "api/canvas/stop",
-  "upload": host+"api/file/upload"
+  "verifyInfo": host+"/common/verifyInfo",
+  "organizList": host+"/common/organizList",
+  "devicePoints": host+"/common/devicePoints",
+  "devicePointHstData":host+ "/common/devicePointHstData",
+  "deviceList":host+"/common/deviceList",
+  "getDevice":host+"/common/getDevice",
+  "get": host+"/canvas/get",
+  "save": host+"/canvas/save",
+  "control":host+ "/canvas/control",
+  "token":host+ "/canvas/token",
+  "start":host+ "/canvas/start",
+  "stop":host+ "/canvas/stop",
+  "upload": host+"/file/upload"
 }

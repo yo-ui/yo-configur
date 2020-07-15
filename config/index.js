@@ -7,12 +7,12 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': {
+      '/configur': {
         target: 'http://localhost:8082',
         changeOrigin:true,
         withCredentials: true,
         pathRewrite: {
-          '^/api': '/'
+          '^/configur': '/'
         }
       }
     },
