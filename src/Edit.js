@@ -123,7 +123,7 @@ class Edit {
       }
     }
 
-    let stage = new Stage(option);
+    let stage = new Stage(option,this.config.imgHost);
     $('#property_tabs a').each(function(index) {
       $(this).data("value", index);
       $(this).on('click',function() {

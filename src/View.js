@@ -197,7 +197,7 @@ class View {
       }
     }
 
-    let stage = new ViewStage(option);
+    let stage = new ViewStage(option,this.config.imgHost);
 
     $(window).resize(function() {
       stage.location();//页面改变时调整舞台位置

@@ -28,10 +28,6 @@ class Images extends Spirit {
 		return div;
 	}
 
-	refresh() {
-		$('#'+this.id).find('img').attr('src', this.config.url);
-	}
-
 	toJson() {
 		let json = {
 			title: this.title,

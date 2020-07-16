@@ -7,7 +7,6 @@ import View from './View';
 import Edit from './Edit';
 
 $(document).ready(function() {
-
     if(config.debug) {
       content(1);
     }else {

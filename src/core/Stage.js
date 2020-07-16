@@ -9,12 +9,14 @@ import HandleRecord from '@/core/HandleRecord.js';
 import WaterPipe from '@/components/common/WaterPipe.js';
 import BindData from '@/core/BindData.js';
 
+
 /**
  * 舞台
  */
 class Stage {
 
-	constructor(option) {
+	constructor(option,imgHost) {
+	  this.imgHost = imgHost;
 		this.option = option;
 		this.toolType = 1;//1移动方式 2 拼装方式
 		this.selectedType = 1;//选择类型1:默认2:框选
@@ -680,7 +682,7 @@ class Stage {
         let file = $(this).get(0).files[0]
         that.option.upload(form,file,function(msg) {
           that.property.config.url = msg;
-          $('#'+that.property.id).find('img').attr('src',msg);
+          $('#'+that.property.id).find('img').attr('src',that.imgHost+"/"+msg);
         })
 			})
 		}
@@ -730,6 +732,9 @@ class Stage {
 				spirit.isMove = property.isMove;
 				spirit.zIndex = property.zIndex;
 				spirit.config = property.config;
+        if(className=="Images") {
+          $('#'+spirit.id).find('img').attr('src', that.imgHost+"/"+spirit.config.url);
+        }
 				spirit.refresh();
 				that.capacity.push(spirit);
 				property.id = spirit.id;

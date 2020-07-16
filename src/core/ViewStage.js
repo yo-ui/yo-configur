@@ -5,8 +5,9 @@ import Password from '@/core/Password.js'
  */
 class ViewStage {
 
-	constructor(option) {
+	constructor(option,imgHost) {
     let that = this;
+    this.imgHost = imgHost;
 		this.option = option;
 		this.option.canvas(function(data) {
 			that.canvas = {id:data.id};
@@ -97,35 +98,34 @@ class ViewStage {
 
 	addEvent(spirit) {
 		let that = this;
-
-			let el = spirit.getEl();
-			el.data("id", spirit.id);
-			el.on('contextmenu',function(e) {
-        if(spirit.isPanel) {
-          let id = $(this).data('id');
-          that.capacity.forEach(function (spirit) {
-            if (spirit.id == id) {
-              that.spirit = spirit;
-            }
-          });
-          if (that.spirit.config.bindData) {
-            let deviceId = that.spirit.config.bindData.deviceId;
-            if (deviceId) {
-              that.option.getDevice(deviceId, function (device) {
-                $('.bm-view-panel').hide();
-                if (device) {
-                  let left = el.offset().left + el.width();
-                  let top = el.offset().top - 60;
-                  $('.bm-view-panel').css({left, top});
-                  that.spirit.viewPanel(device);
-                }
-              })
-            }
+    let el = spirit.getEl();
+    el.data("id", spirit.id);
+    el.on('contextmenu',function(e) {
+      if(spirit.isPanel) {
+        let id = $(this).data('id');
+        that.capacity.forEach(function (spirit) {
+          if (spirit.id == id) {
+            that.spirit = spirit;
+          }
+        });
+        if (that.spirit.config.bindData) {
+          let deviceId = that.spirit.config.bindData.deviceId;
+          if (deviceId) {
+            that.option.getDevice(deviceId, function (device) {
+              $('.bm-view-panel').hide();
+              if (device) {
+                let left = el.offset().left + el.width();
+                let top = el.offset().top - 60;
+                $('.bm-view-panel').css({left, top});
+                that.spirit.viewPanel(device);
+              }
+            })
           }
         }
-        e.stopPropagation();
-        e.preventDefault();
-			});
+      }
+      e.stopPropagation();
+      e.preventDefault();
+    });
 	}
   //解析
 	analysis(width,height,data) {
@@ -141,7 +141,10 @@ class ViewStage {
 				let height = property.height;
 				let rotate= property.rotate;
 				let spirit = that.create(className,x,y,width,height,rotate);
-				spirit.config = property.config
+				spirit.config = property.config;
+        if(className=="Images") {
+          $('#'+spirit.id).find('img').attr('src', that.imgHost+"/"+spirit.config.url);
+        }
 				spirit.refresh();
 				that.capacity.push(spirit);
 			})
