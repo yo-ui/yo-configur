@@ -16,18 +16,15 @@ class Button extends Spirit {
 	    this.moveType = 0;
 	    this.linkage = false;
 	    this.isMove = true;
-      this.isPanel = true;
       this.isBind = true;
 	    this.zIndex = 0;
-      this.isAnimation = false;
+      this.isAnimation = true;
       this.animationList = [
-        {name: '触发链接',
-          dataList: [{type: 12,name: '动作'}]
-        }
+        {name: '触发链接', dataList: [{type: 12,name: '联动'}]}
       ]
       this.config = {
-        bindData: {orgId: '', deviceId: '', devicePoint: ''},text:'控制',type:1,
-        animations: [{type: 12,name: '动作',event:'click',data: {expr: 'SwSts'}}]
+        bindData: {orgId: '', deviceId: '', devicePoint: ''},text:'控制',
+        animation: {event:'click',id: ""}
       }
 	}
 
@@ -63,77 +60,69 @@ class Button extends Spirit {
     let that = this;
     $('.bm-config-panel__content').html('');
     let animationList = this.animationList;
-    let animations = this.config.animations;
-    that.action(animationList,animations,function (result) {
-      that.config.animations.forEach(function (data) {
-        if(data.type==result.type) {
-          data = result;
+    that.action(animationList,function (value) {
+      if(value==12) {
+        let dataList = [];
+        if(that.stage.capacity.length>0) {
+          that.stage.capacity.forEach(function (data) {
+            if(data.isLink) {
+              dataList.push(data)
+            }
+          })
         }
-      })
-    });
-  }
-
-  event(device,data) {
-	  let that = this;
-    if(this.config.type==1) {
-      let that = this;
-      that.point = {id:'',value:''}
-      if(device.points) {
-        device.points.forEach(function(item) {
-          if(item.id==data.expr) {
-            that.point.id = item.id;
-            that.point.value = item.value;
-          }
-        });
+        if(dataList.length>0) {
+          $('.bm-config-panel__content .text').text("关联组件列表");
+          let ul = $(`<ul class="conf-list"></ul>`)
+          dataList.forEach(function (data) {
+            console.log(data)
+            let li =  $(`<li><input type="checkbox" name="id"/>${data.title}(${data.id})</li>`)
+            li.find('input').data("id", data.id);
+            li.find('input').on("click", function () {
+              $(this).parent().siblings().each(function () {
+                $(this).find("input").prop('checked',false);
+              });
+              if($(this).is(":checked")) {
+                that.config.animation.id = $(this).data("id");
+              }else {
+                that.config.animation.id = "";
+              }
+            });
+            ul.append(li);
+          });
+          $('.bm-config-panel__content .content').html(ul);
+        }else {
+          $('.bm-config-panel').hide();
+        }
       }
-      let deviceId = device.id;
-      let point = that.point.id;
-      let value = that.point.value;
-      that.control(deviceId,point,value==0?1:0)
-    }else if(this.config.type==2) {
-      let video = new Video(that.stage,820,500,device.id);
-      this.stage.option.token(device.id, function(message) {
-        if(message.serial) {
-          let name = message.name;
-          let accessToken = message.accessToken;
-          let serial = message.serial;
-          video.create(name,accessToken,serial)
-        }
-      })
-    }
+    });
   }
 
   initialize(device,config) {
     let that = this;
-    let animations = this.config.animations;
-    animations.forEach(function (animation) {
-      if(animation.type==12) {
-        $('#'+that.id).on(animation.event,function () {
-          that.event(device,animation.data);
-        });
+    let animation = this.config.animation;
+    $('#'+that.id).on(animation.event,function () {
+      that.event(device,config,animation.id);
+    });
+  }
+
+  event(device,config,id) {
+    let that = this;
+    that.stage.capacity.forEach(function (data) {
+      if(data.id==id) {
+        data.initialize(device,config);
       }
     })
-    that.reveal(device,config)
   }
 
 	renderer() {
     let that = this;
     super.renderer();
     let html = `<div class="bm-cell no-hover">
-                    <div class="bm-cell__title">
-                        <div>文本</div>
-                      <input type="text" class="text form-control" value="${this.config.text}" maxlength="32" title="按钮文本" />
-                    </div>							
-                  </div>
-                  <div class="bm-cell no-hover">
-                    <div class="bm-cell__title">
-                      <div>类型</div>
-                      <select class="bm-select" name="type" title="按钮类型">
-                        <option value="1">基本</option>
-                        <option value="2">摄像头</option>
-                      </select>	
-                    </div>							
-                  </div>`;
+                  <div class="bm-cell__title">
+                      <div>文本</div>
+                    <input type="text" class="text form-control" value="${this.config.text}" maxlength="32" title="按钮文本" />
+                  </div>							
+                </div>`;
     $('#configur_property').append(html);
     let type = $('#configur_property').find('[name=type]');
     type.on('change',function () {

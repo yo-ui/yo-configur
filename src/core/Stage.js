@@ -541,7 +541,14 @@ class Stage {
 		let that = this;
 		this.className = className;
     let spirit = SpiritFactory.getInstance(className,x,y,width,height);
-    spirit.rotate = rotate;
+    if(spirit.className=="Images") {
+      if(!spirit.config.url) {
+        spirit.config.url = "static/images/background/background.jpg";
+      }else {
+        spirit.config.url = that.imgHost+"/"+spirit.config.url;
+      }
+    }
+    spirit.rotate = rotate;3
 		spirit.arrangement(this);
 		this.addEvent(spirit.getEl());
 		this.move.move = false;
@@ -733,7 +740,7 @@ class Stage {
 				spirit.zIndex = property.zIndex;
 				spirit.config = property.config;
         if(className=="Images") {
-          $('#'+spirit.id).find('img').attr('src', that.imgHost+"/"+spirit.config.url);
+          spirit.config.url = that.imgHost+"/"+spirit.config.url;
         }
 				spirit.refresh();
 				that.capacity.push(spirit);

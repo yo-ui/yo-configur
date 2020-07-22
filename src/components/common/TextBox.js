@@ -25,8 +25,17 @@ class TextBox extends Spirit {
                     height: ${this.height}px;
                     text-align: center;
                     background-color: ${this.config.backgroundColor}">
-                    <span class="value" style="font-weight:bold;font-family: lcdD;font-size: ${this.config.fontSize}px;">00.00</span>
-                    <small class="unit" style="text-align:center;font-size: ${this.config.fontSize*0.5}px"></small>
+                    <span class="value" style="
+                      font-weight:bold;
+                      font-family: lcdD;
+                      font-size: ${this.config.fontSize}px;">00.00</span>
+                    <small class="unit" style="
+                      text-align:center;
+                      font-size: 12px;
+                      transform: scale(0.7);
+                      display: inline-block;
+                      vertical-align: middle;
+                      margin-left: -5px;"></small>
                 </div>
                </div>`);
 	}

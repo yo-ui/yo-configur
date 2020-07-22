@@ -4,7 +4,7 @@ let host=process.env.NODE_ENV==='production'?'/configur':'/configur';
 let debug=process.env.NODE_ENV==='production'?false:true;
 export default
 {
-  "debug": debug,
+  "debug": false,
   "websocketUrl": wsHost+"/websocket",
   "verifyInfo": host+"/common/verifyInfo",
   "organizList": host+"/common/organizList",

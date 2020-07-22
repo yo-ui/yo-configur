@@ -18,7 +18,7 @@ class Kg extends Spirit {
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-      this.isAnimation = true;
+      this.isAnimation = false;
       this.animationList = [
         {name: '触发链接',
          dataList: [{type: 11,name: '开关状态'},

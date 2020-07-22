@@ -46,11 +46,11 @@ class ViewStage {
       move = true;
       $(this).css({cursor: 'grab'})
       if(data) {
-        x = data.x-parseInt($("#configur_stage").css("left"));
-        y = data.y-parseInt($("#configur_stage").css("top"));
+        x = data.x-parseInt($(this).css("left"));
+        y = data.y-parseInt($(this).css("top"));
       }else{
-        x = e.pageX-parseInt($("#configur_stage").css("left"));
-        y = e.pageY-parseInt($("#configur_stage").css("top"));
+        x = e.pageX-parseInt($(this).css("left"));
+        y = e.pageY-parseInt($(this).css("top"));
       }
     })
     $("#configur_stage").on('mouseup',function (e) {
@@ -158,7 +158,6 @@ class ViewStage {
         }
 			});
 			this.option.deviceList(ids,function(dataList) {
-			  console.log(dataList);
         that.initialize(dataList);
         that.option.socket(ids,function(dataList) {
           that.reveal(dataList);

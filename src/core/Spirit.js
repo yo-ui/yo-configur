@@ -49,7 +49,7 @@ class Spirit {
 
 	reveal(device,config) {}
 
-  action(animationList,animations,callback) {
+  action(animationList,callback) {
     $('.bm-config-panel').show();
     animationList.forEach(function (data) {
       let text = $(`<div class="text">${data.name}</div>`)
@@ -57,7 +57,6 @@ class Spirit {
       data.dataList.forEach(function (item) {
         let button = $(`<div class="button button-raised button-default">${item.name}</div>`);
         button.data("value", item.type);
-        button.data("animations", animations);
         content.append(button);
       })
       $('.bm-config-panel__content').append(text).append(content);
@@ -68,102 +67,7 @@ class Spirit {
       $('.bm-config-panel .button').each(function () {
         $(this).on('click',function () {
           let value = $(this).data("value");
-          let animations = $(this).data("animations");
-          let animation = {}
-          animations.forEach(function (data) {
-            if(data.type==value) {
-              animation = data;
-            }
-          })
-          if(value==11) {
-            let html = `<div class="text">${animation.name}</div><div class="content">
-                    <div class="inline-block">
-                      <label>表达式</label>
-                      <div>
-                        <textarea class="expr" cols="30" rows="2" style="padding: 7px 5px;border: 1px inset #ddd;">${animation.data.expr}</textarea>
-                        <div style="vertical-align: top;margin-left:5px;display: inline-block">
-                          <div class="confirm button button-raised button-default">确定</div><br/>
-                          <div class="cancel button button-raised button-default">取消</div>
-                        </div>
-                      </div>
-                      <div style="margin: 5px">
-                        <label>关闭：</label><input class="off" style="width: 30px;padding-left: 5px" type="text" value="${animation.data.off}" maxlength="1"/>
-                        <label>打开：</label><input class="on" style="width: 30px;padding-left: 5px" type="text" value="${animation.data.on}" maxlength="1"/>
-                      </div>
-                    </div>
-                 </div>`;
-            $('.bm-config-panel__content').html(html);
-            $('.bm-config-panel').find('.cancel').on('click',function () {
-              $('.bm-config-panel').hide();
-            });
-
-            $('.bm-config-panel').find('.confirm').on('click',function () {
-              let data = {}
-              data.expr = $('.bm-config-panel').find('.expr').val();
-              data.off = $('.bm-config-panel').find('.off').val();
-              data.on = $('.bm-config-panel').find('.on').val();
-              animation.data = data;
-              callback.call(this, animation);
-              $('.bm-config-panel').hide();
-            });
-          }else if(value==12) {
-            let html = `<div class="text">${animation.name}</div><div class="content">
-                    <div class="inline-block">
-                      <label>表达式</label>
-                      <div>
-                        <textarea class="expr" cols="30" rows="2" style="padding: 7px 5px;border: 1px inset #ddd;">${animation.data.expr}</textarea>
-                        <div style="vertical-align: top;margin-left:5px;display: inline-block">
-                          <div class="confirm button button-raised button-default">确定</div><br/>
-                          <div class="cancel button button-raised button-default">取消</div>
-                        </div>
-                      </div>                      
-                    </div>
-                    <div>
-                      <select class="bm-select" style="padding: 0;width: auto">
-                        <option value="click">鼠标点击</option>
-                      </select>
-                  </div>
-                 </div>`;
-            $('.bm-config-panel__content').html(html);
-            $('.bm-config-panel').find('.cancel').on('click',function () {
-              $('.bm-config-panel').hide();
-            });
-
-            $('.bm-config-panel').find('.confirm').on('click',function () {
-              let data = {}
-              data.expr = $('.bm-config-panel').find('.expr').val();
-              animation.data = data;
-              animation.event = $('.bm-config-panel').find('.bm-select').val();
-              callback.call(this, animation);
-              $('.bm-config-panel').hide();
-            });
-          }else if(value==21) {
-            let html = `<div class="text">${animation.name}</div>
-                        <div class="content">
-                          <div class="inline-block">
-                            <label>表达式</label>
-                            <div>
-                              <input class="expr" style="padding: 5px;border: 1px inset #fff;" value="${animation.data.expr}"/>                          
-                            </div>                      
-                          </div>                   
-                        </div>
-                        <div style="text-align: center;margin-top: 10px">
-                          <div class="confirm button button-raised button-default">确定</div>
-                          <div class="cancel button button-raised button-default">取消</div>
-                        </div>`;
-            $('.bm-config-panel__content').html(html);
-            $('.bm-config-panel').find('.cancel').on('click',function () {
-              $('.bm-config-panel').hide();
-            });
-
-            $('.bm-config-panel').find('.confirm').on('click',function () {
-              let data = {}
-              data.expr = $('.bm-config-panel').find('.expr').val();
-              animation.data = data;
-              callback.call(this, animation);
-              $('.bm-config-panel').hide();
-            });
-          }
+          callback.call(this, value);
         });
       });
     })
@@ -190,7 +94,7 @@ class Spirit {
            <div class="bm-tree">尺寸</div>
            <div class="bm-cell no-hover bm-size">
 						<div class="bm-cell__title">
-							<div class="bm-kv">
+							<div class="bm-kv">   
 								<span class="bm-kv__text">W：</span>
 								<span class="bm-kv__value bm-size-w">${this.width}</span>
 							</div>						                            

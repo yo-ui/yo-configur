@@ -59,8 +59,17 @@ class Display extends Spirit {
                 width: ${this.width*0.75}px;
                 height: 24px;
                 text-align: center">
-                <span class="value" style="font-weight:bold;font-family: lcdD;font-size: 18px;margin-right: -3px">00.00</span>      
-                <small class="unit" style="text-align:center;font-size: 12px;color: #ddd;transform: scale(0.7);display: inline-block;"></small>             
+                <span class="value" style="
+                  font-weight:bold;
+                  font-family: lcdD;
+                  font-size: 18px;
+                  margin-right: -3px">00.00</span>      
+                <small class="unit" style="
+                  display: inline-block;
+                  text-align:center;
+                  font-size: 12px;color: #ddd;
+                  transform: scale(0.7);             
+                  vertical-align: middle;"></small>             
             </div>
          </div>`);
 	}

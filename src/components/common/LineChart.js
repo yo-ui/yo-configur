@@ -16,6 +16,7 @@ class LineChart extends Spirit {
 		  this.zIndex = 3;
 	    this.moveType = 4;
 	    this.linkage = false;
+	    this.isLink = true;
 	    this.isBind = true;
 	    this.bindType = 1;
 	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}};
@@ -72,7 +73,7 @@ class LineChart extends Spirit {
     this.chart.setOption(this.option);
 	}
 
-	reveal(device,config) {
+  initialize(device,config) {
     let that = this;
     if(device) {
       $('#'+that.id).find('.bm-select').show();

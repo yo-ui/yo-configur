@@ -17,7 +17,7 @@ class Images extends Spirit {
 	    this.linkage = false;
 	    this.isMove = true;
 	    this.zIndex = 0;
-	    this.config = {url:'static/images/background/background.jpg'}
+	    this.config = {url:''}
 	}
 
 	template(){

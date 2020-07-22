@@ -9,6 +9,7 @@ class BindData {
 	}
 
 	create() {
+    this.organizs = []
     this.points = []
 		let that = this;
 		if(that.stage.property) {
@@ -101,7 +102,7 @@ class BindData {
           that.createDevice(that.deviceList);
         }
       })
-      that.organizList();
+      that.oList();
 
       $('.bm-configur-panel').find('.confirm').on('click',function () {
         that.stage.property.config.bindData = that.bindData;
@@ -117,8 +118,8 @@ class BindData {
       });
 		}
 	}
-
-  organizList() {
+  //组织列表
+  oList() {
     let that = this;
     that.stage.option.organizList(function(dataList) {
       if(dataList.length>0) {
@@ -127,7 +128,7 @@ class BindData {
         }
         that.organizs = dataList;
         that.createOrganiz();
-        that.deviceList()
+        that.dList()
       }
     })
   }
@@ -164,43 +165,48 @@ class BindData {
     $('.bm-configur-panel__body').css({width:400});
   }
 
-  deviceList() {
+  //设备列表
+  dList() {
     let that = this;
     let id = that.bindData.orgId;
-    that.stage.option.devicePoints(id,function(deviceList) {
-      that.deviceList = deviceList;
-      that.createDevice(that.deviceList);
-    })
+    if(id) {
+      that.stage.option.devicePoints(id,function(deviceList) {
+        that.deviceList = deviceList;
+        that.createDevice(that.deviceList);
+      })
+    }
   }
 
   createDevice(deviceList) {
     $('.device-list ul').html('');
-	  let that = this;
-    deviceList.forEach(function (device,index) {
-      let li = $('<li></li>')
-      li.data('id', device.id)
-      li.data('points', device.points);
-      li.text(that.textFormat(device.name,16));
-      li.attr('title',device.name);
-      li.on('click',function () {
-        $(this).addClass('active')
-        $(this).siblings().each(function () {
-          $(this).removeClass('active');
+    let that = this;
+    if(deviceList) {
+      deviceList.forEach(function (device, index) {
+        let li = $('<li></li>')
+        li.data('id', device.id)
+        li.data('points', device.points);
+        li.text(that.textFormat(device.name, 16));
+        li.attr('title', device.name);
+        li.on('click', function () {
+          $(this).addClass('active')
+          $(this).siblings().each(function () {
+            $(this).removeClass('active');
+          });
+          that.bindData.deviceId = $(this).data('id');
+          $(this).parent().parent().hide();
+          that.points = $(this).data('points');
+          $('.device-panel').find('.text').text($(this).attr('title'));
+          that.createPoint(that.points);
         });
-        that.bindData.deviceId = $(this).data('id');
-        $(this).parent().parent().hide();
-        that.points = $(this).data('points');
-        $('.device-panel').find('.text').text($(this).attr('title'));
-        that.createPoint(that.points);
-      });
-      if(that.bindData.deviceId == device.id) {
-        li.addClass('active');
-        that.points = device.points;
-        $('.device-panel').find('.text').text(device.name);
-        that.createPoint(that.points);
-      }
-      $('.device-list ul').append(li);
-    })
+        if (that.bindData.deviceId == device.id) {
+          li.addClass('active');
+          that.points = device.points;
+          $('.device-panel').find('.text').text(device.name);
+          that.createPoint(that.points);
+        }
+        $('.device-list ul').append(li);
+      })
+    }
   }
 
   createPoint(points) {
