@@ -544,8 +544,6 @@ class Stage {
     if(spirit.className=="Images") {
       if(!spirit.config.url) {
         spirit.config.url = "static/images/background/background.jpg";
-      }else {
-        spirit.config.url = that.imgHost+"/"+spirit.config.url;
       }
     }
     spirit.rotate = rotate;3
@@ -740,7 +738,7 @@ class Stage {
 				spirit.zIndex = property.zIndex;
 				spirit.config = property.config;
         if(className=="Images") {
-          spirit.config.url = that.imgHost+"/"+spirit.config.url;
+          $('#'+spirit.id).find('img').attr('src',that.imgHost+"/"+spirit.config.url);
         }
 				spirit.refresh();
 				that.capacity.push(spirit);

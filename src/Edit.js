@@ -24,11 +24,8 @@ class Edit {
           if(canvasId) {
             let data = {}
             data.id = canvasId;
-            RemoteObject.ajax(that.config.get,"get",data,function(msg){
-              let result = JSON.parse(msg);
-              if(result.success) {
-                callback.call(this, result.message);
-              }
+            RemoteObject.ajax(that.config.get,"get",data,function(result){
+              callback.call(this, result);
             })
           }
         }
@@ -38,11 +35,8 @@ class Edit {
           localStorage.setItem("data", data.data);
           callback.call(this, "ok");
         }else {
-          RemoteObject.ajax(that.config.save,"post",data,function(msg){
-            let result = JSON.parse(msg);
-            if(result.success) {
-              callback.call(this, "ok");
-            }
+          RemoteObject.ajax(that.config.save,"post",data,function(){
+            callback.call(this, "ok");
           })
         }
       },
@@ -51,11 +45,8 @@ class Edit {
           let dataList = [{id:1,name:'A楼',pid:0},{id:2,name:'B楼',pid:1}]
           callback.call(this, dataList);
         }else {
-          RemoteObject.ajax(that.config.organizList,"get","",function(msg){
-            let result = JSON.parse(msg);
-            if(result.success) {
-              callback.call(this, result.message);
-            }
+          RemoteObject.ajax(that.config.organizList,"get","",function(result){
+            callback.call(this, result);
           })
         }
       },
@@ -68,11 +59,8 @@ class Edit {
         }else {
           let data = {}
           data.orgId = orgId;
-          RemoteObject.ajax(that.config.devicePoints,"get",data,function(msg){
-            let result = JSON.parse(msg);
-            if(result.success) {
-              callback.call(this, result.message);
-            }
+          RemoteObject.ajax(that.config.devicePoints,"get",data,function(result){
+            callback.call(this, result);
           })
         }
       },
@@ -82,16 +70,19 @@ class Edit {
           callback.call(this, "static/images/background/background.jpg");
         }else {
           let imageForm = new FormData(form);
-          imageForm.append("file", file);
+          imageForm.append("files", file);
           $.ajax({
             url: that.config.upload,
             type: 'post',
             data: imageForm,
             contentType: false,
             processData: false,
-            success: function(msg){
-              let url = "upload/background/"+JSON.parse(msg).fileName
-              callback.call(this, url)
+            success: function(result){
+              if(result.code==200) {
+                callback.call(this,result.result[0]);
+              }else {
+                console.log(url+":"+result.message);
+              }
             },
             error:function(err){
               console.log(err)
@@ -113,11 +104,8 @@ class Edit {
           data.point = point;
           data.startTime = startTime;
           data.endTime = endTime;
-          RemoteObject.ajax(that.config.devicePointHstData,"get",data,function(msg){
-            let result = JSON.parse(msg);
-            if(result.success) {
-              callback.call(this, result.message);
-            }
+          RemoteObject.ajax(that.config.devicePointHstData,"get",data,function(result){
+            callback.call(this, result);
           })
         }
       }

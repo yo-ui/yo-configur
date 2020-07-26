@@ -1,23 +1,23 @@
-let wsHost=process.env.NODE_ENV==='production'?'wss://viz.energyiot.cn/configur':'ws://127.0.0.1:8082/configur';
-let imgHost=process.env.NODE_ENV==='production'?'viz.energyiot.cn':'//127.0.0.1:8082';
-let host=process.env.NODE_ENV==='production'?'/configur':'/configur';
+let wsHost=process.env.NODE_ENV==='production'?'https://prod-eiot.energyiot.cn':'http://localhost:8081';
+let host=process.env.NODE_ENV==='production'?'/service':'/service';
 let debug=process.env.NODE_ENV==='production'?false:true;
 export default
 {
   "debug": debug,
-  "websocketUrl": wsHost+"/websocket",
-  "verifyInfo": host+"/common/verifyInfo",
-  "organizList": host+"/common/organizList",
-  "devicePoints": host+"/common/devicePoints",
-  "devicePointHstData": host+"/common/devicePointHstData",
-  "deviceList": host+"/common/deviceList",
-  "getDevice": host+"/common/getDevice",
-  "get": host+"/canvas/get",
-  "save": host+"/canvas/save",
-  "control": host+"/canvas/control",
-  "token": host+"/canvas/token",
-  "start": host+"/canvas/start",
-  "stop": host+"/canvas/stop",
-  "upload": host+"/file/upload",
-  "imgHost": imgHost
+  "websocketUrl": wsHost+"/ws",
+  "verifyInfo": host+"/configur/common/verifyInfo",
+  "organizList": host+"/configur/common/organizList",
+  "devicePoints": host+"/configur/common/devicePoints",
+  "devicePointHstData": host+"/configur/common/devicePointHstData",
+  "deviceList": host+"/configur/common/deviceList",
+  "getDevice": host+"/configur/common/getDevice",
+  "push": host+"/configur/push",
+  "get": host+"/configur/canvas/get",
+  "save": host+"/configur/canvas/save",
+  "control": host+"/configur/canvas/control",
+  "token": host+"/configur/canvas/token",
+  "start": host+"/configur/canvas/start",
+  "stop": host+"/configur/canvas/stop",
+  "upload": host+"/upload/upload2Oss",
+  "getEndPoint": host+"/upload/get/endPoint",
 }

@@ -14,10 +14,12 @@ var RemoteObject = {
         data:data,
         dataType:dataType,
         success:function(msg){
-          if(msg) {
-            back.call(this,msg);
+          let result = JSON.parse(msg);
+          if(result.code==200) {
+            back.call(this,result.result);
           }else {
-            console.log("请先登录！");
+            console.log(url+":"+result.message);
+            //window.history.back();
           }
         },
         complete:function(XMLHttpRequest,status){

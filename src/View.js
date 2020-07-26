@@ -11,12 +11,8 @@ class View {
 
   init() {
     let that = this;
-    let webSocket;
     let option = {
       canvas: function (callback) {
-        if(webSocket) {
-          webSocket.close();
-        }
         if(that.config.debug) {
           let data = localStorage.getItem("data");
           if(!data) {
@@ -29,11 +25,8 @@ class View {
           if(canvasId) {
             let data = {}
             data.id = canvasId;
-            RemoteObject.ajax(that.config.get, "get", data, function (msg) {
-              let result = JSON.parse(msg);
-              if (result.success) {
-                callback.call(this, result.message)
-              }
+            RemoteObject.ajax(that.config.get, "get", data, function (result) {
+              callback.call(this, result);
             })
           }
         }
@@ -43,10 +36,7 @@ class View {
           callback.call(this,JSON.stringify({status:{code:100000}}));
         }else {
           RemoteObject.ajax(that.config.control,"post",data,function(msg) {
-            let result = JSON.parse(msg);
-            if(result.success) {
-              callback.call(this, result.message)
-            }
+            callback.call(this, result);
           })
         }
       },
@@ -60,11 +50,8 @@ class View {
         }else {
           let data = {}
           data.ids = JSON.stringify(ids);
-          RemoteObject.ajax(that.config.deviceList,"get",data,function(msg){
-            let result = JSON.parse(msg);
-            if(result.success) {
-              callback.call(this, result.message);
-            }
+          RemoteObject.ajax(that.config.deviceList,"get",data,function(result){
+            callback.call(this, result);
           })
         }
       },
@@ -77,28 +64,49 @@ class View {
                 {id:'SwSts',name:'设备状态',value:1,time:'00:09:00'}]}]
           callback.call(this, devices);
         }else {
+          var stompClient
+          var socket
           if(that.config.debug) {
-            webSocket = new WebSocket("ws://127.0.0.1:8080/configur/websocket");
+
           } else {
-            //socket = new WebSocket("wss://viz.energyiot.cn/configur/websocket");
-            webSocket = new WebSocket(that.config.websocketUrl);
+            let deviceIdList = Array.from(ids);
+            if(deviceIdList.length>0) {
+              let params = "";
+              deviceIdList.forEach(function (id,index) {
+                params+="deviceIdList="+id;
+                if(index<deviceIdList.length-1) {
+                  params+="&";
+                }
+              })
+              RemoteObject.ajax(that.config.push,"get",params,function(result){
+                console.log(result);
+              })
+            }
+            if(socket) {
+              socket.close();
+            }
+            if(stompClient) {
+              stompClient.close();
+            }
+            console.log(that.config.websocketUrl);
+            socket = new SockJS(that.config.websocketUrl);
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, onConnected, onError);
           }
-          //连接发生错误的回调方法
-          webSocket.onerror = function() {
-            console.log("WebSocket连接发生错误");
-          };
-          //连接成功建立的回调方法
-          webSocket.onopen = function() {
-            console.log("WebSocket连接成功");
-            webSocket.send(JSON.stringify(ids));
+          function onConnected() {
+            var topic5=stompClient.subscribe("/user/queue/test/64", onMessageReceived4);
           }
-          //接收到消息的回调方法
-          webSocket.onmessage = function(event) {
-            callback.call(this,JSON.parse(event.data));
+
+          function onError(error) {
+            console.log("error: "+error);
           }
-          //连接关闭的回调方法
-          webSocket.onclose = function() {
-            console.log("WebSocket连接关闭");
+
+          function onMessageReceived4(payload) {
+            let result = JSON.parse(payload.body);
+            if(result.code==200) {
+              console.log(result.result);
+              callback.call(this, result.result);
+            }
           }
         }
       },
@@ -117,11 +125,8 @@ class View {
         }else {
           let data = {}
           data.deviceId = id;
-          RemoteObject.ajax(that.config.getDevice,"get",data,function(msg){
-            let result = JSON.parse(msg);
-            if(result.success) {
-              callback.call(this, result.message);
-            }
+          RemoteObject.ajax(that.config.getDevice,"get",data,function(result){
+            callback.call(this, result);
           })
         }
       },
@@ -138,11 +143,8 @@ class View {
           data.point = point;
           data.startTime = startTime;
           data.endTime = endTime;
-          RemoteObject.ajax(that.config.devicePointHstData,"get",data,function(msg){
-            let result = JSON.parse(msg);
-            if(result.success) {
-              callback.call(this, result.message);
-            }
+          RemoteObject.ajax(that.config.devicePointHstData,"get",data,function(result){
+            callback.call(this, result);
           })
         }
       },
@@ -155,11 +157,8 @@ class View {
         }else {
           let data = {}
           data.deviceId = deviceId;
-          RemoteObject.ajax(that.config.token,"get",data,function(msg){
-            let result = JSON.parse(msg);
-            if(result.success) {
-              callback.call(this, result.message);
-            }
+          RemoteObject.ajax(that.config.token,"get",data,function(result){
+            callback.call(this, result);
           })
         }
       },
@@ -171,11 +170,8 @@ class View {
           let data = {}
           data.deviceId = deviceId;
           data.direction = value;
-          RemoteObject.ajax(that.config.start,"post",data,function(msg){
-            let result = JSON.parse(msg);
-            if(result.success) {
-              callback.call(this, result.message);
-            }
+          RemoteObject.ajax(that.config.start,"post",data,function(result){
+            callback.call(this, result);
           })
         }
       },
@@ -187,11 +183,8 @@ class View {
           let data = {}
           data.deviceId = deviceId;
           data.direction = value;
-          RemoteObject.ajax(that.config.stop,"post",data,function(msg){
-            let result = JSON.parse(msg);
-            if(result.success) {
-              callback.call(this, result.message);
-            }
+          RemoteObject.ajax(that.config.stop,"post",data,function(result){
+            callback.call(this, result);
           })
         }
       }

@@ -145,7 +145,6 @@ class Kg extends Spirit {
 	}
 
   event(device,data) {
-	  console.log(data)
 		if(device) {
 			let that = this;
 			that.point = {id:'',value:''}

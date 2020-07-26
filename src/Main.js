@@ -10,13 +10,13 @@ $(document).ready(function() {
     if(config.debug) {
       content(1);
     }else {
-      RemoteObject.ajax(config.verifyInfo,"get","",function(msg){
-        let result = JSON.parse(msg);
-        if(result.success) {
-          let message = result.message;
-          sessionStorage.setItem("canvasId", message.canvasId);
-          content(message.type);
-        }
+      RemoteObject.ajax(config.verifyInfo,"get","",function(result){
+        sessionStorage.setItem("canvasId", result.canvasId);
+        let type = result.type;
+        RemoteObject.ajax(config.getEndPoint,"get","",function(result){
+          config.imgHost = result;
+          content(type);
+        })
       })
     }
 
