@@ -64,14 +64,14 @@ class View {
                 {id:'SwSts',name:'设备状态',value:1,time:'00:09:00'}]}]
           callback.call(this, devices);
         }else {
-          var stompClient
-          var socket
+
           if(that.config.debug) {
 
           } else {
+            let canvasId = sessionStorage.getItem("canvasId")
             let deviceIdList = Array.from(ids);
             if(deviceIdList.length>0) {
-              let params = "";
+              let params = "canvasId="+canvasId+"&";
               deviceIdList.forEach(function (id,index) {
                 params+="deviceIdList="+id;
                 if(index<deviceIdList.length-1) {
@@ -82,31 +82,45 @@ class View {
                 console.log(result);
               })
             }
-            if(socket) {
-              socket.close();
-            }
-            if(stompClient) {
-              stompClient.close();
-            }
-            console.log(that.config.websocketUrl);
-            socket = new SockJS(that.config.websocketUrl);
-            stompClient = Stomp.over(socket);
-            stompClient.connect({}, onConnected, onError);
+            let socket = new SockJS(that.config.websocketUrl);
+            that.config.stompClient = Stomp.over(socket);
+            that.config.stompClient.connect({}, onConnected, onError);
           }
+
           function onConnected() {
-            var topic5=stompClient.subscribe("/user/queue/test/64", onMessageReceived4);
+            let canvasId = sessionStorage.getItem("canvasId")
+            let userId = sessionStorage.getItem("userId")
+            that.config.stompClient.subscribe("/user/queue/canvas/"+userId+"/"+canvasId, function (payload) {
+              console.log(payload.body);
+              let result = JSON.parse(payload.body);
+              if(result.code==200) {
+                let deviceList = result.result;
+                let dataList = [];
+                deviceList.forEach(function (item) {
+                  let data = {};
+                  data.id = item.deviceId;
+                  let pList = item.configurDevicePointVoList;
+                  if(pList.length>0){
+                    let points = []
+                    pList.forEach(function (pv) {
+                      let point = {}
+                      point.id = pv.point;
+                      point.value = pv.value;
+                      point.unit = pv.unit;
+                      point.name = pv.descr;
+                      points.push(point);
+                    })
+                    data.points = points;
+                  }
+                  dataList.push(data)
+                })
+                callback.call(this, dataList);
+              }
+            });
           }
 
           function onError(error) {
             console.log("error: "+error);
-          }
-
-          function onMessageReceived4(payload) {
-            let result = JSON.parse(payload.body);
-            if(result.code==200) {
-              console.log(result.result);
-              callback.call(this, result.result);
-            }
           }
         }
       },

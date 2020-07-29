@@ -7,11 +7,13 @@ import View from './View';
 import Edit from './Edit';
 
 $(document).ready(function() {
+    let stompClient = null;
     if(config.debug) {
       content(1);
     }else {
       RemoteObject.ajax(config.verifyInfo,"get","",function(result){
         sessionStorage.setItem("canvasId", result.canvasId);
+        sessionStorage.setItem("userId", result.userId);
         let type = result.type;
         RemoteObject.ajax(config.getEndPoint,"get","",function(result){
           config.imgHost = result;
@@ -21,6 +23,7 @@ $(document).ready(function() {
     }
 
     function content(type) {
+      config.stompClient = stompClient;
       if(type==1) {
         let edit = new Edit(config);
         $('.main-content').html(edit.template());

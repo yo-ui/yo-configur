@@ -1,4 +1,4 @@
-let wsHost=process.env.NODE_ENV==='production'?'https://prod-eiot.energyiot.cn':'http://localhost:8081';
+let wsHost=process.env.NODE_ENV==='production'?'https://eiot.energyiot.cn':'http://localhost:8081';
 let host=process.env.NODE_ENV==='production'?'/service':'/service';
 let debug=process.env.NODE_ENV==='production'?false:true;
 export default
