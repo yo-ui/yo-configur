@@ -1,0 +1,60 @@
+@import "./../style/bm";
+@import "./../style/mixins/opacity";
+@import "./../style/mixins/size";
+
+.vision-btn {
+  position: absolute;
+  right: 30px;
+  top: 60px;
+  z-index: 999;
+}
+
+.bm-direction {
+  .square(60px);//大小
+  border: 0;
+  background-color: @white;
+  border-radius: 30px;
+  .opacity(0.5);
+
+  &--top,
+  &--bottom {
+    width: 100%;
+    text-align: center;
+  }
+
+  &--top,
+  &--bottom,
+  &--left,
+  &--right {
+    height: 19px;
+    cursor: pointer;
+    margin-bottom: 0;
+    float: left;
+
+    & > img {
+      width: 14px;
+      vertical-align: middle;
+    }
+  }
+
+  &--left,
+  &--right {
+    width: 14px;
+    height: 22px;
+  }
+
+  &--top {
+    margin-top: 0px;
+  }
+
+  &--left {
+    margin-left: 0px;
+    margin-top: 2px;
+  }
+
+  &--right {
+    float: right;
+    margin-right: 0px;
+    margin-top: 2px;
+  }
+}

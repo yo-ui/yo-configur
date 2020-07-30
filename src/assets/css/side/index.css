@@ -1,0 +1,26 @@
+.bm-side {
+  display: inline-block;
+  width: 44px;
+  height: 100%;
+  background-color: #A9ADB0;
+  font-size: 15px;
+  text-align: center;
+}
+.bm-side > li {
+  width: 24px;
+  padding: 20px 10px;
+  text-align: center;
+  cursor: pointer;
+  color: #000;
+}
+.bm-side > li > p {
+  margin-top: 2px;
+}
+.bm-side > li.active {
+  background-color: #f0f2f3;
+  color: #000;
+}
+.bm-side > li:not(.active):hover {
+  background-color: #12a3ff;
+  color: #fff;
+}

@@ -1,0 +1,97 @@
+// Utility classes
+@import "./../style/bm";
+@import "./../style/mixins/clearfix";
+@import "./../style/mixins/center-block";
+@import "./../style/mixins/hide-text";
+
+html,body {
+  height: 100%;
+  font-size: @font-size-base;
+  font-family: @font-family-base;
+  overflow: hidden;
+}
+
+i,
+span {
+  display: inline-block;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: @white;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.3);
+  border-radius: 0px;
+  background-color: @gray-3;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,.2);
+  background-color: @gray-5;
+}
+
+// Floats
+.clearfix {
+  .clearfix();
+}
+
+.center-block {
+  .center-block();
+}
+
+.pull-right {
+  float: right !important;
+}
+
+.pull-left {
+  float: left !important;
+}
+
+.hide {
+  display: none !important;
+}
+.show {
+  display: block !important;
+}
+.invisible {
+  visibility: hidden;
+}
+.text-hide {
+  .text-hide();
+}
+.inline-block {
+  display: inline-block;
+}
+.block {
+  display: block;
+}
+//定位
+.absolute {
+  position: absolute;
+}
+.relative {
+  position:relative;
+}
+.affix {
+  position: fixed;
+}
+
+/*text*/
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.text-justify {
+  text-align: justify;
+}

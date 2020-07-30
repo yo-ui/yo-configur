@@ -1,0 +1,53 @@
+.vision-btn {
+  position: absolute;
+  right: 30px;
+  top: 60px;
+  z-index: 999;
+}
+.bm-direction {
+  width: 60px;
+  height: 60px;
+  border: 0;
+  background-color: #fff;
+  border-radius: 30px;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.bm-direction--top,
+.bm-direction--bottom {
+  width: 100%;
+  text-align: center;
+}
+.bm-direction--top,
+.bm-direction--bottom,
+.bm-direction--left,
+.bm-direction--right {
+  height: 19px;
+  cursor: pointer;
+  margin-bottom: 0;
+  float: left;
+}
+.bm-direction--top > img,
+.bm-direction--bottom > img,
+.bm-direction--left > img,
+.bm-direction--right > img {
+  width: 14px;
+  vertical-align: middle;
+}
+.bm-direction--left,
+.bm-direction--right {
+  width: 14px;
+  height: 22px;
+}
+.bm-direction--top {
+  margin-top: 0px;
+}
+.bm-direction--left {
+  margin-left: 0px;
+  margin-top: 2px;
+}
+.bm-direction--right {
+  float: right;
+  margin-right: 0px;
+  margin-top: 2px;
+}

@@ -1,0 +1,83 @@
+@font-face {
+  font-family: 'lcdD';
+  src: url('../fonts/lcdD.ttf?afd1x4') format('truetype');
+}
+@font-face {
+  font-family: 'fontIcon';
+  src: url('../fonts/font.ttf?afd1x4') format('truetype');
+}
+.fa {
+  display: inline-block;
+  font-family: fontIcon;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.fa-sm {
+  font-size: 24px;
+}
+.fa-base:before {
+  content: "\e90d";
+}
+.fa-water:before {
+  content: "\e900";
+}
+.fa-env:before {
+  content: "\e901";
+}
+.fa-air:before {
+  content: "\e902";
+}
+.fa-power:before {
+  content: "\e903";
+}
+.fa-led:before {
+  content: "\e904";
+}
+.fa-security:before {
+  content: "\e90c";
+}
+.fa-gf:before {
+  content: "\e90e";
+}
+.fa-save:before {
+  content: "\e905";
+}
+.fa-back:before {
+  content: "\e906";
+}
+.fa-remove:before {
+  content: "\e907";
+}
+.fa-copy:before {
+  content: "\e90f";
+}
+.fa-uplock:before {
+  content: "\e910";
+}
+.fa-lock:before {
+  content: "\e911";
+}
+.fa-align-left:before {
+  content: "\e908";
+}
+.fa-align-down:before {
+  content: "\e909";
+}
+.fa-align-right:before {
+  content: "\e90a";
+}
+.fa-align-up:before {
+  content: "\e90b";
+}
+.fa-icon-assist:before {
+  content: "\e913";
+}
+.fa-icon-device:before {
+  content: "\e914";
+}
+.fa-icon-conf:before {
+  content: "\e915";
+}

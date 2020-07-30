@@ -1,0 +1,86 @@
+#root {
+  width: 100%;
+  height: 100%;
+  background-color: #e2e5ec;
+  overflow: auto;
+}
+.bm-stage {
+  height: 100%;
+  overflow: auto;
+}
+.bm-stage > div {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.bm-text-header {
+  line-height: 24px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.bm-zoom {
+  line-height: 24px;
+  height: 24px;
+  width: 100%;
+}
+.bm-zoom > span {
+  vertical-align: middle;
+}
+.bm-zoom > img {
+  width: 23px;
+  height: 23px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 2px solid transparent;
+  border-radius: 2px;
+}
+.bm-zoom > img:hover {
+  border: 2px solid #ddd;
+}
+.bm-color-box {
+  float: left;
+  width: 23px;
+  height: 23px;
+  border: 1px solid #c8c9cc;
+  border-radius: 2px;
+}
+.bm-lump {
+  display: flex;
+}
+.bm-lump > .icon {
+  width: 36px;
+  height: 40px;
+}
+.bm-lump > .icon > img {
+  width: 36px;
+  height: 40px;
+}
+.bm-lump > .text {
+  flex: 1;
+  height: 32px;
+  line-height: 16px;
+  padding: 4px 5px;
+  font-size: 11px;
+}
+.bm-lump > .text > p {
+  color: #3f3f3f;
+  font-size: 11px;
+}
+.bm-lump > .text > span {
+  color: #000;
+  font-weight: bold;
+  font-size: 16px;
+}
+.bm-lump > .text > small {
+  font-size: 11px;
+  color: #484848;
+}
+.conf-list > li {
+  min-width: 80px;
+  line-height: 24px;
+}
+.conf-list > li > input {
+  vertical-align: middle;
+  margin-top: -1px;
+  margin-right: 2px;
+}

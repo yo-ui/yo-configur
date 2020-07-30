@@ -1,0 +1,26 @@
+.bm-upload {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  padding: 3px 0px;
+  line-height: 24px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background: #07c160;
+  border-radius: 2px;
+  width: 100%;
+}
+.bm-upload > span {
+  color: #fff;
+}
+.bm-upload > input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  border: solid transparent;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  cursor: pointer;
+}

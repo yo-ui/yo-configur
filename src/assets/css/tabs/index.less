@@ -1,0 +1,98 @@
+@import "./../style/bm";
+
+.bm-tabs {
+
+  & > li {
+    float: left;
+
+    & > a {
+      margin-right: 2px;
+      line-height: 1.42857143;
+      border-radius: 4px 4px 0 0;
+    }
+
+    & > a:hover {
+      color: #000;
+    }
+  }
+
+  & > li.active > a,
+  & > li.active > a:hover {
+    color: #555;
+    cursor: default;
+    border-bottom: 2px solid #12a3ff;
+  }
+}
+
+.bm-tabs-group {
+  display: inline-block;
+  vertical-align: middle;
+
+  & > span {
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #12a3ff;
+    line-height: 30px;
+    background-color: #fff;
+    padding: 0 10px;
+    cursor: pointer;
+  }
+
+  & > span.active {
+    background-color: #12a3ff;
+    color: #fff;
+  }
+
+  & > span:last-child {
+    border-left: none;
+  }
+}
+
+.bm-tabs-custom {
+  margin-bottom: 0px;
+
+  & > .bm-tabs {
+    margin: 0;
+    height: 45px;
+
+    & > li {
+      margin-top: 10px;
+      margin-right: 5px;
+      margin-left: 5px;
+
+      & > a {
+        -webkit-border-radius: 0 !important;
+        -moz-border-radius: 0 !important;
+        border-radius: 0 !important;
+        padding: 5px 10px;
+        min-width: 50px;
+        text-align: center;
+        font-size: 15px;
+        background: transparent;
+        margin: 0;
+      }
+
+      & > a:hover {
+        background: transparent;
+        margin: 0;
+      }
+    }
+
+    & > li.active {
+
+    }
+
+    & > li:not(.active) > a:hover,
+    & > li:not(.active) > a:active {
+      border-color: transparent;
+    }
+  }
+}
+
+.bm-tabs-content {
+  background-color: #fff;
+  height: calc(100% - 56px);
+  padding: 5px;
+  border: 1px solid #f0f2f3;
+  overflow: auto;
+}
