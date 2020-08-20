@@ -1,48 +1,41 @@
 <template>
-  <div>
-    测试页
+  <div class="bm-index-page">
+    <div class="canvas-box">
+      <bm-com
+        v-for="(item, index) in comList"
+        :type="item.type"
+        :key="index"
+      ></bm-com>
+    </div>
+    <bm-info ref="bmInfo"></bm-info>
   </div>
 </template>
-// <script>
-// // import DynamicGrid from "../components/DynamicGrid.vue";
-// // import "../assets/js/jquery.pagination.js";
-// // import Source from "../data/source.js";
-// // import ExcelUtils from "../assets/js/ExcelUtils.js";
-// import RouterURL from "@/router/routers.conf";
-// export default {
-//   data() {
-//     return {};
-//   },
-//   template: "",
-//   methods: {
-//     // exportExcel: function() {
-//     //   let table = ExcelUtils.createTable("table", "表格");
-//     //   console.log(table);
-//     //   let data = {};
-//     //   data.table = JSON.stringify(table);
-//     //   this.remoteObject.proxy("common/createExcel", "post", data, function(
-//     //     msg
-//     //   ) {
-//     //     let result = JSON.parse(msg);
-//     //     if (result.success) {
-//     //       ExcelUtils.download(result.message);
-//     //     }
-//     //   });
-//     // }
-//   },
-//   mounted() {
-//     let that = this;
-//     let menuList = that.$store.getters.getAccountMenuList || [];
-//     let menu =
-//       menuList &&
-//       menuList.find(item => {
-//         return item.active;
-//       });
-//     let routeName = RouterURL.index.name;
-//     if (menu) {
-//       routeName = menu.url;
-//     }
-//     that.$jumpPage(routeName);
-//   }
-// };
-// </script>
+<script>
+import bmCommon from "@/common/common";
+import { Constants } from "@/common/env";
+// eslint-disable-next-line no-undef
+const { mapActions, mapMutations, mapGetters } = Vuex;
+export default {
+  data() {
+    return {
+      comList: []
+    };
+  },
+  components: {
+    bmInfo: () =>
+      import(/* webpackChunkName: "iot-configur-info" */ "@/components/info"),
+    bmCom: () =>
+      import(
+        /* webpackChunkName: "iot-configur-com" */ "@/components/component"
+      )
+  },
+  methods: {},
+  mounted() {
+    this.comList.push({ type: "text" });
+    this.comList.push({ type: "image" });
+  }
+};
+</script>
+<style lang="less">
+@import (less) "../assets/less/pages/index.less";
+</style>

@@ -1,4 +1,4 @@
-// var webpack = require("webpack");
+var webpack = require("webpack");
 // const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 // const vConsolePlugin = require("vconsole-webpack-plugin"); // 引入 移动端模拟开发者工具 插件 （另：https://github.com/liriliri/eruda）
 const chalk = require("chalk");
@@ -172,12 +172,12 @@ module.exports = {
     ];
 
     config.plugins = [
-      ...config.plugins
+      ...config.plugins,
       // new webpack.optimize.CommonsChunkPlugin('common.js'),
-      // new webpack.ProvidePlugin({
-      //   jQuery: "jquery",
-      //   $: "jquery"
-      // })
+      new webpack.ProvidePlugin({
+        jQuery: "jquery",
+        $: "jquery"
+      })
     ];
     if (process.env.NODE_ENV === "production") {
       // 为生产环境修改配置...process.env.NODE_ENV !== 'development'

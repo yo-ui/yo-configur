@@ -8,6 +8,7 @@ import Plugins from "@/vue/plugins";
 import Filters from "@/vue/filters";
 import Directives from "@/vue/directives";
 import RouterURL from "@/router/routers.conf";
+import "jquery";
 import { Constants } from "@/common/env";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
