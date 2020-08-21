@@ -1,9 +1,9 @@
 let wsHost=process.env.NODE_ENV==='production'?'https://eiot.energyiot.cn':'http://localhost:8081';
 let host=process.env.NODE_ENV==='production'?'/service':'/service';
 let debug=true;
-if(process.env.ENV==='prod'){
-  debug=false
-}
+// if(process.env.ENV==='prod'){
+//   debug=false
+// }
 export default
 {
   "debug": debug,
