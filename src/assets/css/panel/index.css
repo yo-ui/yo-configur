@@ -322,3 +322,48 @@
   background-color: #12a3ff;
   opacity: 0.5;
 }
+.bm-zoom-panel {
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.bm-zoom-panel > div {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 136px;
+  height: 40px;
+  line-height: 40px;
+  margin-top: -20px;
+  margin-left: -20px;
+  background-color: #000;
+  opacity: 0.8;
+  z-index: 10;
+  color: #fff;
+  border-radius: 20px;
+}
+.bm-zoom-panel > div > div {
+  display: inline-block;
+  width: 40px;
+  text-align: center;
+}
+.bm-zoom-panel > div > div > i {
+  font-size: 24px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.bm-zoom-panel > div > div > i:hover {
+  border: 1px inset #2F2F2F;
+}
+.bm-zoom-panel > div > span {
+  display: inline-block;
+  width: 46px;
+  height: 20px;
+  line-height: 20px;
+  vertical-align: middle;
+  text-align: center;
+}

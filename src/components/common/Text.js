@@ -7,7 +7,7 @@ class Text extends Spirit {
 
 	constructor(x=0, y=0,width,height) {
         super(x, y);
-	    this.title = "静态文本";
+	    this.name = "静态文本";
 	    this.className = "Text";
 	    this.height = height;
 	    this.width = width;
@@ -29,10 +29,6 @@ class Text extends Spirit {
 		return div;
 	}
 
-	getEl() {
-		return $('#'+this.id);
-	}
-
 	refresh() {
 		$('#'+this.id).find('span').text(this.config.text);
 		$('#'+this.id).find('span').css({color:this.config.color,'font-size':this.config.fontSize+"px"});
@@ -40,7 +36,6 @@ class Text extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			minWidth: this.minWidth,
@@ -55,19 +50,19 @@ class Text extends Spirit {
 		let html = `<div class="bm-tree">字体</div>
                   <div class="bm-cell no-hover">
                     <div class="bm-cell__title">
-                        <div>字体颜色</div>
-                      <div class="bm-color-box text-color" title="字体颜色"></div>
+                      <div>字体颜色</div>
+                      <input class="text-color" title="字体颜色" />
                     </div>													
                   </div>
                   <div class="bm-cell no-hover">
                     <div class="bm-cell__title">
-                        <div>字体大小</div>
+                      <div>字体大小</div>
                       <select class="bm-select" name="textFS" title="字体大小"></select>	
                     </div>							
                   </div>
                   <div class="bm-cell no-hover">
                     <div class="bm-cell__title">
-                        <div>修改文本</div>
+                      <div>修改文本</div>
                       <input type="text" class="text form-control" value="${this.config.text}" maxlength="32" title="字体文本" />
                     </div>							
                   </div>`;
@@ -88,8 +83,8 @@ class Text extends Spirit {
       $('#temp_value').html($('#'+property.id).find('div').html());
       let width = $('#temp_value').width()+2;
       let height = $('#temp_value').height();
-      $('.resize-panel').css({width:width,height:height});
-      $('#'+property.id).find('div').css({width:width,'line-height': height+"px",height: height+"px"});
+      $('.resize-panel').css({width,height});
+      $('#'+property.id).find('div').css({width,'line-height': height+"px",height: height+"px"});
       property.height = height;
       property.width = width;
     });

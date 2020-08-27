@@ -3,10 +3,12 @@
  */
 class Video {
   constructor(stage,width,height,deviceId) {
+    this.width = width;
+    this.height = height;
     this.stage = stage;
     this.deviceId = deviceId;
     let that = this;
-    $('.bm-configur-panel__body').css({width: width,height: height})
+    $('.bm-configur-panel__body').css({width,height})
     $('.direction > div').each(function () {
       $(this).on('mousedown',function () {
         let value = $(this).data("value")
@@ -23,7 +25,8 @@ class Video {
   }
 
   create(name,accessToken,serial) {
-    $('.bm-configur-panel__header').text(name)
+    let that = this;
+    $('.bm-configur-panel__header span').text(name)
     let url = "ezopen://open.ys7.com/"+serial+"/1.live";
     this.decoder = new EZUIKit.EZUIPlayer({
       id: 'playWind',
@@ -31,8 +34,8 @@ class Video {
       url: url,
       accessToken: accessToken,
       decoderPath: 'static/js',
-      width: 800,
-      height: 445,
+      width: that.width,
+      height: that.height-55,
     });
     this.show();
   }
@@ -53,13 +56,13 @@ class Video {
 
   startVideoControl(deviceId,value) {
     this.stage.option.start(deviceId,value, function(message) {
-      console.log(message);
+      console.log("操作成功！");
     })
   }
 
   stopVideoControl(deviceId,value) {
     this.stage.option.stop(deviceId,value, function(message) {
-      console.log(message);
+      console.log("操作成功！");
     })
   }
 }

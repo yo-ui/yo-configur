@@ -1,6 +1,7 @@
 let wsHost=process.env.NODE_ENV==='production'?'https://eiot.energyiot.cn':'http://localhost:8081';
 let host=process.env.NODE_ENV==='production'?'/service':'/service';
 let debug=process.env.NODE_ENV==='production'?false:true;
+let imgHost=process.env.NODE_ENV==='production'?'http://pic.energyiot.cn':'http://test-pic.energyiot.cn'
 export default
 {
   "debug": debug,
@@ -19,5 +20,5 @@ export default
   "start": host+"/configur/canvas/start",
   "stop": host+"/configur/canvas/stop",
   "upload": host+"/upload/upload2Oss",
-  "getEndPoint": host+"/upload/get/endPoint",
+  "imgHost": imgHost
 }

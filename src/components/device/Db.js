@@ -7,7 +7,7 @@ class Db extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "电表";
+	    this.name = "电表";
 	    this.className = "Db";
 	    this.width = width;
 	    this.height = height;
@@ -95,7 +95,6 @@ class Db extends Spirit {
 	}
 
   reveal(device,config) {
-	  console.log(device);
     let that = this;
     let state = that.config.state;
     if(device) {
@@ -115,7 +114,6 @@ class Db extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			minWidth: this.minWidth,

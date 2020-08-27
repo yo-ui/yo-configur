@@ -7,7 +7,7 @@ class LinkPoint extends Spirit {
 
 	constructor(x=0, y=0,width,height) {
         super(x, y);
-	    this.title = "连接点";
+	    this.name = "连接点";
 	    this.className = "LinkPoint";
 	    this.width = width;
 	    this.height = height;
@@ -29,7 +29,6 @@ class LinkPoint extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			minWidth: this.minWidth,

@@ -12,6 +12,10 @@ var RemoteObject = {
         type:type,
         url:url,
         data:data,
+        beforeSend:function(xhr) {
+          xhr.setRequestHeader("clientId",'web_property_mgt');
+          xhr.setRequestHeader("clientTime", new Date().getTime());
+        },
         dataType:dataType,
         success:function(msg){
           let result = JSON.parse(msg);
@@ -19,7 +23,6 @@ var RemoteObject = {
             back.call(this,result.result);
           }else {
             console.log(url+":"+result.message);
-            //window.history.back();
           }
         },
         complete:function(XMLHttpRequest,status){

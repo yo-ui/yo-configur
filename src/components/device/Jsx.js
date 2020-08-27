@@ -7,7 +7,7 @@ class Jsj extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "集水箱";
+	    this.name = "集水箱";
 	    this.className = "Jsj";
 	    this.width = width;
 	    this.height = height;
@@ -1018,7 +1018,6 @@ class Jsj extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,
@@ -1030,18 +1029,6 @@ class Jsj extends Spirit {
 		return Object.assign(super.toJson(),json);
 	}
 
-  createLinkPoint() {
-    let x = this.x+this.width-8;
-    let y = this.y+this.height/2-4
-    let spirit = this.stage.create("LinkPoint",x,y,10,10);
-    spirit.isAuto = true;
-    this.stage.capacity.push(spirit);
-    let x2 = this.x-3;
-    let y2 = this.y+this.height/2-4;
-    let spirit2 = this.stage.create("LinkPoint",x2,y2,10,10);
-    spirit2.isAuto = true;
-    this.stage.capacity.push(spirit2);
-  }
 
 }
 

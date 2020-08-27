@@ -7,7 +7,7 @@ class Csbcj extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "超声波测距";
+	    this.name = "超声波测距";
 	    this.className = "Csbcj";
 	    this.width = width;
 	    this.height = height;
@@ -108,7 +108,6 @@ class Csbcj extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

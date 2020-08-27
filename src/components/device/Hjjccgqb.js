@@ -7,7 +7,7 @@ class Hjjccgqb extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "无液晶屏的环境监测传感器";
+	    this.name = "无液晶屏的环境监测传感器";
 	    this.className = "Hjjccgqb";
 	    this.width = width;
 	    this.height = height;
@@ -88,7 +88,6 @@ class Hjjccgqb extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

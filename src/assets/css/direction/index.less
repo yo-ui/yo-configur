@@ -10,51 +10,43 @@
 }
 
 .bm-direction {
-  .square(60px);//大小
+  position: relative;
+  .square(100px);//大小
   border: 0;
   background-color: @white;
-  border-radius: 30px;
-  .opacity(0.5);
-
-  &--top,
-  &--bottom {
-    width: 100%;
-    text-align: center;
-  }
+  border-radius: 50px;
+  .opacity(0.8);
+  font-size: 24px;
 
   &--top,
   &--bottom,
   &--left,
   &--right {
-    height: 19px;
+    position: absolute;
     cursor: pointer;
-    margin-bottom: 0;
-    float: left;
 
-    & > img {
-      width: 14px;
-      vertical-align: middle;
+    &:hover {
+      color: #12a3ff;
     }
   }
 
-  &--left,
-  &--right {
-    width: 14px;
-    height: 22px;
+  &--top {
+   margin-top: -5px;
+   margin-left: 38px;
   }
 
-  &--top {
-    margin-top: 0px;
+  &--bottom {
+    margin-top: 76px;
+    margin-left: 38px;
   }
 
   &--left {
-    margin-left: 0px;
-    margin-top: 2px;
+    margin-left: 1px;
+    margin-top: 38px;
   }
 
   &--right {
-    float: right;
-    margin-right: 0px;
-    margin-top: 2px;
+    margin-left: 79px;
+    margin-top: 38px;
   }
 }

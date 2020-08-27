@@ -1,6 +1,5 @@
 import RemoteObject from '@/assets/js/RemoteObject'
 import Stage from '@/core/Stage'
-import View from "./View";
 
 class Edit {
 
@@ -25,6 +24,7 @@ class Edit {
             let data = {}
             data.id = canvasId;
             RemoteObject.ajax(that.config.get,"get",data,function(result){
+              console.log(result);
               callback.call(this, result);
             })
           }
@@ -111,7 +111,8 @@ class Edit {
       }
     }
 
-    let stage = new Stage(option,this.config.imgHost);
+    let stage = new Stage(option,this.config);
+
     $('#property_tabs a').each(function(index) {
       $(this).data("value", index);
       $(this).on('click',function() {
@@ -134,10 +135,12 @@ class Edit {
       window.history.back(-1);
     })
 
-    $('.bm-layout__header__view').on('click',function() {
-      let view = new View(that.config);
-      $('.main-content').html(view.template());
-      view.init();
+    $('.bm-layout__header__view .fa-preview').on('click',function() {
+      stage.preview();
+    })
+
+    $('.bm-layout__header__view .fa-save').on('click',function() {
+      stage.save();
     })
 
     let names = [
@@ -151,7 +154,8 @@ class Edit {
     })
 
     $(window).resize(function() {
-      stage.location();//页面改变时调整舞台位置
+      stage.stageAuto();//舞台调整
+      stage.location();//舞台位置
     })
   }
 
@@ -159,11 +163,12 @@ class Edit {
     let html = `<div class="bm-layout">
       <div class="bm-layout__header">
         <span class="bm-layout__header__back">
-            <img src="static/images/back.png">
+          <i class="fa fa-return"></i>
         </span>
         <span class="bm-layout__header__name"></span>
         <span class="bm-layout__header__view">
-            <img src="static/images/preview.png">
+          <i class="fa fa-save" title="保存(Ctrl+S)"></i>
+          <i class="fa fa-preview" title="预览(Ctrl+P)"></i>
         </span>
       </div>
       <div class="bm-layout__main">
@@ -173,13 +178,13 @@ class Edit {
           <div class="bm-component-list"></div>
         </div>
         <div class="bm-layout__main__body">
-          <div class="bm-stage">
-            <div id="root"></div>
-            <div class="bm-config-panel">
-               <div class="bm-config-panel__shade">&nbsp;</div>
-               <div class="bm-config-panel__content"></div>
+            <div class="bm-stage">
+              <div id="root"></div>
+              <div class="bm-config-panel">
+                 <div class="bm-config-panel__shade">&nbsp;</div>
+                 <div class="bm-config-panel__content"></div>
+              </div>
             </div>
-          </div>
           <div style="display: none" class="bm-toast bm-toast--text bm-toast--top">
               <span class="bm-toast__text"></span>
           </div>
@@ -208,16 +213,6 @@ class Edit {
       </div>
       </div>
       <div class="menu-panel"></div>
-      <div class="bm-configur-panel" style="display: none;">
-          <div class="bm-configur-panel__body">
-              <div class="bm-configur-panel__header"><span>数据绑定</span><div class="bm-configur-panel__close">×</div></div>
-              <div class="bm-configur-panel__content"></div>
-              <div class="bm-configur-panel__floor">
-                  <div class="close bm-button bm-button--small bm-button--default">关闭</div>
-                  <div class="confirm bm-button bm-button--small bm-button--primary">确定</div>
-              </div>
-          </div>
-      </div>
       <div id="temp_value" style="display: none;"></div>`;
     return html;
   }

@@ -2,16 +2,17 @@
 
 .bm-component-list {
   display: inline-block;
-  width: 170px;
+  width: 160px;
   vertical-align: top;
   height: calc(100% - 20px);
   padding: 10px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   & > div {
     text-align: center;
     margin-bottom: 20px;
-    width: 80px;
+    width: 76px;
     display: inline-block;
 
     & > img {
@@ -26,15 +27,64 @@
       border: 2px solid @blue;
     }
   }
+
+  & > span {
+    width: 160px;
+    text-align: left;
+    line-height: 14px;
+    border-left: 2px solid red;
+    padding-left: 2px;
+    margin: 5px;
+    font-weight: bold;
+  }
 }
 
 .bm-list {
 
   & > li {
     line-height: 30px;
-    margin: 1px;
+    margin: 1px 0;
     border: 1px solid @gray-4;
     padding: 3px 5px;
+    display: flex;
+
+    & > .text {
+      flex: 1
+    }
+
+    & > .value {
+      & > img {
+        width: 18px;
+        vertical-align: middle;
+      }
+
+      & > i {
+        font-size: 18px;
+
+        &:hover {
+          color: red;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: @gray-1;
+      cursor: pointer;
+    }
+
+    &.active {
+      background-color: #12a3ff;
+      border: 1px solid #12a3ff;
+      color: #fff;
+    }
+  }
+}
+
+.action-list {
+  & > li {
+    line-height: 24px;
+    margin: 1px 0;
+    padding: 3px 8px;
     display: flex;
 
     & > .text {

@@ -7,7 +7,7 @@ class ElectricityMeter extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "电柜";
+	    this.name = "电柜";
 	    this.className = "ElectricBox";
 	    this.width = width;
 	    this.height = height;
@@ -65,7 +65,6 @@ class ElectricityMeter extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

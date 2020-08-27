@@ -7,7 +7,7 @@ class UpWater extends Spirit {
 
 	constructor(x=10, y=10) {
         super(x, y);
-	    this.title = "水管（上）";
+	    this.name = "水管（上）";
 	    this.className = "UpWater";
 	    this.width = 10;
 	    this.height = 16;
@@ -70,10 +70,9 @@ class UpWater extends Spirit {
 				</svg>
 				</div>`;
 	}
-	
+
 	toJson(){
 		let json = {
-			title: this.title,
 			className: this.className,
 			zIndex: this.zIndex,
 			isRotate: this.isRotate

@@ -7,7 +7,7 @@ class Xyssb extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "旋翼式水表";
+	    this.name = "旋翼式水表";
 	    this.className = "Xyssb";
 	    this.width = width;
 	    this.height = height;
@@ -107,7 +107,6 @@ class Xyssb extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

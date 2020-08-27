@@ -7,7 +7,7 @@ class Display extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "显示器";
+	    this.name = "显示器";
 	    this.className = "Display";
 	    this.width = width;
 	    this.height = height;
@@ -93,7 +93,6 @@ class Display extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			minWidth: this.minWidth,

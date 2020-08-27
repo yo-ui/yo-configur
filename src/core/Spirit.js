@@ -1,3 +1,4 @@
+import Toast from '@/core/Toast';
 /**
  * 所有组件的父类
  */
@@ -5,6 +6,7 @@ class Spirit {
 
 	constructor(x=0,y=0,width=10,height=10) {
 		this.id = "c_"+Math.random().toString().substr(2,10);
+    this.name = "";
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -22,6 +24,7 @@ class Spirit {
 	toJson() {
 		return {
 			id: this.id,
+      name: this.name,
 			x: this.x,
 			y: this.y,
 			width: this.width,
@@ -45,38 +48,20 @@ class Spirit {
     this.stop();
 	}
 
-  initialize(device,config) {}
+  initialize() {}
 
 	reveal(device,config) {}
-
-  action(animationList,callback) {
-    $('.bm-config-panel').show();
-    animationList.forEach(function (data) {
-      let text = $(`<div class="text">${data.name}</div>`)
-      let content = $(`<div class="content"></div>`)
-      data.dataList.forEach(function (item) {
-        let button = $(`<div class="button button-raised button-default">${item.name}</div>`);
-        button.data("value", item.type);
-        content.append(button);
-      })
-      $('.bm-config-panel__content').append(text).append(content);
-      $('.bm-config-panel__shade').on('click',function () {
-        $('.bm-config-panel').hide();
-      });
-
-      $('.bm-config-panel .button').each(function () {
-        $(this).on('click',function () {
-          let value = $(this).data("value");
-          callback.call(this, value);
-        });
-      });
-    })
-  }
 
 	renderer() {
 		let that = this;
 		$('#configur_property').html('');
-		let html = $(`<div class="bm-tree">位置</div>		             
+		let html = $(`<div class="bm-tree">名称</div>		             
+					<div class="bm-cell no-hover">
+						<div class="bm-cell__title">
+							  <input class="bm-title form-control" value="${this.name}"/>						                           						
+						</div>											
+					</div>
+					<div class="bm-tree">位置</div>		             
 					<div class="bm-cell no-hover">
 						<div class="bm-cell__title">
 							<div class="bm-kv">
@@ -125,6 +110,10 @@ class Spirit {
 			})
 			$('#configur_property').append(roteta);
 		}
+
+    $('#configur_property').find('.bm-title').on('input propertyChange',function () {
+      that.name = $(this).val();
+    })
 	}
 
 	viewPanel(device) {
@@ -184,14 +173,14 @@ class Spirit {
       that.stage.option.control(data,function(msg) {
         let message = JSON.parse(msg);
         if(message.status.code==100000) {
-          that.stage.toast("控制成功！");
+          Toast.alert("控制成功！");
           let item = {}
           item.id = deviceId;
           item.points = [{id:point,value:value}]
           that.stage.linkage(item);
           that.stage.password.hide();
         }else if(message.status.code==120020) {
-          that.stage.toast("密码错误！");
+          Toast.alert("密码错误！");
         }
       })
     });
@@ -234,6 +223,14 @@ class Spirit {
     if(el.find('.SVG_ani')){
       el.find('.SVG_ani').hide();
     }
+  }
+
+  show() {
+    $('#'+this.id).show();
+  }
+
+  hide() {
+    $('#'+this.id).hide();
   }
 
 	floatFormat(value) {

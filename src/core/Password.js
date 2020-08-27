@@ -1,9 +1,17 @@
+import Toast from '@/core/Toast.js';
 /**
  * 控制密码
  */
 class Password {
+
   constructor(stage) {
     this.stage = stage;
+    $('.main-content').append(Password.template());
+    this.close();
+    this.input();
+  }
+
+  input() {
     $('.bm-password-panel__input input').each(function() {
       $(this).on('input propertychange',function() {
         if($(this).val()!="") {
@@ -13,7 +21,9 @@ class Password {
         }
       });
     })
+  }
 
+  close() {
     $('.bm-password-panel__header').find('span').on('click',function () {
       $('.bm-password-panel').hide();
     })
@@ -31,7 +41,7 @@ class Password {
         text+=$(this).val()
       })
       if(text.length<6) {
-        that.stage.toast('请输入正确密码');
+        Toast.alert('请输入正确密码');
         return;
       }
       callback.call(this, text);
@@ -48,6 +58,28 @@ class Password {
 
   hide() {
     $('.bm-password-panel').hide();
+  }
+
+  static template() {
+    let html = `<div class="bm-password-panel">
+      <div class="bm-password-panel__shade">&nbsp;</div>
+      <div class="bm-password-panel__content">
+        <div class="bm-password-panel__header"><small class="text">控制密码</small><span>×</span></div>
+        <div class="bm-password-panel__input">
+          <input type="text" maxlength="1"/>
+          <input type="text" maxlength="1"/>
+          <input type="text" maxlength="1"/>
+          <input type="text" maxlength="1"/>
+          <input type="text" maxlength="1"/>
+          <input type="text" maxlength="1"/>
+        </div>
+        <div class="bm-password-panel__floor">
+          <div class="bm-password-cancel">取消</div>
+          <div class="bm-password-affirm">确定</div>
+        </div>
+      </div>
+    </div>`;
+    return html;
   }
 }
 

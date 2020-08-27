@@ -1,15 +1,16 @@
 .bm-component-list {
   display: inline-block;
-  width: 170px;
+  width: 160px;
   vertical-align: top;
   height: calc(100% - 20px);
   padding: 10px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .bm-component-list > div {
   text-align: center;
   margin-bottom: 20px;
-  width: 80px;
+  width: 76px;
   display: inline-block;
 }
 .bm-component-list > div > img {
@@ -22,9 +23,18 @@
 .bm-component-list > div > img:hover {
   border: 2px solid #12a3ff;
 }
+.bm-component-list > span {
+  width: 160px;
+  text-align: left;
+  line-height: 14px;
+  border-left: 2px solid red;
+  padding-left: 2px;
+  margin: 5px;
+  font-weight: bold;
+}
 .bm-list > li {
   line-height: 30px;
-  margin: 1px;
+  margin: 1px 0;
   border: 1px solid #dcdee0;
   padding: 3px 5px;
   display: flex;
@@ -36,10 +46,38 @@
   width: 18px;
   vertical-align: middle;
 }
+.bm-list > li > .value > i {
+  font-size: 18px;
+}
+.bm-list > li > .value > i:hover {
+  color: red;
+}
 .bm-list > li:hover {
   background-color: #f7f8fa;
   cursor: pointer;
 }
 .bm-list > li.active {
+  background-color: #12a3ff;
+  border: 1px solid #12a3ff;
+  color: #fff;
+}
+.action-list > li {
+  line-height: 24px;
+  margin: 1px 0;
+  padding: 3px 8px;
+  display: flex;
+}
+.action-list > li > .text {
+  flex: 1;
+}
+.action-list > li > .value > img {
+  width: 18px;
+  vertical-align: middle;
+}
+.action-list > li:hover {
+  background-color: #f7f8fa;
+  cursor: pointer;
+}
+.action-list > li.active {
   border: 1px solid #12a3ff;
 }

@@ -14,7 +14,7 @@ class BindData {
 		let that = this;
 		if(that.stage.property) {
       that.bindData = that.stage.property.config.bindData;
-		  let html = `<div>
+		  let content = `<div>
                       <span class="bm-text-header">组织</span>
                       <div class="organiz-panel bm-select-panel" style="z-index: 4">
                          <span class="select">
@@ -54,7 +54,10 @@ class BindData {
                        </div>
                     </div>
                   </div>`;
-		  $('.bm-configur-panel__content').html(html);
+      that.stage.panel.init("数据绑定",content,500);
+      that.stage.panel.confirm(function () {
+        that.stage.property.config.bindData = that.bindData;
+      })
 
       let organizPanel = $('.bm-configur-panel').find('.organiz-panel');
       organizPanel.find('.select').on('click',function () {
@@ -104,18 +107,7 @@ class BindData {
       })
       that.oList();
 
-      $('.bm-configur-panel').find('.confirm').on('click',function () {
-        that.stage.property.config.bindData = that.bindData;
-        $('.bm-configur-panel').hide();
-      });
 
-      $('.bm-configur-panel').find('.close').on('click',function () {
-        $('.bm-configur-panel').hide();
-      });
-
-      $('.bm-configur-panel__close').on('click',function () {
-        $('.bm-configur-panel').hide();
-      });
 		}
 	}
   //组织列表
@@ -157,12 +149,10 @@ class BindData {
         let name = $(this).attr('title');
         that.bindData.orgId = id;
         $('.organiz-panel').find('.text').text(name);
-        that.deviceList();
+        that.dList();
       });
       $('.bm-select-panel ul').append(li);
     })
-    $('.bm-configur-panel').show();
-    $('.bm-configur-panel__body').css({width:400});
   }
 
   //设备列表
@@ -173,6 +163,7 @@ class BindData {
       that.stage.option.devicePoints(id,function(deviceList) {
         that.deviceList = deviceList;
         that.createDevice(that.deviceList);
+        that.stage.panel.show()
       })
     }
   }

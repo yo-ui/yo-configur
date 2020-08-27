@@ -7,7 +7,7 @@ class Gfnbq extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "光伏逆变器";
+	    this.name = "光伏逆变器";
 	    this.className = "Gfnbq";
 	    this.width = width;
 	    this.height = height;
@@ -140,7 +140,6 @@ class Gfnbq extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

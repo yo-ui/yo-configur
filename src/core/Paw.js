@@ -438,7 +438,7 @@ class Paw {
       let top = e.pageY;
       $('.bm-context-menu').css({left: left,top: top});
       $('.bm-context-menu').show();
-      that.stage.contextmenu();
+      that.stage.toolbar.contextMenu();
       e.preventDefault();
       e.stopPropagation();
     })

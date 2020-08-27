@@ -17,23 +17,27 @@ class Library {
 					{className:'TextBox',title:'动态数据',url:'static/images/configur/dataing.png',width:50,height:24},
 					{className:'Text',title:'静态文本',url:'static/images/configur/text.png',width:50,height:24},
 					{className:'Images',title:'图片',url:'static/images/configur/img.png',width:50,height:50},
+          {className:'Time',title:'时间',url:'static/images/configur/time.png',width:140,height:14},
           {className:'Button',title:'按钮',url:'static/images/configur/button.png',width:48,height:28},
           {className:'Display',title:'显示屏',url:'static/images/configur/display.png',width:70,height:36},
-          {className:'Lump',title:'块状',url:'static/images/configur/text.png',width:50,height:24},]},
-      {name:'组件',type:1,icon:'fa-icon-conf',
+          {className:'Bg',title:'背景',url:'static/images/configur/bg.png',width:200,height:100},
+          {className:'Vessel',title:'容器',url:'static/images/configur/vessel.png',width:600,height:300},]},
+      {name:'组件',type:1,icon:'fa-conf',
         subList:[
           {className:'LineChart',title:'折线图',url:'static/images/configur/line.png',width:400,height:240},
-          {className:'Map',title:'地图',url:'static/images/configur/map.png',width:400,height:200}]},
-			{name:'设备',type:1,icon:'fa-icon-device',
+          {className:'Map',title:'地图',url:'static/images/configur/map.png',width:400,height:200},
+          {className:'Lump',title:'块状',url:'static/images/configur/lump.png',width:50,height:24},
+          {className:'Monitor',title:'监控画面',url:'static/images/configur/monitor.png',width:400,height:200}]},
+			{name:'设备',type:1,icon:'fa-device',
 				subList:[
-				   //配电
+          {isHead: true,name: '配电系统'},
 					{className:'Db',title:'电表',url:'static/images/configur/db.png',width:50,height:50},
 					{className:'ElectricBox',title:'断路器',url:'static/images/configur/dlq.png',width:50,height:50},
 					{className:'Bgsdb',title:'壁挂式电表',url:'static/images/configur/bgsdb.png',width:50,height:50},
 					{className:'Jddz',title:'接地刀闸',url:'static/images/configur/jddz.png',width:50,height:50},
 					{className:'Dldrq',title:'电力电容器',url:'static/images/configur/dldrq.png',width:50,height:50},
 					{className:'Byq',title:'变压器',url:'static/images/configur/byq.png',width:50,height:50},
-           //给水
+          {isHead: true,name: '给水系统'},
           {className:'Lyssb',title:'螺翼式水表',url:'static/images/configur/lyssb.png',width:50,height:50},
           {className:'Sbfkg',title:'阀控水表',url:'static/images/configur/sbfk.png',width:50,height:50},
           {className:'Xyssb',title:'旋翼式水表',url:'static/images/configur/xyssb.png',width:50,height:50},
@@ -49,11 +53,11 @@ class Library {
           {className:'Sdsf',title:'手动水阀',url:'static/images/configur/sdsf.png',width:50,height:50},
           {className:'Jsq',title:'集水器',url:'static/images/configur/jsq.png',width:50,height:30},
           {className:'Fsq',title:'分水器',url:'static/images/configur/fsq.png',width:50,height:30},
-           //照明
+          {isHead: true,name: '照明系统'},
           {className:'Kg',title:'开关',url:'static/images/configur/kg.png',width:50,height:50},
           {className:'Dengg',title:'灯管',url:'static/images/configur/dengg.png',width:50,height:20},
           {className:'Dengp',title:'灯炮',url:'static/images/configur/dengp.png',width:20,height:30},
-           //空调
+          {isHead: true,name: '空调系统'},
           {className:'Ztsrlb',title:'整体式热量表',url:'static/images/configur/ztsrlb.png',width:50,height:50},
           {className:'Zhsrlb',title:'组合式热量表',url:'static/images/configur/zhsrlb.png',width:50,height:50},
           {className:'Gskt',title:'挂式空调',url:'static/images/configur/gskt.png',width:50,height:24},
@@ -64,25 +68,25 @@ class Library {
           {className:'Pfj',title:'排风机',url:'static/images/configur/pfj.png',width:50,height:50},
           {className:'Rqgl',title:'燃气锅炉',url:'static/images/configur/rqgl.png',width:70,height:50},
           {className:'Ssbjf',title:'湿式报警阀',url:'static/images/configur/ssbjf.png',width:50,height:50},
-           //安防
+          {isHead: true,name: '安防系统'},
           {className:'Ywbjcgq',title:'烟雾报警传感器',url:'static/images/configur/ywbjcgq.png',width:50,height:50},
           {className:'Hwrtgyq',title:'红外人体感应器',url:'static/images/configur/hwrtgyq.png',width:50,height:50},
           {className:'Sxta',title:'摄像头',url:'static/images/configur/sxta.png',width:50,height:50},
           {className:'Mcbjq',title:'门磁报警器',url:'static/images/configur/mcbjq.png',width:50,height:50},
           {className:'Lsbjq',title:'漏水报警器',url:'static/images/configur/lsbjq.png',width:50,height:50},
-           //光伏
+          {isHead: true,name: '光伏系统'},
           {className:'Gfdcb',title:'光伏电池板',url:'static/images/configur/gfdcb.png',width:50,height:50},
           {className:'Gfnbq',title:'光伏逆变器',url:'static/images/configur/gfnbq.png',width:50,height:50},
-           //环境
+          {isHead: true,name: '环境系统'},
           {className:'Lsscj',title:'拉绳式测距',url:'static/images/configur/lsscj.png',width:50,height:50},
           {className:'Csbcj',title:'超声波测距',url:'static/images/configur/csbcj.png',width:50,height:50},
           {className:'Hjjccgqa',title:'液晶屏传感器',url:'static/images/configur/hjjccgqa.png',width:50,height:50},
           {className:'Hjjccgqb',title:'传感器',url:'static/images/configur/hjjccgqb.png',width:50,height:50},
           {className:'Xxqxz',title:'小型气象站',url:'static/images/configur/xxqxz.png',width:50,height:50},
-
+          {isHead: true,name: '其他'},
           {className:'Kydt',title:'客用电梯',url:'static/images/configur/kydt.png',width:100,height:140}
           ]},
-			{name:'辅助',type:1,icon:'fa-icon-assist',
+			{name:'辅助',type:1,icon:'fa-assist',
 				subList:[
           {className:'LinkPoint',title:'连接点',url:'static/images/configur/link-point.png',width:10,height:10},
           {className:'LeftWater',title:'水管（左）',url:'static/images/configur/v-left.png',width:20,height:20},
@@ -126,33 +130,38 @@ class Library {
 		$('.bm-component-list').html('');
 		let dataList = this.libraryList[index].subList;
 		dataList.forEach(function(sub) {
-			let img = $('<img/>')
-			img.data("className", sub.className);
-			img.data("width", sub.width);
-			img.data("height", sub.height);
-			img.attr("title", sub.title);
-			img.on('mousedown', function(e) {
-				if(that.stage.toolType==1) {
-          $('.bm-global-panel').html('');
-					that.stage.move.move = true;
-          that.stage.className = $(this).data('className');
-					that.stage.dw = $(this).data("width");
-					that.stage.dh = $(this).data("height");
-					let img = $('<img/>')
-					img.attr("src", $(this).attr("src"));
-					let width = $(this).width();
-					let height = $(this).height();
-					img.css({left:0,top:0,width:width,height:height});
-					that.stage.move.register(img);
-					$('.bm-global-panel').css('top', e.pageY-50);
-					$('.bm-global-panel').css('left', e.pageX-5);
-					$('.bm-global-panel').trigger('mousedown',{x:e.pageX,y:e.pageY});
-					e.preventDefault();
-				}
-			});
-			img.attr("src", sub.url);
-			let div = $(`<div></div>`).append(img).append(`<p>${that.textFormat(sub.title,4)}</p>`);
-			$('.bm-component-list').append(div);
+		  if(sub.isHead) {
+        let div = $(`<span>${sub.name}</span>`);
+        $('.bm-component-list').append(div);
+      }else {
+        let img = $('<img/>')
+        img.data("className", sub.className);
+        img.data("width", sub.width);
+        img.data("height", sub.height);
+        img.attr("title", sub.title);
+        img.on('mousedown', function (e) {
+          if (that.stage.toolType == 1) {
+            $('.bm-global-panel').html('');
+            that.stage.move.move = true;
+            that.stage.className = $(this).data('className');
+            that.stage.dw = $(this).data("width");
+            that.stage.dh = $(this).data("height");
+            let img = $('<img/>')
+            img.attr("src", $(this).attr("src"));
+            let width = $(this).width();
+            let height = $(this).height();
+            img.css({left: 0, top: 0, width: width, height: height});
+            that.stage.move.register(img);
+            $('.bm-global-panel').css('top', e.pageY - 50);
+            $('.bm-global-panel').css('left', e.pageX - 5);
+            $('.bm-global-panel').trigger('mousedown', {x: e.pageX, y: e.pageY});
+            e.preventDefault();
+          }
+        });
+        img.attr("src", sub.url);
+        let div = $(`<div></div>`).append(img).append(`<p>${that.textFormat(sub.title, 4)}</p>`);
+        $('.bm-component-list').append(div);
+      }
 		});
 	}
 

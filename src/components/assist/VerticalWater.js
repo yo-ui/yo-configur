@@ -7,7 +7,7 @@ class VerticalWater extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "水管（垂直）";
+	    this.name = "水管（垂直）";
 	    this.className = "VerticalWater";
 	    this.height = height;
 	    this.width = 10;
@@ -29,7 +29,7 @@ class VerticalWater extends Spirit {
 				<rect id="XMLID_551_" x="2" y="0" style="fill:url(#XMLID_V_)" width="6" height="${this.height}"/>
 				</svg></div>`;
 	}
-	
+
 	transform() {
 		$('#'+this.id).css({left:this.x,top:this.y,height:this.height});
 		$('#'+this.id).find("svg").css({left:this.x,top:this.y,height:this.height});
@@ -38,7 +38,6 @@ class VerticalWater extends Spirit {
 
 	toJson(){
 		let json = {
-			title: this.title,
 			className: this.className,
 			zIndex: this.zIndex,
 			isRotate: this.isRotate

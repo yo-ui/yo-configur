@@ -2,6 +2,7 @@
   position: relative;
   height: 18px;
   margin-left: -1px;
+  display: inline-block;
 }
 .bm-checkbox > input {
   position: absolute;
@@ -32,8 +33,8 @@
 .bm-checkbox > label:after {
   content: '';
   position: absolute;
-  left: -16px;
-  top: 2px;
+  left: -17px;
+  top: 1px;
   width: 5px;
   height: 10px;
   border-right: 2px solid #fff;

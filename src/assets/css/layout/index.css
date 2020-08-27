@@ -11,28 +11,28 @@
 }
 .bm-layout__header__back {
   cursor: pointer;
-  width: 60px;
+  width: 54px;
   text-align: center;
   background-color: #323233;
 }
-.bm-layout__header__back > img {
-  width: 30px;
-  vertical-align: middle;
+.bm-layout__header__back > i {
+  font-size: 30px;
 }
 .bm-layout__header__name {
+  flex: 1;
   font-size: 18px;
   text-align: center;
-  flex: 1;
   vertical-align: top;
 }
 .bm-layout__header__view {
-  width: 60px;
-  text-align: center;
+  width: 120px;
+  text-align: right;
+  padding: 0 10px;
 }
-.bm-layout__header__view > img {
-  width: 30px;
-  vertical-align: middle;
+.bm-layout__header__view > i {
+  width: 40px;
   cursor: pointer;
+  font-size: 24px;
 }
 .bm-layout__main {
   position: relative;
@@ -49,7 +49,8 @@
 .bm-layout__main__body {
   flex: 1;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
+  background-color: #e2e5ec;
 }
 .bm-layout__main__right {
   width: 240px;

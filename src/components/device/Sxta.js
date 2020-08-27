@@ -8,7 +8,7 @@ class Sxta extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "摄像头";
+	    this.name = "摄像头";
 	    this.className = "Sxta";
 	    this.width = width;
 	    this.height = height;
@@ -116,7 +116,6 @@ class Sxta extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,
@@ -127,19 +126,21 @@ class Sxta extends Spirit {
 		return Object.assign(super.toJson(),json);
 	}
 
-	viewPanel(device) {
-		let that = this;
-    let video = new Video(that.stage,820,500,device.id);
-    let decoder;
-    this.stage.option.token(device.id, function(message) {
-      if(message.serial) {
-        let name = message.name;
-        let accessToken = message.accessToken;
-        let serial = message.serial;
-        video.create(name,accessToken,serial)
-      }
-		})
-	}
+  initialize() {
+    let that = this;
+    let deviceId = that.config.bindData.deviceId;
+    $('#'+this.id).on('click',function () {
+      let video = new Video(that.stage,820,500,deviceId);
+      that.stage.option.token(deviceId, function(message) {
+        if(message.serial) {
+          let name = message.name;
+          let accessToken = message.accessToken;
+          let serial = message.serial;
+          video.create(name,accessToken,serial)
+        }
+      })
+    })
+  }
 }
 
 export default Sxta;

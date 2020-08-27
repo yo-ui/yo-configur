@@ -7,7 +7,7 @@ class Ssbjf extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "湿式报警阀";
+	    this.name = "湿式报警阀";
 	    this.className = "Ssbjf";
 	    this.width = width;
 	    this.height = height;
@@ -420,7 +420,6 @@ class Ssbjf extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			minWidth: this.minWidth,

@@ -7,7 +7,7 @@ class Xfsb extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "消防水泵";
+	    this.name = "消防水泵";
 	    this.className = "Xfsb";
 	    this.width = width;
 	    this.height = height;
@@ -21,14 +21,14 @@ class Xfsb extends Spirit {
 	    this.isLinkPoint = true;
       this.config = {
         bindData: {orgId:'',deviceId:'',devicePoint:''},
-        state: {expr:'SwSts',normal:1,alarm:0,start:2}
+        state: {expr:'SwSts',stop:0,start:1,alarm:2},
       };
 	}
 
 	template(){
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-         viewBox="0 0 152 200" style="enable-background:new 0 0 152 200;" xml:space="preserve">
+         viewBox="0 0 152 200" xml:space="preserve">
       <style type="text/css">
         .st0{fill:#E88880;}
         .st1{fill:#B41511;}
@@ -456,8 +456,8 @@ class Xfsb extends Spirit {
         if(point.id==state.expr) {
           if(point.value==state.alarm) {
             that.alarm();
-          }else if(point.value==state.normal) {
-            that.normal();
+          }else if(point.value==state.stop) {
+            that.stop();
           }else if(point.value==state.start) {
             that.start();
           }
@@ -481,7 +481,6 @@ class Xfsb extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

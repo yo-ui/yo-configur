@@ -7,7 +7,7 @@ class Lump extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "块状";
+	    this.name = "块状";
 	    this.className = "Lump";
       this.width = 140;
 	    this.height = 52;
@@ -51,7 +51,6 @@ class Lump extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			minWidth: this.minWidth,

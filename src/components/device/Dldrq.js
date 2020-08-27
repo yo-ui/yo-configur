@@ -7,7 +7,7 @@ class Dldrq extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "电力电容器";
+	    this.name = "电力电容器";
 	    this.className = "Dldrq";
 	    this.width = width;
 	    this.height = height;
@@ -114,7 +114,6 @@ class Dldrq extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,
