@@ -1,9 +1,14 @@
 <template>
   <div class="bm-index-page">
     <div class="canvas-box">
+      <!-- {{activeComId}} -->
       <bm-com
+        :class="{ active: activeComId == item.id }"
+        @mousedown.native.stop.prevent="mousedownEvent(item)"
         v-for="(item, index) in comList"
         :type="item.type"
+        :info="item"
+        :active="activeComId == item.id"
         :key="index"
       ></bm-com>
     </div>
@@ -18,7 +23,8 @@ const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {
     return {
-      comList: []
+      comList: [],
+      activeComId: ""
     };
   },
   components: {
@@ -29,10 +35,36 @@ export default {
         /* webpackChunkName: "iot-configur-com" */ "@/components/component"
       )
   },
-  methods: {},
+  methods: {
+    mousedownEvent(item) {
+      let { id = "" } = item || {};
+      this.activeComId = id;
+    },
+    init() {
+      this.addBodyEvent();
+    },
+    addBodyEvent() {
+      $(document).on("click", e => {
+        // this.editable = false;
+        let { target } = e || {};
+        bmCommon.log("document.click", $(target).parent(".bm-configur-com"));
+        if ($(target).parent(".bm-configur-com").length > 0) {
+          return;
+        }
+        this.activeComId = "";
+      });
+    },
+    removeBodyEvent() {
+      // this.editable = false;
+      this.activeComId = "";
+      bmCommon.log("removeBodyEvent");
+      $(document).off("click");
+    }
+  },
   mounted() {
-    this.comList.push({ type: "text" });
-    this.comList.push({ type: "image" });
+    this.comList.push({ type: "text", id: 1 });
+    this.comList.push({ type: "image", id: 2 });
+    this.init();
   }
 };
 </script>

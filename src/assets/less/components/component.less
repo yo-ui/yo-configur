@@ -1,4 +1,135 @@
 @import (reference) "./../common.less";
+@left:-6px;
+@right:-6px;
+@bottom:-6px;
+@top:-6px;
+@square-width:10;
+@circle-width:12;
+@border:#383e41;
 .bm-configur-com{
   .posa;
+  .fz(22);
+  .p(10px);
+  .bor(1px dashed transparent);
+  // .pointer;
+  cursor: move;
+  &.active{
+    .borc(@border);
+    i{
+      .db;
+    }
+  }
+  i{
+    .db(none);
+  }
+  .el-icon-refresh-right{
+    .posa;
+    left:50%;
+    top:-30px;
+    .tranf(translate(-50%,0));
+  }
+  .el-icon-top-left{
+    .posa;
+    left:@left;
+    top:@top;
+    .squ(@circle-width);
+    .br(50%);
+    cursor: nw-resize;
+    .bor(1px solid @border);
+    .bc(@white);
+    &::before{
+      .db(none);
+    }
+  }
+  .el-icon-top{
+    .posa;
+    left:50%;
+    top:@top;
+    .tranf(translate(-50%,0));
+    .squ(@square-width);
+    .bc(@white);
+    cursor: n-resize;
+    .bor(1px solid @border);
+    &::before{
+      .db(none);
+    }
+  }
+  .el-icon-top-right{
+    .posa;
+    right:@right;
+    top:@top;
+    .squ(@circle-width);
+    .bc(@white);
+    .br(50%);
+    cursor: ne-resize;
+    .bor(1px solid @border);
+    &::before{
+      .db(none);
+    }
+  }
+  .el-icon-back{
+    .posa;
+    left:@left;
+    top:50%;
+    .tranf(translate(0,-50%));
+    .squ(@square-width);
+    .bc(@white);
+    cursor: w-resize;
+    .bor(1px solid @border);
+    &::before{
+      .db(none);
+    }
+  }
+  .el-icon-right{
+    .posa;
+    right:@right;
+    top:50%;
+    .tranf(translate(0,-50%));
+    .squ(@square-width);
+    .bc(@white);
+    cursor: e-resize;
+    .bor(1px solid @border);
+    &::before{
+      .db(none);
+    }
+  }
+  .el-icon-bottom-left{
+    .posa;
+    left:@left;
+    bottom:@bottom;
+    cursor: sw-resize;
+    .squ(@circle-width);
+    .br(50%);
+    .bc(@white);
+    .bor(1px solid @border);
+    &::before{
+      .db(none);
+    }
+  }
+  .el-icon-bottom{
+    .posa;
+    left:50%;
+    bottom:@bottom;
+    .tranf(translate(-50%,0));
+    .squ(@square-width);
+    .bc(@white);
+    cursor: s-resize;
+    .bor(1px solid @border);
+    &::before{
+      .db(none);
+    }
+  }
+  .el-icon-bottom-right{
+    .posa;
+    right:@right;
+    bottom:@bottom;
+    .squ(@circle-width);
+    .br(50%);
+    cursor: se-resize;
+    .bc(@white);
+    .bor(1px solid @border);
+    &::before{
+      .db(none);
+    }
+  }
 }

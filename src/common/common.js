@@ -105,6 +105,177 @@ let common = {
       return str.toString();
     }
   },
+  createCanvas: function() {
+    var canvas = document.createElement("canvas");
+    if (!window.devicePixelRatio) window.devicePixelRatio = 1;
+    canvas.width =
+      (document.documentElement.clientWidth || canvas.width) *
+      window.devicePixelRatio;
+    canvas.height =
+      (document.documentElement.clientHeight || canvas.height) *
+      window.devicePixelRatio;
+    return canvas;
+  },
+  transformPoint: function(x, y, m) {
+    return { x: m.a * x + m.c * y + m.e, y: m.b * x + m.d * y + m.f };
+  },
+  //更新matrix
+  changeMatrix: function(matrix) {
+    return matrix.replace(/\s/g, ",");
+  },
+  //还原matrix
+  revertMatrix: function(matrix) {
+    return matrix.replace(/,/g, " ");
+  } /**
+  // Function: utils.transformBox
+  // Transforms a rectangle based on the given matrix
+  //
+  // Parameters:
+  // l - Float with the box's left coordinate
+  // t - Float with the box's top coordinate
+  // w - Float with the box width
+  // h - Float with the box height
+  // m - Matrix object to transform the box by
+  //
+  // Returns:
+  // An object with the following values:
+  // * tl - The top left coordinate (x,y object)
+  // * tr - The top right coordinate (x,y object)
+  // * bl - The bottom left coordinate (x,y object)
+  // * br - The bottom right coordinate (x,y object)
+  // * aabox - Object with the following values:
+  // * Float with the axis-aligned x coordinate
+  // * Float with the axis-aligned y coordinate
+  // * Float with the axis-aligned width coordinate
+  // * Float with the axis-aligned height coordinate
+  **/,
+  transformBox: function(l, t, w, h, m) {
+    var topleft = { x: l, y: t },
+      topright = { x: l + w, y: t },
+      botright = { x: l + w, y: t + h },
+      botleft = { x: l, y: t + h };
+    var transformPoint = common.transformPoint;
+    topleft = transformPoint(topleft.x, topleft.y, m);
+    var minx = topleft.x,
+      maxx = topleft.x,
+      miny = topleft.y,
+      maxy = topleft.y;
+    topright = transformPoint(topright.x, topright.y, m);
+    minx = Math.min(minx, topright.x);
+    maxx = Math.max(maxx, topright.x);
+    miny = Math.min(miny, topright.y);
+    maxy = Math.max(maxy, topright.y);
+    botleft = transformPoint(botleft.x, botleft.y, m);
+    minx = Math.min(minx, botleft.x);
+    maxx = Math.max(maxx, botleft.x);
+    miny = Math.min(miny, botleft.y);
+    maxy = Math.max(maxy, botleft.y);
+    botright = transformPoint(botright.x, botright.y, m);
+    minx = Math.min(minx, botright.x);
+    maxx = Math.max(maxx, botright.x);
+    miny = Math.min(miny, botright.y);
+    maxy = Math.max(maxy, botright.y);
+    var center = {
+        x: (topleft.x + botright.x) / 2,
+        y: (topleft.y + botright.y) / 2
+      },
+      r =
+        Math.sqrt(
+          Math.pow(topleft.x - botright.x, 2) +
+            Math.pow(topleft.y - botright.y, 2)
+        ) / 2;
+    return {
+      tl: topleft,
+      tr: topright,
+      bl: botleft,
+      br: botright,
+      r: r,
+      center: center,
+      aabox: { x: minx, y: miny, width: maxx - minx, height: maxy - miny }
+    };
+  },
+  //获取鼠标坐标
+  getMousePosition: function(e, offset) {
+    if (!offset.ratio) {
+      offset.ratio = 1;
+    }
+    var x = e.clientX || e.pageX;
+    var y = e.clientY || e.pageY;
+    return {
+      x: (x - offset.x) / offset.ratio,
+      y: (y - offset.y) / offset.ratio
+    };
+  },
+  isDragging: function(e) {
+    var changed = e.changedTouches.length,
+      touching = e.touches.length;
+    return changed === 1 && touching === 1;
+  },
+  isPinching: function(e) {
+    var changed = e.changedTouches.length,
+      touching = e.touches.length;
+    return (changed === 1 || changed === 2) && touching === 2;
+  },
+  getTouchedPosition: function(e, offset) {
+    if (!offset) {
+      offset = { x: 0, y: 0, ratio: 1 };
+    }
+    if (!offset.ratio) {
+      offset.ratio = 1;
+    }
+    var length = e.touches.length;
+    switch (length) {
+      case 1:
+        return {
+          point1: {
+            x: (e.touches[0].pageX - offset.x) / offset.ratio,
+            y: (e.touches[0].pageY - offset.y) / offset.ratio
+          },
+          length: length
+        };
+      case 2:
+        // m[0].set(e.touches[0].pageX, e.touches[0].pageY, 0);
+        // m[1].set(e.touches[1].pageX, e.touches[1].pageY, 0);
+        return {
+          point1: {
+            x: (e.touches[0].pageX - offset.x) / offset.ratio,
+            y: (e.touches[0].pageY - offset.y) / offset.ratio
+          },
+          point2: {
+            x: (e.touches[1].pageX - offset.x) / offset.ratio,
+            y: (e.touches[1].pageY - offset.y) / offset.ratio
+          },
+          length: length
+        };
+      default:
+        return {
+          point1: {
+            x: (e.changedTouches[0].pageX - offset.x) / offset.ratio,
+            y: (e.changedTouches[0].pageY - offset.y) / offset.ratio
+          },
+          length: length
+        };
+    }
+  },
+  getAngles: function(pos) {
+    var touch1 = pos.point1,
+      touch2 = pos.point2;
+    var angle = 0;
+    if (touch2) {
+      var x = touch1.x - (touch2 ? touch2.x : 0),
+        y = touch1.y - (touch2 ? touch2.y : 0);
+      angle = (Math.atan2(y, x) * 180) / Math.PI;
+    }
+    return angle;
+  },
+  getZooms: function(touch) {
+    var touch1 = touch.point1,
+      touch2 = touch.point2;
+
+    var x = touch1.x - (touch2 ? touch2.x : 0),
+      y = touch1.y - (touch2 ? touch2.y : 0);
+    return Math.sqrt(x * x + y * y);
+  },
   //递归处理树结构
   recursiveTree(
     list = [],
