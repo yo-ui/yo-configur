@@ -195,7 +195,7 @@ let common = {
     };
   },
   //获取鼠标坐标
-  getMousePosition: function(e, offset) {
+  getMousePosition: function(e, offset = { x: 0, y: 0, ratio: 1 }) {
     if (!offset.ratio) {
       offset.ratio = 1;
     }

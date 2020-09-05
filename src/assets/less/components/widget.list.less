@@ -1,0 +1,32 @@
+@import (reference) "./../common.less";
+.bm-widget-list-com{
+  .bc(@white);
+  .borr(1px solid @grayE);
+  .posr;
+  z-index: 2;
+  .el-tabs{
+    // .mt(15);
+    // .ml(15);
+    .el-tabs__item{
+      .df;
+      flex-direction: column;
+      align-items: center;
+      height: auto;
+      .bc(@themes);
+      .c(@white);
+      .p(15px 20px);
+      .click;
+      &.is-active{
+        .bc(@white);
+        .c(@themes);
+      }
+      p{
+        .mt(5);
+        .w(12);
+        word-break: break-all;
+        .lh(25);
+        white-space: pre-wrap;
+      }
+    }
+  }
+}

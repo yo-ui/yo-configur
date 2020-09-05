@@ -6,7 +6,7 @@
 @square-width:10;
 @circle-width:12;
 @border:#383e41;
-.bm-configur-com{
+.bm-component-com{
   .posa;
   .fz(22);
   .p(10px);
@@ -22,11 +22,23 @@
   i{
     .db(none);
   }
+  .info{
+    .posa;
+    right:0;
+    pointer-events: none;
+    top:0;
+    .fz(10);
+    .bc(rgb(5, 148, 39));
+    // .tranf(scale(.5));
+    .c(@white);
+    opacity: .3;
+  }
   .el-icon-refresh-right{
     .posa;
     left:50%;
-    top:-30px;
+    top:-50px;
     .tranf(translate(-50%,0));
+    cursor: pointer;
   }
   .el-icon-top-left{
     .posa;

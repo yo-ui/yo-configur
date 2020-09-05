@@ -1,11 +1,11 @@
+<!-- @click="clickEvent" -->
+<!-- :class="{ active: showActiveStatus }" -->
+<!-- @mousedown.stop="mousedownEvent" -->
 <template>
-  <!-- @click="clickEvent" -->
-    <!-- :class="{ active: showActiveStatus }" -->
-  <div
-    class="bm-configur-com"
-    ref="bmCom"
-    @mousedown.stop="mousedownEvent"
-  >
+  <div class="bm-component-com" ref="bmCom" :style="boxStyle">
+    <div class="info">
+      {{ info }}
+    </div>
     <i
       class="bm-icon el-icon-refresh-right"
       @mousedown.stop="rotateClickEvent"
@@ -51,208 +51,222 @@
       @mousedown.stop="rightBottomClickEvent"
       title="右下角"
     ></i>
-    <template v-if="type == 'text'">
-      <span :contenteditable="editable" @dblclick.stop="dbClickEvent">
+    <!-- <component :info="info" :is="info.type"></component> -->
+    <!-- {{ info.type }} -->
+    <component :info="info" :is="`${info.type}Com`"></component>
+    <!-- <bm-text></bm-text> -->
+    <!-- <template v-if="type == 'text'">
+      <div
+        :contenteditable="editable"
+        @dblclick.stop="dbClickEvent"
+        :style="comStyle"
+      >
         {{ content }}
-      </span>
+      </div>
     </template>
     <template v-if="type == 'image'">
-      <img src="//pic.energyiot.cn/upload/180817095543907.jpg" />
-    </template>
+      <img
+        src="//pic.energyiot.cn/upload/180817095543907.jpg"
+        :style="comStyle"
+      />
+    </template> -->
   </div>
 </template>
 
 <script>
 import bmCommon from "@/common/common";
+import widgets from "@/widgets/index";
 import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-const Props = {
-  type: [
-    "text", //静态文本
-    "image" //图片
-  ]
-};
-let variablePool = {};
+// const Props = {
+//   type: [
+//     "text", //静态文本
+//     "image" //图片
+//   ]
+// };
+// let variablePool = {};
+// bmCommon.log('======',...widgets)
 export default {
   data() {
     return {
-      showActiveStatus: false,
+      // showActiveStatus: false,
       editable: false
     };
   },
   props: {
-    contenteditable: {
-      type: Boolean,
-      default: false
-    },
+    // contenteditable: {
+    //   type: Boolean,
+    //   default: false
+    // },
     info: {
       type: Object,
       default: () => {
         return {};
       }
-    },
-    active: {
-      type: Boolean,
-      default: false
-    },
-    content: {
-      type: String,
-      default: "静态文本"
-    },
-    type: {
-      type: String,
-      validator(value) {
-        return Props.type.indexOf(value) != -1;
-      }
     }
+    // active: {
+    //   type: Boolean,
+    //   default: false
+    // },
+    // content: {
+    //   type: String,
+    //   default: "静态文本"
+    // },
+    // type: {
+    //   type: String,
+    //   validator(value) {
+    //     return Props.type.indexOf(value) != -1;
+    //   }
+    // }
   },
   mounted() {
     this.editable = this.contenteditable;
     // this.init();
   },
+  components: {
+    ...widgets
+    // bmText: () =>
+    //   import(
+    //     /* webpackChunkName: "bm-component-text" */ "@/components/component/basic/Text.vue"
+    //   ),
+    // bmButton: () =>
+    //   import(
+    //     /* webpackChunkName: "bm-component-button" */ "@/components/component/basic/Button.vue"
+    //   ),
+    // bmImage: () =>
+    //   import(
+    //     /* webpackChunkName: "bm-component-image" */ "@/components/component/basic/Image.vue"
+    //   )
+  },
+  computed: {
+    ...mapGetters(),
+    boxStyle() {
+      let { info = {} } = this;
+      let { left = "", top = "", zIndex = "", rotate = "0" } = info || {};
+      return {
+        // position: 'absolute',
+        // width: val.width / 7.5 + '%',
+        // height: val.height / h * 100 + '%',
+        left: left + "px",
+        top: top + "px",
+        zIndex: zIndex,
+        transform: `rotate(${rotate}deg)`,
+        webkitTransform: `rotate(${rotate}deg)`
+        // backgroundColor: val.backgroundColor,
+        // backgroundImage: 'url(' + val.backPic + ')',
+        // color: val.color
+      };
+    }
+  },
   methods: {
-    // init() {
-    //   this.addBodyEvent();
-    // },
-    // addBodyEvent() {
-    //   $(document).click(() => {
-    //     bmCommon.log("document.click");
-    //     // this.editable = false;
-    //     // this.showActiveStatus = true;
-    //     this.removeBodyEvent()
-    //   });
-    // },
-    // removeBodyEvent() {
-    //   // this.editable = false;
-    //   this.showActiveStatus = false;
-    //   bmCommon.log("removeBodyEvent");
-    //   $(document).off("click");
-    // },
-    dbClickEvent() {
-      this.editable = true;
-      // this.addBodyEvent();
-    },
-    // clickEvent() {
-    //   this.activeStatus = true;
-    //   this.addBodyEvent();
-    // },
-    mousedownEvent(e) {
-      // let { pageX = 0, pageY = 0 } = e || event;
-      let target = this.$refs.bmCom;
-      let offset = { x: 0, y: 0 };
-      let _offset = $(target).offset();
-      let { top = 0, left = 0 } = _offset || {};
-      // this.removeBodyEvent();
-      // this.showActiveStatus = true;
+    ...mapMutations({
+      initMove: "viewBox/initMove",
+      resize: "viewBox/resize",
+      rotate: "viewBox/rotate",
+      stopMove: "viewBox/stopMove"
+    }),
+    mousedownEvent(e, type, originX, originY) {
       e.stopPropagation();
-      // if (!this.active) {
-      //   return;
-      // }
-      this.showActiveStatus = true; //显示为可编辑状态
-      // bmCommon.log("mousedownEvent=", _offset);
-      let o_pos = bmCommon.getMousePosition(e, offset, 1);
-      // variablePool.o_pos = o_pos;
-      variablePool.dis_pos = { x: o_pos.x - left, y: o_pos.y - top };
-      // variablePool.mouseDownStatus=true
-      $(document).on("mousemove", this.mouseMoveEvent);
-      $(document).on("mouseup", this.mouseUpEvent);
-      // this.addBodyEvent();
-    },
-    mouseMoveEvent(e) {
-      // let { pageX = 0, pageY = 0 } = e || event;
-      // let { showActiveStatus = false } = this;
-      // if (!showActiveStatus) {
-      //   return;
-      // }
       e.preventDefault();
-      e.stopPropagation();
-      let target = this.$refs.bmCom;
-      let offset = { x: 0, y: 0 };
-      let new_pos = bmCommon.getMousePosition(e, offset, 1);
-      // let { o_pos = {} } = variablePool;
-      // variablePool.new_pos = new_pos;
-      let { dis_pos = {} } = variablePool;
-      // let _offset = $(target).offset();
-      // let { top = 0, left = 0 } = _offset || {};
-      // // $(target).css({
-      // let _dis_pos = {
-      //   x: new_pos.x - o_pos.x,
-      //   y: new_pos.y - o_pos.y
-      // };
-      // bmCommon.log('mouseMoveEvent',
-      //   new_pos,
-      //   o_pos,
-      //   _dis_pos,
-      //   top + _dis_pos.y,
-      //   left + _dis_pos.x
-      // );
-      let x = new_pos.x - dis_pos.x,
-        y = new_pos.y - dis_pos.y;
-      // let x = top + _dis_pos.y,
-      //   y = left + _dis_pos.x;
-      // bmCommon.log(x, y, dis_pos);
-      $(target).css({
-        // top: pageY,
-        top: y,
-        cursor: "move",
-        // left: pageX
-        left: x
+      // this.type = type
+      // this.$vpd.commit('initmove', {
+      //   startX: e.pageX,
+      //   startY: e.pageY,
+      //   originX: this.elm[originX],
+      //   originY: this.elm[originY]
+      // })
+      let { info = {} } = this;
+      let pos = bmCommon.getMousePosition(e);
+      let { x = "", y = "" } = pos || {};
+      let {
+        width: originWidth = "",
+        height: originHeight = "",
+        left,
+        top,
+        rotate: originRotate = ""
+      } = info || {};
+      this.type = type;
+      this.initMove({
+        startX: x,
+        startY: y,
+        originX: left,
+        originY: top,
+        originRotate,
+        originWidth,
+        originHeight
       });
-      variablePool.dis_pos = { x: new_pos.x - x, y: new_pos.y - y };
-      // variablePool.o_pos = new_pos;
+      bmCommon.log(info, x, y, type);
+
+      $(document).on("mousemove", this.mousemoveEvent);
+      $(document).on("mouseup", this.mouseupEvent);
     },
-    mouseUpEvent(e) {
-      // let { target } = e || event;
-      // let target = this.$refs.bmCom;
-      // let { pageX = 0, pageY = 0 } = e || event;
-      // let offset = { x: 0, y: 0 };
-      // let new_pos = bmCommon.getMousePosition(e, offset, 1);
-      // // let { dis_pos = {} } = variablePool;
-      // let target = this.$refs.bmCom;
-      // let _offset = $(target).offset();
-      // let { top = 0, left = 0 } = _offset || {};
-      // variablePool.dis_pos = { x: new_pos.x - left, y: new_pos.y - top };
-      this._activeStatus = false; //显示为可编辑状态
-      $(document).off("mousemove");
-      $(document).off("mouseup");
-      // this.addBodyEvent();
+    mousemoveEvent(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      let pos = bmCommon.getMousePosition(e);
+      let { x = "", y = "" } = pos || {};
+      let { type = "" } = this;
+      // this.$vpd.commit('resize', {
+      //   x: e.pageX,
+      //   y: e.pageY,
+      //   type: this.type
+      // })
+      this.resize({
+        x,
+        y,
+        type
+      });
+    },
+    mouseupEvent(e) {
+      $(document).off("mousemove", this.mousemoveEvent);
+      $(document).off("mouseup", this.mouseupEvent);
+      this.stopMove();
     },
     rotateClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.mousedownEvent(e, "rotate");
     },
     leftTopClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.mousedownEvent(e, "topleft");
     },
     topClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.mousedownEvent(e, "top");
     },
     rightTopClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.mousedownEvent(e, "topright");
     },
     leftClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.mousedownEvent(e, "left");
     },
     rightClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.mousedownEvent(e, "right");
     },
     leftBottomClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.mousedownEvent(e, "bottomleft");
     },
     bottomClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.mousedownEvent(e, "bottom");
     },
     rightBottomClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.mousedownEvent(e, "bottomright");
     }
   }
 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-configur-info-com">
+  <div class="bm-info-com">
     <el-tabs v-model="activeIndex"
       type="card">
       <el-tab-pane v-for="item in tabList"
@@ -23,7 +23,7 @@ export default {
   data() {
     let tabList=Object.freeze([
       {code:'basic',name:'基本样式'},
-      {code:'element',name:'画布fq'},
+      {code:'element',name:'画布'},
     ])
     return {
       tabList,
