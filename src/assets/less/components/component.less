@@ -15,9 +15,13 @@
   cursor: move;
   &.active{
     .borc(@border);
-    i{
+    i,.info{
       .db;
     }
+  }
+  &:hover{
+    // .bc(@grayE);
+    .box-s(1px 1px 10px 5px #fbd6d6);
   }
   i{
     .db(none);
@@ -25,13 +29,15 @@
   .info{
     .posa;
     right:0;
+    .db(none);
+    .p(2px 5px);
     pointer-events: none;
     top:0;
     .fz(10);
     .bc(rgb(5, 148, 39));
     // .tranf(scale(.5));
     .c(@white);
-    opacity: .3;
+    // opacity: .3;
   }
   .el-icon-refresh-right{
     .posa;

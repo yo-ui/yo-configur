@@ -409,6 +409,15 @@ let common = {
   //     that.countdownTime(id, time, intervalCallback, callback);
   //   }, 1000);
   // },
+
+  /**
+   * @returns {string}
+   */
+  uuid() {
+    const timestamp = +new Date() + "";
+    const randomNum = parseInt((1 + Math.random()) * 65536) + "";
+    return (+(randomNum + timestamp)).toString(32);
+  },
   //获取语言
   langKey(langObj, key, options) {
     let str = key;

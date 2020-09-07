@@ -7,4 +7,20 @@
     .mt(15);
     .ml(15);
   }
+  .com-box{
+    .m(15px);
+    li{
+      .bor(1px solid @grayE);
+      .p(10px);
+      .mb(15);
+      .click;
+      &:hover{
+        .bc(@grayE);
+      }
+      &.active{
+        .bc(@themes);
+        .c(@white);
+      }
+    }
+  }
 }

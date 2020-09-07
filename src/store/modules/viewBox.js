@@ -194,7 +194,8 @@ export default {
         // top = originY + Math.floor((dy * 1) / zoom);
         height = originHeight - Math.floor((dy * 1) / zoom);
         if (height > 10) {
-          activeCom.top -= Math.floor((height - activeCom.height) / 2);
+          // activeCom.top -= Math.floor((height - activeCom.height) / 2);
+          activeCom.top -= height - activeCom.height;
           activeCom.height = height > 10 ? height : 10;
         }
       }
@@ -211,7 +212,8 @@ export default {
         // left = originX + Math.floor((dx * 1) / zoom);
         width = originWidth - Math.floor((dx * 1) / zoom);
         if (width > 10) {
-          activeCom.left -= Math.floor((width - activeCom.width) / 2);
+          // activeCom.left -= Math.floor((width - activeCom.width) / 2);
+          activeCom.left -= width - activeCom.width;
           activeCom.width = width > 10 ? width : 10;
         }
         return;
@@ -225,8 +227,10 @@ export default {
         // activeCom.top = top > 0 ? top : 0;
         // activeCom.left = left > 0 ? left : 0;
         if (width > 10 && height > 10) {
-          activeCom.left -= Math.floor((width - activeCom.width) / 2);
-          activeCom.top -= Math.floor((height - activeCom.height) / 2);
+          // activeCom.left -= Math.floor((width - activeCom.width) / 2);
+          // activeCom.top -= Math.floor((height - activeCom.height) / 2);
+          activeCom.left -= (width - activeCom.width) / 2;
+          activeCom.top -= (height - activeCom.height) / 2;
           activeCom.height = height > 10 ? height : 10;
           activeCom.width = width > 10 ? width : 10;
         }
@@ -240,8 +244,10 @@ export default {
         // activeCom.top = top > 0 ? top : 0;
         // activeCom.left = left > 0 ? left : 0;
         if (width > 10 && height > 10) {
-          activeCom.left -= Math.floor((width - activeCom.width) / 2);
-          activeCom.top -= Math.floor((height - activeCom.height) / 2);
+          // activeCom.left -= Math.floor((width - activeCom.width) / 2);
+          // activeCom.top -= Math.floor((height - activeCom.height) / 2);
+          activeCom.left -= (width - activeCom.width) / 2;
+          activeCom.top -= (height - activeCom.height) / 2;
           activeCom.height = height > 10 ? height : 10;
           activeCom.width = width > 10 ? width : 10;
         }

@@ -6,6 +6,7 @@
       <div class="view-box" ref="viewBox">
         <!-- {{activeComId}} -->
         <!-- :active="activeComId == item.id" -->
+        <!-- @drop="dropEvent" -->
         <div class="canvas-box" :style="style">
           <!-- @mousedown.native.stop.prevent="mousedownEvent(item)" -->
           <bm-com
@@ -37,8 +38,6 @@
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 import bmCom from "@/components/component";
-//   )
-
 import mixins from "@/mixins";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
@@ -123,12 +122,12 @@ export default {
     //   this.activeComId = id;
     // },
     init() {
-      this.addEvent();
+      this.initEvent();
     },
     changeZoomEvent(val) {
       this.setZoom(val / 100);
     },
-    addEvent() {
+    initEvent() {
       let viewBox = this.$refs.viewBox;
       $(viewBox).on("mousedown", this.viewBoxMouseDownEvent);
       $(document).on("keydown", this.keydownEvent);
@@ -211,24 +210,51 @@ export default {
   mounted() {
     let widgetList = [
       {
-        type: "text",
+        type: "button",
+        name: "按钮",
         id: 1,
         dragable: true,
+        left: 500,
+        width: 200,
+        height: 60,
+        rotate: 0,
+        top: 0,
+        editable: false,
+        content: "按钮"
+      },
+      {
+        type: "text",
+        name: "静态文本",
+        id: 2,
+        dragable: true,
         left: 0,
-        width:300,
-        height:300,
-        rotate:0,
+        width: 300,
+        height: 60,
+        rotate: 0,
         top: 0,
         editable: false,
         content: "静态文本"
       },
       {
-        type: "image",
-        id: 2,
+        type: "dynamicText",
+        name: "动态文本",
+        id: 3,
         dragable: true,
-        rotate:0,
-        width:300,
-        height:300,
+        left: 800,
+        width: 300,
+        height: 60,
+        rotate: 0,
+        top: 0,
+        editable: false,
+        content: "动态文本"
+      },
+      {
+        type: "image",
+        id: 4,
+        dragable: true,
+        rotate: 0,
+        width: 300,
+        height: 300,
         left: 0,
         top: 0,
         backgroundImage: "//pic.energyiot.cn/upload/180817095543907.jpg"

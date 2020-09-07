@@ -4,7 +4,7 @@
 <template>
   <div class="bm-component-com" ref="bmCom" :style="boxStyle">
     <div class="info">
-      {{ info }}
+      {{ info.type }}
     </div>
     <i
       class="bm-icon el-icon-refresh-right"

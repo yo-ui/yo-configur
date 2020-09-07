@@ -51,9 +51,9 @@ const Constants = {
 
     ERROR: "600" //业务错误提示
   },
-  IMG:{
-    DEVICE_CATEGORY:"upload/type.png",
-    DEVICE_CATEGORY_PARAM:"upload/type.png"
+  IMG: {
+    DEVICE_CATEGORY: "upload/type.png",
+    DEVICE_CATEGORY_PARAM: "upload/type.png"
   },
   AXIOTIMEOUT: apiConfig.axioTimeout, //请求超时时间
 
@@ -72,14 +72,130 @@ const Constants = {
       USERINFO: PLATFORM + "_USER_INFO" //用户信息key
     }
   },
-  // 设备参数类型
-  DEVICEPARAMTYPEMAP: {
-    1: "其他 ",
-    2: "模拟量",
-    3: "开关量",
-    4: "累积量",
-    5: "数字量"
-  },
+  // 组件map
+  COMPONENTLIBRARY: [
+    {
+      name: "基本",
+      code: "basic",
+      icon: "el-icon-s-grid",
+      comList: [
+        {
+          name: "静态文本",
+          code: "text",
+          icon: "/static/img/configur/dataing.png",
+          data:{
+            // id: 2,
+            dragable: true,
+            left: 0,
+            width: 300,
+            height: 60,
+            rotate: 0,
+            top: 0,
+            editable: false,
+            content: "静态文本"
+          }
+        },
+        {
+          name: "动态文本",
+          code: "dynamicText",
+          icon: "/static/img/configur/text.png",
+          data:{
+            name: "",
+            // id: 3,
+            dragable: true,
+            left: 800,
+            width: 300,
+            height: 60,
+            rotate: 0,
+            top: 0,
+            editable: false,
+          content: "动态文本"
+          }
+        },
+        {
+          type: "image",
+          name: "图片",
+          icon: "/static/img/configur/img.png",
+          data: {
+            // id: 4,
+            dragable: true,
+            rotate: 0,
+            width: 300,
+            height: 300,
+            left: 0,
+            top: 0,
+            backgroundImage: "//pic.energyiot.cn/upload/180817095543907.jpg"
+          }
+        },
+        {
+          name: "按钮",
+          code: "button",
+          icon: "/static/img/configur/button.png",
+          data: {
+            // type: "button",
+            // id: 1,
+            dragable: true,
+            left: 500,
+            width: 200,
+            height: 60,
+            rotate: 0,
+            top: 0,
+            editable: false,
+            content: "按钮"
+          }
+        },
+        {
+          name: "显示屏",
+          code: "display",
+          icon: "/static/img/configur/display.png",
+          data: {
+            // type: "button",
+            // id: 1,
+            dragable: true,
+            left: 500,
+            width: 200,
+            height: 60,
+            rotate: 0,
+            top: 0,
+            editable: false,
+            content: "显示屏"
+          }
+        },
+        {
+          name: "块状",
+          code: "block",
+          icon: "/static/img/configur/text.png",
+          data: {
+            // type: "button",
+            // id: 1,
+            dragable: true,
+            left: 500,
+            width: 200,
+            height: 60,
+            rotate: 0,
+            top: 0,
+            editable: false,
+            content: "块状"
+          }
+        },
+      ]
+    },
+    {
+      code: "component",
+      icon: "el-icon-s-ticket",
+      name: "组件"
+    },
+    {
+      code: "device",
+      icon: "el-icon-setting",
+      name: "设备"
+    },
+    {
+      code: "additional",
+      icon: "el-icon-files",
+      name: "附加"
+    }
+  ],
   // // 设备分类
   // DEVICECATEGORYMAP: {
   //   1: "三相电表",
