@@ -3,7 +3,7 @@
  * return Promise
  * ===== ===== =====
  */
-import viewBox from "./viewBox";
+import canvas from "./canvas";
 // import deviceType from "./deviceType";
 // import manufacturer from "./manufacturer";
 // import devicePoint from "./devicePoint";
@@ -16,7 +16,7 @@ import viewBox from "./viewBox";
 // import dict from "./dict";
 // import attachment from "./attachment";
 export default {
-  viewBox,
+  canvas,
   // manufacturer,
   // devicePoint,
   // pointValue,

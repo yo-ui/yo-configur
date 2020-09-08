@@ -4,6 +4,11 @@
         :style="comStyle"
       /> -->
   <div class="bm-basic-image-com" :style="comStyle">
+    <bm-upload
+      ref="bmUpload"
+      v-if="!info.backgroundImage"
+      @success="successCallback"
+    ></bm-upload>
   </div>
 </template>
 
@@ -21,22 +26,62 @@ export default {
       }
     }
   },
+  components: {
+    bmUpload: () =>
+      import(
+        /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
+      )
+  },
   computed: {
     comStyle() {
       let { info = {} } = this;
       let {
         width = "",
         height = "",
-        backgroundColor = "",
-        backgroundImage = ""
+        color = "",
+        borderColor = "",
+        scale = "",
+        // backgroundColor = "",
+        backgroundImage = "",
+        backgroundRepeat = "",
+        backgroundSize = ""
       } = info || {};
-      return {
+      let styles = {
         width: width + "px",
-        height: height + "px",
-        backgroundColor: backgroundColor,
-        backgroundImage: "url(" + backgroundImage + ")"
-        // color: val.color
+        height: height + "px"
       };
+      if (backgroundRepeat) {
+        styles["backgroundRepeat"] = backgroundRepeat;
+      }
+      if (backgroundSize) {
+        styles["backgroundSize"] = backgroundSize;
+      }
+      if (borderColor) {
+        styles["borderColor"] = borderColor;
+      }
+      if (scale) {
+        (styles["transform"] = `${scale}`),
+          (styles["-webkit-transform"] = `${scale}`),
+          (styles["-ms-transform"] = `${scale}`),
+          (styles["-o-transform"] = `${scale}`),
+          (styles["-moz-transform"] = `${scale}`);
+      }
+      if (color) {
+        styles["color"] = color;
+      }
+      // if (backgroundColor) {
+      //   styles["backgroundColor"] = backgroundColor;
+      // }
+      if (backgroundImage) {
+        styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
+      }
+      return styles || {};
+    }
+  },
+  methods: {
+    successCallback(url) {
+      let { info = {} } = this;
+      info.backgroundImage = url;
     }
   }
 };

@@ -6,7 +6,7 @@ export default {
   not: { name: "not", path: "/404", title: "Not Found" },
   // network: { name: "network", path: "/network", title: "network Found" },
   home: { name: "home", path: "/", title: "重定向首页" },
-  // login: { name: "login", path: "/nav/login", title: "登录" },
+  login: { name: "login", path: "/login", title: "登录" },
   // layout: { name: "layout", path: "/nav", title: "布局首页" },
   index: { name: "index", path: "/index", title: "首页" },
   // archives: { name: "archives", path: "archives", title: "设备档案" },

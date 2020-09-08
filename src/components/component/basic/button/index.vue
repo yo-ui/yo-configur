@@ -1,6 +1,10 @@
 <template>
-  <button :style="comStyle">
-    {{ info.content }}
+  <button class="btn-com"
+    :style="comStyle"
+    :contenteditable="info.editable"
+    @keyup="keyupEvent"
+  >
+    {{ info.name }}
   </button>
 </template>
 
@@ -21,17 +25,47 @@ export default {
   computed: {
     comStyle() {
       let { info = {} } = this;
-      let { width = "", height = "", backgroundColor = "" } = info || {};
-      return {
+      let {
+        width = "",
+        height = "",
+        color = "",
+        borderColor = "",
+        backgroundColor = "",
+        backgroundImage = ""
+      } = info || {};
+      let styles = {
         width: width + "px",
-        height: height + "px",
-        backgroundColor: backgroundColor
-        // backgroundImage: 'url(' + val.backPic + ')',
-        // color: val.color
+        height: height + "px"
       };
+      if (borderColor) {
+        styles["borderColor"] = borderColor;
+      }
+      if (color) {
+        styles["color"] = color;
+      }
+      if (backgroundColor) {
+        styles["backgroundColor"] = backgroundColor;
+      }
+      if (backgroundImage) {
+        styles["backgroundImage"] = `url(${backgroundImage})`;
+      }
+      return styles || {};
+    }
+  },
+  methods: {
+    keyupEvent(e) {
+      let { target } = e;
+      let { info = {} } = this;
+      let name = $(target).html();
+      info.name = name;
     }
   }
 };
 </script>
 
-<style></style>
+<style lang="less" scoped>
+  @import (reference) "./../../../../assets/less/common.less";
+  .btn-com{
+    .bor(1px solid @grayE);
+  }
+</style>

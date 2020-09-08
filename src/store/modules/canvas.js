@@ -10,15 +10,31 @@ export default {
     // financePricingStrategiesCacheMap: null,
     // 画布缩放值
     zoom: 1,
-    viewBox: {
-      type: "canvas" //画布
+    canvas: {
+      type: "canvas", //画布
+      name: "组态",
+      left: 0,
+      top: 0,
+      action: "select", //操作方式
+      width: "", //画布宽
+      height: "", //画布高
+      backgroundColor: "#fff", //画布背景颜色
+      backgroundImage: "", //画布背景图片
+      backgroundSize: "",
+      backgroundRepeat: "no-repeat", //背景图片是否平铺
+      isGrid: true, //是否显示网格
+      gridStyle: {
+        type: "1",
+        width: 20,
+        height: 20
+      }
     },
     // 选中组件对象
     activeCom: {},
     // 选中组件对象id
     // activeComId: "",
     // 组件列表
-    widgetList: "",
+    widgetList: [],
     originX: 0, // 选中元件的横向初始值
     originY: 0, // 选中元件的纵向初始值
     startX: 0, // 鼠标摁下时的横坐标
@@ -27,22 +43,13 @@ export default {
     // financeEnterpriserProvincesCacheMap: null
   },
   getters: {
-    // //获取缓存数据对象
-    // getDeviceTypeCategoryList(state) {
-    //   let deviceTypeCategoryList = state.deviceTypeCategoryList || [];
-    //   return deviceTypeCategoryList || [];
-    // },
-    getViewBox(state) {
-      return state.viewBox;
+    getCanvas(state) {
+      return state.canvas;
     },
     //获取画布缩放值
     getZoom(state) {
       return state.zoom;
     },
-    // //获取选中对象id
-    // getActiveComId(state) {
-    //   return state.activeComId;
-    // },
     //获取选中对象id
     getActiveCom(state) {
       return state.activeCom;
@@ -51,68 +58,15 @@ export default {
     getWidgetList(state) {
       return state.widgetList;
     }
-    // //获取缓存数据对象
-    // getDeviceCategTree(state) {
-    //   return state.deviceCategTree || [];
-    // }
-    // //获取缓存数据对象
-    // getDevicePointOptionalsCacheMap(state) {
-    //   let devicePointOptionalsCacheMap = state.devicePointOptionalsCacheMap || {};
-    //   return key => {
-    //     return devicePointOptionalsCacheMap[key];
-    //   };
-    // }
-    // //获取缓存数据对象
-    // getProjectListCacheMap(state) {
-    //   let projectListCacheMap = state.projectListCacheMap || {};
-    //   return key => {
-    //     return projectListCacheMap[key];
-    //   };
-    // }
-    // //获取缓存数据对象
-    // getFinanceEnterpriserProvincesCacheMap(state) {
-    //   let financeEnterpriserProvincesCacheMap =
-    //     state.financeEnterpriserProvincesCacheMap || {};
-    //   if (!financeEnterpriserProvincesCacheMap) {
-    //     financeEnterpriserProvincesCacheMap = bmCommon.getItem(
-    //       Constants.LOCALSTORAGEKEY.FINANCIALENTERPRISERPROVINCECITIES
-    //     );
-    //     financeEnterpriserProvincesCacheMap = JSON.parse(
-    //       financeEnterpriserProvincesCacheMap
-    //     );
-    //   }
-    //   financeEnterpriserProvincesCacheMap = JSON.parse(
-    //     JSON.stringify(financeEnterpriserProvincesCacheMap)
-    //   );
-    //   if (!financeEnterpriserProvincesCacheMap) {
-    //     financeEnterpriserProvincesCacheMap = {};
-    //   }
-    //   return key => {
-    //     return financeEnterpriserProvincesCacheMap[key];
-    //   };
-    // }
   },
   mutations: {
-    // //设置缓存对象
-    // setDeviceTypeCategoryList(state, item = []) {
-    //   state.deviceTypeCategoryList = item || [];
-    // },
-    setViewBox(state, item) {
-      state.viewBox = item;
+    setCanvas(state, item) {
+      state.canvas = item;
     },
-    // //选择取消组件选中
-    // selectCom(state,id){
-    //   let {widgetList=[]}=state
-    //   let activeCom=widgetList.find(item=>item.id==id)
-    // },
     //设置画布缩放值
     setZoom(state, item) {
       state.zoom = item;
     },
-    // //设置选中对象id
-    // setActiveComId(state, item) {
-    //   state.activeComId = item;
-    // },
     //设置选中对象
     setActiveCom(state, item) {
       state.activeCom = item;
@@ -121,7 +75,6 @@ export default {
     setWidgetList(state, item) {
       state.widgetList = item;
     },
-
     // 设置 mousemove 操作的初始值
     initMove(state, item = {}) {
       let {
@@ -161,7 +114,23 @@ export default {
       var top = originY + Math.floor((dy * 1) / zoom);
       activeCom.left = left > 0 ? left : 0;
       activeCom.top = top > 0 ? top : 0;
-      bmCommon.log(left, top, activeCom);
+      // bmCommon.log(left, top, activeCom);
+    },
+    // 移动画布
+    canvasMoving(state, item) {
+      let { x, y } = item || {};
+      let { startX, startY, canvas, zoom, originX, originY } = state;
+      // var target = state.activeCom;
+      var dx = x - startX;
+      var dy = y - startY;
+      // var left = state.originX + Math.floor((dx * 100) / state.zoom);
+      // var top = state.originY + Math.floor((dy * 100) / state.zoom);
+      var left = originX + Math.floor((dx * 1) / zoom);
+      var top = originY + Math.floor((dy * 1) / zoom);
+      bmCommon.log(left, top);
+      canvas.left = left;
+      canvas.top = top;
+      // bmCommon.log(left, top, activeCom);
     },
 
     // 调整元件尺寸
@@ -288,12 +257,12 @@ export default {
         // top = originY + Math.floor((dy * 1) / zoom);
         // height = originHeight + Math.floor((dy * 1) / zoom);
         // left = originX + Math.floor((dx * 1) / zoom);
-        rotate = originRotate + Math.floor((dx * 1) / zoom);
+        rotate = (originRotate + Math.floor((dx * 1) / zoom)) % 360;
         // activeCom.top = top > 0 ? top : 0;
         // activeCom.left = left > 0 ? left : 0;
         // activeCom.left -= Math.floor((width - activeCom.width) / 2);
         // activeCom.top -= Math.floor((height - activeCom.height) / 2);
-        bmCommon.log(rotate,'----rotate')
+        // bmCommon.log(rotate,'----rotate')
         activeCom.rotate = rotate;
         return;
       }
@@ -302,13 +271,13 @@ export default {
   actions: {
     selectCom(context, id) {
       let { state = {} } = context;
-      let { widgetList = [], viewBox = {} } = state;
+      let { widgetList = [], canvas = {} } = state;
       let activeCom = widgetList.find(item => item.id == id);
       if (!activeCom) {
-        activeCom = viewBox;
+        activeCom = canvas;
       }
       context.commit("setActiveCom", activeCom);
-      // context.commit('viewBox/setActiveCom',activeCom)
+      // context.commit('canvas/setActiveCom',activeCom)
     }
   }
 };

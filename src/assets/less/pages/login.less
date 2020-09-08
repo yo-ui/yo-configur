@@ -1,93 +1,155 @@
-@import (reference) "./../common.less";
-.bm-login-page{
-  .bg-img;
-  .bi("./../../img/login/login-bg-new.png");
-  .bz(cover);
-  .h(100%);
-  .content-box{
-    .mt(-50);
-    .posa;
-    left:50%;
-    top:50%;
-    .tranf(translate(-50%,-50%));
-    .title{
-      letter-spacing: 2px;
-      .tc;
-      .fw(700);
-      .c(@white);
-      .fz(30);
-    }
-    .form-box{
-      .mt(65);
-      .wh(810;440);
-      .br(2px);
-      .posr;
-      .bg-img;
-      .bi("./../../img/login/form-bg-new.png");
-      .bz(810px 440px);
-      .bp(center bottom);
-      .box-s(0 0 30px rgba(0,0,0,.3));
-      &::before{
-        content: "";
-        .bg-img;
+// 引入全局方法
+@import "../common.less";
+.b-login-page{
+    .posf;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    // .bi('../../image/login/public-bg.jpg');
+    .bp(center);
+    .bz(cover);
+    .df;
+    align-items: center;
+    justify-content: center;
+    .logo{
+        .bz(100%);
+        // .bi('./../../image/login/bottom-left.png');
+        // .wh(362;70);
+        background-repeat: no-repeat;
+        .wh(500;320);
         .posa;
-        top:-14px;
-        // bottom: 0;    
-        .w(10);
-        .h(470);
-        right:360px;
-        .bi("./../../img/login/login-tixing-new.png");
-        .bz(10px 100%);
-        z-index:-1;
-      }
+        left:0;
+        top:0;
+        img{
+            .posa;
+            left:10px;
+            top:10px;
+            // max-width: 200px;
+            max-height: 200px;
+        }
     }
-    .el-form{
-      .mt(-13);
-      .wh(310;466);
-      .box-s(-5px -5px 20px rgba(0,0,0,.2));
-      .posa;
-      right: 50px;
-      .bc(@white);
 
-      // .icon-user,.icon-password{
-      // }
-      .icon-user{
-        .p(9px);
+    .flex-content{
+        .df;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .posr;
+      }
+
+    .bg-line{
         .bg-img;
-        .bi("./../../img/login/login-user-new.png");
+        .bz(cover);
+        // .bi("../../image/login/login-tixing-new.png");
+        .posa;
+        .wh(10;466);
+        top:50%;
+        .mt(0);
+        right:361px;
+        .tranf(translate(0,-50%));
       }
-      .icon-password{
-        .bg-img;
-        .p(8px);
-        .bi("./../../img/login/login-pass-new.png");
-      }
-      .form-title{
-        .c(@themes);
-        .tc;
-        .m(35px auto);
-      }
-      .el-form-item{
-        .m(0 20px 20px);
-        .el-input__prefix{
-          .w(40);
+    .form-box{
+        .bz(cover);
+        // .bi('./../../image/login/form-bg-new.png');
+        .wh(810;444);
+        .box-s(0 0 30px rgba(0,0,0,.3));
+        .posr;
+        z-index: 1;
+        .el-form{
+            .box-s(-5px -5px 20px rgba(0,0,0,.2));
+            .wh(310;466);
+            .bc(@white);
+            .posa;
+            right:50px;
+            top:-11px;
+            .title{
+                .m(35px auto);
+                .tc;
+                .fz(20);
+                .c(@themes);
+                .fw(normal);
+            }
+            .el-form-item{
+                .w(270);
+                .m(20px auto 0);
+                .el-input__inner{
+                    // .br(0);
+                    .pl(35)!important;
+                    .h(40)!important;
+                    .lh(40)!important;
+                }
+                .el-input__icon{
+                    .fz(18);
+                }
+                .el-input__suffix{
+                    .el-input__validateIcon{
+                        .db(none)!important;
+                    }
+                }
+            }
+            .btn-login{
+                .m(55px auto 0);
+                .db;
+                .w(270);
+                cursor: pointer;
+                .box-s(0 10px 20px rgba(65,149,234,.3));
+            }
+            .btn-find{
+                .posa;
+                bottom:15px;
+                right: 15px;
+                .c(@themes);
+            }
         }
-        .el-input__inner{
-          .h(45);
-          .lh(45);
-          .pl(50);
-        }
-      }
-      .err-msg{
-        .h(20);
-        .c(@red);
-        .m(0 20px);
-      }
-      .btn-box{
-        .m(70px 20px 0);
-        .el-button{
-          .w(100%);
-        }
-      }
     }
-  }
+    .browser{
+        .posa;        
+        bottom:40px;
+        .tc;
+        left:0;
+        right:0;
+        .c(rgba(0,0,0,.7));
+        a{
+            .ml(15);
+        }
+        img{
+            .dib;
+            vertical-align: middle;
+        }
+    }
+    .reg-box{
+        .bz(100%);
+        // .bi('./../../image/login/bottom-right.png');
+        .wh(500;300);
+        .posa;
+        bottom: 0;
+        right: 0;
+        .tc;
+        .df;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        .keyframes(regist; {
+            from{margin-left:-30px; opacity:0.2;}
+            to{margin-left:30px; opacity:1;}
+        });
+        .btn-reg{
+            .mb(25);
+            .mr(25);
+        }
+        .img{
+            .w(30);
+            .dib;
+            .anime(regist 2s infinite);
+        }
+        .txt{
+            .c(@white);
+            .mt(10);
+            &:hover{
+                text-decoration: underline;
+                // opacity:.8;
+            }
+        }
+    }
 }

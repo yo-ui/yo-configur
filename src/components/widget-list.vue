@@ -11,6 +11,7 @@
             v-for="_item in item.comList"
             draggable
             :key="_item.code"
+            @click="clickEvent(_item)"
             :data-item="JSON.stringify(_item)"
           >
             <i
@@ -53,7 +54,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      widgetList: "viewBox/getWidgetList" //放大缩小
+      widgetList: "canvas/getWidgetList" //放大缩小
     })
   },
   mounted() {
@@ -61,7 +62,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setWidgetList: "viewBox/setWidgetList" //设置组件列表
+      setWidgetList: "canvas/setWidgetList" //设置组件列表
     }),
     ...mapActions(),
     initEvent() {
@@ -76,12 +77,12 @@ export default {
         item = JSON.parse(item);
       }
       let { data = {}, name = "", code: type = "" } = item || {};
-      bmCommon.log("开始拖动元素", target, data);
+      // bmCommon.log("开始拖动元素", target, data);
       dataTransfer.setData("data", JSON.stringify({ ...data, type, name }));
       this.dragenterEvent(e);
     },
     dragenterEvent(e) {
-      bmCommon.log("进入目标元素", e.target);
+      // bmCommon.log("进入目标元素", e.target);
       $(document).on("dragover", this.dragoverEvent);
       // $(document).on("dragleave", this.dragleaveEvent);
       $(document).on("drop", this.dropEvent);
@@ -90,31 +91,46 @@ export default {
       e.preventDefault();
     },
     dragleaveEvent(e) {
-      bmCommon.log("离开当前元素", e.target);
+      // bmCommon.log("离开当前元素", e.target);
       // $(document).off("dragleave", this.dragleaveEvent);
       $(document).off("dragover", this.dragoverEvent);
       $(document).off("drop", this.dropEvent);
     },
     dropEvent(e) {
       e.preventDefault();
-      let { widgetList = [], $refs } = this;
+      e.stopPropagation();
+      let { widgetList = [] } = this;
       let { originalEvent = {} } = e;
-      let { viewBox } = $refs;
-      let { offset = {} } = $(viewBox);
+      let offset = $(".view-box").offset();
       let { dataTransfer = {} } = originalEvent;
       let data = dataTransfer.getData("data");
-      bmCommon.log("释放当前元素", e.target, data);
-      if (data) {
+      let target = originalEvent.target;
+      if (
+        data &&
+        ($(target).hasClass("canvas-box") ||
+          $(target)
+            .parent()
+            .hasClass("canvas-box"))
+      ) {
         data = typeof data === "string" ? JSON.parse(data) : {};
         let id = bmCommon.uuid();
         let pos = bmCommon.getMousePosition(e);
         let { left = 0, top = 0 } = offset || {};
         let { x = 0, y = 0 } = pos || {};
-        left = x - left;
-        top = y - top;
+        let { width = 0, height = 0 } = data || {};
+        // bmCommon.log("释放当前元素",data, target, width, height, left, top, x, y);
+        left = x - left - width / 2;
+        top = y - top - height / 2;
+        let obj = widgetList[widgetList.length - 1] || {};
+        let { order = "" } = obj || {};
+        if (order) {
+          order += 1;
+        } else {
+          order = 1;
+        }
         widgetList.push({
           ...data,
-          zIndex: widgetList.length + 1,
+          order,
           id,
           left,
           top
@@ -122,6 +138,21 @@ export default {
         // this.setWidgetList(widgetList);
       }
       this.dragleaveEvent(e);
+    },
+    clickEvent(item) {
+      let { widgetList = [] } = this;
+      let { data = {}, name = "", code: type = "", left = 0, top = 0 } =
+        item || {};
+      let id = bmCommon.uuid();
+      widgetList.push({
+        ...data,
+        type,
+        name,
+        order: widgetList.length + 1,
+        id,
+        left,
+        top
+      });
     }
   }
 };

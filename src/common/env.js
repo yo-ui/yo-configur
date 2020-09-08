@@ -10,8 +10,8 @@ import URL from "./conf/url.conf";
 import apiConfig from "./conf";
 
 //常量定义
-const PLATFORM = "IOT_OPER_";
-const DIR = "oper/";
+const PLATFORM = "IOT_CONFIGUR_";
+const DIR = "configur/";
 const Constants = {
   PLATFORM: PLATFORM,
   UPLOADDIR: {
@@ -83,7 +83,7 @@ const Constants = {
           name: "静态文本",
           code: "text",
           icon: "/static/img/configur/dataing.png",
-          data:{
+          data: {
             // id: 2,
             dragable: true,
             left: 0,
@@ -91,40 +91,38 @@ const Constants = {
             height: 60,
             rotate: 0,
             top: 0,
-            editable: false,
-            content: "静态文本"
+            editable: false
           }
         },
         {
           name: "动态文本",
           code: "dynamicText",
           icon: "/static/img/configur/text.png",
-          data:{
-            name: "",
-            // id: 3,
+          data: {
             dragable: true,
             left: 800,
             width: 300,
             height: 60,
             rotate: 0,
             top: 0,
-            editable: false,
-          content: "动态文本"
+            editable: true
           }
         },
         {
-          type: "image",
+          code: "image",
           name: "图片",
           icon: "/static/img/configur/img.png",
           data: {
-            // id: 4,
             dragable: true,
+            backgroundSize: "100% 100%",
+            backgroundRepeat: "repeat",
             rotate: 0,
-            width: 300,
-            height: 300,
+            scale: "scale(1,1)",
+            width: 360,
+            height: 220,
             left: 0,
             top: 0,
-            backgroundImage: "//pic.energyiot.cn/upload/180817095543907.jpg"
+            backgroundImage: ""
           }
         },
         {
@@ -132,16 +130,17 @@ const Constants = {
           code: "button",
           icon: "/static/img/configur/button.png",
           data: {
-            // type: "button",
-            // id: 1,
             dragable: true,
+            borderColor: "#eee",
+            backgroundColor: "#fff",
+            color: "#000",
+            backgroundImage: "",
             left: 500,
             width: 200,
             height: 60,
             rotate: 0,
             top: 0,
-            editable: false,
-            content: "按钮"
+            editable: true
           }
         },
         {
@@ -177,7 +176,7 @@ const Constants = {
             editable: false,
             content: "块状"
           }
-        },
+        }
       ]
     },
     {

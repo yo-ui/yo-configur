@@ -1,7 +1,5 @@
 <template>
   <div
-    :contenteditable="info.editable"
-    @dblclick.stop="dbClickEvent"
     :style="comStyle"
   >
     {{ info.content }}
@@ -12,7 +10,7 @@
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "textCom",
+  name: "textStyleCom",
   data() {
     return {};
   },
@@ -45,10 +43,10 @@ export default {
 
       }
     ),    
-    dbClickEvent() {
-      this.editable = true;
-      // this.addBodyEvent();
-    },
+    // dbClickEvent() {
+    //   this.editable = true;
+    //   // this.addBodyEvent();
+    // },
   },
 };
 </script>

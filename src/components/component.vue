@@ -7,47 +7,47 @@
       {{ info.type }}
     </div>
     <i
-      class="bm-icon el-icon-refresh-right"
+      class="operate-btn el-icon-refresh-right"
       @mousedown.stop="rotateClickEvent"
       title="旋转"
     ></i>
     <i
-      class="bm-icon el-icon-top-left"
+      class="operate-btn el-icon-top-left"
       @mousedown.stop="leftTopClickEvent"
       title="左上角"
     ></i>
     <i
-      class="bm-icon el-icon-top"
+      class="operate-btn el-icon-top"
       @mousedown.stop="topClickEvent"
       title="上"
     ></i>
     <i
-      class="bm-icon el-icon-top-right"
+      class="operate-btn el-icon-top-right"
       @mousedown.stop="rightTopClickEvent"
       title="右上角"
     ></i>
     <i
-      class="bm-icon el-icon-back"
+      class="operate-btn el-icon-back"
       @mousedown.stop="leftClickEvent"
       title="左"
     ></i>
     <i
-      class="bm-icon el-icon-right"
+      class="operate-btn el-icon-right"
       @mousedown.stop="rightClickEvent"
       title="右"
     ></i>
     <i
-      class="bm-icon el-icon-bottom-left"
+      class="operate-btn el-icon-bottom-left"
       @mousedown.stop="leftBottomClickEvent"
       title="左下角"
     ></i>
     <i
-      class="bm-icon el-icon-bottom"
+      class="operate-btn el-icon-bottom"
       @mousedown.stop="bottomClickEvent"
       title="下"
     ></i>
     <i
-      class="bm-icon el-icon-bottom-right"
+      class="operate-btn el-icon-bottom-right"
       @mousedown.stop="rightBottomClickEvent"
       title="右下角"
     ></i>
@@ -75,7 +75,7 @@
 
 <script>
 import bmCommon from "@/common/common";
-import widgets from "@/widgets/index";
+import { widgets } from "@/widgets/index";
 import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
@@ -143,14 +143,15 @@ export default {
     ...mapGetters(),
     boxStyle() {
       let { info = {} } = this;
-      let { left = "", top = "", zIndex = "", rotate = "0" } = info || {};
+      let { left = "", top = "", order: zIndex = "", rotate = "0" } =
+        info || {};
       return {
         // position: 'absolute',
         // width: val.width / 7.5 + '%',
         // height: val.height / h * 100 + '%',
         left: left + "px",
         top: top + "px",
-        zIndex: zIndex,
+        zIndex,
         transform: `rotate(${rotate}deg)`,
         webkitTransform: `rotate(${rotate}deg)`
         // backgroundColor: val.backgroundColor,
@@ -161,12 +162,12 @@ export default {
   },
   methods: {
     ...mapMutations({
-      initMove: "viewBox/initMove",
-      resize: "viewBox/resize",
-      rotate: "viewBox/rotate",
-      stopMove: "viewBox/stopMove"
+      initMove: "canvas/initMove",
+      resize: "canvas/resize",
+      rotate: "canvas/rotate",
+      stopMove: "canvas/stopMove"
     }),
-    mousedownEvent(e, type, originX, originY) {
+    mousedownEvent(e, type) {
       e.stopPropagation();
       e.preventDefault();
       // this.type = type
@@ -196,7 +197,7 @@ export default {
         originWidth,
         originHeight
       });
-      bmCommon.log(info, x, y, type);
+      // bmCommon.log(info, x, y, type);
 
       $(document).on("mousemove", this.mousemoveEvent);
       $(document).on("mouseup", this.mouseupEvent);

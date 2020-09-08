@@ -32,6 +32,15 @@ const Routers = [
     component: () => import(/* webpackChunkName: "bm-index" */ "@/pages/Index")
   },
   {
+    path: RouterURL.login.path,
+    name: RouterURL.login.name,
+    meta: {
+      title: RouterURL.login.title
+      // requireAuth: routerAuth //是否需要登录
+    },
+    component: () => import(/* webpackChunkName: "bm-login" */ "@/pages/Login")
+  },
+  {
     path: "*",
     // component: NotFound
     redirect: RouterURL.not.path

@@ -227,13 +227,13 @@ module.exports = {
     hotOnly: false,
     disableHostCheck: true, //  新增该配置项
     proxy: {
-      "/oper": {
+      "/service": {
         // target: "http://localhost:8080",
         // target: "http://192.168.0.129:8089",
-        target: "http://test-api-oper.energyiot.cn",
+        target: "http://test-api-eiot.energyiot.cn",
         ws: false,
         changeOrigin: true,
-        pathRewrite: { "/oper": "/" }
+        pathRewrite: { "/service": "/" }
       }
     }, // string | Object
     allowedHosts: [

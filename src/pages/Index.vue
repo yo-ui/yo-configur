@@ -7,8 +7,9 @@
         <!-- {{activeComId}} -->
         <!-- :active="activeComId == item.id" -->
         <!-- @drop="dropEvent" -->
-        <div class="canvas-box" :style="style">
+        <div class="canvas-box" :style="canvasStyle" :class="canvas.action">
           <!-- @mousedown.native.stop.prevent="mousedownEvent(item)" -->
+          <div class="bg" :style="gridStyle"></div>
           <bm-com
             :class="{ active: activeComId == item.id }"
             v-for="(item, index) in widgetList"
@@ -20,11 +21,11 @@
           ></bm-com>
         </div>
         <div class="slider-box">
-          {{ condition.zoom + "%" }}
+          {{ $toBig(zoom, 0) + "%" }}
+          <!-- @input="changeZoomEvent" -->
           <el-slider
-            v-model="condition.zoom"
+            v-model="zoom"
             :max="200"
-            @input="changeZoomEvent"
             :format-tooltip="val => val + '%'"
           ></el-slider>
         </div>
@@ -46,9 +47,9 @@ export default {
     return {
       // comList: [],
       // activeComId: "",
-      condition: {
-        zoom: 100
-      }
+      // condition: {
+      //   zoom: 100
+      // }
     };
   },
   mixins: [mixins],
@@ -71,52 +72,88 @@ export default {
   },
   computed: {
     ...mapGetters({
-      widgetList: "viewBox/getWidgetList", //放大缩小
-      zoom: "viewBox/getZoom", //放大缩小
-      height: "viewBox/getHeight", //画布高度
-      width: "viewBox/getWidth", //画布宽度
-      backgroundColor: "viewBox/getBackgroundColor", //画布颜色
-      backgroundImage: "viewBox/getBackgroundImage", //画布背景图
-      isGrid: "viewBox/getIsGrid", //画布是否显示网格
-      // activeComId: "viewBox/getActiveComId", //是否选中
-      activeCom: "viewBox/getActiveCom" //选中对象
+      widgetList: "canvas/getWidgetList", //组件列表
+      getZoom: "canvas/getZoom", //放大缩小
+      canvas: "canvas/getCanvas", //画布属性
+      // height: "canvas/getHeight", //画布高度
+      // width: "canvas/getWidth", //画布宽度
+      // backgroundColor: "canvas/getBackgroundColor", //画布颜色
+      // backgroundImage: "canvas/getBackgroundImage", //画布背景图
+      // isGrid: "canvas/getIsGrid", //画布是否显示网格
+      // activeComId: "canvas/getActiveComId", //是否选中
+      activeCom: "canvas/getActiveCom" //选中对象
     }),
+    zoom: {
+      get() {
+        return parseInt(this.getZoom * 100);
+      },
+      set(val) {
+        this.setZoom(val / 100);
+      }
+    },
     activeComId() {
       let { activeCom = {} } = this;
       let { id = "" } = activeCom || {};
       return id;
     },
-    // widgetMap() {
-    //   let { widgetList = [] } = this;
-    //   let map = {};
-    //   widgetList.forEach(item => {
-    //     let { id = "" } = item || {};
-    //     map[id] = item || {};
-    //   });
-    //   return map || {};
-    // },
-    style() {
-      let { zoom = 0 } = this;
-      return {
+    gridStyle() {
+      let { canvas = {} } = this;
+      let { isGrid = false, gridStyle = {} } = canvas;
+
+      let styles = {};
+      if (isGrid) {
+        let { width, height } = gridStyle || {};
+        styles[
+          "background"
+        ] = `linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${width}px ${height}px, linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${width}px ${height}px`;
+      }
+      return styles || {};
+    },
+    canvasStyle() {
+      let { zoom = 0, canvas = {} } = this;
+      let {
+        left = 0,
+        top = 0,
+        height = "",
+        width = "",
+        backgroundColor = "#fff",
+        backgroundImage = ""
+      } = canvas;
+      zoom = zoom / 100;
+      let styles = {
+        left: `${left}px`,
+        top: `${top}px`,
+        // backgroundImage: ``,
+        backgroundColor: `${backgroundColor}`,
         transform: `scale(${zoom})`,
         "-webkit-transform": `scale(${zoom})`,
         "-ms-transform": `scale(${zoom})`,
         "-o-transform": `scale(${zoom})`,
         "-moz-transform": `scale(${zoom})`
       };
+      if (width) {
+        styles["width"] = `${width}px`;
+      }
+      if (height) {
+        styles["height"] = `${height}px`;
+      }
+      if (backgroundImage) {
+        styles["backgroundImage"] = `url(${backgroundImage})`;
+      }
+      return styles || {};
     }
   },
   methods: {
     ...mapMutations({
-      setZoom: "viewBox/setZoom",
-      setWidgetList: "viewBox/setWidgetList", //设置组件列表
-      // setActiveComId: "viewBox/setActiveComId",
-      setActiveCom: "viewBox/setActiveCom",
-      initMove: "viewBox/initMove",
-      moving: "viewBox/moving",
-      stopMove: "viewBox/stopMove"
+      setZoom: "canvas/setZoom",
+      setWidgetList: "canvas/setWidgetList", //设置组件列表
+      // setActiveComId: "canvas/setActiveComId",
+      setActiveCom: "canvas/setActiveCom",
+      initMove: "canvas/initMove",
+      moving: "canvas/moving",
+      stopMove: "canvas/stopMove"
     }),
-    ...mapActions({ selectComAction: "viewBox/selectCom" }),
+    ...mapActions({ selectComAction: "canvas/selectCom" }),
     // mousedownEvent(item) {
     //   let { id = "" } = item || {};
     //   this.activeComId = id;
@@ -124,20 +161,24 @@ export default {
     init() {
       this.initEvent();
     },
-    changeZoomEvent(val) {
-      this.setZoom(val / 100);
-    },
+    // changeZoomEvent(val) {
+    //   this.setZoom(val / 100);
+    // },
     initEvent() {
       let viewBox = this.$refs.viewBox;
       $(viewBox).on("mousedown", this.viewBoxMouseDownEvent);
-      $(document).on("keydown", this.keydownEvent);
+      $(viewBox).on("keydown", this.keydownEvent);
+      this.selectComAction();
     },
     viewBoxMouseDownEvent(e) {
       let { target } = e;
       let $parent = $(target).parent();
       // .getAttribute('data-type')
       // let {data-type:dataType=''}=attrs||{}
-      let type = $parent.attr("data-type");
+      let type = $(target).attr("data-type");
+      if(!type){
+        type = $parent.attr("data-type");
+      }
       let id = "";
       if (type) {
         id = $parent.attr("data-id");
@@ -170,7 +211,7 @@ export default {
       let { keyCode = "" } = e;
       e.stopPropagation();
       // e.preventDefault();
-      bmCommon.log("------", keyCode);
+      // bmCommon.log("------", keyCode);
       let { activeCom } = this;
       // let $activeCom = $(activeCom);
       // let { offset = {} } = activeCom;
@@ -208,64 +249,68 @@ export default {
     }
   },
   mounted() {
-    let widgetList = [
-      {
-        type: "button",
-        name: "按钮",
-        id: 1,
-        dragable: true,
-        left: 500,
-        width: 200,
-        height: 60,
-        rotate: 0,
-        top: 0,
-        editable: false,
-        content: "按钮"
-      },
-      {
-        type: "text",
-        name: "静态文本",
-        id: 2,
-        dragable: true,
-        left: 0,
-        width: 300,
-        height: 60,
-        rotate: 0,
-        top: 0,
-        editable: false,
-        content: "静态文本"
-      },
-      {
-        type: "dynamicText",
-        name: "动态文本",
-        id: 3,
-        dragable: true,
-        left: 800,
-        width: 300,
-        height: 60,
-        rotate: 0,
-        top: 0,
-        editable: false,
-        content: "动态文本"
-      },
-      {
-        type: "image",
-        id: 4,
-        dragable: true,
-        rotate: 0,
-        width: 300,
-        height: 300,
-        left: 0,
-        top: 0,
-        backgroundImage: "//pic.energyiot.cn/upload/180817095543907.jpg"
-      }
-    ];
-    this.setWidgetList(widgetList);
+    // let widgetList = [
+    //   {
+    //     type: "button",
+    //     name: "按钮",
+    //     id: 1,
+    //     order: 1,
+    //     dragable: true,
+    //     left: 500,
+    //     width: 200,
+    //     height: 60,
+    //     rotate: 0,
+    //     top: 0,
+    //     editable: false,
+    //     content: "按钮"
+    //   },
+    //   {
+    //     type: "text",
+    //     name: "静态文本",
+    //     id: 2,
+    //     order: 2,
+    //     dragable: true,
+    //     left: 0,
+    //     width: 300,
+    //     height: 60,
+    //     rotate: 0,
+    //     top: 0,
+    //     editable: false,
+    //     content: "静态文本"
+    //   },
+    //   {
+    //     type: "dynamicText",
+    //     name: "动态文本",
+    //     order: 3,
+    //     id: 3,
+    //     dragable: true,
+    //     left: 800,
+    //     width: 300,
+    //     height: 60,
+    //     rotate: 0,
+    //     top: 0,
+    //     editable: true,
+    //     content: "动态文本"
+    //   },
+    //   {
+    //     type: "image",
+    //     id: 4,
+    //     dragable: true,
+    //     rotate: 0,
+    //     width: 300,
+    //     order: 4,
+    //     height: 300,
+    //     left: 0,
+    //     top: 0,
+    //     backgroundImage: "//pic.energyiot.cn/upload/180817095543907.jpg"
+    //   }
+    // ];
+    // this.setWidgetList(widgetList);
     this.init();
   },
   beforeDestroy() {
-    let viewBox = this.$refs.viewBox;
-    $(viewBox).off("mousedown");
+    let canvas = this.$refs.canvas;
+    $(canvas).off("mousedown");
     $(document).off("keydown");
   }
 };

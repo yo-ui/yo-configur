@@ -1,52 +1,98 @@
 <template>
-  <div class="bm-header-com"></div>
+  <div class="bm-header-com">
+    <div class="left"></div>
+    <div class="title">
+      {{ canvas.name }}
+    </div>
+    <div class="right">
+      <i class="el-icon-copy-document" @click="copyEvent"></i>
+      <i class="el-icon-delete" @click="deleteEvent"></i>
+      <i class="el-icon-full-screen" @click="fullScreenEvent"></i>
+    </div>
+  </div>
 </template>
 
 <script>
 import bmCommon from "@/common/common";
-// import RouterURL from "@/router/routers.conf";
 import { Constants } from "@/common/env";
+// eslint-disable-next-line no-undef
+const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {
     return {};
   },
   components: {},
   computed: {
-    
+    ...mapGetters({
+      canvas: "canvas/getCanvas",
+      activeCom: "canvas/getActiveCom",
+      widgetList: "canvas/getWidgetList"
+    })
   },
   methods: {
+    ...mapMutations({
+      setActiveCom: "canvas/setActiveCom"
+    }),
+    ...mapActions({ selectComAction: "canvas/selectCom" }),
     // 初始化
     init() {
       // this.storeProductFunc();
     },
-    // 获取增值服务产品详情
-    // storeProductFunc() {
-    //   let that = this;
-    //   let { $route } = that;
-    //   let { params } = $route;
-    //   let { id } = params || {};
-    //   //第一次加载缓存数据
-    //   that.loadProduct();
-    //   that.$store
-    //     .dispatch("storeProduct", {
-    //       id: id
-    //     })
-    //     .then(({ data }) => {
-    //       let { code="", result,message="" } = data||{};
-    //       if (success) {
-            
-    //         let product = result || {};
-    //         that.$store.commit("setDataCacheMap", {
-    //           key: Constants.DATACACHEMAPKEY.STOREPRODUCT + id,
-    //           value: product
-    //         });
-    //         that.loadProduct();
-    //       }
-    //     })
-    //     .catch(err => {
-    //       bmCommon.error("获取增值服务产品详情失败！", err);
-    //     });
-    // },
+    copyEvent() {
+      let { activeCom = {}, widgetList = [] } = this;
+      let id = bmCommon.uuid();
+      let obj = widgetList[widgetList.length - 1] || {};
+      let { order = "" } = obj || {};
+      if (order) {
+        order += 1;
+      } else {
+        order = 1;
+      }
+      let item = { ...activeCom, id, order };
+      widgetList.push(item);
+      this.setActiveCom(item);
+    },
+    deleteEvent() {
+      let { activeCom = {}, widgetList = [] } = this;
+      let { id = "" } = activeCom;
+      let index = widgetList.findIndex(item => id == item.id);
+      widgetList.splice(index, 1);
+      this.selectComAction();
+    },
+    // 全屏事件
+    fullScreenEvent() {
+      let { fullScreenStatus } = this;
+      if (fullScreenStatus) {
+        this.exitFullscreen();
+      } else {
+        this.showFullScreen();
+      }
+      this.fullScreenStatus = !fullScreenStatus;
+    },
+    showFullScreen() {
+      var element = document.documentElement;
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+      } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+      } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+      }
+    },
+    // 退出全屏
+    exitFullscreen() {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
+    }
   },
   mounted() {
     this.init();
