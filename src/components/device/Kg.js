@@ -114,15 +114,20 @@ class Kg extends Spirit {
             device.points.forEach(function (point) {
               if(point.id == data.data.expr) {
                 that.point = point;
+                if(that.point.id&&that.point.value) {
+                  let point = that.point.id;
+                  let value = that.point.value;
+                  that.control(deviceId,point,value==0?1:0)
+                }
               }
             });
           }
         }
       });
+      let point = that.point.id;
+      let value = that.point.value;
+      that.control(deviceId,point,value==0?1:0)
     }
-    let point = that.point.id;
-    let value = that.point.value;
-    that.control(deviceId,point,value==0?1:0)
   }
 
 	reveal(device,config) {

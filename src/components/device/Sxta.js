@@ -130,12 +130,13 @@ class Sxta extends Spirit {
     let that = this;
     let deviceId = that.config.bindData.deviceId;
     $('#'+this.id).on('click',function () {
-      let video = new Video(that.stage,820,500,deviceId);
+      let video = new Video(that.stage,820,500);
+      video.init(deviceId);
       that.stage.option.token(deviceId, function(message) {
-        if(message.serial) {
+        let serial = message.serial;
+        if(serial) {
           let name = message.name;
           let accessToken = message.accessToken;
-          let serial = message.serial;
           video.create(name,accessToken,serial)
         }
       })

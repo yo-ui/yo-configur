@@ -12,7 +12,7 @@ class Button extends Spirit {
 	    this.className = "Button";
 	    this.width = width;
 	    this.height = 30;
-	    this.minWidth = 50;
+	    this.minWidth = 30;
 	    this.moveType = 0;
 	    this.linkage = false;
 	    this.isMove = true;
@@ -164,13 +164,13 @@ class Button extends Spirit {
   }
 
   animations() {
-    $('#configur_property').find('.action-list').html('');
+    $('#configur_property').find('.bm-action-list').html('');
     let id = this.config.animation.id;
     let name = this.config.animation.name;
     let text = this.config.animation.text;
     if(id) {
       let li = $(`<li>${text}：${name}</li>`)
-      $('#configur_property').find('.action-list').append(li);
+      $('#configur_property').find('.bm-action-list').append(li);
     }
   }
 
@@ -193,7 +193,7 @@ class Button extends Spirit {
                       </select>
                       <span class="bm-active button button-raised button-primary button-pill" style="font-size: 13px">绑定</span>
                     </div>
-                    <ul class="action-list"></ul>
+                    <ul class="bm-action-list"></ul>
                   </div>          						
                 </div>`;
     $('#configur_property').append(html);
@@ -227,7 +227,8 @@ class Button extends Spirit {
     let property = this.stage.property;
     property.config.text = text;
     $('#'+property.id).find('span').text(text);
-    $('#temp_value').html($('#'+property.id).find('div').html());
+    let html = $('#'+property.id).find('div').html();
+    $('#temp_value').html(html);
     let width = $('#temp_value').width()+2;
     $('.resize-panel').css({width})
     $('#'+property.id).find('div').css({width});

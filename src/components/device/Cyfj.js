@@ -1,7 +1,7 @@
 import Spirit from '@/core/Spirit.js'
 
 /**
- * 生活水泵
+ * 抽烟风机
  */
 class Cyfj extends Spirit {
 

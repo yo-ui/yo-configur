@@ -1,16 +1,16 @@
 .bm-component-list {
   display: inline-block;
-  width: 160px;
+  width: 170px;
   vertical-align: top;
-  height: calc(100% - 20px);
-  padding: 10px;
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  padding: 5px;
 }
 .bm-component-list > div {
   text-align: center;
   margin-bottom: 20px;
-  width: 76px;
+  width: 80px;
   display: inline-block;
 }
 .bm-component-list > div > img {
@@ -57,27 +57,41 @@
   cursor: pointer;
 }
 .bm-list > li.active {
-  background-color: #12a3ff;
-  border: 1px solid #12a3ff;
+  background-color: #85d4ff;
+  border: 1px solid #85d4ff;
   color: #fff;
 }
-.action-list > li {
+.bm-common-list > li {
+  line-height: 24px;
+  margin: 1px 0;
+  padding: 3px 8px;
+}
+.bm-common-list > li > span,
+.bm-common-list > li > img {
+  display: inline-block;
+  vertical-align: middle;
+}
+.bm-common-list > li > img {
+  margin: 0 2px;
+}
+.bm-action-list > li {
   line-height: 24px;
   margin: 1px 0;
   padding: 3px 8px;
   display: flex;
 }
-.action-list > li > .text {
+.bm-action-list > li > .text {
   flex: 1;
 }
-.action-list > li > .value > img {
+.bm-action-list > li > .value > img {
   width: 18px;
+  display: inline-block;
   vertical-align: middle;
 }
-.action-list > li:hover {
+.bm-action-list > li:hover {
   background-color: #f7f8fa;
   cursor: pointer;
 }
-.action-list > li.active {
+.bm-action-list > li.active {
   border: 1px solid #12a3ff;
 }

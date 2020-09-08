@@ -11,9 +11,9 @@ class Mcbjq extends Spirit {
 	    this.className = "Mcbjq";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
+      this.moveType = 4;
 	    this.zIndex = 2;
 	    this.linkage = true;
 	}

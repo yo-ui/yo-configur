@@ -11,10 +11,10 @@ class Pfj extends Spirit {
 	    this.className = "Pfj";
 	    this.width = width;
 	    this.height = height;
-		  this.zIndex = 2;
-	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
+      this.moveType = 4;
+      this.zIndex = 2;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;

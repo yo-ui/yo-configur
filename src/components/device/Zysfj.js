@@ -17,7 +17,7 @@ class Zysfj extends Spirit {
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.zIndex = 3;
+	    this.zIndex = 2;
 	    this.config = {
 	      bindData: {orgId:'',deviceId:'',devicePoint:''},
         state: {expr:'SwSts',stop:0,start:1,alarm:2}

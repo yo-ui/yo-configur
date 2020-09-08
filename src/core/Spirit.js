@@ -52,6 +52,8 @@ class Spirit {
 
 	reveal(device,config) {}
 
+	template() {}
+
 	renderer() {
 		let that = this;
 		$('#configur_property').html('');
@@ -128,16 +130,15 @@ class Spirit {
         if(point.type==2||point.type==4) {
           let span = $('<span class="value"></span>')
           let select = $('<select class="bm-select" style="padding: 0px;width: 80px;display: inline-block;vertical-align: middle"></select>')
-          point.optionValList.forEach(function (data) {
+          point.optionValList.forEach(function(data) {
             let option = $('<option></option>');
             option.val(data.value);
             option.text(data.descr);
             select.append(option);
           })
           select.val(1);
-          let button = $(`<a class="button button-raised button-primary button-pill" 
-                           style="line-height: 22px;font-size: 11px;margin-left: 2px">确定</a>`)
-          button.on('click', function () {
+          let button = $(`<a class="button button-raised button-primary button-pill" style="line-height: 22px;font-size: 11px;margin-left: 2px">确定</a>`)
+          button.on('click', function() {
             that.control(device.id,point.id,select.val());
           });
           span.append(select);
@@ -164,24 +165,19 @@ class Spirit {
   control(deviceId,point,value) {
 	  let that = this;
     that.stage.password.show();
-    that.stage.password.confirm(function (text) {
+    that.stage.password.confirm(function(text) {
       let data = {}
       data.deviceId = deviceId;
       data.point = point;
       data.value = value;
       data.ctrlPwd = text;
-      that.stage.option.control(data,function(msg) {
-        let message = JSON.parse(msg);
-        if(message.status.code==100000) {
-          Toast.alert("控制成功！");
-          let item = {}
-          item.id = deviceId;
-          item.points = [{id:point,value:value}]
-          that.stage.linkage(item);
-          that.stage.password.hide();
-        }else if(message.status.code==120020) {
-          Toast.alert("密码错误！");
-        }
+      that.stage.option.control(data,function() {
+        Toast.alert("控制成功！");
+        let item = {}
+        item.id = deviceId;
+        item.points = [{id:point,value:value}]
+        that.stage.linkage(item);
+        that.stage.password.hide();
       })
     });
   }

@@ -1,6 +1,7 @@
 import SpiritFactory from '@/core/SpiritFactory'
 import Password from '@/core/Password'
 import Zoom from '@/core/Zoom'
+import Panel from '@/core/Panel';
 /**
  * 预览舞台
  */
@@ -11,6 +12,7 @@ class ViewStage {
     this.imgHost = imgHost;
 		this.option = option;
     this.zoom = new Zoom(this);
+    this.panel = new Panel(this);
 		this.option.canvas(function(data) {
 			that.canvas = {id:data.id};
       if(!data.data) {

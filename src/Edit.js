@@ -1,5 +1,5 @@
-import RemoteObject from '@/assets/js/RemoteObject'
-import Stage from '@/core/Stage'
+import RemoteObject from './assets/js/RemoteObject'
+import Stage from './core/Stage'
 
 class Edit {
 
@@ -23,9 +23,13 @@ class Edit {
           if(canvasId) {
             let data = {}
             data.id = canvasId;
-            RemoteObject.ajax(that.config.get,"get",data,function(result){
-              console.log(result);
-              callback.call(this, result);
+            RemoteObject.ajax(that.config.get,"get",data,function(msg){
+              let result = JSON.parse(msg);
+              if(result.code==200) {
+                callback.call(this, result.result);
+              }else {
+                console.log(result.message);
+              }
             })
           }
         }
@@ -35,8 +39,13 @@ class Edit {
           localStorage.setItem("data", data.data);
           callback.call(this, "ok");
         }else {
-          RemoteObject.ajax(that.config.save,"post",data,function(){
-            callback.call(this, "ok");
+          RemoteObject.ajax(that.config.save,"post",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
@@ -45,8 +54,13 @@ class Edit {
           let dataList = [{id:1,name:'A楼',pid:0},{id:2,name:'B楼',pid:1}]
           callback.call(this, dataList);
         }else {
-          RemoteObject.ajax(that.config.organizList,"get","",function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.organizList,"get","",function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
@@ -59,8 +73,13 @@ class Edit {
         }else {
           let data = {}
           data.orgId = orgId;
-          RemoteObject.ajax(that.config.devicePoints,"get",data,function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.devicePoints,"get",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
@@ -69,19 +88,19 @@ class Edit {
           let url = $(form).find('input').val();
           callback.call(this, "static/images/background/background.jpg");
         }else {
-          let imageForm = new FormData(form);
-          imageForm.append("files", file);
+          let formData = new FormData(form);
+          formData.append("files", file);
           $.ajax({
             url: that.config.upload,
             type: 'post',
-            data: imageForm,
+            data: formData,
             contentType: false,
             processData: false,
             success: function(result){
               if(result.code==200) {
                 callback.call(this,result.result[0]);
               }else {
-                console.log(url+":"+result.message);
+                console.log(result.message);
               }
             },
             error:function(err){
@@ -104,8 +123,13 @@ class Edit {
           data.point = point;
           data.startTime = startTime;
           data.endTime = endTime;
-          RemoteObject.ajax(that.config.devicePointHstData,"get",data,function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.devicePointHstData,"get",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       }
@@ -160,7 +184,7 @@ class Edit {
   }
 
   template() {
-    let html = `<div class="bm-layout">
+    return `<div class="bm-layout">
       <div class="bm-layout__header">
         <span class="bm-layout__header__back">
           <i class="fa fa-return"></i>
@@ -206,15 +230,12 @@ class Edit {
                   </div>
                 </div>
             </div>
+          </div>
         </div>
-      </div>
-      <div class="bm-context-menu">
-          <ul></ul>
-      </div>
+        <div class="bm-context-menu"><ul></ul></div>
       </div>
       <div class="menu-panel"></div>
       <div id="temp_value" style="display: none;"></div>`;
-    return html;
   }
 }
 

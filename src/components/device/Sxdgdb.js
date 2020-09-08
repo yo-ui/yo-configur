@@ -16,8 +16,6 @@ class Sxdgdb extends Spirit {
 	    this.minHeight = 20;
 		  this.zIndex = 2;
 	    this.linkage = true;
-	    this.isPanel = true;
-	    this.isBind = true;
 	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
 	}
 

@@ -138,6 +138,7 @@
   margin-bottom: 5px;
 }
 .bm-select-panel > span {
+  display: flex;
   padding: 3px 5px;
   border: 1px solid #ddd;
   line-height: 30px;
@@ -145,10 +146,12 @@
   cursor: pointer;
   user-select: none;
 }
-.bm-select-panel > span > img {
-  float: right;
-  width: 12px;
-  margin-top: 10px;
+.bm-select-panel > span > .text {
+  flex: 1;
+  padding-right: 50px;
+}
+.bm-select-panel > span > .icon {
+  width: 15px;
 }
 .bm-select-panel > div {
   display: none;

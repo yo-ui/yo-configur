@@ -16,7 +16,7 @@ class LDWater extends Spirit {
 	}
 
 	template(){
-		return `<div id="${this.id}" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex}">
+		return `<div id="${this.id}" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex}">
 		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 		        width = "10" height="20" xml:space="preserve">
 				<radialGradient id="XMLID_LD_" cx="294.8083" cy="-271.2963" r="7.9785" gradientTransform="matrix(-1 0 0 -1 304.7776 -271.3311)" gradientUnits="userSpaceOnUse">

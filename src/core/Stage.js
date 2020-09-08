@@ -141,7 +141,7 @@ class Stage {
 					let data = {id:spirit.id,left:spirit.x,top:spirit.y}
 					let record = {type:'add',name:'添加',data:data}
 					that.handleRecord.add(record);
-          spirit.getEl().trigger('click');
+          that.triggerClick();
 					that.vesselList();
 				}
 			}
@@ -400,20 +400,21 @@ class Stage {
       that.background.color = color;
       $('#configur_stage').css({'background-color': color})
     });
-
 		if(that.background.url) {
 			$('#configur_stage').css({'background-image': 'url('+that.background.url+')'});
-      $('#subline').prop("checked", true)
+      $('#subline').prop("checked",true)
 		}else {
 			$('#configur_stage').css({'background-image': ''});
-      $('#subline').prop("checked", false)
+      $('#subline').prop("checked",false)
 		}
 
     $('#subline').on('change',function () {
       if($(this).is(':checked')) {
         $('#configur_stage').css({'background-image': 'url('+that.background.url+')'});
+        $("#stageBg").attr("disabled", true);
       }else {
         $('#configur_stage').css({'background-image': ''});
+        $("#stageBg").attr("disabled", true);
         that.background.url = ""
       }
     })
@@ -424,7 +425,6 @@ class Stage {
       that.option.upload(form,file,function(url) {
         that.background.url = that.config.imgHost+"/"+url;
         $('#configur_stage').css({'background-image': 'url('+that.background.url+')'});
-        $('#subline').prop("checked", true)
       })
     })
     this.handleRecord.init();
@@ -558,7 +558,7 @@ class Stage {
 			let data = {id:spirit.id,left:spirit.x,top:spirit.y}
 			let record = {type:'add',name:'添加',data:data}
 			this.handleRecord.add(record);
-      spirit.getEl().trigger('click');
+      this.triggerClick();
       this.vesselList();
 		}
 	}
@@ -592,7 +592,7 @@ class Stage {
 			let record = {type:'remove',name:'删除',data: {className,x,y,width,height}}
 			that.handleRecord.add(record);
 		}
-		$('#configur_stage').trigger('click');
+		that.triggerClick();
 		that.configurList();
 	}
 
@@ -697,8 +697,6 @@ class Stage {
           });
         }
       }
-
-
 			$('#configur_property').find('[name=bg]').on('change',function() {
 				let form = $("#imgBg")[0]
         let file = $(this).get(0).files[0]
@@ -771,7 +769,7 @@ class Stage {
 				that.capacity.push(spirit);
 				property.id = spirit.id;
 			})
-			$('#configur_stage').trigger('click')
+			that.triggerClick();
 			that.location();
 			that.configurList();
       vesselList.forEach(function (vessel) {
@@ -876,10 +874,16 @@ class Stage {
     })
   }
 
+  //预览
   preview() {
     let view = new View(this.config);
     $('.main-content').html(view.template());
     view.init();
+  }
+
+  //舞台触发点击
+  triggerClick() {
+    $('#configur_stage').trigger('click')
   }
 }
 

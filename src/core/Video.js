@@ -1,32 +1,33 @@
+
 /**
  *
  */
 class Video {
-  constructor(stage,width,height,deviceId) {
+  constructor(stage,width,height) {
+    this.stage = stage;
     this.width = width;
     this.height = height;
-    this.stage = stage;
-    this.deviceId = deviceId;
+    this.close();
+  }
+
+  init(deviceId) {
     let that = this;
-    $('.bm-configur-panel__body').css({width,height})
-    $('.direction > div').each(function () {
-      $(this).on('mousedown',function () {
+    this.stage.panel.init("摄像头",Video.template(),800,500)
+    this.stage.panel.floorHide();
+    $('.direction > div').each(function() {
+      $(this).on('mousedown',function() {
         let value = $(this).data("value")
-        console.log(value);
-        that.startVideoControl(that.deviceId,value);
+        that.startVideoControl(deviceId,value);
       })
-      $(this).on('mouseup',function () {
+      $(this).on('mouseup',function() {
         let value = $(this).data("value")
-        console.log(value);
-        that.stopVideoControl(that.deviceId,value);
+        that.stopVideoControl(deviceId,value);
       })
     });
-    this.close();
   }
 
   create(name,accessToken,serial) {
     let that = this;
-    $('.bm-configur-panel__header span').text(name)
     let url = "ezopen://open.ys7.com/"+serial+"/1.live";
     this.decoder = new EZUIKit.EZUIPlayer({
       id: 'playWind',
@@ -52,6 +53,18 @@ class Video {
       }
       $('.bm-configur-panel').hide();
     })
+  }
+
+  static template() {
+    return `<div id="playWind"></div>
+             <div class="vision-btn">
+               <div class="bm-direction">
+                 <div class="bm-direction--top" data-value="0"><i class="fa fa-up"></i></div>
+                 <div class="bm-direction--left" data-value="2"><i class="fa fa-left"></i></div>
+                 <div class="bm-direction--right" data-value="3"><i class="fa fa-right"></i></div>
+                 <div class="bm-direction--bottom" data-value="1"><i class="fa fa-down"></i></div>
+               </div>
+             </div>`
   }
 
   startVideoControl(deviceId,value) {

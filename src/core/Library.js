@@ -1,3 +1,5 @@
+import Switch from "../components/common/Switch";
+
 /**
  * 组件库
  */
@@ -17,7 +19,7 @@ class Library {
 					{className:'TextBox',title:'动态数据',url:'static/images/configur/dataing.png',width:50,height:24},
 					{className:'Text',title:'静态文本',url:'static/images/configur/text.png',width:50,height:24},
 					{className:'Images',title:'图片',url:'static/images/configur/img.png',width:50,height:50},
-          {className:'Time',title:'时间',url:'static/images/configur/time.png',width:140,height:14},
+          {className:'Time',title:'时间',url:'static/images/configur/time.png',width:148,height:14},
           {className:'Button',title:'按钮',url:'static/images/configur/button.png',width:48,height:28},
           {className:'Display',title:'显示屏',url:'static/images/configur/display.png',width:70,height:36},
           {className:'Bg',title:'背景',url:'static/images/configur/bg.png',width:200,height:100},
@@ -27,7 +29,8 @@ class Library {
           {className:'LineChart',title:'折线图',url:'static/images/configur/line.png',width:400,height:240},
           {className:'Map',title:'地图',url:'static/images/configur/map.png',width:400,height:200},
           {className:'Lump',title:'块状',url:'static/images/configur/lump.png',width:50,height:24},
-          {className:'Monitor',title:'监控画面',url:'static/images/configur/monitor.png',width:400,height:200}]},
+          {className:'Monitor',title:'监控画面',url:'static/images/configur/monitor.png',width:400,height:200},
+          {className:'Switch',title:'开关',url:'static/images/configur/switch.png',width:50,height:30}]},
 			{name:'设备',type:1,icon:'fa-device',
 				subList:[
           {isHead: true,name: '配电系统'},

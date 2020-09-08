@@ -12,6 +12,7 @@ import Monitor from '@/components/common/Monitor';
 import Bg from '@/components/common/Bg';
 import Vessel from '@/components/common/Vessel';
 import Time from '@/components/common/Time';
+import Switch from '@/components/common/Switch';
 //给水系统
 import Lyssb from '@/components/device/Lyssb';//螺翼式水表
 import Sbfkg from '@/components/device/Sbfkg';//阀控水表
@@ -91,6 +92,7 @@ class SpiritFactory {
   static getInstance(className,x,y,width,height) {
     switch (className) {
       case 'Time': return new Time(x,y,width,height);
+      case 'Switch': return new Switch(x,y,width,height);
 	    case 'Db': return new Db(x,y,width,height);
 	    case 'ElectricBox': return new ElectricBox(x,y,width,height);
       case 'Text': return new Text(x,y,width,height);

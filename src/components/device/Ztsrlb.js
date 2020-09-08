@@ -15,9 +15,7 @@ class Ztsrlb extends Spirit {
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 	    this.linkage = true;
-	    this.zIndex = 3;
-      this.isPanel = true;
-      this.isBind = true;
+	    this.zIndex = 2;
       this.isLinkPoint = true;
       this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
 	}

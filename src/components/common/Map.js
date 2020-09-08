@@ -27,7 +27,7 @@ class Map extends Spirit {
                   <div id="${this.id}_map" style="width: 100%;height: 100%"></div>
                </div>
             </div>		     	        
-		        <div class="images-shade" style="position:absolute;top:0;width:${this.width}px;height:${this.height}px;"></div>
+		        <div class="images-shade" style="position:absolute;top:0;left:0;width: 100%;height: 100%;"></div>
 		        </div>`)
 		return div;
 	}

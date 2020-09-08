@@ -11,9 +11,9 @@ class Lsscj extends Spirit {
 	    this.className = "Lsscj";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
+      this.moveType = 4;
 	    this.linkage = true;
 	    this.zIndex = 2;
 	}

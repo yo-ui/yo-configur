@@ -5,7 +5,7 @@
   height: 50px;
   line-height: 50px;
   font-size: 16px;
-  background-color: #323233;
+  background-color: #023459;
   color: #fff;
   display: flex;
 }
@@ -13,7 +13,7 @@
   cursor: pointer;
   width: 54px;
   text-align: center;
-  background-color: #323233;
+  background-color: #023459;
 }
 .bm-layout__header__back > i {
   font-size: 30px;
@@ -50,7 +50,7 @@
   flex: 1;
   height: 100%;
   overflow: hidden;
-  background-color: #e2e5ec;
+  background-color: #B5B7B6;
 }
 .bm-layout__main__right {
   width: 240px;

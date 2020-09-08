@@ -21,13 +21,12 @@ class Images extends Spirit {
 	}
 
 	template(){
-		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
+		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
 		        <div class="img" style="width:${this.width}px;height:${this.height}px;">
               <img src="${this.config.url}" style="width:100%;height: 100%"/>
               <div class="images-shade" style="position:absolute;top:0;width:100%;height: 100%"></div>
             </div>
 		        </div>`)
-		return div;
 	}
 
 	toJson() {

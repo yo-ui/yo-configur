@@ -1,7 +1,7 @@
 #root {
   width: 100%;
   height: 100%;
-  background-color: #e2e5ec;
+  background-color: #B5B7B6;
   overflow: auto;
 }
 .bm-stage {
@@ -149,4 +149,60 @@
   border-top: 1px solid #ddd;
   height: 10px;
   margin-top: 10px;
+}
+.bm-bind {
+  display: flex;
+  height: 40px;
+}
+.bm-bind > .text {
+  flex: 1;
+}
+.bm-bind > .icon {
+  width: 85px;
+  cursor: pointer;
+}
+.bm-bind > .icon > span {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  border: 1px solid #ddd;
+  user-select: none;
+}
+.bm-bind > .icon > span:first-child {
+  width: 37px;
+  border-right: none;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+.bm-bind > .icon > span:last-child {
+  width: 37px;
+  border-left: none;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+.bm-bind > .icon > span.active {
+  border: 1px solid #12a3ff;
+  background-color: #12a3ff;
+  color: #fff;
+}
+.bm-bind > .icon > img {
+  height: 38px;
+  vertical-align: top;
+}
+.bm-device-point {
+  display: flex;
+}
+.bm-device-point > .device-list {
+  flex: 1;
+}
+.bm-device-point > .point-list {
+  display: none;
+  width: 150px;
+  padding-left: 5px;
+}
+.bm-device-point ul {
+  max-height: 150px;
+  overflow: auto;
+  padding-right: 5px;
 }

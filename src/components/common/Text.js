@@ -17,7 +17,7 @@ class Text extends Spirit {
 	}
 
 	template(){
-		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg">
+		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
 		        <div style="
 		          line-height: ${this.height}px;
               height: ${this.height}px;
@@ -76,7 +76,7 @@ class Text extends Spirit {
       element.append(option)
     });
     element.val(this.config.fontSize)
-    element.on('change',function () {
+    element.on('change',function() {
       let property = that.stage.property;
       property.config.fontSize = $(this).val();
       $('#'+property.id).find('span').css({'font-size':property.config.fontSize+"px"});
@@ -89,7 +89,7 @@ class Text extends Spirit {
       property.width = width;
     });
     let input = $('#configur_property').find('.text');
-    input.on('input propertyChange',function () {
+    input.on('input propertyChange',function() {
 			let value = $(this).val();
 			that.update(value);
 		})

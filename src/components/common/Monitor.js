@@ -23,7 +23,7 @@ class Monitor extends Spirit {
 	}
 
 	template() {
-		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
+		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
 				        <div style="width:${this.width}px;height:${this.height}px;">
                       <div id="${this.id}_monitor" style="width:100%;height:100%">
                         <div style="position: absolute;width: 100%;height: 100%;background-color: #000;">
@@ -32,7 +32,6 @@ class Monitor extends Spirit {
                         </div>                   
 				        </div>
 			        </div>`)
-		return div;
 	}
 
 	arrangement(stage) {
@@ -69,7 +68,7 @@ class Monitor extends Spirit {
 			isBind: this.isBind,
 			zIndex: this.zIndex
 		};
-		return Object.assign(super.toJson(),json);
+		return Object.assign(super.toJson(), json);
 	}
 }
 

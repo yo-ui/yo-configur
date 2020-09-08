@@ -4,7 +4,7 @@
 class Toast {
 
   constructor() {
-    $('.main-content').append(this.template());
+    $('.main-content').append(Toast.template());
   }
 
   static alert(text,time=2000) {
@@ -16,11 +16,10 @@ class Toast {
     }, time);
 	}
 
-	template() {
-    let html = `<div style="display: none" class="bm-toast bm-toast--text bm-toast--top">
-      <span class="bm-toast__text"></span>
-    </div>`
-    return html;
+	static template() {
+    return `<div style="display: none" class="bm-toast bm-toast--text bm-toast--top">
+               <span class="bm-toast__text"></span>
+             </div>`
   }
 }
 

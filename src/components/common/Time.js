@@ -17,7 +17,7 @@ class Time extends Spirit {
 	    this.isMove = true;
 	    this.zIndex = 1;
       this.config = {
-        bindData: {orgId: '', deviceId: '', devicePoint: ''},fontSize: 15
+        bindData: {orgId: '', deviceId: '', devicePoint: ''},fontSize: 15,color:'#000'
       }
 	}
 
@@ -27,7 +27,7 @@ class Time extends Spirit {
                     height: ${this.height}px;
                     width: ${this.width}px;
                     user-select: none;
-                    "><span style="fontSize: ${this.config.fontSize};"></span>           
+                    "><span style="font-size: ${this.config.fontSize}px;"></span>           
                   </div>	
                 </div>`)
 		return html;
@@ -46,25 +46,25 @@ class Time extends Spirit {
   text() {
     var date = new Date();
     let year = date.getFullYear();
-    let month = date.getMonth();
+    let month = Number(date.getMonth())+1;
     if(month<10) {
-      month = "0"+date.getMonth();
+      month = "0"+month;
     }
-    let day = date.getDate();
-    if(day<0) {
-      day = "0"+date.getDate();
+    let day = Number(date.getDate());
+    if(day<10) {
+      day = "0"+day;
     }
-    let hour = date.getHours();
+    let hour = Number(date.getHours());
     if(hour<10) {
-      hour = "0"+date.getHours();
+      hour = "0"+hour;
     }
-    let minute = date.getMinutes();
+    let minute = Number(date.getMinutes());
     if(minute<10) {
-      minute = "0"+date.getMinutes();
+      minute = "0"+minute;
     }
-    let second = date.getSeconds();
+    let second = Number(date.getSeconds());
     if(second<10) {
-      second = "0"+date.getSeconds();
+      second = "0"+second;
     }
     $('#'+this.id).find('span').text(year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second);
   }
@@ -87,7 +87,13 @@ class Time extends Spirit {
 	renderer() {
     let that = this;
     super.renderer();
-    let html = `<div class="bm-tree">背景</div>             
+    let html = `<div class="bm-tree">字体</div>         
+                  <div class="bm-cell no-hover">
+                    <div class="bm-cell__title">
+                      <div>字体颜色</div>
+                      <input class="text-color" title="字体颜色" />
+                    </div>													
+                  </div>    
                 <div class="bm-cell no-hover">
                   <div class="bm-cell__title">
                     <div>字体大小</div>
@@ -112,7 +118,6 @@ class Time extends Spirit {
       $('#temp_value').html($('#'+property.id).find('div').html());
       let width = $('#temp_value').width()+2;
       let height = $('#temp_value').height();
-      console.log(width);
       $('.resize-panel').css({width,height});
       $('#'+property.id).find('div').css({width,'line-height': height+"px",height: height+"px"});
       property.height = height;

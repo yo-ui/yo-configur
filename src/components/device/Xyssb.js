@@ -14,10 +14,8 @@ class Xyssb extends Spirit {
 	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
-		  this.zIndex = 3;
+		  this.zIndex = 2;
 	    this.linkage = true;
-	    this.isPanel = true;
-	    this.isBind = true;
       this.isLinkPoint = true;
 	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
 	}

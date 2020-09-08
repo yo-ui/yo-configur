@@ -22,7 +22,7 @@ class Display extends Spirit {
 	template(){
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-               viewBox="0 0 89 43" style="enable-background:new 0 0 89 43;" xml:space="preserve" preserveAspectRatio="none">
+               viewBox="0 0 89 43" xml:space="preserve" preserveAspectRatio="none">
             <style type="text/css">
               .display-st0{fill:#FFFFFF;}
               .display-st1{fill:#DFE3E8;}

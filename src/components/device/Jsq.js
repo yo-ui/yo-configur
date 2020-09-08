@@ -15,10 +15,8 @@ class Jsq extends Spirit {
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 	    this.linkage = false;
-	    this.isPanel = true;
-	    this.isBind = false;
 	    this.isLinkPoint = true;
-	    this.zIndex = 3;
+	    this.zIndex = 2;
 	}
 
 	template(){

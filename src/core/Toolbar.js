@@ -12,17 +12,21 @@ class Toolbar {
     let that = this;
     let menus = []
     if(that.stage.selectedType==1) {
-      if(that.stage.property) {
-        if(that.stage.property.isMove) {
-          menus = [{name:'复制',icon:'fa-copy',type: 3,key:'Ctrl+C'},
-            {name:'删除',icon:'fa-delete',type: 4,key:'Ctrl+D'},
-            {name:'锁定',icon:'fa-lock',type: 9,key:'Ctrl+L'}]
-          if(that.stage.property.isGroup) {
+      let property = that.stage.property;
+      if(property) {
+        if(property.isMove) {
+            menus = [{name:'复制',icon:'fa-copy',type: 3,key:'Ctrl+C'},
+                     {name:'删除',icon:'fa-delete',type: 4,key:'Ctrl+D'},
+                     {name:'锁定',icon:'fa-lock',type: 9,key:'Ctrl+L'}]
+          if(property.isGroup) {
             let menu = {name:'分组',icon:'fa-group',type: 14,key:'Ctrl+G'};
+            menus.push(menu);
+          }else if(property.isBind) {
+            let menu = {name:'绑定数据',icon:'fa-bind',type: 15,key:'Ctrl+B'};
             menus.push(menu);
           }
         }else {
-          menus = [{name:'解锁',icon:'fa-uplock',type: 10,key:'Ctrl+L'}]
+          menus = [{name:'解锁',icon:'fa-unlock',type: 10,key:'Ctrl+K'}]
         }
       }else {
         menus = [{name:'保存',icon:'fa-save',type: 2,key:'Ctrl+S'}]
@@ -31,7 +35,6 @@ class Toolbar {
           menus.push(menu);
         }
       }
-
     }else {
       menus = [{name:'左对齐',icon:'fa-align-left',type: 5,key:'Ctrl+←'},
         {name:'右对齐',icon:'fa-align-right',type: 6,key:'Ctrl+→'},
@@ -42,10 +45,10 @@ class Toolbar {
         {name:'删除',icon:'fa-delete',type:11,key:'Ctrl+D'}]
     }
 
-    menus.forEach(function (data) {
+    menus.forEach(function(data) {
       let li = $(`<li><span class="text"><i class="fa ${data.icon}"></i>${data.name}</span><span class="value">${data.key}</span></li>`)
       li.data("type",data.type)
-      li.on('click',function () {
+      li.on('click',function() {
         let type = $(this).data("type");
         that.shortcutsKey(type);
         $('.bm-context-menu').hide();
@@ -71,6 +74,7 @@ class Toolbar {
       case 12:that.stage.hDivide();break;
       case 13:that.stage.vDivide();break;
       case 14:that.stage.group.show();break;
+      case 15:that.stage.bindD.create();break;
     }
   }
 

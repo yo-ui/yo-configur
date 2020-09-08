@@ -15,8 +15,6 @@ class Xszz extends Spirit {
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 	    this.linkage = true;
-	    this.isPanel = true;
-	    this.isBind = true;
 	    this.isLinkPoint = true;
 	    this.zIndex = 2;
 	    this.config = {

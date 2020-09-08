@@ -11,9 +11,9 @@ class Lsbjq extends Spirit {
 	    this.className = "Lsbjq";
 	    this.width = width;
 	    this.height = height;
+      this.minWidth = 20;
+      this.minHeight = 20;
 	    this.moveType = 4;
-	    this.minWidth = 20;
-	    this.minHeight = 20;
 	    this.zIndex = 2;
 	    this.linkage = true;
 	}

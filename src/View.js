@@ -1,6 +1,7 @@
 import RemoteObject from '@/assets/js/RemoteObject'
 import ViewStage from '@/core/ViewStage'
 import WebSocket from "@/assets/js/WebSocket";
+import Toast from "./core/Toast";
 /**
  *
  */
@@ -26,18 +27,30 @@ class View {
           if(canvasId) {
             let data = {}
             data.id = canvasId;
-            RemoteObject.ajax(that.config.get, "get", data, function (result) {
-              callback.call(this, result);
+            RemoteObject.ajax(that.config.get, "get", data, function (msg) {
+              let result = JSON.parse(msg);
+              if(result.code==200) {
+                callback.call(this, result.result);
+              }else {
+                console.log(result.message);
+              }
             })
           }
         }
       },
       control: function(data,callback) {
         if(that.config.debug) {
-          callback.call(this,JSON.stringify({status:{code:100000}}));
+          callback.call(this);
         }else {
           RemoteObject.ajax(that.config.control,"post",data,function(msg) {
-            callback.call(this, result);
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this);
+            }else if(result.code==120020) {
+              Toast.alert("控制密码错误！")
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
@@ -51,8 +64,13 @@ class View {
         }else {
           let data = {}
           data.ids = JSON.stringify(ids);
-          RemoteObject.ajax(that.config.deviceList,"get",data,function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.deviceList,"get",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
@@ -73,10 +91,11 @@ class View {
               console.log(result);
             })
           }
-          console.log(that.config.websocketUrl);
+          console.log("...:"+that.config.websocketUrl);
           let url = that.config.websocketUrl;
           let theme = "/user/queue/canvas/"+canvasId;
-          new WebSocket().connect(url,theme,function (result) {
+          let webSocket = new WebSocket();
+          webSocket.connect(url,theme,function(result) {
             let dataList = option.analysis(result);
             callback.call(this, dataList);
           })
@@ -84,7 +103,7 @@ class View {
       },
       getParams(deviceIdList,name) {
         let params = "";
-        deviceIdList.forEach(function (id,index) {
+        deviceIdList.forEach(function(id,index) {
           params+=""+name+"="+id;
           if(index<deviceIdList.length-1) {
             params+="&";
@@ -94,18 +113,18 @@ class View {
       },
       analysis(deviceList) {
         let dataList = [];
-        deviceList.forEach(function (item) {
+        deviceList.forEach(function(item) {
           let data = {};
           data.id = item.deviceId;
-          let pList = item.configurDevicePointVoList;
-          if(pList.length>0){
+          let pointList = item.configurDevicePointVoList;
+          if(pointList.length>0){
             let points = []
-            pList.forEach(function (pv) {
+            pointList.forEach(function(value) {
               let point = {}
-              point.id = pv.point;
-              point.value = pv.value;
-              point.unit = pv.unit;
-              point.name = pv.descr;
+              point.id = value.point;
+              point.value = value.value;
+              point.unit = value.unit;
+              point.name = value.descr;
               points.push(point);
             })
             data.points = points;
@@ -129,8 +148,13 @@ class View {
         }else {
           let data = {}
           data.deviceId = id;
-          RemoteObject.ajax(that.config.getDevice,"get",data,function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.getDevice,"get",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
@@ -147,8 +171,13 @@ class View {
           data.point = point;
           data.startTime = startTime;
           data.endTime = endTime;
-          RemoteObject.ajax(that.config.devicePointHstData,"get",data,function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.devicePointHstData,"get",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
@@ -162,8 +191,13 @@ class View {
         }else {
           let data = {}
           data.deviceId = deviceId;
-          RemoteObject.ajax(that.config.token,"get",data,function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.token,"get",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
@@ -175,8 +209,13 @@ class View {
           let data = {}
           data.deviceId = deviceId;
           data.direction = value;
-          RemoteObject.ajax(that.config.start,"post",data,function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.start,"post",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
@@ -188,8 +227,13 @@ class View {
           let data = {}
           data.deviceId = deviceId;
           data.direction = value;
-          RemoteObject.ajax(that.config.stop,"post",data,function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.stop,"post",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       }
@@ -203,26 +247,9 @@ class View {
   }
 
   template() {
-    let html = `<div id="root"></div>
-    <div class="bm-view-panel"></div>
-    <div class="bm-configur-panel" style="display: none">
-      <div class="bm-configur-panel__body">
-        <div class="bm-configur-panel__header"><span>&nbsp;</span><div class="bm-configur-panel__close">×</div></div>
-        <div class="bm-configur-panel__content">
-          <div id="playWind"></div>
-        </div>
-        <div class="vision-btn">
-            <div class="bm-direction">
-              <div class="bm-direction--top" data-value="0"><i class="fa fa-up"></i></div>
-              <div class="bm-direction--left" data-value="2"><i class="fa fa-left"></i></div>
-              <div class="bm-direction--right" data-value="3"><i class="fa fa-right"></i></div>
-              <div class="bm-direction--bottom" data-value="1"><i class="fa fa-down"></i></div>
-            </div>
-        </div>
-      </div>
-    </div>
-    <div id="temp_value" style="display: none;"></div>`;
-    return html;
+    return `<div id="root"></div>
+             <div class="bm-view-panel"></div>
+             <div id="temp_value" style="display: none;"></div>`;
   }
 }
 

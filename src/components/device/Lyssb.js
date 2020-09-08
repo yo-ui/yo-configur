@@ -11,13 +11,11 @@ class Lyssb extends Spirit {
 	    this.className = "Lyssb";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 	    this.linkage = true;
-	    this.isPanel = true;
-	    this.isBind = true;
-	    this.zIndex = 3;
+      this.moveType = 4;
+	    this.zIndex = 2;
       this.isLinkPoint = true;
 	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
 	}
