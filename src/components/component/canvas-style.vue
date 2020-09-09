@@ -58,42 +58,44 @@
       <span class="label"> {{ $lang("是否显示网格") }}:</span
       ><el-checkbox v-model="info.isGrid"></el-checkbox>
     </p>
-    <p>
-      <span class="label"> {{ $lang("网格样式") }}:</span
-      ><el-select
-        v-model="info.gridStyle.type"
-        @change="gridStyleChangeEvent"
-        :placeholder="$lang('请选择网格样式')"
-      >
-        <el-option
-          v-for="item in gridStyleList"
-          :key="item.code"
-          :label="$lang(item.name)"
-          :value="item.code"
+    <template v-if="info.isGrid">
+      <p>
+        <span class="label"> {{ $lang("网格样式") }}:</span
+        ><el-select
+          v-model="info.gridStyle.type"
+          @change="gridStyleChangeEvent"
+          :placeholder="$lang('请选择网格样式')"
         >
-        </el-option>
-      </el-select>
-    </p>
-    <p v-if="info.gridStyle.type == 6">
-      <span class="col">
-        <span class="label"> {{ $lang("网格宽") }}:</span
-        ><el-input
-          v-model.number="info.gridStyle.width"
-          clearable
-          :placeholder="$lang('请输入网格宽')"
-        ></el-input
-        >px
-      </span>
-      <span class="col">
-        <span class="label">{{ $lang("网格高") }}: </span
-        ><el-input
-          v-model.number="info.gridStyle.height"
-          clearable
-          :placeholder="$lang('请输入网格高')"
-        ></el-input
-        >px
-      </span>
-    </p>
+          <el-option
+            v-for="item in gridStyleList"
+            :key="item.code"
+            :label="$lang(item.name)"
+            :value="item.code"
+          >
+          </el-option>
+        </el-select>
+      </p>
+      <p v-if="info.gridStyle.type == 6">
+        <span class="col">
+          <span class="label"> {{ $lang("网格宽") }}:</span
+          ><el-input
+            v-model.number="info.gridStyle.width"
+            clearable
+            :placeholder="$lang('请输入网格宽')"
+          ></el-input
+          >px
+        </span>
+        <span class="col">
+          <span class="label">{{ $lang("网格高") }}: </span
+          ><el-input
+            v-model.number="info.gridStyle.height"
+            clearable
+            :placeholder="$lang('请输入网格高')"
+          ></el-input
+          >px
+        </span>
+      </p>
+    </template>
     <p>
       <span class="label"> {{ $lang("缩放") }}:</span>
       <i

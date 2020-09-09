@@ -1,8 +1,9 @@
 <template>
-  <button class="btn-com"
+  <button
+    class="btn-com"
     :style="comStyle"
     :contenteditable="info.editable"
-    @keyup="keyupEvent"
+    @blur.stop="blurEvent"
   >
     {{ info.name }}
   </button>
@@ -30,33 +31,67 @@ export default {
         height = "",
         color = "",
         borderColor = "",
+        borderStyle = "",
+        borderWidth = "",
+        scale = "",
+        fontFamily = "",
+        fontSize = "",
         backgroundColor = "",
-        backgroundImage = ""
+        backgroundImage = "",
+        backgroundRepeat = "",
+        backgroundSize = ""
       } = info || {};
       let styles = {
-        width: width + "px",
-        height: height + "px"
+        width: `${width}px`,
+        height: `${height}px`
       };
+      if (backgroundRepeat) {
+        styles["backgroundRepeat"] = backgroundRepeat;
+      }
+      if (backgroundSize) {
+        styles["backgroundSize"] = backgroundSize;
+      }
       if (borderColor) {
         styles["borderColor"] = borderColor;
       }
+      if (borderStyle) {
+        styles["borderStyle"] = borderStyle;
+      }
+      // if (borderWidth) {
+      styles["borderWidth"] = `${borderWidth}px`;
+      // }
+      if (scale) {
+        (styles["transform"] = `${scale}`),
+          (styles["-webkit-transform"] = `${scale}`),
+          (styles["-ms-transform"] = `${scale}`),
+          (styles["-o-transform"] = `${scale}`),
+          (styles["-moz-transform"] = `${scale}`);
+      }
       if (color) {
         styles["color"] = color;
+      }
+      if (fontSize) {
+        styles["fontSize"] = `${fontSize}px`;
+      }
+      if (fontFamily) {
+        styles["fontFamily"] = `'${fontFamily}'`;
       }
       if (backgroundColor) {
         styles["backgroundColor"] = backgroundColor;
       }
       if (backgroundImage) {
-        styles["backgroundImage"] = `url(${backgroundImage})`;
+        styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
       }
       return styles || {};
     }
   },
   methods: {
-    keyupEvent(e) {
+    blurEvent(e) {
       let { target } = e;
       let { info = {} } = this;
-      let name = $(target).html();
+      let name = $(target)
+        .text()
+        .trim();
       info.name = name;
     }
   }
@@ -64,8 +99,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  @import (reference) "./../../../../assets/less/common.less";
-  .btn-com{
-    .bor(1px solid @grayE);
-  }
+@import (reference) "./../../../../assets/less/common.less";
+.btn-com {
+  .bor(1px solid @grayE);
+}
 </style>

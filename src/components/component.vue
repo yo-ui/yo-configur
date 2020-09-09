@@ -7,47 +7,47 @@
       {{ info.type }}
     </div>
     <i
-      class="operate-btn el-icon-refresh-right"
+      class="operate-btn el-icon-refresh-right" v-if="info.rotateable"
       @mousedown.stop="rotateClickEvent"
       title="旋转"
     ></i>
     <i
-      class="operate-btn el-icon-top-left"
+      class="operate-btn el-icon-top-left" v-if="info.scaleable"
       @mousedown.stop="leftTopClickEvent"
       title="左上角"
     ></i>
     <i
-      class="operate-btn el-icon-top"
+      class="operate-btn el-icon-top" v-if="info.scaleable"
       @mousedown.stop="topClickEvent"
       title="上"
     ></i>
     <i
-      class="operate-btn el-icon-top-right"
+      class="operate-btn el-icon-top-right" v-if="info.scaleable"
       @mousedown.stop="rightTopClickEvent"
       title="右上角"
     ></i>
     <i
-      class="operate-btn el-icon-back"
+      class="operate-btn el-icon-back" v-if="info.scaleable"
       @mousedown.stop="leftClickEvent"
       title="左"
     ></i>
     <i
-      class="operate-btn el-icon-right"
+      class="operate-btn el-icon-right" v-if="info.scaleable"
       @mousedown.stop="rightClickEvent"
       title="右"
     ></i>
     <i
-      class="operate-btn el-icon-bottom-left"
+      class="operate-btn el-icon-bottom-left" v-if="info.scaleable"
       @mousedown.stop="leftBottomClickEvent"
       title="左下角"
     ></i>
     <i
-      class="operate-btn el-icon-bottom"
+      class="operate-btn el-icon-bottom" v-if="info.scaleable"
       @mousedown.stop="bottomClickEvent"
       title="下"
     ></i>
     <i
-      class="operate-btn el-icon-bottom-right"
+      class="operate-btn el-icon-bottom-right" v-if="info.scaleable"
       @mousedown.stop="rightBottomClickEvent"
       title="右下角"
     ></i>
@@ -79,65 +79,21 @@ import { widgets } from "@/widgets/index";
 import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-// const Props = {
-//   type: [
-//     "text", //静态文本
-//     "image" //图片
-//   ]
-// };
-// let variablePool = {};
-// bmCommon.log('======',...widgets)
 export default {
   data() {
-    return {
-      // showActiveStatus: false,
-      editable: false
-    };
+    return {};
   },
   props: {
-    // contenteditable: {
-    //   type: Boolean,
-    //   default: false
-    // },
     info: {
       type: Object,
       default: () => {
         return {};
       }
     }
-    // active: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // content: {
-    //   type: String,
-    //   default: "静态文本"
-    // },
-    // type: {
-    //   type: String,
-    //   validator(value) {
-    //     return Props.type.indexOf(value) != -1;
-    //   }
-    // }
   },
-  mounted() {
-    this.editable = this.contenteditable;
-    // this.init();
-  },
+  mounted() {},
   components: {
     ...widgets
-    // bmText: () =>
-    //   import(
-    //     /* webpackChunkName: "bm-component-text" */ "@/components/component/basic/Text.vue"
-    //   ),
-    // bmButton: () =>
-    //   import(
-    //     /* webpackChunkName: "bm-component-button" */ "@/components/component/basic/Button.vue"
-    //   ),
-    // bmImage: () =>
-    //   import(
-    //     /* webpackChunkName: "bm-component-image" */ "@/components/component/basic/Image.vue"
-    //   )
   },
   computed: {
     ...mapGetters(),
@@ -146,17 +102,11 @@ export default {
       let { left = "", top = "", order: zIndex = "", rotate = "0" } =
         info || {};
       return {
-        // position: 'absolute',
-        // width: val.width / 7.5 + '%',
-        // height: val.height / h * 100 + '%',
         left: left + "px",
         top: top + "px",
         zIndex,
         transform: `rotate(${rotate}deg)`,
         webkitTransform: `rotate(${rotate}deg)`
-        // backgroundColor: val.backgroundColor,
-        // backgroundImage: 'url(' + val.backPic + ')',
-        // color: val.color
       };
     }
   },
@@ -167,16 +117,10 @@ export default {
       rotate: "canvas/rotate",
       stopMove: "canvas/stopMove"
     }),
+    ...mapActions(),
     mousedownEvent(e, type) {
       e.stopPropagation();
       e.preventDefault();
-      // this.type = type
-      // this.$vpd.commit('initmove', {
-      //   startX: e.pageX,
-      //   startY: e.pageY,
-      //   originX: this.elm[originX],
-      //   originY: this.elm[originY]
-      // })
       let { info = {} } = this;
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};

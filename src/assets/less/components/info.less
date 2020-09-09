@@ -40,10 +40,36 @@
           .mb(10);
         }
       }
+      .upload-box {
+        .flex(1);
+        .el-upload-dragger {
+          .bor(none);
+          width: auto;
+          height: auto;
+        }
+      }
       .el-slider{
         opacity: 0;
         .ml(15);
         .flex(1);
+      }
+      .font-style{
+        span{
+          .click;
+          .fz(15);
+          .p(5px 10px);
+          .mr(10);
+          &.active{
+            .bor(1px solid @grayE);
+          }
+        }
+        .bold{
+          .fw(bold);
+        }
+        .italic{
+          font-style: italic;
+          .fw(bold);
+        }
       }
       .label{
         // .mb()

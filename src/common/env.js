@@ -86,26 +86,48 @@ const Constants = {
           data: {
             // id: 2,
             dragable: true,
+            backgroundImage: "",
+            backgroundSize: "100% 100%",
+            backgroundRepeat: "repeat",
+            borderWidth: 0,
+            borderStyle: "none",
+            borderColor: "",
             left: 0,
+            fontSize: 14,
             width: 300,
             height: 60,
             rotate: 0,
+            scale: "scale(1,1)",
             top: 0,
-            editable: false
+            scaleable: true, //是否可缩放操作
+            rotateable: true, //是否可旋转操作
+            editable: true //内容是否可编辑
           }
         },
         {
-          name: "动态文本",
+          name: "动态数据",
           code: "dynamicText",
           icon: "/static/img/configur/text.png",
           data: {
             dragable: true,
+            backgroundImage: "",
+            backgroundSize: "100% 100%",
+            backgroundRepeat: "repeat",
             left: 800,
             width: 300,
+            fontWeight: "",
+            fontStyle: "",
+            fontSize: 14,
             height: 60,
             rotate: 0,
+            scale: "scale(1,1)",
+            borderWidth: 0,
+            borderStyle: "none",
+            borderColor: "",
             top: 0,
-            editable: true
+            scaleable: false, //是否可缩放操作
+            rotateable: true, //是否可旋转操作
+            editable: false //内容是否可编辑
           }
         },
         {
@@ -114,15 +136,21 @@ const Constants = {
           icon: "/static/img/configur/img.png",
           data: {
             dragable: true,
+            backgroundImage: "",
             backgroundSize: "100% 100%",
             backgroundRepeat: "repeat",
+            borderWidth: 0,
+            borderStyle: "none",
+            borderColor: "",
             rotate: 0,
             scale: "scale(1,1)",
             width: 360,
             height: 220,
             left: 0,
             top: 0,
-            backgroundImage: ""
+            scaleable: true, //是否可缩放操作
+            rotateable: true, //是否可旋转操作
+            editable: false //内容是否可编辑
           }
         },
         {
@@ -134,13 +162,18 @@ const Constants = {
             borderColor: "#eee",
             backgroundColor: "#fff",
             color: "#000",
+            borderWidth: 1,
+            fontSize: 14,
+            borderStyle: "solid",
             backgroundImage: "",
             left: 500,
             width: 200,
             height: 60,
             rotate: 0,
             top: 0,
-            editable: true
+            scaleable: true, //是否可缩放操作
+            rotateable: true, //是否可旋转操作
+            editable: true //内容是否可编辑
           }
         },
         {
@@ -156,8 +189,9 @@ const Constants = {
             height: 60,
             rotate: 0,
             top: 0,
-            editable: false,
-            content: "显示屏"
+            scaleable: false, //是否可缩放操作
+            rotateable: false, //是否可旋转操作
+            editable: false //内容是否可编辑
           }
         },
         {
@@ -173,8 +207,9 @@ const Constants = {
             height: 60,
             rotate: 0,
             top: 0,
-            editable: false,
-            content: "块状"
+            scaleable: false, //是否可缩放操作
+            rotateable: false, //是否可旋转操作
+            editable: false //内容是否可编辑
           }
         }
       ]
@@ -195,81 +230,50 @@ const Constants = {
       name: "附加"
     }
   ],
-  // // 设备分类
-  // DEVICECATEGORYMAP: {
-  //   1: "三相电表",
-  //   2: "单相电表",
-  //   3: "水表",
-  //   4: "环境监测",
-  //   5: "热量表",
-  //   6: "多路照明控制器 拷贝",
-  //   7: "远程开关量I/O模块",
-  //   8: "流量计",
-  //   9: "报警传感器",
-  //   10: "温控器",
-  //   11: "断路器",
-  //   12: "蒸汽流量计",
-  //   13: "逆变器"
-  // },
-  // // 设备安装方式
-  // DEVICEINSTALLATIONWAYMAP: {
-  //   1: "导轨式",
-  //   2: "嵌入式",
-  //   3: "直装式",
-  //   4: "卡扣式",
-  //   5: "直插式",
-  //   6: "外夹式",
-  //   7: "壁挂式",
-  //   8: "卧式",
-  //   9: "立式",
-  //   10: "其他"
-  // },
-  // // 设备通讯协议
-  // DEVICECOMMUNICATIONMAP: {
-  //   1: "RS485",
-  //   2: "M-Bus",
-  //   3: "Wi-Fi",
-  //   4: "GPRS",
-  //   5: "Zigbee",
-  //   6: "LoRa",
-  //   7: "RF",
-  //   8: "NB-IoT",
-  //   9: "其他"
-  // },
-  // // 设备计量原理
-  // DEVICEMETERINGPRINCIPLEMAP: {
-  //   1: "直读式",
-  //   2: "互感接入式",
-  //   3: "电磁式",
-  //   4: "超声波式",
-  //   5: "传感式",
-  //   6: "其他"
-  // },
-  // // 设备供电方式
-  // DEVICEPOWERSUPLYWAYMAP: {
-  //   1: "电池供电",
-  //   2: "AC220V",
-  //   3: "DC12V",
-  //   4: "DC24V",
-  //   5: "AC380V",
-  //   6: "其他"
-  // },
-  // // 设备协议
-  // DEVICEPROTOCOLMAP: {
-  //   1: "modbus-RTU",
-  //   2: "modbus-TCP",
-  //   3: "DL/T 645-2007",
-  //   4: "DL/T 645-1997",
-  //   5: "CJ/T 188-2004",
-  //   6: "EN13757",
-  //   7: "其他"
-  // },
-  WITHDRAWTYPEMAP: {
-    0: "待打款",
-    1: "已打款",
-    2: "失败",
-    3: "成功"
-  }
+  DISPLAYFORMLIST: [
+    { code: "100% 100%", name: "默认" },
+    { code: "cover", name: "覆盖" },
+    { code: "contain", name: "包含" }
+  ],
+  TILEMODELIST: [
+    { code: "repeat", name: "默认" },
+    { code: "repeat-x", name: "水平平铺" },
+    { code: "repeat-y", name: "垂直平铺" },
+    { code: "no-repeat", name: "不平铺" }
+  ],
+  FLIPMODELIST: [
+    { code: "scale(1,1)", name: "默认" },
+    { code: "scale(-1,1)", name: "水平翻转" },
+    { code: "scale(1,-1)", name: "垂直翻转" }
+  ],
+  BORDERSTYLELIST: [
+    { code: "none", name: "无边框" },
+    { code: "solid", name: "实线" },
+    { code: "dashed", name: "虚线" },
+    { code: "dotted", name: "点状边框" },
+    { code: "double", name: "双线" },
+    { code: "groove", name: "3D 凹槽边框" },
+    { code: "ridge", name: "3D 垄状边框" },
+    { code: "inset", name: "3D inset 边框" },
+    { code: "outset", name: "3D outset 边框" }
+  ],
+  FONTFAMILYLIST: [
+    { code: "Light", name: "阿里巴巴-普惠体-Light" },
+    { code: "Heavy", name: "阿里巴巴-普惠体-Heavy" },
+    { code: "Medium", name: "阿里巴巴-普惠体-Medium" },
+    { code: "Bold", name: "阿里巴巴-普惠体-Bold" },
+    { code: "Regular", name: "阿里巴巴-普惠体-Regular" }
+    // { code: "FangSong_GB2312", name: "仿宋_GB2312" },
+    // { code: "KaiTi_GB2312", name: "楷体_GB2312" },
+    // { code: "Microsoft YaHei", name: "微软雅黑体" },
+    // { code: "LiSu", name: "隶书" },
+    // { code: "YouYuan", name: "幼圆" },
+    // { code: "STXihei", name: "华文细黑" },
+    // { code: "STKaiti", name: "华文楷体" },
+    // { code: "STSong", name: "华文宋体" },
+    // { code: "STZhongsong", name: "华文中宋" },
+    // { code: "S", name: "华文仿宋" },
+  ]
 };
 
 const routerMode = apiConfig.routerMode;

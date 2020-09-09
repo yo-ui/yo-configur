@@ -38,26 +38,27 @@ export default {
       let {
         width = "",
         height = "",
-        color = "",
         borderColor = "",
+        borderStyle = "",
+        borderWidth = "",
         scale = "",
-        // backgroundColor = "",
+        backgroundColor = "",
         backgroundImage = "",
         backgroundRepeat = "",
         backgroundSize = ""
       } = info || {};
       let styles = {
-        width: width + "px",
-        height: height + "px"
+        width: `${width}px`,
+        height: `${height}px`
       };
-      if (backgroundRepeat) {
-        styles["backgroundRepeat"] = backgroundRepeat;
-      }
-      if (backgroundSize) {
-        styles["backgroundSize"] = backgroundSize;
-      }
       if (borderColor) {
         styles["borderColor"] = borderColor;
+      }
+      if (borderStyle) {
+        styles["borderStyle"] = borderStyle;
+      }
+      if (borderWidth) {
+        styles["borderWidth"] = `${borderWidth}px`;
       }
       if (scale) {
         (styles["transform"] = `${scale}`),
@@ -66,14 +67,20 @@ export default {
           (styles["-o-transform"] = `${scale}`),
           (styles["-moz-transform"] = `${scale}`);
       }
-      if (color) {
-        styles["color"] = color;
-      }
-      // if (backgroundColor) {
-      //   styles["backgroundColor"] = backgroundColor;
+      // if (color) {
+      //   styles["color"] = color;
       // }
+      if (backgroundColor) {
+        styles["backgroundColor"] = backgroundColor;
+      }
       if (backgroundImage) {
         styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
+      }
+      if (backgroundRepeat) {
+        styles["backgroundRepeat"] = backgroundRepeat;
+      }
+      if (backgroundSize) {
+        styles["backgroundSize"] = backgroundSize;
       }
       return styles || {};
     }
