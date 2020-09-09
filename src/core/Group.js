@@ -12,24 +12,20 @@ class Group {
 		let that = this;
 		that.groupList = [...that.stage.groupList]
 		let content = `<div>
-                 <ul class="bm-list"></ul>
-                 <div class="bm-line"></div>
-                 <div class="group-sm">
-                   <input type="text" class="form-control" name="name" maxlength="16" />
-                   <span class="bm-add bm-button bm-button--small bm-button--primary">保存</span> 
-                 </div>
-                 </div>`;
+                     <ul class="bm-list"></ul>
+                     <div class="bm-line"></div>
+                     <div class="group-sm">
+                       <input type="text" class="form-control" name="name" maxlength="16" />
+                       <span class="bm-add bm-button bm-button--small bm-button--primary">保存</span> 
+                     </div>
+                   </div>`;
     that.stage.panel.init("分组",content,500);
     that.stage.panel.show();
     that.stage.panel.confirm(function () {
       that.stage.property.config.groupId = that.id;
       that.stage.groupList = that.groupList;
     })
-    $('.bm-configur-panel .bm-list').css(
-    {'max-height': 200,
-      overflow: 'auto',
-      'padding-right': '1px'
-    })
+    $('.bm-configur-panel .bm-list').css({'max-height': 200, overflow: 'auto', 'padding-right': '1px'})
     let element = $('.bm-configur-panel').find("[name=name]");
     $('.bm-configur-panel').find('.bm-add').on('click',function () {
       let index = that.groupList.length;

@@ -26,20 +26,21 @@ class Stage {
 		this.option = option;
 		this.toolType = 1;//1移动方式 2拼装方式
 		this.selectedType = 1;//选择类型 1:默认 2:框选
-		this.move = new Move(this);//全局移动
-		this.paw = new Paw(0,0,0,0,this);//舞台移动
-		this.selectedList = []
-    this.groupList = []
+		this.selectedList = [];
+    this.groupList = [];
 		this.isMove = false;
-		this.library = new Library(this);//组件库
-		this.keydown = new Keydown(this);//快捷键
+    this.move = new Move(this);//全局移动
+    this.paw = new Paw(0,0,0,0,this);//舞台移动
 		this.zoom = new Zoom(this);//缩放
 		this.align = new Align(this);//对齐
 		this.handleRecord = new HandleRecord(this);//操作记录
     this.bindD = new BindData(this);//数据绑定
     this.toolbar = new Toolbar(this);//工具栏
+    this.library = new Library(this);//组件库
+    this.keydown = new Keydown(this);//快捷键
     this.group = new Group(this);
     this.panel = new Panel(this);
+    this.toast = new Toast(this);
 		this.init();
 	}
 
@@ -393,6 +394,7 @@ class Stage {
 		$('#configur_property').html(html);
 		that.zoom.init();
 		Tooltip.init();
+    Color.empty();
 		//背景颜色
     let element = $("#stage_bg");
     let color = that.background.color;
@@ -676,6 +678,7 @@ class Stage {
 		if(this.property){
       Tooltip.init();
 			this.property.renderer();
+      Color.empty();
       let config = that.property.config;
 			if(config) {
         //字体颜色
@@ -853,10 +856,8 @@ class Stage {
 				this.option.saveCanvas({
 					id: this.canvasId,
           data: JSON.stringify(data)
-				},function(msg) {
-					if(msg=="ok") {
-						Toast.alert('保存成功');
-					}
+				},function() {
+          Toast.alert('保存成功');
 				})
 			}
 		}

@@ -47,7 +47,7 @@ class Align {
 			})
 		});
 	}
-    //上对齐
+  //上对齐
 	up() {
 		let that = this.stage;
 		let y = 0;
@@ -67,7 +67,7 @@ class Align {
 			})
 		});
 	}
-    //下对齐
+  //下对齐
 	down() {
 		let that = this.stage;
 		let y = 0;

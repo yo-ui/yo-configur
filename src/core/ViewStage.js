@@ -27,7 +27,6 @@ class ViewStage {
       that.location();
 		})
     this.password = new Password(this);
-
 	}
 
 	createStage(width,height,background) {
@@ -224,7 +223,6 @@ class ViewStage {
 				let rotate= property.rotate;
 				let spirit = that.create(className,x,y,width,height,rotate,id);
 				spirit.config = property.config;
-				console.log(property.config);
         if(className=="Images") {
           let url = that.config.imgHost+"/"+spirit.config.url;
           $('#'+spirit.id).find('img').attr('src', url);
@@ -253,6 +251,10 @@ class ViewStage {
         }
         data.initialize();
 			});
+
+			that.option.deviceList(ids,function(dataList) {
+        that.reveal(dataList);
+      });
       that.option.socket(ids,function(dataList) {
         that.reveal(dataList);
       })

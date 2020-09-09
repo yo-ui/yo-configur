@@ -37,12 +37,12 @@ class Toolbar {
       }
     }else {
       menus = [{name:'左对齐',icon:'fa-align-left',type: 5,key:'Ctrl+←'},
-        {name:'右对齐',icon:'fa-align-right',type: 6,key:'Ctrl+→'},
-        {name:'上对齐',icon:'fa-align-up',type: 7,key:'Ctrl+↑'},
-        {name:'下对齐',icon:'fa-align-down',type: 8,key:'Ctrl+↓'},
-        {name:'垂直平分',icon:'fa-v-divide',type: 12,key:'Ctrl+V'},
-        {name:'水平平分',icon:'fa-h-divide',type: 13,key:'Ctrl+H'},
-        {name:'删除',icon:'fa-delete',type:11,key:'Ctrl+D'}]
+               {name:'右对齐',icon:'fa-align-right',type: 6,key:'Ctrl+→'},
+               {name:'上对齐',icon:'fa-align-up',type: 7,key:'Ctrl+↑'},
+               {name:'下对齐',icon:'fa-align-down',type: 8,key:'Ctrl+↓'},
+               {name:'垂直平分',icon:'fa-v-divide',type: 12,key:'Ctrl+V'},
+               {name:'水平平分',icon:'fa-h-divide',type: 13,key:'Ctrl+H'},
+               {name:'删除',icon:'fa-delete',type:11,key:'Ctrl+D'}]
     }
 
     menus.forEach(function(data) {

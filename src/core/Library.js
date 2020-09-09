@@ -23,7 +23,8 @@ class Library {
           {className:'Button',title:'按钮',url:'static/images/configur/button.png',width:48,height:28},
           {className:'Display',title:'显示屏',url:'static/images/configur/display.png',width:70,height:36},
           {className:'Bg',title:'背景',url:'static/images/configur/bg.png',width:200,height:100},
-          {className:'Vessel',title:'容器',url:'static/images/configur/vessel.png',width:600,height:300},]},
+          {className:'Vessel',title:'容器',url:'static/images/configur/vessel.png',width:600,height:300},
+          {className:'Alarm',title:'报警',url:'static/images/configur/vessel.png',width:40,height:40},]},
       {name:'组件',type:1,icon:'fa-conf',
         subList:[
           {className:'LineChart',title:'折线图',url:'static/images/configur/line.png',width:400,height:240},

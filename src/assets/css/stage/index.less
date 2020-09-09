@@ -239,13 +239,33 @@
 
   & > .point-list {
     display: none;
-    width: 150px;
+    width: 180px;
     padding-left: 5px;
   }
 
   & ul {
     max-height: 150px;
     overflow: auto;
-    padding-right: 5px;
+    padding-right: 1px;
+  }
+}
+
+.bm-area {
+  position: relative;
+  border: 1px inset #D4D4D4;
+  margin: 10px 5px;
+
+  & > span {
+    position: absolute;
+    top: -8px;
+    background-color: #fff;
+    margin-left: 10px;
+    padding: 0 5px;
+    font-weight: bold;
+  }
+
+  & > div {
+    padding: 10px;
+    height: 38px;
   }
 }

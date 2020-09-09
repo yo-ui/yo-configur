@@ -687,13 +687,30 @@ span {
 }
 .bm-device-point > .point-list {
   display: none;
-  width: 150px;
+  width: 180px;
   padding-left: 5px;
 }
 .bm-device-point ul {
   max-height: 150px;
   overflow: auto;
-  padding-right: 5px;
+  padding-right: 1px;
+}
+.bm-area {
+  position: relative;
+  border: 1px inset #D4D4D4;
+  margin: 10px 5px;
+}
+.bm-area > span {
+  position: absolute;
+  top: -8px;
+  background-color: #fff;
+  margin-left: 10px;
+  padding: 0 5px;
+  font-weight: bold;
+}
+.bm-area > div {
+  padding: 10px;
+  height: 38px;
 }
 /**侧面导航**/
 .bm-side {
@@ -1511,6 +1528,7 @@ span {
 }
 .bm-select-panel > span > .icon {
   width: 15px;
+  margin-top: 8px;
 }
 .bm-select-panel > div {
   display: none;

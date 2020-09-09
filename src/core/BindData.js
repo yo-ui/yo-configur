@@ -3,66 +3,105 @@
  */
 class BindData {
 
-	constructor(stage) {
+  constructor(stage) {
     this.stage = stage;
     this.bindData = {orgId:'',deviceId:'',devicePoint:''}
-    this.index = 0;
-	}
+  }
 
-	create() {
+  create() {
     this.organizs = []
     this.points = []
-		let that = this;
-		if(that.stage.property) {
+    let that = this;
+    if(that.stage.property) {
       that.bindData = that.stage.property.config.bindData;
-		  let content = `<div class="bm-bind">
-                        <div class="icon">
-                          <span class="active">设备</span><span>组织</span>
-                        </div>
-                        <div class="text organiz-panel">
-                           <input type="search" class="form-control" placeholder="请输入设备名称" maxlength="16"/>
-                           <div class="bm-select-panel" style="display: none">
-                             <span class="select">
-                               <span class="text">请选择组织</span>
-                               <span class="icon"><i class="fa fa-down"></i></span>
-                             </span>                          
-                             <div class="content organiz-list">
-                               <ul></ul>  
-                             </div>
+      let content = `<div class="bm-area">
+                      <span>组织</span>
+                      <div>
+                        <div class="organiz-panel bm-select-panel" style="z-index: 4">
+                           <span class="select">
+                             <span class="text">请选择组织</span>
+                             <i class="icon fa fa-down"></i>
+                           </span>                          
+                           <div class="content organiz-list">
+                             <ul></ul>  
                            </div>
                         </div>
-                        
-                     </div>   
-                     <div class="bm-line"></div> 
-                     <div class="bm-device-point">          
-                       <div class="device-list" style="flex: 1;">
-                         <ul class="bm-list"></ul>
-                         <div></div>
+                      </div>                   
+                  </div>     
+                  <div class="device">
+                    <div class="bm-area">
+                      <span>设备</span>
+                      <div>
+                      <div class="device-panel bm-select-panel" style="z-index: 3">
+                       <span class="select">
+                         <span class="text">请选择设备</span>
+                         <i class="icon fa fa-down"></i>
+                       </span>                          
+                       <div class="content device-list">
+                         <div style="margin: 5px"><input type="text" class="form-control" maxlength="16" placeholder="设备名称"/></div>                  
+                         <ul></ul>
                        </div>
-                       <div class="point-list" style="display: none">
-                         <ul class="bm-list"></ul>
                        </div>
-                     </div>`;
+                    </div>
+                    </div>                
+                  </div>
+                  <div class="point" style="display: none">
+                    <div class="bm-area">
+                      <span>点位</span>
+                      <div>
+                        <div class="point-panel bm-select-panel" style="z-index: 2">
+                         <span class="select">
+                           <span class="text">请选择点位</span>
+                           <i class="icon fa fa-down"></i>
+                         </span>                          
+                         <div class="content point-list">
+                           <div style="margin: 5px">
+                             <input type="text" class="form-control" maxlength="16" placeholder="点位名称"/>
+                           </div>                  
+                           <ul></ul>
+                         </div>
+                        </div>
+                      </div>
+                    </div>                  
+                  </div>`;
       that.stage.panel.init("数据绑定",content,500);
       that.stage.panel.confirm(function () {
         that.stage.property.config.bindData = that.bindData;
       })
 
-      let panel = $('.bm-configur-panel').find('.organiz-panel');
-      panel.find('.select').on('click',function () {
+      let organizPanel = $('.bm-configur-panel').find('.organiz-panel');
+      organizPanel.find('.select').on('click',function () {
         $(this).next().toggle();
-        that.trigger(panel);
       });
-      panel.on('mouseleave',function (e) {
-        $(this).find('.content').hide();
-        that.trigger(panel);
+      organizPanel.find('.content').on('mouseleave',function (e) {
+        $(this).hide();
+      });
+
+      let devicePanel = $('.bm-configur-panel').find('.device-panel');
+      devicePanel.find('.select').on('click',function () {
+        $(this).next().toggle();
+        $('.device-list input').val('');
+        that.createDevice(that.deviceList);
+      });
+      devicePanel.find('.content').on('mouseleave',function (e) {
+        $(this).hide();
+      });
+
+      let pointPanel = $('.bm-configur-panel').find('.point-panel');
+      pointPanel.find('.select').on('click',function () {
+        $(this).next().toggle();
+        $('.point-list input').val('');
+        that.createPoint(that.points);
+      });
+      pointPanel.find('.content').on('mouseleave',function (e) {
+        $(this).hide();
       });
 
       if(that.stage.property.bindType == 2) {
-        $('.bm-configur-panel').find('.point-list').show();
+        $('.bm-configur-panel').find('.point').show();
       }
 
-      $('.bm-bind input').on('input propertyChange',function () {
+      $('.device-list input').on('input propertyChange',function () {
         let text = $(this).val();
         let dataList = []
         that.deviceList.forEach(function (device) {
@@ -76,36 +115,11 @@ class BindData {
           that.createDevice(that.deviceList);
         }
       })
-
-      $('.bm-bind .icon span').each(function (index) {
-        $(this).data('index', index);
-        $(this).on('click',function () {
-          $(this).addClass('active');
-          $(this).siblings().each(function(){
-            $(this).removeClass('active');
-          });
-          that.index = $(this).data('index');
-          if(that.index==0) {
-            $('.bm-bind').find('.form-control').show();
-            $('.bm-bind').find('.bm-select-panel').hide();
-          }else {
-            $('.bm-bind').find('.form-control').hide();
-            $('.bm-bind').find('.bm-select-panel').show();
-          }
-        });
-      });
       that.oList();
-		}
-	}
 
-  trigger(panel) {
-    if(panel.find('.content').is(':hidden')) {
-      panel.find('.icon').html(`<i class="fa fa-down"/>`);
-    }else {
-      panel.find('.icon').html(`<i class="fa fa-left"/>`);
+
     }
   }
-
   //组织列表
   oList() {
     let that = this;
@@ -122,7 +136,7 @@ class BindData {
   }
 
   createOrganiz() {
-	  let that = this;
+    let that = this;
     let dataList = []
     this.iteration(dataList,0,0);
     dataList.forEach(function (data) {
@@ -166,9 +180,7 @@ class BindData {
 
   createDevice(deviceList) {
     $('.device-list ul').html('');
-    $('.point-list ul').html('');
     let that = this;
-    let isSelected = true;
     if(deviceList) {
       deviceList.forEach(function (device, index) {
         let li = $('<li></li>')
@@ -176,25 +188,25 @@ class BindData {
         li.data('points', device.points);
         li.text(that.textFormat(device.name, 16));
         li.attr('title', device.name);
-        li.on('click', function() {
+        li.on('click', function () {
           $(this).addClass('active')
           $(this).siblings().each(function () {
             $(this).removeClass('active');
           });
           that.bindData.deviceId = $(this).data('id');
+          $(this).parent().parent().hide();
           that.points = $(this).data('points');
+          $('.device-panel').find('.text').text($(this).attr('title'));
           that.createPoint(that.points);
         });
         if (that.bindData.deviceId == device.id) {
           li.addClass('active');
           that.points = device.points;
+          $('.device-panel').find('.text').text(device.name);
           that.createPoint(that.points);
-          isSelected = false;
         }
         $('.device-list ul').append(li);
       })
-
-
     }
   }
 
@@ -202,19 +214,21 @@ class BindData {
     let that = this;
     $('.point-list ul').html('');
     let isSelected = true;
-	  points.forEach(function (point,index) {
+    points.forEach(function (point,index) {
       let li = $('<li></li>')
       li.data('id', point.id)
       li.text(point.name);
       li.on('click', function () {
+        $(this).parent().parent().hide();
+        $('.point-panel').find('.text').text($(this).text());
         that.bindData.devicePoint = $(this).data('id');
-        $(this).addClass('active');
         $(this).siblings().each(function () {
           $(this).removeClass('active');
         });
       });
       if(that.bindData.devicePoint==point.id) {
         li.addClass('active')
+        $('.point-panel').find('.text').text(point.name);
         isSelected = false;
       }
       $('.point-list ul').append(li);
@@ -225,6 +239,7 @@ class BindData {
         $(this).removeClass('active');
         if(index==0) {
           $(this).addClass('active')
+          $('.point-panel').find('.text').text($(this).text())
           that.bindData.devicePoint = $(this).data('id');
         }
       })
@@ -233,7 +248,7 @@ class BindData {
 
 
   iteration(dataList,pid,level) {
-	  let that = this;
+    let that = this;
     that.organizs.forEach(function (data) {
       if(pid==data.pid) {
         data.level = level;
@@ -243,8 +258,8 @@ class BindData {
     })
   }
 
-	textFormat(text,length) {
-	  return text.length>length?text.substr(0,length)+"...":text;
+  textFormat(text,length) {
+    return text.length>length?text.substr(0,length)+"...":text;
   }
 }
 

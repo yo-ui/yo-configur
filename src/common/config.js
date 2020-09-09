@@ -1,4 +1,4 @@
-let wsHost=process.env.NODE_ENV==='production'?'https://eiot.energyiot.cn':'http://192.168.0.175:8081';
+let wsHost=process.env.NODE_ENV==='production'?'https://eiot.energyiot.cn':'http://192.168.0.175:8081';//https://eiot.energyiot.cn
 let host=process.env.NODE_ENV==='production'?'/service':'/service';
 let debug=process.env.NODE_ENV==='production'?false:true;
 let imgHost=process.env.NODE_ENV==='production'?'http://pic.energyiot.cn':'http://test-pic.energyiot.cn'

@@ -244,6 +244,8 @@ class View {
     $(window).resize(function() {
       stage.location();//页面改变时调整舞台位置
     })
+
+    $('#root').css({'background-color': '#fff','overflow': 'hidden'});
   }
 
   template() {

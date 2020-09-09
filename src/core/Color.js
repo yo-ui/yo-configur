@@ -3,11 +3,7 @@
  */
 class Color {
 
-	static init(element,color,callback) {
-	  let container = $('.sp-container');
-	  if(container) {
-      container.remove()
-    }
+  static init(element,color,callback) {
     element.spectrum({
       allowEmpty:true,
       color: color,
@@ -30,6 +26,13 @@ class Color {
       }
     });
 	}
+
+  static empty() {
+    let container = $('.sp-container');
+    if(container) {
+      container.remove();
+    }
+  }
 }
 
 export default Color;

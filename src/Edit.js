@@ -34,15 +34,15 @@ class Edit {
           }
         }
       },
-      saveCanvas: function(data,callback) {
+      save: function(data,callback) {
         if(that.config.debug) {
           localStorage.setItem("data", data.data);
-          callback.call(this, "ok");
+          callback.call(this);
         }else {
           RemoteObject.ajax(that.config.save,"post",data,function(msg){
             let result = JSON.parse(msg);
             if(result.code==200) {
-              callback.call(this, result.result);
+              callback.call(this);
             }else {
               console.log(result.message);
             }
@@ -204,14 +204,7 @@ class Edit {
         <div class="bm-layout__main__body">
             <div class="bm-stage">
               <div id="root"></div>
-              <div class="bm-config-panel">
-                 <div class="bm-config-panel__shade">&nbsp;</div>
-                 <div class="bm-config-panel__content"></div>
-              </div>
             </div>
-          <div style="display: none" class="bm-toast bm-toast--text bm-toast--top">
-              <span class="bm-toast__text"></span>
-          </div>
         </div>
         <div class="bm-layout__main__right">
             <div class="bm-tabs-custom">

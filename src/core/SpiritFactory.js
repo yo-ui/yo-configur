@@ -13,6 +13,7 @@ import Bg from '@/components/common/Bg';
 import Vessel from '@/components/common/Vessel';
 import Time from '@/components/common/Time';
 import Switch from '@/components/common/Switch';
+import Alarm from '@/components/common/Alarm';
 //给水系统
 import Lyssb from '@/components/device/Lyssb';//螺翼式水表
 import Sbfkg from '@/components/device/Sbfkg';//阀控水表
@@ -91,6 +92,7 @@ class SpiritFactory {
   //静态方法
   static getInstance(className,x,y,width,height) {
     switch (className) {
+      case 'Alarm': return new Alarm(x,y,width,height);
       case 'Time': return new Time(x,y,width,height);
       case 'Switch': return new Switch(x,y,width,height);
 	    case 'Db': return new Db(x,y,width,height);

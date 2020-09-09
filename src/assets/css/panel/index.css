@@ -152,6 +152,7 @@
 }
 .bm-select-panel > span > .icon {
   width: 15px;
+  margin-top: 8px;
 }
 .bm-select-panel > div {
   display: none;
