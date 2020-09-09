@@ -34,18 +34,25 @@ export default {
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
+        borderRadius = "",
         scale = "",
         fontFamily = "",
-        fontSize = "14",
+        fontSize = "",
+        fontWeight = "",
+        fontStyle = "",
+        textDecoration = "",
         backgroundColor = "",
         backgroundImage = "",
         backgroundRepeat = "",
         backgroundSize = ""
       } = info || {};
       let styles = {
-        width: `${width}px`,
-        height: `${height}px`
-      };
+      };if (width) {
+        styles["width"] = `${width}px`;
+      }
+      if (height) {
+        styles["height"] = `${height}px`;
+      }
       if (backgroundRepeat) {
         styles["backgroundRepeat"] = backgroundRepeat;
       }
@@ -58,9 +65,8 @@ export default {
       if (borderStyle) {
         styles["borderStyle"] = borderStyle;
       }
-      // if (borderWidth) {
       styles["borderWidth"] = `${borderWidth}px`;
-      // }
+      styles["borderRadius"] = `${borderRadius}px`;
       if (scale) {
         (styles["transform"] = `${scale}`),
           (styles["-webkit-transform"] = `${scale}`),
@@ -75,7 +81,16 @@ export default {
         styles["fontSize"] = `${fontSize}px`;
       }
       if (fontFamily) {
-        styles["fontFamily"] = `'${fontFamily}'`;
+        styles["fontFamily"] = `${fontFamily}`;
+      }
+      if (fontWeight) {
+        styles["fontWeight"] = fontWeight;
+      }
+      if (fontStyle) {
+        styles["fontStyle"] = fontStyle;
+      }
+      if (textDecoration) {
+        styles["textDecoration"] = textDecoration;
       }
       if (backgroundColor) {
         styles["backgroundColor"] = backgroundColor;

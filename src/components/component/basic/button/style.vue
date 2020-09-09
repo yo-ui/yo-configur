@@ -19,7 +19,7 @@
     <p>
       <span class="label"> {{ $lang("按钮名称") }}: </span>
       <el-input
-        v-model="info.name"
+        v-model="info.content"
         clearable
         :placeholder="$lang('请输入按钮名称')"
       ></el-input>
@@ -34,16 +34,20 @@
       ></el-slider>
     </p>
     <p>
-      <span class="label"> {{ $lang("宽度") }}:</span>{{ info.width }} px
+      <span class="label"> {{ $lang("宽度") }}:</span
+      >{{ $toBig(info.width || info.originWidth, 0) }} px
       <el-slider
+        v-if="info.scaleable"
         v-model="info.width"
         :max="1980"
         :format-tooltip="val => val"
       ></el-slider>
     </p>
     <p>
-      <span class="label"> {{ $lang("高度") }}:</span>{{ info.height }} px
+      <span class="label"> {{ $lang("高度") }}:</span
+      >{{ $toBig(info.height || info.originHeight) }} px
       <el-slider
+        v-if="info.scaleable"
         v-model="info.height"
         :max="1080"
         :format-tooltip="val => val"
@@ -73,6 +77,10 @@
         :max="360"
         :format-tooltip="val => val + ' deg'"
       ></el-slider>
+    </p>
+    <p>
+      <span class="label"> {{ $lang("是否可移动") }}:</span
+      ><el-checkbox v-model="info.dragable"></el-checkbox>
     </p>
     <p>
       <span class="label">{{ $lang("按钮背景色") }}:</span>
@@ -149,11 +157,8 @@
       ></el-slider>
     </p>
     <p>
-      <span class="label">{{ $lang("字体样式") }}:</span>
-      <el-select
-        v-model="info.fontFamily"
-        :placeholder="$lang('请选择边框样式')"
-      >
+      <span class="label">{{ $lang("字体") }}:</span>
+      <el-select v-model="info.fontFamily" :placeholder="$lang('请选择字体')">
         <el-option
           v-for="item in fontFamilyList"
           :key="item.code"
@@ -162,6 +167,32 @@
         >
         </el-option>
       </el-select>
+    </p>
+    <p>
+      <span class="label">{{ $lang("字体样式") }}:</span>
+      <span class="font-style">
+        <span
+          class="bold"
+          @click="setFontWeight"
+          :title="$lang('粗体')"
+          :class="{ active: info.fontWeight == 'bold' }"
+          >B</span
+        >
+        <span
+          class="italic"
+          @click="setFontStyle"
+          :title="$lang('斜体')"
+          :class="{ active: info.fontStyle == 'italic' }"
+          >I</span
+        >
+        <span
+          class="underline"
+          @click="setTextDecoration"
+          :title="$lang('下划线')"
+          :class="{ active: info.textDecoration == 'underline' }"
+          >U</span
+        >
+      </span>
     </p>
     <p>
       <span class="label"> {{ $lang("边框样式") }}:</span
@@ -189,75 +220,19 @@
       ></el-slider>
     </p>
     <p>
+      <span class="label"> {{ $lang("边框圆角") }}:</span
+      >{{ info.borderRadius }} px
+      <el-slider
+        v-model="info.borderRadius"
+        :min="0"
+        :max="50"
+        :format-tooltip="val => val + ' px'"
+      ></el-slider>
+    </p>
+    <p>
       <span class="label">{{ $lang("边框颜色") }}:</span>
       <el-color-picker v-model="info.borderColor" show-alpha></el-color-picker>
     </p>
-    <!-- <p>
-      <span class="label"> {{ $lang("页面背景图") }}:</span
-      ><el-input
-        v-model="info.name"
-        :placeholder="$lang('请输入组态标题')"
-      ></el-input>
-    </p> -->
-    <!-- <p>
-      <span class="label"> {{ $lang("是否显示网格") }}:</span
-      ><el-checkbox v-model="info.isGrid"></el-checkbox>
-    </p>
-    <p>
-      <span class="label"> {{ $lang("网格样式") }}:</span
-      ><el-select
-        v-model="info.gridStyle.type"
-        @change="gridStyleChangeEvent"
-        :placeholder="$lang('请选择网格样式')"
-      >
-        <el-option
-          v-for="item in gridStyleList"
-          :key="item.code"
-          :label="$lang(item.name)"
-          :value="item.code"
-        >
-        </el-option>
-      </el-select>
-    </p>
-    <p v-if="info.gridStyle.type == 6">
-      <span class="col">
-        <span class="label"> {{ $lang("网格宽") }}:</span
-        ><el-input
-          v-model.number="info.gridStyle.width"
-          clearable
-          :placeholder="$lang('请输入网格宽')"
-        ></el-input
-        >px
-      </span>
-      <span class="col">
-        <span class="label">{{ $lang("网格高") }}: </span
-        ><el-input
-          v-model.number="info.gridStyle.height"
-          clearable
-          :placeholder="$lang('请输入网格高')"
-        ></el-input
-        >px
-      </span>
-    </p>
-    <p>
-      <span class="label"> {{ $lang("缩放") }}:</span>
-      <i
-        class="el-icon-zoom-in"
-        @click="zoomEvent(20)"
-        :title="$lang('放大')"
-      ></i>
-      <i
-        class="el-icon-zoom-out"
-        @click="zoomEvent(-20)"
-        :title="$lang('缩小')"
-      ></i>
-      <i
-        class="el-icon-refresh-left"
-        @click="zoomEvent()"
-        :title="$lang('重置')"
-      ></i>
-    </p> -->
-
     <h2>{{ $lang("交互") }}</h2>
     <h2>{{ $lang("动画") }}</h2>
   </div>
@@ -302,6 +277,36 @@ export default {
     successCallback(url) {
       let { info = {} } = this;
       info.backgroundImage = url;
+    },
+    setFontWeight() {
+      let { info = {} } = this;
+      let { fontWeight = "" } = info || {};
+      if (fontWeight == "bold") {
+        fontWeight = "";
+      } else {
+        fontWeight = "bold";
+      }
+      info.fontWeight = fontWeight;
+    },
+    setTextDecoration() {
+      let { info = {} } = this;
+      let { textDecoration = "" } = info || {};
+      if (textDecoration == "underline") {
+        textDecoration = "";
+      } else {
+        textDecoration = "underline";
+      }
+      info.textDecoration = textDecoration;
+    },
+    setFontStyle() {
+      let { info = {} } = this;
+      let { fontStyle = "" } = info || {};
+      if (fontStyle == "italic") {
+        fontStyle = "";
+      } else {
+        fontStyle = "italic";
+      }
+      info.fontStyle = fontStyle;
     }
   }
 };

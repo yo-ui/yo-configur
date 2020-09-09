@@ -16,14 +16,14 @@
       ></i>
     </p> -->
     <h2>{{ $lang("参数") }}</h2>
-    <p>
+    <!-- <p>
       <span class="label"> {{ $lang("文本名称") }}: </span>
       <el-input
-        v-model="info.name"
+        v-model="info.content"
         clearable
         :placeholder="$lang('请输入文本名称')"
       ></el-input>
-    </p>
+    </p> -->
     <p>
       <span class="label"> {{ $lang("层级") }}: </span>
       {{ info.order }}
@@ -34,16 +34,20 @@
       ></el-slider>
     </p>
     <p>
-      <span class="label"> {{ $lang("宽度") }}:</span>{{ info.width }} px
+      <span class="label"> {{ $lang("宽度") }}:</span
+      >{{ $toBig(info.width || info.originWidth, 0) }} px
       <el-slider
+        v-if="info.scaleable"
         v-model="info.width"
         :max="1980"
         :format-tooltip="val => val"
       ></el-slider>
     </p>
     <p>
-      <span class="label"> {{ $lang("高度") }}:</span>{{ info.height }} px
+      <span class="label"> {{ $lang("高度") }}:</span
+      >{{ $toBig(info.height || info.originHeight, 0) }} px
       <el-slider
+        v-if="info.scaleable"
         v-model="info.height"
         :max="1080"
         :format-tooltip="val => val"
@@ -73,6 +77,10 @@
         :max="360"
         :format-tooltip="val => val + ' deg'"
       ></el-slider>
+    </p>
+    <p>
+      <span class="label"> {{ $lang("是否锁定") }}:</span
+      ><el-checkbox v-model="info.dragable"></el-checkbox>
     </p>
     <p>
       <span class="label"> {{ $lang("背景图片") }}:</span>
@@ -149,10 +157,7 @@
     </p>
     <p>
       <span class="label">{{ $lang("字体") }}:</span>
-      <el-select
-        v-model="info.fontFamily"
-        :placeholder="$lang('请选择边框样式')"
-      >
+      <el-select v-model="info.fontFamily" :placeholder="$lang('请选择字体')">
         <el-option
           v-for="item in fontFamilyList"
           :key="item.code"
@@ -165,17 +170,26 @@
     <p>
       <span class="label">{{ $lang("字体样式") }}:</span>
       <span class="font-style">
-        <span class="bold"
+        <span
+          class="bold"
           @click="setFontWeight"
           :title="$lang('粗体')"
           :class="{ active: info.fontWeight == 'bold' }"
           >B</span
         >
-        <span class="italic"
+        <span
+          class="italic"
           @click="setFontStyle"
           :title="$lang('斜体')"
           :class="{ active: info.fontStyle == 'italic' }"
           >I</span
+        >
+        <span
+          class="underline"
+          @click="setTextDecoration"
+          :title="$lang('下划线')"
+          :class="{ active: info.textDecoration == 'underline' }"
+          >U</span
         >
       </span>
     </p>
@@ -201,6 +215,16 @@
         v-model="info.borderWidth"
         :min="0"
         :max="20"
+        :format-tooltip="val => val + ' px'"
+      ></el-slider>
+    </p>
+    <p>
+      <span class="label"> {{ $lang("边框圆角") }}:</span
+      >{{ info.borderRadius }} px
+      <el-slider
+        v-model="info.borderRadius"
+        :min="0"
+        :max="50"
         :format-tooltip="val => val + ' px'"
       ></el-slider>
     </p>
@@ -263,6 +287,16 @@ export default {
         fontWeight = "bold";
       }
       info.fontWeight = fontWeight;
+    },
+    setTextDecoration() {
+      let { info = {} } = this;
+      let { textDecoration = "" } = info || {};
+      if (textDecoration == "underline") {
+        textDecoration = "";
+      } else {
+        textDecoration = "underline";
+      }
+      info.textDecoration = textDecoration;
     },
     setFontStyle() {
       let { info = {} } = this;

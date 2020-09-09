@@ -41,6 +41,7 @@ export default {
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
+        borderRadius = "",
         scale = "",
         backgroundColor = "",
         backgroundImage = "",
@@ -48,18 +49,20 @@ export default {
         backgroundSize = ""
       } = info || {};
       let styles = {
-        width: `${width}px`,
-        height: `${height}px`
-      };
+      };if (width) {
+        styles["width"] = `${width}px`;
+      }
+      if (height) {
+        styles["height"] = `${height}px`;
+      }
       if (borderColor) {
         styles["borderColor"] = borderColor;
       }
       if (borderStyle) {
         styles["borderStyle"] = borderStyle;
       }
-      if (borderWidth) {
-        styles["borderWidth"] = `${borderWidth}px`;
-      }
+      styles["borderWidth"] = `${borderWidth}px`;
+      styles["borderRadius"] = `${borderRadius}px`;
       if (scale) {
         (styles["transform"] = `${scale}`),
           (styles["-webkit-transform"] = `${scale}`),

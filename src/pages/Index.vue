@@ -7,7 +7,12 @@
         <!-- {{activeComId}} -->
         <!-- :active="activeComId == item.id" -->
         <!-- @drop="dropEvent" -->
-        <div class="canvas-box" :style="canvasStyle" :class="canvas.action">
+        <div
+          class="canvas-box"
+          ref="canvasBox"
+          :style="canvasStyle"
+          :class="canvas.action"
+        >
           <!-- @mousedown.native.stop.prevent="mousedownEvent(item)" -->
           <div class="bg" :style="gridStyle"></div>
           <bm-com
@@ -156,6 +161,14 @@ export default {
     ...mapActions({ selectComAction: "canvas/selectCom" }),
     init() {
       this.initEvent();
+      this.$nextTick(() => {
+        let $canvasBox = $(this.$refs.canvasBox);
+        let { info = {} } = this;
+        let width = $canvasBox.width();
+        let height = $canvasBox.height();
+        info.width = width;
+        info.height = height;
+      });
     },
     initEvent() {
       let viewBox = this.$refs.viewBox;

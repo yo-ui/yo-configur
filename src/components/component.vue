@@ -2,58 +2,72 @@
 <!-- :class="{ active: showActiveStatus }" -->
 <!-- @mousedown.stop="mousedownEvent" -->
 <template>
-  <div class="bm-component-com" ref="bmCom" :style="boxStyle">
+  <div class="bm-component-com" :style="boxStyle">
     <div class="info">
       {{ info.type }}
     </div>
     <i
-      class="operate-btn el-icon-refresh-right" v-if="info.rotateable"
+      class="operate-btn el-icon-refresh-right"
+      v-if="info.rotateable"
       @mousedown.stop="rotateClickEvent"
       title="旋转"
     ></i>
     <i
-      class="operate-btn el-icon-top-left" v-if="info.scaleable"
+      class="operate-btn el-icon-top-left"
+      v-if="info.scaleable"
       @mousedown.stop="leftTopClickEvent"
       title="左上角"
     ></i>
     <i
-      class="operate-btn el-icon-top" v-if="info.scaleable"
+      class="operate-btn el-icon-top"
+      v-if="info.scaleable"
       @mousedown.stop="topClickEvent"
       title="上"
     ></i>
     <i
-      class="operate-btn el-icon-top-right" v-if="info.scaleable"
+      class="operate-btn el-icon-top-right"
+      v-if="info.scaleable"
       @mousedown.stop="rightTopClickEvent"
       title="右上角"
     ></i>
     <i
-      class="operate-btn el-icon-back" v-if="info.scaleable"
+      class="operate-btn el-icon-back"
+      v-if="info.scaleable"
       @mousedown.stop="leftClickEvent"
       title="左"
     ></i>
     <i
-      class="operate-btn el-icon-right" v-if="info.scaleable"
+      class="operate-btn el-icon-right"
+      v-if="info.scaleable"
       @mousedown.stop="rightClickEvent"
       title="右"
     ></i>
     <i
-      class="operate-btn el-icon-bottom-left" v-if="info.scaleable"
+      class="operate-btn el-icon-bottom-left"
+      v-if="info.scaleable"
       @mousedown.stop="leftBottomClickEvent"
       title="左下角"
     ></i>
     <i
-      class="operate-btn el-icon-bottom" v-if="info.scaleable"
+      class="operate-btn el-icon-bottom"
+      v-if="info.scaleable"
       @mousedown.stop="bottomClickEvent"
       title="下"
     ></i>
     <i
-      class="operate-btn el-icon-bottom-right" v-if="info.scaleable"
+      class="operate-btn el-icon-bottom-right"
+      v-if="info.scaleable"
       @mousedown.stop="rightBottomClickEvent"
       title="右下角"
     ></i>
     <!-- <component :info="info" :is="info.type"></component> -->
     <!-- {{ info.type }} -->
-    <component :info="info" :is="`${info.type}Com`"></component>
+    <component
+      ref="bmCom"
+      :info="info"
+      :is="`${info.type}Com`"
+      @success="loadSuccess"
+    ></component>
     <!-- <bm-text></bm-text> -->
     <!-- <template v-if="type == 'text'">
       <div
@@ -118,6 +132,21 @@ export default {
       stopMove: "canvas/stopMove"
     }),
     ...mapActions(),
+    loadSuccess() {
+      this.$nextTick(() => {
+        let bmCom = this.$refs.bmCom;
+        let $bmCom = $(bmCom.$el);
+        let { info = {} } = this;
+        let width = $bmCom.width();
+        let height = $bmCom.height();
+        info.originWidth = width;
+        info.originHeight = height;
+        if (info.scaleable) {
+          info.width = width;
+          info.height = height;
+        }
+      });
+    },
     mousedownEvent(e, type) {
       e.stopPropagation();
       e.preventDefault();

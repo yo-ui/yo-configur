@@ -1,6 +1,6 @@
 # web
 
-> 运维平台
+> 组态平台
 
 ## Build Setup
 

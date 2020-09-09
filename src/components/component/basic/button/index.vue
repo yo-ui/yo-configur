@@ -5,7 +5,7 @@
     :contenteditable="info.editable"
     @blur.stop="blurEvent"
   >
-    {{ info.name }}
+    {{ info.content }}
   </button>
 </template>
 
@@ -33,18 +33,24 @@ export default {
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
+        borderRadius = "",
         scale = "",
         fontFamily = "",
         fontSize = "",
+        fontWeight = "",
+        fontStyle = "",
         backgroundColor = "",
         backgroundImage = "",
         backgroundRepeat = "",
         backgroundSize = ""
       } = info || {};
-      let styles = {
-        width: `${width}px`,
-        height: `${height}px`
-      };
+      let styles = {};
+      if (width) {
+        styles["width"] = `${width}px`;
+      }
+      if (height) {
+        styles["height"] = `${height}px`;
+      }
       if (backgroundRepeat) {
         styles["backgroundRepeat"] = backgroundRepeat;
       }
@@ -57,9 +63,8 @@ export default {
       if (borderStyle) {
         styles["borderStyle"] = borderStyle;
       }
-      // if (borderWidth) {
       styles["borderWidth"] = `${borderWidth}px`;
-      // }
+      styles["borderRadius"] = `${borderRadius}px`;
       if (scale) {
         (styles["transform"] = `${scale}`),
           (styles["-webkit-transform"] = `${scale}`),
@@ -74,7 +79,13 @@ export default {
         styles["fontSize"] = `${fontSize}px`;
       }
       if (fontFamily) {
-        styles["fontFamily"] = `'${fontFamily}'`;
+        styles["fontFamily"] = `${fontFamily}`;
+      }
+      if (fontWeight) {
+        styles["fontWeight"] = fontWeight;
+      }
+      if (fontStyle) {
+        styles["fontStyle"] = fontStyle;
       }
       if (backgroundColor) {
         styles["backgroundColor"] = backgroundColor;
@@ -84,6 +95,9 @@ export default {
       }
       return styles || {};
     }
+  },
+  mounted() {
+    this.$emit("success"); //组件加载完成回调
   },
   methods: {
     blurEvent(e) {
@@ -102,5 +116,14 @@ export default {
 @import (reference) "./../../../../assets/less/common.less";
 .btn-com {
   .bor(1px solid @grayE);
+  background: linear-gradient(#34a5f8, #088ef0);
+  .p(5px 20px);
+  .br(20px);
+  &:active {
+    text-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.3);
+    opacity: 0.9;
+    .box-s(0 1px 3px rgba(0, 0, 0, 0.2));
+    .c(@grayC) !important;
+  }
 }
 </style>

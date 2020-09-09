@@ -20,6 +20,7 @@
     }
     p{
       .mt(10);
+      min-height: 35px;
       .df;
       flex-wrap: wrap;
       align-items: center;
@@ -54,16 +55,24 @@
         .flex(1);
       }
       .font-style{
+        .df;
         span{
           .click;
           .fz(15);
-          .p(5px 10px);
+          .p(5px 8px);
+          .squ(25);
+          .tc;
+          .lh(25);
           .mr(10);
           &.active{
             .bor(1px solid @grayE);
           }
         }
         .bold{
+          .fw(bold);
+        }
+        .underline{
+          text-decoration: underline;
           .fw(bold);
         }
         .italic{

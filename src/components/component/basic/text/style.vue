@@ -75,6 +75,10 @@
       ></el-slider>
     </p>
     <p>
+      <span class="label"> {{ $lang("是否可移动") }}:</span
+      ><el-checkbox v-model="info.dragable"></el-checkbox>
+    </p>
+    <p>
       <span class="label"> {{ $lang("背景图片") }}:</span>
       <bm-upload ref="bmUpload" @success="successCallback">
         <el-button type="primary">
@@ -139,7 +143,7 @@
     </p>
     <p>
       <span class="label">{{ $lang("字体大小") }}:</span>
-      {{info.fontSize}} px
+      {{ info.fontSize }} px
       <el-slider
         v-model="info.fontSize"
         :min="10"
@@ -148,11 +152,8 @@
       ></el-slider>
     </p>
     <p>
-      <span class="label">{{ $lang("字体样式") }}:</span>
-      <el-select
-        v-model="info.fontFamily"
-        :placeholder="$lang('请选择边框样式')"
-      >
+      <span class="label">{{ $lang("字体") }}:</span>
+      <el-select v-model="info.fontFamily" :placeholder="$lang('请选择字体')">
         <el-option
           v-for="item in fontFamilyList"
           :key="item.code"
@@ -161,6 +162,32 @@
         >
         </el-option>
       </el-select>
+    </p>
+    <p>
+      <span class="label">{{ $lang("字体样式") }}:</span>
+      <span class="font-style">
+        <span
+          class="bold"
+          @click="setFontWeight"
+          :title="$lang('粗体')"
+          :class="{ active: info.fontWeight == 'bold' }"
+          >B</span
+        >
+        <span
+          class="italic"
+          @click="setFontStyle"
+          :title="$lang('斜体')"
+          :class="{ active: info.fontStyle == 'italic' }"
+          >I</span
+        >
+        <span
+          class="underline"
+          @click="setTextDecoration"
+          :title="$lang('下划线')"
+          :class="{ active: info.textDecoration == 'underline' }"
+          >U</span
+        >
+      </span>
     </p>
     <p>
       <span class="label"> {{ $lang("边框样式") }}:</span
@@ -184,6 +211,16 @@
         v-model="info.borderWidth"
         :min="0"
         :max="20"
+        :format-tooltip="val => val + ' px'"
+      ></el-slider>
+    </p>
+    <p>
+      <span class="label"> {{ $lang("边框圆角") }}:</span
+      >{{ info.borderRadius }} px
+      <el-slider
+        v-model="info.borderRadius"
+        :min="0"
+        :max="50"
         :format-tooltip="val => val + ' px'"
       ></el-slider>
     </p>
@@ -236,6 +273,36 @@ export default {
     successCallback(url) {
       let { info = {} } = this;
       info.backgroundImage = url;
+    },
+    setFontWeight() {
+      let { info = {} } = this;
+      let { fontWeight = "" } = info || {};
+      if (fontWeight == "bold") {
+        fontWeight = "";
+      } else {
+        fontWeight = "bold";
+      }
+      info.fontWeight = fontWeight;
+    },
+    setTextDecoration() {
+      let { info = {} } = this;
+      let { textDecoration = "" } = info || {};
+      if (textDecoration == "underline") {
+        textDecoration = "";
+      } else {
+        textDecoration = "underline";
+      }
+      info.textDecoration = textDecoration;
+    },
+    setFontStyle() {
+      let { info = {} } = this;
+      let { fontStyle = "" } = info || {};
+      if (fontStyle == "italic") {
+        fontStyle = "";
+      } else {
+        fontStyle = "italic";
+      }
+      info.fontStyle = fontStyle;
     }
   }
 };

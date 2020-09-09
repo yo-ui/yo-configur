@@ -174,15 +174,8 @@ export default {
       };
     }
   },
-  mounted(){
-    this.$nextTick(()=>{
-      let $canvasBox=$('.canvas-box')
-      let {info={}}=this
-      let width=$canvasBox.width()
-      let height=$canvasBox.height()
-      info.width=width
-      info.height=height
-    })
+  mounted() {
+    
   },
   methods: {
     ...mapMutations({
@@ -191,6 +184,7 @@ export default {
       canvasMoving: "canvas/canvasMoving",
       initMove: "canvas/initMove"
     }),
+    ...mapActions(),
     actionEvent(item) {
       let { canvas = {} } = this;
       canvas.action = item;

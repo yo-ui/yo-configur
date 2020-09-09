@@ -75,6 +75,10 @@
       ></el-slider>
     </p>
     <p>
+      <span class="label"> {{ $lang("是否可移动") }}:</span
+      ><el-checkbox v-model="info.dragable"></el-checkbox>
+    </p>
+    <p>
       <span class="label">{{ $lang("图片背景色") }}:</span>
       <el-color-picker
         v-model="info.backgroundColor"
@@ -135,10 +139,10 @@
     </template>
 
     <p>
-      <span class="label"> {{ $lang("文本边框样式") }}:</span
+      <span class="label"> {{ $lang("边框样式") }}:</span
       ><el-select
         v-model="info.borderStyle"
-        :placeholder="$lang('文本边框样式')"
+        :placeholder="$lang('请选择边框样式')"
       >
         <el-option
           v-for="item in borderStyleList"
@@ -150,7 +154,7 @@
       </el-select>
     </p>
     <p>
-      <span class="label"> {{ $lang("文本边框大小") }}:</span
+      <span class="label"> {{ $lang("边框大小") }}:</span
       >{{ info.borderWidth }}
       <el-slider
         v-model="info.borderWidth"
@@ -160,7 +164,17 @@
       ></el-slider>
     </p>
     <p>
-      <span class="label">{{ $lang("文本边框颜色") }}:</span>
+      <span class="label"> {{ $lang("边框圆角") }}:</span
+      >{{ info.borderRadius }} px
+      <el-slider
+        v-model="info.borderRadius"
+        :min="0"
+        :max="50"
+        :format-tooltip="val => val + ' px'"
+      ></el-slider>
+    </p>
+    <p>
+      <span class="label">{{ $lang("边框颜色") }}:</span>
       <el-color-picker v-model="info.borderColor" show-alpha></el-color-picker>
     </p>
 
