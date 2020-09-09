@@ -37,6 +37,76 @@
       </div>
       <bm-info ref="bmInfo"></bm-info>
     </div>
+    <ul
+      class="context-menu"
+      ref="contextMenuBox"
+      v-show="showContextMenuStatus"
+      :style="contextMenuStyle"
+    >
+      <li
+        @click="cutEvent"
+        v-if="showContextMenuType == 1 && activeCom.dragable"
+      >
+        剪切 <small>Ctrl+X</small>
+      </li>
+      <li
+        @click="copyEvent"
+        v-if="showContextMenuType == 1 && activeCom.dragable"
+      >
+        复制<small>Ctrl+C</small>
+      </li>
+      <li @click="pasteEvent" v-if="showContextMenuType == 2 && !!copyCom">
+        粘贴<small>Ctrl+V</small>
+      </li>
+      <li
+        @click="moveUpEvent"
+        v-if="showContextMenuType == 1 && activeCom.dragable"
+        class="line"
+        :class="{ disabled: topOrder == activeCom.order }"
+      >
+        上移一层<small>Ctrl+[</small>
+      </li>
+      <li
+        @click="moveDownEvent"
+        :class="{ disabled: bottomOrder == activeCom.order }"
+        v-if="showContextMenuType == 1 && activeCom.dragable"
+      >
+        下移一层<small>Ctrl+]</small>
+      </li>
+      <li
+        @click="moveTopEvent"
+        :class="{ disabled: topOrder == activeCom.order }"
+        v-if="showContextMenuType == 1 && activeCom.dragable"
+      >
+        置于顶层<small>Ctrl+Shift+[</small>
+      </li>
+      <li
+        @click="moveBottomEvent"
+        :class="{ disabled: bottomOrder == activeCom.order }"
+        v-if="showContextMenuType == 1 && activeCom.dragable"
+      >
+        置于底层<small>Ctrl+Shift+]</small>
+      </li>
+      <li
+        class="line"
+        @click="lockEvent(false)"
+        v-if="showContextMenuType == 1 && activeCom.dragable"
+      >
+        锁定<small>Ctrl+Shift+L</small>
+      </li>
+      <li
+        @click="lockEvent(true)"
+        v-if="showContextMenuType == 1 && !activeCom.dragable"
+      >
+        解锁<small>Ctrl+Shift+L</small>
+      </li>
+      <li
+        @click="deleteEvent"
+        v-if="showContextMenuType == 1 && activeCom.dragable"
+      >
+        删除<small>Delete</small>
+      </li>
+    </ul>
     <bm-footer ref="bmFooter"></bm-footer>
   </div>
 </template>
@@ -55,6 +125,10 @@ export default {
       // condition: {
       //   zoom: 100
       // }
+      showContextMenuStatus: false,
+      showContextMenuType: 1, //1 组件右键菜单   2是画布右键菜单
+      copyCom: "",
+      contextMenuStyle: {}
     };
   },
   mixins: [mixins],
@@ -80,14 +154,20 @@ export default {
       widgetList: "canvas/getWidgetList", //组件列表
       getZoom: "canvas/getZoom", //放大缩小
       canvas: "canvas/getCanvas", //画布属性
-      // height: "canvas/getHeight", //画布高度
-      // width: "canvas/getWidth", //画布宽度
-      // backgroundColor: "canvas/getBackgroundColor", //画布颜色
-      // backgroundImage: "canvas/getBackgroundImage", //画布背景图
-      // isGrid: "canvas/getIsGrid", //画布是否显示网格
-      // activeComId: "canvas/getActiveComId", //是否选中
       activeCom: "canvas/getActiveCom" //选中对象
     }),
+    bottomOrder() {
+      let { widgetList = [] } = this;
+      let orders = widgetList.map(item => item.order);
+      let order = Math.min(...orders);
+      return order;
+    },
+    topOrder() {
+      let { widgetList = [] } = this;
+      let orders = widgetList.map(item => item.order);
+      let order = Math.max(...orders);
+      return order;
+    },
     zoom: {
       get() {
         return parseInt(this.getZoom * 100);
@@ -172,11 +252,31 @@ export default {
     },
     initEvent() {
       let viewBox = this.$refs.viewBox;
-      $(viewBox).on("mousedown", this.viewBoxMouseDownEvent);
+      $(viewBox).on("mousedown", this.viewBoxMousedownEvent);
+      $(viewBox).on("contextmenu", this.viewBoxContextmenuEvent);
       $(viewBox).on("keydown", this.keydownEvent);
+      $(document).on("mousedown", this.keydownEvent);
       this.selectComAction();
     },
-    viewBoxMouseDownEvent(e) {
+    viewBoxContextmenuEvent(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      this.showContextMenuStatus = true;
+
+      this.$nextTick(() => {
+        let pos = bmCommon.getMousePosition(e);
+        let { x = "", y = "" } = pos || {};
+        let contextMenuBox = this.$refs.contextMenuBox;
+        let { offsetHeight = 0 } = contextMenuBox || {};
+        let { innerHeight = 0 } = window;
+        y = y > innerHeight - offsetHeight ? innerHeight - offsetHeight : y;
+        this.contextMenuStyle = {
+          left: x + "px",
+          top: y + "px"
+        };
+      });
+    },
+    viewBoxMousedownEvent(e) {
       let { target } = e;
       let $parent = $(target).parent();
       let type = $(target).attr("data-type");
@@ -186,6 +286,7 @@ export default {
         id = $parent.attr("data-id");
       }
       if (type) {
+        this.showContextMenuType = 1;
         this.selectComAction(id); //选中组件
         // 绑定移动事件：只有从属于 page 的，除背景图以外的元件才能移动
         let { activeCom = {} } = this;
@@ -193,9 +294,11 @@ export default {
           this.initMoveEvent(e); // 参见 mixins
         }
       } else {
+        this.showContextMenuType = 2;
         // 取消选中组件
         this.selectComAction(id);
       }
+      this.showContextMenuStatus = false;
     },
     keydownEvent(e) {
       let { keyCode = "" } = e;
@@ -220,6 +323,105 @@ export default {
         activeCom.top += 1;
         bmCommon.log("下", activeCom);
       }
+    },
+    //剪切
+    cutEvent() {
+      let { activeCom = {}, widgetList = [] } = this;
+      let { id = "" } = activeCom;
+      this.copyCom = bmCommon.clone(activeCom || {});
+      let index = widgetList.findIndex(item => id == item.id);
+      widgetList.splice(index, 1);
+      this.selectComAction();
+      this.showContextMenuStatus = false;
+    },
+    // 复制
+    copyEvent() {
+      let { activeCom = {} } = this;
+      this.copyCom = bmCommon.clone(activeCom || {});
+      this.showContextMenuStatus = false;
+    },
+    // 粘贴
+    pasteEvent(e) {
+      let { copyCom = {}, widgetList = [] } = this;
+      let id = bmCommon.uuid();
+      // let obj = widgetList[widgetList.length - 1] || {};
+      let { width = 0, height = 0 } = copyCom || {};
+      let pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
+      let { x: left = "", y: top = "" } = pos || {};
+      let orders = widgetList.map(item => item.order);
+      let order = Math.max(...orders);
+      order += 1;
+      let item = {
+        ...copyCom,
+        id,
+        order,
+        left: left - width / 2,
+        top: top - height / 2
+      };
+      widgetList.push(item);
+      this.setActiveCom(item);
+    },
+    // 删除
+    deleteEvent() {
+      let { activeCom = {}, widgetList = [] } = this;
+      let { id = "" } = activeCom;
+      let index = widgetList.findIndex(item => id == item.id);
+      widgetList.splice(index, 1);
+      this.selectComAction();
+      this.showContextMenuStatus = false;
+    },
+    // 锁定/解锁
+    lockEvent(dragable) {
+      let { activeCom = {} } = this;
+      activeCom.dragable = dragable;
+      this.showContextMenuStatus = false;
+    },
+    // 上移一层
+    moveUpEvent() {
+      this.showContextMenuStatus = false;
+      let { activeCom = {}, widgetList = [] } = this;
+      let { order = "" } = activeCom;
+      let obj = widgetList.find(item => order < item.order);
+      let { order: _order = "" } = obj || {};
+      activeCom.order = _order;
+      obj.order = order;
+    },
+    // 下移一层
+    moveDownEvent() {
+      this.showContextMenuStatus = false;
+      let { activeCom = {}, widgetList = [] } = this;
+      let { order = "" } = activeCom;
+      let obj = widgetList.find(item => order > item.order);
+      let { order: _order = "" } = obj || {};
+      activeCom.order = _order;
+      obj.order = order;
+    },
+    // 置顶
+    moveBottomEvent() {
+      this.showContextMenuStatus = false;
+      let { activeCom = {}, widgetList = [] } = this;
+      let orders = widgetList.map(item => item.order);
+      let order = Math.min(...orders);
+      let { order: _order = 1 } = activeCom || {};
+      if (order == _order) {
+        return;
+      }
+      widgetList.forEach(item => {
+        item.order++;
+      });
+      activeCom.order = 1;
+    },
+    // 置底
+    moveTopEvent() {
+      this.showContextMenuStatus = false;
+      let { activeCom = {}, widgetList = [] } = this;
+      let orders = widgetList.map(item => item.order);
+      let order = Math.max(...orders);
+      let { order: _order = 1 } = activeCom || {};
+      if (order == _order) {
+        return;
+      }
+      activeCom.order = order + 1;
     }
   },
   mounted() {

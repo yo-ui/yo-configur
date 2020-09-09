@@ -13,6 +13,31 @@ import { Constants } from "@/common/env";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
+
+// 引入vue-amap
+import VueAMap from "vue-amap";
+// Vue.use(skeleton);
+// 初始化vue-amap
+VueAMap.initAMapApiLoader({
+  // 高德的key
+  key: Constants.AMAP.key,
+  // 插件集合
+  plugin: [
+    "AMap.Autocomplete",
+    "AMap.Geolocation",
+    "AMap.PlaceSearch",
+    "AMap.Scale",
+    "AMap.OverView",
+    "AMap.Geocoder",
+    "AMap.ToolBar",
+    "AMap.MapType",
+    "AMap.PolyEditor",
+    "AMap.CircleEditor"
+  ],
+  // 高德 sdk 版本，默认为 1.4.4
+  v: Constants.AMAP.version
+});
+
 Vue.use(Plugins);
 Vue.use(Filters);
 Vue.use(Directives);

@@ -41,13 +41,9 @@ export default {
     copyEvent() {
       let { activeCom = {}, widgetList = [] } = this;
       let id = bmCommon.uuid();
-      let obj = widgetList[widgetList.length - 1] || {};
-      let { order = "" } = obj || {};
-      if (order) {
-        order += 1;
-      } else {
-        order = 1;
-      }
+      let orders = widgetList.map(item => item.order);
+      let order = Math.max(...orders);
+      order += 1;
       let item = { ...activeCom, id, order };
       widgetList.push(item);
       this.setActiveCom(item);

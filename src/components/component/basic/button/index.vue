@@ -39,6 +39,7 @@ export default {
         fontSize = "",
         fontWeight = "",
         fontStyle = "",
+        textDecoration = "",
         backgroundColor = "",
         backgroundImage = "",
         backgroundRepeat = "",
@@ -86,6 +87,9 @@ export default {
       }
       if (fontStyle) {
         styles["fontStyle"] = fontStyle;
+      }
+      if (textDecoration) {
+        styles["textDecoration"] = textDecoration;
       }
       if (backgroundColor) {
         styles["backgroundColor"] = backgroundColor;

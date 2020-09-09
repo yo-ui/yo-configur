@@ -85,4 +85,43 @@
       .bc(@white);
     }
   }
+  .context-menu{
+    .posa;
+    left:400px;
+    top:500px;
+    .box-s(0 0 10px 1px rgba(0,0,0,.09));
+    .br(5px);
+    .bc(@white);
+    .oh;
+    // .p(5px 0);
+    li{
+      .lh(30);
+      .df;
+      .p(3px 15px);
+      justify-content: space-between;
+      .w(150);
+      small{
+        .c(@grayB);
+        .fw(700);
+      }
+      &:not(.disabled){
+        // .click;
+        .pointer;
+      }
+      &:hover:not(.disabled){
+        .bc(@themes);
+        .c(@white);
+        small{
+          .c(@grayC);
+        }
+      }
+      &.line{
+        .bort(1px solid @grayE);
+      }
+      &.disabled{
+        cursor: not-allowed;
+        .c(@grayB);
+      }
+    }
+  }
 }

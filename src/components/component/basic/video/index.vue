@@ -1,7 +1,7 @@
 <template>
-  <video class="bm-basic-display-com" controls autoplay :style="comStyle">
+  <video class="bm-basic-video-com" controls autoplay :style="comStyle">
     <source src="" />
-    <!-- <img src="/static/img/configur/display.svg" />
+    <!-- <img src="/static/img/configur/video.svg" />
     <span class="text" :style="textStyle">{{info.content}}</span> -->
   </video>
 </template>
@@ -10,7 +10,7 @@
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "displayCom",
+  name: "videoCom",
   data() {
     return {};
   },
@@ -191,5 +191,5 @@ export default {
 </script>
 
 <style lang="less">
-@import (less) "../../../../assets/less/components/component/basic/display.less";
+@import (less) "../../../../assets/less/components/component/basic/video.less";
 </style>
