@@ -21,8 +21,7 @@ class Text extends Spirit {
 		        <div style="
 		          line-height: ${this.height}px;
               height: ${this.height}px;
-              width: ${this.width}px;
-			        border-radius: 2px;">
+              width: ${this.width}px;">
 			        <span style="color: ${this.config.color};font-size: ${this.config.fontSize}px">${this.config.text}</span>
 			      </div>			  
 			  </div>`)
@@ -77,16 +76,7 @@ class Text extends Spirit {
     });
     element.val(this.config.fontSize)
     element.on('change',function() {
-      let property = that.stage.property;
-      property.config.fontSize = $(this).val();
-      $('#'+property.id).find('span').css({'font-size':property.config.fontSize+"px"});
-      $('#temp_value').html($('#'+property.id).find('div').html());
-      let width = $('#temp_value').width()+2;
-      let height = $('#temp_value').height();
-      $('.resize-panel').css({width,height});
-      $('#'+property.id).find('div').css({width,'line-height': height+"px",height: height+"px"});
-      property.height = height;
-      property.width = width;
+      that.text();
     });
     let input = $('#configur_property').find('.text');
     input.on('input propertyChange',function() {
@@ -103,12 +93,27 @@ class Text extends Spirit {
 		})
 	}
 
+	text() {
+	  let that = this;
+    let element = $('#configur_property').find('[name=textFS]');
+    let property = that.stage.property;
+    property.config.fontSize = element.val();
+    $('#'+property.id).find('span').css({'font-size':property.config.fontSize+"px"});
+    $('#temp_value').html($('#'+property.id).find('div').html());
+    let width = $('#temp_value').width()+2;
+    let height = $('#temp_value').height();
+    $('.resize-panel').css({width,height});
+    $('#'+property.id).find('div').css({width,'line-height': height+"px",height});
+    property.height = height;
+    property.width = width;
+  }
+
 	update(text) {
 	  let property = this.stage.property;
     property.config.text = text;
     $('#'+property.id).find('span').text(text);
     $('#temp_value').html($('#'+property.id).find('div').html());
-    let width = $('#temp_value').width()+2;
+    let width = $('#temp_value').width()+1;
 		$('.resize-panel').css({width:width})
     $('#'+property.id).find('div').css({width:width});
     property.width = width;

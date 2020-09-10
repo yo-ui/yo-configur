@@ -12,7 +12,6 @@ import Toast from '@/core/Toast';
 import View from "@/View";
 import Color from "@/core/Color"
 import Toolbar from "@/core/Toolbar"
-import Vessel from "@/components/common/Vessel";
 import Group from "@/core/Group"
 import Panel from "@/core/Panel"
 
@@ -90,7 +89,7 @@ class Stage {
 			'border-left': '1px dashed red',
 			width: '1px',
 			height: height+'px',
-			'z-index': 1,
+			'z-index': 10,
 		})
 		element.append(vLine);
 	  let hLine = $('<div id="h_subline">&nbsp;</div>')
@@ -100,7 +99,7 @@ class Stage {
 			'border-top': '1px dashed red',
 			width: width+'px',
 			height: '1px',
-			'z-index': 1,
+			'z-index': 10,
 		})
 		element.append(hLine);
 		let rectangle = $('<div id="selected_subline">&nbsp;</div>')
@@ -110,7 +109,7 @@ class Stage {
 			border: '1px dashed #12a3ff',
 			width: '0px',
 			height: '0px',
-			'z-index': 1,
+			'z-index': 10,
 		})
 		element.append(rectangle);
 		let selectedPanel = $(`<div class="bm-selected-panel">&nbsp;</div>`)
@@ -398,7 +397,7 @@ class Stage {
 		//背景颜色
     let element = $("#stage_bg");
     let color = that.background.color;
-    Color.init(element,color,function (color) {
+    Color.init(element,color,function(color) {
       that.background.color = color;
       $('#configur_stage').css({'background-color': color})
     });
@@ -638,6 +637,10 @@ class Stage {
             let height = that.property.height;
             that.paw.site(x,y,width,height);
             that.paw.register(el);
+            let className = that.property.className;
+            if(className=="TextBox"||className=="Text") {
+              that.property.text();
+            }
             that.isMove = true;
             el.unbind();
         }else {
@@ -686,8 +689,10 @@ class Stage {
           let element = $(".text-color");
           let color = that.property.config.color;
           Color.init(element,color,function (color) {
-            that.property.config.color = color;
-            $('#'+that.property.id).find('span').css({'color': color});
+            if(that.property.config) {
+              that.property.config.color = color;
+              $('#'+that.property.id).find('span').css({'color': color});
+            }
           });
         }
         //背景颜色
@@ -695,8 +700,10 @@ class Stage {
           let element = $(".bg-color");
           let color = that.property.config.backgroundColor;
           Color.init(element,color,function (color) {
-            that.property.config.backgroundColor = color;
-            $('#'+that.property.id).find('div').css({'background-color': color});
+            if(that.property.config) {
+              that.property.config.backgroundColor = color;
+              $('#'+that.property.id).find('div').css({'background-color': color});
+            }
           });
         }
       }
@@ -853,7 +860,7 @@ class Stage {
 			}
 			console.log(data);
 			if(this.canvasId) {
-				this.option.saveCanvas({
+				this.option.save({
 					id: this.canvasId,
           data: JSON.stringify(data)
 				},function() {
