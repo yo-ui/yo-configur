@@ -8,9 +8,9 @@
         </template>
         <ul class="com-box">
           <li
-            v-for="_item in item.comList"
+            v-for="(_item, _index) in item.comList"
             draggable
-            :key="_item.code"
+            :key="`${item.code}_${_index}`"
             @click="clickEvent(_item)"
             :data-item="JSON.stringify(_item)"
           >
@@ -41,7 +41,7 @@ export default {
     let tabList = Object.freeze(Constants.COMPONENTLIBRARY);
     return {
       tabList,
-      activeIndex: tabList[1].code
+      activeIndex: tabList[2].code
     };
   },
   props: {

@@ -47,6 +47,10 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-gaugeChart" */ "@/components/component/basic/gaugeChart/index.vue"
     ),
+  deviceCommonCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device" */ "@/components/component/device/common/index.vue"
+    ),
 };
 let styles = {
   canvasStyleCom: () =>
@@ -100,6 +104,10 @@ let styles = {
   gaugeChartStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-gaugeChart-style" */ "@/components/component/basic/gaugeChart/style.vue"
+    ),
+  deviceCommonStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-style" */ "@/components/component/device/common/style.vue"
     ),
 };
 

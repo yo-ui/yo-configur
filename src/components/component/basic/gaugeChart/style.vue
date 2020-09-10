@@ -54,7 +54,7 @@
       ></el-slider>
     </p>
     <p>
-      <span class="label"> {{ $lang("横坐标") }}:</span>{{ info.left }} px
+      <span class="label"> {{ $lang("横坐标") }}:</span>{{ $toBig(info.left,0) }} px
       <el-slider
         v-model="info.left"
         :max="1980"
@@ -62,7 +62,7 @@
       ></el-slider>
     </p>
     <p>
-      <span class="label"> {{ $lang("纵坐标") }}:</span>{{ info.top }} px
+      <span class="label"> {{ $lang("纵坐标") }}:</span>{{ $toBig(info.top,0) }} px
       <el-slider
         v-model="info.top"
         :max="1080"
@@ -82,7 +82,7 @@
       <span class="label"> {{ $lang("是否可移动") }}:</span
       ><el-checkbox v-model="info.dragable"></el-checkbox>
     </p>
-    <!-- <p>
+    <p>
       <span class="label"> {{ $lang("背景图片") }}:</span>
       <bm-upload ref="bmUpload" @success="successCallback">
         <el-button type="primary">
@@ -98,7 +98,7 @@
           :placeholder="$lang('请选择平铺方式')"
         >
           <el-option
-            v-for="item in tileModeList"
+            <!-- v-for="item in tileModeList" -->
             :key="item.code"
             :label="$lang(item.name)"
             :value="item.code"
@@ -121,6 +121,7 @@
           </el-option>
         </el-select>
       </p>
+    </template>
       <p>
         <span class="label"> {{ $lang("翻转方式") }}:</span>
         <el-select v-model="info.scale" :placeholder="$lang('请选择翻转方式')">
@@ -133,15 +134,14 @@
           </el-option>
         </el-select>
       </p>
-    </template> -->
-    <!-- <p>
+    <p>
       <span class="label">{{ $lang("背景色") }}:</span>
       <el-color-picker
         v-model="info.backgroundColor"
         show-alpha
       ></el-color-picker>
-    </p> -->
-    <p>
+    </p>
+    <!-- <p>
       <span class="label">{{ $lang("字体颜色") }}:</span>
       <el-color-picker v-model="info.color" show-alpha></el-color-picker>
     </p>
@@ -192,8 +192,8 @@
           >U</span
         >
       </span>
-    </p>
-    <!-- <p>
+    </p> -->
+    <p>
       <span class="label"> {{ $lang("边框样式") }}:</span
       ><el-select
         v-model="info.borderStyle"
@@ -231,7 +231,7 @@
     <p>
       <span class="label">{{ $lang("边框颜色") }}:</span>
       <el-color-picker v-model="info.borderColor" show-alpha></el-color-picker>
-    </p> -->
+    </p>
 
     <h2>{{ $lang("交互") }}</h2>
     <h2>{{ $lang("动画") }}</h2>
@@ -247,11 +247,11 @@ export default {
   name: "displayStyleCom",
   data() {
     return {
-      // borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
-      // flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      // displayFormList: Object.freeze(Constants.DISPLAYFORMLIST),
-      fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
-      // tileModeList: Object.freeze(Constants.TILEMODELIST)
+      borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
+      flipModeList: Object.freeze(Constants.FLIPMODELIST),
+      displayFormList: Object.freeze(Constants.DISPLAYFORMLIST),
+      // fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
+      tileModeList: Object.freeze(Constants.TILEMODELIST)
     };
   },
   props: {
@@ -263,10 +263,10 @@ export default {
     }
   },
   components: {
-    // bmUpload: () =>
-    //   import(
-    //     /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
-    //   )
+    bmUpload: () =>
+      import(
+        /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
+      )
   },
   computed: {
     ...mapGetters()
@@ -278,36 +278,36 @@ export default {
       let { info = {} } = this;
       info.backgroundImage = url;
     },
-    setFontWeight() {
-      let { info = {} } = this;
-      let { fontWeight = "" } = info || {};
-      if (fontWeight == "bold") {
-        fontWeight = "";
-      } else {
-        fontWeight = "bold";
-      }
-      info.fontWeight = fontWeight;
-    },
-    setTextDecoration() {
-      let { info = {} } = this;
-      let { textDecoration = "" } = info || {};
-      if (textDecoration == "underline") {
-        textDecoration = "";
-      } else {
-        textDecoration = "underline";
-      }
-      info.textDecoration = textDecoration;
-    },
-    setFontStyle() {
-      let { info = {} } = this;
-      let { fontStyle = "" } = info || {};
-      if (fontStyle == "italic") {
-        fontStyle = "";
-      } else {
-        fontStyle = "italic";
-      }
-      info.fontStyle = fontStyle;
-    }
+    // setFontWeight() {
+    //   let { info = {} } = this;
+    //   let { fontWeight = "" } = info || {};
+    //   if (fontWeight == "bold") {
+    //     fontWeight = "";
+    //   } else {
+    //     fontWeight = "bold";
+    //   }
+    //   info.fontWeight = fontWeight;
+    // },
+    // setTextDecoration() {
+    //   let { info = {} } = this;
+    //   let { textDecoration = "" } = info || {};
+    //   if (textDecoration == "underline") {
+    //     textDecoration = "";
+    //   } else {
+    //     textDecoration = "underline";
+    //   }
+    //   info.textDecoration = textDecoration;
+    // },
+    // setFontStyle() {
+    //   let { info = {} } = this;
+    //   let { fontStyle = "" } = info || {};
+    //   if (fontStyle == "italic") {
+    //     fontStyle = "";
+    //   } else {
+    //     fontStyle = "italic";
+    //   }
+    //   info.fontStyle = fontStyle;
+    // }
   }
 };
 </script>

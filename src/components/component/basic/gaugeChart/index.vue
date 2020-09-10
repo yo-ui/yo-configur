@@ -1,17 +1,22 @@
 <template>
-  <div class="bm-basic-display-com" :style="comStyle">
-    <img src="/static/img/configur/display.svg" />
-    <span class="text" :style="textStyle">{{info.content}}</span>
-  </div>
+  <v-chart
+    theme="macarons"
+    autoresize
+    :style="comStyle"
+    :init-options="{ renderer: 'svg' }"
+    :options="chartOptions"
+  />
 </template>
 
 <script>
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "displayCom",
+  name: "gaugeCom",
   data() {
-    return {};
+    return {
+      chartOptions: {}
+    };
   },
   props: {
     info: {
@@ -30,18 +35,20 @@ export default {
         width = "",
         height = "",
         // color = "",
-        // borderColor = "",
-        // borderStyle = "",
-        // borderWidth = "",
+        borderColor = "",
+        borderStyle = "",
+        borderWidth = "",
+        borderRadius = "",
+        opacity = "",
         scale = "",
         // fontFamily = "",
         // fontSize = "",
         // fontWeight = "",
         // fontStyle = ""
-        // backgroundColor = "",
-        // backgroundImage = "",
-        // backgroundRepeat = "",
-        // backgroundSize = ""
+        backgroundColor = "",
+        backgroundImage = "",
+        backgroundRepeat = "",
+        backgroundSize = ""
       } = info || {};
       let styles = {};
 
@@ -51,21 +58,21 @@ export default {
       if (height) {
         styles["height"] = `${height}px`;
       }
-      // if (backgroundRepeat) {
-      //   styles["backgroundRepeat"] = backgroundRepeat;
-      // }
-      // if (backgroundSize) {
-      //   styles["backgroundSize"] = backgroundSize;
-      // }
-      // if (borderColor) {
-      //   styles["borderColor"] = borderColor;
-      // }
-      // if (borderStyle) {
-      //   styles["borderStyle"] = borderStyle;
-      // }
-      // // if (borderWidth) {
-      // styles["borderWidth"] = `${borderWidth}px`;
-      // }
+      if (backgroundRepeat) {
+        styles["backgroundRepeat"] = backgroundRepeat;
+      }
+      if (backgroundSize) {
+        styles["backgroundSize"] = backgroundSize;
+      }
+      if (borderColor) {
+        styles["borderColor"] = borderColor;
+      }
+      if (borderStyle) {
+        styles["borderStyle"] = borderStyle;
+      }
+      styles["borderWidth"] = `${borderWidth}px`;
+      styles["opacity"] = opacity / 100;
+      styles["borderRadius"] = `${borderRadius}px`;
       if (scale) {
         (styles["transform"] = `${scale}`),
           (styles["-webkit-transform"] = `${scale}`),
@@ -88,93 +95,53 @@ export default {
       // if (fontStyle) {
       //   styles["fontStyle"] = fontStyle;
       // }
-      // if (backgroundColor) {
-      //   styles["backgroundColor"] = backgroundColor;
-      // }
-      // if (backgroundImage) {
-      //   styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
-      // }
-      return styles || {};
-    },
-    textStyle() {
-      let { info = {} } = this;
-      let {
-        // width = "",
-        // height = "",
-        color = "",
-        // borderColor = "",
-        // borderStyle = "",
-        // borderWidth = "",
-        // scale = "",
-        fontFamily = "",
-        fontSize = "",
-        fontWeight = "",
-        fontStyle = ""
-        // backgroundColor = "",
-        // backgroundImage = "",
-        // backgroundRepeat = "",
-        // backgroundSize = ""
-      } = info || {};
-      let styles = {};
-
-      // if (width) {
-      //   styles["width"] = `${width}px`;
-      // }
-      // if (height) {
-      //   styles["height"] = `${height}px`;
-      // }
-      // if (backgroundRepeat) {
-      //   styles["backgroundRepeat"] = backgroundRepeat;
-      // }
-      // if (backgroundSize) {
-      //   styles["backgroundSize"] = backgroundSize;
-      // }
-      // if (borderColor) {
-      //   styles["borderColor"] = borderColor;
-      // }
-      // if (borderStyle) {
-      //   styles["borderStyle"] = borderStyle;
-      // }
-      // // if (borderWidth) {
-      // styles["borderWidth"] = `${borderWidth}px`;
-      // }
-      // if (scale) {
-      //   (styles["transform"] = `${scale}`),
-      //     (styles["-webkit-transform"] = `${scale}`),
-      //     (styles["-ms-transform"] = `${scale}`),
-      //     (styles["-o-transform"] = `${scale}`),
-      //     (styles["-moz-transform"] = `${scale}`);
-      // }
-      if (color) {
-        styles["color"] = color;
+      if (backgroundColor) {
+        styles["backgroundColor"] = backgroundColor;
       }
-      if (fontSize) {
-        styles["fontSize"] = `${fontSize}px`;
+      if (backgroundImage) {
+        styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
       }
-      if (fontFamily) {
-        styles["fontFamily"] = `${fontFamily}`;
-      }
-      if (fontWeight) {
-        styles["fontWeight"] = fontWeight;
-      }
-      if (fontStyle) {
-        styles["fontStyle"] = fontStyle;
-      }
-      // if (backgroundColor) {
-      //   styles["backgroundColor"] = backgroundColor;
-      // }
-      // if (backgroundImage) {
-      //   styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
-      // }
       return styles || {};
     }
   },
   mounted() {
+    this.init();
     this.$emit("success"); //组件加载完成回调
   },
   methods: {
     ...mapMutations({}),
-    ...mapActions({})
+    ...mapActions({}),
+    init() {
+      this.loadChartOptions();
+    },
+    loadChartOptions() {
+      let times = [];
+      let values = [];
+      for (let i = 0; i < 12; i++) {
+        times.push(
+          this.$moment()
+            .subtract(i, "d")
+            .format("YYYY-MM-DD")
+        );
+        values.push(parseInt(Math.random() * 1000));
+      }
+      this.chartOptions = {
+        title: {
+          text: this.$lang("设备实时数据")
+        },
+        tooltip: {
+          trigger: "axis"
+        },
+        series: [
+          {
+            name: "利用率",
+            type: "gauge",
+            detail: { formatter: "{value}%" },
+            data: [{ value: 99.8, name: "利用率" }]
+          }
+        ]
+      };
+    }
     // blurEvent(e) {
     //   let { target } = e;
     //   let { info = {} } = this;
@@ -188,5 +155,5 @@ export default {
 </script>
 
 <style lang="less">
-@import (less) "../../../../assets/less/components/component/basic/display.less";
+@import (less) "../../../../assets/less/components/component/basic/gauge.less";
 </style>

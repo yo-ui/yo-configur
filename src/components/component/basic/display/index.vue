@@ -1,7 +1,7 @@
 <template>
   <div class="bm-basic-display-com" :style="comStyle">
-    <img src="/static/img/configur/display.svg" />
-    <span class="text" :style="textStyle">{{info.content}}</span>
+    <img src="/static/img/svg/display.svg" />
+    <span class="text" :style="textStyle">{{ info.content }}</span>
   </div>
 </template>
 
@@ -33,7 +33,7 @@ export default {
         // borderColor = "",
         // borderStyle = "",
         // borderWidth = "",
-        borderRadius = "",
+        borderRadius = ""
         // scale = "",
         // fontFamily = "",
         // fontSize = "",

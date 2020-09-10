@@ -4,7 +4,9 @@
 <template>
   <div class="bm-component-com" :style="boxStyle">
     <div class="info">
-      {{ info.type }}
+      <p class="txt">
+      {{ info.name }}
+      </p>
     </div>
     <i
       class="operate-btn el-icon-refresh-right"

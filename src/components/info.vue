@@ -20,7 +20,7 @@
     <template v-if="activeIndex == 'element'">
       <!-- <ul class="com-box"> -->
       <draggable
-        v-model="widgetList"
+        v-model="comList"
         class="com-list-box"
         v-bind="dragOptions"
         @change="changeEvent"
@@ -29,12 +29,12 @@
         <transition-group type="transition" name="flip-list">
           <li
             :class="{ active: activeComId == item.id }"
-            v-for="item in widgetList"
+            v-for="item in comList"
             @click="selectComEvent(item)"
             :key="item.id"
             class="item"
           >
-            {{ item.type }}--{{ item.zIndex }}--{{ item.order }}
+            {{ item.name }}--{{ item.zIndex }}--{{ item.order }}
           </li>
         </transition-group>
         <!-- <button slot="footer" @click="addPeople">Add</button> -->
@@ -74,6 +74,7 @@ export default {
     ]);
     return {
       tabList,
+      comList: [],
       // widgetList: [],
       activeIndex: tabList[0].code
     };
@@ -92,7 +93,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getWidgetList: "canvas/getWidgetList",
+      widgetList: "canvas/getWidgetList",
       activeCom: "canvas/getActiveCom" //选中对象
     }),
 
@@ -104,14 +105,25 @@ export default {
         ghostClass: "ghost"
       };
     },
-    widgetList: {
-      get() {
-        return this.getWidgetList;
-      },
-      set(value) {
-        this.setWidgetList(value);
-      }
-    },
+    // comList: {
+    //   get(){
+    //     let { getWidgetList = [] } = this;
+    //     return bmCommon.clone(getWidgetList).sort((a, b) => {
+    //       return a.order - b.order;
+    //     });
+    //   },
+    //   set(val){
+    //     this.comList
+    //   }
+    // },
+    // widgetList: {
+    //   get() {
+    //     return this.getWidgetList;
+    //   },
+    //   set(value) {
+    //     this.setWidgetList(value);
+    //   }
+    // },
     activeComId() {
       let { activeCom = {} } = this;
       let { id = "" } = activeCom || {};
@@ -131,7 +143,7 @@ export default {
       this.setActiveCom(item);
     },
     changeEvent(item) {
-      bmCommon.log(item);
+      // bmCommon.log(item);
       let { moved } = item || {};
       if (moved) {
         let { widgetList = [] } = this;
@@ -145,16 +157,21 @@ export default {
       }
     },
     init() {
-      // let { dataList = [] } = this;
-      // this.widgetList = dataList || [];
+      this.loadComList()
+    },
+    loadComList() {
+      let { widgetList = [] } = this;
+      this.comList = bmCommon.clone(widgetList).sort((a, b) => {
+        return a.order - b.order;
+      });
     }
   },
   watch: {
-    // dataList(newVal, oldVal) {
-    //   if (newVal != oldVal) {
-    //     this.widgetList = newVal;
-    //   }
-    // }
+    widgetList(newVal, oldVal) {
+      // if (newVal != oldVal) {
+        this.loadComList();
+      // }
+    }
   }
 };
 </script>

@@ -150,22 +150,27 @@ export default {
       var dx = x - startX;
       var dy = y - startY;
       let value, width, height, rotate;
+      let { equalScaleable = false } = activeCom || {};
 
       if (type === "right") {
         value = originWidth + Math.floor((dx * 1) / zoom);
         if (value > 10) {
           activeCom.width = value;
+          if (equalScaleable) {
+            activeCom.height = (originHeight * value) / originWidth;
+          }
         }
         return;
       }
 
       if (type === "top") {
-        // top = originY + Math.floor((dy * 1) / zoom);
         height = originHeight - Math.floor((dy * 1) / zoom);
         if (height > 10) {
-          // activeCom.top -= Math.floor((height - activeCom.height) / 2);
           activeCom.top -= height - activeCom.height;
           activeCom.height = height > 10 ? height : 10;
+          if (equalScaleable) {
+            activeCom.width = (originWidth * height) / originHeight;
+          }
         }
       }
 
@@ -173,31 +178,36 @@ export default {
         value = originHeight + Math.floor((dy * 1) / zoom);
         if (value > 10) {
           activeCom.height = value > 10 ? value : 10;
+          if (equalScaleable) {
+            activeCom.width = (originWidth * value) / originHeight;
+          }
         }
         return;
       }
 
       if (type === "left") {
-        // left = originX + Math.floor((dx * 1) / zoom);
         width = originWidth - Math.floor((dx * 1) / zoom);
         if (width > 10) {
-          // activeCom.left -= Math.floor((width - activeCom.width) / 2);
           activeCom.left -= width - activeCom.width;
           activeCom.width = width > 10 ? width : 10;
+          if (equalScaleable) {
+            activeCom.height = (originHeight * width) / originWidth;
+          }
         }
         return;
       }
 
       if (type === "topleft") {
-        // left = originX + Math.floor((dx * 1) / zoom);
         width = originWidth - Math.floor((dx * 1) / zoom);
-        // top = originY + Math.floor((dy * 1) / zoom);
         height = originHeight - Math.floor((dy * 1) / zoom);
-        // activeCom.top = top > 0 ? top : 0;
-        // activeCom.left = left > 0 ? left : 0;
+        if (equalScaleable) {
+          if (dx > dy) {
+            height = (originHeight * width) / originWidth;
+          } else {
+            width = (originWidth * height) / originHeight;
+          }
+        }
         if (width > 10 && height > 10) {
-          // activeCom.left -= Math.floor((width - activeCom.width) / 2);
-          // activeCom.top -= Math.floor((height - activeCom.height) / 2);
           activeCom.left -= (width - activeCom.width) / 2;
           activeCom.top -= (height - activeCom.height) / 2;
           activeCom.height = height > 10 ? height : 10;
@@ -206,15 +216,16 @@ export default {
         return;
       }
       if (type === "topright") {
-        // left = originX + Math.floor((dx * 1) / zoom);
         width = originWidth + Math.floor((dx * 1) / zoom);
-        // top = originX + Math.floor((dy * 1) / zoom);
         height = originHeight - Math.floor((dy * 1) / zoom);
-        // activeCom.top = top > 0 ? top : 0;
-        // activeCom.left = left > 0 ? left : 0;
+        if (equalScaleable) {
+          if (dx > dy) {
+            height = (originHeight * width) / originWidth;
+          } else {
+            width = (originWidth * height) / originHeight;
+          }
+        }
         if (width > 10 && height > 10) {
-          // activeCom.left -= Math.floor((width - activeCom.width) / 2);
-          // activeCom.top -= Math.floor((height - activeCom.height) / 2);
           activeCom.left -= (width - activeCom.width) / 2;
           activeCom.top -= (height - activeCom.height) / 2;
           activeCom.height = height > 10 ? height : 10;
@@ -226,10 +237,13 @@ export default {
       if (type === "bottomleft") {
         height = originHeight + Math.floor((dy * 1) / zoom);
         width = originWidth - Math.floor((dx * 1) / zoom);
-        // top = originY + Math.floor((dy * 1) / zoom);
-        // left = originX + Math.floor((dx * 1) / zoom);
-        // activeCom.top = top > 0 ? top : 0;
-        // activeCom.left = left > 0 ? left : 0;
+        if (equalScaleable) {
+          if (dx > dy) {
+            height = (originHeight * width) / originWidth;
+          } else {
+            width = (originWidth * height) / originHeight;
+          }
+        }
         if (width > 10 && height > 10) {
           activeCom.left -= Math.floor((width - activeCom.width) / 2);
           activeCom.top -= Math.floor((height - activeCom.height) / 2);
@@ -239,12 +253,15 @@ export default {
         return;
       }
       if (type === "bottomright") {
-        // top = originY + Math.floor((dy * 1) / zoom);
         height = originHeight + Math.floor((dy * 1) / zoom);
-        // left = originX + Math.floor((dx * 1) / zoom);
         width = originWidth + Math.floor((dx * 1) / zoom);
-        // activeCom.top = top > 0 ? top : 0;
-        // activeCom.left = left > 0 ? left : 0;
+        if (equalScaleable) {
+          if (dx > dy) {
+            height = (originHeight * width) / originWidth;
+          } else {
+            width = (originWidth * height) / originHeight;
+          }
+        }
         if (width > 10 && height > 10) {
           activeCom.left -= Math.floor((width - activeCom.width) / 2);
           activeCom.top -= Math.floor((height - activeCom.height) / 2);
@@ -254,15 +271,7 @@ export default {
         return;
       }
       if (type === "rotate") {
-        // top = originY + Math.floor((dy * 1) / zoom);
-        // height = originHeight + Math.floor((dy * 1) / zoom);
-        // left = originX + Math.floor((dx * 1) / zoom);
         rotate = (originRotate + Math.floor((dx * 1) / zoom)) % 360;
-        // activeCom.top = top > 0 ? top : 0;
-        // activeCom.left = left > 0 ? left : 0;
-        // activeCom.left -= Math.floor((width - activeCom.width) / 2);
-        // activeCom.top -= Math.floor((height - activeCom.height) / 2);
-        // bmCommon.log(rotate,'----rotate')
         activeCom.rotate = rotate;
         return;
       }

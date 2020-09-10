@@ -254,15 +254,30 @@ export default {
       let viewBox = this.$refs.viewBox;
       $(viewBox).on("mousedown", this.viewBoxMousedownEvent);
       $(viewBox).on("contextmenu", this.viewBoxContextmenuEvent);
-      $(viewBox).on("keydown", this.keydownEvent);
+      $(document).on("keydown", this.keydownEvent);
       $(document).on("mousedown", this.keydownEvent);
       this.selectComAction();
     },
     viewBoxContextmenuEvent(e) {
       e.stopPropagation();
       e.preventDefault();
+      let { target } = e;
       this.showContextMenuStatus = true;
-
+      let $parent = $(target).parents(".bm-component-com");
+      let type = $(target).attr("data-type");
+      let id = $(target).attr("data-id");
+      if (!type) {
+        type = $parent.attr("data-type");
+        id = $parent.attr("data-id");
+      }
+      if (type) {
+        this.showContextMenuType = 1;
+        this.selectComAction(id); //选中组件
+      } else {
+        this.showContextMenuType = 2;
+        // 取消选中组件
+        this.selectComAction(id);
+      }
       this.$nextTick(() => {
         let pos = bmCommon.getMousePosition(e);
         let { x = "", y = "" } = pos || {};
@@ -278,7 +293,7 @@ export default {
     },
     viewBoxMousedownEvent(e) {
       let { target } = e;
-      let $parent = $(target).parent();
+      let $parent = $(target).parents(".bm-component-com");
       let type = $(target).attr("data-type");
       let id = $(target).attr("data-id");
       if (!type) {
@@ -301,27 +316,54 @@ export default {
       this.showContextMenuStatus = false;
     },
     keydownEvent(e) {
-      let { keyCode = "" } = e;
+      let {
+        keyCode = "",
+        shiftKey = false,
+        ctrlKey = false,
+        altKey = false
+      } = e;
       e.stopPropagation();
       // e.preventDefault();
+      bmCommon.log("keydow", e);
       let { activeCom } = this;
-      let { left, top } = activeCom || {};
+      let { type = "", id = "" } = activeCom || {};
+      if (type == "canvas" || !id) {
+        //如果选中的是画布或未选中组件则直接返回
+        return;
+      }
+      let shiftDis=10
       if (keyCode === 37) {
         // 左
-        activeCom.left -= 1;
-        bmCommon.log("左", activeCom);
+        let dis = 1;
+        if (shiftKey) {
+          dis = shiftDis;
+        }
+        activeCom.left -= dis;
+        // bmCommon.log("左", activeCom);
       } else if (keyCode === 38) {
         // 上
-        activeCom.top -= 1;
-        bmCommon.log("上", activeCom);
-      } else if (keyCode === 39 && left) {
+        let dis = 1;
+        if (shiftKey) {
+          dis = shiftDis;
+        }
+        activeCom.top -= dis;
+        // bmCommon.log("上", activeCom);
+      } else if (keyCode === 39) {
         // 右
-        activeCom.left += 1;
-        bmCommon.log("右", activeCom);
-      } else if (keyCode === 40 && top) {
+        let dis = 1;
+        if (shiftKey) {
+          dis = shiftDis;
+        }
+        activeCom.left += dis;
+        // bmCommon.log("右", activeCom);
+      } else if (keyCode === 40) {
         // 下
-        activeCom.top += 1;
-        bmCommon.log("下", activeCom);
+        let dis = 1;
+        if (shiftKey) {
+          dis = shiftDis;
+        }
+        activeCom.top += dis;
+        // bmCommon.log("下", activeCom);
       }
     },
     //剪切

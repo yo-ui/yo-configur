@@ -7,7 +7,7 @@
     ></el-amap-search-box>
     <el-amap
       class="map-box"
-      vid="amapBox"
+      :vid="`amapBox_${info.id}`"
       :amap-manager="amapManager"
       :events="amap.events"
       :plugin="amap.plugin"
@@ -15,7 +15,7 @@
       :center="amap.center"
     >
       <el-amap-marker
-        vid="marker"
+        :vid="`marker_${info.id}`"
         :events="marker.events"
         :position="marker.position"
       ></el-amap-marker>
@@ -55,14 +55,14 @@ export default {
         },
         // 搜索结果
         onSearchResult: pois => {
-          let { amap = {}, marker = {}, condition } = this;
+          let { amap = {}, marker = {} } = this;
           if (pois.length > 0) {
             let [poi = {}] = pois;
-            let { lng, lat, name = "", address = "" } = poi;
+            let { lng, lat} = poi;
             let pos = [lng, lat];
             amap.center = pos;
             marker.position = pos;
-            condition.locationDesc = name + "--" + address;
+            // condition.locationDesc = name + "--" + address;
             // this.setBuildingLocation(pos);
           }
         },
@@ -129,9 +129,11 @@ export default {
         width = "",
         height = "",
         // color = "",
-        // borderColor = "",
-        // borderStyle = "",
-        // borderWidth = "",
+        borderColor = "",
+        borderStyle = "",
+        borderWidth = "",
+        opacity = "",
+        borderRadius = "",
         scale = ""
         // fontFamily = "",
         // fontSize = "",
@@ -156,15 +158,15 @@ export default {
       // if (backgroundSize) {
       //   styles["backgroundSize"] = backgroundSize;
       // }
-      // if (borderColor) {
-      //   styles["borderColor"] = borderColor;
-      // }
-      // if (borderStyle) {
-      //   styles["borderStyle"] = borderStyle;
-      // }
-      // // if (borderWidth) {
-      // styles["borderWidth"] = `${borderWidth}px`;
-      // }
+      if (borderColor) {
+        styles["borderColor"] = borderColor;
+      }
+      if (borderStyle) {
+        styles["borderStyle"] = borderStyle;
+      }
+      styles["borderRadius"] = `${borderRadius}px`;
+      styles["opacity"] = opacity / 100;
+      styles["borderWidth"] = `${borderWidth}px`;
       if (scale) {
         (styles["transform"] = `${scale}`),
           (styles["-webkit-transform"] = `${scale}`),
@@ -241,21 +243,21 @@ export default {
     getPosition(e, flag) {
       let { lnglat = {} } = e || {};
       let { lng = "", lat = "" } = lnglat || {};
-      let { condition, amap = {}, marker } = this;
-      let { zoom = "" } = amap || {};
-      condition.location = `${lng}/${lat}/${zoom}`;
+      let { marker } = this;
+      // let { zoom = "" } = amap || {};
+      // condition.location = `${lng}/${lat}/${zoom}`;
       let pos = [lng, lat];
       flag && marker && (marker.position = pos);
-      let geocoder = new AMap.Geocoder({});
-      geocoder.getAddress(`${lng},${lat}`, function(status, result) {
-        // 查询成功时，result即对应匹配的POI信息
-        if (status == "complete") {
-          let { regeocode = {} } = result || {};
-          let { formattedAddress = "" } = regeocode || {};
-          // bmCommon.log(lng + "," + lat, status, result);
-          condition.locationDesc = formattedAddress;
-        }
-      });
+      // let geocoder = new AMap.Geocoder({});
+      // geocoder.getAddress(`${lng},${lat}`, function(status, result) {
+      //   // 查询成功时，result即对应匹配的POI信息
+      //   // if (status == "complete") {
+      //   //   let { regeocode = {} } = result || {};
+      //   //   let { formattedAddress = "" } = regeocode || {};
+      //   //   // bmCommon.log(lng + "," + lat, status, result);
+      //   //   // condition.locationDesc = formattedAddress;
+      //   // }
+      // });
     }
   }
 };

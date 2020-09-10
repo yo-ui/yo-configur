@@ -50,7 +50,7 @@
       ></el-slider>
     </p>
     <p>
-      <span class="label"> {{ $lang("横坐标") }}:</span>{{ info.left }} px
+      <span class="label"> {{ $lang("横坐标") }}:</span>{{ $toBig(info.left,0) }} px
       <el-slider
         v-model="info.left"
         :max="1980"
@@ -58,7 +58,7 @@
       ></el-slider>
     </p>
     <p>
-      <span class="label"> {{ $lang("纵坐标") }}:</span>{{ info.top }} px
+      <span class="label"> {{ $lang("纵坐标") }}:</span>{{ $toBig(info.top,0) }} px
       <el-slider
         v-model="info.top"
         :max="1080"
