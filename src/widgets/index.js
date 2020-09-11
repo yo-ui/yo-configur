@@ -51,6 +51,10 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-device" */ "@/components/component/device/common/index.vue"
     ),
+  assistCommonCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-assist" */ "@/components/component/assist/common/index.vue"
+    ),
 };
 let styles = {
   canvasStyleCom: () =>
@@ -108,6 +112,10 @@ let styles = {
   deviceCommonStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-style" */ "@/components/component/device/common/style.vue"
+    ),
+  assistCommonStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-assist-style" */ "@/components/component/assist/common/style.vue"
     ),
 };
 

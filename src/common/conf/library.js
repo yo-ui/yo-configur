@@ -1,3 +1,30 @@
+let baseData={
+  backgroundImage: "",
+  backgroundSize: "100% 100%",
+  backgroundRepeat: "repeat",
+  borderWidth: 0,
+  borderStyle: "none",
+  borderColor: "",
+  borderRadius: 0,
+  scale: "scale(1,1)",
+  left: 0,
+  originWidth: "", //原宽
+  originHeight: "", //原高
+  fontWeight: "",
+  textDecoration: "",
+  fontStyle: "",
+  fontSize: 24,
+  opacity: 100,
+  fontFamily: "",
+  width: 300,
+  height: 60,
+  rotate: 0,
+  top: 0,
+  scaleable: true, //是否可缩放操作
+  rotateable: true, //是否可旋转操作
+  editable: false, //内容是否可编辑
+  dragable: true //是否可拖动
+}
 export default [
   {
     name: "基本",
@@ -9,6 +36,7 @@ export default [
         code: "text",
         icon: "/static/img/configur/dataing.png",
         data: {
+          ...baseData,
           backgroundImage: "",
           backgroundSize: "100% 100%",
           backgroundRepeat: "repeat",
@@ -39,6 +67,7 @@ export default [
         code: "dynamicText",
         icon: "/static/img/configur/text.png",
         data: {
+          ...baseData,
           backgroundImage: "",
           backgroundSize: "100% 100%",
           backgroundRepeat: "repeat",
@@ -71,6 +100,7 @@ export default [
         name: "图片",
         icon: "/static/img/configur/img.png",
         data: {
+          ...baseData,
           backgroundImage: "",
           backgroundSize: "100% 100%",
           backgroundRepeat: "repeat",
@@ -96,6 +126,7 @@ export default [
         code: "button",
         icon: "/static/img/configur/button.png",
         data: {
+          ...baseData,
           color: "#fff",
           borderColor: "#eee",
           borderStyle: "solid",
@@ -126,6 +157,7 @@ export default [
         code: "display",
         icon: "/static/img/configur/display.png",
         data: {
+          ...baseData,
           content: "00.00",
           fontWeight: "bold",
           textDecoration: "",
@@ -151,6 +183,7 @@ export default [
         code: "block",
         icon: "/static/img/configur/text.png",
         data: {
+          ...baseData,
           borderColor: "#eee",
           borderStyle: "solid",
           borderRadius: 0,
@@ -181,6 +214,7 @@ export default [
         code: "video",
         icon: "/static/img/configur/video.png",
         data: {
+          ...baseData,
           borderWidth: 0,
           borderStyle: "none",
           borderColor: "",
@@ -206,6 +240,7 @@ export default [
         code: "map",
         icon: "/static/img/configur/position.png",
         data: {
+          ...baseData,
           backgroundImage: "",
           backgroundSize: "100% 100%",
           backgroundRepeat: "repeat",
@@ -231,6 +266,7 @@ export default [
         code: "lineChart",
         icon: "/static/img/configur/curve.png",
         data: {
+          ...baseData,
           backgroundImage: "",
           backgroundSize: "100% 100%",
           backgroundRepeat: "repeat",
@@ -256,6 +292,7 @@ export default [
         code: "barChart",
         icon: "/static/img/configur/bar.jpg",
         data: {
+          ...baseData,
           backgroundImage: "",
           backgroundSize: "100% 100%",
           backgroundRepeat: "repeat",
@@ -306,6 +343,7 @@ export default [
         code: "gaugeChart",
         icon: "/static/img/configur/meter.png",
         data: {
+          ...baseData,
           backgroundImage: "",
           backgroundSize: "100% 100%",
           backgroundRepeat: "repeat",
@@ -658,6 +696,7 @@ export default [
         code: "deviceCommon",
         icon: "/static/img/configur/db.png",
         data: {
+          ...baseData,
           backgroundImage: "/static/img/svg/db.svg",
           borderWidth: 0,
           borderStyle: "none",
@@ -682,6 +721,7 @@ export default [
         code: "deviceCommon",
         icon: "/static/img/configur/dxdgdb.png",
         data: {
+          ...baseData,
           backgroundImage: "/static/img/svg/dxdgdb.svg",
           borderWidth: 0,
           borderStyle: "none",
@@ -706,6 +746,7 @@ export default [
         code: "deviceCommon",
         icon: "/static/img/configur/iokzmk.png",
         data: {
+          ...baseData,
           backgroundImage: "/static/img/svg/iokzmk.svg",
           borderWidth: 0,
           borderStyle: "none",
@@ -730,6 +771,7 @@ export default [
         code: "deviceCommon",
         icon: "/static/img/configur/dlq.png",
         data: {
+          ...baseData,
           backgroundImage: "/static/img/svg/duanluqi.svg",
           borderWidth: 0,
           borderStyle: "none",
@@ -754,6 +796,7 @@ export default [
         code: "deviceCommon",
         icon: "/static/img/configur/bgsdb.png",
         data: {
+          ...baseData,
           backgroundImage: "/static/img/svg/bgsdb.svg",
           borderWidth: 0,
           borderStyle: "none",
@@ -778,6 +821,7 @@ export default [
         code: "deviceCommon",
         icon: "/static/img/configur/jddz.png",
         data: {
+          ...baseData,
           backgroundImage: "/static/img/svg/jddz.svg",
           borderWidth: 0,
           borderStyle: "none",
@@ -1832,8 +1876,274 @@ export default [
     ]
   },
   {
-    code: "additional",
+    code: "assist",
     icon: "el-icon-files",
-    name: "附加"
+    name: "辅助",
+    comList:[
+      {
+        name: "连接点",
+        code: "assistCommon",
+        icon: "/static/img/configur/link-point.png",
+        data: {
+          backgroundImage: "/static/img/svg/link-point.svg",
+          borderWidth: 0,
+          borderStyle: "none",
+          borderColor: "",
+          borderRadius: 0,
+          scale: "scale(1,1)",
+          opacity: 100,
+          left: 0,
+          width: 30,
+          height: 30,
+          rotate: 0,
+          top: 0,
+          equalScaleable: false, //是否等比例缩放
+          scaleable: false, //是否可缩放操作
+          rotateable: false, //是否可旋转操作
+          editable: false, //内容是否可编辑
+          dragable: true //是否可拖动
+        }
+      },
+      {
+        name: "水管（上）",
+        code: "assistCommon",
+        icon: "/static/img/configur/h-top.png",
+        data: {
+          backgroundImage: "/static/img/svg/shuiguan-top.svg",
+          borderWidth: 0,
+          borderStyle: "none",
+          borderColor: "",
+          borderRadius: 0,
+          scale: "scale(1,1)",
+          opacity: 100,
+          left: 0,
+          width: 30,
+          height: 30,
+          rotate: 0,
+          top: 0,
+          equalScaleable: true, //是否等比例缩放
+          scaleable: true, //是否可缩放操作
+          rotateable: true, //是否可旋转操作
+          editable: false, //内容是否可编辑
+          dragable: true //是否可拖动
+        }
+      },
+      {
+        name: "水管（下）",
+        code: "assistCommon",
+        icon: "/static/img/configur/h-bottom.png",
+        data: {
+          backgroundImage: "/static/img/svg/shuiguan-bottom.svg",
+          borderWidth: 0,
+          borderStyle: "none",
+          borderColor: "",
+          borderRadius: 0,
+          scale: "scale(1,1)",
+          opacity: 100,
+          left: 0,
+          width: 30,
+          height: 30,
+          rotate: 0,
+          top: 0,
+          equalScaleable: true, //是否等比例缩放
+          scaleable: true, //是否可缩放操作
+          rotateable: true, //是否可旋转操作
+          editable: false, //内容是否可编辑
+          dragable: true //是否可拖动
+        }
+      },
+      {
+        name: "水管（左）",
+        code: "assistCommon",
+        icon: "/static/img/configur/v-left.png",
+        data: {
+          backgroundImage: "/static/img/svg/shuiguan-left.svg",
+          borderWidth: 0,
+          borderStyle: "none",
+          borderColor: "",
+          borderRadius: 0,
+          scale: "scale(1,1)",
+          opacity: 100,
+          left: 0,
+          width: 30,
+          height: 30,
+          rotate: 0,
+          top: 0,
+          equalScaleable: true, //是否等比例缩放
+          scaleable: true, //是否可缩放操作
+          rotateable: true, //是否可旋转操作
+          editable: false, //内容是否可编辑
+          dragable: true //是否可拖动
+        }
+      },
+      {
+        name: "水管（右）",
+        code: "assistCommon",
+        icon: "/static/img/configur/v-right.png",
+        data: {
+          backgroundImage: "/static/img/svg/shuiguan-right.svg",
+          borderWidth: 0,
+          borderStyle: "none",
+          borderColor: "",
+          borderRadius: 0,
+          scale: "scale(1,1)",
+          opacity: 100,
+          left: 0,
+          width: 30,
+          height: 30,
+          rotate: 0,
+          top: 0,
+          equalScaleable: true, //是否等比例缩放
+          scaleable: true, //是否可缩放操作
+          rotateable: true, //是否可旋转操作
+          editable: false, //内容是否可编辑
+          dragable: true //是否可拖动
+        }
+      },
+      {
+        name: "水管（左上）",
+        code: "assistCommon",
+        icon: "/static/img/configur/t-1.png",
+        data: {
+          backgroundImage: "/static/img/svg/shuiguan-topleft.svg",
+          borderWidth: 0,
+          borderStyle: "none",
+          borderColor: "",
+          borderRadius: 0,
+          scale: "scale(1,1)",
+          opacity: 100,
+          left: 0,
+          width: 30,
+          height: 30,
+          rotate: 0,
+          top: 0,
+          equalScaleable: true, //是否等比例缩放
+          scaleable: true, //是否可缩放操作
+          rotateable: true, //是否可旋转操作
+          editable: false, //内容是否可编辑
+          dragable: true //是否可拖动
+        }
+      },
+      {
+        name: "水管（左下）",
+        code: "assistCommon",
+        icon: "/static/img/configur/t-4.png",
+        data: {
+          backgroundImage: "/static/img/svg/shuiguan-bottomleft.svg",
+          borderWidth: 0,
+          borderStyle: "none",
+          borderColor: "",
+          borderRadius: 0,
+          scale: "scale(1,1)",
+          opacity: 100,
+          left: 0,
+          width: 30,
+          height: 30,
+          rotate: 0,
+          top: 0,
+          equalScaleable: true, //是否等比例缩放
+          scaleable: true, //是否可缩放操作
+          rotateable: true, //是否可旋转操作
+          editable: false, //内容是否可编辑
+          dragable: true //是否可拖动
+        }
+      },
+      {
+        name: "水管（右上）",
+        code: "assistCommon",
+        icon: "/static/img/configur/t-2.png",
+        data: {
+          backgroundImage: "/static/img/svg/shuiguan-topright.svg",
+          borderWidth: 0,
+          borderStyle: "none",
+          borderColor: "",
+          borderRadius: 0,
+          scale: "scale(1,1)",
+          opacity: 100,
+          left: 0,
+          width: 30,
+          height: 30,
+          rotate: 0,
+          top: 0,
+          equalScaleable: true, //是否等比例缩放
+          scaleable: true, //是否可缩放操作
+          rotateable: true, //是否可旋转操作
+          editable: false, //内容是否可编辑
+          dragable: true //是否可拖动
+        }
+      },
+      {
+        name: "水管（右下）",
+        code: "assistCommon",
+        icon: "/static/img/configur/t-3.png",
+        data: {
+          backgroundImage: "/static/img/svg/shuiguan-bottomright.svg",
+          borderWidth: 0,
+          borderStyle: "none",
+          borderColor: "",
+          borderRadius: 0,
+          scale: "scale(1,1)",
+          opacity: 100,
+          left: 0,
+          width: 30,
+          height: 30,
+          rotate: 0,
+          top: 0,
+          equalScaleable: true, //是否等比例缩放
+          scaleable: true, //是否可缩放操作
+          rotateable: true, //是否可旋转操作
+          editable: false, //内容是否可编辑
+          dragable: true //是否可拖动
+        }
+      },
+      {
+        name: "水管（水平）",
+        code: "assistCommon",
+        icon: "/static/img/configur/h.png",
+        data: {
+          backgroundImage: "/static/img/svg/shuiguan-h.svg",
+          borderWidth: 0,
+          borderStyle: "none",
+          borderColor: "",
+          borderRadius: 0,
+          scale: "scale(1,1)",
+          opacity: 100,
+          left: 0,
+          width: 150,
+          height: 30,
+          rotate: 0,
+          top: 0,
+          equalScaleable: true, //是否等比例缩放
+          scaleable: true, //是否可缩放操作
+          rotateable: true, //是否可旋转操作
+          editable: false, //内容是否可编辑
+          dragable: true //是否可拖动
+        }
+      },
+      {
+        name: "水管（垂直）",
+        code: "assistCommon",
+        icon: "/static/img/configur/v.png",
+        data: {
+          backgroundImage: "/static/img/svg/shuiguan-v.svg",
+          borderWidth: 0,
+          borderStyle: "none",
+          borderColor: "",
+          borderRadius: 0,
+          scale: "scale(1,1)",
+          opacity: 100,
+          left: 0,
+          width: 30,
+          height: 150,
+          rotate: 0,
+          top: 0,
+          equalScaleable: true, //是否等比例缩放
+          scaleable: true, //是否可缩放操作
+          rotateable: true, //是否可旋转操作
+          editable: false, //内容是否可编辑
+          dragable: true //是否可拖动
+        }
+      },
+    ]
   }
 ];

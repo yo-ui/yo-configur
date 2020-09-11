@@ -41,7 +41,7 @@ export default {
     let tabList = Object.freeze(Constants.COMPONENTLIBRARY);
     return {
       tabList,
-      activeIndex: tabList[2].code
+      activeIndex: tabList[3].code
     };
   },
   props: {
@@ -54,7 +54,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      widgetList: "canvas/getWidgetList" //放大缩小
+      widgetList: "canvas/getWidgetList" //组件列表
     })
   },
   mounted() {

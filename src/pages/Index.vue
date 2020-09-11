@@ -16,7 +16,10 @@
           <!-- @mousedown.native.stop.prevent="mousedownEvent(item)" -->
           <div class="bg" :style="gridStyle"></div>
           <bm-com
-            :class="{ active: activeComId == item.id, locked: !item.dragable }"
+            :class="{
+              active: activeComId.indexOf(item.id) > -1,
+              locked: !item.dragable
+            }"
             v-for="(item, index) in widgetList"
             :data-type="item.type"
             :data-id="item.id"
@@ -34,6 +37,8 @@
             :format-tooltip="val => val + '%'"
           ></el-slider>
         </div>
+        <bm-lines ref="bmLines"></bm-lines>
+        <bm-select ref="bmSelect"></bm-select>
       </div>
       <bm-info ref="bmInfo"></bm-info>
     </div>
@@ -112,8 +117,10 @@
 </template>
 <script>
 import bmCommon from "@/common/common";
-import { Constants } from "@/common/env";
+// import { Constants } from "@/common/env";
 import bmCom from "@/components/component";
+import bmHeader from "@/components/header";
+import bmFooter from "@/components/footer";
 import mixins from "@/mixins";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
@@ -133,10 +140,16 @@ export default {
   },
   mixins: [mixins],
   components: {
-    bmHeader: () =>
-      import(/* webpackChunkName: "iot-header-com" */ "@/components/header"),
-    bmFooter: () =>
-      import(/* webpackChunkName: "iot-footer-com" */ "@/components/footer"),
+    bmHeader,
+    // : () =>
+    //   import(/* webpackChunkName: "iot-header-com" */ "@/components/header"),
+    bmLines: () =>
+      import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
+    bmSelect: () =>
+      import(/* webpackChunkName: "iot-select-com" */ "@/components/select"),
+    bmFooter,
+    // : () =>
+    //   import(/* webpackChunkName: "iot-footer-com" */ "@/components/footer"),
     bmInfo: () =>
       import(/* webpackChunkName: "iot-info-com" */ "@/components/info"),
     bmCom,
@@ -154,6 +167,7 @@ export default {
       widgetList: "canvas/getWidgetList", //组件列表
       getZoom: "canvas/getZoom", //放大缩小
       canvas: "canvas/getCanvas", //画布属性
+      selectBox: "canvas/getSelectBox", //选取框
       activeCom: "canvas/getActiveCom" //选中对象
     }),
     bottomOrder() {
@@ -177,9 +191,46 @@ export default {
       }
     },
     activeComId() {
-      let { activeCom = {} } = this;
-      let { id = "" } = activeCom || {};
-      return id;
+      // let { activeCom = {} } = this;
+      // let { id = "" } = activeCom || {};
+      // return id || "";
+      let { widgetList = [], selectBox = {}, activeCom = {} } = this;
+      let {
+        // moving = false,
+        left: boxX = 0,
+        top: boxY = 0,
+        width: boxWidth = 0,
+        height: boxHeight = 0
+      } = selectBox || {};
+      let boxX1 = boxX + boxWidth;
+      let boxY1 = boxY + boxHeight;
+      let points = [];
+      points.push([boxX, boxY]);
+      points.push([boxX1, boxY]);
+      points.push([boxX, boxY1]);
+      points.push([boxX1, boxY1]);
+      let ids = [];
+      if (boxWidth > 1) {
+        widgetList.forEach(item => {
+          let { left: x = 0, top: y = 0, width = 0, height = 0, id = "" } =
+            item || {};
+          let x1 = x + width;
+          let y1 = y + height;
+          if (
+            this.isInPolygon([x, y], points) ||
+            this.isInPolygon([x1, y], points) ||
+            this.isInPolygon([x, y1], points) ||
+            this.isInPolygon([x1, y1], points)
+          ) {
+            ids.push(id);
+          }
+        });
+      } else {
+        let { id = "" } = activeCom || {};
+        ids.push(id);
+      }
+      bmCommon.log(ids, "------");
+      return ids || [];
     },
     gridStyle() {
       let { canvas = {} } = this;
@@ -239,15 +290,52 @@ export default {
       stopMove: "canvas/stopMove"
     }),
     ...mapActions({ selectComAction: "canvas/selectCom" }),
+    /**
+     * 判断点在多边形内
+     * param checkPoint被测点，polygonPoints范围点
+     */
+
+    isInPolygon(checkPoint, polygonPoints) {
+      var counter = 0;
+      var i;
+      var xinters;
+      var p1, p2;
+      var pointCount = polygonPoints.length;
+      p1 = polygonPoints[0];
+      for (i = 1; i <= pointCount; i++) {
+        p2 = polygonPoints[i % pointCount];
+        if (
+          checkPoint[0] > Math.min(p1[0], p2[0]) &&
+          checkPoint[0] <= Math.max(p1[0], p2[0])
+        ) {
+          if (checkPoint[1] <= Math.max(p1[1], p2[1])) {
+            if (p1[0] != p2[0]) {
+              xinters =
+                ((checkPoint[0] - p1[0]) * (p2[1] - p1[1])) / (p2[0] - p1[0]) +
+                p1[1];
+              if (p1[1] == p2[1] || checkPoint[1] <= xinters) {
+                counter++;
+              }
+            }
+          }
+        }
+        p1 = p2;
+      }
+      if (counter % 2 == 0) {
+        return false;
+      } else {
+        return true;
+      }
+    },
     init() {
       this.initEvent();
       this.$nextTick(() => {
         let $canvasBox = $(this.$refs.canvasBox);
-        let { info = {} } = this;
-        let width = $canvasBox.width();
-        let height = $canvasBox.height();
-        info.width = width;
-        info.height = height;
+        let { canvas = {} } = this;
+        let width = $canvasBox.innerWidth();
+        let height = $canvasBox.innerHeight();
+        canvas.width = width;
+        canvas.height = height;
       });
     },
     initEvent() {
@@ -296,22 +384,34 @@ export default {
       let $parent = $(target).parents(".bm-component-com");
       let type = $(target).attr("data-type");
       let id = $(target).attr("data-id");
+      let width = $(target).outerWidth();
+      let height = $(target).outerHeight();
       if (!type) {
         type = $parent.attr("data-type");
         id = $parent.attr("data-id");
+        width = $parent.outerWidth();
+        height = $parent.outerHeight();
       }
       if (type) {
         this.showContextMenuType = 1;
         this.selectComAction(id); //选中组件
         // 绑定移动事件：只有从属于 page 的，除背景图以外的元件才能移动
         let { activeCom = {} } = this;
-        if (activeCom.dragable) {
+        // let { dragable = false, rotateable = false } = activeCom || {};
+        let { dragable = false } = activeCom || {};
+        // if (!rotateable) {
+        let padding = 20;
+        activeCom.originWidth = width - padding; //减去 padding
+        activeCom.originHeight = height - padding; //减去 padding
+        // }
+        if (dragable) {
           this.initMoveEvent(e); // 参见 mixins
         }
       } else {
         this.showContextMenuType = 2;
         // 取消选中组件
         this.selectComAction(id);
+        // this.initMoveEvent(e); // 参见 mixins
       }
       this.showContextMenuStatus = false;
     },

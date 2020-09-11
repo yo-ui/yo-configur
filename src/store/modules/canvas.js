@@ -1,5 +1,5 @@
 // import { URL } from "@/common/env";
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 // import { post, get } from "@/store/axios";
 // import { Constants } from "@/common/env";
 export default {
@@ -10,6 +10,13 @@ export default {
     // financePricingStrategiesCacheMap: null,
     // 画布缩放值
     zoom: 1,
+    selectBox:{
+      moving:false,//是否显示
+      left: 0,
+      top: 0,
+      width: 0,
+      height: 0
+    },
     canvas: {
       type: "canvas", //画布
       name: "组态",
@@ -46,6 +53,12 @@ export default {
     getCanvas(state) {
       return state.canvas;
     },
+    getSelectBox(state) {
+      return state.selectBox;
+    },
+    getMoving(state) {
+      return state.moving;
+    },
     //获取画布缩放值
     getZoom(state) {
       return state.zoom;
@@ -62,6 +75,9 @@ export default {
   mutations: {
     setCanvas(state, item) {
       state.canvas = item;
+    },
+    setSelectBox(state, item) {
+      state.selectBox = item;
     },
     //设置画布缩放值
     setZoom(state, item) {
@@ -97,7 +113,7 @@ export default {
     },
 
     // 元件移动结束
-    stopmove(state) {
+    stopMove(state) {
       state.moving = false;
     },
 
@@ -127,7 +143,7 @@ export default {
       // var top = state.originY + Math.floor((dy * 100) / state.zoom);
       var left = originX + Math.floor((dx * 1) / zoom);
       var top = originY + Math.floor((dy * 1) / zoom);
-      bmCommon.log(left, top);
+      // bmCommon.log(left, top);
       canvas.left = left;
       canvas.top = top;
       // bmCommon.log(left, top, activeCom);

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bm-canvas-style-com">
     <h2>{{ $lang("功能选择") }}</h2>
     <p>
       <i
@@ -13,6 +13,12 @@
         :class="{ active: info.action == 'move' }"
         @click="actionEvent('move')"
         :title="$lang('移动画布')"
+      ></i>
+      <i
+        class="bm-icon icon-paint"
+        :class="{ active: info.action == 'paint' }"
+        @click="actionEvent('paint')"
+        :title="$lang('拼装水管')"
       ></i>
     </p>
     <h2>{{ $lang("参数") }}</h2>
@@ -174,9 +180,7 @@ export default {
       };
     }
   },
-  mounted() {
-    
-  },
+  mounted() {},
   methods: {
     ...mapMutations({
       setZoom: "canvas/setZoom",
@@ -187,9 +191,15 @@ export default {
     ...mapActions(),
     actionEvent(item) {
       let { canvas = {} } = this;
+      let { action = "" } = canvas || {};
+      if (action == item) {
+        return;
+      }
       canvas.action = item;
       if (item == "move") {
         this.canvasMoveEvent();
+      } else if (item == "paint") {
+        this.unCanvasMoveEvent();
       } else {
         this.unCanvasMoveEvent();
       }
@@ -223,21 +233,19 @@ export default {
     canvasMoveEvent() {
       $(document).on("mousedown", this.mousedownEvent);
     },
-    mousedownEvent(e, type) {
+    mousedownEvent(e) {
       e.stopPropagation();
       e.preventDefault();
       let { canvas = {} } = this;
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
       let { left, top } = canvas || {};
-      this.type = type;
       this.initMove({
         startX: x,
         startY: y,
         originX: left,
         originY: top
       });
-      // bmCommon.log(info, x, y, type);
 
       $(document).on("mousemove", this.mousemoveEvent);
       $(document).on("mouseup", this.mouseupEvent);
@@ -258,4 +266,19 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less" scoped>
+@import (reference) "./../../assets/less/common.less";
+.bm-canvas-style-com {
+  // .bm-icon{
+
+  // }
+  p {
+    .icon-paint {
+      .bi("/static/img/configur/water.png");
+      .p(18px);
+      .ml(8);
+      .bz(80%);
+    }
+  }
+}
+</style>

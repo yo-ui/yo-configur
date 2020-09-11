@@ -139,8 +139,8 @@ export default {
         let bmCom = this.$refs.bmCom;
         let $bmCom = $(bmCom.$el);
         let { info = {} } = this;
-        let width = $bmCom.width();
-        let height = $bmCom.height();
+        let width = $bmCom.outerWidth();
+        let height = $bmCom.outerHeight();
         info.originWidth = width;
         info.originHeight = height;
         if (info.scaleable) {
