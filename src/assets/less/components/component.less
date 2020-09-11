@@ -16,7 +16,7 @@
   white-space: nowrap;
   &.active{
     .borc(@themes);
-    .operate-btn,.info{
+    .operate-btn{
       .db;
     }
   }
@@ -26,6 +26,9 @@
   &:hover{
     // .bc(@grayE);
     .box-s(1px 1px 10px 5px #fbd6d6);
+    .info{
+      .db;
+    }
   }
   .operate-btn{
     .db(none);
@@ -41,6 +44,7 @@
     max-width: 90px;
     .fz(10);
     opacity:.8;
+    .tc;
     .bc(rgb(5, 148, 39));
     z-index: 1;
     // .tranf(scale(.5));
