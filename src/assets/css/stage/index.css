@@ -223,3 +223,11 @@
   padding: 10px;
   height: 38px;
 }
+.bm-help {
+  position: fixed;
+  bottom: 15px;
+  left: 12px;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+}

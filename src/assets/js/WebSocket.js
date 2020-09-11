@@ -1,5 +1,5 @@
-import '@/assets/js/Sockjs.min';
-import '@/assets/js/Stomp.min';
+import './../../assets/js/Sockjs.min';
+import './../../assets/js/Stomp.min';
 
 /**
  * socket

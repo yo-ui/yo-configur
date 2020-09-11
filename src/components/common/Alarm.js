@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit.js'
+import Spirit from './../../core/Spirit'
 
 /**
  * 报警器
@@ -416,7 +416,7 @@ class Alarm extends Spirit {
 	}
 
   refresh() {
-    
+
   }
 
 	toJson() {

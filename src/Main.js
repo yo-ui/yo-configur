@@ -1,4 +1,4 @@
-import './assets/css/index.css'
+import './assets/css/index.less'
 import config from './common/config'
 import RemoteObject from './assets/js/RemoteObject';
 import View from './View';

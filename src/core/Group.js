@@ -1,4 +1,4 @@
-import Toast from '@/core/Toast';
+import Toast from './../core/Toast';
 /**
  *
  */

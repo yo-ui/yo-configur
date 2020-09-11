@@ -1,4 +1,4 @@
-import Toast from '@/core/Toast.js';
+import Toast from './../core/Toast';
 /**
  * 控制密码
  */
@@ -66,12 +66,12 @@ class Password {
       <div class="bm-password-panel__content">
         <div class="bm-password-panel__header"><small class="text">控制密码</small><span>×</span></div>
         <div class="bm-password-panel__input">
-          <input type="text" maxlength="1"/>
-          <input type="text" maxlength="1"/>
-          <input type="text" maxlength="1"/>
-          <input type="text" maxlength="1"/>
-          <input type="text" maxlength="1"/>
-          <input type="text" maxlength="1"/>
+          <input type="password" maxlength="1" autocomplete="off"/>
+          <input type="password" maxlength="1" autocomplete="off"/>
+          <input type="password" maxlength="1" autocomplete="off"/>
+          <input type="password" maxlength="1" autocomplete="off"/>
+          <input type="password" maxlength="1" autocomplete="off"/>
+          <input type="password" maxlength="1" autocomplete="off"/>
         </div>
         <div class="bm-password-panel__floor">
           <div class="bm-password-cancel">取消</div>

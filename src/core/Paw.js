@@ -1,16 +1,16 @@
-import Rotate from '@/core/Rotate.js'
+import Rotate from './../core/Rotate'
 
 /**
  * 操作（移动，改变大小）
  */
 class Paw {
 
-  constructor(x,y,width,height,stage) {
+  constructor(stage) {
     this.stage = stage;
-    this.width = width;
-    this.height = height;
-    this.x = x;
-    this.y = y;
+    this.width = 0;
+    this.height = 0;
+    this.x = 0;
+    this.y = 0;
     this._x = 0;
     this._y = 0;
     this.rotate = new Rotate(this);

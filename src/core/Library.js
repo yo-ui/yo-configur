@@ -1,5 +1,3 @@
-import Switch from "../components/common/Switch";
-
 /**
  * 组件库
  */

@@ -1,5 +1,5 @@
-import Spirit from '@/core/Spirit'
-import Toast from '@/core/Toast'
+import Spirit from './../../core/Spirit'
+import Toast from './../../core/Toast'
 
 /**
  * 按钮

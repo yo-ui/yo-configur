@@ -1,19 +1,19 @@
-import Paw from '@/core/Paw';
-import Move from '@/core/Move';
-import SpiritFactory from '@/core/SpiritFactory';
-import Zoom from '@/core/Zoom';
-import Library from '@/core/Library';
-import Keydown from '@/core/Keydown';
-import Align from '@/core/Align';
-import HandleRecord from '@/core/HandleRecord';
-import WaterPipe from '@/components/common/WaterPipe';
-import BindData from '@/core/BindData';
-import Toast from '@/core/Toast';
-import View from "@/View";
-import Color from "@/core/Color"
-import Toolbar from "@/core/Toolbar"
-import Group from "@/core/Group"
-import Panel from "@/core/Panel"
+import Paw from './../core/Paw';
+import Move from './../core/Move';
+import SpiritFactory from './../core/SpiritFactory';
+import Zoom from './../core/Zoom';
+import Library from './../core/Library';
+import Keydown from './../core/Keydown';
+import Align from './../core/Align';
+import HandleRecord from './../core/HandleRecord';
+import WaterPipe from './../components/common/WaterPipe';
+import BindData from './../core/BindData';
+import Toast from './../core/Toast';
+import View from "./../View";
+import Color from "./../core/Color"
+import Toolbar from "./../core/Toolbar"
+import Group from "./../core/Group"
+import Panel from "./../core/Panel"
 
 /**
  * 舞台
@@ -29,7 +29,7 @@ class Stage {
     this.groupList = [];
 		this.isMove = false;
     this.move = new Move(this);//全局移动
-    this.paw = new Paw(0,0,0,0,this);//舞台移动
+    this.paw = new Paw(this);//舞台移动
 		this.zoom = new Zoom(this);//缩放
 		this.align = new Align(this);//对齐
 		this.handleRecord = new HandleRecord(this);//操作记录
@@ -39,7 +39,6 @@ class Stage {
     this.keydown = new Keydown(this);//快捷键
     this.group = new Group(this);
     this.panel = new Panel(this);
-    this.toast = new Toast(this);
 		this.init();
 	}
 
@@ -559,7 +558,7 @@ class Stage {
 			let data = {id:spirit.id,left:spirit.x,top:spirit.y}
 			let record = {type:'add',name:'添加',data:data}
 			this.handleRecord.add(record);
-      this.triggerClick();
+      spirit.getEl().trigger('click');
       this.vesselList();
 		}
 	}

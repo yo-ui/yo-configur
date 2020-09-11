@@ -306,11 +306,11 @@ span {
 /**font 字体**/
 @font-face {
   font-family: 'lcdD';
-  src: url('../fonts/lcdD.ttf?afd1x4') format('truetype');
+  src: url('../../fonts/lcdD.ttf') format('truetype');
 }
 @font-face {
   font-family: 'fontIcon';
-  src: url('../fonts/font.ttf?afd1x4') format('truetype');
+  src: url('../../fonts/font.ttf') format('truetype');
 }
 .fa {
   display: inline-block;
@@ -420,6 +420,9 @@ span {
 }
 .fa-time:before {
   content: "\e033";
+}
+.fa-help:before {
+  content: "\e034";
 }
 /**布局**/
 .bm-layout {
@@ -711,6 +714,14 @@ span {
 .bm-area > div {
   padding: 10px;
   height: 38px;
+}
+.bm-help {
+  position: fixed;
+  bottom: 15px;
+  left: 12px;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
 }
 /**侧面导航**/
 .bm-side {
@@ -1586,8 +1597,7 @@ span {
   opacity: 0.7;
 }
 .bm-password-panel__content {
-  margin: auto;
-  width: 315px;
+  width: 325px;
   height: 160px;
   background-color: #fff;
   position: absolute;
@@ -1625,7 +1635,9 @@ span {
   width: 40px;
   height: 40px;
   text-align: center;
+  text-security: disc;
   -webkit-text-security: disc;
+  -moz-text-security: disc;
   font-size: 18px;
   border: 1px solid #ddd;
 }
