@@ -7,7 +7,7 @@ class Jddz extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "接地刀闸";
+	    this.name = "接地刀闸";
 	    this.className = "Jddz";
 	    this.width = width;
 	    this.height = height;
@@ -21,7 +21,7 @@ class Jddz extends Spirit {
 	template(){
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
 		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-					 viewBox="0 0 70 60" style="enable-background:new 0 0 70 60;" xml:space="preserve">
+					 viewBox="0 0 70 60" xml:space="preserve">
 				<style type="text/css">
 					.jddz-st0{fill:#ABACAF;}
 					.jddz-st1{fill:url(#jddz_2_);}
@@ -340,7 +340,6 @@ class Jddz extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

@@ -7,7 +7,7 @@ class Bshrq extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "板式换热器";
+	    this.name = "板式换热器";
 	    this.className = "Bshrq";
 	    this.width = width;
 	    this.height = height;
@@ -1170,7 +1170,6 @@ class Bshrq extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

@@ -1,5 +1,7 @@
 import RemoteObject from '@/assets/js/RemoteObject'
 import ViewStage from '@/core/ViewStage'
+import WebSocket from "@/assets/js/WebSocket";
+import Toast from "./core/Toast";
 /**
  *
  */
@@ -25,18 +27,30 @@ class View {
           if(canvasId) {
             let data = {}
             data.id = canvasId;
-            RemoteObject.ajax(that.config.get, "get", data, function (result) {
-              callback.call(this, result);
+            RemoteObject.ajax(that.config.get, "get", data, function (msg) {
+              let result = JSON.parse(msg);
+              if(result.code==200) {
+                callback.call(this, result.result);
+              }else {
+                console.log(result.message);
+              }
             })
           }
         }
       },
       control: function(data,callback) {
         if(that.config.debug) {
-          callback.call(this,JSON.stringify({status:{code:100000}}));
+          callback.call(this);
         }else {
           RemoteObject.ajax(that.config.control,"post",data,function(msg) {
-            callback.call(this, result);
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this);
+            }else if(result.code==120020) {
+              Toast.alert("控制密码错误！")
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
@@ -50,8 +64,13 @@ class View {
         }else {
           let data = {}
           data.ids = JSON.stringify(ids);
-          RemoteObject.ajax(that.config.deviceList,"get",data,function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.deviceList,"get",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
@@ -64,65 +83,55 @@ class View {
                 {id:'SwSts',name:'设备状态',value:1,time:'00:09:00'}]}]
           callback.call(this, devices);
         }else {
-
-          if(that.config.debug) {
-
-          } else {
-            let canvasId = sessionStorage.getItem("canvasId")
-            let deviceIdList = Array.from(ids);
-            if(deviceIdList.length>0) {
-              let params = "canvasId="+canvasId+"&";
-              deviceIdList.forEach(function (id,index) {
-                params+="deviceIdList="+id;
-                if(index<deviceIdList.length-1) {
-                  params+="&";
-                }
-              })
-              RemoteObject.ajax(that.config.push,"get",params,function(result){
-                console.log(result);
-              })
-            }
-            let socket = new SockJS(that.config.websocketUrl);
-            that.config.stompClient = Stomp.over(socket);
-            that.config.stompClient.connect({}, onConnected, onError);
+          let canvasId = sessionStorage.getItem("canvasId")
+          let deviceIdList = Array.from(ids);
+          if(deviceIdList.length>0) {
+            let params = "canvasId="+canvasId+"&"+option.getParams(deviceIdList,"deviceIdList")
+            RemoteObject.ajax(that.config.push,"get",params,function(result){
+              console.log(result);
+            })
           }
-
-          function onConnected() {
-            let canvasId = sessionStorage.getItem("canvasId")
-            let userId = sessionStorage.getItem("userId")
-            that.config.stompClient.subscribe("/user/queue/canvas/"+userId+"/"+canvasId, function (payload) {
-              console.log(payload.body);
-              let result = JSON.parse(payload.body);
-              if(result.code==200) {
-                let deviceList = result.result;
-                let dataList = [];
-                deviceList.forEach(function (item) {
-                  let data = {};
-                  data.id = item.deviceId;
-                  let pList = item.configurDevicePointVoList;
-                  if(pList.length>0){
-                    let points = []
-                    pList.forEach(function (pv) {
-                      let point = {}
-                      point.id = pv.point;
-                      point.value = pv.value;
-                      point.unit = pv.unit;
-                      point.name = pv.descr;
-                      points.push(point);
-                    })
-                    data.points = points;
-                  }
-                  dataList.push(data)
-                })
-                callback.call(this, dataList);
-              }
-            });
-          }
-
-          function onError(error) {
-            console.log("error: "+error);
-          }
+          console.log("...:"+that.config.websocketUrl);
+          let url = that.config.websocketUrl;
+          let theme = "/user/queue/canvas/"+canvasId;
+          let webSocket = new WebSocket();
+          webSocket.connect(url,theme,function(result) {
+            let dataList = option.analysis(result);
+            callback.call(this, dataList);
+          })
         }
+      },
+      getParams(deviceIdList,name) {
+        let params = "";
+        deviceIdList.forEach(function(id,index) {
+          params+=""+name+"="+id;
+          if(index<deviceIdList.length-1) {
+            params+="&";
+          }
+        })
+        return params;
+      },
+      analysis(deviceList) {
+        let dataList = [];
+        deviceList.forEach(function(item) {
+          let data = {};
+          data.id = item.deviceId;
+          let pointList = item.configurDevicePointVoList;
+          if(pointList.length>0){
+            let points = []
+            pointList.forEach(function(value) {
+              let point = {}
+              point.id = value.point;
+              point.value = value.value;
+              point.unit = value.unit;
+              point.name = value.descr;
+              points.push(point);
+            })
+            data.points = points;
+          }
+          dataList.push(data)
+        })
+        return dataList;
       },
       getDevice(id,callback) {
         if(that.config.debug) {
@@ -139,8 +148,13 @@ class View {
         }else {
           let data = {}
           data.deviceId = id;
-          RemoteObject.ajax(that.config.getDevice,"get",data,function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.getDevice,"get",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
@@ -157,22 +171,33 @@ class View {
           data.point = point;
           data.startTime = startTime;
           data.endTime = endTime;
-          RemoteObject.ajax(that.config.devicePointHstData,"get",data,function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.devicePointHstData,"get",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
       token(deviceId,callback) {
         if(that.config.debug) {
           let token = {};
+          token.name = "摄像头";
           token.serial = "D73596223";
-          token.accessToken = "ra.1xcgrtv83096z4p45cv8f1jf1h1wyvf2-8abffatz2c-1fzrsp8-ym9mbj7is";
+          token.accessToken = "ra.84ayi12s45ouca6ga4ix7te37g4a8uq6-2vd2p6jjry-1m3i7aw-vwj1f92mt";
           callback.call(this, token);
         }else {
           let data = {}
           data.deviceId = deviceId;
-          RemoteObject.ajax(that.config.token,"get",data,function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.token,"get",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
@@ -184,8 +209,13 @@ class View {
           let data = {}
           data.deviceId = deviceId;
           data.direction = value;
-          RemoteObject.ajax(that.config.start,"post",data,function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.start,"post",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
@@ -197,8 +227,13 @@ class View {
           let data = {}
           data.deviceId = deviceId;
           data.direction = value;
-          RemoteObject.ajax(that.config.stop,"post",data,function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.stop,"post",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       }
@@ -209,53 +244,14 @@ class View {
     $(window).resize(function() {
       stage.location();//页面改变时调整舞台位置
     })
+
+    $('#root').css({'background-color': '#fff','overflow': 'hidden'});
   }
 
   template() {
-    let html = `<div id="root"></div>
-    <div class="bm-view-panel"></div>
-    <!--toast-->
-    <div style="display: none" class="bm-toast bm-toast--text bm-toast--top">
-      <span class="bm-toast__text"></span>
-    </div>
-    <!--password-->
-    <div class="bm-password-panel">
-      <div class="bm-password-panel__shade">&nbsp;</div>
-      <div class="bm-password-panel__content">
-        <div class="bm-password-panel__header"><small class="text">控制密码</small><span>×</span></div>
-        <div class="bm-password-panel__input">
-          <input type="text" maxlength="1"/>
-          <input type="text" maxlength="1"/>
-          <input type="text" maxlength="1"/>
-          <input type="text" maxlength="1"/>
-          <input type="text" maxlength="1"/>
-          <input type="text" maxlength="1"/>
-        </div>
-        <div class="bm-password-panel__floor">
-          <div class="bm-password-cancel">取消</div>
-          <div class="bm-password-affirm">确定</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="bm-configur-panel" style="display: none">
-      <div class="bm-configur-panel__body">
-        <div class="bm-configur-panel__header"><span>&nbsp;</span><div class="bm-configur-panel__close">×</div></div>
-        <div class="bm-configur-panel__content">
-          <div id="playWind"></div>
-        </div>
-        <div class="vision-btn">
-            <div class="bm-direction">
-              <div class="bm-direction--top" data-value="0"><img src="static/images/common/arrow_up.png"/></div>
-              <div class="bm-direction--left" data-value="2"><img src="static/images/common/arrow_left.png"/></div>
-              <div class="bm-direction--right" data-value="3"><img src="static/images/common/arrow_right.png"/></div>
-              <div class="bm-direction--bottom" data-value="1"><img src="static/images/common/arrow_down.png"/></div>
-            </div>
-        </div>
-      </div>
-    </div>
-    <div id="temp_value" style="display: none;"></div>`;
-    return html;
+    return `<div id="root"></div>
+             <div class="bm-view-panel"></div>
+             <div id="temp_value" style="display: none;"></div>`;
   }
 }
 

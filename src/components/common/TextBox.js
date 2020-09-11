@@ -7,7 +7,7 @@ class TextBox extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "显示框";
+	    this.name = "显示框";
 	    this.className = "TextBox";
       this.width = width;
 	    this.height = height;
@@ -23,7 +23,7 @@ class TextBox extends Spirit {
                 <div style="
                     line-height: ${this.height}px;
                     height: ${this.height}px;
-                    text-align: center;
+                    text-align: left;
                     background-color: ${this.config.backgroundColor}">
                     <span class="value" style="
                       font-weight:bold;
@@ -55,7 +55,6 @@ class TextBox extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			minWidth: this.minWidth,
@@ -78,7 +77,7 @@ class TextBox extends Spirit {
 					<div class="bm-cell no-hover">
 						<div class="bm-cell__title">
 							<div>字体颜色</div>
-							<div class="bm-color-box text-color" data-value="1"></div>
+							<input class="text-color" title="字体颜色" />
 						</div>
 					</div>
           <div class="bm-cell no-hover">
@@ -91,7 +90,7 @@ class TextBox extends Spirit {
             <div class="bm-cell no-hover">
 						<div class="bm-cell__title">
 							<div>背景颜色</div>							
-							<div class="bm-color-box bg-color" data-value="2"></div>					
+							<input class="bg-color" title="字体颜色" />			
 						</div>							
 					</div>`;
 		$('#configur_property').append(html);
@@ -115,9 +114,7 @@ class TextBox extends Spirit {
       $('.resize-panel').css({width:width+2,height:height});
       property.width = width;
       property.height = height;
-      if($(this).val()<14) {
-        height = height-2;
-      }
+
       $('#'+property.id).find('div').css({width: width,'line-height': height+"px",height: height});
     });
 	}

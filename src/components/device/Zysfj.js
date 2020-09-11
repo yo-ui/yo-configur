@@ -7,7 +7,7 @@ class Zysfj extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "正压送风机";
+	    this.name = "正压送风机";
 	    this.className = "Zysfj";
 	    this.width = width;
 	    this.height = height;
@@ -17,7 +17,7 @@ class Zysfj extends Spirit {
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.zIndex = 3;
+	    this.zIndex = 2;
 	    this.config = {
 	      bindData: {orgId:'',deviceId:'',devicePoint:''},
         state: {expr:'SwSts',stop:0,start:1,alarm:2}
@@ -567,7 +567,6 @@ class Zysfj extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

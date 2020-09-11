@@ -5,67 +5,79 @@ class Toolbar {
 
 	constructor(stage) {
 		this.stage = stage;
-		this.init()
 	}
 
-	init() {
-		let that = this.stage;
-		let barList = [
-			{type:1,name:'撤销',url:'static/images/tool/recall.png'},
-			{type:2,name:'保存',url:'static/images/tool/save.png'},
-			{type:3,name:'复制',url:'static/images/tool/copy.png'},
-			{type:4,name:'删除',url:'static/images/tool/delete.png'},
-			{type:5,name:'右对齐',url:'static/images/tool/right.png'},
-			{type:6,name:'左对齐',url:'static/images/tool/left.png'},
-			{type:7,name:'上对齐',url:'static/images/tool/up.png'},
-			{type:8,name:'下对齐',url:'static/images/tool/down.png'}]
-		barList.forEach(function(bar) {
-			let tool = $(`<div class="bm-toolbar__item" ><img src="${bar.url}" title="${bar.name}"/></div>`)
-			tool.data('type',bar.type);
-			tool.on('click',function() {
-				let type = $(this).data('type');
-				that.shortcutsKey(type);
-			});
-			$('.bm-toolbar').append(tool);
-		});
-		let oper = $(`<div class="bm-toolbar__oper" title="预览">
-				  		<img src="static/images/tool/device.png" width="18"/>
-				  	</div>`);
-		oper.on('click',function() {
-			that.option.preview()
-		});
-		$('.bm-toolbar').append(oper)
-	}
+  contextMenu() {
+    $('.bm-context-menu ul').html('')
+    let that = this;
+    let menus = []
+    if(that.stage.selectedType==1) {
+      let property = that.stage.property;
+      if(property) {
+        if(property.isMove) {
+            menus = [{name:'复制',icon:'fa-copy',type: 3,key:'Ctrl+C'},
+                     {name:'删除',icon:'fa-delete',type: 4,key:'Ctrl+D'},
+                     {name:'锁定',icon:'fa-lock',type: 9,key:'Ctrl+L'}]
+          if(property.isGroup) {
+            let menu = {name:'分组',icon:'fa-group',type: 14,key:'Ctrl+G'};
+            menus.push(menu);
+          }else if(property.isBind) {
+            let menu = {name:'绑定数据',icon:'fa-bind',type: 15,key:'Ctrl+B'};
+            menus.push(menu);
+          }
+        }else {
+          menus = [{name:'解锁',icon:'fa-unlock',type: 10,key:'Ctrl+K'}]
+        }
+      }else {
+        menus = [{name:'保存',icon:'fa-save',type: 2,key:'Ctrl+S'}]
+        if(that.stage.handleRecord.handles.length>0) {
+          let menu = {name:'回撤',icon:'fa-back',type: 1,key:'Ctrl+Z'};
+          menus.push(menu);
+        }
+      }
+    }else {
+      menus = [{name:'左对齐',icon:'fa-align-left',type: 5,key:'Ctrl+←'},
+               {name:'右对齐',icon:'fa-align-right',type: 6,key:'Ctrl+→'},
+               {name:'上对齐',icon:'fa-align-up',type: 7,key:'Ctrl+↑'},
+               {name:'下对齐',icon:'fa-align-down',type: 8,key:'Ctrl+↓'},
+               {name:'垂直平分',icon:'fa-v-divide',type: 12,key:'Ctrl+V'},
+               {name:'水平平分',icon:'fa-h-divide',type: 13,key:'Ctrl+H'},
+               {name:'删除',icon:'fa-delete',type:11,key:'Ctrl+D'}]
+    }
 
-	kit() {
-		let that = this.stage;
-		let tools = [{type:1,title:'放大',url:'static/images/magnify.png'},
-			{type:2,title:'缩小',url:'static/images/shrink.png'}];
-		let toolPanel = $('<div class="bm-toolbar__zoom"></div>');
-		tools.forEach(function(tool,index) {
-			let img = $('<img/>')
-			img.attr("src", tool.url);
-			img.data('type', tool.type);
-			img.attr("title", tool.title);
-			img.on('click',function() {
-				that.layDown();
-				that.capacity.forEach(function(data) {
-					$('#'+data.id).css({border:'1px solid transparent'})
-				});
-				$('#selected_subline').hide();
+    menus.forEach(function(data) {
+      let li = $(`<li><span class="text"><i class="fa ${data.icon}"></i>${data.name}</span><span class="value">${data.key}</span></li>`)
+      li.data("type",data.type)
+      li.on('click',function() {
+        let type = $(this).data("type");
+        that.shortcutsKey(type);
+        $('.bm-context-menu').hide();
+      })
+      $('.bm-context-menu ul').append(li)
+    })
+  }
 
-				that.toolType = $(this).data('type');
-				that.zoom.control(that.toolType);
-				that.toolType = 1;
-			});
-			if(index==1){
-				let ratio = that.zoom.get();
-				toolPanel.append('<span>'+ratio*100+'%</span>')
-			}
-			toolPanel.append(img)
-		});
-		$('.bm-toolbar').append(toolPanel);
-	}
+  shortcutsKey(type) {
+    let that = this;
+    switch(type) {
+      case 1:that.stage.handleRecord.lastStep();break;
+      case 2:that.stage.save();break;
+      case 3:that.stage.clone();break;
+      case 4:that.stage.remove();break;
+      case 5:that.stage.align.left();break;
+      case 6:that.stage.align.right();break;
+      case 7:that.stage.align.up();break;
+      case 8:that.stage.align.down();break;
+      case 9:that.stage.align.lock();break;
+      case 10:that.stage.align.unlock();break;
+      case 11:that.stage.remove();break;
+      case 12:that.stage.hDivide();break;
+      case 13:that.stage.vDivide();break;
+      case 14:that.stage.group.show();break;
+      case 15:that.stage.bindD.create();break;
+    }
+  }
+
 }
 
 export default Toolbar;

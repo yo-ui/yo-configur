@@ -7,37 +7,37 @@
     height: 50px;
     line-height: 50px;
     font-size: @font-size-lg;
-    background-color: #323233;
+    background-color: #023459;
     color: @white;
     display: flex;
 
     &__back {
       cursor: pointer;
-      width: 60px;
+      width: 54px;
       text-align: center;
-      background-color: @gray-8;
+      background-color: #023459;
 
-      & > img {
-        width: 30px;
-        vertical-align: middle;
+      & > i {
+        font-size: 30px;
       }
     }
 
     &__name {
+      flex: 1;
       font-size: 18px;
       text-align: center;
-      flex: 1;
       vertical-align: top;
     }
 
     &__view {
-      width: 60px;
-      text-align: center;
+      width: 120px;
+      text-align: right;
+      padding: 0 10px;
 
-      & > img {
-        width: 30px;
-        vertical-align: middle;
+      & > i {
+        width: 40px;
         cursor: pointer;
+        font-size: 24px;
       }
     }
   }
@@ -58,7 +58,8 @@
     &__body {
       flex: 1;
       height: 100%;
-      overflow: auto;
+      overflow: hidden;
+      background-color: #B5B7B6;
     }
 
     &__right {

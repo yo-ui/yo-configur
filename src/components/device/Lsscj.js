@@ -7,13 +7,13 @@ class Lsscj extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "拉绳式测距";
+	    this.name = "拉绳式测距";
 	    this.className = "Lsscj";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
+      this.moveType = 4;
 	    this.linkage = true;
 	    this.zIndex = 2;
 	}
@@ -83,7 +83,6 @@ class Lsscj extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

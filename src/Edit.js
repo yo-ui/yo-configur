@@ -1,6 +1,5 @@
-import RemoteObject from '@/assets/js/RemoteObject'
-import Stage from '@/core/Stage'
-import View from "./View";
+import RemoteObject from './assets/js/RemoteObject'
+import Stage from './core/Stage'
 
 class Edit {
 
@@ -24,19 +23,29 @@ class Edit {
           if(canvasId) {
             let data = {}
             data.id = canvasId;
-            RemoteObject.ajax(that.config.get,"get",data,function(result){
-              callback.call(this, result);
+            RemoteObject.ajax(that.config.get,"get",data,function(msg){
+              let result = JSON.parse(msg);
+              if(result.code==200) {
+                callback.call(this, result.result);
+              }else {
+                console.log(result.message);
+              }
             })
           }
         }
       },
-      saveCanvas: function(data,callback) {
+      save: function(data,callback) {
         if(that.config.debug) {
           localStorage.setItem("data", data.data);
-          callback.call(this, "ok");
+          callback.call(this);
         }else {
-          RemoteObject.ajax(that.config.save,"post",data,function(){
-            callback.call(this, "ok");
+          RemoteObject.ajax(that.config.save,"post",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
@@ -45,8 +54,13 @@ class Edit {
           let dataList = [{id:1,name:'A楼',pid:0},{id:2,name:'B楼',pid:1}]
           callback.call(this, dataList);
         }else {
-          RemoteObject.ajax(that.config.organizList,"get","",function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.organizList,"get","",function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
@@ -59,8 +73,13 @@ class Edit {
         }else {
           let data = {}
           data.orgId = orgId;
-          RemoteObject.ajax(that.config.devicePoints,"get",data,function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.devicePoints,"get",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       },
@@ -69,19 +88,19 @@ class Edit {
           let url = $(form).find('input').val();
           callback.call(this, "static/images/background/background.jpg");
         }else {
-          let imageForm = new FormData(form);
-          imageForm.append("files", file);
+          let formData = new FormData(form);
+          formData.append("files", file);
           $.ajax({
             url: that.config.upload,
             type: 'post',
-            data: imageForm,
+            data: formData,
             contentType: false,
             processData: false,
             success: function(result){
               if(result.code==200) {
                 callback.call(this,result.result[0]);
               }else {
-                console.log(url+":"+result.message);
+                console.log(result.message);
               }
             },
             error:function(err){
@@ -104,14 +123,20 @@ class Edit {
           data.point = point;
           data.startTime = startTime;
           data.endTime = endTime;
-          RemoteObject.ajax(that.config.devicePointHstData,"get",data,function(result){
-            callback.call(this, result);
+          RemoteObject.ajax(that.config.devicePointHstData,"get",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
           })
         }
       }
     }
 
-    let stage = new Stage(option,this.config.imgHost);
+    let stage = new Stage(option,this.config);
+
     $('#property_tabs a').each(function(index) {
       $(this).data("value", index);
       $(this).on('click',function() {
@@ -134,10 +159,12 @@ class Edit {
       window.history.back(-1);
     })
 
-    $('.bm-layout__header__view').on('click',function() {
-      let view = new View(that.config);
-      $('.main-content').html(view.template());
-      view.init();
+    $('.bm-layout__header__view .fa-preview').on('click',function() {
+      stage.preview();
+    })
+
+    $('.bm-layout__header__view .fa-save').on('click',function() {
+      stage.save();
     })
 
     let names = [
@@ -151,19 +178,21 @@ class Edit {
     })
 
     $(window).resize(function() {
-      stage.location();//页面改变时调整舞台位置
+      stage.stageAuto();//舞台调整
+      stage.location();//舞台位置
     })
   }
 
   template() {
-    let html = `<div class="bm-layout">
+    return `<div class="bm-layout">
       <div class="bm-layout__header">
         <span class="bm-layout__header__back">
-            <img src="static/images/back.png">
+          <i class="fa fa-return"></i>
         </span>
         <span class="bm-layout__header__name"></span>
         <span class="bm-layout__header__view">
-            <img src="static/images/preview.png">
+          <i class="fa fa-save" title="保存(Ctrl+S)"></i>
+          <i class="fa fa-preview" title="预览(Ctrl+P)"></i>
         </span>
       </div>
       <div class="bm-layout__main">
@@ -173,16 +202,9 @@ class Edit {
           <div class="bm-component-list"></div>
         </div>
         <div class="bm-layout__main__body">
-          <div class="bm-stage">
-            <div id="root"></div>
-            <div class="bm-config-panel">
-               <div class="bm-config-panel__shade">&nbsp;</div>
-               <div class="bm-config-panel__content"></div>
+            <div class="bm-stage">
+              <div id="root"></div>
             </div>
-          </div>
-          <div style="display: none" class="bm-toast bm-toast--text bm-toast--top">
-              <span class="bm-toast__text"></span>
-          </div>
         </div>
         <div class="bm-layout__main__right">
             <div class="bm-tabs-custom">
@@ -201,25 +223,12 @@ class Edit {
                   </div>
                 </div>
             </div>
+          </div>
         </div>
-      </div>
-      <div class="bm-context-menu">
-          <ul></ul>
-      </div>
+        <div class="bm-context-menu"><ul></ul></div>
       </div>
       <div class="menu-panel"></div>
-      <div class="bm-configur-panel" style="display: none;">
-          <div class="bm-configur-panel__body">
-              <div class="bm-configur-panel__header"><span>数据绑定</span><div class="bm-configur-panel__close">×</div></div>
-              <div class="bm-configur-panel__content"></div>
-              <div class="bm-configur-panel__floor">
-                  <div class="close bm-button bm-button--small bm-button--default">关闭</div>
-                  <div class="confirm bm-button bm-button--small bm-button--primary">确定</div>
-              </div>
-          </div>
-      </div>
       <div id="temp_value" style="display: none;"></div>`;
-    return html;
   }
 }
 

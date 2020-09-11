@@ -7,7 +7,7 @@ class ViewPanel extends Spirit {
 
   constructor(x=0, y=0,width,height) {
     super(x, y);
-    this.title = "视图面板";
+    this.name = "视图面板";
     this.className = "ViewPanel";
     this.width = width;
     this.height = height;
@@ -61,7 +61,6 @@ class ViewPanel extends Spirit {
 
   toJson() {
     let json = {
-      title: this.title,
       className: this.className,
       moveType: this.moveType,
       minWidth: this.minWidth,

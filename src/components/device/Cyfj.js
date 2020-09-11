@@ -1,13 +1,13 @@
 import Spirit from '@/core/Spirit.js'
 
 /**
- * 生活水泵
+ * 抽烟风机
  */
 class Cyfj extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "抽烟风机";
+	    this.name = "抽烟风机";
 	    this.className = "Cyfj";
 	    this.width = width;
 	    this.height = height;
@@ -448,7 +448,6 @@ class Cyfj extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

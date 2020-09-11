@@ -1,36 +1,47 @@
-import Paw from '@/core/Paw.js';
-import Move from '@/core/Move.js';
-import SpiritFactory from '@/core/SpiritFactory.js';
-import Zoom from '@/core/Zoom.js';
-import Library from '@/core/Library.js';
-import Keydown from '@/core/Keydown.js';
-import Align from '@/core/Align.js';
-import HandleRecord from '@/core/HandleRecord.js';
-import WaterPipe from '@/components/common/WaterPipe.js';
-import BindData from '@/core/BindData.js';
-
+import Paw from '@/core/Paw';
+import Move from '@/core/Move';
+import SpiritFactory from '@/core/SpiritFactory';
+import Zoom from '@/core/Zoom';
+import Library from '@/core/Library';
+import Keydown from '@/core/Keydown';
+import Align from '@/core/Align';
+import HandleRecord from '@/core/HandleRecord';
+import WaterPipe from '@/components/common/WaterPipe';
+import BindData from '@/core/BindData';
+import Toast from '@/core/Toast';
+import View from "@/View";
+import Color from "@/core/Color"
+import Toolbar from "@/core/Toolbar"
+import Vessel from "@/components/common/Vessel";
+import Group from "@/core/Group"
+import Panel from "@/core/Panel"
 
 /**
  * 舞台
  */
 class Stage {
 
-	constructor(option,imgHost) {
-	  this.imgHost = imgHost;
+	constructor(option,config) {
+	  this.config = config;
 		this.option = option;
-		this.toolType = 1;//1移动方式 2 拼装方式
-		this.selectedType = 1;//选择类型1:默认2:框选
-		this.move = new Move(this);//全局移动
-		this.paw = new Paw(0,0,0,0,this);//舞台移动
-		this.selectedList = []
+		this.toolType = 1;//1移动方式 2拼装方式
+		this.selectedType = 1;//选择类型 1:默认 2:框选
+		this.selectedList = [];
+    this.groupList = [];
 		this.isMove = false;
-		this.library = new Library(this);//组件库
-		this.keydown = new Keydown(this);//快捷键
+    this.move = new Move(this);//全局移动
+    this.paw = new Paw(0,0,0,0,this);//舞台移动
 		this.zoom = new Zoom(this);//缩放
 		this.align = new Align(this);//对齐
-		this.handleRecord = new HandleRecord(this);
-    this.bindD = new BindData(this);
-		this.canvas();
+		this.handleRecord = new HandleRecord(this);//操作记录
+    this.bindD = new BindData(this);//数据绑定
+    this.toolbar = new Toolbar(this);//工具栏
+    this.library = new Library(this);//组件库
+    this.keydown = new Keydown(this);//快捷键
+    this.group = new Group(this);
+    this.panel = new Panel(this);
+    this.toast = new Toast(this);
+		this.init();
 	}
 
 	createStage(width,height,background) {
@@ -43,6 +54,8 @@ class Stage {
 		this.isCreate = false;
 		this.dw = 50;
 		this.dh = 50;
+    this.stageAuto();
+
 		let element = $('<div id="configur_stage"></div>').css({
 			position: 'relative',
 			width: width+'px',
@@ -110,7 +123,7 @@ class Stage {
 			let top = $(this).offset().top+e.offsetY+5;
 			$('.bm-context-menu').css({left: left,top: top});
 			$('.bm-context-menu').show();
-			that.contextmenu();
+      that.toolbar.contextMenu();
 			e.preventDefault();
 			e.stopPropagation();
 		});
@@ -129,6 +142,8 @@ class Stage {
 					let data = {id:spirit.id,left:spirit.x,top:spirit.y}
 					let record = {type:'add',name:'添加',data:data}
 					that.handleRecord.add(record);
+          that.triggerClick();
+					that.vesselList();
 				}
 			}
 		})
@@ -154,7 +169,7 @@ class Stage {
 				let top = $(this).offset().top+e.offsetY+5;
 				$('.bm-context-menu').css({left: left,top: top});
 				$('.bm-context-menu').show();
-				that.contextmenu();
+        that.toolbar.contextMenu();
 			}
 			e.preventDefault();
 			e.stopPropagation();
@@ -206,20 +221,21 @@ class Stage {
 					if(e.pageX<that.rectangle.x) {
 						let width = that.rectangle.x-e.pageX;
 						let height = e.pageY-that.rectangle.y;
-					    let scrollLeft = $('#root').scrollLeft();
-					    let offsetLeft = $('#configur_stage').offset().left;
+            let scrollLeft = $('#root').scrollLeft();
+            let offsetLeft = $('#configur_stage').offset().left;
 						let left = e.pageX-offsetLeft+scrollLeft;
 						$('#selected_subline').css({left:left})
-					    $('#selected_subline').css({width: width,height: height,border:'1px dashed #12a3ff'})
+            $('#selected_subline').css({width: width,height: height,border:'1px dashed #12a3ff'})
 					}else {
 						let width = e.pageX-that.rectangle.x;
-					    let height = e.pageY-that.rectangle.y;
-					    $('#selected_subline').css({width: width,height: height,border:'1px dashed #12a3ff'})
+            let height = e.pageY-that.rectangle.y;
+            $('#selected_subline').css({width: width,height: height,border:'1px dashed #12a3ff'})
 					}
 				}
 				if($('#selected_subline').width()>10) {
 					$('#selected_subline').show();
 				}
+
 			}
 		});
 
@@ -250,6 +266,7 @@ class Stage {
 				let height = data.height;
 				$('.bm-selected-panel').css({left,top,width,height})
 			}
+      that.vesselList();
 		});
 
 		this.element = element;
@@ -260,6 +277,33 @@ class Stage {
 		$('#root').append(this.element);
     this.waterPipe = new WaterPipe(this);
 	}
+
+  stageAuto() {
+    let _height = $('.bm-layout__main__body').height();
+    let _width = $('.bm-layout__main__body').width();
+    $('.bm-stage').css({width: _width-40,height: _height-40,'margin-top': '20px','margin-left': '20px'});
+  }
+
+  vesselList() {
+	  let that = this;
+    that.capacity.forEach(function (data) {
+      if(data.className == "Vessel"&&data.config.status==1) {
+        let dataList = new Set(data.config.dataList);
+        let x = that.property.x;
+        let y = that.property.y;
+        let width = that.property.width;
+        let height = that.property.height;
+        if((x>data.x&&(x+width)<(data.x+data.width))&&
+          (y>data.y&&(y+height)<(data.y+data.height))) {
+          dataList.add(that.property.id)
+        }else {
+          dataList.delete(that.property.id)
+        }
+        data.config.dataList = [...dataList];
+      }
+    })
+
+  }
 
 	selectedPanel(dataList) {
 		let data = {x:0,y:0,x2:0,y2:0}
@@ -319,90 +363,73 @@ class Stage {
 					<div class="bm-cell no-hover">
 						<div class="bm-cell__title">
 							<div>背景颜色</div>
-							 <div class="bm-color-box"></div>
+							<input id="stage_bg" type="color"/>
 						</div>
 					</div>
 					<div class="bm-cell no-hover">
 						<div class="bm-cell__title">
-							<div>网格</div>
+							<div>背景图片</div>
 							<div class="bm-checkbox">
 								<input type='checkbox' id='subline'>
 								<label for='subline'></label>
 							</div>
+							<form id="stageBg">
+                <div class="bm-upload">
+                  <span>选择图片</span>								 
+                  <input type="file" name="stageBg"/>								 	              
+                </div>
+              </form>		
 						</div>
 					</div>
           <div class="bm-cell no-hover">
 						<div class="bm-cell__title">
 							<div>缩放</div>
 							<div class="bm-zoom">
-							    <img src="static/images/magnify.png"/>							    
-							    <img src="static/images/shrink.png"/>
-							    <span></span>
+                <div><i class="fa fa-zoom-in"></i></div>
+                <span></span>
+                <div><i class="fa fa-zoom-out"></i></div>
               </div>
 						</div>
 					</div>`;
 		$('#configur_property').html(html);
 		that.zoom.init();
 		Tooltip.init();
-		$('.colpick').remove()
-		$('.bm-color-box').colpick({
-			colorScheme:'dark',
-			layout:'rgbhex',
-			color:that.background.color,
-			onSubmit:function(hsb,hex,rgb,el) {
-				$(el).css('background-color', '#'+hex);
-				that.background.color = '#'+hex;
-				$('#configur_stage').css({'background-color': '#'+hex})
-				$(el).colpickHide();
-			}
-		}).css('background-color', that.background.color);
-
-		$('#subline').on('change',function () {
-      if($(this).is(':checked')) {
-        $('#configur_stage').css({'background-image': 'url(static/images/background/background.png)'});
-        that.background.url = "static/images/background/background.png"
-			}else {
-				$('#configur_stage').css({'background-image': ''});
-				that.background.url = ""
-			}
-		})
-
+    Color.empty();
+		//背景颜色
+    let element = $("#stage_bg");
+    let color = that.background.color;
+    Color.init(element,color,function (color) {
+      that.background.color = color;
+      $('#configur_stage').css({'background-color': color})
+    });
 		if(that.background.url) {
-			$('#configur_stage').css({'background-image': 'url(static/images/background/background.png)'});
-			$('#subline').prop("checked",true)
+			$('#configur_stage').css({'background-image': 'url('+that.background.url+')'});
+      $('#subline').prop("checked",true)
 		}else {
 			$('#configur_stage').css({'background-image': ''});
-			$('#subline').prop("checked",false)
+      $('#subline').prop("checked",false)
 		}
 
-		$('.handle div').each(function (index) {
-			$(this).data('index', index);
-			if(that.toolType==index+1) {
-				$(this).addClass('active')
-			}
-			$(this).on('click',function () {
-				let index = $(this).data('index');
-				$(this).addClass('active')
-				if(index==0) {
-					that.toolType = 1;
-					$(this).addClass('active')
-          if(that.waterPipe) {
-            that.waterPipe.draw(false);
-            that.removeLinkPoints();
-          }
-				}else if(index==1) {
-					that.toolType = 2;
-					$(this).addClass('active')
-					if(that.waterPipe) {
-						that.waterPipe.draw(true);
-            that.createLinkPoints();
-					}
-				}
-				$(this).siblings().each(function () {
-				  $(this).removeClass('active')
-				})
-			})
-		});
+    $('#subline').on('change',function () {
+      if($(this).is(':checked')) {
+        $('#configur_stage').css({'background-image': 'url('+that.background.url+')'});
+        $("#stageBg").attr("disabled", true);
+      }else {
+        $('#configur_stage').css({'background-image': ''});
+        $("#stageBg").attr("disabled", true);
+        that.background.url = ""
+      }
+    })
+
+    $('#configur_property').find('[name=stageBg]').on('change',function() {
+      let form = $("#stageBg")[0]
+      let file = $(this).get(0).files[0]
+      that.option.upload(form,file,function(url) {
+        that.background.url = that.config.imgHost+"/"+url;
+        $('#configur_stage').css({'background-image': 'url('+that.background.url+')'});
+      })
+    })
+    this.handleRecord.init();
 	}
 
   removeLinkPoints() {
@@ -425,23 +452,55 @@ class Stage {
     })
   }
 
-	shortcutsKey(type) {
-		let that = this;
-		switch(type) {
-      case 1:that.handleRecord.lastStep();break;
-      case 2:that.save();break;
-      case 3:that.clone();break;
-      case 4:that.remove();break;
-      case 5:that.align.left();break;
-      case 6:that.align.right();break;
-      case 7:that.align.up();break;
-      case 8:that.align.down();break;
-      case 9:that.align.lock();break;
-      case 10:that.align.lock();break;
-      case 11:that.remove();break;
-      case 12:that.property.animation();break;
-		}
-	}
+  //水平平分
+  hDivide() {
+    if(this.selectedList.length<=2) {
+      return;
+    }
+    let that = this;
+    let data = that.selectedPanel(that.selectedList);
+    let value = 0;
+    that.selectedList.sort((a,b)=> a.y-b.y)
+    that.selectedList.forEach(function (data) {
+      value+=data.height;
+    })
+    if(data.height-value>0) {
+      let v = (data.height-value)/(that.selectedList.length-1);
+      that.selectedList.forEach(function (selected,index) {
+        if(index>0&&index<that.selectedList.length-1) {
+          let first = that.selectedList[index-1];
+          let top = parseInt(first.y+first.height+v);
+          $('#'+selected.id).css({top});
+          selected.y = top;
+        }
+      })
+    }
+  }
+
+  //垂直平分
+  vDivide() {
+    if(this.selectedList.length<=2) {
+      return;
+    }
+    let that = this;
+    let data = that.selectedPanel(that.selectedList);
+    let value = 0;
+    that.selectedList.sort((a,b)=> a.x-b.x)
+    that.selectedList.forEach(function (data) {
+      value+=data.width;
+    })
+    if(data.width-value>0) {
+      let v = (data.width-value)/(that.selectedList.length-1);
+      that.selectedList.forEach(function (selected,index) {
+        if(index>0&&index<that.selectedList.length-1) {
+          let first = that.selectedList[index-1];
+          let left = parseInt(first.x+first.width+v)
+          $('#'+selected.id).css({left});
+          selected.x = left;
+        }
+      })
+    }
+  }
 
 	location() {
 		let stage = $('#configur_stage');
@@ -465,8 +524,8 @@ class Stage {
 	//鼠标放下
 	layDown() {
 		let that = this;
-		let top = String($('.resize-panel').css('top')).replace('px', '');
-    	let left = String($('.resize-panel').css('left')).replace('px', '');
+		let top = $('.resize-panel').css('top').replace('px', '');
+    	let left = $('.resize-panel').css('left').replace('px', '');
     	let el = $('.resize-panel').find('.resize-panel-content').children('div');
     	let id = el.attr('id');
     	if(id) {
@@ -478,11 +537,12 @@ class Stage {
 	    	});
 	    	this.addEvent(el);
 	    	this.element.append(el);
-	    	$('.resize-panel').find('.resize-panel-content').html('');
-	    	$('.resize-panel').hide();
     	}
-    	that.isMove = false;
+    $('.resize-panel').find('.resize-panel-content').html('');
+    $('.resize-panel').hide();
+    that.isMove = false;
 	}
+
 	//克隆
 	clone() {
 		if(!$('.resize-panel').is(":hidden")) {
@@ -494,19 +554,21 @@ class Stage {
 			let height = this.property.height;
 			let rotate = this.property.rotate;
 			let spirit = this.create(this.className,x,y,width,height,rotate);
-			spirit.config = this.property.config;
+      Object.assign(spirit.config,this.property.config)
 			spirit.refresh();
 			this.capacity.push(spirit);
-			spirit.getEl().trigger('click');
 			let data = {id:spirit.id,left:spirit.x,top:spirit.y}
 			let record = {type:'add',name:'添加',data:data}
 			this.handleRecord.add(record);
+      this.triggerClick();
+      this.vesselList();
 		}
 	}
+
 	//删除
 	remove() {
 		let that = this;
-		if(that.selectedList.length>0) {
+		if(that.selectedList.length>1) {
 			let set = new Set()
 			that.selectedList.forEach(function(selected) {
 				set.add(selected.id);
@@ -532,21 +594,25 @@ class Stage {
 			let record = {type:'remove',name:'删除',data: {className,x,y,width,height}}
 			that.handleRecord.add(record);
 		}
-		$('#configur_stage').trigger('click');
+		that.triggerClick();
 		that.configurList();
 	}
 
 	//创建
-	create(className,x,y,width,height,rotate=0) {
+	create(className,x,y,width,height,rotate=0,id) {
 		let that = this;
 		this.className = className;
     let spirit = SpiritFactory.getInstance(className,x,y,width,height);
+    if(id) {
+      spirit.id = id;
+    }
+    spirit.name = spirit.name+"-"+that.capacity.length;
     if(spirit.className=="Images") {
       if(!spirit.config.url) {
         spirit.config.url = "static/images/background/background.jpg";
       }
     }
-    spirit.rotate = rotate;3
+    spirit.rotate = rotate;
 		spirit.arrangement(this);
 		this.addEvent(spirit.getEl());
 		this.move.move = false;
@@ -595,55 +661,14 @@ class Stage {
 				let top = e.pageY;
 				$('.bm-context-menu').css({left: left,top: top});
 				$('.bm-context-menu').show();
-				that.contextmenu();
+				that.toolbar.contextMenu();
 			}
 			e.preventDefault();
 			e.stopPropagation();
 		})
   }
 
-  contextmenu() {
-		$('.bm-context-menu ul').html('')
-		let that = this;
-		let menus = []
-		if(that.selectedType==1) {
-			if(that.property) {
-				if(that.property.isMove) {
-					menus = [{name:'复制',icon:'fa-copy',type: 3,key:'Ctrl+C'},
-						     {name:'删除',icon:'fa-remove',type: 4,key:'Ctrl+D'},
-						     {name:'锁定',icon:'fa-lock',type: 9,key:'Ctrl+L'}]
-				}else {
-					menus = [{name:'解锁',icon:'fa-uplock',type: 10,key:'Ctrl+L'}]
-				}
-				if(that.property.isAnimation) {
-          menus.push({name:'动画链接',icon:'fa-lock',type: 12,key:''})
-        }
-			}else {
-				menus = [{name:'保存',icon:'fa-save',type: 2,key:'Ctrl+S'}]
-				if(that.handleRecord.handles.length>0) {
-					let menu = {name:'回撤',icon:'fa-back',type: 1,key:'Ctrl+Z'};
-					menus.push(menu);
-				}
-			}
 
-		}else {
-			menus = [{name:'左对齐',icon:'fa-align-left',type: 5,key:'Ctrl+←'},
-				     {name:'右对齐',icon:'fa-align-right',type: 6,key:'Ctrl+→'},
-				     {name:'上对齐',icon:'fa-align-up',type: 7,key:'Ctrl+↑'},
-				     {name:'下对齐',icon:'fa-align-down',type: 8,key:'Ctrl+↓'},
-				     {name:'删除',icon:'fa-remove',type:11,key:'Ctrl+D'}]
-		}
-		menus.forEach(function (data) {
-			let li = $(`<li><span class="text"><i class="fa ${data.icon}"></i>${data.name}</span><span class="value">${data.key}</span></li>`)
-			li.data("type",data.type)
-			li.on('click',function () {
-				let type = $(this).data("type");
-				that.shortcutsKey(type);
-				$('.bm-context-menu').hide();
-			})
-			$('.bm-context-menu ul').append(li)
-		})
-	}
 
 	/**
 	 * 属性样式
@@ -651,43 +676,36 @@ class Stage {
 	propertyStyle() {
 		let that = this;
 		if(this.property){
+      Tooltip.init();
 			this.property.renderer();
-			Tooltip.init();
-			$('.colpick').remove()
-      if(that.property.config) {
-        $('.text-color').colpick({
-          colorScheme:'dark',
-          layout:'rgbhex',
-          color:that.property.config.color,
-          onSubmit:function(hsb,hex,rgb,el) {
-            $(el).css('background-color', '#'+hex);
-            that.property.config.color = '#'+hex;
-            $('#'+that.property.id).find('span').css({color:'#'+hex});
-            $(el).colpickHide();
-          }
-        }).css('background-color', that.property.config.color);
+      Color.empty();
+      let config = that.property.config;
+			if(config) {
+        //字体颜色
+        if(config.color) {
+          let element = $(".text-color");
+          let color = that.property.config.color;
+          Color.init(element,color,function (color) {
+            that.property.config.color = color;
+            $('#'+that.property.id).find('span').css({'color': color});
+          });
+        }
+        //背景颜色
+        if(config.backgroundColor) {
+          let element = $(".bg-color");
+          let color = that.property.config.backgroundColor;
+          Color.init(element,color,function (color) {
+            that.property.config.backgroundColor = color;
+            $('#'+that.property.id).find('div').css({'background-color': color});
+          });
+        }
       }
-
-      if(that.property.config) {
-        $('.bg-color').colpick({
-          colorScheme:'dark',
-          layout:'rgbhex',
-          color:that.property.config.backgroundColor,
-          onSubmit:function(hsb,hex,rgb,el) {
-            $(el).css('background-color', '#'+hex);
-            that.property.config.backgroundColor = '#'+hex;
-            $('#'+that.property.id).find('div').css({'background-color':'#'+hex});
-            $(el).colpickHide();
-          }
-        }).css('background-color', that.property.config.backgroundColor);
-      }
-
 			$('#configur_property').find('[name=bg]').on('change',function() {
-				let form = $("#uploadBg")[0]
+				let form = $("#imgBg")[0]
         let file = $(this).get(0).files[0]
-        that.option.upload(form,file,function(msg) {
-          that.property.config.url = msg;
-          $('#'+that.property.id).find('img').attr('src',that.imgHost+"/"+msg);
+        that.option.upload(form,file,function(url) {
+          that.property.config.url = url;
+          $('#'+that.property.id).find('img').attr('src',that.config.imgHost+"/"+url);
         })
 			})
 		}
@@ -725,28 +743,46 @@ class Stage {
 		let that = this;
 		$('#root').html('');
 		if(data) {
+      if(data.groupList) {
+        that.groupList = data.groupList;
+      }else {
+        that.groupList = [];
+      }
 			this.createStage(width,height,data.background);
+      let vesselList = []
 			data.capacity.forEach(function(property) {
+			  let id = property.id;
 				let className = property.className;
 				let x = property.x;
 				let y = property.y;
 				let width = property.width;
 				let height = property.height;
 				let rotate= property.rotate;
-				let spirit = that.create(className,x,y,width,height,rotate);
-				spirit.isMove = property.isMove;
+				let spirit = that.create(className,x,y,width,height,rotate,id);
+				spirit.name = property.name;
 				spirit.zIndex = property.zIndex;
 				spirit.config = property.config;
         if(className=="Images") {
-          $('#'+spirit.id).find('img').attr('src',that.imgHost+"/"+spirit.config.url);
+          let url = that.config.imgHost+"/"+spirit.config.url;
+          $('#'+spirit.id).find('img').attr('src', url);
+        }else if(className=="Vessel") {
+          vesselList.push(spirit)
         }
 				spirit.refresh();
 				that.capacity.push(spirit);
 				property.id = spirit.id;
 			})
-			$('#configur_stage').trigger('click')
+			that.triggerClick();
 			that.location();
 			that.configurList();
+      vesselList.forEach(function (vessel) {
+        let status = vessel.config.status;
+        if(status==1) {
+          vessel.show();
+        }else if(status==2) {
+          vessel.hide();
+        }
+      })
 		}
 	}
 
@@ -764,20 +800,19 @@ class Stage {
           })
           $('#'+$(this).data('id')).trigger('click')
         })
-        let text = $(`<span class="text">${data.title}</span>`)
+        let text = $(`<span class="text">${data.name}</span>`)
         let value = $(`<span class="value"></span>`);
         if(data.isBind) {
-          let src = "static/images/bind-0.png"
+          let bind = $('<i class="fa fa-bind"/>')
           if(data.config.bindData.deviceId) {
-            src = "static/images/bind-1.png"
+            bind.css({color:'red'})
           }
-          let img = $(`<img src="${src}"/>`)
-          img.on('click',function (e) {
+          bind.on('click',function (e) {
             $(this).parent().parent().trigger('click')
             that.bindD.create();
             e.stopPropagation();
           });
-          value.append(img);
+          value.append(bind);
         }
         li.append(text).append(value);
         if(that.property.id == data.id) {
@@ -796,6 +831,8 @@ class Stage {
 			  if(data.className!="LinkPoint") {
           let spirit = {}
           spirit.className = data.className;
+          spirit.id = data.id;
+          spirit.name = data.name;
           spirit.x = data.x;
           spirit.y = data.y;
           spirit.width = data.width;
@@ -803,7 +840,6 @@ class Stage {
           spirit.rotate = data.rotate;
           spirit.isMove = data.isMove;
           spirit.zIndex = data.zIndex;
-          spirit.title = data.title;
           spirit.config = data.config;
           capacity.push(spirit);
         }
@@ -811,24 +847,23 @@ class Stage {
 			let data = {
 				width: this.width,
 				height: this.height,
-        background: {color: this.background.color},
+        groupList: this.groupList,
+        background: this.background,
         capacity: capacity
 			}
-			console.log(capacity);
+			console.log(data);
 			if(this.canvasId) {
 				this.option.saveCanvas({
 					id: this.canvasId,
           data: JSON.stringify(data)
-				},function(msg) {
-					if(msg=="ok") {
-						that.toast('保存成功');
-					}
+				},function() {
+          Toast.alert('保存成功');
 				})
 			}
 		}
 	}
 
-  canvas() {
+  init() {
 	  let that = this;
     this.option.canvas(function(data) {
       $('.bm-layout__header__name').text(data.name);
@@ -840,14 +875,17 @@ class Stage {
     })
   }
 
-	toast(text) {
-		$('.bm-toast').show();
-		$('.bm-toast__text').text(text);
-		const timer = setInterval(() => {
-			clearInterval(timer);
-			$('.bm-toast').hide()
-		}, 2000);
-	}
+  //预览
+  preview() {
+    let view = new View(this.config);
+    $('.main-content').html(view.template());
+    view.init();
+  }
+
+  //舞台触发点击
+  triggerClick() {
+    $('#configur_stage').trigger('click')
+  }
 }
 
 export default Stage;

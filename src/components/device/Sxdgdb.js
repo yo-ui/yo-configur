@@ -7,7 +7,7 @@ class Sxdgdb extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "三相导轨电表";
+	    this.name = "三相导轨电表";
 	    this.className = "Sxdgdb";
 	    this.width = width;
 	    this.height = height;
@@ -16,8 +16,6 @@ class Sxdgdb extends Spirit {
 	    this.minHeight = 20;
 		  this.zIndex = 2;
 	    this.linkage = true;
-	    this.isPanel = true;
-	    this.isBind = true;
 	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
 	}
 
@@ -66,7 +64,6 @@ class Sxdgdb extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

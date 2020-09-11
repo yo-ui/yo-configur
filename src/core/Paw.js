@@ -438,7 +438,7 @@ class Paw {
       let top = e.pageY;
       $('.bm-context-menu').css({left: left,top: top});
       $('.bm-context-menu').show();
-      that.stage.contextmenu();
+      that.stage.toolbar.contextMenu();
       e.preventDefault();
       e.stopPropagation();
     })
@@ -500,9 +500,9 @@ class Paw {
     if(that.property) {
       let left = String($('.resize-panel').css('left')).replace('px', '');
       let x = Number(left)-1;
+      let y = that.property.y;
       let width = that.property.width;
       let height = that.property.height;
-      let y = that.property.y;
       if(that.boundary(x,y,width,height)) {
         $('.resize-panel').css({left:x});
         this.property.x = x+2;

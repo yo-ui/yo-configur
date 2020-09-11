@@ -7,7 +7,7 @@ class Display extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "显示器";
+	    this.name = "显示器";
 	    this.className = "Display";
 	    this.width = width;
 	    this.height = height;
@@ -22,7 +22,7 @@ class Display extends Spirit {
 	template(){
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-               viewBox="0 0 89 43" style="enable-background:new 0 0 89 43;" xml:space="preserve" preserveAspectRatio="none">
+               viewBox="0 0 89 43" xml:space="preserve" preserveAspectRatio="none">
             <style type="text/css">
               .display-st0{fill:#FFFFFF;}
               .display-st1{fill:#DFE3E8;}
@@ -93,7 +93,6 @@ class Display extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			minWidth: this.minWidth,

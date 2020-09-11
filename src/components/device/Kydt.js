@@ -7,27 +7,27 @@ class Kydt extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "客用电梯";
+	    this.name = "客用电梯";
 	    this.className = "Kydt";
 	    this.width = width;
 	    this.height = height;
 	    this.moveType = 4;
 	    this.minWidth = 24;
 	    this.minHeight = 64;
-		  this.zIndex = 2;
+		  this.zIndex = 3;
 	    this.linkage = false;
 	    this.isPanel = true;
 	    this.isBind = true;
 	    this.config = {
 	      bindData: {orgId:'',deviceId:'',devicePoint:''},
-        state: {expr:'SwSts',alarm:0,normal:1,start:2}
+        state: {expr:'SwSts',stop:0,start:1,alarm:2},
 	    }
 	}
 
 	template(){
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-                 viewBox="0 0 230 290" style="enable-background:new 0 0 230 290;" xml:space="preserve" preserveAspectRatio="none">
+                 viewBox="0 0 230 290" xml:space="preserve" preserveAspectRatio="none">
               <style type="text/css">
                 .kydt-st0{fill:#E7E7E5;}
                 .kydt-st1{opacity:0.3;}
@@ -194,8 +194,8 @@ class Kydt extends Spirit {
         if(point.id==state.expr) {
           if(point.value==state.alarm) {
             that.alarm();
-          }else if(point.value==state.normal) {
-            that.normal();
+          }else if(point.value==state.stop) {
+            that.stop();
           }else if(point.value==state.start) {
             that.start();
           }
@@ -206,7 +206,6 @@ class Kydt extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			minWidth: this.minWidth,

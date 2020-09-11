@@ -26,8 +26,8 @@ module.exports = {
   },
 
   test: {
-    index: path.resolve(__dirname, '../dist/index.html'),
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    index: path.resolve(__dirname, 'E:\\web\\fe-configur\\dist\\index.html'),
+    assetsRoot: path.resolve(__dirname, 'E:\\web\\fe-configur\\dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '',
     /**

@@ -47,7 +47,7 @@ class Align {
 			})
 		});
 	}
-    //上对齐
+  //上对齐
 	up() {
 		let that = this.stage;
 		let y = 0;
@@ -67,7 +67,7 @@ class Align {
 			})
 		});
 	}
-    //下对齐
+  //下对齐
 	down() {
 		let that = this.stage;
 		let y = 0;
@@ -88,17 +88,28 @@ class Align {
 			})
 		});
 	}
-    //解锁或者锁定
+  //锁定
 	lock() {
-		let that = this.stage;
-		if(that.property.isMove) {
-			that.property.isMove = false;
-			that.layDown();
-		}else {
-			that.property.isMove = true;
-			$('#'+that.property.id).trigger('contextmenu');
-		}
+    let property = this.stage.property;
+    if(property.isMove) {
+      property.isMove = false;
+      this.stage.layDown();
+      if(property.className=="Map") {
+        $('#'+property.id).find('.images-shade').hide();
+      }
+    }
 	}
+  //解锁
+	unlock() {
+	  let property = this.stage.property;
+    if(!property.isMove) {
+      property.isMove = true;
+      $('#'+property.id).trigger('contextmenu');
+      if(property.className=="Map") {
+        $('#'+property.id).find('.images-shade').show();
+      }
+    }
+  }
 }
 
 export default Align;

@@ -7,7 +7,7 @@ class Kg extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
 	    super(x, y);
-	    this.title = "开关";
+	    this.name = "开关";
 	    this.className = "Kg";
 	    this.width = width;
 	    this.height = height;
@@ -18,17 +18,10 @@ class Kg extends Spirit {
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-      this.isAnimation = false;
-      this.animationList = [
-        {name: '触发链接',
-         dataList: [{type: 11,name: '开关状态'},
-                     {type: 12,name: '动作'}]
-        }
-      ]
       this.config = {
         bindData: {orgId: '', deviceId: '', devicePoint: ''},
-        animations: [{type: 11,name:'开关状态',data: {expr: 'SwSts', off: 0, on: 1}},
-                      {type: 12,name: '动作',event:'click',data: {expr: 'SwSts'}}]
+        state: {expr:'SwSts',stop:0,start:1,alarm:2},
+        animations: [{type: 12,name: '动作',event:'click',data: {expr: 'SwSts'}}]
       }
 	}
 
@@ -88,7 +81,6 @@ class Kg extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,
@@ -99,68 +91,61 @@ class Kg extends Spirit {
 		return Object.assign(super.toJson(),json);
 	}
 
-  animation() {
-	  let that = this;
-    $('.bm-config-panel__content').html('');
-	  let animationList = this.animationList;
-	  let animations = this.config.animations;
-    super.animation(animationList,animations,function (result) {
-      that.config.animations.forEach(function (data) {
-        if(data.type==result.type) {
-          data = result;
-        }
-      })
-    });
-  }
-
-  initialize(device,config) {
+  initialize() {
 	  let that = this;
     let animations = this.config.animations;
     animations.forEach(function (animation) {
       if(animation.type==12) {
         $('#'+that.id).on(animation.event,function () {
-          that.event(device,animation.data);
+          that.event(animation);
         });
       }
     })
-    that.reveal(device,config)
+  }
+
+  event(data) {
+    let that = this;
+    that.point = {id:'',value:''}
+    let deviceId = this.config.bindData.deviceId
+    if(deviceId) {
+      that.stage.option.getDevice(deviceId,function (device) {
+        if(deviceId==device.id) {
+          if(device.points) {
+            device.points.forEach(function (point) {
+              if(point.id == data.data.expr) {
+                that.point = point;
+                if(that.point.id&&that.point.value) {
+                  let point = that.point.id;
+                  let value = that.point.value;
+                  that.control(deviceId,point,value==0?1:0)
+                }
+              }
+            });
+          }
+        }
+      });
+      let point = that.point.id;
+      let value = that.point.value;
+      that.control(deviceId,point,value==0?1:0)
+    }
   }
 
 	reveal(device,config) {
     let that = this;
-    let animations = that.config.animations;
-    animations.forEach(function (animation) {
-      if(animation.type==11) {
-        device.points.forEach(function(point) {
-          if(point.id==animation.data.expr) {
-            if(point.value==animation.data.off) {
-              that.stop();
-            }else if(point.value==animation.data.on) {
-              that.start();
-            }
+    let state = that.config.state;
+    if(device) {
+      device.points.forEach(function(point) {
+        if(point.id==state.expr) {
+          if(point.value==state.alarm) {
+            that.alarm();
+          }else if(point.value==state.stop) {
+            that.stop();
+          }else if(point.value==state.start) {
+            that.start();
           }
-        })
-      }
-    })
-	}
-
-  event(device,data) {
-		if(device) {
-			let that = this;
-			that.point = {id:'',value:''}
-			if(device.points) {
-				device.points.forEach(function(item) {
-					if(item.id==data.expr) {
-						that.point.id = item.id;
-						that.point.value = item.value;
-					}
-				});
-			}
-			let deviceId = device.id;
-			let point = that.point.id;
-			let value = that.point.value;
-			that.control(deviceId,point,value==0?1:0)
-		}
+        }
+      })
+    }
 	}
 }
 

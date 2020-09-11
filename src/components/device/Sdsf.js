@@ -7,7 +7,7 @@ class Sdsf extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "手动水阀";
+	    this.name = "手动水阀";
 	    this.className = "Sdsf";
 	    this.width = width;
 	    this.height = height;
@@ -15,8 +15,6 @@ class Sdsf extends Spirit {
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 	    this.linkage = true;
-	    this.isPanel = true;
-	    this.isBind = true;
 	    this.isLinkPoint = true;
 	    this.zIndex = 2;
       this.config = {
@@ -247,7 +245,6 @@ class Sdsf extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

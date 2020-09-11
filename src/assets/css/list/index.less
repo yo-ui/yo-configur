@@ -4,9 +4,10 @@
   display: inline-block;
   width: 170px;
   vertical-align: top;
-  height: calc(100% - 20px);
-  padding: 10px;
-  overflow: auto;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 5px;
 
   & > div {
     text-align: center;
@@ -26,13 +27,23 @@
       border: 2px solid @blue;
     }
   }
+
+  & > span {
+    width: 160px;
+    text-align: left;
+    line-height: 14px;
+    border-left: 2px solid red;
+    padding-left: 2px;
+    margin: 5px;
+    font-weight: bold;
+  }
 }
 
 .bm-list {
 
   & > li {
     line-height: 30px;
-    margin: 1px;
+    margin: 1px 0;
     border: 1px solid @gray-4;
     padding: 3px 5px;
     display: flex;
@@ -44,6 +55,64 @@
     & > .value {
       & > img {
         width: 18px;
+        vertical-align: middle;
+      }
+
+      & > i {
+        font-size: 18px;
+
+        &:hover {
+          color: red;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: @gray-1;
+      cursor: pointer;
+    }
+
+    &.active {
+      background-color: #85d4ff;
+      border: 1px solid #85d4ff;
+      color: #fff;
+    }
+  }
+}
+
+.bm-common-list {
+  & > li {
+    line-height: 24px;
+    margin: 1px 0;
+    padding: 3px 8px;
+
+    & > span ,
+    & > img {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    & > img {
+      margin: 0 2px;
+    }
+  }
+}
+
+.bm-action-list {
+  & > li {
+    line-height: 24px;
+    margin: 1px 0;
+    padding: 3px 8px;
+    display: flex;
+
+    & > .text {
+      flex: 1
+    }
+
+    & > .value {
+      & > img {
+        width: 18px;
+        display: inline-block;
         vertical-align: middle;
       }
     }

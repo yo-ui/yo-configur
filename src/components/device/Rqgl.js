@@ -7,7 +7,7 @@ class Rqgl extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "燃气锅炉";
+	    this.name = "燃气锅炉";
 	    this.className = "Rqgl";
 	    this.width = width;
 	    this.height = height;
@@ -1136,7 +1136,6 @@ class Rqgl extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

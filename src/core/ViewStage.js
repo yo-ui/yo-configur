@@ -1,5 +1,7 @@
-import SpiritFactory from '@/core/SpiritFactory.js'
-import Password from '@/core/Password.js'
+import SpiritFactory from '@/core/SpiritFactory'
+import Password from '@/core/Password'
+import Zoom from '@/core/Zoom'
+import Panel from '@/core/Panel';
 /**
  * 预览舞台
  */
@@ -9,8 +11,18 @@ class ViewStage {
     let that = this;
     this.imgHost = imgHost;
 		this.option = option;
+    this.zoom = new Zoom(this);
+    this.panel = new Panel(this);
 		this.option.canvas(function(data) {
 			that.canvas = {id:data.id};
+      if(!data.data) {
+        data.data = JSON.stringify({background:{url:'',color: '#fff'},capacity:[]})
+      }
+      if(data.groupList) {
+        that.groupList = data.groupList;
+      }else {
+        that.groupList = [];
+      }
 			that.analysis(data.width,data.height,JSON.parse(data.data));
       that.location();
 		})
@@ -18,7 +30,7 @@ class ViewStage {
 	}
 
 	createStage(width,height,background) {
-		let that = this;
+	  let that = this;
 		this.width = width;
 		this.height = height;
 		this.background = background;
@@ -37,15 +49,75 @@ class ViewStage {
 		});
 		$('#root').append(this.element);
 		this.drag();
+    that.zoomPanel(element);
 	}
 
+	zoomPanel(element) {
+	  let that = this;
+    let lock = false;
+    let show = true;
+    let t1;
+    element.on('mousemove',function () {
+      const t2 = setInterval(() => {
+        if(show&&lock) {
+          $('.bm-zoom-panel > div').hide();
+          lock = false;
+        }
+        clearInterval(t2);
+      }, 1500);
+    });
+    element.on('mouseover',function () {
+      if(t1) {
+        clearInterval(t1);
+      }
+      t1 = setInterval(() => {
+        if(lock) {
+          lock = false;
+          $('.bm-zoom-panel > div').show();
+        }
+        lock = true;
+      }, 500);
+    });
+
+    element.on('mouseout',function (e) {
+      let y = e.offsetY;
+      let x = e.offsetX;
+      if((x<=0||x>=that.width)||
+         (y<=0||y>=that.height)) {
+        lock = false;
+        $('.bm-zoom-panel > div').hide();
+        clearInterval(t1)
+      }
+    });
+
+
+    let panel = $('.bm-zoom-panel > div');
+
+    panel.on('mouseover',function () {
+      show = false;
+    });
+
+    panel.on('mouseleave',function (e) {
+      show = true;
+    });
+
+    panel.find('.fa-zoom-in').on('click',function () {
+      that.zoom.zoomIn()
+      that.zoom.zoomText();
+    });
+
+    panel.find('.fa-zoom-out').on('click',function () {
+      that.zoom.zoomOut()
+      that.zoom.zoomText();
+    });
+  }
+
   drag() {
-    let x,y;
-    let move;
+    let x,y,move;
     $("#configur_stage").on('mousedown',function (e,data) {
       move = true;
       $(this).css({cursor: 'grab'})
-      if(data) {
+      if(data){
         x = data.x-parseInt($(this).css("left"));
         y = data.y-parseInt($(this).css("top"));
       }else{
@@ -87,9 +159,11 @@ class ViewStage {
   }
 
 	//创建
-	create(className,x,y,width,height,rotate=0) {
-    let that = this;
+	create(className,x,y,width,height,rotate=0,id) {
     let spirit = SpiritFactory.getInstance(className,x,y,width,height);
+    if(id) {
+      spirit.id = id;
+    }
     spirit.rotate = rotate;
     spirit.arrangement(this);
     this.addEvent(spirit);
@@ -104,7 +178,7 @@ class ViewStage {
       if(spirit.isPanel) {
         let id = $(this).data('id');
         that.capacity.forEach(function (spirit) {
-          if (spirit.id == id) {
+          if(spirit.id == id) {
             that.spirit = spirit;
           }
         });
@@ -113,7 +187,7 @@ class ViewStage {
           if (deviceId) {
             that.option.getDevice(deviceId, function (device) {
               $('.bm-view-panel').hide();
-              if (device) {
+              if(device) {
                 let left = el.offset().left + el.width();
                 let top = el.offset().top - 60;
                 $('.bm-view-panel').css({left, top});
@@ -129,55 +203,63 @@ class ViewStage {
 	}
   //解析
 	analysis(width,height,data) {
+    let that = this;
 		$('#root').html('');
 		if(data) {
-			let that = this;
+      if(data.groupList) {
+        that.groupList = data.groupList;
+      }else {
+        that.groupList = [];
+      }
 			this.createStage(width,height,data.background);
+      let vesselList = []
 			data.capacity.forEach(function(property) {
+			  let id = property.id;
 				let className = property.className;
 				let x = property.x;
 				let y = property.y;
 				let width = property.width;
 				let height = property.height;
 				let rotate= property.rotate;
-				let spirit = that.create(className,x,y,width,height,rotate);
+				let spirit = that.create(className,x,y,width,height,rotate,id);
 				spirit.config = property.config;
         if(className=="Images") {
-          $('#'+spirit.id).find('img').attr('src', that.imgHost+"/"+spirit.config.url);
+          let url = that.config.imgHost+"/"+spirit.config.url;
+          $('#'+spirit.id).find('img').attr('src', url);
+        }else if(className=="Vessel") {
+          vesselList.push(spirit)
         }
 				spirit.refresh();
 				that.capacity.push(spirit);
 			})
+      vesselList.forEach(function (vessel) {
+        let status = vessel.config.status;
+        if(status==1) {
+          vessel.show();
+        }else if(status==2) {
+          vessel.hide();
+        }
+      })
+      console.log(this.capacity);
       let ids = new Set();
 			this.capacity.forEach(function(data) {
         if(data.isBind) {
-          let id = data.config.bindData.deviceId;
-          if(id) {
-            ids.add(id);
+          let deviceId = data.config.bindData.deviceId;
+          if(deviceId) {
+            ids.add(deviceId);
           }
         }
+        data.initialize();
 			});
-			this.option.deviceList(ids,function(dataList) {
-        that.initialize(dataList);
-        that.option.socket(ids,function(dataList) {
-          that.reveal(dataList);
-        })
-			})
+
+			that.option.deviceList(ids,function(dataList) {
+        that.reveal(dataList);
+      });
+      that.option.socket(ids,function(dataList) {
+        that.reveal(dataList);
+      })
 		}
 	}
-
-  initialize(dataList) {
-    let that = this;
-    dataList.forEach(function(device) {
-      that.capacity.forEach(function(spirit) {
-        if(spirit.isBind) {
-          if(spirit.config.bindData.deviceId==device.id) {
-            spirit.initialize(device,spirit.config);
-          }
-        }
-      });
-    })
-  }
 
   //绑定数据显示
   reveal(dataList) {
@@ -185,7 +267,8 @@ class ViewStage {
     dataList.forEach(function(device) {
       that.capacity.forEach(function(spirit) {
         if(spirit.isBind) {
-          if(spirit.config.bindData.deviceId==device.id) {
+          let deviceId = spirit.config.bindData.deviceId;
+          if(deviceId==device.id) {
             spirit.reveal(device,spirit.config);
           }
         }
@@ -195,22 +278,14 @@ class ViewStage {
   //联动 改变点位时联动关联的绑定设备
   linkage(device) {
     this.capacity.forEach(function(spirit) {
-      if(spirit.isBind) {
-        if(spirit.config.bindData.deviceId==device.id) {
+      if(spirit.isBind){
+        let deviceId = spirit.config.bindData.deviceId;
+        if(deviceId==device.id) {
           spirit.reveal(device,spirit.config);
         }
       }
     });
   }
-  //提示框
-	toast(text) {
-		$('.bm-toast').show();
-		$('.bm-toast__text').text(text);
-		const timer = setInterval(() => {
-			clearInterval(timer);
-			$('.bm-toast').hide()
-		}, 2000);
-	}
 }
 
 export default ViewStage;

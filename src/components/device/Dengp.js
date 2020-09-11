@@ -7,7 +7,7 @@ class Dengp extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "灯泡";
+	    this.name = "灯泡";
 	    this.className = "Dengp";
 	    this.width = width;
 	    this.height = height;
@@ -90,7 +90,6 @@ class Dengp extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

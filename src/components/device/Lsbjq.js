@@ -7,13 +7,13 @@ class Lsbjq extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "漏水报警器";
+	    this.name = "漏水报警器";
 	    this.className = "Lsbjq";
 	    this.width = width;
 	    this.height = height;
+      this.minWidth = 20;
+      this.minHeight = 20;
 	    this.moveType = 4;
-	    this.minWidth = 20;
-	    this.minHeight = 20;
 	    this.zIndex = 2;
 	    this.linkage = true;
 	}
@@ -89,7 +89,6 @@ class Lsbjq extends Spirit {
 
 	toJson() {
 		let json = {
-			title:this.title,
 			className:this.className,
 			moveType:this.moveType,
 			linkage:this.linkage,

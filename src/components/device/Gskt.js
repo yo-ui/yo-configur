@@ -7,7 +7,7 @@ class Gskt extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "挂式空调";
+	    this.name = "挂式空调";
 	    this.className = "Gskt";
 	    this.width = width;
 	    this.height = height;
@@ -81,7 +81,6 @@ class Gskt extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

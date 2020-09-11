@@ -7,17 +7,15 @@ class Xyssb extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "旋翼式水表";
+	    this.name = "旋翼式水表";
 	    this.className = "Xyssb";
 	    this.width = width;
 	    this.height = height;
 	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
-		  this.zIndex = 3;
+		  this.zIndex = 2;
 	    this.linkage = true;
-	    this.isPanel = true;
-	    this.isBind = true;
       this.isLinkPoint = true;
 	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
 	}
@@ -107,7 +105,6 @@ class Xyssb extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

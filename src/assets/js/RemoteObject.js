@@ -12,15 +12,13 @@ var RemoteObject = {
         type:type,
         url:url,
         data:data,
+        beforeSend:function(xhr) {
+          xhr.setRequestHeader("clientId",'web_property_mgt');
+          xhr.setRequestHeader("clientTime", new Date().getTime());
+        },
         dataType:dataType,
         success:function(msg){
-          let result = JSON.parse(msg);
-          if(result.code==200) {
-            back.call(this,result.result);
-          }else {
-            console.log(url+":"+result.message);
-            //window.history.back();
-          }
+          back.call(this, msg);
         },
         complete:function(XMLHttpRequest,status){
           if(status=='timeout'){

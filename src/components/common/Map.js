@@ -7,7 +7,7 @@ class Map extends Spirit {
 
 	constructor(x=0, y=0,width,height) {
         super(x, y);
-	    this.title = "地图";
+	    this.name = "地图";
 	    this.className = "Map";
 	    this.width = width;
 	    this.height = height;
@@ -22,31 +22,44 @@ class Map extends Spirit {
 
 	template(){
 		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg">
-		        <div style="width:${this.width}px;height:${this.height}px;">
+		        <div class="map" style="width:${this.width}px;height:${this.height}px;">
 		           <div style="border: 1px solid #f5f5f5;height: calc(100% - 2px)">
                   <div id="${this.id}_map" style="width: 100%;height: 100%"></div>
                </div>
             </div>		     	        
-		        <div class="images-shade" style="position:absolute;top:0;width:${this.width}px;height:${this.height}px;"></div>
+		        <div class="images-shade" style="position:absolute;top:0;left:0;width: 100%;height: 100%;"></div>
 		        </div>`)
 		return div;
 	}
 
 	arrangement(stage) {
-		let that = this;
 		this.stage = stage;
 		stage.element.append(this.template());
-		that.map = new AMap.Map(this.id+"_map");
+    this.map = new AMap.Map(this.id+"_map");
+    this.refresh();
 	}
 
 	refresh() {
-		this.map.panTo([this.config.lng, this.config.lat]);
-		this.map.setZoom(this.config.zoom);
+	  let that = this;
+    this.map.panTo([this.config.lng, this.config.lat]);
+    this.map.setZoom(this.config.zoom);
+    that.map.on('zoomend',function () {
+      let zoom = that.map.getZoom();
+      let lng = that.map.getCenter().lng;
+      let lat = that.map.getCenter().lat;
+      that.site(lng,lat,zoom)
+    });
+
+    that.map.on('moveend',function () {
+      let zoom = that.map.getZoom();
+      let lng = that.map.getCenter().lng;
+      let lat = that.map.getCenter().lat;
+      that.site(lng,lat,zoom)
+    });
 	}
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			minWidth: this.minWidth,
@@ -59,11 +72,10 @@ class Map extends Spirit {
 	renderer() {
 		let that = this;
 		super.renderer();
-		let html = $(`<div class="bm-tree">${that.title}</div>
-			<div>
+		let html = $(`<div class="bm-tree">地图<div class="all" title="充满画布"><i class="fa fa-all"></i></div></div>
 				<div class="bm-cell no-hover">
 					<div class="bm-cell__title">
-						<input type="text" class="form-control map-s" style="display: none" placeholder="定位"/>
+						<input type="text" class="form-control map-search" placeholder="定位"/>
 					</div>							
 				</div>	
 				<div class="bm-cell no-hover">
@@ -89,36 +101,47 @@ class Map extends Spirit {
 							<span class="bm-kv__value map-zoom">${that.config.zoom}</span>
 						</div>
 					</div>							
-				</div>							                     	                
-			</div>`);
+				</div>`);
 
 		$('#configur_property').append(html);
 
-		if(this.isMove) {
-			$('#configur_property').find('.map-s').show()
-		}else {
-			$('#configur_property').find('.map-s').hide()
-		}
+    $('#configur_property').find('.all').on('click',function () {
+      let width = that.stage.width;
+      let height = that.stage.height;
+      $('.resize-panel').css({left:-2,top:-2,width,height})
+      $('#'+that.stage.property.id).find('.map').css({width,height});
+      that.stage.property.x = 0;
+      that.stage.property.y = 0;
+      that.stage.property.width = width;
+      that.stage.property.height = height;
+    });
 
 		AMap.plugin('AMap.Geocoder',function() {
 			let geocoder = new AMap.Geocoder({});
-
-			$('#configur_property').find('.map-s').on('input propertychange',function () {
+			$('#configur_property').find('.map-search').on('input propertychange',function () {
 				let address = $(this).val();
 				geocoder.getLocation(address,function(status,result) {
 					if(status=='complete'&&result.geocodes.length){
-						that.map.setZoom(that.config.zoom);
-						that.config.lng = result.geocodes[0].location.lng;
-						that.config.lat = result.geocodes[0].location.lat;
-						$('#configur_property').find('.map-lng').text(that.config.lng);
-						$('#configur_property').find('.map-lat').text(that.config.lat);
-						$('#configur_property').find('.map-zoom').text(that.config.zoom);
-						that.map.panTo([that.config.lng, that.config.lat]);
+					  let lng = result.geocodes[0].location.lng;
+					  let lat = result.geocodes[0].location.lat;
+					  let zoom = that.config.zoom;
+						that.map.setZoom(zoom);
+						that.site(lng,lat,zoom)
+						that.map.panTo([lng,lat]);
 					}
 				})
 			})
 		});
 	}
+
+	site(lng,lat,zoom) {
+    $('#configur_property').find('.map-lng').text(lng);
+    $('#configur_property').find('.map-lat').text(lat);
+    $('#configur_property').find('.map-zoom').text(zoom);
+    this.config.lng = lng;
+    this.config.lat = lat;
+    this.config.zoom = zoom;
+  }
 }
 
 export default Map;

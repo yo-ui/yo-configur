@@ -7,7 +7,7 @@ class UpWater extends Spirit {
 
 	constructor(x=10, y=10) {
         super(x, y);
-	    this.title = "水管（上）";
+	    this.name = "水管（上）";
 	    this.className = "UpWater";
 	    this.width = 10;
 	    this.height = 16;
@@ -17,7 +17,7 @@ class UpWater extends Spirit {
 	}
 
 	template(){
-		return `<div id="${this.id}" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex}">
+		return `<div id="${this.id}" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex}">
 		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 					 xml:space="preserve" width="10" height="10">
 					<style type="text/css">
@@ -70,10 +70,9 @@ class UpWater extends Spirit {
 				</svg>
 				</div>`;
 	}
-	
+
 	toJson(){
 		let json = {
-			title: this.title,
 			className: this.className,
 			zIndex: this.zIndex,
 			isRotate: this.isRotate
