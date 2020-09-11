@@ -20,7 +20,7 @@
     <template v-if="activeIndex == 'element'">
       <!-- <ul class="com-box"> -->
       <draggable
-        v-model="comList"
+        v-model="widgetList"
         class="com-list-box"
         v-bind="dragOptions"
         @change="changeEvent"
@@ -29,7 +29,7 @@
         <transition-group type="transition" name="flip-list">
           <li
             :class="{ active: activeComId == item.id }"
-            v-for="item in comList"
+            v-for="item in widgetList"
             @click="selectComEvent(item)"
             :key="item.id"
             class="item"
@@ -93,7 +93,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      widgetList: "canvas/getWidgetList",
+      getWidgetList: "canvas/getWidgetList",
       activeCom: "canvas/getActiveCom" //选中对象
     }),
 
@@ -116,14 +116,17 @@ export default {
     //     this.comList
     //   }
     // },
-    // widgetList: {
-    //   get() {
-    //     return this.getWidgetList;
-    //   },
-    //   set(value) {
-    //     this.setWidgetList(value);
-    //   }
-    // },
+    widgetList: {
+      get() {
+        let { getWidgetList = [] } = this;
+        return bmCommon.clone(getWidgetList).sort((a, b) => {
+          return a.order - b.order;
+        });
+      },
+      set(value) {
+        this.setWidgetList(value);
+      }
+    },
     activeComId() {
       let { activeCom = {} } = this;
       let { id = "" } = activeCom || {};
@@ -166,13 +169,13 @@ export default {
       });
     }
   },
-  watch: {
-    widgetList(newVal, oldVal) {
-      // if (newVal != oldVal) {
-        this.loadComList();
-      // }
-    }
-  }
+  // watch: {
+  //   widgetList(newVal, oldVal) {
+  //     // if (newVal != oldVal) {
+  //       this.loadComList();
+  //     // }
+  //   }
+  // }
 };
 </script>
 

@@ -16,7 +16,7 @@
           <!-- @mousedown.native.stop.prevent="mousedownEvent(item)" -->
           <div class="bg" :style="gridStyle"></div>
           <bm-com
-            :class="{ active: activeComId == item.id }"
+            :class="{ active: activeComId == item.id, locked: !item.dragable }"
             v-for="(item, index) in widgetList"
             :data-type="item.type"
             :data-id="item.id"
@@ -183,7 +183,7 @@ export default {
     },
     gridStyle() {
       let { canvas = {} } = this;
-      let { isGrid = false, gridStyle = {} } = canvas;
+      let { isGrid = false, gridStyle = {} } = canvas || {};
 
       let styles = {};
       if (isGrid) {
@@ -255,7 +255,7 @@ export default {
       $(viewBox).on("mousedown", this.viewBoxMousedownEvent);
       $(viewBox).on("contextmenu", this.viewBoxContextmenuEvent);
       $(document).on("keydown", this.keydownEvent);
-      $(document).on("mousedown", this.keydownEvent);
+      // $(document).on("mousedown", this.keydownEvent);
       this.selectComAction();
     },
     viewBoxContextmenuEvent(e) {
@@ -319,19 +319,19 @@ export default {
       let {
         keyCode = "",
         shiftKey = false,
-        ctrlKey = false,
-        altKey = false
+        ctrlKey = false
+        // altKey = false
       } = e;
       e.stopPropagation();
       // e.preventDefault();
       bmCommon.log("keydow", e);
       let { activeCom } = this;
-      let { type = "", id = "" } = activeCom || {};
+      let { type = "", id = "", dragable = false } = activeCom || {};
       if (type == "canvas" || !id) {
         //如果选中的是画布或未选中组件则直接返回
         return;
       }
-      let shiftDis=10
+      let shiftDis = 10;
       if (keyCode === 37) {
         // 左
         let dis = 1;
@@ -364,6 +364,49 @@ export default {
         }
         activeCom.top += dis;
         // bmCommon.log("下", activeCom);
+      } else if (keyCode == 67) {
+        // C
+        if (ctrlKey) {
+          this.copyEvent();
+        }
+      } else if (keyCode == 86) {
+        // V
+        if (ctrlKey) {
+          this.pasteEvent();
+        }
+      } else if (keyCode == 88) {
+        // X
+        if (ctrlKey) {
+          this.cutEvent();
+        }
+      } else if (keyCode == 219) {
+        // ctrl+[
+        // ctrl+shift+[
+        if (ctrlKey && shiftKey) {
+          this.moveTopEvent();
+        } else {
+          if (ctrlKey) {
+            this.moveUpEvent();
+          }
+        }
+      } else if (keyCode == 221) {
+        // ctrl+]
+        // ctrl+shift+]
+        if (ctrlKey && shiftKey) {
+          this.moveBottomEvent();
+        } else {
+          if (ctrlKey) {
+            this.moveDownEvent();
+          }
+        }
+      } else if (keyCode == 76) {
+        // ctrl+shift+L
+        if (ctrlKey && shiftKey) {
+          this.lockEvent(!dragable);
+        }
+      } else if (keyCode == 46) {
+        // Delete
+        this.deleteEvent();
       }
     },
     //剪切
@@ -387,9 +430,13 @@ export default {
       let { copyCom = {}, widgetList = [] } = this;
       let id = bmCommon.uuid();
       // let obj = widgetList[widgetList.length - 1] || {};
-      let { width = 0, height = 0 } = copyCom || {};
-      let pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
-      let { x: left = "", y: top = "" } = pos || {};
+      let { width = 0, height = 0, left = 0, top = 0 } = copyCom || {};
+      if (e) {
+        let pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
+        let { x = "", y = "" } = pos || {};
+        left = x - width / 2;
+        top = y - height / 2;
+      }
       let orders = widgetList.map(item => item.order);
       let order = Math.max(...orders);
       order += 1;
@@ -397,11 +444,12 @@ export default {
         ...copyCom,
         id,
         order,
-        left: left - width / 2,
-        top: top - height / 2
+        left: left,
+        top: top
       };
       widgetList.push(item);
       this.setActiveCom(item);
+      this.showContextMenuStatus = false;
     },
     // 删除
     deleteEvent() {
