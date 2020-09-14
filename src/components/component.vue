@@ -10,55 +10,55 @@
     </div>
     <i
       class="operate-btn el-icon-refresh-right"
-      v-if="info.rotateable && info.dragable"
+      v-if="!moving && info.rotateable && info.dragable"
       @mousedown.stop="rotateClickEvent"
       title="旋转"
     ></i>
     <i
       class="operate-btn el-icon-top-left"
-      v-if="info.scaleable && info.dragable"
+      v-if="!moving && info.scaleable && info.dragable"
       @mousedown.stop="leftTopClickEvent"
       title="左上角"
     ></i>
     <i
       class="operate-btn el-icon-top"
-      v-if="info.scaleable && info.dragable"
+      v-if="!moving && info.scaleable && info.dragable"
       @mousedown.stop="topClickEvent"
       title="上"
     ></i>
     <i
       class="operate-btn el-icon-top-right"
-      v-if="info.scaleable && info.dragable"
+      v-if="!moving && info.scaleable && info.dragable"
       @mousedown.stop="rightTopClickEvent"
       title="右上角"
     ></i>
     <i
       class="operate-btn el-icon-back"
-      v-if="info.scaleable && info.dragable"
+      v-if="!moving && info.scaleable && info.dragable"
       @mousedown.stop="leftClickEvent"
       title="左"
     ></i>
     <i
       class="operate-btn el-icon-right"
-      v-if="info.scaleable && info.dragable"
+      v-if="!moving && info.scaleable && info.dragable"
       @mousedown.stop="rightClickEvent"
       title="右"
     ></i>
     <i
       class="operate-btn el-icon-bottom-left"
-      v-if="info.scaleable && info.dragable"
+      v-if="!moving && info.scaleable && info.dragable"
       @mousedown.stop="leftBottomClickEvent"
       title="左下角"
     ></i>
     <i
       class="operate-btn el-icon-bottom"
-      v-if="info.scaleable && info.dragable"
+      v-if="!moving && info.scaleable && info.dragable"
       @mousedown.stop="bottomClickEvent"
       title="下"
     ></i>
     <i
       class="operate-btn el-icon-bottom-right"
-      v-if="info.scaleable && info.dragable"
+      v-if="!moving && info.scaleable && info.dragable"
       @mousedown.stop="rightBottomClickEvent"
       title="右下角"
     ></i>
@@ -112,7 +112,9 @@ export default {
     ...widgets
   },
   computed: {
-    ...mapGetters(),
+    ...mapGetters({
+      moving: "canvas/getMoving"
+    }),
     boxStyle() {
       let { info = {} } = this;
       let { left = "", top = "", order: zIndex = "", rotate = "0" } =

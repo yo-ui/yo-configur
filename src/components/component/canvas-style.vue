@@ -131,13 +131,13 @@
 <script>
 import bmCommon from "@/common/common";
 import COMPONENTLIBRARY from "@/common/conf/library";
-const ASSIST = {};
+const ASSISTMAP = {};
 COMPONENTLIBRARY.forEach(item => {
   let { code = "", comList = [] } = item || {};
   if (code == "assist") {
     comList.forEach(_item => {
       let { id = "" } = _item || {};
-      ASSIST[id] = _item;
+      ASSISTMAP[id] = _item;
     });
   }
 });
@@ -289,9 +289,13 @@ export default {
     mousedownCanvasPaintEvent(e) {
       e.stopPropagation();
       e.preventDefault();
-      let { wigetList = [], linkPoint = {} } = this;
+      let { wigetList = [], linkPoint } = this;
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
+      if (!linkPoint) {
+        this.$$msgError("请先创建连接点");
+        return;
+      }
       let { left = 0, top = 0 } = linkPoint || {};
       // let { left=0, top=0 } = canvas || {};
       this.initMove({
@@ -300,12 +304,18 @@ export default {
         // originX: left,
         // originY: top
       });
-      let angle = bmCommon.getAngles({
-        point1: { x: left, y: top },
-        point2: { x, y }
-      });
-      bmCommon.log("angle=", angle);
-      wigetList.push(ASSIST);
+      // let angle = bmCommon.getAngles({
+      //   point1: { x: left, y: top },
+      //   point2: { x, y }
+      // });
+      // bmCommon.log("angle=", angle);
+      let dis = { x: Math.abs(x - left), y: Math.abs(y - top) };
+      let assist = "water_vertical";
+      if (dis.x > dis.y) {
+        assist = "water_horizontal";
+      }
+      let item = ASSISTMAP[assist];
+      wigetList.push(item);
       $(document).on("mousemove", this.mousemoveCanvasPaintEvent);
       $(document).on("mouseup", this.mouseupCanvasPaintEvent);
     },

@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-header-com">
+  <div class="bm-nav-com">
     <div class="left">
       <el-button>
         <i class="el-icon-refresh-left" :title="$lang('撤销')"></i>
@@ -158,9 +158,9 @@
         {{ $lang(rightMenuStatus ? "收起右侧" : "展开右侧") }}
       </el-button>
     </div>
-    <div class="title">
+    <!-- <div class="title">
       {{ canvas.name }}
-    </div>
+    </div> -->
     <div class="right">
       <el-button>
         <i class="el-icon-copy-document" @click="copyEvent"></i>
@@ -296,5 +296,5 @@ export default {
 </script>
 
 <style lang="less">
-@import (less) "../assets/less/components/header.less";
+@import (less) "../assets/less/components/nav.less";
 </style>

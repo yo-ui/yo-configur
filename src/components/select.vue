@@ -116,14 +116,26 @@ export default {
       // bmCommon.log(item)
       let { selectBox } = this;
       let { x = 0, y = 0 } = item || {};
-      let { left: startX = 0, top: startY = 0 } = selectBox || {};
+      let { left: startX = 0, top: startY = 0} = selectBox || {};
       let dx = x - startX;
       let dy = y - startY;
       if (dx > 5 || dy > 5) {
         this.showBoxStatus = true;
       }
-      selectBox.width = dx;
-      selectBox.height = dy;
+      if (dx < 0) {
+        selectBox.left = x;
+        selectBox.width += Math.abs(dx);
+      }else{
+        selectBox.width = Math.abs(dx);
+      }
+      if (dy < 0) {
+        selectBox.top = y;
+        selectBox.height += Math.abs(dy);
+      }else{
+        selectBox.height = Math.abs(dy);
+      }
+      // selectBox.width = Math.abs(dx);
+      // selectBox.height = Math.abs(dy);
     }
   }
 };

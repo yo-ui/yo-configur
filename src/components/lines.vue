@@ -225,6 +225,7 @@ export default {
     // position: absolute;
     .posa;
     .w(1);
+    .borl(2px dashed @white);
     .h(100%);
     top: 0;
     // width: 1px;
@@ -232,9 +233,9 @@ export default {
     // top: -50px;
     // background: #18ffff;
     opacity: 0;
-    .bc(#00f);
+    .borc(#00f);
     &.active {
-      .bc(@red);
+      .borc(@red);
       opacity: 1;
     }
   }
@@ -243,15 +244,16 @@ export default {
     .posa;
     .w(100%);
     left: 0;
+    .bort(2px dashed @white);
     opacity: 0;
     //   position: absolute;
     //   height: 0.5px;
     // width: 1000%;
     // left: -500%;
     // background: #18ffff;
-    .bc(#00f);
+    .borc(#00f);
     &.active {
-      .bc(@red);
+      .borc(@red);
       opacity: 1;
     }
   }
