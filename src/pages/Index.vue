@@ -1,8 +1,9 @@
 <template>
   <div class="bm-index-page">
     <bm-header ref="bmHeader"></bm-header>
+    <bm-nav ref="bmNav"></bm-nav>
     <div class="content-box">
-      <bm-widget-list ref="bmWidgetList"></bm-widget-list>
+      <bm-widget-list ref="bmWidgetList" v-if="leftMenuStatus"></bm-widget-list>
       <div class="view-box" ref="viewBox">
         <!-- {{activeComId}} -->
         <!-- :active="activeComId == item.id" -->
@@ -40,7 +41,7 @@
         <bm-lines ref="bmLines"></bm-lines>
         <bm-select ref="bmSelect"></bm-select>
       </div>
-      <bm-info ref="bmInfo"></bm-info>
+      <bm-info ref="bmInfo" v-if="rightMenuStatus"></bm-info>
     </div>
     <ul
       class="context-menu"
@@ -120,6 +121,7 @@ import bmCommon from "@/common/common";
 // import { Constants } from "@/common/env";
 import bmCom from "@/components/component";
 import bmHeader from "@/components/header";
+import bmNav from "@/components/nav";
 import bmFooter from "@/components/footer";
 import mixins from "@/mixins";
 // eslint-disable-next-line no-undef
@@ -141,6 +143,7 @@ export default {
   mixins: [mixins],
   components: {
     bmHeader,
+    bmNav,
     // : () =>
     //   import(/* webpackChunkName: "iot-header-com" */ "@/components/header"),
     bmLines: () =>
@@ -166,6 +169,8 @@ export default {
     ...mapGetters({
       widgetList: "canvas/getWidgetList", //组件列表
       getZoom: "canvas/getZoom", //放大缩小
+      leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
+      rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
       canvas: "canvas/getCanvas", //画布属性
       selectBox: "canvas/getSelectBox", //选取框
       activeCom: "canvas/getActiveCom" //选中对象
@@ -286,6 +291,7 @@ export default {
       // setActiveComId: "canvas/setActiveComId",
       setActiveCom: "canvas/setActiveCom",
       initMove: "canvas/initMove",
+      setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
       moving: "canvas/moving",
       stopMove: "canvas/stopMove"
     }),

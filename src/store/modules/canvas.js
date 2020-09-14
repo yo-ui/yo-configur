@@ -10,13 +10,17 @@ export default {
     // financePricingStrategiesCacheMap: null,
     // 画布缩放值
     zoom: 1,
-    selectBox:{
-      moving:false,//是否显示
+    selectBox: {
+      moving: false, //是否显示
       left: 0,
       top: 0,
       width: 0,
       height: 0
     },
+    leftMenuStatus: true, //左侧菜单展开状态
+    rightMenuStatus: true, //右侧菜单展开状态
+    //连接点信息
+    linkPoint: {},
     canvas: {
       type: "canvas", //画布
       name: "组态",
@@ -53,6 +57,15 @@ export default {
     getCanvas(state) {
       return state.canvas;
     },
+    getLeftMenuStatus(state) {
+      return state.leftMenuStatus;
+    },
+    getRightMenuStatus(state) {
+      return state.rightMenuStatus;
+    },
+    getLinkPoint(state) {
+      return state.linkPoint;
+    },
     getSelectBox(state) {
       return state.selectBox;
     },
@@ -75,6 +88,15 @@ export default {
   mutations: {
     setCanvas(state, item) {
       state.canvas = item;
+    },
+    setLinkPoint(state, item) {
+      state.linkPoint = item;
+    },
+    setLeftMenuStatus(state, item) {
+      state.leftMenuStatus = item;
+    },
+    setRightMenuStatus(state, item) {
+      state.rightMenuStatus = item;
     },
     setSelectBox(state, item) {
       state.selectBox = item;

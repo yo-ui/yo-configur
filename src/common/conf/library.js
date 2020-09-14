@@ -1,4 +1,4 @@
-let baseData={
+let baseData = {
   backgroundImage: "",
   backgroundSize: "100% 100%",
   backgroundRepeat: "repeat",
@@ -24,7 +24,7 @@ let baseData={
   rotateable: true, //是否可旋转操作
   editable: false, //内容是否可编辑
   dragable: true //是否可拖动
-}
+};
 export default [
   {
     name: "基本",
@@ -1311,7 +1311,7 @@ export default [
           opacity: 100,
           left: 0,
           width: 20,
-          height:30,
+          height: 30,
           rotate: 0,
           top: 0,
           equalScaleable: true, //是否等比例缩放
@@ -1872,16 +1872,17 @@ export default [
           editable: false, //内容是否可编辑
           dragable: true //是否可拖动
         }
-      },
+      }
     ]
   },
   {
     code: "assist",
     icon: "el-icon-files",
     name: "辅助",
-    comList:[
+    comList: [
       {
         name: "连接点",
+        alias: "linkPoint",
         code: "assistCommon",
         icon: "/static/img/configur/link-point.png",
         data: {
@@ -1907,6 +1908,7 @@ export default [
       {
         name: "水管（上）",
         code: "assistCommon",
+        alias: "water_top",
         icon: "/static/img/configur/h-top.png",
         data: {
           backgroundImage: "/static/img/svg/shuiguan-top.svg",
@@ -1931,6 +1933,7 @@ export default [
       {
         name: "水管（下）",
         code: "assistCommon",
+        alias: "water_bottom",
         icon: "/static/img/configur/h-bottom.png",
         data: {
           backgroundImage: "/static/img/svg/shuiguan-bottom.svg",
@@ -1955,6 +1958,7 @@ export default [
       {
         name: "水管（左）",
         code: "assistCommon",
+        alias: "water_left",
         icon: "/static/img/configur/v-left.png",
         data: {
           backgroundImage: "/static/img/svg/shuiguan-left.svg",
@@ -1979,6 +1983,7 @@ export default [
       {
         name: "水管（右）",
         code: "assistCommon",
+        alias: "water_right",
         icon: "/static/img/configur/v-right.png",
         data: {
           backgroundImage: "/static/img/svg/shuiguan-right.svg",
@@ -2003,6 +2008,7 @@ export default [
       {
         name: "水管（左上）",
         code: "assistCommon",
+        alias: "water_lefttop",
         icon: "/static/img/configur/t-1.png",
         data: {
           backgroundImage: "/static/img/svg/shuiguan-topleft.svg",
@@ -2026,6 +2032,7 @@ export default [
       },
       {
         name: "水管（左下）",
+        alias: "water_leftbottom",
         code: "assistCommon",
         icon: "/static/img/configur/t-4.png",
         data: {
@@ -2050,6 +2057,7 @@ export default [
       },
       {
         name: "水管（右上）",
+        alias: "water_righttop",
         code: "assistCommon",
         icon: "/static/img/configur/t-2.png",
         data: {
@@ -2074,6 +2082,7 @@ export default [
       },
       {
         name: "水管（右下）",
+        alias: "water_rightbottom",
         code: "assistCommon",
         icon: "/static/img/configur/t-3.png",
         data: {
@@ -2098,6 +2107,7 @@ export default [
       },
       {
         name: "水管（水平）",
+        alias: "water_horizontal",
         code: "assistCommon",
         icon: "/static/img/configur/h.png",
         data: {
@@ -2123,6 +2133,7 @@ export default [
       {
         name: "水管（垂直）",
         code: "assistCommon",
+        alias: "water_vertical",
         icon: "/static/img/configur/v.png",
         data: {
           backgroundImage: "/static/img/svg/shuiguan-v.svg",
@@ -2143,7 +2154,7 @@ export default [
           editable: false, //内容是否可编辑
           dragable: true //是否可拖动
         }
-      },
+      }
     ]
   }
 ];

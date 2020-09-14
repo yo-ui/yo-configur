@@ -257,10 +257,10 @@ export default {
   data() {
     return {
       borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
-      // flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      // displayFormList: Object.freeze(Constants.DISPLAYFORMLIST),
+      flipModeList: Object.freeze(Constants.FLIPMODELIST),
+      displayFormList: Object.freeze(Constants.DISPLAYFORMLIST),
       // fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
-      // tileModeList: Object.freeze(Constants.TILEMODELIST)
+      tileModeList: Object.freeze(Constants.TILEMODELIST)
     };
   },
   props: {

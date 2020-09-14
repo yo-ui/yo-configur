@@ -32,19 +32,21 @@
     </p>
     <p>
       <span class="label"> {{ $lang("页面高度") }}:</span
-      ><el-input
+      ><el-input-number
         clearable
         v-model.number="info.height"
         :placeholder="$lang('请输入页面高度')"
-      ></el-input>
+      ></el-input-number
+      >px
     </p>
     <p>
       <span class="label"> {{ $lang("页面宽度") }}:</span
-      ><el-input
+      ><el-input-number
         v-model.number="info.width"
         clearable
         :placeholder="$lang('请输入页面宽度')"
-      ></el-input>
+      ></el-input-number
+      >px
     </p>
     <p>
       <span class="label">{{ $lang("页面背景色") }}:</span>
@@ -84,20 +86,20 @@
       <p v-if="info.gridStyle.type == 6">
         <span class="col">
           <span class="label"> {{ $lang("网格宽") }}:</span
-          ><el-input
+          ><el-input-number
             v-model.number="info.gridStyle.width"
             clearable
             :placeholder="$lang('请输入网格宽')"
-          ></el-input
+          ></el-input-number
           >px
         </span>
         <span class="col">
           <span class="label">{{ $lang("网格高") }}: </span
-          ><el-input
+          ><el-input-number
             v-model.number="info.gridStyle.height"
             clearable
             :placeholder="$lang('请输入网格高')"
-          ></el-input
+          ></el-input-number
           >px
         </span>
       </p>
@@ -128,6 +130,17 @@
 
 <script>
 import bmCommon from "@/common/common";
+import COMPONENTLIBRARY from "@/common/conf/library";
+const ASSIST = {};
+COMPONENTLIBRARY.forEach(item => {
+  let { code = "", comList = [] } = item || {};
+  if (code == "assist") {
+    comList.forEach(_item => {
+      let { id = "" } = _item || {};
+      ASSIST[id] = _item;
+    });
+  }
+});
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -164,7 +177,9 @@ export default {
   computed: {
     ...mapGetters({
       zoom: "canvas/getZoom", //放大缩小
-      canvas: "canvas/getCanvas" //放大缩小
+      wigetList: "canvas/getWigetList", //组件列表
+      canvas: "canvas/getCanvas", //画布
+      linkPoint: "canvas/getLinkPoint" //画布
     }),
     comStyle() {
       let { info = {} } = this;
@@ -173,8 +188,8 @@ export default {
       return {
         width: width + "px",
         height: height + "px",
-        backgroundColor: backgroundColor,
-        color: color
+        backgroundColor,
+        color
         // backgroundImage: 'url(' + val.backPic + ')',
         // color: val.color
       };
@@ -197,9 +212,11 @@ export default {
       }
       canvas.action = item;
       if (item == "move") {
+        this.unCanvasPaintEvent();
         this.canvasMoveEvent();
       } else if (item == "paint") {
         this.unCanvasMoveEvent();
+        this.canvasPaintEvent();
       } else {
         this.unCanvasMoveEvent();
       }
@@ -230,8 +247,14 @@ export default {
     unCanvasMoveEvent() {
       $(document).off("mousedown", this.mousedownEvent);
     },
+    unCanvasPaintEvent() {
+      $(document).off("mousedown", this.mousedownCanvasPaintEvent);
+    },
     canvasMoveEvent() {
       $(document).on("mousedown", this.mousedownEvent);
+    },
+    canvasPaintEvent() {
+      $(document).on("mousedown", this.mousedownCanvasPaintEvent);
     },
     mousedownEvent(e) {
       e.stopPropagation();
@@ -260,6 +283,42 @@ export default {
     mouseupEvent(e) {
       $(document).off("mousemove", this.mousemoveEvent);
       $(document).off("mouseup", this.mouseupEvent);
+      this.stopMove();
+    },
+
+    mousedownCanvasPaintEvent(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      let { wigetList = [], linkPoint = {} } = this;
+      let pos = bmCommon.getMousePosition(e);
+      let { x = "", y = "" } = pos || {};
+      let { left = 0, top = 0 } = linkPoint || {};
+      // let { left=0, top=0 } = canvas || {};
+      this.initMove({
+        startX: x,
+        startY: y
+        // originX: left,
+        // originY: top
+      });
+      let angle = bmCommon.getAngles({
+        point1: { x: left, y: top },
+        point2: { x, y }
+      });
+      bmCommon.log("angle=", angle);
+      wigetList.push(ASSIST);
+      $(document).on("mousemove", this.mousemoveCanvasPaintEvent);
+      $(document).on("mouseup", this.mouseupCanvasPaintEvent);
+    },
+    mousemoveCanvasPaintEvent(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      let pos = bmCommon.getMousePosition(e);
+      let { x = "", y = "" } = pos || {};
+      this.canvasMoving({ x, y });
+    },
+    mouseupCanvasPaintEvent(e) {
+      $(document).off("mousemove", this.mousemoveCanvasPaintEvent);
+      $(document).off("mouseup", this.mouseupCanvasPaintEvent);
       this.stopMove();
     }
   }

@@ -62,7 +62,8 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setWidgetList: "canvas/setWidgetList" //设置组件列表
+      setWidgetList: "canvas/setWidgetList", //设置组件列表
+      setLinkPoint: "canvas/setLinkPoint" //设置连接点信息
     }),
     ...mapActions(),
     initEvent() {
@@ -76,9 +77,12 @@ export default {
       if (item) {
         item = JSON.parse(item);
       }
-      let { data = {}, name = "", code: type = "" } = item || {};
+      let { data = {}, name = "", code: type = "", alias = "" } = item || {};
       // bmCommon.log("开始拖动元素", target, data);
-      dataTransfer.setData("data", JSON.stringify({ ...data, type, name }));
+      dataTransfer.setData(
+        "data",
+        JSON.stringify({ ...data, type, name, alias })
+      );
       this.dragenterEvent(e);
     },
     dragenterEvent(e) {
@@ -117,7 +121,7 @@ export default {
         let pos = bmCommon.getMousePosition(e);
         let { left = 0, top = 0 } = offset || {};
         let { x = 0, y = 0 } = pos || {};
-        let { width = 0, height = 0 } = data || {};
+        let { width = 0, height = 0, alias = "" } = data || {};
         // bmCommon.log("释放当前元素",data, target, width, height, left, top, x, y);
         left = x - left - width / 2;
         top = y - top - height / 2;
@@ -128,31 +132,46 @@ export default {
         } else {
           order = 1;
         }
-        widgetList.push({
+        let item = {
           ...data,
           order,
           id,
           left,
           top
-        });
+        };
+        if (alias == "linkPoint") {
+          this.setLinkPoint(item);
+        }
+        widgetList.push(item);
         // this.setWidgetList(widgetList);
       }
       this.dragleaveEvent(e);
     },
     clickEvent(item) {
       let { widgetList = [] } = this;
-      let { data = {}, name = "", code: type = "", left = 0, top = 0 } =
-        item || {};
+      let {
+        data = {},
+        name = "",
+        code: type = "",
+        left = 0,
+        top = 0,
+        alias = ""
+      } = item || {};
       let id = bmCommon.uuid();
-      widgetList.push({
+      let _item = {
         ...data,
         type,
         name,
         order: widgetList.length + 1,
         id,
+        alias,
         left,
         top
-      });
+      };
+      if (alias == "linkPoint") {
+        this.setLinkPoint(item);
+      }
+      widgetList.push(_item);
     }
   }
 };

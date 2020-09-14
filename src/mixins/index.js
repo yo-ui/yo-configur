@@ -50,11 +50,13 @@ export default {
     },
 
     mouseupEvent() {
+      let { activeCom = {} } = this;
       // document.removeEventListener('mousemove', this.mousemoveEvent, true)
       $(document).off("mousemove", this.mousemoveEvent);
       $(document).off("mouseup", this.mouseupEvent);
       // document.removeEventListener('mouseup', this.mouseupEvent, true)
       // this.$vpd.commit('stopmove')
+      this.setLinkPoint(activeCom);
       this.stopMove();
     }
   }

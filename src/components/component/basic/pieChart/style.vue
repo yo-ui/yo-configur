@@ -135,7 +135,7 @@
         <span class="label"> {{ $lang("翻转方式") }}:</span>
         <el-select v-model="info.scale" :placeholder="$lang('请选择翻转方式')">
           <el-option
-            v-for="item in flipModeList"
+            <!-- v-for="item in flipModeList" -->
             :key="item.code"
             :label="$lang(item.name)"
             :value="item.code"
@@ -266,11 +266,11 @@ export default {
   name: "displayStyleCom",
   data() {
     return {
-      // borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
-      // flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      // displayFormList: Object.freeze(Constants.DISPLAYFORMLIST),
-      fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
-      // tileModeList: Object.freeze(Constants.TILEMODELIST)
+      borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
+      flipModeList: Object.freeze(Constants.FLIPMODELIST),
+      displayFormList: Object.freeze(Constants.DISPLAYFORMLIST),
+      // fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
+      tileModeList: Object.freeze(Constants.TILEMODELIST)
     };
   },
   props: {
@@ -282,10 +282,10 @@ export default {
     }
   },
   components: {
-    // bmUpload: () =>
-    //   import(
-    //     /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
-    //   )
+    bmUpload: () =>
+      import(
+        /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
+      )
   },
   computed: {
     ...mapGetters()
@@ -293,10 +293,10 @@ export default {
   methods: {
     ...mapMutations({}),
     ...mapActions({}),
-    // successCallback(url) {
-    //   let { info = {} } = this;
-    //   info.backgroundImage = url;
-    // },
+    successCallback(url) {
+      let { info = {} } = this;
+      info.backgroundImage = url;
+    },
     // setFontWeight() {
     //   let { info = {} } = this;
     //   let { fontWeight = "" } = info || {};

@@ -1,5 +1,5 @@
 <template>
-  <div v-show="selectBox.moving" class="bm-select-com" :style="comStyle">
+  <div v-show="showBoxStatus" class="bm-select-com" :style="comStyle">
     <!-- {{ $store.state.canvas.moving }} -->
     <!-- {{selectBox}} -->
   </div>
@@ -15,6 +15,7 @@ export default {
   name: "bmSelectCom",
   data() {
     return {
+      showBoxStatus: false
       // moving: false
       // selectBox: {
       //   left: 0,
@@ -60,12 +61,17 @@ export default {
       $(".view-box").on("mousedown", this.mousedownEvent);
     },
     mousedownEvent(e) {
-      let { selectBox } = this;
+      let { selectBox = {}, canvas = {} } = this;
       let { target } = e;
+      let { action = "" } = canvas || {};
       let $parent = $(target).parents(".bm-component-com");
       let type = $(target).attr("data-type");
       if (!type) {
         type = $parent.attr("data-type");
+      }
+      this.showBoxStatus = false;
+      if (action != "select") {
+        return;
       }
       if (type) {
         selectBox.left = 0;
@@ -74,13 +80,13 @@ export default {
         selectBox.height = 0;
         return;
       }
-      selectBox.moving = true;
       let pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
       let { x = "", y = "" } = pos || {};
       selectBox.left = x;
       selectBox.top = y;
       selectBox.width = 0;
       selectBox.height = 0;
+      selectBox.moving = true;
       // bmCommon.log(condition)
       $(document).on("mousemove", this.mousemoveEvent);
       $(document).on("mouseup", this.mouseupEvent);
@@ -88,6 +94,12 @@ export default {
     mousemoveEvent(e) {
       e.stopPropagation();
       e.preventDefault();
+      let { selectBox = {} } = this;
+      let { moving } = selectBox || {};
+      if (!moving) {
+        this.showBoxStatus = false;
+        return;
+      }
       let pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
       let { x = 0, y = 0 } = pos || {};
       this.canvasSelect({ x, y });
@@ -96,6 +108,7 @@ export default {
       let { selectBox } = this;
       // bmCommon.log("鼠标松开");
       selectBox.moving = false;
+      this.showBoxStatus = false;
       $(document).off("mousemove", this.mousemoveEvent);
       $(document).off("mouseup", this.mouseupEvent);
     },
@@ -106,6 +119,9 @@ export default {
       let { left: startX = 0, top: startY = 0 } = selectBox || {};
       let dx = x - startX;
       let dy = y - startY;
+      if (dx > 5 || dy > 5) {
+        this.showBoxStatus = true;
+      }
       selectBox.width = dx;
       selectBox.height = dy;
     }
