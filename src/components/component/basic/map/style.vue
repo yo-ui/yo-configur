@@ -91,15 +91,15 @@
       <span class="label"> {{ $lang("是否可移动") }}:</span
       ><el-checkbox v-model="info.dragable"></el-checkbox>
     </p>
-    <p>
+    <!-- <p>
       <span class="label"> {{ $lang("背景图片") }}:</span>
       <bm-upload ref="bmUpload" @success="successCallback">
         <el-button type="primary">
           {{ $lang(info.backgroundImage ? "替换图片" : "选择图片") }}</el-button
         >
       </bm-upload>
-    </p>
-    <template v-if="info.backgroundImage">
+    </p> -->
+    <!-- <template v-if="info.backgroundImage">
       <p>
         <span class="label"> {{ $lang("平铺方式") }}:</span>
         <el-select
@@ -130,7 +130,7 @@
           </el-option>
         </el-select>
       </p>
-    </template>
+    </template> -->
       <p>
         <span class="label"> {{ $lang("翻转方式") }}:</span>
         <el-select v-model="info.scale" :placeholder="$lang('请选择翻转方式')">
@@ -283,10 +283,10 @@ export default {
   methods: {
     ...mapMutations({}),
     ...mapActions({}),
-    successCallback(url) {
-      let { info = {} } = this;
-      info.backgroundImage = url;
-    },
+    // successCallback(url) {
+    //   let { info = {} } = this;
+    //   info.backgroundImage = url;
+    // },
     // setFontWeight() {
     //   let { info = {} } = this;
     //   let { fontWeight = "" } = info || {};

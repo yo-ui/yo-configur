@@ -2123,7 +2123,7 @@ export default [
           height: 30,
           rotate: 0,
           top: 0,
-          equalScaleable: true, //是否等比例缩放
+          equalScaleable: false, //是否等比例缩放
           scaleable: true, //是否可缩放操作
           rotateable: true, //是否可旋转操作
           editable: false, //内容是否可编辑
@@ -2148,7 +2148,7 @@ export default [
           height: 150,
           rotate: 0,
           top: 0,
-          equalScaleable: true, //是否等比例缩放
+          equalScaleable: false, //是否等比例缩放
           scaleable: true, //是否可缩放操作
           rotateable: true, //是否可旋转操作
           editable: false, //内容是否可编辑

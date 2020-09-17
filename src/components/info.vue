@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-info-com">
+  <div class="bm-info-com" @mousedown.stop>
     <el-tabs v-model="activeIndex" type="card">
       <el-tab-pane
         v-for="item in tabList"

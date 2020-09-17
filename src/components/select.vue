@@ -1,7 +1,7 @@
 <template>
   <div v-show="showBoxStatus" class="bm-select-com" :style="comStyle">
     <!-- {{ $store.state.canvas.moving }} -->
-    <!-- {{selectBox}} -->
+    <!-- {{ selectBox }} -->
   </div>
 </template>
 
@@ -58,7 +58,7 @@ export default {
     }),
     ...mapActions(),
     init() {
-      $(".view-box").on("mousedown", this.mousedownEvent);
+      $(".content-box").on("mousedown", this.mousedownEvent);
     },
     mousedownEvent(e) {
       let { selectBox = {}, canvas = {} } = this;
@@ -69,6 +69,7 @@ export default {
       if (!type) {
         type = $parent.attr("data-type");
       }
+      // bmCommon.log(e.clientX, e.clientY, x, y, e.target);
       this.showBoxStatus = false;
       if (action != "select") {
         return;
@@ -80,14 +81,17 @@ export default {
         selectBox.height = 0;
         return;
       }
-      let pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
+      // let pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
+      let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
       selectBox.left = x;
       selectBox.top = y;
+      selectBox.originX = x;
+      selectBox.originY = y;
       selectBox.width = 0;
       selectBox.height = 0;
       selectBox.moving = true;
-      // bmCommon.log(condition)
+      // bmCommon.log(e.clientX, e.clientY, x, y);
       $(document).on("mousemove", this.mousemoveEvent);
       $(document).on("mouseup", this.mouseupEvent);
     },
@@ -95,14 +99,15 @@ export default {
       e.stopPropagation();
       e.preventDefault();
       let { selectBox = {} } = this;
-      let { moving } = selectBox || {};
+      let { moving, originX = 0, originY = 0 } = selectBox || {};
       if (!moving) {
         this.showBoxStatus = false;
         return;
       }
-      let pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
+      // let pos = bmCommon.getMousePosition(e, { x: 310, y: 150 });
+      let pos = bmCommon.getMousePosition(e);
       let { x = 0, y = 0 } = pos || {};
-      this.canvasSelect({ x, y });
+      this.canvasSelect({ x, y, originX, originY });
     },
     mouseupEvent(e) {
       let { selectBox } = this;
@@ -113,27 +118,31 @@ export default {
       $(document).off("mouseup", this.mouseupEvent);
     },
     canvasSelect(item = {}) {
-      // bmCommon.log(item)
       let { selectBox } = this;
-      let { x = 0, y = 0 } = item || {};
-      let { left: startX = 0, top: startY = 0} = selectBox || {};
+      let { x = 0, y = 0, originX: startX = 0, originY: startY = 0 } =
+        item || {};
+
+      // bmCommon.log("item=", item,x,y);
+      // let { } = selectBox || {};
       let dx = x - startX;
       let dy = y - startY;
-      if (dx > 5 || dy > 5) {
-        this.showBoxStatus = true;
-      }
+
+      // if (dx > 5 || dy > 5) {
+      this.showBoxStatus = true;
+      // }
       if (dx < 0) {
         selectBox.left = x;
-        selectBox.width += Math.abs(dx);
-      }else{
+        selectBox.width = Math.abs(dx);
+      } else {
         selectBox.width = Math.abs(dx);
       }
       if (dy < 0) {
         selectBox.top = y;
-        selectBox.height += Math.abs(dy);
-      }else{
+        selectBox.height = Math.abs(dy);
+      } else {
         selectBox.height = Math.abs(dy);
       }
+      // bmCommon.log(dx, dy, startX, startY, x, y, selectBox);
       // selectBox.width = Math.abs(dx);
       // selectBox.height = Math.abs(dy);
     }

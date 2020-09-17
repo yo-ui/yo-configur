@@ -97,7 +97,7 @@
             >
           </el-dropdown-menu>
         </el-dropdown>
-        <el-dropdown trigger="click">
+        <el-dropdown trigger="click" @command="orderCommandEvent">
           <span>
             <el-button>
               <i class="el-icon-files"></i>
@@ -105,16 +105,16 @@
             ><i class="el-icon-caret-bottom"></i
           ></span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item
+            <el-dropdown-item command="top"
               ><i class="el-icon-files"></i>置顶</el-dropdown-item
             >
-            <el-dropdown-item
+            <el-dropdown-item command="bottom"
               ><i class="el-icon-files"></i>置底</el-dropdown-item
             >
-            <el-dropdown-item
+            <el-dropdown-item command="up"
               ><i class="el-icon-files"></i>前移</el-dropdown-item
             >
-            <el-dropdown-item
+            <el-dropdown-item command="down"
               ><i class="el-icon-files"></i>后移</el-dropdown-item
             >
           </el-dropdown-menu>
@@ -162,20 +162,20 @@
       {{ canvas.name }}
     </div> -->
     <div class="right">
-      <el-button>
-        <i class="el-icon-copy-document" @click="copyEvent"></i>
+      <el-button @click="copyEvent">
+        <i class="el-icon-copy-document"></i>
         复制
       </el-button>
-      <el-button>
-        <i class="el-icon-delete" @click="deleteEvent"></i>
+      <el-button @click="deleteEvent">
+        <i class="el-icon-delete"></i>
         删除
       </el-button>
-      <el-button>
-        <i class="el-icon-full-screen" @click="fullScreenEvent"></i>
+      <el-button @click="fullScreenEvent">
+        <i class="el-icon-full-screen"></i>
         全屏
       </el-button>
-      <el-button>
-        <i class="el-icon-camera" @click="runEvent"></i>
+      <el-button @click="runEvent">
+        <i class="el-icon-camera"></i>
         运行
       </el-button>
     </div>
@@ -216,6 +216,11 @@ export default {
     },
     copyEvent() {
       let { activeCom = {}, widgetList = [] } = this;
+      let { type = "" } = activeCom || {};
+      if (!type || type == "canvas") {
+        this.$$msgError(this.$lang("请选择要复制的组件"));
+        return;
+      }
       let id = bmCommon.uuid();
       let orders = widgetList.map(item => item.order);
       let order = Math.max(...orders);
@@ -226,8 +231,16 @@ export default {
     },
     deleteEvent() {
       let { activeCom = {}, widgetList = [] } = this;
-      let { id = "" } = activeCom;
+      let { id = "", type = "" } = activeCom;
+      if (!type || type == "canvas") {
+        this.$$msgError(this.$lang("请选择要删除的组件"));
+        return;
+      }
       let index = widgetList.findIndex(item => id == item.id);
+      if (index < 0) {
+        this.$$msgError(this.$lang("请选择要删除的组件"));
+        return;
+      }
       widgetList.splice(index, 1);
       this.selectComAction();
     },
@@ -287,6 +300,72 @@ export default {
       } else if (document.webkitExitFullscreen) {
         document.webkitExitFullscreen();
       }
+    },
+    orderCommandEvent(cmd) {
+      switch (cmd) {
+        case "up":
+          this.moveUpEvent();
+          break;
+        case "down":
+          this.moveDownEvent();
+          break;
+        case "top":
+          this.moveTopEvent();
+          break;
+        case "bottom":
+          this.moveBottomEvent();
+          break;
+
+        default:
+          break;
+      }
+    },
+    // 上移一层
+    moveUpEvent() {
+      this.showContextMenuStatus = false;
+      let { activeCom = {}, widgetList = [] } = this;
+      let { order = "" } = activeCom;
+      let obj = widgetList.find(item => order < item.order);
+      let { order: _order = "" } = obj || {};
+      activeCom.order = _order;
+      obj.order = order;
+    },
+    // 下移一层
+    moveDownEvent() {
+      this.showContextMenuStatus = false;
+      let { activeCom = {}, widgetList = [] } = this;
+      let { order = "" } = activeCom;
+      let obj = widgetList.find(item => order > item.order);
+      let { order: _order = "" } = obj || {};
+      activeCom.order = _order;
+      obj.order = order;
+    },
+    // 置顶
+    moveBottomEvent() {
+      this.showContextMenuStatus = false;
+      let { activeCom = {}, widgetList = [] } = this;
+      let orders = widgetList.map(item => item.order);
+      let order = Math.min(...orders);
+      let { order: _order = 1 } = activeCom || {};
+      if (order == _order) {
+        return;
+      }
+      widgetList.forEach(item => {
+        item.order++;
+      });
+      activeCom.order = 1;
+    },
+    // 置底
+    moveTopEvent() {
+      this.showContextMenuStatus = false;
+      let { activeCom = {}, widgetList = [] } = this;
+      let orders = widgetList.map(item => item.order);
+      let order = Math.max(...orders);
+      let { order: _order = 1 } = activeCom || {};
+      if (order == _order) {
+        return;
+      }
+      activeCom.order = order + 1;
     }
   },
   mounted() {

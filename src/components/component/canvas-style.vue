@@ -136,8 +136,8 @@ COMPONENTLIBRARY.forEach(item => {
   let { code = "", comList = [] } = item || {};
   if (code == "assist") {
     comList.forEach(_item => {
-      let { id = "" } = _item || {};
-      ASSISTMAP[id] = _item;
+      let { alias = "" } = _item || {};
+      ASSISTMAP[alias] = _item;
     });
   }
 });
@@ -160,7 +160,8 @@ export default {
     });
     return {
       gridStyleList,
-      gridStyleMap
+      gridStyleMap,
+      condition: {}
       // info: {
       //   action: "select" //move select
       // }
@@ -177,7 +178,7 @@ export default {
   computed: {
     ...mapGetters({
       zoom: "canvas/getZoom", //放大缩小
-      wigetList: "canvas/getWigetList", //组件列表
+      widgetList: "canvas/getWidgetList", //组件列表
       canvas: "canvas/getCanvas", //画布
       linkPoint: "canvas/getLinkPoint" //画布
     }),
@@ -199,6 +200,7 @@ export default {
   methods: {
     ...mapMutations({
       setZoom: "canvas/setZoom",
+      setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
       stopMove: "canvas/stopMove",
       canvasMoving: "canvas/canvasMoving",
       initMove: "canvas/initMove"
@@ -219,6 +221,7 @@ export default {
         this.canvasPaintEvent();
       } else {
         this.unCanvasMoveEvent();
+        this.unCanvasPaintEvent();
       }
     },
     gridStyleChangeEvent() {
@@ -289,42 +292,271 @@ export default {
     mousedownCanvasPaintEvent(e) {
       e.stopPropagation();
       e.preventDefault();
-      let { wigetList = [], linkPoint } = this;
+      let { widgetList = [], linkPoint, condition } = this;
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
       if (!linkPoint) {
         this.$$msgError("请先创建连接点");
         return;
       }
-      let { left = 0, top = 0 } = linkPoint || {};
+      let _offset = $(".view-box").offset();
+      let offset = $(".content-box").offset();
+      let { left: __left = 0, top: __top = 0 } = _offset || {};
+      let { left: _left = 0, top: _top = 0 } = offset || {};
+      let { left = 0, top = 0, width = 0, height = 0, alias = "" } =
+        linkPoint || {};
       // let { left=0, top=0 } = canvas || {};
-      this.initMove({
-        startX: x,
-        startY: y
-        // originX: left,
-        // originY: top
-      });
+      // this.initMove({
+      //   startX: x,
+      //   startY: y
+      //   // originX: left,
+      //   // originY: top
+      // });
       // let angle = bmCommon.getAngles({
       //   point1: { x: left, y: top },
       //   point2: { x, y }
       // });
-      // bmCommon.log("angle=", angle);
-      let dis = { x: Math.abs(x - left), y: Math.abs(y - top) };
-      let assist = "water_vertical";
-      if (dis.x > dis.y) {
+      condition.startX = x;
+      condition.startY = y;
+      // let dis = {
+      x = x - (left + _left + __left);
+      y = y - (top + _top + __top);
+      // };
+      // let x = changeX - startX;
+      // let y = changeY - startY;
+      let item = {};
+      let assist = "water_vertical"; //垂直
+      //   assist = "water_horizontal"; //水平
+      if (
+        (x > 0 && y < 0 && x > Math.abs(y)) ||
+        (x > 0 && y > 0 && x > y) ||
+        (x > 0 && y == 0)
+      ) {
+        //右移动
+        bmCommon.group("右移动");
+        // left = left + width;
+        // if (alias != "water_horizontal") {
         assist = "water_horizontal";
+        // }
+        let obj = ASSISTMAP[assist];
+        let { data = {}, alias: _alias = "", name = "", code: type = "" } =
+          obj || {};
+        left = left + width;
+        if (alias != "linkPoint" && alias != "water_horizontal") {
+          top = top + height;
+        }
+        let id = bmCommon.uuid();
+        let orders = widgetList.map(item => item.order);
+        let order = Math.max(...orders);
+        order += 1;
+        item = {
+          ...data,
+          order,
+          type,
+          name,
+          alias: _alias,
+          id,
+          left,
+          top
+        };
+      } else if (
+        (y > 0 && x < 0 && y > Math.abs(x)) ||
+        (y > 0 && x > 0 && y > x) ||
+        (y > 0 && x == 0)
+      ) {
+        //下移动
+        bmCommon.group("下移动");
+        // if (alias != "water_vertical") {
+        assist = "water_vertical";
+        // }
+        let obj = ASSISTMAP[assist];
+        let { data = {}, alias: _alias = "", name = "", code: type = "" } =
+          obj || {};
+        top = top + height;
+        if (alias != "linkPoint" && alias != "water_vertical") {
+          left = left + width;
+        }
+        let id = bmCommon.uuid();
+        let orders = widgetList.map(item => item.order);
+        let order = Math.max(...orders);
+        order += 1;
+        item = {
+          ...data,
+          order,
+          type,
+          name,
+          alias: _alias,
+          id,
+          left,
+          top
+        };
+      } else if (
+        (x < 0 && y > 0 && Math.abs(x) > y) ||
+        (x < 0 && y < 0 && Math.abs(x) > Math.abs(y)) ||
+        (x < 0 && y == 0)
+      ) {
+        //左移动
+        bmCommon.group("左移动");
+        // if (alias != "water_horizontal") {
+        assist = "water_horizontal";
+        // }
+        let obj = ASSISTMAP[assist];
+        let {
+          data = {},
+          alias: _alias = "",
+          name = "",
+          code: type = "",
+          width: _width = ""
+        } = obj || {};
+        left = left - width - _width;
+        if (alias != "linkPoint" && alias != "water_horizontal") {
+          top = top + height;
+        }
+        let id = bmCommon.uuid();
+        let orders = widgetList.map(item => item.order);
+        let order = Math.max(...orders);
+        order += 1;
+        item = {
+          ...data,
+          order,
+          type,
+          name,
+          alias: _alias,
+          id,
+          left,
+          top
+        };
+      } else if (
+        (y < 0 && x < 0 && Math.abs(y) > Math.abs(x)) ||
+        (y < 0 && x > 0 && Math.abs(y) > x) ||
+        (y < 0 && x == 0)
+      ) {
+        //上移动
+        bmCommon.group("上移动");
+        // if (alias != "water_vertical") {
+        assist = "water_vertical";
+        // }
+        let obj = ASSISTMAP[assist];
+        let {
+          data = {},
+          alias: _alias = "",
+          name = "",
+          code: type = "",
+          height: _height = ""
+        } = obj || {};
+        top = top - height - _height;
+        if (alias != "linkPoint" && alias != "water_vertical") {
+          left = left + width;
+        }
+        let id = bmCommon.uuid();
+        let orders = widgetList.map(item => item.order);
+        let order = Math.max(...orders);
+        order += 1;
+        item = {
+          ...data,
+          order,
+          type,
+          name,
+          alias: _alias,
+          id,
+          left,
+          top
+        };
+      } else if (x == 0 && y == 0) {
+        bmCommon.group("位置没变");
+        return;
       }
-      let item = ASSISTMAP[assist];
-      wigetList.push(item);
+      // let obj = ASSISTMAP[assist];
+      // let { data = {}, alias: _alias = "", name = "", code: type = "" } =
+      //   obj || {};
+      // let id = bmCommon.uuid();
+      // let orders = widgetList.map(item => item.order);
+      // let order = Math.max(...orders);
+      // order += 1;
+      // let item = {
+      //   ...data,
+      //   order,
+      //   type,
+      //   name,
+      //   alias: _alias,
+      //   id,
+      //   left,
+      //   top
+      // };
+      widgetList.push(item);
+      this.setLinkPoint(item);
+      // bmCommon.log(dis, "paint");
+      // let assist = "water_vertical"; //垂直
+      // if (dis.x > dis.y) {
+      //   assist = "water_horizontal"; //水平
+      //   left = left + width;
+      // } else {
+      //   top = top + height;
+      // }
+      // let obj = ASSISTMAP[assist];
+      // let { data = {}, alias = "", name = "", code: type = "" } = obj || {};
+      // let id = bmCommon.uuid();
+      // let orders = widgetList.map(item => item.order);
+      // let order = Math.max(...orders);
+      // order += 1;
+      // let item = {
+      //   ...data,
+      //   order,
+      //   type,
+      //   name,
+      //   alias,
+      //   id,
+      //   left,
+      //   top
+      // };
+      // widgetList.push(item);
+      // this.setLinkPoint(item);
       $(document).on("mousemove", this.mousemoveCanvasPaintEvent);
       $(document).on("mouseup", this.mouseupCanvasPaintEvent);
     },
     mousemoveCanvasPaintEvent(e) {
       e.stopPropagation();
       e.preventDefault();
-      let pos = bmCommon.getMousePosition(e);
-      let { x = "", y = "" } = pos || {};
-      this.canvasMoving({ x, y });
+      // let { widgetList = [], linkPoint, condition } = this;
+      // let pos = bmCommon.getMousePosition(e);
+      // let { x: changeX = "", y: changeY = "" } = pos || {};
+      // let { startX = "", startY = "" } = condition;
+      // let x = changeX - startX;
+      // let y = changeY - startY;
+      // if (
+      //   (x > 0 && y < 0 && x > Math.abs(y)) ||
+      //   (x > 0 && y > 0 && x > y) ||
+      //   (x > 0 && y == 0)
+      // ) {
+      //   //右移动
+      //   bmCommon.group("右移动");
+      // } else if (
+      //   (y > 0 && x < 0 && y > Math.abs(x)) ||
+      //   (y > 0 && x > 0 && y > x) ||
+      //   (y > 0 && x == 0)
+      // ) {
+      //   //下移动
+      //   bmCommon.group("下移动");
+      // } else if (
+      //   (x < 0 && y > 0 && Math.abs(x) > y) ||
+      //   (x < 0 && y < 0 && Math.abs(x) > Math.abs(y)) ||
+      //   (x < 0 && y == 0)
+      // ) {
+      //   //左移动
+      //   bmCommon.group("左移动");
+      // } else if (
+      //   (y < 0 && x < 0 && Math.abs(y) > Math.abs(x)) ||
+      //   (y < 0 && x > 0 && Math.abs(y) > x) ||
+      //   (y < 0 && x == 0)
+      // ) {
+      //   //上移动
+      //   bmCommon.group("上移动");
+      // } else if (x == 0 && y == 0) {
+      //   bmCommon.group("位置没变");
+      // }
+      // this.canvasMoving({ x, y });
+      // condition.startX = changeX;
+      // condition.startY = changeY;
     },
     mouseupCanvasPaintEvent(e) {
       $(document).off("mousemove", this.mousemoveCanvasPaintEvent);

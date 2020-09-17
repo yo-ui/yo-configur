@@ -10,8 +10,9 @@
           <li
             v-for="(_item, _index) in item.comList"
             draggable
+            @mousedown.stop
             :key="`${item.code}_${_index}`"
-            @click="clickEvent(_item)"
+            @click.stop="clickEvent(_item)"
             :data-item="JSON.stringify(_item)"
           >
             <i
@@ -71,6 +72,8 @@ export default {
     },
     dragstartEvent(e) {
       //dataTransfer.setData()方法设置数据类型和拖动的数据
+      e.stopPropagation();
+      // e.preventDefault();
       let { originalEvent = {} } = e;
       let { target, dataTransfer = {} } = originalEvent;
       let item = $(target).attr("data-item");
@@ -86,15 +89,22 @@ export default {
       this.dragenterEvent(e);
     },
     dragenterEvent(e) {
+      // e.stopPropagation();
+      // e.preventDefault();
       // bmCommon.log("进入目标元素", e.target);
       $(document).on("dragover", this.dragoverEvent);
       // $(document).on("dragleave", this.dragleaveEvent);
       $(document).on("drop", this.dropEvent);
     },
     dragoverEvent(e) {
+      e.stopPropagation();
       e.preventDefault();
+      // bmCommon.log("拖到目标元素上", e.target);
+      // e.preventDefault();
     },
     dragleaveEvent(e) {
+      e.stopPropagation();
+      // e.preventDefault();
       // bmCommon.log("离开当前元素", e.target);
       // $(document).off("dragleave", this.dragleaveEvent);
       $(document).off("dragover", this.dragoverEvent);
@@ -102,6 +112,7 @@ export default {
     },
     dropEvent(e) {
       e.preventDefault();
+      // bmCommon.log("拖到目标元素", e.target);
       e.stopPropagation();
       let { widgetList = [] } = this;
       let { originalEvent = {} } = e;
@@ -125,16 +136,13 @@ export default {
         // bmCommon.log("释放当前元素",data, target, width, height, left, top, x, y);
         left = x - left - width / 2;
         top = y - top - height / 2;
-        let obj = widgetList[widgetList.length - 1] || {};
-        let { order = "" } = obj || {};
-        if (order) {
-          order += 1;
-        } else {
-          order = 1;
-        }
+        let orders = widgetList.map(item => item.order);
+        let order = Math.max(...orders);
+        order += 1;
         let item = {
           ...data,
           order,
+          alias,
           id,
           left,
           top
@@ -158,11 +166,14 @@ export default {
         alias = ""
       } = item || {};
       let id = bmCommon.uuid();
+      let orders = widgetList.map(item => item.order);
+      let order = Math.max(...orders);
+      order += 1;
       let _item = {
         ...data,
         type,
         name,
-        order: widgetList.length + 1,
+        order,
         id,
         alias,
         left,

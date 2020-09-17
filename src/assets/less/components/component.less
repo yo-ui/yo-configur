@@ -16,8 +16,10 @@
   white-space: nowrap;
   &.active{
     .borc(@themes);
-    .operate-btn{
-      .db;
+    &:hover{
+      .operate-btn{
+        .db;
+      }
     }
   }
   &.locked{
@@ -29,6 +31,9 @@
     .info{
       .db;
     }
+    // .operate-btn{
+    //   .db;
+    // }
   }
   .operate-btn{
     .db(none);

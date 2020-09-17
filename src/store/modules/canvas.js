@@ -20,7 +20,7 @@ export default {
     leftMenuStatus: true, //左侧菜单展开状态
     rightMenuStatus: true, //右侧菜单展开状态
     //连接点信息
-    linkPoint: {},
+    linkPoint: null,
     canvas: {
       type: "canvas", //画布
       name: "组态",

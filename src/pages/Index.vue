@@ -4,9 +4,10 @@
     <bm-nav ref="bmNav"></bm-nav>
     <div class="content-box">
       <bm-widget-list ref="bmWidgetList" v-if="leftMenuStatus"></bm-widget-list>
+      <div v-else></div>
       <div class="view-box" ref="viewBox">
-        <!-- {{activeComId}} -->
-        <!-- :active="activeComId == item.id" -->
+        <!-- {{activeComIds}} -->
+        <!-- :active="activeComIds == item.id" -->
         <!-- @drop="dropEvent" -->
         <div
           class="canvas-box"
@@ -18,7 +19,7 @@
           <div class="bg" :style="gridStyle"></div>
           <bm-com
             :class="{
-              active: activeComId.indexOf(item.id) > -1,
+              active: activeComIds.indexOf(item.id) > -1,
               locked: !item.dragable
             }"
             v-for="(item, index) in widgetList"
@@ -29,17 +30,17 @@
             :key="index"
           ></bm-com>
         </div>
+        <bm-lines ref="bmLines"></bm-lines>
         <div class="slider-box">
           {{ $toBig(zoom, 0) + "%" }}
           <!-- @input="changeZoomEvent" -->
           <el-slider
             v-model="zoom"
             :max="200"
+            @mousedown.stop
             :format-tooltip="val => val + '%'"
           ></el-slider>
         </div>
-        <bm-lines ref="bmLines"></bm-lines>
-        <bm-select ref="bmSelect"></bm-select>
       </div>
       <bm-info ref="bmInfo" v-if="rightMenuStatus"></bm-info>
     </div>
@@ -114,6 +115,7 @@
       </li>
     </ul>
     <bm-footer ref="bmFooter"></bm-footer>
+    <bm-select ref="bmSelect"></bm-select>
   </div>
 </template>
 <script>
@@ -130,7 +132,7 @@ export default {
   data() {
     return {
       // comList: [],
-      // activeComId: "",
+      // activeComIds: "",
       // condition: {
       //   zoom: 100
       // }
@@ -195,7 +197,7 @@ export default {
         this.setZoom(val / 100);
       }
     },
-    activeComId() {
+    activeComIds() {
       // let { activeCom = {} } = this;
       // let { id = "" } = activeCom || {};
       // return id || "";
@@ -207,6 +209,10 @@ export default {
         width: boxWidth = 0,
         height: boxHeight = 0
       } = selectBox || {};
+      let offset = $(".view-box").offset();
+      let { left = 0, top = 0 } = offset || {};
+      // boxX = boxX + left;
+      // boxY = boxY + top;
       let boxX1 = boxX + boxWidth;
       let boxY1 = boxY + boxHeight;
       let points = [];
@@ -219,13 +225,15 @@ export default {
         widgetList.forEach(item => {
           let { left: x = 0, top: y = 0, width = 0, height = 0, id = "" } =
             item || {};
+          x = x + left;
+          y = y + top;
           let x1 = x + width;
           let y1 = y + height;
           if (
-            this.isInPolygon([x, y], points) ||
-            this.isInPolygon([x1, y], points) ||
-            this.isInPolygon([x, y1], points) ||
-            this.isInPolygon([x1, y1], points)
+            bmCommon.isInPolygon([x, y], points) &&
+            bmCommon.isInPolygon([x1, y], points) &&
+            bmCommon.isInPolygon([x, y1], points) &&
+            bmCommon.isInPolygon([x1, y1], points)
           ) {
             ids.push(id);
           }
@@ -234,7 +242,7 @@ export default {
         let { id = "" } = activeCom || {};
         ids.push(id);
       }
-      bmCommon.log(ids, "------");
+      // bmCommon.log(ids, "------");
       return ids || [];
     },
     gridStyle() {
@@ -295,44 +303,7 @@ export default {
       moving: "canvas/moving",
       stopMove: "canvas/stopMove"
     }),
-    ...mapActions({ selectComAction: "canvas/selectCom" }),
-    /**
-     * 判断点在多边形内
-     * param checkPoint被测点，polygonPoints范围点
-     */
-
-    isInPolygon(checkPoint, polygonPoints) {
-      var counter = 0;
-      var i;
-      var xinters;
-      var p1, p2;
-      var pointCount = polygonPoints.length;
-      p1 = polygonPoints[0];
-      for (i = 1; i <= pointCount; i++) {
-        p2 = polygonPoints[i % pointCount];
-        if (
-          checkPoint[0] > Math.min(p1[0], p2[0]) &&
-          checkPoint[0] <= Math.max(p1[0], p2[0])
-        ) {
-          if (checkPoint[1] <= Math.max(p1[1], p2[1])) {
-            if (p1[0] != p2[0]) {
-              xinters =
-                ((checkPoint[0] - p1[0]) * (p2[1] - p1[1])) / (p2[0] - p1[0]) +
-                p1[1];
-              if (p1[1] == p2[1] || checkPoint[1] <= xinters) {
-                counter++;
-              }
-            }
-          }
-        }
-        p1 = p2;
-      }
-      if (counter % 2 == 0) {
-        return false;
-      } else {
-        return true;
-      }
-    },
+    ...mapActions({ selectComAction: "canvas/selectCom" }),    
     init() {
       this.initEvent();
       this.$nextTick(() => {
@@ -430,7 +401,7 @@ export default {
       } = e;
       e.stopPropagation();
       // e.preventDefault();
-      bmCommon.log("keydow", e);
+      // bmCommon.log("keydow", e);
       let { activeCom } = this;
       let { type = "", id = "", dragable = false } = activeCom || {};
       if (type == "canvas" || !id) {
