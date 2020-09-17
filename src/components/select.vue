@@ -32,6 +32,7 @@ export default {
     ...mapGetters({
       widgetList: "canvas/getWidgetList", //组件列表
       activeCom: "canvas/getActiveCom", //选中组件
+      activeComs: "canvas/getActiveComs", //选中组件
       selectBox: "canvas/getSelectBox", //选取框
       canvas: "canvas/getCanvas" //画布组件
     }),
@@ -54,7 +55,9 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setSelectBox: "canvas/setSelectBox"
+      setSelectBox: "canvas/setSelectBox",
+      setActiveComs: "canvas/setActiveComs",
+      setActiveCom: "canvas/setActiveCom"
     }),
     ...mapActions(),
     init() {
@@ -142,9 +145,77 @@ export default {
       } else {
         selectBox.height = Math.abs(dy);
       }
+      this.selectComs(selectBox);
       // bmCommon.log(dx, dy, startX, startY, x, y, selectBox);
       // selectBox.width = Math.abs(dx);
       // selectBox.height = Math.abs(dy);
+    },
+    selectComs(selectBox = {}) {
+      let {
+        widgetList = [],
+        // selectBox = {},
+        // activeComs = [],
+        canvas = {}
+      } = this;
+      let activeComs = [];
+      let {
+        // moving = false,
+        left: boxX = 0,
+        top: boxY = 0,
+        width: boxWidth = 0,
+        height: boxHeight = 0
+      } = selectBox || {};
+      let offset = $(".view-box").offset();
+      let { left = 0, top = 0 } = offset || {};
+      // boxX = boxX + left;
+      // boxY = boxY + top;
+      let boxX1 = boxX + boxWidth;
+      let boxY1 = boxY + boxHeight;
+      let points = [];
+      points.push([boxX, boxY]);
+      points.push([boxX1, boxY]);
+      points.push([boxX, boxY1]);
+      points.push([boxX1, boxY1]);
+      // let ids = [];
+      if (boxWidth > 1) {
+        widgetList.forEach(item => {
+          let { left: x = 0, top: y = 0, width = 0, height = 0 } = item || {};
+          x = x + left;
+          y = y + top;
+          let x1 = x + width;
+          let y1 = y + height;
+          if (
+            bmCommon.isInPolygon([x, y], points) &&
+            bmCommon.isInPolygon([x1, y], points) &&
+            bmCommon.isInPolygon([x, y1], points) &&
+            bmCommon.isInPolygon([x1, y1], points)
+          ) {
+            // ids.push(id);
+            activeComs.push(item);
+          }
+        });
+        let { length = 0 } = activeComs || [];
+        let activeCom = canvas;
+        if (length == 1) {
+          [activeCom = {}] = activeComs || [];
+        }
+        this.setActiveCom(activeCom);
+        this.setActiveComs(activeComs);
+      }
+      // bmCommon.log("activeComs", activeComs);
+      // else {
+      //   let { length = 0 } = activeComs || [];
+      //   // let { id = "" } = activeCom || {};
+      //   // ids.push(id);
+      //   if (length > 1) {
+      //     ids = activeComs.map(item => item.id);
+      //   } else {
+      //     let { id = "" } = activeCom || {};
+      //     ids.push(id);
+      //   }
+      // }
+      // bmCommon.log(ids, "------");
+      // return ids || [];
     }
   }
 };

@@ -15,7 +15,7 @@
         :title="$lang('移动画布')"
       ></i>
     </p> -->
-    <h2>{{ $lang("参数") }}</h2>
+    <h2>{{ info.name }}</h2>
     <!-- <p>
       <span class="label"> {{ $lang("文本名称") }}: </span>
       <el-input
@@ -54,7 +54,8 @@
       ></el-slider>
     </p>
     <p>
-      <span class="label"> {{ $lang("横坐标") }}:</span>{{ $toBig(info.left,0) }} px
+      <span class="label"> {{ $lang("横坐标") }}:</span
+      >{{ $toBig(info.left, 0) }} px
       <el-slider
         v-model="info.left"
         :max="1980"
@@ -62,7 +63,8 @@
       ></el-slider>
     </p>
     <p>
-      <span class="label"> {{ $lang("纵坐标") }}:</span>{{ $toBig(info.top,0) }} px
+      <span class="label"> {{ $lang("纵坐标") }}:</span
+      >{{ $toBig(info.top, 0) }} px
       <el-slider
         v-model="info.top"
         :max="1080"

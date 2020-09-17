@@ -58,7 +58,7 @@ export default [
           top: 0,
           scaleable: true, //是否可缩放操作
           rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
+          editable: true, //内容是否可编辑
           dragable: true //是否可拖动
         }
       },

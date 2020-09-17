@@ -21,7 +21,7 @@
         :title="$lang('拼装水管')"
       ></i>
     </p>
-    <h2>{{ $lang("参数") }}</h2>
+    <h2>{{info.name}}</h2>
     <p>
       <span class="label"> {{ $lang("组态标题") }}: </span>
       <el-input

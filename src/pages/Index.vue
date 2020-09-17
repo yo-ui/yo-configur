@@ -139,6 +139,7 @@ export default {
       showContextMenuStatus: false,
       showContextMenuType: 1, //1 组件右键菜单   2是画布右键菜单
       copyCom: "",
+      // shiftCtrlKeyDownStatus: false, //shit ctrl键被按下
       contextMenuStyle: {}
     };
   },
@@ -175,6 +176,7 @@ export default {
       rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
       canvas: "canvas/getCanvas", //画布属性
       selectBox: "canvas/getSelectBox", //选取框
+      activeComs: "canvas/getActiveComs", //选中对象
       activeCom: "canvas/getActiveCom" //选中对象
     }),
     bottomOrder() {
@@ -201,47 +203,61 @@ export default {
       // let { activeCom = {} } = this;
       // let { id = "" } = activeCom || {};
       // return id || "";
-      let { widgetList = [], selectBox = {}, activeCom = {} } = this;
       let {
-        // moving = false,
-        left: boxX = 0,
-        top: boxY = 0,
-        width: boxWidth = 0,
-        height: boxHeight = 0
-      } = selectBox || {};
-      let offset = $(".view-box").offset();
-      let { left = 0, top = 0 } = offset || {};
-      // boxX = boxX + left;
-      // boxY = boxY + top;
-      let boxX1 = boxX + boxWidth;
-      let boxY1 = boxY + boxHeight;
-      let points = [];
-      points.push([boxX, boxY]);
-      points.push([boxX1, boxY]);
-      points.push([boxX, boxY1]);
-      points.push([boxX1, boxY1]);
+        // widgetList = [],
+        // selectBox = {},
+        activeComs = [],
+        activeCom = {}
+      } = this;
       let ids = [];
-      if (boxWidth > 1) {
-        widgetList.forEach(item => {
-          let { left: x = 0, top: y = 0, width = 0, height = 0, id = "" } =
-            item || {};
-          x = x + left;
-          y = y + top;
-          let x1 = x + width;
-          let y1 = y + height;
-          if (
-            bmCommon.isInPolygon([x, y], points) &&
-            bmCommon.isInPolygon([x1, y], points) &&
-            bmCommon.isInPolygon([x, y1], points) &&
-            bmCommon.isInPolygon([x1, y1], points)
-          ) {
-            ids.push(id);
-          }
-        });
+      // let {
+      //   // moving = false,
+      //   left: boxX = 0,
+      //   top: boxY = 0,
+      //   width: boxWidth = 0,
+      //   height: boxHeight = 0
+      // } = selectBox || {};
+      // let offset = $(".view-box").offset();
+      // let { left = 0, top = 0 } = offset || {};
+      // // boxX = boxX + left;
+      // // boxY = boxY + top;
+      // let boxX1 = boxX + boxWidth;
+      // let boxY1 = boxY + boxHeight;
+      // let points = [];
+      // points.push([boxX, boxY]);
+      // points.push([boxX1, boxY]);
+      // points.push([boxX, boxY1]);
+      // points.push([boxX1, boxY1]);
+      // let ids = [];
+      // if (boxWidth > 1) {
+      //   widgetList.forEach(item => {
+      //     let { left: x = 0, top: y = 0, width = 0, height = 0, id = "" } =
+      //       item || {};
+      //     x = x + left;
+      //     y = y + top;
+      //     let x1 = x + width;
+      //     let y1 = y + height;
+      //     if (
+      //       bmCommon.isInPolygon([x, y], points) &&
+      //       bmCommon.isInPolygon([x1, y], points) &&
+      //       bmCommon.isInPolygon([x, y1], points) &&
+      //       bmCommon.isInPolygon([x1, y1], points)
+      //     ) {
+      //       ids.push(id);
+      //     }
+      //   });
+      // } else {
+      let { length = 0 } = activeComs || [];
+      // bmCommon.log("index  activeComs", activeComs);
+      // let { id = "" } = activeCom || {};
+      // ids.push(id);
+      if (length > 1) {
+        ids = activeComs.map(item => item.id);
       } else {
         let { id = "" } = activeCom || {};
         ids.push(id);
       }
+      // }
       // bmCommon.log(ids, "------");
       return ids || [];
     },
@@ -298,12 +314,16 @@ export default {
       setWidgetList: "canvas/setWidgetList", //设置组件列表
       // setActiveComId: "canvas/setActiveComId",
       setActiveCom: "canvas/setActiveCom",
+      setActiveComs: "canvas/setActiveComs",
       initMove: "canvas/initMove",
       setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
       moving: "canvas/moving",
       stopMove: "canvas/stopMove"
     }),
-    ...mapActions({ selectComAction: "canvas/selectCom" }),    
+    ...mapActions({
+      selectComAction: "canvas/selectCom",
+      selectComsAction: "canvas/selectComs"
+    }),
     init() {
       this.initEvent();
       this.$nextTick(() => {
@@ -317,16 +337,24 @@ export default {
     },
     initEvent() {
       let viewBox = this.$refs.viewBox;
+      // 注册鼠标事件
       $(viewBox).on("mousedown", this.viewBoxMousedownEvent);
+      // 注册右键菜单事件
       $(viewBox).on("contextmenu", this.viewBoxContextmenuEvent);
+      //注册按键键盘事件
       $(document).on("keydown", this.keydownEvent);
+      // $(document).on("keyup", this.keyupEvent);
       // $(document).on("mousedown", this.keydownEvent);
+      // 默认选择画布
       this.selectComAction();
     },
     viewBoxContextmenuEvent(e) {
       e.stopPropagation();
       e.preventDefault();
-      let { target } = e;
+      let { target, ctrlKey = false } = e;
+      if (ctrlKey) {
+        return;
+      }
       this.showContextMenuStatus = true;
       let $parent = $(target).parents(".bm-component-com");
       let type = $(target).attr("data-type");
@@ -357,7 +385,7 @@ export default {
       });
     },
     viewBoxMousedownEvent(e) {
-      let { target } = e;
+      let { target, shiftKey = false, ctrlKey = false } = e;
       let $parent = $(target).parents(".bm-component-com");
       let type = $(target).attr("data-type");
       let id = $(target).attr("data-id");
@@ -371,16 +399,31 @@ export default {
       }
       if (type) {
         this.showContextMenuType = 1;
-        this.selectComAction(id); //选中组件
         // 绑定移动事件：只有从属于 page 的，除背景图以外的元件才能移动
-        let { activeCom = {} } = this;
-        // let { dragable = false, rotateable = false } = activeCom || {};
+        let {
+          activeComs = [],
+          // shiftCtrlKeyDownStatus = false,
+          activeCom = {}
+        } = this;
+        let { length = 0 } = activeComs || [];
         let { dragable = false } = activeCom || {};
+        // let [item = {}] = activeComs || [];
+        //如果 shift ctrl 被按住则进行 多选和取消选择
+        if (shiftKey || ctrlKey) {
+          // let { dragable = false } = activeCom || {};
+          this.selectComsAction(id); //选中组件
+        } else {
+          this.selectComAction(id); //选中组件
+        }
         // if (!rotateable) {
         let padding = 20;
         activeCom.originWidth = width - padding; //减去 padding
         activeCom.originHeight = height - padding; //减去 padding
         // }
+        //选择多个则必定可以移动
+        if (length > 1) {
+          dragable = true;
+        }
         if (dragable) {
           this.initMoveEvent(e); // 参见 mixins
         }
@@ -388,10 +431,14 @@ export default {
         this.showContextMenuType = 2;
         // 取消选中组件
         this.selectComAction(id);
+        this.selectComsAction(id);
         // this.initMoveEvent(e); // 参见 mixins
       }
       this.showContextMenuStatus = false;
     },
+    // keyupEvent(e) {
+    //   this.shiftCtrlKeyDownStatus = false;
+    // },
     keydownEvent(e) {
       let {
         keyCode = "",
@@ -401,17 +448,24 @@ export default {
       } = e;
       e.stopPropagation();
       // e.preventDefault();
-      // bmCommon.log("keydow", e);
+      bmCommon.log("keydow", e);
       let { activeCom } = this;
       let { type = "", id = "", dragable = false } = activeCom || {};
       if (type == "canvas" || !id) {
         //如果选中的是画布或未选中组件则直接返回
         return;
       }
+      //默认移动距离
+      let dis = 1;
+      //按住Shift键移动距离
       let shiftDis = 10;
+      // if (shiftKey || ctrlKey) {
+      //   this.shiftCtrlKeyDownStatus = true;
+      //   e.preventDefault();
+      // }
       if (keyCode === 37) {
         // 左
-        let dis = 1;
+        // dis = 1;
         if (shiftKey) {
           dis = shiftDis;
         }
@@ -419,7 +473,7 @@ export default {
         // bmCommon.log("左", activeCom);
       } else if (keyCode === 38) {
         // 上
-        let dis = 1;
+        // let dis = 1;
         if (shiftKey) {
           dis = shiftDis;
         }
@@ -427,7 +481,7 @@ export default {
         // bmCommon.log("上", activeCom);
       } else if (keyCode === 39) {
         // 右
-        let dis = 1;
+        // let dis = 1;
         if (shiftKey) {
           dis = shiftDis;
         }
@@ -435,7 +489,7 @@ export default {
         // bmCommon.log("右", activeCom);
       } else if (keyCode === 40) {
         // 下
-        let dis = 1;
+        // let dis = 1;
         if (shiftKey) {
           dis = shiftDis;
         }

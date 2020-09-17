@@ -42,7 +42,7 @@ export default {
     let tabList = Object.freeze(Constants.COMPONENTLIBRARY);
     return {
       tabList,
-      activeIndex: tabList[3].code
+      activeIndex: tabList[0].code
     };
   },
   props: {

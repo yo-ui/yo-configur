@@ -1,5 +1,5 @@
 // import { URL } from "@/common/env";
-// import bmCommon from "@/common/common";
+import bmCommon from "@/common/common";
 // import { post, get } from "@/store/axios";
 // import { Constants } from "@/common/env";
 export default {
@@ -42,6 +42,8 @@ export default {
     },
     // 选中组件对象
     activeCom: {},
+    //多选组件对象
+    activeComs: [],
     // 选中组件对象id
     // activeComId: "",
     // 组件列表
@@ -76,9 +78,13 @@ export default {
     getZoom(state) {
       return state.zoom;
     },
-    //获取选中对象id
+    //获取选中组件对象
     getActiveCom(state) {
       return state.activeCom;
+    },
+    //获取多选组件对象
+    getActiveComs(state) {
+      return state.activeComs;
     },
     //获取选中对象id
     getWidgetList(state) {
@@ -108,6 +114,10 @@ export default {
     //设置选中对象
     setActiveCom(state, item) {
       state.activeCom = item;
+    },
+    //设置选中对象
+    setActiveComs(state, item) {
+      state.activeComs = item;
     },
     //设置选中对象
     setWidgetList(state, item) {
@@ -142,16 +152,39 @@ export default {
     // 移动元件
     moving(state, item) {
       let { x, y } = item || {};
-      let { startX, startY, activeCom, zoom, originX, originY } = state;
+      let {
+        startX,
+        startY,
+        activeComs = [],
+        activeCom = {},
+        zoom
+        // originX,
+        // originY
+      } = state;
       // var target = state.activeCom;
       var dx = x - startX;
       var dy = y - startY;
       // var left = state.originX + Math.floor((dx * 100) / state.zoom);
       // var top = state.originY + Math.floor((dy * 100) / state.zoom);
-      var left = originX + Math.floor((dx * 1) / zoom);
-      var top = originY + Math.floor((dy * 1) / zoom);
-      activeCom.left = left > 0 ? left : 0;
-      activeCom.top = top > 0 ? top : 0;
+
+      let { length = 0 } = activeComs || [];
+      if (length > 1) {
+        activeComs.forEach(item => {
+          let { left = 0, top = 0 } = item || {};
+          // item.left = left > 0 ? left : 0;
+          // item.top = top > 0 ? top : 0;
+          item.left = left + Math.floor((dx * 1) / zoom);
+          item.top = top + Math.floor((dy * 1) / zoom);
+        });
+      } else {
+        let { left = 0, top = 0 } = activeCom || {};
+        // left = originX + Math.floor((dx * 1) / zoom);
+        // var top = originY + Math.floor((dy * 1) / zoom);
+        activeCom.left = left + Math.floor((dx * 1) / zoom);
+        activeCom.top = top + Math.floor((dy * 1) / zoom);
+      }
+      state.startX = x;
+      state.startY = y;
       // bmCommon.log(left, top, activeCom);
     },
     // 移动画布
@@ -318,13 +351,64 @@ export default {
   actions: {
     selectCom(context, id) {
       let { state = {} } = context;
-      let { widgetList = [], canvas = {} } = state;
-      let activeCom = widgetList.find(item => item.id == id);
-      if (!activeCom) {
+      let {
+        widgetList = [],
+        canvas = {},
+        activeCom = {},
+        activeComs = []
+      } = state;
+      if (!id) {
         activeCom = canvas;
+      } else {
+        let index = activeComs.findIndex(item => item.id == id);
+        if (index < 0) {
+          //如果未找到当前组件 在已选组件中 说明选择新组件  清除多选组件
+          context.commit("setActiveComs", []);
+        }
+        activeCom = widgetList.find(item => item.id == id);
+        let { length = 0 } = activeComs || [];
+        if (length < 2) {
+          context.commit("setActiveCom", activeCom);
+        }
+      }
+    },
+    selectComs(context, id) {
+      let { state = {} } = context;
+      let {
+        widgetList = [],
+        canvas = {},
+        activeComs = [],
+        activeCom = {}
+      } = state;
+      if (!id) {
+        let { length = 0 } = activeComs || [];
+        activeComs.splice(0, length);
+        return;
+      }
+      let { id: _id = "" } = activeCom || {};
+      if (_id && _id != id) {
+        activeComs.push(activeCom);
+      }
+      let index = activeComs.findIndex(item => item.id == id);
+      // bmCommon.log(index, "-------");
+      //如果在已选中组件内找到则移除
+      if (index > -1) {
+        activeComs.splice(index, 1);
+      } else {
+        //未找到则添加
+        let activeCom = widgetList.find(item => item.id == id);
+        if (activeCom) {
+          activeComs.push(activeCom);
+        }
+      }
+      let { length = 0 } = activeComs || [];
+      activeCom = canvas;
+      if (length == 1) {
+        [activeCom = {}] = activeComs || [];
       }
       context.commit("setActiveCom", activeCom);
-      // context.commit('canvas/setActiveCom',activeCom)
+      // context.commit("setActiveCom", activeCom);
+      // context.commit("setActiveComs", activeComs);
     }
   }
 };

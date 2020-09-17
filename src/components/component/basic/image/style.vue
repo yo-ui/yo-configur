@@ -15,7 +15,7 @@
         :title="$lang('移动画布')"
       ></i>
     </p> -->
-    <h2>{{ $lang("参数") }}</h2>
+    <h2>{{info.name}}</h2>
     <!-- <p>
       <span class="label"> {{ $lang("图片名称") }}: </span>
       <el-input
