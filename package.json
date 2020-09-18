@@ -23,6 +23,7 @@
     "register-service-worker": "^1.6.2",
     "resize-detector": "^0.2.2",
     "vue-amap": "^0.5.10",
+    "vue-slider-component": "^3.2.5",
     "vuedraggable": "^2.24.1"
   },
   "devDependencies": {

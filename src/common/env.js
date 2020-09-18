@@ -79,10 +79,10 @@ const Constants = {
   },
   // 组件map
   COMPONENTLIBRARY,
-  DISPLAYFORMLIST: [
-    { code: "100% 100%", name: "默认" },
-    { code: "cover", name: "覆盖" },
-    { code: "contain", name: "包含" }
+  BACKGROUNDSIZELIST: [
+    { code: "100% 100%", name: "拉伸以充满画布" },
+    { code: "cover", name: "充满画布" },
+    { code: "contain", name: "适合于画布" }
   ],
   TILEMODELIST: [
     { code: "repeat", name: "默认" },
@@ -105,6 +105,40 @@ const Constants = {
     { code: "ridge", name: "3D 垄状边框" },
     { code: "inset", name: "3D inset 边框" },
     { code: "outset", name: "3D outset 边框" }
+  ],
+  BACKGROUNDTYPELIST: [
+    //填充颜色类型
+    { code: "purity", name: "纯色" },
+    { code: "gradient", name: "渐变色" }
+  ],
+  GRADIENTTYPELIST: [
+    //渐变类型
+    { code: "linear", name: "线性" },
+    { code: "radial", name: "径向" }
+  ],
+  RADIALSHAPELIST: [
+    //径向形状
+    { code: "circle", name: "圆形" },
+    { code: "ellipse", name: "椭圆" }
+  ],
+  ANGELLIST: [
+    //角度列表
+    { code: "0" },
+    { code: "45" },
+    { code: "90" },
+    { code: "135" },
+    { code: "180" },
+    { code: "225" },
+    { code: "270" },
+    { code: "315" }
+  ],
+  CENTERLIST: [
+    //中心类型
+    { code: "50% 50%", name: "居中" },
+    { code: "0% 0%", name: "左上角" },
+    { code: "100% 0%", name: "右上角" },
+    { code: "0% 100%", name: "左下角" },
+    { code: "100% 100%", name: "右下角" }
   ],
   FONTFAMILYLIST: [
     { code: "", name: "默认" },

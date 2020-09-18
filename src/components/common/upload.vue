@@ -17,7 +17,10 @@
     </template>
     <template v-else>
       <template v-if="imageUrl">
-        <div class="img-box" :style="`background-image:url(${$loadImgUrl(imageUrl)})`">
+        <div
+          class="img-box"
+          :style="`background-image:url(${$loadImgUrl(imageUrl)})`"
+        >
           <div class="icon-box">
             <i class="el-icon-delete" @click.stop="removeImageEvent"></i>
             <i class="el-icon-zoom-in" @click.stop="showImagePreviewEvent"></i>
@@ -51,7 +54,7 @@ export default {
 
       uploadData: {
         subDir: Constants.UPLOADDIR.IMG
-      },
+      }
     };
   },
   methods: {
@@ -72,11 +75,13 @@ export default {
     // },
     onSuccessEvent(res, file, fileList) {
       // let { condition } = this;
-      let { code = "", result = [] } = res || {};
+      let { code = "", message = "", result = [] } = res || {};
       if (code == Constants.CODES.SUCCESS) {
         let [fileName = ""] = result || [];
         // condition.image = fileName || "";
-        this.imageUrl = fileName
+        this.imageUrl = fileName;
+      } else {
+        this.$$msgError(message || "图片上传失败");
       }
       this.$refs.upload?.clearFiles();
       this.$emit("success", this.imageUrl);

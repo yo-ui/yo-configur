@@ -15,7 +15,7 @@
         :title="$lang('移动画布')"
       ></i>
     </p> -->
-    <h2>{{info.name}}</h2>
+    <h2>{{ info.name }}</h2>
     <!-- <p>
       <span class="label"> {{ $lang("文本名称") }}: </span>
       <el-input
@@ -54,7 +54,8 @@
       ></el-slider>
     </p>
     <p>
-      <span class="label"> {{ $lang("横坐标") }}:</span>{{ $toBig(info.left,0) }} px
+      <span class="label"> {{ $lang("横坐标") }}:</span
+      >{{ $toBig(info.left, 0) }} px
       <el-slider
         v-model="info.left"
         :max="1980"
@@ -62,7 +63,8 @@
       ></el-slider>
     </p>
     <p>
-      <span class="label"> {{ $lang("纵坐标") }}:</span>{{ $toBig(info.top,0) }} px
+      <span class="label"> {{ $lang("纵坐标") }}:</span
+      >{{ $toBig(info.top, 0) }} px
       <el-slider
         v-model="info.top"
         :max="1080"
@@ -116,13 +118,13 @@
         </el-select>
       </p>
       <p>
-        <span class="label"> {{ $lang("展示方式") }}:</span>
+        <span class="label"> {{ $lang("填充模式") }}:</span>
         <el-select
           v-model="info.backgroundSize"
-          :placeholder="$lang('请选择展示方式')"
+          :placeholder="$lang('请选择填充模式')"
         >
           <el-option
-            v-for="item in displayFormList"
+            v-for="item in BACKGROUNDSIZELIST"
             :key="item.code"
             :label="$lang(item.name)"
             :value="item.code"
@@ -131,18 +133,18 @@
         </el-select>
       </p>
     </template>
-      <p>
-        <span class="label"> {{ $lang("翻转方式") }}:</span>
-        <el-select v-model="info.scale" :placeholder="$lang('请选择翻转方式')">
-          <el-option
-            <!-- v-for="item in flipModeList" -->
-            :key="item.code"
-            :label="$lang(item.name)"
-            :value="item.code"
-          >
-          </el-option>
-        </el-select>
-      </p>
+    <p>
+      <span class="label"> {{ $lang("翻转方式") }}:</span>
+      <el-select v-model="info.scale" :placeholder="$lang('请选择翻转方式')">
+        <el-option
+          v-for="item in flipModeList"
+          :key="item.code"
+          :label="$lang(item.name)"
+          :value="item.code"
+        >
+        </el-option>
+      </el-select>
+    </p>
     <p>
       <span class="label">{{ $lang("背景色") }}:</span>
       <el-color-picker
@@ -268,7 +270,7 @@ export default {
     return {
       borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
       flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      displayFormList: Object.freeze(Constants.DISPLAYFORMLIST),
+      BACKGROUNDSIZELIST: Object.freeze(Constants.BACKGROUNDSIZELIST),
       // fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
       tileModeList: Object.freeze(Constants.TILEMODELIST)
     };
@@ -296,7 +298,7 @@ export default {
     successCallback(url) {
       let { info = {} } = this;
       info.backgroundImage = url;
-    },
+    }
     // setFontWeight() {
     //   let { info = {} } = this;
     //   let { fontWeight = "" } = info || {};

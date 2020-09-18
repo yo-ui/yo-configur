@@ -107,13 +107,13 @@
         </el-select>
       </p>
       <p>
-        <span class="label"> {{ $lang("展示方式") }}:</span>
+        <span class="label"> {{ $lang("填充模式") }}:</span>
         <el-select
           v-model="info.backgroundSize"
-          :placeholder="$lang('请选择展示方式')"
+          :placeholder="$lang('请选择填充模式')"
         >
           <el-option
-            v-for="item in displayFormList"
+            v-for="item in BACKGROUNDSIZELIST"
             :key="item.code"
             :label="$lang(item.name)"
             :value="item.code"
@@ -249,7 +249,7 @@ export default {
     return {
       // borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
       // flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      // displayFormList: Object.freeze(Constants.DISPLAYFORMLIST),
+      // BACKGROUNDSIZELIST: Object.freeze(Constants.BACKGROUNDSIZELIST),
       fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
       // tileModeList: Object.freeze(Constants.TILEMODELIST)
     };

@@ -16,7 +16,14 @@
           :class="canvas.action"
         >
           <!-- @mousedown.native.stop.prevent="mousedownEvent(item)" -->
-          <div class="bg" :style="gridStyle"></div>
+          <div class="bg" :style="bgStyle">
+            <div class="grid" :style="gridStyle">
+              <!-- {{gradientStyle}}
+              {{canvasStyle}} -->
+              <!-- {{bgStyle}} -->
+              {{canvas}}
+            </div>
+          </div>
           <bm-com
             :class="{
               active: activeComIds.indexOf(item.id) > -1,
@@ -210,61 +217,18 @@ export default {
         activeCom = {}
       } = this;
       let ids = [];
-      // let {
-      //   // moving = false,
-      //   left: boxX = 0,
-      //   top: boxY = 0,
-      //   width: boxWidth = 0,
-      //   height: boxHeight = 0
-      // } = selectBox || {};
-      // let offset = $(".view-box").offset();
-      // let { left = 0, top = 0 } = offset || {};
-      // // boxX = boxX + left;
-      // // boxY = boxY + top;
-      // let boxX1 = boxX + boxWidth;
-      // let boxY1 = boxY + boxHeight;
-      // let points = [];
-      // points.push([boxX, boxY]);
-      // points.push([boxX1, boxY]);
-      // points.push([boxX, boxY1]);
-      // points.push([boxX1, boxY1]);
-      // let ids = [];
-      // if (boxWidth > 1) {
-      //   widgetList.forEach(item => {
-      //     let { left: x = 0, top: y = 0, width = 0, height = 0, id = "" } =
-      //       item || {};
-      //     x = x + left;
-      //     y = y + top;
-      //     let x1 = x + width;
-      //     let y1 = y + height;
-      //     if (
-      //       bmCommon.isInPolygon([x, y], points) &&
-      //       bmCommon.isInPolygon([x1, y], points) &&
-      //       bmCommon.isInPolygon([x, y1], points) &&
-      //       bmCommon.isInPolygon([x1, y1], points)
-      //     ) {
-      //       ids.push(id);
-      //     }
-      //   });
-      // } else {
       let { length = 0 } = activeComs || [];
-      // bmCommon.log("index  activeComs", activeComs);
-      // let { id = "" } = activeCom || {};
-      // ids.push(id);
       if (length > 1) {
         ids = activeComs.map(item => item.id);
       } else {
         let { id = "" } = activeCom || {};
         ids.push(id);
       }
-      // }
-      // bmCommon.log(ids, "------");
       return ids || [];
     },
     gridStyle() {
       let { canvas = {} } = this;
       let { isGrid = false, gridStyle = {} } = canvas || {};
-
       let styles = {};
       if (isGrid) {
         let { width, height } = gridStyle || {};
@@ -274,37 +238,73 @@ export default {
       }
       return styles || {};
     },
+    bgStyle() {
+      let { canvas = {} } = this;
+      let { backgroundSize = "", backgroundImage = "" } = canvas || {};
+      let styles = {};
+      if (backgroundImage) {
+        styles["backgroundImage"] = `url(${backgroundImage})`;
+      }
+      if (backgroundSize) {
+        styles["backgroundSize"] = backgroundSize;
+      }
+      return styles || {};
+    },
+    //渐变颜色样式
+    gradientStyle() {
+      let { canvas = {} } = this;
+      let { gradientStyle = {} } = canvas || {};
+      let {
+        type = "",
+        angle = "",
+        center = "",
+        radialShape = "",
+        valueList = []
+      } = gradientStyle || {};
+      let styles = {};
+      let colors = valueList.map(item => `${item.code} ${item.value}%`);
+      if (type == "linear") {
+        styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
+      } else if (type == "radial") {
+        styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+      }
+      return styles;
+    },
     canvasStyle() {
-      let { zoom = 0, canvas = {} } = this;
+      let { zoom = 0, canvas = {}, gradientStyle = {} } = this;
       let {
         left = 0,
         top = 0,
         height = "",
         width = "",
-        backgroundColor = "#fff",
-        backgroundImage = ""
+        backgroundType = "",
+        backgroundColor = "#fff"
+        // backgroundImage = ""
       } = canvas;
       zoom = zoom / 100;
       let styles = {
         left: `${left}px`,
         top: `${top}px`,
-        // backgroundImage: ``,
-        backgroundColor: `${backgroundColor}`,
+        // backgroundColor: `${backgroundColor}`,
         transform: `scale(${zoom})`,
-        "-webkit-transform": `scale(${zoom})`,
-        "-ms-transform": `scale(${zoom})`,
-        "-o-transform": `scale(${zoom})`,
-        "-moz-transform": `scale(${zoom})`
+        webkitTransform: `scale(${zoom})`
       };
       if (width) {
         styles["width"] = `${width}px`;
       }
+      if (backgroundType == "purity") {
+        //纯色
+        styles["backgroundColor"] = backgroundColor;
+      } else if (backgroundType == "gradient") {
+        //渐变
+        styles = { ...styles, ...gradientStyle };
+      }
       if (height) {
         styles["height"] = `${height}px`;
       }
-      if (backgroundImage) {
-        styles["backgroundImage"] = `url(${backgroundImage})`;
-      }
+      // if (backgroundImage) {
+      //   styles["backgroundImage"] = `url(${backgroundImage})`;
+      // }
       return styles || {};
     }
   },
@@ -312,7 +312,6 @@ export default {
     ...mapMutations({
       setZoom: "canvas/setZoom",
       setWidgetList: "canvas/setWidgetList", //设置组件列表
-      // setActiveComId: "canvas/setActiveComId",
       setActiveCom: "canvas/setActiveCom",
       setActiveComs: "canvas/setActiveComs",
       initMove: "canvas/initMove",

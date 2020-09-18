@@ -12,7 +12,10 @@ import "jquery";
 import { Constants } from "@/common/env";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
+import VueSlider from "vue-slider-component";
+import "vue-slider-component/theme/default.css";
 
+Vue.component("VueSlider", VueSlider);
 
 // 引入vue-amap
 import VueAMap from "vue-amap";

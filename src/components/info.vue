@@ -12,7 +12,7 @@
     <template v-if="activeIndex == 'basicStyle'">
       <!-- {{activeCom}} -->
       <component
-        class="com-style"
+        class="com-style" v-if="activeCom.type"
         :info="activeCom"
         :is="`${activeCom.type}StyleCom`"
       ></component>

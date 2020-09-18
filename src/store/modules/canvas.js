@@ -29,6 +29,26 @@ export default {
       action: "select", //操作方式
       width: "", //画布宽
       height: "", //画布高
+      backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
+      gradientStyle: {
+        type: "linear", //渐变类型  linear 线性  radial 径向
+        angle: 0,
+        center: "50% 50%",
+        values: [0,100],
+        radialShape: "circle",
+        valueIndex:0,
+        valueOptions: [
+        //   {
+        //   // disabled: true
+        // }, {
+        //   // disabled: true
+        // }
+      ],
+        valueList: [
+          { code: "#108cee", value: 0 },
+          { code: "#545fc8", value: 100 }
+        ]
+      },
       backgroundColor: "#fff", //画布背景颜色
       backgroundImage: "", //画布背景图片
       backgroundSize: "",
@@ -359,6 +379,7 @@ export default {
       } = state;
       if (!id) {
         activeCom = canvas;
+        context.commit("setActiveCom", activeCom);
       } else {
         let index = activeComs.findIndex(item => item.id == id);
         if (index < 0) {

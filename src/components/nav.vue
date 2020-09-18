@@ -129,7 +129,7 @@
       </el-button-group>
 
       <el-button-group>
-        <el-dropdown trigger="click">
+        <el-dropdown trigger="click" @command="setThemesEvent">
           <span>
             <el-button>
               <i class="el-icon-s-grid"></i>
@@ -137,13 +137,13 @@
             ><i class="el-icon-caret-bottom"></i
           ></span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item
+            <el-dropdown-item command="white"
               ><i class="el-icon-files"></i>简洁白</el-dropdown-item
             >
-            <el-dropdown-item
+            <el-dropdown-item command="black"
               ><i class="el-icon-files"></i>酷炫黑</el-dropdown-item
             >
-            <el-dropdown-item
+            <el-dropdown-item command="blue"
               ><i class="el-icon-files"></i>荧光蓝</el-dropdown-item
             >
           </el-dropdown-menu>
@@ -301,6 +301,36 @@ export default {
         document.webkitExitFullscreen();
       }
     },
+    setThemesEvent(cmd) {
+      let { canvas = {}, widgetList = [] } = this;
+      canvas.themes = cmd;
+      switch (cmd) {
+        case "white":
+          canvas.backgroundColor = "#fff";
+          break;
+        case "black":
+          canvas.backgroundColor = "#1f2b48";
+          break;
+        case "blue":
+          canvas.backgroundColor = "#121b43";
+          break;
+        default:
+          break;
+      }
+      widgetList.forEach(item => {
+        item.themes = cmd;
+        switch (cmd) {
+          case "white":
+            break;
+          case "black":
+            break;
+          case "blue":
+            break;
+          default:
+            break;
+        }
+      });
+    },
     orderCommandEvent(cmd) {
       switch (cmd) {
         case "up":
@@ -315,7 +345,6 @@ export default {
         case "bottom":
           this.moveBottomEvent();
           break;
-
         default:
           break;
       }
