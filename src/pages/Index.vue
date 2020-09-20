@@ -21,7 +21,7 @@
               <!-- {{gradientStyle}}
               {{canvasStyle}} -->
               <!-- {{bgStyle}} -->
-              {{canvas}}
+              <!-- {{canvas}} -->
             </div>
           </div>
           <bm-com
