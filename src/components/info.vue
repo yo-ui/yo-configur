@@ -12,7 +12,8 @@
     <template v-if="activeIndex == 'basicStyle'">
       <!-- {{activeCom}} -->
       <component
-        class="com-style" v-if="activeCom.type"
+        class="com-style"
+        v-if="activeCom.type"
         :info="activeCom"
         :is="`${activeCom.type}StyleCom`"
       ></component>
@@ -56,7 +57,7 @@
 
 <script>
 import bmCommon from "@/common/common";
-import { Constants } from "@/common/env";
+// import { Constants } from "@/common/env";
 import { styles } from "@/widgets/index";
 import draggable from "vuedraggable";
 // eslint-disable-next-line no-undef
@@ -160,7 +161,7 @@ export default {
       }
     },
     init() {
-      this.loadComList()
+      this.loadComList();
     },
     loadComList() {
       let { widgetList = [] } = this;
@@ -168,7 +169,7 @@ export default {
         return a.order - b.order;
       });
     }
-  },
+  }
   // watch: {
   //   widgetList(newVal, oldVal) {
   //     // if (newVal != oldVal) {

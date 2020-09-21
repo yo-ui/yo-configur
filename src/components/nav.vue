@@ -28,7 +28,7 @@
         <el-button @click="zoomEvent(20)">
           <i class="el-icon-plus"></i> </el-button
       ></el-button-group>
-      <el-button-group>
+      <!-- <el-button-group>
         <el-dropdown trigger="click">
           <span>
             <el-button
@@ -44,16 +44,15 @@
             >
           </el-dropdown-menu>
         </el-dropdown>
-      </el-button-group>
-
+      </el-button-group> -->
       <el-button-group>
         <el-dropdown trigger="click">
-          <span>
-            <el-button>
+          <el-button class="dropdown" :disabled="activeComs.length < 3">
+            <span class="txt">
               <i class="el-icon-files"></i>
-              {{ $lang("分布") }} </el-button
+              {{ $lang("分布") }} </span
             ><i class="el-icon-caret-bottom"></i
-          ></span>
+          ></el-button>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item
               ><i class="el-icon-files"></i>水平分布</el-dropdown-item
@@ -63,73 +62,85 @@
             >
           </el-dropdown-menu>
         </el-dropdown>
-        <el-dropdown trigger="click">
-          <span>
-            <el-button>
+        <el-dropdown trigger="click" @command="alignCommandEvent">
+          <el-button class="dropdown" :disabled="activeComs.length < 1">
+            <span class="txt">
               <i class="el-icon-files"></i>
-              {{ $lang("对齐") }} </el-button
-            ><i class="el-icon-caret-bottom"></i
-          ></span>
+              {{ $lang("对齐") }}
+            </span>
+            <i class="el-icon-caret-bottom"></i>
+          </el-button>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item
-              ><i class="el-icon-files"></i>左对齐</el-dropdown-item
+            <el-dropdown-item command="left"
+              ><i class="bomi bomi-align-left"></i>左对齐</el-dropdown-item
             >
-            <el-dropdown-item
-              ><i class="el-icon-files"></i>水平居中</el-dropdown-item
+            <el-dropdown-item command="h-center"
+              ><i class="bomi bomi-h-center"></i>水平居中</el-dropdown-item
             >
-            <el-dropdown-item
-              ><i class="el-icon-files"></i>右对齐</el-dropdown-item
+            <el-dropdown-item command="right"
+              ><i class="bomi bomi-align-right"></i>右对齐</el-dropdown-item
             >
-            <el-dropdown-item
-              ><i class="el-icon-files"></i>左右对齐</el-dropdown-item
+            <el-dropdown-item command="left-right"
+              ><i class="bomi bomi-align-left-right"></i
+              >左右对齐</el-dropdown-item
             >
-            <el-dropdown-item
-              ><i class="el-icon-files"></i>上对齐</el-dropdown-item
+            <el-dropdown-item command="top"
+              ><i class="bomi bomi-align-top"></i>上对齐</el-dropdown-item
             >
-            <el-dropdown-item
-              ><i class="el-icon-files"></i>垂直居中</el-dropdown-item
+            <el-dropdown-item command="v-center"
+              ><i class="bomi bomi-v-center"></i>垂直居中</el-dropdown-item
             >
-            <el-dropdown-item
-              ><i class="el-icon-files"></i>下对齐</el-dropdown-item
+            <el-dropdown-item command="bottom"
+              ><i class="bomi bomi-align-bottom"></i>下对齐</el-dropdown-item
             >
-            <el-dropdown-item
-              ><i class="el-icon-files"></i>上下对齐</el-dropdown-item
+            <el-dropdown-item command="top-bottom"
+              ><i class="bomi bomi-align-top-bottom"></i
+              >上下对齐</el-dropdown-item
             >
           </el-dropdown-menu>
         </el-dropdown>
         <el-dropdown trigger="click" @command="orderCommandEvent">
-          <span>
-            <el-button>
-              <i class="el-icon-files"></i>
-              {{ $lang("排列") }} </el-button
-            ><i class="el-icon-caret-bottom"></i
-          ></span>
+          <el-button
+            class="dropdown"
+            :disabled="
+              !(
+                activeComs.length > 0 ||
+                (activeCom.type && activeCom.type != 'canvas')
+              )
+            "
+          >
+            <span class="txt">
+              <i class="bomi bomi-arrange"></i>
+              {{ $lang("排列") }}
+            </span>
+            <i class="el-icon-caret-bottom"></i>
+          </el-button>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item command="top"
-              ><i class="el-icon-files"></i>置顶</el-dropdown-item
+              ><i class="bomi bomi-move-top"></i>置顶</el-dropdown-item
             >
             <el-dropdown-item command="bottom"
-              ><i class="el-icon-files"></i>置底</el-dropdown-item
+              ><i class="bomi bomi-move-bottom"></i>置底</el-dropdown-item
             >
             <el-dropdown-item command="up"
-              ><i class="el-icon-files"></i>前移</el-dropdown-item
+              ><i class="bomi bomi-move-up"></i>前移</el-dropdown-item
             >
             <el-dropdown-item command="down"
-              ><i class="el-icon-files"></i>后移</el-dropdown-item
+              ><i class="bomi bomi-move-down"></i>后移</el-dropdown-item
             >
           </el-dropdown-menu>
         </el-dropdown>
       </el-button-group>
 
-      <el-button-group>
+      <!-- <el-button-group>
         <el-button>
           <i class="el-icon-circle-plus-outline"></i>
           {{ $lang("添加到自定义") }}
         </el-button>
-      </el-button-group>
+      </el-button-group> -->
 
       <el-button-group>
-        <el-dropdown trigger="click" @command="setThemesEvent">
+        <el-dropdown trigger="click" @command="setThemesEvent" class="menu-nav">
           <span>
             <el-button>
               <i class="el-icon-s-grid"></i>
@@ -138,13 +149,13 @@
           ></span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item command="white"
-              ><i class="el-icon-files"></i>简洁白</el-dropdown-item
+              ><i class="skin skin-white"></i>简洁白</el-dropdown-item
             >
             <el-dropdown-item command="black"
-              ><i class="el-icon-files"></i>酷炫黑</el-dropdown-item
+              ><i class="skin skin-black"></i>酷炫黑</el-dropdown-item
             >
             <el-dropdown-item command="blue"
-              ><i class="el-icon-files"></i>荧光蓝</el-dropdown-item
+              ><i class="skin skin-blue"></i>荧光蓝</el-dropdown-item
             >
           </el-dropdown-menu>
         </el-dropdown>
@@ -175,7 +186,7 @@
         全屏
       </el-button>
       <el-button @click="runEvent">
-        <i class="el-icon-camera"></i>
+        <i class="bomi bomi-run"></i>
         运行
       </el-button>
     </div>
@@ -184,7 +195,7 @@
 
 <script>
 import bmCommon from "@/common/common";
-import { Constants } from "@/common/env";
+// import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -199,6 +210,7 @@ export default {
       leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
       rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
       activeCom: "canvas/getActiveCom",
+      activeComs: "canvas/getActiveComs",
       widgetList: "canvas/getWidgetList"
     })
   },
@@ -266,7 +278,9 @@ export default {
       }
     },
     //运行
-    runEvent() {},
+    runEvent() {
+      this.$jumpPage(this.$RouterURL.preview.name);
+    },
     // 全屏事件
     fullScreenEvent() {
       let { fullScreenStatus } = this;
@@ -329,6 +343,40 @@ export default {
           default:
             break;
         }
+      });
+    },
+    alignCommandEvent(cmd) {
+      switch (cmd) {
+        case "top":
+          this.aiignTopEvent();
+          break;
+        case "bottom":
+          this.aiignBottomEvent();
+          break;
+        case "left":
+          this.aiignLeftEvent();
+          break;
+        case "right":
+          this.aiignUpEvent();
+          break;
+        default:
+          break;
+      }
+    },
+    // 左对齐
+    aiignLeftEvent() {
+      let { activeComs = [] } = this;
+      let min = Math.min(...activeComs.map(item => item.left));
+      activeComs.forEach(item => {
+        item.left = min;
+      });
+    },
+    // 上对齐
+    aiignTopEvent() {
+      let { activeComs = [] } = this;
+      let min = Math.min(...activeComs.map(item => item.top));
+      activeComs.forEach(item => {
+        item.top = min;
       });
     },
     orderCommandEvent(cmd) {

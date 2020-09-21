@@ -20,6 +20,43 @@ let baseData = {
   height: 60,
   rotate: 0,
   top: 0,
+  marginTop: 0,
+  marginBottom: 0,
+  marginLeft: 0,
+  marginRight: 0,
+  paddingTop: 0,
+  paddingBottom: 0,
+  paddingLeft: 0,
+  paddingRight: 0,
+  shadowable: false,
+  shadow: {
+    color: "#eee",
+    x: 0, //X偏移量
+    y: 0, //Y偏移量
+    blur: 0, //模糊半径
+    spread: 0, //阴影大小
+    type: "" //阴影类型 //空为外阴影  inset 为内阴影
+  },
+  backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
+  gradientStyle: {
+    type: "linear", //渐变类型  linear 线性  radial 径向
+    angle: 0,
+    center: "50% 50%",
+    values: [0, 100],
+    radialShape: "circle",
+    valueIndex: 0,
+    valueOptions: [
+      //   {
+      //   // disabled: true
+      // }, {
+      //   // disabled: true
+      // }
+    ],
+    valueList: [
+      { code: "#108cee", value: 0 },
+      { code: "#545fc8", value: 100 }
+    ]
+  },
   scaleable: true, //是否可缩放操作
   rotateable: true, //是否可旋转操作
   editable: false, //内容是否可编辑

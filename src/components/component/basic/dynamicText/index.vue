@@ -8,7 +8,7 @@
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "textCom",
+  name: "dynamicTextCom",
   data() {
     return {};
   },
@@ -22,8 +22,28 @@ export default {
   },
   computed: {
     ...mapGetters(),
-    comStyle() {
+    //渐变颜色样式
+    gradientStyle() {
       let { info = {} } = this;
+      let { gradientStyle = {} } = info || {};
+      let {
+        type = "",
+        angle = "",
+        center = "",
+        radialShape = "",
+        valueList = []
+      } = gradientStyle || {};
+      let styles = {};
+      let colors = valueList.map(item => `${item.code} ${item.value}%`);
+      if (type == "linear") {
+        styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
+      } else if (type == "radial") {
+        styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+      }
+      return styles;
+    },
+    comStyle() {
+      let { info = {}, gradientStyle = {} } = this;
       let {
         width = "",
         height = "",
@@ -32,20 +52,41 @@ export default {
         borderStyle = "",
         borderWidth = "",
         borderRadius = "",
+        marginTop = 0,
+        marginBottom = 0,
+        marginLeft = 0,
+        marginRight = 0,
+        paddingTop = 0,
+        paddingBottom = 0,
+        paddingLeft = 0,
+        paddingRight = 0,
+        shadow = {},
+        shadowable = false,
         scale = "",
         fontFamily = "",
         fontWeight = "",
         fontStyle = "",
         textDecoration = "",
+        backgroundType = "",
         fontSize = "",
         backgroundColor = "",
         backgroundImage = "",
         backgroundRepeat = "",
         backgroundSize = ""
       } = info || {};
-      let styles = {};
+      let styles = {
+        margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
+        padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
+      };
       if (backgroundRepeat) {
         styles["backgroundRepeat"] = backgroundRepeat;
+      }
+      if (shadowable) {
+        let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
+          shadow || {};
+        styles[
+          "boxShadow"
+        ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
       }
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
@@ -89,11 +130,19 @@ export default {
       if (textDecoration) {
         styles["textDecoration"] = textDecoration;
       }
-      if (backgroundColor) {
-        styles["backgroundColor"] = backgroundColor;
-      }
-      if (backgroundImage) {
-        styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
+      if (backgroundType == "purity") {
+        //纯色
+        if (backgroundColor) {
+          styles["backgroundColor"] = backgroundColor;
+        }
+        if (backgroundImage) {
+          styles["backgroundImage"] = `url(${this.$loadImgUrl(
+            backgroundImage
+          )})`;
+        }
+      } else if (backgroundType == "gradient") {
+        //渐变
+        styles = { ...styles, ...gradientStyle };
       }
       return styles || {};
     }

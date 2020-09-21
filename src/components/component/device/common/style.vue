@@ -26,7 +26,11 @@
     </p> -->
     <p>
       <span class="label"> {{ $lang("层级") }}: </span>
-      {{ info.order }}
+      <el-input-number controls-position="right"
+        clearable
+        v-model.number="info.order"
+        :placeholder="$lang('请输入层级')"
+      ></el-input-number>
       <el-slider
         v-model="info.order"
         :max="200"
@@ -35,7 +39,17 @@
     </p>
     <p>
       <span class="label"> {{ $lang("宽度") }}:</span
-      >{{ $toBig(info.width || info.originWidth, 0) }} px
+      ><template v-if="info.scaleable">
+        <el-input-number controls-position="right"
+          clearable
+          v-model.number="info.width"
+          :placeholder="$lang('请输入宽度')"
+        ></el-input-number>
+        px
+      </template>
+      <template v-else>
+        {{ $toBig(info.width || info.originWidth, 0) }} px
+      </template>
       <el-slider
         v-if="info.scaleable"
         v-model="info.width"
@@ -45,7 +59,17 @@
     </p>
     <p>
       <span class="label"> {{ $lang("高度") }}:</span
-      >{{ $toBig(info.height || info.originHeight, 0) }} px
+      ><template v-if="info.scaleable">
+        <el-input-number controls-position="right"
+          clearable
+          v-model.number="info.height"
+          :placeholder="$lang('请输入高度')"
+        ></el-input-number>
+        px
+      </template>
+      <template v-else>
+        {{ $toBig(info.height || info.originHeight, 0) }} px
+      </template>
       <el-slider
         v-if="info.scaleable"
         v-model="info.height"
@@ -70,7 +94,14 @@
       ></el-slider>
     </p>
     <p>
-      <span class="label"> {{ $lang("旋转角度") }}:</span>{{ info.rotate }} deg
+      <span class="label"> {{ $lang("旋转角度") }}:</span> <el-input-number controls-position="right"
+          clearable
+        :min="-360"
+        :max="360"
+          v-model.number="info.rotate"
+          :placeholder="$lang('请输入旋转角度')"
+        ></el-input-number>
+        deg
       <el-slider
         v-model="info.rotate"
         :min="-360"
@@ -144,12 +175,166 @@
         </el-select>
       </p>
     <!-- <p>
-      <span class="label">{{ $lang("背景色") }}:</span>
+      <span class="label">{{ $lang("填充颜色") }}:</span>
+      <el-select
+        v-model="info.backgroundType"
+        :placeholder="$lang('请选择填充颜色')"
+      >
+        <el-option
+          v-for="item in backgroundTypeList"
+          :key="item.code"
+          :label="$lang(item.name)"
+          :value="item.code"
+        >
+        </el-option>
+      </el-select>
+    </p>
+    <p v-if="info.backgroundType == 'purity'">
+      <span class="label">{{ $lang("纯色") }}:</span>
       <el-color-picker
         v-model="info.backgroundColor"
         show-alpha
       ></el-color-picker>
-    </p> -->
+    </p>
+    <template v-if="info.backgroundType == 'gradient'">
+      <p>
+        <span class="label">{{ $lang("渐变颜色") }}:</span>
+        <span class="gradient" :style="gradientStyle"></span>
+      </p>
+      <p>
+        <span class="label">{{ $lang("渐变类型") }}:</span>
+        <el-radio-group class="gradient-type-group" v-model="info.gradientStyle.type">
+          <el-radio-button
+            :style="`background-image:${gradientStyleMap[item.code]}`"
+            :title="item.name"
+            v-for="item in gradientTypeList"
+            :key="item.code"
+            :label="item.code"
+          >
+            {{ item.name }}
+          </el-radio-button>
+        </el-radio-group>
+      </p>
+      <template v-if="info.gradientStyle.type == 'radial'">
+        <p>
+          <span class="label">{{ $lang("中心") }}:</span>
+          <el-select
+            v-model="info.gradientStyle.center"
+            :placeholder="$lang('请选择中心位置')"
+          >
+            <el-option
+              v-for="item in centerList"
+              :key="item.code"
+              :label="$lang(item.name)"
+              :value="item.code"
+            >
+            </el-option>
+          </el-select>
+        </p>
+        <p>
+          <span class="label">{{ $lang("径向图形") }}:</span>
+          <el-select
+            v-model="info.gradientStyle.radialShape"
+            :placeholder="$lang('请选择径向图形')"
+          >
+            <el-option
+              v-for="item in radialShapeList"
+              :key="item.code"
+              :label="$lang(item.name)"
+              :value="item.code"
+            >
+            </el-option>
+          </el-select>
+        </p>
+      </template>
+      <template v-if="info.gradientStyle.type == 'linear'">
+        <p>
+          <span class="label">{{ $lang("角度") }}:</span>
+          <el-select
+            v-model="info.gradientStyle.angle"
+            :placeholder="$lang('请选择线性角度')"
+          >
+            <el-option
+              v-for="item in angelList"
+              :key="item.code"
+              :label="$lang(item.code)"
+              :value="item.code"
+            >
+            </el-option>
+          </el-select>
+        </p>
+      </template>
+      <p class="gradient-aperture">
+        <span class="label">{{ $lang("渐变光圈") }}:</span>
+        <el-button-group>
+          <el-button
+            plain
+            :disabled="info.gradientStyle.valueList.length > 5"
+            @click="addApertureEvent"
+            ><i class="el-icon-plus"></i
+          ></el-button>
+          <el-button
+            plain
+            :disabled="info.gradientStyle.valueList.length < 3"
+            @click="removeApertureEvent"
+            ><i class="el-icon-minus"></i
+          ></el-button>
+        </el-button-group>
+        <el-input
+          :value="
+            info.gradientStyle.valueList[info.gradientStyle.valueIndex].value +
+              ' %'
+          "
+          readonly
+        ></el-input>
+      </p>
+      <p>
+        <span class="label">{{ $lang("渐变节点颜色") }}</span>
+        <el-color-picker
+          color-format="hex"
+          v-model="
+            info.gradientStyle.valueList[info.gradientStyle.valueIndex].code
+          "
+          show-alpha
+        ></el-color-picker>
+        <el-input
+          :value="
+            info.gradientStyle.valueList[info.gradientStyle.valueIndex].code
+          "
+          readonly
+        ></el-input>
+      </p>
+      <p>
+        <vue-slider
+          :height="25"
+          ref="slider"
+          :marks="false"
+          :hide-label="true"
+          :enable-cross="false"
+          v-model="info.gradientStyle.values"
+          :interval="1"
+          @change="sliderChangeEvent"
+          :data-value="'value'"
+        >
+          <template #tooltip>
+            <span></span>
+          </template>
+          <template #process>
+            <div class="vue-slider-process" :style="gradientLinearStyle"></div>
+          </template>
+          <template #dot="{index}">
+            <div class="dot-box">
+              <div
+                class="dot"
+                :style="
+                  `background-color:${info.gradientStyle.valueList[index].code}`
+                "
+              ></div>
+            </div>
+          </template>
+        </vue-slider>
+      </p>
+    </template> -->
     <!-- <p>
       <span class="label">{{ $lang("字体颜色") }}:</span>
       <el-color-picker v-model="info.color" show-alpha></el-color-picker>
@@ -219,7 +404,14 @@
     </p>
     <p>
       <span class="label"> {{ $lang("边框大小") }}:</span
-      >{{ info.borderWidth }} px
+      > <el-input-number controls-position="right"
+          clearable
+        :min="0"
+        :max="20"
+          v-model.number="info.borderWidth"
+          :placeholder="$lang('请输入边框大小')"
+        ></el-input-number>
+        px
       <el-slider
         v-model="info.borderWidth"
         :min="0"
@@ -229,7 +421,14 @@
     </p>
     <p>
       <span class="label"> {{ $lang("边框圆角") }}:</span
-      >{{ info.borderRadius }} px
+      > <el-input-number controls-position="right"
+          clearable
+        :min="0"
+        :max="50"
+          v-model.number="info.borderRadius"
+          :placeholder="$lang('请输入边框圆角')"
+        ></el-input-number>
+        px
       <el-slider
         v-model="info.borderRadius"
         :min="0"
@@ -257,6 +456,11 @@ export default {
   data() {
     return {
       borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
+      backgroundTypeList: Object.freeze(Constants.BACKGROUNDTYPELIST),
+      centerList: Object.freeze(Constants.CENTERLIST),
+      radialShapeList: Object.freeze(Constants.RADIALSHAPELIST),
+      angelList: Object.freeze(Constants.ANGELLIST),
+      gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
       flipModeList: Object.freeze(Constants.FLIPMODELIST),
       // deviceCommonFormList: Object.freeze(Constants.BACKGROUNDSIZELIST),
       fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
@@ -278,15 +482,127 @@ export default {
     //   )
   },
   computed: {
-    ...mapGetters()
+    ...mapGetters(),
+gradientStyle() {
+      let { info = {}, gradientStyleMap = [] } = this;
+      let { gradientStyle = {} } = info || {};
+      let {
+        type = ""
+        // angle = "",
+        // center = "",
+        // radialShape = "",
+        // valueList = []
+      } = gradientStyle || {};
+      let styles = {
+        backgroundImage: gradientStyleMap[type]
+      };
+      // let colors = valueList.map(item => `${item.code} ${item.value}%`);
+      // styles.backgroundImage = gradientStyleMap[type]
+      // if (type == "linear") {
+      //   styles.backgroundImage = gradientStyleMap[type] `linear-gradient(${angle}deg, ${colors.join()})`;
+      // } else if (type == "radial") {
+      //   styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+      // }
+      return styles;
+    },
+    gradientStyleMap() {
+      let { info = {} } = this;
+      let { gradientStyle = {} } = info || {};
+      let { angle = "", center = "", radialShape = "", valueList = [] } =
+        gradientStyle || {};
+      let colors = valueList.map(item => `${item.code} ${item.value}%`);
+      return {
+        linear: `linear-gradient(${angle}deg, ${colors.join()})`,
+        radial: `radial-gradient(${radialShape} at ${center}, ${colors.join()})`
+      };
+    },
+    gradientLinearStyle() {
+      let { info = {} } = this;
+      let { gradientStyle = {} } = info || {};
+      let { valueList = [] } = gradientStyle || {};
+      let colors = valueList.map(item => `${item.code} ${item.value}%`);
+      return `background-image:linear-gradient(90deg, ${colors.join()})`;
+    }
   },
   methods: {
     ...mapMutations({}),
     ...mapActions({}),
-    // successCallback(url) {
+    successCallback(url) {
+      let { info = {} } = this;
+      info.backgroundImage = url;
+    },
+    sliderChangeEvent(values, index) {
+      let { info = {} } = this;
+      let { gradientStyle = {} } = info || {};
+      let { valueList = [] } = gradientStyle || {};
+      let { length = 0 } = valueList || [];
+      if (index == 0) {
+        values[0] = 0;
+        this.$refs.slider?.setValue(values);
+      } else if (index == length - 1) {
+        values[length - 1] = 100;
+        this.$refs.slider?.setValue(values);
+      }
+      gradientStyle.valueIndex = index;
+      valueList[index].value = values[index];
+    },
+    // sliderDragStartEvent(index) {
     //   let { info = {} } = this;
-    //   info.backgroundImage = url;
+    //   let { gradientStyle = {} } = info || {};
+    //   let { values = [] } = gradientStyle || {};
+    //   let { length = 0 } = values || [];
+    //   gradientStyle.valueIndex = index;
+    //   if (!(index < length - 1 && index > 0)) {
+    //     return;
+    //   }
     // },
+    // sliderDraggingEvent(value, index) {
+    //   this.sliderDragStartEvent(index);
+    // },
+    // sliderDragEndEvent(index) {
+    //   this.sliderDragStartEvent(index);
+    // },
+    gridStyleChangeEvent() {
+      let { info = {}, gridStyleMap = {} } = this;
+      let { gridStyle = {} } = info || {};
+      let { type = "" } = gridStyle || {};
+      let obj = gridStyleMap[type] || {};
+      let { value: _gridStyle = {} } = obj || {};
+      let { width, height } = _gridStyle || {};
+      gridStyle.width = width;
+      gridStyle.height = height;
+    },
+    //添加渐变光圈
+    addApertureEvent() {
+      let { info = {} } = this;
+      let { gradientStyle = {} } = info || {};
+      let { valueList = [], values = [] } = gradientStyle || {};
+      let { length = 0 } = valueList || [];
+      let item = (valueList || [])[length - 1];
+      let { code = "", value = 0 } = item || {};
+      value = parseInt(value / Math.pow(2, length - 1));
+      let index = 1;
+      valueList.splice(index, 0, { code, value });
+      values.splice(index, 0, value);
+      gradientStyle.valueIndex = index;
+      this.$refs.slider?.focus(index + 1);
+    },
+    removeApertureEvent() {
+      let { info = {} } = this;
+      let { gradientStyle = {} } = info || {};
+      let { valueList = [], values = [], valueIndex = 0 } = gradientStyle || {};
+      let { length = 0 } = valueList || [];
+      // let item = (valueList || [])[length - 1];
+      // let { code = "", value = 0 } = item || {};
+      // value = parseInt(value / length);
+      if (length > 2 && valueIndex > 0 && valueIndex < length - 1) {
+        valueList.splice(valueIndex, 1);
+        values.splice(valueIndex, 1);
+        let index = 1;
+        gradientStyle.valueIndex = index;
+        this.$refs.slider?.focus(index + 1);
+      }
+    },
     // setFontWeight() {
     //   let { info = {} } = this;
     //   let { fontWeight = "" } = info || {};

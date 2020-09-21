@@ -1,7 +1,9 @@
 <template>
-  <div 
+  <div
     :contenteditable="info.editable"
-    @blur.stop="blurEvent" :style="comStyle">
+    @blur.stop="blurEvent"
+    :style="comStyle"
+  >
     {{ info.name }}
   </div>
 </template>
@@ -25,8 +27,28 @@ export default {
   computed: {
     ...mapGetters(),
 
-    comStyle() {
+    //渐变颜色样式
+    gradientStyle() {
       let { info = {} } = this;
+      let { gradientStyle = {} } = info || {};
+      let {
+        type = "",
+        angle = "",
+        center = "",
+        radialShape = "",
+        valueList = []
+      } = gradientStyle || {};
+      let styles = {};
+      let colors = valueList.map(item => `${item.code} ${item.value}%`);
+      if (type == "linear") {
+        styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
+      } else if (type == "radial") {
+        styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+      }
+      return styles;
+    },
+    comStyle() {
+      let { info = {}, gradientStyle = {} } = this;
       let {
         width = "",
         height = "",
@@ -35,6 +57,7 @@ export default {
         borderStyle = "",
         borderWidth = "",
         borderRadius = "",
+        backgroundType = "",
         scale = "",
         fontFamily = "",
         fontSize = "",
@@ -46,8 +69,8 @@ export default {
         backgroundRepeat = "",
         backgroundSize = ""
       } = info || {};
-      let styles = {
-      };if (width) {
+      let styles = {};
+      if (width) {
         styles["width"] = `${width}px`;
       }
       if (height) {
@@ -92,17 +115,26 @@ export default {
       if (textDecoration) {
         styles["textDecoration"] = textDecoration;
       }
-      if (backgroundColor) {
-        styles["backgroundColor"] = backgroundColor;
-      }
-      if (backgroundImage) {
-        styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
+      if (backgroundType == "purity") {
+        //纯色
+        if (backgroundColor) {
+          styles["backgroundColor"] = backgroundColor;
+        }
+        if (backgroundImage) {
+          styles["backgroundImage"] = `url(${this.$loadImgUrl(
+            backgroundImage
+          )})`;
+        }
+      } else if (backgroundType == "gradient") {
+        //渐变
+        styles = { ...styles, ...gradientStyle };
       }
       return styles || {};
     }
   },
   methods: {
     ...mapMutations({}),
+    ...mapActions({}),
     blurEvent(e) {
       let { target } = e;
       let { info = {} } = this;

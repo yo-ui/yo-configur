@@ -33,20 +33,32 @@
     <p>
       <span class="label"> {{ $lang("页面高度") }}:</span
       ><el-input-number
+        controls-position="right"
         clearable
         v-model.number="info.height"
         :placeholder="$lang('请输入页面高度')"
       ></el-input-number
       >px
+      <el-slider
+        v-model="info.height"
+        :max="3000"
+        :format-tooltip="val => val"
+      ></el-slider>
     </p>
     <p>
       <span class="label"> {{ $lang("页面宽度") }}:</span
       ><el-input-number
+        controls-position="right"
         v-model.number="info.width"
         clearable
         :placeholder="$lang('请输入页面宽度')"
       ></el-input-number
       >px
+      <el-slider
+        v-model="info.width"
+        :max="3000"
+        :format-tooltip="val => val"
+      ></el-slider>
     </p>
     <p>
       <span class="label">{{ $lang("填充颜色") }}:</span>
@@ -78,7 +90,10 @@
       </p>
       <p>
         <span class="label">{{ $lang("渐变类型") }}:</span>
-        <el-radio-group v-model="info.gradientStyle.type">
+        <el-radio-group
+          class="gradient-type-group"
+          v-model="info.gradientStyle.type"
+        >
           <el-radio-button
             :style="`background-image:${gradientStyleMap[item.code]}`"
             :title="item.name"
@@ -140,6 +155,7 @@
         </p>
       </template>
       <!-- {{ info.gradientStyle }} -->
+      <!-- {{ info.gradientStyle.valueList }} -->
       <p class="gradient-aperture">
         <span class="label">{{ $lang("渐变光圈") }}:</span>
         <el-button-group>
@@ -156,6 +172,8 @@
             ><i class="el-icon-minus"></i
           ></el-button>
         </el-button-group>
+        <!-- {{ info.gradientStyle.valueList[info.gradientStyle.valueIndex].value }}
+        {{ info.gradientStyle.valueIndex }} -->
         <el-input
           :value="
             info.gradientStyle.valueList[info.gradientStyle.valueIndex].value +
@@ -167,12 +185,18 @@
       <p>
         <span class="label">{{ $lang("渐变节点颜色") }}</span>
         <el-color-picker
+          color-format="hex"
           v-model="
             info.gradientStyle.valueList[info.gradientStyle.valueIndex].code
           "
           show-alpha
         ></el-color-picker>
-        <el-input :value="info.gradientStyle.color" readonly></el-input>
+        <el-input
+          :value="
+            info.gradientStyle.valueList[info.gradientStyle.valueIndex].code
+          "
+          readonly
+        ></el-input>
       </p>
       <p>
         <!-- {{gradientStyleMap}} -->
@@ -220,9 +244,11 @@
           {{ $lang(info.backgroundImage ? "替换图片" : "选择图片") }}</el-button
         >
       </bm-upload>
-      <el-button @click="info.backgroundImage = ''">{{
-        $lang("重置")
-      }}</el-button>
+      <el-button
+        v-if="info.backgroundImage"
+        @click="info.backgroundImage = ''"
+        >{{ $lang("重置") }}</el-button
+      >
     </p>
     <template v-if="info.backgroundImage">
       <p>
@@ -293,6 +319,7 @@
         <span class="col">
           <span class="label"> {{ $lang("网格宽") }}:</span
           ><el-input-number
+            controls-position="right"
             v-model.number="info.gridStyle.width"
             clearable
             :placeholder="$lang('请输入网格宽')"
@@ -302,6 +329,7 @@
         <span class="col">
           <span class="label">{{ $lang("网格高") }}: </span
           ><el-input-number
+            controls-position="right"
             v-model.number="info.gridStyle.height"
             clearable
             :placeholder="$lang('请输入网格高')"
@@ -365,23 +393,18 @@ export default {
     gridStyleList.forEach(item => {
       gridStyleMap[item.code] = item || {};
     });
-    let backgroundTypeList = Object.freeze(Constants.BACKGROUNDTYPELIST);
-    let angelList = Object.freeze(Constants.ANGELLIST);
-    let gradientTypeList = Object.freeze(Constants.GRADIENTTYPELIST);
-    let radialShapeList = Object.freeze(Constants.RADIALSHAPELIST);
-    let centerList = Object.freeze(Constants.CENTERLIST);
     return {
       gridStyleList,
-      radialShapeList,
       flipModeList: Object.freeze(Constants.FLIPMODELIST),
       BACKGROUNDSIZELIST: Object.freeze(Constants.BACKGROUNDSIZELIST),
       // fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
       tileModeList: Object.freeze(Constants.TILEMODELIST),
-      centerList,
-      angelList,
-      gradientTypeList,
       gridStyleMap,
-      backgroundTypeList,
+      backgroundTypeList: Object.freeze(Constants.BACKGROUNDTYPELIST),
+      centerList: Object.freeze(Constants.CENTERLIST),
+      radialShapeList: Object.freeze(Constants.RADIALSHAPELIST),
+      angelList: Object.freeze(Constants.ANGELLIST),
+      gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
       condition: {}
       // info: {
       //   action: "select" //move select
@@ -494,6 +517,7 @@ export default {
         values[length - 1] = 100;
         this.$refs.slider?.setValue(values);
       }
+      gradientStyle.valueIndex = index;
       valueList[index].value = values[index];
     },
     // sliderDragStartEvent(index) {
@@ -888,90 +912,46 @@ export default {
 
 <style lang="less">
 @import (reference) "./../../assets/less/common.less";
-.bm-canvas-style-com {
-  .vue-slider {
-    // .w(100%);
-    .flex(1);
-    // .m(0 30px);
-    .ml(30);
-    .vue-slider-marks {
-      .db(none);
-    }
-    .vue-slider-dot {
-      .mt(10);
-      cursor: pointer;
-      // &:first-child,
-      // &:last-child {
-      //   cursor: not-allowed;
-      //   pointer-events: none;
-      // }
-      &.vue-slider-dot-focus {
-        .dot-box {
-          .bi("../../../assets/img/dot2.png");
-        }
-      }
-      .dot-box {
-        .bg-img;
-        .bi("../../../assets/img/dot1.png");
-        .squ(17);
-        .posr;
-        .dot {
-          .posa;
-          top: 6px;
-          left: 4px;
-          .squ(9);
-        }
-      }
-      // .vue-slider-rail
-    }
-    .vue-slider-process {
-      // .h(40)!important;
-      .squ(100%);
-      .br(0);
-    }
-    .vue-slider-dot-disabled {
-      cursor: not-allowed;
-    }
-  }
+.bm-canvas-style-com {  
   p {
-    &.gradient-aperture {
-      .el-button {
-        .p(10px);
-      }
-      .el-input {
-        .ml(10);
-      }
-    }
     .icon-paint {
       .bi("/static/img/configur/water.png");
-      .p(18px);
+      .p(18px) !important;
       .ml(8);
       .bz(80%);
     }
-    .gradient {
-      .dib;
-      .h(30);
-      .w(100);
-    }
-    .upload-box {
-      .flex(none) !important;
-      .mr(15);
-      .df;
-    }
-    .el-radio-group {
-      flex-direction: row !important;
-      .el-radio-button {
-        .br(0 4px 4px 0);
-        &:first-child {
-          .br(4px 0 0 4px);
-        }
-        &.is-active {
-          .el-radio-button__inner {
-            .bc(transparent);
-          }
-        }
-      }
-    }
+    // &.gradient-aperture {
+    //   .el-button {
+    //     .p(10px);
+    //   }
+    //   .el-input {
+    //     .ml(10);
+    //   }
+    // }
+    // .gradient {
+    //   .dib;
+    //   .h(30);
+    //   .w(100);
+    // }
+    // .upload-box {
+    //   .flex(none) !important;
+    //   .mr(15);
+    //   .df;
+    // }
+    // .gradient-type-group {
+    //   flex-direction: row !important;
+    //   .el-radio-button {
+    //     .br(0 4px 4px 0);
+    //     &:first-child {
+    //       .br(4px 0 0 4px);
+    //     }
+    //     &.is-active {
+    //       .el-radio-button__inner {
+    //         .bc(transparent);
+    //       }
+    //     }
+    //   }
+    // }
   }
 }
 </style>

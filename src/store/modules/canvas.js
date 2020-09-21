@@ -1,5 +1,5 @@
 // import { URL } from "@/common/env";
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 // import { post, get } from "@/store/axios";
 // import { Constants } from "@/common/env";
 export default {
@@ -34,16 +34,16 @@ export default {
         type: "linear", //渐变类型  linear 线性  radial 径向
         angle: 0,
         center: "50% 50%",
-        values: [0,100],
+        values: [0, 100],
         radialShape: "circle",
-        valueIndex:0,
+        valueIndex: 0,
         valueOptions: [
-        //   {
-        //   // disabled: true
-        // }, {
-        //   // disabled: true
-        // }
-      ],
+          //   {
+          //   // disabled: true
+          // }, {
+          //   // disabled: true
+          // }
+        ],
         valueList: [
           { code: "#108cee", value: 0 },
           { code: "#545fc8", value: 100 }

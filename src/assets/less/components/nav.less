@@ -1,4 +1,32 @@
 @import (reference) "./../common.less";
+.el-dropdown-menu{
+    .el-dropdown-menu__item{
+      .df;
+      align-items: center;
+      .lh(40);
+      &:hover{
+        .bc(transparent);
+      }
+      .bomi{
+        .fz(28);
+        .mr(10);
+      }
+      .skin{
+        .squ(20);
+        .bor(1px solid @grayE);
+        &.skin-white{
+          .bc(@white);
+        }
+        &.skin-black{
+          .bc(#1f2b48);
+        }
+        &.skin-blue{
+          .bc(#15cef2);
+        }
+      }
+    }
+  // }
+}
 .bm-nav-com{
   .bc(@white);
   .h(60);
@@ -26,6 +54,9 @@
   //     .fz(30);
   //   }
   // }
+  .el-dropdown{
+    min-width: 70px;
+  }
   .el-button-group{
     .df;
     align-items: center;
@@ -51,9 +82,26 @@
   }
   .el-button{
     .bc(transparent);
+    // min-width: 60px;
     .click;
     .bor(0);
-    span{
+    &.dropdown{
+      .p(9px 0px 9px 15px);
+      &>span{
+        flex-direction: row;
+        .txt{
+          .df;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+      .el-icon-caret-bottom{
+        .fz(14);
+        .ml(10);
+      }
+    }
+    &>span{
       .df;
       flex-direction: column;
       align-items: center;

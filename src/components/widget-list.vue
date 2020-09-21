@@ -112,7 +112,7 @@ export default {
     },
     dropEvent(e) {
       e.preventDefault();
-      // bmCommon.log("拖到目标元素", e.target);
+      bmCommon.log("拖到目标元素", e.target);
       e.stopPropagation();
       let { widgetList = [] } = this;
       let { originalEvent = {} } = e;

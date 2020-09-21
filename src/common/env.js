@@ -121,6 +121,11 @@ const Constants = {
     { code: "circle", name: "圆形" },
     { code: "ellipse", name: "椭圆" }
   ],
+  SHADOWTYPELIST: [
+    //阴影类型
+    { code: "inset", name: "内阴影" },
+    { code: "outset", name: "外阴影" }
+  ],
   ANGELLIST: [
     //角度列表
     { code: "0" },
@@ -142,26 +147,28 @@ const Constants = {
   ],
   FONTFAMILYLIST: [
     { code: "", name: "默认" },
-    // { code: "宋体", name: "宋体" },
-    // { code: "新宋体", name: "新宋体" },
-    // { code: "黑体", name: "黑体" },
-    // { code: "华文楷体", name: "华文楷体" },
-    { code: "lcdD", name: "LCD屏字体" }
-    // { code: "Light", name: "阿里巴巴-普惠体-Light" },
-    // { code: "Heavy", name: "阿里巴巴-普惠体-Heavy" },
-    // { code: "Medium", name: "阿里巴巴-普惠体-Medium" },
-    // { code: "Bold", name: "阿里巴巴-普惠体-Bold" },
-    // { code: "Regular", name: "阿里巴巴-普惠体-Regular" }
-    // { code: "FangSong_GB2312", name: "仿宋_GB2312" },
-    // { code: "KaiTi_GB2312", name: "楷体_GB2312" },
-    // { code: "Microsoft YaHei", name: "微软雅黑体" },
-    // { code: "LiSu", name: "隶书" },
-    // { code: "YouYuan", name: "幼圆" },
-    // { code: "STXihei", name: "华文细黑" },
-    // { code: "STKaiti", name: "华文楷体" },
-    // { code: "STSong", name: "华文宋体" },
-    // { code: "STZhongsong", name: "华文中宋" },
-    // { code: "S", name: "华文仿宋" },
+    { code: "lcdD", name: "LCD屏字体" },
+    { code: "Acens", name: "Acens" },
+    { code: "Arial", name: "Arial" },
+    { code: "Arial Black", name: "Arial Black" },
+    { code: "Bookman", name: "Bookman" },
+    { code: "Comic Sans MSComic Sans MS" },
+    { code: "Courier", name: "Courier" },
+    { code: "Courier New", name: "Courier New" },
+    { code: "Digital-7Mono", name: "Digital-7Mono" },
+    { code: "Garamond", name: "Garamond" },
+    { code: "Georgia", name: "Georgia" },
+    { code: "Helvetica", name: "Helvetica" },
+    { code: "Impact", name: "Impact" },
+    { code: "Palatino", name: "Palatino" },
+    { code: "PingFangSC-Regular", name: "PingFangSC-Regular" },
+    { code: "serif", name: "serif" },
+    { code: "sans-serif", name: "sans-serif" },
+    { code: "Times", name: "Times" },
+    { code: "Times New Roman", name: "Times New Roman" },
+    { code: "Trebuchet MS", name: "Trebuchet MS" },
+    { code: "Verdana", name: "Verdana" },
+    { code: "微软雅黑", name: "微软雅黑" }
   ]
 };
 

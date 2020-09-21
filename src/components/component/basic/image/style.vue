@@ -26,7 +26,11 @@
     </p> -->
     <p>
       <span class="label"> {{ $lang("层级") }}: </span>
-      {{ info.order }}
+      <el-input-number controls-position="right"
+        clearable
+        v-model.number="info.order"
+        :placeholder="$lang('请输入层级')"
+      ></el-input-number>
       <el-slider
         v-model="info.order"
         :max="200"
@@ -66,7 +70,14 @@
       ></el-slider>
     </p>
     <p>
-      <span class="label"> {{ $lang("旋转角度") }}:</span>{{ info.rotate }} deg
+      <span class="label"> {{ $lang("旋转角度") }}:</span> <el-input-number controls-position="right"
+          clearable
+        :min="-360"
+        :max="360"
+          v-model.number="info.rotate"
+          :placeholder="$lang('请输入旋转角度')"
+        ></el-input-number>
+        deg
       <el-slider
         v-model="info.rotate"
         :min="-360"
@@ -165,7 +176,14 @@
     </p>
     <p>
       <span class="label"> {{ $lang("边框圆角") }}:</span
-      >{{ info.borderRadius }} px
+      > <el-input-number controls-position="right"
+          clearable
+        :min="0"
+        :max="50"
+          v-model.number="info.borderRadius"
+          :placeholder="$lang('请输入边框圆角')"
+        ></el-input-number>
+        px
       <el-slider
         v-model="info.borderRadius"
         :min="0"
@@ -193,6 +211,11 @@ export default {
   data() {
     return {
       borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
+      backgroundTypeList: Object.freeze(Constants.BACKGROUNDTYPELIST),
+      centerList: Object.freeze(Constants.CENTERLIST),
+      radialShapeList: Object.freeze(Constants.RADIALSHAPELIST),
+      angelList: Object.freeze(Constants.ANGELLIST),
+      gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
       flipModeList: Object.freeze(Constants.FLIPMODELIST),
       BACKGROUNDSIZELIST: Object.freeze(Constants.BACKGROUNDSIZELIST),
       tileModeList: Object.freeze(Constants.TILEMODELIST)
@@ -213,7 +236,47 @@ export default {
       )
   },
   computed: {
-    ...mapGetters()
+    ...mapGetters(),
+gradientStyle() {
+      let { info = {}, gradientStyleMap = [] } = this;
+      let { gradientStyle = {} } = info || {};
+      let {
+        type = ""
+        // angle = "",
+        // center = "",
+        // radialShape = "",
+        // valueList = []
+      } = gradientStyle || {};
+      let styles = {
+        backgroundImage: gradientStyleMap[type]
+      };
+      // let colors = valueList.map(item => `${item.code} ${item.value}%`);
+      // styles.backgroundImage = gradientStyleMap[type]
+      // if (type == "linear") {
+      //   styles.backgroundImage = gradientStyleMap[type] `linear-gradient(${angle}deg, ${colors.join()})`;
+      // } else if (type == "radial") {
+      //   styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+      // }
+      return styles;
+    },
+    gradientStyleMap() {
+      let { info = {} } = this;
+      let { gradientStyle = {} } = info || {};
+      let { angle = "", center = "", radialShape = "", valueList = [] } =
+        gradientStyle || {};
+      let colors = valueList.map(item => `${item.code} ${item.value}%`);
+      return {
+        linear: `linear-gradient(${angle}deg, ${colors.join()})`,
+        radial: `radial-gradient(${radialShape} at ${center}, ${colors.join()})`
+      };
+    },
+    gradientLinearStyle() {
+      let { info = {} } = this;
+      let { gradientStyle = {} } = info || {};
+      let { valueList = [] } = gradientStyle || {};
+      let colors = valueList.map(item => `${item.code} ${item.value}%`);
+      return `background-image:linear-gradient(90deg, ${colors.join()})`;
+    }
   },
   methods: {
     ...mapMutations({}),

@@ -1,4 +1,4 @@
-import { routerAuth } from "@/common/env";
+// import { routerAuth } from "@/common/env";
 import RouterURL from "@/router/routers.conf";
 
 // const Login = resolve => require(["@/pages/Login"], resolve);
@@ -30,6 +30,16 @@ const Routers = [
       // requireAuth: routerAuth //是否需要登录
     },
     component: () => import(/* webpackChunkName: "bm-index" */ "@/pages/Index")
+  },
+  {
+    path: RouterURL.preview.path,
+    name: RouterURL.preview.name,
+    meta: {
+      title: RouterURL.preview.title
+      // requireAuth: routerAuth //是否需要登录
+    },
+    component: () =>
+      import(/* webpackChunkName: "bm-preview" */ "@/pages/Preview")
   },
   {
     path: RouterURL.login.path,

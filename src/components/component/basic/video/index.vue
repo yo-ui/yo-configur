@@ -25,6 +25,27 @@ export default {
   computed: {
     ...mapGetters(),
 
+    
+    //渐变颜色样式
+    gradientStyle() {
+      let { info = {} } = this;
+      let { gradientStyle = {} } = info || {};
+      let {
+        type = "",
+        angle = "",
+        center = "",
+        radialShape = "",
+        valueList = []
+      } = gradientStyle || {};
+      let styles = {};
+      let colors = valueList.map(item => `${item.code} ${item.value}%`);
+      if (type == "linear") {
+        styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
+      } else if (type == "radial") {
+        styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+      }
+      return styles;
+    },
     comStyle() {
       let { info = {} } = this;
       let {
