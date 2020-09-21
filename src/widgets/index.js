@@ -29,23 +29,27 @@ let widgets = {
     ),
   lineChartCom: () =>
     import(
-      /* webpackChunkName: "bm-component-lineChart" */ "@/components/component/basic/lineChart/index.vue"
+      /* webpackChunkName: "bm-component-lineChart" */ "@/components/component/com/lineChart/index.vue"
     ),
   barChartCom: () =>
     import(
-      /* webpackChunkName: "bm-component-barChart" */ "@/components/component/basic/barChart/index.vue"
+      /* webpackChunkName: "bm-component-barChart" */ "@/components/component/com/barChart/index.vue"
     ),
   pieChartCom: () =>
     import(
-      /* webpackChunkName: "bm-component-pieChart" */ "@/components/component/basic/pieChart/index.vue"
+      /* webpackChunkName: "bm-component-pieChart" */ "@/components/component/com/pieChart/index.vue"
     ),
   mapCom: () =>
     import(
-      /* webpackChunkName: "bm-component-map" */ "@/components/component/basic/map/index.vue"
+      /* webpackChunkName: "bm-component-map" */ "@/components/component/com/map/index.vue"
     ),
   gaugeChartCom: () =>
     import(
-      /* webpackChunkName: "bm-component-gaugeChart" */ "@/components/component/basic/gaugeChart/index.vue"
+      /* webpackChunkName: "bm-component-gaugeChart" */ "@/components/component/com/gaugeChart/index.vue"
+    ),
+  tableCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-table" */ "@/components/component/com/table/index.vue"
     ),
   deviceCommonCom: () =>
     import(
@@ -87,27 +91,31 @@ let styles = {
     ),
   videoStyleCom: () =>
     import(
-      /* webpackChunkName: "bm-component-video-style" */ "@/components/component/basic/video/style.vue"
+      /* webpackChunkName: "bm-component-video-style" */ "@/components/component/com/video/style.vue"
     ),
   lineChartStyleCom: () =>
     import(
-      /* webpackChunkName: "bm-component-lineChart-style" */ "@/components/component/basic/lineChart/style.vue"
+      /* webpackChunkName: "bm-component-lineChart-style" */ "@/components/component/com/lineChart/style.vue"
     ),
   mapStyleCom: () =>
     import(
-      /* webpackChunkName: "bm-component-map-style" */ "@/components/component/basic/map/style.vue"
+      /* webpackChunkName: "bm-component-map-style" */ "@/components/component/com/map/style.vue"
     ),
   pieChartStyleCom: () =>
     import(
-      /* webpackChunkName: "bm-component-pieChart-style" */ "@/components/component/basic/pieChart/style.vue"
+      /* webpackChunkName: "bm-component-pieChart-style" */ "@/components/component/com/pieChart/style.vue"
     ),
   barChartStyleCom: () =>
     import(
-      /* webpackChunkName: "bm-component-barChart-style" */ "@/components/component/basic/barChart/style.vue"
+      /* webpackChunkName: "bm-component-barChart-style" */ "@/components/component/com/barChart/style.vue"
     ),
   gaugeChartStyleCom: () =>
     import(
-      /* webpackChunkName: "bm-component-gaugeChart-style" */ "@/components/component/basic/gaugeChart/style.vue"
+      /* webpackChunkName: "bm-component-gaugeChart-style" */ "@/components/component/com/gaugeChart/style.vue"
+    ),
+  tableStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-table-style" */ "@/components/component/com/table/style.vue"
     ),
   deviceCommonStyleCom: () =>
     import(

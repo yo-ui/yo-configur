@@ -1,28 +1,17 @@
 <template>
   <div class="bm-preview-page">
     <bm-header ref="bmHeader"></bm-header>
-    <!-- <bm-nav ref="bmNav"></bm-nav> -->
     <div class="flex-content">
-      <!-- <bm-widget-list ref="bmWidgetList" v-if="leftMenuStatus"></bm-widget-list>
-      <div v-else></div> -->
       <div class="content-box">
         <div class="view-box" ref="viewBox">
-          <!-- {{activeComIds}} -->
-          <!-- :active="activeComIds == item.id" -->
-          <!-- @drop="dropEvent" -->
           <div
             class="canvas-box"
             ref="canvasBox"
             :style="canvasStyle"
             :class="canvas.action"
           >
-            <!-- @mousedown.native.stop.prevent="mousedownEvent(item)" -->
             <div class="bg" :style="bgStyle">
               <div class="grid" :style="gridStyle">
-                <!-- {{gradientStyle}}
-                {{canvasStyle}} -->
-                <!-- {{bgStyle}} -->
-                <!-- {{canvas}} -->
               </div>
             </div>
             <bm-com
@@ -38,17 +27,16 @@
               :key="index"
             ></bm-com>
           </div>
-          <bm-lines ref="bmLines"></bm-lines>
-          <div class="slider-box" @mousedown.stop>
+          <!-- <bm-lines ref="bmLines"></bm-lines> -->
+          <!-- <div class="slider-box" @mousedown.stop>
             {{ $toBig(zoom, 0) + "%" }}
-            <!-- @input="changeZoomEvent" -->
             <el-slider
               v-model="zoom"
               :max="200"
               @mousedown.stop
               :format-tooltip="val => val + '%'"
             ></el-slider>
-          </div>
+          </div> -->
         </div>
         <!-- <bm-info ref="bmInfo" v-if="rightMenuStatus"></bm-info> -->
       </div>
@@ -124,7 +112,7 @@
       </li>
     </ul> -->
     <bm-footer ref="bmFooter"></bm-footer>
-    <bm-select ref="bmSelect"></bm-select>
+    <!-- <bm-select ref="bmSelect"></bm-select> -->
   </div>
 </template>
 <script>
@@ -159,10 +147,10 @@ export default {
     // bmNav,
     // : () =>
     //   import(/* webpackChunkName: "iot-header-com" */ "@/components/header"),
-    bmLines: () =>
-      import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
-    bmSelect: () =>
-      import(/* webpackChunkName: "iot-select-com" */ "@/components/select"),
+    // bmLines: () =>
+    //   import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
+    // bmSelect: () =>
+    //   import(/* webpackChunkName: "iot-select-com" */ "@/components/select"),
     bmFooter,
     // : () =>
     //   import(/* webpackChunkName: "iot-footer-com" */ "@/components/footer"),
