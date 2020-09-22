@@ -46,26 +46,28 @@
         </el-dropdown>
       </el-button-group> -->
       <el-button-group>
-        <el-dropdown trigger="click">
-          <el-button class="dropdown" :disabled="activeComs.length < 3">
+        <el-dropdown trigger="click" @command="spreadCommandEvent">
+          <!-- :disabled="activeComs.length < 3" -->
+          <el-button class="dropdown">
             <span class="txt">
-              <i class="el-icon-files"></i>
+              <i :class="`bomi bomi-${condition.spreadType}`"></i>
               {{ $lang("分布") }} </span
             ><i class="el-icon-caret-bottom"></i
           ></el-button>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item
-              ><i class="el-icon-files"></i>水平分布</el-dropdown-item
+            <el-dropdown-item command="h-center"
+              ><i class="bomi bomi-h-center"></i>水平分布</el-dropdown-item
             >
-            <el-dropdown-item
-              ><i class="el-icon-files"></i>垂直分布</el-dropdown-item
+            <el-dropdown-item command="v-center"
+              ><i class="bomi bomi-v-center"></i>垂直分布</el-dropdown-item
             >
           </el-dropdown-menu>
         </el-dropdown>
         <el-dropdown trigger="click" @command="alignCommandEvent">
-          <el-button class="dropdown" :disabled="activeComs.length < 1">
+          <!-- :disabled="activeComs.length < 1" -->
+          <el-button class="dropdown">
             <span class="txt">
-              <i class="el-icon-files"></i>
+              <i :class="`bomi bomi-align-${condition.alignType}`"></i>
               {{ $lang("对齐") }}
             </span>
             <i class="el-icon-caret-bottom"></i>
@@ -75,7 +77,8 @@
               ><i class="bomi bomi-align-left"></i>左对齐</el-dropdown-item
             >
             <el-dropdown-item command="h-center"
-              ><i class="bomi bomi-h-center"></i>水平居中</el-dropdown-item
+              ><i class="bomi bomi-align-h-center"></i
+              >水平居中</el-dropdown-item
             >
             <el-dropdown-item command="right"
               ><i class="bomi bomi-align-right"></i>右对齐</el-dropdown-item
@@ -88,7 +91,8 @@
               ><i class="bomi bomi-align-top"></i>上对齐</el-dropdown-item
             >
             <el-dropdown-item command="v-center"
-              ><i class="bomi bomi-v-center"></i>垂直居中</el-dropdown-item
+              ><i class="bomi bomi-align-v-center"></i
+              >垂直居中</el-dropdown-item
             >
             <el-dropdown-item command="bottom"
               ><i class="bomi bomi-align-bottom"></i>下对齐</el-dropdown-item
@@ -99,16 +103,15 @@
             >
           </el-dropdown-menu>
         </el-dropdown>
-        <el-dropdown trigger="click" @command="orderCommandEvent">
-          <el-button
-            class="dropdown"
-            :disabled="
+        <!-- :disabled="
               !(
                 activeComs.length > 0 ||
                 (activeCom.type && activeCom.type != 'canvas')
-              )
-            "
-          >
+              ) ||
+                (topOrder == activeCom.order && bottomOrder == activeCom.order)
+            " -->
+        <el-dropdown trigger="click" @command="orderCommandEvent">
+          <el-button class="dropdown">
             <span class="txt">
               <i class="bomi bomi-arrange"></i>
               {{ $lang("排列") }}
@@ -116,16 +119,24 @@
             <i class="el-icon-caret-bottom"></i>
           </el-button>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="top"
+            <el-dropdown-item
+              command="top"
+              :disabled="topOrder == activeCom.order"
               ><i class="bomi bomi-move-top"></i>置顶</el-dropdown-item
             >
-            <el-dropdown-item command="bottom"
+            <el-dropdown-item
+              command="bottom"
+              :disabled="bottomOrder == activeCom.order"
               ><i class="bomi bomi-move-bottom"></i>置底</el-dropdown-item
             >
-            <el-dropdown-item command="up"
+            <el-dropdown-item
+              command="up"
+              :disabled="topOrder == activeCom.order"
               ><i class="bomi bomi-move-up"></i>前移</el-dropdown-item
             >
-            <el-dropdown-item command="down"
+            <el-dropdown-item
+              command="down"
+              :disabled="bottomOrder == activeCom.order"
               ><i class="bomi bomi-move-down"></i>后移</el-dropdown-item
             >
           </el-dropdown-menu>
@@ -200,7 +211,12 @@ import bmCommon from "@/common/common";
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {
-    return {};
+    return {
+      condition: {
+        alignType: "left",
+        spreadType: "h-center"
+      }
+    };
   },
   components: {},
   computed: {
@@ -212,7 +228,20 @@ export default {
       activeCom: "canvas/getActiveCom",
       activeComs: "canvas/getActiveComs",
       widgetList: "canvas/getWidgetList"
-    })
+    }),
+
+    bottomOrder() {
+      let { widgetList = [] } = this;
+      let orders = widgetList.map(item => item.order);
+      let order = Math.min(...orders);
+      return order;
+    },
+    topOrder() {
+      let { widgetList = [] } = this;
+      let orders = widgetList.map(item => item.order);
+      let order = Math.max(...orders);
+      return order;
+    }
   },
   methods: {
     ...mapMutations({
@@ -345,38 +374,224 @@ export default {
         }
       });
     },
+    spreadCommandEvent(cmd) {
+      let { condition } = this;
+      condition.spreadType = cmd;
+      switch (cmd) {
+        case "v-center":
+          this.spreadVCenterEvent();
+          break;
+        case "h-center":
+          this.spreadHCenterEvent();
+          break;
+      }
+    },
+    // 垂直分布
+    spreadVCenterEvent() {
+      let { activeComs = [] } = this;
+      let { length = 0 } = activeComs || [];
+      if (length < 3) {
+        return;
+      }
+      let min = Math.min(...activeComs.map(item => Number(item.top)));
+      let max = Math.max(
+        ...activeComs.map(
+          item =>
+            Number(item.top) +
+            (Number(item.height) || Number(item.originHeight))
+        )
+      );
+      let range = (max - min) / (length - 1);
+      let index = 1;
+      activeComs.forEach(item => {
+        let { height = "", top = "", originHeight = "" } = item || {};
+        let _max = (Number(height) || Number(originHeight)) + Number(top);
+        let _min = Number(top);
+        if (min != _min && _max != max) {
+          item.top =
+            min + range * index - (Number(height) || Number(originHeight)) / 2;
+          index++;
+        }
+      });
+    },
+    //水平分布
+    spreadHCenterEvent() {
+      let { activeComs = [] } = this;
+      let { length = 0 } = activeComs || [];
+      if (length < 3) {
+        return;
+      }
+      let min = Math.min(...activeComs.map(item => Number(item.left)));
+      let max = Math.max(
+        ...activeComs.map(
+          item =>
+            Number(item.left) + (Number(item.width) || Number(item.originWidth))
+        )
+      );
+      let range = (max - min) / (length - 1);
+      let index = 1;
+      activeComs.forEach(item => {
+        let { width = "", left = "", originWidth = "" } = item || {};
+        let _max = (Number(width)|| Number(originWidth)) + Number(left);
+        let _min = Number(left);
+        if (min != _min && _max != max) {
+          item.left =
+            min + range * index - (Number(width) || Number(originWidth)) / 2;
+          index++;
+        }
+      });
+    },
     alignCommandEvent(cmd) {
+      let { condition } = this;
+      condition.alignType = cmd;
       switch (cmd) {
         case "top":
-          this.aiignTopEvent();
+          this.alignTopEvent();
           break;
         case "bottom":
-          this.aiignBottomEvent();
+          this.alignBottomEvent();
           break;
         case "left":
-          this.aiignLeftEvent();
+          this.alignLeftEvent();
           break;
         case "right":
-          this.aiignUpEvent();
+          this.alignRightEvent();
+          break;
+        case "left-right":
+          this.alignLeftRightEvent();
+          break;
+        case "top-bottom":
+          this.alignTopBottomEvent();
+          break;
+        case "v-center":
+          this.alignVCenterEvent();
+          break;
+        case "h-center":
+          this.alignHCenterEvent();
           break;
         default:
           break;
       }
     },
-    // 左对齐
-    aiignLeftEvent() {
+    // 左右对齐
+    alignLeftRightEvent() {
       let { activeComs = [] } = this;
+      let { length = 0 } = activeComs || [];
+      if (length < 2) {
+        return;
+      }
+      let [item = {}] = activeComs || [];
+      let left =
+        item.left + (Number(item.width) || Number(item.originWidth)) / 2;
+      let width = Number(item.width) || Number(item.originWidth);
+      activeComs.forEach(item => {
+        if (item.scaleable) {
+          //若组件本身不可变，则不做拉伸处理
+          item.width = width;
+        }
+        item.left = left - (Number(item.width) || Number(item.originWidth)) / 2;
+      });
+    },
+    //上下对齐
+    alignTopBottomEvent() {
+      let { activeComs = [] } = this;
+      let { length = 0 } = activeComs || [];
+      if (length < 2) {
+        return;
+      }
+      let [item = {}] = activeComs || [];
+      let top =
+        item.top + (Number(item.height) || Number(item.originHeight)) / 2;
+      let height = Number(item.height) || Number(item.originHeight);
+      activeComs.forEach(item => {
+        if (item.scaleable) {
+          item.height = height;
+        }
+        item.top = top - (Number(item.height) || Number(item.originHeight)) / 2;
+      });
+    },
+    // 垂直居中
+    alignVCenterEvent() {
+      let { activeComs = [] } = this;
+      let { length = 0 } = activeComs || [];
+      if (length < 2) {
+        return;
+      }
+      let [item = {}] = activeComs || [];
+      let top =
+        item.top + (Number(item.height) || Number(item.originHeight)) / 2;
+      activeComs.forEach(item => {
+        item.top = top - (Number(item.height) || Number(item.originHeight)) / 2;
+      });
+    },
+    // 水平居中
+    alignHCenterEvent() {
+      let { activeComs = [] } = this;
+      let { length = 0 } = activeComs || [];
+      if (length < 2) {
+        return;
+      }
+      let [item = {}] = activeComs || [];
+      let left =
+        item.left + (Number(item.width) || Number(item.originWidth)) / 2;
+      activeComs.forEach(item => {
+        item.left = left - (Number(item.width) || Number(item.originWidth)) / 2;
+      });
+    },
+    // 左对齐
+    alignLeftEvent() {
+      let { activeComs = [] } = this;
+      let { length = 0 } = activeComs || [];
+      if (length < 2) {
+        return;
+      }
       let min = Math.min(...activeComs.map(item => item.left));
       activeComs.forEach(item => {
         item.left = min;
       });
     },
-    // 上对齐
-    aiignTopEvent() {
+    // 右对齐
+    alignRightEvent() {
       let { activeComs = [] } = this;
+      let { length = 0 } = activeComs || [];
+      if (length < 2) {
+        return;
+      }
+      let max = Math.max(
+        ...activeComs.map(
+          item => item.left + (Number(item.width) || Number(item.originWidth))
+        )
+      );
+      activeComs.forEach(item => {
+        item.left = max - (Number(item.width) || Number(item.originWidth));
+      });
+    },
+    // 上对齐
+    alignTopEvent() {
+      let { activeComs = [] } = this;
+      let { length = 0 } = activeComs || [];
+      if (length < 2) {
+        return;
+      }
       let min = Math.min(...activeComs.map(item => item.top));
       activeComs.forEach(item => {
         item.top = min;
+      });
+    },
+    // 下对齐
+    alignBottomEvent() {
+      let { activeComs = [] } = this;
+      let { length = 0 } = activeComs || [];
+      if (length < 2) {
+        return;
+      }
+      let max = Math.max(
+        ...activeComs.map(
+          item => item.top + (Number(item.height) || Number(item.originHeight))
+        )
+      );
+      activeComs.forEach(item => {
+        item.top = max - (Number(item.height) || Number(item.originHeight));
       });
     },
     orderCommandEvent(cmd) {

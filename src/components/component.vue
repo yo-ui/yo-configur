@@ -69,7 +69,8 @@
       :info="info"
       :is="`${info.type}Com`"
       @success="loadSuccess"
-    ></component>
+    >
+    </component>
     <!-- <bm-text></bm-text> -->
     <!-- <template v-if="type == 'text'">
       <div
@@ -92,7 +93,7 @@
 <script>
 import bmCommon from "@/common/common";
 import { widgets } from "@/widgets/index";
-import { Constants } from "@/common/env";
+// import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -107,7 +108,9 @@ export default {
       }
     }
   },
-  mounted() {},
+  mounted() {
+    // this.loadSuccess();
+  },
   components: {
     ...widgets
   },
@@ -117,15 +120,40 @@ export default {
     }),
     boxStyle() {
       let { info = {} } = this;
-      let { left = "", top = "", order: zIndex = "", rotate = "0" } =
-        info || {};
-      return {
+      let {
+        left = "",
+        top = "",
+        // width = "",
+        // height = "",
+        order: zIndex = "",
+        matrix = "",
+        rotate = "",
+        transformOrigin = ""
+      } = info || {};
+      // let { a, b, c, d, e, f } = matrix || {};
+      // let radian = (Math.PI / 180) * rotate;
+      // matrix.a = Math.cos(radian);
+      // matrix.b = Math.sin(radian);
+      // matrix.c = -Math.sin(radian);
+      // matrix.d = Math.cos(radian);
+      // bmCommon.log("matrix=", matrix);
+      // let x = 0,
+      //   y = 0;
+      // if (transformOrigin == "left top") {
+      //   x = width / 2 - left;
+      //   y = height / 2 - top;
+      //   e = x * a + y * c + e * 1;
+      //   f = b * x + d * y + 1 * f;
+      // }
+      let styles = {
         left: left + "px",
         top: top + "px",
         zIndex,
+        // transform: `matrix(${a},${b},${c},${d},${e},${f})`,
         transform: `rotate(${rotate}deg)`,
-        webkitTransform: `rotate(${rotate}deg)`
+        transformOrigin: transformOrigin
       };
+      return styles;
     }
   },
   methods: {
@@ -174,8 +202,6 @@ export default {
         originWidth,
         originHeight
       });
-      // bmCommon.log(info, x, y, type);
-
       $(document).on("mousemove", this.mousemoveEvent);
       $(document).on("mouseup", this.mouseupEvent);
     },
@@ -185,11 +211,6 @@ export default {
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
       let { type = "" } = this;
-      // this.$vpd.commit('resize', {
-      //   x: e.pageX,
-      //   y: e.pageY,
-      //   type: this.type
-      // })
       this.resize({
         x,
         y,

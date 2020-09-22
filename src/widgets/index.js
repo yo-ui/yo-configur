@@ -23,9 +23,20 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-block" */ "@/components/component/basic/block/index.vue"
     ),
+    tableCom: () =>
+      import(
+        /* webpackChunkName: "bm-component-table" */ "@/components/component/basic/table/index.vue"
+      ),
+    vScrollTextCom: () =>
+      import(
+        /* webpackChunkName: "bm-component-vScrollText" */ "@/components/component/basic/vScrollText/index.vue"
+      ),
+
+
+
   videoCom: () =>
     import(
-      /* webpackChunkName: "bm-component-video" */ "@/components/component/basic/video/index.vue"
+      /* webpackChunkName: "bm-component-video" */ "@/components/component/com/video/index.vue"
     ),
   lineChartCom: () =>
     import(
@@ -46,10 +57,6 @@ let widgets = {
   gaugeChartCom: () =>
     import(
       /* webpackChunkName: "bm-component-gaugeChart" */ "@/components/component/com/gaugeChart/index.vue"
-    ),
-  tableCom: () =>
-    import(
-      /* webpackChunkName: "bm-component-table" */ "@/components/component/com/table/index.vue"
     ),
   deviceCommonCom: () =>
     import(
@@ -89,6 +96,16 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-block-style" */ "@/components/component/basic/block/style.vue"
     ),
+    tableStyleCom: () =>
+      import(
+        /* webpackChunkName: "bm-component-table-style" */ "@/components/component/basic/table/style.vue"
+      ),
+    vScrollTextStyleCom: () =>
+      import(
+        /* webpackChunkName: "bm-component-vScrollText-style" */ "@/components/component/basic/vScrollText/style.vue"
+      ),
+
+
   videoStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-video-style" */ "@/components/component/com/video/style.vue"
@@ -112,10 +129,6 @@ let styles = {
   gaugeChartStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-gaugeChart-style" */ "@/components/component/com/gaugeChart/style.vue"
-    ),
-  tableStyleCom: () =>
-    import(
-      /* webpackChunkName: "bm-component-table-style" */ "@/components/component/com/table/style.vue"
     ),
   deviceCommonStyleCom: () =>
     import(

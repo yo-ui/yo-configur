@@ -124,7 +124,7 @@ const Constants = {
   SHADOWTYPELIST: [
     //阴影类型
     { code: "inset", name: "内阴影" },
-    { code: "outset", name: "外阴影" }
+    { code: "", name: "外阴影" }
   ],
   ANGELLIST: [
     //角度列表
@@ -144,6 +144,18 @@ const Constants = {
     { code: "100% 0%", name: "右上角" },
     { code: "0% 100%", name: "左下角" },
     { code: "100% 100%", name: "右下角" }
+  ],
+  TRANSFORMORIGINLIST: [
+    //旋转轴类型
+    { code: "left top", name: "左上" }, //0% 0%
+    { code: "top", name: "上中" }, //50% 0%
+    { code: "right top", name: "右上" }, //100% 0%
+    { code: "center", name: "正中" }, //50% 50%
+    { code: "right", name: "右中" }, //100% 50%
+    { code: "right bottom", name: "右下" }, //100% 100%
+    { code: "bottom", name: "下中" }, //50% 100%
+    { code: "left bottom", name: "左下" }, //0% 100%
+    { code: "left", name: "左中" } //0% 50%
   ],
   FONTFAMILYLIST: [
     { code: "", name: "默认" },

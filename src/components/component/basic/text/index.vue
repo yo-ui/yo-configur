@@ -59,6 +59,19 @@ export default {
         borderRadius = "",
         backgroundType = "",
         scale = "",
+        marginTop = 0,
+        marginBottom = 0,
+        marginLeft = 0,
+        marginRight = 0,
+        paddingTop = 0,
+        paddingBottom = 0,
+        paddingLeft = 0,
+        paddingRight = 0,
+        shadow = {},
+        shadowable = false,
+        textShadow = {},
+        textShadowable = false,
+        textAlign = "",
         fontFamily = "",
         fontSize = "",
         fontWeight = "",
@@ -69,7 +82,27 @@ export default {
         backgroundRepeat = "",
         backgroundSize = ""
       } = info || {};
-      let styles = {};
+      let styles = {
+        margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
+        padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
+      };
+      if (textAlign) {
+        styles["textAlign"] = textAlign;
+        if (textAlign == "justify") {
+          styles["text-align-last"] = textAlign;
+        }
+      }
+      if (shadowable) {
+        let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
+          shadow || {};
+        styles[
+          "boxShadow"
+        ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
+      }
+      if (textShadowable) {
+        let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
+        styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
+      }
       if (width) {
         styles["width"] = `${width}px`;
       }

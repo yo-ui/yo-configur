@@ -1,7 +1,27 @@
 <template>
-  <div ref="bmCom" :style="comStyle">
-    {{ info.content }}
-  </div>
+  <el-table
+    class="bm-basic-table-com"
+    ref="bmCom"
+    :data="dataList"
+    :style="comStyle"
+  >
+    <el-table-column
+      v-for="(item, index) in tableKeys"
+      :key="index"
+      :prop="item.code"
+      :label="item.name"
+      min-width="120"
+    >
+      <template #default="scope">
+        <template v-if="item.code == 'time'">
+          {{ scope.row[item.code] | $dateFormat }}
+        </template>
+        <template v-else>
+          {{ scope.row[item.code] }}
+        </template>
+      </template>
+    </el-table-column>
+  </el-table>
 </template>
 
 <script>
@@ -10,7 +30,23 @@ const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "dynamicTextCom",
   data() {
-    return {};
+    return {
+      dataList: [
+        { time: new Date(), temp: 27, city: "上海", hd: 34, aq: 54 },
+        { time: new Date(), temp: 27, city: "广州", hd: 34, aq: 54 },
+        { time: new Date(), temp: 27, city: "北京", hd: 34, aq: 54 },
+        { time: new Date(), temp: 27, city: "长沙", hd: 34, aq: 54 },
+        { time: new Date(), temp: 27, city: "上海", hd: 34, aq: 54 },
+        { time: new Date(), temp: 27, city: "上海", hd: 34, aq: 54 }
+      ],
+      tableKeys: [
+        { code: "time", name: "时间戳" },
+        { code: "city", name: "城市" },
+        { code: "temp", name: "温度" },
+        { code: "hd", name: "温度" },
+        { code: "aq", name: "空气质量" }
+      ]
+    };
   },
   props: {
     info: {
@@ -62,9 +98,6 @@ export default {
         paddingRight = 0,
         shadow = {},
         shadowable = false,
-        textShadow = {},
-        textShadowable = false,
-        textAlign = "",
         scale = "",
         fontFamily = "",
         fontWeight = "",
@@ -81,8 +114,8 @@ export default {
         margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
         padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
       };
-      if (textAlign) {
-        styles["textAlign"] = textAlign;
+      if (backgroundRepeat) {
+        styles["backgroundRepeat"] = backgroundRepeat;
       }
       if (shadowable) {
         let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
@@ -90,13 +123,6 @@ export default {
         styles[
           "boxShadow"
         ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
-      }
-      if (textShadowable) {
-        let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
-        styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
-      }
-      if (backgroundRepeat) {
-        styles["backgroundRepeat"] = backgroundRepeat;
       }
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
@@ -179,5 +205,6 @@ export default {
   }
 };
 </script>
-
-<style></style>
+<style lang="less">
+@import (less) "../../../../assets/less/components/component/basic/table.less";
+</style>

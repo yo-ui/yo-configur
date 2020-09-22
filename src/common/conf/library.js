@@ -19,6 +19,16 @@ let baseData = {
   width: 300,
   height: 60,
   rotate: 0,
+  matrix: {
+    //二维矩阵
+    a: 1,
+    b: 0,
+    c: 0,
+    d: 1,
+    e: 0,
+    f: 0
+  },
+  transformOrigin: "center",
   top: 0,
   marginTop: 0,
   marginBottom: 0,
@@ -28,6 +38,7 @@ let baseData = {
   paddingBottom: 0,
   paddingLeft: 0,
   paddingRight: 0,
+  textAlign: "left",
   shadowable: false,
   shadow: {
     color: "#eee",
@@ -36,6 +47,13 @@ let baseData = {
     blur: 0, //模糊半径
     spread: 0, //阴影大小
     type: "" //阴影类型 //空为外阴影  inset 为内阴影
+  },
+  textShadowable: false,
+  textShadow: {
+    color: "#eee",
+    x: 0, //X偏移量
+    y: 0, //Y偏移量
+    blur: 0 //模糊半径
   },
   backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
   gradientStyle: {
@@ -238,7 +256,77 @@ export default [
           editable: false, //内容是否可编辑
           dragable: true //是否可拖动
         }
-      }
+      },
+      {
+        name: "横向滚动文本",
+        code: "vScrollText",
+        icon: "/static/img/configur/announcement.png",
+        data: {
+          ...baseData,
+          // borderColor: "#eee",
+          // borderStyle: "solid",
+          // borderRadius: 0,
+          // borderWidth: 1,
+          // opacity: 100,
+          // originWidth: "", //原宽
+          // originHeight: "", //原高
+          // width: "",
+          // height: "",
+          // left: 0,
+          // rotate: 0,
+          // top: 0,
+          // scaleable: false, //是否可缩放操作
+          // rotateable: false, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
+        }
+      },
+      {
+        name: "表格",
+        code: "table",
+        icon: "/static/img/configur/visualtable.png",
+        data: {
+          ...baseData,
+          // borderColor: "#eee",
+          // borderStyle: "solid",
+          // borderRadius: 0,
+          // borderWidth: 1,
+          // opacity: 100,
+          // originWidth: "", //原宽
+          // originHeight: "", //原高
+          width: 800,
+          height: 500,
+          theader:{
+            backgroundColor:'#eaf6fe',
+            color:'#333',
+            fontSize:14,
+            fontFamily:'',
+            textAlign:'center',
+            splitBorderColor:'',
+            fontStyle:'',
+            textDecoration:'',
+            fontWeight:'',
+          },
+          tbody:{
+            color:'#333',
+            fontSize:14,
+            fontFamily:'',
+            textAlign:'center',
+            fontStyle:'',
+            textDecoration:'',
+            fontWeight:'',
+            cSplitBorderColor:'',//列分隔线颜色
+            rSplitBorderColor:'',//行分隔线颜色
+          }
+          // left: 0,
+          // rotate: 0,
+          // top: 0,
+          // scaleable: false, //是否可缩放操作
+          // rotateable: false, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
+        }
+      },
     ]
   },
   {

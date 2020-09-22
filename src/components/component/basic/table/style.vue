@@ -452,14 +452,14 @@
       <el-color-picker v-model="info.color" show-alpha></el-color-picker>
     </p>
     <p>
-      <span class="label">{{ $lang("字体阴影") }}:</span>
+      <span class="label">{{ $lang("阴影") }}:</span>
       <el-switch
-        v-model="info.textShadowable"
+        v-model="info.shadowable"
         active-color="#4195ea"
         inactive-color="#ccc"
       ></el-switch>
     </p>
-    <template v-if="info.textShadowable">
+    <template v-if="info.shadowable">
       <p class="shadow-box">
         <span class="c-box">
           <span>
@@ -491,54 +491,63 @@
               :placeholder="$lang('Y轴位移')"
             ></el-input-number>
           </span>
+          <span>
+            <el-tooltip
+              :content="$lang('R-模糊半径')"
+              placement="top"
+              effect="dark"
+            >
+              <span>R</span> </el-tooltip
+            ><el-input-number
+              controls-position="right"
+              clearable
+              v-model.number="info.shadow.blur"
+              :placeholder="$lang('模糊半径')"
+            ></el-input-number>
+          </span>
         </span>
       </p>
       <p>
-        <span class="label">{{ $lang("模糊半径") }}:</span>
+        <span class="label">{{ $lang("阴影大小") }}:</span>
         <el-input-number
           controls-position="right"
           clearable
-          v-model.number="info.textShadow.blur"
-          :placeholder="$lang('模糊半径')"
+          v-model.number="info.shadow.spread"
+          :placeholder="$lang('阴影大小')"
         ></el-input-number>
         px
         <el-slider
-          v-model="info.textShadow.blur"
+          v-model="info.shadow.spread"
           :min="0"
           :max="50"
           :format-tooltip="val => val + ' px'"
         ></el-slider>
       </p>
       <p>
+        <span class="label">{{ $lang("阴影类型") }}:</span>
+        <el-select
+          v-model="info.shadow.type"
+          :placeholder="$lang('请选择阴影类型')"
+        >
+          <el-option
+            v-for="item in shadowTypeList"
+            :key="item.code"
+            :label="$lang(item.name)"
+            :value="item.code"
+          >
+          </el-option>
+        </el-select>
+      </p>
+      <p>
         <span class="label">{{ $lang("阴影颜色") }}:</span>
         <el-color-picker
-          v-model="info.textShadow.color"
+          v-model="info.shadow.color"
           show-alpha
         ></el-color-picker>
       </p>
     </template>
-    <p class="align">
+    <p>
       <span class="label">{{ $lang("对齐") }}:</span>
-      <i
-        class="bomi bomi-text-left"
-        @click="textAlignEvent('left')"
-        :class="{ active: info.textAlign == 'left' }"
-      ></i>
-      <i
-        class="bomi bomi-text-center"
-        @click="textAlignEvent('center')"
-        :class="{ active: info.textAlign == 'center' }"
-      ></i>
-      <i
-        class="bomi bomi-text-right"
-        @click="textAlignEvent('right')"
-        :class="{ active: info.textAlign == 'right' }"
-      ></i>
-      <i
-        class="bomi bomi-text-justify"
-        @click="textAlignEvent('justify')"
-        :class="{ active: info.textAlign == 'justify' }"
-      ></i>
     </p>
     <p>
       <span class="label">{{ $lang("字体大小") }}:</span>
@@ -643,101 +652,6 @@
       <span class="label">{{ $lang("边框颜色") }}:</span>
       <el-color-picker v-model="info.borderColor" show-alpha></el-color-picker>
     </p>
-    <p>
-      <span class="label">{{ $lang("盒子阴影") }}:</span>
-      <el-switch
-        v-model="info.shadowable"
-        active-color="#4195ea"
-        inactive-color="#ccc"
-      ></el-switch>
-    </p>
-    <template v-if="info.shadowable">
-      <p class="shadow-box">
-        <span class="c-box">
-          <span>
-            <el-tooltip
-              :content="$lang('X-X轴位移')"
-              placement="top"
-              effect="dark"
-            >
-              <span>X</span>
-            </el-tooltip>
-            <el-input-number
-              controls-position="right"
-              clearable
-              v-model.number="info.shadow.x"
-              :placeholder="$lang('X轴位移')"
-            ></el-input-number>
-          </span>
-          <span>
-            <el-tooltip
-              :content="$lang('Y-Y轴位移')"
-              placement="top"
-              effect="dark"
-            >
-              <span>Y</span> </el-tooltip
-            ><el-input-number
-              controls-position="right"
-              clearable
-              v-model.number="info.shadow.y"
-              :placeholder="$lang('Y轴位移')"
-            ></el-input-number>
-          </span>
-          <span>
-            <el-tooltip
-              :content="$lang('R-模糊半径')"
-              placement="top"
-              effect="dark"
-            >
-              <span>R</span> </el-tooltip
-            ><el-input-number
-              controls-position="right"
-              clearable
-              v-model.number="info.shadow.blur"
-              :placeholder="$lang('模糊半径')"
-            ></el-input-number>
-          </span>
-        </span>
-      </p>
-      <p>
-        <span class="label">{{ $lang("阴影大小") }}:</span>
-        <el-input-number
-          controls-position="right"
-          clearable
-          v-model.number="info.shadow.spread"
-          :placeholder="$lang('阴影大小')"
-        ></el-input-number>
-        px
-        <el-slider
-          v-model="info.shadow.spread"
-          :min="0"
-          :max="50"
-          :format-tooltip="val => val + ' px'"
-        ></el-slider>
-      </p>
-      <p>
-        <span class="label">{{ $lang("阴影类型") }}:</span>
-        <el-select
-          v-model="info.shadow.type"
-          :placeholder="$lang('请选择阴影类型')"
-        >
-          <el-option
-            v-for="item in shadowTypeList"
-            :key="item.code"
-            :label="$lang(item.name)"
-            :value="item.code"
-          >
-          </el-option>
-        </el-select>
-      </p>
-      <p>
-        <span class="label">{{ $lang("阴影颜色") }}:</span>
-        <el-color-picker
-          v-model="info.shadow.color"
-          show-alpha
-        ></el-color-picker>
-      </p>
-    </template>
 
     <h2>{{ $lang("交互") }}</h2>
     <h2>{{ $lang("动画") }}</h2>
@@ -931,10 +845,6 @@ export default {
         fontStyle = "italic";
       }
       info.fontStyle = fontStyle;
-    },
-    textAlignEvent(item) {
-      let { info = {} } = this;
-      info.textAlign = item;
     }
   }
 };

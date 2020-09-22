@@ -9,32 +9,35 @@
 .bm-component-com{
   .posa;
   .fz(22);
-  .p(10px);
+  // .p(10px);
   .bor(2px dashed transparent);
   // .pointer;
   cursor: move;
   white-space: nowrap;
-  &.active{
-    .borc(@themes);
-    // &:hover{
-      .operate-btn{
-        .db;
-      }
-    // }
-  }
   &.locked{
     .borc(transparent);
   }
-  &:hover{
-    // .bc(@grayE);
-    .box-s(1px 1px 10px 5px #fbd6d6);
-    .info{
-      .db;
+  &.edit{
+    &:hover{
+      // .bc(@grayE);
+      .box-s(1px 1px 10px 5px #fbd6d6);
+      .info{
+        .db;
+      }
+      // .operate-btn{
+      //   .db;
+      // }
     }
-    // .operate-btn{
-    //   .db;
-    // }
+    &.active{
+      .borc(@themes);
+      // &:hover{
+        .operate-btn{
+          .db;
+        }
+      // }
+    }
   }
+  
   .operate-btn{
     .db(none);
     z-index: 2;

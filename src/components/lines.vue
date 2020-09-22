@@ -223,6 +223,7 @@ export default {
   left: 0;
   .verti {
     // position: absolute;
+    pointer-events: none;
     .posa;
     .w(1);
     .borl(2px dashed @white);
@@ -244,6 +245,7 @@ export default {
     .posa;
     .w(100%);
     left: 0;
+    pointer-events: none;
     .bort(2px dashed @white);
     opacity: 0;
     //   position: absolute;

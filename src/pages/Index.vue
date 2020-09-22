@@ -3,8 +3,8 @@
     <bm-header ref="bmHeader"></bm-header>
     <bm-nav ref="bmNav"></bm-nav>
     <div class="flex-content">
-      <bm-widget-list ref="bmWidgetList" v-if="leftMenuStatus"></bm-widget-list>
-      <div v-else></div>
+      <bm-widget-list ref="bmWidgetList" v-show="leftMenuStatus"></bm-widget-list>
+      <!-- <div v-else></div> -->
       <div class="content-box">
         <div class="view-box" ref="viewBox">
           <!-- {{activeComIds}} -->
@@ -25,7 +25,7 @@
                 <!-- {{canvas}} -->
               </div>
             </div>
-            <bm-com
+            <bm-com class="edit"
               :class="{
                 active: activeComIds.indexOf(item.id) > -1,
                 locked: !item.dragable
@@ -37,8 +37,8 @@
               :info="item"
               :key="index"
             ></bm-com>
+            <bm-lines ref="bmLines"></bm-lines>
           </div>
-          <bm-lines ref="bmLines"></bm-lines>
           <div class="slider-box" @mousedown.stop>
             {{ $toBig(zoom, 0) + "%" }}
             <!-- @input="changeZoomEvent" -->
@@ -50,7 +50,7 @@
             ></el-slider>
           </div>
         </div>
-        <bm-info ref="bmInfo" v-if="rightMenuStatus"></bm-info>
+        <bm-info ref="bmInfo" v-show="rightMenuStatus"></bm-info>
       </div>
     </div>
     <ul
@@ -395,17 +395,19 @@ export default {
       });
     },
     viewBoxMousedownEvent(e) {
+      // e.stopPropagation();
+      // e.preventDefault();
       let { target, shiftKey = false, ctrlKey = false } = e;
       let $parent = $(target).parents(".bm-component-com");
       let type = $(target).attr("data-type");
       let id = $(target).attr("data-id");
-      let width = $(target).outerWidth();
-      let height = $(target).outerHeight();
+      // let width = $(target).outerWidth();
+      // let height = $(target).outerHeight();
       if (!type) {
         type = $parent.attr("data-type");
         id = $parent.attr("data-id");
-        width = $parent.outerWidth();
-        height = $parent.outerHeight();
+        // width = $parent.outerWidth();
+        // height = $parent.outerHeight();
       }
       if (type) {
         this.showContextMenuType = 1;
@@ -426,9 +428,9 @@ export default {
         let { length = 0 } = activeComs || [];
         let { dragable = false } = activeCom || {};
         // if (!rotateable) {
-        let padding = 20;
-        activeCom.originWidth = width - padding; //减去 padding
-        activeCom.originHeight = height - padding; //减去 padding
+        // let padding = 20;
+        // activeCom.originWidth = width - padding; //减去 padding
+        // activeCom.originHeight = height - padding; //减去 padding
         // }
         //选择多个则必定可以移动
         if (length > 1) {

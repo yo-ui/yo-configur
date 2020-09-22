@@ -14,7 +14,7 @@
               <div class="grid" :style="gridStyle">
               </div>
             </div>
-            <bm-com
+            <bm-com class="preview"
               :class="{
                 active: activeComIds.indexOf(item.id) > -1,
                 locked: !item.dragable
