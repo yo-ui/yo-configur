@@ -1,7 +1,8 @@
 <template>
   <el-table
-    class="bm-basic-table-com"
+    class="bm-basic-table-com" :show-header="info.headerable"
     ref="bmCom"
+    :height="info.height"
     :data="dataList"
     :style="comStyle"
   >
@@ -12,13 +13,18 @@
       :label="item.name"
       min-width="120"
     >
+      <template #header>
+        <span :style="theaderStyle">{{item.name}}</span>
+      </template>
       <template #default="scope">
-        <template v-if="item.code == 'time'">
-          {{ scope.row[item.code] | $dateFormat }}
-        </template>
-        <template v-else>
-          {{ scope.row[item.code] }}
-        </template>
+        <span :style="tbodyStyle">
+          <template v-if="item.code == 'time'">
+            {{ scope.row[item.code] | $dateFormat }}
+          </template>
+          <template v-else>
+            {{ scope.row[item.code] }}
+          </template>
+        </span>
       </template>
     </el-table-column>
   </el-table>
@@ -42,7 +48,7 @@ export default {
       tableKeys: [
         { code: "time", name: "时间戳" },
         { code: "city", name: "城市" },
-        { code: "temp", name: "温度" },
+        // { code: "temp", name: "温度" },
         { code: "hd", name: "温度" },
         { code: "aq", name: "空气质量" }
       ]
@@ -78,11 +84,129 @@ export default {
       }
       return styles;
     },
+    tbodyStyle(){
+      let { info = {} } = this;
+      let { tbody = {}} = info;
+      let {
+        color = "",
+        fontFamily = "",
+        fontWeight = "",
+        fontStyle = "",
+        textDecoration = "",
+        fontSize = "",
+        textAlign="",
+        cSplitBorderColor='',
+        rSplitBorderColor=''
+        // backgroundColor = "",
+      //   backgroundImage = "",
+      //   backgroundRepeat = "",
+      //   backgroundSize = ""
+      } = tbody || {};
+      let styles = {
+        // margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
+        // padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
+      };
+      // if (shadowable) {
+      //   let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
+      //     shadow || {};
+      //   styles[
+      //     "boxShadow"
+      //   ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
+      // }
+      if (color) {
+        styles["color"] = color;
+      }
+      if (cSplitBorderColor) {
+        styles["borderRight"] = `1px solid ${cSplitBorderColor}`;
+      }
+      if (rSplitBorderColor) {
+        styles["borderBottom"] = `1px solid ${rSplitBorderColor}`;
+      }
+      if (textAlign) {
+        styles["textAlign"] = textAlign;
+      }
+      if (fontSize) {
+        styles["fontSize"] = `${fontSize}px`;
+      }
+      if (fontFamily) {
+        styles["fontFamily"] = `${fontFamily}`;
+      }
+      if (fontWeight) {
+        styles["fontWeight"] = fontWeight;
+      }
+      if (fontStyle) {
+        styles["fontStyle"] = fontStyle;
+      }
+      if (textDecoration) {
+        styles["textDecoration"] = textDecoration;
+      }
+      return styles || {};
+    },
+    theaderStyle(){
+      let { info = {}, gradientStyle = {} } = this;
+
+      let { theader = {}} = info;
+      let {
+        color = "",
+        fontFamily = "",
+        fontWeight = "",
+        fontStyle = "",
+        textDecoration = "",
+        backgroundType = "",
+        fontSize = "",
+        textAlign="",
+        backgroundColor = "",
+        splitBorderColor = "",
+      } = theader || {};
+      let styles = {
+      };
+      // if (shadowable) {
+      //   let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
+      //     shadow || {};
+      //   styles[
+      //     "boxShadow"
+      //   ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
+      // }
+      if (color) {
+        styles["color"] = color;
+      }
+      if (splitBorderColor) {
+        styles["borderRight"] = `1px solid ${splitBorderColor}`;
+      }
+      if (textAlign) {
+        styles["textAlign"] = textAlign;
+      }
+      if (fontSize) {
+        styles["fontSize"] = `${fontSize}px`;
+      }
+      if (fontFamily) {
+        styles["fontFamily"] = `${fontFamily}`;
+      }
+      if (fontWeight) {
+        styles["fontWeight"] = fontWeight;
+      }
+      if (fontStyle) {
+        styles["fontStyle"] = fontStyle;
+      }
+      if (textDecoration) {
+        styles["textDecoration"] = textDecoration;
+      }
+      if (backgroundType == "purity") {
+        //纯色
+        if (backgroundColor) {
+          styles["backgroundColor"] = backgroundColor;
+        }
+      } else if (backgroundType == "gradient") {
+        //渐变
+        styles = { ...styles, ...gradientStyle };
+      }
+      return styles || {};
+    },
     comStyle() {
       let { info = {}, gradientStyle = {} } = this;
       let {
         width = "",
-        height = "",
+        // height = "",
         color = "",
         borderColor = "",
         borderStyle = "",
@@ -138,9 +262,9 @@ export default {
       if (width) {
         styles["width"] = `${width}px`;
       }
-      if (height) {
-        styles["height"] = `${height}px`;
-      }
+      // if (height) {
+      //   styles["height"] = `${height}px`;
+      // }
       if (scale) {
         (styles["transform"] = `${scale}`),
           (styles["-webkit-transform"] = `${scale}`),

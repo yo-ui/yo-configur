@@ -1,3 +1,4 @@
+import bmCommon from "@/common/common";
 let baseData = {
   backgroundImage: "",
   backgroundSize: "100% 100%",
@@ -262,7 +263,7 @@ export default [
         code: "vScrollText",
         icon: "/static/img/configur/announcement.png",
         data: {
-          ...baseData,
+          ...baseData
           // borderColor: "#eee",
           // borderStyle: "solid",
           // borderRadius: 0,
@@ -296,27 +297,30 @@ export default [
           // originHeight: "", //原高
           width: 800,
           height: 500,
-          theader:{
-            backgroundColor:'#eaf6fe',
-            color:'#333',
-            fontSize:14,
-            fontFamily:'',
-            textAlign:'center',
-            splitBorderColor:'',
-            fontStyle:'',
-            textDecoration:'',
-            fontWeight:'',
+          headerable: true,
+          theader: {
+            backgroundColor: "#eaf6fe",
+            color: "#333",
+            fontSize: 14,
+            fontFamily: "",
+            textAlign: "center",
+            splitBorderColor: "#4195ea",
+            fontStyle: "",
+            backgroundType: "purity",
+            gradientStyle: bmCommon.clone( baseData.gradientStyle),
+            textDecoration: "",
+            fontWeight: ""
           },
-          tbody:{
-            color:'#333',
-            fontSize:14,
-            fontFamily:'',
-            textAlign:'center',
-            fontStyle:'',
-            textDecoration:'',
-            fontWeight:'',
-            cSplitBorderColor:'',//列分隔线颜色
-            rSplitBorderColor:'',//行分隔线颜色
+          tbody: {
+            color: "#333",
+            fontSize: 14,
+            fontFamily: "",
+            textAlign: "center",
+            fontStyle: "",
+            textDecoration: "",
+            fontWeight: "",
+            cSplitBorderColor: "#4195ea", //列分隔线颜色
+            rSplitBorderColor: "#4195ea" //行分隔线颜色
           }
           // left: 0,
           // rotate: 0,
@@ -326,7 +330,7 @@ export default [
           // editable: false, //内容是否可编辑
           // dragable: true //是否可拖动
         }
-      },
+      }
     ]
   },
   {

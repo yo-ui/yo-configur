@@ -33,11 +33,10 @@
 </template>
 
 <script>
-// import vpd from '../../mixins/vpd'
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters, mapState } = Vuex;
-let padding = 20;
+let padding = 0;
 export default {
   name: "bmLinesCom",
   // mixins: [vpd],

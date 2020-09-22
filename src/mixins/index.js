@@ -2,6 +2,8 @@ import bmCommon from "@/common/common";
 export default {
   methods: {
     initMoveEvent(e) {
+      e.stopPropagation();
+      e.preventDefault();
       let { activeCom = {} } = this;
       // var activeCom = this.$vpd.state.activeElement
       let pos = bmCommon.getMousePosition(e);
@@ -34,8 +36,7 @@ export default {
 
     mousemoveEvent(e) {
       e.stopPropagation();
-      e.preventDefault();
-
+      // e.preventDefault();
       // this.$vpd.commit('move', {
       //   x: e.pageX,
       //   y: e.pageY
