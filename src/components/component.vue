@@ -2,7 +2,12 @@
 <!-- :class="{ active: showActiveStatus }" -->
 <!-- @mousedown.stop="mousedownEvent" -->
 <template>
-  <div class="bm-component-com" :style="boxStyle">
+  <div
+    class="bm-component-com"
+    ref="bmCom"
+    :style="boxStyle"
+    :class="animate ? `animated ${animate}` : ''"
+  >
     <div class="info">
       <p class="txt">
         {{ info.name }}
@@ -98,7 +103,9 @@ import { widgets } from "@/widgets/index";
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {
-    return {};
+    return {
+      animate:'',
+    };
   },
   props: {
     info: {
@@ -126,7 +133,7 @@ export default {
         // width = "",
         // height = "",
         order: zIndex = "",
-        matrix = "",
+        // matrix = "",
         rotate = "",
         transformOrigin = ""
       } = info || {};
@@ -266,6 +273,18 @@ export default {
       e.preventDefault();
       e.stopPropagation();
       this.mousedownEvent(e, "bottomright");
+    }
+  },
+  watch: {
+    "info.animate"(newVal, oldVal) {
+      if (newVal != oldVal) {
+        clearTimeout(this._setTimeoutId);
+        let that = this;
+        that.animate=newVal
+        this._setTimeoutId = setTimeout(() => {
+          that.animate=''
+        }, 1000);
+      }
     }
   }
 };

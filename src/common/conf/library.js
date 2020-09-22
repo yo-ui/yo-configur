@@ -9,6 +9,7 @@ let baseData = {
   borderRadius: 0,
   scale: "scale(1,1)",
   left: 0,
+  animate:'',
   originWidth: "", //原宽
   originHeight: "", //原高
   fontWeight: "",

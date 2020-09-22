@@ -193,15 +193,16 @@ export default {
           let { left = 0, top = 0 } = item || {};
           // item.left = left > 0 ? left : 0;
           // item.top = top > 0 ? top : 0;
-          item.left = left + Math.floor((dx * 1) / zoom);
-          item.top = top + Math.floor((dy * 1) / zoom);
+          item.left = left + Math.floor(dx / zoom);
+          item.top = top + Math.floor(dy / zoom);
         });
       } else {
         let { left = 0, top = 0 } = activeCom || {};
         // left = originX + Math.floor((dx * 1) / zoom);
         // var top = originY + Math.floor((dy * 1) / zoom);
-        activeCom.left = left + Math.floor((dx * 1) / zoom);
-        activeCom.top = top + Math.floor((dy * 1) / zoom);
+        // bmCommon.log(left , Math.floor(dx  / zoom),dx,dy)
+        activeCom.left = left + Math.floor(dx / zoom);
+        activeCom.top = top + Math.floor(dy / zoom);
       }
       state.startX = x;
       state.startY = y;
@@ -216,8 +217,8 @@ export default {
       var dy = y - startY;
       // var left = state.originX + Math.floor((dx * 100) / state.zoom);
       // var top = state.originY + Math.floor((dy * 100) / state.zoom);
-      var left = originX + Math.floor((dx * 1) / zoom);
-      var top = originY + Math.floor((dy * 1) / zoom);
+      var left = originX + Math.floor(dx / zoom);
+      var top = originY + Math.floor(dy / zoom);
       // bmCommon.log(left, top);
       canvas.left = left;
       canvas.top = top;

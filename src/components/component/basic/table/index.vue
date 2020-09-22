@@ -124,6 +124,9 @@ export default {
       }
       if (textAlign) {
         styles["textAlign"] = textAlign;
+        if (textAlign == "justify") {
+          styles["text-align-last"] = textAlign;
+        }
       }
       if (fontSize) {
         styles["fontSize"] = `${fontSize}px`;
@@ -175,6 +178,9 @@ export default {
       }
       if (textAlign) {
         styles["textAlign"] = textAlign;
+        if (textAlign == "justify") {
+          styles["text-align-last"] = textAlign;
+        }
       }
       if (fontSize) {
         styles["fontSize"] = `${fontSize}px`;

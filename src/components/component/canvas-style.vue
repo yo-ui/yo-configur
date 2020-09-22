@@ -1,119 +1,75 @@
 <template>
   <div class="bm-canvas-style-com">
-    <h2>{{ $lang("功能选择") }}</h2>
-    <p>
-      <i
-        class="el-icon-rank"
-        :class="{ active: info.action == 'select' }"
-        @click="actionEvent('select')"
-        :title="$lang('选择组件')"
-      ></i>
-      <i
-        class="el-icon-thumb"
-        :class="{ active: info.action == 'move' }"
-        @click="actionEvent('move')"
-        :title="$lang('移动画布')"
-      ></i>
-      <i
-        class="bm-icon icon-paint"
-        :class="{ active: info.action == 'paint' }"
-        @click="actionEvent('paint')"
-        :title="$lang('拼装水管')"
-      ></i>
-    </p>
-    <h2>{{ info.name }}</h2>
-    <p>
-      <span class="label"> {{ $lang("组态标题") }}: </span>
-      <el-input
-        v-model="info.name"
-        clearable
-        :placeholder="$lang('请输入组态标题')"
-      ></el-input>
-    </p>
-    <p>
-      <span class="label"> {{ $lang("页面高度") }}:</span
-      ><el-input-number
-        controls-position="right"
-        clearable
-        v-model.number="info.height"
-        :placeholder="$lang('请输入页面高度')"
-      ></el-input-number
-      >px
-      <el-slider
-        v-model="info.height"
-        :max="3000"
-        :format-tooltip="val => val"
-      ></el-slider>
-    </p>
-    <p>
-      <span class="label"> {{ $lang("页面宽度") }}:</span
-      ><el-input-number
-        controls-position="right"
-        v-model.number="info.width"
-        clearable
-        :placeholder="$lang('请输入页面宽度')"
-      ></el-input-number
-      >px
-      <el-slider
-        v-model="info.width"
-        :max="3000"
-        :format-tooltip="val => val"
-      ></el-slider>
-    </p>
-    <p>
-      <span class="label">{{ $lang("填充颜色") }}:</span>
-      <el-select
-        v-model="info.backgroundType"
-        :placeholder="$lang('请选择填充颜色')"
-      >
-        <el-option
-          v-for="item in backgroundTypeList"
-          :key="item.code"
-          :label="$lang(item.name)"
-          :value="item.code"
-        >
-        </el-option>
-      </el-select>
-    </p>
-    <p v-if="info.backgroundType == 'purity'">
-      <span class="label">{{ $lang("纯色") }}:</span>
-      <el-color-picker
-        v-model="info.backgroundColor"
-        show-alpha
-      ></el-color-picker>
-    </p>
-    <template v-if="info.backgroundType == 'gradient'">
-      <p>
-        <span class="label">{{ $lang("渐变颜色") }}:</span>
-        <span class="gradient" :style="gradientStyle"></span>
-        <!-- {{ gradientStyle }} -->
-      </p>
-      <p>
-        <span class="label">{{ $lang("渐变类型") }}:</span>
-        <el-radio-group
-          class="gradient-type-group"
-          v-model="info.gradientStyle.type"
-        >
-          <el-radio-button
-            :style="`background-image:${gradientStyleMap[item.code]}`"
-            :title="item.name"
-            v-for="item in gradientTypeList"
-            :key="item.code"
-            :label="item.code"
-          >
-            {{ item.name }}
-          </el-radio-button>
-        </el-radio-group>
-      </p>
-      <template v-if="info.gradientStyle.type == 'radial'">
+    <el-collapse v-model="activeNames">
+      <el-collapse-item title="功能选择" name="1">
         <p>
-          <span class="label">{{ $lang("中心") }}:</span>
+          <i
+            class="el-icon-rank"
+            :class="{ active: info.action == 'select' }"
+            @click="actionEvent('select')"
+            :title="$lang('选择组件')"
+          ></i>
+          <i
+            class="el-icon-thumb"
+            :class="{ active: info.action == 'move' }"
+            @click="actionEvent('move')"
+            :title="$lang('移动画布')"
+          ></i>
+          <i
+            class="bm-icon icon-paint"
+            :class="{ active: info.action == 'paint' }"
+            @click="actionEvent('paint')"
+            :title="$lang('拼装水管')"
+          ></i>
+        </p>
+      </el-collapse-item>
+      <el-collapse-item title="画布" name="2">
+        <p>
+          <span class="label"> {{ $lang("组态标题") }}: </span>
+          <el-input
+            v-model="info.name"
+            clearable
+            :placeholder="$lang('请输入组态标题')"
+          ></el-input>
+        </p>
+        <p>
+          <span class="label"> {{ $lang("页面高度") }}:</span
+          ><el-input-number
+            controls-position="right"
+            clearable
+            v-model.number="info.height"
+            :placeholder="$lang('请输入页面高度')"
+          ></el-input-number
+          >px
+          <el-slider
+            v-model="info.height"
+            :max="3000"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label"> {{ $lang("页面宽度") }}:</span
+          ><el-input-number
+            controls-position="right"
+            v-model.number="info.width"
+            clearable
+            :placeholder="$lang('请输入页面宽度')"
+          ></el-input-number
+          >px
+          <el-slider
+            v-model="info.width"
+            :max="3000"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label">{{ $lang("填充颜色") }}:</span>
           <el-select
-            v-model="info.gradientStyle.center"
-            :placeholder="$lang('请选择中心位置')"
+            v-model="info.backgroundType"
+            :placeholder="$lang('请选择填充颜色')"
           >
             <el-option
-              v-for="item in centerList"
+              v-for="item in backgroundTypeList"
               :key="item.code"
               :label="$lang(item.name)"
               :value="item.code"
@@ -121,168 +77,219 @@
             </el-option>
           </el-select>
         </p>
-        <p>
-          <span class="label">{{ $lang("径向图形") }}:</span>
-          <el-select
-            v-model="info.gradientStyle.radialShape"
-            :placeholder="$lang('请选择径向图形')"
-          >
-            <el-option
-              v-for="item in radialShapeList"
-              :key="item.code"
-              :label="$lang(item.name)"
-              :value="item.code"
-            >
-            </el-option>
-          </el-select>
+        <p v-if="info.backgroundType == 'purity'">
+          <span class="label">{{ $lang("纯色") }}:</span>
+          <el-color-picker
+            v-model="info.backgroundColor"
+            show-alpha
+          ></el-color-picker>
         </p>
-      </template>
-      <template v-if="info.gradientStyle.type == 'linear'">
-        <p>
-          <span class="label">{{ $lang("角度") }}:</span>
-          <el-select
-            v-model="info.gradientStyle.angle"
-            :placeholder="$lang('请选择线性角度')"
-          >
-            <el-option
-              v-for="item in angelList"
-              :key="item.code"
-              :label="$lang(item.code)"
-              :value="item.code"
+        <template v-if="info.backgroundType == 'gradient'">
+          <p>
+            <span class="label">{{ $lang("渐变颜色") }}:</span>
+            <span class="gradient" :style="gradientStyle"></span>
+            <!-- {{ gradientStyle }} -->
+          </p>
+          <p>
+            <span class="label">{{ $lang("渐变类型") }}:</span>
+            <el-radio-group
+              class="gradient-type-group"
+              v-model="info.gradientStyle.type"
             >
-            </el-option>
-          </el-select>
-        </p>
-      </template>
-      <!-- {{ info.gradientStyle }} -->
-      <!-- {{ info.gradientStyle.valueList }} -->
-      <p class="gradient-aperture">
-        <span class="label">{{ $lang("渐变光圈") }}:</span>
-        <el-button-group>
-          <el-button
-            plain
-            :disabled="info.gradientStyle.valueList.length > 5"
-            @click="addApertureEvent"
-            ><i class="el-icon-plus"></i
-          ></el-button>
-          <el-button
-            plain
-            :disabled="info.gradientStyle.valueList.length < 3"
-            @click="removeApertureEvent"
-            ><i class="el-icon-minus"></i
-          ></el-button>
-        </el-button-group>
-        <!-- {{ info.gradientStyle.valueList[info.gradientStyle.valueIndex].value }}
+              <el-radio-button
+                :style="`background-image:${gradientStyleMap[item.code]}`"
+                :title="item.name"
+                v-for="item in gradientTypeList"
+                :key="item.code"
+                :label="item.code"
+              >
+                {{ item.name }}
+              </el-radio-button>
+            </el-radio-group>
+          </p>
+          <template v-if="info.gradientStyle.type == 'radial'">
+            <p>
+              <span class="label">{{ $lang("中心") }}:</span>
+              <el-select
+                v-model="info.gradientStyle.center"
+                :placeholder="$lang('请选择中心位置')"
+              >
+                <el-option
+                  v-for="item in centerList"
+                  :key="item.code"
+                  :label="$lang(item.name)"
+                  :value="item.code"
+                >
+                </el-option>
+              </el-select>
+            </p>
+            <p>
+              <span class="label">{{ $lang("径向图形") }}:</span>
+              <el-select
+                v-model="info.gradientStyle.radialShape"
+                :placeholder="$lang('请选择径向图形')"
+              >
+                <el-option
+                  v-for="item in radialShapeList"
+                  :key="item.code"
+                  :label="$lang(item.name)"
+                  :value="item.code"
+                >
+                </el-option>
+              </el-select>
+            </p>
+          </template>
+          <template v-if="info.gradientStyle.type == 'linear'">
+            <p>
+              <span class="label">{{ $lang("角度") }}:</span>
+              <el-select
+                v-model="info.gradientStyle.angle"
+                :placeholder="$lang('请选择线性角度')"
+              >
+                <el-option
+                  v-for="item in angelList"
+                  :key="item.code"
+                  :label="$lang(item.code)"
+                  :value="item.code"
+                >
+                </el-option>
+              </el-select>
+            </p>
+          </template>
+          <!-- {{ info.gradientStyle }} -->
+          <!-- {{ info.gradientStyle.valueList }} -->
+          <p class="gradient-aperture">
+            <span class="label">{{ $lang("渐变光圈") }}:</span>
+            <el-button-group>
+              <el-button
+                plain
+                :disabled="info.gradientStyle.valueList.length > 5"
+                @click="addApertureEvent"
+                ><i class="el-icon-plus"></i
+              ></el-button>
+              <el-button
+                plain
+                :disabled="info.gradientStyle.valueList.length < 3"
+                @click="removeApertureEvent"
+                ><i class="el-icon-minus"></i
+              ></el-button>
+            </el-button-group>
+            <!-- {{ info.gradientStyle.valueList[info.gradientStyle.valueIndex].value }}
         {{ info.gradientStyle.valueIndex }} -->
-        <el-input
-          :value="
-            info.gradientStyle.valueList[info.gradientStyle.valueIndex].value +
-              ' %'
-          "
-          readonly
-        ></el-input>
-      </p>
-      <p>
-        <span class="label">{{ $lang("渐变节点颜色") }}</span>
-        <el-color-picker
-          color-format="hex"
-          v-model="
-            info.gradientStyle.valueList[info.gradientStyle.valueIndex].code
-          "
-          show-alpha
-        ></el-color-picker>
-        <el-input
-          :value="
-            info.gradientStyle.valueList[info.gradientStyle.valueIndex].code
-          "
-          readonly
-        ></el-input>
-      </p>
-      <p>
-        <!-- {{gradientStyleMap}} -->
-        <!-- :data="info.gradientStyle.valueList"
+            <el-input
+              :value="
+                info.gradientStyle.valueList[info.gradientStyle.valueIndex]
+                  .value + ' %'
+              "
+              readonly
+            ></el-input>
+          </p>
+          <p>
+            <span class="label">{{ $lang("渐变节点颜色") }}</span>
+            <el-color-picker
+              color-format="hex"
+              v-model="
+                info.gradientStyle.valueList[info.gradientStyle.valueIndex].code
+              "
+              show-alpha
+            ></el-color-picker>
+            <el-input
+              :value="
+                info.gradientStyle.valueList[info.gradientStyle.valueIndex].code
+              "
+              readonly
+            ></el-input>
+          </p>
+          <p>
+            <!-- {{gradientStyleMap}} -->
+            <!-- :data="info.gradientStyle.valueList"
           :dot-options="info.gradientStyle.valueOptions" -->
-        <vue-slider
-          :height="25"
-          ref="slider"
-          :marks="false"
-          :hide-label="true"
-          :enable-cross="false"
-          v-model="info.gradientStyle.values"
-          :interval="1"
-          @change="sliderChangeEvent"
-          :data-value="'value'"
-        >
-          <!-- @drag-start="sliderDragStartEvent"
+            <vue-slider
+              :height="25"
+              ref="slider"
+              :marks="false"
+              :hide-label="true"
+              :enable-cross="false"
+              v-model="info.gradientStyle.values"
+              :interval="1"
+              @change="sliderChangeEvent"
+              :data-value="'value'"
+            >
+              <!-- @drag-start="sliderDragStartEvent"
           @dragging="sliderDraggingEvent"
           @drag-end="sliderDragEndEvent" -->
-          <template #tooltip>
-            <!-- {{info.gradientStyle.valueList[index].code}} -->
-            <span></span>
-          </template>
-          <template #process>
-            <div class="vue-slider-process" :style="gradientLinearStyle"></div>
-          </template>
-          <template #dot="{index}">
-            <!-- <img src="../../assets/img/dot.png" class="custom-dot"/> -->
-            <div class="dot-box">
-              <div
-                class="dot"
-                :style="
-                  `background-color:${info.gradientStyle.valueList[index].code}`
-                "
-              ></div>
-            </div>
-          </template>
-        </vue-slider>
-      </p>
-    </template>
-    <p>
-      <span class="label"> {{ $lang("背景图片") }}:</span>
-      <bm-upload ref="bmUpload" @success="successCallback">
-        <el-button type="primary">
-          {{ $lang(info.backgroundImage ? "替换图片" : "选择图片") }}</el-button
-        >
-      </bm-upload>
-      <el-button
-        v-if="info.backgroundImage"
-        @click="info.backgroundImage = ''"
-        >{{ $lang("重置") }}</el-button
-      >
-    </p>
-    <template v-if="info.backgroundImage">
-      <p>
-        <span class="label"> {{ $lang("平铺方式") }}:</span>
-        <el-select
-          v-model="info.backgroundRepeat"
-          :placeholder="$lang('请选择平铺方式')"
-        >
-          <el-option
-            v-for="item in tileModeList"
-            :key="item.code"
-            :label="$lang(item.name)"
-            :value="item.code"
+              <template #tooltip>
+                <!-- {{info.gradientStyle.valueList[index].code}} -->
+                <span></span>
+              </template>
+              <template #process>
+                <div
+                  class="vue-slider-process"
+                  :style="gradientLinearStyle"
+                ></div>
+              </template>
+              <template #dot="{index}">
+                <!-- <img src="../../assets/img/dot.png" class="custom-dot"/> -->
+                <div class="dot-box">
+                  <div
+                    class="dot"
+                    :style="
+                      `background-color:${info.gradientStyle.valueList[index].code}`
+                    "
+                  ></div>
+                </div>
+              </template>
+            </vue-slider>
+          </p>
+        </template>
+        <p>
+          <span class="label"> {{ $lang("背景图片") }}:</span>
+          <bm-upload ref="bmUpload" @success="successCallback">
+            <el-button type="primary">
+              {{
+                $lang(info.backgroundImage ? "替换图片" : "选择图片")
+              }}</el-button
+            >
+          </bm-upload>
+          <el-button
+            v-if="info.backgroundImage"
+            @click="info.backgroundImage = ''"
+            >{{ $lang("重置") }}</el-button
           >
-          </el-option>
-        </el-select>
-      </p>
-      <p>
-        <span class="label"> {{ $lang("填充模式") }}:</span>
-        <el-select
-          v-model="info.backgroundSize"
-          :placeholder="$lang('请选择填充模式')"
-        >
-          <el-option
-            v-for="item in BACKGROUNDSIZELIST"
-            :key="item.code"
-            :label="$lang(item.name)"
-            :value="item.code"
-          >
-          </el-option>
-        </el-select>
-      </p>
-    </template>
-    <!-- <p>
+        </p>
+        <template v-if="info.backgroundImage">
+          <p>
+            <span class="label"> {{ $lang("平铺方式") }}:</span>
+            <el-select
+              v-model="info.backgroundRepeat"
+              :placeholder="$lang('请选择平铺方式')"
+            >
+              <el-option
+                v-for="item in tileModeList"
+                :key="item.code"
+                :label="$lang(item.name)"
+                :value="item.code"
+              >
+              </el-option>
+            </el-select>
+          </p>
+          <p>
+            <span class="label"> {{ $lang("填充模式") }}:</span>
+            <el-select
+              v-model="info.backgroundSize"
+              :placeholder="$lang('请选择填充模式')"
+            >
+              <el-option
+                v-for="item in BACKGROUNDSIZELIST"
+                :key="item.code"
+                :label="$lang(item.name)"
+                :value="item.code"
+              >
+              </el-option>
+            </el-select>
+          </p>
+        </template>
+        <!-- <p>
       <span class="label"> {{ $lang("翻转方式") }}:</span>
       <el-select v-model="info.scale" :placeholder="$lang('请选择翻转方式')">
         <el-option
@@ -294,71 +301,86 @@
         </el-option>
       </el-select>
     </p> -->
-    <p>
-      <span class="label"> {{ $lang("是否显示网格") }}:</span
-      ><el-checkbox v-model="info.isGrid"></el-checkbox>
-    </p>
-    <template v-if="info.isGrid">
-      <p>
-        <span class="label"> {{ $lang("网格样式") }}:</span
-        ><el-select
-          v-model="info.gridStyle.type"
-          @change="gridStyleChangeEvent"
-          :placeholder="$lang('请选择网格样式')"
-        >
-          <el-option
-            v-for="item in gridStyleList"
-            :key="item.code"
-            :label="$lang(item.name)"
-            :value="item.code"
-          >
+        <p>
+          <span class="label"> {{ $lang("是否显示网格") }}:</span
+          ><el-checkbox v-model="info.isGrid"></el-checkbox>
+        </p>
+        <template v-if="info.isGrid">
+          <p>
+            <span class="label"> {{ $lang("网格样式") }}:</span
+            ><el-select
+              v-model="info.gridStyle.type"
+              @change="gridStyleChangeEvent"
+              :placeholder="$lang('请选择网格样式')"
+            >
+              <el-option
+                v-for="item in gridStyleList"
+                :key="item.code"
+                :label="$lang(item.name)"
+                :value="item.code"
+              >
+              </el-option>
+            </el-select>
+          </p>
+          <p v-if="info.gridStyle.type == 6">
+            <span class="col">
+              <span class="label"> {{ $lang("网格宽") }}:</span
+              ><el-input-number
+                controls-position="right"
+                v-model.number="info.gridStyle.width"
+                clearable
+                :placeholder="$lang('请输入网格宽')"
+              ></el-input-number
+              >px
+            </span>
+            <span class="col">
+              <span class="label">{{ $lang("网格高") }}: </span
+              ><el-input-number
+                controls-position="right"
+                v-model.number="info.gridStyle.height"
+                clearable
+                :placeholder="$lang('请输入网格高')"
+              ></el-input-number
+              >px
+            </span>
+          </p>
+        </template>
+        <p>
+          <span class="label"> {{ $lang("缩放") }}:</span>
+          <i
+            class="el-icon-zoom-in"
+            @click="zoomEvent(20)"
+            :title="$lang('放大')"
+          ></i>
+          <i
+            class="el-icon-zoom-out"
+            @click="zoomEvent(-20)"
+            :title="$lang('缩小')"
+          ></i>
+          <i
+            class="el-icon-refresh-left"
+            @click="zoomEvent()"
+            :title="$lang('重置')"
+          ></i>
+        </p>
+      </el-collapse-item>
+      <!-- <el-collapse-item title="交互" name="3"> </el-collapse-item>
+      <el-collapse-item title="动画" name="4">
+        <el-select v-model="info.animate" placeholder="请选择动画类型">
+          <el-option v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
           </el-option>
-        </el-select>
-      </p>
-      <p v-if="info.gridStyle.type == 6">
-        <span class="col">
-          <span class="label"> {{ $lang("网格宽") }}:</span
-          ><el-input-number
-            controls-position="right"
-            v-model.number="info.gridStyle.width"
-            clearable
-            :placeholder="$lang('请输入网格宽')"
-          ></el-input-number
-          >px
-        </span>
-        <span class="col">
-          <span class="label">{{ $lang("网格高") }}: </span
-          ><el-input-number
-            controls-position="right"
-            v-model.number="info.gridStyle.height"
-            clearable
-            :placeholder="$lang('请输入网格高')"
-          ></el-input-number
-          >px
-        </span>
-      </p>
-    </template>
-    <p>
-      <span class="label"> {{ $lang("缩放") }}:</span>
-      <i
-        class="el-icon-zoom-in"
-        @click="zoomEvent(20)"
-        :title="$lang('放大')"
-      ></i>
-      <i
-        class="el-icon-zoom-out"
-        @click="zoomEvent(-20)"
-        :title="$lang('缩小')"
-      ></i>
-      <i
-        class="el-icon-refresh-left"
-        @click="zoomEvent()"
-        :title="$lang('重置')"
-      ></i>
-    </p>
+        </el-select>        
+      </el-collapse-item> -->
+    </el-collapse>
+    <!-- <h2>{{ $lang("功能选择") }}</h2> -->
 
-    <h2>{{ $lang("交互") }}</h2>
-    <h2>{{ $lang("动画") }}</h2>
+    <!-- <h2>{{ info.name }}</h2> -->
+
+    <!-- <h2>{{ $lang("交互") }}</h2>
+    <h2>{{ $lang("动画") }}</h2> -->
   </div>
 </template>
 
@@ -394,6 +416,7 @@ export default {
       gridStyleMap[item.code] = item || {};
     });
     return {
+      activeNames: ["1", "2"],
       gridStyleList,
       flipModeList: Object.freeze(Constants.FLIPMODELIST),
       BACKGROUNDSIZELIST: Object.freeze(Constants.BACKGROUNDSIZELIST),
@@ -912,7 +935,7 @@ export default {
 
 <style lang="less">
 @import (reference) "./../../assets/less/common.less";
-.bm-canvas-style-com {  
+.bm-canvas-style-com {
   p {
     .icon-paint {
       .bi("/static/img/configur/water.png");

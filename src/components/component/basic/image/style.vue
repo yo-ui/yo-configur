@@ -15,7 +15,7 @@
         :title="$lang('移动画布')"
       ></i>
     </p> -->
-    <h2>{{info.name}}</h2>
+    <h2>{{ info.name }}</h2>
     <!-- <p>
       <span class="label"> {{ $lang("图片名称") }}: </span>
       <el-input
@@ -26,7 +26,8 @@
     </p> -->
     <p>
       <span class="label"> {{ $lang("层级") }}: </span>
-      <el-input-number controls-position="right"
+      <el-input-number
+        controls-position="right"
         clearable
         v-model.number="info.order"
         :placeholder="$lang('请输入层级')"
@@ -57,7 +58,8 @@
       <span class="label"> {{ $lang("横坐标") }}:</span>{{ info.left }}
       <el-slider
         v-model="info.left"
-        :max="1980"
+        :max="3500"
+        :min="-3500"
         :format-tooltip="val => val"
       ></el-slider>
     </p>
@@ -65,19 +67,22 @@
       <span class="label"> {{ $lang("纵坐标") }}:</span>{{ info.top }}
       <el-slider
         v-model="info.top"
-        :max="1080"
+        :max="3500"
+        :min="-3500"
         :format-tooltip="val => val"
       ></el-slider>
     </p>
     <p>
-      <span class="label"> {{ $lang("旋转角度") }}:</span> <el-input-number controls-position="right"
-          clearable
+      <span class="label"> {{ $lang("旋转角度") }}:</span>
+      <el-input-number
+        controls-position="right"
+        clearable
         :min="-360"
         :max="360"
-          v-model.number="info.rotate"
-          :placeholder="$lang('请输入旋转角度')"
-        ></el-input-number>
-        deg
+        v-model.number="info.rotate"
+        :placeholder="$lang('请输入旋转角度')"
+      ></el-input-number>
+      deg
       <el-slider
         v-model="info.rotate"
         :min="-360"
@@ -165,8 +170,7 @@
       </el-select>
     </p>
     <p>
-      <span class="label"> {{ $lang("边框大小") }}:</span
-      >{{ info.borderWidth }}
+      <span class="label"> {{ $lang("边框大小") }}:</span>{{ info.borderWidth }}
       <el-slider
         v-model="info.borderWidth"
         :min="0"
@@ -175,15 +179,16 @@
       ></el-slider>
     </p>
     <p>
-      <span class="label"> {{ $lang("边框圆角") }}:</span
-      > <el-input-number controls-position="right"
-          clearable
+      <span class="label"> {{ $lang("边框圆角") }}:</span>
+      <el-input-number
+        controls-position="right"
+        clearable
         :min="0"
         :max="50"
-          v-model.number="info.borderRadius"
-          :placeholder="$lang('请输入边框圆角')"
-        ></el-input-number>
-        px
+        v-model.number="info.borderRadius"
+        :placeholder="$lang('请输入边框圆角')"
+      ></el-input-number>
+      px
       <el-slider
         v-model="info.borderRadius"
         :min="0"
@@ -202,7 +207,7 @@
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
@@ -237,7 +242,7 @@ export default {
   },
   computed: {
     ...mapGetters(),
-gradientStyle() {
+    gradientStyle() {
       let { info = {}, gradientStyleMap = [] } = this;
       let { gradientStyle = {} } = info || {};
       let {

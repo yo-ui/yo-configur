@@ -85,7 +85,8 @@
       >{{ $toBig(info.left, 0) }} px
       <el-slider
         v-model="info.left"
-        :max="1980"
+        :max="3500"
+        :min="-3500"
         :format-tooltip="val => val"
       ></el-slider>
     </p>
@@ -94,7 +95,8 @@
       >{{ $toBig(info.top, 0) }} px
       <el-slider
         v-model="info.top"
-        :max="1080"
+        :max="3500"
+        :min="-3500"
         :format-tooltip="val => val"
       ></el-slider>
     </p>
@@ -295,8 +297,8 @@
             </div>
           </template>
         </vue-slider>
-      </p>
-    </template><template v-if="info.backgroundType == 'purity'">
+      </p> </template
+    ><template v-if="info.backgroundType == 'purity'">
       <p>
         <span class="label"> {{ $lang("背景图片") }}:</span>
         <bm-upload ref="bmUpload" @success="successCallback">
@@ -614,7 +616,7 @@ export default {
         gradientStyle.valueIndex = index;
         this.$refs.slider?.focus(index + 1);
       }
-    },
+    }
     // setFontWeight() {
     //   let { info = {} } = this;
     //   let { fontWeight = "" } = info || {};

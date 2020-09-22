@@ -137,6 +137,119 @@ const Constants = {
     { code: "270" },
     { code: "315" }
   ],
+  //动画库
+  ANIMATEGROUPLIST: [
+    {
+      code: "Attention Seekers",
+      list: [
+        { code: "bounce" },
+        { code: "flash" },
+        { code: "pulse" },
+        { code: "rubberBand" },
+        { code: "shake" },
+        { code: "swing" },
+        { code: "tada" },
+        { code: "wobble" }
+      ]
+    },
+    {
+      code: "Bouncing Entrances",
+      list: [
+        { code: "bounceIn" },
+        { code: "bounceInDown" },
+        { code: "bounceInLeft" },
+        { code: "bounceInRight" },
+        { code: "bounceInUp" }
+      ]
+    },
+    {
+      code: "Bouncing Exits",
+      list: [
+        { code: "bounceOut" },
+        { code: "bounceOutDown" },
+        { code: "bounceOutLeft" },
+        { code: "bounceOutRight" },
+        { code: "bounceOutUp" }
+      ]
+    },
+    {
+      code: "Fading Entrances",
+      list: [
+        { code: "fadeIn" },
+        { code: "fadeInDown" },
+        { code: "fadeInDownBig" },
+        { code: "fadeInLeft" },
+        { code: "fadeInLeftBig" },
+        { code: "fadeInRight" },
+        { code: "fadeInRightBig" },
+        { code: "fadeInUp" },
+        { code: "fadeInUpBig" }
+      ]
+    },
+    {
+      code: "Fading Exits",
+      list: [
+        { code: "fadeOut" },
+        { code: "fadeOutDown" },
+        { code: "fadeOutDownBig" },
+        { code: "fadeOutLeft" },
+        { code: "fadeOutLeftBig" },
+        { code: "fadeOutRight" },
+        { code: "fadeOutRightBig" },
+        { code: "fadeOutUp" },
+        { code: "fadeOutUpBig" }
+      ]
+    },
+    {
+      code: "Flippers",
+      list: [
+        { code: "flip" },
+        { code: "flipInX" },
+        { code: "flipInY" },
+        { code: "flipOutX" },
+        { code: "flipOutY" }
+      ]
+    },
+    {
+      code: "Lightspeed",
+      list: [{ code: "lightSpeedIn" }, { code: "lightSpeedOut" }]
+    },
+    {
+      code: "Rotating Entrances",
+      list: [
+        { code: "rotateIn" },
+        { code: "rotateInDownLeft" },
+        { code: "rotateInDownRight" },
+        { code: "rotateInUpLeft" },
+        { code: "rotateInUpRight" }
+      ]
+    },
+    {
+      code: "Rotating Exits",
+      list: [
+        { code: "rotateOut" },
+        { code: "rotateOutDownLeft" },
+        { code: "rotateOutDownRight" },
+        { code: "rotateOutUpLeft" },
+        { code: "rotateOutUpRight" }
+      ]
+    },
+    {
+      code: "Sliders",
+      list: [
+        { code: "slideInDown" },
+        { code: "slideInLeft" },
+        { code: "slideInRight" },
+        { code: "slideOutLeft" },
+        { code: "slideOutRight" },
+        { code: "slideOutUp" }
+      ]
+    },
+    {
+      code: "Specials",
+      list: [{ code: "hinge" }, { code: "rollIn" }, { code: "rollOut" }]
+    }
+  ],
   CENTERLIST: [
     //中心类型
     { code: "50% 50%", name: "居中" },

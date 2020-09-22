@@ -15,7 +15,9 @@
         :title="$lang('移动画布')"
       ></i>
     </p> -->
-    <h2>{{ info.name }}</h2>
+    <el-collapse v-model="activeNames">
+      <el-collapse-item :title="info.name" name="1">
+    <!-- <h2>{{ info.name }}</h2> -->
     <p>
       <span class="label"> {{ $lang("文本名称") }}: </span>
       <el-input
@@ -89,7 +91,8 @@
       px
       <el-slider
         v-model="info.left"
-        :max="1980"
+        :max="3500"
+        :min="-3500"
         :format-tooltip="val => val"
       ></el-slider>
     </p>
@@ -104,7 +107,8 @@
       px
       <el-slider
         v-model="info.top"
-        :max="1080"
+        :max="3500"
+        :min="-3500"
         :format-tooltip="val => val"
       ></el-slider>
     </p>
@@ -736,14 +740,34 @@
         ></el-color-picker>
       </p>
     </template>
+    </el-collapse-item>
 
-    <h2>{{ $lang("交互") }}</h2>
-    <h2>{{ $lang("动画") }}</h2>
+    <!-- <h2>{{ $lang("交互") }}</h2>
+    <h2>{{ $lang("动画") }}</h2> -->
+    <!-- <el-collapse-item title="交互" name="2"> </el-collapse-item> -->
+      <el-collapse-item title="动画" name="2">
+      <p>
+        <span class="label">{{ $lang("动画类型") }}:</span>
+        <el-select v-model="info.animate" placeholder="请选择动画类型">
+          <el-option-group
+            v-for="group in animateGroupList"
+            :key="group.code"
+            :label="group.code">
+                <el-option v-for="item in group.list"
+                  :key="item.code"
+                  :label="item.code"
+                  :value="item.code">
+                </el-option>
+          </el-option-group>
+        </el-select>        
+      </p>
+      </el-collapse-item>
+    </el-collapse>
   </div>
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
@@ -751,7 +775,9 @@ export default {
   name: "textStyleCom",
   data() {
     return {
+      activeNames: ["1", "2"],
       borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
+      animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
       backgroundTypeList: Object.freeze(Constants.BACKGROUNDTYPELIST),
       transformOriginList: Object.freeze(Constants.TRANSFORMORIGINLIST),
       centerList: Object.freeze(Constants.CENTERLIST),

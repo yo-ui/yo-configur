@@ -91,7 +91,8 @@
       px
       <el-slider
         v-model="info.left"
-        :max="1980"
+        :max="3500"
+        :min="-3500"
         :format-tooltip="val => val"
       ></el-slider>
     </p>
@@ -106,7 +107,8 @@
       px
       <el-slider
         v-model="info.top"
-        :max="1080"
+        :max="3500"
+        :min="-3500"
         :format-tooltip="val => val"
       ></el-slider>
     </p>
@@ -448,8 +450,59 @@
       </span>
     </p>
     <p>
-      <span class="label">{{ $lang("字体颜色") }}:</span>
-      <el-color-picker v-model="info.color" show-alpha></el-color-picker>
+      <span class="label"> {{ $lang("边框样式") }}:</span
+      ><el-select
+        v-model="info.borderStyle"
+        :placeholder="$lang('请选择边框样式')"
+      >
+        <el-option
+          v-for="item in borderStyleList"
+          :key="item.code"
+          :label="$lang(item.name)"
+          :value="item.code"
+        >
+        </el-option>
+      </el-select>
+    </p>
+    <p>
+      <span class="label"> {{ $lang("边框大小") }}:</span>
+      <el-input-number
+        controls-position="right"
+        clearable
+        :min="0"
+        :max="20"
+        v-model.number="info.borderWidth"
+        :placeholder="$lang('请输入边框大小')"
+      ></el-input-number>
+      px
+      <el-slider
+        v-model="info.borderWidth"
+        :min="0"
+        :max="20"
+        :format-tooltip="val => val + ' px'"
+      ></el-slider>
+    </p>
+    <p>
+      <span class="label"> {{ $lang("边框圆角") }}:</span>
+      <el-input-number
+        controls-position="right"
+        clearable
+        :min="0"
+        :max="50"
+        v-model.number="info.borderRadius"
+        :placeholder="$lang('请输入边框圆角')"
+      ></el-input-number>
+      px
+      <el-slider
+        v-model="info.borderRadius"
+        :min="0"
+        :max="50"
+        :format-tooltip="val => val + ' px'"
+      ></el-slider>
+    </p>
+    <p>
+      <span class="label">{{ $lang("边框颜色") }}:</span>
+      <el-color-picker v-model="info.borderColor" show-alpha></el-color-picker>
     </p>
     <p>
       <span class="label">{{ $lang("阴影") }}:</span>
@@ -546,14 +599,61 @@
         ></el-color-picker>
       </p>
     </template>
+
+    <h2>{{ $lang("表头") }}</h2>
     <p>
+      <span class="label">{{ $lang("是否显示") }}:</span>
+      <el-switch v-model="info.headerable"
+        active-color="#4195ea"
+        inactive-color="#ccc">
+      </el-switch>
+    </p>
+    <p>
+      <span class="label">{{ $lang("背景色") }}:</span>
+      <el-color-picker
+        v-model="info.theader.backgroundColor"
+        show-alpha
+      ></el-color-picker>
+    </p>
+    <p>
+      <span class="label">{{ $lang("分隔线") }}:</span>
+      <el-color-picker
+        v-model="info.theader.splitBorderColor"
+        show-alpha
+      ></el-color-picker>
+    </p>
+    <p>
+      <span class="label">{{ $lang("字体颜色") }}:</span>
+      <el-color-picker v-model="info.theader.color" show-alpha></el-color-picker>
+    </p>
+    <p class="align">
       <span class="label">{{ $lang("对齐") }}:</span>
+      <i
+        class="bomi bomi-text-left"
+        @click="textAlignEvent(info.theader,'left')"
+        :class="{ active: info.theader.textAlign == 'left' }"
+      ></i>
+      <i
+        class="bomi bomi-text-center"
+        @click="textAlignEvent(info.theader,'center')"
+        :class="{ active: info.theader.textAlign == 'center' }"
+      ></i>
+      <i
+        class="bomi bomi-text-right"
+        @click="textAlignEvent(info.theader,'right')"
+        :class="{ active: info.theader.textAlign == 'right' }"
+      ></i>
+      <i
+        class="bomi bomi-text-justify"
+        @click="textAlignEvent(info.theader,'justify')"
+        :class="{ active: info.theader.textAlign == 'justify' }"
+      ></i>
     </p>
     <p>
       <span class="label">{{ $lang("字体大小") }}:</span>
-      {{ info.fontSize }} px
+      {{ info.theader.fontSize }} px
       <el-slider
-        v-model="info.fontSize"
+        v-model="info.theader.fontSize"
         :min="10"
         :max="100"
         :format-tooltip="val => val + ' px'"
@@ -561,7 +661,7 @@
     </p>
     <p>
       <span class="label">{{ $lang("字体") }}:</span>
-      <el-select v-model="info.fontFamily" :placeholder="$lang('请选择字体')">
+      <el-select v-model="info.theader.fontFamily" :placeholder="$lang('请选择字体')">
         <el-option
           v-for="item in fontFamilyList"
           :key="item.code"
@@ -576,35 +676,84 @@
       <span class="font-style">
         <span
           class="bold"
-          @click="setFontWeight"
+          @click="setFontWeight(info.theader)"
           :title="$lang('粗体')"
-          :class="{ active: info.fontWeight == 'bold' }"
+          :class="{ active: info.theader.fontWeight == 'bold' }"
           >B</span
         >
         <span
           class="italic"
-          @click="setFontStyle"
+          @click="setFontStyle(info.theader)"
           :title="$lang('斜体')"
-          :class="{ active: info.fontStyle == 'italic' }"
+          :class="{ active: info.theader.fontStyle == 'italic' }"
           >I</span
         >
         <span
           class="underline"
-          @click="setTextDecoration"
+          @click="setTextDecoration(info.theader)"
           :title="$lang('下划线')"
-          :class="{ active: info.textDecoration == 'underline' }"
+          :class="{ active: info.theader.textDecoration == 'underline' }"
           >U</span
         >
       </span>
     </p>
+    <h2>{{ $lang("单元格") }}</h2>
     <p>
-      <span class="label"> {{ $lang("边框样式") }}:</span
-      ><el-select
-        v-model="info.borderStyle"
-        :placeholder="$lang('请选择边框样式')"
-      >
+      <span class="label">{{ $lang("行分隔线") }}:</span>
+      <el-color-picker
+        v-model="info.tbody.rSplitBorderColor"
+        show-alpha
+      ></el-color-picker>
+    </p>
+    <p>
+      <span class="label">{{ $lang("列分隔线") }}:</span>
+      <el-color-picker
+        v-model="info.tbody.cSplitBorderColor"
+        show-alpha
+      ></el-color-picker>
+    </p>
+    <p>
+      <span class="label">{{ $lang("字体颜色") }}:</span>
+      <el-color-picker v-model="info.tbody.color" show-alpha></el-color-picker>
+    </p>
+    <p class="align">
+      <span class="label">{{ $lang("对齐") }}:</span>
+      <i
+        class="bomi bomi-text-left"
+        @click="textAlignEvent(info.tbody,'left')"
+        :class="{ active: info.tbody.textAlign == 'left' }"
+      ></i>
+      <i
+        class="bomi bomi-text-center"
+        @click="textAlignEvent(info.tbody,'center')"
+        :class="{ active: info.tbody.textAlign == 'center' }"
+      ></i>
+      <i
+        class="bomi bomi-text-right"
+        @click="textAlignEvent(info.tbody,'right')"
+        :class="{ active: info.tbody.textAlign == 'right' }"
+      ></i>
+      <i
+        class="bomi bomi-text-justify"
+        @click="textAlignEvent(info.tbody,'justify')"
+        :class="{ active: info.tbody.textAlign == 'justify' }"
+      ></i>
+    </p>
+    <p>
+      <span class="label">{{ $lang("字体大小") }}:</span>
+      {{ info.tbody.fontSize }} px
+      <el-slider
+        v-model="info.tbody.fontSize"
+        :min="10"
+        :max="100"
+        :format-tooltip="val => val + ' px'"
+      ></el-slider>
+    </p>
+    <p>
+      <span class="label">{{ $lang("字体") }}:</span>
+      <el-select v-model="info.tbody.fontFamily" :placeholder="$lang('请选择字体')">
         <el-option
-          v-for="item in borderStyleList"
+          v-for="item in fontFamilyList"
           :key="item.code"
           :label="$lang(item.name)"
           :value="item.code"
@@ -613,46 +762,31 @@
       </el-select>
     </p>
     <p>
-      <span class="label"> {{ $lang("边框大小") }}:</span>
-      <el-input-number
-        controls-position="right"
-        clearable
-        :min="0"
-        :max="20"
-        v-model.number="info.borderWidth"
-        :placeholder="$lang('请输入边框大小')"
-      ></el-input-number>
-      px
-      <el-slider
-        v-model="info.borderWidth"
-        :min="0"
-        :max="20"
-        :format-tooltip="val => val + ' px'"
-      ></el-slider>
+      <span class="label">{{ $lang("字体样式") }}:</span>
+      <span class="font-style">
+        <span
+          class="bold"
+          @click="setFontWeight(info.tbody)"
+          :title="$lang('粗体')"
+          :class="{ active: info.tbody.fontWeight == 'bold' }"
+          >B</span
+        >
+        <span
+          class="italic"
+          @click="setFontStyle(info.tbody)"
+          :title="$lang('斜体')"
+          :class="{ active: info.tbody.fontStyle == 'italic' }"
+          >I</span
+        >
+        <span
+          class="underline"
+          @click="setTextDecoration(info.tbody)"
+          :title="$lang('下划线')"
+          :class="{ active: info.tbody.textDecoration == 'underline' }"
+          >U</span
+        >
+      </span>
     </p>
-    <p>
-      <span class="label"> {{ $lang("边框圆角") }}:</span>
-      <el-input-number
-        controls-position="right"
-        clearable
-        :min="0"
-        :max="50"
-        v-model.number="info.borderRadius"
-        :placeholder="$lang('请输入边框圆角')"
-      ></el-input-number>
-      px
-      <el-slider
-        v-model="info.borderRadius"
-        :min="0"
-        :max="50"
-        :format-tooltip="val => val + ' px'"
-      ></el-slider>
-    </p>
-    <p>
-      <span class="label">{{ $lang("边框颜色") }}:</span>
-      <el-color-picker v-model="info.borderColor" show-alpha></el-color-picker>
-    </p>
-
     <h2>{{ $lang("交互") }}</h2>
     <h2>{{ $lang("动画") }}</h2>
   </div>
@@ -816,8 +950,8 @@ export default {
         this.$refs.slider?.focus(index + 1);
       }
     },
-    setFontWeight() {
-      let { info = {} } = this;
+    setFontWeight(info) {
+      // let { info = {} } = this;
       let { fontWeight = "" } = info || {};
       if (fontWeight == "bold") {
         fontWeight = "";
@@ -826,8 +960,8 @@ export default {
       }
       info.fontWeight = fontWeight;
     },
-    setTextDecoration() {
-      let { info = {} } = this;
+    setTextDecoration(info) {
+      // let { info = {} } = this;
       let { textDecoration = "" } = info || {};
       if (textDecoration == "underline") {
         textDecoration = "";
@@ -836,8 +970,8 @@ export default {
       }
       info.textDecoration = textDecoration;
     },
-    setFontStyle() {
-      let { info = {} } = this;
+    setFontStyle(info) {
+      // let { info = {} } = this;
       let { fontStyle = "" } = info || {};
       if (fontStyle == "italic") {
         fontStyle = "";
@@ -845,6 +979,11 @@ export default {
         fontStyle = "italic";
       }
       info.fontStyle = fontStyle;
+    },
+
+    textAlignEvent(info,item) {
+      // let { info = {} } = this;
+      info.textAlign = item;
     }
   }
 };

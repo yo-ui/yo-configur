@@ -3,7 +3,10 @@
     <bm-header ref="bmHeader"></bm-header>
     <bm-nav ref="bmNav"></bm-nav>
     <div class="flex-content">
-      <bm-widget-list ref="bmWidgetList" v-show="leftMenuStatus"></bm-widget-list>
+      <bm-widget-list
+        ref="bmWidgetList"
+        v-show="leftMenuStatus"
+      ></bm-widget-list>
       <!-- <div v-else></div> -->
       <div class="content-box">
         <div class="view-box" ref="viewBox">
@@ -25,7 +28,8 @@
                 <!-- {{canvas}} -->
               </div>
             </div>
-            <bm-com class="edit"
+            <bm-com
+              class="edit"
               :class="{
                 active: activeComIds.indexOf(item.id) > -1,
                 locked: !item.dragable
@@ -50,8 +54,8 @@
             ></el-slider>
           </div>
         </div>
-        <bm-info ref="bmInfo" v-show="rightMenuStatus"></bm-info>
       </div>
+      <bm-info ref="bmInfo" v-show="rightMenuStatus"></bm-info>
     </div>
     <ul
       class="context-menu"
@@ -460,7 +464,7 @@ export default {
       } = e;
       e.stopPropagation();
       // e.preventDefault();
-      bmCommon.log("keydow", e);
+      // bmCommon.log("index keydow", e);
       let { activeCom } = this;
       let { type = "", id = "", dragable = false } = activeCom || {};
       if (type == "canvas" || !id) {

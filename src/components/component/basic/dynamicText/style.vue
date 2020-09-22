@@ -91,7 +91,8 @@
       px
       <el-slider
         v-model="info.left"
-        :max="1980"
+        :max="3500"
+        :min="-3500"
         :format-tooltip="val => val"
       ></el-slider>
     </p>
@@ -106,7 +107,8 @@
       px
       <el-slider
         v-model="info.top"
-        :max="1080"
+        :max="3500"
+        :min="-3500"
         :format-tooltip="val => val"
       ></el-slider>
     </p>
