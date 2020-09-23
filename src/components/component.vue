@@ -171,11 +171,11 @@ export default {
       styles["animation-direction"] = direction;
       return styles;
     },
-    animation() {
-      let { info = {} } = this;
-      let { animation = {} } = info || {};
-      return animation || {};
-    }
+    // animation() {
+    //   let { info = {} } = this;
+    //   let { animation = {} } = info || {};
+    //   return animation || {};
+    // }
   },
   methods: {
     ...mapMutations({
@@ -290,7 +290,7 @@ export default {
     }
   },
   watch: {
-    animation: {
+    "info.animation": {
       handler(newVal, oldVal) {
         // if (newVal != oldVal) {
         clearTimeout(this._setTimeoutId);
@@ -314,4 +314,5 @@ export default {
 
 <style lang="less">
 @import (less) "../assets/less/components/component.less";
+@import (less) "../assets/less/components/common/wang.editor.less";
 </style>

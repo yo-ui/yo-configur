@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-dynamic-text-style-com">
+  <div class="bm-table-style-com">
     <!-- <h2>{{ $lang("功能选择") }}</h2>
     <p>
       <i
@@ -798,7 +798,7 @@ import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "dynamicTextStyleCom",
+  name: "tableStyleCom",
   data() {
     return {
       borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),

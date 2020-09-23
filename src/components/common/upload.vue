@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import { URL as _URL } from "@/common/env";
 import { Constants } from "@/common/env";
 export default {

@@ -24,7 +24,8 @@
     "resize-detector": "^0.2.2",
     "vue-amap": "^0.5.10",
     "vue-slider-component": "^3.2.5",
-    "vuedraggable": "^2.24.1"
+    "vuedraggable": "^2.24.1",
+    "wangeditor": "^3.1.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.0",

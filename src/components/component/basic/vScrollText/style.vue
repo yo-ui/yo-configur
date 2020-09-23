@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-dynamic-text-style-com">
+  <div class="bm-v-scroll-text-style-com">
     <!-- <h2>{{ $lang("功能选择") }}</h2>
     <p>
       <i
@@ -16,14 +16,14 @@
       ></i>
     </p> -->
     <h2>{{ info.name }}</h2>
-    <!-- <p>
+    <p>
       <span class="label"> {{ $lang("文本名称") }}: </span>
       <el-input
         v-model="info.content"
         clearable
         :placeholder="$lang('请输入文本名称')"
       ></el-input>
-    </p> -->
+    </p>
     <p>
       <span class="label"> {{ $lang("层级") }}: </span>
       <el-input-number
@@ -666,7 +666,7 @@ import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "dynamicTextStyleCom",
+  name: "vScrollTextStyleCom",
   data() {
     return {
       borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),

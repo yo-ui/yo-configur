@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // import { URL } from "@/common/env";
 import bmCommon from "@/common/common";
 // import { post, get } from "@/store/axios";
@@ -164,11 +165,28 @@ export default {
     },
     setHistoryList(state, item) {
       //先保存在内存  最多保存20条记录
-      state.historyList = item;
+      state.historyList = item.slice(0, 20);
     },
     setRecordList(state, item) {
       //先保存在本地  最多保存20条记录  若已满20条先删除自动保存的记录
       if (item) {
+        if (item.length > 20) {
+          let index = item.length - 1;
+          let obj = item[index] || {};
+          let { type = "" } = obj || {};
+          while (type != "auto") {
+            index--;
+            if (index < 0) {
+              break;
+            }
+            obj = item[index] || {};
+            type = obj.type;
+            bmCommon.log("不存在自动保存记录则继续查找");
+          }
+          if (type == "auto") {
+            item.splice(index, 1);
+          }
+        }
         bmCommon.setItem(
           Constants.LOCALSTORAGEKEY.USERKEY.RECORDLIST,
           JSON.stringify(item)
@@ -466,6 +484,25 @@ export default {
       context.commit("setActiveCom", activeCom);
       // context.commit("setActiveCom", activeCom);
       // context.commit("setActiveComs", activeComs);
+    },
+    createHistoryAndRecord(context) {
+      let { widgetList = [] } = this;
+      let { getters = {} } = context;
+      let { getRecordList: recordList = [], getHistoryList: historyList = [] } =
+        getters || {};
+      historyList.push(bmCommon.clone(widgetList));
+      let date = moment();
+      let time = date.valueOf();
+      let id = bmCommon.uuid();
+      recordList.push({
+        id,
+        name: date.format("MM/DD/YYYY HH:mm:ss A"),
+        time,
+        type: "auto", //自动记录
+        widgetList
+      });
+      context.commit("setHistoryList", historyList);
+      context.commit("setRecordList", recordList);
     }
   }
 };

@@ -31,6 +31,10 @@ let widgets = {
       import(
         /* webpackChunkName: "bm-component-vScrollText" */ "@/components/component/basic/vScrollText/index.vue"
       ),
+    richTextCom: () =>
+      import(
+        /* webpackChunkName: "bm-component-richText" */ "@/components/component/basic/richText/index.vue"
+      ),
 
 
 
@@ -103,6 +107,10 @@ let styles = {
     vScrollTextStyleCom: () =>
       import(
         /* webpackChunkName: "bm-component-vScrollText-style" */ "@/components/component/basic/vScrollText/style.vue"
+      ),
+    richTextStyleCom: () =>
+      import(
+        /* webpackChunkName: "bm-component-richText-style" */ "@/components/component/basic/richText/style.vue"
       ),
 
 

@@ -97,6 +97,7 @@ export default {
         id,
         name,
         time,
+        type:'manual',//手动记录
         widgetList
       });
       this.setRecordList(recordList);

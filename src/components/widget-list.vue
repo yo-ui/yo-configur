@@ -67,7 +67,8 @@ export default {
       setLinkPoint: "canvas/setLinkPoint" //设置连接点信息
     }),
     ...mapActions({
-      selectComAction: "canvas/selectCom"
+      selectComAction: "canvas/selectCom",
+      createHistoryAndRecordAction: "canvas/createHistoryAndRecord"
     }),
     initEvent() {
       $(document).on("dragstart", this.dragstartEvent);
@@ -154,6 +155,7 @@ export default {
         }
         widgetList.push(item);
         this.selectComAction(id);
+        this.createHistoryAndRecordAction();
         // this.setWidgetList(widgetList);
       }
       this.dragleaveEvent(e);
@@ -187,6 +189,7 @@ export default {
       }
       widgetList.push(_item);
       this.selectComAction(id);
+      this.createHistoryAndRecordAction();
     }
   }
 };

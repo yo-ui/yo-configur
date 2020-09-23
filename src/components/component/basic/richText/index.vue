@@ -1,14 +1,17 @@
 <template>
-  <div ref="bmCom" :style="comStyle">
-    {{ info.content }}
-  </div>
+  <div
+    :contenteditable="info.editable"
+    @blur.stop="blurEvent"
+    :style="comStyle"
+    v-html="info.content"
+  ></div>
 </template>
 
 <script>
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "vScrollTextCom",
+  name: "richTextCom",
   data() {
     return {};
   },
@@ -22,6 +25,7 @@ export default {
   },
   computed: {
     ...mapGetters(),
+
     //渐变颜色样式
     gradientStyle() {
       let { info = {} } = this;
@@ -47,11 +51,13 @@ export default {
       let {
         width = "",
         height = "",
-        color = "",
+        // color = "",
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
         borderRadius = "",
+        backgroundType = "",
+        scale = "",
         marginTop = 0,
         marginBottom = 0,
         marginLeft = 0,
@@ -60,15 +66,16 @@ export default {
         paddingBottom = 0,
         paddingLeft = 0,
         paddingRight = 0,
-        shadow = {},
-        shadowable = false,
-        scale = "",
-        fontFamily = "",
-        fontWeight = "",
-        fontStyle = "",
-        textDecoration = "",
-        backgroundType = "",
-        fontSize = "",
+        // shadow = {},
+        // shadowable = false,
+        // textShadow = {},
+        // textShadowable = false,
+        // textAlign = "",
+        // fontFamily = "",
+        // fontSize = "",
+        // fontWeight = "",
+        // fontStyle = "",
+        // textDecoration = "",
         backgroundColor = "",
         backgroundImage = "",
         backgroundRepeat = "",
@@ -78,15 +85,31 @@ export default {
         margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
         padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
       };
+      // if (textAlign) {
+      //   styles["textAlign"] = textAlign;
+      //   if (textAlign == "justify") {
+      //     styles["text-align-last"] = textAlign;
+      //   }
+      // }
+      // if (shadowable) {
+      //   let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
+      //     shadow || {};
+      //   styles[
+      //     "boxShadow"
+      //   ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
+      // }
+      // if (textShadowable) {
+      //   let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
+      //   styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
+      // }
+      if (width) {
+        styles["width"] = `${width}px`;
+      }
+      if (height) {
+        styles["height"] = `${height}px`;
+      }
       if (backgroundRepeat) {
         styles["backgroundRepeat"] = backgroundRepeat;
-      }
-      if (shadowable) {
-        let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
-          shadow || {};
-        styles[
-          "boxShadow"
-        ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
       }
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
@@ -97,14 +120,8 @@ export default {
       if (borderStyle) {
         styles["borderStyle"] = borderStyle;
       }
-      styles["borderRadius"] = `${borderRadius}px`;
       styles["borderWidth"] = `${borderWidth}px`;
-      if (width) {
-        styles["width"] = `${width}px`;
-      }
-      if (height) {
-        styles["height"] = `${height}px`;
-      }
+      styles["borderRadius"] = `${borderRadius}px`;
       if (scale) {
         (styles["transform"] = `${scale}`),
           (styles["-webkit-transform"] = `${scale}`),
@@ -112,24 +129,24 @@ export default {
           (styles["-o-transform"] = `${scale}`),
           (styles["-moz-transform"] = `${scale}`);
       }
-      if (color) {
-        styles["color"] = color;
-      }
-      if (fontSize) {
-        styles["fontSize"] = `${fontSize}px`;
-      }
-      if (fontFamily) {
-        styles["fontFamily"] = `${fontFamily}`;
-      }
-      if (fontWeight) {
-        styles["fontWeight"] = fontWeight;
-      }
-      if (fontStyle) {
-        styles["fontStyle"] = fontStyle;
-      }
-      if (textDecoration) {
-        styles["textDecoration"] = textDecoration;
-      }
+      // if (color) {
+      //   styles["color"] = color;
+      // }
+      // if (fontSize) {
+      //   styles["fontSize"] = `${fontSize}px`;
+      // }
+      // if (fontFamily) {
+      //   styles["fontFamily"] = `${fontFamily}`;
+      // }
+      // if (fontWeight) {
+      //   styles["fontWeight"] = fontWeight;
+      // }
+      // if (fontStyle) {
+      //   styles["fontStyle"] = fontStyle;
+      // }
+      // if (textDecoration) {
+      //   styles["textDecoration"] = textDecoration;
+      // }
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {
@@ -147,25 +164,17 @@ export default {
       return styles || {};
     }
   },
-  mounted() {
-    // this.$nextTick(() => {
-    //   let bmCom = this.$refs.bmCom;
-    //   let $bmCom = $(bmCom);
-    //   let { info = {} } = this;
-    //   let width = $bmCom.width();
-    //   let height = $bmCom.height();
-    //   info.originWidth = width;
-    //   info.originHeight = height;
-    //   if (info.scaleable) {
-    //     info.width = width;
-    //     info.height = height;
-    //   }
-    // });
-    this.$emit("success"); //组件加载完成回调
-  },
   methods: {
     ...mapMutations({}),
-    ...mapActions({})
+    ...mapActions({}),
+    blurEvent(e) {
+      let { target } = e;
+      let { info = {} } = this;
+      let name = $(target)
+        .text()
+        .trim();
+      info.name = name;
+    }
   }
 };
 </script>

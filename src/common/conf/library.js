@@ -9,6 +9,8 @@ let baseData = {
   borderRadius: 0,
   scale: "scale(1,1)",
   left: 0,
+  content: "文本内容",
+  name: "文本标题",
   animation: {
     name: "",
     direction: "normal",
@@ -146,8 +148,8 @@ export default [
           originWidth: "", //原宽
           originHeight: "", //原高
           width: "",
-          opacity: 100,
           height: "",
+          opacity: 100,
           left: 0,
           top: 0,
           content: "00.00",
@@ -270,22 +272,18 @@ export default [
         icon: "/static/img/configur/announcement.png",
         data: {
           ...baseData
-          // borderColor: "#eee",
-          // borderStyle: "solid",
-          // borderRadius: 0,
-          // borderWidth: 1,
-          // opacity: 100,
-          // originWidth: "", //原宽
-          // originHeight: "", //原高
-          // width: "",
-          // height: "",
-          // left: 0,
-          // rotate: 0,
-          // top: 0,
-          // scaleable: false, //是否可缩放操作
-          // rotateable: false, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
+        }
+      },
+      {
+        name: "多行文本",
+        code: "richText",
+        icon: "/static/img/configur/richtext.png",
+        data: {
+          ...baseData,
+          originWidth: "", //原宽
+          originHeight: "", //原高
+          width: 300,
+          height: 200,
         }
       },
       {

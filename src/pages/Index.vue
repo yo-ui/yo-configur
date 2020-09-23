@@ -406,13 +406,13 @@ export default {
       let $parent = $(target).parents(".bm-component-com");
       let type = $(target).attr("data-type");
       let id = $(target).attr("data-id");
-      // let width = $(target).outerWidth();
-      // let height = $(target).outerHeight();
+      let width = $(target).outerWidth();
+      let height = $(target).outerHeight();
       if (!type) {
         type = $parent.attr("data-type");
         id = $parent.attr("data-id");
-        // width = $parent.outerWidth();
-        // height = $parent.outerHeight();
+        width = $parent.outerWidth();
+        height = $parent.outerHeight();
       }
       if (type) {
         this.showContextMenuType = 1;
@@ -431,12 +431,12 @@ export default {
           activeCom = {}
         } = this;
         let { length = 0 } = activeComs || [];
-        let { dragable = false } = activeCom || {};
-        // if (!rotateable) {
-        // let padding = 20;
-        // activeCom.originWidth = width - padding; //减去 padding
-        // activeCom.originHeight = height - padding; //减去 padding
-        // }
+        let { dragable = false, rotateable = false } = activeCom || {};
+        if (!rotateable) {
+          let padding = 0;
+          activeCom.originWidth = width - padding; //减去 padding
+          activeCom.originHeight = height - padding; //减去 padding
+        }
         //选择多个则必定可以移动
         if (length > 1) {
           dragable = true;
