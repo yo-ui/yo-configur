@@ -66,7 +66,9 @@ export default {
       setWidgetList: "canvas/setWidgetList", //设置组件列表
       setLinkPoint: "canvas/setLinkPoint" //设置连接点信息
     }),
-    ...mapActions(),
+    ...mapActions({
+      selectComAction: "canvas/selectCom"
+    }),
     initEvent() {
       $(document).on("dragstart", this.dragstartEvent);
     },
@@ -151,6 +153,7 @@ export default {
           this.setLinkPoint(item);
         }
         widgetList.push(item);
+        this.selectComAction(id);
         // this.setWidgetList(widgetList);
       }
       this.dragleaveEvent(e);
@@ -183,6 +186,7 @@ export default {
         this.setLinkPoint(item);
       }
       widgetList.push(_item);
+      this.selectComAction(id);
     }
   }
 };

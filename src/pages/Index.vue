@@ -26,6 +26,7 @@
                 {{canvasStyle}} -->
                 <!-- {{bgStyle}} -->
                 <!-- {{canvas}} -->
+                <!-- {{ activeCom }} -->
               </div>
             </div>
             <bm-com

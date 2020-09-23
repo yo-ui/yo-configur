@@ -104,7 +104,7 @@ const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {
     return {
-      animate:'',
+      animate: ""
     };
   },
   props: {
@@ -132,11 +132,14 @@ export default {
         top = "",
         // width = "",
         // height = "",
+        animation = {},
         order: zIndex = "",
         // matrix = "",
         rotate = "",
         transformOrigin = ""
       } = info || {};
+      let { direction = "", duration = "", iterationCount = 1 } =
+        animation || {};
       // let { a, b, c, d, e, f } = matrix || {};
       // let radian = (Math.PI / 180) * rotate;
       // matrix.a = Math.cos(radian);
@@ -160,7 +163,18 @@ export default {
         transform: `rotate(${rotate}deg)`,
         transformOrigin: transformOrigin
       };
+      if (!iterationCount) {
+        iterationCount = "infinite";
+      }
+      styles["animation-iteration-count"] = iterationCount;
+      styles["animation-duration"] = duration;
+      styles["animation-direction"] = direction;
       return styles;
+    },
+    animation() {
+      let { info = {} } = this;
+      let { animation = {} } = info || {};
+      return animation || {};
     }
   },
   methods: {
@@ -276,15 +290,23 @@ export default {
     }
   },
   watch: {
-    "info.animate"(newVal, oldVal) {
-      if (newVal != oldVal) {
+    animation: {
+      handler(newVal, oldVal) {
+        // if (newVal != oldVal) {
         clearTimeout(this._setTimeoutId);
         let that = this;
-        that.animate=newVal
-        this._setTimeoutId = setTimeout(() => {
-          that.animate=''
-        }, 1000);
-      }
+        // let { info = {} } = this;
+        // let { animation = {} } = info || {};
+        let { name = "", iterationCount = "", duration = "" } = newVal || {};
+        that.animate = name;
+        if (iterationCount) {
+          this._setTimeoutId = setTimeout(() => {
+            that.animate = "";
+          }, duration * 1000 + 100);
+        }
+        // }
+      },
+      deep: true
     }
   }
 };

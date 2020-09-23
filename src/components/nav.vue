@@ -1,19 +1,19 @@
 <template>
   <div class="bm-nav-com">
     <div class="left">
-      <el-button>
+      <el-button @click="cancelEvent">
         <i class="el-icon-refresh-left" :title="$lang('撤销')"></i>
         {{ $lang("撤销") }}
       </el-button>
-      <el-button>
+      <el-button @click="resumeEvent">
         <i class="el-icon-refresh-right" :title="$lang('恢复')"></i>
         {{ $lang("恢复") }}
       </el-button>
-      <el-button>
+      <el-button @click="recordEvent">
         <i class="el-icon-upload" :title="$lang('记录点')"></i>
         {{ $lang("记录点") }}
       </el-button>
-      <el-button>
+      <el-button @click="fallbackEvent">
         <i class="el-icon-download" :title="$lang('回退')"></i>
         {{ $lang("回退") }}
       </el-button>
@@ -46,7 +46,11 @@
         </el-dropdown>
       </el-button-group> -->
       <el-button-group>
-        <el-dropdown trigger="click" @command="spreadCommandEvent">
+        <el-dropdown
+          trigger="click"
+          @command="spreadCommandEvent"
+          placement="bottom-start"
+        >
           <!-- :disabled="activeComs.length < 3" -->
           <el-button class="dropdown">
             <span class="txt">
@@ -63,7 +67,11 @@
             >
           </el-dropdown-menu>
         </el-dropdown>
-        <el-dropdown trigger="click" @command="alignCommandEvent">
+        <el-dropdown
+          trigger="click"
+          @command="alignCommandEvent"
+          placement="bottom-start"
+        >
           <!-- :disabled="activeComs.length < 1" -->
           <el-button class="dropdown">
             <span class="txt">
@@ -110,7 +118,11 @@
               ) ||
                 (topOrder == activeCom.order && bottomOrder == activeCom.order)
             " -->
-        <el-dropdown trigger="click" @command="orderCommandEvent">
+        <el-dropdown
+          trigger="click"
+          @command="orderCommandEvent"
+          placement="bottom-start"
+        >
           <el-button class="dropdown">
             <span class="txt">
               <i class="bomi bomi-arrange"></i>
@@ -151,7 +163,11 @@
       </el-button-group> -->
 
       <el-button-group>
-        <el-dropdown trigger="click" @command="setThemesEvent" class="menu-nav">
+        <el-dropdown
+          trigger="click"
+          @command="setThemesEvent"
+          placement="bottom-start"
+        >
           <span>
             <el-button>
               <i class="el-icon-s-grid"></i>
@@ -201,6 +217,8 @@
         运行
       </el-button>
     </div>
+    <bm-record ref="bmRecord"></bm-record>
+    <bm-fallback ref="bmFallback"></bm-fallback>
   </div>
 </template>
 
@@ -218,7 +236,12 @@ export default {
       }
     };
   },
-  components: {},
+  components: {
+    bmRecord: () =>
+      import(/* webpackChunkName: "iot-record-com" */ "@/components/record"),
+    bmFallback: () =>
+      import(/* webpackChunkName: "iot-fallback-com" */ "@/components/fallback")
+  },
   computed: {
     ...mapGetters({
       canvas: "canvas/getCanvas",
@@ -284,6 +307,14 @@ export default {
       }
       widgetList.splice(index, 1);
       this.selectComAction();
+    },
+    resumeEvent(){},
+    cancelEvent(){},
+    fallbackEvent() {
+      this.$refs.bmFallback?.show();
+    },
+    recordEvent() {
+      this.$refs.bmRecord?.show();
     },
     leftMenuEvent() {
       let { leftMenuStatus = false } = this;
@@ -432,7 +463,7 @@ export default {
       let index = 1;
       activeComs.forEach(item => {
         let { width = "", left = "", originWidth = "" } = item || {};
-        let _max = (Number(width)|| Number(originWidth)) + Number(left);
+        let _max = (Number(width) || Number(originWidth)) + Number(left);
         let _min = Number(left);
         if (min != _min && _max != max) {
           item.left =

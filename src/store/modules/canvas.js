@@ -1,7 +1,7 @@
 // import { URL } from "@/common/env";
-// import bmCommon from "@/common/common";
+import bmCommon from "@/common/common";
 // import { post, get } from "@/store/axios";
-// import { Constants } from "@/common/env";
+import { Constants } from "@/common/env";
 export default {
   namespaced: true, //必须加它不然报错
   strict: process.env.NODE_ENV !== "production",
@@ -10,6 +10,8 @@ export default {
     // financePricingStrategiesCacheMap: null,
     // 画布缩放值
     zoom: 1,
+    historyList: [], //撤销恢复记录
+    recordList: [], //记录点
     selectBox: {
       moving: false, //是否显示
       left: 0,
@@ -94,6 +96,23 @@ export default {
     getMoving(state) {
       return state.moving;
     },
+    getHistoryList(state) {
+      return state.historyList;
+    },
+    getRecordList(state) {
+      let recordList = state.recordList;
+      if (!recordList || recordList.length < 1) {
+        recordList = bmCommon.getItem(
+          Constants.LOCALSTORAGEKEY.USERKEY.RECORDLIST
+        );
+        recordList = JSON.parse(recordList);
+      }
+      recordList = JSON.parse(JSON.stringify(recordList));
+      if (!recordList) {
+        recordList = [];
+      }
+      return recordList;
+    },
     //获取画布缩放值
     getZoom(state) {
       return state.zoom;
@@ -142,6 +161,22 @@ export default {
     //设置选中对象
     setWidgetList(state, item) {
       state.widgetList = item;
+    },
+    setHistoryList(state, item) {
+      //先保存在内存  最多保存20条记录
+      state.historyList = item;
+    },
+    setRecordList(state, item) {
+      //先保存在本地  最多保存20条记录  若已满20条先删除自动保存的记录
+      if (item) {
+        bmCommon.setItem(
+          Constants.LOCALSTORAGEKEY.USERKEY.RECORDLIST,
+          JSON.stringify(item)
+        );
+      } else {
+        bmCommon.removeItem(Constants.LOCALSTORAGEKEY.USERKEY.RECORDLIST);
+      }
+      state.recordList = item;
     },
     // 设置 mousemove 操作的初始值
     initMove(state, item = {}) {

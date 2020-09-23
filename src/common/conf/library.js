@@ -9,7 +9,12 @@ let baseData = {
   borderRadius: 0,
   scale: "scale(1,1)",
   left: 0,
-  animate:'',
+  animation: {
+    name: "",
+    direction: "normal",
+    duration: 0.8,
+    iterationCount: 1
+  },
   originWidth: "", //原宽
   originHeight: "", //原高
   fontWeight: "",
@@ -308,7 +313,7 @@ export default [
             splitBorderColor: "#4195ea",
             fontStyle: "",
             backgroundType: "purity",
-            gradientStyle: bmCommon.clone( baseData.gradientStyle),
+            gradientStyle: bmCommon.clone(baseData.gradientStyle),
             textDecoration: "",
             fontWeight: ""
           },

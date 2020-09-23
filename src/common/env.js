@@ -74,7 +74,8 @@ const Constants = {
     ACCOUNTMENULIST: PLATFORM + "_ACCOUNTMENULIST", //账户菜单列表
     ACCOUNTMENUMAP: PLATFORM + "_ACCOUNTMENUMAP", //账户菜单权限
     USERKEY: {
-      USERINFO: PLATFORM + "_USER_INFO" //用户信息key
+      USERINFO: PLATFORM + "_USER_INFO", //用户信息key
+      RECORDLIST: PLATFORM + "_RECORD_LIST" //用户记录
     }
   },
   // 组件map
@@ -136,6 +137,11 @@ const Constants = {
     { code: "225" },
     { code: "270" },
     { code: "315" }
+  ],
+  //动画播放方式
+  ANIMATIONDIRECTIONLIST: [
+    { code: "normal", name: "正常" },
+    { code: "alternate", name: "反向" }
   ],
   //动画库
   ANIMATEGROUPLIST: [
