@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit.js'
+import Spirit from './../../core/Spirit'
 
 /**
  * 显示框
@@ -21,6 +21,7 @@ class TextBox extends Spirit {
 	template(){
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
                 <div style="
+                    min-width: ${this.width}px;
                     line-height: ${this.height}px;
                     height: ${this.height}px;
                     text-align: left;
@@ -35,7 +36,7 @@ class TextBox extends Spirit {
                       transform: scale(0.7);
                       display: inline-block;
                       vertical-align: middle;
-                      margin-left: -5px;"></small>
+                      margin-left: -1px"></small>
                 </div>
                </div>`);
 	}
@@ -103,21 +104,25 @@ class TextBox extends Spirit {
       element.append(option)
 		});
     element.val(this.config.fontSize)
-
     element.on('change',function () {
-      let property = that.stage.property;
-      property.config.fontSize = $(this).val();
-      $('#'+property.id).find('span').css({'font-size':$(this).val()+"px"});
-      $('#temp_value').html($('#'+property.id).find('div').html());
-      let width = $('#temp_value').width();
-      let height = $('#temp_value').height();
-      $('.resize-panel').css({width:width+2,height:height});
-      property.width = width;
-      property.height = height;
-
-      $('#'+property.id).find('div').css({width: width,'line-height': height+"px",height: height});
+      that.text();
     });
 	}
+
+	text() {
+	  let that = this;
+    let element = $('#configur_property').find('[name=textBoxFS]')
+    let property = that.stage.property;
+    property.config.fontSize = element.val();
+    $('#'+property.id).find('span').css({'font-size': element.val()+"px"});
+    $('#temp_value').html($('#'+property.id).find('div').html());
+    let width = $('#temp_value').width();
+    let height = $('#temp_value').height();
+    $('.resize-panel').css({width:width,height:height});
+    property.width = width-2;
+    property.height = height;
+    $('#'+property.id).find('div').css({'min-width':width+'px','line-height': height+"px",height});
+  }
 }
 
 export default TextBox;

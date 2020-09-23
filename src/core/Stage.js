@@ -1,20 +1,19 @@
-import Paw from '@/core/Paw';
-import Move from '@/core/Move';
-import SpiritFactory from '@/core/SpiritFactory';
-import Zoom from '@/core/Zoom';
-import Library from '@/core/Library';
-import Keydown from '@/core/Keydown';
-import Align from '@/core/Align';
-import HandleRecord from '@/core/HandleRecord';
-import WaterPipe from '@/components/common/WaterPipe';
-import BindData from '@/core/BindData';
-import Toast from '@/core/Toast';
-import View from "@/View";
-import Color from "@/core/Color"
-import Toolbar from "@/core/Toolbar"
-import Vessel from "@/components/common/Vessel";
-import Group from "@/core/Group"
-import Panel from "@/core/Panel"
+import Paw from './../core/Paw';
+import Move from './../core/Move';
+import SpiritFactory from './../core/SpiritFactory';
+import Zoom from './../core/Zoom';
+import Library from './../core/Library';
+import Keydown from './../core/Keydown';
+import Align from './../core/Align';
+import HandleRecord from './../core/HandleRecord';
+import WaterPipe from './../components/common/WaterPipe';
+import BindData from './../core/BindData';
+import Toast from './../core/Toast';
+import View from "./../View";
+import Color from "./../core/Color"
+import Toolbar from "./../core/Toolbar"
+import Group from "./../core/Group"
+import Panel from "./../core/Panel"
 
 /**
  * 舞台
@@ -30,7 +29,7 @@ class Stage {
     this.groupList = [];
 		this.isMove = false;
     this.move = new Move(this);//全局移动
-    this.paw = new Paw(0,0,0,0,this);//舞台移动
+    this.paw = new Paw(this);//舞台移动
 		this.zoom = new Zoom(this);//缩放
 		this.align = new Align(this);//对齐
 		this.handleRecord = new HandleRecord(this);//操作记录
@@ -40,7 +39,6 @@ class Stage {
     this.keydown = new Keydown(this);//快捷键
     this.group = new Group(this);
     this.panel = new Panel(this);
-    this.toast = new Toast(this);
 		this.init();
 	}
 
@@ -90,7 +88,7 @@ class Stage {
 			'border-left': '1px dashed red',
 			width: '1px',
 			height: height+'px',
-			'z-index': 1,
+			'z-index': 10,
 		})
 		element.append(vLine);
 	  let hLine = $('<div id="h_subline">&nbsp;</div>')
@@ -100,7 +98,7 @@ class Stage {
 			'border-top': '1px dashed red',
 			width: width+'px',
 			height: '1px',
-			'z-index': 1,
+			'z-index': 10,
 		})
 		element.append(hLine);
 		let rectangle = $('<div id="selected_subline">&nbsp;</div>')
@@ -110,7 +108,7 @@ class Stage {
 			border: '1px dashed #12a3ff',
 			width: '0px',
 			height: '0px',
-			'z-index': 1,
+			'z-index': 10,
 		})
 		element.append(rectangle);
 		let selectedPanel = $(`<div class="bm-selected-panel">&nbsp;</div>`)
@@ -398,7 +396,7 @@ class Stage {
 		//背景颜色
     let element = $("#stage_bg");
     let color = that.background.color;
-    Color.init(element,color,function (color) {
+    Color.init(element,color,function(color) {
       that.background.color = color;
       $('#configur_stage').css({'background-color': color})
     });
@@ -560,7 +558,7 @@ class Stage {
 			let data = {id:spirit.id,left:spirit.x,top:spirit.y}
 			let record = {type:'add',name:'添加',data:data}
 			this.handleRecord.add(record);
-      this.triggerClick();
+      spirit.getEl().trigger('click');
       this.vesselList();
 		}
 	}
@@ -638,6 +636,10 @@ class Stage {
             let height = that.property.height;
             that.paw.site(x,y,width,height);
             that.paw.register(el);
+            let className = that.property.className;
+            if(className=="TextBox"||className=="Text") {
+              that.property.text();
+            }
             that.isMove = true;
             el.unbind();
         }else {
@@ -686,8 +688,10 @@ class Stage {
           let element = $(".text-color");
           let color = that.property.config.color;
           Color.init(element,color,function (color) {
-            that.property.config.color = color;
-            $('#'+that.property.id).find('span').css({'color': color});
+            if(that.property.config) {
+              that.property.config.color = color;
+              $('#'+that.property.id).find('span').css({'color': color});
+            }
           });
         }
         //背景颜色
@@ -695,8 +699,10 @@ class Stage {
           let element = $(".bg-color");
           let color = that.property.config.backgroundColor;
           Color.init(element,color,function (color) {
-            that.property.config.backgroundColor = color;
-            $('#'+that.property.id).find('div').css({'background-color': color});
+            if(that.property.config) {
+              that.property.config.backgroundColor = color;
+              $('#'+that.property.id).find('div').css({'background-color': color});
+            }
           });
         }
       }
@@ -853,7 +859,7 @@ class Stage {
 			}
 			console.log(data);
 			if(this.canvasId) {
-				this.option.saveCanvas({
+				this.option.save({
 					id: this.canvasId,
           data: JSON.stringify(data)
 				},function() {

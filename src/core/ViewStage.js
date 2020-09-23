@@ -1,7 +1,7 @@
-import SpiritFactory from '@/core/SpiritFactory'
-import Password from '@/core/Password'
-import Zoom from '@/core/Zoom'
-import Panel from '@/core/Panel';
+import SpiritFactory from './../core/SpiritFactory'
+import Password from './../core/Password'
+import Zoom from './../core/Zoom'
+import Panel from './../core/Panel';
 /**
  * 预览舞台
  */

@@ -1,6 +1,6 @@
-import RemoteObject from '@/assets/js/RemoteObject'
-import ViewStage from '@/core/ViewStage'
-import WebSocket from "@/assets/js/WebSocket";
+import RemoteObject from './assets/js/RemoteObject'
+import ViewStage from './core/ViewStage'
+import WebSocket from "./assets/js/WebSocket";
 import Toast from "./core/Toast";
 /**
  *
@@ -251,6 +251,9 @@ class View {
   template() {
     return `<div id="root"></div>
              <div class="bm-view-panel"></div>
+             <div style="display: none" class="bm-toast bm-toast--text bm-toast--top">
+               <span class="bm-toast__text"></span>
+             </div>
              <div id="temp_value" style="display: none;"></div>`;
   }
 }

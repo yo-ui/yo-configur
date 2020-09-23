@@ -1,4 +1,4 @@
-import Toast from '@/core/Toast';
+import Toast from './../core/Toast';
 /**
  * 所有组件的父类
  */

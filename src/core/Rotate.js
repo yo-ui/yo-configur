@@ -1,5 +1,6 @@
-
-
+/**
+ * 旋转
+ */
 class Rotate {
     constructor(paw) {
         this.paw = paw;

@@ -1,5 +1,5 @@
-import Spirit from '@/core/Spirit.js'
-import Video from '@/core/Video.js'
+import Spirit from './../../core/Spirit'
+import Video from './../../core/Video'
 
 /**
  * 摄像头

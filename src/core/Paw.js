@@ -1,16 +1,16 @@
-import Rotate from '@/core/Rotate.js'
+import Rotate from './../core/Rotate'
 
 /**
  * 操作（移动，改变大小）
  */
 class Paw {
 
-  constructor(x,y,width,height,stage) {
-    this.width = width;
-    this.height = height;
-    this.x = x;
-    this.y = y;
+  constructor(stage) {
     this.stage = stage;
+    this.width = 0;
+    this.height = 0;
+    this.x = 0;
+    this.y = 0;
     this._x = 0;
     this._y = 0;
     this.rotate = new Rotate(this);
@@ -446,21 +446,6 @@ class Paw {
 
   site(x,y,width,height) {
     $('.resize-panel').css({top:y-2,left:x-2,width:width,height:height});
-    if(this.property.className == "TextBox") {
-      $('#temp_value').html($('#'+this.property.id).find('div').html());
-      let height = $('#temp_value').height();
-      let width = $('#temp_value').width()+2;
-      $('.resize-panel').css({width:width,height:height});
-      $('#'+this.property.id).find('div').css({'line-height': height+"px",height: height+"px"});
-      this.property.width = width;
-      this.property.height = height;
-    }else if(this.property.className=="Text") {
-      $('#temp_value').html($('#'+this.property.id).find('div').html());
-      let height = $('#temp_value').height();
-      let width = $('#temp_value').width();
-      $('.resize-panel').css({width:width+2,height:height});
-      $('#'+this.property.id).find('div').css({width:width+4,'line-height': height+"px",height: height+"px"});
-    }
   }
 
   up() {

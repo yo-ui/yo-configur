@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit'
+import Spirit from './../../core/Spirit'
 /**
  * 容器
  */

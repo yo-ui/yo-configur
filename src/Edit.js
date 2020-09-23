@@ -1,5 +1,6 @@
 import RemoteObject from './assets/js/RemoteObject'
 import Stage from './core/Stage'
+import Toast from "./core/Toast";
 
 class Edit {
 
@@ -200,6 +201,7 @@ class Edit {
         <div class="bm-layout__main__left" id="configur_library">
           <ul class="bm-side"></ul>
           <div class="bm-component-list"></div>
+          <div class="bm-help"><i class="fa fa-help"></i></div>
         </div>
         <div class="bm-layout__main__body">
             <div class="bm-stage">
@@ -228,6 +230,9 @@ class Edit {
         <div class="bm-context-menu"><ul></ul></div>
       </div>
       <div class="menu-panel"></div>
+      <div style="display: none" class="bm-toast bm-toast--text bm-toast--top">
+        <span class="bm-toast__text"></span>
+      </div>
       <div id="temp_value" style="display: none;"></div>`;
   }
 }
