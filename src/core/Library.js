@@ -21,14 +21,13 @@ class Library {
           {className:'Button',title:'按钮',url:'static/images/configur/button.png',width:48,height:28},
           {className:'Display',title:'显示屏',url:'static/images/configur/display.png',width:70,height:36},
           {className:'Bg',title:'背景',url:'static/images/configur/bg.png',width:200,height:100},
-          {className:'Vessel',title:'容器',url:'static/images/configur/vessel.png',width:600,height:300},
           ]},
       {name:'组件',type:1,icon:'fa-conf',
         subList:[
-          {className:'LineChart',title:'折线图',url:'static/images/configur/line.png',width:400,height:240},
+          {className:'LineChart',title:'折线图',url:'static/images/configur/line.png',width:400,height:80},
           {className:'Map',title:'地图',url:'static/images/configur/map.png',width:400,height:200},
-          {className:'Lump',title:'块状',url:'static/images/configur/lump.png',width:50,height:24},
           {className:'Monitor',title:'监控画面',url:'static/images/configur/monitor.png',width:400,height:200},
+          {className:'Table',title:'表格',url:'static/images/configur/table.png',width:700,height:60},
           {className:'Switch',title:'开关',url:'static/images/configur/switch.png',width:100,height:30}]},
 			{name:'设备',type:1,icon:'fa-device',
 				subList:[

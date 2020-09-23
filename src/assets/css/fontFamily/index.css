@@ -118,3 +118,12 @@
 .fa-help:before {
   content: "\e034";
 }
+.fa-resolve:before {
+  content: "\e035";
+}
+.fa-comb:before {
+  content: "\e036";
+}
+.fa-rotate:before {
+  content: "\e037";
+}

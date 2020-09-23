@@ -11,12 +11,17 @@ class Spirit {
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.zIndex = 0;
 		this.isRotate = true;
 		this.rotate = 0;
 		this.isMove = true;
 		this.bindType = 1;
 		this.isLinkPoint = false;
     this.isAnimation = false;
+    this.isSelected = true;
+    this.isSubline = true;
+    this.isDrag = true;
+    this.isWater = false;
 	}
 
 	toString() {}
@@ -33,6 +38,9 @@ class Spirit {
 			rotate: this.rotate,
 			isRotate: this.isRotate,
       isLinkPoint: this.isLinkPoint,
+      isSelected: this.isSelected,
+      isSubline: this.isSubline,
+      isDrag: this.isDrag
 		}
 	}
 
@@ -52,18 +60,24 @@ class Spirit {
 
 	reveal(device,config) {}
 
-	template() {}
+	template() {
+	  return $(`<div id="${this.id}" class="configur-spirit" 
+             style="
+             position:absolute;
+             left:${this.x}px;
+             top: ${this.y}px;
+             z-index: ${this.zIndex};    
+             transform: rotate(${this.rotate}deg)"></div>`);
+  }
 
 	renderer() {
 		let that = this;
 		$('#configur_property').html('');
-		let html = $(`<div class="bm-tree">名称</div>		             
-					<div class="bm-cell no-hover">
-						<div class="bm-cell__title">
-							  <input class="bm-title form-control" value="${this.name}"/>						                           						
-						</div>											
-					</div>
-					<div class="bm-tree">位置</div>		             
+		let html = $(`             
+					<div class="bm-style">
+						<div class="text">名称</div>		
+						<div class="value"><input class="bm-title form-control" value="${this.name}"/></div>									
+					</div>            
 					<div class="bm-cell no-hover">
 						<div class="bm-cell__title">
 							<div class="bm-kv">
@@ -78,7 +92,6 @@ class Spirit {
 							</div>
 						</div>	
 					</div>
-           <div class="bm-tree">尺寸</div>
            <div class="bm-cell no-hover bm-size">
 						<div class="bm-cell__title">
 							<div class="bm-kv">   
@@ -94,16 +107,14 @@ class Spirit {
 						</div></div>`);
 		$('#configur_property').append(html);
 		if(this.isRotate) {
-			let roteta = $(`<div class="bm-tree">旋转角度</div>
-                      <div class="bm-cell no-hover">
-                      <div class="bm-cell__title">					
-                        <div class="bm-range">
-                          <input class="rotate-value" type="range" step="1" min="0" max="359" value="${that.rotate}">							    
-                        </div>							
-                      </div>
-                      <div class="bm-cell__value" style="flex: none;width: 40px;text-align: center">
-                        <span class="rotate-text">${that.rotate}</span>
-                      </div>
+			let roteta = $(`<div class="bm-style">
+                      <div class="text">	旋转角度</div>
+                      <div class="value">
+                        <div class="bm-range" style="width: 120px;">
+                          <input class="rotate-value" type="range" step="1" min="0" max="359" value="${that.rotate}">                         					    
+                        </div>
+                        <span class="rotate-text">${that.rotate}</span>		
+                      </div>                    
                     </div>`)
 			roteta.find('.rotate-value').on('input propertyChange',function () {
 				roteta.find('.rotate-text').text($(this).val());

@@ -12,8 +12,8 @@ class UpWater extends Spirit {
 	    this.width = 10;
 	    this.height = 16;
 	    this.isSplice = true;
-	    this.zIndex = 2;
-	    this.isRotate = false;
+	    this.zIndex = 1;
+      this.isWater = true;
 	}
 
 	template(){

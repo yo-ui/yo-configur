@@ -1,19 +1,21 @@
-import Paw from './../core/Paw';
-import Move from './../core/Move';
-import SpiritFactory from './../core/SpiritFactory';
-import Zoom from './../core/Zoom';
-import Library from './../core/Library';
-import Keydown from './../core/Keydown';
-import Align from './../core/Align';
-import HandleRecord from './../core/HandleRecord';
-import WaterPipe from './../components/common/WaterPipe';
-import BindData from './../core/BindData';
-import Toast from './../core/Toast';
+import Paw from './Paw';
+import Move from './Move';
+import SpiritFactory from './SpiritFactory';
+import Zoom from './Zoom';
+import Library from './Library';
+import Keydown from './Keydown';
+import Align from './Align';
+import HandleRecord from './HandleRecord';
+import WaterPipe from './WaterPipe';
+import BindData from './BindData';
+import Toast from './Toast';
 import View from "./../View";
-import Color from "./../core/Color"
-import Toolbar from "./../core/Toolbar"
-import Group from "./../core/Group"
-import Panel from "./../core/Panel"
+import Color from "./Color"
+import Toolbar from "./Toolbar"
+import Group from "./Group"
+import Panel from "./Panel"
+import Help from "./../Help"
+import Combination from "../components/common/Combination";
 
 /**
  * 舞台
@@ -39,6 +41,7 @@ class Stage {
     this.keydown = new Keydown(this);//快捷键
     this.group = new Group(this);
     this.panel = new Panel(this);
+    this.help = new Help(this);
 		this.init();
 	}
 
@@ -78,8 +81,17 @@ class Stage {
 			display: 'none'
 		});
 		element.append(rotate);
-
-		let resizePanel = $('<div class="resize-panel"><div class="resize-panel-content"></div></div>');
+		let resizePanel = $(`<div class="resize-panel">
+                            <div class="resize-panel-content"></div>
+                            <div class="bm-resizable-handle bm-resizable-w"><div class="w"></div></div>
+                            <div class="bm-resizable-handle bm-resizable-e"><div class="e"></div></div>
+                            <div class="bm-resizable-handle bm-resizable-n"><div class="n"></div></div>
+                            <div class="bm-resizable-handle bm-resizable-s"><div class="s"></div></div>
+                            <div class="bm-resizable-handle bm-resizable-ne"></div>
+                            <div class="bm-resizable-handle bm-resizable-se"></div>
+                            <div class="bm-resizable-handle bm-resizable-nw"></div>
+                            <div class="bm-resizable-handle bm-resizable-sw"></div>
+                          </div>`);
 		element.append(resizePanel);
 		let vLine = $('<div id="v_subline">&nbsp;</div>')
 		vLine.css({
@@ -132,21 +144,27 @@ class Stage {
 				if(that.toolType==1&&that.className) {
 					let offsetLeft = $('#configur_stage').offset().left;
 					let offsetTop = $('#configur_stage').offset().top;
-					let left = e.pageX-offsetLeft;
-					let top = e.pageY-offsetTop;
-					let spirit = that.create(that.className,left,top,that.dw,that.dh);
+					let x = parseInt(e.pageX-offsetLeft);
+					let y = parseInt(e.pageY-offsetTop);
+					let spirit = that.create(that.className,x,y,that.dw,that.dh);
+					spirit.refresh();
 					that.capacity.push(spirit)
           that.configurList();
 					let data = {id:spirit.id,left:spirit.x,top:spirit.y}
 					let record = {type:'add',name:'添加',data:data}
 					that.handleRecord.add(record);
           that.triggerClick();
-					that.vesselList();
 				}
 			}
 		})
 
 		element.on('click',function(e) {
+      if(that.property&&that.property.isMove) {
+        if(that.property.className=="Combination") {
+          that.absorb(false);
+          $('#'+that.property.id).find(".comb").html('');
+        }
+      }
 			that.layDown();
 			that.property = "";
 			that.renderer();
@@ -165,7 +183,7 @@ class Stage {
 				$(this).trigger('click');
 				let left = $(this).offset().left+e.offsetX+5;
 				let top = $(this).offset().top+e.offsetY+5;
-				$('.bm-context-menu').css({left: left,top: top});
+				$('.bm-context-menu').css({left,top});
 				$('.bm-context-menu').show();
         that.toolbar.contextMenu();
 			}
@@ -233,7 +251,6 @@ class Stage {
 				if($('#selected_subline').width()>10) {
 					$('#selected_subline').show();
 				}
-
 			}
 		});
 
@@ -247,11 +264,13 @@ class Stage {
 			let height = $('#selected_subline').height();
 			let dataList = []
 			that.capacity.forEach(function(data) {
-				let d1 = {x:x,y:y,width:width,height:height}
-				let d2 = {x:data.x,y:data.y,width:data.width,height:data.height};
-				if(data.isMove&&that.overlap(d1,d2)) {
-					dataList.push(data);
-				}
+			  if(data.isSelected) {
+          let d1 = {x:x,y:y,width:width,height:height}
+          let d2 = {x:data.x,y:data.y,width:data.width,height:data.height};
+          if(data.isMove&&that.overlap(d1,d2)) {
+            dataList.push(data);
+          }
+        }
 			});
 			that.selectedList = dataList;
 			if(that.selectedList.length>1) {
@@ -264,7 +283,6 @@ class Stage {
 				let height = data.height;
 				$('.bm-selected-panel').css({left,top,width,height})
 			}
-      that.vesselList();
 		});
 
 		this.element = element;
@@ -274,40 +292,20 @@ class Stage {
 		});
 		$('#root').append(this.element);
     this.waterPipe = new WaterPipe(this);
+    this.paw.bindResizeEvent();
 	}
 
   stageAuto() {
-    let _height = $('.bm-layout__main__body').height();
-    let _width = $('.bm-layout__main__body').width();
-    $('.bm-stage').css({width: _width-40,height: _height-40,'margin-top': '20px','margin-left': '20px'});
-  }
-
-  vesselList() {
-	  let that = this;
-    that.capacity.forEach(function (data) {
-      if(data.className == "Vessel"&&data.config.status==1) {
-        let dataList = new Set(data.config.dataList);
-        let x = that.property.x;
-        let y = that.property.y;
-        let width = that.property.width;
-        let height = that.property.height;
-        if((x>data.x&&(x+width)<(data.x+data.width))&&
-          (y>data.y&&(y+height)<(data.y+data.height))) {
-          dataList.add(that.property.id)
-        }else {
-          dataList.delete(that.property.id)
-        }
-        data.config.dataList = [...dataList];
-      }
-    })
-
+    let width = $('.bm-layout__main__body').width()-40;
+    let height = $('.bm-layout__main__body').height()-40;
+    $('.bm-stage').css({width,height,'margin-top': '20px','margin-left': '20px'});
   }
 
 	selectedPanel(dataList) {
 		let data = {x:0,y:0,x2:0,y2:0}
 		dataList.forEach(function (selected,index) {
-      let x2 = selected.x+selected.width;
-      let y2 = selected.y+selected.height;
+      let x2 = Number(selected.x)+Number(selected.width);
+      let y2 = Number(selected.y)+Number(selected.height);
       if(data.x==0&&data.y==0) {
         data.x = selected.x;
         data.y = selected.y;
@@ -319,7 +317,11 @@ class Stage {
       if(x2>data.x2) {data.x2 = x2}
       if(y2>data.y2) {data.y2 = y2}
 		})
-		return {x:data.x,y:data.y,width:data.x2-data.x,height:data.y2-data.y+2}
+		let x = Number(data.x);
+		let y = Number(data.y);
+		let width = Number(data.x2)-Number(data.x);
+		let height = Number(data.y2)-Number(data.y);
+		return {x,y,width,height}
 	}
 
 	overlap(d1,d2) {
@@ -358,36 +360,36 @@ class Stage {
 						</div>				
 					</div>
 		      <div class="bm-tree">背景</div>
-					<div class="bm-cell no-hover">
-						<div class="bm-cell__title">
-							<div>背景颜色</div>
+					<div class="bm-style">
+					  <div class="text">颜色：</div>
+						<div class="value">
 							<input id="stage_bg" type="color"/>
 						</div>
 					</div>
-					<div class="bm-cell no-hover">
-						<div class="bm-cell__title">
-							<div>背景图片</div>
-							<div class="bm-checkbox">
+					<div class="bm-style">
+					  <div class="text">图片：</div>
+						<div class="value">
+							<div class="bm-checkbox" style="width: 20px;vertical-align: middle;">
 								<input type='checkbox' id='subline'>
 								<label for='subline'></label>
 							</div>
-							<form id="stageBg">
-                <div class="bm-upload">
+							<form id="stageBg" style="display: inline-block">
+                <div class="bm-upload" style="width: 80px">
                   <span>选择图片</span>								 
                   <input type="file" name="stageBg"/>								 	              
                 </div>
               </form>		
 						</div>
 					</div>
-          <div class="bm-cell no-hover">
-						<div class="bm-cell__title">
-							<div>缩放</div>
-							<div class="bm-zoom">
+          <div class="bm-style">
+						<div class="text">缩放：</div>
+						<div class="value">
+						  <div class="bm-zoom">
                 <div><i class="fa fa-zoom-in"></i></div>
                 <span></span>
                 <div><i class="fa fa-zoom-out"></i></div>
               </div>
-						</div>
+            </div>
 					</div>`;
 		$('#configur_property').html(html);
 		that.zoom.init();
@@ -529,8 +531,8 @@ class Stage {
     	if(id) {
     		that.configurId = id;
 	    	el.css({
-          left: Number(left)+2,
-          top: Number(top)+2,
+          left: Number(left),
+          top: Number(top),
           transform: 'rotate('+that.property.rotate+'deg)'
 	    	});
 	    	this.addEvent(el);
@@ -543,29 +545,65 @@ class Stage {
 
 	//克隆
 	clone() {
+	  let that = this;
+    if(!that.property.isDrag) {
+      Toast.alert("请先分解在复制！")
+      return;
+    }
 		if(!$('.resize-panel').is(":hidden")) {
 			this.layDown();
-			this.className = this.property.className;
-			let x = this.property.x+50;
-			let y = this.property.y+50;
+			let className = this.property.className;
+			let x = Number(this.property.x)+50;
+			let y = Number(this.property.y)+50;
 			let width = this.property.width;
 			let height = this.property.height;
 			let rotate = this.property.rotate;
-			let spirit = this.create(this.className,x,y,width,height,rotate);
-      Object.assign(spirit.config,this.property.config)
+			let spirit = this.create(className,x,y,width,height,rotate);
+			if(spirit.config){
+        Object.assign(spirit.config,this.property.config)
+      }
+      spirit.isSubline = this.property.isSubline;
+      spirit.isSelected = this.property.isSelected;
+      if(className=="Combination") {
+			  let idList = [];
+			  let ids = this.property.config.ids;
+			  let dataList = [...that.capacity]
+			  ids.forEach(function (id) {
+          dataList.forEach(function (c) {
+            if(c.id==id) {
+              let configur = that.create(c.className,c.x,c.y,c.width,c.height,0);
+              if(configur.config){
+                Object.assign(configur.config,c.config)
+              }
+              configur.isSelected = c.isSelected;
+              configur.isSubline = c.isSubline;
+              configur.refresh();
+              configur.x = c.x+50;
+              configur.y = c.y+50;
+              that.capacity.push(configur);
+              idList.push(configur.id)
+            }
+          })
+        })
+        spirit.config.ids = idList;
+      }else {
+        let data = {id:spirit.id,left:spirit.x,top:spirit.y}
+        let record = {type:'add',name:'添加',data:data}
+        this.handleRecord.add(record);
+      }
 			spirit.refresh();
 			this.capacity.push(spirit);
-			let data = {id:spirit.id,left:spirit.x,top:spirit.y}
-			let record = {type:'add',name:'添加',data:data}
-			this.handleRecord.add(record);
       spirit.getEl().trigger('click');
-      this.vesselList();
 		}
 	}
 
 	//删除
 	remove() {
 		let that = this;
+		if(!that.property.isDrag) {
+		  Toast.alert("请先分解在删除！")
+      return;
+    }
 		if(that.selectedList.length>1) {
 			let set = new Set()
 			that.selectedList.forEach(function(selected) {
@@ -577,13 +615,6 @@ class Stage {
 		}else {
 			$('.resize-panel').find('.resize-panel-content').html('');
 		  $('.resize-panel').hide();
-			let dataList = [];
-			that.capacity.forEach(function(data) {
-				if(data.id!=that.property.id) {
-					dataList.push(data);
-				}
-			})
-			that.capacity = dataList;
 			let className = that.property.className;
 			let x = that.property.x;
 			let y = that.property.y;
@@ -591,6 +622,14 @@ class Stage {
 			let height = that.property.height;
 			let record = {type:'remove',name:'删除',data: {className,x,y,width,height}}
 			that.handleRecord.add(record);
+			if(that.property.className=="Combination") {
+        let ids = that.property.config.ids;
+        that.updateCapacity([that.property.id]);
+        that.updateCapacity(ids);
+      }else {
+        that.updateCapacity([that.property.id]);
+      }
+      that.property = "";
 		}
 		that.triggerClick();
 		that.configurList();
@@ -619,36 +658,44 @@ class Stage {
     //给组件添加事件
   addEvent(el) {
     let that = this;
+    console.log(el);
     el.on('click',function(e) {
       if(that.toolType==1) {
         that.layDown();
         $('.bm-context-menu').hide();
         that.configurId = $(this).attr('id');
         that.property = that.getProperty();
-        $(this).css({left:0,top:0,transform: 'rotate(0deg)'});
         if(that.property.isMove) {
+            $(this).css({left:0,top:0,transform: 'rotate(0deg)'});
             that.propertyStyle();
-            that.paw.resizePanel(that.property);
-            that.paw.bindResizeEvent();
+            that.paw.resize(that.property);
             let x = that.property.x;
             let y = that.property.y;
             let width = that.property.width;
             let height = that.property.height;
-            that.paw.site(x,y,width,height);
-            that.paw.register(el);
             let className = that.property.className;
             if(className=="TextBox"||className=="Text") {
               that.property.text();
+            }else if(that.property.className=="Combination") {
+              let left = that.property.x;
+              let top = that.property.y;
+              let ids = that.property.config.ids;
+              that.property.isSubline = true;
+              ids.forEach(function (id) {
+                that.capacity.forEach(function (data) {
+                  if(id == data.id) {
+                    that.createCombination(that.property.id,data,left,top)
+                  }
+                })
+              })
             }
+            that.paw.site(x,y,width,height);
+            that.paw.register(el);
             that.isMove = true;
             el.unbind();
         }else {
-            that.setProperty(that.property)
+            that.setProperty(that.property);
             that.propertyStyle();
-            let x = that.property.x;
-            let y = that.property.y;
-            let rotate = that.property.rotate;
-            $('#'+that.property.id).css({left:x,top:y,transform: 'rotate('+rotate+'deg)'});
             that.layDown();
         }
         that.configurList();
@@ -687,7 +734,7 @@ class Stage {
         if(config.color) {
           let element = $(".text-color");
           let color = that.property.config.color;
-          Color.init(element,color,function (color) {
+          Color.init(element,color,function(color) {
             if(that.property.config) {
               that.property.config.color = color;
               $('#'+that.property.id).find('span').css({'color': color});
@@ -698,7 +745,7 @@ class Stage {
         if(config.backgroundColor) {
           let element = $(".bg-color");
           let color = that.property.config.backgroundColor;
-          Color.init(element,color,function (color) {
+          Color.init(element,color,function(color) {
             if(that.property.config) {
               that.property.config.backgroundColor = color;
               $('#'+that.property.id).find('div').css({'background-color': color});
@@ -737,7 +784,7 @@ class Stage {
 		})
 		this.property = data;
 		if(this.property.className=="LineChart") {
-			this.property.chart.resize();
+			this.property.refresh();
 		}
 		$('#configur_property').find('.bm-site-x').text(data.x)
 		$('#configur_property').find('.bm-site-y').text(data.y)
@@ -755,40 +802,35 @@ class Stage {
         that.groupList = [];
       }
 			this.createStage(width,height,data.background);
-      let vesselList = []
-			data.capacity.forEach(function(property) {
-			  let id = property.id;
-				let className = property.className;
-				let x = property.x;
-				let y = property.y;
-				let width = property.width;
-				let height = property.height;
-				let rotate= property.rotate;
+      let combinationList = []
+			data.capacity.forEach(function(c) {
+			  let id = c.id;
+				let className = c.className;
+				let x = c.x;
+				let y = c.y;
+				let width = c.width;
+				let height = c.height;
+				let rotate= c.rotate;
 				let spirit = that.create(className,x,y,width,height,rotate,id);
-				spirit.name = property.name;
-				spirit.zIndex = property.zIndex;
-				spirit.config = property.config;
+        c.id = spirit.id;
+				spirit.name = c.name;
+				spirit.zIndex = c.zIndex;
+        spirit.isSelected = c.isSelected;
+        spirit.isSubline = c.isSubline;
+        spirit.isDrag = c.isDrag;
+        spirit.isRotate = c.isRotate;
+				spirit.config = c.config;
         if(className=="Images") {
           let url = that.config.imgHost+"/"+spirit.config.url;
           $('#'+spirit.id).find('img').attr('src', url);
-        }else if(className=="Vessel") {
-          vesselList.push(spirit)
         }
 				spirit.refresh();
 				that.capacity.push(spirit);
-				property.id = spirit.id;
+
 			})
 			that.triggerClick();
 			that.location();
 			that.configurList();
-      vesselList.forEach(function (vessel) {
-        let status = vessel.config.status;
-        if(status==1) {
-          vessel.show();
-        }else if(status==2) {
-          vessel.hide();
-        }
-      })
 		}
 	}
 
@@ -797,34 +839,37 @@ class Stage {
 	  let that = this;
 	  if(that.capacity) {
       that.capacity.forEach(function (data) {
-        let li = $('<li></li>');
-        li.data('id',data.id)
-        li.on('click',function () {
-          $(this).addClass('active');
-          $(this).siblings().each(function () {
-            $(this).removeClass('active');
-          })
-          $('#'+$(this).data('id')).trigger('click')
-        })
-        let text = $(`<span class="text">${data.name}</span>`)
-        let value = $(`<span class="value"></span>`);
-        if(data.isBind) {
-          let bind = $('<i class="fa fa-bind"/>')
-          if(data.config.bindData.deviceId) {
-            bind.css({color:'red'})
-          }
-          bind.on('click',function (e) {
-            $(this).parent().parent().trigger('click')
-            that.bindD.create();
+          let li = $('<li></li>');
+          li.data('id',data.id)
+          li.on('click',function (e) {
+            that.triggerClick();
+            $(this).addClass('active');
+            $(this).siblings().each(function () {
+              $(this).removeClass('active');
+            })
+            $('#'+$(this).data('id')).trigger('click');
             e.stopPropagation();
-          });
-          value.append(bind);
-        }
-        li.append(text).append(value);
-        if(that.property.id == data.id) {
-          li.addClass('active');
-        }
-        $('#configur_list ul').append(li);
+          })
+          let text = $(`<span class="text">${data.name}</span>`)
+          let value = $(`<span class="value"></span>`);
+          if(data.isBind) {
+            let bind = $('<i class="fa fa-bind"/>')
+            if(data.config.bindData.deviceId) {
+              bind.css({color:'red'})
+            }
+            bind.on('click',function (e) {
+              let id = $(this).parent().parent().data("id");
+              that.bindD.create(id);
+              $(this).parent().parent().trigger('click');
+              e.stopPropagation();
+            });
+            value.append(bind);
+          }
+          li.append(text).append(value);
+          if(that.property.id == data.id) {
+            li.addClass('active');
+          }
+          $('#configur_list ul').append(li);
       })
     }
   }
@@ -846,6 +891,10 @@ class Stage {
           spirit.rotate = data.rotate;
           spirit.isMove = data.isMove;
           spirit.zIndex = data.zIndex;
+          spirit.isSelected = data.isSelected;
+          spirit.isSubline = data.isSubline;
+          spirit.isDrag = data.isDrag;
+          spirit.isRotate = data.isRotate;
           spirit.config = data.config;
           capacity.push(spirit);
         }
@@ -879,6 +928,108 @@ class Stage {
       }
       that.analysis(data.width,data.height,JSON.parse(data.data));
     })
+  }
+
+  //组合
+  combination() {
+	  let that = this;
+    let left = $('.bm-selected-panel').css('left').replace('px', '');
+    let top = $('.bm-selected-panel').css('top').replace('px', '');
+    let width = $('.bm-selected-panel').width();
+    let height = $('.bm-selected-panel').height();
+    $('.bm-selected-panel').hide();
+    let spirit = this.create("Combination",left,top,width,height,0);
+    if(spirit.config){
+      Object.assign(spirit.config,this.property.config)
+    }
+    spirit.refresh();
+    let combinationIds = [];
+    let ids = [];
+    this.selectedList.forEach(function (selected) {
+      selected.isSelected = false;
+      selected.isSubline = false;
+      selected.isDrag = false;
+      selected.isRotate = false;
+      if(selected.className=="Combination") {
+        let idList = selected.config.ids;
+        idList.forEach(function (id) {
+          that.capacity.forEach(function (c,index) {
+            if(id==c.id) {
+              ids.push(that.createCombination(spirit.id,c,left,top))
+            }
+          })
+        })
+        combinationIds.push(selected.id)
+        $("#"+selected.id).remove();
+      }else {
+        ids.push(that.createCombination(spirit.id,selected,left,top))
+      }
+    })
+    that.updateCapacity(combinationIds);
+    spirit.config.ids = ids;
+    this.capacity.push(spirit);
+    spirit.getEl().trigger('click');
+  }
+
+  //分解
+  resolve() {
+    this.absorb(true);
+    this.property.config.ids = [];
+    this.layDown();
+    let ids = [this.property.id];
+    this.updateCapacity(ids);
+    $('#'+this.property.id).remove();
+  }
+
+  absorb(resolve) {
+	  let that = this;
+    let left = Number(that.property.x);
+    let top = Number(that.property.y);
+    let ids = that.property.config.ids;
+    console.log(that.property);
+    ids.forEach(function (id) {
+      let x = $('#'+id).css('left').replace('px', '');
+      let y = $('#'+id).css('top').replace('px', '');
+      let _x = Number(x)+left;
+      let _y = Number(y)+top;
+      that.capacity.forEach(function (c) {
+        if(id==c.id) {
+          if(resolve) {
+            c.isSubline = true;
+            c.isSelected = true;
+            c.isDrag = true;
+            c.isRotate = true;
+          }
+          c.x = _x;
+          c.y = _y;
+          let element = $('#'+c.id).css({left:c.x,top:c.y});
+          that.addEvent(element);
+          $("#configur_stage").append(element);
+        }
+      })
+    })
+  }
+
+  //更新组件库
+  updateCapacity(ids) {
+	  let that = this;
+    let dataList = [...that.capacity]
+    ids.forEach(function (id) {
+      that.capacity.forEach(function (d,index) {
+        if (id == d.id) {
+          dataList.splice(index,1)
+        }
+      })
+      that.capacity = dataList;
+    })
+  }
+
+  createCombination(id,data,left,top) {
+    let _x = data.x-left;
+    let _y = data.y-top;
+    $('#'+data.id).css({position:"absolute",left:_x,top:_y});
+    $('#'+id).find(".comb").append($('#'+data.id).remove());
+    return data.id;
   }
 
   //预览

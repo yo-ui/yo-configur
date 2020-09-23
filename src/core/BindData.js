@@ -6,14 +6,25 @@ class BindData {
   constructor(stage) {
     this.stage = stage;
     this.bindData = {orgId:'',deviceId:'',devicePoint:''}
+    this.property;
   }
 
-  create() {
+  create(id) {
     this.organizs = []
     this.points = []
     let that = this;
-    if(that.stage.property) {
-      that.bindData = that.stage.property.config.bindData;
+    if(id) {
+      that.stage.capacity.forEach(function (c) {
+        if(id==c.id) {
+          that.property = c;
+        }
+      })
+    }else {
+      this.property = this.stage.property;
+      console.log(that.property)
+    }
+    if(that.property) {
+      that.bindData = that.property.config.bindData;
       let content = `<div class="bm-area">
                       <span>组织</span>
                       <div>
@@ -45,28 +56,10 @@ class BindData {
                     </div>
                     </div>                
                   </div>
-                  <div class="point" style="display: none">
-                    <div class="bm-area">
-                      <span>点位</span>
-                      <div>
-                        <div class="point-panel bm-select-panel" style="z-index: 2">
-                         <span class="select">
-                           <span class="text">请选择点位</span>
-                           <i class="icon fa fa-down"></i>
-                         </span>                          
-                         <div class="content point-list">
-                           <div style="margin: 5px">
-                             <input type="text" class="form-control" maxlength="16" placeholder="点位名称"/>
-                           </div>                  
-                           <ul></ul>
-                         </div>
-                        </div>
-                      </div>
-                    </div>                  
-                  </div>`;
+                  `;
       that.stage.panel.init("数据绑定",content,500);
       that.stage.panel.confirm(function () {
-        that.stage.property.config.bindData = that.bindData;
+        that.property.config.bindData = that.bindData;
       })
 
       let organizPanel = $('.bm-configur-panel').find('.organiz-panel');
@@ -87,20 +80,6 @@ class BindData {
         $(this).hide();
       });
 
-      let pointPanel = $('.bm-configur-panel').find('.point-panel');
-      pointPanel.find('.select').on('click',function () {
-        $(this).next().toggle();
-        $('.point-list input').val('');
-        that.createPoint(that.points);
-      });
-      pointPanel.find('.content').on('mouseleave',function (e) {
-        $(this).hide();
-      });
-
-      if(that.stage.property.bindType == 2) {
-        $('.bm-configur-panel').find('.point').show();
-      }
-
       $('.device-list input').on('input propertyChange',function () {
         let text = $(this).val();
         let dataList = []
@@ -116,8 +95,6 @@ class BindData {
         }
       })
       that.oList();
-
-
     }
   }
   //组织列表
@@ -130,7 +107,7 @@ class BindData {
         }
         that.organizs = dataList;
         that.createOrganiz();
-        that.dList()
+        that.dList();
       }
     })
   }
@@ -194,58 +171,17 @@ class BindData {
             $(this).removeClass('active');
           });
           that.bindData.deviceId = $(this).data('id');
-          $(this).parent().parent().hide();
-          that.points = $(this).data('points');
-          $('.device-panel').find('.text').text($(this).attr('title'));
-          that.createPoint(that.points);
+          $('.device-panel > div').hide();
+          $('.device-panel .text').text($(this).attr("title"));
         });
         if (that.bindData.deviceId == device.id) {
           li.addClass('active');
-          that.points = device.points;
-          $('.device-panel').find('.text').text(device.name);
-          that.createPoint(that.points);
+          $('.device-panel .text').text(device.name);
         }
         $('.device-list ul').append(li);
       })
     }
   }
-
-  createPoint(points) {
-    let that = this;
-    $('.point-list ul').html('');
-    let isSelected = true;
-    points.forEach(function (point,index) {
-      let li = $('<li></li>')
-      li.data('id', point.id)
-      li.text(point.name);
-      li.on('click', function () {
-        $(this).parent().parent().hide();
-        $('.point-panel').find('.text').text($(this).text());
-        that.bindData.devicePoint = $(this).data('id');
-        $(this).siblings().each(function () {
-          $(this).removeClass('active');
-        });
-      });
-      if(that.bindData.devicePoint==point.id) {
-        li.addClass('active')
-        $('.point-panel').find('.text').text(point.name);
-        isSelected = false;
-      }
-      $('.point-list ul').append(li);
-    })
-
-    if(isSelected) {
-      $('.point-list li').each(function (index) {
-        $(this).removeClass('active');
-        if(index==0) {
-          $(this).addClass('active')
-          $('.point-panel').find('.text').text($(this).text())
-          that.bindData.devicePoint = $(this).data('id');
-        }
-      })
-    }
-  }
-
 
   iteration(dataList,pid,level) {
     let that = this;

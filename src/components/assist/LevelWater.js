@@ -13,8 +13,8 @@ class LevelWater extends Spirit {
 	    this.height = 10;
 	    this.moveType = 2;
 	    this.minWidth = 10;
-	    this.zIndex = 2;
-	    this.isRotate = false;
+	    this.zIndex = 1;
+      this.isWater = true;
 	}
 
 	template(){

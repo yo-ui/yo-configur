@@ -3,17 +3,16 @@ import TextBox from './../components/common/TextBox';//动态数据
 import Text from './../components/common/Text';//文本
 import Images from './../components/common/Images';//图片
 import LineChart from './../components/common/LineChart';//图表
-import ViewPanel from './../components/common/ViewPanel';//
 import Button from './../components/common/Button';//
 import Display from './../components/common/Display';//
 import Map from './../components/common/Map';//
-import Lump from './../components/common/Lump';//
 import Monitor from './../components/common/Monitor';//
 import Bg from './../components/common/Bg';//
-import Vessel from './../components/common/Vessel';//容器
 import Time from './../components/common/Time';//时间
 import Switch from './../components/common/Switch';//开关
 import Alarm from './../components/common/Alarm';//报警器
+import Combination from './../components/common/Combination';//组合
+import Table from './../components/common/Table';//表格
 //给水系统
 import Lyssb from './../components/device/Lyssb';//螺翼式水表
 import Sbfkg from './../components/device/Sbfkg';//阀控水表
@@ -92,6 +91,8 @@ class SpiritFactory {
   //静态方法
   static getInstance(className,x,y,width,height) {
     switch (className) {
+      case 'Table': return new Table(x,y,width,height);
+      case 'Combination': return new Combination(x,y,width,height);
       case 'Alarm': return new Alarm(x,y,width,height);
       case 'Time': return new Time(x,y,width,height);
       case 'Switch': return new Switch(x,y,width,height);
@@ -99,9 +100,7 @@ class SpiritFactory {
 	    case 'ElectricBox': return new ElectricBox(x,y,width,height);
       case 'Text': return new Text(x,y,width,height);
 	    case 'TextBox': return new TextBox(x,y,width,height);
-      case 'Lump': return new Lump(x,y,width,height);
       case 'Bg': return new Bg(x,y,width,height);
-      case 'Vessel': return new Vessel(x,y,width,height);
 	    case 'Bgsdb': return new Bgsdb(x,y,width,height);
 	    case 'Byq': return new Byq(x,y,width,height);
 	    case 'Dldrq': return new Dldrq(x,y,width,height);
@@ -151,7 +150,6 @@ class SpiritFactory {
 	    case 'LineChart': return new LineChart(x,y,width,height);
       case 'Map': return new Map(x,y,width,height);
       case 'LinkPoint': return new LinkPoint(x,y,width,height);
-      case 'ViewPanel': return new ViewPanel(x,y,width,height);
       case 'Shsb': return new Shsb(x,y,width,height);
       case 'Jsx': return new Jsx(x,y,width,height);
       case 'Cyfj': return new Cyfj(x,y,width,height);

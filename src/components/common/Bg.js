@@ -10,8 +10,8 @@ class Bg extends Spirit {
 	    this.className = "Bg";
 	    this.width = width;
 	    this.height = height;
-	    this.minWidth = 50;
-      this.minHeight = 30;
+	    this.minWidth = 5;
+      this.minHeight = 1;
 	    this.moveType = 4;
 	    this.linkage = false;
 	    this.isMove = true;

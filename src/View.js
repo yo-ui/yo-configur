@@ -236,6 +236,40 @@ class View {
             }
           })
         }
+      },
+      gatewayAlarm(callback) {
+        if(that.config.debug) {
+          let dataList = [{offlineDate:'2020-09-23',offlineTime:'01:00:00',name:'网关',ip:'192.168.0.1',wip:'192.168.0.7',site:'A楼'},
+                           {offlineDate:'2020-09-23',offlineTime:'01:00:00',name:'网关',ip:'192.168.0.1',wip:'192.168.0.7',site:'A楼'}]
+          callback.call(this, dataList);
+        }else {
+
+        }
+      },
+      deviceAlarm(callback) {
+        if(that.config.debug) {
+          let dataList = [{lastTime: "2020-09-23 15:19:15",
+            descr: "设备通信超时",
+            organizName: "苏州星光耀商业广场能耗计费系统",
+            gatewayName: "网关2",
+            continue: "23504044",
+            startTime: "2019-12-26 14:25:11",
+            channelName: "B1F-1-COM2",
+            addr: "188",
+            deviceName: "B1F-3"},
+            {lastTime: "2020-09-23 15:19:15",
+              descr: "设备通信超时",
+              organizName: "苏州星光耀商业广场能耗计费系统",
+              gatewayName: "网关2",
+              continue: "23504044",
+              startTime: "2019-12-26 14:25:11",
+              channelName: "B1F-1-COM2",
+              addr: "188",
+              deviceName: "B1F-3"}]
+          callback.call(this, dataList);
+        }else {
+
+        }
       }
     }
 
