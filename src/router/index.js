@@ -4,7 +4,6 @@
 import Routers from "@/router/routers.js";
 import { routerMode } from "@/common/env";
 
-
 export default new VueRouter({
   mode: routerMode,
   // base: "oper",

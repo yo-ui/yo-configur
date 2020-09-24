@@ -13,6 +13,7 @@
         {{ info.name }}
       </p>
     </div>
+    <div class="cover" v-if="info.showCoverStatus"></div>
     <i
       class="operate-btn el-icon-refresh-right"
       v-if="!moving && info.rotateable && info.dragable"
@@ -71,6 +72,7 @@
     <!-- {{ info.type }} -->
     <component
       ref="bmCom"
+      :type="type"
       :info="info"
       :is="`${info.type}Com`"
       @success="loadSuccess"
@@ -113,6 +115,10 @@ export default {
       default: () => {
         return {};
       }
+    },
+    type: {
+      type: String,
+      default: ""
     }
   },
   mounted() {
@@ -170,7 +176,7 @@ export default {
       styles["animation-duration"] = duration;
       styles["animation-direction"] = direction;
       return styles;
-    },
+    }
     // animation() {
     //   let { info = {} } = this;
     //   let { animation = {} } = info || {};

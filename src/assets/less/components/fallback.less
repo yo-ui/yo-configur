@@ -1,13 +1,13 @@
 @import (reference) "./../common.less";
 .bm-dialog-fallback-com{
-  .el-dialog__header{
-    .bc(@grayE);
-    .df;
-    align-items: center;
-    .pb(20);
-  }
-  .el-dialog__body{
-    .pt(20);
+  // .el-dialog__header{
+  //   .bc(@grayE);
+  //   .df;
+  //   align-items: center;
+  //   .pb(20);
+  // }
+  // .el-dialog__body{
+  //   .pt(20);
     // p{
     //   .mt(15);
     //   .lh(25);
@@ -38,6 +38,12 @@
               justify-content: space-between;
               .time{
                 .c(@gray9);
+                .el-icon-delete{
+                  .c(@gray3);
+                  .click;
+                  .fz(18);
+                  .ml(10);
+                }
               }
             }
           }
@@ -50,10 +56,9 @@
         .wh(400;350);
         .bor(1px solid @grayE);
       }
-
     }
     .line{
       .borb(1px solid @grayE);
     }
-  }
+  // }
 }

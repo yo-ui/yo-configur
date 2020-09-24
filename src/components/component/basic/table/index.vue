@@ -1,6 +1,7 @@
 <template>
   <el-table
-    class="bm-basic-table-com" :show-header="info.headerable"
+    class="bm-basic-table-com"
+    :show-header="info.headerable"
     ref="bmCom"
     :height="info.height"
     :data="dataList"
@@ -14,7 +15,7 @@
       min-width="120"
     >
       <template #header>
-        <span :style="theaderStyle">{{item.name}}</span>
+        <span :style="theaderStyle">{{ item.name }}</span>
       </template>
       <template #default="scope">
         <span :style="tbodyStyle">
@@ -84,9 +85,9 @@ export default {
       }
       return styles;
     },
-    tbodyStyle(){
+    tbodyStyle() {
       let { info = {} } = this;
-      let { tbody = {}} = info;
+      let { tbody = {} } = info;
       let {
         color = "",
         fontFamily = "",
@@ -94,13 +95,13 @@ export default {
         fontStyle = "",
         textDecoration = "",
         fontSize = "",
-        textAlign="",
-        cSplitBorderColor='',
-        rSplitBorderColor=''
+        textAlign = "",
+        cSplitBorderColor = "",
+        rSplitBorderColor = ""
         // backgroundColor = "",
-      //   backgroundImage = "",
-      //   backgroundRepeat = "",
-      //   backgroundSize = ""
+        //   backgroundImage = "",
+        //   backgroundRepeat = "",
+        //   backgroundSize = ""
       } = tbody || {};
       let styles = {
         // margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
@@ -145,10 +146,10 @@ export default {
       }
       return styles || {};
     },
-    theaderStyle(){
+    theaderStyle() {
       let { info = {}, gradientStyle = {} } = this;
 
-      let { theader = {}} = info;
+      let { theader = {} } = info;
       let {
         color = "",
         fontFamily = "",
@@ -157,12 +158,11 @@ export default {
         textDecoration = "",
         backgroundType = "",
         fontSize = "",
-        textAlign="",
+        textAlign = "",
         backgroundColor = "",
-        splitBorderColor = "",
+        splitBorderColor = ""
       } = theader || {};
-      let styles = {
-      };
+      let styles = {};
       // if (shadowable) {
       //   let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
       //     shadow || {};
@@ -327,7 +327,7 @@ export default {
     //     info.height = height;
     //   }
     // });
-    this.$emit("success"); //组件加载完成回调
+    // this.$emit("success"); //组件加载完成回调
   },
   methods: {
     ...mapMutations({}),

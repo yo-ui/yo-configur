@@ -30,6 +30,7 @@
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
+// const html2canvas = require("@/common/lib/html2canvas");
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 const Props = {
@@ -68,7 +69,9 @@ export default {
     }),
     ...mapActions({
       selectComAction: "canvas/selectCom",
-      createHistoryAndRecordAction: "canvas/createHistoryAndRecord"
+      // upload2OssAction: "upload2Oss",
+      createHistoryAction: "canvas/createHistory",
+      createRecordAction: "canvas/createRecord"
     }),
     initEvent() {
       $(document).on("dragstart", this.dragstartEvent);
@@ -140,8 +143,11 @@ export default {
         left = x - left - width / 2;
         top = y - top - height / 2;
         let orders = widgetList.map(item => item.order);
-        let order = Math.max(...orders);
-        order += 1;
+        let order = 1;
+        if (orders && orders.length > 0) {
+          order = Math.max(...orders);
+          order += 1;
+        }
         let item = {
           ...data,
           order,
@@ -154,12 +160,30 @@ export default {
           this.setLinkPoint(item);
         }
         widgetList.push(item);
+        this.createHistoryAction();
         this.selectComAction(id);
-        this.createHistoryAndRecordAction();
+        // this.createRecordAction();
+        // this.uploadImg();
         // this.setWidgetList(widgetList);
       }
       this.dragleaveEvent(e);
     },
+    // uploadImg() {
+    //   // html2canvas($(".canvas-box")[0], {}).then(canvas => {
+    //   //   let blob = bmCommon.convertBase64ToBlob(canvas.toDataURL());
+    //   //   let formData = new FormData();
+    //   //   formData.append("files", blob, `${Date.now()}.png`);
+    //   //   formData.append("subDir", Constants.UPLOADDIR.FILE);
+    //   //   this.upload2OssFunc(
+    //   //     {
+    //   //       formData
+    //   //     },
+    //   //     img => {
+    //         // this.createRecordAction({  });
+    //   //     }
+    //   //   );
+    //   // });
+    // },
     clickEvent(item) {
       let { widgetList = [] } = this;
       let {
@@ -172,8 +196,11 @@ export default {
       } = item || {};
       let id = bmCommon.uuid();
       let orders = widgetList.map(item => item.order);
-      let order = Math.max(...orders);
-      order += 1;
+      let order = 1;
+      if (orders && orders.length > 0) {
+        order = Math.max(...orders);
+        order += 1;
+      }
       let _item = {
         ...data,
         type,
@@ -188,9 +215,39 @@ export default {
         this.setLinkPoint(item);
       }
       widgetList.push(_item);
+      this.createHistoryAction();
       this.selectComAction(id);
-      this.createHistoryAndRecordAction();
+      // this.createRecordAction();
+      // this.uploadImg();
     }
+    // //上传图片
+    // upload2OssFunc(options, callback) {
+    //   let value = "";
+    //   if (this._upload2OssStatus) {
+    //     return;
+    //   }
+    //   this._upload2OssStatus = true;
+    //   this.upload2OssAction(options)
+    //     .then(({ data }) => {
+    //       let { code = "", result = [], message = "" } = data || {};
+    //       if (code == Constants.CODES.SUCCESS) {
+    //         let [fileName = ""] = result || [];
+    //         // this.$$msgSuccess("添附件成功");
+    //         value = fileName;
+    //       } else {
+    //         // this.$$msgError(message || "添附件失败");
+    //         bmCommon.error(message || "图片上传失败");
+    //       }
+    //       callback && callback(value);
+    //       this._upload2OssStatus = false;
+    //     })
+    //     .catch(err => {
+    //       callback && callback(value);
+    //       // this.$$msgError("添附件失败");
+    //       this._upload2OssStatus = false;
+    //       bmCommon.error("图片上传失败", err);
+    //     });
+    // }
   }
 };
 </script>

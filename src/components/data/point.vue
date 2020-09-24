@@ -1,9 +1,9 @@
-//回退记录
+//设备点位数据绑定
 <template>
   <el-dialog
-    class="bm-dialog-fallback-com"
+    class="bm-dialog-point-com"
     v-dialogDrag="true"
-    :title="$lang('回退记录')"
+    :title="$lang('数据绑定')"
     :visible.sync="showDialogStatus"
     width="1000px"
   >
@@ -13,10 +13,7 @@
         <el-radio-group v-model="record" class="list">
           <el-radio v-for="item in dataList" :key="item.id" :label="item">
             <span class="name">{{ item.name }}</span>
-            <span class="time"
-              >{{ $moment(item.time).fromNow() }}
-              <i class="el-icon-delete" @click="removeEvent(item)"></i
-            ></span>
+            <span class="time">{{ $moment(item.time).fromNow() }}</span>
           </el-radio>
         </el-radio-group>
         <el-pagination
@@ -31,14 +28,7 @@
         >
         </el-pagination>
       </div>
-      <div
-        class="bm-icon img-box"
-        :style="
-          record && record.img
-            ? `background-image:url(${$loadImgUrl(record.img)})`
-            : ''
-        "
-      ></div>
+      <div class="img-box"></div>
     </div>
     <div class="line"></div>
     <template #footer>
@@ -92,8 +82,7 @@ export default {
     ...mapMutations({
       // setActiveCom: "canvas/setActiveCom",
       // setZoom: "canvas/setZoom",
-      setWidgetList: "canvas/setWidgetList",
-      setRecordList: "canvas/setRecordList"
+      setWidgetList: "canvas/setWidgetList"
       // setLeftMenuStatus: "canvas/setLeftMenuStatus",
       // setRightMenuStatus: "canvas/setRightMenuStatus"
     }),
@@ -117,13 +106,7 @@ export default {
       this.setWidgetList(widgetList);
       this.showDialogStatus = false;
     },
-    removeEvent(item) {
-      let { id = "" } = item || {};
-      let { recordList = [] } = this;
-      let index = recordList.findIndex(item => item.id == id);
-      recordList.splice(index, 1);
-      this.setRecordList(recordList);
-    },
+
     // 切换每页数据
     handleSizeChangeEvent(val) {
       let { condition } = this;
@@ -144,5 +127,5 @@ export default {
 </script>
 
 <style lang="less">
-@import (less) "../assets/less/components/fallback.less";
+@import (less) "../../assets/less/components/data/point.less";
 </style>

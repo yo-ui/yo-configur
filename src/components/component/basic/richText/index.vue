@@ -1,6 +1,6 @@
 <template>
   <div
-    :contenteditable="info.editable"
+    class="bm-basic-rich-text-com ql-editor"
     @blur.stop="blurEvent"
     :style="comStyle"
     v-html="info.content"
@@ -8,6 +8,8 @@
 </template>
 
 <script>
+// import "quill/dist/quill.core.css";
+// import "quill/dist/quill.snow.css";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -179,4 +181,7 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less">
+@import (less)
+  "../../../../assets/less/components/component/basic/rich.text.less";
+</style>

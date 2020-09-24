@@ -152,14 +152,11 @@ function postFunc(url, cancelToken, params, headers) {
  * @param {*} callback
  */
 function postUploadFunc(url, cancelToken, params, headers) {
-  return axios.post(
-    url,params,
-    {
-      cancelToken: cancelToken,
-      headers: headers,
-      timeout: Constants.AXIOTIMEOUT
-    }
-  );
+  return axios.post(url, params, {
+    cancelToken: cancelToken,
+    headers: headers,
+    timeout: Constants.AXIOTIMEOUT
+  });
 }
 /**
  * put 请求
@@ -203,4 +200,4 @@ function getFunc(url, cancelToken, params, headers) {
   });
 }
 
-export { get, post, put, del,postUpload };
+export { get, post, put, del, postUpload };

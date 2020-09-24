@@ -2,8 +2,6 @@ import apiConfig from "@/common/conf/index";
 let { host = "", wsHost = "" } = apiConfig || {};
 
 export default {
-  
-
   loginAuthentUrl: `${host}/login/authent`, //登录
 
   websocketUrl: `${wsHost}/ws`,

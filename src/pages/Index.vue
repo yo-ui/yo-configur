@@ -38,7 +38,7 @@
               v-for="(item, index) in widgetList"
               :data-type="item.type"
               :data-id="item.id"
-              :type="item.type"
+              type="edit"
               :info="item"
               :key="index"
             ></bm-com>
@@ -619,8 +619,11 @@ export default {
       this.showContextMenuStatus = false;
       let { activeCom = {}, widgetList = [] } = this;
       let { order = "" } = activeCom;
-      let obj = widgetList.find(item => order < item.order);
-      let { order: _order = "" } = obj || {};
+      let orders = widgetList.map(item => item.order).sort((a, b) => a - b);
+      let _order = orders.find(item => item > order);
+      let obj = widgetList.find(item => _order == item.order);
+      // let obj = widgetList.find(item => order < item.order);
+      // let { order: _order = "" } = obj || {};
       activeCom.order = _order;
       obj.order = order;
     },
@@ -629,12 +632,16 @@ export default {
       this.showContextMenuStatus = false;
       let { activeCom = {}, widgetList = [] } = this;
       let { order = "" } = activeCom;
-      let obj = widgetList.find(item => order > item.order);
-      let { order: _order = "" } = obj || {};
+      let orders = widgetList.map(item => item.order).sort((a, b) => b - a);
+      // bmCommon.log("orders=>", orders, order);
+      let _order = orders.find(item => item < order);
+      let obj = widgetList.find(item => _order == item.order);
+      // bmCommon.log("obj=>", _order, obj.order);
+      // let { order: _order = "" } = obj || {};
       activeCom.order = _order;
       obj.order = order;
     },
-    // 置顶
+    // 置底
     moveBottomEvent() {
       this.showContextMenuStatus = false;
       let { activeCom = {}, widgetList = [] } = this;
@@ -647,9 +654,9 @@ export default {
       widgetList.forEach(item => {
         item.order++;
       });
-      activeCom.order = 1;
+      activeCom.order = 0;
     },
-    // 置底
+    // 置顶
     moveTopEvent() {
       this.showContextMenuStatus = false;
       let { activeCom = {}, widgetList = [] } = this;

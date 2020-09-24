@@ -23,20 +23,18 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-block" */ "@/components/component/basic/block/index.vue"
     ),
-    tableCom: () =>
-      import(
-        /* webpackChunkName: "bm-component-table" */ "@/components/component/basic/table/index.vue"
-      ),
-    vScrollTextCom: () =>
-      import(
-        /* webpackChunkName: "bm-component-vScrollText" */ "@/components/component/basic/vScrollText/index.vue"
-      ),
-    richTextCom: () =>
-      import(
-        /* webpackChunkName: "bm-component-richText" */ "@/components/component/basic/richText/index.vue"
-      ),
-
-
+  tableCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-table" */ "@/components/component/basic/table/index.vue"
+    ),
+  vScrollTextCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-vScrollText" */ "@/components/component/basic/vScrollText/index.vue"
+    ),
+  richTextCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-richText" */ "@/components/component/basic/richText/index.vue"
+    ),
 
   videoCom: () =>
     import(
@@ -69,7 +67,7 @@ let widgets = {
   assistCommonCom: () =>
     import(
       /* webpackChunkName: "bm-component-assist" */ "@/components/component/assist/common/index.vue"
-    ),
+    )
 };
 let styles = {
   canvasStyleCom: () =>
@@ -100,19 +98,18 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-block-style" */ "@/components/component/basic/block/style.vue"
     ),
-    tableStyleCom: () =>
-      import(
-        /* webpackChunkName: "bm-component-table-style" */ "@/components/component/basic/table/style.vue"
-      ),
-    vScrollTextStyleCom: () =>
-      import(
-        /* webpackChunkName: "bm-component-vScrollText-style" */ "@/components/component/basic/vScrollText/style.vue"
-      ),
-    richTextStyleCom: () =>
-      import(
-        /* webpackChunkName: "bm-component-richText-style" */ "@/components/component/basic/richText/style.vue"
-      ),
-
+  tableStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-table-style" */ "@/components/component/basic/table/style.vue"
+    ),
+  vScrollTextStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-vScrollText-style" */ "@/components/component/basic/vScrollText/style.vue"
+    ),
+  richTextStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-richText-style" */ "@/components/component/basic/richText/style.vue"
+    ),
 
   videoStyleCom: () =>
     import(
@@ -145,7 +142,7 @@ let styles = {
   assistCommonStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-assist-style" */ "@/components/component/assist/common/style.vue"
-    ),
+    )
 };
 
 export { widgets, styles };

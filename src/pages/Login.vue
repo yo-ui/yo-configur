@@ -127,13 +127,13 @@ export default {
     };
   },
   mounted() {
-    let { condition } = this;
-    let registerUserInfo = this.$store.getters.getRegisterUserInfo;
-    let { mobile = "", pwd = "" } = registerUserInfo || {};
-    if (mobile) {
-      condition.userName = mobile;
-      condition.password = pwd;
-    }
+    // let { condition } = this;
+    // // let registerUserInfo = this.$store.getters.getRegisterUserInfo;
+    // let { mobile = "", pwd = "" } = registerUserInfo || {};
+    // if (mobile) {
+    //   condition.userName = mobile;
+    //   condition.password = pwd;
+    // }
     // this.commonLoginInfo();
   },
   methods: {
@@ -143,39 +143,39 @@ export default {
       loginAuthentAction: "loginAuthent"
     }),
     ...mapMutations({
-      setRegisterUserInfo: "setRegisterUserInfo",
+      // setRegisterUserInfo: "setRegisterUserInfo",
       setUserInfo: "setUserInfo"
     }),
 
-    getLogoSize: function(width, height) {
-      // let wlogo = $('#logowarp');
-      // let ilogo = $('#logoImg');
-      let wlogo = this.$refs.logo;
-      let ww = wlogo.offsetWidth * 0.75; //因为有个半透明的白条，不能盖再上面，只能盖再纯白的上面
-      let wh = wlogo.offsetHeight * 0.75;
+    // getLogoSize: function(width, height) {
+    //   // let wlogo = $('#logowarp');
+    //   // let ilogo = $('#logoImg');
+    //   let wlogo = this.$refs.logo;
+    //   let ww = wlogo.offsetWidth * 0.75; //因为有个半透明的白条，不能盖再上面，只能盖再纯白的上面
+    //   let wh = wlogo.offsetHeight * 0.75;
 
-      let iw = width;
-      let ih = height;
-      let c = wh / ww;
+    //   let iw = width;
+    //   let ih = height;
+    //   let c = wh / ww;
 
-      let k0 = wh / -ww;
-      let e = wh;
-      let k1 = ih / iw;
-      let e1 = ih - k1 * iw;
+    //   let k0 = wh / -ww;
+    //   let e = wh;
+    //   let k1 = ih / iw;
+    //   let e1 = ih - k1 * iw;
 
-      let dw = (e1 - e) / (k0 - k1);
-      let px = ww * 0.04; //2%的左边距
-      let pw = parseInt(dw - px) + 10;
-      let dh = k0 * pw + e;
-      let py = px * c + 5;
-      let ph = parseInt(dh - py) + 10;
-      this.logoStyle = {
-        left: px + "px",
-        top: py + "px",
-        width: pw + "px",
-        height: ph + "px"
-      };
-    },
+    //   let dw = (e1 - e) / (k0 - k1);
+    //   let px = ww * 0.04; //2%的左边距
+    //   let pw = parseInt(dw - px) + 10;
+    //   let dh = k0 * pw + e;
+    //   let py = px * c + 5;
+    //   let ph = parseInt(dh - py) + 10;
+    //   this.logoStyle = {
+    //     left: px + "px",
+    //     top: py + "px",
+    //     width: pw + "px",
+    //     height: ph + "px"
+    //   };
+    // },
     // commonLoginInfo() {
     //   this.commonLoginInfoAction().then(({ data }) => {
     //     let { code = "", result } = data;
@@ -224,9 +224,9 @@ export default {
         .then(({ data }) => {
           let { code = "", result = {}, message = "" } = data;
           if (code == Constants.CODES.SUCCESS) {
-            // let { user = {}, rolePermissionList = [] } = result || {};
+            let { user = {} } = result || {};
             // this.setRegisterUserInfo();
-            // this.setUserInfo(user || {});
+            this.setUserInfo(user || {});
             // let { accountId = "" } = user || {};
             // let { query } = $route;
             // this.accountMenuHandlerAction({
@@ -251,8 +251,8 @@ export default {
             //     let item = subMenuList[0];
             //     this.$jumpPage(item.url);
             //   } else {
-                this.$jumpPage(this.$RouterURL.index.name);
-              // }
+            this.$jumpPage(this.$RouterURL.index.name);
+            // }
             // }
           } else {
             this.$$msgError(message || "登录失败");

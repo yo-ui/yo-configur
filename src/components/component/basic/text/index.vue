@@ -1,6 +1,6 @@
 <template>
   <div
-    :contenteditable="info.editable"
+    :contenteditable="type == 'edit' && info.editable"
     @blur.stop="blurEvent"
     :style="comStyle"
   >
@@ -22,6 +22,10 @@ export default {
       default: () => {
         return {};
       }
+    },
+    type: {
+      type: String,
+      default: ""
     }
   },
   computed: {

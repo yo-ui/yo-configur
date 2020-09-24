@@ -11,6 +11,7 @@ export default {
     // financePricingStrategiesCacheMap: null,
     // 画布缩放值
     zoom: 1,
+    historyIndex: 0, //撤销恢复记录游标
     historyList: [], //撤销恢复记录
     recordList: [], //记录点
     selectBox: {
@@ -71,6 +72,7 @@ export default {
     // activeComId: "",
     // 组件列表
     widgetList: [],
+    previewWidgetList: [],
     originX: 0, // 选中元件的横向初始值
     originY: 0, // 选中元件的纵向初始值
     startX: 0, // 鼠标摁下时的横坐标
@@ -100,6 +102,9 @@ export default {
     getHistoryList(state) {
       return state.historyList;
     },
+    getHistoryIndex(state) {
+      return state.historyIndex;
+    },
     getRecordList(state) {
       let recordList = state.recordList;
       if (!recordList || recordList.length < 1) {
@@ -120,15 +125,29 @@ export default {
     },
     //获取选中组件对象
     getActiveCom(state) {
-      return state.activeCom;
+      return state.activeCom || {};
     },
     //获取多选组件对象
     getActiveComs(state) {
-      return state.activeComs;
+      return state.activeComs || [];
+    },
+    //获取选中对象id
+    getPreviewWidgetList(state) {
+      let previewWidgetList = state.previewWidgetList;
+      if (!previewWidgetList || previewWidgetList.length < 1) {
+        previewWidgetList = bmCommon.getItem(
+          Constants.LOCALSTORAGEKEY.USERKEY.WIDGETLIST
+        );
+        previewWidgetList = JSON.parse(previewWidgetList);
+      }
+      if (!previewWidgetList || previewWidgetList.length < 1) {
+        previewWidgetList = [];
+      }
+      return previewWidgetList;
     },
     //获取选中对象id
     getWidgetList(state) {
-      return state.widgetList;
+      return state.widgetList || [];
     }
   },
   mutations: {
@@ -160,12 +179,26 @@ export default {
       state.activeComs = item;
     },
     //设置选中对象
+    setPreviewWidgetList(state, item) {
+      if (item) {
+        bmCommon.setItem(
+          Constants.LOCALSTORAGEKEY.USERKEY.WIDGETLIST,
+          JSON.stringify(item)
+        );
+      } else {
+        bmCommon.removeItem(Constants.LOCALSTORAGEKEY.USERKEY.WIDGETLIST);
+      }
+      state.previewWidgetList = item;
+    },
     setWidgetList(state, item) {
       state.widgetList = item;
     },
     setHistoryList(state, item) {
       //先保存在内存  最多保存20条记录
       state.historyList = item.slice(0, 20);
+    },
+    setHistoryIndex(state, item) {
+      state.historyIndex = item;
     },
     setRecordList(state, item) {
       //先保存在本地  最多保存20条记录  若已满20条先删除自动保存的记录
@@ -485,24 +518,31 @@ export default {
       // context.commit("setActiveCom", activeCom);
       // context.commit("setActiveComs", activeComs);
     },
-    createHistoryAndRecord(context) {
-      let { widgetList = [] } = this;
+    createRecord(context, item) {
+      let { img = "" } = item || {};
       let { getters = {} } = context;
-      let { getRecordList: recordList = [], getHistoryList: historyList = [] } =
+      let { getRecordList: recordList = [], getWidgetList: widgetList = [] } =
         getters || {};
-      historyList.push(bmCommon.clone(widgetList));
       let date = moment();
       let time = date.valueOf();
       let id = bmCommon.uuid();
-      recordList.push({
+      recordList.unshift({
         id,
         name: date.format("MM/DD/YYYY HH:mm:ss A"),
         time,
+        img,
         type: "auto", //自动记录
         widgetList
       });
-      context.commit("setHistoryList", historyList);
       context.commit("setRecordList", recordList);
+    },
+    createHistory(context) {
+      let { getters = {} } = context;
+      let { getWidgetList: widgetList = [], getHistoryList: historyList = [] } =
+        getters || {};
+      historyList.unshift(bmCommon.clone(widgetList));
+      context.commit("setHistoryList", historyList);
+      context.commit("setHistoryIndex", 0);
     }
   }
 };

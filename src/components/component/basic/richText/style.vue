@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-rich-text-style-com">
+  <div class="bm-rich-text-style-com" @keydown.stop>
     <!-- <h2>{{ $lang("功能选择") }}</h2>
     <p>
       <i
@@ -20,33 +20,7 @@
         <!-- <h2>{{ info.name }}</h2> -->
         <p>
           <span class="label"> {{ $lang("文本内容") }}: </span>
-          <bm-editor
-            @mousedown.native.stop
-            @keydown.native.stop
-            v-model="info.content"
-            :menus="[
-              'head', // 标题
-              'bold', // 粗体
-              'fontSize', // 字号
-              'fontName', // 字体
-              'italic', // 斜体
-              'underline', // 下划线
-              'strikeThrough', // 删除线
-              'foreColor', // 文字颜色
-              'backColor', // 背景颜色
-              //'link', // 插入链接
-              //'list', // 列表
-              'justify', // 对齐方式
-              'quote', // 引用
-              //'emoticon', // 表情
-              //'image', // 插入图片
-              //'table', // 表格
-              // 'video', // 插入视频
-              'code', // 插入代码
-              'undo', // 撤销
-              'redo' // 重复
-            ]"
-          ></bm-editor>
+          <bm-editor @mousedown.native.stop v-model="info.content"></bm-editor>
         </p>
         <p>
           <span class="label"> {{ $lang("层级") }}: </span>
@@ -323,6 +297,7 @@
               v-model="info.gradientStyle.values"
               :interval="1"
               @change="sliderChangeEvent"
+              @drag-start="sliderDragStartEvent"
               :data-value="'value'"
             >
               <!-- @drag-start="sliderDragStartEvent"
@@ -883,9 +858,13 @@ export default {
       import(
         /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
       ),
+    // bmEditor: () =>
+    //   import(
+    //     /* webpackChunkName: "bm-component-wangeditor" */ "@/components/common/wangeditor.vue"
+    //   )
     bmEditor: () =>
       import(
-        /* webpackChunkName: "bm-component-wangeditor" */ "@/components/common/wangeditor.vue"
+        /* webpackChunkName: "bm-component-wangeditor" */ "@/components/common/quill-editor.vue"
       )
   },
   computed: {
@@ -981,16 +960,11 @@ export default {
       gradientStyle.valueIndex = index;
       valueList[index].value = values[index];
     },
-    // sliderDragStartEvent(index) {
-    //   let { info = {} } = this;
-    //   let { gradientStyle = {} } = info || {};
-    //   let { values = [] } = gradientStyle || {};
-    //   let { length = 0 } = values || [];
-    //   gradientStyle.valueIndex = index;
-    //   if (!(index < length - 1 && index > 0)) {
-    //     return;
-    //   }
-    // },
+    sliderDragStartEvent(index) {
+      let { info = {} } = this;
+      let { gradientStyle = {} } = info || {};
+      gradientStyle.valueIndex = index;
+    },
     // sliderDraggingEvent(value, index) {
     //   this.sliderDragStartEvent(index);
     // },

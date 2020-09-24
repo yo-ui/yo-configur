@@ -1,6 +1,6 @@
 <template>
   <div class="bm-preview-page">
-    <bm-header ref="bmHeader"></bm-header>
+    <!-- <bm-header ref="bmHeader"></bm-header> -->
     <div class="flex-content">
       <div class="content-box">
         <div class="view-box" ref="viewBox">
@@ -11,18 +11,18 @@
             :class="canvas.action"
           >
             <div class="bg" :style="bgStyle">
-              <div class="grid" :style="gridStyle">
-              </div>
+              <!-- <div class="grid" :style="gridStyle"></div> -->
             </div>
-            <bm-com class="preview"
+            <bm-com
+              class="preview"
               :class="{
-                active: activeComIds.indexOf(item.id) > -1,
+                //active: activeComIds.indexOf(item.id) > -1,
                 locked: !item.dragable
               }"
               v-for="(item, index) in widgetList"
               :data-type="item.type"
               :data-id="item.id"
-              :type="item.type"
+              type="preview"
               :info="item"
               :key="index"
             ></bm-com>
@@ -111,7 +111,7 @@
         删除<small>Delete</small>
       </li>
     </ul> -->
-    <bm-footer ref="bmFooter"></bm-footer>
+    <!-- <bm-footer ref="bmFooter"></bm-footer> -->
     <!-- <bm-select ref="bmSelect"></bm-select> -->
   </div>
 </template>
@@ -119,10 +119,10 @@
 // import bmCommon from "@/common/common";
 // import { Constants } from "@/common/env";
 import bmCom from "@/components/component";
-import bmHeader from "@/components/header";
+// import bmHeader from "@/components/header";
 // import bmNav from "@/components/nav";
-import bmFooter from "@/components/footer";
-import mixins from "@/mixins";
+// import bmFooter from "@/components/footer";
+// import mixins from "@/mixins";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -141,9 +141,9 @@ export default {
       contextMenuStyle: {}
     };
   },
-  mixins: [mixins],
+  // mixins: [mixins],
   components: {
-    bmHeader,
+    // bmHeader,
     // bmNav,
     // : () =>
     //   import(/* webpackChunkName: "iot-header-com" */ "@/components/header"),
@@ -151,7 +151,7 @@ export default {
     //   import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
     // bmSelect: () =>
     //   import(/* webpackChunkName: "iot-select-com" */ "@/components/select"),
-    bmFooter,
+    // bmFooter,
     // : () =>
     //   import(/* webpackChunkName: "iot-footer-com" */ "@/components/footer"),
     // bmInfo: () =>
@@ -169,6 +169,7 @@ export default {
   computed: {
     ...mapGetters({
       widgetList: "canvas/getWidgetList", //组件列表
+      previewWidgetList: "canvas/getPreviewWidgetList", //组件列表
       getZoom: "canvas/getZoom", //放大缩小
       leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
       rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
@@ -177,18 +178,18 @@ export default {
       activeComs: "canvas/getActiveComs", //选中对象
       activeCom: "canvas/getActiveCom" //选中对象
     }),
-    bottomOrder() {
-      let { widgetList = [] } = this;
-      let orders = widgetList.map(item => item.order);
-      let order = Math.min(...orders);
-      return order;
-    },
-    topOrder() {
-      let { widgetList = [] } = this;
-      let orders = widgetList.map(item => item.order);
-      let order = Math.max(...orders);
-      return order;
-    },
+    // bottomOrder() {
+    //   let { widgetList = [] } = this;
+    //   let orders = widgetList.map(item => item.order);
+    //   let order = Math.min(...orders);
+    //   return order;
+    // },
+    // topOrder() {
+    //   let { widgetList = [] } = this;
+    //   let orders = widgetList.map(item => item.order);
+    //   let order = Math.max(...orders);
+    //   return order;
+    // },
     zoom: {
       get() {
         return parseInt(this.getZoom * 100);
@@ -197,26 +198,26 @@ export default {
         this.setZoom(val / 100);
       }
     },
-    activeComIds() {
-      // let { activeCom = {} } = this;
-      // let { id = "" } = activeCom || {};
-      // return id || "";
-      let {
-        // widgetList = [],
-        // selectBox = {},
-        activeComs = [],
-        activeCom = {}
-      } = this;
-      let ids = [];
-      let { length = 0 } = activeComs || [];
-      if (length > 1) {
-        ids = activeComs.map(item => item.id);
-      } else {
-        let { id = "" } = activeCom || {};
-        ids.push(id);
-      }
-      return ids || [];
-    },
+    // activeComIds() {
+    //   // let { activeCom = {} } = this;
+    //   // let { id = "" } = activeCom || {};
+    //   // return id || "";
+    //   let {
+    //     // widgetList = [],
+    //     // selectBox = {},
+    //     activeComs = [],
+    //     activeCom = {}
+    //   } = this;
+    //   let ids = [];
+    //   let { length = 0 } = activeComs || [];
+    //   if (length > 1) {
+    //     ids = activeComs.map(item => item.id);
+    //   } else {
+    //     let { id = "" } = activeCom || {};
+    //     ids.push(id);
+    //   }
+    //   return ids || [];
+    // },
     gridStyle() {
       let { canvas = {} } = this;
       let { isGrid = false, gridStyle = {} } = canvas || {};
@@ -324,6 +325,8 @@ export default {
       //   canvas.width = width;
       //   canvas.height = height;
       // });
+      let { previewWidgetList = [] } = this;
+      this.setWidgetList(previewWidgetList || []);
     }
     // initEvent() {
     //   let viewBox = this.$refs.viewBox;

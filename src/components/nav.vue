@@ -1,13 +1,16 @@
 <template>
   <div class="bm-nav-com">
     <div class="left">
-      <el-button @click="cancelEvent">
+      <el-button
+        @click="cancelEvent"
+        :disabled="historyIndex > historyList.length - 1"
+      >
         <i class="el-icon-refresh-left" :title="$lang('撤销')"></i>
         {{ $lang("撤销") }}
       </el-button>
-      <el-button @click="resumeEvent">
+      <el-button @click="resumeEvent" :disabled="historyIndex < 1">
         <i class="el-icon-refresh-right" :title="$lang('恢复')"></i>
-        {{ $lang("恢复") }}
+        {{ $lang("恢复") }}{{ historyIndex }}
       </el-button>
       <el-button @click="recordEvent">
         <i class="el-icon-upload" :title="$lang('记录点')"></i>
@@ -219,18 +222,21 @@
     </div>
     <bm-record ref="bmRecord"></bm-record>
     <bm-fallback ref="bmFallback"></bm-fallback>
+    <bm-preview ref="bmPreview"></bm-preview>
   </div>
 </template>
 
 <script>
 import bmCommon from "@/common/common";
-// import { Constants } from "@/common/env";
+import { Constants } from "@/common/env";
+const html2canvas = require("@/common/lib/html2canvas");
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {
     return {
       condition: {
+        // historyIndex: 0,
         alignType: "left",
         spreadType: "h-center"
       }
@@ -239,11 +245,15 @@ export default {
   components: {
     bmRecord: () =>
       import(/* webpackChunkName: "iot-record-com" */ "@/components/record"),
+    bmPreview: () =>
+      import(/* webpackChunkName: "iot-preview-com" */ "@/components/preview"),
     bmFallback: () =>
       import(/* webpackChunkName: "iot-fallback-com" */ "@/components/fallback")
   },
   computed: {
     ...mapGetters({
+      historyList: "canvas/getHistoryList",
+      historyIndex: "canvas/getHistoryIndex",
       canvas: "canvas/getCanvas",
       zoom: "canvas/getZoom", //放大缩小
       leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
@@ -270,10 +280,17 @@ export default {
     ...mapMutations({
       setActiveCom: "canvas/setActiveCom",
       setZoom: "canvas/setZoom",
+      setHistoryIndex: "canvas/setHistoryIndex",
+      setWidgetList: "canvas/setWidgetList",
       setLeftMenuStatus: "canvas/setLeftMenuStatus",
+      setPreviewWidgetList: "canvas/setPreviewWidgetList",
       setRightMenuStatus: "canvas/setRightMenuStatus"
     }),
-    ...mapActions({ selectComAction: "canvas/selectCom" }),
+    ...mapActions({
+      selectComAction: "canvas/selectCom",
+      createRecordAction: "canvas/createRecord",
+      upload2OssAction: "upload2Oss"
+    }),
     // 初始化
     init() {
       // this.storeProductFunc();
@@ -308,8 +325,33 @@ export default {
       widgetList.splice(index, 1);
       this.selectComAction();
     },
-    resumeEvent(){},
-    cancelEvent(){},
+    resumeEvent() {
+      let { historyList = [], historyIndex = 0 } = this;
+      // let { historyIndex = 0 } = condition;
+      // let { length = 0 } = historyList || [];
+      if (historyIndex < 0) {
+        // condition.historyIndex = 0;
+        this.setHistoryIndex(0);
+        return;
+      }
+      let widgetList = historyList[--historyIndex];
+      this.setWidgetList(widgetList || []);
+      this.setHistoryIndex(historyIndex);
+    },
+    cancelEvent() {
+      let { historyList = [], historyIndex = 0 } = this;
+      // let {  } = condition;
+      let { length = 0 } = historyList || [];
+      if (historyIndex > length - 1) {
+        // condition.historyIndex = length - 1;
+        this.setHistoryIndex(length - 1);
+        return;
+      }
+      let widgetList = historyList[++historyIndex];
+      this.setWidgetList(widgetList || []);
+      // condition.historyIndex = ++historyIndex;
+      this.setHistoryIndex(historyIndex);
+    },
     fallbackEvent() {
       this.$refs.bmFallback?.show();
     },
@@ -339,7 +381,28 @@ export default {
     },
     //运行
     runEvent() {
-      this.$jumpPage(this.$RouterURL.preview.name);
+      // this.$jumpPage(this.$RouterURL.preview.name);
+      let { widgetList = [] } = this;
+      this.setPreviewWidgetList(widgetList);
+      this.$refs.bmPreview?.show();
+      this.selectComAction(); //选中组件
+      this.uploadImg();
+    },
+    uploadImg() {
+      html2canvas($(".canvas-box")[0], {}).then(canvas => {
+        let blob = bmCommon.convertBase64ToBlob(canvas.toDataURL());
+        let formData = new FormData();
+        formData.append("files", blob, `${Date.now()}.png`);
+        formData.append("subDir", Constants.UPLOADDIR.FILE);
+        this.upload2OssFunc(
+          {
+            formData
+          },
+          img => {
+            this.createRecordAction({ img });
+          }
+        );
+      });
     },
     // 全屏事件
     fullScreenEvent() {
@@ -648,8 +711,11 @@ export default {
       this.showContextMenuStatus = false;
       let { activeCom = {}, widgetList = [] } = this;
       let { order = "" } = activeCom;
-      let obj = widgetList.find(item => order < item.order);
-      let { order: _order = "" } = obj || {};
+      let orders = widgetList.map(item => item.order).sort((a, b) => a - b);
+      let _order = orders.find(item => item > order);
+      let obj = widgetList.find(item => _order == item.order);
+      // let obj = widgetList.find(item => order < item.order);
+      // let { order: _order = "" } = obj || {};
       activeCom.order = _order;
       obj.order = order;
     },
@@ -658,12 +724,16 @@ export default {
       this.showContextMenuStatus = false;
       let { activeCom = {}, widgetList = [] } = this;
       let { order = "" } = activeCom;
-      let obj = widgetList.find(item => order > item.order);
-      let { order: _order = "" } = obj || {};
+      // let obj = widgetList.find(item => order > item.order);
+      // let { order: _order = "" } = obj || {};
+      let orders = widgetList.map(item => item.order).sort((a, b) => b - a);
+      // bmCommon.log("orders=>", orders, order);
+      let _order = orders.find(item => item < order);
+      let obj = widgetList.find(item => _order == item.order);
       activeCom.order = _order;
       obj.order = order;
     },
-    // 置顶
+    // 置底
     moveBottomEvent() {
       this.showContextMenuStatus = false;
       let { activeCom = {}, widgetList = [] } = this;
@@ -678,7 +748,7 @@ export default {
       });
       activeCom.order = 1;
     },
-    // 置底
+    // 置顶
     moveTopEvent() {
       this.showContextMenuStatus = false;
       let { activeCom = {}, widgetList = [] } = this;
@@ -689,6 +759,34 @@ export default {
         return;
       }
       activeCom.order = order + 1;
+    },
+    //上传图片
+    upload2OssFunc(options, callback) {
+      let value = "";
+      if (this._upload2OssStatus) {
+        return;
+      }
+      this._upload2OssStatus = true;
+      this.upload2OssAction(options)
+        .then(({ data }) => {
+          let { code = "", result = [], message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            let [fileName = ""] = result || [];
+            // this.$$msgSuccess("添附件成功");
+            value = fileName;
+          } else {
+            // this.$$msgError(message || "添附件失败");
+            bmCommon.error(message || "图片上传失败");
+          }
+          callback && callback(value);
+          this._upload2OssStatus = false;
+        })
+        .catch(err => {
+          callback && callback(value);
+          // this.$$msgError("添附件失败");
+          this._upload2OssStatus = false;
+          bmCommon.error("图片上传失败", err);
+        });
     }
   },
   mounted() {

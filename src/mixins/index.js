@@ -3,7 +3,7 @@ export default {
   methods: {
     initMoveEvent(e) {
       e.stopPropagation();
-      e.preventDefault();
+      // e.preventDefault();
       let { activeCom = {} } = this;
       // var activeCom = this.$vpd.state.activeElement
       let pos = bmCommon.getMousePosition(e);

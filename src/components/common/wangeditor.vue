@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="bm-common-wang-editor-com">
-    <div ref="toolbar" class="toolbar"></div>
+    <!-- <div ref="toolbar" class="toolbar"></div> -->
     <div ref="editor" class="text"></div>
   </div>
 </template>
@@ -17,8 +17,7 @@ export default {
   data() {
     return {
       // uploadPath,
-      editor: null,
-      info_: null
+      editor: null
     };
   },
   model: {
@@ -51,7 +50,7 @@ export default {
       // 触发清除文本域内容
       if (val) {
         this.editor.txt.clear();
-        this.info_ = null;
+        this._info = null;
       }
     },
     value: function(value) {
@@ -72,7 +71,8 @@ export default {
     setEditor() {
       const { userInfo = {} } = this;
       const { token = "" } = userInfo || {};
-      this.editor = new Editor(this.$refs.toolbar, this.$refs.editor);
+      // this.editor = new Editor(this.$refs.toolbar, this.$refs.editor);
+      this.editor = new Editor(this.$refs.editor);
       this.editor.customConfig.uploadImgShowBase64 = false; // base 64 存储图片
       this.editor.customConfig.uploadImgServer = URL.upload2OssUrl; // 配置服务器端地址
       this.editor.customConfig.uploadImgHeaders = {
@@ -95,14 +95,14 @@ export default {
         // 'strikeThrough', // 删除线
         // 'foreColor', // 文字颜色
         // 'backColor', // 背景颜色
-        "link", // 插入链接
+        // "link", // 插入链接
         // 'list', // 列表
         // 'justify', // 对齐方式
         // 'quote', // 引用
         // 'emoticon', // 表情
-        "image", // 插入图片
-        "table", // 表格
-        "video", // 插入视频
+        // "image", // 插入图片
+        // "table", // 表格
+        // "video", // 插入视频
         // 'code', // 插入代码
         "undo", // 撤销
         "redo" // 重复
@@ -144,8 +144,8 @@ export default {
         }
       };
       this.editor.customConfig.onchange = html => {
-        this.info_ = html; // 绑定当前逐渐地值
-        this.$emit("change", this.info_); // 将内容同步到父组件中
+        this._info = html; // 绑定当前逐渐地值
+        this.$emit("change", this._info); // 将内容同步到父组件中
       };
       // 创建富文本编辑器
       this.editor.create();

@@ -11,18 +11,20 @@ let baseData = {
   left: 0,
   content: "文本内容",
   name: "文本标题",
+  dataType: "", //绑定数据类型  device point
   animation: {
     name: "",
     direction: "normal",
     duration: 0.8,
     iterationCount: 1
   },
+  color: "",
   originWidth: "", //原宽
   originHeight: "", //原高
   fontWeight: "",
   textDecoration: "",
   fontStyle: "",
-  fontSize: 24,
+  fontSize: 14,
   opacity: 100,
   fontFamily: "",
   width: 300,
@@ -84,6 +86,7 @@ let baseData = {
       { code: "#545fc8", value: 100 }
     ]
   },
+  equalScaleable: false, //是否等比例缩放
   scaleable: true, //是否可缩放操作
   rotateable: true, //是否可旋转操作
   editable: false, //内容是否可编辑
@@ -101,29 +104,29 @@ export default [
         icon: "/static/img/configur/dataing.png",
         data: {
           ...baseData,
-          backgroundImage: "",
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "repeat",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          left: 0,
-          fontWeight: "",
-          textDecoration: "",
-          fontStyle: "",
+          // backgroundImage: "",
+          // backgroundSize: "100% 100%",
+          // backgroundRepeat: "repeat",
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // left: 0,
+          // fontWeight: "",
+          // textDecoration: "",
+          // fontStyle: "",
           fontSize: 24,
-          opacity: 100,
-          fontFamily: "",
+          // opacity: 100,
+          // fontFamily: "",
           width: 300,
           height: 60,
-          rotate: 0,
-          top: 0,
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: true, //内容是否可编辑
-          dragable: true //是否可拖动
+          // rotate: 0,
+          // top: 0,
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          editable: true //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -132,31 +135,32 @@ export default [
         icon: "/static/img/configur/text.png",
         data: {
           ...baseData,
-          backgroundImage: "",
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "repeat",
-          scale: "scale(1,1)",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
+          // backgroundImage: "",
+          dataType: "point",
+          // backgroundSize: "100% 100%",
+          // backgroundRepeat: "repeat",
+          // scale: "scale(1,1)",
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
           fontWeight: "bold",
-          textDecoration: "",
-          fontStyle: "",
+          // textDecoration: "",
+          // fontStyle: "",
           fontSize: 24,
           fontFamily: "lcdD",
-          originWidth: "", //原宽
-          originHeight: "", //原高
+          // originWidth: "", //原宽
+          // originHeight: "", //原高
           width: "",
           height: "",
-          opacity: 100,
-          left: 0,
-          top: 0,
+          // opacity: 100,
+          // left: 0,
+          // top: 0,
           content: "00.00",
-          scaleable: false, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          scaleable: false //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -165,24 +169,24 @@ export default [
         icon: "/static/img/configur/img.png",
         data: {
           ...baseData,
-          backgroundImage: "",
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "repeat",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          rotate: 0,
+          // backgroundImage: "",
+          // backgroundSize: "100% 100%",
+          // backgroundRepeat: "repeat",
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // rotate: 0,
           width: 360,
-          height: 220,
-          left: 0,
-          opacity: 100,
-          top: 0,
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          height: 220
+          // left: 0,
+          // opacity: 100,
+          // top: 0,
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -192,28 +196,29 @@ export default [
         data: {
           ...baseData,
           color: "#fff",
-          borderColor: "#eee",
-          borderStyle: "solid",
+          // borderColor: "#eee",
+          // borderStyle: "solid",
           borderRadius: 20,
-          borderWidth: 1,
-          backgroundColor: "#fff",
-          backgroundImage: "",
-          fontWeight: "",
-          textDecoration: "",
-          fontStyle: "",
-          fontSize: 14,
-          fontFamily: "",
-          left: 500,
+          // borderWidth: 1,
+          // backgroundColor: "#fff",
+          // backgroundImage: "",
+          // fontWeight: "",
+          dataType: "device",
+          // textDecoration: "",
+          // fontStyle: "",
+          // fontSize: 14,
+          // fontFamily: "",
+          // left: 500,
           width: "",
           height: "",
-          rotate: 0,
-          top: 0,
-          opacity: 100,
+          // rotate: 0,
+          // top: 0,
+          // opacity: 100,
           content: "控制",
-          scaleable: false, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          scaleable: false //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -224,22 +229,23 @@ export default [
           ...baseData,
           content: "00.00",
           fontWeight: "bold",
-          textDecoration: "",
-          fontStyle: "",
-          opacity: 100,
+          // textDecoration: "",
+          // fontStyle: "",
+          // opacity: 100,
           fontSize: 18,
           fontFamily: "lcdD",
-          originWidth: "", //原宽
-          originHeight: "", //原高
-          left: 0,
+          dataType: "point",
+          // originWidth: "", //原宽
+          // originHeight: "", //原高
+          // left: 0,
           width: 75,
           height: 36,
-          rotate: 0,
-          top: 0,
-          scaleable: false, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          // rotate: 0,
+          // top: 0,
+          scaleable: false //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -252,18 +258,19 @@ export default [
           borderStyle: "solid",
           borderRadius: 0,
           borderWidth: 1,
-          opacity: 100,
-          originWidth: "", //原宽
-          originHeight: "", //原高
+          dataType: "point",
+          // opacity: 100,
+          // originWidth: "", //原宽
+          // originHeight: "", //原高
           width: "",
           height: "",
-          left: 0,
-          rotate: 0,
-          top: 0,
+          // left: 0,
+          // rotate: 0,
+          // top: 0,
           scaleable: false, //是否可缩放操作
-          rotateable: false, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          rotateable: false //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -282,8 +289,9 @@ export default [
           ...baseData,
           originWidth: "", //原宽
           originHeight: "", //原高
+          fontSize: 14,
           width: 300,
-          height: 200,
+          height: 200
         }
       },
       {
@@ -348,24 +356,24 @@ export default [
         icon: "/static/img/configur/video.png",
         data: {
           ...baseData,
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          backgroundImage: "",
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "repeat",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // backgroundImage: "",
+          // backgroundSize: "100% 100%",
+          // backgroundRepeat: "repeat",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // opacity: 100,
+          // left: 0,
           width: 480,
-          height: 280,
-          rotate: 0,
-          top: 0,
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          height: 280
+          // rotate: 0,
+          // top: 0,
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -374,24 +382,24 @@ export default [
         icon: "/static/img/configur/position.png",
         data: {
           ...baseData,
-          backgroundImage: "",
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "repeat",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
+          // backgroundImage: "",
+          // backgroundSize: "100% 100%",
+          // backgroundRepeat: "repeat",
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // opacity: 100,
+          // left: 0,
           width: 550,
-          height: 400,
-          rotate: 0,
-          top: 0,
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          height: 400
+          // rotate: 0,
+          // top: 0,
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -400,24 +408,25 @@ export default [
         icon: "/static/img/configur/curve.png",
         data: {
           ...baseData,
-          backgroundImage: "",
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "repeat",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
+          // backgroundImage: "",
+          // backgroundSize: "100% 100%",
+          // backgroundRepeat: "repeat",
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // opacity: 100,
+          // left: 0,
           width: 400,
           height: 300,
-          rotate: 0,
-          top: 0,
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          dataType: "device"
+          // rotate: 0,
+          // top: 0,
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -426,24 +435,25 @@ export default [
         icon: "/static/img/configur/bar.jpg",
         data: {
           ...baseData,
-          backgroundImage: "",
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "repeat",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
+          // backgroundImage: "",
+          // backgroundSize: "100% 100%",
+          // backgroundRepeat: "repeat",
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // opacity: 100,
+          // left: 0,
           width: 400,
           height: 300,
-          rotate: 0,
-          top: 0,
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          dataType: "device"
+          // rotate: 0,
+          // top: 0,
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -451,24 +461,25 @@ export default [
         code: "pieChart",
         icon: "/static/img/configur/piechart.jpg",
         data: {
-          backgroundImage: "",
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "repeat",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
+          // backgroundImage: "",
+          // backgroundSize: "100% 100%",
+          // backgroundRepeat: "repeat",
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // opacity: 100,
+          // left: 0,
           width: 500,
           height: 300,
-          rotate: 0,
-          top: 0,
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          dataType: "device"
+          // rotate: 0,
+          // top: 0,
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -477,24 +488,25 @@ export default [
         icon: "/static/img/configur/meter.png",
         data: {
           ...baseData,
-          backgroundImage: "",
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "repeat",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
+          // backgroundImage: "",
+          // backgroundSize: "100% 100%",
+          // backgroundRepeat: "repeat",
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // opacity: 100,
+          // left: 0,
           width: 400,
           height: 300,
-          rotate: 0,
-          top: 0,
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          dataType: "device"
+          // rotate: 0,
+          // top: 0,
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       }
       // {
@@ -831,22 +843,23 @@ export default [
         data: {
           ...baseData,
           backgroundImage: "/static/img/svg/db.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // opacity: 100,
+          // left: 0,
           width: 50,
           height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          dataType: "device",
+          // rotate: 0,
+          // top: 0,
+          equalScaleable: true //是否等比例缩放
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -856,22 +869,23 @@ export default [
         data: {
           ...baseData,
           backgroundImage: "/static/img/svg/dxdgdb.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // opacity: 100,
+          // left: 0,
           width: 50,
           height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          dataType: "device",
+          // rotate: 0,
+          // top: 0,
+          equalScaleable: true //是否等比例缩放
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -881,22 +895,23 @@ export default [
         data: {
           ...baseData,
           backgroundImage: "/static/img/svg/iokzmk.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // opacity: 100,
+          // left: 0,
           width: 50,
           height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          dataType: "device",
+          // rotate: 0,
+          // top: 0,
+          equalScaleable: true //是否等比例缩放
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -906,22 +921,23 @@ export default [
         data: {
           ...baseData,
           backgroundImage: "/static/img/svg/duanluqi.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // opacity: 100,
+          // left: 0,
           width: 50,
           height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          dataType: "device",
+          // rotate: 0,
+          // top: 0,
+          equalScaleable: true //是否等比例缩放
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -931,22 +947,23 @@ export default [
         data: {
           ...baseData,
           backgroundImage: "/static/img/svg/bgsdb.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // opacity: 100,
+          // left: 0,
           width: 50,
           height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          dataType: "device",
+          // rotate: 0,
+          // top: 0,
+          equalScaleable: true //是否等比例缩放
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -956,22 +973,23 @@ export default [
         data: {
           ...baseData,
           backgroundImage: "/static/img/svg/jddz.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // opacity: 100,
+          // left: 0,
           width: 50,
           height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          dataType: "device",
+          // rotate: 0,
+          // top: 0,
+          equalScaleable: true //是否等比例缩放
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -980,22 +998,23 @@ export default [
         icon: "/static/img/configur/dldrq.png",
         data: {
           backgroundImage: "/static/img/svg/dldrq.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // opacity: 100,
+          // left: 0,
           width: 50,
           height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          dataType: "device",
+          // rotate: 0,
+          // top: 0,
+          equalScaleable: true //是否等比例缩放
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -1004,22 +1023,23 @@ export default [
         icon: "/static/img/configur/byq.png",
         data: {
           backgroundImage: "/static/img/svg/byq.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // opacity: 100,
+          // left: 0,
           width: 50,
           height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          dataType: "device",
+          // rotate: 0,
+          // top: 0,
+          equalScaleable: true //是否等比例缩放
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -1340,22 +1360,23 @@ export default [
         icon: "/static/img/configur/jsq.png",
         data: {
           backgroundImage: "/static/img/svg/jsq.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // opacity: 100,
+          // left: 0,
           width: 50,
           height: 30,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          dataType: "device",
+          // rotate: 0,
+          // top: 0,
+          equalScaleable: true //是否等比例缩放
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {
@@ -1364,22 +1385,23 @@ export default [
         icon: "/static/img/configur/fsq.png",
         data: {
           backgroundImage: "/static/img/svg/fsq.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // opacity: 100,
+          // left: 0,
           width: 50,
           height: 30,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          dataType: "device",
+          // rotate: 0,
+          // top: 0,
+          equalScaleable: true //是否等比例缩放
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {

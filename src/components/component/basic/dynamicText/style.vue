@@ -285,6 +285,7 @@
           v-model="info.gradientStyle.values"
           :interval="1"
           @change="sliderChangeEvent"
+          @drag-start="sliderDragStartEvent"
           :data-value="'value'"
         >
           <!-- @drag-start="sliderDragStartEvent"
@@ -847,16 +848,11 @@ export default {
       gradientStyle.valueIndex = index;
       valueList[index].value = values[index];
     },
-    // sliderDragStartEvent(index) {
-    //   let { info = {} } = this;
-    //   let { gradientStyle = {} } = info || {};
-    //   let { values = [] } = gradientStyle || {};
-    //   let { length = 0 } = values || [];
-    //   gradientStyle.valueIndex = index;
-    //   if (!(index < length - 1 && index > 0)) {
-    //     return;
-    //   }
-    // },
+    sliderDragStartEvent(index) {
+      let { info = {} } = this;
+      let { gradientStyle = {} } = info || {};
+      gradientStyle.valueIndex = index;
+    },
     // sliderDraggingEvent(value, index) {
     //   this.sliderDragStartEvent(index);
     // },

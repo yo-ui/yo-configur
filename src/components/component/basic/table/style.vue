@@ -285,6 +285,7 @@
           v-model="info.gradientStyle.values"
           :interval="1"
           @change="sliderChangeEvent"
+          @drag-start="sliderDragStartEvent"
           :data-value="'value'"
         >
           <!-- @drag-start="sliderDragStartEvent"
@@ -603,9 +604,11 @@
     <h2>{{ $lang("表头") }}</h2>
     <p>
       <span class="label">{{ $lang("是否显示") }}:</span>
-      <el-switch v-model="info.headerable"
+      <el-switch
+        v-model="info.headerable"
         active-color="#4195ea"
-        inactive-color="#ccc">
+        inactive-color="#ccc"
+      >
       </el-switch>
     </p>
     <p>
@@ -624,28 +627,31 @@
     </p>
     <p>
       <span class="label">{{ $lang("字体颜色") }}:</span>
-      <el-color-picker v-model="info.theader.color" show-alpha></el-color-picker>
+      <el-color-picker
+        v-model="info.theader.color"
+        show-alpha
+      ></el-color-picker>
     </p>
     <p class="align">
       <span class="label">{{ $lang("对齐") }}:</span>
       <i
         class="bomi bomi-text-left"
-        @click="textAlignEvent(info.theader,'left')"
+        @click="textAlignEvent(info.theader, 'left')"
         :class="{ active: info.theader.textAlign == 'left' }"
       ></i>
       <i
         class="bomi bomi-text-center"
-        @click="textAlignEvent(info.theader,'center')"
+        @click="textAlignEvent(info.theader, 'center')"
         :class="{ active: info.theader.textAlign == 'center' }"
       ></i>
       <i
         class="bomi bomi-text-right"
-        @click="textAlignEvent(info.theader,'right')"
+        @click="textAlignEvent(info.theader, 'right')"
         :class="{ active: info.theader.textAlign == 'right' }"
       ></i>
       <i
         class="bomi bomi-text-justify"
-        @click="textAlignEvent(info.theader,'justify')"
+        @click="textAlignEvent(info.theader, 'justify')"
         :class="{ active: info.theader.textAlign == 'justify' }"
       ></i>
     </p>
@@ -661,7 +667,10 @@
     </p>
     <p>
       <span class="label">{{ $lang("字体") }}:</span>
-      <el-select v-model="info.theader.fontFamily" :placeholder="$lang('请选择字体')">
+      <el-select
+        v-model="info.theader.fontFamily"
+        :placeholder="$lang('请选择字体')"
+      >
         <el-option
           v-for="item in fontFamilyList"
           :key="item.code"
@@ -720,22 +729,22 @@
       <span class="label">{{ $lang("对齐") }}:</span>
       <i
         class="bomi bomi-text-left"
-        @click="textAlignEvent(info.tbody,'left')"
+        @click="textAlignEvent(info.tbody, 'left')"
         :class="{ active: info.tbody.textAlign == 'left' }"
       ></i>
       <i
         class="bomi bomi-text-center"
-        @click="textAlignEvent(info.tbody,'center')"
+        @click="textAlignEvent(info.tbody, 'center')"
         :class="{ active: info.tbody.textAlign == 'center' }"
       ></i>
       <i
         class="bomi bomi-text-right"
-        @click="textAlignEvent(info.tbody,'right')"
+        @click="textAlignEvent(info.tbody, 'right')"
         :class="{ active: info.tbody.textAlign == 'right' }"
       ></i>
       <i
         class="bomi bomi-text-justify"
-        @click="textAlignEvent(info.tbody,'justify')"
+        @click="textAlignEvent(info.tbody, 'justify')"
         :class="{ active: info.tbody.textAlign == 'justify' }"
       ></i>
     </p>
@@ -751,7 +760,10 @@
     </p>
     <p>
       <span class="label">{{ $lang("字体") }}:</span>
-      <el-select v-model="info.tbody.fontFamily" :placeholder="$lang('请选择字体')">
+      <el-select
+        v-model="info.tbody.fontFamily"
+        :placeholder="$lang('请选择字体')"
+      >
         <el-option
           v-for="item in fontFamilyList"
           :key="item.code"
@@ -893,16 +905,11 @@ export default {
       gradientStyle.valueIndex = index;
       valueList[index].value = values[index];
     },
-    // sliderDragStartEvent(index) {
-    //   let { info = {} } = this;
-    //   let { gradientStyle = {} } = info || {};
-    //   let { values = [] } = gradientStyle || {};
-    //   let { length = 0 } = values || [];
-    //   gradientStyle.valueIndex = index;
-    //   if (!(index < length - 1 && index > 0)) {
-    //     return;
-    //   }
-    // },
+    sliderDragStartEvent(index) {
+      let { info = {} } = this;
+      let { gradientStyle = {} } = info || {};
+      gradientStyle.valueIndex = index;
+    },
     // sliderDraggingEvent(value, index) {
     //   this.sliderDragStartEvent(index);
     // },
@@ -981,7 +988,7 @@ export default {
       info.fontStyle = fontStyle;
     },
 
-    textAlignEvent(info,item) {
+    textAlignEvent(info, item) {
       // let { info = {} } = this;
       info.textAlign = item;
     }

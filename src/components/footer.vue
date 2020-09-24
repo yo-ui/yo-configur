@@ -5,22 +5,20 @@
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 // import RouterURL from "@/router/routers.conf";
-import { Constants } from "@/common/env";
+// import { Constants } from "@/common/env";
 export default {
   data() {
     return {};
   },
   components: {},
-  computed: {
-    
-  },
+  computed: {},
   methods: {
     // 初始化
     init() {
       // this.storeProductFunc();
-    },
+    }
     // 获取增值服务产品详情
     // storeProductFunc() {
     //   let that = this;
@@ -36,7 +34,7 @@ export default {
     //     .then(({ data }) => {
     //       let { code="", result,message="" } = data||{};
     //       if (success) {
-            
+
     //         let product = result || {};
     //         that.$store.commit("setDataCacheMap", {
     //           key: Constants.DATACACHEMAPKEY.STOREPRODUCT + id,

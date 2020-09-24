@@ -35,7 +35,20 @@
             :key="item.id"
             class="item"
           >
-            {{ item.name }}--{{ item.zIndex }}--{{ item.order }}
+            {{ item.name }}
+            <!-- --{{ item.zIndex }}--{{ item.order }} -->
+            <el-tooltip
+              :content="$lang('添加绑定')"
+              placement="top"
+              effect="dark"
+            >
+              <i
+                v-if="item.dataType"
+                class="el-icon-link"
+                @click.stop="addEvent(item)"
+                :class="{ active: !!item.data }"
+              ></i>
+            </el-tooltip>
           </li>
         </transition-group>
         <!-- <button slot="footer" @click="addPeople">Add</button> -->
@@ -52,6 +65,9 @@
         </li>
       </ul> -->
     </template>
+
+    <bm-device ref="bmDevice"></bm-device>
+    <bm-point ref="bmPoint"></bm-point>
   </div>
 </template>
 
@@ -90,7 +106,13 @@ export default {
   },
   components: {
     draggable,
-    ...styles
+    ...styles,
+    bmDevice: () =>
+      import(
+        /* webpackChunkName: "iot-device-com" */ "@/components/data/device"
+      ),
+    bmPoint: () =>
+      import(/* webpackChunkName: "iot-point-com" */ "@/components/data/point")
   },
   computed: {
     ...mapGetters({
@@ -166,8 +188,22 @@ export default {
     loadComList() {
       let { widgetList = [] } = this;
       this.comList = bmCommon.clone(widgetList).sort((a, b) => {
-        return a.order - b.order;
+        return b.order - a.order;
       });
+    },
+    addEvent(item = {}) {
+      let { dataType = "" } = item || {};
+      switch (dataType) {
+        case "point":
+          this.$refs.bmPoint?.show(item);
+          break;
+        case "device":
+          this.$refs.bmDevice?.show(item);
+          break;
+
+        default:
+          break;
+      }
     }
   }
   // watch: {

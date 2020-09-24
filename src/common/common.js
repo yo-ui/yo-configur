@@ -105,6 +105,17 @@ let common = {
       return str.toString();
     }
   },
+  convertBase64ToBlob(base64) {
+    //去掉url的头，并转换为byte
+    var bytes = window.atob(base64.split(",")[1]);
+    //处理异常,将ascii码小于0的转换为大于0
+    var ab = new ArrayBuffer(bytes.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < bytes.length; i++) {
+      ia[i] = bytes.charCodeAt(i);
+    }
+    return new Blob([ab], { type: "image/png" });
+  },
   createCanvas: function() {
     var canvas = document.createElement("canvas");
     if (!window.devicePixelRatio) window.devicePixelRatio = 1;

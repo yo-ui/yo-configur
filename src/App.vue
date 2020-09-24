@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import { Constants } from "@/common/env";
-import bmCommon from "@/common/common";
+// import { Constants } from "@/common/env";
+// import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapMutations, mapGetters, mapActions } = Vuex;
 export default {
@@ -25,14 +25,10 @@ export default {
     ...mapGetters()
   },
   methods: {
-    ...mapMutations({
-      
-    }),
-    ...mapActions({
-    }),
+    ...mapMutations({}),
+    ...mapActions({})
   },
-  mounted: function() {
-  }
+  mounted: function() {}
 };
 </script>
 

@@ -323,6 +323,7 @@
           v-model="info.gradientStyle.values"
           :interval="1"
           @change="sliderChangeEvent"
+              @drag-start="sliderDragStartEvent"
           :data-value="'value'"
         >
           <template #tooltip>

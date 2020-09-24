@@ -13,7 +13,7 @@ module.exports = {
   // },
   routerMode: "history",
   axioTimeout: 1000 * 15, //超时时间为15s
-  imageServer:"//pic.energyiot.cn/",
+  imageServer: "//pic.energyiot.cn/",
   host: "/service", //后端接口地址
   debug: false
 };

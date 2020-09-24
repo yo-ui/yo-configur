@@ -16,7 +16,7 @@ import canvas from "./canvas";
 // import dict from "./dict";
 // import attachment from "./attachment";
 export default {
-  canvas,
+  canvas
   // manufacturer,
   // devicePoint,
   // pointValue,

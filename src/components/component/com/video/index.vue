@@ -25,7 +25,6 @@ export default {
   computed: {
     ...mapGetters(),
 
-    
     //渐变颜色样式
     gradientStyle() {
       let { info = {} } = this;
