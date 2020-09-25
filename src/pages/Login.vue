@@ -224,9 +224,9 @@ export default {
         .then(({ data }) => {
           let { code = "", result = {}, message = "" } = data;
           if (code == Constants.CODES.SUCCESS) {
-            let { user = {} } = result || {};
+            let { user = {}, token = "" } = result || {};
             // this.setRegisterUserInfo();
-            this.setUserInfo(user || {});
+            this.setUserInfo({ ...user, token });
             // let { accountId = "" } = user || {};
             // let { query } = $route;
             // this.accountMenuHandlerAction({

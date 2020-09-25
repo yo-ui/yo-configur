@@ -32,7 +32,7 @@ const Constants = {
   WEBSOCKETEVENT: {
     //websocket 响应事件
   },
-  // AUTHORIZATION: "authorization-pie", //平台授权标识
+  AUTHORIZATION: "x-access-token", //平台授权标识
   REQUEST_TIMEOUT: 15 * 1000, //超时时间设置为15秒
   LANGMAP: {
     // code代码   name 名称   icon 图标  help 帮助中心代码

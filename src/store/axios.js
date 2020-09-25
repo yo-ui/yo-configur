@@ -56,6 +56,12 @@ async function request(type, options, callback) {
   !headers["isAjax"] && (headers["isAjax"] = true);
   !headers["X-Requested-With"] &&
     (headers["X-Requested-With"] = "XMLHttpRequest");
+  let { $store = {} } = $vm;
+  if ($store) {
+    let userInfo = $store.getters.getUserInfo;
+    let { token = "" } = userInfo || {};
+    headers[Constants.AUTHORIZATION] = token;
+  }
   bmCommon.warn("当前请求地址：", url, "当前请求参数", params);
   let data = null;
   let cancelToken = new CancelToken(cancel => {
