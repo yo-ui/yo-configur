@@ -84,6 +84,31 @@ class Edit {
           })
         }
       },
+      getDevice(id,callback) {
+        if(that.config.debug) {
+          let device = {id:'00653D5730048000',name:'设备A',
+            points:[
+              {id:'TF',name:'累积用量',value:33.22,unit:'t',type: 1,},
+              {id:'SwSts',name:'开关状态',value:1,type: 2,
+                optionValList:[
+                  {id:'',value:0,descr:'关'},
+                  {id:'',value:1,descr:'开'}
+                ]
+              }]}
+          callback.call(this, device);
+        }else {
+          let data = {}
+          data.deviceId = id;
+          RemoteObject.ajax(that.config.getDevice,"get",data,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this, result.result);
+            }else {
+              console.log(result.message);
+            }
+          })
+        }
+      },
       upload(form,file,callback) {
         if(that.config.debug) {
           let url = $(form).find('input').val();
@@ -166,6 +191,10 @@ class Edit {
 
     $('.bm-layout__header__view .fa-save').on('click',function() {
       stage.save();
+    })
+
+    $('.bm-help').on('click',function() {
+      stage.help.init();
     })
 
     let names = [

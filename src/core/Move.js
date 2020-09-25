@@ -34,7 +34,7 @@ class Move {
       if(move) {
         let left = e.pageX-x;
         let top = e.pageY-y;
-        $(".bm-global-panel").css({top:top-5,left:left});
+        $(".bm-global-panel").css({top:top,left:left});
       }
     }).mouseup(function(ev) {
       move = false;

@@ -13,8 +13,8 @@ class VerticalWater extends Spirit {
 	    this.width = 10;
 	    this.moveType = 3;
 	    this.minHeight = 10;
-	    this.zIndex = 2;
-	    this.isRotate = false;
+	    this.zIndex = 1;
+	    this.isWater = true;
 	}
 
 	template(){

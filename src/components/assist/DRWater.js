@@ -11,8 +11,8 @@ class DRWater extends Spirit {
 	    this.className = "DRWater";
 	    this.width = 10;
 	    this.height = 10;
-	    this.zIndex = 2;
-	    this.isRotate = false
+      this.zIndex = 1;
+      this.isWater = true;
 	}
 
 	template(){

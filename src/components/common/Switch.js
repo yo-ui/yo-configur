@@ -29,7 +29,7 @@ class Switch extends Spirit {
                     height: ${this.height}px;
                     width: ${this.width}px;
                     user-select: none;">
-                    <img src="" style="width:100%;height: 100%"/>
+                    <img src="${this.config.stages[this.config.value].url}" style="width:100%;height: 100%"/>
                     <div class="images-shade" style="position:absolute;top:0;width:100%;height: 100%"></div>
                   </div>	
                 </div>`)
@@ -39,13 +39,11 @@ class Switch extends Spirit {
 	  let that = this;
     that.stage = stage;
     stage.element.append(that.template());
-    let index = this.config.value;
-    $('#'+this.id).find('img').attr("src", this.config.stages[index].url)
+    that.refresh();
   }
 
   refresh() {
-    let index = this.config.value;
-    $('#'+this.id).find('img').attr("src", this.config.stages[index].url)
+    $('#'+this.id).find('img').attr("src", this.config.stages[this.config.value].url)
   }
 
 	toJson() {

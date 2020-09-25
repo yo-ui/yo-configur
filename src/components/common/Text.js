@@ -13,24 +13,27 @@ class Text extends Spirit {
 	    this.width = width;
 	    this.minWidth = 20;
 	    this.zIndex = 4;
-	    this.config = {text:'文本',color:'#000',fontSize:24}
+	    this.config = {text:'文本',color:'#000',fontSize:24,fontStyle: 'normal',fontWeight: 'normal'}
 	}
 
 	template(){
-		let div = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
-		        <div style="
-		          line-height: ${this.height}px;
-              height: ${this.height}px;
-              width: ${this.width}px;">
-			        <span style="color: ${this.config.color};font-size: ${this.config.fontSize}px">${this.config.text}</span>
-			      </div>			  
-			  </div>`)
-		return div;
+		let content = ` <div style="
+                      line-height: ${this.height}px;
+                      height: ${this.height}px;
+                      width: ${this.width}px;">
+                      <span style="color: ${this.config.color};font-size: ${this.config.fontSize}px">${this.config.text}</span>
+                    </div>`
+    return super.template().html(content);
 	}
 
 	refresh() {
 		$('#'+this.id).find('span').text(this.config.text);
-		$('#'+this.id).find('span').css({color:this.config.color,'font-size':this.config.fontSize+"px"});
+		$('#'+this.id).find('span').css({
+      color: this.config.color,
+      'font-size': this.config.fontSize+"px",
+      'font-style': this.config.fontStyle,
+      'font-weight': this.config.fontWeight,
+		});
 	}
 
 	toJson() {
@@ -47,23 +50,29 @@ class Text extends Spirit {
 		let that = this;
 		super.renderer();
 		let html = `<div class="bm-tree">字体</div>
-                  <div class="bm-cell no-hover">
-                    <div class="bm-cell__title">
-                      <div>字体颜色</div>
+                  <div class="bm-style">
+                    <div class="text">颜色：</div>	
+                    <div class="value">
                       <input class="text-color" title="字体颜色" />
-                    </div>													
+                    </div>                      										
                   </div>
-                  <div class="bm-cell no-hover">
-                    <div class="bm-cell__title">
-                      <div>字体大小</div>
+                  <div class="bm-style">
+                    <div class="text">大小：</div>	
+                    <div class="value">
                       <select class="bm-select" name="textFS" title="字体大小"></select>	
-                    </div>							
+                    </div>						
                   </div>
-                  <div class="bm-cell no-hover">
-                    <div class="bm-cell__title">
-                      <div>修改文本</div>
+                  <div class="bm-style">  
+                    <div class="text">内容：</div>	              		
+                    <div class="value">
                       <input type="text" class="text form-control" value="${this.config.text}" maxlength="32" title="字体文本" />
-                    </div>							
+                    </div>		
+                  </div>
+                  <div class="bm-style">  
+                    <div class="text">样式：</div>	              		
+                    <div class="value">
+                      <div class="bm-font-group"><span>B</span><span>I</span></div>
+                    </div>		
                   </div>`;
 		$('#configur_property').append(html);
 		let dataList = [11,13,14,15,16,18,24,30,60,100]
@@ -91,6 +100,44 @@ class Text extends Spirit {
 				that.update(text);
 			}
 		})
+
+    $('#configur_property .bm-font-group span').each(function (index) {
+      $(this).data("index", index);
+      if(index==0) {
+        if(that.config.fontWeight=="bold") {
+          $(this).addClass("active")
+        }
+      }else {
+        if(that.config.fontStyle=="italic") {
+          $(this).addClass("active")
+        }
+      }
+      $(this).on('click', function () {
+        let index = $(this).data("index");
+        if(index==0) {
+          if($(this).hasClass("active")) {
+            $(this).removeClass("active")
+            $('#'+that.id).find('span').css({'font-weight': "normal"});
+            that.config.fontWeight = "normal";
+          }else {
+            $(this).addClass("active")
+            $('#'+that.id).find('span').css({'font-weight': "bold"});
+            that.config.fontWeight = "bold";
+          }
+        }else {
+          if($(this).hasClass("active")) {
+            $(this).removeClass("active")
+            $('#'+that.id).find('span').css({'font-style': "normal"});
+            that.config.fontStyle = "normal";
+          }else {
+            $(this).addClass("active")
+            $('#'+that.id).find('span').css({'font-style': "italic"});
+            that.config.fontStyle = "italic";
+          }
+        }
+        that.text();
+      })
+    });
 	}
 
 	text() {

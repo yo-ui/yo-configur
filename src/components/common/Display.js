@@ -1,4 +1,6 @@
 import Spirit from './../../core/Spirit'
+import Toast from "../../core/Toast";
+import AnimationPanel from "../../core/AnimationPanel";
 
 /**
  * 显示器
@@ -15,13 +17,16 @@ class Display extends Spirit {
       this.linkage = false;
 	    this.isBind = true;
 	    this.bindType = 2;
-	    this.zIndex = 4;
-	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
+	    this.zIndex = 3;
+	    this.config = {
+	      bindData: {orgId:'',deviceId:'',devicePoint:''},
+        animation: {type: 1,text: '赋值',point: '',name: ''}
+	    }
 	}
 
 	template(){
-		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
+		let content = `
+		      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
                viewBox="0 0 89 43" xml:space="preserve" preserveAspectRatio="none">
             <style type="text/css">
               .display-st0{fill:#FFFFFF;}
@@ -30,7 +35,6 @@ class Display extends Spirit {
               .display-st3{fill:url(#display_4_);}
               .display-st4{fill:#9DA1A5;}
               .display-st5{fill:#848776;}
-              .display-st6{fill:#25282B;}
             </style>
             <g>
               <rect id="XMLID_656_" x="1" y="4.1" class="display-st0" width="79.5" height="38"/>
@@ -71,7 +75,8 @@ class Display extends Spirit {
                   transform: scale(0.7);             
                   vertical-align: middle;"></small>             
             </div>
-         </div>`);
+         </div>`;
+		return super.template().html(content);
 	}
 
 	//
@@ -79,7 +84,7 @@ class Display extends Spirit {
 		let that = this;
 		if(device) {
 			device.points.forEach(function(point) {
-				if(config.bindData.devicePoint==point.id) {
+				if(that.config.animation.point==point.id) {
 				  $('#'+that.id).find('.value').text(parseFloat(point.value));
           $('#'+that.id).find('.unit').text(point.unit);
           $('#temp_value').html($('#'+that.id).find('div').html());
@@ -90,6 +95,56 @@ class Display extends Spirit {
 			})
 		}
 	}
+
+  renderer() {
+    let that = this;
+    super.renderer();
+    let html = `<div class="bm-tree">动画</div>
+                <div class="bm-style">
+                  <div class="text">${this.config.animation.text}：</div>
+                  <div class="value">
+                    <span class="variable"></span>
+                    <i class="fa fa-edit" title="设置赋值变量"></i>
+                  </div>
+                </div>`;
+    $('#configur_property').append(html);
+
+    if(this.config.animation.point) {
+      let variable = $('#configur_property').find('.variable');
+      variable.text(this.config.animation.name+"("+this.config.animation.point+")");
+    }
+
+    let edit = $('#configur_property').find('.fa-edit');
+    edit.on("click",function () {
+      if(that.config.bindData.deviceId=="") {
+        Toast.alert("请先绑定设备！")
+        return;
+      }
+      that.stage.panel.init("动画->赋值",AnimationPanel.pointTemplate(),500);
+      that.stage.panel.show();
+      let deviceId = that.config.bindData.deviceId;
+      if(deviceId) {
+        that.stage.option.getDevice(deviceId,function (device) {
+          device.points.forEach(function (point) {
+            let option = $(`<option>${point.name}</option>`);
+            option.val(point.id);
+            $('.bm-configur-panel').find('[name=point]').append(option);
+          })
+        });
+      }
+      let value = that.config.animation.point;
+      $('.bm-configur-panel').find('[name=point]').val(value);
+      that.stage.panel.confirm(function () {
+        let element = $('.bm-configur-panel').find('[name=point]');
+        let value = element.val();
+        let name = element.find("option:selected").text()
+        that.config.animation.point = value;
+        that.config.animation.name = name;
+        $('#configur_property').find('.variable').text(name+"("+value+")");
+      })
+    })
+
+  }
 
 	toJson() {
 		let json = {

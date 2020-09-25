@@ -212,7 +212,6 @@ class ViewStage {
         that.groupList = [];
       }
 			this.createStage(width,height,data.background);
-      let vesselList = []
 			data.capacity.forEach(function(property) {
 			  let id = property.id;
 				let className = property.className;
@@ -226,20 +225,10 @@ class ViewStage {
         if(className=="Images") {
           let url = that.config.imgHost+"/"+spirit.config.url;
           $('#'+spirit.id).find('img').attr('src', url);
-        }else if(className=="Vessel") {
-          vesselList.push(spirit)
         }
 				spirit.refresh();
 				that.capacity.push(spirit);
 			})
-      vesselList.forEach(function (vessel) {
-        let status = vessel.config.status;
-        if(status==1) {
-          vessel.show();
-        }else if(status==2) {
-          vessel.hide();
-        }
-      })
       console.log(this.capacity);
       let ids = new Set();
 			this.capacity.forEach(function(data) {

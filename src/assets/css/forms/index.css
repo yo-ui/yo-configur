@@ -28,10 +28,10 @@ input[type="checkbox"]:focus {
   outline-offset: -2px;
 }
 .form-control {
-  display: block;
-  width: calc(100% - 10px*2);
+  display: inline-block;
+  width: calc(100% - 12px);
   height: 1.42857143;
-  padding: 8px 10px;
+  padding: 3px 5px;
   font-size: 14px;
   line-height: 1.42857143;
   color: #000;

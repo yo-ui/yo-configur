@@ -14,7 +14,6 @@ class Sdsf extends Spirit {
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 	    this.linkage = true;
-	    this.isLinkPoint = true;
 	    this.zIndex = 2;
       this.config = {
         bindData: {orgId:'',deviceId:'',devicePoint:''},
@@ -250,7 +249,7 @@ class Sdsf extends Spirit {
 			minWidth: this.minWidth,
 			minHeight: this.minHeight,
 			zIndex: this.zIndex,
-            isLinkPoint: this.isLinkPoint
+      isLinkPoint: this.isLinkPoint
 		};
 		return Object.assign(super.toJson(),json);
 	}

@@ -160,8 +160,9 @@
   top: 39px;
   margin-top: -2px;
   background-color: #fff;
-  width: calc(100% - 2px);
+  width: 100%;
   border: 1px solid #ebedf0;
+  box-shadow: 0px 1px 1px #ddd;
 }
 .bm-select-panel > div > ul {
   max-height: 240px;
@@ -242,6 +243,7 @@
 }
 .bm-password-panel__input {
   margin: 10px 20px;
+  text-align: center;
 }
 .bm-password-panel__input > input {
   display: inline-block;

@@ -18,8 +18,8 @@ class Toolbar {
             menus = [{name:'复制',icon:'fa-copy',type: 3,key:'Ctrl+C'},
                      {name:'删除',icon:'fa-delete',type: 4,key:'Ctrl+D'},
                      {name:'锁定',icon:'fa-lock',type: 9,key:'Ctrl+L'}]
-          if(property.isGroup) {
-            let menu = {name:'分组',icon:'fa-group',type: 14,key:'Ctrl+G'};
+          if(property.isCombination) {
+            let menu = {name:'取消组合',icon:'fa-resolve',type: 17,key:'Ctrl+F'};
             menus.push(menu);
           }else if(property.isBind) {
             let menu = {name:'绑定数据',icon:'fa-bind',type: 15,key:'Ctrl+B'};
@@ -42,6 +42,7 @@ class Toolbar {
                {name:'下对齐',icon:'fa-align-down',type: 8,key:'Ctrl+↓'},
                {name:'垂直平分',icon:'fa-v-divide',type: 12,key:'Ctrl+V'},
                {name:'水平平分',icon:'fa-h-divide',type: 13,key:'Ctrl+H'},
+               {name:'组合',icon:'fa-comb',type:16,key:'Ctrl+G'},
                {name:'删除',icon:'fa-delete',type:11,key:'Ctrl+D'}]
     }
 
@@ -75,6 +76,8 @@ class Toolbar {
       case 13:that.stage.vDivide();break;
       case 14:that.stage.group.show();break;
       case 15:that.stage.bindD.create();break;
+      case 16:that.stage.combination();break;
+      case 17:that.stage.resolve();break;
     }
   }
 

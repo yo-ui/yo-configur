@@ -9,7 +9,7 @@ class Keydown {
 
 	init(stage) {
 		$(document).keydown(function(e) {
-		  console.log(e.keyCode);
+		  //console.log(e.keyCode);
       if(e.ctrlKey&&e.keyCode==37) {//左对齐
         stage.align.left();
         e.preventDefault();

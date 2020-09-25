@@ -20,8 +20,8 @@ class Button extends Spirit {
 	    this.zIndex = 2;
       this.config = {
         bindData: {orgId: '', deviceId: '', devicePoint: ''},text:'按钮',
-        animation: {type: 1,text: '',name: '',id: ''},
-        groupId: ""
+        animation: {type: 1,text: '',name: '',ids: []},
+        groupId: "",
       }
       this.isGroup = true;
 	}
@@ -53,69 +53,50 @@ class Button extends Spirit {
 		return Object.assign(super.toJson(),json);
 	}
 
-  action(value,text) {
+  action(value) {
     let that = this;
-    $('.bm-configur-panel__header span').text('组件列表');
-    $('.bm-configur-panel__body').css({width:450,height:240});
     let dataList = this.stage.capacity;
     if(dataList.length>0) {
-      $('.bm-configur-panel').show();
       let ul = $(`<ul class="bm-list" style="height: 100%;overflow: auto;padding-right: 1px"></ul>`)
-      dataList.forEach(function (data) {
-        if(data.isLink) {
-          let li =  $(`<li>${data.title}</li>`)
-          li.data('id',data.id);
-          li.data('name',data.title);
-          if(data.id==that.config.animation.id&&
-            value==that.config.animation.type) {
-            li.addClass('active');
-          }
-          li.on('click',function () {
-            if($(this).hasClass('active')) {
-              that.config.animation.type = 1;
-              that.config.animation.id = "";
-              that.config.animation.name = "";
-              that.config.animation.text = "";
-              let select = $('#configur_property').find('.bm-select');
-              select.val(1);
-            }else {
-              $(this).addClass('active');
-              $(this).siblings().each(function () {
-                $(this).removeClass('active');
+      dataList.forEach(function(data) {
+          if(data.className!="Button") {
+            let li =  $(`<li>${data.name}</li>`)
+            li.data('id', data.id);
+            li.data('name', data.name);
+            if(value==that.config.animation.type) {
+              let ids = that.config.animation.ids;
+              ids.forEach(function(id) {
+                if(id==data.id) {
+                  li.addClass("active");
+                }
               })
             }
-          });
-          ul.append(li);
-        }
+            li.on('click',function() {
+              if($(this).hasClass("active")) {
+                $(this).removeClass("active");
+              }else {
+                $(this).addClass("active");
+              }
+            });
+            ul.append(li);
+          }
       });
-      $('.bm-configur-panel__content').html(ul);
+      that.stage.panel.init("组件列表",ul,450,240)
+      that.stage.panel.show();
     }else {
       Toast.alert("无联动组件！");
     }
-    $('.bm-configur-panel__close').on('click',function () {
-      $('.bm-configur-panel').hide();
-    });
-
-    $('.bm-configur-panel__floor .close').on('click',function () {
-      $('.bm-configur-panel').hide();
-    });
-
-    $('.bm-configur-panel__floor .confirm').on('click',function () {
+    that.stage.panel.confirm(function() {
+      let ids = [];
       $('.bm-configur-panel .bm-list > li').each(function () {
-        if($(this).hasClass('active')) {
-          let id = $(this).data('id');
-          let name = $(this).data('name');
-          that.config.animation.id = id;
-          that.config.animation.name = name;
-          that.config.animation.text = text;
-          that.config.animation.type = value;
-          that.animations();
-          $('.bm-configur-panel').hide();
-        }else {
-          Toast.alert("请选择组件！");
+        if($(this).hasClass("active")) {
+          let id = $(this).data("id");
+          ids.push(id);
         }
       });
-    });
+      that.config.animation.ids = ids;
+    })
+    that.config.animation.type = value;
   }
 
   initialize() {
@@ -124,13 +105,6 @@ class Button extends Spirit {
       let type = that.config.animation.type;
       if(type==1) {
         that.show();
-        if(that.config.groupId) {
-          that.stage.capacity.forEach(function (data) {
-            if(that.config.groupId==data.config.groupId&&that.id!=data.id) {
-              data.hide();
-            }
-          })
-        }
       }else if(type==2) {
         that.hide();
       }
@@ -138,29 +112,25 @@ class Button extends Spirit {
   }
 
   show() {
-    let id = this.config.animation.id;
-    let selected;
-    this.stage.capacity.forEach(function (data) {
-      if(id==data.id) {
-        selected = data;
-      }
+    let ids = this.config.animation.ids;
+    this.stage.capacity.forEach(function(data) {
+      ids.forEach(function(id) {
+        if(id==data.id) {
+          data.show();
+        }
+      })
     })
-    if(selected) {
-      selected.show();
-    }
   }
 
   hide() {
-    let id = this.config.animation.id;
-    let selected;
-    this.stage.capacity.forEach(function (data) {
-      if(id==data.id) {
-        selected = data;
-      }
+    let ids = this.config.animation.ids;
+    this.stage.capacity.forEach(function(data) {
+      ids.forEach(function(id) {
+        if(id==data.id) {
+          data.hide();
+        }
+      })
     })
-    if(selected) {
-      selected.hide();
-    }
   }
 
   animations() {
@@ -177,22 +147,21 @@ class Button extends Spirit {
 	renderer() {
     let that = this;
     super.renderer();
-    let html = `<div class="bm-cell no-hover">
-                  <div class="bm-cell__title">
-                    <div>文本</div>
-                    <input type="text" class="text form-control" value="${this.config.text}" maxlength="32" title="按钮文本" />
-                  </div>              						
-                </div>
+    let html = ` <div class="bm-tree">文本</div>
+                  <div class="bm-style">
+                    <div class="text">内容：</div>    
+                    <div class="value">
+                      <input type="text" class="text form-control" value="${this.config.text}" maxlength="32" title="按钮文本" />
+                    </div>                      
+                  </div>
+                <div class="bm-tree">动画</div>
                 <div class="bm-cell no-hover">
                   <div class="bm-cell__title">
-                    <div>动作</div>
-                    <div>
-                      <select class="bm-select" style="display: inline-block;width: 70%">
-                        <option value="1">显示</option>
-                        <option value="2">隐藏</option>
-                      </select>
-                      <span class="bm-active button button-raised button-primary button-pill" style="font-size: 13px">绑定</span>
-                    </div>
+                    <select class="bm-select" style="display: inline-block;width: 70%">
+                      <option value="1">显示</option>
+                      <option value="2">隐藏</option>
+                    </select>
+                    <span class="bm-active button button-raised button-primary button-pill" style="font-size: 13px">绑定</span>
                     <ul class="bm-action-list"></ul>
                   </div>          						
                 </div>`;
@@ -203,8 +172,7 @@ class Button extends Spirit {
     let active = $('#configur_property').find('.bm-active');
     active.on('click',function () {
       let value = select.val();
-      let text = select.find("option:selected").text();
-      that.action(value,text);
+      that.action(value);
     });
 
     that.animations();

@@ -17,6 +17,9 @@ class LinkPoint extends Spirit {
 	    this.zIndex = 4;
 	    this.isRotate = false;
 	    this.isAuto = false;
+	    this.isSubline = false;
+	    this.isSelected = false;
+      this.isWater = true;
 	}
 
 	template(){

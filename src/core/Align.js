@@ -1,3 +1,5 @@
+import Toast from "./Toast";
+
 /**
  * 对齐
  */
@@ -90,10 +92,19 @@ class Align {
 	}
   //锁定
 	lock() {
+    if(!this.stage.property.isDrag) {
+      Toast.alert("请先分解在锁定！")
+      return;
+    }
     let property = this.stage.property;
     if(property.isMove) {
       property.isMove = false;
+      let left = this.stage.property.x-1;
+      let top = this.stage.property.y-1;
+      let fa = $('<i class="bm-lock fa fa-lock"></i>');
+      $('#'+property.id).append(fa)
       this.stage.layDown();
+      $('#'+property.id).css({left,top,border:'1px dashed #ddd'})
       if(property.className=="Map") {
         $('#'+property.id).find('.images-shade').hide();
       }
@@ -104,6 +115,10 @@ class Align {
 	  let property = this.stage.property;
     if(!property.isMove) {
       property.isMove = true;
+      let left = this.stage.property.x;
+      let top = this.stage.property.y;
+      $('#'+property.id).find(".fa-lock").remove();
+      $('#'+property.id).css({left,top,border:'none'})
       $('#'+property.id).trigger('contextmenu');
       if(property.className=="Map") {
         $('#'+property.id).find('.images-shade').show();
