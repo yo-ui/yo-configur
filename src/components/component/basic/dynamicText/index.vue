@@ -83,6 +83,9 @@ export default {
       };
       if (textAlign) {
         styles["textAlign"] = textAlign;
+        if (textAlign == "justify") {
+          styles["text-align-last"] = textAlign;
+        }
       }
       if (shadowable) {
         let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =

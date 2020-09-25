@@ -313,7 +313,7 @@ export default {
 
     // 调整元件尺寸
     resize(state, item) {
-      let { x, y, type = "" } = item || {};
+      let { x, y, direction = "" } = item || {};
       let {
         startX,
         startY,
@@ -330,7 +330,7 @@ export default {
       let value, width, height, rotate;
       let { equalScaleable = false } = activeCom || {};
 
-      if (type === "right") {
+      if (direction === "right") {
         value = originWidth + Math.floor((dx * 1) / zoom);
         if (value > 10) {
           activeCom.width = value;
@@ -341,7 +341,7 @@ export default {
         return;
       }
 
-      if (type === "top") {
+      if (direction === "top") {
         height = originHeight - Math.floor((dy * 1) / zoom);
         if (height > 10) {
           activeCom.top -= height - activeCom.height;
@@ -352,7 +352,7 @@ export default {
         }
       }
 
-      if (type === "bottom") {
+      if (direction === "bottom") {
         value = originHeight + Math.floor((dy * 1) / zoom);
         if (value > 10) {
           activeCom.height = value > 10 ? value : 10;
@@ -363,7 +363,7 @@ export default {
         return;
       }
 
-      if (type === "left") {
+      if (direction === "left") {
         width = originWidth - Math.floor((dx * 1) / zoom);
         if (width > 10) {
           activeCom.left -= width - activeCom.width;
@@ -375,7 +375,7 @@ export default {
         return;
       }
 
-      if (type === "topleft") {
+      if (direction === "topleft") {
         width = originWidth - Math.floor((dx * 1) / zoom);
         height = originHeight - Math.floor((dy * 1) / zoom);
         if (equalScaleable) {
@@ -393,7 +393,7 @@ export default {
         }
         return;
       }
-      if (type === "topright") {
+      if (direction === "topright") {
         width = originWidth + Math.floor((dx * 1) / zoom);
         height = originHeight - Math.floor((dy * 1) / zoom);
         if (equalScaleable) {
@@ -412,7 +412,7 @@ export default {
         return;
       }
 
-      if (type === "bottomleft") {
+      if (direction === "bottomleft") {
         height = originHeight + Math.floor((dy * 1) / zoom);
         width = originWidth - Math.floor((dx * 1) / zoom);
         if (equalScaleable) {
@@ -430,7 +430,7 @@ export default {
         }
         return;
       }
-      if (type === "bottomright") {
+      if (direction === "bottomright") {
         height = originHeight + Math.floor((dy * 1) / zoom);
         width = originWidth + Math.floor((dx * 1) / zoom);
         if (equalScaleable) {
@@ -448,7 +448,7 @@ export default {
         }
         return;
       }
-      if (type === "rotate") {
+      if (direction === "rotate") {
         rotate = (originRotate + Math.floor((dx * 1) / zoom)) % 360;
         activeCom.rotate = rotate;
         return;

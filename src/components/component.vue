@@ -206,7 +206,7 @@ export default {
         }
       });
     },
-    mousedownEvent(e, type) {
+    mousedownEvent(e, direction) {
       e.stopPropagation();
       e.preventDefault();
       let { info = {} } = this;
@@ -219,7 +219,7 @@ export default {
         top,
         rotate: originRotate = ""
       } = info || {};
-      this.type = type;
+      this.direction = direction;
       this.initMove({
         startX: x,
         startY: y,
@@ -237,11 +237,11 @@ export default {
       e.preventDefault();
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
-      let { type = "" } = this;
+      let { direction = "" } = this;
       this.resize({
         x,
         y,
-        type
+        direction
       });
     },
     mouseupEvent(e) {

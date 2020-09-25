@@ -4,11 +4,11 @@
         :style="comStyle"
       /> -->
   <div class="bm-basic-image-com" :style="comStyle">
-    <bm-upload
+    <!-- <bm-upload
       ref="bmUpload"
       v-if="!info.backgroundImage"
       @success="successCallback"
-    ></bm-upload>
+    ></bm-upload> -->
   </div>
 </template>
 
@@ -27,10 +27,10 @@ export default {
     }
   },
   components: {
-    bmUpload: () =>
-      import(
-        /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
-      )
+    // bmUpload: () =>
+    //   import(
+    //     /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
+    //   )
   },
   computed: {
     //渐变颜色样式
@@ -103,25 +103,25 @@ export default {
           styles["backgroundImage"] = `url(${this.$loadImgUrl(
             backgroundImage
           )})`;
+          if (backgroundRepeat) {
+            styles["backgroundRepeat"] = backgroundRepeat;
+          }
+          if (backgroundSize) {
+            styles["backgroundSize"] = backgroundSize;
+          }
         }
       } else if (backgroundType == "gradient") {
         //渐变
         styles = { ...styles, ...gradientStyle };
       }
-      if (backgroundRepeat) {
-        styles["backgroundRepeat"] = backgroundRepeat;
-      }
-      if (backgroundSize) {
-        styles["backgroundSize"] = backgroundSize;
-      }
       return styles || {};
     }
   },
   methods: {
-    successCallback(url) {
-      let { info = {} } = this;
-      info.backgroundImage = url;
-    }
+    // successCallback(url) {
+    //   let { info = {} } = this;
+    //   info.backgroundImage = url;
+    // }
   }
 };
 </script>

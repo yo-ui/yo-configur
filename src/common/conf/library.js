@@ -169,24 +169,8 @@ export default [
         icon: "/static/img/configur/img.png",
         data: {
           ...baseData,
-          // backgroundImage: "",
-          // backgroundSize: "100% 100%",
-          // backgroundRepeat: "repeat",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // rotate: 0,
-          width: 360,
-          height: 220
-          // left: 0,
-          // opacity: 100,
-          // top: 0,
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
+          width: 160,
+          height: 160
         }
       },
       {
@@ -196,29 +180,12 @@ export default [
         data: {
           ...baseData,
           color: "#fff",
-          // borderColor: "#eee",
-          // borderStyle: "solid",
           borderRadius: 20,
-          // borderWidth: 1,
-          // backgroundColor: "#fff",
-          // backgroundImage: "",
-          // fontWeight: "",
           dataType: "device",
-          // textDecoration: "",
-          // fontStyle: "",
-          // fontSize: 14,
-          // fontFamily: "",
-          // left: 500,
           width: "",
           height: "",
-          // rotate: 0,
-          // top: 0,
-          // opacity: 100,
           content: "控制",
           scaleable: false //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
         }
       },
       {
@@ -229,23 +196,12 @@ export default [
           ...baseData,
           content: "00.00",
           fontWeight: "bold",
-          // textDecoration: "",
-          // fontStyle: "",
-          // opacity: 100,
           fontSize: 18,
           fontFamily: "lcdD",
           dataType: "point",
-          // originWidth: "", //原宽
-          // originHeight: "", //原高
-          // left: 0,
           width: 75,
           height: 36,
-          // rotate: 0,
-          // top: 0,
           scaleable: false //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
         }
       },
       {
@@ -259,18 +215,10 @@ export default [
           borderRadius: 0,
           borderWidth: 1,
           dataType: "point",
-          // opacity: 100,
-          // originWidth: "", //原宽
-          // originHeight: "", //原高
           width: "",
           height: "",
-          // left: 0,
-          // rotate: 0,
-          // top: 0,
           scaleable: false, //是否可缩放操作
           rotateable: false //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
         }
       },
       {
@@ -300,13 +248,6 @@ export default [
         icon: "/static/img/configur/visualtable.png",
         data: {
           ...baseData,
-          // borderColor: "#eee",
-          // borderStyle: "solid",
-          // borderRadius: 0,
-          // borderWidth: 1,
-          // opacity: 100,
-          // originWidth: "", //原宽
-          // originHeight: "", //原高
           width: 800,
           height: 500,
           headerable: true,
@@ -334,13 +275,45 @@ export default [
             cSplitBorderColor: "#4195ea", //列分隔线颜色
             rSplitBorderColor: "#4195ea" //行分隔线颜色
           }
-          // left: 0,
-          // rotate: 0,
-          // top: 0,
-          // scaleable: false, //是否可缩放操作
-          // rotateable: false, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
+        }
+      },
+      {
+        name: "记分牌",
+        code: "scoreBoard",
+        icon: "/static/img/configur/scoreboard.png",
+        data: {
+          ...baseData,
+          originWidth: "", //原宽
+          originHeight: "", //原高
+          width: "",
+          height: "",
+          integer: 6, //整数位
+          integerSeat: "", // 空白  0  #
+          decimal: 4, //小数位
+          decimalSeat: "0", //  0  #
+          scaleable: false,
+          value: 100.10, //数值
+          board: {
+            width: 20,
+            height: 30,
+            fontSize: 28,
+            fontFamily: "Impact",
+            backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
+            gradientStyle: {
+              type: "linear", //渐变类型  linear 线性  radial 径向
+              angle: 0,
+              center: "50% 50%",
+              values: [0, 100],
+              radialShape: "circle",
+              valueIndex: 0,
+              valueOptions: [
+              ],
+              valueList: [
+                { code: "#108cee", value: 0 },
+                { code: "#545fc8", value: 100 }
+              ]
+            }
+          }
         }
       }
     ]

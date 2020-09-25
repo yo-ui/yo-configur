@@ -100,7 +100,8 @@ export default {
       // bmCommon.log("进入目标元素", e.target);
       $(document).on("dragover", this.dragoverEvent);
       // $(document).on("dragleave", this.dragleaveEvent);
-      $(document).on("drop", this.dropEvent);
+      // $(document).on("drop", this.dropEvent);
+      $(".content-box").on("drop", this.dropEvent);
     },
     dragoverEvent(e) {
       e.stopPropagation();
@@ -125,13 +126,14 @@ export default {
       let offset = $(".view-box").offset();
       let { dataTransfer = {} } = originalEvent;
       let data = dataTransfer.getData("data");
-      let target = originalEvent.target;
+      // let target = originalEvent.target;
       if (
-        data &&
-        ($(target).hasClass("canvas-box") ||
-          $(target)
-            .parent()
-            .hasClass("canvas-box"))
+        data 
+        // &&
+        // ($(target).hasClass("canvas-box") ||
+        //   $(target)
+        //     .parent()
+        //     .hasClass("canvas-box"))
       ) {
         data = typeof data === "string" ? JSON.parse(data) : {};
         let id = bmCommon.uuid();

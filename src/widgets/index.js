@@ -35,6 +35,10 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-richText" */ "@/components/component/basic/richText/index.vue"
     ),
+  scoreBoardCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-scoreBoard" */ "@/components/component/basic/scoreBoard/index.vue"
+    ),
 
   videoCom: () =>
     import(
@@ -109,6 +113,10 @@ let styles = {
   richTextStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-richText-style" */ "@/components/component/basic/richText/style.vue"
+    ),
+  scoreBoardStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-scoreBoard-style" */ "@/components/component/basic/scoreBoard/style.vue"
     ),
 
   videoStyleCom: () =>
