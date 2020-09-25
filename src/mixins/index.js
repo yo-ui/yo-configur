@@ -15,7 +15,10 @@ export default {
       //   originX: activeCom.left,
       //   originY: activeCom.top
       // })
-      let { left, top, width, height } = activeCom || {};
+      let { left, top, width, height, editable = false } = activeCom || {};
+      if (!editable) {
+        e.preventDefault();
+      }
       this.initMove({
         startX: x,
         startY: y,
