@@ -15,7 +15,7 @@
             <span class="name">{{ item.name }}</span>
             <span class="time"
               >{{ $moment(item.time).fromNow() }}
-              <i class="el-icon-delete" @click="removeEvent(item)"></i
+              <i class="el-icon-delete" @click="deleteEvent(item)"></i
             ></span>
           </el-radio>
         </el-radio-group>
@@ -117,12 +117,13 @@ export default {
       this.setWidgetList(widgetList);
       this.showDialogStatus = false;
     },
-    removeEvent(item) {
+    deleteEvent(item) {
       let { id = "" } = item || {};
       let { recordList = [] } = this;
       let index = recordList.findIndex(item => item.id == id);
       recordList.splice(index, 1);
       this.setRecordList(recordList);
+      this.record = null;
     },
     // 切换每页数据
     handleSizeChangeEvent(val) {
