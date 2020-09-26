@@ -313,7 +313,7 @@ export default {
 
     // 调整元件尺寸
     resize(state, item) {
-      let { x, y, direction = "", e = window.event } = item || {};
+      let { x, y, direction = "", e = window.event,bmCom } = item || {};
       let {
         startX,
         startY,
@@ -449,7 +449,7 @@ export default {
         return;
       }
       if (direction === "rotate") {
-        rotate = (originRotate + Math.floor((dx * 1) / zoom)) % 360;
+        // rotate = (originRotate + Math.floor((dx * 1) / zoom)) % 360;
         // var offsetX = containerOffset['left'];
         // var offsetY = containerOffset['top'];
         // var mouseX = ev.pageX - offsetX;//计算出鼠标相对于画布顶点的位置,无pageX时用clientY + body.scrollTop - body.clientTop代替,可视区域y+body滚动条所走的距离-body的border-top,不用offsetX等属性的原因在于，鼠标会移出画布
@@ -458,8 +458,8 @@ export default {
         // let cx = left + width / 2;
         // let cy = top + height / 2;
         // let pos = bmCommon.getMousePosition(e);
-        // var mouseX = pos.x - startX; //计算出鼠标相对于画布顶点的位置,无pageX时用clientY + body.scrollTop - body.clientTop代替,可视区域y+body滚动条所走的距离-body的border-top,不用offsetX等属性的原因在于，鼠标会移出画布
-        // var mouseY = pos.y - startY;
+        // var mouseX = pos.x; //计算出鼠标相对于画布顶点的位置,无pageX时用clientY + body.scrollTop - body.clientTop代替,可视区域y+body滚动条所走的距离-body的border-top,不用offsetX等属性的原因在于，鼠标会移出画布
+        // var mouseY = pos.y;
         // var ox = mouseX - cx; //cx,cy为圆心
         // var oy = mouseY - cy;
         // var to = Math.abs(ox / oy);
@@ -477,6 +477,48 @@ export default {
         //   //右下角，2象限
         //   angle = 180 - angle;
         // }
+        // rotate=angle-originRotate
+        // state.originRotate = rotate;
+        // let { left = 0, top = 0, width = 0, height = 0 } = activeCom || {};
+        // let {left = 0, top = 0, width = 0, height = 0}=bmCom.$el.getBoundingClientRect()
+        // // let cx = left + width / 2;
+        // // let cx=bmCom.
+        // let cx = left + width / 2;
+        // let cy = top + height / 2;
+        // let pos = bmCommon.getMousePosition(e);
+        // var mouseX = pos.x; //计算出鼠标相对于画布顶点的位置,无pageX时用clientY + body.scrollTop - body.clientTop代替,可视区域y+body滚动条所走的距离-body的border-top,不用offsetX等属性的原因在于，鼠标会移出画布
+        // var mouseY = pos.y;
+        // var ox = Math.abs(mouseX - cx); //cx,cy为圆心
+        // var oy = Math.abs(mouseY - cy);
+        // // 避免水平和垂直位置的就相当于和坐标轴相交的时候设置除数为0或者不知道为360度还是180度
+        // oy === 0 && (oy = 0.01);
+        // ox === 0 && (ox = 0.01);
+        // rotate = (Math.atan(ox / oy) / (2 * Math.PI)) * 360;
+
+        // // 第一象限
+        // if (pos.x > cx && pos.y < cy) {
+        //   // console.log("第一象限");
+        //   // setRotate(roateBox, degEnd);
+        // }
+        // // 第二象限
+        // if (pos.x > cx && pos.y > cy) {
+        //   // console.log("第二象限");
+        //   // setRotate(roateBox, (180 - degEnd));
+        //   rotate = 180 - rotate;
+        // }
+        // // 第三象限
+        // if (pos.x < cx && pos.y > cy) {
+        //   // console.log("第三象限");
+        //   // setRotate(roateBox, (degEnd + 180));
+        //   rotate = 180 + rotate;
+        // }
+        // // 第四象限
+        // if (pos.x < cx && pos.y < cy) {
+        //   // console.log("第四象限");
+        //   // setRotate(roateBox, (360 - degEnd));
+        //   rotate = 360 - rotate;
+        // }
+        // state.originRotate = rotate;
         // let { left = 0, top = 0, width = 0, height = 0 } = activeCom || {};
         // let pos = bmCommon.getMousePosition(e);
         // let end = {
@@ -498,19 +540,19 @@ export default {
         //   angle = 270 - value;
         // }
         // let rotate = parseInt(angle + 0.5);
-        // let { left = 0, top = 0, width = 0, height = 0 } = activeCom || {};
-        // let center = { x: left + width / 2, y: top + height / 2 };
-        // let pos = bmCommon.getMousePosition(e);
-        // let y0 = startY - center.y,
-        //   x0 = startX - center.x,
-        //   y = pos.y - center.y,
-        //   x = pos.x - center.x;
-        // let deg = Math.atan2(y, x) - Math.atan2(y0, x0);
-        // let angle = ((180 * deg) / Math.PI);
-        // rotate = angle + originRotate;
-        // state.startX = pos.x;
-        // state.startY = pos.y;
-        // state.originRotate = rotate;
+        let {left = 0, top = 0, width = 0, height = 0}=bmCom.$el.getBoundingClientRect()
+        let center = { x: left + width / 2, y: top + height / 2 };
+        let pos = bmCommon.getMousePosition(e);
+        let y0 = startY - center.y,
+          x0 = startX - center.x,
+          y = pos.y - center.y,
+          x = pos.x - center.x;
+        let deg = Math.atan2(y, x) - Math.atan2(y0, x0);
+        let angle = ((180 * deg) / Math.PI);
+        rotate = angle + originRotate;
+        state.startX = pos.x;
+        state.startY = pos.y;
+        state.originRotate = rotate;
         activeCom.rotate = rotate;
         return;
       }

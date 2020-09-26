@@ -115,7 +115,8 @@ export default {
       // bmCommon.log("离开当前元素", e.target);
       // $(document).off("dragleave", this.dragleaveEvent);
       $(document).off("dragover", this.dragoverEvent);
-      $(document).off("drop", this.dropEvent);
+      // $(document).off("drop", this.dropEvent);
+      $(".content-box").off("drop", this.dropEvent);
     },
     dropEvent(e) {
       e.preventDefault();

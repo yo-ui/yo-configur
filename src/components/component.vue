@@ -238,10 +238,12 @@ export default {
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
       let { direction = "" } = this;
+      let bmCom=this.$refs.bmCom
       this.resize({
         x,
         y,
         e,
+        bmCom,
         direction
       });
     },
