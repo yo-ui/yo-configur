@@ -241,6 +241,7 @@ export default {
       this.resize({
         x,
         y,
+        e,
         direction
       });
     },

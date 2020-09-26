@@ -168,6 +168,7 @@ export default {
       let {
         width = "",
         height = "",
+        distance = 0,
         textAlign = "",
         fontFamily = "",
         color = "",
@@ -181,7 +182,9 @@ export default {
         backgroundRepeat = "",
         backgroundSize = ""
       } = board || {};
-      let styles = {};
+      let styles = {
+        marginRight: `${distance}px`
+      };
       if (width) {
         styles["width"] = `${width}px`;
       }

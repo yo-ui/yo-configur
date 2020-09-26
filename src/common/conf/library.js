@@ -288,15 +288,16 @@ export default [
           width: "",
           height: "",
           integer: 6, //整数位
-          integerSeat: "", // 空白  0  #
+          integerSeat: "#", // 空白  0  #
           decimal: 4, //小数位
           decimalSeat: "0", //  0  #
           scaleable: false,
-          value: 100.10, //数值
+          value: 100.1, //数值
           board: {
             width: 20,
             height: 30,
             fontSize: 28,
+            distance: 8, //卡片间距
             fontFamily: "Impact",
             backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
             gradientStyle: {
@@ -306,8 +307,7 @@ export default [
               values: [0, 100],
               radialShape: "circle",
               valueIndex: 0,
-              valueOptions: [
-              ],
+              valueOptions: [],
               valueList: [
                 { code: "#108cee", value: 0 },
                 { code: "#545fc8", value: 100 }
@@ -315,7 +315,150 @@ export default [
             }
           }
         }
-      }
+      },{
+        name: "时间",
+        code: "timeText",
+        icon: "/static/img/configur/timeclock.png",
+        data: {
+          ...baseData,
+          dataType: "point",
+          fontWeight: "bold",
+          fontSize: 24,
+          fontFamily: "lcdD",
+          width: "",
+          height: "",
+          content: "00.00",
+          scaleable: false //是否可缩放操作
+        }
+      },
+      {
+        name: "倒计时",
+        code: "countdownText",
+        icon: "/static/img/configur/timeclock.png",
+        data: {
+          ...baseData,
+          dataType: "point",
+          fontWeight: "bold",
+          fontSize: 24,
+          fontFamily: "lcdD",
+          width: "",
+          height: "",
+          content: "00.00",
+          scaleable: false //是否可缩放操作
+        }
+      },
+      {
+        name: "轮播图",
+        code: "countdownText",
+        icon: "/static/img/configur/timeclock.png",
+        data: {
+          ...baseData,
+          dataType: "point",
+          fontWeight: "bold",
+          fontSize: 24,
+          fontFamily: "lcdD",
+          width: "",
+          height: "",
+          content: "00.00",
+          scaleable: false //是否可缩放操作
+        }
+      },
+      {
+        name: "HLS视频流",
+        code: "countdownText",
+        icon: "/static/img/configur/timeclock.png",
+        data: {
+          ...baseData,
+          dataType: "point",
+          fontWeight: "bold",
+          fontSize: 24,
+          fontFamily: "lcdD",
+          width: "",
+          height: "",
+          content: "00.00",
+          scaleable: false //是否可缩放操作
+        }
+      },
+      {
+        name: "百分比条",
+        code: "countdownText",
+        icon: "/static/img/configur/timeclock.png",
+        data: {
+          ...baseData,
+          dataType: "point",
+          fontWeight: "bold",
+          fontSize: 24,
+          fontFamily: "lcdD",
+          width: "",
+          height: "",
+          content: "00.00",
+          scaleable: false //是否可缩放操作
+        }
+      },
+      {
+        name: "iframe",
+        code: "countdownText",
+        icon: "/static/img/configur/timeclock.png",
+        data: {
+          ...baseData,
+          dataType: "point",
+          fontWeight: "bold",
+          fontSize: 24,
+          fontFamily: "lcdD",
+          width: "",
+          height: "",
+          content: "00.00",
+          scaleable: false //是否可缩放操作
+        }
+      },
+      {
+        name: "下拉筛选框",
+        code: "countdownText",
+        icon: "/static/img/configur/timeclock.png",
+        data: {
+          ...baseData,
+          dataType: "point",
+          fontWeight: "bold",
+          fontSize: 24,
+          fontFamily: "lcdD",
+          width: "",
+          height: "",
+          content: "00.00",
+          scaleable: false //是否可缩放操作
+        }
+      },
+      {
+        name: "按钮标题",
+        code: "countdownText",
+        icon: "/static/img/configur/timeclock.png",
+        data: {
+          ...baseData,
+          dataType: "point",
+          fontWeight: "bold",
+          fontSize: 24,
+          fontFamily: "lcdD",
+          width: "",
+          height: "",
+          content: "00.00",
+          scaleable: false //是否可缩放操作
+        }
+      },
+      {
+        name: "开关",
+        code: "countdownText",
+        icon: "/static/img/configur/timeclock.png",
+        data: {
+          ...baseData,
+          dataType: "point",
+          fontWeight: "bold",
+          fontSize: 24,
+          fontFamily: "lcdD",
+          width: "",
+          height: "",
+          content: "00.00",
+          scaleable: false //是否可缩放操作
+        }
+      },
     ]
   },
   {

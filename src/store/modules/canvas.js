@@ -313,7 +313,7 @@ export default {
 
     // 调整元件尺寸
     resize(state, item) {
-      let { x, y, direction = "" } = item || {};
+      let { x, y, direction = "", e = window.event } = item || {};
       let {
         startX,
         startY,
@@ -450,6 +450,67 @@ export default {
       }
       if (direction === "rotate") {
         rotate = (originRotate + Math.floor((dx * 1) / zoom)) % 360;
+        // var offsetX = containerOffset['left'];
+        // var offsetY = containerOffset['top'];
+        // var mouseX = ev.pageX - offsetX;//计算出鼠标相对于画布顶点的位置,无pageX时用clientY + body.scrollTop - body.clientTop代替,可视区域y+body滚动条所走的距离-body的border-top,不用offsetX等属性的原因在于，鼠标会移出画布
+        // var mouseY = ev.pageY - offsetY;
+        // let { left = 0, top = 0, width = 0, height = 0 } = activeCom || {};
+        // let cx = left + width / 2;
+        // let cy = top + height / 2;
+        // let pos = bmCommon.getMousePosition(e);
+        // var mouseX = pos.x - startX; //计算出鼠标相对于画布顶点的位置,无pageX时用clientY + body.scrollTop - body.clientTop代替,可视区域y+body滚动条所走的距离-body的border-top,不用offsetX等属性的原因在于，鼠标会移出画布
+        // var mouseY = pos.y - startY;
+        // var ox = mouseX - cx; //cx,cy为圆心
+        // var oy = mouseY - cy;
+        // var to = Math.abs(ox / oy);
+        // let angle = (Math.atan(to) / (2 * Math.PI)) * 360; //鼠标相对于旋转中心的角度
+        // if (ox < 0 && oy < 0) {
+        //   //相对在左上角，第四象限，js中坐标系是从左上角开始的，这里的象限是正常坐标系
+        //   angle = -angle;
+        // } else if (ox < 0 && oy > 0) {
+        //   //左下角,3象限
+        //   angle = -(180 - angle);
+        // } else if (ox > 0 && oy < 0) {
+        //   //右上角，1象限
+        //   // angle = angle;
+        // } else if (ox > 0 && oy > 0) {
+        //   //右下角，2象限
+        //   angle = 180 - angle;
+        // }
+        // let { left = 0, top = 0, width = 0, height = 0 } = activeCom || {};
+        // let pos = bmCommon.getMousePosition(e);
+        // let end = {
+        //   x: pos.x - left-(left + width / 2 ),
+        //   y: top + height / 2  - (pos.y-top)
+        // };
+        // let angle = 0;
+        // let start = { x: 0, y: 0 };
+        // let diff_x = end.x - start.x,
+        //   diff_y = end.y - start.y;
+        // let value = (360 * Math.atan(diff_y / diff_x)) / (2 * Math.PI);
+        // if (diff_x > 0 && diff_y >= 0) {
+        //   angle = 90 - value;
+        // } else if (diff_x >= 0 && diff_y < 0) {
+        //   angle = 90 - value;
+        // } else if (diff_x < 0 && diff_y <= 0) {
+        //   angle = 270 - value;
+        // } else if (diff_x < 0 && diff_y > 0) {
+        //   angle = 270 - value;
+        // }
+        // let rotate = parseInt(angle + 0.5);
+        // let { left = 0, top = 0, width = 0, height = 0 } = activeCom || {};
+        // let center = { x: left + width / 2, y: top + height / 2 };
+        // let pos = bmCommon.getMousePosition(e);
+        // let y0 = startY - center.y,
+        //   x0 = startX - center.x,
+        //   y = pos.y - center.y,
+        //   x = pos.x - center.x;
+        // let deg = Math.atan2(y, x) - Math.atan2(y0, x0);
+        // let angle = ((180 * deg) / Math.PI);
+        // rotate = angle + originRotate;
+        // state.startX = pos.x;
+        // state.startY = pos.y;
+        // state.originRotate = rotate;
         activeCom.rotate = rotate;
         return;
       }

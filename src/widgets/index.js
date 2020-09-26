@@ -39,6 +39,14 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-scoreBoard" */ "@/components/component/basic/scoreBoard/index.vue"
     ),
+  timeTextCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-timeText" */ "@/components/component/basic/timeText/index.vue"
+    ),
+  countdownTextCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-countdownText" */ "@/components/component/basic/countdownText/index.vue"
+    ),
 
   videoCom: () =>
     import(
@@ -117,6 +125,14 @@ let styles = {
   scoreBoardStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-scoreBoard-style" */ "@/components/component/basic/scoreBoard/style.vue"
+    ),
+  timeTextStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-timeText-style" */ "@/components/component/basic/timeText/style.vue"
+    ),
+  countdownTextStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-countdownText-style" */ "@/components/component/basic/countdownText/style.vue"
     ),
 
   videoStyleCom: () =>
