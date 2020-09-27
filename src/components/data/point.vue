@@ -7,58 +7,101 @@
     :visible.sync="showDialogStatus"
     width="500px"
   >
-    <el-popover
-      placement="bottom-start"
-      popper-class="org-list-popper"
-      width="330"
-      trigger="click"
-      v-model="showPopoverStatus"
+    <el-form
+      ref="form"
+      :model="condition"
+      :show-message="$store.state.showMessage"
+      :status-icon="false"
+      autocomplete="off"
+      label-width="100px"
     >
-      <!-- <el-button slot="reference">content</el-button> -->
-      <el-input
-        class="search-box"
-        v-model="condition.orgName"
-        slot="reference"
-        :placeholder="$lang('请选择位置')"
-        readonly
-        suffix-icon="el-icon-arrow-down"
-      ></el-input>
-      <el-input
-        v-model="condition.orgKeywords"
-        :placeholder="$lang('请输入搜索关键字(组织名称)')"
-        suffix-icon="el-icon-search"
-        clearable
-      ></el-input>
-      <el-tree
-        ref="tree"
-        :default-expanded-keys="defaultExpandedKeys"
-        :filter-node-method="filterTree"
-        default-expand-all
-        :check-strictly="true"
-        :expand-on-click-node="false"
-        @node-click="nodeClickEvent"
-        node-key="id"
-        :props="{ label: 'name' }"
-        :data="treeData"
-      >
-        <template slot-scope="{ node, data }">
-          <el-tooltip
-            effect="dark"
-            :content="$lang(node.label)"
-            placement="right"
+      <el-form-item prop="orgId" :label="$lang('组织名称')">
+        <el-popover
+          placement="bottom-start"
+          popper-class="org-list-popper"
+          width="330"
+          trigger="click"
+          v-model="showPopoverStatus"
+        >
+          <!-- <el-button slot="reference">content</el-button> -->
+          <el-input
+            class="search-box"
+            v-model="condition.orgName"
+            slot="reference"
+            :placeholder="$lang('请选择组织')"
+            readonly
+            suffix-icon="el-icon-arrow-down"
+          ></el-input>
+          <el-input
+            v-model="condition.orgKeywords"
+            :placeholder="$lang('请输入搜索关键字(组织名称)')"
+            suffix-icon="el-icon-search"
+            clearable
+          ></el-input>
+          <el-tree
+            ref="tree"
+            :default-expanded-keys="defaultExpandedKeys"
+            :filter-node-method="filterTree"
+            default-expand-all
+            :check-strictly="true"
+            :expand-on-click-node="false"
+            @node-click="nodeClickEvent"
+            node-key="id"
+            :props="{ label: 'name' }"
+            :data="treeData"
           >
-            <span class="tree-txt"
-              ><i class="bm-icon" :class="'bm-icon-tree-' + data.type"></i
-              >{{ $lang(node.label) }}</span
-            >
-          </el-tooltip>
-        </template>
-      </el-tree>
-    </el-popover>
+            <template slot-scope="{ node, data }">
+              <el-tooltip
+                effect="dark"
+                :content="$lang(node.label)"
+                placement="right"
+              >
+                <span class="tree-txt"
+                  ><i class="bm-icon" :class="'bm-icon-tree-' + data.type"></i
+                  >{{ $lang(node.label) }}</span
+                >
+              </el-tooltip>
+            </template>
+          </el-tree>
+        </el-popover>
+      </el-form-item>
+
+      <el-form-item prop="deviceId" :label="$lang('设备名称')">
+        <el-select
+          v-model="device"
+          filterable
+          @change="selectDeviceEvent"
+          value-key="id"
+          placeholder="请选择设备名称"
+        >
+          <el-option
+            v-for="item in deviceList"
+            :key="item.id"
+            :label="item.name"
+            :value="item"
+          >
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item prop="pointId" :label="$lang('点位名称')">
+        <el-select
+          v-model="condition.pointId"
+          filterable
+          placeholder="请选择设备名称"
+        >
+          <el-option
+            v-for="item in pointList"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id"
+          >
+          </el-option> </el-select
+      ></el-form-item>
+    </el-form>
     <template #footer>
       <el-button @click="closeEvent">{{ $lang("关闭") }}</el-button>
-      <el-button type="primary" :disabled="!record" @click="submitEvent">{{
-        $lang("回退")
+      <el-button type="primary" @click="submitEvent">{{
+        $lang("确定")
       }}</el-button>
     </template>
   </el-dialog>
@@ -74,12 +117,19 @@ export default {
   data() {
     return {
       showDialogStatus: false,
-      record: null,
+      deviceList: [],
+      pointList: [],
+      device: {},
       showPopoverStatus: false,
       defaultExpandedKeys: [],
       condition: {
         orgKeywords: "",
-        orgName: ""
+        orgName: "",
+        orgId: "",
+        deviceId: "",
+        pointId: "",
+        deviceName: "",
+        pointName: ""
       }
     };
   },
@@ -100,33 +150,66 @@ export default {
     ...mapMutations({
       // setActiveCom: "canvas/setActiveCom",
       // setZoom: "canvas/setZoom",
-      setWidgetList: "canvas/setWidgetList",
-      setOrganizeList: "common/setOrganizeList"
+      setWidgetList: "canvas/setWidgetList"
       // setLeftMenuStatus: "canvas/setLeftMenuStatus",
       // setRightMenuStatus: "canvas/setRightMenuStatus"
     }),
     ...mapActions({
       // selectComAction: "canvas/selectCom"
-      orgStrucListByLevelAction: "orgStrucListByLevel"
+      commonDevicePointsAction: "commonDevicePoints"
     }),
     // 初始化
     init() {
       // this.storeProductFunc();
-      this.orgStrucListByLevelFunc((list = []) => {
-        let [org = {}] = list || [];
-        let { id = "" } = org || {};
-        // condition.orgId = id;
-        // condition.orgName = name;
-        this.defaultExpandedKeys = [id];
-        // this.$nextTick(() => {
-        //   this.$refs.tree?.setCurrentKey(id);
-        // });
-        // this.loadReportDeviceList();
-      });
+      // this.orgStrucListByLevelFunc((list = []) => {
+      // let [org = {}] = list || [];
+      // let { id = "" } = org || {};
+      // // condition.orgId = id;
+      // // condition.orgName = name;
+      // this.defaultExpandedKeys = [id];
+      // this.$nextTick(() => {
+      //   this.$refs.tree?.setCurrentKey(id);
+      // });
+      // this.loadReportDeviceList();
+      // });
     },
     show() {
+      let { treeData = [], condition } = this;
+      let [org = {}] = treeData || [];
+      let { id = "", name = "" } = org || {};
+      condition.orgId = id;
+      condition.orgName = name;
+      this.defaultExpandedKeys = [id];
       this.showDialogStatus = true;
-      this.record = null;
+      this.device = "";
+      condition.deviceId = "";
+      condition.pointId = "";
+      this.deviceList = null;
+      this.pointList = null;
+      this.loadDeviceList();
+    },
+    loadDeviceList() {
+      let { condition } = this;
+      this.commonDevicePointsFunc((list = []) => {
+        this.deviceList = list || [];
+        let [device = {}] = list || [];
+        let { points = [], id = "" } = device || {};
+        condition.deviceId = id;
+        this.device = device || {};
+        this.pointList = points || [];
+        let [point = {}] = points || [];
+        let { id: pointId = "" } = point || {};
+        condition.pointId = pointId;
+      });
+    },
+    selectDeviceEvent() {
+      let { condition } = this;
+      let { device = {} } = this;
+      let { points = [] } = device || {};
+      this.pointList = points || [];
+      let [point = {}] = points || [];
+      let { id: pointId = "" } = point || {};
+      condition.pointId = pointId;
     },
     closeEvent() {
       this.showDialogStatus = false;
@@ -149,6 +232,7 @@ export default {
       this.defaultExpandedKeys = [id];
       this.showPopoverStatus = false;
       // this.loadReportDeviceList();
+      this.loadDeviceList();
     },
     submitEvent() {
       let { record = {} } = this;
@@ -156,26 +240,22 @@ export default {
       this.setWidgetList(widgetList);
       this.showDialogStatus = false;
     },
-    // 获取组织列表
-    orgStrucListByLevelFunc(callback) {
-      let that = this;
+    // 获取设备和点位信息
+    commonDevicePointsFunc(callback) {
       let value = [];
-      that
-        .orgStrucListByLevelAction()
+      let { condition } = this;
+      let { orgId = "" } = condition;
+      this.commonDevicePointsAction({ orgId })
         .then(({ data }) => {
           let { code = "", result = [] } = data || {};
           if (code == Constants.CODES.SUCCESS) {
             value = bmCommon.recursiveTree(result || [], "pid");
-            // that.ORGANIZETYPELIST = Object.freeze(_ORGANIZETYPELIST || []);
           }
-          // that.treeData = value || [];
-          that.setOrganizeList(value || []);
           callback && callback(value || []);
         })
         .catch(err => {
-          that.setOrganizeList(value || []);
           callback && callback(value || []);
-          bmCommon.error("获取数据失败=>orgStrucListByLevel", err);
+          bmCommon.error("获取数据失败=>commonDevicePoints", err);
         });
     }
   },

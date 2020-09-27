@@ -12,17 +12,9 @@ export default {
     });
     return data;
   },
-  async orgStrucListByLevel(context, options) {
-    const data = await get({
-      url: URL.orgStrucListByLevelUrl,
-      params: options,
-      store: context
-      // needToken:true,
-    });
-    return data;
-  },
+  //获取设备和点位信息
   async commonDevicePoints(context, options) {
-    const data = await post({
+    const data = await get({
       url: URL.commonDevicePointsUrl,
       params: options,
       store: context

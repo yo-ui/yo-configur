@@ -143,7 +143,7 @@
 </template>
 <script>
 import bmCommon from "@/common/common";
-// import { Constants } from "@/common/env";
+import { Constants } from "@/common/env";
 import bmCom from "@/components/component";
 import bmHeader from "@/components/header";
 import bmNav from "@/components/nav";
@@ -333,6 +333,7 @@ export default {
   },
   methods: {
     ...mapMutations({
+      setOrganizeList: "common/setOrganizeList",
       setZoom: "canvas/setZoom",
       setWidgetList: "canvas/setWidgetList", //设置组件列表
       setActiveCom: "canvas/setActiveCom",
@@ -344,6 +345,7 @@ export default {
     }),
     ...mapActions({
       selectComAction: "canvas/selectCom",
+      orgStrucListByLevelAction: "orgStrucListByLevel",
       selectComsAction: "canvas/selectComs"
     }),
     init() {
@@ -355,6 +357,17 @@ export default {
         let height = $canvasBox.innerHeight();
         canvas.width = width;
         canvas.height = height;
+      });
+      this.orgStrucListByLevelFunc((list = []) => {
+        // let [org = {}] = list || [];
+        // let { id = "" } = org || {};
+        // // condition.orgId = id;
+        // // condition.orgName = name;
+        // this.defaultExpandedKeys = [id];
+        // // this.$nextTick(() => {
+        // //   this.$refs.tree?.setCurrentKey(id);
+        // // });
+        // // this.loadReportDeviceList();
       });
     },
     initEvent() {
@@ -722,7 +735,26 @@ export default {
         return;
       }
       activeCom.order = order + 1;
-    }
+    },
+    // 获取组织列表
+    orgStrucListByLevelFunc(callback) {
+      let value = [];
+      this
+        .orgStrucListByLevelAction()
+        .then(({ data }) => {
+          let { code = "", result = [] } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = bmCommon.recursiveTree(result || [], "pid");
+          }
+          this.setOrganizeList(value || []);
+          callback && callback(value || []);
+        })
+        .catch(err => {
+          this.setOrganizeList(value || []);
+          callback && callback(value || []);
+          bmCommon.error("获取数据失败=>orgStrucListByLevel", err);
+        });
+    },
   },
   mounted() {
     this.init();
