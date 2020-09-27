@@ -223,9 +223,11 @@ export default {
       let { orgId = "" } = condition;
       this.commonDevicePointsAction({ orgId })
         .then(({ data }) => {
-          let { code = "", result = [] } = data || {};
+          let { code = "", result = [], message = "" } = data || {};
           if (code == Constants.CODES.SUCCESS) {
-            value = bmCommon.recursiveTree(result || [], "pid");
+            value = result || [];
+          } else {
+            bmCommon.error(message);
           }
           callback && callback(value || []);
         })

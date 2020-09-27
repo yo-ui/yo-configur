@@ -346,6 +346,8 @@ export default {
     ...mapActions({
       selectComAction: "canvas/selectCom",
       orgStrucListByLevelAction: "orgStrucListByLevel",
+      canvasGetAction: "canvasGet",
+      commonVerifyInfoAction: "commonVerifyInfo",
       selectComsAction: "canvas/selectComs"
     }),
     init() {
@@ -357,6 +359,9 @@ export default {
         let height = $canvasBox.innerHeight();
         canvas.width = width;
         canvas.height = height;
+      });
+      this.commonVerifyInfoFunc((info = {}) => {
+        this.canvasGetFunc((detail = {}) => {});
       });
       this.orgStrucListByLevelFunc((list = []) => {
         // let [org = {}] = list || [];
@@ -736,15 +741,54 @@ export default {
       }
       activeCom.order = order + 1;
     },
+    // 获取登录信息
+    commonVerifyInfoFunc(callback) {
+      let value = {};
+      this.commonVerifyInfoAction()
+        .then(({ data }) => {
+          let { code = "", result = {}, message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || {};
+          } else {
+            bmCommon.error(message);
+          }
+          callback && callback(value || {});
+        })
+        .catch(err => {
+          callback && callback(value || {});
+          bmCommon.error("获取数据失败=>commonVerifyInfo", err);
+        });
+    },
+    // 获取画布信息
+    canvasGetFunc(callback) {
+      let value = {};
+      let { condition } = this;
+      let { canvasId: id = "" } = condition;
+      this.canvasGetAction({ id })
+        .then(({ data }) => {
+          let { code = "", result = {}, message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || {};
+          } else {
+            bmCommon.error(message);
+          }
+          callback && callback(value || {});
+        })
+        .catch(err => {
+          callback && callback(value || {});
+          bmCommon.error("获取数据失败=>canvasGet", err);
+        });
+    },
     // 获取组织列表
     orgStrucListByLevelFunc(callback) {
       let value = [];
-      this
-        .orgStrucListByLevelAction()
+      this.orgStrucListByLevelAction()
         .then(({ data }) => {
-          let { code = "", result = [] } = data || {};
+          let { code = "", result = [], message = "" } = data || {};
           if (code == Constants.CODES.SUCCESS) {
             value = bmCommon.recursiveTree(result || [], "pid");
+          } else {
+            bmCommon.error(message);
           }
           this.setOrganizeList(value || []);
           callback && callback(value || []);
@@ -754,7 +798,7 @@ export default {
           callback && callback(value || []);
           bmCommon.error("获取数据失败=>orgStrucListByLevel", err);
         });
-    },
+    }
   },
   mounted() {
     this.init();
