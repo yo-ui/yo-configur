@@ -23,22 +23,22 @@ export default {
   created() {},
   computed: {
     ...mapGetters({
-      userInfo: "getUserInfo"
+      // userInfo: "getUserInfo"
     })
   },
   methods: {
     ...mapMutations({
-      setUserInfo: "setUserInfo"
+      // setUserInfo: "setUserInfo"
     }),
     ...mapActions({})
   },
   mounted() {
-    let { $route, userInfo = {} } = this;
-    let { query } = $route;
-    let { token = "" } = query || {};
-    if (token) {
-      this.setUserInfo({ ...userInfo, token });
-    }
+    // let { $route, userInfo = {} } = this;
+    // let { query } = $route;
+    // let { token = "" } = query || {};
+    // if (token) {
+    //   this.setUserInfo({ ...userInfo, token });
+    // }
   }
 };
 </script>

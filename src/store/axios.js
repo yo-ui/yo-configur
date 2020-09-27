@@ -57,11 +57,9 @@ async function request(type, options, callback) {
   !headers["X-Requested-With"] &&
     (headers["X-Requested-With"] = "XMLHttpRequest");
   let { $store = {} } = $vm;
-  let token = "";
   if ($store) {
     let userInfo = $store.getters.getUserInfo;
-    let { token: _token = "" } = userInfo || {};
-    token = _token;
+    let { token = "" } = userInfo || {};
     headers[Constants.AUTHORIZATION] = token;
   }
   bmCommon.warn("当前请求地址：", url, "当前请求参数", params);

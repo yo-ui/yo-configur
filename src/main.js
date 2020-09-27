@@ -65,15 +65,17 @@ router.beforeEach((to, from, next) => {
     $vm.$httpRequestList.forEach(cancel => {
       cancel(Constants.INTERRUPT); //给个标志，中断请求
     });
-
-  let $store = router.app.$store || store;
-  let langObj = $store ? $store.getters.getLangObj : null;
-  let accountMenuMap = $store.getters.getAccountMenuMap || {};
-  let { name = "", meta = {}, fullPath = "" } = to || {};
-  let { requireAuth = "" } = meta || {};
+  let { $store = store } = $vm || {};
+  let { getters = {} } = $store || {};
+  let { getLangObj: langObj = {}, getUserInfo: userInfo = {} } = getters || {};
+  let { meta = {}, query = {} } = to || {};
+  let { title: docTitle = "", requireAuth = false } = meta || {};
+  let token = (query || {})[Constants.AUTHORIZATION];
   let { name: fromName = "" } = from || {};
-  // bmCommon.log("可访问的路由地址",accountMenuMap,to);
-  let docTitle = meta.title;
+  let { accountId = "" } = userInfo || {};
+  if (token) {
+    $store.commit("setUserInfo", { ...userInfo, token });
+  }
   if (docTitle) {
     document.title = bmCommon.langKey(langObj, "能源云 | 组态平台"); //+langKey(langObj,docTitle)
   }
@@ -85,19 +87,11 @@ router.beforeEach((to, from, next) => {
     });
     return;
   }
-  let userInfo = $store.getters.getUserInfo;
+  // let userInfo = $store.getters.getUserInfo;
   if (requireAuth) {
     // 判断该路由是否需要登录权限
-    if (userInfo && userInfo.entId) {
-      // 通过vuex state获取当前的token是否存在
-      if (!accountMenuMap[name] && name != RouterURL.not.name) {
-        //如果为真说明当前路由可以被访问
-        next({
-          name: RouterURL.not.name
-        });
-      } else {
-        next();
-      }
+    if (accountId) {
+      next();
     } else {
       if (fromName == RouterURL.login.name) {
         next();
