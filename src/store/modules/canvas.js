@@ -276,19 +276,21 @@ export default {
       let { length = 0 } = activeComs || [];
       if (length > 1) {
         activeComs.forEach(item => {
-          let { left = 0, top = 0 } = item || {};
+          let { left = 0, top = 0, id = "" } = item || {};
           // item.left = left > 0 ? left : 0;
           // item.top = top > 0 ? top : 0;
           item.left = left + Math.floor(dx / zoom);
           item.top = top + Math.floor(dy / zoom);
+          // $(`#box_${id}`).css({ left, top });
         });
       } else {
-        let { left = 0, top = 0 } = activeCom || {};
+        let { left = 0, top = 0, id = "" } = activeCom || {};
         // left = originX + Math.floor((dx * 1) / zoom);
         // var top = originY + Math.floor((dy * 1) / zoom);
         // bmCommon.log(left , Math.floor(dx  / zoom),dx,dy)
         activeCom.left = left + Math.floor(dx / zoom);
         activeCom.top = top + Math.floor(dy / zoom);
+        // $(`#box_${id}`).css({ left, top });
       }
       state.startX = x;
       state.startY = y;
@@ -313,7 +315,8 @@ export default {
 
     // 调整元件尺寸
     resize(state, item) {
-      let { x, y, direction = "", e = window.event,bmCom } = item || {};
+      let { x, y, direction = "", e = window.event, bmComBox = {} } =
+        item || {};
       let {
         startX,
         startY,
@@ -540,7 +543,9 @@ export default {
         //   angle = 270 - value;
         // }
         // let rotate = parseInt(angle + 0.5);
-        let {left = 0, top = 0, width = 0, height = 0}=bmCom.$el.getBoundingClientRect()
+        // let { $el = {} } = bmComBox || {};
+        let rect = bmComBox?.getBoundingClientRect() || {};
+        let { left = 0, top = 0, width = 0, height = 0 } = rect || {};
         let center = { x: left + width / 2, y: top + height / 2 };
         let pos = bmCommon.getMousePosition(e);
         let y0 = startY - center.y,
@@ -548,11 +553,12 @@ export default {
           y = pos.y - center.y,
           x = pos.x - center.x;
         let deg = Math.atan2(y, x) - Math.atan2(y0, x0);
-        let angle = ((180 * deg) / Math.PI);
+        let angle = (180 * deg) / Math.PI;
         rotate = angle + originRotate;
         state.startX = pos.x;
         state.startY = pos.y;
         state.originRotate = rotate;
+        // bmComBox.style.transform = `rotate(${rotate}deg)`;
         activeCom.rotate = rotate;
         return;
       }

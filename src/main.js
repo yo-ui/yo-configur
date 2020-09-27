@@ -71,6 +71,7 @@ router.beforeEach((to, from, next) => {
   let { meta = {}, query = {} } = to || {};
   let { title: docTitle = "", requireAuth = false } = meta || {};
   let token = (query || {})[Constants.AUTHORIZATION];
+  let { name = "" } = to || {};
   let { name: fromName = "" } = from || {};
   let { accountId = "" } = userInfo || {};
   if (token) {

@@ -61,23 +61,32 @@
     <ul
       class="context-menu"
       ref="contextMenuBox"
-      v-show="showContextMenuStatus"
+      v-show="
+        showContextMenuStatus &&
+          (activeCom.type != 'canvas' || activeComs.length > 1)
+      "
       :style="contextMenuStyle"
     >
       <li
         @click="cutEvent"
         v-if="showContextMenuType == 1 && activeCom.dragable"
       >
-        剪切 <small>Ctrl+X</small>
+        {{ $lang("添加到自定义") }} <small>Ctrl+X</small>
+      </li>
+      <li
+        @click="cutEvent"
+        v-if="showContextMenuType == 1 && activeCom.dragable"
+      >
+        {{ $lang("剪切") }} <small>Ctrl+X</small>
       </li>
       <li
         @click="copyEvent"
         v-if="showContextMenuType == 1 && activeCom.dragable"
       >
-        复制<small>Ctrl+C</small>
+        {{ $lang("复制") }}<small>Ctrl+C</small>
       </li>
       <li @click="pasteEvent" v-if="showContextMenuType == 2 && !!copyCom">
-        粘贴<small>Ctrl+V</small>
+        {{ $lang("粘贴") }}<small>Ctrl+V</small>
       </li>
       <li
         @click="moveUpEvent"
@@ -85,47 +94,44 @@
         class="line"
         :class="{ disabled: topOrder == activeCom.order }"
       >
-        上移一层<small>Ctrl+[</small>
+        {{ $lang("上移一层") }}<small>Ctrl+[</small>
       </li>
       <li
         @click="moveDownEvent"
         :class="{ disabled: bottomOrder == activeCom.order }"
         v-if="showContextMenuType == 1 && activeCom.dragable"
       >
-        下移一层<small>Ctrl+]</small>
+        {{ $lang("下移一层") }}<small>Ctrl+]</small>
       </li>
       <li
         @click="moveTopEvent"
         :class="{ disabled: topOrder == activeCom.order }"
         v-if="showContextMenuType == 1 && activeCom.dragable"
       >
-        置于顶层<small>Ctrl+Shift+[</small>
+        {{ $lang("置于顶层") }}<small>Ctrl+Shift+[</small>
       </li>
       <li
         @click="moveBottomEvent"
         :class="{ disabled: bottomOrder == activeCom.order }"
         v-if="showContextMenuType == 1 && activeCom.dragable"
       >
-        置于底层<small>Ctrl+Shift+]</small>
+        {{ $lang("置于底层") }}<small>Ctrl+Shift+]</small>
       </li>
       <li
         class="line"
         @click="lockEvent(false)"
         v-if="showContextMenuType == 1 && activeCom.dragable"
       >
-        锁定<small>Ctrl+Shift+L</small>
+        {{ $lang("锁定") }}<small>Ctrl+Shift+L</small>
       </li>
       <li
         @click="lockEvent(true)"
         v-if="showContextMenuType == 1 && !activeCom.dragable"
       >
-        解锁<small>Ctrl+Shift+L</small>
+        {{ $lang("解锁") }}<small>Ctrl+Shift+L</small>
       </li>
-      <li
-        @click="deleteEvent"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
-      >
-        删除<small>Delete</small>
+      <li @click="deleteEvent" v-if="showContextMenuType == 1">
+        {{ $lang("删除") }}<small>Delete</small>
       </li>
     </ul>
     <bm-footer ref="bmFooter"></bm-footer>
@@ -489,12 +495,14 @@ export default {
       let {
         keyCode = "",
         shiftKey = false,
-        ctrlKey = false
+        ctrlKey = false,
+        metaKey = false
         // altKey = false
       } = e;
+      ctrlKey = ctrlKey || metaKey; //(ctrl(cmd))
       e.stopPropagation();
       // e.preventDefault();
-      // bmCommon.log("index keydow", e);
+      bmCommon.log("index keydow", e);
       let { activeCom } = this;
       let { type = "", id = "", dragable = false } = activeCom || {};
       if (type == "canvas" || !id) {
@@ -628,12 +636,30 @@ export default {
       this.setActiveCom(item);
       this.showContextMenuStatus = false;
     },
-    // 删除
-    deleteEvent() {
-      let { activeCom = {}, widgetList = [] } = this;
-      let { id = "" } = activeCom;
+    deleteItem(item = {}) {
+      let { widgetList = [] } = this;
+      let { id = "" } = item || {};
       let index = widgetList.findIndex(item => id == item.id);
       widgetList.splice(index, 1);
+      this.selectComAction();
+      // this.showContextMenuStatus = false;
+    },
+    // 删除
+    deleteEvent() {
+      let { activeCom = {}, activeComs = [] } = this;
+      let { length = 0 } = activeComs || [];
+      if (length > 1) {
+        activeComs.forEach(item => {
+          this.deleteItem(item);
+        });
+      } else {
+        this.deleteItem(activeCom);
+        // let { id = "" } = activeCom;
+        // let index = widgetList.findIndex(item => id == item.id);
+        // widgetList.splice(index, 1);
+        // this.selectComAction();
+        // this.showContextMenuStatus = false;
+      }
       this.selectComAction();
       this.showContextMenuStatus = false;
     },

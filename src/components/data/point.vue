@@ -70,7 +70,7 @@ import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name:'bm-dialog-point-com',
+  name: "bm-dialog-point-com",
   data() {
     return {
       showDialogStatus: false,
@@ -78,8 +78,8 @@ export default {
       showPopoverStatus: false,
       defaultExpandedKeys: [],
       condition: {
-        orgKeywords:'',
-        orgName:'',
+        orgKeywords: "",
+        orgName: ""
       }
     };
   },
@@ -92,7 +92,7 @@ export default {
       // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
       // activeCom: "canvas/getActiveCom",
       // activeComs: "canvas/getActiveComs",
-      treeData: "common/getOrganizeList",
+      treeData: "common/getOrganizeList"
       // widgetList: "canvas/getWidgetList"
     })
   },
@@ -101,13 +101,13 @@ export default {
       // setActiveCom: "canvas/setActiveCom",
       // setZoom: "canvas/setZoom",
       setWidgetList: "canvas/setWidgetList",
-      setOrganizeList: "common/setOrganizeList",
+      setOrganizeList: "common/setOrganizeList"
       // setLeftMenuStatus: "canvas/setLeftMenuStatus",
       // setRightMenuStatus: "canvas/setRightMenuStatus"
     }),
     ...mapActions({
       // selectComAction: "canvas/selectCom"
-      orgStrucListByLevelAction: "orgStrucListByLevel",
+      orgStrucListByLevelAction: "orgStrucListByLevel"
     }),
     // 初始化
     init() {
@@ -177,7 +177,7 @@ export default {
           callback && callback(value || []);
           bmCommon.error("获取数据失败=>orgStrucListByLevel", err);
         });
-    },
+    }
   },
   mounted() {
     this.init();

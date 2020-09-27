@@ -4,7 +4,8 @@
 <template>
   <div
     class="bm-component-com"
-    ref="bmCom"
+    :id="`box_${info.id}`"
+    ref="bmComBox"
     :style="boxStyle"
     :class="animate ? `animated ${animate}` : ''"
   >
@@ -238,12 +239,12 @@ export default {
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
       let { direction = "" } = this;
-      let bmCom=this.$refs.bmCom
+      let bmComBox = this.$refs.bmComBox;
       this.resize({
         x,
         y,
         e,
-        bmCom,
+        bmComBox,
         direction
       });
     },

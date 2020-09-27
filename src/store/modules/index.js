@@ -25,7 +25,7 @@ export default {
   // energyCnvFactor,
   // deviceCategPoint,
   // dict,
-  common,
+  common
   // deviceCateg,
   // deviceType
 };
