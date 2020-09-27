@@ -12,9 +12,9 @@ export default {
     });
     return data;
   },
-  async commonOrganizList(context, options) {
+  async orgStrucListByLevel(context, options) {
     const data = await post({
-      url: URL.commonOrganizListUrl,
+      url: URL.orgStrucListByLevelUrl,
       params: options,
       store: context
       // needToken:true,

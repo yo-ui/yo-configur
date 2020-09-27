@@ -22,13 +22,24 @@ export default {
   name: "app",
   created() {},
   computed: {
-    ...mapGetters()
+    ...mapGetters({
+      userInfo: "getUserInfo"
+    })
   },
   methods: {
-    ...mapMutations({}),
+    ...mapMutations({
+      setUserInfo: "setUserInfo"
+    }),
     ...mapActions({})
   },
-  mounted: function() {}
+  mounted() {
+    let { $route, userInfo = {} } = this;
+    let { query } = $route;
+    let { token = "" } = query || {};
+    if (token) {
+      this.setUserInfo({ ...userInfo, token });
+    }
+  }
 };
 </script>
 

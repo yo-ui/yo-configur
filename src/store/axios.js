@@ -57,9 +57,11 @@ async function request(type, options, callback) {
   !headers["X-Requested-With"] &&
     (headers["X-Requested-With"] = "XMLHttpRequest");
   let { $store = {} } = $vm;
+  let token = "";
   if ($store) {
     let userInfo = $store.getters.getUserInfo;
-    let { token = "" } = userInfo || {};
+    let { token: _token = "" } = userInfo || {};
+    token = _token;
     headers[Constants.AUTHORIZATION] = token;
   }
   bmCommon.warn("当前请求地址：", url, "当前请求参数", params);
@@ -100,6 +102,13 @@ async function request(type, options, callback) {
         }
         if (code == Constants.CODES.LOGIN) {
           vm.$jumpLogin();
+          reject();
+        } else if (code == Constants.CODES.REDIRECT) {
+          let url =
+            result.indexOf("?") > -1
+              ? `${result}?token=${token}`
+              : `${result}&token=${token}`;
+          vm.$openPage(url);
           reject();
         } else {
           if (code == Constants.CODES.SYSTEM_ERROR) {

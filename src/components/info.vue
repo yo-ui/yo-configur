@@ -65,9 +65,6 @@
         </li>
       </ul> -->
     </template>
-
-    <bm-device ref="bmDevice"></bm-device>
-    <bm-point ref="bmPoint"></bm-point>
   </div>
 </template>
 
@@ -106,13 +103,7 @@ export default {
   },
   components: {
     draggable,
-    ...styles,
-    bmDevice: () =>
-      import(
-        /* webpackChunkName: "iot-device-com" */ "@/components/data/device"
-      ),
-    bmPoint: () =>
-      import(/* webpackChunkName: "iot-point-com" */ "@/components/data/point")
+    ...styles
   },
   computed: {
     ...mapGetters({
@@ -192,18 +183,8 @@ export default {
       });
     },
     addEvent(item = {}) {
-      let { dataType = "" } = item || {};
-      switch (dataType) {
-        case "point":
-          this.$refs.bmPoint?.show(item);
-          break;
-        case "device":
-          this.$refs.bmDevice?.show(item);
-          break;
-
-        default:
-          break;
-      }
+      // eslint-disable-next-line no-undef
+      $vm.$emit("bindDevice", item);
     }
   }
   // watch: {

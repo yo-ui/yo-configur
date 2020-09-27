@@ -7,7 +7,8 @@ export default {
   websocketUrl: `${wsHost}/ws`,
   pushUrl: `${host}/configur/push`,
   commonVerifyInfoUrl: `${host}/configur/common/verifyInfo`,
-  commonOrganizListUrl: `${host}/configur/common/organizList`,
+  // commonOrganizListUrl: `${host}/configur/common/organizList`,
+  orgStrucListByLevelUrl: `${host}/orgStruc/listByLevel`, //加载用户的组织结构
   commonDevicePointsUrl: `${host}/configur/common/devicePoints`,
   commonDevicePointHstDataUrl: `${host}/configur/common/devicePointHstData`,
   commonDeviceListUrl: `${host}/configur/common/deviceList`,

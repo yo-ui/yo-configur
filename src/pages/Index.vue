@@ -130,6 +130,9 @@
     </ul>
     <bm-footer ref="bmFooter"></bm-footer>
     <bm-select ref="bmSelect"></bm-select>
+
+    <bm-device ref="bmDevice"></bm-device>
+    <bm-point ref="bmPoint"></bm-point>
   </div>
 </template>
 <script>
@@ -181,7 +184,13 @@ export default {
     bmWidgetList: () =>
       import(
         /* webpackChunkName: "iot-widget-list-com" */ "@/components/widget-list"
-      )
+      ),
+    bmDevice: () =>
+      import(
+        /* webpackChunkName: "iot-device-com" */ "@/components/data/device"
+      ),
+    bmPoint: () =>
+      import(/* webpackChunkName: "iot-point-com" */ "@/components/data/point")
   },
   computed: {
     ...mapGetters({
@@ -350,12 +359,32 @@ export default {
       $(viewBox).on("contextmenu", this.viewBoxContextmenuEvent);
       //注册按键键盘事件
       $(document).on("keydown", this.keydownEvent);
+      //注册绑定设备事件
+      // eslint-disable-next-line no-undef
+      $vm.$on("bindDevice", item => {
+        this.addDataEvent(item);
+      });
       // //注册窗口变换事件
       // $(window).on("resize", this.resizeEvent);
       // $(document).on("keyup", this.keyupEvent);
       // $(document).on("mousedown", this.keydownEvent);
       // 默认选择画布
       this.selectComAction();
+    },
+    //添加数据事件
+    addDataEvent(item = {}) {
+      let { dataType = "" } = item || {};
+      switch (dataType) {
+        case "point":
+          this.$refs.bmPoint?.show(item);
+          break;
+        case "device":
+          this.$refs.bmDevice?.show(item);
+          break;
+
+        default:
+          break;
+      }
     },
     // resizeEvent(){
     //   let {canvas={}}=this
