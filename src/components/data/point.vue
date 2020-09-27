@@ -139,9 +139,9 @@ export default {
         orgName: "",
         orgId: "",
         deviceId: "",
-        pointId: "",
-        deviceName: "",
-        pointName: ""
+        pointId: ""
+        // deviceName: "",
+        // pointName: ""
       }
     };
   },
@@ -195,23 +195,24 @@ export default {
       // });
     },
     show() {
-      let { treeData = [], condition, activeCom = {}, deviceMap = {} } = this;
-      let [org = {}] = treeData || [];
+      let { treeData = [], condition, activeCom = {} } = this;
       let { bindData = {} } = activeCom || {};
       let { devicePoint = "", deviceId = "", orgId = "" } = bindData || {};
       this.deviceList = null;
       this.pointList = null;
+      this.showDialogStatus = true;
       if (orgId) {
         condition.deviceId = deviceId;
         condition.pointId = devicePoint;
         condition.orgId = orgId;
-        this.device = deviceMap[deviceId] || {};
         this.defaultExpandedKeys = [orgId];
         let node = this.$refs.tree?.getNode(orgId);
-        let { name = "" } = node || {};
+        this.$refs.tree?.setCurrentKey(orgId);
+        let { label: name = "" } = node || {};
         condition.orgName = name;
       } else {
         this.device = "";
+        let [org = {}] = treeData || [];
         let { id = "", name = "" } = org || {};
         condition.orgId = id;
         condition.orgName = name;
@@ -219,31 +220,35 @@ export default {
         condition.deviceId = "";
         condition.pointId = "";
       }
-      this.showDialogStatus = true;
       this.loadDeviceList();
     },
     loadDeviceList() {
-      let { condition } = this;
       this.commonDevicePointsFunc((list = []) => {
         this.deviceList = list || [];
-        let [device = {}] = list || [];
-        let { points = [], id = "" } = device || {};
-        condition.deviceId = id;
-        this.device = device || {};
-        this.pointList = points || [];
-        let [point = {}] = points || [];
-        let { id: pointId = "" } = point || {};
-        condition.pointId = pointId;
+        let { condition, deviceMap = {} } = this;
+        let { deviceId = "" } = condition;
+        if (deviceId) {
+          let device = deviceMap[deviceId] || {}; // let [device = {}] = list || [];
+          this.device = device || {};
+          let { points = [], id = "" } = device || {};
+          condition.deviceId = id;
+          this.device = device || {};
+          this.pointList = points || [];
+          // let [point = {}] = points || [];
+          // let { id: pointId = "" } = point || {};
+          // condition.pointId = pointId;
+        }
       });
     },
     selectDeviceEvent() {
       let { condition } = this;
       let { device = {} } = this;
-      let { points = [] } = device || {};
+      let { points = [], id = "" } = device || {};
+      condition.deviceId = id;
       this.pointList = points || [];
-      let [point = {}] = points || [];
-      let { id: pointId = "" } = point || {};
-      condition.pointId = pointId;
+      // let [point = {}] = points || [];
+      // let { id: pointId = "" } = point || {};
+      // condition.pointId = pointId;
     },
     closeEvent() {
       this.showDialogStatus = false;
@@ -265,6 +270,9 @@ export default {
       condition.orgName = name;
       this.defaultExpandedKeys = [id];
       this.showPopoverStatus = false;
+      condition.deviceId = "";
+      this.device = "";
+      condition.pointId = "";
       // this.loadReportDeviceList();
       this.loadDeviceList();
     },
