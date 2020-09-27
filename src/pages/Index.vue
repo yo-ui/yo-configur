@@ -157,9 +157,9 @@ export default {
     return {
       // comList: [],
       // activeComIds: "",
-      // condition: {
-      //   zoom: 100
-      // }
+      condition: {
+        canvasId: ''
+      },
       showContextMenuStatus: false,
       showContextMenuType: 1, //1 组件右键菜单   2是画布右键菜单
       copyCom: "",

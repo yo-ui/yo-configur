@@ -12,6 +12,7 @@ let baseData = {
   content: "文本内容",
   name: "文本标题",
   dataType: "", //绑定数据类型  device point
+  bindData: {}, //绑定的数据
   animation: {
     name: "",
     direction: "normal",
@@ -315,7 +316,8 @@ export default [
             }
           }
         }
-      },{
+      },
+      {
         name: "时间",
         code: "timeText",
         icon: "/static/img/configur/timeclock.png",
@@ -458,7 +460,7 @@ export default [
           content: "00.00",
           scaleable: false //是否可缩放操作
         }
-      },
+      }
     ]
   },
   {

@@ -452,7 +452,7 @@ export default {
         return;
       }
       if (direction === "rotate") {
-        // rotate = (originRotate + Math.floor((dx * 1) / zoom)) % 360;
+        rotate = (originRotate + Math.floor((dx * 1) / zoom)) % 360;
         // var offsetX = containerOffset['left'];
         // var offsetY = containerOffset['top'];
         // var mouseX = ev.pageX - offsetX;//计算出鼠标相对于画布顶点的位置,无pageX时用clientY + body.scrollTop - body.clientTop代替,可视区域y+body滚动条所走的距离-body的border-top,不用offsetX等属性的原因在于，鼠标会移出画布
@@ -544,20 +544,22 @@ export default {
         // }
         // let rotate = parseInt(angle + 0.5);
         // let { $el = {} } = bmComBox || {};
-        let rect = bmComBox?.getBoundingClientRect() || {};
-        let { left = 0, top = 0, width = 0, height = 0 } = rect || {};
-        let center = { x: left + width / 2, y: top + height / 2 };
-        let pos = bmCommon.getMousePosition(e);
-        let y0 = startY - center.y,
-          x0 = startX - center.x,
-          y = pos.y - center.y,
-          x = pos.x - center.x;
-        let deg = Math.atan2(y, x) - Math.atan2(y0, x0);
-        let angle = (180 * deg) / Math.PI;
-        rotate = angle + originRotate;
-        state.startX = pos.x;
-        state.startY = pos.y;
-        state.originRotate = rotate;
+
+        // let rect = bmComBox?.getBoundingClientRect() || {};
+        // let { left = 0, top = 0, width = 0, height = 0 } = rect || {};
+        // let center = { x: left + width / 2, y: top + height / 2 };
+        // let pos = bmCommon.getMousePosition(e);
+        // let y0 = startY - center.y,
+        //   x0 = startX - center.x,
+        //   y = pos.y - center.y,
+        //   x = pos.x - center.x;
+        // let deg = Math.atan2(y, x) - Math.atan2(y0, x0);
+        // let angle = (180 * deg) / Math.PI;
+        // rotate = (angle + originRotate) % 360;
+        // state.startX = pos.x;
+        // state.startY = pos.y;
+        // state.originRotate = rotate;
+        // bmCommon.log(center, deg, angle);
         // bmComBox.style.transform = `rotate(${rotate}deg)`;
         activeCom.rotate = rotate;
         return;

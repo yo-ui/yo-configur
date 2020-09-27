@@ -14,7 +14,11 @@
       autocomplete="off"
       label-width="100px"
     >
-      <el-form-item prop="orgId" :label="$lang('组织名称')">
+      <el-form-item
+        prop="orgId"
+        :label="$lang('组织名称')"
+        :rules="[{ required: true, message: '请选择组织', trigger: 'change' }]"
+      >
         <el-popover
           placement="bottom-start"
           popper-class="org-list-popper"
@@ -65,7 +69,11 @@
         </el-popover>
       </el-form-item>
 
-      <el-form-item prop="deviceId" :label="$lang('设备名称')">
+      <el-form-item
+        prop="deviceId"
+        :label="$lang('设备名称')"
+        :rules="[{ required: true, message: '请选择设备', trigger: 'change' }]"
+      >
         <el-select
           v-model="condition.deviceId"
           filterable

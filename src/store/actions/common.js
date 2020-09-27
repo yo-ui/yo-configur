@@ -4,7 +4,7 @@ import { post, get } from "@/store/axios";
 export default {
   // //获取用户信息
   async commonVerifyInfo(context, options) {
-    const data = await post({
+    const data = await get({
       url: URL.commonVerifyInfoUrl,
       params: options,
       store: context

@@ -15,7 +15,11 @@
       autocomplete="off"
       label-width="100px"
     >
-      <el-form-item prop="orgId" :label="$lang('组织名称')">
+      <el-form-item
+        prop="orgId"
+        :label="$lang('组织名称')"
+        :rules="[{ required: true, message: '请选择组织', trigger: 'change' }]"
+      >
         <el-popover
           placement="bottom-start"
           popper-class="org-list-popper"
@@ -66,7 +70,11 @@
         </el-popover>
       </el-form-item>
 
-      <el-form-item prop="deviceId" :label="$lang('设备名称')">
+      <el-form-item
+        prop="deviceId"
+        :label="$lang('设备名称')"
+        :rules="[{ required: true, message: '请选择设备', trigger: 'change' }]"
+      >
         <el-select
           v-model="device"
           filterable
@@ -83,7 +91,11 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item prop="pointId" :label="$lang('点位名称')">
+      <el-form-item
+        prop="pointId"
+        :label="$lang('点位名称')"
+        :rules="[{ required: true, message: '请选择点位', trigger: 'change' }]"
+      >
         <el-select
           v-model="condition.pointId"
           filterable
@@ -140,11 +152,20 @@ export default {
       // zoom: "canvas/getZoom", //放大缩小
       // leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
       // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
-      // activeCom: "canvas/getActiveCom",
+      activeCom: "canvas/getActiveCom",
       // activeComs: "canvas/getActiveComs",
       treeData: "common/getOrganizeList"
       // widgetList: "canvas/getWidgetList"
-    })
+    }),
+    deviceMap() {
+      let { deviceList = [] } = this;
+      let map = {};
+      deviceList.forEach(item => {
+        let { id = "" } = item || {};
+        map[id] = item || {};
+      });
+      return map || {};
+    }
   },
   methods: {
     ...mapMutations({
@@ -174,18 +195,31 @@ export default {
       // });
     },
     show() {
-      let { treeData = [], condition } = this;
+      let { treeData = [], condition, activeCom = {}, deviceMap = {} } = this;
       let [org = {}] = treeData || [];
-      let { id = "", name = "" } = org || {};
-      condition.orgId = id;
-      condition.orgName = name;
-      this.defaultExpandedKeys = [id];
-      this.showDialogStatus = true;
-      this.device = "";
-      condition.deviceId = "";
-      condition.pointId = "";
+      let { bindData = {} } = activeCom || {};
+      let { devicePoint = "", deviceId = "", orgId = "" } = bindData || {};
       this.deviceList = null;
       this.pointList = null;
+      if (orgId) {
+        condition.deviceId = deviceId;
+        condition.pointId = devicePoint;
+        condition.orgId = orgId;
+        this.device = deviceMap[deviceId] || {};
+        this.defaultExpandedKeys = [orgId];
+        let node = this.$refs.tree?.getNode(orgId);
+        let { name = "" } = node || {};
+        condition.orgName = name;
+      } else {
+        this.device = "";
+        let { id = "", name = "" } = org || {};
+        condition.orgId = id;
+        condition.orgName = name;
+        this.defaultExpandedKeys = [id];
+        condition.deviceId = "";
+        condition.pointId = "";
+      }
+      this.showDialogStatus = true;
       this.loadDeviceList();
     },
     loadDeviceList() {
@@ -235,9 +269,13 @@ export default {
       this.loadDeviceList();
     },
     submitEvent() {
-      let { record = {} } = this;
-      let { widgetList = [] } = record || {};
-      this.setWidgetList(widgetList);
+      let { activeCom = {}, condition } = this;
+      let { orgId = "", deviceId = "", pointId: devicePoint = "" } = condition;
+      activeCom.bindData = {
+        orgId,
+        deviceId,
+        devicePoint
+      };
       this.showDialogStatus = false;
     },
     // 获取设备和点位信息
