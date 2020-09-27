@@ -5,37 +5,58 @@
     v-dialogDrag="true"
     :title="$lang('数据绑定')"
     :visible.sync="showDialogStatus"
-    width="1000px"
+    width="500px"
   >
-    <div class="content">
-      <!-- {{recordList}} -->
-      <div class="list-box">
-        <el-radio-group v-model="record" class="list">
-          <el-radio v-for="item in dataList" :key="item.id" :label="item">
-            <span class="name">{{ item.name }}</span>
-            <span class="time">{{ $moment(item.time).fromNow() }}</span>
-          </el-radio>
-        </el-radio-group>
-        <el-pagination
-          background
-          @size-change="handleSizeChangeEvent"
-          @current-change="handleCurrentChangeEvent"
-          :current-page="condition.pageNo"
-          :page-sizes="[5, 10, 20, 50, 100]"
-          :page-size="condition.pageSize"
-          layout="total, prev, pager, next"
-          :total="recordList.length"
-        >
-        </el-pagination>
-      </div>
-      <div class="img-box"></div>
-    </div>
-    <div class="line"></div>
+    <el-popover
+      placement="bottom-start"
+      popper-class="org-list-popper"
+      width="330"
+      trigger="click"
+      v-model="showPopoverStatus"
+    >
+      <!-- <el-button slot="reference">content</el-button> -->
+      <el-input
+        class="search-box"
+        v-model="condition.orgName"
+        slot="reference"
+        :placeholder="$lang('请选择位置')"
+        readonly
+        suffix-icon="el-icon-arrow-down"
+      ></el-input>
+      <el-input
+        v-model="condition.orgKeywords"
+        :placeholder="$lang('请输入搜索关键字(组织名称)')"
+        suffix-icon="el-icon-search"
+        clearable
+      ></el-input>
+      <el-tree
+        ref="tree"
+        :default-expanded-keys="defaultExpandedKeys"
+        :filter-node-method="filterTree"
+        default-expand-all
+        :check-strictly="true"
+        :expand-on-click-node="false"
+        @node-click="nodeClickEvent"
+        node-key="id"
+        :props="{ label: 'name' }"
+        :data="treeData"
+      >
+        <template slot-scope="{ node, data }">
+          <el-tooltip
+            effect="dark"
+            :content="$lang(node.label)"
+            placement="right"
+          >
+            <span class="tree-txt"
+              ><i class="bm-icon" :class="'bm-icon-tree-' + data.type"></i
+              >{{ $lang(node.label) }}</span
+            >
+          </el-tooltip>
+        </template>
+      </el-tree>
+    </el-popover>
     <template #footer>
-      <!-- <el-button @click="closeEvent">取 消</el-button> -->
-      <span class="tip">{{
-        $lang("一旦回退版本后将无法恢复，请谨慎操作！")
-      }}</span>
+      <el-button @click="closeEvent">{{ $lang("关闭") }}</el-button>
       <el-button type="primary" :disabled="!record" @click="submitEvent">{{
         $lang("回退")
       }}</el-button>
@@ -44,19 +65,21 @@
 </template>
 
 <script>
-// import bmCommon from "@/common/common";
+import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
+  name:'bm-dialog-point-com',
   data() {
     return {
       showDialogStatus: false,
       record: null,
+      showPopoverStatus: false,
+      defaultExpandedKeys: [],
       condition: {
-        pageNo: 1,
-        pageSize: 10,
-        totalRecord: 0
+        orgKeywords:'',
+        orgName:'',
       }
     };
   },
@@ -69,29 +92,37 @@ export default {
       // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
       // activeCom: "canvas/getActiveCom",
       // activeComs: "canvas/getActiveComs",
-      recordList: "canvas/getRecordList"
+      treeData: "common/getOrganizeList",
       // widgetList: "canvas/getWidgetList"
-    }),
-    dataList() {
-      let { condition, recordList = [] } = this;
-      let { pageNo = 1, pageSize = Constants.PAGESIZE } = condition;
-      return recordList.slice(pageSize * (pageNo - 1), pageSize * pageNo);
-    }
+    })
   },
   methods: {
     ...mapMutations({
       // setActiveCom: "canvas/setActiveCom",
       // setZoom: "canvas/setZoom",
-      setWidgetList: "canvas/setWidgetList"
+      setWidgetList: "canvas/setWidgetList",
+      setOrganizeList: "common/setOrganizeList",
       // setLeftMenuStatus: "canvas/setLeftMenuStatus",
       // setRightMenuStatus: "canvas/setRightMenuStatus"
     }),
     ...mapActions({
       // selectComAction: "canvas/selectCom"
+      orgStrucListByLevelAction: "orgStrucListByLevel",
     }),
     // 初始化
     init() {
       // this.storeProductFunc();
+      this.orgStrucListByLevelFunc((list = []) => {
+        let [org = {}] = list || [];
+        let { id = "" } = org || {};
+        // condition.orgId = id;
+        // condition.orgName = name;
+        this.defaultExpandedKeys = [id];
+        // this.$nextTick(() => {
+        //   this.$refs.tree?.setCurrentKey(id);
+        // });
+        // this.loadReportDeviceList();
+      });
     },
     show() {
       this.showDialogStatus = true;
@@ -100,32 +131,66 @@ export default {
     closeEvent() {
       this.showDialogStatus = false;
     },
+    //过滤树结点
+    filterTree(val, data) {
+      if (!val) {
+        return true;
+      }
+      let name = (data.name || "").toUpperCase();
+      val = val.toUpperCase();
+      return name.indexOf(val) != -1;
+    },
+    //点击组织事件
+    nodeClickEvent(item, node, com) {
+      let { condition } = this;
+      let { id = "", name = "" } = item || {};
+      condition.orgId = id;
+      condition.orgName = name;
+      this.defaultExpandedKeys = [id];
+      this.showPopoverStatus = false;
+      // this.loadReportDeviceList();
+    },
     submitEvent() {
       let { record = {} } = this;
       let { widgetList = [] } = record || {};
       this.setWidgetList(widgetList);
       this.showDialogStatus = false;
     },
-
-    // 切换每页数据
-    handleSizeChangeEvent(val) {
-      let { condition } = this;
-      // console.log(`每页 ${val} 条`);
-      condition.pageNo = 1;
-      condition.pageSize = val;
+    // 获取组织列表
+    orgStrucListByLevelFunc(callback) {
+      let that = this;
+      let value = [];
+      that
+        .orgStrucListByLevelAction()
+        .then(({ data }) => {
+          let { code = "", result = [] } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = bmCommon.recursiveTree(result || [], "pid");
+            // that.ORGANIZETYPELIST = Object.freeze(_ORGANIZETYPELIST || []);
+          }
+          // that.treeData = value || [];
+          that.setOrganizeList(value || []);
+          callback && callback(value || []);
+        })
+        .catch(err => {
+          that.setOrganizeList(value || []);
+          callback && callback(value || []);
+          bmCommon.error("获取数据失败=>orgStrucListByLevel", err);
+        });
     },
-    // 切换页号
-    handleCurrentChangeEvent(val) {
-      // console.log(`当前页: ${val}`);
-      this.condition.pageNo = val;
-    }
   },
   mounted() {
     this.init();
+  },
+  watch: {
+    "condition.orgKeywords"(newVal, oldVal) {
+      if (newVal != oldVal) {
+        this.$refs.tree?.filter(newVal);
+      }
+    }
   }
 };
 </script>
-
 <style lang="less">
 @import (less) "../../assets/less/components/data/point.less";
 </style>

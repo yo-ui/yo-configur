@@ -1,6 +1,6 @@
 import { URL } from "@/common/env";
 // import bmCommon from '@/common/common'
-import { post } from "@/store/axios";
+import { post, get } from "@/store/axios";
 export default {
   // //获取用户信息
   async commonVerifyInfo(context, options) {
@@ -13,7 +13,7 @@ export default {
     return data;
   },
   async orgStrucListByLevel(context, options) {
-    const data = await post({
+    const data = await get({
       url: URL.orgStrucListByLevelUrl,
       params: options,
       store: context

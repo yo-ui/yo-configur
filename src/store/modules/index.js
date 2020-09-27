@@ -14,9 +14,9 @@ import canvas from "./canvas";
 // import energyCnvFactor from "./energyCnvFactor";
 // import deviceCategPoint from "./deviceCategPoint";
 // import dict from "./dict";
-// import attachment from "./attachment";
+import common from "./common";
 export default {
-  canvas
+  canvas,
   // manufacturer,
   // devicePoint,
   // pointValue,
@@ -25,7 +25,7 @@ export default {
   // energyCnvFactor,
   // deviceCategPoint,
   // dict,
-  // attachment,
+  common,
   // deviceCateg,
   // deviceType
 };

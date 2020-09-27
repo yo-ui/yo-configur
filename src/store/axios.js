@@ -104,11 +104,11 @@ async function request(type, options, callback) {
           vm.$jumpLogin();
           reject();
         } else if (code == Constants.CODES.REDIRECT) {
-          let url =
-            result.indexOf("?") > -1
-              ? `${result}?token=${token}`
-              : `${result}&token=${token}`;
-          vm.$openPage(url);
+          // let url =
+          //   result.indexOf("?") < 0
+          //     ? `${result}?${Constants.AUTHORIZATION}=${token}`
+          //     : `${result}&${Constants.AUTHORIZATION}=${token}`;
+          vm.$openPage(result);
           reject();
         } else {
           if (code == Constants.CODES.SYSTEM_ERROR) {

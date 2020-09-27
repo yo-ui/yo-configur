@@ -1,4 +1,35 @@
 @import (reference) "./../common.less";
+.org-list-popper{
+  .touch-y;
+  max-height: 300px;
+  .el-tree{
+    .mt(15);
+    .bc(transparent);
+    .el-tree-node{
+      .el-tree-node__expand-icon{
+        .c(@gray3);
+        &.is-leaf{
+          opacity:0;
+        }
+      }
+      &.is-current{
+        &>.el-tree-node__content{
+          .bc(@themes);
+          .c(@white);
+          .el-icon-caret-right{
+            &::before{
+              .c(@white);
+            }
+          }
+        }
+      }
+    }
+    .el-tree-node__content{
+      .lh(40);
+      .h(40);
+    }
+  }
+}
 .bm-index-page{
   .df;
   .bc(@body-bg);
