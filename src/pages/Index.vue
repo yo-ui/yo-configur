@@ -158,7 +158,7 @@ export default {
       // comList: [],
       // activeComIds: "",
       condition: {
-        canvasId: ''
+        canvasId: ""
       },
       showContextMenuStatus: false,
       showContextMenuType: 1, //1 组件右键菜单   2是画布右键菜单
@@ -337,6 +337,8 @@ export default {
       setZoom: "canvas/setZoom",
       setWidgetList: "canvas/setWidgetList", //设置组件列表
       setActiveCom: "canvas/setActiveCom",
+      setCanvas: "canvas/setCanvas",
+      setCanvasData: "canvas/setCanvasData",
       setActiveComs: "canvas/setActiveComs",
       initMove: "canvas/initMove",
       setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
@@ -360,8 +362,33 @@ export default {
         canvas.width = width;
         canvas.height = height;
       });
+      let { condition, canvas = {} } = this;
       this.commonVerifyInfoFunc((info = {}) => {
-        this.canvasGetFunc((detail = {}) => {});
+        let { canvasId = "166", type = 1 } = info || {};
+        condition.canvasId = canvasId;
+        this.canvasGetFunc((detail = {}) => {
+          let {
+            name = "",
+            width = "",
+            height = "",
+            id: canvasId = "",
+            data = {}
+          } = detail || {};
+          data = typeof data === "string" ? JSON.parse(data) : data;
+          let { canvasData = {} } = data || {};
+          let { widgetList = [], canvas: _canvas } = canvasData || {};
+          if (_canvas) {
+            canvas = _canvas || {};
+          }
+          canvas.name = name;
+          canvas.width = width;
+          canvas.height = height;
+          canvas.canvasId = canvasId;
+          canvas.canvasType = type; //1为编辑   2为预览
+          this.setCanvas(canvas);
+          this.setWidgetList(widgetList);
+          this.setCanvasData(data);
+        });
       });
       this.orgStrucListByLevelFunc((list = []) => {
         // let [org = {}] = list || [];
@@ -804,9 +831,13 @@ export default {
     this.init();
   },
   beforeDestroy() {
-    let canvas = this.$refs.canvas;
-    $(canvas).off("mousedown");
-    $(document).off("keydown");
+    let viewBox = this.$refs.viewBox;
+    // 注册鼠标事件
+    $(viewBox).off("mousedown", this.viewBoxMousedownEvent);
+    // 注册右键菜单事件
+    $(viewBox).off("contextmenu", this.viewBoxContextmenuEvent);
+    //注册按键键盘事件
+    $(document).off("keydown", this.keydownEvent);
   }
 };
 </script>

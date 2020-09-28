@@ -299,6 +299,10 @@ export default {
       this.mousedownEvent(e, "bottomright");
     }
   },
+  beforeDestroy() {    
+      $(document).off("mousemove", this.mousemoveEvent);
+      $(document).off("mouseup", this.mouseupEvent);
+  },
   watch: {
     "info.animation": {
       handler(newVal, oldVal) {

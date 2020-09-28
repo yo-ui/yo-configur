@@ -203,6 +203,10 @@
       {{ canvas.name }}
     </div> -->
     <div class="right">
+      <el-button @click="saveEvent">
+        <i class="bomi bomi-save"></i>
+        保存
+      </el-button>
       <el-button @click="copyEvent">
         <i class="el-icon-copy-document"></i>
         复制
@@ -279,21 +283,47 @@ export default {
   methods: {
     ...mapMutations({
       setActiveCom: "canvas/setActiveCom",
+      setCanvasData: "canvas/setCanvasData",
       setZoom: "canvas/setZoom",
       setHistoryIndex: "canvas/setHistoryIndex",
       setWidgetList: "canvas/setWidgetList",
       setLeftMenuStatus: "canvas/setLeftMenuStatus",
-      setPreviewWidgetList: "canvas/setPreviewWidgetList",
+      setPreviewData: "canvas/setPreviewData",
       setRightMenuStatus: "canvas/setRightMenuStatus"
     }),
     ...mapActions({
       selectComAction: "canvas/selectCom",
       createRecordAction: "canvas/createRecord",
+      canvasSaveAction: "canvasSave",
       upload2OssAction: "upload2Oss"
     }),
     // 初始化
     init() {
       // this.storeProductFunc();
+    },
+    saveEvent() {
+      let { canvas = {}, canvasData: data = {}, widgetList = [] } = this;
+      let { width = "", height = "", canvasId: id = "" } = canvas || {};
+      this.setCanvasData(data);
+      if (!id) {
+        return;
+      }
+      data.canvasData = {
+        widgetList,
+        canvas
+      };
+      this.canvasSaveFunc(
+        {
+          data: JSON.stringify(data),
+          width,
+          height,
+          name,
+          id
+        },
+        () => {
+          this.$$msgSuccess("保存成功");
+        }
+      );
     },
     copyEvent() {
       let { activeCom = {}, widgetList = [] } = this;
@@ -382,8 +412,11 @@ export default {
     //运行
     runEvent() {
       // this.$jumpPage(this.$RouterURL.preview.name);
-      let { widgetList = [] } = this;
-      this.setPreviewWidgetList(widgetList);
+      let { widgetList = [], canvas = {} } = this;
+      this.setPreviewData({
+        widgetList,
+        canvas
+      });
       this.$refs.bmPreview?.show();
       this.selectComAction(); //选中组件
       this.uploadImg();
@@ -759,6 +792,31 @@ export default {
         return;
       }
       activeCom.order = order + 1;
+    },
+    //保存画布
+    canvasSaveFunc(options, callback) {
+      let value = {};
+      if (this._canvasSaveStatus) {
+        return;
+      }
+      this._canvasSaveStatus = true;
+      this.canvasSaveAction(options)
+        .then(({ data }) => {
+          let { code = "", result = {}, message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || {};
+            (callback && callback(value)) || {};
+          } else {
+            this.$$msgError(message || "保存失败");
+            // bmCommon.error(message || "保存失败");
+          }
+          this._canvasSaveStatus = false;
+        })
+        .catch(err => {
+          this._canvasSaveStatus = false;
+          this.$$msgError("保存失败");
+          bmCommon.error("保存失败", err);
+        });
     },
     //上传图片
     upload2OssFunc(options, callback) {

@@ -14,6 +14,7 @@ export default {
     historyIndex: 0, //撤销恢复记录游标
     historyList: [], //撤销恢复记录
     recordList: [], //记录点
+    canvasData: null, //画布数据
     selectBox: {
       moving: false, //是否显示
       left: 0,
@@ -72,7 +73,7 @@ export default {
     // activeComId: "",
     // 组件列表
     widgetList: [],
-    previewWidgetList: [],
+    previewData: [],
     originX: 0, // 选中元件的横向初始值
     originY: 0, // 选中元件的纵向初始值
     startX: 0, // 鼠标摁下时的横坐标
@@ -119,6 +120,24 @@ export default {
       }
       return recordList;
     },
+    getCanvasData(state) {
+      let canvasData = state.canvasData;
+      if (!canvasData) {
+        canvasData = bmCommon.getItem(
+          Constants.LOCALSTORAGEKEY.USERKEY.CANVASDATA
+        );
+        canvasData = JSON.parse(canvasData);
+      }
+      canvasData = JSON.parse(JSON.stringify(canvasData));
+      if (!canvasData) {
+        canvasData = [];
+      }
+      return canvasId => {
+        if (!canvasId) {
+          return canvasData || {};
+        }
+      };
+    },
     //获取画布缩放值
     getZoom(state) {
       return state.zoom;
@@ -132,18 +151,18 @@ export default {
       return state.activeComs || [];
     },
     //获取选中对象id
-    getPreviewWidgetList(state) {
-      let previewWidgetList = state.previewWidgetList;
-      if (!previewWidgetList || previewWidgetList.length < 1) {
-        previewWidgetList = bmCommon.getItem(
-          Constants.LOCALSTORAGEKEY.USERKEY.WIDGETLIST
+    getPreviewData(state) {
+      let previewData = state.previewData;
+      if (!previewData || previewData.length < 1) {
+        previewData = bmCommon.getItem(
+          Constants.LOCALSTORAGEKEY.USERKEY.PREVIEWDATA
         );
-        previewWidgetList = JSON.parse(previewWidgetList);
+        previewData = JSON.parse(previewData);
       }
-      if (!previewWidgetList || previewWidgetList.length < 1) {
-        previewWidgetList = [];
+      if (!previewData || previewData.length < 1) {
+        previewData = [];
       }
-      return previewWidgetList;
+      return previewData;
     },
     //获取选中对象id
     getWidgetList(state) {
@@ -179,16 +198,16 @@ export default {
       state.activeComs = item;
     },
     //设置选中对象
-    setPreviewWidgetList(state, item) {
+    setPreviewData(state, item) {
       if (item) {
         bmCommon.setItem(
-          Constants.LOCALSTORAGEKEY.USERKEY.WIDGETLIST,
+          Constants.LOCALSTORAGEKEY.USERKEY.PREVIEWDATA,
           JSON.stringify(item)
         );
       } else {
-        bmCommon.removeItem(Constants.LOCALSTORAGEKEY.USERKEY.WIDGETLIST);
+        bmCommon.removeItem(Constants.LOCALSTORAGEKEY.USERKEY.PREVIEWDATA);
       }
-      state.previewWidgetList = item;
+      state.previewData = item;
     },
     setWidgetList(state, item) {
       state.widgetList = item;
@@ -228,6 +247,17 @@ export default {
         bmCommon.removeItem(Constants.LOCALSTORAGEKEY.USERKEY.RECORDLIST);
       }
       state.recordList = item;
+    },
+    setCanvasData(state, item) {
+      if (item) {
+        bmCommon.setItem(
+          Constants.LOCALSTORAGEKEY.USERKEY.CANVASDATA,
+          JSON.stringify(item)
+        );
+      } else {
+        bmCommon.removeItem(Constants.LOCALSTORAGEKEY.USERKEY.CANVASDATA);
+      }
+      state.canvasData = item;
     },
     // 设置 mousemove 操作的初始值
     initMove(state, item = {}) {

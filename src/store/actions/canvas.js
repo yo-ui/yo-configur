@@ -1,6 +1,6 @@
 import { URL } from "@/common/env";
 // import bmCommon from '@/common/common'
-import { get } from "@/store/axios";
+import { get, post } from "@/store/axios";
 export default {
   //查询【设备系统】列表
   // canvasGetUrl: `${host}/configur/canvas/get`,
@@ -17,7 +17,7 @@ export default {
   // canvasSaveUrl: `${host}/configur/canvas/save`,
   async canvasSave(context, options) {
     let url = URL.canvasSaveUrl;
-    const data = await get({
+    const data = await post({
       url: url,
       params: options,
       store: context

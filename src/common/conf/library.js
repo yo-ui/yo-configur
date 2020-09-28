@@ -1527,23 +1527,16 @@ export default [
         code: "deviceCommon",
         icon: "/static/img/configur/kg.png",
         data: {
+          ...baseData,
           backgroundImage: "/static/img/svg/kg.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
+          backgroundImageOn: "/static/img/svg/kg-on.svg",
           width: 50,
           height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          equalScaleable: true //是否等比例缩放
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // dragable: true //是否可拖动
         }
       },
       {

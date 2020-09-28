@@ -13,6 +13,7 @@
       :status-icon="false"
       autocomplete="off"
       label-width="100px"
+      v-loading="dataLoadingStatus"
     >
       <el-form-item
         prop="orgId"
@@ -110,6 +111,7 @@ export default {
     return {
       showDialogStatus: false,
       deviceList: [],
+      dataLoadingStatus: true,
       // pointList: [],
       // device: {},
       showPopoverStatus: false,
@@ -134,8 +136,8 @@ export default {
       // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
       // activeCom: "canvas/getActiveCom",
       // activeComs: "canvas/getActiveComs",
-      treeData: "common/getOrganizeList"
-      // widgetList: "canvas/getWidgetList"
+      treeData: "common/getOrganizeList",
+      widgetList: "canvas/getWidgetList"
     })
   },
   methods: {
@@ -167,19 +169,34 @@ export default {
       //   // this.loadReportDeviceList();
       // });
     },
-    show() {
+    show(item = {}) {
       let { treeData = [], condition } = this;
-      let [org = {}] = treeData || [];
-      let { id = "", name = "" } = org || {};
-      condition.orgId = id;
-      condition.orgName = name;
       this.defaultExpandedKeys = [id];
+      let { id = "", bindData = {} } = item || {};
+      let { devicePoint = "", deviceId = "", orgId = "" } = bindData || {};
       this.showDialogStatus = true;
-      // this.device = "";
-      condition.deviceId = "";
-      // condition.pointId = "";
-      this.deviceList = null;
-      // this.pointList = null;
+      condition.comId = id; //组件id
+      if (orgId) {
+        condition.deviceId = deviceId;
+        condition.pointId = devicePoint;
+        condition.orgId = orgId;
+        this.defaultExpandedKeys = [orgId];
+        this.$nextTick(() => {
+          let node = this.$refs.tree?.getNode(orgId);
+          this.$refs.tree?.setCurrentKey(orgId);
+          let { label: name = "" } = node || {};
+          condition.orgName = name;
+        });
+      } else {
+        this.device = "";
+        let [org = {}] = treeData || [];
+        let { id = "", name = "" } = org || {};
+        condition.orgId = id;
+        condition.orgName = name;
+        this.defaultExpandedKeys = [id];
+        condition.deviceId = "";
+        condition.pointId = "";
+      }
       this.loadDeviceList();
     },
     closeEvent() {
@@ -187,6 +204,7 @@ export default {
     },
     loadDeviceList() {
       let { condition } = this;
+      this.dataLoadingStatus = true;
       this.commonDevicePointsFunc((list = []) => {
         this.deviceList = list || [];
         let [device = {}] = list || [];
@@ -197,6 +215,7 @@ export default {
         // let [point = {}] = points || [];
         // let { id: pointId = "" } = point || {};
         // condition.pointId = pointId;
+        this.dataLoadingStatus = false;
       });
     },
     //过滤树结点
@@ -219,9 +238,13 @@ export default {
       // this.loadReportDeviceList();
     },
     submitEvent() {
-      let { record = {} } = this;
-      let { widgetList = [] } = record || {};
-      this.setWidgetList(widgetList);
+      let { widgetList = [], condition } = this;
+      let { orgId = "", deviceId = "", comId = "" } = condition;
+      let activeCom = widgetList.find(item => item.id == comId) || {};
+      activeCom.bindData = {
+        orgId,
+        deviceId
+      };
       this.showDialogStatus = false;
     },
     // 获取设备和点位信息

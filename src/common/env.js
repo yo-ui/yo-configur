@@ -75,7 +75,7 @@ const Constants = {
     ACCOUNTMENUMAP: PLATFORM + "_ACCOUNTMENUMAP", //账户菜单权限
     USERKEY: {
       USERINFO: PLATFORM + "_USER_INFO", //用户信息key
-      WIDGETLIST: PLATFORM + "_WIDGET_LIST", //用户操作组件列表
+      PREVIEWDATA: PLATFORM + "_PREVIEW_DATA", //用户操作组件列表
       RECORDLIST: PLATFORM + "_RECORD_LIST" //用户记录
     }
   },

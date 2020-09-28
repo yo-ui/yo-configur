@@ -9,6 +9,10 @@
     :visible.sync="showDialogStatus"
     width="800px"
   >
+    <template #title>
+      {{ $lang("预览") }}
+      <i class="el-icon-monitor"></i>
+    </template>
     <div v-loading="dataLoadingStatus">
       <iframe
         src="/preview"

@@ -53,6 +53,11 @@ export default {
   mounted() {
     this.init();
   },
+  beforeDestroy() {
+      $(".content-box").off("mousedown", this.mousedownEvent);
+      $(document).off("mousemove", this.mousemoveEvent);
+      $(document).off("mouseup", this.mouseupEvent);
+  },
   methods: {
     ...mapMutations({
       setSelectBox: "canvas/setSelectBox",

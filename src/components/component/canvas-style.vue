@@ -498,6 +498,10 @@ export default {
         /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
       )
   },
+  beforeDestroy() {    
+      $(document).off("mousedown", this.mousedownEvent);
+      $(document).off("mousedown", this.mousedownCanvasPaintEvent);
+  },
   methods: {
     ...mapMutations({
       setZoom: "canvas/setZoom",

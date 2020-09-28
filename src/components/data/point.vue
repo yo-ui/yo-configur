@@ -14,6 +14,7 @@
       :status-icon="false"
       autocomplete="off"
       label-width="100px"
+      v-loading="dataLoadingStatus"
     >
       <el-form-item
         prop="orgId"
@@ -129,6 +130,7 @@ export default {
   data() {
     return {
       showDialogStatus: false,
+      dataLoadingStatus: true,
       deviceList: [],
       pointList: [],
       device: {},
@@ -152,10 +154,10 @@ export default {
       // zoom: "canvas/getZoom", //放大缩小
       // leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
       // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
-      activeCom: "canvas/getActiveCom",
+      // activeCom: "canvas/getActiveCom",
       // activeComs: "canvas/getActiveComs",
-      treeData: "common/getOrganizeList"
-      // widgetList: "canvas/getWidgetList"
+      treeData: "common/getOrganizeList",
+      widgetList: "canvas/getWidgetList"
     }),
     deviceMap() {
       let { deviceList = [] } = this;
@@ -194,22 +196,25 @@ export default {
       // this.loadReportDeviceList();
       // });
     },
-    show() {
-      let { treeData = [], condition, activeCom = {} } = this;
-      let { bindData = {} } = activeCom || {};
+    show(item = {}) {
+      let { treeData = [], condition } = this;
+      let { id = "", bindData = {} } = item || {};
       let { devicePoint = "", deviceId = "", orgId = "" } = bindData || {};
       this.deviceList = null;
       this.pointList = null;
       this.showDialogStatus = true;
+      condition.comId = id; //组件id
       if (orgId) {
         condition.deviceId = deviceId;
         condition.pointId = devicePoint;
         condition.orgId = orgId;
         this.defaultExpandedKeys = [orgId];
-        let node = this.$refs.tree?.getNode(orgId);
-        this.$refs.tree?.setCurrentKey(orgId);
-        let { label: name = "" } = node || {};
-        condition.orgName = name;
+        this.$nextTick(() => {
+          let node = this.$refs.tree?.getNode(orgId);
+          this.$refs.tree?.setCurrentKey(orgId);
+          let { label: name = "" } = node || {};
+          condition.orgName = name;
+        });
       } else {
         this.device = "";
         let [org = {}] = treeData || [];
@@ -223,6 +228,7 @@ export default {
       this.loadDeviceList();
     },
     loadDeviceList() {
+      this.dataLoadingStatus = true;
       this.commonDevicePointsFunc((list = []) => {
         this.deviceList = list || [];
         let { condition, deviceMap = {} } = this;
@@ -234,6 +240,7 @@ export default {
           condition.deviceId = id;
           this.device = device || {};
           this.pointList = points || [];
+          this.dataLoadingStatus = false;
           // let [point = {}] = points || [];
           // let { id: pointId = "" } = point || {};
           // condition.pointId = pointId;
@@ -277,8 +284,14 @@ export default {
       this.loadDeviceList();
     },
     submitEvent() {
-      let { activeCom = {}, condition } = this;
-      let { orgId = "", deviceId = "", pointId: devicePoint = "" } = condition;
+      let { widgetList = [], condition } = this;
+      let {
+        orgId = "",
+        deviceId = "",
+        pointId: devicePoint = "",
+        comId = ""
+      } = condition;
+      let activeCom = widgetList.find(item => item.id == comId) || {};
       activeCom.bindData = {
         orgId,
         deviceId,

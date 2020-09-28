@@ -129,7 +129,7 @@ export default {
       let data = dataTransfer.getData("data");
       // let target = originalEvent.target;
       if (
-        data 
+        data
         // &&
         // ($(target).hasClass("canvas-box") ||
         //   $(target)
@@ -251,6 +251,11 @@ export default {
     //       bmCommon.error("图片上传失败", err);
     //     });
     // }
+  },
+  beforeDestroy() {
+    $(document).off("dragstart", this.dragstartEvent);
+    $(document).off("dragover", this.dragoverEvent);
+    $(".content-box").off("drop", this.dropEvent);
   }
 };
 </script>

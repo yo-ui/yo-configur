@@ -169,7 +169,7 @@ export default {
   computed: {
     ...mapGetters({
       widgetList: "canvas/getWidgetList", //组件列表
-      previewWidgetList: "canvas/getPreviewWidgetList", //组件列表
+      previewData: "canvas/getPreviewData", //组件列表
       getZoom: "canvas/getZoom", //放大缩小
       leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
       rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
@@ -304,6 +304,7 @@ export default {
     ...mapMutations({
       setZoom: "canvas/setZoom",
       setWidgetList: "canvas/setWidgetList", //设置组件列表
+      setCanvas: "canvas/setCanvas",
       setActiveCom: "canvas/setActiveCom",
       setActiveComs: "canvas/setActiveComs",
       initMove: "canvas/initMove",
@@ -325,8 +326,10 @@ export default {
       //   canvas.width = width;
       //   canvas.height = height;
       // });
-      let { previewWidgetList = [] } = this;
-      this.setWidgetList(previewWidgetList || []);
+      let { previewData = {} } = this;
+      let { widgetList = [], canvas = {} } = previewData || {};
+      this.setWidgetList(widgetList || []);
+      this.setCanvas(canvas || {});
     }
     // initEvent() {
     //   let viewBox = this.$refs.viewBox;
