@@ -215,8 +215,8 @@ export default {
         // let [point = {}] = points || [];
         // let { id: pointId = "" } = point || {};
         // condition.pointId = pointId;
-        this.dataLoadingStatus = false;
       });
+      this.dataLoadingStatus = false;
     },
     //过滤树结点
     filterTree(val, data) {

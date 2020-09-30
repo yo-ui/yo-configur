@@ -25,6 +25,29 @@
       </el-collapse-item>
       <el-collapse-item title="画布" name="2">
         <p>
+          <span class="label"> {{ $lang("画布封面") }}: </span>
+          <bm-upload ref="bmUpload" @success="successCallback(info, 'poster')">
+            <el-button type="primary">
+              {{ $lang(info.poster ? "替换图片" : "选择图片") }}</el-button
+            >
+          </bm-upload>
+          <el-button v-if="info.poster" @click="info.poster = ''">{{
+            $lang("重置")
+          }}</el-button>
+        </p>
+        <p>
+          <span class="label"></span>
+          <span
+            class="img-box"
+            :style="
+              info.poster
+                ? `background-image:url(${$loadImgUrl(info.poster)})`
+                : ''
+            "
+          >
+          </span>
+        </p>
+        <p>
           <span class="label"> {{ $lang("组态标题") }}: </span>
           <el-input
             v-model="info.name"
@@ -498,9 +521,9 @@ export default {
         /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
       )
   },
-  beforeDestroy() {    
-      $(document).off("mousedown", this.mousedownEvent);
-      $(document).off("mousedown", this.mousedownCanvasPaintEvent);
+  beforeDestroy() {
+    $(document).off("mousedown", this.mousedownEvent);
+    $(document).off("mousedown", this.mousedownCanvasPaintEvent);
   },
   methods: {
     ...mapMutations({
@@ -942,6 +965,14 @@ export default {
       .p(18px) !important;
       .ml(8);
       .bz(80%);
+    }
+    .img-box {
+      .h(120);
+      .db;
+      .bg-img;
+      .bor(1px dashed @grayE);
+      // .w(100%);
+      .flex(1);
     }
     // &.gradient-aperture {
     //   .el-button {

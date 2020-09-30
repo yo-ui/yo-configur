@@ -240,11 +240,11 @@ export default {
           condition.deviceId = id;
           this.device = device || {};
           this.pointList = points || [];
-          this.dataLoadingStatus = false;
           // let [point = {}] = points || [];
           // let { id: pointId = "" } = point || {};
           // condition.pointId = pointId;
         }
+        this.dataLoadingStatus = false;
       });
     },
     selectDeviceEvent() {

@@ -12,7 +12,11 @@ let baseData = {
   content: "文本内容",
   name: "文本标题",
   dataType: "", //绑定数据类型  device point
-  bindData: {}, //绑定的数据
+  bindData: {
+    devicePoint: "",
+    deviceId: "",
+    orgId: ""
+  }, //绑定的数据
   animation: {
     name: "",
     direction: "normal",
@@ -323,7 +327,7 @@ export default [
         icon: "/static/img/configur/timeclock.png",
         data: {
           ...baseData,
-          dataType: "point",
+          // dataType: "point",
           fontWeight: "bold",
           fontSize: 24,
           fontFamily: "lcdD",
@@ -339,7 +343,9 @@ export default [
         icon: "/static/img/configur/timeclock.png",
         data: {
           ...baseData,
-          dataType: "point",
+          time: 100, //100s
+          format: "{dd}天{hh}小时{mm}分{ss}秒",
+          // dataType: "point",
           fontWeight: "bold",
           fontSize: 24,
           fontFamily: "lcdD",
@@ -350,12 +356,12 @@ export default [
         }
       },
       {
-        name: "轮播图",
-        code: "countdownText",
-        icon: "/static/img/configur/timeclock.png",
+        name: "轮播图文",
+        code: "swiperText",
+        icon: "/static/img/configur/imageList.png",
         data: {
           ...baseData,
-          dataType: "point",
+          // dataType: "point",
           fontWeight: "bold",
           fontSize: 24,
           fontFamily: "lcdD",
@@ -367,11 +373,13 @@ export default [
       },
       {
         name: "HLS视频流",
-        code: "countdownText",
-        icon: "/static/img/configur/timeclock.png",
+        code: "hlsVideo",
+        icon: "/static/img/configur/videostreaming.png",
         data: {
           ...baseData,
-          dataType: "point",
+          url:
+            "http://www.flashls.org/playlists/test_001/stream_1000k_48k_640x360.m3u8",
+          // dataType: "point",
           fontWeight: "bold",
           fontSize: 24,
           fontFamily: "lcdD",
@@ -384,10 +392,10 @@ export default [
       {
         name: "百分比条",
         code: "countdownText",
-        icon: "/static/img/configur/timeclock.png",
+        icon: "/static/img/configur/percentagebar.png",
         data: {
           ...baseData,
-          dataType: "point",
+          // dataType: "point",
           fontWeight: "bold",
           fontSize: 24,
           fontFamily: "lcdD",
@@ -399,11 +407,11 @@ export default [
       },
       {
         name: "iframe",
-        code: "countdownText",
-        icon: "/static/img/configur/timeclock.png",
+        code: "iframe",
+        icon: "/static/img/configur/iframe.png",
         data: {
           ...baseData,
-          dataType: "point",
+          // dataType: "point",
           fontWeight: "bold",
           fontSize: 24,
           fontFamily: "lcdD",
@@ -415,11 +423,11 @@ export default [
       },
       {
         name: "下拉筛选框",
-        code: "countdownText",
-        icon: "/static/img/configur/timeclock.png",
+        code: "select",
+        icon: "/static/img/configur/select.png",
         data: {
           ...baseData,
-          dataType: "point",
+          // dataType: "point",
           fontWeight: "bold",
           fontSize: 24,
           fontFamily: "lcdD",
@@ -430,12 +438,12 @@ export default [
         }
       },
       {
-        name: "按钮标题",
-        code: "countdownText",
-        icon: "/static/img/configur/timeclock.png",
+        name: "按钮标签",
+        code: "buttontab",
+        icon: "/static/img/configur/buttontab.png",
         data: {
           ...baseData,
-          dataType: "point",
+          // dataType: "point",
           fontWeight: "bold",
           fontSize: 24,
           fontFamily: "lcdD",
@@ -447,11 +455,11 @@ export default [
       },
       {
         name: "开关",
-        code: "countdownText",
-        icon: "/static/img/configur/timeclock.png",
+        code: "switch",
+        icon: "/static/img/configur/switch.png",
         data: {
           ...baseData,
-          dataType: "point",
+          // dataType: "point",
           fontWeight: "bold",
           fontSize: 24,
           fontFamily: "lcdD",
@@ -474,6 +482,8 @@ export default [
         icon: "/static/img/configur/video.png",
         data: {
           ...baseData,
+          src:
+            "https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4",
           // borderWidth: 0,
           // borderStyle: "none",
           // borderColor: "",
@@ -484,6 +494,12 @@ export default [
           // scale: "scale(1,1)",
           // opacity: 100,
           // left: 0,
+          controls: false,
+          autoplay: false,
+          loop: false,
+          muted: false,
+          preload: false,
+          poster: "",
           width: 480,
           height: 280
           // rotate: 0,

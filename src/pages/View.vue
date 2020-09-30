@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-preview-page">
+  <div class="bm-view-page">
     <!-- <bm-header ref="bmHeader"></bm-header> -->
     <div class="flex-content">
       <div class="content-box">
@@ -14,7 +14,7 @@
               <!-- <div class="grid" :style="gridStyle"></div> -->
             </div>
             <bm-com
-              class="preview"
+              class="view"
               :class="{
                 //active: activeComIds.indexOf(item.id) > -1,
                 locked: !item.dragable
@@ -22,7 +22,7 @@
               v-for="(item, index) in widgetList"
               :data-type="item.type"
               :data-id="item.id"
-              type="preview"
+              type="view"
               :info="item"
               :key="index"
             ></bm-com>
@@ -116,8 +116,8 @@
   </div>
 </template>
 <script>
-// import bmCommon from "@/common/common";
-// import { Constants } from "@/common/env";
+import bmCommon from "@/common/common";
+import { Constants } from "@/common/env";
 import bmCom from "@/components/component";
 // import bmHeader from "@/components/header";
 // import bmNav from "@/components/nav";
@@ -126,14 +126,14 @@ import bmCom from "@/components/component";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "bm-preview-page",
+  name: "bm-view-page",
   data() {
     return {
       // comList: [],
       // activeComIds: "",
-      // condition: {
-      //   zoom: 100
-      // }
+      condition: {
+        canvasId: ""
+      },
       showContextMenuStatus: false,
       showContextMenuType: 1, //1 组件右键菜单   2是画布右键菜单
       copyCom: "",
@@ -169,7 +169,7 @@ export default {
   computed: {
     ...mapGetters({
       widgetList: "canvas/getWidgetList", //组件列表
-      previewData: "canvas/getPreviewData", //组件列表
+      viewData: "canvas/getPreviewData", //组件列表
       getZoom: "canvas/getZoom", //放大缩小
       leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
       rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
@@ -218,18 +218,18 @@ export default {
     //   }
     //   return ids || [];
     // },
-    gridStyle() {
-      let { canvas = {} } = this;
-      let { isGrid = false, gridStyle = {} } = canvas || {};
-      let styles = {};
-      if (isGrid) {
-        let { width, height } = gridStyle || {};
-        styles[
-          "background"
-        ] = `linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${width}px ${height}px, linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${width}px ${height}px`;
-      }
-      return styles || {};
-    },
+    // gridStyle() {
+    //   let { canvas = {} } = this;
+    //   let { isGrid = false, gridStyle = {} } = canvas || {};
+    //   let styles = {};
+    //   if (isGrid) {
+    //     let { width, height } = gridStyle || {};
+    //     styles[
+    //       "background"
+    //     ] = `linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${width}px ${height}px, linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${width}px ${height}px`;
+    //   }
+    //   return styles || {};
+    // },
     bgStyle() {
       let { canvas = {} } = this;
       let { backgroundSize = "", backgroundImage = "" } = canvas || {};
@@ -276,10 +276,13 @@ export default {
       zoom = zoom / 100;
       let styles = {
         left: `${left}px`,
+        // left: `${left}`,
         top: `${top}px`,
+        // top: `${top}`,
         // backgroundColor: `${backgroundColor}`,
         transform: `scale(${zoom})`,
-        webkitTransform: `scale(${zoom})`
+        transformOrigin: `left top`
+        // webkitTransform: `scale(${zoom}) translate(-50%,-50%)`
       };
       if (width) {
         styles["width"] = `${width}px`;
@@ -305,31 +308,50 @@ export default {
       setZoom: "canvas/setZoom",
       setWidgetList: "canvas/setWidgetList", //设置组件列表
       setCanvas: "canvas/setCanvas",
-      setActiveCom: "canvas/setActiveCom",
-      setActiveComs: "canvas/setActiveComs",
-      initMove: "canvas/initMove",
-      setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
-      moving: "canvas/moving",
-      stopMove: "canvas/stopMove"
+      // setActiveCom: "canvas/setActiveCom",
+      // setActiveComs: "canvas/setActiveComs",
+      // initMove: "canvas/initMove",
+      // setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
+      // moving: "canvas/moving",
+      // stopMove: "canvas/stopMove"
     }),
     ...mapActions({
-      selectComAction: "canvas/selectCom",
-      selectComsAction: "canvas/selectComs"
+      // selectComAction: "canvas/selectCom",
+      canvasGetAction: "canvasGet",
+      commonVerifyInfoAction: "commonVerifyInfo",
+      // selectComsAction: "canvas/selectComs"
     }),
     init() {
       this.initEvent();
-      // this.$nextTick(() => {
-      //   let $canvasBox = $(this.$refs.canvasBox);
-      //   let { canvas = {} } = this;
-      //   let width = $canvasBox.innerWidth();
-      //   let height = $canvasBox.innerHeight();
-      //   canvas.width = width;
-      //   canvas.height = height;
-      // });
-      let { previewData = {} } = this;
-      let { widgetList = [], canvas = {} } = previewData || {};
-      this.setWidgetList(widgetList || []);
-      this.setCanvas(canvas || {});
+      let { condition, canvas = {} } = this;
+      this.commonVerifyInfoFunc((info = {}) => {
+        let { canvasId = "166", type = 1 } = info || {};
+        condition.canvasId = canvasId;
+        this.canvasGetFunc((detail = {}) => {
+          let {
+            name = "",
+            width = "",
+            height = "",
+            id: canvasId = "",
+            data = {}
+          } = detail || {};
+          data = typeof data === "string" ? JSON.parse(data) : data;
+          let { canvasData = {} } = data || {};
+          let { widgetList = [], canvas: _canvas } = canvasData || {};
+          if (_canvas) {
+            canvas = _canvas || {};
+          }
+          canvas.name = name;
+          canvas.width = width;
+          canvas.height = height;
+          canvas.canvasId = canvasId;
+          canvas.canvasType = type; //1为编辑   2为预览
+          this.setCanvas(canvas);
+          this.setWidgetList(widgetList);
+          // this.setCanvasData(data);
+          this.resetCanvasSize();
+        });
+      });
     },
     initEvent() {
       $(window).on("resize", this.resetCanvasSize);
@@ -353,6 +375,44 @@ export default {
       // canvas.left = left;
       // canvas.top = top;
       this.setZoom(scale);
+    },
+    // 获取登录信息
+    commonVerifyInfoFunc(callback) {
+      let value = {};
+      this.commonVerifyInfoAction()
+        .then(({ data }) => {
+          let { code = "", result = {}, message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || {};
+          } else {
+            bmCommon.error(message);
+          }
+          callback && callback(value || {});
+        })
+        .catch(err => {
+          callback && callback(value || {});
+          bmCommon.error("获取数据失败=>commonVerifyInfo", err);
+        });
+    },
+    // 获取画布信息
+    canvasGetFunc(callback) {
+      let value = {};
+      let { condition } = this;
+      let { canvasId: id = "" } = condition;
+      this.canvasGetAction({ id })
+        .then(({ data }) => {
+          let { code = "", result = {}, message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || {};
+          } else {
+            bmCommon.error(message);
+          }
+          callback && callback(value || {});
+        })
+        .catch(err => {
+          callback && callback(value || {});
+          bmCommon.error("获取数据失败=>canvasGet", err);
+        });
     }
   },
   mounted() {
@@ -364,5 +424,5 @@ export default {
 };
 </script>
 <style lang="less">
-@import (less) "../assets/less/pages/preview.less";
+@import (less) "../assets/less/pages/view.less";
 </style>

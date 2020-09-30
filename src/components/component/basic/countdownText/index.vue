@@ -1,6 +1,10 @@
 <template>
   <div ref="bmCom" :style="comStyle">
-    {{ info.content }}
+    <bm-countdown
+      ref="bmCountdown"
+      :time="info.time"
+      :format="info.format"
+    ></bm-countdown>
   </div>
 </template>
 
@@ -19,6 +23,12 @@ export default {
         return {};
       }
     }
+  },
+  components: {
+    bmCountdown: () =>
+      import(
+        /* webpackChunkName: "bm-component-countdown" */ "@/components/common/countdown.vue"
+      )
   },
   computed: {
     ...mapGetters(),

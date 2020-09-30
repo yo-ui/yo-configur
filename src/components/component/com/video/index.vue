@@ -1,6 +1,15 @@
 <template>
-  <video class="bm-basic-video-com" controls autoplay :style="comStyle">
-    <source src="" />
+  <video
+    class="bm-basic-video-com"
+    :controls="info.controls"
+    :autoplay="info.controls"
+    :loop="info.loop"
+    :muted="info.muted"
+    :preload="info.preload"
+    :poster="info.poster"
+    :style="comStyle"
+  >
+    <source :src="info.src" />
     <!-- <img src="/static/img/configur/video.svg" />
     <span class="text" :style="textStyle">{{info.content}}</span> -->
   </video>

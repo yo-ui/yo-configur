@@ -422,8 +422,9 @@ export default {
       this.uploadImg();
     },
     uploadImg() {
-      html2canvas($(".canvas-box")[0], {}).then(canvas => {
-        let blob = bmCommon.convertBase64ToBlob(canvas.toDataURL());
+      let { canvas = {} } = this;
+      html2canvas($(".canvas-box")[0], {}).then(_canvas => {
+        let blob = bmCommon.convertBase64ToBlob(_canvas.toDataURL());
         let formData = new FormData();
         formData.append("files", blob, `${Date.now()}.png`);
         formData.append("subDir", Constants.UPLOADDIR.FILE);
@@ -432,6 +433,10 @@ export default {
             formData
           },
           img => {
+            let { poster = "" } = canvas || {};
+            if (!poster) {
+              canvas.poster = img;
+            }
             this.createRecordAction({ img });
           }
         );

@@ -42,6 +42,15 @@ const Routers = [
       import(/* webpackChunkName: "bm-preview" */ "@/pages/Preview")
   },
   {
+    path: RouterURL.view.path,
+    name: RouterURL.view.name,
+    meta: {
+      title: RouterURL.view.title
+      // requireAuth: routerAuth //是否需要登录
+    },
+    component: () => import(/* webpackChunkName: "bm-view" */ "@/pages/View")
+  },
+  {
     path: RouterURL.login.path,
     name: RouterURL.login.name,
     meta: {

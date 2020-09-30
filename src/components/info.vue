@@ -46,7 +46,7 @@
                 v-if="item.dataType"
                 class="el-icon-link"
                 @click.stop="addEvent(item)"
-                :class="{ active: !!item.data }"
+                :class="{ active: item.bindData && item.bindData.orgId }"
               ></i>
             </el-tooltip>
           </li>

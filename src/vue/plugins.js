@@ -118,13 +118,13 @@ export default {
 
     //全局方法 获取语言
     Vue.prototype.$lang = function(key = "", options = "") {
-      // let { $store } = this;
-      // if (!$store) {
-      //   $store = $vm.$store;
-      //   this.$store = $store;
-      // }
-      // let langObj = $store.getters.getLangObj;
-      return bmCommon.langKey(null, key, options);
+      let { $store } = this;
+      if (!$store) {
+        let $vm = window.$vm;
+        $store = $vm.$store;
+      }
+      let langObj = $store.getters.getLangObj;
+      return bmCommon.langKey(langObj, key, options);
     };
 
     //获取单位处理
