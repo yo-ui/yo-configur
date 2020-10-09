@@ -52,7 +52,7 @@ class Zoom {
 
 	resetText() {
 		let value = this.ratios[this.ratioIndex];
-		$('.bm-zoom').find('span').text(value*100+'%');
+		$('.bm-zoom-text').text(value*100+'%');
 	}
 
   zoomText() {

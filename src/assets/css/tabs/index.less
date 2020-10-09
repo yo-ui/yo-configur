@@ -16,17 +16,21 @@
     }
   }
 
+  & > li.active {
+    background-color: #fff;
+  }
+
   & > li.active > a,
   & > li.active > a:hover {
     color: #555;
     cursor: default;
-    border-bottom: 2px solid #12a3ff;
   }
 }
 
 .bm-tabs-group {
   display: inline-block;
   vertical-align: middle;
+  height: 32px;
 
   & > span {
     display: inline-block;
@@ -53,10 +57,10 @@
 
   & > .bm-tabs {
     margin: 0;
-    height: 45px;
+    height: 40px;
 
     & > li {
-      margin-top: 10px;
+      margin-top: 11px;
       margin-right: 5px;
       margin-left: 5px;
 
@@ -64,10 +68,9 @@
         -webkit-border-radius: 0 !important;
         -moz-border-radius: 0 !important;
         border-radius: 0 !important;
-        padding: 5px 10px;
+        padding: 6px 10px;
         min-width: 50px;
         text-align: center;
-        font-size: 15px;
         background: transparent;
         margin: 0;
       }
@@ -77,15 +80,6 @@
         margin: 0;
       }
     }
-
-    & > li.active {
-
-    }
-
-    & > li:not(.active) > a:hover,
-    & > li:not(.active) > a:active {
-      border-color: transparent;
-    }
   }
 }
 
@@ -93,6 +87,5 @@
   background-color: #fff;
   height: calc(100% - 56px);
   padding: 5px;
-  border: 1px solid #f0f2f3;
   overflow: auto;
 }

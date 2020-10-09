@@ -10,6 +10,7 @@ class Panel {
 	}
 
 	init(titie,content,width,height = "auto") {
+	  this.stage.isPanel = true;
 	  this.empty();
     $('.bm-configur-panel__header').find("span").text(titie);
     $('.bm-configur-panel__content').html(content);
@@ -43,6 +44,7 @@ class Panel {
   }
 
   hide() {
+	  this.stage.isPanel = false;
     $('.bm-configur-panel').hide();
   }
 

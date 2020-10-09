@@ -8,29 +8,24 @@ import Panel from './../core/Panel';
 class ViewStage {
 
 	constructor(option,imgHost) {
-    let that = this;
-    this.imgHost = imgHost;
+	    let that = this;
+	    this.imgHost = imgHost;
 		this.option = option;
-    this.zoom = new Zoom(this);
-    this.panel = new Panel(this);
+	    this.zoom = new Zoom(this);
+	    this.panel = new Panel(this);
 		this.option.canvas(function(data) {
 			that.canvas = {id:data.id};
-      if(!data.data) {
-        data.data = JSON.stringify({background:{url:'',color: '#fff'},capacity:[]})
-      }
-      if(data.groupList) {
-        that.groupList = data.groupList;
-      }else {
-        that.groupList = [];
-      }
+	        if(!data.data) {
+	          data.data = JSON.stringify({background:{url:'',color: '#fff'},capacity:[]})
+	        }
 			that.analysis(data.width,data.height,JSON.parse(data.data));
-      that.location();
+            that.location();
 		})
-    this.password = new Password(this);
+        this.password = new Password(this);
 	}
 
 	createStage(width,height,background) {
-	  let that = this;
+	    let that = this;
 		this.width = width;
 		this.height = height;
 		this.background = background;
@@ -38,7 +33,7 @@ class ViewStage {
 			position: 'relative',
 			width: width+'px',
 			height: height+'px',
-      'user-select:': 'none',
+            'user-select:': 'none',
 			'background-color': background.color
 		});
 		this.element = element;
@@ -172,108 +167,116 @@ class ViewStage {
 
 	addEvent(spirit) {
 		let that = this;
-    let el = spirit.getEl();
-    el.data("id", spirit.id);
-    el.on('contextmenu',function(e) {
-      if(spirit.isPanel) {
-        let id = $(this).data('id');
-        that.capacity.forEach(function (spirit) {
-          if(spirit.id == id) {
-            that.spirit = spirit;
-          }
-        });
-        if (that.spirit.config.bindData) {
-          let deviceId = that.spirit.config.bindData.deviceId;
-          if (deviceId) {
-            that.option.getDevice(deviceId, function (device) {
-              $('.bm-view-panel').hide();
-              if(device) {
-                let left = el.offset().left + el.width();
-                let top = el.offset().top - 60;
-                $('.bm-view-panel').css({left, top});
-                that.spirit.viewPanel(device);
-              }
-            })
-          }
-        }
-      }
-      e.stopPropagation();
-      e.preventDefault();
-    });
+	    let el = spirit.getEl();
+	    el.data("id", spirit.id);
+	    el.on('contextmenu',function(e) {
+	      if(spirit.isPanel) {
+	        let id = $(this).data('id');
+	        that.capacity.forEach(function (spirit) {
+	          if(spirit.id == id) {
+	            that.spirit = spirit;
+	          }
+	        });
+	        if (that.spirit.config.bindData) {
+	          let deviceId = that.spirit.config.bindData.deviceId;
+	          if (deviceId) {
+	            that.option.getDevice(deviceId, function (device) {
+	              $('.bm-view-panel').hide();
+	              if(device) {
+	                let left = el.offset().left + el.width();
+	                let top = el.offset().top - 60;
+	                $('.bm-view-panel').css({left, top});
+	                that.spirit.viewPanel(device);
+	              }
+	            })
+	          }
+	        }
+	      }
+	      e.stopPropagation();
+	      e.preventDefault();
+	    });
 	}
   //解析
 	analysis(width,height,data) {
     let that = this;
 		$('#root').html('');
 		if(data) {
-      if(data.groupList) {
-        that.groupList = data.groupList;
-      }else {
-        that.groupList = [];
-      }
-			this.createStage(width,height,data.background);
-			data.capacity.forEach(function(property) {
-			  let id = property.id;
-				let className = property.className;
-				let x = property.x;
-				let y = property.y;
-				let width = property.width;
-				let height = property.height;
-				let rotate= property.rotate;
-				let spirit = that.create(className,x,y,width,height,rotate,id);
-				spirit.config = property.config;
-        if(className=="Images") {
-          let url = that.config.imgHost+"/"+spirit.config.url;
-          $('#'+spirit.id).find('img').attr('src', url);
-        }
-				spirit.refresh();
-				that.capacity.push(spirit);
+	      if(data.variableList) {
+	        that.variableList = data.variableList;
+	      }else {
+	        that.variableList = [];
+	      }
+		    this.createStage(width,height,data.background);
+		    data.capacity.forEach(function(property) {
+		    let id = property.id;
+			  let className = property.className;
+			  let x = property.x;
+			  let y = property.y;
+			  let width = property.width;
+			  let height = property.height;
+			  let rotate= property.rotate;
+			  let spirit = that.create(className,x,y,width,height,rotate,id);
+			  spirit.config = property.config;
+	        if(className=="Images") {
+	          let url = that.config.imgHost+"/"+spirit.config.url;
+	          $('#'+spirit.id).find('img').attr('src', url);
+	        }
+			  spirit.refresh();
+			  that.capacity.push(spirit);
 			})
       console.log(this.capacity);
-      let ids = new Set();
-			this.capacity.forEach(function(data) {
-        if(data.isBind) {
-          let deviceId = data.config.bindData.deviceId;
-          if(deviceId) {
-            ids.add(deviceId);
+          let ids = new Set();
+      this.capacity.forEach(function(data) {
+          if(data.isBind) {
+            let deviceId = data.config.bindData.deviceId;
+            if(deviceId) {
+              ids.add(deviceId);
+            }
           }
-        }
-        data.initialize();
+          data.initialize(ids);
 			});
 
-			that.option.deviceList(ids,function(dataList) {
-        that.reveal(dataList);
-      });
-      that.option.socket(ids,function(dataList) {
-        that.reveal(dataList);
-      })
+	    that.option.socket(ids,function(dataList) {
+	        that.reveal(dataList);
+	    })
 		}
 	}
 
   //绑定数据显示
   reveal(dataList) {
 	  let that = this;
-    dataList.forEach(function(device) {
-      that.capacity.forEach(function(spirit) {
-        if(spirit.isBind) {
-          let deviceId = spirit.config.bindData.deviceId;
-          if(deviceId==device.id) {
-            spirit.reveal(device,spirit.config);
-          }
-        }
-      });
-    })
+      dataList.forEach(function(device) {
+	      that.capacity.forEach(function(spirit) {
+	        if(spirit.isBind) {
+	          let deviceId = spirit.config.bindData.deviceId;
+	          if(deviceId==device.id) {
+	            spirit.reveal(device);
+	          }
+	        }
+	      });
+      })
   }
-  //联动 改变点位时联动关联的绑定设备
+
+  //联动
   linkage(device) {
     this.capacity.forEach(function(spirit) {
       if(spirit.isBind){
         let deviceId = spirit.config.bindData.deviceId;
         if(deviceId==device.id) {
-          spirit.reveal(device,spirit.config);
+          spirit.reveal(device);
         }
       }
     });
+  }
+
+  getVariable(key) {
+  	let data;
+  	this.variableList.forEach(function(variable) {
+  		if(key==variable.key) {
+  			data=variable;
+  		}
+  	})
+  	return data;
   }
 }
 

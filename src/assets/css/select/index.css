@@ -2,9 +2,9 @@
   display: inline-block;
   width: calc(100% - 2px);
   border: 1px solid #c8c9cc;
-  padding: 3px 0px;
+  padding: 6px 0px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 12px;
   -webkit-appearance: button;
   vertical-align: middle;
 }

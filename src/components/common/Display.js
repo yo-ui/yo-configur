@@ -1,6 +1,4 @@
 import Spirit from './../../core/Spirit'
-import Toast from "../../core/Toast";
-import AnimationPanel from "../../core/AnimationPanel";
 
 /**
  * 显示器
@@ -18,9 +16,10 @@ class Display extends Spirit {
 	    this.isBind = true;
 	    this.bindType = 2;
 	    this.zIndex = 3;
+	    this.isAnimation = true;
 	    this.config = {
-	      bindData: {orgId:'',deviceId:'',devicePoint:''},
-        animation: {type: 1,text: '赋值',point: '',name: ''}
+	      bindData: {deviceId:''},
+        animations: [{type: 91,text: '值显示->点位',expr: ''}]
 	    }
 	}
 
@@ -66,8 +65,8 @@ class Display extends Spirit {
                 <span class="value" style="
                   font-weight:bold;
                   font-family: lcdD;
-                  font-size: 18px;
-                  margin-right: -3px">00.00</span>      
+                  min-width: 40px;
+                  font-size: 18px;">00.00</span>      
                 <small class="unit" style="
                   display: inline-block;
                   text-align:center;
@@ -79,73 +78,42 @@ class Display extends Spirit {
 		return super.template().html(content);
 	}
 
-	//
-	reveal(device,config) {
-		let that = this;
-		if(device) {
-			device.points.forEach(function(point) {
-				if(that.config.animation.point==point.id) {
-				  $('#'+that.id).find('.value').text(parseFloat(point.value));
-          $('#'+that.id).find('.unit').text(point.unit);
-          $('#temp_value').html($('#'+that.id).find('div').html());
-          let width = $('#temp_value').width()
-          $('#'+that.id).find('svg').css({width: width/0.75+"px"});
-          $('#'+that.id).find('div').css({left: width*0.12+"px",width: width/0.98+"px"});
-				}
-			})
-		}
-	}
-
-  renderer() {
-    let that = this;
-    super.renderer();
-    let html = `<div class="bm-tree">动画</div>
-                <div class="bm-style">
-                  <div class="text">${this.config.animation.text}：</div>
-                  <div class="value">
-                    <span class="variable"></span>
-                    <i class="fa fa-edit" title="设置赋值变量"></i>
-                  </div>
-                </div>`;
-    $('#configur_property').append(html);
-
-    if(this.config.animation.point) {
-      let variable = $('#configur_property').find('.variable');
-      variable.text(this.config.animation.name+"("+this.config.animation.point+")");
-    }
-
-    let edit = $('#configur_property').find('.fa-edit');
-    edit.on("click",function () {
-      if(that.config.bindData.deviceId=="") {
-        Toast.alert("请先绑定设备！")
-        return;
-      }
-      that.stage.panel.init("动画->赋值",AnimationPanel.pointTemplate(),500);
-      that.stage.panel.show();
-      let deviceId = that.config.bindData.deviceId;
-      if(deviceId) {
-        that.stage.option.getDevice(deviceId,function (device) {
-          device.points.forEach(function (point) {
-            let option = $(`<option>${point.name}</option>`);
-            option.val(point.id);
-            $('.bm-configur-panel').find('[name=point]').append(option);
-          })
-        });
-      }
-      let value = that.config.animation.point;
-      $('.bm-configur-panel').find('[name=point]').val(value);
-      that.stage.panel.confirm(function () {
-        let element = $('.bm-configur-panel').find('[name=point]');
-        let value = element.val();
-        let name = element.find("option:selected").text()
-        that.config.animation.point = value;
-        that.config.animation.name = name;
-        $('#configur_property').find('.variable').text(name+"("+value+")");
+  initialize(ids) {
+	  let that = this;
+    this.stage.option.deviceList(ids,function(dataList) {
+      console.log(dataList);
+      dataList.forEach(function(device) {
+        let deviceId = that.config.bindData.deviceId;
+        if(deviceId==device.id) {
+          that.reveal(device);
+        }
       })
     })
-
   }
 
+	//
+	reveal(device) {
+    let that = this;
+    if(device) {
+      device.points.forEach(function(point) {
+        that.config.animations.forEach(function (animation) {
+          if(animation.type==91) {
+            let expr = animation.expr;
+            if(expr==point.id) {
+              $('#'+that.id).find('.value').text(parseFloat(point.value));
+              $('#'+that.id).find('.unit').text(point.unit);
+              $('#temp_value').html($('#'+that.id).find('div').html());
+              let width = $('#temp_value').width()
+              $('#'+that.id).find('svg').css({width: width/0.75+"px"});
+              $('#'+that.id).find('div').css({left: width*0.12+"px",width: width/0.98+"px"});
+            }
+          }
+        })
+      })
+    }
+	}
+
+	//
 	toJson() {
 		let json = {
 			className: this.className,
@@ -154,7 +122,7 @@ class Display extends Spirit {
 			isBind: this.isBind,
 			zIndex: this.zIndex,
 		};
-		return Object.assign(super.toJson(),json);
+		return Object.assign(super.toJson(), json);
 	}
 }
 

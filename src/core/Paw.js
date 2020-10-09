@@ -179,17 +179,16 @@ class Paw {
         let height = that.property.height;
         if(that.property.minWidth<=width) {
           if(that.property.linkage) {
-              resizePanel.css({width:width,height:height});
-              resizePanel.find('.configur-spirit').children().css({width:width,height:height});
+              resizePanel.css({width,height});
+              resizePanel.find('.configur-spirit').children().css({width,height});
               that.property.width = width;
               that.property.height = width;
               that.stage.setProperty(that.property);
           }else {
-              resizePanel.css({width:width});
-              resizePanel.find('.configur-spirit').children().css({width:width});
-              resizePanel.find("svg").css({width:width});
+              resizePanel.css({width});
+              resizePanel.find('.configur-spirit').children().css({width});
               if(that.property.className=="LevelWater") {
-                resizePanel.find("rect").css({width:width});
+                resizePanel.find("rect").css({width});
               }
               that.property.width = width;
               that.stage.setProperty(that.property);
@@ -200,17 +199,16 @@ class Paw {
         let height = oh+y;
         if(that.property.minHeight<=height) {
           if(that.property.linkage) {
-              resizePanel.css({width:height,height:height});
-              resizePanel.find('.configur-spirit').children().css({width:height,height:height});
+              resizePanel.css({width,height});
+              resizePanel.find('.configur-spirit').children().css({width,height});
               that.property.width = height;
               that.property.height = height;
               that.stage.setProperty(that.property);
           }else {
-              resizePanel.css({height:height});
-              resizePanel.find('.configur-spirit').children().css({height:height});
-              resizePanel.find("svg").css({height:height});
+              resizePanel.css({height});
+              resizePanel.find('.configur-spirit').children().css({height});
               if(that.property.className=="VerticalWater") {
-                resizePanel.find("rect").css({height:height});
+                resizePanel.find("rect").css({height});
               }
               that.property.height = height;
               that.stage.setProperty(that.property);
@@ -219,21 +217,21 @@ class Paw {
       } else if(wmove) {//左
         let x = e.pageX-ox;
         let width = ow-x;
+        let height = ow-x;
         let left = oleft+x;
         if(that.property.minWidth<=width) {
           if(that.property.linkage) {
-              resizePanel.css({width:width,height:width,left:oleft+x});
-              resizePanel.find('.configur-spirit').children().css({width:width,height:width});
-              that.property.width = width;
-              that.property.height = width;
+              resizePanel.css({width,height,left});
+              resizePanel.find('.configur-spirit').children().find('svg').css({width,height});
               that.property.x = left;
+              that.property.width = width;
+              that.property.height = height;
               that.stage.setProperty(that.property);
           }else {
-              resizePanel.css({width:width,left:left});
-              resizePanel.find('.configur-spirit').children().css({width:width});
-              resizePanel.find("svg").css({width:width});
+              resizePanel.css({width,left});
+              resizePanel.find('.configur-spirit').children().css({width});
               if(that.property.className=="LevelWater") {
-                resizePanel.find("rect").css({width:width,left:left});
+                resizePanel.find("rect").css({width,left});
               }
               that.property.x = left;
               that.property.width = width;
@@ -242,22 +240,22 @@ class Paw {
         }
       } else if(nmove) {//上
         let y = e.pageY-oy;
+        let width = oh-y;
         let height = oh-y;
         let top = otop+y;
         if(that.property.minHeight<=height) {
           if(that.property.linkage) {
-              resizePanel.css({width:height,height:height,top:top});
-              resizePanel.find('.configur-spirit').children().css({width:height,height:height});
+              resizePanel.css({width,height,top});
+              resizePanel.find('.configur-spirit').children().css({width,height});
               that.property.y = top;
-              that.property.width = height;
+              that.property.width = width;
               that.property.height = height;
               that.stage.setProperty(that.property);
           }else {
-              resizePanel.css({height:height,top:top});
-              resizePanel.find('.configur-spirit').children().css({height:height});
-              resizePanel.find("svg").css({height:height});
+              resizePanel.css({height,top});
+              resizePanel.find('.configur-spirit').children().css({height});
               if(that.property.className=="VerticalWater") {
-                resizePanel.find("rect").css({height:height});
+                resizePanel.find("rect").css({height});
               }
               that.property.y = top;
               that.property.height = height;
@@ -267,36 +265,59 @@ class Paw {
       } else if(nemove) {//右上角
         let x = e.pageX - ox;
         let y = e.pageY - oy;
-        resizePanel.css({height:oh-y,top:otop+y,width:ow+x});
-        resizePanel.find('.configur-spirit').children().css({height:oh-y,width:ow+x});
-        that.property.y = otop+y;
-        that.property.width = ow+x;
-        that.property.height = oh-y;
-        that.stage.setProperty(that.property);
+        let width = ow + x;
+        let height = oh - y;
+        let top = otop + y;
+        if(that.property.minHeight<=height&&that.property.minWidth<=width) {
+          resizePanel.css({height, top, width});
+          resizePanel.find('.configur-spirit').children().css({height, width});
+          that.property.y = top;
+          that.property.width = width;
+          that.property.height = height;
+          that.stage.setProperty(that.property);
+        }
       } else if(nwmove) {//左上角
         let x = e.pageX - ox;
         let y = e.pageY - oy;
-        resizePanel.css({height:oh-y,top:otop+y,width:ow-x,left:oleft+x});
-        that.property.y = otop+y;
-        that.property.x = oleft+x;
-        that.property.width = ow-x;
-        that.property.height = oh-y;
-        that.stage.setProperty(that.property);
+        let left = oleft + x;
+        let top = otop + y;
+        let width = ow - x;
+        let height = oh - y;
+        if(that.property.minHeight<=height&&that.property.minWidth<=width) {
+          resizePanel.css({height,top,width,left});
+          resizePanel.find('.configur-spirit').children().css({height,width});
+          that.property.y = top;
+          that.property.x = left;
+          that.property.width = width;
+          that.property.height = height;
+          that.stage.setProperty(that.property);
+        }
       } else if(semove) {//右下角
         let x = e.pageX - ox;
         let y = e.pageY - oy;
-        resizePanel.css({width:ow+x,height:oh+y});
-        that.property.width = ow+x;
-        that.property.height = oh+y;
-        that.stage.setProperty(that.property);
+        let width = ow + x;
+        let height = oh + y;
+        if(that.property.minHeight<=height&&that.property.minWidth<=width) {
+          resizePanel.css({width,height});
+          resizePanel.find('.configur-spirit').children().css({height,width});
+          that.property.width = width;
+          that.property.height = height;
+          that.stage.setProperty(that.property);
+        }
       } else if(swmove) {//左下角
         let x = e.pageX - ox;
         let y = e.pageY - oy;
-        resizePanel.css({width:ow-x,left:oleft+x,height:oh+y});
-        that.property.x = oleft+x;
-        that.property.width = ow-x;
-        that.property.height = oh+y;
-        that.stage.setProperty(that.property);
+        let left = oleft + x;
+        let width = ow - x;
+        let height = oh + y;
+        if(that.property.minHeight<=height&&that.property.minWidth<=width) {
+          resizePanel.css({width,left,height});
+          resizePanel.find('.configur-spirit').children().css({height,width});
+          that.property.x = left;
+          that.property.width = width;
+          that.property.height = height;
+          that.stage.setProperty(that.property);
+        }
       } else if(drag) {
         let x = e.pageX - ox;
         let y = e.pageY - oy;

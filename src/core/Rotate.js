@@ -8,7 +8,7 @@ class Rotate {
 
     create() {
         let that = this;
-        let panel = $(`<div class="bm-rotate" style="margin-top: -35px;text-align: center;cursor: default;"><img src="static/images/rotate.png" width="12" style="cursor: pointer;"></div>`);
+        let panel = $(`<div class="bm-rotate" style="margin-top: -30px;text-align: center;cursor: default;"><img src="static/images/rotate.png" width="12" style="cursor: pointer;"></div>`);
         panel.on('mousedown',function (e) {
             e.preventDefault();
             e.stopPropagation();

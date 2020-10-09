@@ -400,7 +400,7 @@ class Pfj extends Spirit {
         </div>`);
 	}
 
-	reveal(device,config) {
+	reveal(device) {
     let that = this;
     let state = that.config.state;
     if(device) {

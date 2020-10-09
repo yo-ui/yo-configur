@@ -17,7 +17,7 @@
   vertical-align: middle;
 }
 .fa-sm {
-  font-size: 24px;
+  font-size: 18px;
 }
 .fa-up:before {
   content: "\e031";
@@ -126,4 +126,13 @@
 }
 .fa-rotate:before {
   content: "\e037";
+}
+.fa-decorate:before {
+  content: "\e038";
+}
+.fa-chart:before {
+  content: "\e039";
+}
+.fa-text:before {
+  content: "\e040";
 }

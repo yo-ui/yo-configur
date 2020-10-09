@@ -214,7 +214,7 @@ textarea {
 html,
 body {
   height: 100%;
-  font-size: 14px;
+  font-size: 12px;
   font-family: Microsoft YaHei sans-serif;
   overflow: hidden;
 }
@@ -323,7 +323,7 @@ span {
   vertical-align: middle;
 }
 .fa-sm {
-  font-size: 24px;
+  font-size: 18px;
 }
 .fa-up:before {
   content: "\e031";
@@ -433,13 +433,22 @@ span {
 .fa-rotate:before {
   content: "\e037";
 }
+.fa-decorate:before {
+  content: "\e038";
+}
+.fa-chart:before {
+  content: "\e039";
+}
+.fa-text:before {
+  content: "\e040";
+}
 /**布局**/
 .bm-layout {
   height: 100%;
 }
 .bm-layout__header {
-  height: 50px;
-  line-height: 50px;
+  height: 40px;
+  line-height: 40px;
   font-size: 16px;
   background-color: #023459;
   color: #fff;
@@ -447,7 +456,7 @@ span {
 }
 .bm-layout__header__back {
   cursor: pointer;
-  width: 54px;
+  width: 40px;
   text-align: center;
   background-color: #023459;
 }
@@ -456,7 +465,7 @@ span {
 }
 .bm-layout__header__name {
   flex: 1;
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
   vertical-align: top;
 }
@@ -515,13 +524,10 @@ span {
   font-weight: bold;
 }
 .bm-zoom {
-  line-height: 38px;
-  height: 38px;
   width: 100%;
 }
 .bm-zoom > div {
   display: inline-block;
-  width: 24px;
 }
 .bm-zoom > div > span {
   text-align: center;
@@ -730,9 +736,9 @@ span {
 .bm-help {
   position: fixed;
   bottom: 15px;
-  left: 12px;
+  left: 10px;
   color: #fff;
-  font-size: 30px;
+  font-size: 20px;
   cursor: pointer;
 }
 .bm-style {
@@ -759,27 +765,27 @@ span {
 .bm-style > .value > i:hover {
   border: 1px solid #ebedf0;
 }
-.bm-font-group > span {
+.bm-font-style > span {
   border: 1px solid #ddd;
   line-height: 18px;
   width: 20px;
   text-align: center;
   cursor: pointer;
 }
-.bm-font-group > span.active {
+.bm-font-style > span.active {
   background-color: #12a3ff;
   border: 1px solid #12a3ff;
   color: #fff;
 }
-.bm-font-group > span:first-child {
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+.bm-font-style > span:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
   font-weight: bold;
   font-family: Times, serif;
 }
-.bm-font-group > span:last-child {
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+.bm-font-style > span:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
   font-style: italic;
   font-family: Times, serif;
   border-left: none;
@@ -922,14 +928,14 @@ span {
 /**侧面导航**/
 .bm-side {
   display: inline-block;
-  width: 54px;
+  width: 40px;
   height: 100%;
   background-color: #002C2F;
-  font-size: 15px;
+  font-size: 12px;
   text-align: center;
 }
 .bm-side > li {
-  width: 34px;
+  width: 20px;
   padding: 20px 10px;
   text-align: center;
   cursor: pointer;
@@ -957,15 +963,18 @@ span {
 .bm-tabs > li > a:hover {
   color: #000;
 }
+.bm-tabs > li.active {
+  background-color: #fff;
+}
 .bm-tabs > li.active > a,
 .bm-tabs > li.active > a:hover {
   color: #555;
   cursor: default;
-  border-bottom: 2px solid #12a3ff;
 }
 .bm-tabs-group {
   display: inline-block;
   vertical-align: middle;
+  height: 32px;
 }
 .bm-tabs-group > span {
   display: inline-block;
@@ -988,10 +997,10 @@ span {
 }
 .bm-tabs-custom > .bm-tabs {
   margin: 0;
-  height: 45px;
+  height: 40px;
 }
 .bm-tabs-custom > .bm-tabs > li {
-  margin-top: 10px;
+  margin-top: 11px;
   margin-right: 5px;
   margin-left: 5px;
 }
@@ -999,10 +1008,9 @@ span {
   -webkit-border-radius: 0 !important;
   -moz-border-radius: 0 !important;
   border-radius: 0 !important;
-  padding: 5px 10px;
+  padding: 6px 10px;
   min-width: 50px;
   text-align: center;
-  font-size: 15px;
   background: transparent;
   margin: 0;
 }
@@ -1010,35 +1018,30 @@ span {
   background: transparent;
   margin: 0;
 }
-.bm-tabs-custom > .bm-tabs > li:not(.active) > a:hover,
-.bm-tabs-custom > .bm-tabs > li:not(.active) > a:active {
-  border-color: transparent;
-}
 .bm-tabs-content {
   background-color: #fff;
   height: calc(100% - 56px);
   padding: 5px;
-  border: 1px solid #f0f2f3;
   overflow: auto;
 }
 /**组件列表**/
 .bm-component-list {
   display: inline-block;
-  width: 170px;
+  width: 185px;
   vertical-align: top;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 5px;
+  color: #666;
 }
 .bm-component-list > div {
   text-align: center;
   margin-bottom: 20px;
-  width: 80px;
+  min-width: 88px;
   display: inline-block;
 }
 .bm-component-list > div > img {
-  max-width: 50px;
   cursor: move;
   border: 2px solid transparent;
   border-radius: 2px;
@@ -1081,8 +1084,8 @@ span {
   cursor: pointer;
 }
 .bm-list > li.active {
-  background-color: #85d4ff;
-  border: 1px solid #85d4ff;
+  background-color: #0075E7;
+  border: 1px solid #0075E7;
   color: #fff;
 }
 .bm-common-list > li {
@@ -1101,8 +1104,9 @@ span {
 .bm-action-list > li {
   line-height: 24px;
   margin: 1px 0;
-  padding: 3px 8px;
+  padding: 4px 8px;
   display: flex;
+  background-color: #f7f8fa;
 }
 .bm-action-list > li > .text {
   flex: 1;
@@ -1113,7 +1117,7 @@ span {
   vertical-align: middle;
 }
 .bm-action-list > li:hover {
-  background-color: #f7f8fa;
+  background-color: #ebedf0;
   cursor: pointer;
 }
 .bm-action-list > li.active {
@@ -1125,11 +1129,8 @@ span {
   position: relative;
   display: inline-block;
   box-sizing: border-box;
-  height: 32px;
   margin: 0;
   padding: 0;
-  font-size: 16px;
-  line-height: 32px;
   text-align: center;
   border-radius: 2px;
   cursor: pointer;
@@ -1533,7 +1534,7 @@ span {
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  background: #07c160;
+  background-color: #0075E7;
   border-radius: 2px;
   width: 100%;
 }
@@ -1556,9 +1557,9 @@ span {
   display: inline-block;
   width: calc(100% - 2px);
   border: 1px solid #c8c9cc;
-  padding: 3px 0px;
+  padding: 6px 0px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 12px;
   -webkit-appearance: button;
   vertical-align: middle;
 }
@@ -1721,35 +1722,36 @@ span {
 }
 /**下拉面板**/
 .bm-select-panel {
+  display: inline-block;
   position: relative;
   margin-bottom: 5px;
+  width: 100%;
 }
 .bm-select-panel > span {
   display: flex;
-  padding: 3px 5px;
   border: 1px solid #ddd;
-  line-height: 30px;
-  width: calc(100% - 12px);
   cursor: pointer;
   user-select: none;
+  line-height: 30px;
 }
 .bm-select-panel > span > .text {
   flex: 1;
   padding-right: 50px;
+  padding-left: 5px;
+  line-height: 30px;
 }
 .bm-select-panel > span > .icon {
+  line-height: 30px;
   width: 15px;
-  margin-top: 8px;
 }
 .bm-select-panel > div {
   display: none;
   position: absolute;
-  top: 39px;
-  margin-top: -2px;
+  top: 28px;
+  margin-top: 3px;
   background-color: #fff;
-  width: 100%;
+  width: calc(100% - 2px);
   border: 1px solid #ebedf0;
-  box-shadow: 0px 1px 1px #ddd;
 }
 .bm-select-panel > div > ul {
   max-height: 240px;
@@ -1759,7 +1761,7 @@ span {
 .bm-select-panel > div > ul > li {
   line-height: 24px;
   cursor: pointer;
-  padding: 5px;
+  padding: 3px 5px;
   border-bottom: 1px solid #F5F5F5;
 }
 .bm-select-panel > div > ul > li:last-child {
@@ -1773,6 +1775,63 @@ span {
   color: #fff;
 }
 .bm-select-panel > div > ul > li.no-data {
+  text-align: center;
+}
+/**输入下拉面板**/
+.bm-input-panel {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 5px;
+  width: 100%;
+}
+.bm-input-panel > span {
+  display: flex;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  user-select: none;
+  line-height: 30px;
+}
+.bm-input-panel > span > .text {
+  flex: 1;
+  padding-right: 50px;
+  padding-left: 5px;
+  line-height: 30px;
+}
+.bm-input-panel > span > .icon {
+  line-height: 30px;
+  width: 15px;
+}
+.bm-input-panel > div {
+  display: none;
+  position: absolute;
+  top: 28px;
+  margin-top: 4px;
+  background-color: #fff;
+  width: calc(100% - 2px);
+  border: 1px solid #ebedf0;
+}
+.bm-input-panel > div > ul {
+  max-height: 240px;
+  overflow: auto;
+  padding: 5px;
+}
+.bm-input-panel > div > ul > li {
+  line-height: 24px;
+  cursor: pointer;
+  padding: 3px 5px;
+  border-bottom: 1px solid #F5F5F5;
+}
+.bm-input-panel > div > ul > li:last-child {
+  border-bottom: 1px solid transparent;
+}
+.bm-input-panel > div > ul > li:not(.active):hover {
+  background-color: #f5f5f5;
+}
+.bm-input-panel > div > ul > li.active {
+  background-color: #12a3ff;
+  color: #fff;
+}
+.bm-input-panel > div > ul > li.no-data {
   text-align: center;
 }
 /**密码面板**/
@@ -1965,7 +2024,7 @@ span {
 .bm-img-text {
   display: inline-block;
   vertical-align: top;
-  line-height: 20px;
+  line-height: 17px;
   margin: 5px;
 }
 .bm-img-text > p {
@@ -2110,8 +2169,8 @@ input[type="checkbox"]:focus {
   display: inline-block;
   width: calc(100% - 12px);
   height: 1.42857143;
-  padding: 3px 5px;
-  font-size: 14px;
+  padding: 6px 5px;
+  font-size: 13px;
   line-height: 1.42857143;
   color: #000;
   background-color: #fff;
@@ -2152,7 +2211,7 @@ input[type="search"] {
 }
 .radio label,
 .checkbox label {
-  min-height: 20px;
+  min-height: 17px;
   padding-left: 20px;
   margin-bottom: 0;
   font-weight: normal;
@@ -2209,7 +2268,7 @@ fieldset[disabled] .checkbox label {
   padding-top: 7px;
   padding-bottom: 7px;
   margin-bottom: 0;
-  min-height: 34px;
+  min-height: 29px;
 }
 .form-control-static.input-lg,
 .form-control-static.input-sm {
@@ -2217,84 +2276,84 @@ fieldset[disabled] .checkbox label {
   padding-right: 0;
 }
 .input-sm {
-  height: 36px;
+  height: 34px;
   padding: 8px 10px;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.5;
   border-radius: 3px;
 }
 select.input-sm {
-  height: 36px;
-  line-height: 36px;
+  height: 34px;
+  line-height: 34px;
 }
 textarea.input-sm,
 select[multiple].input-sm {
   height: auto;
 }
 .form-group-sm .form-control {
-  height: 36px;
+  height: 34px;
   padding: 8px 10px;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.5;
   border-radius: 3px;
 }
 .form-group-sm select.form-control {
-  height: 36px;
-  line-height: 36px;
+  height: 34px;
+  line-height: 34px;
 }
 .form-group-sm textarea.form-control,
 .form-group-sm select[multiple].form-control {
   height: auto;
 }
 .form-group-sm .form-control-static {
-  height: 36px;
-  min-height: 32px;
+  height: 34px;
+  min-height: 28px;
   padding: 9px 10px;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.5;
 }
 .input-lg {
-  height: 46px;
+  height: 42px;
   padding: 10px 16px;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 1.3333333;
   border-radius: 6px;
 }
 select.input-lg {
-  height: 46px;
-  line-height: 46px;
+  height: 42px;
+  line-height: 42px;
 }
 textarea.input-lg,
 select[multiple].input-lg {
   height: auto;
 }
 .form-group-lg .form-control {
-  height: 46px;
+  height: 42px;
   padding: 10px 16px;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 1.3333333;
   border-radius: 6px;
 }
 .form-group-lg select.form-control {
-  height: 46px;
-  line-height: 46px;
+  height: 42px;
+  line-height: 42px;
 }
 .form-group-lg textarea.form-control,
 .form-group-lg select[multiple].form-control {
   height: auto;
 }
 .form-group-lg .form-control-static {
-  height: 46px;
-  min-height: 38px;
+  height: 42px;
+  min-height: 32px;
   padding: 11px 16px;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 1.3333333;
 }
 .has-feedback {
   position: relative;
 }
 .has-feedback .form-control {
-  padding-right: 42.5px;
+  padding-right: 38.75px;
 }
 .form-control-feedback {
   position: absolute;
@@ -2302,28 +2361,28 @@ select[multiple].input-lg {
   right: 0;
   z-index: 2;
   display: block;
-  width: 34px;
-  height: 34px;
-  line-height: 34px;
+  width: 31px;
+  height: 31px;
+  line-height: 31px;
   text-align: center;
   pointer-events: none;
 }
 .input-lg + .form-control-feedback,
 .input-group-lg + .form-control-feedback,
 .form-group-lg .form-control + .form-control-feedback {
-  width: 46px;
-  height: 46px;
-  line-height: 46px;
+  width: 42px;
+  height: 42px;
+  line-height: 42px;
 }
 .input-sm + .form-control-feedback,
 .input-group-sm + .form-control-feedback,
 .form-group-sm .form-control + .form-control-feedback {
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
 }
 .has-feedback label ~ .form-control-feedback {
-  top: 25px;
+  top: 22px;
 }
 .has-feedback label.sr-only ~ .form-control-feedback {
   top: 0;
@@ -2344,7 +2403,7 @@ select[multiple].input-lg {
 }
 .form-horizontal .radio,
 .form-horizontal .checkbox {
-  min-height: 27px;
+  min-height: 24px;
 }
 /**title**/
 .bm-tooltip {
@@ -2755,4 +2814,51 @@ table th[class*="col-"] {
 .table-responsive {
   min-height: 0.01%;
   overflow-x: auto;
+}
+/**toolbar**/
+.bm-toolbar {
+  height: 44px;
+  background-color: #f6f6fb;
+  border-bottom: 1px solid #cbd3d3;
+  padding: 4px 10px;
+}
+.bm-toolbar > .item {
+  display: inline-flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  cursor: pointer;
+  opacity: 1;
+  color: #000;
+  user-select: none;
+  flex-flow: column nowrap;
+  line-height: 22px;
+  margin: 0 5px;
+}
+.bm-toolbar > .item > div i {
+  font-size: 20px;
+  border: 1px solid transparent;
+  color: #000;
+}
+.bm-toolbar > .item > div i:hover {
+  border: 1px inset #ddd;
+}
+.bm-toolbar > .item > span {
+  font-size: 12px;
+}
+.bm-toolbar > .halving {
+  width: 1px;
+  height: 10px;
+  display: inline-block;
+  border-right: 1px solid #ddd;
+  margin: 0 5px;
+}
+.bm-toolbar > .disabled > div > i,
+.bm-toolbar > .disabled > span {
+  cursor: not-allowed;
+  color: #666;
+}
+.bm-toolbar > .disabled > div > i:hover {
+  border: 1px solid transparent;
 }

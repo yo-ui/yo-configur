@@ -14,12 +14,21 @@ class Dengg extends Spirit {
 	    this.moveType = 4;
 	    this.minWidth = 40;
 	    this.minHeight = 20;
-		  this.zIndex = 2;
+		this.zIndex = 2;
 	    this.linkage = false;
+	    this.isPanel = true;
 	    this.isBind = true;
+	    this.isAnimation = true;
 	    this.config = {
-	      bindData: {orgId:'',deviceId:'',devicePoint:''},
-        state: {expr:'SwSts',stop:0,start:1,alarm:2}
+	      bindData: {deviceId:''},        
+          animations: [
+			    {type: 31, 
+		    	 text: '填充->离散', 
+		    	 expr: 'SwSts',
+		    	 on: {value: 1},
+		    	 off: {value: 0},
+		    	 value: 0,
+		    	 category: 3}]
 	    };
 	}
 
@@ -98,23 +107,57 @@ class Dengg extends Spirit {
               </svg>        
         </div>`);
 	}
-
-	reveal(device,config) {
-    let that = this;
-    let state = that.config.state;
-    if(device) {
-      device.points.forEach(function (point) {
-        if (point.id == state.expr) {
-          if (point.value == state.alarm) {
-            that.alarm();
-          } else if (point.value == state.stop) {
-            that.stop();
-          } else if (point.value == state.start) {
-            that.start();
-          }
-        }
-      })
+	
+	initialize() {
+		let that = this;
+	    let deviceId = that.config.bindData.deviceId
+	    if(deviceId) {
+	        that.stage.option.getDevice(deviceId,function (device) {
+	            if(deviceId==device.id) {
+	                that.reveal(device);
+	            }
+		    });
+	    }     
     }
+
+	reveal(device) {
+    	console.log(device);
+        let that = this;
+	    if(device) {
+	        device.points.forEach(function(point) {
+	      	    if(that.isAnimation) {
+	      		    let key = point.id;
+	      	        let value = point.value;
+	                that.dynamic(key,value);
+	      	    }      	
+	        })
+	    }
+    }
+	
+	fillDiscrete(animation,value) {
+		let that = this;
+		animation.value = value;
+        if(value==animation.on.value) {
+	        that.start();
+	    }else if(value==animation.off.value) {
+	        that.stop();
+	    }	
+	}
+	
+	fillAnalog(animation,value) {
+		let that = this;
+		animation.value = value;
+        animation.states.forEach(function(state) {
+        	if(value==state.value) {
+        		if(state.value==0) {
+        			that.stop();
+        		}else if(state.value==1) {
+        			that.start();
+        		}else {
+        			that.alarm();
+        		}
+        	}
+        })
 	}
 
 	toJson() {

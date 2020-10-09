@@ -49,7 +49,7 @@ class View {
             }else if(result.code==120020) {
               Toast.alert("控制密码错误！")
             }else {
-              console.log(result.message);
+              Toast.alert("控制失败！")
             }
           })
         }
@@ -81,9 +81,13 @@ class View {
               points:[
                 {id:'TF',name:'累积用量',value:344.55,unit:'℃',time:'00:09:00'},
                 {id:'SwSts',name:'设备状态',value:1,time:'00:09:00'}]}]
-          callback.call(this, devices);
+          const timer = setInterval(() => {
+            clearInterval(timer);
+            callback.call(this, devices);
+          }, 2000);
         }else {
-          let canvasId = sessionStorage.getItem("canvasId")
+          let canvasId = sessionStorage.getItem("canvasId");
+          let token = sessionStorage.getItem("token");
           let deviceIdList = Array.from(ids);
           if(deviceIdList.length>0) {
             let params = "canvasId="+canvasId+"&"+option.getParams(deviceIdList,"deviceIdList")
@@ -91,12 +95,13 @@ class View {
               console.log(result);
             })
           }
-          console.log("...:"+that.config.websocketUrl);
-          let url = that.config.websocketUrl;
+          console.log("websocketUrl:"+that.config.websocketUrl);
+          let url = that.config.websocketUrl+"?x-access-token="+token;
           let theme = "/user/queue/canvas/"+canvasId;
           let webSocket = new WebSocket();
           webSocket.connect(url,theme,function(result) {
             let dataList = option.analysis(result);
+            console.log(dataList);
             callback.call(this, dataList);
           })
         }
@@ -209,7 +214,7 @@ class View {
           let data = {}
           data.deviceId = deviceId;
           data.direction = value;
-          RemoteObject.ajax(that.config.start,"post",data,function(msg){
+          RemoteObject.ajax(that.config.manage.start,"post",data,function(msg){
             let result = JSON.parse(msg);
             if(result.code==200) {
               callback.call(this, result.result);
@@ -227,7 +232,7 @@ class View {
           let data = {}
           data.deviceId = deviceId;
           data.direction = value;
-          RemoteObject.ajax(that.config.stop,"post",data,function(msg){
+          RemoteObject.ajax(that.config.manage.stop,"post",data,function(msg){
             let result = JSON.parse(msg);
             if(result.code==200) {
               callback.call(this, result.result);

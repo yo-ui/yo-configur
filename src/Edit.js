@@ -116,23 +116,14 @@ class Edit {
         }else {
           let formData = new FormData(form);
           formData.append("files", file);
-          $.ajax({
-            url: that.config.upload,
-            type: 'post',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(result){
-              if(result.code==200) {
-                callback.call(this,result.result[0]);
-              }else {
-                console.log(result.message);
-              }
-            },
-            error:function(err){
-              console.log(err)
+          RemoteObject.upload(that.config.upload,formData,function(msg){
+            let result = JSON.parse(msg);
+            if(result.code==200) {
+              callback.call(this,result.result[0]);
+            }else {
+              console.log(result.message);
             }
-          });
+          })
         }
       },
       devicePointHstData(deviceId,point,startTime,endTime,callback) {
@@ -185,11 +176,11 @@ class Edit {
       window.history.back(-1);
     })
 
-    $('.bm-layout__header__view .fa-preview').on('click',function() {
+    $('.bm-toolbar .fa-preview').on('click',function() {
       stage.preview();
     })
 
-    $('.bm-layout__header__view .fa-save').on('click',function() {
+    $('.bm-toolbar .fa-save').on('click',function() {
       stage.save();
     })
 
@@ -220,11 +211,91 @@ class Edit {
           <i class="fa fa-return"></i>
         </span>
         <span class="bm-layout__header__name"></span>
-        <span class="bm-layout__header__view">
-          <i class="fa fa-save" title="保存(Ctrl+S)"></i>
-          <i class="fa fa-preview" title="预览(Ctrl+P)"></i>
-        </span>
       </div>
+      <div class="bm-toolbar">
+        <div class="item back">
+          <div><i class="fa fa-back"></i></div>
+          <span>撤销</span>
+        </div>  
+        <div class="halving"></div>
+        <div class="item delete">
+          <div><i class="fa fa-delete"></i></div>
+          <span>删除</span>
+        </div>
+        <div class="halving"></div>  
+        <div class="item copy">
+          <div><i class="fa fa-copy"></i></div>
+          <span>复制</span>
+        </div>  
+        <div class="halving"></div>  
+        <div class="item zoom">
+          <div class="bm-zoom">
+            <div><i class="fa fa-zoom-in"></i></div>
+            <div><i class="fa fa-zoom-out"></i></div>
+          </div>
+          <span class="bm-zoom-text">100%</span>
+        </div>
+        <div class="halving"></div>
+        <div class="item align-left">
+          <div>
+            <i class="fa fa-align-left"></i>
+          </div>
+          <span>左对齐</span>
+        </div>
+        <div class="item align-up">
+          <div>
+            <i class="fa fa-align-up"></i>
+          </div>
+          <span>上对齐</span>
+        </div>
+        <div class="item align-right">
+          <div>
+            <i class="fa fa-align-right"></i>
+          </div>
+          <span>右对齐</span>
+        </div>
+        <div class="item align-down">
+          <div>
+            <i class="fa fa-align-down"></i>
+          </div>
+          <span>下对齐</span>
+        </div>
+        <div class="halving"></div>     
+        <div class="item h-divide">
+          <div><i class="fa fa-h-divide"></i></div>
+          <span>水平平分</span>
+        </div>
+        <div class="item v-divide">
+          <div><i class="fa fa-v-divide"></i></div>
+          <span>垂直平分</span>
+        </div>  
+        <div class="halving"></div>  
+        <div class="item comb">
+          <div><i class="fa fa-comb"></i></div>
+          <span>组合</span>
+        </div>
+        <div class="item resolve">
+          <div><i class="fa fa-resolve"></i></div>
+          <span>分解</span>
+        </div>
+        <div class="halving"></div>  
+        <div class="item lock">
+          <div><i class="fa fa-lock"></i></div>
+          <span>锁定</span>
+        </div>
+        <div class="item unlock">
+          <div><i class="fa fa-unlock"></i></div>
+          <span>解锁</span>
+        </div>
+        <div class="item pull-right">
+          <div><i class="fa fa-save"></i></div>
+          <span>保存</span>
+        </div>
+        <div class="item pull-right">
+          <div><i class="fa fa-preview"></i></div>    
+          <span>预览</span>
+        </div>
+     </div>
       <div class="bm-layout__main">
         <div class="bm-global-panel"></div>
         <div class="bm-layout__main__left" id="configur_library">

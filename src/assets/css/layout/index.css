@@ -2,8 +2,8 @@
   height: 100%;
 }
 .bm-layout__header {
-  height: 50px;
-  line-height: 50px;
+  height: 40px;
+  line-height: 40px;
   font-size: 16px;
   background-color: #023459;
   color: #fff;
@@ -11,7 +11,7 @@
 }
 .bm-layout__header__back {
   cursor: pointer;
-  width: 54px;
+  width: 40px;
   text-align: center;
   background-color: #023459;
 }
@@ -20,7 +20,7 @@
 }
 .bm-layout__header__name {
   flex: 1;
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
   vertical-align: top;
 }

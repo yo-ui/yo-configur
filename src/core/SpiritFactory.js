@@ -3,11 +3,10 @@ import TextBox from './../components/common/TextBox';//动态数据
 import Text from './../components/common/Text';//文本
 import Images from './../components/common/Images';//图片
 import LineChart from './../components/common/LineChart';//图表
-import Button from './../components/common/Button';//
+import TextButton from '../components/common/TextButton';//
 import Display from './../components/common/Display';//
 import Map from './../components/common/Map';//
 import Monitor from './../components/common/Monitor';//
-import Bg from './../components/common/Bg';//
 import Time from './../components/common/Time';//时间
 import Switch from './../components/common/Switch';//开关
 import Alarm from './../components/common/Alarm';//报警器
@@ -84,6 +83,16 @@ import DownWater from './../components/assist/DownWater';//水管（下）
 import RightWater from './../components/assist/RightWater';//水管（右）
 import LinkPoint from './../components/assist/LinkPoint';//辅助点
 
+//装饰
+import Rectangle from './../components/decorate/Rectangle';//矩形
+import Arrows from './../components/decorate/Arrows';//箭头
+import Star from './../components/decorate/Star';//星形
+import Circle from './../components/decorate/Circle';//圆形
+import Quadrangle from './../components/decorate/Quadrangle';
+import Polygon from './../components/decorate/Polygon';
+import Decorate1 from './../components/decorate/Decorate1';
+import Decorate2 from './../components/decorate/Decorate2';
+
 /**
  * 组件工厂
  */
@@ -100,7 +109,6 @@ class SpiritFactory {
 	    case 'ElectricBox': return new ElectricBox(x,y,width,height);
       case 'Text': return new Text(x,y,width,height);
 	    case 'TextBox': return new TextBox(x,y,width,height);
-      case 'Bg': return new Bg(x,y,width,height);
 	    case 'Bgsdb': return new Bgsdb(x,y,width,height);
 	    case 'Byq': return new Byq(x,y,width,height);
 	    case 'Dldrq': return new Dldrq(x,y,width,height);
@@ -156,7 +164,7 @@ class SpiritFactory {
       case 'Zysfj': return new Zysfj(x,y,width,height);
       case 'Lqt': return new Lqt(x,y,width,height);
       case 'Xszz': return new Xszz(x,y,width,height);
-      case 'Button': return new Button(x,y,width,height);
+      case 'TextButton': return new TextButton(x,y,width,height);
       case 'Display': return new Display(x,y,width,height);
       case 'Sdsf': return new Sdsf(x,y,width,height);
       case 'Pfj': return new Pfj(x,y,width,height);
@@ -166,6 +174,15 @@ class SpiritFactory {
       case 'Kydt': return new Kydt(x,y,width,height);
       case 'Ssbjf': return new Ssbjf(x,y,width,height);
       case 'Monitor': return new Monitor(x,y,width,height);
+
+      case 'Rectangle': return new Rectangle(x,y,width,height);
+      case 'Arrows': return new Arrows(x,y,width,height);
+      case 'Star': return new Star(x,y,width,height);//
+      case 'Circle': return new Circle(x,y,width,height);
+      case 'Quadrangle': return new Quadrangle(x,y,width,height);
+      case 'Polygon': return new Polygon(x,y,width,height);
+      case 'Decorate1': return new Decorate1(x,y,width,height);
+      case 'Decorate2': return new Decorate2(x,y,width,height);
       default: console.log("className:"+className);
     }
   }

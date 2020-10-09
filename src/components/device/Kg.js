@@ -14,15 +14,22 @@ class Kg extends Spirit {
 	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
-		  this.zIndex = 2;
+		this.zIndex = 2;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-      this.config = {
-        bindData: {orgId: '', deviceId: '', devicePoint: ''},
-        state: {expr:'SwSts',stop:0,start:1,alarm:2},
-        animations: [{type: 12,name: '动作',event:'click',data: {expr: 'SwSts'}}]
-      }
+	    this.isAnimation = true;
+        this.config = {
+	        bindData: {deviceId: ''},
+	        animations: [
+			    {type: 31, 
+		    	 text: '填充->离散', 
+		    	 expr: 'SwSts',
+		    	 on: {value: 1},
+		    	 off: {value: 0},
+		    	 value: 0,
+		    	 category: 3}]
+	    }
 	}
 
 	template(){
@@ -91,61 +98,48 @@ class Kg extends Spirit {
 		return Object.assign(super.toJson(),json);
 	}
 
-  initialize() {
-	  let that = this;
-    let animations = this.config.animations;
-    animations.forEach(function (animation) {
-      if(animation.type==12) {
-        $('#'+that.id).on(animation.event,function () {
-          that.event(animation);
-        });
-      }
-    })
-  }
-
-  event(data) {
-    let that = this;
-    that.point = {id:'',value:''}
-    let deviceId = this.config.bindData.deviceId
-    if(deviceId) {
-      that.stage.option.getDevice(deviceId,function (device) {
-        if(deviceId==device.id) {
-          if(device.points) {
-            device.points.forEach(function (point) {
-              if(point.id == data.data.expr) {
-                that.point = point;
-                if(that.point.id&&that.point.value) {
-                  let point = that.point.id;
-                  let value = that.point.value;
-                  that.control(deviceId,point,value==0?1:0)
-                }
-              }
-            });
-          }
-        }
-      });
-      let point = that.point.id;
-      let value = that.point.value;
-      that.control(deviceId,point,value==0?1:0)
+    initialize() {
+		let that = this;
+	    let deviceId = that.config.bindData.deviceId
+	    if(deviceId) {
+	        that.stage.option.getDevice(deviceId,function (device) {
+	            if(deviceId==device.id) {
+	                that.reveal(device);
+	            }
+		    });
+	    }      
+	    $('#'+that.id).on('click',function() {
+	        that.config.animations.forEach(function(animation) {
+	        	if(animation.type==31) {
+	        		let value = animation.value==0?1:0;
+	        		that.control(deviceId,animation.expr,value)
+	        	}
+	        })
+	    });
     }
-  }
 
-	reveal(device,config) {
-    let that = this;
-    let state = that.config.state;
-    if(device) {
-      device.points.forEach(function(point) {
-        if(point.id==state.expr) {
-          if(point.value==state.alarm) {
-            that.alarm();
-          }else if(point.value==state.stop) {
-            that.stop();
-          }else if(point.value==state.start) {
-            that.start();
-          }
-        }
-      })
+    reveal(device) {
+    	console.log(device);
+        let that = this;
+	    if(device) {
+	        device.points.forEach(function(point) {
+	      	    if(that.isAnimation) {
+	      		    let key = point.id;
+	      	        let value = point.value;
+	                that.dynamic(key,value);
+	      	    }      	
+	        })
+	    }
     }
+    
+    fillDiscrete(animation,value) {
+		let that = this;
+		animation.value = value;
+        if(value==animation.on.value) {
+	        that.start();
+	    }else if(value==animation.off.value) {
+	        that.stop();
+	    }	
 	}
 }
 

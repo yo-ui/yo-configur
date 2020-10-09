@@ -14,13 +14,10 @@
   font-weight: bold;
 }
 .bm-zoom {
-  line-height: 38px;
-  height: 38px;
   width: 100%;
 }
 .bm-zoom > div {
   display: inline-block;
-  width: 24px;
 }
 .bm-zoom > div > span {
   text-align: center;
@@ -229,9 +226,9 @@
 .bm-help {
   position: fixed;
   bottom: 15px;
-  left: 12px;
+  left: 10px;
   color: #fff;
-  font-size: 30px;
+  font-size: 20px;
   cursor: pointer;
 }
 .bm-style {
@@ -258,27 +255,27 @@
 .bm-style > .value > i:hover {
   border: 1px solid #ebedf0;
 }
-.bm-font-group > span {
+.bm-font-style > span {
   border: 1px solid #ddd;
   line-height: 18px;
   width: 20px;
   text-align: center;
   cursor: pointer;
 }
-.bm-font-group > span.active {
+.bm-font-style > span.active {
   background-color: #12a3ff;
   border: 1px solid #12a3ff;
   color: #fff;
 }
-.bm-font-group > span:first-child {
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+.bm-font-style > span:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
   font-weight: bold;
   font-family: Times, serif;
 }
-.bm-font-group > span:last-child {
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+.bm-font-style > span:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
   font-style: italic;
   font-family: Times, serif;
   border-left: none;

@@ -895,7 +895,7 @@ class Lqt extends Spirit {
     </div>`);
 	}
 
-	reveal(device,config) {
+	reveal(device) {
 		let that = this;
 		if(device) {
 			device.points.forEach(function(point) {

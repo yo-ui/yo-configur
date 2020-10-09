@@ -1,6 +1,6 @@
 import Spirit from './../../core/Spirit'
 import Toast from "../../core/Toast";
-import AnimationPanel from "../../core/AnimationPanel";
+import AnimationPanel from "../../core/Animation";
 
 /**
  * 折线图
@@ -17,13 +17,15 @@ class LineChart extends Spirit {
 	    this.minHeight = 80;
 		  this.zIndex = 3;
 	    this.moveType = 4;
+      this.bindType = 1;
 	    this.linkage = false;
 	    this.isBind = true;
-	    this.bindType = 1;
-	    this.config = {
-	      bindData: {orgId:'',deviceId:'',devicePoint:''},type:1,
-        animation: {type: 1,text: '赋值',point: '',name: ''}}
       this.isLast = false;
+      this.isAnimation = true;
+	    this.config = {
+        bindData: {orgId: '', deviceId: '', devicePoint: ''}, type: 1,
+        animations: [{type: 91, text: '值显示->点位', expr: ''}]
+      }
 	}
 
 	template() {
@@ -43,10 +45,6 @@ class LineChart extends Spirit {
 	}
 
   refresh() {
-	  this.func();
-  }
-
-	func() {
     if(this.config.type==1) {
       this.deviceRealData();
     }else if(this.config.type==2) {
@@ -73,7 +71,7 @@ class LineChart extends Spirit {
       }],
       yAxis : [{type: 'value',name:''}],
       series : [{
-        name: ''+that.config.animation.name,
+        name: '',
         type: 'line',
         data: [1,2,3,4,5,6,8,9,10]
       }
@@ -113,33 +111,46 @@ class LineChart extends Spirit {
     this.chart.resize();
   }
 
-  reveal(device,config) {
+  initialize() {
+	  let point;
+    let animations = this.config.animations;
+    animations.forEach(function (animation) {
+      if(animation.type==91) {
+        point = animation.expr
+      }
+    })
+    let deviceId = this.config.bindData.deviceId;
+    this.devicePointHstData(deviceId,point);
+  }
+
+  reveal(device) {
+	  //console.log(config);
     let that = this;
     if(device) {
-      if(this.isLast) {
-        let option = that.chart.getOption();
-        device.points.forEach(function(point) {
-          let timeList = option.xAxis[0].data;
-          let valueList = option.series[0].data;
-          let lastTime = timeList[timeList.length-1];
-          if(that.config.animation.point==point.id&&lastTime!=point.time) {
-            timeList.push(point.time);
-            valueList.push(point.value);
-            that.chart.setOption(option);
-            that.chart.resize();
-          }
-        })
-      }else {
-        this.isLast = true;
-        that.devicePointHstData();
-      }
+      let point = "";
+      let animations = that.config.animations;
+      animations.forEach(function (animation) {
+        if(animation.type==91) {
+          point = animation.expr
+        }
+      })
+      let option = that.chart.getOption();
+      device.points.forEach(function(point) {
+        let timeList = option.xAxis[0].data;
+        let valueList = option.series[0].data;
+        let lastTime = timeList[timeList.length-1];
+        if(point==point.id&&lastTime!=point.time) {
+          timeList.push(point.time);
+          valueList.push(point.value);
+          that.chart.setOption(option);
+          that.chart.resize();
+        }
+      })
     }
 	}
 
-  devicePointHstData() {
+  devicePointHstData(deviceId,point) {
 	  let that = this;
-    let deviceId = that.config.bindData.deviceId
-    let point = that.config.animation.point;
     if(deviceId&&point) {
       let timeList = [];
       let valueList = [];
@@ -147,13 +158,14 @@ class LineChart extends Spirit {
       let endTime = new Date().Format("yyyy-MM-dd hh:mm:ss");
       let option = that.chart.getOption();
       this.stage.option.devicePointHstData(deviceId,point,startTime,endTime,function(data) {
+        console.log(data)
         data.dataList.forEach(function(item) {
           timeList.push(item.time);
           valueList.push(parseFloat(item.value));
         });
         option.xAxis[0].data = timeList;
         option.series[0].data = valueList;
-        option.series[0].name = data.name+"("+that.config.animation.name+")";
+        option.series[0].name = data.name;
         option.tooltip.formatter = "{b}<br/>{c}";
         that.chart.setOption(option);
         that.chart.resize();
@@ -172,59 +184,15 @@ class LineChart extends Spirit {
                       </select>
                     </div>          						
                    </div>
-                   <div class="bm-tree">动画</div>
-                    <div class="bm-style">
-                      <div class="text">${this.config.animation.text}：</div>
-                      <div class="value">
-                        <span class="variable"></span>
-                        <i class="fa fa-edit" title="设置赋值变量"></i>
-                      </div>
-                    </div>`;
+                   `;
     $('#configur_property').append(html);
 
     $('#configur_property').find('.bm-select').val(that.config.type);
     $('#configur_property').find('.bm-select').on('change',function () {
       let value = $(this).val();
       that.config.type = value;
-      that.func();
+      that.refresh();
     });
-
-    if(this.config.animation.point) {
-      let variable = $('#configur_property').find('.variable');
-      variable.text(this.config.animation.name+"("+this.config.animation.point+")");
-    }
-    let edit = $('#configur_property').find('.fa-edit');
-    edit.on("click",function () {
-      if(that.config.bindData.deviceId=="") {
-        Toast.alert("请先绑定设备！")
-        return;
-      }
-      that.stage.panel.init("动画->赋值",AnimationPanel.pointTemplate(),500);
-      that.stage.panel.show();
-      let deviceId = that.config.bindData.deviceId;
-      if(deviceId) {
-        that.stage.option.getDevice(deviceId,function (device) {
-          console.log(device);
-          device.points.forEach(function (point) {
-            let option = $(`<option>${point.name}</option>`);
-            option.val(point.id);
-            $('.bm-configur-panel').find('[name=point]').append(option);
-          })
-          let value = that.config.animation.point;
-          $('.bm-configur-panel').find('[name=point]').val(value);
-        });
-      }
-
-      that.stage.panel.confirm(function () {
-        let element = $('.bm-configur-panel').find('[name=point]');
-        let value = element.val();
-        let name = element.find("option:selected").text()
-        that.config.animation.point = value;
-        that.config.animation.name = name;
-        $('#configur_property').find('.variable').text(name+"("+value+")");
-        that.func();
-      })
-    })
   }
 
 	toJson() {
@@ -235,7 +203,7 @@ class LineChart extends Spirit {
 			isBind: this.isBind,
 			zIndex: this.zIndex
 		};
-		return Object.assign(super.toJson(),json);
+		return Object.assign(super.toJson(), json);
 	}
 }
 

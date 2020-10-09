@@ -6,7 +6,7 @@ class Spirit {
 
 	constructor(x=0,y=0,width=10,height=10) {
 		this.id = "c_"+Math.random().toString().substr(2,10);
-    this.name = "";
+        this.name = "";
 		this.x = x;
 		this.y = y;
 		this.width = width;
@@ -17,11 +17,11 @@ class Spirit {
 		this.isMove = true;
 		this.bindType = 1;
 		this.isLinkPoint = false;
-    this.isAnimation = false;
-    this.isSelected = true;
-    this.isSubline = true;
-    this.isDrag = true;
-    this.isWater = false;
+	    this.isAnimation = false;
+	    this.isSelected = true;
+	    this.isSubline = true;
+	    this.isDrag = true;
+	    this.isWater = false;
 	}
 
 	toString() {}
@@ -29,7 +29,7 @@ class Spirit {
 	toJson() {
 		return {
 			id: this.id,
-      name: this.name,
+            name: this.name,
 			x: this.x,
 			y: this.y,
 			width: this.width,
@@ -37,10 +37,10 @@ class Spirit {
 			isMove: this.isMove,
 			rotate: this.rotate,
 			isRotate: this.isRotate,
-      isLinkPoint: this.isLinkPoint,
-      isSelected: this.isSelected,
-      isSubline: this.isSubline,
-      isDrag: this.isDrag
+	        isLinkPoint: this.isLinkPoint,
+	        isSelected: this.isSelected,
+	        isSubline: this.isSubline,
+	        isDrag: this.isDrag
 		}
 	}
 
@@ -53,14 +53,14 @@ class Spirit {
 	arrangement(stage) {
 		this.stage = stage;
 		stage.element.append(this.template());
-    this.stop();
+        this.stop();
 	}
 
-  initialize() {}
+    initialize() {}
 
-	reveal(device,config) {}
+    reveal(device) {}
 
-	template() {
+    template() {
 	  return $(`<div id="${this.id}" class="configur-spirit" 
              style="
              position:absolute;
@@ -68,9 +68,28 @@ class Spirit {
              top: ${this.y}px;
              z-index: ${this.zIndex};    
              transform: rotate(${this.rotate}deg)"></div>`);
-  }
+    }
+    
+    //数据改变时
+    dynamic(key,value) {
+    	let that = this;
+		that.config.animations.forEach(function(animation) {
+        	if(animation.expr&&animation.expr.indexOf(key)!=-1) {
+        		if(animation.type==31) {
+        			that.fillDiscrete(animation,value);
+        		}else if(animation.type==32) {
+        			that.fillAnalog(animation,value);
+        		}
+        	}
+        })
+	}
+    
+    //填充（离散）
+	fillDiscrete(animation,value) {}
+	//填充（模拟）
+	fillAnalog(animation,value) {}
 
-	renderer() {
+    renderer() {
 		let that = this;
 		$('#configur_property').html('');
 		let html = $(`             
@@ -130,7 +149,7 @@ class Spirit {
 	}
 
 	viewPanel(device) {
-    let that = this;
+        let that = this;
 		if(device) {
 			$('.bm-view-panel').html('');
 			let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,24)}</div>`);
@@ -175,8 +194,8 @@ class Spirit {
 
   control(deviceId,point,value) {
 	  let that = this;
-    that.stage.password.show();
-    that.stage.password.confirm(function(text) {
+      that.stage.password.show();
+      that.stage.password.confirm(function(text) {
       let data = {}
       data.deviceId = deviceId;
       data.point = point;
@@ -184,10 +203,11 @@ class Spirit {
       data.ctrlPwd = text;
       that.stage.option.control(data,function() {
         Toast.alert("控制成功！");
-        let item = {}
-        item.id = deviceId;
-        item.points = [{id:point,value:value}]
-        that.stage.linkage(item);
+        let device = {}
+        device.id = deviceId;
+        
+        device.points = [{id:point,value:value}]
+        that.stage.linkage(device);
         that.stage.password.hide();
       })
     });

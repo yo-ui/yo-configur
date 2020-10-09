@@ -108,6 +108,7 @@ class Align {
       if(property.className=="Map") {
         $('#'+property.id).find('.images-shade').hide();
       }
+      this.stage.toolbar.edit();
     }
 	}
   //解锁
@@ -123,6 +124,7 @@ class Align {
       if(property.className=="Map") {
         $('#'+property.id).find('.images-shade').show();
       }
+      this.stage.toolbar.edit();
     }
   }
 }

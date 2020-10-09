@@ -12,23 +12,25 @@ class Library {
 		that.stage = stage
 		stage.move.drag($('.bm-global-panel'));
 		this.libraryList = [
-		  {name:'基本',type:1,icon:'fa-base',
-			    subList:[
-					{className:'TextBox',title:'动态数据',url:'static/images/configur/dataing.png',width:50,height:24},
-					{className:'Text',title:'静态文本',url:'static/images/configur/text.png',width:50,height:24},
-					{className:'Images',title:'图片',url:'static/images/configur/img.png',width:50,height:50},
-          {className:'Time',title:'时间',url:'static/images/configur/time.png',width:148,height:14},
-          {className:'Button',title:'按钮',url:'static/images/configur/button.png',width:48,height:28},
+      {name:'通用',type:1,icon:'fa-base',
+        subList:[
           {className:'Display',title:'显示屏',url:'static/images/configur/display.png',width:70,height:36},
-          {className:'Bg',title:'背景',url:'static/images/configur/bg.png',width:200,height:100},
+          {className:'TextButton',title:'文本按钮',url:'static/images/configur/button.png',width:48,height:28},
+          {className:'Monitor',title:'监控画面',url:'static/images/configur/monitor.png',width:400,height:200},
+          {className:'Switch',title:'开关',url:'static/images/configur/switch.png',width:100,height:30},
+          {className:'Images',title:'图片',url:'static/images/configur/img.png',width:50,height:50},
+          {className:'Time',title:'时间',url:'static/images/configur/time.png',width:148,height:14},
           ]},
-      {name:'组件',type:1,icon:'fa-conf',
+      {name:'文本',type:1,icon:'fa-text',
+        subList:[
+          {className:'Text',title:'文本',url:'static/images/configur/text.png',width:50,height:24},
+          {className:'Table',title:'表格',url:'static/images/configur/table.png',width:700,height:60},
+        ]},
+      {name:'图表',type:1,icon:'fa-chart',
         subList:[
           {className:'LineChart',title:'折线图',url:'static/images/configur/line.png',width:400,height:80},
           {className:'Map',title:'地图',url:'static/images/configur/map.png',width:400,height:200},
-          {className:'Monitor',title:'监控画面',url:'static/images/configur/monitor.png',width:400,height:200},
-          {className:'Table',title:'表格',url:'static/images/configur/table.png',width:700,height:60},
-          {className:'Switch',title:'开关',url:'static/images/configur/switch.png',width:100,height:30}]},
+        ]},
 			{name:'设备',type:1,icon:'fa-device',
 				subList:[
           {isHead: true,name: '配电系统'},
@@ -85,10 +87,8 @@ class Library {
           {className:'Hjjccgqb',title:'传感器',url:'static/images/configur/hjjccgqb.png',width:50,height:50},
           {className:'Xxqxz',title:'小型气象站',url:'static/images/configur/xxqxz.png',width:50,height:50},
           {isHead: true,name: '其他'},
-          {className:'Kydt',title:'客用电梯',url:'static/images/configur/kydt.png',width:100,height:140}
-          ]},
-			{name:'辅助',type:1,icon:'fa-assist',
-				subList:[
+          {className:'Kydt',title:'客用电梯',url:'static/images/configur/kydt.png',width:100,height:140},
+          {isHead: true,name: '管道'},
           {className:'LinkPoint',title:'连接点',url:'static/images/configur/link-point.png',width:10,height:10},
           {className:'LeftWater',title:'水管（左）',url:'static/images/configur/v-left.png',width:20,height:20},
           {className:'RightWater',title:'水管（右）',url:'static/images/configur/v-right.png',width:20,height:20},
@@ -99,7 +99,19 @@ class Library {
           {className:'DRWater',title:'水管（右下）',url:'static/images/configur/t-3.png',width:20,height:20},
           {className:'LDWater',title:'水管（左下）',url:'static/images/configur/t-4.png',width:20,height:20},
           {className:'LevelWater',title:'水管（水平）',url:'static/images/configur/h.png',width:50,height:50},
-          {className:'VerticalWater',title:'水管（垂直）',url:'static/images/configur/v.png',width:50,height:50}]},
+          {className:'VerticalWater',title:'水管（垂直）',url:'static/images/configur/v.png',width:50,height:50}
+          ]},
+      {name:'素材',type:1,icon:'fa-decorate',
+        subList:[
+          {className:'Rectangle',title:'矩形',url:'static/images/configur/rectangle.png',width:100,height:100},
+          {className:'Arrows',title:'箭头',url:'static/images/configur/arrows.png',width:100,height:100},
+          {className:'Star',title:'星型',url:'static/images/configur/star.png',width:100,height:100},
+          {className:'Circle',title:'圆形',url:'static/images/configur/circle.png',width:100,height:100},
+          {className:'Quadrangle',title:'四角形',url:'static/images/configur/quadrangle.png',width:100,height:100},
+          {className:'Polygon',title:'多边形',url:'static/images/configur/polygon.png',width:100,height:100},
+          {className:'Decorate1',title:'装饰1',url:'static/images/configur/d-1.png',width:300,height:40},
+          {className:'Decorate2',title:'装饰2',url:'static/images/configur/d-2.png',width:300,height:40},
+          ]},
 		]
 		this.libraryList.forEach(function(data,index) {
 			let li = $(`<li><i class="fa fa-sm ${data.icon}"></i><p>${data.name}</p></li>`);

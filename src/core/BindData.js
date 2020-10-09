@@ -1,3 +1,5 @@
+import Animation from './Animation'
+
 /**
  *
  */
@@ -7,11 +9,12 @@ class BindData {
     this.stage = stage;
     this.bindData = {orgId:'',deviceId:'',devicePoint:''}
     this.property;
+    this.animationType = 0;
+    this.points = [];
   }
 
   create(id) {
     this.organizs = []
-    this.points = []
     let that = this;
     if(id) {
       that.stage.capacity.forEach(function (c) {
@@ -25,44 +28,30 @@ class BindData {
     }
     if(that.property) {
       that.bindData = that.property.config.bindData;
-      let content = `<div class="bm-area">
-                      <span>组织</span>
-                      <div>
-                        <div class="organiz-panel bm-select-panel" style="z-index: 4">
+      let content = $(`<div>
+                        <div style="display: flex;margin: 10px 0px;height: 32px">
+                          <div class="bm-tabs-group" style="width: 100px"><span class="active">设备</span><span>组织</span></div>
+                          <input type="text" class="device-s-input form-control" placeholder="请输入设备名称" style="flex: 1;" />
+                          <div class="organiz-panel bm-select-panel" style="z-index: 4;flex: 1;display: none">
                            <span class="select">
                              <span class="text">请选择组织</span>
                              <i class="icon fa fa-down"></i>
                            </span>                          
                            <div class="content organiz-list">
-                             <ul></ul>  
+                             <ul></ul>
                            </div>
-                        </div>
-                      </div>                   
-                  </div>     
-                  <div class="device">
-                    <div class="bm-area">
-                      <span>设备</span>
-                      <div>
-                      <div class="device-panel bm-select-panel" style="z-index: 3">
-                       <span class="select">
-                         <span class="text">请选择设备</span>
-                         <i class="icon fa fa-down"></i>
-                       </span>                          
-                       <div class="content device-list">
-                         <div style="margin: 5px"><input type="text" class="form-control" maxlength="16" placeholder="设备名称"/></div>                  
-                         <ul></ul>
-                       </div>
-                       </div>
-                    </div>
-                    </div>                
-                  </div>
-                  `;
-      that.stage.panel.init("数据绑定",content,500);
+                          </div>
+                        </div>   
+                        <div class="device-list" style="padding: 5px;border: 1px solid #ddd;height: 100px;max-height: 300px;overflow: auto">
+                          <ul class="bm-action-list"></ul>
+                        </div>                                     
+                      </div>`);
+      that.stage.panel.init("绑定数据",content,500);
       that.stage.panel.confirm(function () {
         that.property.config.bindData = that.bindData;
       })
 
-      let organizPanel = $('.bm-configur-panel').find('.organiz-panel');
+      let organizPanel = content.find('.organiz-panel');
       organizPanel.find('.select').on('click',function () {
         $(this).next().toggle();
       });
@@ -70,17 +59,7 @@ class BindData {
         $(this).hide();
       });
 
-      let devicePanel = $('.bm-configur-panel').find('.device-panel');
-      devicePanel.find('.select').on('click',function () {
-        $(this).next().toggle();
-        $('.device-list input').val('');
-        that.createDevice(that.deviceList);
-      });
-      devicePanel.find('.content').on('mouseleave',function (e) {
-        $(this).hide();
-      });
-
-      $('.device-list input').on('input propertyChange',function () {
+      content.find('.device-s-input').on('input propertyChange',function () {
         let text = $(this).val();
         let dataList = []
         that.deviceList.forEach(function (device) {
@@ -94,9 +73,42 @@ class BindData {
           that.createDevice(that.deviceList);
         }
       })
+
+      content.find('.bm-tabs-group span').each(function (index) {
+        $(this).data("index", index)
+        $(this).on('click',function () {
+          $(this).addClass('active')
+          let index = $(this).data("index")
+          if(index==0) {
+            content.find('.device-s-input').show();
+            content.find('.organiz-panel').hide();
+          }else {
+            content.find('.device-s-input').hide();
+            content.find('.organiz-panel').show();
+          }
+          $(this).siblings().each(function () {
+            $(this).removeClass('active')
+          });
+        })
+      });
       that.oList();
     }
   }
+
+  animationContent(){
+    let that = this;
+    $('.animation-content').html(Animation.template(this.animationType));
+    let inputPanel = $('.animation-content').find('.bm-input-panel')
+    inputPanel.find('input').val(that.property.config.animations[that.animationIndex].expr)
+    inputPanel.find('input').on('click',function () {
+      $(this).next().toggle();
+    });
+    inputPanel.find('.content').on('mouseleave',function (e) {
+      $(this).hide();
+    });
+    this.createPoint();
+  }
+
   //组织列表
   oList() {
     let that = this;
@@ -162,7 +174,6 @@ class BindData {
       deviceList.forEach(function (device, index) {
         let li = $('<li></li>')
         li.data('id', device.id)
-        li.data('points', device.points);
         li.text(that.textFormat(device.name, 16));
         li.attr('title', device.name);
         li.on('click', function () {

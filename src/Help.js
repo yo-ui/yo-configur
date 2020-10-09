@@ -24,7 +24,7 @@ class Help {
                  <table class="table table-responsive">
                    <thead>
                      <tr>
-                       <td>名称</td>
+                       <td>快捷键</td>
                        <td>说明</td>
                      </tr>
                    </thead>

@@ -468,7 +468,7 @@ class Shsb extends Spirit {
     $('.bm-view-panel').show();
 	}
 
-  reveal(device,config) {
+  reveal(device) {
     let that = this;
     let state = that.config.state;
     if(device) {

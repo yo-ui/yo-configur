@@ -11,14 +11,15 @@ class Time extends Spirit {
 	    this.width = width;
 	    this.height = height;
 	    this.minWidth = 50;
-      this.minHeight = 30;
+        this.minHeight = 30;
 	    this.moveType = 0;
 	    this.linkage = false;
 	    this.isMove = true;
 	    this.zIndex = 2;
-      this.config = {
-        bindData: {orgId: '', deviceId: '', devicePoint: ''},fontSize: 15,color:'#000',type: 1
-      }
+        this.config = {
+	        bindData: {orgId: '', deviceId: '', devicePoint: ''},type: 1,
+	        font: {size: 15,color: '#000000'}
+	    }
 	}
 
 	template(){
@@ -27,7 +28,7 @@ class Time extends Spirit {
                     height: ${this.height}px;
                     width: ${this.width}px;
                     user-select: none;
-                    "><span style="font-size: ${this.config.fontSize}px;"></span>           
+                    "><span style="font-size: ${this.config.font.size}px;"></span>           
                   </div>	
                 </div>`)
 		return html;
@@ -115,7 +116,7 @@ class Time extends Spirit {
     setInterval(() => {
       that.formatTime();
     }, 1000)
-    $('#'+this.id).find('span').css({color:this.config.color,'font-size':this.config.fontSize+"px"});
+    $('#'+this.id).find('span').css({color:this.config.font.color,'font-size':this.config.font.size+"px"});
   }
 
 	toJson() {
@@ -130,75 +131,80 @@ class Time extends Spirit {
 	}
 
 	renderer() {
-    let that = this;
-    super.renderer();
-    let html = `<div class="bm-tree">字体</div>   
-                  <div class="bm-style">
-                    <div class="text">格式：</div>	
-                    <div class="value">
-                      <select class="bm-select" name="format">
-                        <option value="1">年月日时分秒</option>
-                        <option value="2">年月日时分</option>
-                        <option value="3">年月日</option>
-                        <option value="4">年月</option>
-                        <option value="5">年</option>
-                        <option value="6">月日</option>
-                        <option value="7">月</option>
-                        <option value="8">日</option>
-                        <option value="9">时分秒</option>
-                        <option value="10">时分</option>
-                        <option value="11">时</option>
-                        <option value="12">分秒</option>
-                        <option value="13">分</option>
-                        <option value="14">秒</option>
-                      </select>	
-                    </div>						
-                  </div>      
-                  <div class="bm-style">
-                    <div class="text">颜色：</div>			
-                    <div class="value"><input class="text-color" title="字体颜色" /></div>										
-                  </div>    
-                  <div class="bm-style">
-                    <div class="text">大小：</div>	
-                    <div class="value"><select class="bm-select" name="textFS" title="字体大小"></select>	</div>						
-                  </div>`;
-    $('#configur_property').append(html);
-    let dataList = [11,13,14,15,16,18,24,30]
-    let element = $('#configur_property').find('[name=textFS]');
-    dataList.forEach(function(data) {
-      let option = $('<option></option>')
-      option.val(data)
-      option.text(data)
-      element.append(option)
-    });
-
-    element.val(this.config.fontSize)
-    element.on('change',function () {
-      that.text();
-    });
-
-    let format = $('#configur_property').find('[name=format]');
-    format.val(that.config.type);
-    format.on('change',function () {
-      let value = $(this).val();
-      that.config.type = value;
-      that.formatTime();
-      that.text();
-    });
+	    let that = this;
+	    super.renderer();
+	    let html = $(`<div class="bm-tree">字体</div>   
+	                  <div class="bm-style">
+	                    <div class="text">格式：</div>	
+	                    <div class="value">
+	                      <select class="bm-select" name="format">
+	                        <option value="1">年月日时分秒</option>
+	                        <option value="2">年月日时分</option>
+	                        <option value="3">年月日</option>
+	                        <option value="4">年月</option>
+	                        <option value="5">年</option>
+	                        <option value="6">月日</option>
+	                        <option value="7">月</option>
+	                        <option value="8">日</option>
+	                        <option value="9">时分秒</option>
+	                        <option value="10">时分</option>
+	                        <option value="11">时</option>
+	                        <option value="12">分秒</option>
+	                        <option value="13">分</option>
+	                        <option value="14">秒</option>
+	                      </select>	
+	                    </div>						
+	                  </div>      
+	                  <div class="bm-style">
+	                    <div class="text">颜色：</div>			
+	                    <div class="value"><input type="color" name="textColor" title="字体颜色"/></div>										
+	                  </div>    
+	                  <div class="bm-style">
+	                    <div class="text">大小：</div>	
+	                    <div class="value"><select class="bm-select" name="textFS" title="字体大小"></select>	</div>						
+	                  </div>`);
+	    $('#configur_property').append(html);
+	    let dataList = [11,13,14,15,16,18,24,30]
+	    let element = html.find('[name=textFS]');
+	    dataList.forEach(function(data) {
+	      let option = $('<option></option>');
+	      option.val(data);
+	      option.text(data);
+	      element.append(option)
+	    });
+	    html.find("[name=textColor]").val(that.config.font.color)
+	    html.find("[name=textColor]").on('change',function() {
+	    	that.config.font.color = $(this).val();
+	    	$('#'+that.id).find('span').css({color:that.config.font.color});
+	    })
+	
+	    element.val(this.config.font.size)
+	    element.on('change',function () {
+	      that.text();
+	    });
+	
+	    let format = html.find('[name=format]');
+	    format.val(that.config.type);
+	    format.on('change',function () {
+	      let value = $(this).val();
+	      that.config.type = value;
+	      that.formatTime();
+	      that.text();
+	    });
 	}
 
 	text() {
-	  let that = this;
-    let property = that.stage.property;
-    property.config.fontSize = $('#configur_property').find('[name=textFS]').val();
-    $('#'+property.id).find('span').css({'font-size':property.config.fontSize+"px"});
-    $('#temp_value').html($('#'+property.id).find('div').html());
-    let width = $('#temp_value').width()+2;
-    let height = $('#temp_value').height();
-    $('.resize-panel').css({width,height});
-    $('#'+property.id).find('div').css({width,'line-height': height+"px",height: height+"px"});
-    property.height = height;
-    property.width = width;
+	    let that = this;
+        let property = that.stage.property;
+	    property.config.font.size = $('#configur_property').find('[name=textFS]').val();
+	    $('#'+property.id).find('span').css({'font-size':property.config.font.size+"px"});
+	    $('#temp_value').html($('#'+property.id).find('div').html());
+	    let width = $('#temp_value').width()+2;
+	    let height = $('#temp_value').height();
+	    $('.resize-panel').css({width,height});
+	    $('#'+property.id).find('div').css({width,'line-height': height+"px",height: height+"px"});
+	    property.height = height;
+	    property.width = width;
   }
 }
 

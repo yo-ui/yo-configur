@@ -14,11 +14,25 @@ class Flrb extends Spirit {
 	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
-		  this.zIndex = 2;
+		this.zIndex = 2;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}};
+	    this.isAnimation = true;
+	    this.config = {
+	    	bindData: {deviceId:''},
+	    	animations: [
+			    {type: 32, 
+		    	 text: '填充->模拟', 
+		    	 expr: 'SwSts',
+		    	 states: [
+			    	 {value:0,text:'关闭'},
+			    	 {value:1,text:'开启'},
+			    	 {value:2,text:'报警'}
+		    	 ],
+		    	 value: 0,
+		    	 category: 3}]	    	
+	    };
 	}
 
 	template(){
@@ -914,15 +928,46 @@ class Flrb extends Spirit {
 
 
 
-	reveal(device,config) {
+	initialize() {
 		let that = this;
-		if(device) {
-			device.points.forEach(function(point) {
-				if(point.id=="SwSts") {
-				  that.flrb-state(point.value)
-				}
-			})
-		}
+	    let deviceId = that.config.bindData.deviceId
+	    if(deviceId) {
+	        that.stage.option.getDevice(deviceId,function (device) {
+	            if(deviceId==device.id) {
+	                that.reveal(device);
+	            }
+		    });
+	    }     
+    }
+
+	reveal(device) {
+    	console.log(device);
+        let that = this;
+	    if(device) {
+	        device.points.forEach(function(point) {
+	      	    if(that.isAnimation) {
+	      		    let key = point.id;
+	      	        let value = point.value;
+	                that.dynamic(key,value);
+	      	    }      	
+	        })
+	    }
+    }
+	
+	fillAnalog(animation,value) {
+		let that = this;
+		animation.value = value;
+        animation.states.forEach(function(state) {
+        	if(value==state.value) {
+        		if(state.value==0) {
+        			that.stop();
+        		}else if(state.value==1) {
+        			that.start();
+        		}else {
+        			that.alarm();
+        		}
+        	}
+        })
 	}
 
 	toJson() {

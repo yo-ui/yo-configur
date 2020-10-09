@@ -1,5 +1,5 @@
 import Spirit from './../../core/Spirit'
-import AnimationPanel from "../../core/AnimationPanel";
+import AnimationPanel from "../../core/Animation";
 import Toast from "../../core/Toast";
 
 /**
@@ -13,11 +13,11 @@ class TextBox extends Spirit {
 	    this.className = "TextBox";
       this.width = width;
 	    this.height = height;
-	    this.moveType = 0;
+	    this.moveType = 4;
 	    this.isBind = true;
 	    this.zIndex = 4;
 	    this.config = {
-	      bindData: {orgId:'',deviceId:'',devicePoint:''},
+	      bindData: {orgId:'',deviceId:''},
         color:'#000',
         fontSize:24,
         backgroundColor:'transparent',
@@ -49,7 +49,7 @@ class TextBox extends Spirit {
 	}
 
 	//
-	reveal(device,config) {
+	reveal(device) {
 		let that = this;
 		if(device) {
 			device.points.forEach(function(point) {
@@ -104,7 +104,7 @@ class TextBox extends Spirit {
             <div class="text">${this.config.animation.text}：</div>
             <div class="value">
               <span class="variable"></span>
-              <i class="fa fa-edit" title="设置赋值变量"></i>
+              <i class="fa fa-edit" title="设置赋值变量" style="margin-top:-3px"></i>
             </div>
           </div>`;
 		$('#configur_property').append(html);
