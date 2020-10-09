@@ -16,6 +16,8 @@ export default
   "start": "manage/configur/canvas/start",
   "stop": "manage/configur/canvas/stop",
   service: {
+    "debug": false,
+    "imgHost": "https://pic.energyiot.cn",
     "websocketUrl": "https://eiot.energyiot.cn/ws",
     "push": "service/configur/push",
     "get": "service/configur/canvas/get",

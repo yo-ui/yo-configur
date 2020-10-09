@@ -1,4 +1,4 @@
 export default
 {
-  "active": "test",//dev,test,prod
+  "active": "dev",//dev,test,prod
 }

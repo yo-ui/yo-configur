@@ -225,7 +225,7 @@ class ViewStage {
 			  that.capacity.push(spirit);
 			})
       console.log(this.capacity);
-          let ids = new Set();
+      let ids = new Set();
       this.capacity.forEach(function(data) {
           if(data.isBind) {
             let deviceId = data.config.bindData.deviceId;
