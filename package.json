@@ -23,6 +23,7 @@
     "quill": "^1.3.6",
     "register-service-worker": "^1.6.2",
     "resize-detector": "^0.2.2",
+    "stompjs": "^2.3.3",
     "vue-amap": "^0.5.10",
     "vue-quill-editor": "^3.0.6",
     "vue-slider-component": "^3.2.5",

@@ -349,31 +349,26 @@ export default {
       selectComAction: "canvas/selectCom",
       orgStrucListByLevelAction: "orgStrucListByLevel",
       canvasGetAction: "canvasGet",
-      commonVerifyInfoAction: "commonVerifyInfo",
+      // commonVerifyInfoAction: "commonVerifyInfo",
       selectComsAction: "canvas/selectComs"
     }),
     init() {
       this.initEvent();
-      this.$nextTick(() => {
-        let $canvasBox = $(this.$refs.canvasBox);
-        let { canvas = {} } = this;
-        let width = $canvasBox.innerWidth();
-        let height = $canvasBox.innerHeight();
-        canvas.width = width;
-        canvas.height = height;
-      });
-      let { condition, canvas = {} } = this;
-      this.commonVerifyInfoFunc((info = {}) => {
-        let { canvasId = "166", type = 1 } = info || {};
-        condition.canvasId = canvasId;
-        this.canvasGetFunc((detail = {}) => {
-          let {
-            name = "",
-            width = "",
-            height = "",
-            id: canvasId = "",
-            data = {}
-          } = detail || {};
+      let { condition, canvas = {}, $route } = this;
+      let { query = {} } = $route;
+      // this.commonVerifyInfoFunc((info = {}) => {
+      // 166
+      let { canvasId = "", type = 1 } = query || {};
+      condition.canvasId = canvasId;
+      this.canvasGetFunc((detail = {}) => {
+        let {
+          name = "",
+          width = "",
+          height = "",
+          id: canvasId = "",
+          data = {}
+        } = detail || {};
+        if (canvasId) {
           data = typeof data === "string" ? JSON.parse(data) : data;
           let { canvasData = {} } = data || {};
           let { widgetList = [], canvas: _canvas } = canvasData || {};
@@ -388,8 +383,18 @@ export default {
           this.setCanvas(canvas);
           this.setWidgetList(widgetList);
           this.setCanvasData(data);
-        });
+        } else {
+          this.$nextTick(() => {
+            let $canvasBox = $(this.$refs.canvasBox);
+            let { canvas = {} } = this;
+            let width = $canvasBox.innerWidth();
+            let height = $canvasBox.innerHeight();
+            canvas.width = width;
+            canvas.height = height;
+          });
+        }
       });
+      // });
       this.orgStrucListByLevelFunc((list = []) => {
         // let [org = {}] = list || [];
         // let { id = "" } = org || {};
@@ -768,24 +773,24 @@ export default {
       }
       activeCom.order = order + 1;
     },
-    // 获取登录信息
-    commonVerifyInfoFunc(callback) {
-      let value = {};
-      this.commonVerifyInfoAction()
-        .then(({ data }) => {
-          let { code = "", result = {}, message = "" } = data || {};
-          if (code == Constants.CODES.SUCCESS) {
-            value = result || {};
-          } else {
-            bmCommon.error(message);
-          }
-          callback && callback(value || {});
-        })
-        .catch(err => {
-          callback && callback(value || {});
-          bmCommon.error("获取数据失败=>commonVerifyInfo", err);
-        });
-    },
+    // // 获取登录信息
+    // commonVerifyInfoFunc(callback) {
+    //   let value = {};
+    //   this.commonVerifyInfoAction()
+    //     .then(({ data }) => {
+    //       let { code = "", result = {}, message = "" } = data || {};
+    //       if (code == Constants.CODES.SUCCESS) {
+    //         value = result || {};
+    //       } else {
+    //         bmCommon.error(message);
+    //       }
+    //       callback && callback(value || {});
+    //     })
+    //     .catch(err => {
+    //       callback && callback(value || {});
+    //       bmCommon.error("获取数据失败=>commonVerifyInfo", err);
+    //     });
+    // },
     // 获取画布信息
     canvasGetFunc(callback) {
       let value = {};

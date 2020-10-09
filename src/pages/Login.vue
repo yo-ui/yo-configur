@@ -227,8 +227,9 @@ export default {
             let { user = {}, token = "" } = result || {};
             // this.setRegisterUserInfo();
             this.setUserInfo({ ...user, token });
+            let { $route = {} } = this;
             // let { accountId = "" } = user || {};
-            // let { query } = $route;
+            let { query } = $route;
             // this.accountMenuHandlerAction({
             //   accountId,
             //   navList: rolePermissionList
@@ -242,17 +243,17 @@ export default {
             //     subMenuList = accountSubMenuMap() || [];
             //   }
             // }
-            // let { redirecturl = "" } = query;
-            // redirecturl = decodeURIComponent(redirecturl);
-            // if (redirecturl && redirecturl.indexOf("/login") != 0) {
-            //   this.$router.push(redirecturl);
-            // } else {
-            //   if (subMenuList && subMenuList.length > 0) {
-            //     let item = subMenuList[0];
-            //     this.$jumpPage(item.url);
-            //   } else {
-            this.$jumpPage(this.$RouterURL.index.name);
-            // }
+            let { redirecturl = "" } = query;
+            redirecturl = decodeURIComponent(redirecturl);
+            if (redirecturl && redirecturl.indexOf("/login") != 0) {
+              this.$router.push(redirecturl);
+            } else {
+              //   if (subMenuList && subMenuList.length > 0) {
+              //     let item = subMenuList[0];
+              //     this.$jumpPage(item.url);
+              //   } else {
+              this.$jumpPage(this.$RouterURL.index.name);
+            }
             // }
           } else {
             this.$$msgError(message || "登录失败");

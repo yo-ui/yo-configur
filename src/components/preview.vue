@@ -11,7 +11,10 @@
   >
     <template #title>
       {{ $lang("预览") }}
-      <i class="el-icon-monitor"></i>
+      <i
+        class="el-icon-monitor"
+        @click="$openPage($RouterURL.preview.name,true)"
+      ></i>
     </template>
     <div v-loading="dataLoadingStatus">
       <iframe

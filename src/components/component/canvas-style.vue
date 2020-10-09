@@ -514,7 +514,18 @@ export default {
       return `background-image:linear-gradient(90deg, ${colors.join()})`;
     }
   },
-  mounted() {},
+  mounted() {
+    let { canvas = {} } = this;
+    this.$nextTick(() => {
+      let $canvas_box = $(".canvas-box");
+      let width = $canvas_box.width();
+      let height = $canvas_box.height();
+      if (!canvas.width && !canvas.height) {
+        canvas.width = Number(width);
+        canvas.height = Number(height);
+      }
+    });
+  },
   components: {
     bmUpload: () =>
       import(

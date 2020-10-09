@@ -202,8 +202,8 @@ export default {
         info.originWidth = width;
         info.originHeight = height;
         if (info.scaleable) {
-          info.width = width;
-          info.height = height;
+          info.width = Number(width);
+          info.height = Number(height);
         }
       });
     },

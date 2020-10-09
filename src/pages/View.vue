@@ -307,7 +307,7 @@ export default {
     ...mapMutations({
       setZoom: "canvas/setZoom",
       setWidgetList: "canvas/setWidgetList", //设置组件列表
-      setCanvas: "canvas/setCanvas",
+      setCanvas: "canvas/setCanvas"
       // setActiveCom: "canvas/setActiveCom",
       // setActiveComs: "canvas/setActiveComs",
       // initMove: "canvas/initMove",
@@ -317,41 +317,44 @@ export default {
     }),
     ...mapActions({
       // selectComAction: "canvas/selectCom",
-      canvasGetAction: "canvasGet",
-      commonVerifyInfoAction: "commonVerifyInfo",
+      initConfigWebsocketAction: "initConfigWebsocket",
+      canvasGetAction: "canvasGet"
+      // commonVerifyInfoAction: "commonVerifyInfo",
       // selectComsAction: "canvas/selectComs"
     }),
     init() {
       this.initEvent();
-      let { condition, canvas = {} } = this;
-      this.commonVerifyInfoFunc((info = {}) => {
-        let { canvasId = "166", type = 1 } = info || {};
-        condition.canvasId = canvasId;
-        this.canvasGetFunc((detail = {}) => {
-          let {
-            name = "",
-            width = "",
-            height = "",
-            id: canvasId = "",
-            data = {}
-          } = detail || {};
-          data = typeof data === "string" ? JSON.parse(data) : data;
-          let { canvasData = {} } = data || {};
-          let { widgetList = [], canvas: _canvas } = canvasData || {};
-          if (_canvas) {
-            canvas = _canvas || {};
-          }
-          canvas.name = name;
-          canvas.width = width;
-          canvas.height = height;
-          canvas.canvasId = canvasId;
-          canvas.canvasType = type; //1为编辑   2为预览
-          this.setCanvas(canvas);
-          this.setWidgetList(widgetList);
-          // this.setCanvasData(data);
-          this.resetCanvasSize();
-        });
+      let { condition, canvas = {}, $route } = this;
+      let { query = {} } = $route;
+      let { canvasId = "", type = 1 } = query || {};
+      // this.commonVerifyInfoFunc((info = {}) => {
+      // let { canvasId = "166", type = 1 } = info || {};
+      condition.canvasId = canvasId;
+      this.canvasGetFunc((detail = {}) => {
+        let {
+          name = "",
+          width = "",
+          height = "",
+          id: canvasId = "",
+          data = {}
+        } = detail || {};
+        data = typeof data === "string" ? JSON.parse(data) : data;
+        let { canvasData = {} } = data || {};
+        let { widgetList = [], canvas: _canvas } = canvasData || {};
+        if (_canvas) {
+          canvas = _canvas || {};
+        }
+        canvas.name = name;
+        canvas.width = width;
+        canvas.height = height;
+        canvas.canvasId = canvasId;
+        canvas.canvasType = type; //1为编辑   2为预览
+        this.setCanvas(canvas);
+        this.setWidgetList(widgetList);
+        // this.setCanvasData(data);
+        this.resetCanvasSize();
       });
+      // });
     },
     initEvent() {
       $(window).on("resize", this.resetCanvasSize);
@@ -376,10 +379,30 @@ export default {
       // canvas.top = top;
       this.setZoom(scale);
     },
-    // 获取登录信息
-    commonVerifyInfoFunc(callback) {
+    // // 获取登录信息
+    // commonVerifyInfoFunc(callback) {
+    //   let value = {};
+    //   this.commonVerifyInfoAction()
+    //     .then(({ data }) => {
+    //       let { code = "", result = {}, message = "" } = data || {};
+    //       if (code == Constants.CODES.SUCCESS) {
+    //         value = result || {};
+    //       } else {
+    //         bmCommon.error(message);
+    //       }
+    //       callback && callback(value || {});
+    //     })
+    //     .catch(err => {
+    //       callback && callback(value || {});
+    //       bmCommon.error("获取数据失败=>commonVerifyInfo", err);
+    //     });
+    // },
+    // 初始化websocket
+    initConfigWebsocketFunc(callback) {
       let value = {};
-      this.commonVerifyInfoAction()
+      let { condition } = this;
+      let { canvasId: id = "" } = condition;
+      this.initConfigWebsocketAction({ id })
         .then(({ data }) => {
           let { code = "", result = {}, message = "" } = data || {};
           if (code == Constants.CODES.SUCCESS) {
@@ -391,7 +414,7 @@ export default {
         })
         .catch(err => {
           callback && callback(value || {});
-          bmCommon.error("获取数据失败=>commonVerifyInfo", err);
+          bmCommon.error("获取数据失败=>initConfigWebsocket", err);
         });
     },
     // 获取画布信息
