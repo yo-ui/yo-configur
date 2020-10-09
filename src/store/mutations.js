@@ -31,5 +31,9 @@ export default {
     bmCommon.setItem(Constants.LOCALSTORAGEKEY.LANGUAGE, item);
     state.lang = item;
     state.langObj = getLang(item);
-  }
+  },
+  setPlatform(state, item) {
+    bmCommon.setItem(Constants.LOCALSTORAGEKEY.PLATFORM, item);
+    state.platform = item;
+  },
 };

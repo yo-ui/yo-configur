@@ -1,6 +1,5 @@
 <template>
   <div class="bm-view-page">
-    <!-- <bm-header ref="bmHeader"></bm-header> -->
     <div class="flex-content">
       <div class="content-box">
         <div class="view-box" ref="viewBox">
@@ -10,15 +9,9 @@
             :style="canvasStyle"
             :class="canvas.action"
           >
-            <div class="bg" :style="bgStyle">
-              <!-- <div class="grid" :style="gridStyle"></div> -->
-            </div>
+            <div class="bg" :style="bgStyle"></div>
             <bm-com
               class="view"
-              :class="{
-                //active: activeComIds.indexOf(item.id) > -1,
-                locked: !item.dragable
-              }"
               v-for="(item, index) in widgetList"
               :data-type="item.type"
               :data-id="item.id"
@@ -27,144 +20,32 @@
               :key="index"
             ></bm-com>
           </div>
-          <!-- <bm-lines ref="bmLines"></bm-lines> -->
-          <!-- <div class="slider-box" @mousedown.stop>
-            {{ $toBig(zoom, 0) + "%" }}
-            <el-slider
-              v-model="zoom"
-              :max="200"
-              @mousedown.stop
-              :format-tooltip="val => val + '%'"
-            ></el-slider>
-          </div> -->
         </div>
-        <!-- <bm-info ref="bmInfo" v-if="rightMenuStatus"></bm-info> -->
       </div>
     </div>
-    <!-- <ul
-      class="context-menu"
-      ref="contextMenuBox"
-      v-show="showContextMenuStatus"
-      :style="contextMenuStyle"
-    >
-      <li
-        @click="cutEvent"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
-      >
-        剪切 <small>Ctrl+X</small>
-      </li>
-      <li
-        @click="copyEvent"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
-      >
-        复制<small>Ctrl+C</small>
-      </li>
-      <li @click="pasteEvent" v-if="showContextMenuType == 2 && !!copyCom">
-        粘贴<small>Ctrl+V</small>
-      </li>
-      <li
-        @click="moveUpEvent"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
-        class="line"
-        :class="{ disabled: topOrder == activeCom.order }"
-      >
-        上移一层<small>Ctrl+[</small>
-      </li>
-      <li
-        @click="moveDownEvent"
-        :class="{ disabled: bottomOrder == activeCom.order }"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
-      >
-        下移一层<small>Ctrl+]</small>
-      </li>
-      <li
-        @click="moveTopEvent"
-        :class="{ disabled: topOrder == activeCom.order }"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
-      >
-        置于顶层<small>Ctrl+Shift+[</small>
-      </li>
-      <li
-        @click="moveBottomEvent"
-        :class="{ disabled: bottomOrder == activeCom.order }"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
-      >
-        置于底层<small>Ctrl+Shift+]</small>
-      </li>
-      <li
-        class="line"
-        @click="lockEvent(false)"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
-      >
-        锁定<small>Ctrl+Shift+L</small>
-      </li>
-      <li
-        @click="lockEvent(true)"
-        v-if="showContextMenuType == 1 && !activeCom.dragable"
-      >
-        解锁<small>Ctrl+Shift+L</small>
-      </li>
-      <li
-        @click="deleteEvent"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
-      >
-        删除<small>Delete</small>
-      </li>
-    </ul> -->
-    <!-- <bm-footer ref="bmFooter"></bm-footer> -->
-    <!-- <bm-select ref="bmSelect"></bm-select> -->
   </div>
 </template>
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 import bmCom from "@/components/component";
-// import bmHeader from "@/components/header";
-// import bmNav from "@/components/nav";
-// import bmFooter from "@/components/footer";
-// import mixins from "@/mixins";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "bm-view-page",
   data() {
     return {
-      // comList: [],
-      // activeComIds: "",
       condition: {
         canvasId: ""
       },
       showContextMenuStatus: false,
       showContextMenuType: 1, //1 组件右键菜单   2是画布右键菜单
       copyCom: "",
-      // shiftCtrlKeyDownStatus: false, //shit ctrl键被按下
       contextMenuStyle: {}
     };
   },
-  // mixins: [mixins],
   components: {
-    // bmHeader,
-    // bmNav,
-    // : () =>
-    //   import(/* webpackChunkName: "iot-header-com" */ "@/components/header"),
-    // bmLines: () =>
-    //   import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
-    // bmSelect: () =>
-    //   import(/* webpackChunkName: "iot-select-com" */ "@/components/select"),
-    // bmFooter,
-    // : () =>
-    //   import(/* webpackChunkName: "iot-footer-com" */ "@/components/footer"),
-    // bmInfo: () =>
-    //   import(/* webpackChunkName: "iot-info-com" */ "@/components/info"),
     bmCom
-    // : () =>
-    //   import(
-    //     /* webpackChunkName: "iot-component-com" */ "@/components/component"
-    //   ),
-    // bmWidgetList: () =>
-    //   import(
-    //     /* webpackChunkName: "iot-widget-list-com" */ "@/components/widget-list"
-    //   )
   },
   computed: {
     ...mapGetters({
@@ -178,18 +59,6 @@ export default {
       activeComs: "canvas/getActiveComs", //选中对象
       activeCom: "canvas/getActiveCom" //选中对象
     }),
-    // bottomOrder() {
-    //   let { widgetList = [] } = this;
-    //   let orders = widgetList.map(item => item.order);
-    //   let order = Math.min(...orders);
-    //   return order;
-    // },
-    // topOrder() {
-    //   let { widgetList = [] } = this;
-    //   let orders = widgetList.map(item => item.order);
-    //   let order = Math.max(...orders);
-    //   return order;
-    // },
     zoom: {
       get() {
         return parseInt(this.getZoom * 100);
@@ -198,38 +67,6 @@ export default {
         this.setZoom(val / 100);
       }
     },
-    // activeComIds() {
-    //   // let { activeCom = {} } = this;
-    //   // let { id = "" } = activeCom || {};
-    //   // return id || "";
-    //   let {
-    //     // widgetList = [],
-    //     // selectBox = {},
-    //     activeComs = [],
-    //     activeCom = {}
-    //   } = this;
-    //   let ids = [];
-    //   let { length = 0 } = activeComs || [];
-    //   if (length > 1) {
-    //     ids = activeComs.map(item => item.id);
-    //   } else {
-    //     let { id = "" } = activeCom || {};
-    //     ids.push(id);
-    //   }
-    //   return ids || [];
-    // },
-    // gridStyle() {
-    //   let { canvas = {} } = this;
-    //   let { isGrid = false, gridStyle = {} } = canvas || {};
-    //   let styles = {};
-    //   if (isGrid) {
-    //     let { width, height } = gridStyle || {};
-    //     styles[
-    //       "background"
-    //     ] = `linear-gradient(-90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${width}px ${height}px, linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px) 0% 0% / ${width}px ${height}px`;
-    //   }
-    //   return styles || {};
-    // },
     bgStyle() {
       let { canvas = {} } = this;
       let { backgroundSize = "", backgroundImage = "" } = canvas || {};
@@ -308,27 +145,17 @@ export default {
       setZoom: "canvas/setZoom",
       setWidgetList: "canvas/setWidgetList", //设置组件列表
       setCanvas: "canvas/setCanvas"
-      // setActiveCom: "canvas/setActiveCom",
-      // setActiveComs: "canvas/setActiveComs",
-      // initMove: "canvas/initMove",
-      // setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
-      // moving: "canvas/moving",
-      // stopMove: "canvas/stopMove"
     }),
     ...mapActions({
-      // selectComAction: "canvas/selectCom",
       initConfigWebsocketAction: "initConfigWebsocket",
-      canvasGetAction: "canvasGet"
-      // commonVerifyInfoAction: "commonVerifyInfo",
-      // selectComsAction: "canvas/selectComs"
+      canvasGetAction: "canvasGet",
+      pushAction: "push"
     }),
     init() {
       this.initEvent();
       let { condition, canvas = {}, $route } = this;
       let { query = {} } = $route;
       let { canvasId = "", type = 1 } = query || {};
-      // this.commonVerifyInfoFunc((info = {}) => {
-      // let { canvasId = "166", type = 1 } = info || {};
       condition.canvasId = canvasId;
       this.canvasGetFunc((detail = {}) => {
         let {
@@ -351,13 +178,29 @@ export default {
         canvas.canvasType = type; //1为编辑   2为预览
         this.setCanvas(canvas);
         this.setWidgetList(widgetList);
-        // this.setCanvasData(data);
         this.resetCanvasSize();
+        this.loadWebsocketData(widgetList);
       });
       // });
     },
     initEvent() {
       $(window).on("resize", this.resetCanvasSize);
+    },
+    loadWebsocketData(widgetList = []) {
+      let deviceIdList = [];
+      widgetList.forEach(item => {
+        let { bindData = {} } = item || {};
+        let { deviceId = "" } = bindData || {};
+        if (deviceId) {
+          deviceIdList.push(deviceId);
+        }
+      });
+      this.pushFunc(deviceIdList, result => {
+        bmCommon.log("postFunc", result);
+      });
+      this.initConfigWebsocketFunc(result => {
+        bmCommon.log("initConfigWebsocketFunc", result);
+      });
     },
     resetCanvasSize() {
       let $window = $(window);
@@ -401,21 +244,12 @@ export default {
     initConfigWebsocketFunc(callback) {
       let value = {};
       let { condition } = this;
-      let { canvasId: id = "" } = condition;
-      this.initConfigWebsocketAction({ id })
-        .then(({ data }) => {
-          let { code = "", result = {}, message = "" } = data || {};
-          if (code == Constants.CODES.SUCCESS) {
-            value = result || {};
-          } else {
-            bmCommon.error(message);
-          }
-          callback && callback(value || {});
-        })
-        .catch(err => {
-          callback && callback(value || {});
-          bmCommon.error("获取数据失败=>initConfigWebsocket", err);
-        });
+      let { canvasId = "" } = condition;
+      let subject = `/user/queue/canvas/${canvasId}`;
+      this.initConfigWebsocketAction({ subject, callback }).catch(err => {
+        callback && callback(value || {});
+        bmCommon.error("获取数据失败=>initConfigWebsocket", err);
+      });
     },
     // 获取画布信息
     canvasGetFunc(callback) {
@@ -435,6 +269,26 @@ export default {
         .catch(err => {
           callback && callback(value || {});
           bmCommon.error("获取数据失败=>canvasGet", err);
+        });
+    },
+    // 开始推送设备信息
+    pushFunc(deviceIdList = [], callback) {
+      let value = {};
+      let { condition } = this;
+      let { canvasId = "" } = condition;
+      this.pushAction({ canvasId, deviceIdList })
+        .then(({ data }) => {
+          let { code = "", result = {}, message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || {};
+          } else {
+            bmCommon.error(message);
+          }
+          callback && callback(value || {});
+        })
+        .catch(err => {
+          callback && callback(value || {});
+          bmCommon.error("获取数据失败=>push", err);
         });
     }
   },

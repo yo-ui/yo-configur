@@ -10,6 +10,7 @@ export default {
     bmCommon.variablePool.language ||
     "EN", //默认语言
   userInfo: null, //用户信息
-  accountMenuList: null, //用户菜单列表
-  accountMenuMap: null //用户菜单权限
+  platform: "" //平台标识
+  // accountMenuList: null, //用户菜单列表
+  // accountMenuMap: null //用户菜单权限
 };

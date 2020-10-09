@@ -56,10 +56,10 @@ const Constants = {
 
     ERROR: "600" //业务错误提示
   },
-  IMG: {
-    DEVICE_CATEGORY: "upload/type.png",
-    DEVICE_CATEGORY_PARAM: "upload/type.png"
-  },
+  // IMG: {
+  // DEVICE_CATEGORY: "upload/type.png",
+  // DEVICE_CATEGORY_PARAM: "upload/type.png"
+  // },
   AXIOTIMEOUT: apiConfig.axioTimeout, //请求超时时间
 
   COUNTDOWNTIME: {
@@ -71,8 +71,9 @@ const Constants = {
   LOCALSTORAGEKEY: {
     //存储key
     LANGUAGE: PLATFORM + "_LANGUAGE", //站点语言存储
-    ACCOUNTMENULIST: PLATFORM + "_ACCOUNTMENULIST", //账户菜单列表
-    ACCOUNTMENUMAP: PLATFORM + "_ACCOUNTMENUMAP", //账户菜单权限
+    PLATFORM: PLATFORM + "_PLATFORM", //平台标识存储
+    // ACCOUNTMENULIST: PLATFORM + "_ACCOUNTMENULIST", //账户菜单列表
+    // ACCOUNTMENUMAP: PLATFORM + "_ACCOUNTMENUMAP", //账户菜单权限
     USERKEY: {
       USERINFO: PLATFORM + "_USER_INFO", //用户信息key
       PREVIEWDATA: PLATFORM + "_PREVIEW_DATA", //用户操作组件列表

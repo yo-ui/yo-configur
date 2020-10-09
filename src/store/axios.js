@@ -1,6 +1,8 @@
 /* eslint-disable no-undef */
 import { Constants } from "@/common/env";
 import bmCommon from "@/common/common";
+import apiConfig from "@/common/conf/index";
+let { serviceHost = "", manageHost = "" } = apiConfig || {};
 // import axios from "axios";
 // import Mprogress from "mprogress/mprogress.min";
 // import Qs from "qs";
@@ -58,10 +60,22 @@ async function request(type, options, callback) {
     (headers["X-Requested-With"] = "XMLHttpRequest");
   let { $store = {} } = $vm;
   if ($store) {
-    let userInfo = $store.getters.getUserInfo;
+    let { getters = {} } = $store;
+    let { getUserInfo: userInfo = {}, getPlatform: platform = "" } =
+      getters || {};
+    // let userInfo = $store.getters.getUserInfo;
     let { token = "" } = userInfo || {};
     headers[Constants.AUTHORIZATION] = token;
+    // let platform=
+    if (platform == "service") {
+      //应用平台跳转过来
+      url = `${serviceHost}${url}`;
+    } else if (platform == "manage") {
+      //管理平台跳转过来
+      url = `${manageHost}${url}`;
+    }
   }
+
   bmCommon.warn("当前请求地址：", url, "当前请求参数", params);
   let data = null;
   let cancelToken = new CancelToken(cancel => {
@@ -194,6 +208,9 @@ function delFunc(url, cancelToken, params, headers) {
     // data:params,
     cancelToken: cancelToken,
     headers: headers,
+    paramsSerializer: params => {
+      return Qs.stringify(params, { indices: false });
+    },
     timeout: Constants.AXIOTIMEOUT
   });
 }
@@ -209,6 +226,9 @@ function getFunc(url, cancelToken, params, headers) {
     cancelToken: cancelToken,
     params: params,
     headers: headers,
+    paramsSerializer: params => {
+      return Qs.stringify(params, { indices: false });
+    },
     timeout: Constants.AXIOTIMEOUT
   });
 }

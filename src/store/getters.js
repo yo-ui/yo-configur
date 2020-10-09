@@ -30,32 +30,39 @@ export default {
     }
     return userInfo;
   },
-  getAccountMenuMap(state) {
-    let accountMenuMap = state.accountMenuMap;
-    if (!accountMenuMap) {
-      accountMenuMap = bmCommon.getItem(
-        Constants.LOCALSTORAGEKEY.ACCOUNTMENUMAP
-      );
-      accountMenuMap = JSON.parse(accountMenuMap);
+  getPlatform(state) {
+    let platform = state.platform;
+    if (!platform) {
+      platform = bmCommon.getItem(Constants.LOCALSTORAGEKEY.PLATFORM);
     }
-    accountMenuMap = JSON.parse(JSON.stringify(accountMenuMap));
-    if (!accountMenuMap) {
-      accountMenuMap = {};
-    }
-    return accountMenuMap || {};
-  },
-  getAccountMenuList(state) {
-    let accountMenuList = state.accountMenuList;
-    if (!accountMenuList) {
-      accountMenuList = bmCommon.getItem(
-        Constants.LOCALSTORAGEKEY.ACCOUNTMENULIST
-      );
-      accountMenuList = JSON.parse(accountMenuList);
-    }
-    accountMenuList = JSON.parse(JSON.stringify(accountMenuList));
-    if (!accountMenuList) {
-      accountMenuList = [];
-    }
-    return accountMenuList || {};
+    return platform;
   }
+  // getAccountMenuMap(state) {
+  //   let accountMenuMap = state.accountMenuMap;
+  //   if (!accountMenuMap) {
+  //     accountMenuMap = bmCommon.getItem(
+  //       Constants.LOCALSTORAGEKEY.ACCOUNTMENUMAP
+  //     );
+  //     accountMenuMap = JSON.parse(accountMenuMap);
+  //   }
+  //   accountMenuMap = JSON.parse(JSON.stringify(accountMenuMap));
+  //   if (!accountMenuMap) {
+  //     accountMenuMap = {};
+  //   }
+  //   return accountMenuMap || {};
+  // },
+  // getAccountMenuList(state) {
+  //   let accountMenuList = state.accountMenuList;
+  //   if (!accountMenuList) {
+  //     accountMenuList = bmCommon.getItem(
+  //       Constants.LOCALSTORAGEKEY.ACCOUNTMENULIST
+  //     );
+  //     accountMenuList = JSON.parse(accountMenuList);
+  //   }
+  //   accountMenuList = JSON.parse(JSON.stringify(accountMenuList));
+  //   if (!accountMenuList) {
+  //     accountMenuList = [];
+  //   }
+  //   return accountMenuList || {};
+  // }
 };

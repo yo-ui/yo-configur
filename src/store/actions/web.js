@@ -1,12 +1,11 @@
 import { URL } from "@/common/env";
-import bmCommon from "@/common/common";
-import { post } from "@/store/axios";
+// import bmCommon from "@/common/common";
+import { post, get } from "@/store/axios";
 export default {
-  // : `${host}/attachment/del/{id}`, //删除单个【附件】
   async push(context, options) {
-    const data = await post({
-      url: bmCommon.substitute(URL.pushUrl, options),
-      params: {},
+    const data = await get({
+      url: URL.pushUrl,
+      params: options,
       store: context
       // needToken:true,
     });

@@ -71,12 +71,14 @@ router.beforeEach((to, from, next) => {
   let { meta = {}, query = {} } = to || {};
   let { title: docTitle = "", requireAuth = false } = meta || {};
   let token = (query || {})[Constants.AUTHORIZATION];
+  let { type = "" } = query || {};
   let { name = "" } = to || {};
   let { name: fromName = "" } = from || {};
   let { accountId = "" } = userInfo || {};
   if (token) {
     $store.commit("setUserInfo", { ...userInfo, token });
   }
+  $store.commit("setPlatform", type == 2 ? "service" : "manage"); //type： 2 为应用平台过来  1为管理平台过来
   if (docTitle) {
     document.title = bmCommon.langKey(langObj, "能源云 | 组态平台"); //+langKey(langObj,docTitle)
   }

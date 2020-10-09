@@ -5,6 +5,8 @@ import bmCommon from "@/common/common";
 // socket功能
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
+import apiConfig from "@/common/conf/index";
+let { wsServiceHost = "", wsManageHost = "" } = apiConfig || {};
 // let variablePool = {};
 
 // variablePool.websocketMap = {}; //初始化Websocket 连接池
@@ -28,10 +30,20 @@ export default {
   initConfigWebsocket(context, options = {}) {
     //websocket 地址
     let { subject = "", callback = () => {} } = options;
-    let userInfo = context.getters.getUserInfo || {};
+    let { getters = {} } = context;
+    let { getUserInfo: userInfo = {}, getPlatform: platform = "" } =
+      getters || {};
     let { token = "" } = userInfo || {};
     // let socket = new SockJS(url);
-    let socket = new SockJS(URL.websocketUrl);
+    let url = URL.websocketUrl;
+    if (platform == "service") {
+      //应用平台跳转过来
+      url = `${wsServiceHost}${url}`;
+    } else if (platform == "manage") {
+      //管理平台跳转过来
+      url = `${wsManageHost}${url}`;
+    }
+    let socket = new SockJS(`${url}?x-access-token=${token}`);
     let stompClient = Stomp.over(socket);
     let headers = {};
     headers[Constants.AUTHORIZATION] = token;
@@ -41,18 +53,21 @@ export default {
       () => {
         bmCommon.log("连接成功！", url);
         $vm.stompClient = stompClient;
-        stompClient.subscribe(subject, (data = {}) => {
+        stompClient.subscribe(subject, (res = {}) => {
+          let { body = "" } = res || {};
+          let data = body && typeof body === "string" ? JSON.parse(body) : body;
           let { code = "", result = {}, message = "" } = data || {};
-          // let result = JSON.parse(payload.body);
-          bmCommon.log(result, message);
+          // bmCommon.log("initConfigWebsocket", data, result, message);
           if (code == Constants.CODES.SUCCESS) {
             value = result || {};
+          } else {
+            bmCommon.error(message);
           }
           callback && callback(value || {});
         });
       },
       err => {
-        bmCommon.error("error: " , err);
+        bmCommon.error("error: ", err);
       }
     );
     // $vm.websocket = new bmWebSocket(
