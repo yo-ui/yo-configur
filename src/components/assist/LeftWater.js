@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit.js'
+import Spirit from './../../core/Spirit'
 
 /**
  * 水管（左）
@@ -7,17 +7,17 @@ class LeftWater extends Spirit {
 
 	constructor(x=10, y=10) {
         super(x, y);
-	    this.title = "水管（左）";
+	    this.name = "水管（左）";
 	    this.className = "LeftWater";
 	    this.width = 10;
 	    this.height = 14;
 	    this.isSplice = true;
-	    this.zIndex = 2;
-	    this.isRotate = false;
+	    this.zIndex = 1;
+      this.isWater = true;
 	}
 
 	template(){
-		return `<div id="${this.id}" style="position:absolute;left:${this.x}px;top: ${this.y}px;border:1px solid transparent;z-index: ${this.zIndex}">
+		return `<div id="${this.id}" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex}">
 		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 					 viewBox="0 0 10 10" xml:space="preserve" width = "10" height="10">
 				<style type="text/css">
@@ -77,7 +77,6 @@ class LeftWater extends Spirit {
 
 	toJson(){
 		let json = {
-			title:this.title,
 			className:this.className,
 			zIndex: this.zIndex,
 			isRotate: this.isRotate

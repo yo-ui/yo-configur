@@ -1,62 +1,57 @@
+import Animation from './Animation'
+
 /**
  *
  */
 class BindData {
 
-	constructor(stage) {
+  constructor(stage) {
     this.stage = stage;
     this.bindData = {orgId:'',deviceId:'',devicePoint:''}
-	}
+    this.property;
+    this.animationType = 0;
+    this.points = [];
+  }
 
-	create() {
+  create(id) {
     this.organizs = []
-    this.points = []
-		let that = this;
-		if(that.stage.property) {
-      that.bindData = that.stage.property.config.bindData;
-		  let html = `<div>
-                      <span class="bm-text-header">组织</span>
-                      <div class="organiz-panel bm-select-panel" style="z-index: 4">
-                         <span class="select">
-                           <span class="text">请选择组织</span>
-                           <img src="static/images/angle-down.png">
-                         </span>                          
-                         <div class="content organiz-list">
-                           <ul></ul>  
-                         </div>
-                      </div>
-                  </div>               
-                  <div class="device">
-                    <span class="bm-text-header">设备</span>
-                    <div class="device-panel bm-select-panel" style="z-index: 3">
-                       <span class="select">
-                         <span class="text">请选择设备</span>
-                         <img src="static/images/angle-down.png">
-                       </span>                          
-                       <div class="content device-list">
-                         <div style="margin: 5px"><input type="text" class="form-control" maxlength="16" placeholder="设备名称"/></div>                  
-                         <ul></ul>
-                       </div>
-                    </div>
-                  </div>
-                  <div class="point" style="display: none">
-                    <span class="bm-text-header">点位</span>
-                    <div class="point-panel bm-select-panel" style="z-index: 2">
-                       <span class="select">
-                         <span class="text">请选择点位</span>
-                         <img src="static/images/angle-down.png">
-                       </span>                          
-                       <div class="content point-list">
-                         <div style="margin: 5px">
-                           <input type="text" class="form-control" maxlength="16" placeholder="点位名称"/>
-                         </div>                  
-                         <ul></ul>
-                       </div>
-                    </div>
-                  </div>`;
-		  $('.bm-configur-panel__content').html(html);
+    let that = this;
+    if(id) {
+      that.stage.capacity.forEach(function (c) {
+        if(id==c.id) {
+          that.property = c;
+        }
+      })
+    }else {
+      this.property = this.stage.property;
+      console.log(that.property)
+    }
+    if(that.property) {
+      that.bindData = that.property.config.bindData;
+      let content = $(`<div>
+                        <div style="display: flex;margin: 10px 0px;height: 32px">
+                          <div class="bm-tabs-group" style="width: 100px"><span class="active">设备</span><span>组织</span></div>
+                          <input type="text" class="device-s-input form-control" placeholder="请输入设备名称" style="flex: 1;" />
+                          <div class="organiz-panel bm-select-panel" style="z-index: 4;flex: 1;display: none">
+                           <span class="select">
+                             <span class="text">请选择组织</span>
+                             <i class="icon fa fa-down"></i>
+                           </span>                          
+                           <div class="content organiz-list">
+                             <ul></ul>
+                           </div>
+                          </div>
+                        </div>   
+                        <div class="device-list" style="padding: 5px;border: 1px solid #ddd;height: 100px;max-height: 300px;overflow: auto">
+                          <ul class="bm-action-list"></ul>
+                        </div>                                     
+                      </div>`);
+      that.stage.panel.init("绑定数据",content,500);
+      that.stage.panel.confirm(function () {
+        that.property.config.bindData = that.bindData;
+      })
 
-      let organizPanel = $('.bm-configur-panel').find('.organiz-panel');
+      let organizPanel = content.find('.organiz-panel');
       organizPanel.find('.select').on('click',function () {
         $(this).next().toggle();
       });
@@ -64,31 +59,7 @@ class BindData {
         $(this).hide();
       });
 
-      let devicePanel = $('.bm-configur-panel').find('.device-panel');
-      devicePanel.find('.select').on('click',function () {
-        $(this).next().toggle();
-        $('.device-list input').val('');
-        that.createDevice(that.deviceList);
-      });
-      devicePanel.find('.content').on('mouseleave',function (e) {
-        $(this).hide();
-      });
-
-      let pointPanel = $('.bm-configur-panel').find('.point-panel');
-      pointPanel.find('.select').on('click',function () {
-        $(this).next().toggle();
-        $('.point-list input').val('');
-        that.createPoint(that.points);
-      });
-      pointPanel.find('.content').on('mouseleave',function (e) {
-        $(this).hide();
-      });
-
-      if(that.stage.property.bindType == 2) {
-        $('.bm-configur-panel').find('.point').show();
-      }
-
-      $('.device-list input').on('input propertyChange',function () {
+      content.find('.device-s-input').on('input propertyChange',function () {
         let text = $(this).val();
         let dataList = []
         that.deviceList.forEach(function (device) {
@@ -102,22 +73,42 @@ class BindData {
           that.createDevice(that.deviceList);
         }
       })
+
+      content.find('.bm-tabs-group span').each(function (index) {
+        $(this).data("index", index)
+        $(this).on('click',function () {
+          $(this).addClass('active')
+          let index = $(this).data("index")
+          if(index==0) {
+            content.find('.device-s-input').show();
+            content.find('.organiz-panel').hide();
+          }else {
+            content.find('.device-s-input').hide();
+            content.find('.organiz-panel').show();
+          }
+          $(this).siblings().each(function () {
+            $(this).removeClass('active')
+          });
+        })
+      });
       that.oList();
+    }
+  }
 
-      $('.bm-configur-panel').find('.confirm').on('click',function () {
-        that.stage.property.config.bindData = that.bindData;
-        $('.bm-configur-panel').hide();
-      });
+  animationContent(){
+    let that = this;
+    $('.animation-content').html(Animation.template(this.animationType));
+    let inputPanel = $('.animation-content').find('.bm-input-panel')
+    inputPanel.find('input').val(that.property.config.animations[that.animationIndex].expr)
+    inputPanel.find('input').on('click',function () {
+      $(this).next().toggle();
+    });
+    inputPanel.find('.content').on('mouseleave',function (e) {
+      $(this).hide();
+    });
+    this.createPoint();
+  }
 
-      $('.bm-configur-panel').find('.close').on('click',function () {
-        $('.bm-configur-panel').hide();
-      });
-
-      $('.bm-configur-panel__close').on('click',function () {
-        $('.bm-configur-panel').hide();
-      });
-		}
-	}
   //组织列表
   oList() {
     let that = this;
@@ -128,13 +119,13 @@ class BindData {
         }
         that.organizs = dataList;
         that.createOrganiz();
-        that.dList()
+        that.dList();
       }
     })
   }
 
   createOrganiz() {
-	  let that = this;
+    let that = this;
     let dataList = []
     this.iteration(dataList,0,0);
     dataList.forEach(function (data) {
@@ -157,12 +148,10 @@ class BindData {
         let name = $(this).attr('title');
         that.bindData.orgId = id;
         $('.organiz-panel').find('.text').text(name);
-        that.deviceList();
+        that.dList();
       });
       $('.bm-select-panel ul').append(li);
     })
-    $('.bm-configur-panel').show();
-    $('.bm-configur-panel__body').css({width:400});
   }
 
   //设备列表
@@ -173,6 +162,7 @@ class BindData {
       that.stage.option.devicePoints(id,function(deviceList) {
         that.deviceList = deviceList;
         that.createDevice(that.deviceList);
+        that.stage.panel.show()
       })
     }
   }
@@ -184,8 +174,7 @@ class BindData {
       deviceList.forEach(function (device, index) {
         let li = $('<li></li>')
         li.data('id', device.id)
-        li.data('points', device.points);
-        li.text(that.textFormat(device.name, 16));
+        li.text(device.name);
         li.attr('title', device.name);
         li.on('click', function () {
           $(this).addClass('active')
@@ -193,61 +182,20 @@ class BindData {
             $(this).removeClass('active');
           });
           that.bindData.deviceId = $(this).data('id');
-          $(this).parent().parent().hide();
-          that.points = $(this).data('points');
-          $('.device-panel').find('.text').text($(this).attr('title'));
-          that.createPoint(that.points);
+          $('.device-panel > div').hide();
+          $('.device-panel .text').text($(this).attr("title"));
         });
         if (that.bindData.deviceId == device.id) {
           li.addClass('active');
-          that.points = device.points;
-          $('.device-panel').find('.text').text(device.name);
-          that.createPoint(that.points);
+          $('.device-panel .text').text(device.name);
         }
         $('.device-list ul').append(li);
       })
     }
   }
 
-  createPoint(points) {
-    let that = this;
-    $('.point-list ul').html('');
-    let isSelected = true;
-	  points.forEach(function (point,index) {
-      let li = $('<li></li>')
-      li.data('id', point.id)
-      li.text(point.name);
-      li.on('click', function () {
-        $(this).parent().parent().hide();
-        $('.point-panel').find('.text').text($(this).text());
-        that.bindData.devicePoint = $(this).data('id');
-        $(this).siblings().each(function () {
-          $(this).removeClass('active');
-        });
-      });
-      if(that.bindData.devicePoint==point.id) {
-        li.addClass('active')
-        $('.point-panel').find('.text').text(point.name);
-        isSelected = false;
-      }
-      $('.point-list ul').append(li);
-    })
-
-    if(isSelected) {
-      $('.point-list li').each(function (index) {
-        $(this).removeClass('active');
-        if(index==0) {
-          $(this).addClass('active')
-          $('.point-panel').find('.text').text($(this).text())
-          that.bindData.devicePoint = $(this).data('id');
-        }
-      })
-    }
-  }
-
-
   iteration(dataList,pid,level) {
-	  let that = this;
+    let that = this;
     that.organizs.forEach(function (data) {
       if(pid==data.pid) {
         data.level = level;
@@ -257,8 +205,8 @@ class BindData {
     })
   }
 
-	textFormat(text,length) {
-	  return text.length>length?text.substr(0,length)+"...":text;
+  textFormat(text,length) {
+    return text.length>length?text.substr(0,length)+"...":text;
   }
 }
 

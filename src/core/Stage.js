@@ -1,36 +1,49 @@
-import Paw from '@/core/Paw.js';
-import Move from '@/core/Move.js';
-import SpiritFactory from '@/core/SpiritFactory.js';
-import Zoom from '@/core/Zoom.js';
-import Library from '@/core/Library.js';
-import Keydown from '@/core/Keydown.js';
-import Align from '@/core/Align.js';
-import HandleRecord from '@/core/HandleRecord.js';
-import WaterPipe from '@/components/common/WaterPipe.js';
-import BindData from '@/core/BindData.js';
-
+import Paw from './Paw';
+import Move from './Move';
+import SpiritFactory from './SpiritFactory';
+import Zoom from './Zoom';
+import Library from './Library';
+import Keydown from './Keydown';
+import Align from './Align';
+import HandleRecord from './HandleRecord';
+import WaterPipe from './WaterPipe';
+import BindData from './BindData';
+import Toast from './Toast';
+import View from "./../View";
+import Color from "./Color"
+import Toolbar from "./Toolbar"
+import Group from "./Group"
+import Panel from "./Panel"
+import Help from "./../Help"
+import Combination from "../components/common/Combination";
 
 /**
  * 舞台
  */
 class Stage {
 
-	constructor(option,imgHost) {
-	  this.imgHost = imgHost;
-		this.option = option;
-		this.toolType = 1;//1移动方式 2 拼装方式
-		this.selectedType = 1;//选择类型1:默认2:框选
-		this.move = new Move(this);//全局移动
-		this.paw = new Paw(0,0,0,0,this);//舞台移动
-		this.selectedList = []
-		this.isMove = false;
-		this.library = new Library(this);//组件库
-		this.keydown = new Keydown(this);//快捷键
-		this.zoom = new Zoom(this);//缩放
-		this.align = new Align(this);//对齐
-		this.handleRecord = new HandleRecord(this);
-    this.bindD = new BindData(this);
-		this.canvas();
+	constructor(option,config) {
+	    this.config = config;
+	    this.option = option;
+	    this.toolType = 1;//1移动方式 2拼装方式
+	    this.selectedType = 1;//选择类型 1:默认 2:框选
+	    this.selectedList = [];
+      this.variableList = [];
+		  this.isMove = false;
+		  this.isPanel = false;
+		  this.move = new Move(this);//全局移动
+      this.paw = new Paw(this);//舞台移动
+		  this.zoom = new Zoom(this);//缩放
+		  this.align = new Align(this);//对齐
+		  this.handleRecord = new HandleRecord(this);//操作记录
+      this.bindD = new BindData(this);//数据绑定
+      this.toolbar = new Toolbar(this);//工具栏
+      this.library = new Library(this);//组件库
+      this.keydown = new Keydown(this);//快捷键
+      this.group = new Group(this);
+      this.panel = new Panel(this);
+      this.help = new Help(this);
+	    this.init();
 	}
 
 	createStage(width,height,background) {
@@ -43,12 +56,14 @@ class Stage {
 		this.isCreate = false;
 		this.dw = 50;
 		this.dh = 50;
+    this.stageAuto();
+
 		let element = $('<div id="configur_stage"></div>').css({
 			position: 'relative',
 			width: width+'px',
 			height: height+'px',
 			transform: 'scale(1)',
-      'transform-origin': '0 0',
+            'transform-origin': '0 0',
 			'background-color': background.color,
 		});
 		let board = $('<div id="board">&nbsp;</div>').css({
@@ -67,8 +82,17 @@ class Stage {
 			display: 'none'
 		});
 		element.append(rotate);
-
-		let resizePanel = $('<div class="resize-panel"><div class="resize-panel-content"></div></div>');
+		let resizePanel = $(`<div class="resize-panel">
+                            <div class="resize-panel-content"></div>
+                            <div class="bm-resizable-handle bm-resizable-w"><div class="w"></div></div>
+                            <div class="bm-resizable-handle bm-resizable-e"><div class="e"></div></div>
+                            <div class="bm-resizable-handle bm-resizable-n"><div class="n"></div></div>
+                            <div class="bm-resizable-handle bm-resizable-s"><div class="s"></div></div>
+                            <div class="bm-resizable-handle bm-resizable-ne"></div>
+                            <div class="bm-resizable-handle bm-resizable-se"></div>
+                            <div class="bm-resizable-handle bm-resizable-nw"></div>
+                            <div class="bm-resizable-handle bm-resizable-sw"></div>
+                          </div>`);
 		element.append(resizePanel);
 		let vLine = $('<div id="v_subline">&nbsp;</div>')
 		vLine.css({
@@ -77,17 +101,17 @@ class Stage {
 			'border-left': '1px dashed red',
 			width: '1px',
 			height: height+'px',
-			'z-index': 1,
+			'z-index': 10,
 		})
 		element.append(vLine);
-	  let hLine = $('<div id="h_subline">&nbsp;</div>')
+	    let hLine = $('<div id="h_subline">&nbsp;</div>')
 		hLine.css({
 			display: 'none',
 			position: 'absolute',
 			'border-top': '1px dashed red',
 			width: width+'px',
 			height: '1px',
-			'z-index': 1,
+			'z-index': 10,
 		})
 		element.append(hLine);
 		let rectangle = $('<div id="selected_subline">&nbsp;</div>')
@@ -97,7 +121,7 @@ class Stage {
 			border: '1px dashed #12a3ff',
 			width: '0px',
 			height: '0px',
-			'z-index': 1,
+			'z-index': 10,
 		})
 		element.append(rectangle);
 		let selectedPanel = $(`<div class="bm-selected-panel">&nbsp;</div>`)
@@ -110,7 +134,7 @@ class Stage {
 			let top = $(this).offset().top+e.offsetY+5;
 			$('.bm-context-menu').css({left: left,top: top});
 			$('.bm-context-menu').show();
-			that.contextmenu();
+      that.toolbar.contextMenu();
 			e.preventDefault();
 			e.stopPropagation();
 		});
@@ -121,19 +145,27 @@ class Stage {
 				if(that.toolType==1&&that.className) {
 					let offsetLeft = $('#configur_stage').offset().left;
 					let offsetTop = $('#configur_stage').offset().top;
-					let left = e.pageX-offsetLeft;
-					let top = e.pageY-offsetTop;
-					let spirit = that.create(that.className,left,top,that.dw,that.dh);
+					let x = parseInt(e.pageX-offsetLeft);
+					let y = parseInt(e.pageY-offsetTop);
+					let spirit = that.create(that.className,x,y,that.dw,that.dh);
+					spirit.refresh();
 					that.capacity.push(spirit)
           that.configurList();
 					let data = {id:spirit.id,left:spirit.x,top:spirit.y}
 					let record = {type:'add',name:'添加',data:data}
 					that.handleRecord.add(record);
+          that.triggerClick();
 				}
 			}
 		})
 
 		element.on('click',function(e) {
+      if(that.property&&that.property.isMove) {
+        if(that.property.className=="Combination") {
+          that.absorb(false);
+          $('#'+that.property.id).find(".comb").html('');
+        }
+      }
 			that.layDown();
 			that.property = "";
 			that.renderer();
@@ -144,6 +176,7 @@ class Stage {
 			$('#configur_list li').each(function () {
         $(this).removeClass('active');
       });
+			that.toolbar.edit();
 			e.stopPropagation();
 		});
 
@@ -152,9 +185,9 @@ class Stage {
 				$(this).trigger('click');
 				let left = $(this).offset().left+e.offsetX+5;
 				let top = $(this).offset().top+e.offsetY+5;
-				$('.bm-context-menu').css({left: left,top: top});
+				$('.bm-context-menu').css({left,top});
 				$('.bm-context-menu').show();
-				that.contextmenu();
+        that.toolbar.contextMenu();
 			}
 			e.preventDefault();
 			e.stopPropagation();
@@ -206,15 +239,15 @@ class Stage {
 					if(e.pageX<that.rectangle.x) {
 						let width = that.rectangle.x-e.pageX;
 						let height = e.pageY-that.rectangle.y;
-					    let scrollLeft = $('#root').scrollLeft();
-					    let offsetLeft = $('#configur_stage').offset().left;
+            let scrollLeft = $('#root').scrollLeft();
+            let offsetLeft = $('#configur_stage').offset().left;
 						let left = e.pageX-offsetLeft+scrollLeft;
 						$('#selected_subline').css({left:left})
-					    $('#selected_subline').css({width: width,height: height,border:'1px dashed #12a3ff'})
+            $('#selected_subline').css({width: width,height: height,border:'1px dashed #12a3ff'})
 					}else {
 						let width = e.pageX-that.rectangle.x;
-					    let height = e.pageY-that.rectangle.y;
-					    $('#selected_subline').css({width: width,height: height,border:'1px dashed #12a3ff'})
+            let height = e.pageY-that.rectangle.y;
+            $('#selected_subline').css({width: width,height: height,border:'1px dashed #12a3ff'})
 					}
 				}
 				if($('#selected_subline').width()>10) {
@@ -233,11 +266,13 @@ class Stage {
 			let height = $('#selected_subline').height();
 			let dataList = []
 			that.capacity.forEach(function(data) {
-				let d1 = {x:x,y:y,width:width,height:height}
-				let d2 = {x:data.x,y:data.y,width:data.width,height:data.height};
-				if(data.isMove&&that.overlap(d1,d2)) {
-					dataList.push(data);
-				}
+			if(data.isSelected) {
+	            let d1 = {x:x,y:y,width:width,height:height}
+	            let d2 = {x:data.x,y:data.y,width:data.width,height:data.height};
+	          if(data.isMove&&that.overlap(d1,d2)) {
+	            dataList.push(data);
+	          }
+        }
 			});
 			that.selectedList = dataList;
 			if(that.selectedList.length>1) {
@@ -249,6 +284,7 @@ class Stage {
 				let width = data.width;
 				let height = data.height;
 				$('.bm-selected-panel').css({left,top,width,height})
+        that.toolbar.edit();
 			}
 		});
 
@@ -259,25 +295,37 @@ class Stage {
 		});
 		$('#root').append(this.element);
     this.waterPipe = new WaterPipe(this);
+    this.paw.bindResizeEvent();
+    this.toolbar.disabled();
 	}
+
+  stageAuto() {
+    let width = $('.bm-layout__main__body').width()-94;
+    let height = $('.bm-layout__main__body').height()-94;
+    $('.bm-stage').css({width,height,'margin-top': '25px','margin-left': '47px'});
+  }
 
 	selectedPanel(dataList) {
 		let data = {x:0,y:0,x2:0,y2:0}
 		dataList.forEach(function (selected,index) {
-      let x2 = selected.x+selected.width;
-      let y2 = selected.y+selected.height;
-      if(data.x==0&&data.y==0) {
-        data.x = selected.x;
-        data.y = selected.y;
-        data.x2 = x2;
-        data.y2 = y2;
-		  }
-      if(selected.x<data.x) {data.x = selected.x}
-      if(selected.y<data.y) {data.y = selected.y}
-      if(x2>data.x2) {data.x2 = x2}
-      if(y2>data.y2) {data.y2 = y2}
+	        let x2 = Number(selected.x)+Number(selected.width);
+	        let y2 = Number(selected.y)+Number(selected.height);
+	        if(data.x==0&&data.y==0) {
+		        data.x = selected.x;
+		        data.y = selected.y;
+		        data.x2 = x2;
+		        data.y2 = y2;
+			}
+	        if(selected.x<data.x) {data.x = selected.x}
+	        if(selected.y<data.y) {data.y = selected.y}
+	        if(x2>data.x2) {data.x2 = x2}
+	        if(y2>data.y2) {data.y2 = y2}
 		})
-		return {x:data.x,y:data.y,width:data.x2-data.x,height:data.y2-data.y+2}
+		let x = Number(data.x);
+		let y = Number(data.y);
+		let width = Number(data.x2)-Number(data.x);
+		let height = Number(data.y2)-Number(data.y);
+		return {x,y,width,height}
 	}
 
 	overlap(d1,d2) {
@@ -291,7 +339,7 @@ class Stage {
 	renderer() {
 		let that = this;
 		$('#configur_property').html('');
-		let html = `<div class="bm-cell no-hover">
+		let html = $(`<div class="bm-cell no-hover">
 						<div class="bm-cell__title">
 							<div>功能选择</div>
 							<div class="bm-img handle">
@@ -300,7 +348,6 @@ class Stage {
               </div>
 						</div>					
 					</div>
-          <div class="bm-tree">画布</div>
 					<div class="bm-cell no-hover" style="text-align: left">
 						<div class="bm-cell__title">
 							<div class="bm-kv">
@@ -316,108 +363,79 @@ class Stage {
 						</div>				
 					</div>
 		      <div class="bm-tree">背景</div>
-					<div class="bm-cell no-hover">
-						<div class="bm-cell__title">
-							<div>背景颜色</div>
-							 <div class="bm-color-box"></div>
+					<div class="bm-style">
+					  <div class="text">颜色：</div>
+						<div class="value">
+							<input type="color" name="bgColor" title="背景颜色" />
 						</div>
 					</div>
-					<div class="bm-cell no-hover">
-						<div class="bm-cell__title">
-							<div>网格</div>
-							<div class="bm-checkbox">
+					<div class="bm-style">
+					  <div class="text">图片：</div>
+						<div class="value">
+							<div class="bm-checkbox" style="width: 20px;vertical-align: middle;">
 								<input type='checkbox' id='subline'>
 								<label for='subline'></label>
 							</div>
+							<form id="stageBg" style="display: inline-block">
+                <div class="bm-upload" style="width: 80px">
+                  <span>选择图片</span>								 
+                  <input type="file" name="stageBg"/>								 	              
+                </div>
+              </form>		
 						</div>
-					</div>
-          <div class="bm-cell no-hover">
-						<div class="bm-cell__title">
-							<div>缩放</div>
-							<div class="bm-zoom">
-							    <img src="static/images/magnify.png"/>							    
-							    <img src="static/images/shrink.png"/>
-							    <span></span>
-              </div>
-						</div>
-					</div>`;
-		$('#configur_property').html(html);
-		that.zoom.init();
-		Tooltip.init();
-		$('.colpick').remove()
-		$('.bm-color-box').colpick({
-			colorScheme:'dark',
-			layout:'rgbhex',
-			color:that.background.color,
-			onSubmit:function(hsb,hex,rgb,el) {
-				$(el).css('background-color', '#'+hex);
-				that.background.color = '#'+hex;
-				$('#configur_stage').css({'background-color': '#'+hex})
-				$(el).colpickHide();
-			}
-		}).css('background-color', that.background.color);
+					</div>`);
+        $('#configur_property').html(html);
+        that.zoom.init();
+        Tooltip.init();
+        html.find("[name=bgColor]").val(that.background.color)
+        html.find("[name=bgColor]").on('change',function() {
+            that.background.color = $(this).val();
+            $('#configur_stage').css({'background-color': $(this).val()})
+        })
 
-		$('#subline').on('change',function () {
-      if($(this).is(':checked')) {
-        $('#configur_stage').css({'background-image': 'url(static/images/background/background.png)'});
-        that.background.url = "static/images/background/background.png"
-			}else {
-				$('#configur_stage').css({'background-image': ''});
-				that.background.url = ""
-			}
-		})
+        if(that.background.url) {
+          $('#configur_stage').css({'background-image': 'url('+that.background.url+')'});
+          $('#subline').prop("checked",true)
+        }else {
+          $('#configur_stage').css({'background-image': ''});
+          $('#subline').prop("checked",false)
+        }
 
-		if(that.background.url) {
-			$('#configur_stage').css({'background-image': 'url(static/images/background/background.png)'});
-			$('#subline').prop("checked",true)
-		}else {
-			$('#configur_stage').css({'background-image': ''});
-			$('#subline').prop("checked",false)
-		}
-
-		$('.handle div').each(function (index) {
-			$(this).data('index', index);
-			if(that.toolType==index+1) {
-				$(this).addClass('active')
-			}
-			$(this).on('click',function () {
-				let index = $(this).data('index');
-				$(this).addClass('active')
-				if(index==0) {
-					that.toolType = 1;
-					$(this).addClass('active')
-          if(that.waterPipe) {
-            that.waterPipe.draw(false);
-            that.removeLinkPoints();
+        $('#subline').on('change',function () {
+          if($(this).is(':checked')) {
+            $('#configur_stage').css({'background-image': 'url('+that.background.url+')'});
+            $("#stageBg").attr("disabled", true);
+          }else {
+            $('#configur_stage').css({'background-image': ''});
+            $("#stageBg").attr("disabled", true);
+            that.background.url = ""
           }
-				}else if(index==1) {
-					that.toolType = 2;
-					$(this).addClass('active')
-					if(that.waterPipe) {
-						that.waterPipe.draw(true);
-            that.createLinkPoints();
-					}
-				}
-				$(this).siblings().each(function () {
-				  $(this).removeClass('active')
-				})
-			})
-		});
+        })
+
+	      $('#configur_property').find('[name=stageBg]').on('change',function() {
+          let form = $("#stageBg")[0]
+          let file = $(this).get(0).files[0]
+          that.option.upload(form,file,function(url) {
+            that.background.url = that.config.imgHost+"/"+url;
+            $('#configur_stage').css({'background-image': 'url('+that.background.url+')'});
+          })
+        })
+	      this.handleRecord.init();
 	}
 
   removeLinkPoints() {
 	  let tempList = []
-    this.capacity.forEach(function (property) {
-      if(property.isAuto) {
-        $('#'+property.id).remove();
-      }else {
-        tempList.push(property)
-      }
-    })
-    this.capacity = tempList;
+      this.capacity.forEach(function (property) {
+	      if(property.isAuto) {
+	        $('#'+property.id).remove();
+	      }else {
+	        tempList.push(property)
+	      }
+      })
+      this.capacity = tempList;
   }
 
-	createLinkPoints() {
+  createLinkPoints() {
 	  this.capacity.forEach(function (property) {
       if(property.isLinkPoint) {
         property.createLinkPoint();
@@ -425,23 +443,55 @@ class Stage {
     })
   }
 
-	shortcutsKey(type) {
-		let that = this;
-		switch(type) {
-      case 1:that.handleRecord.lastStep();break;
-      case 2:that.save();break;
-      case 3:that.clone();break;
-      case 4:that.remove();break;
-      case 5:that.align.left();break;
-      case 6:that.align.right();break;
-      case 7:that.align.up();break;
-      case 8:that.align.down();break;
-      case 9:that.align.lock();break;
-      case 10:that.align.lock();break;
-      case 11:that.remove();break;
-      case 12:that.property.animation();break;
-		}
-	}
+  //水平平分
+  hDivide() {
+    if(this.selectedList.length<=2) {
+      return;
+    }
+    let that = this;
+    let data = that.selectedPanel(that.selectedList);
+    let value = 0;
+    that.selectedList.sort((a,b)=> a.y-b.y)
+    that.selectedList.forEach(function (data) {
+      value+=data.height;
+    })
+    if(data.height-value>0) {
+      let v = (data.height-value)/(that.selectedList.length-1);
+      that.selectedList.forEach(function (selected,index) {
+        if(index>0&&index<that.selectedList.length-1) {
+          let first = that.selectedList[index-1];
+          let top = parseInt(first.y+first.height+v);
+          $('#'+selected.id).css({top});
+          selected.y = top;
+        }
+      })
+    }
+  }
+
+  //垂直平分
+  vDivide() {
+    if(this.selectedList.length<=2) {
+      return;
+    }
+    let that = this;
+    let data = that.selectedPanel(that.selectedList);
+    let value = 0;
+    that.selectedList.sort((a,b)=> a.x-b.x)
+    that.selectedList.forEach(function (data) {
+      value+=data.width;
+    })
+    if(data.width-value>0) {
+      let v = (data.width-value)/(that.selectedList.length-1);
+      that.selectedList.forEach(function (selected,index) {
+        if(index>0&&index<that.selectedList.length-1) {
+          let first = that.selectedList[index-1];
+          let left = parseInt(first.x+first.width+v)
+          $('#'+selected.id).css({left});
+          selected.x = left;
+        }
+      })
+    }
+  }
 
 	location() {
 		let stage = $('#configur_stage');
@@ -465,48 +515,88 @@ class Stage {
 	//鼠标放下
 	layDown() {
 		let that = this;
-		let top = String($('.resize-panel').css('top')).replace('px', '');
-    	let left = String($('.resize-panel').css('left')).replace('px', '');
+		let top = $('.resize-panel').css('top').replace('px', '');
+    	let left = $('.resize-panel').css('left').replace('px', '');
     	let el = $('.resize-panel').find('.resize-panel-content').children('div');
     	let id = el.attr('id');
     	if(id) {
     		that.configurId = id;
 	    	el.css({
-          left: Number(left)+2,
-          top: Number(top)+2,
-          transform: 'rotate('+that.property.rotate+'deg)'
-	    	});
+	            left: Number(left),
+	            top: Number(top),
+	            transform: 'rotate('+that.property.rotate+'deg)'
+	        });
 	    	this.addEvent(el);
 	    	this.element.append(el);
-	    	$('.resize-panel').find('.resize-panel-content').html('');
-	    	$('.resize-panel').hide();
     	}
-    	that.isMove = false;
+	    $('.resize-panel').find('.resize-panel-content').html('');
+	    $('.resize-panel').hide();
+	    that.isMove = false;
 	}
+
 	//克隆
 	clone() {
+	  let that = this;
+      if(!that.property.isDrag) {
+	      Toast.alert("请先分解在复制！")
+	      return;
+      }
 		if(!$('.resize-panel').is(":hidden")) {
 			this.layDown();
-			this.className = this.property.className;
-			let x = this.property.x+50;
-			let y = this.property.y+50;
+			let className = this.property.className;
+			let x = Number(this.property.x)+50;
+			let y = Number(this.property.y)+50;
 			let width = this.property.width;
 			let height = this.property.height;
 			let rotate = this.property.rotate;
-			let spirit = this.create(this.className,x,y,width,height,rotate);
-			spirit.config = this.property.config;
+			let spirit = this.create(className,x,y,width,height,rotate);
+			if(spirit.config){
+        Object.assign(spirit.config,this.property.config)
+      }
+      spirit.isSubline = this.property.isSubline;
+      spirit.isSelected = this.property.isSelected;
+      if(className=="Combination") {
+			  let idList = [];
+			  let ids = this.property.config.ids;
+			  let dataList = [...that.capacity]
+			  ids.forEach(function (id) {
+          dataList.forEach(function (c) {
+            if(c.id==id) {
+              let configur = that.create(c.className,c.x,c.y,c.width,c.height,0);
+              if(configur.config){
+                Object.assign(configur.config,c.config)
+              }
+              configur.isSelected = c.isSelected;
+              configur.isSubline = c.isSubline;
+              configur.refresh();
+              configur.x = c.x+50;
+              configur.y = c.y+50;
+              that.capacity.push(configur);
+              idList.push(configur.id)
+            }
+          })
+        })
+        spirit.config.ids = idList;
+      }else {
+        let data = {id:spirit.id,left:spirit.x,top:spirit.y}
+        let record = {type:'add',name:'添加',data:data}
+        this.handleRecord.add(record);
+      }
 			spirit.refresh();
 			this.capacity.push(spirit);
-			spirit.getEl().trigger('click');
-			let data = {id:spirit.id,left:spirit.x,top:spirit.y}
-			let record = {type:'add',name:'添加',data:data}
-			this.handleRecord.add(record);
+      spirit.getEl().trigger('click');
 		}
 	}
+
 	//删除
 	remove() {
 		let that = this;
-		if(that.selectedList.length>0) {
+		console.log(that.property);
+		if(that.property&&!that.property.isDrag) {
+		  Toast.alert("请先分解在删除！")
+      return;
+    }
+		if(that.selectedList.length>1) {
 			let set = new Set()
 			that.selectedList.forEach(function(selected) {
 				set.add(selected.id);
@@ -517,13 +607,6 @@ class Stage {
 		}else {
 			$('.resize-panel').find('.resize-panel-content').html('');
 		  $('.resize-panel').hide();
-			let dataList = [];
-			that.capacity.forEach(function(data) {
-				if(data.id!=that.property.id) {
-					dataList.push(data);
-				}
-			})
-			that.capacity = dataList;
 			let className = that.property.className;
 			let x = that.property.x;
 			let y = that.property.y;
@@ -531,22 +614,34 @@ class Stage {
 			let height = that.property.height;
 			let record = {type:'remove',name:'删除',data: {className,x,y,width,height}}
 			that.handleRecord.add(record);
+			if(that.property.className=="Combination") {
+        let ids = that.property.config.ids;
+        that.updateCapacity([that.property.id]);
+        that.updateCapacity(ids);
+      }else {
+        that.updateCapacity([that.property.id]);
+      }
+      that.property = "";
 		}
-		$('#configur_stage').trigger('click');
+		that.triggerClick();
 		that.configurList();
 	}
 
 	//创建
-	create(className,x,y,width,height,rotate=0) {
+	create(className,x,y,width,height,rotate=0,id) {
 		let that = this;
 		this.className = className;
     let spirit = SpiritFactory.getInstance(className,x,y,width,height);
+    if(id) {
+      spirit.id = id;
+    }
+    spirit.name = spirit.name+"-"+that.capacity.length;
     if(spirit.className=="Images") {
       if(!spirit.config.url) {
         spirit.config.url = "static/images/background/background.jpg";
       }
     }
-    spirit.rotate = rotate;3
+    spirit.rotate = rotate;
 		spirit.arrangement(this);
 		this.addEvent(spirit.getEl());
 		this.move.move = false;
@@ -561,32 +656,45 @@ class Stage {
         $('.bm-context-menu').hide();
         that.configurId = $(this).attr('id');
         that.property = that.getProperty();
-        $(this).css({left:0,top:0,transform: 'rotate(0deg)'});
         if(that.property.isMove) {
+            $(this).css({left:0,top:0,transform: 'rotate(0deg)'});
             that.propertyStyle();
-            that.paw.resizePanel(that.property);
-            that.paw.bindResizeEvent();
+            that.paw.resize(that.property);
             let x = that.property.x;
             let y = that.property.y;
             let width = that.property.width;
             let height = that.property.height;
+            let className = that.property.className;
+            if(className=="TextBox"||className=="Text") {
+              that.property.text();
+            }else if(that.property.className=="Combination") {
+              let left = that.property.x;
+              let top = that.property.y;
+              let ids = that.property.config.ids;
+              that.property.isSubline = true;
+              ids.forEach(function (id) {
+                that.capacity.forEach(function (data) {
+                  if(id == data.id) {
+                    that.createCombination(that.property.id,data,left,top)
+                  }
+                })
+              })
+            }
             that.paw.site(x,y,width,height);
             that.paw.register(el);
             that.isMove = true;
             el.unbind();
         }else {
-            that.setProperty(that.property)
+            that.setProperty(that.property);
             that.propertyStyle();
-            let x = that.property.x;
-            let y = that.property.y;
-            let rotate = that.property.rotate;
-            $('#'+that.property.id).css({left:x,top:y,transform: 'rotate('+rotate+'deg)'});
             that.layDown();
         }
         that.configurList();
         e.stopPropagation();
       }
+      that.toolbar.edit();
     });
+
 
 		el.on('contextmenu',function(e) {
 			if(that.toolType==1) {
@@ -595,55 +703,14 @@ class Stage {
 				let top = e.pageY;
 				$('.bm-context-menu').css({left: left,top: top});
 				$('.bm-context-menu').show();
-				that.contextmenu();
+				that.toolbar.contextMenu();
 			}
 			e.preventDefault();
 			e.stopPropagation();
 		})
   }
 
-  contextmenu() {
-		$('.bm-context-menu ul').html('')
-		let that = this;
-		let menus = []
-		if(that.selectedType==1) {
-			if(that.property) {
-				if(that.property.isMove) {
-					menus = [{name:'复制',icon:'fa-copy',type: 3,key:'Ctrl+C'},
-						     {name:'删除',icon:'fa-remove',type: 4,key:'Ctrl+D'},
-						     {name:'锁定',icon:'fa-lock',type: 9,key:'Ctrl+L'}]
-				}else {
-					menus = [{name:'解锁',icon:'fa-uplock',type: 10,key:'Ctrl+L'}]
-				}
-				if(that.property.isAnimation) {
-          menus.push({name:'动画链接',icon:'fa-lock',type: 12,key:''})
-        }
-			}else {
-				menus = [{name:'保存',icon:'fa-save',type: 2,key:'Ctrl+S'}]
-				if(that.handleRecord.handles.length>0) {
-					let menu = {name:'回撤',icon:'fa-back',type: 1,key:'Ctrl+Z'};
-					menus.push(menu);
-				}
-			}
 
-		}else {
-			menus = [{name:'左对齐',icon:'fa-align-left',type: 5,key:'Ctrl+←'},
-				     {name:'右对齐',icon:'fa-align-right',type: 6,key:'Ctrl+→'},
-				     {name:'上对齐',icon:'fa-align-up',type: 7,key:'Ctrl+↑'},
-				     {name:'下对齐',icon:'fa-align-down',type: 8,key:'Ctrl+↓'},
-				     {name:'删除',icon:'fa-remove',type:11,key:'Ctrl+D'}]
-		}
-		menus.forEach(function (data) {
-			let li = $(`<li><span class="text"><i class="fa ${data.icon}"></i>${data.name}</span><span class="value">${data.key}</span></li>`)
-			li.data("type",data.type)
-			li.on('click',function () {
-				let type = $(this).data("type");
-				that.shortcutsKey(type);
-				$('.bm-context-menu').hide();
-			})
-			$('.bm-context-menu ul').append(li)
-		})
-	}
 
 	/**
 	 * 属性样式
@@ -651,44 +718,16 @@ class Stage {
 	propertyStyle() {
 		let that = this;
 		if(this.property){
+      Tooltip.init();
 			this.property.renderer();
-			Tooltip.init();
-			$('.colpick').remove()
-      if(that.property.config) {
-        $('.text-color').colpick({
-          colorScheme:'dark',
-          layout:'rgbhex',
-          color:that.property.config.color,
-          onSubmit:function(hsb,hex,rgb,el) {
-            $(el).css('background-color', '#'+hex);
-            that.property.config.color = '#'+hex;
-            $('#'+that.property.id).find('span').css({color:'#'+hex});
-            $(el).colpickHide();
-          }
-        }).css('background-color', that.property.config.color);
-      }
-
-      if(that.property.config) {
-        $('.bg-color').colpick({
-          colorScheme:'dark',
-          layout:'rgbhex',
-          color:that.property.config.backgroundColor,
-          onSubmit:function(hsb,hex,rgb,el) {
-            $(el).css('background-color', '#'+hex);
-            that.property.config.backgroundColor = '#'+hex;
-            $('#'+that.property.id).find('div').css({'background-color':'#'+hex});
-            $(el).colpickHide();
-          }
-        }).css('background-color', that.property.config.backgroundColor);
-      }
-
+		  let config = that.property.config;
 			$('#configur_property').find('[name=bg]').on('change',function() {
-				let form = $("#uploadBg")[0]
-        let file = $(this).get(0).files[0]
-        that.option.upload(form,file,function(msg) {
-          that.property.config.url = msg;
-          $('#'+that.property.id).find('img').attr('src',that.imgHost+"/"+msg);
-        })
+          let form = $("#imgBg")[0]
+          let file = $(this).get(0).files[0]
+          that.option.upload(form,file,function(url) {
+            that.property.config.url = url;
+            $('#'+that.property.id).find('img').attr('src',that.config.imgHost+"/"+url);
+          })
 			})
 		}
 	}
@@ -713,7 +752,7 @@ class Stage {
 		})
 		this.property = data;
 		if(this.property.className=="LineChart") {
-			this.property.chart.resize();
+			this.property.refresh();
 		}
 		$('#configur_property').find('.bm-site-x').text(data.x)
 		$('#configur_property').find('.bm-site-y').text(data.y)
@@ -726,25 +765,32 @@ class Stage {
 		$('#root').html('');
 		if(data) {
 			this.createStage(width,height,data.background);
-			data.capacity.forEach(function(property) {
-				let className = property.className;
-				let x = property.x;
-				let y = property.y;
-				let width = property.width;
-				let height = property.height;
-				let rotate= property.rotate;
-				let spirit = that.create(className,x,y,width,height,rotate);
-				spirit.isMove = property.isMove;
-				spirit.zIndex = property.zIndex;
-				spirit.config = property.config;
+      let combinationList = []
+			data.capacity.forEach(function(c) {
+			  let id = c.id;
+				let className = c.className;
+				let x = c.x;
+				let y = c.y;
+				let width = c.width;
+				let height = c.height;
+				let rotate= c.rotate;
+				let spirit = that.create(className,x,y,width,height,rotate,id);
+        c.id = spirit.id;
+        spirit.name = c.name;
+        spirit.zIndex = c.zIndex;
+        spirit.isSelected = c.isSelected;
+        spirit.isSubline = c.isSubline;
+        spirit.isDrag = c.isDrag;
+        spirit.isRotate = c.isRotate;
+        spirit.config = c.config;
         if(className=="Images") {
-          $('#'+spirit.id).find('img').attr('src',that.imgHost+"/"+spirit.config.url);
+          let url = that.config.imgHost+"/"+spirit.config.url;
+          $('#'+spirit.id).find('img').attr('src', url);
         }
-				spirit.refresh();
-				that.capacity.push(spirit);
-				property.id = spirit.id;
+        spirit.refresh();
+        that.capacity.push(spirit);
 			})
-			$('#configur_stage').trigger('click')
+			that.triggerClick();
 			that.location();
 			that.configurList();
 		}
@@ -755,35 +801,37 @@ class Stage {
 	  let that = this;
 	  if(that.capacity) {
       that.capacity.forEach(function (data) {
-        let li = $('<li></li>');
-        li.data('id',data.id)
-        li.on('click',function () {
-          $(this).addClass('active');
-          $(this).siblings().each(function () {
-            $(this).removeClass('active');
-          })
-          $('#'+$(this).data('id')).trigger('click')
-        })
-        let text = $(`<span class="text">${data.title}</span>`)
-        let value = $(`<span class="value"></span>`);
-        if(data.isBind) {
-          let src = "static/images/bind-0.png"
-          if(data.config.bindData.deviceId) {
-            src = "static/images/bind-1.png"
-          }
-          let img = $(`<img src="${src}"/>`)
-          img.on('click',function (e) {
-            $(this).parent().parent().trigger('click')
-            that.bindD.create();
+          let li = $('<li></li>');
+          li.data('id',data.id)
+          li.on('click',function (e) {
+            that.triggerClick();
+            $(this).addClass('active');
+            $(this).siblings().each(function () {
+              $(this).removeClass('active');
+            })
+            $('#'+$(this).data('id')).trigger('click');
             e.stopPropagation();
-          });
-          value.append(img);
-        }
-        li.append(text).append(value);
-        if(that.property.id == data.id) {
-          li.addClass('active');
-        }
-        $('#configur_list ul').append(li);
+          })
+          let text = $(`<span class="text">${data.name}</span>`)
+          let value = $(`<span class="value"></span>`);
+          if(data.isBind) {
+            let bind = $('<i class="fa fa-bind"/>')
+            if(data.config.bindData.deviceId) {
+              bind.css({color:'red'})
+            }
+            bind.on('click',function (e) {
+              let id = $(this).parent().parent().data("id");
+              that.bindD.create(id);
+              $(this).parent().parent().trigger('click');
+              e.stopPropagation();
+            });
+            value.append(bind);
+          }
+          li.append(text).append(value);
+          if(that.property.id == data.id) {
+            li.addClass('active');
+          }
+          $('#configur_list ul').append(li);
       })
     }
   }
@@ -793,44 +841,48 @@ class Stage {
 		if(this.capacity) {
 			let capacity = [];
 			this.capacity.forEach(function(data) {
-			  if(data.className!="LinkPoint") {
-          let spirit = {}
-          spirit.className = data.className;
-          spirit.x = data.x;
-          spirit.y = data.y;
-          spirit.width = data.width;
-          spirit.height = data.height;
-          spirit.rotate = data.rotate;
-          spirit.isMove = data.isMove;
-          spirit.zIndex = data.zIndex;
-          spirit.title = data.title;
-          spirit.config = data.config;
-          capacity.push(spirit);
-        }
+			    if(data.className!="LinkPoint") {
+	            let spirit = {}
+	            spirit.className = data.className;
+	            spirit.id = data.id;
+	            spirit.name = data.name;
+	            spirit.x = data.x;
+	            spirit.y = data.y;
+	            spirit.width = data.width;
+	            spirit.height = data.height;
+	            spirit.rotate = data.rotate;
+	            spirit.isMove = data.isMove;
+	            spirit.zIndex = data.zIndex;
+	            spirit.isSelected = data.isSelected;
+	            spirit.isSubline = data.isSubline;
+	            spirit.isDrag = data.isDrag;
+	            spirit.isRotate = data.isRotate;
+	            spirit.config = data.config;
+	            capacity.push(spirit);
+          }
 			});
 			let data = {
 				width: this.width,
 				height: this.height,
-        background: {color: this.background.color},
-        capacity: capacity
+		        variableList: this.variableList,
+		        background: this.background,
+		        capacity: capacity
 			}
-			console.log(capacity);
+			console.log(data);
 			if(this.canvasId) {
-				this.option.saveCanvas({
+				this.option.save({
 					id: this.canvasId,
-          data: JSON.stringify(data)
-				},function(msg) {
-					if(msg=="ok") {
-						that.toast('保存成功');
-					}
-				})
+                    data: JSON.stringify(data)},
+                    function() {
+	                   Toast.alert('保存成功');
+					})
 			}
 		}
 	}
 
-  canvas() {
+  init() {
 	  let that = this;
-    this.option.canvas(function(data) {
+      this.option.canvas(function(data) {
       $('.bm-layout__header__name').text(data.name);
       that.canvasId = data.id;
       if(!data.data) {
@@ -840,14 +892,118 @@ class Stage {
     })
   }
 
-	toast(text) {
-		$('.bm-toast').show();
-		$('.bm-toast__text').text(text);
-		const timer = setInterval(() => {
-			clearInterval(timer);
-			$('.bm-toast').hide()
-		}, 2000);
-	}
+  //组合
+  combination() {
+	let that = this;
+    let left = $('.bm-selected-panel').css('left').replace('px', '');
+    let top = $('.bm-selected-panel').css('top').replace('px', '');
+    let width = $('.bm-selected-panel').width();
+    let height = $('.bm-selected-panel').height();
+    $('.bm-selected-panel').hide();
+    let spirit = this.create("Combination",left,top,width,height,0);
+    if(spirit.config){
+      Object.assign(spirit.config,this.property.config)
+    }
+    spirit.refresh();
+    let combinationIds = [];
+    let ids = [];
+    this.selectedList.forEach(function (selected) {
+      selected.isSelected = false;
+      selected.isSubline = false;
+      selected.isDrag = false;
+      selected.isRotate = false;
+      if(selected.className=="Combination") {
+        let idList = selected.config.ids;
+        idList.forEach(function (id) {
+          that.capacity.forEach(function (c,index) {
+            if(id==c.id) {
+              ids.push(that.createCombination(spirit.id,c,left,top))
+            }
+          })
+        })
+        combinationIds.push(selected.id)
+        $("#"+selected.id).remove();
+      }else {
+        ids.push(that.createCombination(spirit.id,selected,left,top))
+      }
+    })
+    that.updateCapacity(combinationIds);
+    spirit.config.ids = ids;
+    this.capacity.push(spirit);
+    spirit.getEl().trigger('click');
+  }
+
+  //分解
+  resolve() {
+    this.absorb(true);
+    this.property.config.ids = [];
+    this.layDown();
+    let ids = [this.property.id];
+    this.updateCapacity(ids);
+    $('#'+this.property.id).remove();
+  }
+
+  absorb(resolve) {
+	let that = this;
+    let left = Number(that.property.x);
+    let top = Number(that.property.y);
+    let ids = that.property.config.ids;
+    ids.forEach(function (id) {
+      let x = $('#'+id).css('left').replace('px', '');
+      let y = $('#'+id).css('top').replace('px', '');
+      let _x = Number(x)+left;
+      let _y = Number(y)+top;
+      that.capacity.forEach(function (c) {
+        if(id==c.id) {
+          if(resolve) {
+            c.isSubline = true;
+            c.isSelected = true;
+            c.isDrag = true;
+            c.isRotate = true;
+          }
+          c.x = _x;
+          c.y = _y;
+          let element = $('#'+c.id).css({left:c.x,top:c.y});
+          that.addEvent(element);
+          $("#configur_stage").append(element);
+        }
+      })
+    })
+  }
+
+  //更新组件库
+  updateCapacity(ids) {
+	  let that = this;
+    let dataList = [...that.capacity]
+    ids.forEach(function (id) {
+      that.capacity.forEach(function (d,index) {
+        if (id == d.id) {
+          dataList.splice(index,1)
+        }
+      })
+      that.capacity = dataList;
+    })
+  }
+
+  createCombination(id,data,left,top) {
+    let _x = data.x-left;
+    let _y = data.y-top;
+    $('#'+data.id).css({position:"absolute",left:_x,top:_y});
+    $('#'+id).find(".comb").append($('#'+data.id).remove());
+    return data.id;
+  }
+
+  //预览
+  preview() {
+    let view = new View(this.config);
+    $('.main-content').html(view.template());
+    view.init();
+  }
+
+  //舞台触发点击
+  triggerClick() {
+    $('#configur_stage').trigger('click')
+  }
 }
 
 export default Stage;

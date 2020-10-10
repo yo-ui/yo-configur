@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit.js'
+import Spirit from './../../core/Spirit'
 
 /**
  * 立式空调
@@ -7,13 +7,13 @@ class Lskt extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "立式空调";
+	    this.name = "立式空调";
 	    this.className = "Lskt";
 	    this.width = width;
 	    this.height = height;
-	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
+      this.moveType = 4;
 	    this.linkage = true;
 	    this.zIndex = 2;
 	}
@@ -97,7 +97,6 @@ class Lskt extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit.js'
+import Spirit from './../../core/Spirit'
 
 /**
  * I/O控制模块
@@ -7,7 +7,7 @@ class Iokzmk extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "I/O控制模块";
+	    this.name = "I/O控制模块";
 	    this.className = "Iokzmk";
 	    this.width = width;
 	    this.height = height;
@@ -120,7 +120,6 @@ class Iokzmk extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

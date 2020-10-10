@@ -1,3 +1,5 @@
+import Toast from "./Toast";
+
 /**
  * 对齐
  */
@@ -47,7 +49,7 @@ class Align {
 			})
 		});
 	}
-    //上对齐
+  //上对齐
 	up() {
 		let that = this.stage;
 		let y = 0;
@@ -67,7 +69,7 @@ class Align {
 			})
 		});
 	}
-    //下对齐
+  //下对齐
 	down() {
 		let that = this.stage;
 		let y = 0;
@@ -88,17 +90,43 @@ class Align {
 			})
 		});
 	}
-    //解锁或者锁定
+  //锁定
 	lock() {
-		let that = this.stage;
-		if(that.property.isMove) {
-			that.property.isMove = false;
-			that.layDown();
-		}else {
-			that.property.isMove = true;
-			$('#'+that.property.id).trigger('contextmenu');
-		}
+    if(!this.stage.property.isDrag) {
+      Toast.alert("请先分解在锁定！")
+      return;
+    }
+    let property = this.stage.property;
+    if(property.isMove) {
+      property.isMove = false;
+      let left = this.stage.property.x-1;
+      let top = this.stage.property.y-1;
+      let fa = $('<i class="bm-lock fa fa-lock"></i>');
+      $('#'+property.id).append(fa)
+      this.stage.layDown();
+      $('#'+property.id).css({left,top,border:'1px dashed #ddd'})
+      if(property.className=="Map") {
+        $('#'+property.id).find('.images-shade').hide();
+      }
+      this.stage.toolbar.edit();
+    }
 	}
+  //解锁
+	unlock() {
+	  let property = this.stage.property;
+    if(!property.isMove) {
+      property.isMove = true;
+      let left = this.stage.property.x;
+      let top = this.stage.property.y;
+      $('#'+property.id).find(".fa-lock").remove();
+      $('#'+property.id).css({left,top,border:'none'})
+      $('#'+property.id).trigger('contextmenu');
+      if(property.className=="Map") {
+        $('#'+property.id).find('.images-shade').show();
+      }
+      this.stage.toolbar.edit();
+    }
+  }
 }
 
 export default Align;

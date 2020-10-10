@@ -1,38 +1,52 @@
-import '@/assets/css/index.css'
-import '@/assets/css/colpick.css'
-import config from '@/common/config'
-import '@/assets/js/colpick';
-import RemoteObject from '@/assets/js/RemoteObject';
+import './assets/css/index.less'
+import conf from './common/api.conf'
+import dev from './common/api.dev'
+import test from './common/api.test'
+import prod from './common/api.prod'
 import View from './View';
 import Edit from './Edit';
 
 $(document).ready(function() {
-    let stompClient = null;
+    let config = {};
+    if(conf.active=="dev") {
+      config = dev;
+    }else if(conf.active=="test") {
+      config = test;
+    }else if(conf.active=="prod") {
+      config = prod;
+    }
     if(config.debug) {
       content(1);
     }else {
-      RemoteObject.ajax(config.verifyInfo,"get","",function(result){
-        sessionStorage.setItem("canvasId", result.canvasId);
-        sessionStorage.setItem("userId", result.userId);
-        let type = result.type;
-        RemoteObject.ajax(config.getEndPoint,"get","",function(result){
-          config.imgHost = result;
-          content(type);
-        })
-      })
+      let canvasId = getQueryString("canvasId");
+      let type = getQueryString("type");
+      let token = getQueryString("x-access-token");
+      if(canvasId&&type&&token) {
+        sessionStorage.setItem("canvasId", canvasId);
+        sessionStorage.setItem("token", token);
+        content(type);
+      }else{
+        console.error("跳转参数错误！");
+      }
     }
 
     function content(type) {
-      config.stompClient = stompClient;
       if(type==1) {
         let edit = new Edit(config);
         $('.main-content').html(edit.template());
         edit.init();
-      }else {
-        let view = new View(config);
+      }else if(type==2) {
+        console.log(config.service);
+        let view = new View(config.service);
         $('.main-content').html(view.template());
         view.init();
       }
+    }
+
+    function  getQueryString(name) {
+      var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if(r!=null)return  unescape(r[2]); return null;
     }
 })
 

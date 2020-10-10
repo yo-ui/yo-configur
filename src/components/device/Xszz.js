@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit.js'
+import Spirit from './../../core/Spirit'
 
 /**
  * 蓄水装置
@@ -7,7 +7,7 @@ class Xszz extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "蓄水装置";
+	    this.name = "蓄水装置";
 	    this.className = "Xszz";
 	    this.width = width;
 	    this.height = height;
@@ -15,14 +15,8 @@ class Xszz extends Spirit {
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 	    this.linkage = true;
-	    this.isPanel = true;
-	    this.isBind = true;
 	    this.isLinkPoint = true;
 	    this.zIndex = 2;
-	    this.config = {
-	      bindData: {orgId:'',deviceId:'',devicePoint:''},
-        state: {expr:'SwSts',stop:0,start:1,alarm:2}
-	    }
 	}
 
 	template(){
@@ -318,20 +312,6 @@ class Xszz extends Spirit {
     </div>`);
 	}
 
-	toJson() {
-		let json = {
-			title: this.title,
-			className: this.className,
-			moveType: this.moveType,
-			linkage: this.linkage,
-			minWidth: this.minWidth,
-			minHeight: this.minHeight,
-			zIndex: this.zIndex,
-      isLinkPoint: this.isLinkPoint
-		};
-		return Object.assign(super.toJson(),json);
-	}
-
   createLinkPoint() {
     let x = parseInt(this.x+this.width*0.7-6);
     let y = parseInt(this.y+this.height*0.2-4)
@@ -345,49 +325,18 @@ class Xszz extends Spirit {
     this.stage.capacity.push(spirit2);
   }
 
-	viewPanel(device) {
-		let that = this;
-    let point = {name:'',value:0,unit:''}
-    if(device.points) {
-      device.points.forEach(function(data) {
-        if(data.id=="TF") {
-          point.value = parseFloat(data.value);
-          point.unit = data.unit;
-          point.name = data.name;
-        }
-      });
-    }
-    $('.bm-view-panel').html('');
-    let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,12)}</div>`);
-    let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
-    let img = $(`<img src="static/images/device/icon-dt3.png" height="50"/>`);
-    let div = $(`<div class="bm-img-text">
-                 <p>累积流量</p>
-                 <span>${that.floatFormat(point.value)}</span><small>&nbsp;${point.unit}</small>
-                </div>`)
-    vpc.append(img).append(div)
-    $('.bm-view-panel').append(vpt).append(vpc);
-    $('.bm-view-panel').css({width:200});
-    $('.bm-view-panel').show();
+	toJson() {
+		let json = {
+			className: this.className,
+			moveType: this.moveType,
+			linkage: this.linkage,
+			minWidth: this.minWidth,
+			minHeight: this.minHeight,
+			zIndex: this.zIndex,
+      isLinkPoint: this.isLinkPoint
+		};
+		return Object.assign(super.toJson(),json);
 	}
-
-  reveal(device,config) {
-    let that = this;
-    let state = that.config.state;
-    if(device) {
-      device.points.forEach(function(point) {
-        if(point.id==state.expr) {
-          if(point.value==state.alarm) {
-            that.alarm();
-          }else if(point.value==state.stop) {
-            that.stop();
-          }else if(point.value==state.start) {
-            that.start();
-          }
-        }
-      })
-    }
-  }
 }
 
 export default Xszz;

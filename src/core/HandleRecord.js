@@ -8,6 +8,39 @@ class HandleRecord {
 		this.handles = [];
 		this.step = 10
 	}
+
+	init() {
+	  let that = this;
+    $('.handle div').each(function (index) {
+      $(this).data('index', index);
+      if(that.stage.toolType==index+1) {
+        $(this).addClass('active')
+      }
+      $(this).on('click',function () {
+        let index = $(this).data('index');
+        $(this).addClass('active')
+        if(index==0) {
+          that.stage.toolType = 1;
+          $(this).addClass('active')
+          if(that.stage.waterPipe) {
+            that.stage.waterPipe.draw(false);
+            that.stage.removeLinkPoints();
+          }
+        }else if(index==1) {
+          that.stage.toolType = 2;
+          $(this).addClass('active')
+          if(that.stage.waterPipe) {
+            that.stage.waterPipe.draw(true);
+            that.stage.createLinkPoints();
+          }
+        }
+        $(this).siblings().each(function () {
+          $(this).removeClass('active')
+        })
+      })
+    });
+  }
+
     //添加
 	add(data) {
 		if(this.handles.length<this.step) {

@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit.js'
+import Spirit from './../../core/Spirit'
 
 /**
  * 板式换热器
@@ -7,7 +7,7 @@ class Bshrq extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "板式换热器";
+	    this.name = "板式换热器";
 	    this.className = "Bshrq";
 	    this.width = width;
 	    this.height = height;
@@ -17,11 +17,6 @@ class Bshrq extends Spirit {
 	    this.minHeight = 20;
 	    this.linkage = true;
 	    this.isPanel = true;
-	    this.isBind = true;
-      this.config = {
-        bindData: {orgId:'',deviceId:'',devicePoint:''},
-        state: {expr:'SwSts',stop:0,start:1,alarm:2}
-      };
 	}
 
 	template(){
@@ -1150,27 +1145,8 @@ class Bshrq extends Spirit {
     </div>`);
 	}
 
-	reveal(device,config) {
-    let that = this;
-    let state = that.config.state;
-    if(device) {
-      device.points.forEach(function(point) {
-        if(point.id==state.expr) {
-          if(point.value==state.alarm) {
-            that.alarm();
-          }else if(point.value==state.stop) {
-            that.stop();
-          }else if(point.value==state.start) {
-            that.start();
-          }
-        }
-      })
-    }
-	}
-
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

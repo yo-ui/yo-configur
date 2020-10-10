@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit.js'
+import Spirit from './../../core/Spirit'
 
 /**
  * 光伏电池板
@@ -7,7 +7,7 @@ class Gfdcb extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "光伏电池板";
+	    this.name = "光伏电池板";
 	    this.className = "Gfdcb";
 	    this.width = width;
 	    this.height = height;
@@ -113,7 +113,6 @@ class Gfdcb extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

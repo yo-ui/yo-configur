@@ -1,5 +1,4 @@
-import Spirit from '@/core/Spirit.js'
-
+import Spirit from './../../core/Spirit'
 /**
  * 手动水阀
  */
@@ -7,7 +6,7 @@ class Sdsf extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "手动水阀";
+	    this.name = "手动水阀";
 	    this.className = "Sdsf";
 	    this.width = width;
 	    this.height = height;
@@ -15,14 +14,7 @@ class Sdsf extends Spirit {
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 	    this.linkage = true;
-	    this.isPanel = true;
-	    this.isBind = true;
-	    this.isLinkPoint = true;
 	    this.zIndex = 2;
-      this.config = {
-        bindData: {orgId:'',deviceId:'',devicePoint:''},
-        state: {expr:'SwSts',stop:0,start:1,alarm:2}
-      };
 	}
 
 	template(){
@@ -247,35 +239,16 @@ class Sdsf extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,
 			minWidth: this.minWidth,
 			minHeight: this.minHeight,
 			zIndex: this.zIndex,
-            isLinkPoint: this.isLinkPoint
+      isLinkPoint: this.isLinkPoint
 		};
 		return Object.assign(super.toJson(),json);
 	}
-
-  reveal(device,config) {
-    let that = this;
-    let state = that.config.state;
-    if(device) {
-      device.points.forEach(function(point) {
-        if(point.id==state.expr) {
-          if(point.value==state.alarm) {
-            that.alarm();
-          }else if(point.value==state.stop) {
-            that.stop();
-          }else if(point.value==state.start) {
-            that.start();
-          }
-        }
-      })
-    }
-  }
 }
 
 export default Sdsf;

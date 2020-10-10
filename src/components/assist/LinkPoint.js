@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit.js'
+import Spirit from './../../core/Spirit'
 
 /**
  * 连接点
@@ -7,7 +7,7 @@ class LinkPoint extends Spirit {
 
 	constructor(x=0, y=0,width,height) {
         super(x, y);
-	    this.title = "连接点";
+	    this.name = "连接点";
 	    this.className = "LinkPoint";
 	    this.width = width;
 	    this.height = height;
@@ -17,6 +17,9 @@ class LinkPoint extends Spirit {
 	    this.zIndex = 4;
 	    this.isRotate = false;
 	    this.isAuto = false;
+	    this.isSubline = false;
+	    this.isSelected = false;
+      this.isWater = true;
 	}
 
 	template(){
@@ -29,7 +32,6 @@ class LinkPoint extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			minWidth: this.minWidth,

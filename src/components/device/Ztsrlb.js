@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit.js'
+import Spirit from './../../core/Spirit'
 
 /**
  * 整体式热量表
@@ -7,7 +7,7 @@ class Ztsrlb extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "整体式热量表";
+	    this.name = "整体式热量表";
 	    this.className = "Ztsrlb";
 	    this.width = width;
 	    this.height = height;
@@ -15,9 +15,7 @@ class Ztsrlb extends Spirit {
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 	    this.linkage = true;
-	    this.zIndex = 3;
-      this.isPanel = true;
-      this.isBind = true;
+	    this.zIndex = 2;
       this.isLinkPoint = true;
       this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
 	}
@@ -85,7 +83,6 @@ class Ztsrlb extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

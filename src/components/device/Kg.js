@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit.js'
+import Spirit from './../../core/Spirit'
 
 /**
  * 开关
@@ -7,7 +7,7 @@ class Kg extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
 	    super(x, y);
-	    this.title = "开关";
+	    this.name = "开关";
 	    this.className = "Kg";
 	    this.width = width;
 	    this.height = height;
@@ -18,18 +18,19 @@ class Kg extends Spirit {
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-      this.isAnimation = false;
-      this.animationList = [
-        {name: '触发链接',
-         dataList: [{type: 11,name: '开关状态'},
-                     {type: 12,name: '动作'}]
-        }
-      ]
+	    this.isAnimation = true;
       this.config = {
-        bindData: {orgId: '', deviceId: '', devicePoint: ''},
-        animations: [{type: 11,name:'开关状态',data: {expr: 'SwSts', off: 0, on: 1}},
-                      {type: 12,name: '动作',event:'click',data: {expr: 'SwSts'}}]
-      }
+	        bindData: {deviceId: ''},
+	        animations: [
+			    {type: 31,
+		    	 text: '填充->离散',
+		    	 expr: 'SwSts',
+           states: [
+               {name:'on',text:'开',value: 1},
+               {name:'off',text:'关',value: 0}],
+		    	 value: 0,
+		    	 category: 3}]
+	    }
 	}
 
 	template(){
@@ -88,7 +89,6 @@ class Kg extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,
@@ -99,69 +99,53 @@ class Kg extends Spirit {
 		return Object.assign(super.toJson(),json);
 	}
 
-  animation() {
-	  let that = this;
-    $('.bm-config-panel__content').html('');
-	  let animationList = this.animationList;
-	  let animations = this.config.animations;
-    super.animation(animationList,animations,function (result) {
-      that.config.animations.forEach(function (data) {
-        if(data.type==result.type) {
-          data = result;
+  initialize() {
+		let that = this;
+	    let deviceId = that.config.bindData.deviceId
+	    if(deviceId) {
+	        that.stage.option.getDevice(deviceId,function (device) {
+	            if(deviceId==device.id) {
+	                that.reveal(device);
+	            }
+		    });
+	    }
+	    $('#'+that.id).on('click',function() {
+	        that.config.animations.forEach(function(animation) {
+	        	if(animation.type==31) {
+	        		let value = animation.value==0?1:0;
+	        		that.control(deviceId,animation.expr,value)
+	        	}
+	        })
+	    });
+    }
+
+    reveal(device) {
+      let that = this;
+	    if(device) {
+	        device.points.forEach(function(point) {
+	      	    if(that.isAnimation) {
+	      		    let key = point.id;
+	      	        let value = point.value;
+	                that.dynamic(key,value);
+	      	    }
+	        })
+	    }
+    }
+
+    fillDiscrete(animation,value) {
+      let that = this;
+      animation.value = value;
+      let states = animation.states;
+      states.forEach(function (state) {
+        if(state.value==value) {
+          if(state.name=="on") {
+            that.start();
+          }else if(state.name=="off") {
+            that.stop();
+          }
         }
       })
-    });
-  }
-
-  initialize(device,config) {
-	  let that = this;
-    let animations = this.config.animations;
-    animations.forEach(function (animation) {
-      if(animation.type==12) {
-        $('#'+that.id).on(animation.event,function () {
-          that.event(device,animation.data);
-        });
-      }
-    })
-    that.reveal(device,config)
-  }
-
-	reveal(device,config) {
-    let that = this;
-    let animations = that.config.animations;
-    animations.forEach(function (animation) {
-      if(animation.type==11) {
-        device.points.forEach(function(point) {
-          if(point.id==animation.data.expr) {
-            if(point.value==animation.data.off) {
-              that.stop();
-            }else if(point.value==animation.data.on) {
-              that.start();
-            }
-          }
-        })
-      }
-    })
-	}
-
-  event(device,data) {
-		if(device) {
-			let that = this;
-			that.point = {id:'',value:''}
-			if(device.points) {
-				device.points.forEach(function(item) {
-					if(item.id==data.expr) {
-						that.point.id = item.id;
-						that.point.value = item.value;
-					}
-				});
-			}
-			let deviceId = device.id;
-			let point = that.point.id;
-			let value = that.point.value;
-			that.control(deviceId,point,value==0?1:0)
-		}
-	}
+    }
 }
 
 export default Kg;

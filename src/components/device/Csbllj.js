@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit.js'
+import Spirit from './../../core/Spirit'
 
 /**
  * 超时波流量计
@@ -7,7 +7,7 @@ class Csbllj extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "超时波流量计";
+	    this.name = "超时波流量计";
 	    this.className = "Csbllj";
 	    this.width = width;
 	    this.height = height;
@@ -15,8 +15,6 @@ class Csbllj extends Spirit {
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 	    this.linkage = true;
-	    this.isPanel = true;
-	    this.isBind = true;
       this.isLinkPoint = true;
 	    this.zIndex = 3;
 	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
@@ -116,7 +114,6 @@ class Csbllj extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

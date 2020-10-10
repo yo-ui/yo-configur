@@ -1,5 +1,6 @@
-
-
+/**
+ * 旋转
+ */
 class Rotate {
     constructor(paw) {
         this.paw = paw;
@@ -7,7 +8,7 @@ class Rotate {
 
     create() {
         let that = this;
-        let panel = $(`<div style="margin-top: -20px;text-align: center;cursor: default;"><img src="static/images/rotate.png" width="12" style="cursor: pointer;"></div>`);
+        let panel = $(`<div class="bm-rotate" style="margin-top: -30px;text-align: center;cursor: default;"><img src="static/images/rotate.png" width="12" style="cursor: pointer;"></div>`);
         panel.on('mousedown',function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -30,7 +31,7 @@ class Rotate {
             let height = property.height;
             let end = {x:left-(x+width/2-2),y:(y+height/2-2)-top}
             let angle = parseInt(that.angle(end));
-            $('.resize-panel').css({transform: 'rotate('+angle+'deg)'})
+            $('.resize-panel').css({'transform': 'rotate('+angle+'deg)translateZ(0)'})
             property.rotate = angle;
             that.paw.stage.setProperty(property);
 

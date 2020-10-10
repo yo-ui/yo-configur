@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit.js'
+import Spirit from './../../core/Spirit'
 
 /**
  * 单项导轨电表
@@ -7,7 +7,7 @@ class ElectricityMeter extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "单项导轨电表";
+	    this.name = "单项导轨电表";
 	    this.className = "ElectricityMeter";
 	    this.width = width;
 	    this.height = height;
@@ -67,7 +67,6 @@ class ElectricityMeter extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			minWidth: this.minWidth,

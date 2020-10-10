@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit.js'
+import Spirit from './../../core/Spirit'
 
 /**
  * 显示器
@@ -7,7 +7,7 @@ class Display extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "显示器";
+	    this.name = "显示器";
 	    this.className = "Display";
 	    this.width = width;
 	    this.height = height;
@@ -15,14 +15,18 @@ class Display extends Spirit {
       this.linkage = false;
 	    this.isBind = true;
 	    this.bindType = 2;
-	    this.zIndex = 4;
-	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
+	    this.zIndex = 3;
+	    this.isAnimation = true;
+	    this.config = {
+	      bindData: {deviceId:''},
+        animations: [{type: 91,text: '值显示->点位',expr: ''}]
+	    }
 	}
 
 	template(){
-		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-               viewBox="0 0 89 43" style="enable-background:new 0 0 89 43;" xml:space="preserve" preserveAspectRatio="none">
+		let content = `
+		      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
+               viewBox="0 0 89 43" xml:space="preserve" preserveAspectRatio="none">
             <style type="text/css">
               .display-st0{fill:#FFFFFF;}
               .display-st1{fill:#DFE3E8;}
@@ -30,7 +34,6 @@ class Display extends Spirit {
               .display-st3{fill:url(#display_4_);}
               .display-st4{fill:#9DA1A5;}
               .display-st5{fill:#848776;}
-              .display-st6{fill:#25282B;}
             </style>
             <g>
               <rect id="XMLID_656_" x="1" y="4.1" class="display-st0" width="79.5" height="38"/>
@@ -62,8 +65,8 @@ class Display extends Spirit {
                 <span class="value" style="
                   font-weight:bold;
                   font-family: lcdD;
-                  font-size: 18px;
-                  margin-right: -3px">00.00</span>      
+                  min-width: 40px;
+                  font-size: 18px;">00.00</span>      
                 <small class="unit" style="
                   display: inline-block;
                   text-align:center;
@@ -71,36 +74,55 @@ class Display extends Spirit {
                   transform: scale(0.7);             
                   vertical-align: middle;"></small>             
             </div>
-         </div>`);
+         </div>`;
+		return super.template().html(content);
+	}
+
+  initialize(ids) {
+	  let that = this;
+    this.stage.option.deviceList(ids,function(dataList) {
+      console.log(dataList);
+      dataList.forEach(function(device) {
+        let deviceId = that.config.bindData.deviceId;
+        if(deviceId==device.id) {
+          that.reveal(device);
+        }
+      })
+    })
+  }
+
+	//
+	reveal(device) {
+    let that = this;
+    if(device) {
+      device.points.forEach(function(point) {
+        that.config.animations.forEach(function (animation) {
+          if(animation.type==91) {
+            let expr = animation.expr;
+            if(expr==point.id) {
+              $('#'+that.id).find('.value').text(parseFloat(point.value));
+              $('#'+that.id).find('.unit').text(point.unit);
+              $('#temp_value').html($('#'+that.id).find('div').html());
+              let width = $('#temp_value').width()
+              $('#'+that.id).find('svg').css({width: width/0.75+"px"});
+              $('#'+that.id).find('div').css({left: width*0.12+"px",width: width/0.98+"px"});
+            }
+          }
+        })
+      })
+    }
 	}
 
 	//
-	reveal(device,config) {
-		let that = this;
-		if(device) {
-			device.points.forEach(function(point) {
-				if(config.bindData.devicePoint==point.id) {
-				  $('#'+that.id).find('.value').text(parseFloat(point.value));
-          $('#'+that.id).find('.unit').text(point.unit);
-          $('#temp_value').html($('#'+that.id).find('div').html());
-          let width = $('#temp_value').width()
-          $('#'+that.id).find('svg').css({width: width/0.75+"px"});
-          $('#'+that.id).find('div').css({left: width*0.12+"px",width: width/0.98+"px"});
-				}
-			})
-		}
-	}
-
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			minWidth: this.minWidth,
 			isBind: this.isBind,
 			zIndex: this.zIndex,
 		};
-		return Object.assign(super.toJson(),json);
+		return Object.assign(super.toJson(), json);
 	}
 }
 

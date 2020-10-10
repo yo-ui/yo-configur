@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit.js'
+import Spirit from './../../core/Spirit'
 
 /**
  * 客用电梯
@@ -7,27 +7,37 @@ class Kydt extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "客用电梯";
+	    this.name = "客用电梯";
 	    this.className = "Kydt";
 	    this.width = width;
 	    this.height = height;
 	    this.moveType = 4;
 	    this.minWidth = 24;
 	    this.minHeight = 64;
-		  this.zIndex = 2;
+		  this.zIndex = 3;
 	    this.linkage = false;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.config = {
-	      bindData: {orgId:'',deviceId:'',devicePoint:''},
-        state: {expr:'SwSts',alarm:0,normal:1,start:2}
-	    }
+      this.isAnimation = true;
+      this.config = {
+        bindData: {deviceId: ''},
+        animations: [
+          {type: 31,
+            text: '填充->离散',
+            expr: 'SwSts',
+            states: [
+              {name:'start',text:'开启',value: 1},
+              {name:'stop',text:'停止',value: 0},
+              {name:'alarm',text:'报警',value: 2}],
+            value: 0,
+            category: 3}]
+      }
 	}
 
 	template(){
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-                 viewBox="0 0 230 290" style="enable-background:new 0 0 230 290;" xml:space="preserve" preserveAspectRatio="none">
+                 viewBox="0 0 230 290" xml:space="preserve" preserveAspectRatio="none">
               <style type="text/css">
                 .kydt-st0{fill:#E7E7E5;}
                 .kydt-st1{opacity:0.3;}
@@ -186,27 +196,50 @@ class Kydt extends Spirit {
 		        </div>`);
 	}
 
-  reveal(device,config) {
+  initialize() {
     let that = this;
-    let state = that.config.state;
+    let deviceId = that.config.bindData.deviceId
+    if(deviceId) {
+      that.stage.option.getDevice(deviceId, function (device) {
+        if (deviceId == device.id) {
+          that.reveal(device);
+        }
+      });
+    }
+  }
+
+  reveal(device) {
+    let that = this;
     if(device) {
       device.points.forEach(function(point) {
-        if(point.id==state.expr) {
-          if(point.value==state.alarm) {
-            that.alarm();
-          }else if(point.value==state.normal) {
-            that.normal();
-          }else if(point.value==state.start) {
-            that.start();
-          }
+        if(that.isAnimation) {
+          let key = point.id;
+          let value = point.value;
+          that.dynamic(key,value);
         }
       })
     }
   }
 
+  fillDiscrete(animation,value) {
+    let that = this;
+    animation.value = value;
+    let states = animation.states;
+    states.forEach(function (state) {
+      if(state.value==value) {
+         if(state.name=="start") {
+           that.start();
+         }else if(state.name=="stop") {
+           that.stop();
+         }else if(state.name=="alarm") {
+           that.alarm();
+         }
+      }
+    })
+  }
+
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			minWidth: this.minWidth,

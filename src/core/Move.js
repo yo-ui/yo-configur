@@ -34,13 +34,13 @@ class Move {
       if(move) {
         let left = e.pageX-x;
         let top = e.pageY-y;
-        $(".bm-global-panel").css({top:top-5,left:left});
+        $(".bm-global-panel").css({top:top-53,left:left-1});
       }
     }).mouseup(function(ev) {
       move = false;
       if(that.move) {
         $(".bm-global-panel").hide();
-        if(ev.pageX>180) {
+        if(ev.pageX>220) {
           that.stage.isCreate = true;
         }
       }

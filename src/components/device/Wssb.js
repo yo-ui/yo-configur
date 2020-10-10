@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit.js'
+import Spirit from './../../core/Spirit'
 
 /**
  * 卧式水泵
@@ -7,7 +7,7 @@ class Wssb extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "卧式水泵";
+	    this.name = "卧式水泵";
 	    this.className = "Wssb";
 	    this.width = width;
 	    this.height = height;
@@ -19,10 +19,6 @@ class Wssb extends Spirit {
 	    this.isBind = true;
 	    this.isLinkPoint = true;
 		  this.zIndex = 3;
-      this.config = {
-        bindData: {orgId:'',deviceId:'',devicePoint:''},
-        state: {expr:'SwSts',normal:1,alarm:0,start:2}
-      };
 	}
 
 	template(){
@@ -33,7 +29,7 @@ class Wssb extends Spirit {
 
 	open() {
 		return `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-					 viewBox="0 0 138 97" style="enable-background:new 0 0 138 97;" xml:space="preserve">
+					 viewBox="0 0 138 97" xml:space="preserve">
 				<style type="text/css">
 					.wssb-st0{fill:url(#wssb_2_);}
 					.wssb-st1{fill:url(#wssb_3_);}
@@ -434,9 +430,6 @@ class Wssb extends Spirit {
 					.wssb-st37{fill:#1573BB;}
 					.wssb-st38{fill:#2CA3F7;}
 					.wssb-st40{fill:#CCD1E2;}
-				
-					.close-show {display:default;}
-				    .close-hide {display:none;}
 				    .close-f1 {display:default;}
 				    .close-f2 {display:none;}
 				    .close-f3 {display:none;}
@@ -746,27 +739,8 @@ class Wssb extends Spirit {
 				</svg>`;
 	}
 
-	reveal(device,config) {
-    let that = this;
-    let state = that.config.state;
-    if(device) {
-      device.points.forEach(function(point) {
-        if(point.id==state.expr) {
-          if(point.value==state.alarm) {
-            that.alarm();
-          }else if(point.value==state.normal) {
-            that.normal();
-          }else if(point.value==state.start) {
-            that.start();
-          }
-        }
-      })
-    }
-	}
-
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

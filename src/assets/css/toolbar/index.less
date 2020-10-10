@@ -1,0 +1,57 @@
+@import "./../style/bm";
+
+.bm-toolbar {
+  height: 44px;
+  background-color: #f6f6fb;
+  border-bottom: 1px solid #cbd3d3;
+  padding: 4px 10px;
+
+  & > .item {
+    display: inline-flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 1;
+    color: #000;
+    user-select: none;
+    flex-flow: column nowrap;
+    line-height: 22px;
+    margin: 0 5px;
+
+
+    & > div {
+      & i {
+        font-size: 20px;
+        border: 1px solid transparent;
+        color: #000;
+      }
+
+      & i:hover {
+        border: 1px inset #ddd;
+      }
+    }
+    & > span {
+      font-size: 12px;
+    }
+  }
+
+  & > .halving {
+    width: 1px;
+    height: 10px;
+    display: inline-block;
+    border-right: 1px solid #ddd;
+    margin: 0 5px;
+  }
+
+  & > .disabled > div > i,
+  & > .disabled > span {
+    cursor: not-allowed;
+    color: #666;
+  }
+
+  & > .disabled > div > i:hover {
+    border: 1px solid transparent;
+  }
+}

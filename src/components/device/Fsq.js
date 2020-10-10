@@ -1,4 +1,4 @@
-import Spirit from '@/core/Spirit.js'
+import Spirit from './../../core/Spirit'
 
 /**
  * 分水器
@@ -7,7 +7,7 @@ class Fsq extends Spirit {
 
 	constructor(x=10, y=10,width,height) {
         super(x, y);
-	    this.title = "分水器";
+	    this.name = "分水器";
 	    this.className = "Fsq";
 	    this.width = width;
 	    this.height = height;
@@ -387,7 +387,6 @@ class Fsq extends Spirit {
 
 	toJson() {
 		let json = {
-			title: this.title,
 			className: this.className,
 			moveType: this.moveType,
 			linkage: this.linkage,

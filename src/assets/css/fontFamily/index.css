@@ -1,0 +1,138 @@
+@font-face {
+  font-family: 'lcdD';
+  src: url('../../fonts/lcdD.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'fontIcon';
+  src: url('../../fonts/font.ttf') format('truetype');
+}
+.fa {
+  display: inline-block;
+  font-family: fontIcon;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  vertical-align: middle;
+}
+.fa-sm {
+  font-size: 18px;
+}
+.fa-up:before {
+  content: "\e031";
+}
+.fa-right:before {
+  content: "\e002";
+}
+.fa-down:before {
+  content: "\e003";
+}
+.fa-left:before {
+  content: "\e004";
+}
+.fa-edit:before {
+  content: "\e005";
+}
+.fa-delete:before {
+  content: "\e006";
+}
+.fa-setting:before {
+  content: "\e007";
+}
+.fa-search:before {
+  content: "\e008";
+}
+.fa-save:before {
+  content: "\e009";
+}
+.fa-back:before {
+  content: "\e010";
+}
+.fa-align-up:before {
+  content: "\e011";
+}
+.fa-align-down:before {
+  content: "\e012";
+}
+.fa-align-right:before {
+  content: "\e013";
+}
+.fa-align-left:before {
+  content: "\e014";
+}
+.fa-base:before {
+  content: "\e015";
+}
+.fa-conf:before {
+  content: "\e016";
+}
+.fa-device:before {
+  content: "\e017";
+}
+.fa-assist:before {
+  content: "\e018";
+}
+.fa-unlock:before {
+  content: "\e019";
+}
+.fa-lock:before {
+  content: "\e020";
+}
+.fa-h-divide:before {
+  content: "\e021";
+}
+.fa-v-divide:before {
+  content: "\e022";
+}
+.fa-copy:before {
+  content: "\e023";
+}
+.fa-preview:before {
+  content: "\e024";
+}
+.fa-group:before {
+  content: "\e025";
+}
+.fa-bind:before {
+  content: "\e026";
+}
+.fa-close:before {
+  content: "\e027";
+}
+.fa-zoom-in:before {
+  content: "\e028";
+}
+.fa-zoom-out:before {
+  content: "\e029";
+}
+.fa-all:before {
+  content: "\e030";
+}
+.fa-return:before {
+  content: "\e032";
+}
+.fa-time:before {
+  content: "\e033";
+}
+.fa-help:before {
+  content: "\e034";
+}
+.fa-resolve:before {
+  content: "\e035";
+}
+.fa-comb:before {
+  content: "\e036";
+}
+.fa-rotate:before {
+  content: "\e037";
+}
+.fa-decorate:before {
+  content: "\e038";
+}
+.fa-chart:before {
+  content: "\e039";
+}
+.fa-text:before {
+  content: "\e040";
+}

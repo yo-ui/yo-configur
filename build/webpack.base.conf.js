@@ -22,9 +22,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.json'],
-    alias: {
-      '@': resolve('src'),
-    }
   },
   module: {
     rules: [
@@ -57,10 +54,10 @@ module.exports = {
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       },
-      {test: /\.css$/,
+      {test: /\.(css|less)$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: "css-loader"
+          use: [{loader: "css-loader"},{loader: "less-loader"}]
         })
       }
     ]

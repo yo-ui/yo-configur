@@ -7,7 +7,7 @@
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  background: #07c160;
+  background-color: #0075E7;
   border-radius: 2px;
   width: 100%;
 }
@@ -23,4 +23,5 @@
   opacity: 0;
   filter: alpha(opacity=0);
   cursor: pointer;
+  width: 100%;
 }

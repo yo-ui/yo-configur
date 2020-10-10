@@ -1,3 +1,4 @@
+import Toast from './../core/Toast';
 /**
  * 所有组件的父类
  */
@@ -5,16 +6,22 @@ class Spirit {
 
 	constructor(x=0,y=0,width=10,height=10) {
 		this.id = "c_"+Math.random().toString().substr(2,10);
+        this.name = "";
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.zIndex = 0;
 		this.isRotate = true;
 		this.rotate = 0;
 		this.isMove = true;
 		this.bindType = 1;
 		this.isLinkPoint = false;
-    this.isAnimation = false;
+	    this.isAnimation = false;
+	    this.isSelected = true;
+	    this.isSubline = true;
+	    this.isDrag = true;
+	    this.isWater = false;
 	}
 
 	toString() {}
@@ -22,6 +29,7 @@ class Spirit {
 	toJson() {
 		return {
 			id: this.id,
+            name: this.name,
 			x: this.x,
 			y: this.y,
 			width: this.width,
@@ -29,7 +37,10 @@ class Spirit {
 			isMove: this.isMove,
 			rotate: this.rotate,
 			isRotate: this.isRotate,
-      isLinkPoint: this.isLinkPoint,
+	        isLinkPoint: this.isLinkPoint,
+	        isSelected: this.isSelected,
+	        isSubline: this.isSubline,
+	        isDrag: this.isDrag
 		}
 	}
 
@@ -42,41 +53,50 @@ class Spirit {
 	arrangement(stage) {
 		this.stage = stage;
 		stage.element.append(this.template());
-    this.stop();
+        this.stop();
 	}
 
-  initialize(device,config) {}
+    initialize() {}
 
-	reveal(device,config) {}
+    reveal(device) {}
 
-  action(animationList,callback) {
-    $('.bm-config-panel').show();
-    animationList.forEach(function (data) {
-      let text = $(`<div class="text">${data.name}</div>`)
-      let content = $(`<div class="content"></div>`)
-      data.dataList.forEach(function (item) {
-        let button = $(`<div class="button button-raised button-default">${item.name}</div>`);
-        button.data("value", item.type);
-        content.append(button);
-      })
-      $('.bm-config-panel__content').append(text).append(content);
-      $('.bm-config-panel__shade').on('click',function () {
-        $('.bm-config-panel').hide();
-      });
+    template() {
+	  return $(`<div id="${this.id}" class="configur-spirit" 
+             style="
+             position:absolute;
+             left:${this.x}px;
+             top: ${this.y}px;
+             z-index: ${this.zIndex};    
+             transform: rotate(${this.rotate}deg)"></div>`);
+    }
+    
+    //数据改变时
+    dynamic(key,value) {
+    	let that = this;
+		that.config.animations.forEach(function(animation) {
+        	if(animation.expr&&animation.expr.indexOf(key)!=-1) {
+        		if(animation.type==31) {
+        			that.fillDiscrete(animation,value);
+        		}else if(animation.type==32) {
+        			that.fillAnalog(animation,value);
+        		}
+        	}
+        })
+	}
+    
+    //填充（离散）
+	fillDiscrete(animation,value) {}
+	//填充（模拟）
+	fillAnalog(animation,value) {}
 
-      $('.bm-config-panel .button').each(function () {
-        $(this).on('click',function () {
-          let value = $(this).data("value");
-          callback.call(this, value);
-        });
-      });
-    })
-  }
-
-	renderer() {
+    renderer() {
 		let that = this;
 		$('#configur_property').html('');
-		let html = $(`<div class="bm-tree">位置</div>		             
+		let html = $(`             
+					<div class="bm-style">
+						<div class="text">名称</div>		
+						<div class="value"><input class="bm-title form-control" value="${this.name}"/></div>									
+					</div>            
 					<div class="bm-cell no-hover">
 						<div class="bm-cell__title">
 							<div class="bm-kv">
@@ -91,7 +111,6 @@ class Spirit {
 							</div>
 						</div>	
 					</div>
-           <div class="bm-tree">尺寸</div>
            <div class="bm-cell no-hover bm-size">
 						<div class="bm-cell__title">
 							<div class="bm-kv">   
@@ -107,16 +126,14 @@ class Spirit {
 						</div></div>`);
 		$('#configur_property').append(html);
 		if(this.isRotate) {
-			let roteta = $(`<div class="bm-tree">旋转角度</div>
-                      <div class="bm-cell no-hover">
-                      <div class="bm-cell__title">					
-                        <div class="bm-range">
-                          <input class="rotate-value" type="range" step="1" min="0" max="359" value="${that.rotate}">							    
-                        </div>							
-                      </div>
-                      <div class="bm-cell__value" style="flex: none;width: 40px;text-align: center">
-                        <span class="rotate-text">${that.rotate}</span>
-                      </div>
+			let roteta = $(`<div class="bm-style">
+                      <div class="text">	旋转角度</div>
+                      <div class="value">
+                        <div class="bm-range" style="width: 120px;">
+                          <input class="rotate-value" type="range" step="1" min="0" max="359" value="${that.rotate}">                         					    
+                        </div>
+                        <span class="rotate-text">${that.rotate}</span>		
+                      </div>                    
                     </div>`)
 			roteta.find('.rotate-value').on('input propertyChange',function () {
 				roteta.find('.rotate-text').text($(this).val());
@@ -125,10 +142,14 @@ class Spirit {
 			})
 			$('#configur_property').append(roteta);
 		}
+
+    $('#configur_property').find('.bm-title').on('input propertyChange',function () {
+      that.name = $(this).val();
+    })
 	}
 
 	viewPanel(device) {
-    let that = this;
+        let that = this;
 		if(device) {
 			$('.bm-view-panel').html('');
 			let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,24)}</div>`);
@@ -139,16 +160,15 @@ class Spirit {
         if(point.type==2||point.type==4) {
           let span = $('<span class="value"></span>')
           let select = $('<select class="bm-select" style="padding: 0px;width: 80px;display: inline-block;vertical-align: middle"></select>')
-          point.optionValList.forEach(function (data) {
+          point.optionValList.forEach(function(data) {
             let option = $('<option></option>');
             option.val(data.value);
             option.text(data.descr);
             select.append(option);
           })
           select.val(1);
-          let button = $(`<a class="button button-raised button-primary button-pill" 
-                           style="line-height: 22px;font-size: 11px;margin-left: 2px">确定</a>`)
-          button.on('click', function () {
+          let button = $(`<a class="button button-raised button-primary button-pill" style="line-height: 22px;font-size: 11px;margin-left: 2px">确定</a>`)
+          button.on('click', function() {
             that.control(device.id,point.id,select.val());
           });
           span.append(select);
@@ -174,25 +194,21 @@ class Spirit {
 
   control(deviceId,point,value) {
 	  let that = this;
-    that.stage.password.show();
-    that.stage.password.confirm(function (text) {
+      that.stage.password.show();
+      that.stage.password.confirm(function(text) {
       let data = {}
       data.deviceId = deviceId;
       data.point = point;
       data.value = value;
       data.ctrlPwd = text;
-      that.stage.option.control(data,function(msg) {
-        let message = JSON.parse(msg);
-        if(message.status.code==100000) {
-          that.stage.toast("控制成功！");
-          let item = {}
-          item.id = deviceId;
-          item.points = [{id:point,value:value}]
-          that.stage.linkage(item);
-          that.stage.password.hide();
-        }else if(message.status.code==120020) {
-          that.stage.toast("密码错误！");
-        }
+      that.stage.option.control(data,function() {
+        Toast.alert("控制成功！");
+        let device = {}
+        device.id = deviceId;
+        
+        device.points = [{id:point,value:value}]
+        that.stage.linkage(device);
+        that.stage.password.hide();
       })
     });
   }
@@ -234,6 +250,14 @@ class Spirit {
     if(el.find('.SVG_ani')){
       el.find('.SVG_ani').hide();
     }
+  }
+
+  show() {
+    $('#'+this.id).show();
+  }
+
+  hide() {
+    $('#'+this.id).hide();
   }
 
 	floatFormat(value) {

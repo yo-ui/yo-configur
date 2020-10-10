@@ -2,11 +2,16 @@
   line-height: 24px;
   padding: 5px;
   margin-bottom: 1px;
-  cursor: pointer;
   background-color: #f2f3f5;
   font-weight: bold;
+  cursor: pointer;
 }
 .bm-tree > div {
   display: inline-block;
-  width: 10px;
+  float: right;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.bm-tree > div:hover {
+  border: 1px solid #ddd;
 }
