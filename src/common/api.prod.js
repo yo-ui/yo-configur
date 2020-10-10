@@ -2,7 +2,7 @@ export default
 {
   "debug": false,
   "imgHost": "https://pic.energyiot.cn",
-  "websocketUrl": "https://m.energyiot.cn/manage/ws",
+  "websocketUrl": "http://m.energyiot.cn/manage/ws",
   "push": "manage/configur/push",
   "get": "manage/configur/canvas/get",
   "save": "manage/configur/canvas/save",
@@ -18,7 +18,7 @@ export default
   service: {
     "debug": false,
     "imgHost": "https://pic.energyiot.cn",
-    "websocketUrl": "https://eiot.energyiot.cn/service/ws",
+    "websocketUrl": "http://eiot.energyiot.cn/service/ws",
     "push": "service/configur/push",
     "get": "service/configur/canvas/get",
     "control": "service/configur/canvas/control",
