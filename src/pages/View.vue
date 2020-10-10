@@ -10,7 +10,7 @@
             :class="canvas.action"
           >
             <div class="bg" :style="bgStyle"></div>
-            <bm-com
+            <!-- <bm-com
               class="view"
               v-for="(item, index) in widgetList"
               :data-type="item.type"
@@ -18,7 +18,41 @@
               type="view"
               :info="item"
               :key="index"
-            ></bm-com>
+            ></bm-com> -->
+            <template v-for="(item, index) in widgetList">
+              <el-popover
+                v-if="
+                  item.bindData &&
+                    item.bindData.deviceId &&
+                    !item.bindData.devicePoint
+                "
+                placement="right"
+                :key="index"
+                @show="showDeviceInfoEvent(item.bindData)"
+                :title="deviceInfo.name"
+                width="500"
+                trigger="hover"
+              >
+                <bm-device-info :pointList="deviceInfo.points"></bm-device-info>
+                <bm-com
+                  slot="reference"
+                  class="view"
+                  :data-type="item.type"
+                  :data-id="item.id"
+                  type="view"
+                  :info="item"
+                ></bm-com>
+              </el-popover>
+              <bm-com
+                v-else
+                class="view"
+                :data-type="item.type"
+                :data-id="item.id"
+                type="view"
+                :info="item"
+                :key="index"
+              ></bm-com>
+            </template>
           </div>
         </div>
       </div>
@@ -38,6 +72,7 @@ export default {
       condition: {
         canvasId: ""
       },
+      deviceInfo: {},
       showContextMenuStatus: false,
       showContextMenuType: 1, //1 组件右键菜单   2是画布右键菜单
       copyCom: "",
@@ -45,7 +80,11 @@ export default {
     };
   },
   components: {
-    bmCom
+    bmCom,
+    bmDeviceInfo: () =>
+      import(
+        /* webpackChunkName: "bm-device-info" */ "@/components/data/device-info.vue"
+      )
   },
   computed: {
     ...mapGetters({
@@ -149,6 +188,7 @@ export default {
     ...mapActions({
       initConfigWebsocketAction: "initConfigWebsocket",
       canvasGetAction: "canvasGet",
+      commonGetDeviceAction: "commonGetDevice",
       pushAction: "push"
     }),
     init() {
@@ -198,8 +238,36 @@ export default {
       this.pushFunc(deviceIdList, result => {
         bmCommon.log("postFunc", result);
       });
-      this.initConfigWebsocketFunc(result => {
-        bmCommon.log("initConfigWebsocketFunc", result);
+      this.initConfigWebsocketFunc((deviceList = []) => {
+        bmCommon.log("initConfigWebsocketFunc", deviceList);
+        deviceList.forEach(item => {
+          let { deviceId = "", configurDevicePointVoList: pointList = [] } =
+            item || {};
+          //先找到绑定设备的组件
+          let widget = widgetList.find(item => {
+            let { bindData = {} } = item || {};
+            let { deviceId: _deviceId = "" } = bindData || {};
+            return _deviceId && _deviceId == deviceId; //如果有绑定id 而且能找到对应的推送消息
+          });
+          if (widget) {
+            bmCommon.log(`找到设备${deviceId}的数据`);
+            let { bindData = {} } = widget || {};
+            let { devicePoint = "" } = bindData || {};
+            if (devicePoint) {
+              let pointObj = pointList.find(item => {
+                let { point = "" } = item || {};
+                return point == devicePoint;
+              });
+              if (pointObj) {
+                bmCommon.log(`找到设备${deviceId}点位${devicePoint}的数据`);
+                let { value = "", unit = "", descr = "" } = pointObj || {};
+                widget.value = value; //值
+                widget.unit = unit; //单位
+                widget.descr = descr; //描述
+              }
+            }
+          }
+        });
       });
     },
     resetCanvasSize() {
@@ -221,6 +289,13 @@ export default {
       // canvas.left = left;
       // canvas.top = top;
       this.setZoom(scale);
+    },
+    showDeviceInfoEvent(bindData = {}) {
+      let { deviceId = "" } = bindData || {};
+      this.commonGetDeviceFunc(deviceId, device => {
+        bmCommon.log(device);
+        this.deviceInfo = device || {};
+      });
     },
     // // 获取登录信息
     // commonVerifyInfoFunc(callback) {
@@ -269,6 +344,31 @@ export default {
         .catch(err => {
           callback && callback(value || {});
           bmCommon.error("获取数据失败=>canvasGet", err);
+        });
+    },
+    // 获取设备信息
+    commonGetDeviceFunc(deviceId, callback) {
+      let value = {};
+      if (!deviceId) {
+        this.dataLoadingStatus = false;
+        return;
+      }
+      this.dataLoadingStatus = true;
+      this.commonGetDeviceAction({ deviceId })
+        .then(({ data }) => {
+          let { code = "", result = {}, message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || {};
+          } else {
+            bmCommon.error(message);
+          }
+          this.dataLoadingStatus = false;
+          callback && callback(value || {});
+        })
+        .catch(err => {
+          this.dataLoadingStatus = false;
+          callback && callback(value || {});
+          bmCommon.error("获取数据失败=>commonGetDevice", err);
         });
     },
     // 开始推送设备信息

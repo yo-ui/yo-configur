@@ -1,0 +1,24 @@
+@import (reference) "./../../common.less";
+.bm-device-info-com{
+  .el-form-item{
+    .mb(0);
+    .borb(1px solid @grayC);
+    &:last-child{
+      .borb(none);
+    }
+    .el-form-item__label{
+      // .bc(@grayE);
+      .pb(0);
+    }
+    .el-form-item__content{
+      .pl(10);
+      .fz(16);
+      .fw(700);
+      .c(@gray6);
+      small{
+        .c(@grayC);
+        .fz(10);
+      }
+    }
+  }
+}

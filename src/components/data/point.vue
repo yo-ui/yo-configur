@@ -80,7 +80,6 @@
           v-model="device"
           filterable
           @change="selectDeviceEvent"
-          value-key="id"
           placeholder="请选择设备名称"
         >
           <el-option
@@ -284,20 +283,40 @@ export default {
       this.loadDeviceList();
     },
     submitEvent() {
-      let { widgetList = [], condition } = this;
-      let {
-        orgId = "",
-        deviceId = "",
-        pointId: devicePoint = "",
-        comId = ""
-      } = condition;
-      let activeCom = widgetList.find(item => item.id == comId) || {};
-      activeCom.bindData = {
-        orgId,
-        deviceId,
-        devicePoint
-      };
-      this.showDialogStatus = false;
+      this.$refs.form?.validate((valid, msg) => {
+        if (valid) {
+          let { widgetList = [], condition } = this;
+          let {
+            orgId = "",
+            deviceId = "",
+            pointId: devicePoint = "",
+            comId = ""
+          } = condition;
+          let activeCom = widgetList.find(item => item.id == comId) || {};
+          let value = "",
+            unit = "",
+            descr = "";
+          activeCom.bindData = {
+            orgId,
+            deviceId,
+            devicePoint,
+            unit,
+            value,
+            descr
+          };
+          this.showDialogStatus = false;
+        } else {
+          if (msg) {
+            for (let key in msg) {
+              let item = msg[key];
+              let message = item[0].message;
+              message && this.$$msgError(message);
+              return false;
+            }
+          }
+          return false;
+        }
+      });
     },
     // 获取设备和点位信息
     commonDevicePointsFunc(callback) {

@@ -78,7 +78,6 @@
         <el-select
           v-model="condition.deviceId"
           filterable
-          value-key="id"
           placeholder="请选择设备名称"
         >
           <el-option
@@ -203,13 +202,16 @@ export default {
       this.showDialogStatus = false;
     },
     loadDeviceList() {
-      let { condition } = this;
+      // let { condition } = this;
       this.dataLoadingStatus = true;
       this.commonDevicePointsFunc((list = []) => {
         this.deviceList = list || [];
-        let [device = {}] = list || [];
-        let { id = "" } = device || {};
-        condition.deviceId = id;
+        // let { deviceId = "" } = condition;
+        // if (!deviceId) {
+        //   let [device = {}] = list || [];
+        //   let { id = "" } = device || {};
+        //   condition.deviceId = id;
+        // }
         // this.device = device || {};
         // this.pointList = points || [];
         // let [point = {}] = points || [];
@@ -238,14 +240,28 @@ export default {
       // this.loadReportDeviceList();
     },
     submitEvent() {
-      let { widgetList = [], condition } = this;
-      let { orgId = "", deviceId = "", comId = "" } = condition;
-      let activeCom = widgetList.find(item => item.id == comId) || {};
-      activeCom.bindData = {
-        orgId,
-        deviceId
-      };
-      this.showDialogStatus = false;
+      this.$refs.form?.validate((valid, msg) => {
+        if (valid) {
+          let { widgetList = [], condition } = this;
+          let { orgId = "", deviceId = "", comId = "" } = condition;
+          let activeCom = widgetList.find(item => item.id == comId) || {};
+          activeCom.bindData = {
+            orgId,
+            deviceId
+          };
+          this.showDialogStatus = false;
+        } else {
+          if (msg) {
+            for (let key in msg) {
+              let item = msg[key];
+              let message = item[0].message;
+              message && this.$$msgError(message);
+              return false;
+            }
+          }
+          return false;
+        }
+      });
     },
     // 获取设备和点位信息
     commonDevicePointsFunc(callback) {

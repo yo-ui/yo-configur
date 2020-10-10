@@ -1702,7 +1702,7 @@ export default [
       {
         name: "风冷热器",
         code: "deviceCommon",
-        icon: "/static/img/configur/flrb.png",
+        icon: "/static/img/configur/flrq.png",
         data: {
           backgroundImage: "/static/img/svg/flrq.svg",
           borderWidth: 0,

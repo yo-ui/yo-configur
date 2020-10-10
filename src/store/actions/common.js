@@ -23,7 +23,7 @@ export default {
     return data;
   },
   async commonDevicePointHstData(context, options) {
-    const data = await post({
+    const data = await get({
       url: URL.commonDevicePointHstDataUrl,
       params: options,
       store: context
@@ -42,7 +42,7 @@ export default {
     return data;
   },
   async commonGetDevice(context, options) {
-    const data = await post({
+    const data = await get({
       url: URL.commonGetDeviceUrl,
       params: options,
       store: context
