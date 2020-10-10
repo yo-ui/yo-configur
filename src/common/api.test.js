@@ -10,6 +10,7 @@ export default
   "devicePoints": "manage/configur/common/devicePoints",
   "upload": "manage/upload/upload2Oss",
   "getDevice": "manage/configur/common/getDevice",
+  "devicePointHstData": "manage/configur/common/devicePointHstData",
   "deviceList": "manage/configur/common/deviceList",
   "control": "manage/configur/canvas/control",
   "token": "manage/configur/canvas/token",
