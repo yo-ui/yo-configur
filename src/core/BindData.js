@@ -174,7 +174,7 @@ class BindData {
       deviceList.forEach(function (device, index) {
         let li = $('<li></li>')
         li.data('id', device.id)
-        li.text(that.textFormat(device.name, 16));
+        li.text(device.name);
         li.attr('title', device.name);
         li.on('click', function () {
           $(this).addClass('active')

@@ -17,11 +17,6 @@ class Bshrq extends Spirit {
 	    this.minHeight = 20;
 	    this.linkage = true;
 	    this.isPanel = true;
-	    this.isBind = true;
-      this.config = {
-        bindData: {orgId:'',deviceId:'',devicePoint:''},
-        state: {expr:'SwSts',stop:0,start:1,alarm:2}
-      };
 	}
 
 	template(){
@@ -1148,24 +1143,6 @@ class Bshrq extends Spirit {
             </g>
             </svg>
     </div>`);
-	}
-
-	reveal(device) {
-    let that = this;
-    let state = that.config.state;
-    if(device) {
-      device.points.forEach(function(point) {
-        if(point.id==state.expr) {
-          if(point.value==state.alarm) {
-            that.alarm();
-          }else if(point.value==state.stop) {
-            that.stop();
-          }else if(point.value==state.start) {
-            that.start();
-          }
-        }
-      })
-    }
 	}
 
 	toJson() {

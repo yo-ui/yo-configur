@@ -1101,6 +1101,19 @@ span {
 .bm-common-list > li > img {
   margin: 0 2px;
 }
+.bm-content {
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+.bm-content > span {
+  margin-right: 10px;
+}
+.bm-content-list > li {
+  line-height: 24px;
+  margin: 1px 0;
+  padding: 4px 8px;
+  display: flex;
+}
 .bm-action-list > li {
   line-height: 24px;
   margin: 1px 0;
@@ -1499,15 +1512,7 @@ span {
   margin-bottom: 1px;
   background-color: #f2f3f5;
   font-weight: bold;
-}
-.bm-tree > div {
-  display: inline-block;
-  float: right;
   cursor: pointer;
-  border: 1px solid transparent;
-}
-.bm-tree > div:hover {
-  border: 1px solid #ddd;
 }
 /**键值对**/
 .bm-kv {
@@ -2198,6 +2203,10 @@ textarea.form-control {
 }
 input[type="search"] {
   -webkit-appearance: none;
+}
+input[type="color"] {
+  display: inline-block;
+  vertical-align: middle;
 }
 .form-group {
   margin-bottom: 15px;

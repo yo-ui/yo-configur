@@ -74,6 +74,19 @@
 .bm-common-list > li > img {
   margin: 0 2px;
 }
+.bm-content {
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+.bm-content > span {
+  margin-right: 10px;
+}
+.bm-content-list > li {
+  line-height: 24px;
+  margin: 1px 0;
+  padding: 4px 8px;
+  display: flex;
+}
 .bm-action-list > li {
   line-height: 24px;
   margin: 1px 0;

@@ -36,9 +36,8 @@ $(document).ready(function() {
         $('.main-content').html(edit.template());
         edit.init();
       }else if(type==2) {
-        config = config.service;
-        console.log(config);
-        let view = new View(config);
+        console.log(config.service);
+        let view = new View(config.service);
         $('.main-content').html(view.template());
         view.init();
       }

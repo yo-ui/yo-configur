@@ -14,19 +14,20 @@ class Kg extends Spirit {
 	    this.moveType = 4;
 	    this.minWidth = 20;
 	    this.minHeight = 20;
-		this.zIndex = 2;
+		  this.zIndex = 2;
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
 	    this.isAnimation = true;
-        this.config = {
+      this.config = {
 	        bindData: {deviceId: ''},
 	        animations: [
-			    {type: 31, 
-		    	 text: '填充->离散', 
+			    {type: 31,
+		    	 text: '填充->离散',
 		    	 expr: 'SwSts',
-		    	 on: {value: 1},
-		    	 off: {value: 0},
+           states: [
+               {name:'on',text:'开',value: 1},
+               {name:'off',text:'关',value: 0}],
 		    	 value: 0,
 		    	 category: 3}]
 	    }
@@ -98,7 +99,7 @@ class Kg extends Spirit {
 		return Object.assign(super.toJson(),json);
 	}
 
-    initialize() {
+  initialize() {
 		let that = this;
 	    let deviceId = that.config.bindData.deviceId
 	    if(deviceId) {
@@ -107,7 +108,7 @@ class Kg extends Spirit {
 	                that.reveal(device);
 	            }
 		    });
-	    }      
+	    }
 	    $('#'+that.id).on('click',function() {
 	        that.config.animations.forEach(function(animation) {
 	        	if(animation.type==31) {
@@ -119,28 +120,32 @@ class Kg extends Spirit {
     }
 
     reveal(device) {
-    	console.log(device);
-        let that = this;
+      let that = this;
 	    if(device) {
 	        device.points.forEach(function(point) {
 	      	    if(that.isAnimation) {
 	      		    let key = point.id;
 	      	        let value = point.value;
 	                that.dynamic(key,value);
-	      	    }      	
+	      	    }
 	        })
 	    }
     }
-    
+
     fillDiscrete(animation,value) {
-		let that = this;
-		animation.value = value;
-        if(value==animation.on.value) {
-	        that.start();
-	    }else if(value==animation.off.value) {
-	        that.stop();
-	    }	
-	}
+      let that = this;
+      animation.value = value;
+      let states = animation.states;
+      states.forEach(function (state) {
+        if(state.value==value) {
+          if(state.name=="on") {
+            that.start();
+          }else if(state.name=="off") {
+            that.stop();
+          }
+        }
+      })
+    }
 }
 
 export default Kg;

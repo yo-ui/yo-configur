@@ -19,10 +19,6 @@ class Wssb extends Spirit {
 	    this.isBind = true;
 	    this.isLinkPoint = true;
 		  this.zIndex = 3;
-      this.config = {
-        bindData: {orgId:'',deviceId:'',devicePoint:''},
-        state: {expr:'SwSts',stop:0,start:1,alarm:2},
-      };
 	}
 
 	template(){
@@ -741,24 +737,6 @@ class Wssb extends Spirit {
 						<path id="wssb_432_" class="wssb-st40" d="M27.5,49.8c0-0.9-0.1-1.8-0.1-2.7H16.8c0,0.9,0.1,1.8,0.2,2.7H27.5z"/>
 					</g>				
 				</svg>`;
-	}
-
-	reveal(device) {
-    let that = this;
-    let state = that.config.state;
-    if(device) {
-      device.points.forEach(function(point) {
-        if(point.id==state.expr) {
-          if(point.value==state.alarm) {
-            that.alarm();
-          }else if(point.value==state.stop) {
-            that.stop();
-          }else if(point.value==state.start) {
-            that.start();
-          }
-        }
-      })
-    }
 	}
 
 	toJson() {

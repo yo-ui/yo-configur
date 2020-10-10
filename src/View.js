@@ -9,6 +9,8 @@ class View {
 
   constructor(config) {
     this.config = config;
+    console.log("...");
+    console.log(config);
   }
 
   init() {
@@ -277,7 +279,6 @@ class View {
         }
       }
     }
-
     let stage = new ViewStage(option,this.config.imgHost);
 
     $(window).resize(function() {

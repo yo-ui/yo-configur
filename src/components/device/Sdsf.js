@@ -15,10 +15,6 @@ class Sdsf extends Spirit {
 	    this.minHeight = 20;
 	    this.linkage = true;
 	    this.zIndex = 2;
-      this.config = {
-        bindData: {orgId:'',deviceId:'',devicePoint:''},
-        state: {expr:'SwSts',stop:0,start:1,alarm:2}
-      };
 	}
 
 	template(){
@@ -253,24 +249,6 @@ class Sdsf extends Spirit {
 		};
 		return Object.assign(super.toJson(),json);
 	}
-
-  reveal(device) {
-    let that = this;
-    let state = that.config.state;
-    if(device) {
-      device.points.forEach(function(point) {
-        if(point.id==state.expr) {
-          if(point.value==state.alarm) {
-            that.alarm();
-          }else if(point.value==state.stop) {
-            that.stop();
-          }else if(point.value==state.start) {
-            that.start();
-          }
-        }
-      })
-    }
-  }
 }
 
 export default Sdsf;

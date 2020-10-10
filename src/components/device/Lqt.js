@@ -18,7 +18,20 @@ class Lqt extends Spirit {
 	    this.linkage = true;
 	    this.isPanel = true;
 	    this.isBind = true;
-	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}};
+      this.isAnimation = true;
+      this.config = {
+        bindData: {deviceId:''},
+        animations: [
+          {type: 31,
+            text: '填充->离散',
+            expr: 'SwSts',
+            states: [
+              {name:'start',text:'开启',value: 1},
+              {name:'stop',text:'停止',value: 0},
+              {name:'alarm',text:'报警',value: 2}],
+            value: 0,
+            category: 3}]
+      };
 	}
 
 	template(){
@@ -895,16 +908,47 @@ class Lqt extends Spirit {
     </div>`);
 	}
 
-	reveal(device) {
-		let that = this;
-		if(device) {
-			device.points.forEach(function(point) {
-				if(point.id=="SwSts") {
-				  that.state(point.value)
-				}
-			})
-		}
-	}
+  initialize() {
+    let that = this;
+    let deviceId = that.config.bindData.deviceId
+    if(deviceId) {
+      that.stage.option.getDevice(deviceId,function (device) {
+        if(deviceId==device.id) {
+          that.reveal(device);
+        }
+      });
+    }
+  }
+
+  reveal(device) {
+    let that = this;
+    if(device) {
+      device.points.forEach(function(point) {
+        if(that.isAnimation) {
+          let key = point.id;
+          let value = point.value;
+          that.dynamic(key,value);
+        }
+      })
+    }
+  }
+
+  fillDiscrete(animation,value) {
+    let that = this;
+    animation.value = value;
+    let states = animation.states;
+    states.forEach(function (state) {
+      if(state.value==value) {
+        if(state.name=="start") {
+          that.start();
+        }else if(state.name=="stop") {
+          that.stop();
+        }else if(state.name=="alarm") {
+          that.alarm();
+        }
+      }
+    })
+  }
 
 	toJson() {
 		let json = {

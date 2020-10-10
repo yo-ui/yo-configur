@@ -1,6 +1,6 @@
 export default
 {
-  "debug": false,
+  "debug": true,
   "imgHost": "http://test-pic.energyiot.cn",
   "websocketUrl": "http://dev-m.energyiot.cn/ws",
   "push": "manage/configur/push",
@@ -17,7 +17,7 @@ export default
   "start": "manage/configur/canvas/start",
   "stop": "manage/configur/canvas/stop",
   service: {
-    "debug": false,
+    "debug": true,
     "imgHost": "http://test-pic.energyiot.cn",
     "websocketUrl": "http://dev-eiot.energyiot.cn/ws",
     "push": "service/configur/push",

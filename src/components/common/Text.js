@@ -13,10 +13,10 @@ class Text extends Spirit {
 	    this.height = height;
 	    this.width = width;
 	    this.minWidth = 20;
-        this.moveType = 0;
+      this.moveType = 0;
 	    this.zIndex = 4;
-        this.isBind = true;
-        this.isAnimation = true;
+      this.isBind = true;
+      this.isAnimation = true;
 	    this.config = {
         bindData: {orgId: '', deviceId: ''},
         font: {text: '文本', color: '#000', size: 24, style: 'normal', weight: 'normal', family: '微软雅黑'},
@@ -91,7 +91,8 @@ class Text extends Spirit {
 	renderer() {
 		let that = this;
 		super.renderer();
-		let html = $(`<div class="bm-tree">样式</div>
+		let html = $(`<div class="bm-tree"><i class="fa fa-down"></i>&nbsp;样式</div>
+                  <div>
                   <div class="bm-style">
                     <div class="text">文字颜色：</div>	
                     <div class="value">
@@ -119,8 +120,16 @@ class Text extends Spirit {
                     <div class="value">
                       <div class="bm-font-style"><span>B</span><span>I</span></div>
                     </div>		
-                  </div>`);
+                  </div></div>`);
 		$('#configur_property').append(html);
+    $('#configur_property').find('.bm-tree').on('click',function () {
+      if($(this).next().is(":hidden")) {
+        $(this).next().show();
+      }else {
+        $(this).next().hide();
+      }
+    })
+
 		let dataList = [11,13,14,15,16,18,24,30,60,100]
 	    let element = $('#configur_property').find('[name=textFS]');
 	    dataList.forEach(function(data) {
@@ -146,7 +155,7 @@ class Text extends Spirit {
 				that.update(text);
 			}
 		})
-	    
+
 	    html.find("[name=textColor]").val(that.config.font.color)
 	    html.find("[name=textColor]").on('change',function() {
 	    	that.config.font.color = $(this).val();
@@ -170,7 +179,7 @@ class Text extends Spirit {
 	        that.text();
 	      });
 	    })
-	
+
 	    $('#configur_property .bm-font-style span').each(function (index) {
 	      $(this).data("index", index);
 	      if(index==0) {

@@ -19,9 +19,20 @@ class Shsb extends Spirit {
 	    this.isBind = true;
 	    this.isLinkPoint = true;
 	    this.zIndex = 3;
+      this.isBind = true;
+      this.isAnimation = true;
       this.config = {
-        bindData: {orgId:'',deviceId:'',devicePoint:''},
-        state: {expr:'SwSts',stop:0,start:1,alarm:2}
+        bindData: {deviceId:''},
+        animations: [
+          {type: 31,
+            text: '填充->离散',
+            expr: 'SwSts',
+            states: [
+              {name:'start',text:'开启',value: 1},
+              {name:'stop',text:'停止',value: 0},
+              {name:'alarm',text:'报警',value: 2}],
+            value: 0,
+            category: 3}]
       };
 	}
 
@@ -416,6 +427,48 @@ class Shsb extends Spirit {
             </div>`);
 	}
 
+  initialize() {
+    let that = this;
+    let deviceId = that.config.bindData.deviceId
+    if(deviceId) {
+      that.stage.option.getDevice(deviceId,function (device) {
+        if(deviceId==device.id) {
+          that.reveal(device);
+        }
+      });
+    }
+  }
+
+  reveal(device) {
+    let that = this;
+    if(device) {
+      device.points.forEach(function(point) {
+        if(that.isAnimation) {
+          let key = point.id;
+          let value = point.value;
+          that.dynamic(key,value);
+        }
+      })
+    }
+  }
+
+  fillDiscrete(animation,value) {
+    let that = this;
+    animation.value = value;
+    let states = animation.states;
+    states.forEach(function (state) {
+      if(state.value==value) {
+        if(state.name=="start") {
+          that.start();
+        }else if(state.name=="stop") {
+          that.stop();
+        }else if(state.name=="alarm") {
+          that.alarm();
+        }
+      }
+    })
+  }
+
 	toJson() {
 		let json = {
 			className: this.className,
@@ -440,50 +493,6 @@ class Shsb extends Spirit {
     let spirit2 = this.stage.create("LinkPoint",x2,y2,10,10);
     spirit2.isAuto = true;
     this.stage.capacity.push(spirit2);
-  }
-
-	viewPanel(device) {
-		let that = this;
-    let point = {name:'',value:0,unit:''}
-    if(device.points) {
-      device.points.forEach(function(data) {
-        if(data.id=="TF") {
-          point.value = parseFloat(data.value);
-          point.unit = data.unit;
-          point.name = data.name;
-        }
-      });
-    }
-    $('.bm-view-panel').html('');
-    let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,12)}</div>`);
-    let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
-    let img = $(`<img src="static/images/device/icon-dt3.png" height="50"/>`);
-    let div = $(`<div class="bm-img-text">
-                 <p>累积流量</p>
-                 <span>${that.floatFormat(point.value)}</span><small>&nbsp;${point.unit}</small>
-                </div>`)
-    vpc.append(img).append(div)
-    $('.bm-view-panel').append(vpt).append(vpc);
-    $('.bm-view-panel').css({width:200});
-    $('.bm-view-panel').show();
-	}
-
-  reveal(device) {
-    let that = this;
-    let state = that.config.state;
-    if(device) {
-      device.points.forEach(function(point) {
-        if(point.id==state.expr) {
-          if(point.value==state.alarm) {
-            that.alarm();
-          }else if(point.value==state.stop) {
-            that.stop();
-          }else if(point.value==state.start) {
-            that.start();
-          }
-        }
-      })
-    }
   }
 }
 

@@ -10,10 +10,10 @@ class ViewStage {
 	constructor(option,imgHost) {
 	    let that = this;
 	    this.imgHost = imgHost;
-		this.option = option;
+		  this.option = option;
 	    this.zoom = new Zoom(this);
 	    this.panel = new Panel(this);
-		this.option.canvas(function(data) {
+		  this.option.canvas(function(data) {
 			that.canvas = {id:data.id};
 	        if(!data.data) {
 	          data.data = JSON.stringify({background:{url:'',color: '#fff'},capacity:[]})
@@ -218,7 +218,7 @@ class ViewStage {
 			  let spirit = that.create(className,x,y,width,height,rotate,id);
 			  spirit.config = property.config;
 	        if(className=="Images") {
-	          let url = that.config.imgHost+"/"+spirit.config.url;
+	          let url = that.imgHost+"/"+spirit.config.url;
 	          $('#'+spirit.id).find('img').attr('src', url);
 	        }
 			  spirit.refresh();

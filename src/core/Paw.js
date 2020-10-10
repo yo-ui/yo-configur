@@ -197,6 +197,7 @@ class Paw {
       } else if(smove) {//下
         let y = e.pageY-oy;
         let height = oh+y;
+        let width = oh+y;
         if(that.property.minHeight<=height) {
           if(that.property.linkage) {
               resizePanel.css({width,height});
@@ -222,7 +223,7 @@ class Paw {
         if(that.property.minWidth<=width) {
           if(that.property.linkage) {
               resizePanel.css({width,height,left});
-              resizePanel.find('.configur-spirit').children().find('svg').css({width,height});
+              resizePanel.find('.configur-spirit').children().css({width,height,left});
               that.property.x = left;
               that.property.width = width;
               that.property.height = height;

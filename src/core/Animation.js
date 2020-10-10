@@ -76,7 +76,6 @@ class Animation {
     })
     if(type==16) {
       let html = $(`<div>
-                       <span style="line-height: 32px;font-size: 14px;margin-bottom: 1px">变量名：</span>
                        <input type="text" class="form-control" name="expr" placeholder="请输入变量"/>
                        <div class="type-action" style="border: 1px solid #ddd;padding: 5px;margin-top: 10px">
                          <input name="type" type="radio"><span style="vertical-align: top">&nbsp;直接</span>
@@ -133,71 +132,44 @@ class Animation {
       })
       content.find('.animation-content').html(html);
     }else if(type==31) {
-    	let html = $(`<span style="line-height: 32px;font-size: 14px;margin-bottom: 1px">点位</span>
-	                   <div class="bm-input-panel" style="z-index: 3">
-	                     <input type="text" class="form-control" name="expr"/>
-	                     <div class="content">
-	                       <ul></ul>
-	                     </div>
-	                   </div>`)
-
-    	if(that.animation.category==3) {
-    		html = $(`<span style="line-height: 32px;font-size: 14px;margin-bottom: 1px">点位</span>
-	                   <div class="bm-input-panel" style="z-index: 3">
+    	let html = $(`<div>
+	                   <div class="bm-input-panel">
 	                     <input type="text" class="form-control" name="expr"/>
 	                     <div class="content">
 	                       <ul></ul>
 	                     </div>
 	                   </div>
-	                   <div>
-	                     <div style="border: 1px solid #ddd;padding: 5px;margin-top: 10px">
-	                       <span style="line-height: 24px;vertical-align: top;">0:关</span>&nbsp;&nbsp;
-	                       <span style="line-height: 24px;vertical-align: top;">1:开</span>
-	                     </div>
-	                   </div>`)
-    	}
+                     <div class="bm-content"></div>
+                     </div>`)
 
+    	if(that.animation.category==3) {
+        that.animation.states.forEach(function (state) {
+          let span = $(`<span>${state.value}->${state.text}</span>`);
+          html.find('.bm-content').append(span);
+        })
+    	}
     	html.find('[name=expr]').val(that.animation.expr);
     	html.find('[name=expr]').on('input propertyChange',function () {
 	        that.animation.expr = $(this).val();
 	    });
     	content.find('.animation-content').html(html);
     }else if(type==32) {
-    	let html = $(`<span style="line-height: 32px;font-size: 14px;margin-bottom: 1px">点位</span>
-	                   <div class="bm-input-panel" style="z-index: 3">
+    	let html = $(`<div class="bm-input-panel" style="z-index: 3">
 	                     <input type="text" class="form-control" name="expr"/>
 	                     <div class="content">
 	                       <ul></ul>
 	                     </div>
 	                   </div>`)
-
-    	if(that.animation.category==3) {
-    		html = $(`<span style="line-height: 32px;font-size: 14px;margin-bottom: 1px">点位</span>
-	                   <div class="bm-input-panel" style="z-index: 3">
-	                     <input type="text" class="form-control" name="expr"/>
-	                     <div class="content">
-	                       <ul></ul>
-	                     </div>
-	                   </div>
-	                   <div>
-	                     <div style="border: 1px solid #ddd;padding: 5px;margin-top: 10px">
-	                       <span style="line-height: 24px;vertical-align: top;">0:关闭:</span>&nbsp;&nbsp;
-	                       <span style="line-height: 24px;vertical-align: top;">1:开启</span>&nbsp;&nbsp;
-	                       <span style="line-height: 24px;vertical-align: top;">2:报警</span>
-	                     </div>
-	                   </div>`)
-    	}
-
     	html.find('[name=expr]').val(that.animation.expr);
     	html.find('[name=expr]').on('input propertyChange',function () {
 	        that.animation.expr = $(this).val();
 	    });
     	content.find('.animation-content').html(html);
-
     }else if(type==91) {
       let html = $(`<div>
-                       <span style="line-height: 32px;font-size: 14px;margin-bottom: 1px">点位</span>
-                       <select class="bm-select" name="expr"></select>
+                       <select class="bm-select" name="expr">
+                         <option value="">请输入设备点位</option>
+                       </select>
                      </div>`);
       content.find('.animation-content').html(html);
       let deviceId = that.stage.property.config.bindData.deviceId;
@@ -216,13 +188,12 @@ class Animation {
         })
       }
     }else if(type==92) {//值显示-字符串
-      let html = $(`<span style="line-height: 32px;font-size: 14px;margin-bottom: 1px">表达式</span>
-                   <div class="bm-input-panel" style="z-index: 3">
-                     <input type="text" class="form-control" name="expr"/>
-                     <div class="content">
-                       <ul></ul>
-                     </div>
-                   </div>`)
+      let html = $(`<div class="bm-input-panel" style="z-index: 1">
+                       <input type="text" class="form-control" placeholder="请输入表达式" name="expr"/>
+                       <div class="content">
+                         <ul></ul>
+                       </div>
+                     </div>`)
       content.find('.animation-content').html(html);
       let deviceId = that.stage.property.config.bindData.deviceId;
       if(deviceId) {
@@ -245,10 +216,13 @@ class Animation {
             }
           });
 
+          html.find('[name=expr]').on('focus',function () {
+            that.createPoint(device.points);
+          });
+
           html.find('.content').on('mouseleave',function (e) {
             $(this).hide();
           });
-
         })
       }
     }
