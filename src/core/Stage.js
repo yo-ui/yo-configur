@@ -348,7 +348,6 @@ class Stage {
               </div>
 						</div>					
 					</div>
-          <div class="bm-tree">画布</div>
 					<div class="bm-cell no-hover" style="text-align: left">
 						<div class="bm-cell__title">
 							<div class="bm-kv">
@@ -385,43 +384,43 @@ class Stage {
               </form>		
 						</div>
 					</div>`);
-		$('#configur_property').html(html);
-		that.zoom.init();
-		Tooltip.init();
+        $('#configur_property').html(html);
+        that.zoom.init();
+        Tooltip.init();
         html.find("[name=bgColor]").val(that.background.color)
-	    html.find("[name=bgColor]").on('change',function() {
-	    	that.background.color = $(this).val();
-	    	$('#configur_stage').css({'background-color': $(this).val()})
-	    })
+        html.find("[name=bgColor]").on('change',function() {
+            that.background.color = $(this).val();
+            $('#configur_stage').css({'background-color': $(this).val()})
+        })
 
-		if(that.background.url) {
-			$('#configur_stage').css({'background-image': 'url('+that.background.url+')'});
-            $('#subline').prop("checked",true)
-		}else {
-			$('#configur_stage').css({'background-image': ''});
-            $('#subline').prop("checked",false)
-		}
+        if(that.background.url) {
+          $('#configur_stage').css({'background-image': 'url('+that.background.url+')'});
+          $('#subline').prop("checked",true)
+        }else {
+          $('#configur_stage').css({'background-image': ''});
+          $('#subline').prop("checked",false)
+        }
 
         $('#subline').on('change',function () {
-	      if($(this).is(':checked')) {
-	        $('#configur_stage').css({'background-image': 'url('+that.background.url+')'});
-	        $("#stageBg").attr("disabled", true);
-	      }else {
-	        $('#configur_stage').css({'background-image': ''});
-	        $("#stageBg").attr("disabled", true);
-	        that.background.url = ""
-	      }
-	    })
+          if($(this).is(':checked')) {
+            $('#configur_stage').css({'background-image': 'url('+that.background.url+')'});
+            $("#stageBg").attr("disabled", true);
+          }else {
+            $('#configur_stage').css({'background-image': ''});
+            $("#stageBg").attr("disabled", true);
+            that.background.url = ""
+          }
+        })
 
-	    $('#configur_property').find('[name=stageBg]').on('change',function() {
-	      let form = $("#stageBg")[0]
-	      let file = $(this).get(0).files[0]
-	      that.option.upload(form,file,function(url) {
-	        that.background.url = that.config.imgHost+"/"+url;
-	        $('#configur_stage').css({'background-image': 'url('+that.background.url+')'});
-	      })
-	    })
-	    this.handleRecord.init();
+	      $('#configur_property').find('[name=stageBg]').on('change',function() {
+          let form = $("#stageBg")[0]
+          let file = $(this).get(0).files[0]
+          that.option.upload(form,file,function(url) {
+            that.background.url = that.config.imgHost+"/"+url;
+            $('#configur_stage').css({'background-image': 'url('+that.background.url+')'});
+          })
+        })
+	      this.handleRecord.init();
 	}
 
   removeLinkPoints() {

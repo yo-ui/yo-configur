@@ -1514,6 +1514,15 @@ span {
   font-weight: bold;
   cursor: pointer;
 }
+.bm-tree > div {
+  display: inline-block;
+  float: right;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.bm-tree > div:hover {
+  border: 1px solid #ddd;
+}
 /**键值对**/
 .bm-kv {
   display: inline-block;
