@@ -27,7 +27,7 @@ class TextButton extends Spirit {
         animations: [{type: 16,text: '触发按钮->离散',expr: '',value: 1},
                      {type: 18,text: '触发按钮->显示',ids: []},
                      {type: 19,text: '触发按钮->隐藏',ids: []},
-                     {type: 20,text: '触发按钮->组合',ids: []}]
+                     /**{type: 20,text: '触发按钮->组合',ids: []}**/]
       }
       this.isGroup = true;
 	}
@@ -77,7 +77,7 @@ class TextButton extends Spirit {
   initialize() {
 	  let that = this;
 	  let animations = that.config.animations;
-	  $('#'+this.id).on('click',function () {	    
+	  $('#'+this.id).on('click',function () {
 	      animations.forEach(function (animation) {
 	        if(animation.type==16) {
 	          that.motion(animation);
@@ -87,23 +87,23 @@ class TextButton extends Spirit {
 	          that.hide(animation.ids);
 	        }
 	      })
-	  }) 
+	  })
   }
-  
+
   motion(animation) {
   	let that = this;
   	if(animation.value==1) {
   		let variable = that.stage.getVariable(animation.expr);
-  		
+
   	}else if(animation.value==2) {
   		let variable = that.stage.getVariable(animation.expr);
   		let data = Object.assign({}, variable);
   		data.value = variable.value==0?1:0;
-  		
+
   	}else if(animation.value==3) {
   		let data = that.stage.getVariable(animation.expr);
   		data.value = data.value==0?1:0;
-  		
+
   	}
   }
 
