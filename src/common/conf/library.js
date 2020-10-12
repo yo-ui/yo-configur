@@ -99,7 +99,7 @@ let baseData = {
 };
 export default [
   {
-    name: "基本",
+    name: "通用",
     code: "basic",
     icon: "el-icon-s-grid",
     comList: [
@@ -969,1474 +969,1870 @@ export default [
     code: "device",
     icon: "el-icon-setting",
     name: "设备",
-    comList: [
+    groupList: [
       {
-        name: "电表",
-        code: "deviceCommon",
-        icon: "/static/img/configur/db.png",
-        data: {
-          ...baseData,
-          backgroundImage: "/static/img/svg/db.svg",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // opacity: 100,
-          // left: 0,
-          width: 50,
-          height: 50,
-          dataType: "device",
-          // rotate: 0,
-          // top: 0,
-          equalScaleable: true //是否等比例缩放
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
-        }
+        groupName: "管道",
+        groupCode: "pipeline-system",
+        // {
+        //   code: "assist",
+        //   icon: "el-icon-files",
+        //   name: "辅助",
+        comList: [
+          {
+            name: "连接点",
+            alias: "linkPoint",
+            code: "assistCommon",
+            icon: "/static/img/configur/link-point.png",
+            data: {
+              backgroundImage: "/static/img/svg/link-point.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 30,
+              height: 30,
+              rotate: 0,
+              top: 0,
+              equalScaleable: false, //是否等比例缩放
+              scaleable: false, //是否可缩放操作
+              rotateable: false, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "水管（上）",
+            code: "assistCommon",
+            alias: "water_top",
+            icon: "/static/img/configur/h-top.png",
+            data: {
+              backgroundImage: "/static/img/svg/shuiguan-top.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 30,
+              height: 30,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "水管（下）",
+            code: "assistCommon",
+            alias: "water_bottom",
+            icon: "/static/img/configur/h-bottom.png",
+            data: {
+              backgroundImage: "/static/img/svg/shuiguan-bottom.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 30,
+              height: 30,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "水管（左）",
+            code: "assistCommon",
+            alias: "water_left",
+            icon: "/static/img/configur/v-left.png",
+            data: {
+              backgroundImage: "/static/img/svg/shuiguan-left.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 30,
+              height: 30,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "水管（右）",
+            code: "assistCommon",
+            alias: "water_right",
+            icon: "/static/img/configur/v-right.png",
+            data: {
+              backgroundImage: "/static/img/svg/shuiguan-right.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 30,
+              height: 30,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "水管（左上）",
+            code: "assistCommon",
+            alias: "water_lefttop",
+            icon: "/static/img/configur/t-1.png",
+            data: {
+              backgroundImage: "/static/img/svg/shuiguan-topleft.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 30,
+              height: 30,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "水管（左下）",
+            alias: "water_leftbottom",
+            code: "assistCommon",
+            icon: "/static/img/configur/t-4.png",
+            data: {
+              backgroundImage: "/static/img/svg/shuiguan-bottomleft.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 30,
+              height: 30,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "水管（右上）",
+            alias: "water_righttop",
+            code: "assistCommon",
+            icon: "/static/img/configur/t-2.png",
+            data: {
+              backgroundImage: "/static/img/svg/shuiguan-topright.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 30,
+              height: 30,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "水管（右下）",
+            alias: "water_rightbottom",
+            code: "assistCommon",
+            icon: "/static/img/configur/t-3.png",
+            data: {
+              backgroundImage: "/static/img/svg/shuiguan-bottomright.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 30,
+              height: 30,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "水管（水平）",
+            alias: "water_horizontal",
+            code: "assistCommon",
+            icon: "/static/img/configur/h.png",
+            data: {
+              backgroundImage: "/static/img/svg/shuiguan-h.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 150,
+              height: 30,
+              rotate: 0,
+              top: 0,
+              equalScaleable: false, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "水管（垂直）",
+            code: "assistCommon",
+            alias: "water_vertical",
+            icon: "/static/img/configur/v.png",
+            data: {
+              backgroundImage: "/static/img/svg/shuiguan-v.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 30,
+              height: 150,
+              rotate: 0,
+              top: 0,
+              equalScaleable: false, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          }
+        ]
+        // }
       },
       {
-        name: "单项导轨电表",
-        code: "deviceCommon",
-        icon: "/static/img/configur/dxdgdb.png",
-        data: {
-          ...baseData,
-          backgroundImage: "/static/img/svg/dxdgdb.svg",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // opacity: 100,
-          // left: 0,
-          width: 50,
-          height: 50,
-          dataType: "device",
-          // rotate: 0,
-          // top: 0,
-          equalScaleable: true //是否等比例缩放
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "I/O控制模块",
-        code: "deviceCommon",
-        icon: "/static/img/configur/iokzmk.png",
-        data: {
-          ...baseData,
-          backgroundImage: "/static/img/svg/iokzmk.svg",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // opacity: 100,
-          // left: 0,
-          width: 50,
-          height: 50,
-          dataType: "device",
-          // rotate: 0,
-          // top: 0,
-          equalScaleable: true //是否等比例缩放
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "断路器",
-        code: "deviceCommon",
-        icon: "/static/img/configur/dlq.png",
-        data: {
-          ...baseData,
-          backgroundImage: "/static/img/svg/duanluqi.svg",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // opacity: 100,
-          // left: 0,
-          width: 50,
-          height: 50,
-          dataType: "device",
-          // rotate: 0,
-          // top: 0,
-          equalScaleable: true //是否等比例缩放
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "壁挂式电表",
-        code: "deviceCommon",
-        icon: "/static/img/configur/bgsdb.png",
-        data: {
-          ...baseData,
-          backgroundImage: "/static/img/svg/bgsdb.svg",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // opacity: 100,
-          // left: 0,
-          width: 50,
-          height: 50,
-          dataType: "device",
-          // rotate: 0,
-          // top: 0,
-          equalScaleable: true //是否等比例缩放
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "接地刀闸",
-        code: "deviceCommon",
-        icon: "/static/img/configur/jddz.png",
-        data: {
-          ...baseData,
-          backgroundImage: "/static/img/svg/jddz.svg",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // opacity: 100,
-          // left: 0,
-          width: 50,
-          height: 50,
-          dataType: "device",
-          // rotate: 0,
-          // top: 0,
-          equalScaleable: true //是否等比例缩放
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "电力电容器",
-        code: "deviceCommon",
-        icon: "/static/img/configur/dldrq.png",
-        data: {
-          backgroundImage: "/static/img/svg/dldrq.svg",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // opacity: 100,
-          // left: 0,
-          width: 50,
-          height: 50,
-          dataType: "device",
-          // rotate: 0,
-          // top: 0,
-          equalScaleable: true //是否等比例缩放
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "变压器",
-        code: "deviceCommon",
-        icon: "/static/img/configur/byq.png",
-        data: {
-          backgroundImage: "/static/img/svg/byq.svg",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // opacity: 100,
-          // left: 0,
-          width: 50,
-          height: 50,
-          dataType: "device",
-          // rotate: 0,
-          // top: 0,
-          equalScaleable: true //是否等比例缩放
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "螺翼式水表",
-        code: "deviceCommon",
-        icon: "/static/img/configur/lyssb.png",
-        data: {
-          backgroundImage: "/static/img/svg/lyssb.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "阀控水表",
-        code: "deviceCommon",
-        icon: "/static/img/configur/sbfk.png",
-        data: {
-          backgroundImage: "/static/img/svg/fksb.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "旋翼式水表",
-        code: "deviceCommon",
-        icon: "/static/img/configur/xyssb.png",
-        data: {
-          backgroundImage: "/static/img/svg/xyssb.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "超时波流量计",
-        code: "deviceCommon",
-        icon: "/static/img/configur/csbllj.png",
-        data: {
-          backgroundImage: "/static/img/svg/csbllj.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "插卡式水表",
-        code: "deviceCommon",
-        icon: "/static/img/configur/ckssb.png",
-        data: {
-          backgroundImage: "/static/img/svg/ckssb.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "生活水泵",
-        code: "deviceCommon",
-        icon: "/static/img/configur/shsb.png",
-        data: {
-          backgroundImage: "/static/img/svg/shsb.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "集水井",
-        code: "deviceCommon",
-        icon: "/static/img/configur/jsj.png",
-        data: {
-          backgroundImage: "/static/img/svg/jsj.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "水箱",
-        code: "deviceCommon",
-        icon: "/static/img/configur/sx.png",
-        data: {
-          backgroundImage: "/static/img/svg/sx.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "消防水泵",
-        code: "deviceCommon",
-        icon: "/static/img/configur/xfsb.png",
-        data: {
-          backgroundImage: "/static/img/svg/xfsb.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "抽烟风机",
-        code: "deviceCommon",
-        icon: "/static/img/configur/cyfj.png",
-        data: {
-          backgroundImage: "/static/img/svg/cyfj.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "正压送风机",
-        code: "deviceCommon",
-        icon: "/static/img/configur/zysfj.png",
-        data: {
-          backgroundImage: "/static/img/svg/zysfj.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "蓄水装置",
-        code: "deviceCommon",
-        icon: "/static/img/configur/xszz.png",
-        data: {
-          backgroundImage: "/static/img/svg/xszz.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "手动水阀",
-        code: "deviceCommon",
-        icon: "/static/img/configur/sdsf.png",
-        data: {
-          backgroundImage: "/static/img/svg/sdsf.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "集水器",
-        code: "deviceCommon",
-        icon: "/static/img/configur/jsq.png",
-        data: {
-          backgroundImage: "/static/img/svg/jsq.svg",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // opacity: 100,
-          // left: 0,
-          width: 50,
-          height: 30,
-          dataType: "device",
-          // rotate: 0,
-          // top: 0,
-          equalScaleable: true //是否等比例缩放
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "分水器",
-        code: "deviceCommon",
-        icon: "/static/img/configur/fsq.png",
-        data: {
-          backgroundImage: "/static/img/svg/fsq.svg",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // opacity: 100,
-          // left: 0,
-          width: 50,
-          height: 30,
-          dataType: "device",
-          // rotate: 0,
-          // top: 0,
-          equalScaleable: true //是否等比例缩放
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "开关",
-        code: "deviceCommon",
-        icon: "/static/img/configur/kg.png",
-        data: {
-          ...baseData,
-          backgroundImage: "/static/img/svg/kg.svg",
-          backgroundImageOn: "/static/img/svg/kg-on.svg",
-          width: 50,
-          height: 50,
-          equalScaleable: true //是否等比例缩放
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "灯管",
-        code: "deviceCommon",
-        icon: "/static/img/configur/dengg.png",
-        data: {
-          backgroundImage: "/static/img/svg/dengg.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 20,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "灯泡",
-        code: "deviceCommon",
-        icon: "/static/img/configur/dengp.png",
-        data: {
-          backgroundImage: "/static/img/svg/dengp.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 20,
-          height: 30,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "整体式热量表",
-        code: "deviceCommon",
-        icon: "/static/img/configur/ztsrlb.png",
-        data: {
-          backgroundImage: "/static/img/svg/ztsrlb.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "组合式热量表",
-        code: "deviceCommon",
-        icon: "/static/img/configur/zhsrlb.png",
-        data: {
-          backgroundImage: "/static/img/svg/zhsrlb.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "挂式空调",
-        code: "deviceCommon",
-        icon: "/static/img/configur/gskt.png",
-        data: {
-          backgroundImage: "/static/img/svg/gskt.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 30,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "立式空调",
-        code: "deviceCommon",
-        icon: "/static/img/configur/lskt.png",
-        data: {
-          backgroundImage: "/static/img/svg/lskt.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 70,
-          height: 160,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "风冷热器",
-        code: "deviceCommon",
-        icon: "/static/img/configur/flrq.png",
-        data: {
-          backgroundImage: "/static/img/svg/flrq.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "板式换热器",
-        code: "deviceCommon",
-        icon: "/static/img/configur/bshrq.png",
-        data: {
-          backgroundImage: "/static/img/svg/bshrq.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "冷却塔",
-        code: "deviceCommon",
-        icon: "/static/img/configur/lqt.png",
-        data: {
-          backgroundImage: "/static/img/svg/lqt.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 150,
-          height: 150,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "排风机",
-        code: "deviceCommon",
-        icon: "/static/img/configur/pfj.png",
-        data: {
-          backgroundImage: "/static/img/svg/pfj.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "燃气锅炉",
-        code: "deviceCommon",
-        icon: "/static/img/configur/rqgl.png",
-        data: {
-          backgroundImage: "/static/img/svg/rqgl.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 70,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "湿式报警阀",
-        code: "deviceCommon",
-        icon: "/static/img/configur/ssbjf.png",
-        data: {
-          backgroundImage: "/static/img/svg/ssbjf.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "烟雾报警传感器",
-        code: "deviceCommon",
-        icon: "/static/img/configur/ywbjcgq.png",
-        data: {
-          backgroundImage: "/static/img/svg/ywbjcgq.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "红外人体感应器",
-        code: "deviceCommon",
-        icon: "/static/img/configur/hwrtgyq.png",
-        data: {
-          backgroundImage: "/static/img/svg/hwrtgyq.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "摄像头",
-        code: "deviceCommon",
-        icon: "/static/img/configur/sxt.png",
-        data: {
-          backgroundImage: "/static/img/svg/sxt.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "门磁报警器",
-        code: "deviceCommon",
-        icon: "/static/img/configur/mcbjq.png",
-        data: {
-          backgroundImage: "/static/img/svg/mcbjq.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "漏水报警器",
-        code: "deviceCommon",
-        icon: "/static/img/configur/lsbjq.png",
-        data: {
-          backgroundImage: "/static/img/svg/lsbjq.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "光伏电池板",
-        code: "deviceCommon",
-        icon: "/static/img/configur/gfdcb.png",
-        data: {
-          backgroundImage: "/static/img/svg/gfdcb.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "光伏逆变器",
-        code: "deviceCommon",
-        icon: "/static/img/configur/gfnbq.png",
-        data: {
-          backgroundImage: "/static/img/svg/gfnbq.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "拉绳式测距",
-        code: "deviceCommon",
-        icon: "/static/img/configur/lsscj.png",
-        data: {
-          backgroundImage: "/static/img/svg/lsscj.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "超声波测距",
-        code: "deviceCommon",
-        icon: "/static/img/configur/csbcj.png",
-        data: {
-          backgroundImage: "/static/img/svg/csbcj.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "液晶屏传感器",
-        code: "deviceCommon",
-        icon: "/static/img/configur/hjjccgqa.png",
-        data: {
-          backgroundImage: "/static/img/svg/yjpcgq.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "传感器",
-        code: "deviceCommon",
-        icon: "/static/img/configur/hjjccgqb.png",
-        data: {
-          backgroundImage: "/static/img/svg/cgq.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "小型气象站",
-        code: "deviceCommon",
-        icon: "/static/img/configur/xxqxz.png",
-        data: {
-          backgroundImage: "/static/img/svg/xxqxz.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 50,
-          height: 50,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "客用电梯",
-        code: "deviceCommon",
-        icon: "/static/img/configur/kydt.png",
-        data: {
-          backgroundImage: "/static/img/svg/kydt.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 100,
-          height: 140,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
+        groupName: "配电系统",
+        groupCode: "electricity-system",
+        comList: [
+          {
+            name: "电表",
+            code: "deviceCommon",
+            icon: "/static/img/configur/db.png",
+            data: {
+              ...baseData,
+              backgroundImage: "/static/img/svg/db.svg",
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
+              width: 50,
+              height: 50,
+              dataType: "device",
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "单项导轨电表",
+            code: "deviceCommon",
+            icon: "/static/img/configur/dxdgdb.png",
+            data: {
+              ...baseData,
+              backgroundImage: "/static/img/svg/dxdgdb.svg",
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
+              width: 50,
+              height: 50,
+              dataType: "device",
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "I/O控制模块",
+            code: "deviceCommon",
+            icon: "/static/img/configur/iokzmk.png",
+            data: {
+              ...baseData,
+              backgroundImage: "/static/img/svg/iokzmk.svg",
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
+              width: 50,
+              height: 50,
+              dataType: "device",
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "断路器",
+            code: "deviceCommon",
+            icon: "/static/img/configur/dlq.png",
+            data: {
+              ...baseData,
+              backgroundImage: "/static/img/svg/duanluqi.svg",
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
+              width: 50,
+              height: 50,
+              dataType: "device",
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "壁挂式电表",
+            code: "deviceCommon",
+            icon: "/static/img/configur/bgsdb.png",
+            data: {
+              ...baseData,
+              backgroundImage: "/static/img/svg/bgsdb.svg",
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
+              width: 50,
+              height: 50,
+              dataType: "device",
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "接地刀闸",
+            code: "deviceCommon",
+            icon: "/static/img/configur/jddz.png",
+            data: {
+              ...baseData,
+              backgroundImage: "/static/img/svg/jddz.svg",
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
+              width: 50,
+              height: 50,
+              dataType: "device",
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "电力电容器",
+            code: "deviceCommon",
+            icon: "/static/img/configur/dldrq.png",
+            data: {
+              backgroundImage: "/static/img/svg/dldrq.svg",
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
+              width: 50,
+              height: 50,
+              dataType: "device",
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "变压器",
+            code: "deviceCommon",
+            icon: "/static/img/configur/byq.png",
+            data: {
+              backgroundImage: "/static/img/svg/byq.svg",
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
+              width: 50,
+              height: 50,
+              dataType: "device",
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "螺翼式水表",
+            code: "deviceCommon",
+            icon: "/static/img/configur/lyssb.png",
+            data: {
+              backgroundImage: "/static/img/svg/lyssb.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "阀控水表",
+            code: "deviceCommon",
+            icon: "/static/img/configur/sbfk.png",
+            data: {
+              backgroundImage: "/static/img/svg/fksb.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "旋翼式水表",
+            code: "deviceCommon",
+            icon: "/static/img/configur/xyssb.png",
+            data: {
+              backgroundImage: "/static/img/svg/xyssb.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "超时波流量计",
+            code: "deviceCommon",
+            icon: "/static/img/configur/csbllj.png",
+            data: {
+              backgroundImage: "/static/img/svg/csbllj.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "插卡式水表",
+            code: "deviceCommon",
+            icon: "/static/img/configur/ckssb.png",
+            data: {
+              backgroundImage: "/static/img/svg/ckssb.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "生活水泵",
+            code: "deviceCommon",
+            icon: "/static/img/configur/shsb.png",
+            data: {
+              backgroundImage: "/static/img/svg/shsb.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "集水井",
+            code: "deviceCommon",
+            icon: "/static/img/configur/jsj.png",
+            data: {
+              backgroundImage: "/static/img/svg/jsj.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "水箱",
+            code: "deviceCommon",
+            icon: "/static/img/configur/sx.png",
+            data: {
+              backgroundImage: "/static/img/svg/sx.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "消防水泵",
+            code: "deviceCommon",
+            icon: "/static/img/configur/xfsb.png",
+            data: {
+              backgroundImage: "/static/img/svg/xfsb.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "抽烟风机",
+            code: "deviceCommon",
+            icon: "/static/img/configur/cyfj.png",
+            data: {
+              backgroundImage: "/static/img/svg/cyfj.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "正压送风机",
+            code: "deviceCommon",
+            icon: "/static/img/configur/zysfj.png",
+            data: {
+              backgroundImage: "/static/img/svg/zysfj.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "蓄水装置",
+            code: "deviceCommon",
+            icon: "/static/img/configur/xszz.png",
+            data: {
+              backgroundImage: "/static/img/svg/xszz.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "手动水阀",
+            code: "deviceCommon",
+            icon: "/static/img/configur/sdsf.png",
+            data: {
+              backgroundImage: "/static/img/svg/sdsf.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "集水器",
+            code: "deviceCommon",
+            icon: "/static/img/configur/jsq.png",
+            data: {
+              backgroundImage: "/static/img/svg/jsq.svg",
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
+              width: 50,
+              height: 30,
+              dataType: "device",
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "分水器",
+            code: "deviceCommon",
+            icon: "/static/img/configur/fsq.png",
+            data: {
+              backgroundImage: "/static/img/svg/fsq.svg",
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
+              width: 50,
+              height: 30,
+              dataType: "device",
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "开关",
+            code: "deviceCommon",
+            icon: "/static/img/configur/kg.png",
+            data: {
+              ...baseData,
+              backgroundImage: "/static/img/svg/kg.svg",
+              backgroundImageOn: "/static/img/svg/kg-on.svg",
+              width: 50,
+              height: 50,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "灯管",
+            code: "deviceCommon",
+            icon: "/static/img/configur/dengg.png",
+            data: {
+              backgroundImage: "/static/img/svg/dengg.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 20,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "灯泡",
+            code: "deviceCommon",
+            icon: "/static/img/configur/dengp.png",
+            data: {
+              backgroundImage: "/static/img/svg/dengp.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 20,
+              height: 30,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "整体式热量表",
+            code: "deviceCommon",
+            icon: "/static/img/configur/ztsrlb.png",
+            data: {
+              backgroundImage: "/static/img/svg/ztsrlb.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "组合式热量表",
+            code: "deviceCommon",
+            icon: "/static/img/configur/zhsrlb.png",
+            data: {
+              backgroundImage: "/static/img/svg/zhsrlb.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "挂式空调",
+            code: "deviceCommon",
+            icon: "/static/img/configur/gskt.png",
+            data: {
+              backgroundImage: "/static/img/svg/gskt.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 30,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "立式空调",
+            code: "deviceCommon",
+            icon: "/static/img/configur/lskt.png",
+            data: {
+              backgroundImage: "/static/img/svg/lskt.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 70,
+              height: 160,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "风冷热器",
+            code: "deviceCommon",
+            icon: "/static/img/configur/flrq.png",
+            data: {
+              backgroundImage: "/static/img/svg/flrq.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "板式换热器",
+            code: "deviceCommon",
+            icon: "/static/img/configur/bshrq.png",
+            data: {
+              backgroundImage: "/static/img/svg/bshrq.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "冷却塔",
+            code: "deviceCommon",
+            icon: "/static/img/configur/lqt.png",
+            data: {
+              backgroundImage: "/static/img/svg/lqt.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 150,
+              height: 150,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "排风机",
+            code: "deviceCommon",
+            icon: "/static/img/configur/pfj.png",
+            data: {
+              backgroundImage: "/static/img/svg/pfj.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "燃气锅炉",
+            code: "deviceCommon",
+            icon: "/static/img/configur/rqgl.png",
+            data: {
+              backgroundImage: "/static/img/svg/rqgl.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 70,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "湿式报警阀",
+            code: "deviceCommon",
+            icon: "/static/img/configur/ssbjf.png",
+            data: {
+              backgroundImage: "/static/img/svg/ssbjf.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "烟雾报警传感器",
+            code: "deviceCommon",
+            icon: "/static/img/configur/ywbjcgq.png",
+            data: {
+              backgroundImage: "/static/img/svg/ywbjcgq.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "红外人体感应器",
+            code: "deviceCommon",
+            icon: "/static/img/configur/hwrtgyq.png",
+            data: {
+              backgroundImage: "/static/img/svg/hwrtgyq.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "摄像头",
+            code: "deviceCommon",
+            icon: "/static/img/configur/sxt.png",
+            data: {
+              backgroundImage: "/static/img/svg/sxt.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "门磁报警器",
+            code: "deviceCommon",
+            icon: "/static/img/configur/mcbjq.png",
+            data: {
+              backgroundImage: "/static/img/svg/mcbjq.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "漏水报警器",
+            code: "deviceCommon",
+            icon: "/static/img/configur/lsbjq.png",
+            data: {
+              backgroundImage: "/static/img/svg/lsbjq.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "光伏电池板",
+            code: "deviceCommon",
+            icon: "/static/img/configur/gfdcb.png",
+            data: {
+              backgroundImage: "/static/img/svg/gfdcb.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "光伏逆变器",
+            code: "deviceCommon",
+            icon: "/static/img/configur/gfnbq.png",
+            data: {
+              backgroundImage: "/static/img/svg/gfnbq.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "拉绳式测距",
+            code: "deviceCommon",
+            icon: "/static/img/configur/lsscj.png",
+            data: {
+              backgroundImage: "/static/img/svg/lsscj.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "超声波测距",
+            code: "deviceCommon",
+            icon: "/static/img/configur/csbcj.png",
+            data: {
+              backgroundImage: "/static/img/svg/csbcj.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "液晶屏传感器",
+            code: "deviceCommon",
+            icon: "/static/img/configur/hjjccgqa.png",
+            data: {
+              backgroundImage: "/static/img/svg/yjpcgq.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "传感器",
+            code: "deviceCommon",
+            icon: "/static/img/configur/hjjccgqb.png",
+            data: {
+              backgroundImage: "/static/img/svg/cgq.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "小型气象站",
+            code: "deviceCommon",
+            icon: "/static/img/configur/xxqxz.png",
+            data: {
+              backgroundImage: "/static/img/svg/xxqxz.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 50,
+              height: 50,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          },
+          {
+            name: "客用电梯",
+            code: "deviceCommon",
+            icon: "/static/img/configur/kydt.png",
+            data: {
+              backgroundImage: "/static/img/svg/kydt.svg",
+              borderWidth: 0,
+              borderStyle: "none",
+              borderColor: "",
+              borderRadius: 0,
+              scale: "scale(1,1)",
+              opacity: 100,
+              left: 0,
+              width: 100,
+              height: 140,
+              rotate: 0,
+              top: 0,
+              equalScaleable: true, //是否等比例缩放
+              scaleable: true, //是否可缩放操作
+              rotateable: true, //是否可旋转操作
+              editable: false, //内容是否可编辑
+              dragable: true //是否可拖动
+            }
+          }
+        ]
       }
     ]
   },
   {
-    code: "assist",
+    code: "material",
     icon: "el-icon-files",
-    name: "辅助",
+    name: "素材",
     comList: [
       {
-        name: "连接点",
-        alias: "linkPoint",
-        code: "assistCommon",
-        icon: "/static/img/configur/link-point.png",
+        name: "矩形",
+        code: "materialRectangle",
+        icon: "/static/img/configur/material/rectangle.png",
         data: {
-          backgroundImage: "/static/img/svg/link-point.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 30,
-          height: 30,
-          rotate: 0,
-          top: 0,
-          equalScaleable: false, //是否等比例缩放
-          scaleable: false, //是否可缩放操作
-          rotateable: false, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          ...baseData,
+          // backgroundImage: "/static/img/svg/material/rectangle.svg",
+          width: 50,
+          height: 50,
+          // dataType: "device",
+          // equalScaleable: true //是否等比例缩放
         }
       },
       {
-        name: "水管（上）",
-        code: "assistCommon",
-        alias: "water_top",
-        icon: "/static/img/configur/h-top.png",
+        name: "箭头",
+        code: "materialCommon",
+        icon: "/static/img/configur/material/arrow.png",
         data: {
-          backgroundImage: "/static/img/svg/shuiguan-top.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 30,
-          height: 30,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          ...baseData,
+          backgroundImage: "/static/img/svg/material/arrow.svg",
+          width: 50,
+          height: 50,
+          // dataType: "device",
+          equalScaleable: true //是否等比例缩放
         }
       },
       {
-        name: "水管（下）",
-        code: "assistCommon",
-        alias: "water_bottom",
-        icon: "/static/img/configur/h-bottom.png",
+        name: "星形",
+        code: "materialCommon",
+        icon: "/static/img/configur/material/star.png",
         data: {
-          backgroundImage: "/static/img/svg/shuiguan-bottom.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 30,
-          height: 30,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          ...baseData,
+          backgroundImage: "/static/img/svg/material/star.svg",
+          width: 50,
+          height: 50,
+          // dataType: "device",
+          // equalScaleable: true //是否等比例缩放
         }
       },
       {
-        name: "水管（左）",
-        code: "assistCommon",
-        alias: "water_left",
-        icon: "/static/img/configur/v-left.png",
+        name: "圆形",
+        code: "materialCommon",
+        icon: "/static/img/configur/material/circle.png",
         data: {
-          backgroundImage: "/static/img/svg/shuiguan-left.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 30,
-          height: 30,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          ...baseData,
+          backgroundImage: "/static/img/svg/material/circle.svg",
+          width: 50,
+          height: 50,
+          // dataType: "device",
+          // equalScaleable: true //是否等比例缩放
         }
       },
       {
-        name: "水管（右）",
-        code: "assistCommon",
-        alias: "water_right",
-        icon: "/static/img/configur/v-right.png",
+        name: "四边形",
+        code: "materialCommon",
+        icon: "/static/img/configur/material/quadrangle.png",
         data: {
-          backgroundImage: "/static/img/svg/shuiguan-right.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 30,
-          height: 30,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          ...baseData,
+          backgroundImage: "/static/img/svg/material/quadrangle.svg",
+          width: 50,
+          height: 50,
+          // dataType: "device",
+          // equalScaleable: true //是否等比例缩放
         }
       },
       {
-        name: "水管（左上）",
-        code: "assistCommon",
-        alias: "water_lefttop",
-        icon: "/static/img/configur/t-1.png",
+        name: "多边形",
+        code: "materialCommon",
+        icon: "/static/img/configur/material/polygon.png",
         data: {
-          backgroundImage: "/static/img/svg/shuiguan-topleft.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 30,
-          height: 30,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          ...baseData,
+          backgroundImage: "/static/img/svg/material/polygon.svg",
+          width: 50,
+          height: 50,
+          // dataType: "device",
+          // equalScaleable: true //是否等比例缩放
         }
       },
       {
-        name: "水管（左下）",
-        alias: "water_leftbottom",
-        code: "assistCommon",
-        icon: "/static/img/configur/t-4.png",
+        name: "装饰1",
+        code: "materialCommon",
+        icon: "/static/img/configur/material/embellish-1.png",
         data: {
-          backgroundImage: "/static/img/svg/shuiguan-bottomleft.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 30,
-          height: 30,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          ...baseData,
+          backgroundImage: "/static/img/svg/material/embellish-1.svg",
+          width: 300,
+          height: 40,
+          // dataType: "device",
+          // equalScaleable: true //是否等比例缩放
         }
       },
       {
-        name: "水管（右上）",
-        alias: "water_righttop",
-        code: "assistCommon",
-        icon: "/static/img/configur/t-2.png",
+        name: "装饰2",
+        code: "materialCommon",
+        icon: "/static/img/configur/material/embellish-2.png",
         data: {
-          backgroundImage: "/static/img/svg/shuiguan-topright.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 30,
-          height: 30,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
+          ...baseData,
+          backgroundImage: "/static/img/svg/material/embellish-2.svg",
+          width: 300,
+          height: 40,
+          // dataType: "device",
+          // equalScaleable: true //是否等比例缩放
         }
       },
-      {
-        name: "水管（右下）",
-        alias: "water_rightbottom",
-        code: "assistCommon",
-        icon: "/static/img/configur/t-3.png",
-        data: {
-          backgroundImage: "/static/img/svg/shuiguan-bottomright.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 30,
-          height: 30,
-          rotate: 0,
-          top: 0,
-          equalScaleable: true, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "水管（水平）",
-        alias: "water_horizontal",
-        code: "assistCommon",
-        icon: "/static/img/configur/h.png",
-        data: {
-          backgroundImage: "/static/img/svg/shuiguan-h.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 150,
-          height: 30,
-          rotate: 0,
-          top: 0,
-          equalScaleable: false, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      },
-      {
-        name: "水管（垂直）",
-        code: "assistCommon",
-        alias: "water_vertical",
-        icon: "/static/img/configur/v.png",
-        data: {
-          backgroundImage: "/static/img/svg/shuiguan-v.svg",
-          borderWidth: 0,
-          borderStyle: "none",
-          borderColor: "",
-          borderRadius: 0,
-          scale: "scale(1,1)",
-          opacity: 100,
-          left: 0,
-          width: 30,
-          height: 150,
-          rotate: 0,
-          top: 0,
-          equalScaleable: false, //是否等比例缩放
-          scaleable: true, //是否可缩放操作
-          rotateable: true, //是否可旋转操作
-          editable: false, //内容是否可编辑
-          dragable: true //是否可拖动
-        }
-      }
+      // {
+      //   name: "连接点",
+      //   alias: "linkPoint",
+      //   code: "assistCommon",
+      //   icon: "/static/img/configur/link-point.png",
+      //   data: {
+      //     backgroundImage: "/static/img/svg/link-point.svg",
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     borderRadius: 0,
+      //     scale: "scale(1,1)",
+      //     opacity: 100,
+      //     left: 0,
+      //     width: 30,
+      //     height: 30,
+      //     rotate: 0,
+      //     top: 0,
+      //     equalScaleable: false, //是否等比例缩放
+      //     scaleable: false, //是否可缩放操作
+      //     rotateable: false, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     dragable: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "水管（上）",
+      //   code: "assistCommon",
+      //   alias: "water_top",
+      //   icon: "/static/img/configur/h-top.png",
+      //   data: {
+      //     backgroundImage: "/static/img/svg/shuiguan-top.svg",
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     borderRadius: 0,
+      //     scale: "scale(1,1)",
+      //     opacity: 100,
+      //     left: 0,
+      //     width: 30,
+      //     height: 30,
+      //     rotate: 0,
+      //     top: 0,
+      //     equalScaleable: true, //是否等比例缩放
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     dragable: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "水管（下）",
+      //   code: "assistCommon",
+      //   alias: "water_bottom",
+      //   icon: "/static/img/configur/h-bottom.png",
+      //   data: {
+      //     backgroundImage: "/static/img/svg/shuiguan-bottom.svg",
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     borderRadius: 0,
+      //     scale: "scale(1,1)",
+      //     opacity: 100,
+      //     left: 0,
+      //     width: 30,
+      //     height: 30,
+      //     rotate: 0,
+      //     top: 0,
+      //     equalScaleable: true, //是否等比例缩放
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     dragable: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "水管（左）",
+      //   code: "assistCommon",
+      //   alias: "water_left",
+      //   icon: "/static/img/configur/v-left.png",
+      //   data: {
+      //     backgroundImage: "/static/img/svg/shuiguan-left.svg",
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     borderRadius: 0,
+      //     scale: "scale(1,1)",
+      //     opacity: 100,
+      //     left: 0,
+      //     width: 30,
+      //     height: 30,
+      //     rotate: 0,
+      //     top: 0,
+      //     equalScaleable: true, //是否等比例缩放
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     dragable: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "水管（右）",
+      //   code: "assistCommon",
+      //   alias: "water_right",
+      //   icon: "/static/img/configur/v-right.png",
+      //   data: {
+      //     backgroundImage: "/static/img/svg/shuiguan-right.svg",
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     borderRadius: 0,
+      //     scale: "scale(1,1)",
+      //     opacity: 100,
+      //     left: 0,
+      //     width: 30,
+      //     height: 30,
+      //     rotate: 0,
+      //     top: 0,
+      //     equalScaleable: true, //是否等比例缩放
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     dragable: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "水管（左上）",
+      //   code: "assistCommon",
+      //   alias: "water_lefttop",
+      //   icon: "/static/img/configur/t-1.png",
+      //   data: {
+      //     backgroundImage: "/static/img/svg/shuiguan-topleft.svg",
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     borderRadius: 0,
+      //     scale: "scale(1,1)",
+      //     opacity: 100,
+      //     left: 0,
+      //     width: 30,
+      //     height: 30,
+      //     rotate: 0,
+      //     top: 0,
+      //     equalScaleable: true, //是否等比例缩放
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     dragable: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "水管（左下）",
+      //   alias: "water_leftbottom",
+      //   code: "assistCommon",
+      //   icon: "/static/img/configur/t-4.png",
+      //   data: {
+      //     backgroundImage: "/static/img/svg/shuiguan-bottomleft.svg",
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     borderRadius: 0,
+      //     scale: "scale(1,1)",
+      //     opacity: 100,
+      //     left: 0,
+      //     width: 30,
+      //     height: 30,
+      //     rotate: 0,
+      //     top: 0,
+      //     equalScaleable: true, //是否等比例缩放
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     dragable: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "水管（右上）",
+      //   alias: "water_righttop",
+      //   code: "assistCommon",
+      //   icon: "/static/img/configur/t-2.png",
+      //   data: {
+      //     backgroundImage: "/static/img/svg/shuiguan-topright.svg",
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     borderRadius: 0,
+      //     scale: "scale(1,1)",
+      //     opacity: 100,
+      //     left: 0,
+      //     width: 30,
+      //     height: 30,
+      //     rotate: 0,
+      //     top: 0,
+      //     equalScaleable: true, //是否等比例缩放
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     dragable: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "水管（右下）",
+      //   alias: "water_rightbottom",
+      //   code: "assistCommon",
+      //   icon: "/static/img/configur/t-3.png",
+      //   data: {
+      //     backgroundImage: "/static/img/svg/shuiguan-bottomright.svg",
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     borderRadius: 0,
+      //     scale: "scale(1,1)",
+      //     opacity: 100,
+      //     left: 0,
+      //     width: 30,
+      //     height: 30,
+      //     rotate: 0,
+      //     top: 0,
+      //     equalScaleable: true, //是否等比例缩放
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     dragable: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "水管（水平）",
+      //   alias: "water_horizontal",
+      //   code: "assistCommon",
+      //   icon: "/static/img/configur/h.png",
+      //   data: {
+      //     backgroundImage: "/static/img/svg/shuiguan-h.svg",
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     borderRadius: 0,
+      //     scale: "scale(1,1)",
+      //     opacity: 100,
+      //     left: 0,
+      //     width: 150,
+      //     height: 30,
+      //     rotate: 0,
+      //     top: 0,
+      //     equalScaleable: false, //是否等比例缩放
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     dragable: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "水管（垂直）",
+      //   code: "assistCommon",
+      //   alias: "water_vertical",
+      //   icon: "/static/img/configur/v.png",
+      //   data: {
+      //     backgroundImage: "/static/img/svg/shuiguan-v.svg",
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     borderRadius: 0,
+      //     scale: "scale(1,1)",
+      //     opacity: 100,
+      //     left: 0,
+      //     width: 30,
+      //     height: 150,
+      //     rotate: 0,
+      //     top: 0,
+      //     equalScaleable: false, //是否等比例缩放
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     dragable: true //是否可拖动
+      //   }
+      // }
     ]
   }
 ];

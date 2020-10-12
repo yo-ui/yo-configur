@@ -1,11 +1,11 @@
 //预览
 <template>
+    <!-- :close-on-click-modal="false"
+    :close-on-press-escape="false" -->
   <el-dialog
     class="bm-dialog-preview-com"
     v-dialogDrag="true"
     :title="$lang('预览')"
-    :close-on-click-modal="false"
-    :close-on-press-escape="false"
     :visible.sync="showDialogStatus"
     width="800px"
   >

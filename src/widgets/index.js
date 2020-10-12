@@ -76,6 +76,14 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-device" */ "@/components/component/device/common/index.vue"
     ),
+  materialCommonCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material" */ "@/components/component/material/common/index.vue"
+    ),
+  materialRectangleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-rectangle" */ "@/components/component/material/rectangle/index.vue"
+    ),
   assistCommonCom: () =>
     import(
       /* webpackChunkName: "bm-component-assist" */ "@/components/component/assist/common/index.vue"
@@ -162,6 +170,14 @@ let styles = {
   deviceCommonStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-style" */ "@/components/component/device/common/style.vue"
+    ),
+  materialCommonStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-style" */ "@/components/component/material/common/style.vue"
+    ),
+  materialRectangleStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-rectangle-style" */ "@/components/component/material/rectangle/style.vue"
     ),
   assistCommonStyleCom: () =>
     import(

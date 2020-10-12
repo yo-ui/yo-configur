@@ -6,7 +6,35 @@
           <i :class="item.icon"></i>
           <p>{{ item.name }}</p>
         </template>
-        <ul class="com-box">
+        <el-collapse
+          v-model="activeNames"
+          v-if="item.groupList && item.groupList.length > 0"
+        >
+          <el-collapse-item
+            :title="_item.groupName"
+            :name="_item.groupCode"
+            v-for="_item in item.groupList"
+            :key="_item.groupCode"
+          >
+            <ul class="com-box">
+              <li
+                v-for="(__item, __index) in _item.comList"
+                draggable
+                @mousedown.stop
+                :key="`${_item.code}_${__item.groupCode}_${__index}`"
+                @click.stop="clickEvent(__item)"
+                :data-item="JSON.stringify(__item)"
+              >
+                <i
+                  class="bm-icon"
+                  :style="`background-image:url(${__item.icon})`"
+                ></i>
+                {{ __item.name }}
+              </li>
+            </ul>
+          </el-collapse-item>
+        </el-collapse>
+        <ul class="com-box" v-else>
           <li
             v-for="(_item, _index) in item.comList"
             draggable
@@ -42,6 +70,7 @@ export default {
   data() {
     let tabList = Object.freeze(Constants.COMPONENTLIBRARY);
     return {
+      activeNames: ["pipeline-system"],
       tabList,
       activeIndex: tabList[0].code
     };
@@ -71,7 +100,7 @@ export default {
       selectComAction: "canvas/selectCom",
       // upload2OssAction: "upload2Oss",
       createHistoryAction: "canvas/createHistory",
-      createRecordAction: "canvas/createRecord"
+      // createRecordAction: "canvas/createRecord"
     }),
     initEvent() {
       $(document).on("dragstart", this.dragstartEvent);

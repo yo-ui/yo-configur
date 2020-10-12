@@ -65,6 +65,7 @@ export default {
         this.setLinkPoint(activeCom);
       }
       this.stopMove();
+      this.createHistoryAction()
     }
   }
 };

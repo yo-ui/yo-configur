@@ -349,6 +349,7 @@ export default {
       selectComAction: "canvas/selectCom",
       orgStrucListByLevelAction: "orgStrucListByLevel",
       canvasGetAction: "canvasGet",
+      createHistoryAction: "canvas/createHistory",
       // commonVerifyInfoAction: "commonVerifyInfo",
       selectComsAction: "canvas/selectComs"
     }),
@@ -393,6 +394,7 @@ export default {
             canvas.height = height;
           });
         }
+        this.createHistoryAction();
       });
       // });
       this.orgStrucListByLevelFunc((list = []) => {
@@ -643,6 +645,8 @@ export default {
         // Delete
         this.deleteEvent();
       }
+
+      this.createHistoryAction();
     },
     //剪切
     cutEvent() {

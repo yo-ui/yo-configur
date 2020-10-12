@@ -3,14 +3,14 @@
     <div class="left">
       <el-button
         @click="cancelEvent"
-        :disabled="historyIndex > historyList.length - 1"
+        :disabled="historyIndex > historyList.length - 2"
       >
         <i class="el-icon-refresh-left" :title="$lang('撤销')"></i>
         {{ $lang("撤销") }}
       </el-button>
       <el-button @click="resumeEvent" :disabled="historyIndex < 1">
         <i class="el-icon-refresh-right" :title="$lang('恢复')"></i>
-        {{ $lang("恢复") }}{{ historyIndex }}
+        {{ $lang("恢复") }}
       </el-button>
       <el-button @click="recordEvent">
         <i class="el-icon-upload" :title="$lang('记录点')"></i>
@@ -366,6 +366,7 @@ export default {
       }
       let widgetList = historyList[--historyIndex];
       this.setWidgetList(widgetList || []);
+      this.selectComAction();
       this.setHistoryIndex(historyIndex);
     },
     cancelEvent() {
@@ -379,6 +380,7 @@ export default {
       }
       let widgetList = historyList[++historyIndex];
       this.setWidgetList(widgetList || []);
+      this.selectComAction();
       // condition.historyIndex = ++historyIndex;
       this.setHistoryIndex(historyIndex);
     },
