@@ -165,14 +165,14 @@
           </el-tooltip>
           <el-tooltip content="垂直翻转" placement="top" effect="dark">
             <i
-              class="el-icon-view"
+              class="bomi bomi-flip-v"
               :class="{ active: info.flipV }"
               @click="info.flipV = !info.flipV"
             ></i>
           </el-tooltip>
           <el-tooltip content="水平翻转" placement="top" effect="dark">
             <i
-              class="el-icon-view"
+              class="bomi bomi-flip-h"
               :class="{ active: info.flipH }"
               @click="info.flipH = !info.flipH"
             ></i>

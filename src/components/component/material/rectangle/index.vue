@@ -69,6 +69,8 @@ export default {
         opacity = "",
         scale = "",
         visible = true,
+        flipV = false,
+        flipH = false,
         // fontFamily = "",
         // fontSize = "",
         // fontWeight = "",
@@ -102,7 +104,8 @@ export default {
       styles["borderWidth"] = `${borderWidth}px`;
       styles["opacity"] = opacity / 100;
       styles["borderRadius"] = `${borderRadius}px`;
-      if (scale) {
+      if (flipV || flipH) {
+        let scale = `scale(${flipH ? -1 : 1},${flipV ? -1 : 1})`;
         (styles["transform"] = `${scale}`),
           (styles["-webkit-transform"] = `${scale}`),
           (styles["-ms-transform"] = `${scale}`),
