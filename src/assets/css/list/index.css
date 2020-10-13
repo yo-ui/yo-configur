@@ -81,11 +81,34 @@
 .bm-content > span {
   margin-right: 10px;
 }
+.bm-content > div {
+  margin: 0 5px;
+}
+.bm-content > div > span {
+  line-height: 30px;
+  height: 30px;
+  vertical-align: top;
+}
+.bm-content > div > small {
+  display: inline-block;
+  height: 30px;
+  vertical-align: top;
+  cursor: pointer;
+  margin-left: 5px;
+}
+.bm-content-list {
+  border: 1px solid #ddd;
+  padding: 5px;
+}
 .bm-content-list > li {
-  line-height: 24px;
-  margin: 1px 0;
-  padding: 4px 8px;
+  line-height: 30px;
+  margin: 5px 0;
   display: flex;
+}
+.bm-content-list > li > span,
+.bm-content-list > li > img {
+  vertical-align: middle;
+  margin-right: 5px;
 }
 .bm-action-list > li {
   line-height: 24px;

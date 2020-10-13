@@ -26,9 +26,9 @@ class Kydt extends Spirit {
             text: '填充->离散',
             expr: 'SwSts',
             states: [
-              {name:'start',text:'开启',value: 1},
-              {name:'stop',text:'停止',value: 0},
-              {name:'alarm',text:'报警',value: 2}],
+              {text:'停止',value: 0},
+              {text:'开启',value: 1},
+              {text:'报警',value: 2}],
             value: 0,
             category: 3}]
       }
@@ -227,13 +227,7 @@ class Kydt extends Spirit {
     let states = animation.states;
     states.forEach(function (state) {
       if(state.value==value) {
-         if(state.name=="start") {
-           that.start();
-         }else if(state.name=="stop") {
-           that.stop();
-         }else if(state.name=="alarm") {
-           that.alarm();
-         }
+        that.state(value)
       }
     })
   }

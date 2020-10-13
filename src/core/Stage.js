@@ -13,17 +13,17 @@ import View from "./../View";
 import Color from "./Color"
 import Toolbar from "./Toolbar"
 import Group from "./Group"
-import Panel from "./Panel"
 import Help from "./../Help"
 import Combination from "../components/common/Combination";
+import Tree from "./../assets/js/Tree"
 
 /**
  * 舞台
  */
 class Stage {
 
-	constructor(option,config) {
-	    this.config = config;
+	constructor(option,imgHost) {
+	    this.imgHost = imgHost;
 	    this.option = option;
 	    this.toolType = 1;//1移动方式 2拼装方式
 	    this.selectedType = 1;//选择类型 1:默认 2:框选
@@ -41,7 +41,6 @@ class Stage {
       this.library = new Library(this);//组件库
       this.keydown = new Keydown(this);//快捷键
       this.group = new Group(this);
-      this.panel = new Panel(this);
       this.help = new Help(this);
 	    this.init();
 	}
@@ -297,6 +296,7 @@ class Stage {
     this.waterPipe = new WaterPipe(this);
     this.paw.bindResizeEvent();
     this.toolbar.disabled();
+    this.zoom.init();
 	}
 
   stageAuto() {
@@ -362,7 +362,7 @@ class Stage {
 							</div> 
 						</div>				
 					</div>
-		      <div class="bm-tree">背景</div>
+		      <div class="bm-tree"><i class="fa fa-down"></i>&nbsp;背景</div>
 					<div class="bm-style">
 					  <div class="text">颜色：</div>
 						<div class="value">
@@ -378,21 +378,22 @@ class Stage {
 							</div>
 							<form id="stageBg" style="display: inline-block">
                 <div class="bm-upload" style="width: 80px">
-                  <span>选择图片</span>								 
+                  <div class="primary">选择图片</div>								 
                   <input type="file" name="stageBg"/>								 	              
                 </div>
               </form>		
 						</div>
 					</div>`);
         $('#configur_property').html(html);
-        that.zoom.init();
-        Tooltip.init();
+
         html.find("[name=bgColor]").val(that.background.color)
         html.find("[name=bgColor]").on('change',function() {
             that.background.color = $(this).val();
             $('#configur_stage').css({'background-color': $(this).val()})
         })
-
+        $('#configur_property .bm-tree').each(function () {
+          Tree.init($(this))
+        })
         if(that.background.url) {
           $('#configur_stage').css({'background-image': 'url('+that.background.url+')'});
           $('#subline').prop("checked",true)
@@ -416,7 +417,7 @@ class Stage {
           let form = $("#stageBg")[0]
           let file = $(this).get(0).files[0]
           that.option.upload(form,file,function(url) {
-            that.background.url = that.config.imgHost+"/"+url;
+            that.background.url = that.imgHost+"/"+url;
             $('#configur_stage').css({'background-image': 'url('+that.background.url+')'});
           })
         })
@@ -591,7 +592,6 @@ class Stage {
 	//删除
 	remove() {
 		let that = this;
-		console.log(that.property);
 		if(that.property&&!that.property.isDrag) {
 		  Toast.alert("请先分解在删除！")
       return;
@@ -695,7 +695,6 @@ class Stage {
       that.toolbar.edit();
     });
 
-
 		el.on('contextmenu',function(e) {
 			if(that.toolType==1) {
 				el.trigger('click');
@@ -718,7 +717,6 @@ class Stage {
 	propertyStyle() {
 		let that = this;
 		if(this.property){
-      Tooltip.init();
 			this.property.renderer();
 		  let config = that.property.config;
 			$('#configur_property').find('[name=bg]').on('change',function() {
@@ -726,9 +724,12 @@ class Stage {
           let file = $(this).get(0).files[0]
           that.option.upload(form,file,function(url) {
             that.property.config.url = url;
-            $('#'+that.property.id).find('img').attr('src',that.config.imgHost+"/"+url);
+            $('#'+that.property.id).find('img').attr('src',that.imgHost+"/"+url);
           })
 			})
+      $('#configur_property .bm-tree').each(function () {
+        Tree.init($(this))
+      })
 		}
 	}
 
@@ -784,7 +785,7 @@ class Stage {
         spirit.isRotate = c.isRotate;
         spirit.config = c.config;
         if(className=="Images") {
-          let url = that.config.imgHost+"/"+spirit.config.url;
+          let url = that.imgHost+"/"+spirit.config.url;
           $('#'+spirit.id).find('img').attr('src', url);
         }
         spirit.refresh();
@@ -804,6 +805,7 @@ class Stage {
           let li = $('<li></li>');
           li.data('id',data.id)
           li.on('click',function (e) {
+            that.property = "";
             that.triggerClick();
             $(this).addClass('active');
             $(this).siblings().each(function () {
@@ -823,6 +825,7 @@ class Stage {
               let id = $(this).parent().parent().data("id");
               that.bindD.create(id);
               $(this).parent().parent().trigger('click');
+
               e.stopPropagation();
             });
             value.append(bind);
@@ -991,13 +994,6 @@ class Stage {
     $('#'+data.id).css({position:"absolute",left:_x,top:_y});
     $('#'+id).find(".comb").append($('#'+data.id).remove());
     return data.id;
-  }
-
-  //预览
-  preview() {
-    let view = new View(this.config);
-    $('.main-content').html(view.template());
-    view.init();
   }
 
   //舞台触发点击

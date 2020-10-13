@@ -15,6 +15,8 @@
 }
 .bm-zoom {
   width: 100%;
+  padding: 10px 0px;
+  margin-right: 20px;
 }
 .bm-zoom > div {
   display: inline-block;
@@ -25,10 +27,9 @@
 .bm-zoom > div > i {
   font-size: 24px;
   cursor: pointer;
-  border: 1px solid transparent;
 }
 .bm-zoom > div > i:hover {
-  border: 1px inset #ddd;
+  color: #12a3ff;
 }
 .bm-zoom > span {
   display: inline-block;
@@ -37,6 +38,7 @@
   line-height: 20px;
   vertical-align: middle;
   text-align: center;
+  font-weight: bold;
 }
 .bm-color-box {
   float: left;
@@ -414,4 +416,19 @@
   display: block;
   -ms-touch-action: none;
   touch-action: none;
+}
+.bm-add-minus {
+  line-height: 30px;
+  background-color: #F5F5F5;
+  padding-left: 5px;
+  text-align: center;
+  width: 80px;
+  cursor: pointer;
+}
+.bm-add-minus > i {
+  margin-top: -4px;
+  font-size: 20px;
+}
+.bm-add-minus > i:hover {
+  color: #12a3ff;
 }

@@ -122,17 +122,6 @@ class Text extends Spirit {
                     </div>		
                   </div></div>`);
 		$('#configur_property').append(html);
-    $('#configur_property').find('.bm-tree').on('click',function () {
-      if($(this).next().is(":hidden")) {
-        $(this).next().show();
-        $(this).find('i').addClass('fa-down')
-        $(this).find('i').removeClass('fa-left')
-      }else {
-        $(this).next().hide();
-        $(this).find('i').addClass('fa-left')
-        $(this).find('i').removeClass('fa-down')
-      }
-    })
 
 		let dataList = [11,13,14,15,16,18,24,30,60,100]
 	    let element = $('#configur_property').find('[name=textFS]');
@@ -163,7 +152,6 @@ class Text extends Spirit {
 	    html.find("[name=textColor]").val(that.config.font.color)
 	    html.find("[name=textColor]").on('change',function() {
 	    	that.config.font.color = $(this).val();
-	    	console.log(that.config.font.color);
 	    	that.refresh();
 	    })
 

@@ -99,20 +99,48 @@
 }
 
 .bm-content {
-  border: 1px solid #ddd;padding: 5px;
+  border: 1px solid #ddd;
+  padding: 5px;
 
   & > span {
     margin-right: 10px;
   }
+
+  & > div {
+    margin: 0 5px;
+  }
+
+  & > div > span {
+    line-height: 30px;
+    height: 30px;
+    vertical-align: top;
+  }
+
+  & > div > small {
+    display: inline-block;
+    height: 30px;
+    vertical-align: top;
+    cursor: pointer;
+    margin-left: 5px;
+  }
 }
 
 .bm-content-list {
+  border: 1px solid #ddd;
+  padding: 5px;
+
   & > li {
-    line-height: 24px;
-    margin: 1px 0;
-    padding: 4px 8px;
+    line-height: 30px;
+    margin: 5px 0;
     display: flex;
+
+    & > span,
+    & > img {
+      vertical-align: middle;
+      margin-right: 5px;
+    }
   }
+
 }
 
 .bm-action-list {

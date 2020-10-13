@@ -11,7 +11,7 @@ class Time extends Spirit {
 	    this.width = width;
 	    this.height = height;
 	    this.minWidth = 50;
-        this.minHeight = 30;
+      this.minHeight = 30;
 	    this.moveType = 0;
 	    this.linkage = false;
 	    this.isMove = true;
@@ -177,12 +177,12 @@ class Time extends Spirit {
 	    	that.config.font.color = $(this).val();
 	    	$('#'+that.id).find('span').css({color:that.config.font.color});
 	    })
-	
+
 	    element.val(this.config.font.size)
 	    element.on('change',function () {
 	      that.text();
 	    });
-	
+
 	    let format = html.find('[name=format]');
 	    format.val(that.config.type);
 	    format.on('change',function () {
@@ -195,7 +195,7 @@ class Time extends Spirit {
 
 	text() {
 	    let that = this;
-        let property = that.stage.property;
+      let property = that.stage.property;
 	    property.config.font.size = $('#configur_property').find('[name=textFS]').val();
 	    $('#'+property.id).find('span').css({'font-size':property.config.font.size+"px"});
 	    $('#temp_value').html($('#'+property.id).find('div').html());

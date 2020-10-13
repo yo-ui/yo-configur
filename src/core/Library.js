@@ -14,6 +14,7 @@ class Library {
 		this.libraryList = [
       {name:'通用',type:1,icon:'fa-base',
         subList:[
+          {className:'Text',title:'文本',url:'static/images/configur/text.png',width:50,height:24},
           {className:'Display',title:'显示屏',url:'static/images/configur/display.png',width:70,height:36},
           {className:'TextButton',title:'文本按钮',url:'static/images/configur/button.png',width:48,height:28},
           {className:'Monitor',title:'监控画面',url:'static/images/configur/monitor.png',width:400,height:200},
@@ -21,13 +22,9 @@ class Library {
           {className:'Images',title:'图片',url:'static/images/configur/img.png',width:50,height:50},
           {className:'Time',title:'时间',url:'static/images/configur/time.png',width:148,height:14},
           ]},
-      {name:'文本',type:1,icon:'fa-text',
-        subList:[
-          {className:'Text',title:'文本',url:'static/images/configur/text.png',width:50,height:24},
-          {className:'Table',title:'表格',url:'static/images/configur/table.png',width:700,height:60},
-        ]},
       {name:'图表',type:1,icon:'fa-chart',
         subList:[
+          {className:'Table',title:'表格',url:'static/images/configur/table.png',width:700,height:60},
           {className:'LineChart',title:'折线图',url:'static/images/configur/line.png',width:400,height:80},
           {className:'Map',title:'地图',url:'static/images/configur/map.png',width:400,height:200},
         ]},

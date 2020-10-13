@@ -442,6 +442,12 @@ span {
 .fa-text:before {
   content: "\e040";
 }
+.fa-minus:before {
+  content: "\e041";
+}
+.fa-add:before {
+  content: "\e042";
+}
 /**布局**/
 .bm-layout {
   height: 100%;
@@ -525,6 +531,8 @@ span {
 }
 .bm-zoom {
   width: 100%;
+  padding: 10px 0px;
+  margin-right: 20px;
 }
 .bm-zoom > div {
   display: inline-block;
@@ -535,10 +543,9 @@ span {
 .bm-zoom > div > i {
   font-size: 24px;
   cursor: pointer;
-  border: 1px solid transparent;
 }
 .bm-zoom > div > i:hover {
-  border: 1px inset #ddd;
+  color: #12a3ff;
 }
 .bm-zoom > span {
   display: inline-block;
@@ -547,6 +554,7 @@ span {
   line-height: 20px;
   vertical-align: middle;
   text-align: center;
+  font-weight: bold;
 }
 .bm-color-box {
   float: left;
@@ -925,6 +933,21 @@ span {
   -ms-touch-action: none;
   touch-action: none;
 }
+.bm-add-minus {
+  line-height: 30px;
+  background-color: #F5F5F5;
+  padding-left: 5px;
+  text-align: center;
+  width: 80px;
+  cursor: pointer;
+}
+.bm-add-minus > i {
+  margin-top: -4px;
+  font-size: 20px;
+}
+.bm-add-minus > i:hover {
+  color: #12a3ff;
+}
 /**侧面导航**/
 .bm-side {
   display: inline-block;
@@ -1108,11 +1131,34 @@ span {
 .bm-content > span {
   margin-right: 10px;
 }
+.bm-content > div {
+  margin: 0 5px;
+}
+.bm-content > div > span {
+  line-height: 30px;
+  height: 30px;
+  vertical-align: top;
+}
+.bm-content > div > small {
+  display: inline-block;
+  height: 30px;
+  vertical-align: top;
+  cursor: pointer;
+  margin-left: 5px;
+}
+.bm-content-list {
+  border: 1px solid #ddd;
+  padding: 5px;
+}
 .bm-content-list > li {
-  line-height: 24px;
-  margin: 1px 0;
-  padding: 4px 8px;
+  line-height: 30px;
+  margin: 5px 0;
   display: flex;
+}
+.bm-content-list > li > span,
+.bm-content-list > li > img {
+  vertical-align: middle;
+  margin-right: 5px;
 }
 .bm-action-list > li {
   line-height: 24px;
@@ -1543,16 +1589,31 @@ span {
   position: relative;
   overflow: hidden;
   display: inline-block;
-  padding: 3px 0px;
-  line-height: 24px;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  background-color: #0075E7;
   border-radius: 2px;
-  width: 100%;
+  width: 60px;
+  height: 30px;
+  line-height: 30px;
 }
-.bm-upload > span {
+.bm-upload > img {
+  width: 100%;
+  height: 100%;
+}
+.bm-upload > div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f2f3f5;
+  opacity: 0.6;
+}
+.bm-upload > div.primary {
+  opacity: 1;
+  background-color: #0075E7;
   color: #fff;
 }
 .bm-upload > input {
@@ -1560,11 +1621,15 @@ span {
   top: 0;
   right: 0;
   margin: 0;
+  padding: 0;
   border: solid transparent;
   opacity: 0;
   filter: alpha(opacity=0);
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
   cursor: pointer;
-  width: 100%;
+  font-size: 0;
+  z-index: 1;
 }
 /**select**/
 .bm-select {
@@ -2183,12 +2248,10 @@ input[type="checkbox"]:focus {
   display: inline-block;
   width: calc(100% - 12px);
   height: 1.42857143;
-  padding: 6px 5px;
+  padding: 3px 5px;
   font-size: 13px;
-  line-height: 1.42857143;
+  line-height: 24px;
   color: #000;
-  background-color: #fff;
-  background-image: none;
   border: 1px solid #ccc;
 }
 .form-control[disabled],
@@ -2851,16 +2914,14 @@ table th[class*="col-"] {
   color: #000;
   user-select: none;
   flex-flow: column nowrap;
-  line-height: 22px;
+  line-height: 20px;
   margin: 0 5px;
+}
+.bm-toolbar > .item:hover:not(.disabled) {
+  color: #12a3ff;
 }
 .bm-toolbar > .item > div i {
   font-size: 20px;
-  border: 1px solid transparent;
-  color: #000;
-}
-.bm-toolbar > .item > div i:hover {
-  border: 1px inset #ddd;
 }
 .bm-toolbar > .item > span {
   font-size: 12px;
@@ -2876,7 +2937,4 @@ table th[class*="col-"] {
 .bm-toolbar > .disabled > span {
   cursor: not-allowed;
   color: #666;
-}
-.bm-toolbar > .disabled > div > i:hover {
-  border: 1px solid transparent;
 }

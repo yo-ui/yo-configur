@@ -11,24 +11,25 @@ class Switch extends Spirit {
 	    this.width = width;
 	    this.height = height;
 	    this.minWidth = 30;
-        this.minHeight = 30;
+      this.minHeight = 30;
 	    this.moveType = 4;
 	    this.linkage = false;
 	    this.isMove = true;
 	    this.zIndex = 1;
-        this.isBind = true;
-        this.isAnimation = true;
+      this.isBind = true;
+      this.isAnimation = true;
 	    this.config = {
 	        bindData: {deviceId: ''},
-			animations: [
-			    {type: 31,
-		    	 text: '填充->离散',
-		    	 expr: 'SwSts',
-		    	 on: {value: 1,url: 'static/images/start.png'},
-		    	 off: {value: 0,url: 'static/images/end.png'},
-		    	 value: 0,
-		    	 category: 2}]
-	    }
+          animations: [
+              {type: 31,
+               text: '填充->离散',
+               expr: 'SwSts',
+               states: [{value: 1,text:'开',url: 'static/images/start.png',default: true},
+                         {value: 0,text:'关',url: 'static/images/end.png',default: true}],
+               value: 0,
+               isSwitch: true,
+               category: 2}]
+          }
 	}
 
 	template(){
@@ -43,6 +44,22 @@ class Switch extends Spirit {
                 </div>`)
 	}
 
+  refresh() {
+	  let that = this;
+    that.config.animations.forEach(function (animation) {
+      if(animation.type==31) {
+        animation.states.forEach(function (state) {
+          if(state.value==animation.value) {
+            if(state.default) {
+              $("#"+that.id).find('img').attr("src", state.url);
+            }else {
+              $("#"+that.id).find('img').attr("src", that.stage.imgHost+"/"+state.url);
+            }
+          }
+        })
+      }
+    })
+  }
 
 	toJson() {
 		let json = {
@@ -92,45 +109,18 @@ class Switch extends Spirit {
 
 	//填充（离散）
 	fillDiscrete(animation,value) {
-		let that = this;
-		animation.value = value;
-        if(animation.category==2) {
-			if(value==animation.on.value) {
-		        $('#'+that.id).find('img').attr("src", animation.on.url)
-		   }else if(value==animation.off.value) {
-		        $('#'+that.id).find('img').attr("src", animation.off.url)
-		    }
-		}
-	}
-
-	renderer() {
-	    let that = this;
-	    super.renderer();
-	    /**let dataList = []
-	    dataList.push(that.config.state.start)
-	    dataList.push(that.config.state.stop)
-	    dataList.forEach(function (data,index) {
-	      let li = $(`<li><span>${data.name}：</span><img src="${data.url}"></li>`);
-	      let button = $(`<span><form><div class="bm-upload" style="width: 50px"><span>更改</span><input type="file"/></div></form></span>`);
-	      button.data("index", index);
-	      button.find('form').on('change',function() {
-	        let index = $(this).parent().data("index");
-	        let form = $(this)[0]
-	        let file = $(this).find('input').get(0).files[0]
-	        that.stage.option.upload(form,file,function(url) {
-	          let imgUrl = that.stage.config.imgHost+"/"+url;
-	          if(index==0) {
-	          	that.config.state.stop.url = imgUrl
-	          }else if(index==1) {
-	          	that.config.state.start.url = imgUrl
-	          }
-	          button.prev().attr("src", imgUrl);
-	          that.refresh();
-	        })
-	      });
-	      li.append(button);
-	      $('.bm-common-list').append(li);
-	    })**/
+    let that = this;
+    animation.value = value;
+    let states = animation.states;
+    states.forEach(function (state) {
+      if(state.value==value) {
+        if(!state.default) {
+          $('#'+that.id).find('img').attr("src", that.stage.imgHost+"/"+state.url)
+        }else {
+          $('#'+that.id).find('img').attr("src", state.url)
+        }
+      }
+    })
 	}
 }
 

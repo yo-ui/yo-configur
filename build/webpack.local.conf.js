@@ -11,19 +11,19 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-const env = require('../config/test.env')
+const env = require('../config/local.env')
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
-      sourceMap: config.test.productionSourceMap,
+      sourceMap: config.local.productionSourceMap,
       extract: true,
       usePostCSS: true
     })
   },
-  devtool: config.test.productionSourceMap ? config.test.devtool : false,
+  devtool: config.local.productionSourceMap ? config.local.devtool : false,
   output: {
-    path: config.test.assetsRoot,
+    path: config.local.assetsRoot,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
@@ -32,7 +32,15 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': env
     }),
-
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+          warnings: false
+        }
+      },
+      sourceMap: config.local.productionSourceMap,
+      parallel: true
+    }),
     // extract css into its own file
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css'),
@@ -45,7 +53,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
     new OptimizeCSSPlugin({
-      cssProcessorOptions: config.test.productionSourceMap
+      cssProcessorOptions: config.local.productionSourceMap
         ? { safe: true, map: { inline: false } }
         : { safe: true }
     }),
@@ -53,7 +61,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: config.test.index,
+      filename: config.local.index,
       template: 'index.html',
       inject: true,
       minify: {
@@ -104,14 +112,14 @@ const webpackConfig = merge(baseWebpackConfig, {
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),
-        to: config.test.assetsSubDirectory,
+        to: config.local.assetsSubDirectory,
         ignore: ['.*']
       }
     ])
   ]
 })
 
-if (config.test.productionGzip) {
+if (config.local.productionGzip) {
   const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
   webpackConfig.plugins.push(
@@ -120,7 +128,7 @@ if (config.test.productionGzip) {
       algorithm: 'gzip',
       test: new RegExp(
         '\\.(' +
-        config.test.productionGzipExtensions.join('|') +
+        config.local.productionGzipExtensions.join('|') +
         ')$'
       ),
       threshold: 10240,
@@ -129,7 +137,7 @@ if (config.test.productionGzip) {
   )
 }
 
-if (config.test.bundleAnalyzerReport) {
+if (config.local.bundleAnalyzerReport) {
   const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }

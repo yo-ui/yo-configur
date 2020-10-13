@@ -1,5 +1,4 @@
 //公共
-import TextBox from './../components/common/TextBox';//动态数据
 import Text from './../components/common/Text';//文本
 import Images from './../components/common/Images';//图片
 import LineChart from './../components/common/LineChart';//图表
@@ -108,7 +107,6 @@ class SpiritFactory {
 	    case 'Db': return new Db(x,y,width,height);
 	    case 'ElectricBox': return new ElectricBox(x,y,width,height);
       case 'Text': return new Text(x,y,width,height);
-	    case 'TextBox': return new TextBox(x,y,width,height);
 	    case 'Bgsdb': return new Bgsdb(x,y,width,height);
 	    case 'Byq': return new Byq(x,y,width,height);
 	    case 'Dldrq': return new Dldrq(x,y,width,height);

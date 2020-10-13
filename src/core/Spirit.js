@@ -69,7 +69,7 @@ class Spirit {
              z-index: ${this.zIndex};    
              transform: rotate(${this.rotate}deg)"></div>`);
     }
-    
+
     //数据改变时
     dynamic(key,value) {
     	let that = this;
@@ -83,13 +83,13 @@ class Spirit {
         	}
         })
 	}
-    
+
     //填充（离散）
 	fillDiscrete(animation,value) {}
 	//填充（模拟）
 	fillAnalog(animation,value) {}
 
-    renderer() {
+  renderer() {
 		let that = this;
 		$('#configur_property').html('');
 		let html = $(`             
@@ -205,12 +205,22 @@ class Spirit {
         Toast.alert("控制成功！");
         let device = {}
         device.id = deviceId;
-        
+
         device.points = [{id:point,value:value}]
         that.stage.linkage(device);
         that.stage.password.hide();
       })
     });
+  }
+
+  state(value) {
+    if(value==0) {
+      this.stop();
+    }else if(value==1) {
+      this.start();
+    }else if(value==2) {
+      this.alarm();
+    }
   }
 
   stop() {

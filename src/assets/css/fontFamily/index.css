@@ -136,3 +136,9 @@
 .fa-text:before {
   content: "\e040";
 }
+.fa-minus:before {
+  content: "\e041";
+}
+.fa-add:before {
+  content: "\e042";
+}

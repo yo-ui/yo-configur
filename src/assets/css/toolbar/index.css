@@ -15,16 +15,14 @@
   color: #000;
   user-select: none;
   flex-flow: column nowrap;
-  line-height: 22px;
+  line-height: 20px;
   margin: 0 5px;
+}
+.bm-toolbar > .item:hover:not(.disabled) {
+  color: #12a3ff;
 }
 .bm-toolbar > .item > div i {
   font-size: 20px;
-  border: 1px solid transparent;
-  color: #000;
-}
-.bm-toolbar > .item > div i:hover {
-  border: 1px inset #ddd;
 }
 .bm-toolbar > .item > span {
   font-size: 12px;
@@ -40,7 +38,4 @@
 .bm-toolbar > .disabled > span {
   cursor: not-allowed;
   color: #666;
-}
-.bm-toolbar > .disabled > div > i:hover {
-  border: 1px solid transparent;
 }

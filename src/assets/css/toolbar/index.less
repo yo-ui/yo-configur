@@ -17,19 +17,16 @@
     color: #000;
     user-select: none;
     flex-flow: column nowrap;
-    line-height: 22px;
+    line-height: 20px;
     margin: 0 5px;
 
+    &:hover:not(.disabled) {
+      color: #12a3ff;
+    }
 
     & > div {
       & i {
         font-size: 20px;
-        border: 1px solid transparent;
-        color: #000;
-      }
-
-      & i:hover {
-        border: 1px inset #ddd;
       }
     }
     & > span {
@@ -49,9 +46,5 @@
   & > .disabled > span {
     cursor: not-allowed;
     color: #666;
-  }
-
-  & > .disabled > div > i:hover {
-    border: 1px solid transparent;
   }
 }

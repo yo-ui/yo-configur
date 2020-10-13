@@ -1,20 +1,13 @@
 import './assets/css/index.less'
-import conf from './common/api.conf'
 import dev from './common/api.dev'
+import local from './common/api.local'
 import test from './common/api.test'
 import prod from './common/api.prod'
 import View from './View';
 import Edit from './Edit';
 
 $(document).ready(function() {
-    let config = {};
-    if(conf.active=="dev") {
-      config = dev;
-    }else if(conf.active=="test") {
-      config = test;
-    }else if(conf.active=="prod") {
-      config = prod;
-    }
+    let config = getConfig();
     if(config.debug) {
       content(1);
     }else {
@@ -36,7 +29,6 @@ $(document).ready(function() {
         $('.main-content').html(edit.template());
         edit.init();
       }else if(type==2) {
-        console.log(config.service);
         let view = new View(config.service);
         $('.main-content').html(view.template());
         view.init();
@@ -47,6 +39,20 @@ $(document).ready(function() {
       var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
       var r = window.location.search.substr(1).match(reg);
       if(r!=null)return  unescape(r[2]); return null;
+    }
+
+    function getConfig() {
+      let config = {};
+      if(process.env.ACTIVE=="dev") {
+        config = dev;
+      }else if(process.env.ACTIVE=="local") {
+        config = local;
+      }else if(process.env.ACTIVE=="test") {
+        config = test;
+      }else if(process.env.ACTIVE=="prod") {
+        config = prod;
+      }
+      return config;
     }
 })
 

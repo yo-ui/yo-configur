@@ -27,7 +27,7 @@ class TextButton extends Spirit {
         animations: [{type: 16,text: '触发按钮->离散',expr: '',value: 1},
                      {type: 18,text: '触发按钮->显示',ids: []},
                      {type: 19,text: '触发按钮->隐藏',ids: []},
-                     /**{type: 20,text: '触发按钮->组合',ids: []}**/]
+                     {type: 20,text: '触发按钮->组合',ids: [],color:''}]
       }
       this.isGroup = true;
 	}

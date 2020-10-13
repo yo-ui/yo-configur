@@ -1,5 +1,4 @@
-import Animation from './Animation'
-
+import Panel from "./Panel"
 /**
  *
  */
@@ -7,9 +6,8 @@ class BindData {
 
   constructor(stage) {
     this.stage = stage;
-    this.bindData = {orgId:'',deviceId:'',devicePoint:''}
+    this.bindData = {orgId:'',deviceId:''}
     this.property;
-    this.animationType = 0;
     this.points = [];
   }
 
@@ -24,7 +22,6 @@ class BindData {
       })
     }else {
       this.property = this.stage.property;
-      console.log(that.property)
     }
     if(that.property) {
       that.bindData = that.property.config.bindData;
@@ -46,8 +43,9 @@ class BindData {
                           <ul class="bm-action-list"></ul>
                         </div>                                     
                       </div>`);
-      that.stage.panel.init("绑定数据",content,500);
-      that.stage.panel.confirm(function () {
+      that.panel = new Panel(this.stage);
+      that.panel.init("绑定数据",content,500);
+      that.panel.confirm(function () {
         that.property.config.bindData = that.bindData;
       })
 
@@ -93,20 +91,6 @@ class BindData {
       });
       that.oList();
     }
-  }
-
-  animationContent(){
-    let that = this;
-    $('.animation-content').html(Animation.template(this.animationType));
-    let inputPanel = $('.animation-content').find('.bm-input-panel')
-    inputPanel.find('input').val(that.property.config.animations[that.animationIndex].expr)
-    inputPanel.find('input').on('click',function () {
-      $(this).next().toggle();
-    });
-    inputPanel.find('.content').on('mouseleave',function (e) {
-      $(this).hide();
-    });
-    this.createPoint();
   }
 
   //组织列表
@@ -162,7 +146,7 @@ class BindData {
       that.stage.option.devicePoints(id,function(deviceList) {
         that.deviceList = deviceList;
         that.createDevice(that.deviceList);
-        that.stage.panel.show()
+        that.panel.show()
       })
     }
   }

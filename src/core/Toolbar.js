@@ -79,7 +79,7 @@ class Toolbar {
       {name:'unlock',type: 10}]
     dataList.forEach(function (data) {
       $('.bm-toolbar').find('.'+data.name).addClass('disabled');
-      $('.bm-toolbar').find('.fa-'+data.name).unbind('click')
+      $('.bm-toolbar').find('.'+data.name).unbind('click')
     })
   }
 
@@ -117,7 +117,7 @@ class Toolbar {
 
     toolbarList.forEach(function (data) {
       $('.bm-toolbar').find('.'+data.name).removeClass('disabled');
-      let toolbar = $('.bm-toolbar').find('.fa-'+data.name);
+      let toolbar = $('.bm-toolbar').find('.'+data.name);
       toolbar.data("type", data.type);
       toolbar.on('click',function () {
         let type = $(this).data("type")

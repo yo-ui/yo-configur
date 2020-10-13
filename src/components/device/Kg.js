@@ -26,8 +26,9 @@ class Kg extends Spirit {
 		    	 text: '填充->离散',
 		    	 expr: 'SwSts',
            states: [
-               {name:'on',text:'开',value: 1},
-               {name:'off',text:'关',value: 0}],
+               {text:'关',value: 0},
+               {text:'开',value: 1}
+               ],
 		    	 value: 0,
 		    	 category: 3}]
 	    }
@@ -138,11 +139,7 @@ class Kg extends Spirit {
       let states = animation.states;
       states.forEach(function (state) {
         if(state.value==value) {
-          if(state.name=="on") {
-            that.start();
-          }else if(state.name=="off") {
-            that.stop();
-          }
+          that.state(value)
         }
       })
     }

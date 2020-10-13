@@ -1,5 +1,5 @@
 'use strict'
 module.exports = {
   NODE_ENV: '"production"',
-  ACTIVE: '"prod"'
+  ACTIVE: '"local"'
 }

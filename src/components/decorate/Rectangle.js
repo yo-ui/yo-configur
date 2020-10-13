@@ -38,7 +38,7 @@ class Rectangle extends Spirit {
   refresh() {
     $('#'+this.id).find('div').css({'background-color':this.config.background.color});
   }
-  
+
   variableChange(data) {
   	console.log(data);
   	let that = this;
@@ -46,13 +46,13 @@ class Rectangle extends Spirit {
   	animations.forEach(function(animation) {
 	  	if(animation.type==31) {
 	  		that.fillColor(animation,data);
-	  	}	
+	  	}
     })
   }
-  
+
   fillColor(animation,variable) {
   	let that = this;
-    if(variable) { 
+    if(variable) {
 	  	if(variable.value==0) {
 	  		$('#'+that.id).find('span').css({'background-color': animation.on})
 	  	}else if(variable.value==1) {
@@ -75,7 +75,7 @@ class Rectangle extends Spirit {
   renderer() {
     let that = this;
     super.renderer();
-    let html = $(`<div class="bm-tree">背景</div>
+    let html = $(`<div class="bm-tree"><i class="fa fa-down"></i>&nbsp;背景</div>
                 <div class="bm-cell no-hover">
                   <div class="bm-cell__title">
                     <div>背景颜色</div>

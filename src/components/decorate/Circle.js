@@ -45,7 +45,7 @@ class Circle extends Spirit {
 	renderer() {
       let that = this;
 	    super.renderer();
-	    let html = $(`<div class="bm-tree">背景</div>
+	    let html = $(`<div class="bm-tree"><i class="fa fa-down"></i>&nbsp;背景</div>
 	                <div class="bm-cell no-hover">
 	                  <div class="bm-cell__title">
 	                    <div>背景颜色</div>
@@ -53,7 +53,7 @@ class Circle extends Spirit {
 	                  </div>													
 	                </div>`);
 	    $('#configur_property').append(html);
-	    
+
 	    html.find("[name=bgColor]").val(that.config.background.color)
 	    html.find("[name=bgColor]").on('change',function() {
 	    	that.config.background.color = $(this).val();

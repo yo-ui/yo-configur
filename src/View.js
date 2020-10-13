@@ -9,8 +9,6 @@ class View {
 
   constructor(config) {
     this.config = config;
-    console.log("...");
-    console.log(config);
   }
 
   init() {
@@ -279,7 +277,8 @@ class View {
         }
       }
     }
-    let stage = new ViewStage(option,this.config.imgHost);
+
+    let stage = new ViewStage(option, that.config.imgHost);
 
     $(window).resize(function() {
       stage.location();//页面改变时调整舞台位置

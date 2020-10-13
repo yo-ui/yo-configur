@@ -1,6 +1,6 @@
 import RemoteObject from './assets/js/RemoteObject'
 import Stage from './core/Stage'
-import Toast from "./core/Toast";
+import View from "./View";
 
 class Edit {
 
@@ -152,7 +152,7 @@ class Edit {
       }
     }
 
-    let stage = new Stage(option,this.config);
+    let stage = new Stage(option, this.config.imgHost);
 
     $('#property_tabs a').each(function(index) {
       $(this).data("value", index);
@@ -176,11 +176,11 @@ class Edit {
       window.history.back(-1);
     })
 
-    $('.bm-toolbar .fa-preview').on('click',function() {
-      stage.preview();
+    $('.bm-toolbar .preview').on('click',function() {
+      that.preview();
     })
 
-    $('.bm-toolbar .fa-save').on('click',function() {
+    $('.bm-toolbar .save').on('click',function() {
       stage.save();
     })
 
@@ -202,6 +202,13 @@ class Edit {
       stage.stageAuto();//舞台调整
       stage.location();//舞台位置
     })
+  }
+
+  //预览
+  preview() {
+    let view = new View(this.config);
+    $('.main-content').html(view.template());
+    view.init();
   }
 
   template() {
@@ -227,14 +234,6 @@ class Edit {
           <div><i class="fa fa-copy"></i></div>
           <span>复制</span>
         </div>  
-        <div class="halving"></div>  
-        <div class="item zoom">
-          <div class="bm-zoom">
-            <div><i class="fa fa-zoom-in"></i></div>
-            <div><i class="fa fa-zoom-out"></i></div>
-          </div>
-          <span class="bm-zoom-text">100%</span>
-        </div>
         <div class="halving"></div>
         <div class="item align-left">
           <div>
@@ -286,14 +285,21 @@ class Edit {
         <div class="item unlock">
           <div><i class="fa fa-unlock"></i></div>
           <span>解锁</span>
-        </div>
-        <div class="item pull-right">
+        </div>     
+        <div class="item save pull-right">
           <div><i class="fa fa-save"></i></div>
           <span>保存</span>
         </div>
-        <div class="item pull-right">
+        <div class="item preview pull-right">
           <div><i class="fa fa-preview"></i></div>    
           <span>预览</span>
+        </div>
+         <div class="pull-right">
+          <div class="bm-zoom">
+            <div><i class="fa fa-zoom-in"></i></div>
+            <span class="bm-zoom-text">100%</span>
+            <div><i class="fa fa-zoom-out"></i></div>
+          </div>   
         </div>
      </div>
       <div class="bm-layout__main">

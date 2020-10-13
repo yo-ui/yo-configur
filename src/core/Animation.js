@@ -1,4 +1,4 @@
-import Keydown from "./Keydown";
+import Panel from "./Panel"
 
 /**
  *
@@ -47,9 +47,10 @@ class Animation {
        that.reset();
      });
 
-     that.stage.panel.init("动画链接",content,500);
-     that.stage.panel.show();
-     that.stage.panel.confirm(function () {
+     let panel = new Panel(this.stage);
+     panel.init("动画链接",content,500);
+     panel.show();
+     panel.confirm(function () {
        that.stage.property.config.animations = that.animations;
      })
   }
@@ -103,33 +104,25 @@ class Animation {
       let html = $(`<div style="height: 100px;overflow: auto">
                        <ul class="bm-action-list"></ul>
                      </div>`)
+      let dataList = []
       this.stage.capacity.forEach(function (c) {
         if(c.className!="TextButton") {
-          let li = $(`<li>${c.name}</li>`)
-          if(that.animation.ids) {
-            that.animation.ids.forEach(function (id) {
-              if(c.id==id) {
-                li.addClass('active')
-              }
-            })
-          }
-          li.data("id", c.id)
-          li.on('click',function () {
-            let ids = that.animation.ids;
-            let id = $(this).data("id");
-            if($(this).hasClass('active')) {
-              $(this).removeClass('active')
-              ids = that.updateIds([id],ids)
-            }else {
-              $(this).addClass('active')
-              that.animation.ids.push(id);
-            }
-            that.animation.ids = ids;
-            that.updateAnimation(that.animation,type);
-          })
-          html.find('.bm-action-list').append(li);
+          dataList.push(c)
         }
       })
+      that.createList(html,dataList);
+      content.find('.animation-content').html(html);
+    }else if(type==20) {
+      let html = $(`<div style="height: 100px;overflow: auto">
+                       <ul class="bm-action-list"></ul>
+                     </div>`)
+      let dataList = []
+      this.stage.capacity.forEach(function (c) {
+        if(c.className=="TextButton") {
+          dataList.push(c)
+        }
+      })
+      that.createList(html,dataList);
       content.find('.animation-content').html(html);
     }else if(type==31) {
     	let html = $(`<div>
@@ -139,14 +132,24 @@ class Animation {
 	                       <ul></ul>
 	                     </div>
 	                   </div>
-                     <div class="bm-content"></div>
+                     <ul class="bm-content-list"></ul>
                      </div>`)
-
-    	if(that.animation.category==3) {
+      if(that.animation.category==2) {
+        that.createState(html);
+        if(!that.animation.isSwitch) {
+          let add = $(`<div class="bm-add-minus"><i class="fa fa-add"></i></div>`)
+          add.on('click',function () {
+            let animation = {text:''};
+          })
+          html.find('.bm-content-list').append(add);
+        }
+      } else if(that.animation.category==3) {
+    	  let li = $(`<li></li>`)
         that.animation.states.forEach(function (state) {
           let span = $(`<span>${state.value}->${state.text}</span>`);
-          html.find('.bm-content').append(span);
+          li.append(span);
         })
+        html.find('.bm-content-list').append(li);
     	}
     	html.find('[name=expr]').val(that.animation.expr);
     	html.find('[name=expr]').on('input propertyChange',function () {
@@ -183,7 +186,7 @@ class Animation {
           html.find('[name=expr]').val(that.animation.expr);
           html.find('[name=expr]').on('change',function () {
             that.animation.expr = $(this).val();
-            that.updateAnimation(that.animation,type);
+            that.updateAnimation(that.animation);
           });
         })
       }
@@ -228,9 +231,9 @@ class Animation {
     }
   }
 
-  updateAnimation(animation,type) {
+  updateAnimation(animation) {
     this.animations.forEach(function (data) {
-      if(data.type==type) {
+      if(data.type==animation.type) {
         data = animation;
       }
     })
@@ -246,6 +249,35 @@ class Animation {
       })
     })
     return dataList;
+  }
+
+  createList(html,dataList) {
+    let that = this;
+    dataList.forEach(function (data) {
+      let li = $(`<li>${data.name}</li>`)
+      if(that.animation.ids) {
+        that.animation.ids.forEach(function (id) {
+          if(data.id==id) {
+            li.addClass('active')
+          }
+        })
+      }
+      li.data("id", data.id)
+      li.on('click',function () {
+        let ids = that.animation.ids;
+        let id = $(this).data("id");
+        if($(this).hasClass('active')) {
+          $(this).removeClass('active')
+          ids = that.updateIds([id],ids)
+        }else {
+          $(this).addClass('active')
+          that.animation.ids.push(id);
+        }
+        that.animation.ids = ids;
+        that.updateAnimation(that.animation);
+      })
+      html.find('.bm-action-list').append(li)
+    })
   }
 
   createPoint(points) {
@@ -305,6 +337,52 @@ class Animation {
     }else {
       panel.find('.content').hide();
     }
+  }
+
+  createState(html) {
+     let that = this;
+    that.animation.states.forEach(function (state) {
+      let url = state.url;
+      if(!state.default) {
+        url = that.stage.imgHost+"/"+state.url;
+      }
+      let li = $(`<li>
+                     <span>${state.text}：</span>                
+                   </li>`);
+      if(!that.animation.isSwitch) {
+        let  input = $(`<input class="form-control" type="number" name="value" min="0" max="10" value="${state.value}" style="width: 40px">`)
+        input.on('change',function () {
+          state.value = $(this).val();
+        })
+        li.append(input);
+      }else {
+        let value = $(`<span>${state.value}</span>`)
+        li.append(value);
+      }
+      let upload = $(`<span>
+                           <form>
+                             <div class="bm-upload">
+                               <img src="${url}">
+                               <div><i class="fa fa-add" style="font-size: 20px;margin-top: -5px"></i></div>
+                               <input type="file"/>
+                             </div>
+                           </form>
+                        </span>`);
+
+      upload.find('form').on('change',function() {
+        let form = $(this)[0]
+        let file = $(this).find('input').get(0).files[0]
+        that.stage.option.upload(form,file,function(url) {
+          state.default = false;
+          state.url = url;
+          let imgUrl = that.stage.imgHost+"/"+url;
+          that.stage.property.refresh();
+          upload.find('img').attr("src", imgUrl);
+        })
+      });
+      li.append(upload);
+      html.find('.bm-content-list').append(li);
+    })
   }
 }
 
