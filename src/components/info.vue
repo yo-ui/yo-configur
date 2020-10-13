@@ -15,7 +15,7 @@
         class="com-style"
         v-if="activeCom.type"
         :info="activeCom"
-        :is="`${activeCom.type}StyleCom`"
+        :is="`${activeCom.styleType||activeCom.type}StyleCom`"
       ></component>
     </template>
     <template v-if="activeIndex == 'element'">

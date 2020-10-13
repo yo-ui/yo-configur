@@ -109,6 +109,18 @@ const Constants = {
     { code: "inset", name: "3D inset 边框" },
     { code: "outset", name: "3D outset 边框" }
   ],
+  SVGBORDERSTYLELIST: [
+    { code: "none", name: "无边框" },
+    { code: "solid", name: "实线" },
+    { code: "dashed", name: "虚线" },
+    // { code: "space-dashed", name: "间隔虚线" },
+    { code: "dotted", name: "点状边框" },
+    // { code: "double", name: "双线" },
+    // { code: "groove", name: "3D 凹槽边框" },
+    // { code: "ridge", name: "3D 垄状边框" },
+    // { code: "inset", name: "3D inset 边框" },
+    // { code: "outset", name: "3D outset 边框" }
+  ],
   BACKGROUNDTYPELIST: [
     //填充颜色类型
     { code: "purity", name: "纯色" },

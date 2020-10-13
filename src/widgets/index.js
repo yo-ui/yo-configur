@@ -84,6 +84,34 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-material-rectangle" */ "@/components/component/material/rectangle/index.vue"
     ),
+  materialCircleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-circle" */ "@/components/component/material/circle/index.vue"
+    ),
+  materialArrowCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-arrow" */ "@/components/component/material/arrow/index.vue"
+    ),
+  materialStarCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-star" */ "@/components/component/material/star/index.vue"
+    ),
+  materialPolygonCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-polygon" */ "@/components/component/material/polygon/index.vue"
+    ),
+  materialEmbellishCircleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-embellish1" */ "@/components/component/material/embellish1/index.vue"
+    ),
+  materialEmbellish2Com: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-embellish2" */ "@/components/component/material/embellish2/index.vue"
+    ),
+  materialQuadrangleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-quadrangle" */ "@/components/component/material/quadrangle/index.vue"
+    ),
   assistCommonCom: () =>
     import(
       /* webpackChunkName: "bm-component-assist" */ "@/components/component/assist/common/index.vue"
@@ -173,7 +201,11 @@ let styles = {
     ),
   materialCommonStyleCom: () =>
     import(
-      /* webpackChunkName: "bm-component-material-style" */ "@/components/component/material/common/style.vue"
+      /* webpackChunkName: "bm-component-material-common-style" */ "@/components/component/material/common/style.vue"
+    ),
+  materialStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-style" */ "@/components/component/material/style.vue"
     ),
   materialRectangleStyleCom: () =>
     import(

@@ -79,6 +79,7 @@ let baseData = {
     values: [0, 100],
     radialShape: "circle",
     valueIndex: 0,
+    gradientId: "",
     valueOptions: [
       //   {
       //   // disabled: true
@@ -98,7 +99,7 @@ let baseData = {
   locked: false, //是否锁定
   visible: true, //是否可见
   flipV: false, //是否垂直翻转
-  flipH: false, //是否水平翻转
+  flipH: false //是否水平翻转
 };
 export default [
   {
@@ -2461,107 +2462,122 @@ export default [
         name: "矩形",
         code: "materialRectangle",
         icon: "/static/img/configur/material/rectangle.png",
+
         data: {
           ...baseData,
+          styleType: "material",
           // backgroundImage: "/static/img/svg/material/rectangle.svg",
-          backgroundColor:'#0075E7',
+          backgroundColor: "#0075E7",
           width: 200,
-          height: 100,
+          height: 100
           // dataType: "device",
           // equalScaleable: true //是否等比例缩放
         }
       },
       {
         name: "箭头",
-        code: "materialCommon",
+        code: "materialArrow",
         icon: "/static/img/configur/material/arrow.png",
         data: {
           ...baseData,
-          backgroundImage: "/static/img/svg/material/arrow.svg",
-          width: 50,
-          height: 50,
+          styleType: "material",
+          backgroundColor: "#0075E7",
+          // backgroundImage: "/static/img/svg/material/arrow.svg",
+          width: 100,
+          height: 100,
           // dataType: "device",
           equalScaleable: true //是否等比例缩放
         }
       },
       {
         name: "星形",
-        code: "materialCommon",
+        code: "materialStar",
         icon: "/static/img/configur/material/star.png",
         data: {
           ...baseData,
-          backgroundImage: "/static/img/svg/material/star.svg",
+          styleType: "material",
+          backgroundColor: "#0075E7",
+          // backgroundImage: "/static/img/svg/material/star.svg",
           width: 50,
-          height: 50,
+          height: 50
           // dataType: "device",
           // equalScaleable: true //是否等比例缩放
         }
       },
       {
         name: "圆形",
-        code: "materialCommon",
+        code: "materialCircle",
         icon: "/static/img/configur/material/circle.png",
         data: {
           ...baseData,
-          backgroundImage: "/static/img/svg/material/circle.svg",
-          width: 50,
-          height: 50,
+          styleType: "material",
+          backgroundColor: "#0075E7",
+          // backgroundImage: "/static/img/svg/material/circle.svg",
+          width: 100,
+          height: 100
           // dataType: "device",
           // equalScaleable: true //是否等比例缩放
         }
       },
       {
         name: "四边形",
-        code: "materialCommon",
+        code: "materialQuadrangle",
         icon: "/static/img/configur/material/quadrangle.png",
         data: {
           ...baseData,
-          backgroundImage: "/static/img/svg/material/quadrangle.svg",
+          styleType: "material",
+          // backgroundImage: "/static/img/svg/material/quadrangle.svg",
           width: 50,
-          height: 50,
+          height: 50
           // dataType: "device",
           // equalScaleable: true //是否等比例缩放
         }
       },
       {
         name: "多边形",
-        code: "materialCommon",
+        code: "materialPolygon",
         icon: "/static/img/configur/material/polygon.png",
         data: {
           ...baseData,
-          backgroundImage: "/static/img/svg/material/polygon.svg",
+          styleType: "material",
+          backgroundColor: "#0075E7",
+          // backgroundImage: "/static/img/svg/material/polygon.svg",
           width: 50,
-          height: 50,
+          height: 50
           // dataType: "device",
           // equalScaleable: true //是否等比例缩放
         }
       },
       {
         name: "装饰1",
-        code: "materialCommon",
+        code: "materialEmbellish1",
         icon: "/static/img/configur/material/embellish-1.png",
         data: {
           ...baseData,
-          backgroundImage: "/static/img/svg/material/embellish-1.svg",
+          styleType: "material",
+          backgroundColor: "#0075E7",
+          // backgroundImage: "/static/img/svg/material/embellish-1.svg",
           width: 300,
-          height: 40,
+          height: 40
           // dataType: "device",
           // equalScaleable: true //是否等比例缩放
         }
       },
       {
         name: "装饰2",
-        code: "materialCommon",
+        code: "materialEmbellish2",
         icon: "/static/img/configur/material/embellish-2.png",
         data: {
           ...baseData,
-          backgroundImage: "/static/img/svg/material/embellish-2.svg",
+          styleType: "material",
+          backgroundColor: "#0075E7",
+          // backgroundImage: "/static/img/svg/material/embellish-2.svg",
           width: 300,
-          height: 40,
+          height: 40
           // dataType: "device",
           // equalScaleable: true //是否等比例缩放
         }
-      },
+      }
       // {
       //   name: "连接点",
       //   alias: "linkPoint",
