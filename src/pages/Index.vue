@@ -33,7 +33,7 @@
               class="edit"
               :class="{
                 active: activeComIds.indexOf(item.id) > -1,
-                locked: !item.dragable
+                locked: item.locked
               }"
               v-for="(item, index) in widgetList"
               :data-type="item.type"
@@ -69,19 +69,19 @@
     >
       <li
         @click="cutEvent"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
+        v-if="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("添加到自定义") }} <small>Ctrl+X</small>
       </li>
       <li
         @click="cutEvent"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
+        v-if="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("剪切") }} <small>Ctrl+X</small>
       </li>
       <li
         @click="copyEvent"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
+        v-if="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("复制") }}<small>Ctrl+C</small>
       </li>
@@ -90,7 +90,7 @@
       </li>
       <li
         @click="moveUpEvent"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
+        v-if="showContextMenuType == 1 && !activeCom.locked"
         class="line"
         :class="{ disabled: topOrder == activeCom.order }"
       >
@@ -99,34 +99,34 @@
       <li
         @click="moveDownEvent"
         :class="{ disabled: bottomOrder == activeCom.order }"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
+        v-if="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("下移一层") }}<small>Ctrl+]</small>
       </li>
       <li
         @click="moveTopEvent"
         :class="{ disabled: topOrder == activeCom.order }"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
+        v-if="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("置于顶层") }}<small>Ctrl+Shift+[</small>
       </li>
       <li
         @click="moveBottomEvent"
         :class="{ disabled: bottomOrder == activeCom.order }"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
+        v-if="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("置于底层") }}<small>Ctrl+Shift+]</small>
       </li>
       <li
         class="line"
         @click="lockEvent(false)"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
+        v-if="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("锁定") }}<small>Ctrl+Shift+L</small>
       </li>
       <li
         @click="lockEvent(true)"
-        v-if="showContextMenuType == 1 && !activeCom.dragable"
+        v-if="showContextMenuType == 1 && activeCom.locked"
       >
         {{ $lang("解锁") }}<small>Ctrl+Shift+L</small>
       </li>
@@ -507,7 +507,7 @@ export default {
         // let [item = {}] = activeComs || [];
         //如果 shift ctrl 被按住则进行 多选和取消选择
         if (shiftKey || ctrlKey) {
-          // let { dragable = false } = activeCom || {};
+          // let { locked = false } = activeCom || {};
           this.selectComsAction(id); //选中组件
         } else {
           this.selectComAction(id); //选中组件
@@ -518,7 +518,7 @@ export default {
           activeCom = {}
         } = this;
         let { length = 0 } = activeComs || [];
-        let { dragable = false, rotateable = false } = activeCom || {};
+        let { locked = false, rotateable = false } = activeCom || {};
         if (!rotateable) {
           let padding = 0;
           activeCom.originWidth = width - padding; //减去 padding
@@ -526,9 +526,9 @@ export default {
         }
         //选择多个则必定可以移动
         if (length > 1) {
-          dragable = true;
+          locked = false;
         }
-        if (dragable) {
+        if (!locked) {
           this.initMoveEvent(e); // 参见 mixins
         }
       } else {
@@ -556,7 +556,7 @@ export default {
       // e.preventDefault();
       bmCommon.log("index keydow", e);
       let { activeCom } = this;
-      let { type = "", id = "", dragable = false } = activeCom || {};
+      let { type = "", id = "", locked = false } = activeCom || {};
       if (type == "canvas" || !id) {
         //如果选中的是画布或未选中组件则直接返回
         return;
@@ -639,7 +639,7 @@ export default {
       } else if (keyCode == 76) {
         // ctrl+shift+L
         if (ctrlKey && shiftKey) {
-          this.lockEvent(!dragable);
+          this.lockEvent(!locked);
         }
       } else if (keyCode == 46) {
         // Delete
@@ -718,9 +718,9 @@ export default {
       this.showContextMenuStatus = false;
     },
     // 锁定/解锁
-    lockEvent(dragable) {
+    lockEvent(locked) {
       let { activeCom = {} } = this;
-      activeCom.dragable = dragable;
+      activeCom.locked = locked;
       this.showContextMenuStatus = false;
     },
     // 上移一层

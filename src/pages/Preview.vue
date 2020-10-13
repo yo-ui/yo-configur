@@ -17,7 +17,7 @@
               class="preview"
               :class="{
                 //active: activeComIds.indexOf(item.id) > -1,
-                locked: !item.dragable
+                locked: item.locked
               }"
               v-for="(item, index) in widgetList"
               :data-type="item.type"
@@ -49,13 +49,13 @@
     >
       <li
         @click="cutEvent"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
+        v-if="showContextMenuType == 1 && activeCom.locked"
       >
         剪切 <small>Ctrl+X</small>
       </li>
       <li
         @click="copyEvent"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
+        v-if="showContextMenuType == 1 && activeCom.locked"
       >
         复制<small>Ctrl+C</small>
       </li>
@@ -64,7 +64,7 @@
       </li>
       <li
         @click="moveUpEvent"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
+        v-if="showContextMenuType == 1 && activeCom.locked"
         class="line"
         :class="{ disabled: topOrder == activeCom.order }"
       >
@@ -73,40 +73,40 @@
       <li
         @click="moveDownEvent"
         :class="{ disabled: bottomOrder == activeCom.order }"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
+        v-if="showContextMenuType == 1 && activeCom.locked"
       >
         下移一层<small>Ctrl+]</small>
       </li>
       <li
         @click="moveTopEvent"
         :class="{ disabled: topOrder == activeCom.order }"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
+        v-if="showContextMenuType == 1 && activeCom.locked"
       >
         置于顶层<small>Ctrl+Shift+[</small>
       </li>
       <li
         @click="moveBottomEvent"
         :class="{ disabled: bottomOrder == activeCom.order }"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
+        v-if="showContextMenuType == 1 && activeCom.locked"
       >
         置于底层<small>Ctrl+Shift+]</small>
       </li>
       <li
         class="line"
         @click="lockEvent(false)"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
+        v-if="showContextMenuType == 1 && activeCom.locked"
       >
         锁定<small>Ctrl+Shift+L</small>
       </li>
       <li
         @click="lockEvent(true)"
-        v-if="showContextMenuType == 1 && !activeCom.dragable"
+        v-if="showContextMenuType == 1 && !activeCom.locked"
       >
         解锁<small>Ctrl+Shift+L</small>
       </li>
       <li
         @click="deleteEvent"
-        v-if="showContextMenuType == 1 && activeCom.dragable"
+        v-if="showContextMenuType == 1 && activeCom.locked"
       >
         删除<small>Delete</small>
       </li>

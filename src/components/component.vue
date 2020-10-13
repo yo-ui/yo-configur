@@ -17,55 +17,55 @@
     <div class="cover" v-if="info.showCoverStatus"></div>
     <i
       class="operate-btn el-icon-refresh-right"
-      v-if="!moving && info.rotateable && info.dragable"
+      v-if="!moving && info.rotateable && !info.locked"
       @mousedown.stop="rotateClickEvent"
       title="旋转"
     ></i>
     <i
       class="operate-btn el-icon-top-left"
-      v-if="!moving && info.scaleable && info.dragable"
+      v-if="!moving && info.scaleable && !info.locked"
       @mousedown.stop="leftTopClickEvent"
       title="左上角"
     ></i>
     <i
       class="operate-btn el-icon-top"
-      v-if="!moving && info.scaleable && info.dragable"
+      v-if="!moving && info.scaleable && !info.locked"
       @mousedown.stop="topClickEvent"
       title="上"
     ></i>
     <i
       class="operate-btn el-icon-top-right"
-      v-if="!moving && info.scaleable && info.dragable"
+      v-if="!moving && info.scaleable && !info.locked"
       @mousedown.stop="rightTopClickEvent"
       title="右上角"
     ></i>
     <i
       class="operate-btn el-icon-back"
-      v-if="!moving && info.scaleable && info.dragable"
+      v-if="!moving && info.scaleable && !info.locked"
       @mousedown.stop="leftClickEvent"
       title="左"
     ></i>
     <i
       class="operate-btn el-icon-right"
-      v-if="!moving && info.scaleable && info.dragable"
+      v-if="!moving && info.scaleable && !info.locked"
       @mousedown.stop="rightClickEvent"
       title="右"
     ></i>
     <i
       class="operate-btn el-icon-bottom-left"
-      v-if="!moving && info.scaleable && info.dragable"
+      v-if="!moving && info.scaleable && !info.locked"
       @mousedown.stop="leftBottomClickEvent"
       title="左下角"
     ></i>
     <i
       class="operate-btn el-icon-bottom"
-      v-if="!moving && info.scaleable && info.dragable"
+      v-if="!moving && info.scaleable && !info.locked"
       @mousedown.stop="bottomClickEvent"
       title="下"
     ></i>
     <i
       class="operate-btn el-icon-bottom-right"
-      v-if="!moving && info.scaleable && info.dragable"
+      v-if="!moving && info.scaleable && !info.locked"
       @mousedown.stop="rightBottomClickEvent"
       title="右下角"
     ></i>
@@ -299,9 +299,9 @@ export default {
       this.mousedownEvent(e, "bottomright");
     }
   },
-  beforeDestroy() {    
-      $(document).off("mousemove", this.mousemoveEvent);
-      $(document).off("mouseup", this.mouseupEvent);
+  beforeDestroy() {
+    $(document).off("mousemove", this.mousemoveEvent);
+    $(document).off("mouseup", this.mouseupEvent);
   },
   watch: {
     "info.animation": {
@@ -316,7 +316,7 @@ export default {
         if (iterationCount) {
           this._setTimeoutId = setTimeout(() => {
             that.animate = "";
-          }, duration * 1000 + 100);
+          }, iterationCount * duration * 1000 + 100);
         }
         // }
       },

@@ -109,7 +109,7 @@
     </p>
     <p>
       <span class="label"> {{ $lang("是否可移动") }}:</span
-      ><el-checkbox v-model="info.dragable"></el-checkbox>
+      ><el-checkbox v-model="info.locked"></el-checkbox>
     </p>
     <p>
       <span class="label">{{ $lang("填充颜色") }}:</span>

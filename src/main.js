@@ -77,8 +77,10 @@ router.beforeEach((to, from, next) => {
   let { accountId = "" } = userInfo || {};
   if (token) {
     $store.commit("setUserInfo", { ...userInfo, token });
+    let platform = type == 2 ? "service" : "manage";
+    $store.commit("setPlatform", platform); //type： 2 为应用平台过来  1为管理平台过来
+    bmCommon.log("从平台", platform, type, "过来");
   }
-  $store.commit("setPlatform", type == 2 ? "service" : "manage"); //type： 2 为应用平台过来  1为管理平台过来
   if (docTitle) {
     document.title = bmCommon.langKey(langObj, "能源云 | 组态平台"); //+langKey(langObj,docTitle)
   }

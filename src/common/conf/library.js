@@ -95,7 +95,10 @@ let baseData = {
   scaleable: true, //是否可缩放操作
   rotateable: true, //是否可旋转操作
   editable: false, //内容是否可编辑
-  dragable: true //是否可拖动
+  locked: false, //是否锁定
+  visible: true, //是否可见
+  flipV: false, //是否垂直翻转
+  flipH: false, //是否水平翻转
 };
 export default [
   {
@@ -131,7 +134,7 @@ export default [
           // scaleable: true, //是否可缩放操作
           // rotateable: true, //是否可旋转操作
           editable: true //内容是否可编辑
-          // dragable: true //是否可拖动
+          // locked: true //是否可拖动
         }
       },
       {
@@ -165,7 +168,7 @@ export default [
           scaleable: false //是否可缩放操作
           // rotateable: true, //是否可旋转操作
           // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
+          // locked: true //是否可拖动
         }
       },
       {
@@ -507,7 +510,7 @@ export default [
           // scaleable: true, //是否可缩放操作
           // rotateable: true, //是否可旋转操作
           // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
+          // locked: true //是否可拖动
         }
       },
       {
@@ -533,7 +536,7 @@ export default [
           // scaleable: true, //是否可缩放操作
           // rotateable: true, //是否可旋转操作
           // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
+          // locked: true //是否可拖动
         }
       },
       {
@@ -560,7 +563,7 @@ export default [
           // scaleable: true, //是否可缩放操作
           // rotateable: true, //是否可旋转操作
           // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
+          // locked: true //是否可拖动
         }
       },
       {
@@ -587,7 +590,7 @@ export default [
           // scaleable: true, //是否可缩放操作
           // rotateable: true, //是否可旋转操作
           // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
+          // locked: true //是否可拖动
         }
       },
       {
@@ -613,7 +616,7 @@ export default [
           // scaleable: true, //是否可缩放操作
           // rotateable: true, //是否可旋转操作
           // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
+          // locked: true //是否可拖动
         }
       },
       {
@@ -640,7 +643,7 @@ export default [
           // scaleable: true, //是否可缩放操作
           // rotateable: true, //是否可旋转操作
           // editable: false, //内容是否可编辑
-          // dragable: true //是否可拖动
+          // locked: true //是否可拖动
         }
       }
       // {
@@ -660,7 +663,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -680,7 +683,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -700,7 +703,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -720,7 +723,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -740,7 +743,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -760,7 +763,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -780,7 +783,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -800,7 +803,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -820,7 +823,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -840,7 +843,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -860,7 +863,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -880,7 +883,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -900,7 +903,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -920,7 +923,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -940,7 +943,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -960,7 +963,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
     ]
@@ -1000,7 +1003,7 @@ export default [
               scaleable: false, //是否可缩放操作
               rotateable: false, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1025,7 +1028,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1050,7 +1053,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1075,7 +1078,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1100,7 +1103,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1125,7 +1128,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1150,7 +1153,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1175,7 +1178,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1200,7 +1203,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1225,7 +1228,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1250,7 +1253,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           }
         ]
@@ -1283,7 +1286,7 @@ export default [
               // scaleable: true, //是否可缩放操作
               // rotateable: true, //是否可旋转操作
               // editable: false, //内容是否可编辑
-              // dragable: true //是否可拖动
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1309,7 +1312,7 @@ export default [
               // scaleable: true, //是否可缩放操作
               // rotateable: true, //是否可旋转操作
               // editable: false, //内容是否可编辑
-              // dragable: true //是否可拖动
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1335,7 +1338,7 @@ export default [
               // scaleable: true, //是否可缩放操作
               // rotateable: true, //是否可旋转操作
               // editable: false, //内容是否可编辑
-              // dragable: true //是否可拖动
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1361,7 +1364,7 @@ export default [
               // scaleable: true, //是否可缩放操作
               // rotateable: true, //是否可旋转操作
               // editable: false, //内容是否可编辑
-              // dragable: true //是否可拖动
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1387,7 +1390,7 @@ export default [
               // scaleable: true, //是否可缩放操作
               // rotateable: true, //是否可旋转操作
               // editable: false, //内容是否可编辑
-              // dragable: true //是否可拖动
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1413,7 +1416,7 @@ export default [
               // scaleable: true, //是否可缩放操作
               // rotateable: true, //是否可旋转操作
               // editable: false, //内容是否可编辑
-              // dragable: true //是否可拖动
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1438,7 +1441,7 @@ export default [
               // scaleable: true, //是否可缩放操作
               // rotateable: true, //是否可旋转操作
               // editable: false, //内容是否可编辑
-              // dragable: true //是否可拖动
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1463,7 +1466,7 @@ export default [
               // scaleable: true, //是否可缩放操作
               // rotateable: true, //是否可旋转操作
               // editable: false, //内容是否可编辑
-              // dragable: true //是否可拖动
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1487,7 +1490,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1511,7 +1514,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1535,7 +1538,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1559,7 +1562,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1583,7 +1586,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1607,7 +1610,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1631,7 +1634,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1655,7 +1658,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1679,7 +1682,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1703,7 +1706,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1727,7 +1730,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1751,7 +1754,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1775,7 +1778,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1800,7 +1803,7 @@ export default [
               // scaleable: true, //是否可缩放操作
               // rotateable: true, //是否可旋转操作
               // editable: false, //内容是否可编辑
-              // dragable: true //是否可拖动
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1825,7 +1828,7 @@ export default [
               // scaleable: true, //是否可缩放操作
               // rotateable: true, //是否可旋转操作
               // editable: false, //内容是否可编辑
-              // dragable: true //是否可拖动
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1842,7 +1845,7 @@ export default [
               // scaleable: true, //是否可缩放操作
               // rotateable: true, //是否可旋转操作
               // editable: false, //内容是否可编辑
-              // dragable: true //是否可拖动
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1866,7 +1869,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1890,7 +1893,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1914,7 +1917,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1938,7 +1941,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1962,7 +1965,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -1986,7 +1989,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2010,7 +2013,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2034,7 +2037,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2058,7 +2061,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2082,7 +2085,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2106,7 +2109,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2130,7 +2133,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2154,7 +2157,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2178,7 +2181,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2202,7 +2205,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2226,7 +2229,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2250,7 +2253,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2274,7 +2277,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2298,7 +2301,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2322,7 +2325,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2346,7 +2349,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2370,7 +2373,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2394,7 +2397,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2418,7 +2421,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           },
           {
@@ -2442,7 +2445,7 @@ export default [
               scaleable: true, //是否可缩放操作
               rotateable: true, //是否可旋转操作
               editable: false, //内容是否可编辑
-              dragable: true //是否可拖动
+              locked: true //是否可拖动
             }
           }
         ]
@@ -2461,8 +2464,9 @@ export default [
         data: {
           ...baseData,
           // backgroundImage: "/static/img/svg/material/rectangle.svg",
-          width: 50,
-          height: 50,
+          backgroundColor:'#0075E7',
+          width: 200,
+          height: 100,
           // dataType: "device",
           // equalScaleable: true //是否等比例缩放
         }
@@ -2580,7 +2584,7 @@ export default [
       //     scaleable: false, //是否可缩放操作
       //     rotateable: false, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -2605,7 +2609,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -2630,7 +2634,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -2655,7 +2659,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -2680,7 +2684,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -2705,7 +2709,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -2730,7 +2734,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -2755,7 +2759,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -2780,7 +2784,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -2805,7 +2809,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // },
       // {
@@ -2830,7 +2834,7 @@ export default [
       //     scaleable: true, //是否可缩放操作
       //     rotateable: true, //是否可旋转操作
       //     editable: false, //内容是否可编辑
-      //     dragable: true //是否可拖动
+      //     locked: true //是否可拖动
       //   }
       // }
     ]

@@ -14,6 +14,13 @@
     .p(10px 15px);
     .touch-y;
     .flex(1);
+    .el-collapse{
+      .el-collapse-item{
+        .el-collapse-item__wrap{
+          overflow:initial;
+        }
+      }
+    }
     h2{
       .mt(10);
       .fz(15);
@@ -38,6 +45,17 @@
       //     }
       //   }
       // }
+      &.btn-box{
+        // .ml
+        i{
+          .click;
+          .fz(18);
+          .p(8px);
+          &.active{
+            .c(@themes);
+          }
+        }
+      }
       .bm-common-quill-editor-com{
         .ml(35);
         // .mr(30);
@@ -256,10 +274,11 @@
       }
       .label{
         // .mb()
-        .w(90);
-        .tr;
+        .w(58);
+        .tl;
         .mr(10);
         .c(@gray6);
+        .ellipsis;
       }
       .el-input{
         .flex(1);

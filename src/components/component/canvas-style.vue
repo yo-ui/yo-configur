@@ -3,24 +3,42 @@
     <el-collapse v-model="activeNames">
       <el-collapse-item title="功能选择" name="1">
         <p>
-          <i
-            class="el-icon-rank"
-            :class="{ active: info.action == 'select' }"
-            @click="actionEvent('select')"
-            :title="$lang('选择组件')"
-          ></i>
+          <el-tooltip
+            :content="$lang('选择组件')"
+            placement="top"
+            effect="dark"
+          >
+            <i
+              class="el-icon-rank"
+              :class="{ active: info.action == 'select' }"
+              @click="actionEvent('select')"
+              :title="$lang('选择组件')"
+            ></i>
+          </el-tooltip>
+          <el-tooltip
+            :content="$lang('移动画布')"
+            placement="top"
+            effect="dark"
+          >
           <i
             class="el-icon-thumb"
             :class="{ active: info.action == 'move' }"
             @click="actionEvent('move')"
             :title="$lang('移动画布')"
           ></i>
+          </el-tooltip>
+          <el-tooltip
+            :content="$lang('拼装水管')"
+            placement="top"
+            effect="dark"
+          >
           <i
             class="bm-icon icon-paint"
             :class="{ active: info.action == 'paint' }"
             @click="actionEvent('paint')"
             :title="$lang('拼装水管')"
           ></i>
+          </el-tooltip>
         </p>
       </el-collapse-item>
       <el-collapse-item title="画布" name="2">
