@@ -1,9 +1,9 @@
 <template>
-  <div class="bm-material-circle-com" :style="comStyle">
+  <div class="bm-material-arrow-com" :style="comStyle">
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      :viewBox="`0 0 ${info.width} ${info.height}`"
+      :viewBox="`17.5 17.5 ${info.width} ${info.height}`"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
@@ -104,10 +104,7 @@
         </template>
       </defs>
       <!-- style="fill-rule:evenodd;clip-rule:evenodd;fill:${this.config.background.color};" -->
-      <polygon
-        points="84,17.5 53.3,28.5 59.6,34.8 17.5,76.9 24.6,84 66.7,41.9 73,48.3"
-        :style="svgStyle"
-      />
+      <polygon :points="info.points.toString()" :style="svgStyle" />
     </svg>
   </div>
 </template>
@@ -116,8 +113,17 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
+const points = [
+  [84, 17.5],
+  [53.3, 28.5],
+  [59.6, 34.8],
+  [17.5, 76.9],
+  [24.6, 84],
+  [66.7, 41.9],
+  [73, 48.3]
+];
 export default {
-  name: "materialCircleCom",
+  name: "materialArrowCom",
   data() {
     return {};
   },
@@ -155,8 +161,8 @@ export default {
     svgStyle() {
       let { info = {} } = this;
       let {
-        // width = "",
-        // height = "",
+        width = "",
+        height = "",
         // color = "",
         borderColor = "",
         gradientStyle = {},
@@ -210,6 +216,7 @@ export default {
           styles["stroke-dasharray"] = borderStyle;
         }
       }
+      info.points=new SVG.PointArray(points).size(width,height);
       styles["stroke-width"] = borderWidth;
       if (backgroundType == "purity") {
         //纯色
@@ -396,6 +403,7 @@ export default {
   mounted() {
     let { info = {} } = this;
     let { gradientStyle = {} } = info || {};
+    info.points = points;
     gradientStyle.gradientId = bmCommon.uuid();
     // this.$emit("success"); //组件加载完成回调
   },
@@ -416,5 +424,5 @@ export default {
 
 <style lang="less">
 @import (less)
-  "../../../../assets/less/components/component/material/circle.less";
+  "../../../../assets/less/components/component/material/arrow.less";
 </style>

@@ -2483,10 +2483,10 @@ export default [
           styleType: "material",
           backgroundColor: "#0075E7",
           // backgroundImage: "/static/img/svg/material/arrow.svg",
-          width: 100,
-          height: 100,
+          width: 66.5,
+          height: 66.5,
           // dataType: "device",
-          equalScaleable: true //是否等比例缩放
+          // equalScaleable: true //是否等比例缩放
         }
       },
       {

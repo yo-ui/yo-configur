@@ -70,18 +70,25 @@
     top:-40px;
     .fz(22);
     .tranf(translate(-50%,0));
+    .squ(@circle-width);
+    .bor(1px solid @border);
+    .bc(@white);
+    .br(50%);
     cursor: pointer;
     &:hover{
       .tranf(translate(-50%,0) scale(1.5));
       .c(@themes);
+    }
+    &::before{
+      .db(none);
     }
   }
   .el-icon-top-left{
     .posa;
     left:@left;
     top:@top;
-    .squ(@circle-width);
-    .br(50%);
+    .squ(@square-width);
+    // .br(50%);
     cursor: nw-resize;
     .bor(1px solid @border);
     .bc(@white);
@@ -114,9 +121,9 @@
     .posa;
     right:@right;
     top:@top;
-    .squ(@circle-width);
+    .squ(@square-width);
     .bc(@white);
-    .br(50%);
+    // .br(50%);
     cursor: ne-resize;
     .bor(1px solid @border);
     &::before{
@@ -166,8 +173,8 @@
     left:@left;
     bottom:@bottom;
     cursor: sw-resize;
-    .squ(@circle-width);
-    .br(50%);
+    .squ(@square-width);
+    // .br(50%);
     .bc(@white);
     .bor(1px solid @border);
     &::before{
@@ -199,8 +206,8 @@
     .posa;
     right:@right;
     bottom:@bottom;
-    .squ(@circle-width);
-    .br(50%);
+    .squ(@square-width);
+    // .br(50%);
     cursor: se-resize;
     .bc(@white);
     .bor(1px solid @border);
