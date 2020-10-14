@@ -3,7 +3,7 @@
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      :viewBox="`${info.vBoxx} ${info.vBoxy} ${info.width} ${info.height}`"
+      :viewBox="`0 0 ${info.width} ${info.height}`"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
@@ -146,21 +146,21 @@ import bmCommon from "@/common/common";
 const { mapActions, mapMutations, mapGetters } = Vuex;
 // "M50.5 12.5L59.9 41.6L90.5 41.5L65.7 59.5L75.2 88.5L50.5 70.5L25.8 88.5L35.3 59.5L10.6 41.6L41.2 41.7L50.5 12.5Z";
 const points = [
-  // ["M", 50.5, 12.5],
-  // ["L", 59.9, 41.6],
-  // ["L", 90.5, 41.5],
-  // ["L", 65.7, 59.5],
-  // ["L", 75.2, 88.5],
-  // ["L", 50.5, 70.5],
-  // ["L", 25.8, 88.5],
-  // ["L", 35.3, 59.5],
-  // ["L", 10.6, 41.6],
-  // ["L", 41.2, 41.7],
-  // ["L", 50.5, 12.5],
-  // ["Z"]
+  ["M", 50.5, 12.5],
+  ["L", 59.9, 41.6],
+  ["L", 90.5, 41.5],
+  ["L", 65.7, 59.5],
+  ["L", 75.2, 88.5],
+  ["L", 50.5, 70.5],
+  ["L", 25.8, 88.5],
+  ["L", 35.3, 59.5],
+  ["L", 10.6, 41.6],
+  ["L", 41.2, 41.7],
+  ["L", 50.5, 12.5],
+  ["Z"]
 ];
 export default {
-  name: "materialStarCom",
+  name: "materialCircleCom",
   data() {
     return {};
   },
@@ -266,39 +266,35 @@ export default {
         height / 2
       ); //内切圆初始点
       let points = [];
-      let xs = [],
-        ys = [];
       for (let i = 0; i < cornerCount; i++) {
-        let _point = new SVG.Point(innerPoint).transform(
-          new SVG.Matrix().rotate(
-            (360 / cornerCount) * i,
-            width / 2,
-            height / 2
-          )
+        points.push(
+          new SVG.Point(point)
+            .transform(
+              new SVG.Matrix().rotate(
+                (360 / cornerCount) * i,
+                width / 2,
+                height / 2
+              )
+            )
+            .toArray()
         );
-        let { x = 0, y = 0 } = _point;
-        xs.push(x);
-        ys.push(y);
-        points.push(_point.toArray());
-        _point = new SVG.Point(point).transform(
-          new SVG.Matrix().rotate(
-            (360 / cornerCount) * i,
-            width / 2,
-            height / 2
-          )
+        points.push(
+          new SVG.Point(innerPoint)
+            .transform(
+              new SVG.Matrix().rotate(
+                (360 / cornerCount) * i,
+                width / 2,
+                height / 2
+              )
+            )
+            .toArray()
         );
-        let { x: _x = 0, y: _y = 0 } = _point;
-        xs.push(_x);
-        ys.push(_y);
-        points.push(_point.toArray());
       }
-      info.vBoxx=Math.min.apply(null,xs)
-      info.vBoxy=Math.min.apply(null,ys)
-      info.points = new SVG.PointArray(points).size(
-        width - borderWidth * 2,
-        height - borderWidth * 2
-      );
-      // info.points = points;
+      // info.points = new SVG.PointArray(points).size(
+      //   width - borderWidth * 2,
+      //   height - borderWidth * 2
+      // );
+      info.points = points;
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {
@@ -485,8 +481,6 @@ export default {
     let { info = {} } = this;
     let { gradientStyle = {} } = info || {};
     info.points = new SVG.PointArray(points);
-    info.vBoxx=0
-    info.vBoxy=0
     gradientStyle.gradientId = bmCommon.uuid();
     // this.$emit("success"); //组件加载完成回调
   },

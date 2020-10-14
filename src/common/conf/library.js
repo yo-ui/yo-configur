@@ -2495,9 +2495,11 @@ export default [
         icon: "/static/img/configur/material/star.png",
         data: {
           ...baseData,
-          styleType: "material",
+          // styleType: "material",
           backgroundColor: "#0075E7",
           // backgroundImage: "/static/img/svg/material/star.svg",
+          cornerCount:3,
+          innerRadius:50,
           width: 100,
           height: 100
           // dataType: "device",

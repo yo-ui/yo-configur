@@ -211,6 +211,10 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-material-rectangle-style" */ "@/components/component/material/rectangle/style.vue"
     ),
+  materialStarStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-star-style" */ "@/components/component/material/star/style.vue"
+    ),
   assistCommonStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-assist-style" */ "@/components/component/assist/common/style.vue"

@@ -119,13 +119,13 @@
       </li>
       <li
         class="line"
-        @click="lockEvent(false)"
+        @click="lockEvent(true)"
         v-if="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("锁定") }}<small>Ctrl+Shift+L</small>
       </li>
       <li
-        @click="lockEvent(true)"
+        @click="lockEvent(false)"
         v-if="showContextMenuType == 1 && activeCom.locked"
       >
         {{ $lang("解锁") }}<small>Ctrl+Shift+L</small>
