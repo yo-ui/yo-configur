@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-material-rectangle-style-com">
+  <div class="bm-material-style-com">
     <!-- <h2>{{ $lang("功能选择") }}</h2>
     <p>
       <i
@@ -479,7 +479,7 @@
             controls-position="right"
             clearable
             :min="0"
-            :max="20"
+            :max="100"
             v-model.number="info.borderWidth"
             :placeholder="$lang('请输入边框大小')"
           ></el-input-number>
@@ -487,7 +487,7 @@
           <el-slider
             v-model="info.borderWidth"
             :min="0"
-            :max="20"
+            :max="100"
             :format-tooltip="val => val + ' px'"
           ></el-slider>
         </p>
@@ -497,7 +497,7 @@
             controls-position="right"
             clearable
             :min="0"
-            :max="50"
+            :max="100"
             v-model.number="info.borderRadius"
             :placeholder="$lang('请输入边框圆角')"
           ></el-input-number>
@@ -505,7 +505,7 @@
           <el-slider
             v-model="info.borderRadius"
             :min="0"
-            :max="50"
+            :max="100"
             :format-tooltip="val => val + ' px'"
           ></el-slider>
         </p>

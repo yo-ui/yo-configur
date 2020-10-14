@@ -3,7 +3,7 @@
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      :viewBox="`0 0 ${info.width} ${info.height}`"
+      :viewBox="`${6.8 - info.borderWidth} ${9.3 - info.borderWidth} ${info.width} ${info.height}`"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
@@ -84,11 +84,51 @@
           <radialGradient
             :id="info.gradientStyle.gradientId"
             v-else-if="info.gradientStyle.type == 'radial'"
-            cx="50%"
-            cy="50%"
-            r="50%"
-            fx="50%"
-            fy="50%"
+            :cx="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '100%',
+                '0% 100%': '0%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :cy="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '0%',
+                '0% 100%': '100%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :r="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '160%',
+                '100% 0%': '150%',
+                '0% 100%': '150%',
+                '100% 100%': '140%'
+              }[info.gradientStyle.center]
+            "
+            :fx="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '100%',
+                '0% 100%': '0%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :fy="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '0%',
+                '0% 100%': '100%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
           >
             <stop
               v-for="(item, index) in info.gradientStyle.valueList"
@@ -103,13 +143,7 @@
           </radialGradient>
         </template>
       </defs>
-      <ellipse
-        :cx="`${info.width / 2}`"
-        :cy="`${info.height / 2}`"
-        :rx="`${(info.width - info.borderWidth) / 2}`"
-        :ry="`${(info.height - info.borderWidth) / 2}`"
-        :style="svgStyle"
-      />
+      <path :d="info.points" :style="svgStyle" />
     </svg>
   </div>
 </template>
@@ -118,6 +152,16 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
+// M50.5 9.3L94.2 41.1L77.5 92.5H23.5L6.8 41.1L50.5 9.3Z
+const points = [
+  ["M", 50.5, 9.3],
+  ["L", 94.2, 41.1],
+  ["L", 77.5, 92.5],
+  ["H", 23.5],
+  ["L", 6.8, 41.1],
+  ["L", 50.5, 9.3],
+  ["Z"]
+];
 export default {
   name: "materialCircleCom",
   data() {
@@ -157,8 +201,8 @@ export default {
     svgStyle() {
       let { info = {} } = this;
       let {
-        // width = "",
-        // height = "",
+        width = "",
+        height = "",
         // color = "",
         borderColor = "",
         gradientStyle = {},
@@ -213,6 +257,10 @@ export default {
         }
       }
       styles["stroke-width"] = borderWidth;
+      info.points = new SVG.PathArray(points).size(
+        width - borderWidth * 2,
+        height - borderWidth * 2
+      );
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {
@@ -398,6 +446,7 @@ export default {
   mounted() {
     let { info = {} } = this;
     let { gradientStyle = {} } = info || {};
+    info.point = new SVG.PathArray(points);
     gradientStyle.gradientId = bmCommon.uuid();
     // this.$emit("success"); //组件加载完成回调
   },

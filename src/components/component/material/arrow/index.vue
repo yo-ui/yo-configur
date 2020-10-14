@@ -3,7 +3,11 @@
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      :viewBox="`17.5 17.5 ${info.width} ${info.height}`"
+      :viewBox="
+        `${17.5 - info.borderWidth} ${17.5 - info.borderWidth} ${info.width} ${
+          info.height
+        }`
+      "
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
@@ -84,11 +88,51 @@
           <radialGradient
             :id="info.gradientStyle.gradientId"
             v-else-if="info.gradientStyle.type == 'radial'"
-            cx="50%"
-            cy="50%"
-            r="50%"
-            fx="50%"
-            fy="50%"
+            :cx="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '100%',
+                '0% 100%': '0%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :cy="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '0%',
+                '0% 100%': '100%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :r="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '160%',
+                '100% 0%': '150%',
+                '0% 100%': '150%',
+                '100% 100%': '140%'
+              }[info.gradientStyle.center]
+            "
+            :fx="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '100%',
+                '0% 100%': '0%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :fy="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '0%',
+                '0% 100%': '100%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
           >
             <stop
               v-for="(item, index) in info.gradientStyle.valueList"
@@ -104,7 +148,7 @@
         </template>
       </defs>
       <!-- style="fill-rule:evenodd;clip-rule:evenodd;fill:${this.config.background.color};" -->
-      <polygon :points="info.points.toString()" :style="svgStyle" />
+      <polygon :points="info.points" :style="svgStyle" />
     </svg>
   </div>
 </template>
@@ -113,6 +157,7 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
+//84,17.5,53.3,28.5,59.6,34.8,17.5,76.9,24.6,84,66.7,41.9,73,48.3
 const points = [
   [84, 17.5],
   [53.3, 28.5],
@@ -216,7 +261,10 @@ export default {
           styles["stroke-dasharray"] = borderStyle;
         }
       }
-      info.points=new SVG.PointArray(points).size(width,height);
+      info.points = new SVG.PointArray(points).size(
+        width - borderWidth*2,
+        height - borderWidth*2
+      );
       styles["stroke-width"] = borderWidth;
       if (backgroundType == "purity") {
         //纯色
@@ -403,7 +451,7 @@ export default {
   mounted() {
     let { info = {} } = this;
     let { gradientStyle = {} } = info || {};
-    info.points = points;
+    info.points = new SVG.PointArray(points);
     gradientStyle.gradientId = bmCommon.uuid();
     // this.$emit("success"); //组件加载完成回调
   },

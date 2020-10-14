@@ -84,11 +84,51 @@
           <radialGradient
             :id="info.gradientStyle.gradientId"
             v-else-if="info.gradientStyle.type == 'radial'"
-            cx="50%"
-            cy="50%"
-            r="50%"
-            fx="50%"
-            fy="50%"
+            :cx="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '100%',
+                '0% 100%': '0%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :cy="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '0%',
+                '0% 100%': '100%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :r="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '160%',
+                '100% 0%': '150%',
+                '0% 100%': '150%',
+                '100% 100%': '140%'
+              }[info.gradientStyle.center]
+            "
+            :fx="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '100%',
+                '0% 100%': '0%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :fy="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '0%',
+                '0% 100%': '100%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
           >
             <stop
               v-for="(item, index) in info.gradientStyle.valueList"

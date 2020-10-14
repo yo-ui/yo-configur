@@ -1,15 +1,18 @@
 <template>
-  <div class="bm-material-circle-com" :style="comStyle">
+  <div class="bm-material-star-com" :style="comStyle">
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      :viewBox="`0 0 ${info.width} ${info.height}`"
+      :viewBox="
+        `${12.5 - info.borderWidth} ${12.5 - info.borderWidth} ${info.width} ${
+          info.height
+        }`
+      "
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
       <defs>
         <template v-if="info.backgroundType == 'gradient'">
-          <!-- {{info.gradientStyle.angle}} -->
           <linearGradient
             :id="info.gradientStyle.gradientId"
             :x1="
@@ -76,19 +79,55 @@
               :offset="`${item.value}%`"
               :style="`stop-color:${item.code};stop-opacity:1`"
             />
-            <!-- <stop
-              offset="100%"
-              style="stop-color:rgb(255,0,0);stop-opacity:1"
-            /> -->
           </linearGradient>
           <radialGradient
             :id="info.gradientStyle.gradientId"
             v-else-if="info.gradientStyle.type == 'radial'"
-            cx="50%"
-            cy="50%"
-            r="50%"
-            fx="50%"
-            fy="50%"
+            :cx="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '100%',
+                '0% 100%': '0%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :cy="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '0%',
+                '0% 100%': '100%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :r="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '160%',
+                '100% 0%': '150%',
+                '0% 100%': '150%',
+                '100% 100%': '140%'
+              }[info.gradientStyle.center]
+            "
+            :fx="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '100%',
+                '0% 100%': '0%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :fy="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '0%',
+                '0% 100%': '100%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
           >
             <stop
               v-for="(item, index) in info.gradientStyle.valueList"
@@ -96,16 +135,10 @@
               :offset="`${item.value}%`"
               :style="`stop-color:${item.code};stop-opacity:1`"
             />
-            <!-- <stop
-              offset="100%"
-              style="stop-color:rgb(0,0,255);stop-opacity:1"
-            /> -->
           </radialGradient>
         </template>
       </defs>
-      <path d="M50.5,12.5l9.4,29.1l30.6-0.1L65.7,59.5l9.5,29l-24.7-18l-24.7,18l9.5-29L10.6,41.6l30.6,0.1L50.5,12.5z"
-        :style="svgStyle"
-      />
+      <path :d="info.points" :style="svgStyle" />
     </svg>
   </div>
 </template>
@@ -114,6 +147,21 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
+// "M50.5 12.5L59.9 41.6L90.5 41.5L65.7 59.5L75.2 88.5L50.5 70.5L25.8 88.5L35.3 59.5L10.6 41.6L41.2 41.7L50.5 12.5Z";
+const points = [
+  ["M", 50.5, 12.5],
+  ["L", 59.9, 41.6],
+  ["L", 90.5, 41.5],
+  ["L", 65.7, 59.5],
+  ["L", 75.2, 88.5],
+  ["L", 50.5, 70.5],
+  ["L", 25.8, 88.5],
+  ["L", 35.3, 59.5],
+  ["L", 10.6, 41.6],
+  ["L", 41.2, 41.7],
+  ["L", 50.5, 12.5],
+  ["Z"]
+];
 export default {
   name: "materialCircleCom",
   data() {
@@ -153,8 +201,8 @@ export default {
     svgStyle() {
       let { info = {} } = this;
       let {
-        // width = "",
-        // height = "",
+        width = "",
+        height = "",
         // color = "",
         borderColor = "",
         gradientStyle = {},
@@ -209,6 +257,10 @@ export default {
         }
       }
       styles["stroke-width"] = borderWidth;
+      info.points = new SVG.PathArray(points).size(
+        width - borderWidth * 2,
+        height - borderWidth * 2
+      );
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {
@@ -394,6 +446,7 @@ export default {
   mounted() {
     let { info = {} } = this;
     let { gradientStyle = {} } = info || {};
+    info.points = new SVG.PathArray(points);
     gradientStyle.gradientId = bmCommon.uuid();
     // this.$emit("success"); //组件加载完成回调
   },
@@ -413,6 +466,5 @@ export default {
 </script>
 
 <style lang="less">
-@import (less)
-  "../../../../assets/less/components/component/material/circle.less";
+@import (less) "../../../../assets/less/components/component/material/star.less";
 </style>

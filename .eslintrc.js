@@ -5,6 +5,12 @@ module.exports = {
     browser:true,
     jquery:true
   },
+  "globals":{
+    "document": true,
+    "localStorage": true,
+    "window": true,
+    "SVG":true
+  },
   extends: ["plugin:vue/essential", "eslint:recommended", "@vue/prettier"],
   parserOptions: {
     parser: "babel-eslint"

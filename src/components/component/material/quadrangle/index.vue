@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-material-circle-com" :style="comStyle">
+  <div class="bm-material-quadrangle-com" :style="comStyle">
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -84,11 +84,51 @@
           <radialGradient
             :id="info.gradientStyle.gradientId"
             v-else-if="info.gradientStyle.type == 'radial'"
-            cx="50%"
-            cy="50%"
-            r="50%"
-            fx="50%"
-            fy="50%"
+            :cx="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '100%',
+                '0% 100%': '0%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :cy="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '0%',
+                '0% 100%': '100%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :r="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '160%',
+                '100% 0%': '150%',
+                '0% 100%': '150%',
+                '100% 100%': '140%'
+              }[info.gradientStyle.center]
+            "
+            :fx="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '100%',
+                '0% 100%': '0%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :fy="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '0%',
+                '0% 100%': '100%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
           >
             <stop
               v-for="(item, index) in info.gradientStyle.valueList"
@@ -96,20 +136,18 @@
               :offset="`${item.value}%`"
               :style="`stop-color:${item.code};stop-opacity:1`"
             />
-            <!-- <stop
-              offset="100%"
-              style="stop-color:rgb(0,0,255);stop-opacity:1"
-            /> -->
           </radialGradient>
         </template>
       </defs>
-      <ellipse
-        :cx="`${info.width / 2}`"
-        :cy="`${info.height / 2}`"
-        :rx="`${(info.width - info.borderWidth) / 2}`"
-        :ry="`${(info.height - info.borderWidth) / 2}`"
+      <rect
+        :x="info.borderWidth"
+        :y="info.borderWidth"
+        :width="info.width - info.borderWidth * 2"
+        :height="info.height - info.borderWidth * 2"
+        :rx="info.borderRadius"
+        :ry="info.borderRadius"
         :style="svgStyle"
-      />
+      ></rect>
     </svg>
   </div>
 </template>
@@ -118,6 +156,19 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
+// M28.5 14.5H72.5C80.2 14.5 86.5 20.8 86.5 28.5V72.5C86.5 80.2 80.2 86.5 72.5 86.5H28.5C20.8 86.5 14.5 80.2 14.5 72.5V28.5C14.5 20.8 20.8 14.5 28.5 14.5Z
+// const points = [
+//   ["M", 28.5, 14.5],
+//   ["H", 72.5],
+//   ["C", 80.2, 14.5, 86.5, 20.8, 86.5, 28.5],
+//   ["V", 72.5],
+//   ["C", 86.5, 80.2, 80.2, 86.5, 72.5, 86.5],
+//   ["H", 28.5],
+//   ["C", 20.8, 86.5, 14.5, 80.2, 14.5, 72.5],
+//   ["V", 28.5],
+//   ["C", 14.5, 20.8, 20.8, 14.5, 28.5, 14.5],
+//   ["Z"]
+// ];
 export default {
   name: "materialCircleCom",
   data() {
@@ -213,6 +264,10 @@ export default {
         }
       }
       styles["stroke-width"] = borderWidth;
+      // info.points = new SVG.PathArray(points).size(
+      //   width - borderWidth * 2,
+      //   height - borderWidth * 2
+      // );
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {
@@ -398,6 +453,7 @@ export default {
   mounted() {
     let { info = {} } = this;
     let { gradientStyle = {} } = info || {};
+    // info.points = new SVG.PathArray(points);
     gradientStyle.gradientId = bmCommon.uuid();
     // this.$emit("success"); //组件加载完成回调
   },
@@ -418,5 +474,5 @@ export default {
 
 <style lang="less">
 @import (less)
-  "../../../../assets/less/components/component/material/circle.less";
+  "../../../../assets/less/components/component/material/quadrangle.less";
 </style>

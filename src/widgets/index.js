@@ -100,7 +100,7 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-material-polygon" */ "@/components/component/material/polygon/index.vue"
     ),
-  materialEmbellishCircleCom: () =>
+  materialEmbellish1Com: () =>
     import(
       /* webpackChunkName: "bm-component-material-embellish1" */ "@/components/component/material/embellish1/index.vue"
     ),

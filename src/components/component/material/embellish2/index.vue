@@ -84,11 +84,51 @@
           <radialGradient
             :id="info.gradientStyle.gradientId"
             v-else-if="info.gradientStyle.type == 'radial'"
-            cx="50%"
-            cy="50%"
-            r="50%"
-            fx="50%"
-            fy="50%"
+            :cx="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '100%',
+                '0% 100%': '0%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :cy="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '0%',
+                '0% 100%': '100%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :r="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '160%',
+                '100% 0%': '150%',
+                '0% 100%': '150%',
+                '100% 100%': '140%'
+              }[info.gradientStyle.center]
+            "
+            :fx="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '100%',
+                '0% 100%': '0%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :fy="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '0%',
+                '0% 100%': '100%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
           >
             <stop
               v-for="(item, index) in info.gradientStyle.valueList"
@@ -103,11 +143,8 @@
           </radialGradient>
         </template>
       </defs>
-      <ellipse
-        :cx="`${info.width / 2}`"
-        :cy="`${info.height / 2}`"
-        :rx="`${(info.width - info.borderWidth) / 2}`"
-        :ry="`${(info.height - info.borderWidth) / 2}`"
+      <polygon
+        :points="info.points"
         :style="svgStyle"
       />
     </svg>
@@ -118,6 +155,29 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
+// 509.7,63.4 506.7,63.4 506.7,79 501.8,83.9 501.8,100 10.8,100 10.8,68.4 5.5,63.2 5.5,-0.1 2.5,-0.1 2.5,5.6 -0.5,8.6 -0.5,25.5 2.5,30.8 2.5,103 181.2,103 186.3,108.1 247.4,108.1 250.1,103 509.7,103
+const points = [
+  [509.7, 63.4],
+  [506.7, 63.4],
+  [506.7, 79],
+  [501.8, 83.9],
+  [501.8, 100],
+  [10.8, 100],
+  [10.8, 68.4],
+  [5.5, 63.2],
+  [5.5, -0.1],
+  [2.5, -0.1],
+  [2.5, 5.6],
+  [-0.5, 8.6],
+  [-0.5, 25.5],
+  [2.5, 30.8],
+  [2.5, 103],
+  [181.2, 103],
+  [186.3, 108.1],
+  [247.4, 108.1],
+  [250.1, 103],
+  [509.7, 103]
+];
 export default {
   name: "materialCircleCom",
   data() {
@@ -157,8 +217,8 @@ export default {
     svgStyle() {
       let { info = {} } = this;
       let {
-        // width = "",
-        // height = "",
+        width = "",
+        height = "",
         // color = "",
         borderColor = "",
         gradientStyle = {},
@@ -213,6 +273,10 @@ export default {
         }
       }
       styles["stroke-width"] = borderWidth;
+      info.points = new SVG.PointArray(points).size(
+        width - borderWidth * 2,
+        height - borderWidth * 2
+      );
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {
@@ -322,82 +386,11 @@ export default {
       // }
       return styles || {};
     }
-    // textStyle() {
-    //   let { info = {} } = this;
-    //   let {
-    //     // width = "",
-    //     // height = "",
-    //     color = "",
-    //     // borderColor = "",
-    //     // borderStyle = "",
-    //     // borderWidth = "",
-    //     // scale = "",
-    //     fontFamily = "",
-    //     fontSize = "",
-    //     fontWeight = "",
-    //     fontStyle = ""
-    //     // backgroundColor = "",
-    //     // backgroundImage = "",
-    //     // backgroundRepeat = "",
-    //     // backgroundSize = ""
-    //   } = info || {};
-    //   let styles = {};
-
-    //   // if (width) {
-    //   //   styles["width"] = `${width}px`;
-    //   // }
-    //   // if (height) {
-    //   //   styles["height"] = `${height}px`;
-    //   // }
-    //   // if (backgroundRepeat) {
-    //   //   styles["backgroundRepeat"] = backgroundRepeat;
-    //   // }
-    //   // if (backgroundSize) {
-    //   //   styles["backgroundSize"] = backgroundSize;
-    //   // }
-    //   // if (borderColor) {
-    //   //   styles["borderColor"] = borderColor;
-    //   // }
-    //   // if (borderStyle) {
-    //   //   styles["borderStyle"] = borderStyle;
-    //   // }
-    //   // // if (borderWidth) {
-    //   // styles["borderWidth"] = `${borderWidth}px`;
-    //   // }
-    //   // if (scale) {
-    //   //   (styles["transform"] = `${scale}`),
-    //   //     (styles["-webkit-transform"] = `${scale}`),
-    //   //     (styles["-ms-transform"] = `${scale}`),
-    //   //     (styles["-o-transform"] = `${scale}`),
-    //   //     (styles["-moz-transform"] = `${scale}`);
-    //   // }
-    //   if (color) {
-    //     styles["color"] = color;
-    //   }
-    //   if (fontSize) {
-    //     styles["fontSize"] = `${fontSize}px`;
-    //   }
-    //   if (fontFamily) {
-    //     styles["fontFamily"] = `${fontFamily}`;
-    //   }
-    //   if (fontWeight) {
-    //     styles["fontWeight"] = fontWeight;
-    //   }
-    //   if (fontStyle) {
-    //     styles["fontStyle"] = fontStyle;
-    //   }
-    //   // if (backgroundColor) {
-    //   //   styles["backgroundColor"] = backgroundColor;
-    //   // }
-    //   // if (backgroundImage) {
-    //   //   styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
-    //   // }
-    //   return styles || {};
-    // }
   },
   mounted() {
     let { info = {} } = this;
     let { gradientStyle = {} } = info || {};
+    info.points = new SVG.PointArray(points);
     gradientStyle.gradientId = bmCommon.uuid();
     // this.$emit("success"); //组件加载完成回调
   },

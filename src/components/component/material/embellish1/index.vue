@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-material-circle-com" :style="comStyle">
+  <div class="bm-material-embellish-1-com" :style="comStyle">
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -84,11 +84,51 @@
           <radialGradient
             :id="info.gradientStyle.gradientId"
             v-else-if="info.gradientStyle.type == 'radial'"
-            cx="50%"
-            cy="50%"
-            r="50%"
-            fx="50%"
-            fy="50%"
+            :cx="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '100%',
+                '0% 100%': '0%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :cy="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '0%',
+                '0% 100%': '100%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :r="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '160%',
+                '100% 0%': '150%',
+                '0% 100%': '150%',
+                '100% 100%': '140%'
+              }[info.gradientStyle.center]
+            "
+            :fx="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '100%',
+                '0% 100%': '0%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
+            :fy="
+              {
+                '50% 50%': '50%',
+                '0% 0%': '0%',
+                '100% 0%': '0%',
+                '0% 100%': '100%',
+                '100% 100%': '100%'
+              }[info.gradientStyle.center]
+            "
           >
             <stop
               v-for="(item, index) in info.gradientStyle.valueList"
@@ -103,11 +143,8 @@
           </radialGradient>
         </template>
       </defs>
-      <ellipse
-        :cx="`${info.width / 2}`"
-        :cy="`${info.height / 2}`"
-        :rx="`${(info.width - info.borderWidth) / 2}`"
-        :ry="`${(info.height - info.borderWidth) / 2}`"
+      <polygon
+        :points="info.points"
         :style="svgStyle"
       />
     </svg>
@@ -118,8 +155,33 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
+// 505.2,57.4 203.9,57.4 199.7,54 181.3,54 174.3,47 168,47 128,7 75.1,7 72.5,1.4 46.1,1.4 40.5,7 1,7 1,10 116,10 141.3,33.7 150.5,33.7 177.2,60.4 358,60.4 360.9,63.3 407.6,63.3 409.9,60.4 505.2,60.4
+const points = [
+  [505.2, 57.4],
+  [203.9, 57.4],
+  [199.7, 54],
+  [181.3, 54],
+  [174.3, 47],
+  [168, 47],
+  [128, 7],
+  [75.1, 7],
+  [72.5, 1.4],
+  [46.1, 1.4],
+  [40.5, 7],
+  [1, 7],
+  [1, 10],
+  [116, 10],
+  [141.3, 33.7],
+  [150.5, 33.7],
+  [177.2, 60.4],
+  [358, 60.4],
+  [360.9, 63.3],
+  [407.6, 63.3],
+  [409.9, 60.4],
+  [505.2, 60.4]
+];
 export default {
-  name: "materialCircleCom",
+  name: "materialEmbellishCom",
   data() {
     return {};
   },
@@ -157,8 +219,8 @@ export default {
     svgStyle() {
       let { info = {} } = this;
       let {
-        // width = "",
-        // height = "",
+        width = "",
+        height = "",
         // color = "",
         borderColor = "",
         gradientStyle = {},
@@ -213,6 +275,10 @@ export default {
         }
       }
       styles["stroke-width"] = borderWidth;
+      info.points = new SVG.PointArray(points).size(
+        width - borderWidth*2,
+        height - borderWidth*2
+      );
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {
@@ -322,82 +388,11 @@ export default {
       // }
       return styles || {};
     }
-    // textStyle() {
-    //   let { info = {} } = this;
-    //   let {
-    //     // width = "",
-    //     // height = "",
-    //     color = "",
-    //     // borderColor = "",
-    //     // borderStyle = "",
-    //     // borderWidth = "",
-    //     // scale = "",
-    //     fontFamily = "",
-    //     fontSize = "",
-    //     fontWeight = "",
-    //     fontStyle = ""
-    //     // backgroundColor = "",
-    //     // backgroundImage = "",
-    //     // backgroundRepeat = "",
-    //     // backgroundSize = ""
-    //   } = info || {};
-    //   let styles = {};
-
-    //   // if (width) {
-    //   //   styles["width"] = `${width}px`;
-    //   // }
-    //   // if (height) {
-    //   //   styles["height"] = `${height}px`;
-    //   // }
-    //   // if (backgroundRepeat) {
-    //   //   styles["backgroundRepeat"] = backgroundRepeat;
-    //   // }
-    //   // if (backgroundSize) {
-    //   //   styles["backgroundSize"] = backgroundSize;
-    //   // }
-    //   // if (borderColor) {
-    //   //   styles["borderColor"] = borderColor;
-    //   // }
-    //   // if (borderStyle) {
-    //   //   styles["borderStyle"] = borderStyle;
-    //   // }
-    //   // // if (borderWidth) {
-    //   // styles["borderWidth"] = `${borderWidth}px`;
-    //   // }
-    //   // if (scale) {
-    //   //   (styles["transform"] = `${scale}`),
-    //   //     (styles["-webkit-transform"] = `${scale}`),
-    //   //     (styles["-ms-transform"] = `${scale}`),
-    //   //     (styles["-o-transform"] = `${scale}`),
-    //   //     (styles["-moz-transform"] = `${scale}`);
-    //   // }
-    //   if (color) {
-    //     styles["color"] = color;
-    //   }
-    //   if (fontSize) {
-    //     styles["fontSize"] = `${fontSize}px`;
-    //   }
-    //   if (fontFamily) {
-    //     styles["fontFamily"] = `${fontFamily}`;
-    //   }
-    //   if (fontWeight) {
-    //     styles["fontWeight"] = fontWeight;
-    //   }
-    //   if (fontStyle) {
-    //     styles["fontStyle"] = fontStyle;
-    //   }
-    //   // if (backgroundColor) {
-    //   //   styles["backgroundColor"] = backgroundColor;
-    //   // }
-    //   // if (backgroundImage) {
-    //   //   styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
-    //   // }
-    //   return styles || {};
-    // }
   },
   mounted() {
     let { info = {} } = this;
     let { gradientStyle = {} } = info || {};
+    info.points = new SVG.PointArray(points);
     gradientStyle.gradientId = bmCommon.uuid();
     // this.$emit("success"); //组件加载完成回调
   },
@@ -418,5 +413,5 @@ export default {
 
 <style lang="less">
 @import (less)
-  "../../../../assets/less/components/component/material/circle.less";
+  "../../../../assets/less/components/component/material/embellish.less";
 </style>

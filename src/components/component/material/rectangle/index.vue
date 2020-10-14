@@ -67,7 +67,7 @@ export default {
         borderRadius = "",
         backgroundType = "",
         opacity = "",
-        scale = "",
+        // scale = "",
         visible = true,
         flipV = false,
         flipH = false,

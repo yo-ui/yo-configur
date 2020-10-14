@@ -2483,8 +2483,8 @@ export default [
           styleType: "material",
           backgroundColor: "#0075E7",
           // backgroundImage: "/static/img/svg/material/arrow.svg",
-          width: 66.5,
-          height: 66.5,
+          width: 100,
+          height: 100,
           // dataType: "device",
           // equalScaleable: true //是否等比例缩放
         }
@@ -2498,8 +2498,8 @@ export default [
           styleType: "material",
           backgroundColor: "#0075E7",
           // backgroundImage: "/static/img/svg/material/star.svg",
-          width: 50,
-          height: 50
+          width: 100,
+          height: 100
           // dataType: "device",
           // equalScaleable: true //是否等比例缩放
         }
@@ -2526,9 +2526,10 @@ export default [
         data: {
           ...baseData,
           styleType: "material",
+          backgroundColor: "#0075E7",
           // backgroundImage: "/static/img/svg/material/quadrangle.svg",
-          width: 50,
-          height: 50
+          width: 100,
+          height: 100
           // dataType: "device",
           // equalScaleable: true //是否等比例缩放
         }
@@ -2542,8 +2543,8 @@ export default [
           styleType: "material",
           backgroundColor: "#0075E7",
           // backgroundImage: "/static/img/svg/material/polygon.svg",
-          width: 50,
-          height: 50
+          width: 100,
+          height: 100
           // dataType: "device",
           // equalScaleable: true //是否等比例缩放
         }
@@ -2557,7 +2558,7 @@ export default [
           styleType: "material",
           backgroundColor: "#0075E7",
           // backgroundImage: "/static/img/svg/material/embellish-1.svg",
-          width: 300,
+          width: 600,
           height: 40
           // dataType: "device",
           // equalScaleable: true //是否等比例缩放
@@ -2572,8 +2573,8 @@ export default [
           styleType: "material",
           backgroundColor: "#0075E7",
           // backgroundImage: "/static/img/svg/material/embellish-2.svg",
-          width: 300,
-          height: 40
+          width: 800,
+          height: 80
           // dataType: "device",
           // equalScaleable: true //是否等比例缩放
         }
