@@ -1,6 +1,6 @@
 //预览
 <template>
-    <!-- :close-on-click-modal="false"
+  <!-- :close-on-click-modal="false"
     :close-on-press-escape="false" -->
   <el-dialog
     class="bm-dialog-preview-com"
@@ -11,14 +11,11 @@
   >
     <template #title>
       {{ $lang("预览") }}
-      <i
-        class="el-icon-monitor"
-        @click="$openPage($RouterURL.preview.name,true)"
-      ></i>
+      <i class="el-icon-monitor" @click="$openPage(iframeUrl, true)"></i>
     </template>
     <div v-loading="dataLoadingStatus">
       <iframe
-        src="/preview"
+        :src="iframeUrl"
         frameborder="0"
         v-if="showDialogStatus"
         @load="loadEvent"
@@ -46,6 +43,7 @@ export default {
     return {
       showDialogStatus: false,
       dataLoadingStatus: true,
+      iframeUrl: "",
       condition: {
         // remark: ""
       }
@@ -84,6 +82,10 @@ export default {
       // this.storeProductFunc();
     },
     show() {
+      let { $route } = this;
+      let { query = {} } = $route;
+      let { canvasId = "" } = query || {};
+      this.iframeUrl = `${this.$RouterURL.preview.name}?canvasId=${canvasId}`;
       this.showDialogStatus = true;
       this.dataLoadingStatus = true;
       // let { condition } = this;

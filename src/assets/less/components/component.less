@@ -41,6 +41,18 @@
   .operate-btn{
     .db(none);
     z-index: 2;
+    .posa;
+    &::before{
+      .db(none);
+    }
+  }
+  .cover{
+    .posa;
+    right:0;
+    left:0;
+    top:0;
+    bottom:0;
+    z-index: 999;
   }
   .info{
     .posa;
@@ -65,7 +77,6 @@
     // opacity: .3;
   }
   .el-icon-refresh-right{
-    .posa;
     left:50%;
     top:-40px;
     .fz(22);
@@ -74,17 +85,27 @@
     .bor(1px solid @border);
     .bc(@white);
     .br(50%);
-    cursor: pointer;
+    cursor:url(/static/img/configur/rotate.png), pointer;
     &:hover{
       .tranf(translate(-50%,0) scale(1.5));
       .c(@themes);
     }
-    &::before{
-      .db(none);
-    }
+    // &::before{
+    //   .db(none);
+    // }
+  }
+  .el-icon-axis{
+    left:50%;
+    top:50%;
+    .tranf(translate(-50%,-50%));
+    .squ(@circle-width);
+    // .bor(1px solid @border);
+    .bc(orange);
+    z-index: 3;
+    .br(50%);
   }
   .el-icon-top-left{
-    .posa;
+    // .posa;
     left:@left;
     top:@top;
     .squ(@square-width);

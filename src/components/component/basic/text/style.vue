@@ -16,7 +16,7 @@
       ></i>
     </p> -->
     <el-collapse v-model="activeNames">
-      <el-collapse-item :title="info.name" name="1">
+      <el-collapse-item :title="info.name" name="name">
         <!-- <h2>{{ info.name }}</h2> -->
         <p>
           <span class="label"> {{ $lang("文本名称") }}: </span>
@@ -146,9 +146,35 @@
         </el-option>
       </el-select>
     </p> -->
-        <p>
-          <span class="label"> {{ $lang("是否可移动") }}:</span
-          ><el-checkbox v-model="info.locked"></el-checkbox>
+        <p class="btn-box">
+          <el-tooltip content="隐藏" placement="top" effect="dark">
+            <i
+              class="el-icon-view"
+              :class="{ active: !info.visible }"
+              @click="info.visible = !info.visible"
+            ></i>
+          </el-tooltip>
+          <el-tooltip content="锁定" placement="top" effect="dark">
+            <i
+              class="el-icon-lock"
+              :class="{ active: info.locked }"
+              @click="info.locked = !info.locked"
+            ></i>
+          </el-tooltip>
+          <el-tooltip content="垂直翻转" placement="top" effect="dark">
+            <i
+              class="bomi bomi-flip-v"
+              :class="{ active: info.flipV }"
+              @click="info.flipV = !info.flipV"
+            ></i>
+          </el-tooltip>
+          <el-tooltip content="水平翻转" placement="top" effect="dark">
+            <i
+              class="bomi bomi-flip-h"
+              :class="{ active: info.flipH }"
+              @click="info.flipH = !info.flipH"
+            ></i>
+          </el-tooltip>
         </p>
         <p>
           <span class="label">{{ $lang("填充颜色") }}:</span>
@@ -755,7 +781,7 @@
       <!-- <h2>{{ $lang("交互") }}</h2>
     <h2>{{ $lang("动画") }}</h2> -->
       <!-- <el-collapse-item title="交互" name="2"> </el-collapse-item> -->
-      <el-collapse-item title="动画" name="2">
+      <el-collapse-item title="动画" name="animation">
         <p>
           <span class="label">{{ $lang("动画类型") }}:</span>
           <el-select v-model="info.animation.name" placeholder="请选择动画类型">
@@ -832,10 +858,10 @@ export default {
   name: "textStyleCom",
   data() {
     return {
-      activeNames: ["1", "2"],
+      activeNames: ["name"],
       animationDirectionList: Object.freeze(Constants.ANIMATIONDIRECTIONLIST),
-      borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
       animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
+      borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
       backgroundTypeList: Object.freeze(Constants.BACKGROUNDTYPELIST),
       transformOriginList: Object.freeze(Constants.TRANSFORMORIGINLIST),
       centerList: Object.freeze(Constants.CENTERLIST),
@@ -913,34 +939,34 @@ export default {
       let { info = {} } = this;
       info.backgroundImage = url;
     },
-    // transformOriginChangeEvent() {
-    //   let { info = {} } = this;
-    //   let {
-    //     transformOrigin = "",
-    //     matrix = {},
-    //     left = "",
-    //     top = "",
-    //     width = "",
-    //     height = ""
-    //   } = info;
-    //   let { a, b, c, d, e, f } = matrix || {};
-    //   if (transformOrigin == "left top") {
-    //     left = left + width / 2;
-    //     top = top - height / 2;
-    //   } else if (transformOrigin == "right") {
-    //     left = left - width / 2;
-    //     top = top - height / 2;
-    //   } else if (transformOrigin == "center") {
-    //     // left = left;
-    //     // top = top;
-    //   } else if (transformOrigin == "top") {
-    //   } else if (transformOrigin == "bottom") {
-    //   }
-    //   // left = left * a + top * c + e * 1;
-    //   // top = b * left + d * top + 1 * f;
-    //   // info.left = left;
-    //   // info.top = top;
-    // },
+    transformOriginChangeEvent() {
+      // let { info = {} } = this;
+      // let {
+      //   transformOrigin = "",
+      //   matrix = {},
+      //   left = "",
+      //   top = "",
+      //   width = "",
+      //   height = ""
+      // } = info;
+      // let { a, b, c, d, e, f } = matrix || {};
+      // if (transformOrigin == "left top") {
+      //   left = left + width / 2;
+      //   top = top - height / 2;
+      // } else if (transformOrigin == "right") {
+      //   left = left - width / 2;
+      //   top = top - height / 2;
+      // } else if (transformOrigin == "center") {
+      //   // left = left;
+      //   // top = top;
+      // } else if (transformOrigin == "top") {
+      // } else if (transformOrigin == "bottom") {
+      // }
+      // left = left * a + top * c + e * 1;
+      // top = b * left + d * top + 1 * f;
+      // info.left = left;
+      // info.top = top;
+    },
     sliderChangeEvent(values, index) {
       let { info = {} } = this;
       let { gradientStyle = {} } = info || {};

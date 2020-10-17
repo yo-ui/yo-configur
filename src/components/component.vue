@@ -4,6 +4,8 @@
 <template>
   <div
     class="bm-component-com"
+    @keydown.stop
+    @mousedown="onComMousedownEvent"
     :id="`box_${info.id}`"
     ref="bmComBox"
     :style="boxStyle"
@@ -11,61 +13,91 @@
   >
     <div class="info">
       <p class="txt">
-        {{ info.name }}
+        {{ info.name }} {{info.showCoverStatus}}
+        <!-- {{ moving }}--{{ info.rotateable }}--{{ info.locked }} -->
       </p>
     </div>
-    <div class="cover" v-if="info.showCoverStatus"></div>
+    <div
+      class="cover"
+      v-if="info.showCoverStatus"
+      @dblclick.prevent="info.showCoverStatus = false"
+    ></div>
+    <!-- ((!moving && info.rotateable) || rotating) &&
+          !info.locked &&
+          !info.showCoverStatus -->
     <i
       class="operate-btn el-icon-refresh-right"
-      v-if="!moving && info.rotateable && !info.locked"
+      v-if="showRotateStatus"
       @mousedown.stop="rotateClickEvent"
       title="旋转"
     ></i>
+    <!-- info.rotateable && !info.locked && rotating && !info.showCoverStatus -->
+    <i
+      class="operate-btn el-icon-axis"
+      :style="
+        `${
+          {
+            'left top': 'left: 0; top: 0; ',
+            top: ' left: 50%; top: 0 ',
+            'right top': ' left: 100%; top: 0 ',
+            center: ' left: 50%; top: 50%;',
+            right: ' left: 100%; top: 50% ',
+            'right bottom': ' left: 100%; top: 100% ',
+            bottom: ' left: 50%; top: 100% ',
+            'left bottom': ' left: 0; top: 100% ',
+            left: ' left: 0; top: 50%'
+          }[info.transformOrigin]
+        }`
+      "
+      v-if="showRotateOriginStatus"
+      title="旋转轴"
+    ></i>
     <i
       class="operate-btn el-icon-top-left"
-      v-if="!moving && info.scaleable && !info.locked"
+      v-if="scaleBoxStatus"
       @mousedown.stop="leftTopClickEvent"
       title="左上角"
     ></i>
+    <!-- !moving && info.scaleable && !info.locked && !rotating -->
     <i
       class="operate-btn el-icon-top"
-      v-if="!moving && info.scaleable && !info.locked"
+      v-if="scaleBoxStatus"
       @mousedown.stop="topClickEvent"
       title="上"
     ></i>
     <i
       class="operate-btn el-icon-top-right"
-      v-if="!moving && info.scaleable && !info.locked"
+      v-if="scaleBoxStatus"
       @mousedown.stop="rightTopClickEvent"
       title="右上角"
     ></i>
     <i
       class="operate-btn el-icon-back"
-      v-if="!moving && info.scaleable && !info.locked"
+      v-if="scaleBoxStatus"
       @mousedown.stop="leftClickEvent"
       title="左"
     ></i>
     <i
       class="operate-btn el-icon-right"
-      v-if="!moving && info.scaleable && !info.locked"
+      v-if="scaleBoxStatus"
       @mousedown.stop="rightClickEvent"
       title="右"
     ></i>
     <i
       class="operate-btn el-icon-bottom-left"
-      v-if="!moving && info.scaleable && !info.locked"
+      v-if="scaleBoxStatus"
       @mousedown.stop="leftBottomClickEvent"
       title="左下角"
     ></i>
     <i
       class="operate-btn el-icon-bottom"
-      v-if="!moving && info.scaleable && !info.locked"
+      v-if="scaleBoxStatus"
       @mousedown.stop="bottomClickEvent"
       title="下"
     ></i>
     <i
       class="operate-btn el-icon-bottom-right"
-      v-if="!moving && info.scaleable && !info.locked"
+      v-if="scaleBoxStatus"
       @mousedown.stop="rightBottomClickEvent"
       title="右下角"
     ></i>
@@ -73,8 +105,9 @@
     <!-- {{ info.type }} -->
     <component
       ref="bmCom"
-      :type="type"
+      :type="showType"
       :info="info"
+      :style="comStyle"
       :is="`${info.type}Com`"
       @success="loadSuccess"
     >
@@ -107,7 +140,8 @@ const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {
     return {
-      animate: ""
+      animate: "",
+      rotating: false
     };
   },
   props: {
@@ -116,22 +150,58 @@ export default {
       default: () => {
         return {};
       }
-    },
-    type: {
-      type: String,
-      default: ""
     }
+    // type: {
+    //   type: String,
+    //   default: ""
+    // }
   },
   mounted() {
     // this.loadSuccess();
+    let { info = {} } = this;
+    info.showCoverStatus = true;
   },
   components: {
     ...widgets
   },
   computed: {
     ...mapGetters({
+      showType: "canvas/getShowType", //当前显示类型
       moving: "canvas/getMoving"
     }),
+    showRotateStatus() {
+      let { moving = false, info = {} } = this;
+      let {
+        rotateable = true,
+        locked = false,
+        rotating = false,
+        showCoverStatus = true
+      } = info || {};
+      return (
+        ((!moving && rotateable) || rotating) && !locked && !showCoverStatus
+      );
+    },
+    showRotateOriginStatus() {
+      let { info = {} } = this;
+      let {
+        rotateable = true,
+        locked = false,
+        rotating = false,
+        showCoverStatus = true
+      } = info || {};
+      return rotateable && !locked && rotating && !showCoverStatus;
+    },
+    scaleBoxStatus() {
+      let { moving = false, info = {} } = this;
+      let {
+        scaleable = true,
+        locked = false,
+        rotating = false,
+        showCoverStatus = true
+      } = info || {};
+      // !moving && scaleable && !info.locked && !rotating && showCoverStatus
+      return !moving && scaleable && !locked && !rotating && showCoverStatus;
+    },
     boxStyle() {
       let { info = {} } = this;
       let {
@@ -177,12 +247,24 @@ export default {
       styles["animation-duration"] = duration;
       styles["animation-direction"] = direction;
       return styles;
+    },
+    comStyle() {
+      let { info = {} } = this;
+      let { opacity = "", visible = true, flipV = false, flipH = false } =
+        info || {};
+      let styles = {};
+      styles["opacity"] = opacity / 100;
+      styles["visibility"] = `${visible ? "visible" : "hidden"}`;
+      if (flipV || flipH) {
+        let scale = `scale(${flipH ? -1 : 1},${flipV ? -1 : 1})`;
+        (styles["transform"] = `${scale}`),
+          (styles["-webkit-transform"] = `${scale}`),
+          (styles["-ms-transform"] = `${scale}`),
+          (styles["-o-transform"] = `${scale}`),
+          (styles["-moz-transform"] = `${scale}`);
+      }
+      return styles || {};
     }
-    // animation() {
-    //   let { info = {} } = this;
-    //   let { animation = {} } = info || {};
-    //   return animation || {};
-    // }
   },
   methods: {
     ...mapMutations({
@@ -206,6 +288,13 @@ export default {
           info.height = Number(height);
         }
       });
+    },
+    onComMousedownEvent(e) {
+      let { info = {} } = this;
+      let { showCoverStatus = true } = info || {};
+      if (!showCoverStatus) {
+        e.stopPropagation();
+      }
     },
     mousedownEvent(e, direction) {
       e.stopPropagation();
@@ -252,10 +341,12 @@ export default {
       $(document).off("mousemove", this.mousemoveEvent);
       $(document).off("mouseup", this.mouseupEvent);
       this.stopMove();
+      this.rotating = false;
     },
     rotateClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.rotating = true;
       this.mousedownEvent(e, "rotate");
     },
     leftTopClickEvent(e) {

@@ -1,6 +1,6 @@
 <template>
   <div
-    :contenteditable="type == 'edit' && info.editable"
+    :contenteditable="showType == 'edit' && info.editable"
     @blur.stop="blurEvent"
     :style="comStyle"
   >
@@ -22,14 +22,12 @@ export default {
       default: () => {
         return {};
       }
-    },
-    type: {
-      type: String,
-      default: ""
     }
   },
   computed: {
-    ...mapGetters(),
+    ...mapGetters({
+      showType: "canvas/getShowType" //当前显示类型
+    }),
 
     //渐变颜色样式
     gradientStyle() {
@@ -62,7 +60,7 @@ export default {
         borderWidth = "",
         borderRadius = "",
         backgroundType = "",
-        scale = "",
+        // scale = "",
         marginTop = 0,
         marginBottom = 0,
         marginLeft = 0,
@@ -127,13 +125,13 @@ export default {
       }
       styles["borderWidth"] = `${borderWidth}px`;
       styles["borderRadius"] = `${borderRadius}px`;
-      if (scale) {
-        (styles["transform"] = `${scale}`),
-          (styles["-webkit-transform"] = `${scale}`),
-          (styles["-ms-transform"] = `${scale}`),
-          (styles["-o-transform"] = `${scale}`),
-          (styles["-moz-transform"] = `${scale}`);
-      }
+      // if (scale) {
+      //   (styles["transform"] = `${scale}`),
+      //     (styles["-webkit-transform"] = `${scale}`),
+      //     (styles["-ms-transform"] = `${scale}`),
+      //     (styles["-o-transform"] = `${scale}`),
+      //     (styles["-moz-transform"] = `${scale}`);
+      // }
       if (color) {
         styles["color"] = color;
       }

@@ -3,7 +3,11 @@
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      :viewBox="`${6.8 - info.borderWidth} ${9.3 - info.borderWidth} ${info.width} ${info.height}`"
+      :viewBox="
+        `${6.8 - info.borderWidth} ${9.3 - info.borderWidth} ${info.width} ${
+          info.height
+        }`
+      "
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >

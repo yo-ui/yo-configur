@@ -38,7 +38,6 @@
               v-for="(item, index) in widgetList"
               :data-type="item.type"
               :data-id="item.id"
-              type="edit"
               :info="item"
               :key="index"
             ></bm-com>
@@ -341,6 +340,7 @@ export default {
       setCanvasData: "canvas/setCanvasData",
       setActiveComs: "canvas/setActiveComs",
       initMove: "canvas/initMove",
+      setShowType: "canvas/setShowType",
       setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
       moving: "canvas/moving",
       stopMove: "canvas/stopMove"
@@ -361,6 +361,7 @@ export default {
       // 166
       let { canvasId = "", type = 1 } = query || {};
       condition.canvasId = canvasId;
+      this.setShowType(Constants.SHOWTYPEMAP.EDIT);
       this.canvasGetFunc((detail = {}) => {
         let {
           name = "",
@@ -533,6 +534,8 @@ export default {
         }
       } else {
         this.showContextMenuType = 2;
+        let { activeCom = {} } = this;
+        activeCom.showCoverStatus = true;
         // 取消选中组件
         this.selectComAction(id);
         this.selectComsAction(id);

@@ -1,13 +1,18 @@
 <template>
-  <div class="bm-info-com" @mousedown.stop>
+  <div class="bm-info-com" @mousedown.stop @keydown.stop>
     <el-tabs v-model="activeIndex" type="card">
-      <el-tab-pane
-        v-for="item in tabList"
-        :key="item.code"
-        :label="item.name"
-        :name="item.code"
-      >
-      </el-tab-pane>
+      <template v-for="item in tabList">
+        <el-tab-pane
+          v-if="
+            (item.code == 'dataBind' && activeCom.type != 'canvas') ||
+              item.code != 'dataBind'
+          "
+          :key="item.code"
+          :label="item.name"
+          :name="item.code"
+        >
+        </el-tab-pane>
+      </template>
     </el-tabs>
     <template v-if="activeIndex == 'basicStyle'">
       <!-- {{activeCom}} -->
@@ -15,7 +20,16 @@
         class="com-style"
         v-if="activeCom.type"
         :info="activeCom"
-        :is="`${activeCom.styleType||activeCom.type}StyleCom`"
+        :is="`${activeCom.styleCode || activeCom.type}StyleCom`"
+      ></component>
+    </template>
+    <template v-if="activeIndex == 'dataBind'">
+      <!-- {{activeCom}} -->
+      <component
+        class="com-style com-data"
+        v-if="activeCom.type"
+        :info="activeCom"
+        :is="`${activeCom.dataCode || 'common'}DataCom`"
       ></component>
     </template>
     <template v-if="activeIndex == 'element'">
@@ -71,7 +85,7 @@
 <script>
 import bmCommon from "@/common/common";
 // import { Constants } from "@/common/env";
-import { styles } from "@/widgets/index";
+import { styles, datas } from "@/widgets/index";
 import draggable from "vuedraggable";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
@@ -84,6 +98,7 @@ export default {
   data() {
     let tabList = Object.freeze([
       { code: "basicStyle", name: "基本样式" },
+      { code: "dataBind", name: "数据绑定" },
       { code: "element", name: "画布" }
     ]);
     return {
@@ -103,7 +118,8 @@ export default {
   },
   components: {
     draggable,
-    ...styles
+    ...styles,
+    ...datas
   },
   computed: {
     ...mapGetters({

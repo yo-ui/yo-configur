@@ -262,8 +262,8 @@ export default {
         }
       }
       info.points = new SVG.PointArray(points).size(
-        width - borderWidth*2,
-        height - borderWidth*2
+        width - borderWidth * 2,
+        height - borderWidth * 2
       );
       styles["stroke-width"] = borderWidth;
       if (backgroundType == "purity") {

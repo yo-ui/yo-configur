@@ -11,5 +11,5 @@ export default {
       // needToken:true,
     });
     return data;
-  },
-}
+  }
+};

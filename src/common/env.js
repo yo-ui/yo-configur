@@ -34,6 +34,11 @@ const Constants = {
   },
   AUTHORIZATION: "x-access-token", //平台授权标识
   REQUEST_TIMEOUT: 15 * 1000, //超时时间设置为15秒
+  SHOWTYPEMAP: {
+    EDIT: "edit",
+    PREVIEW: "preview",
+    VIEW: "view"
+  },
   LANGMAP: {
     // code代码   name 名称   icon 图标  help 帮助中心代码
     EN: {
@@ -114,7 +119,7 @@ const Constants = {
     { code: "solid", name: "实线" },
     { code: "dashed", name: "虚线" },
     // { code: "space-dashed", name: "间隔虚线" },
-    { code: "dotted", name: "点状边框" },
+    { code: "dotted", name: "点状边框" }
     // { code: "double", name: "双线" },
     // { code: "groove", name: "3D 凹槽边框" },
     // { code: "ridge", name: "3D 垄状边框" },

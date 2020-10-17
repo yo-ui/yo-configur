@@ -47,11 +47,15 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-countdownText" */ "@/components/component/basic/countdownText/index.vue"
     ),
-
   videoCom: () =>
     import(
-      /* webpackChunkName: "bm-component-video" */ "@/components/component/com/video/index.vue"
+      /* webpackChunkName: "bm-component-video" */ "@/components/component/basic/video/index.vue"
     ),
+  hlsVideoCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-hls-video" */ "@/components/component/basic/hlsVideo/index.vue"
+    ),
+
   lineChartCom: () =>
     import(
       /* webpackChunkName: "bm-component-lineChart" */ "@/components/component/com/lineChart/index.vue"
@@ -170,11 +174,15 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-countdownText-style" */ "@/components/component/basic/countdownText/style.vue"
     ),
-
   videoStyleCom: () =>
     import(
-      /* webpackChunkName: "bm-component-video-style" */ "@/components/component/com/video/style.vue"
+      /* webpackChunkName: "bm-component-video-style" */ "@/components/component/basic/video/style.vue"
     ),
+  hlsVideoStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-hls-video-style" */ "@/components/component/basic/hlsVideo/style.vue"
+    ),
+
   lineChartStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-lineChart-style" */ "@/components/component/com/lineChart/style.vue"
@@ -221,4 +229,11 @@ let styles = {
     )
 };
 
-export { widgets, styles };
+let datas = {
+  commonDataCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-data" */ "@/components/component/data.vue"
+    )
+};
+
+export { widgets, styles, datas };

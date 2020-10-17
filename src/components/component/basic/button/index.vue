@@ -54,7 +54,20 @@ export default {
         borderStyle = "",
         borderWidth = "",
         borderRadius = "",
-        scale = "",
+        // scale = "",
+        marginTop = 0,
+        marginBottom = 0,
+        marginLeft = 0,
+        marginRight = 0,
+        paddingTop = 0,
+        paddingBottom = 0,
+        paddingLeft = 0,
+        paddingRight = 0,
+        shadow = {},
+        shadowable = false,
+        textShadow = {},
+        textShadowable = false,
+        textAlign = "",
         fontFamily = "",
         backgroundType = "",
         fontSize = "",
@@ -66,12 +79,21 @@ export default {
         backgroundRepeat = "",
         backgroundSize = ""
       } = info || {};
-      let styles = {};
+      let styles = {
+        margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
+        padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
+      };
       if (width) {
         styles["width"] = `${width}px`;
       }
       if (height) {
         styles["height"] = `${height}px`;
+      }
+      if (textAlign) {
+        styles["textAlign"] = textAlign;
+        if (textAlign == "justify") {
+          styles["text-align-last"] = textAlign;
+        }
       }
       if (backgroundRepeat) {
         styles["backgroundRepeat"] = backgroundRepeat;
@@ -87,13 +109,24 @@ export default {
       }
       styles["borderWidth"] = `${borderWidth}px`;
       styles["borderRadius"] = `${borderRadius}px`;
-      if (scale) {
-        (styles["transform"] = `${scale}`),
-          (styles["-webkit-transform"] = `${scale}`),
-          (styles["-ms-transform"] = `${scale}`),
-          (styles["-o-transform"] = `${scale}`),
-          (styles["-moz-transform"] = `${scale}`);
+      if (shadowable) {
+        let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
+          shadow || {};
+        styles[
+          "boxShadow"
+        ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
       }
+      if (textShadowable) {
+        let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
+        styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
+      }
+      // if (scale) {
+      //   (styles["transform"] = `${scale}`),
+      //     (styles["-webkit-transform"] = `${scale}`),
+      //     (styles["-ms-transform"] = `${scale}`),
+      //     (styles["-o-transform"] = `${scale}`),
+      //     (styles["-moz-transform"] = `${scale}`);
+      // }
       if (color) {
         styles["color"] = color;
       }
@@ -149,7 +182,7 @@ export default {
 @import (reference) "./../../../../assets/less/common.less";
 .btn-com {
   .bor(1px solid @grayE);
-  background: linear-gradient(#34a5f8, #088ef0);
+  // background: linear-gradient(#34a5f8, #088ef0);
   .p(5px 20px);
   .br(20px);
   &:active {

@@ -1,6 +1,5 @@
 <template>
   <div class="bm-preview-page">
-    <!-- <bm-header ref="bmHeader"></bm-header> -->
     <div class="flex-content">
       <div class="content-box">
         <div class="view-box" ref="viewBox">
@@ -10,186 +9,85 @@
             :style="canvasStyle"
             :class="canvas.action"
           >
-            <div class="bg" :style="bgStyle">
-              <!-- <div class="grid" :style="gridStyle"></div> -->
-            </div>
-            <bm-com
-              class="preview"
-              :class="{
-                //active: activeComIds.indexOf(item.id) > -1,
-                locked: item.locked
-              }"
-              v-for="(item, index) in widgetList"
-              :data-type="item.type"
-              :data-id="item.id"
-              type="preview"
-              :info="item"
-              :key="index"
-            ></bm-com>
+            <div class="bg" :style="bgStyle"></div>
+            <template v-for="(item, index) in widgetList">
+              <el-popover
+                v-if="
+                  item.bindData &&
+                    item.bindData.deviceId &&
+                    !item.bindData.devicePoint
+                "
+                popper-class="device-info-popover"
+                placement="right"
+                :key="index"
+                @show="showDeviceInfoEvent(item.bindData)"
+                :title="deviceInfo.name"
+                width="400"
+                trigger="hover"
+              >
+                <bm-device-info :pointList="deviceInfo.points"></bm-device-info>
+                <bm-com
+                  slot="reference"
+                  class="preview"
+                  :class="{
+                    locked: item.locked
+                  }"
+                  :data-type="item.type"
+                  :data-id="item.id"
+                  :info="item"
+                  :key="index"
+                ></bm-com>
+              </el-popover>
+              <bm-com
+                v-else
+                class="preview"
+                :data-type="item.type"
+                :data-id="item.id"
+                :info="item"
+                :key="index"
+              ></bm-com>
+            </template>
           </div>
-          <!-- <bm-lines ref="bmLines"></bm-lines> -->
-          <!-- <div class="slider-box" @mousedown.stop>
-            {{ $toBig(zoom, 0) + "%" }}
-            <el-slider
-              v-model="zoom"
-              :max="200"
-              @mousedown.stop
-              :format-tooltip="val => val + '%'"
-            ></el-slider>
-          </div> -->
         </div>
-        <!-- <bm-info ref="bmInfo" v-if="rightMenuStatus"></bm-info> -->
       </div>
     </div>
-    <!-- <ul
-      class="context-menu"
-      ref="contextMenuBox"
-      v-show="showContextMenuStatus"
-      :style="contextMenuStyle"
-    >
-      <li
-        @click="cutEvent"
-        v-if="showContextMenuType == 1 && activeCom.locked"
-      >
-        剪切 <small>Ctrl+X</small>
-      </li>
-      <li
-        @click="copyEvent"
-        v-if="showContextMenuType == 1 && activeCom.locked"
-      >
-        复制<small>Ctrl+C</small>
-      </li>
-      <li @click="pasteEvent" v-if="showContextMenuType == 2 && !!copyCom">
-        粘贴<small>Ctrl+V</small>
-      </li>
-      <li
-        @click="moveUpEvent"
-        v-if="showContextMenuType == 1 && activeCom.locked"
-        class="line"
-        :class="{ disabled: topOrder == activeCom.order }"
-      >
-        上移一层<small>Ctrl+[</small>
-      </li>
-      <li
-        @click="moveDownEvent"
-        :class="{ disabled: bottomOrder == activeCom.order }"
-        v-if="showContextMenuType == 1 && activeCom.locked"
-      >
-        下移一层<small>Ctrl+]</small>
-      </li>
-      <li
-        @click="moveTopEvent"
-        :class="{ disabled: topOrder == activeCom.order }"
-        v-if="showContextMenuType == 1 && activeCom.locked"
-      >
-        置于顶层<small>Ctrl+Shift+[</small>
-      </li>
-      <li
-        @click="moveBottomEvent"
-        :class="{ disabled: bottomOrder == activeCom.order }"
-        v-if="showContextMenuType == 1 && activeCom.locked"
-      >
-        置于底层<small>Ctrl+Shift+]</small>
-      </li>
-      <li
-        class="line"
-        @click="lockEvent(false)"
-        v-if="showContextMenuType == 1 && activeCom.locked"
-      >
-        锁定<small>Ctrl+Shift+L</small>
-      </li>
-      <li
-        @click="lockEvent(true)"
-        v-if="showContextMenuType == 1 && !activeCom.locked"
-      >
-        解锁<small>Ctrl+Shift+L</small>
-      </li>
-      <li
-        @click="deleteEvent"
-        v-if="showContextMenuType == 1 && activeCom.locked"
-      >
-        删除<small>Delete</small>
-      </li>
-    </ul> -->
-    <!-- <bm-footer ref="bmFooter"></bm-footer> -->
-    <!-- <bm-select ref="bmSelect"></bm-select> -->
   </div>
 </template>
 <script>
-// import bmCommon from "@/common/common";
-// import { Constants } from "@/common/env";
+import bmCommon from "@/common/common";
+import { Constants } from "@/common/env";
 import bmCom from "@/components/component";
-// import bmHeader from "@/components/header";
-// import bmNav from "@/components/nav";
-// import bmFooter from "@/components/footer";
-// import mixins from "@/mixins";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "bm-preview-page",
   data() {
     return {
-      // comList: [],
-      // activeComIds: "",
-      // condition: {
-      //   zoom: 100
-      // }
+      condition: {
+        canvasId: ""
+      },
+      deviceInfo: {},
       showContextMenuStatus: false,
       showContextMenuType: 1, //1 组件右键菜单   2是画布右键菜单
       copyCom: "",
-      // shiftCtrlKeyDownStatus: false, //shit ctrl键被按下
       contextMenuStyle: {}
     };
   },
   // mixins: [mixins],
   components: {
-    // bmHeader,
-    // bmNav,
-    // : () =>
-    //   import(/* webpackChunkName: "iot-header-com" */ "@/components/header"),
-    // bmLines: () =>
-    //   import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
-    // bmSelect: () =>
-    //   import(/* webpackChunkName: "iot-select-com" */ "@/components/select"),
-    // bmFooter,
-    // : () =>
-    //   import(/* webpackChunkName: "iot-footer-com" */ "@/components/footer"),
-    // bmInfo: () =>
-    //   import(/* webpackChunkName: "iot-info-com" */ "@/components/info"),
-    bmCom
-    // : () =>
-    //   import(
-    //     /* webpackChunkName: "iot-component-com" */ "@/components/component"
-    //   ),
-    // bmWidgetList: () =>
-    //   import(
-    //     /* webpackChunkName: "iot-widget-list-com" */ "@/components/widget-list"
-    //   )
+    bmCom,
+    bmDeviceInfo: () =>
+      import(
+        /* webpackChunkName: "bm-device-info" */ "@/components/data/device-info.vue"
+      )
   },
   computed: {
     ...mapGetters({
       widgetList: "canvas/getWidgetList", //组件列表
       previewData: "canvas/getPreviewData", //组件列表
       getZoom: "canvas/getZoom", //放大缩小
-      leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
-      rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
-      canvas: "canvas/getCanvas", //画布属性
-      selectBox: "canvas/getSelectBox", //选取框
-      activeComs: "canvas/getActiveComs", //选中对象
-      activeCom: "canvas/getActiveCom" //选中对象
+      canvas: "canvas/getCanvas" //画布属性
     }),
-    // bottomOrder() {
-    //   let { widgetList = [] } = this;
-    //   let orders = widgetList.map(item => item.order);
-    //   let order = Math.min(...orders);
-    //   return order;
-    // },
-    // topOrder() {
-    //   let { widgetList = [] } = this;
-    //   let orders = widgetList.map(item => item.order);
-    //   let order = Math.max(...orders);
-    //   return order;
-    // },
     zoom: {
       get() {
         return parseInt(this.getZoom * 100);
@@ -198,26 +96,6 @@ export default {
         this.setZoom(val / 100);
       }
     },
-    // activeComIds() {
-    //   // let { activeCom = {} } = this;
-    //   // let { id = "" } = activeCom || {};
-    //   // return id || "";
-    //   let {
-    //     // widgetList = [],
-    //     // selectBox = {},
-    //     activeComs = [],
-    //     activeCom = {}
-    //   } = this;
-    //   let ids = [];
-    //   let { length = 0 } = activeComs || [];
-    //   if (length > 1) {
-    //     ids = activeComs.map(item => item.id);
-    //   } else {
-    //     let { id = "" } = activeCom || {};
-    //     ids.push(id);
-    //   }
-    //   return ids || [];
-    // },
     gridStyle() {
       let { canvas = {} } = this;
       let { isGrid = false, gridStyle = {} } = canvas || {};
@@ -279,7 +157,8 @@ export default {
         top: `${top}px`,
         // backgroundColor: `${backgroundColor}`,
         transform: `scale(${zoom})`,
-        webkitTransform: `scale(${zoom})`
+        webkitTransform: `scale(${zoom})`,
+        transformOrigin: `left top`
       };
       if (width) {
         styles["width"] = `${width}px`;
@@ -305,34 +184,90 @@ export default {
       setZoom: "canvas/setZoom",
       setWidgetList: "canvas/setWidgetList", //设置组件列表
       setCanvas: "canvas/setCanvas",
-      setActiveCom: "canvas/setActiveCom",
-      setActiveComs: "canvas/setActiveComs",
-      initMove: "canvas/initMove",
-      setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
-      moving: "canvas/moving",
-      stopMove: "canvas/stopMove"
+      setShowType: "canvas/setShowType"
     }),
     ...mapActions({
-      selectComAction: "canvas/selectCom",
-      selectComsAction: "canvas/selectComs"
+      initConfigWebsocketAction: "initConfigWebsocket",
+      canvasGetAction: "canvasGet",
+      commonGetDeviceAction: "commonGetDevice",
+      pushAction: "push"
     }),
     init() {
+      let { condition, $route } = this;
+      let { query = {} } = $route;
+      let { canvasId = "" } = query || {};
+      condition.canvasId = canvasId;
       this.initEvent();
-      // this.$nextTick(() => {
-      //   let $canvasBox = $(this.$refs.canvasBox);
-      //   let { canvas = {} } = this;
-      //   let width = $canvasBox.innerWidth();
-      //   let height = $canvasBox.innerHeight();
-      //   canvas.width = width;
-      //   canvas.height = height;
-      // });
+      this.setShowType(Constants.SHOWTYPEMAP.PREVIEW);
       let { previewData = {} } = this;
       let { widgetList = [], canvas = {} } = previewData || {};
       this.setWidgetList(widgetList || []);
       this.setCanvas(canvas || {});
+      this.resetCanvasSize();
+      this.loadWebsocketData(widgetList);
     },
     initEvent() {
       $(window).on("resize", this.resetCanvasSize);
+    },
+    loadWebsocketData(widgetList = []) {
+      let deviceIdList = [];
+      widgetList.forEach(item => {
+        let { bindData = {} } = item || {};
+        let { deviceId = "" } = bindData || {};
+        if (deviceId) {
+          deviceIdList.push(deviceId);
+        }
+      });
+      this.pushFunc(deviceIdList, result => {
+        bmCommon.log("postFunc", result);
+      });
+      this.initConfigWebsocketFunc((deviceList = []) => {
+        bmCommon.log("Preview initConfigWebsocketFunc", deviceList);
+        widgetList.forEach(item => {
+          let { bindData = {}, id = "" } = item || {};
+          let { deviceId = "", devicePoint = "" } = bindData || {};
+          //先找到绑定设备的组件
+          let device = deviceList.find(_item => {
+            let { deviceId: _deviceId = "" } = _item || {};
+            return _deviceId && _deviceId == deviceId; //如果有绑定id 而且能找到对应的推送消息
+          });
+          if (device) {
+            bmCommon.log(`找到设备${deviceId}的数据`);
+            let { configurDevicePointVoList: pointList = [] } = device || {};
+            let pointObj = null;
+            if (devicePoint) {
+              pointObj = pointList.find(item => {
+                let { point = "" } = item || {};
+                return point == devicePoint;
+              });
+              if (pointObj) {
+                bmCommon.log(
+                  `找到组件${id}设备${deviceId}点位${devicePoint}的数据`
+                );
+                // let { value = "", unit = "", descr = "" } = pointObj || {};
+                // widget.value = value; //值
+                // widget.unit = unit; //单位
+                // widget.descr = descr; //描述
+              }
+            }
+            let { $vm } = window;
+            $vm.$emit(`devicePointEvent_${id}`, {
+              device: {
+                deviceId,
+                pointList
+              },
+              point: pointObj
+            });
+          }
+        });
+      });
+    },
+    showDeviceInfoEvent(bindData = {}) {
+      let { deviceId = "" } = bindData || {};
+      this.commonGetDeviceFunc(deviceId, device => {
+        bmCommon.log(device);
+        this.deviceInfo = device || {};
+      });
     },
     resetCanvasSize() {
       let $window = $(window);
@@ -353,6 +288,82 @@ export default {
       // canvas.left = left;
       // canvas.top = top;
       this.setZoom(scale);
+    },
+    // 初始化websocket
+    initConfigWebsocketFunc(callback) {
+      let value = {};
+      let { condition } = this;
+      let { canvasId = "" } = condition;
+      let subject = `/user/queue/canvas/${canvasId}`;
+      this.initConfigWebsocketAction({ subject, callback }).catch(err => {
+        callback && callback(value || {});
+        bmCommon.error("获取数据失败=>initConfigWebsocket", err);
+      });
+    },
+    // 获取画布信息
+    canvasGetFunc(callback) {
+      let value = {};
+      let { condition } = this;
+      let { canvasId: id = "" } = condition;
+      this.canvasGetAction({ id })
+        .then(({ data }) => {
+          let { code = "", result = {}, message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || {};
+          } else {
+            bmCommon.error(message);
+          }
+          callback && callback(value || {});
+        })
+        .catch(err => {
+          callback && callback(value || {});
+          bmCommon.error("获取数据失败=>canvasGet", err);
+        });
+    },
+    // 获取设备信息
+    commonGetDeviceFunc(deviceId, callback) {
+      let value = {};
+      if (!deviceId) {
+        this.dataLoadingStatus = false;
+        return;
+      }
+      this.dataLoadingStatus = true;
+      this.commonGetDeviceAction({ deviceId })
+        .then(({ data }) => {
+          let { code = "", result = {}, message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || {};
+          } else {
+            bmCommon.error(message);
+          }
+          this.dataLoadingStatus = false;
+          callback && callback(value || {});
+        })
+        .catch(err => {
+          this.dataLoadingStatus = false;
+          callback && callback(value || {});
+          bmCommon.error("获取数据失败=>commonGetDevice", err);
+        });
+    },
+    // 开始推送设备信息
+    pushFunc(deviceIdList = [], callback) {
+      let value = {};
+      let { condition } = this;
+      let { canvasId = "" } = condition;
+      this.pushAction({ canvasId, deviceIdList })
+        .then(({ data }) => {
+          let { code = "", result = {}, message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || {};
+          } else {
+            bmCommon.error(message);
+          }
+          callback && callback(value || {});
+        })
+        .catch(err => {
+          callback && callback(value || {});
+          bmCommon.error("获取数据失败=>push", err);
+        });
     }
   },
   mounted() {

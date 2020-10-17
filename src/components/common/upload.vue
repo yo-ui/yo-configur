@@ -4,6 +4,7 @@
     class="upload-box"
     drag
     :data="uploadData"
+    :headers="uploadHeaders"
     ref="upload"
     name="files"
     :limit="1"
@@ -44,11 +45,13 @@
 // import bmCommon from "@/common/common";
 import { URL as _URL } from "@/common/env";
 import { Constants } from "@/common/env";
+// eslint-disable-next-line no-undef
+const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {
     return {
       // 上传文件地址
-      uploadUrl: _URL.upload2OssUrl,
+      // uploadUrl: _URL.upload2OssUrl,
       // 预览图片地址
       imageUrl: "",
 
@@ -57,7 +60,26 @@ export default {
       }
     };
   },
+  computed: {
+    ...mapGetters({
+      platform: "getPlatform",
+      userInfo: "getUserInfo"
+    }),
+    uploadUrl() {
+      let { platform = "" } = this;
+      return platform + _URL.upload2OssUrl;
+    },
+    uploadHeaders() {
+      let { userInfo = {} } = this;
+      let { token = "" } = userInfo || {};
+      let headers = {};
+      headers[Constants.AUTHORIZATION] = token;
+      return headers || {};
+    }
+  },
   methods: {
+    ...mapMutations(),
+    ...mapActions(),
     // 删除图片
     removeImageEvent() {
       // let { condition } = this;

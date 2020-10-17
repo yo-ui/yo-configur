@@ -187,5 +187,6 @@ export default {
 </script>
 
 <style lang="less">
-@import (less) "../../../../assets/less/components/component/material/common.less";
+@import (less)
+  "../../../../assets/less/components/component/material/common.less";
 </style>

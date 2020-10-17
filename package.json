@@ -18,6 +18,8 @@
   "dependencies": {
     "@svgdotjs/svg.js": "^3.0.16",
     "echarts": "^4.9.0",
+    "echarts-liquidfill": "^2.0.6",
+    "hls.js": "^0.14.15",
     "jquery": "^3.5.1",
     "lodash": "^4.17.20",
     "nprogress": "^0.2.0",

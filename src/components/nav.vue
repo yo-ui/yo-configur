@@ -312,6 +312,10 @@ export default {
         widgetList,
         canvas
       };
+      if (!data.background) {
+        data.background = { url: "", color: "#fff" };
+        data.capacity = [];
+      }
       this.canvasSaveFunc(
         {
           data: JSON.stringify(data),
@@ -421,7 +425,10 @@ export default {
       });
       this.$refs.bmPreview?.show();
       this.selectComAction(); //选中组件
-      this.uploadImg();
+      this.timeoutId = setTimeout(() => {
+        clearTimeout(this.timeoutId);
+        this.uploadImg();
+      });
     },
     uploadImg() {
       let { canvas = {} } = this;

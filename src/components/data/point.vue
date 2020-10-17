@@ -79,7 +79,9 @@
         <el-select
           v-model="device"
           filterable
+          clearable
           @change="selectDeviceEvent"
+          value-key="id"
           placeholder="请选择设备名称"
         >
           <el-option
@@ -99,6 +101,8 @@
         <el-select
           v-model="condition.pointId"
           filterable
+          clearable
+          @change="selectPointEvent"
           placeholder="请选择设备名称"
         >
           <el-option
@@ -111,7 +115,8 @@
       ></el-form-item>
     </el-form>
     <template #footer>
-      <el-button @click="closeEvent">{{ $lang("关闭") }}</el-button>
+      <el-button @click="resetEvent">{{ $lang("重置") }}</el-button>
+      <!-- <el-button @click="closeEvent">{{ $lang("关闭") }}</el-button> -->
       <el-button type="primary" @click="submitEvent">{{
         $lang("确定")
       }}</el-button>
@@ -132,7 +137,7 @@ export default {
       dataLoadingStatus: true,
       deviceList: [],
       pointList: [],
-      device: {},
+      device: null,
       showPopoverStatus: false,
       defaultExpandedKeys: [],
       condition: {
@@ -202,6 +207,8 @@ export default {
       this.deviceList = null;
       this.pointList = null;
       this.showDialogStatus = true;
+      this.resetStatus = false;
+      this.$refs.form?.resetFields();
       condition.comId = id; //组件id
       if (orgId) {
         condition.deviceId = deviceId;
@@ -251,10 +258,15 @@ export default {
       let { device = {} } = this;
       let { points = [], id = "" } = device || {};
       condition.deviceId = id;
+
+      this.resetStatus = false;
       this.pointList = points || [];
       // let [point = {}] = points || [];
       // let { id: pointId = "" } = point || {};
       // condition.pointId = pointId;
+    },
+    selectPointEvent() {
+      this.resetStatus = false;
     },
     closeEvent() {
       this.showDialogStatus = false;
@@ -278,33 +290,54 @@ export default {
       this.showPopoverStatus = false;
       condition.deviceId = "";
       this.device = "";
+      this.resetStatus = false;
       condition.pointId = "";
       // this.loadReportDeviceList();
       this.loadDeviceList();
     },
+    resetEvent() {
+      let { condition } = this;
+      condition.orgId = "";
+      condition.orgName = "";
+      this.device = null;
+      condition.deviceId = "";
+      condition.pointId = "";
+      this.resetStatus = true;
+      this.$nextTick(() => {
+        this.$refs.form?.clearValidate();
+      });
+    },
     submitEvent() {
+      let { resetStatus = false } = this;
+      let callback = () => {
+        let { widgetList = [], condition } = this;
+        let {
+          orgId = "",
+          deviceId = "",
+          pointId: devicePoint = "",
+          comId = ""
+        } = condition;
+        let activeCom = widgetList.find(item => item.id == comId) || {};
+        let value = "",
+          unit = "",
+          descr = "";
+        activeCom.bindData = {
+          orgId,
+          deviceId,
+          devicePoint,
+          unit,
+          value,
+          descr
+        };
+        this.showDialogStatus = false;
+      };
+      if (resetStatus) {
+        callback && callback();
+        return;
+      }
       this.$refs.form?.validate((valid, msg) => {
         if (valid) {
-          let { widgetList = [], condition } = this;
-          let {
-            orgId = "",
-            deviceId = "",
-            pointId: devicePoint = "",
-            comId = ""
-          } = condition;
-          let activeCom = widgetList.find(item => item.id == comId) || {};
-          let value = "",
-            unit = "",
-            descr = "";
-          activeCom.bindData = {
-            orgId,
-            deviceId,
-            devicePoint,
-            unit,
-            value,
-            descr
-          };
-          this.showDialogStatus = false;
+          callback && callback();
         } else {
           if (msg) {
             for (let key in msg) {

@@ -292,8 +292,8 @@ export default {
         ys.push(_y);
         points.push(_point.toArray());
       }
-      info.vBoxx=Math.min.apply(null,xs)
-      info.vBoxy=Math.min.apply(null,ys)
+      info.vBoxx = Math.min.apply(null, xs);
+      info.vBoxy = Math.min.apply(null, ys);
       info.points = new SVG.PointArray(points).size(
         width - borderWidth * 2,
         height - borderWidth * 2
@@ -346,7 +346,6 @@ export default {
 
       // if (width) {
       styles["width"] = `${width}px`;
-      styles["visibility"] = `${visible ? "visible" : "hidden"}`;
       // }
       // if (height) {
       styles["height"] = `${height}px`;
@@ -366,6 +365,7 @@ export default {
       // styles["borderWidth"] = `${borderWidth}px`;
       styles["opacity"] = opacity / 100;
       // styles["borderRadius"] = `${borderRadius}px`;
+      styles["visibility"] = `${visible ? "visible" : "hidden"}`;
       if (flipV || flipH) {
         let scale = `scale(${flipH ? -1 : 1},${flipV ? -1 : 1})`;
         (styles["transform"] = `${scale}`),
@@ -485,8 +485,8 @@ export default {
     let { info = {} } = this;
     let { gradientStyle = {} } = info || {};
     info.points = new SVG.PointArray(points);
-    info.vBoxx=0
-    info.vBoxy=0
+    info.vBoxx = 0;
+    info.vBoxy = 0;
     gradientStyle.gradientId = bmCommon.uuid();
     // this.$emit("success"); //组件加载完成回调
   },

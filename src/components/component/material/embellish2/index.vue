@@ -143,10 +143,7 @@
           </radialGradient>
         </template>
       </defs>
-      <polygon
-        :points="info.points"
-        :style="svgStyle"
-      />
+      <polygon :points="info.points" :style="svgStyle" />
     </svg>
   </div>
 </template>

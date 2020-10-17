@@ -12,6 +12,8 @@ let baseData = {
   content: "文本内容",
   name: "文本标题",
   dataType: "", //绑定数据类型  device point
+  styleCode: "", //样式组件代码
+  dataCode: "common", //数据绑定组件代码
   bindData: {
     devicePoint: "",
     deviceId: "",
@@ -102,6 +104,432 @@ let baseData = {
   flipH: false //是否水平翻转
 };
 export default [
+  {
+    name: "形状",
+    code: "shape",
+    icon: "bomi bomi-shape",
+    comList: [
+      {
+        name: "矩形",
+        code: "materialRectangle",
+        icon: "/static/img/configur/material/rectangle.png",
+
+        data: {
+          ...baseData,
+          styleCode: "material",
+          // backgroundImage: "/static/img/svg/material/rectangle.svg",
+          backgroundColor: "#0075E7",
+          width: 200,
+          height: 100
+          // dataType: "device",
+          // equalScaleable: true //是否等比例缩放
+        }
+      },
+      {
+        name: "箭头",
+        code: "materialArrow",
+        icon: "/static/img/configur/material/arrow.png",
+        data: {
+          ...baseData,
+          styleCode: "material",
+          backgroundColor: "#0075E7",
+          // backgroundImage: "/static/img/svg/material/arrow.svg",
+          width: 100,
+          height: 100
+          // dataType: "device",
+          // equalScaleable: true //是否等比例缩放
+        }
+      },
+      {
+        name: "星形",
+        code: "materialStar",
+        icon: "/static/img/configur/material/star.png",
+        data: {
+          ...baseData,
+          // styleCode: "material",
+          backgroundColor: "#0075E7",
+          // backgroundImage: "/static/img/svg/material/star.svg",
+          cornerCount: 3,
+          innerRadius: 50,
+          width: 100,
+          height: 100
+          // dataType: "device",
+          // equalScaleable: true //是否等比例缩放
+        }
+      },
+      {
+        name: "圆形",
+        code: "materialCircle",
+        icon: "/static/img/configur/material/circle.png",
+        data: {
+          ...baseData,
+          styleCode: "material",
+          backgroundColor: "#0075E7",
+          // backgroundImage: "/static/img/svg/material/circle.svg",
+          width: 100,
+          height: 100
+          // dataType: "device",
+          // equalScaleable: true //是否等比例缩放
+        }
+      },
+      {
+        name: "四边形",
+        code: "materialQuadrangle",
+        icon: "/static/img/configur/material/quadrangle.png",
+        data: {
+          ...baseData,
+          styleCode: "material",
+          backgroundColor: "#0075E7",
+          // backgroundImage: "/static/img/svg/material/quadrangle.svg",
+          width: 100,
+          height: 100
+          // dataType: "device",
+          // equalScaleable: true //是否等比例缩放
+        }
+      },
+      {
+        name: "多边形",
+        code: "materialPolygon",
+        icon: "/static/img/configur/material/polygon.png",
+        data: {
+          ...baseData,
+          styleCode: "material",
+          backgroundColor: "#0075E7",
+          // backgroundImage: "/static/img/svg/material/polygon.svg",
+          width: 100,
+          height: 100
+          // dataType: "device",
+          // equalScaleable: true //是否等比例缩放
+        }
+      }
+    ]
+  },
+  {
+    name: "图表",
+    code: "chart",
+    icon: "bomi bomi-chart",
+    activeNames: ["bar-chart"],
+    groupList: [
+      {
+        groupName: "柱状图",
+        groupCode: "bar-chart",
+        comList: [
+          {
+            name: "统计柱状图",
+            code: "barChart",
+            icon: "/static/img/configur/bar.jpg",
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "时序柱状图",
+            code: "sequenceBarChart",
+            icon: "/static/img/configur/curve.png",
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "折线柱状图",
+            code: "lineBarChart",
+            icon: "/static/img/configur/curve.png",
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "堆叠柱状图",
+            code: "pileBarChart",
+            icon: "/static/img/configur/curve.png",
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      },
+      {
+        groupName: "折线图",
+        groupCode: "line-chart",
+        comList: [
+          {
+            name: "统计折线图",
+            code: "lineChart",
+            icon: "/static/img/configur/curve.png",
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "统计面积图",
+            code: "statisticsAreaLineChart",
+            icon: "/static/img/configur/curve.png",
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "时序折线图",
+            code: "sequenceLineChart",
+            icon: "/static/img/configur/curve.png",
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "时序面积图",
+            code: "sequenceAreaLineChart",
+            icon: "/static/img/configur/curve.png",
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      },
+      {
+        groupName: "散点气泡图",
+        groupCode: "scatter-bubble-chart",
+        comList: [
+          {
+            name: "散点图",
+            code: "scatterChart",
+            icon: "/static/img/configur/curve.png",
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "气泡图",
+            code: "bubbleChart",
+            icon: "/static/img/configur/curve.png",
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      },
+      {
+        groupName: "单值图表",
+        groupCode: "single-value-chart",
+        comList: [
+          {
+            name: "仪表盘",
+            code: "gaugeChart",
+            icon: "/static/img/configur/meter.png",
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "水球图",
+            code: "liquidfillChart",
+            icon: "/static/img/configur/meter.png",
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      },
+      {
+        groupName: "雷达图",
+        groupCode: "radar-chart",
+        comList: [
+          {
+            name: "统计雷达图",
+            code: "statisticsRadarChart",
+            icon: "/static/img/configur/meter.png",
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "面积雷达图",
+            code: "areaRadarChart",
+            icon: "/static/img/configur/meter.png",
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      },
+      {
+        groupName: "饼图",
+        groupCode: "pie-chart",
+        comList: [
+          {
+            name: "饼图",
+            code: "pieChart",
+            icon: "/static/img/configur/piechart.jpg",
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "圆环图",
+            code: "ringChart",
+            icon: "/static/img/configur/piechart.jpg",
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "南丁格尔图",
+            code: "nightingalePieChart",
+            icon: "/static/img/configur/piechart.jpg",
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "南丁格尔环图",
+            code: "nightingaleRingChart",
+            icon: "/static/img/configur/piechart.jpg",
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      },
+      {
+        groupName: "条形图",
+        groupCode: "bar-type-chart",
+        comList: [
+          {
+            name: "统计条形图",
+            code: "statisticsBarTypeChart",
+            icon: "/static/img/configur/piechart.jpg",
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "堆叠条形图",
+            code: "pileBarTypeChart",
+            icon: "/static/img/configur/piechart.jpg",
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "时序条形图",
+            code: "sequenceBarTypeChart",
+            icon: "/static/img/configur/piechart.jpg",
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      },
+      {
+        groupName: "混合图",
+        groupCode: "mix-chart",
+        comList: [
+          {
+            name: "双Y轴图",
+            code: "doubleYChart",
+            icon: "/static/img/configur/piechart.jpg",
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      },
+      {
+        groupName: "三维图",
+        groupCode: "3d-chart",
+        comList: [
+          {
+            name: "三维柱状图",
+            code: "3dBarChart",
+            icon: "/static/img/configur/piechart.jpg",
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "三维散点图",
+            code: "3dScatterChart",
+            icon: "/static/img/configur/piechart.jpg",
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      }
+    ]
+  },
   {
     name: "通用",
     code: "basic",
@@ -194,7 +622,8 @@ export default [
           width: "",
           height: "",
           content: "控制",
-          scaleable: false //是否可缩放操作
+          textAlign: "center"
+          // scaleable: false //是否可缩放操作
         }
       },
       {
@@ -376,21 +805,47 @@ export default [
         }
       },
       {
+        name: "视频",
+        code: "video",
+        icon: "/static/img/configur/video.png",
+        data: {
+          ...baseData,
+          src: "/static/video/video.mp4",
+          // borderWidth: 0,
+          // borderStyle: "none",
+          // borderColor: "",
+          // backgroundImage: "",
+          // backgroundSize: "100% 100%",
+          // backgroundRepeat: "repeat",
+          // borderRadius: 0,
+          // scale: "scale(1,1)",
+          // opacity: 100,
+          // left: 0,
+          controls: true,
+          autoplay: false,
+          loop: false,
+          muted: false,
+          preload: false,
+          poster: "",
+          width: 480,
+          height: 280
+          // rotate: 0,
+          // top: 0,
+          // scaleable: true, //是否可缩放操作
+          // rotateable: true, //是否可旋转操作
+          // editable: false, //内容是否可编辑
+          // locked: true //是否可拖动
+        }
+      },
+      {
         name: "HLS视频流",
         code: "hlsVideo",
         icon: "/static/img/configur/videostreaming.png",
         data: {
           ...baseData,
-          url:
-            "http://www.flashls.org/playlists/test_001/stream_1000k_48k_640x360.m3u8",
-          // dataType: "point",
-          fontWeight: "bold",
-          fontSize: 24,
-          fontFamily: "lcdD",
-          width: "",
-          height: "",
-          content: "00.00",
-          scaleable: false //是否可缩放操作
+          src: "http://192.168.0.134/hls/test.m3u8",
+          width: 480,
+          height: 280
         }
       },
       {
@@ -477,174 +932,57 @@ export default [
   },
   {
     code: "component",
-    icon: "el-icon-s-ticket",
-    name: "组件",
+    icon: "el-icon-map-location",
+    name: "地图",
     comList: [
-      {
-        name: "视频",
-        code: "video",
-        icon: "/static/img/configur/video.png",
-        data: {
-          ...baseData,
-          src:
-            "https://www.apple.com/105/media/us/iphone-x/2017/01df5b43-28e4-4848-bf20-490c34a926a7/films/feature/iphone-x-feature-tpl-cc-us-20170912_1280x720h.mp4",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // backgroundImage: "",
-          // backgroundSize: "100% 100%",
-          // backgroundRepeat: "repeat",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // opacity: 100,
-          // left: 0,
-          controls: false,
-          autoplay: false,
-          loop: false,
-          muted: false,
-          preload: false,
-          poster: "",
-          width: 480,
-          height: 280
-          // rotate: 0,
-          // top: 0,
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // locked: true //是否可拖动
-        }
-      },
       {
         name: "地图",
         code: "map",
         icon: "/static/img/configur/position.png",
         data: {
           ...baseData,
-          // backgroundImage: "",
-          // backgroundSize: "100% 100%",
-          // backgroundRepeat: "repeat",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // opacity: 100,
-          // left: 0,
           width: 550,
           height: 400
-          // rotate: 0,
-          // top: 0,
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // locked: true //是否可拖动
         }
       },
       {
-        name: "折线图",
-        code: "lineChart",
-        icon: "/static/img/configur/curve.png",
+        name: "行政区地图",
+        code: "districtMap",
+        icon: "/static/img/configur/position.png",
         data: {
           ...baseData,
-          // backgroundImage: "",
-          // backgroundSize: "100% 100%",
-          // backgroundRepeat: "repeat",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // opacity: 100,
-          // left: 0,
-          width: 400,
-          height: 300,
-          dataType: "device"
-          // rotate: 0,
-          // top: 0,
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // locked: true //是否可拖动
+          width: 550,
+          height: 400
         }
       },
       {
-        name: "柱状图",
-        code: "barChart",
-        icon: "/static/img/configur/bar.jpg",
+        name: "设备地图",
+        code: "deviceMap",
+        icon: "/static/img/configur/position.png",
         data: {
           ...baseData,
-          // backgroundImage: "",
-          // backgroundSize: "100% 100%",
-          // backgroundRepeat: "repeat",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // opacity: 100,
-          // left: 0,
-          width: 400,
-          height: 300,
-          dataType: "device"
-          // rotate: 0,
-          // top: 0,
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // locked: true //是否可拖动
+          width: 550,
+          height: 400
         }
       },
       {
-        name: "饼图",
-        code: "pieChart",
-        icon: "/static/img/configur/piechart.jpg",
-        data: {
-          // backgroundImage: "",
-          // backgroundSize: "100% 100%",
-          // backgroundRepeat: "repeat",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // opacity: 100,
-          // left: 0,
-          width: 500,
-          height: 300,
-          dataType: "device"
-          // rotate: 0,
-          // top: 0,
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // locked: true //是否可拖动
-        }
-      },
-      {
-        name: "仪表盘",
-        code: "gaugeChart",
-        icon: "/static/img/configur/meter.png",
+        name: "建筑地图",
+        code: "buildingMap",
+        icon: "/static/img/configur/position.png",
         data: {
           ...baseData,
-          // backgroundImage: "",
-          // backgroundSize: "100% 100%",
-          // backgroundRepeat: "repeat",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // opacity: 100,
-          // left: 0,
-          width: 400,
-          height: 300,
-          dataType: "device"
-          // rotate: 0,
-          // top: 0,
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // locked: true //是否可拖动
+          width: 550,
+          height: 400
+        }
+      },
+      {
+        name: "地图热力图",
+        code: "hotMap",
+        icon: "/static/img/configur/position.png",
+        data: {
+          ...baseData,
+          width: 550,
+          height: 400
         }
       }
       // {
@@ -971,8 +1309,9 @@ export default [
   },
   {
     code: "device",
-    icon: "el-icon-setting",
+    icon: "bomi bomi-device",
     name: "设备",
+    activeNames: ["pipeline-system"],
     groupList: [
       {
         groupName: "管道",
@@ -988,23 +1327,24 @@ export default [
             code: "assistCommon",
             icon: "/static/img/configur/link-point.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/link-point.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 30,
-              height: 30,
-              rotate: 0,
-              top: 0,
-              equalScaleable: false, //是否等比例缩放
-              scaleable: false, //是否可缩放操作
-              rotateable: false, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              height: 30
+              // rotate: 0,
+              // top: 0,
+              // equalScaleable: false, //是否等比例缩放
+              // scaleable: false, //是否可缩放操作
+              // rotateable: false, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1013,23 +1353,24 @@ export default [
             alias: "water_top",
             icon: "/static/img/configur/h-top.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-top.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 30,
-              height: 30,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              height: 30
+              // rotate: 0,
+              // top: 0,
+              // equalScaleable: true, //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1038,23 +1379,24 @@ export default [
             alias: "water_bottom",
             icon: "/static/img/configur/h-bottom.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-bottom.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 30,
-              height: 30,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              height: 30
+              // rotate: 0,
+              // top: 0,
+              // equalScaleable: true, //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1063,23 +1405,24 @@ export default [
             alias: "water_left",
             icon: "/static/img/configur/v-left.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-left.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 30,
-              height: 30,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              height: 30
+              // rotate: 0,
+              // top: 0,
+              // equalScaleable: true, //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1088,23 +1431,24 @@ export default [
             alias: "water_right",
             icon: "/static/img/configur/v-right.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-right.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 30,
-              height: 30,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              height: 30
+              // rotate: 0,
+              // top: 0,
+              // equalScaleable: true, //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1113,23 +1457,24 @@ export default [
             alias: "water_lefttop",
             icon: "/static/img/configur/t-1.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-topleft.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 30,
-              height: 30,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              height: 30
+              // rotate: 0,
+              // top: 0,
+              // equalScaleable: true, //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1138,23 +1483,24 @@ export default [
             code: "assistCommon",
             icon: "/static/img/configur/t-4.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-bottomleft.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 30,
-              height: 30,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              height: 30
+              // rotate: 0,
+              // top: 0,
+              // equalScaleable: true, //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1163,23 +1509,24 @@ export default [
             code: "assistCommon",
             icon: "/static/img/configur/t-2.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-topright.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 30,
-              height: 30,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              height: 30
+              // rotate: 0,
+              // top: 0,
+              // equalScaleable: true, //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1188,23 +1535,24 @@ export default [
             code: "assistCommon",
             icon: "/static/img/configur/t-3.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-bottomright.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 30,
-              height: 30,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              height: 30
+              // rotate: 0,
+              // top: 0,
+              // equalScaleable: true, //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1213,23 +1561,24 @@ export default [
             code: "assistCommon",
             icon: "/static/img/configur/h.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-h.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 150,
-              height: 30,
-              rotate: 0,
-              top: 0,
-              equalScaleable: false, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              height: 30
+              // rotate: 0,
+              // top: 0,
+              // equalScaleable: false, //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1238,23 +1587,24 @@ export default [
             alias: "water_vertical",
             icon: "/static/img/configur/v.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-v.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 30,
-              height: 150,
-              rotate: 0,
-              top: 0,
-              equalScaleable: false, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              height: 150
+              // rotate: 0,
+              // top: 0,
+              // equalScaleable: false, //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           }
         ]
@@ -1469,29 +1819,36 @@ export default [
               // editable: false, //内容是否可编辑
               // locked: true //是否可拖动
             }
-          },
+          }
+        ]
+      },
+      {
+        groupName: "给水系统",
+        groupCode: "water-system",
+        comList: [
           {
             name: "螺翼式水表",
             code: "deviceCommon",
             icon: "/static/img/configur/lyssb.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/lyssb.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1499,23 +1856,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/sbfk.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/fksb.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1523,23 +1881,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/xyssb.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/xyssb.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1547,23 +1906,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/csbllj.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/csbllj.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1571,23 +1931,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/ckssb.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/ckssb.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1595,23 +1956,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/shsb.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/shsb.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1619,23 +1981,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/jsj.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/jsj.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1643,23 +2006,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/sx.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/sx.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1667,23 +2031,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/xfsb.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/xfsb.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1691,23 +2056,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/cyfj.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/cyfj.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1715,23 +2081,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/zysfj.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/zysfj.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1739,23 +2106,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/xszz.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/xszz.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1763,23 +2131,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/sdsf.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/sdsf.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1831,7 +2200,13 @@ export default [
               // editable: false, //内容是否可编辑
               // locked: true //是否可拖动
             }
-          },
+          }
+        ]
+      },
+      {
+        groupName: "照明系统",
+        groupCode: "lighting-system",
+        comList: [
           {
             name: "开关",
             code: "deviceCommon",
@@ -1854,23 +2229,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/dengg.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/dengg.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 20,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1878,47 +2254,55 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/dengp.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/dengp.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 20,
               height: 30,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
-          },
+          }
+        ]
+      },
+      {
+        groupName: "空调系统",
+        groupCode: "air-system",
+        comList: [
           {
             name: "整体式热量表",
             code: "deviceCommon",
             icon: "/static/img/configur/ztsrlb.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/ztsrlb.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1926,23 +2310,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/zhsrlb.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/zhsrlb.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1950,23 +2335,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/gskt.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/gskt.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 30,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1974,23 +2360,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/lskt.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/lskt.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 70,
               height: 160,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -1998,23 +2385,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/flrq.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/flrq.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -2022,23 +2410,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/bshrq.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/bshrq.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -2046,23 +2435,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/lqt.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/lqt.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 150,
               height: 150,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -2070,23 +2460,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/pfj.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/pfj.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -2094,47 +2485,55 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/rqgl.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/rqgl.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 70,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
-          },
+          }
+        ]
+      },
+      {
+        groupName: "安防系统",
+        groupCode: "security-system",
+        comList: [
           {
             name: "湿式报警阀",
             code: "deviceCommon",
             icon: "/static/img/configur/ssbjf.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/ssbjf.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -2142,23 +2541,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/ywbjcgq.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/ywbjcgq.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -2166,23 +2566,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/hwrtgyq.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/hwrtgyq.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -2190,23 +2591,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/sxt.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/sxt.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -2214,23 +2616,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/mcbjq.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/mcbjq.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -2238,47 +2641,55 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/lsbjq.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/lsbjq.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
-          },
+          }
+        ]
+      },
+      {
+        groupName: "光伏系统",
+        groupCode: "photovoltaic-system",
+        comList: [
           {
             name: "光伏电池板",
             code: "deviceCommon",
             icon: "/static/img/configur/gfdcb.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/gfdcb.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -2286,47 +2697,55 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/gfnbq.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/gfnbq.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
-          },
+          }
+        ]
+      },
+      {
+        groupName: "环境系统",
+        groupCode: "environment-system",
+        comList: [
           {
             name: "拉绳式测距",
             code: "deviceCommon",
             icon: "/static/img/configur/lsscj.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/lsscj.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -2334,23 +2753,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/csbcj.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/csbcj.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -2358,23 +2778,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/hjjccgqa.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/yjpcgq.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -2382,23 +2803,24 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/hjjccgqb.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/cgq.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           },
           {
@@ -2406,47 +2828,55 @@ export default [
             code: "deviceCommon",
             icon: "/static/img/configur/xxqxz.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/xxqxz.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 50,
               height: 50,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
-          },
+          }
+        ]
+      },
+      {
+        groupName: "其它系统",
+        groupCode: "other-system",
+        comList: [
           {
             name: "客用电梯",
             code: "deviceCommon",
             icon: "/static/img/configur/kydt.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/kydt.svg",
-              borderWidth: 0,
-              borderStyle: "none",
-              borderColor: "",
-              borderRadius: 0,
-              scale: "scale(1,1)",
-              opacity: 100,
-              left: 0,
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
               width: 100,
               height: 140,
-              rotate: 0,
-              top: 0,
-              equalScaleable: true, //是否等比例缩放
-              scaleable: true, //是否可缩放操作
-              rotateable: true, //是否可旋转操作
-              editable: false, //内容是否可编辑
-              locked: true //是否可拖动
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
             }
           }
         ]
@@ -2457,405 +2887,49 @@ export default [
     code: "material",
     icon: "el-icon-files",
     name: "素材",
-    comList: [
+    activeNames: ["material-embellish"],
+    groupList: [
       {
-        name: "矩形",
-        code: "materialRectangle",
-        icon: "/static/img/configur/material/rectangle.png",
-
-        data: {
-          ...baseData,
-          styleType: "material",
-          // backgroundImage: "/static/img/svg/material/rectangle.svg",
-          backgroundColor: "#0075E7",
-          width: 200,
-          height: 100
-          // dataType: "device",
-          // equalScaleable: true //是否等比例缩放
-        }
+        groupName: "装饰",
+        groupCode: "material-embellish",
+        comList: [
+          {
+            name: "装饰1",
+            code: "materialEmbellish1",
+            icon: "/static/img/configur/material/embellish-1.png",
+            data: {
+              ...baseData,
+              styleCode: "material",
+              backgroundColor: "#0075E7",
+              // backgroundImage: "/static/img/svg/material/embellish-1.svg",
+              width: 600,
+              height: 40
+              // dataType: "device",
+              // equalScaleable: true //是否等比例缩放
+            }
+          },
+          {
+            name: "装饰2",
+            code: "materialEmbellish2",
+            icon: "/static/img/configur/material/embellish-2.png",
+            data: {
+              ...baseData,
+              styleCode: "material",
+              backgroundColor: "#0075E7",
+              // backgroundImage: "/static/img/svg/material/embellish-2.svg",
+              width: 800,
+              height: 80
+              // dataType: "device",
+              // equalScaleable: true //是否等比例缩放
+            }
+          }
+        ]
       },
       {
-        name: "箭头",
-        code: "materialArrow",
-        icon: "/static/img/configur/material/arrow.png",
-        data: {
-          ...baseData,
-          styleType: "material",
-          backgroundColor: "#0075E7",
-          // backgroundImage: "/static/img/svg/material/arrow.svg",
-          width: 100,
-          height: 100,
-          // dataType: "device",
-          // equalScaleable: true //是否等比例缩放
-        }
-      },
-      {
-        name: "星形",
-        code: "materialStar",
-        icon: "/static/img/configur/material/star.png",
-        data: {
-          ...baseData,
-          // styleType: "material",
-          backgroundColor: "#0075E7",
-          // backgroundImage: "/static/img/svg/material/star.svg",
-          cornerCount:3,
-          innerRadius:50,
-          width: 100,
-          height: 100
-          // dataType: "device",
-          // equalScaleable: true //是否等比例缩放
-        }
-      },
-      {
-        name: "圆形",
-        code: "materialCircle",
-        icon: "/static/img/configur/material/circle.png",
-        data: {
-          ...baseData,
-          styleType: "material",
-          backgroundColor: "#0075E7",
-          // backgroundImage: "/static/img/svg/material/circle.svg",
-          width: 100,
-          height: 100
-          // dataType: "device",
-          // equalScaleable: true //是否等比例缩放
-        }
-      },
-      {
-        name: "四边形",
-        code: "materialQuadrangle",
-        icon: "/static/img/configur/material/quadrangle.png",
-        data: {
-          ...baseData,
-          styleType: "material",
-          backgroundColor: "#0075E7",
-          // backgroundImage: "/static/img/svg/material/quadrangle.svg",
-          width: 100,
-          height: 100
-          // dataType: "device",
-          // equalScaleable: true //是否等比例缩放
-        }
-      },
-      {
-        name: "多边形",
-        code: "materialPolygon",
-        icon: "/static/img/configur/material/polygon.png",
-        data: {
-          ...baseData,
-          styleType: "material",
-          backgroundColor: "#0075E7",
-          // backgroundImage: "/static/img/svg/material/polygon.svg",
-          width: 100,
-          height: 100
-          // dataType: "device",
-          // equalScaleable: true //是否等比例缩放
-        }
-      },
-      {
-        name: "装饰1",
-        code: "materialEmbellish1",
-        icon: "/static/img/configur/material/embellish-1.png",
-        data: {
-          ...baseData,
-          styleType: "material",
-          backgroundColor: "#0075E7",
-          // backgroundImage: "/static/img/svg/material/embellish-1.svg",
-          width: 600,
-          height: 40
-          // dataType: "device",
-          // equalScaleable: true //是否等比例缩放
-        }
-      },
-      {
-        name: "装饰2",
-        code: "materialEmbellish2",
-        icon: "/static/img/configur/material/embellish-2.png",
-        data: {
-          ...baseData,
-          styleType: "material",
-          backgroundColor: "#0075E7",
-          // backgroundImage: "/static/img/svg/material/embellish-2.svg",
-          width: 800,
-          height: 80
-          // dataType: "device",
-          // equalScaleable: true //是否等比例缩放
-        }
+        groupName: "图标",
+        groupCode: "material-icon",
+        comList: []
       }
-      // {
-      //   name: "连接点",
-      //   alias: "linkPoint",
-      //   code: "assistCommon",
-      //   icon: "/static/img/configur/link-point.png",
-      //   data: {
-      //     backgroundImage: "/static/img/svg/link-point.svg",
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     borderRadius: 0,
-      //     scale: "scale(1,1)",
-      //     opacity: 100,
-      //     left: 0,
-      //     width: 30,
-      //     height: 30,
-      //     rotate: 0,
-      //     top: 0,
-      //     equalScaleable: false, //是否等比例缩放
-      //     scaleable: false, //是否可缩放操作
-      //     rotateable: false, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "水管（上）",
-      //   code: "assistCommon",
-      //   alias: "water_top",
-      //   icon: "/static/img/configur/h-top.png",
-      //   data: {
-      //     backgroundImage: "/static/img/svg/shuiguan-top.svg",
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     borderRadius: 0,
-      //     scale: "scale(1,1)",
-      //     opacity: 100,
-      //     left: 0,
-      //     width: 30,
-      //     height: 30,
-      //     rotate: 0,
-      //     top: 0,
-      //     equalScaleable: true, //是否等比例缩放
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "水管（下）",
-      //   code: "assistCommon",
-      //   alias: "water_bottom",
-      //   icon: "/static/img/configur/h-bottom.png",
-      //   data: {
-      //     backgroundImage: "/static/img/svg/shuiguan-bottom.svg",
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     borderRadius: 0,
-      //     scale: "scale(1,1)",
-      //     opacity: 100,
-      //     left: 0,
-      //     width: 30,
-      //     height: 30,
-      //     rotate: 0,
-      //     top: 0,
-      //     equalScaleable: true, //是否等比例缩放
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "水管（左）",
-      //   code: "assistCommon",
-      //   alias: "water_left",
-      //   icon: "/static/img/configur/v-left.png",
-      //   data: {
-      //     backgroundImage: "/static/img/svg/shuiguan-left.svg",
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     borderRadius: 0,
-      //     scale: "scale(1,1)",
-      //     opacity: 100,
-      //     left: 0,
-      //     width: 30,
-      //     height: 30,
-      //     rotate: 0,
-      //     top: 0,
-      //     equalScaleable: true, //是否等比例缩放
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "水管（右）",
-      //   code: "assistCommon",
-      //   alias: "water_right",
-      //   icon: "/static/img/configur/v-right.png",
-      //   data: {
-      //     backgroundImage: "/static/img/svg/shuiguan-right.svg",
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     borderRadius: 0,
-      //     scale: "scale(1,1)",
-      //     opacity: 100,
-      //     left: 0,
-      //     width: 30,
-      //     height: 30,
-      //     rotate: 0,
-      //     top: 0,
-      //     equalScaleable: true, //是否等比例缩放
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "水管（左上）",
-      //   code: "assistCommon",
-      //   alias: "water_lefttop",
-      //   icon: "/static/img/configur/t-1.png",
-      //   data: {
-      //     backgroundImage: "/static/img/svg/shuiguan-topleft.svg",
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     borderRadius: 0,
-      //     scale: "scale(1,1)",
-      //     opacity: 100,
-      //     left: 0,
-      //     width: 30,
-      //     height: 30,
-      //     rotate: 0,
-      //     top: 0,
-      //     equalScaleable: true, //是否等比例缩放
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "水管（左下）",
-      //   alias: "water_leftbottom",
-      //   code: "assistCommon",
-      //   icon: "/static/img/configur/t-4.png",
-      //   data: {
-      //     backgroundImage: "/static/img/svg/shuiguan-bottomleft.svg",
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     borderRadius: 0,
-      //     scale: "scale(1,1)",
-      //     opacity: 100,
-      //     left: 0,
-      //     width: 30,
-      //     height: 30,
-      //     rotate: 0,
-      //     top: 0,
-      //     equalScaleable: true, //是否等比例缩放
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "水管（右上）",
-      //   alias: "water_righttop",
-      //   code: "assistCommon",
-      //   icon: "/static/img/configur/t-2.png",
-      //   data: {
-      //     backgroundImage: "/static/img/svg/shuiguan-topright.svg",
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     borderRadius: 0,
-      //     scale: "scale(1,1)",
-      //     opacity: 100,
-      //     left: 0,
-      //     width: 30,
-      //     height: 30,
-      //     rotate: 0,
-      //     top: 0,
-      //     equalScaleable: true, //是否等比例缩放
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "水管（右下）",
-      //   alias: "water_rightbottom",
-      //   code: "assistCommon",
-      //   icon: "/static/img/configur/t-3.png",
-      //   data: {
-      //     backgroundImage: "/static/img/svg/shuiguan-bottomright.svg",
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     borderRadius: 0,
-      //     scale: "scale(1,1)",
-      //     opacity: 100,
-      //     left: 0,
-      //     width: 30,
-      //     height: 30,
-      //     rotate: 0,
-      //     top: 0,
-      //     equalScaleable: true, //是否等比例缩放
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "水管（水平）",
-      //   alias: "water_horizontal",
-      //   code: "assistCommon",
-      //   icon: "/static/img/configur/h.png",
-      //   data: {
-      //     backgroundImage: "/static/img/svg/shuiguan-h.svg",
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     borderRadius: 0,
-      //     scale: "scale(1,1)",
-      //     opacity: 100,
-      //     left: 0,
-      //     width: 150,
-      //     height: 30,
-      //     rotate: 0,
-      //     top: 0,
-      //     equalScaleable: false, //是否等比例缩放
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "水管（垂直）",
-      //   code: "assistCommon",
-      //   alias: "water_vertical",
-      //   icon: "/static/img/configur/v.png",
-      //   data: {
-      //     backgroundImage: "/static/img/svg/shuiguan-v.svg",
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     borderRadius: 0,
-      //     scale: "scale(1,1)",
-      //     opacity: 100,
-      //     left: 0,
-      //     width: 30,
-      //     height: 150,
-      //     rotate: 0,
-      //     top: 0,
-      //     equalScaleable: false, //是否等比例缩放
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // }
     ]
   }
 ];

@@ -118,9 +118,35 @@
         :format-tooltip="val => val + ' deg'"
       ></el-slider>
     </p>
-    <p>
-      <span class="label"> {{ $lang("是否可移动") }}:</span
-      ><el-checkbox v-model="info.locked"></el-checkbox>
+    <p class="btn-box">
+      <el-tooltip content="隐藏" placement="top" effect="dark">
+        <i
+          class="el-icon-view"
+          :class="{ active: !info.visible }"
+          @click="info.visible = !info.visible"
+        ></i>
+      </el-tooltip>
+      <el-tooltip content="锁定" placement="top" effect="dark">
+        <i
+          class="el-icon-lock"
+          :class="{ active: info.locked }"
+          @click="info.locked = !info.locked"
+        ></i>
+      </el-tooltip>
+      <el-tooltip content="垂直翻转" placement="top" effect="dark">
+        <i
+          class="bomi bomi-flip-v"
+          :class="{ active: info.flipV }"
+          @click="info.flipV = !info.flipV"
+        ></i>
+      </el-tooltip>
+      <el-tooltip content="水平翻转" placement="top" effect="dark">
+        <i
+          class="bomi bomi-flip-h"
+          :class="{ active: info.flipH }"
+          @click="info.flipH = !info.flipH"
+        ></i>
+      </el-tooltip>
     </p>
     <p>
       <span class="label">{{ $lang("填充颜色") }}:</span>

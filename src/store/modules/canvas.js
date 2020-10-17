@@ -15,6 +15,7 @@ export default {
     historyList: [], //撤销恢复记录
     recordList: [], //记录点
     canvasData: null, //画布数据
+    showType: "edit", //当前显示类型  edit  编辑   preview 预览  view 查看
     selectBox: {
       moving: false, //是否显示
       left: 0,
@@ -85,6 +86,9 @@ export default {
   getters: {
     getCanvas(state) {
       return state.canvas;
+    },
+    getShowType(state) {
+      return state.showType;
     },
     getLeftMenuStatus(state) {
       return state.leftMenuStatus;
@@ -173,6 +177,9 @@ export default {
   mutations: {
     setCanvas(state, item) {
       state.canvas = item;
+    },
+    setShowType(state, item) {
+      state.showType = item;
     },
     setLinkPoint(state, item) {
       state.linkPoint = item;
@@ -307,7 +314,7 @@ export default {
       let { length = 0 } = activeComs || [];
       if (length > 1) {
         activeComs.forEach(item => {
-          let { left = 0, top = 0, id = "" } = item || {};
+          let { left = 0, top = 0 } = item || {};
           // item.left = left > 0 ? left : 0;
           // item.top = top > 0 ? top : 0;
           item.left = left + Math.floor(dx / zoom);
@@ -315,7 +322,7 @@ export default {
           // $(`#box_${id}`).css({ left, top });
         });
       } else {
-        let { left = 0, top = 0, id = "" } = activeCom || {};
+        let { left = 0, top = 0 } = activeCom || {};
         // left = originX + Math.floor((dx * 1) / zoom);
         // var top = originY + Math.floor((dy * 1) / zoom);
         // bmCommon.log(left , Math.floor(dx  / zoom),dx,dy)
@@ -615,9 +622,11 @@ export default {
           //如果未找到当前组件 在已选组件中 说明选择新组件  清除多选组件
           context.commit("setActiveComs", []);
         }
+        activeCom.showCoverStatus = true;
         activeCom = widgetList.find(item => item.id == id);
         let { length = 0 } = activeComs || [];
         if (length < 2) {
+          activeCom.showCoverStatus = true;
           context.commit("setActiveCom", activeCom);
         }
       }

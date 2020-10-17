@@ -113,7 +113,8 @@ async function request(type, options, callback) {
           bmCommon.error("类型转换异常", err);
         }
         if (code == Constants.CODES.LOGIN) {
-          vm.$jumpLogin();
+          // vm.$jumpLogin();
+          vm.$$msgWarn("当前登录已经过期，请返回重新进入！");
           reject();
         } else if (code == Constants.CODES.REDIRECT) {
           // let url =

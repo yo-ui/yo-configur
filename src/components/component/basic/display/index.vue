@@ -1,11 +1,14 @@
 <template>
   <div class="bm-basic-display-com" :style="comStyle">
     <img src="/static/img/svg/display.svg" />
-    <span class="text" :style="textStyle">{{ info.content }}</span>
+    <span ref="bmText" class="text" :style="textStyle"
+      >{{ info.content }}<small>{{ info.unit }}</small></span
+    >
   </div>
 </template>
 
 <script>
+import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -22,7 +25,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(),
+    ...mapGetters({
+      showType: "canvas/getShowType"
+    }),
 
     //渐变颜色样式
     gradientStyle() {
@@ -47,7 +52,7 @@ export default {
     comStyle() {
       let { info = {} } = this;
       let {
-        width = "",
+        // width = "",
         height = "",
         // color = "",
         // borderColor = "",
@@ -66,9 +71,9 @@ export default {
       } = info || {};
       let styles = {};
 
-      if (width) {
-        styles["width"] = `${width}px`;
-      }
+      // if (width) {
+      //   styles["width"] = `${width}px`;
+      // }
       if (height) {
         styles["height"] = `${height}px`;
       }
@@ -191,10 +196,27 @@ export default {
   },
   mounted() {
     this.$emit("success"); //组件加载完成回调
+    this.init();
   },
   methods: {
     ...mapMutations({}),
-    ...mapActions({})
+    ...mapActions({}),
+    init() {
+      let { info = {}, showType = "" } = this;
+      if (showType != "edit") {
+        let { id = "" } = info || {};
+        let { $vm } = window;
+        // let { deviceId = "" } = bindData || {};
+        $vm.$on(`devicePointEvent_${id}`, ({ device, point = {} }) => {
+          bmCommon.log("display", device, point);
+          let { value = "", unit = "" } = point || {};
+          info.content = value;
+          info.unit = unit;
+          // info.width = $(this.$refs.bmText).width();
+          this.$emit("success"); //组件加载完成回调
+        });
+      }
+    }
     // blurEvent(e) {
     //   let { target } = e;
     //   let { info = {} } = this;

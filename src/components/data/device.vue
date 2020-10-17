@@ -78,7 +78,9 @@
         <el-select
           v-model="condition.deviceId"
           filterable
+          clearable
           placeholder="请选择设备名称"
+          @change="selectDeviceEvent"
         >
           <el-option
             v-for="item in deviceList"
@@ -91,7 +93,8 @@
       </el-form-item>
     </el-form>
     <template #footer>
-      <el-button @click="closeEvent">{{ $lang("关闭") }}</el-button>
+      <!-- <el-button @click="closeEvent">{{ $lang("关闭") }}</el-button> -->
+      <el-button @click="resetEvent">{{ $lang("重置") }}</el-button>
       <el-button type="primary" @click="submitEvent">{{
         $lang("确定")
       }}</el-button>
@@ -175,6 +178,7 @@ export default {
       let { devicePoint = "", deviceId = "", orgId = "" } = bindData || {};
       this.showDialogStatus = true;
       condition.comId = id; //组件id
+      this.resetStatus = false;
       if (orgId) {
         condition.deviceId = deviceId;
         condition.pointId = devicePoint;
@@ -229,27 +233,49 @@ export default {
       val = val.toUpperCase();
       return name.indexOf(val) != -1;
     },
+    selectDeviceEvent() {
+      this.resetStatus = false;
+    },
     //点击组织事件
     nodeClickEvent(item, node, com) {
       let { condition } = this;
       let { id = "", name = "" } = item || {};
       condition.orgId = id;
+      this.resetStatus = false;
       condition.orgName = name;
       this.defaultExpandedKeys = [id];
       this.showPopoverStatus = false;
       // this.loadReportDeviceList();
     },
+    resetEvent() {
+      let { condition } = this;
+      condition.orgId = "";
+      condition.orgName = "";
+      condition.deviceId = "";
+      this.resetStatus = true;
+      this.$nextTick(() => {
+        this.$refs.form?.clearValidate();
+      });
+    },
     submitEvent() {
+      let { resetStatus = false } = this;
+      let callback = () => {
+        let { widgetList = [], condition } = this;
+        let { orgId = "", deviceId = "", comId = "" } = condition;
+        let activeCom = widgetList.find(item => item.id == comId) || {};
+        activeCom.bindData = {
+          orgId,
+          deviceId
+        };
+        this.showDialogStatus = false;
+      };
+      if (resetStatus) {
+        callback && callback();
+        return;
+      }
       this.$refs.form?.validate((valid, msg) => {
         if (valid) {
-          let { widgetList = [], condition } = this;
-          let { orgId = "", deviceId = "", comId = "" } = condition;
-          let activeCom = widgetList.find(item => item.id == comId) || {};
-          activeCom.bindData = {
-            orgId,
-            deviceId
-          };
-          this.showDialogStatus = false;
+          callback();
         } else {
           if (msg) {
             for (let key in msg) {

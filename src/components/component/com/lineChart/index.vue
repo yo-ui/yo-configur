@@ -3,7 +3,11 @@
     <h2 class="title">
       {{ deviceInfo.name || "设备"
       }}<el-select
-        v-if="deviceInfo.points && deviceInfo.points.length > 0"
+        v-if="
+          deviceInfo.points &&
+            deviceInfo.points.length > 0 &&
+            showType == 'edit'
+        "
         v-model="condition.point"
         placeholder="请选择设备点位"
         filterable
@@ -18,11 +22,11 @@
         </el-option> </el-select
       >{{ $lang("实时数据") }}
     </h2>
+    <!-- :init-options="{ renderer: 'svg' }" -->
     <v-chart
       theme="macarons"
       autoresize
       :style="comStyle"
-      :init-options="{ renderer: 'svg' }"
       :options="chartOptions"
     />
   </div>
@@ -34,7 +38,7 @@ import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "lineCom",
+  name: "lineChartCom",
   data() {
     return {
       deviceInfo: {},
@@ -54,7 +58,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(),
+    ...mapGetters({
+      showType: "canvas/getShowType" //当前显示类型
+    }),
 
     //渐变颜色样式
     gradientStyle() {

@@ -20,24 +20,24 @@
             placement="top"
             effect="dark"
           >
-          <i
-            class="el-icon-thumb"
-            :class="{ active: info.action == 'move' }"
-            @click="actionEvent('move')"
-            :title="$lang('移动画布')"
-          ></i>
+            <i
+              class="el-icon-thumb"
+              :class="{ active: info.action == 'move' }"
+              @click="actionEvent('move')"
+              :title="$lang('移动画布')"
+            ></i>
           </el-tooltip>
           <el-tooltip
             :content="$lang('拼装水管')"
             placement="top"
             effect="dark"
           >
-          <i
-            class="bm-icon icon-paint"
-            :class="{ active: info.action == 'paint' }"
-            @click="actionEvent('paint')"
-            :title="$lang('拼装水管')"
-          ></i>
+            <i
+              class="bm-icon icon-paint"
+              :class="{ active: info.action == 'paint' }"
+              @click="actionEvent('paint')"
+              :title="$lang('拼装水管')"
+            ></i>
           </el-tooltip>
         </p>
       </el-collapse-item>

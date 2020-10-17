@@ -96,7 +96,6 @@ export default {
         borderStyle = "",
         borderWidth = "",
         borderRadius = "",
-
         marginTop = 0,
         marginBottom = 0,
         marginLeft = 0,

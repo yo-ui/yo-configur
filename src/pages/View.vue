@@ -26,11 +26,12 @@
                     item.bindData.deviceId &&
                     !item.bindData.devicePoint
                 "
+                popper-class="device-info-popover"
                 placement="right"
                 :key="index"
                 @show="showDeviceInfoEvent(item.bindData)"
                 :title="deviceInfo.name"
-                width="500"
+                width="400"
                 trigger="hover"
               >
                 <bm-device-info :pointList="deviceInfo.points"></bm-device-info>
@@ -39,7 +40,6 @@
                   class="view"
                   :data-type="item.type"
                   :data-id="item.id"
-                  type="view"
                   :info="item"
                 ></bm-com>
               </el-popover>
@@ -91,12 +91,12 @@ export default {
       widgetList: "canvas/getWidgetList", //组件列表
       viewData: "canvas/getPreviewData", //组件列表
       getZoom: "canvas/getZoom", //放大缩小
-      leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
-      rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
-      canvas: "canvas/getCanvas", //画布属性
-      selectBox: "canvas/getSelectBox", //选取框
-      activeComs: "canvas/getActiveComs", //选中对象
-      activeCom: "canvas/getActiveCom" //选中对象
+      // leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
+      // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
+      canvas: "canvas/getCanvas" //画布属性
+      // selectBox: "canvas/getSelectBox", //选取框
+      // activeComs: "canvas/getActiveComs", //选中对象
+      // activeCom: "canvas/getActiveCom" //选中对象
     }),
     zoom: {
       get() {
@@ -157,6 +157,7 @@ export default {
         // top: `${top}`,
         // backgroundColor: `${backgroundColor}`,
         transform: `scale(${zoom})`,
+        webkitTransform: `scale(${zoom})`,
         transformOrigin: `left top`
         // webkitTransform: `scale(${zoom}) translate(-50%,-50%)`
       };
@@ -182,6 +183,7 @@ export default {
   methods: {
     ...mapMutations({
       setZoom: "canvas/setZoom",
+      setShowType: "canvas/setShowType",
       setWidgetList: "canvas/setWidgetList", //设置组件列表
       setCanvas: "canvas/setCanvas"
     }),
@@ -197,6 +199,7 @@ export default {
       let { query = {} } = $route;
       let { canvasId = "", type = 1 } = query || {};
       condition.canvasId = canvasId;
+      this.setShowType(Constants.SHOWTYPEMAP.VIEW);
       this.canvasGetFunc((detail = {}) => {
         let {
           name = "",
@@ -239,33 +242,42 @@ export default {
         bmCommon.log("postFunc", result);
       });
       this.initConfigWebsocketFunc((deviceList = []) => {
-        bmCommon.log("initConfigWebsocketFunc", deviceList);
-        deviceList.forEach(item => {
-          let { deviceId = "", configurDevicePointVoList: pointList = [] } =
-            item || {};
+        bmCommon.log("View initConfigWebsocketFunc", deviceList);
+        widgetList.forEach(item => {
+          let { bindData = {}, id = "" } = item || {};
+          let { deviceId = "", devicePoint = "" } = bindData || {};
           //先找到绑定设备的组件
-          let widget = widgetList.find(item => {
-            let { bindData = {} } = item || {};
-            let { deviceId: _deviceId = "" } = bindData || {};
+          let device = deviceList.find(_item => {
+            let { deviceId: _deviceId = "" } = _item || {};
             return _deviceId && _deviceId == deviceId; //如果有绑定id 而且能找到对应的推送消息
           });
-          if (widget) {
+          if (device) {
             bmCommon.log(`找到设备${deviceId}的数据`);
-            let { bindData = {} } = widget || {};
-            let { devicePoint = "" } = bindData || {};
+            let { configurDevicePointVoList: pointList = [] } = device || {};
+            let pointObj = null;
             if (devicePoint) {
-              let pointObj = pointList.find(item => {
+              pointObj = pointList.find(item => {
                 let { point = "" } = item || {};
                 return point == devicePoint;
               });
               if (pointObj) {
-                bmCommon.log(`找到设备${deviceId}点位${devicePoint}的数据`);
-                let { value = "", unit = "", descr = "" } = pointObj || {};
-                widget.value = value; //值
-                widget.unit = unit; //单位
-                widget.descr = descr; //描述
+                bmCommon.log(
+                  `找到组件${id}设备${deviceId}点位${devicePoint}的数据`
+                );
+                // let { value = "", unit = "", descr = "" } = pointObj || {};
+                // widget.value = value; //值
+                // widget.unit = unit; //单位
+                // widget.descr = descr; //描述
               }
             }
+            let { $vm } = window;
+            $vm.$emit(`devicePointEvent_${id}`, {
+              device: {
+                deviceId,
+                pointList
+              },
+              point: pointObj
+            });
           }
         });
       });

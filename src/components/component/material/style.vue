@@ -25,7 +25,7 @@
       ></el-input>
     </p> -->
     <el-collapse v-model="activeNames">
-      <el-collapse-item :title="info.name" name="1">
+      <el-collapse-item :title="info.name" name="name">
         <p>
           <span class="label"> {{ $lang("层级") }}: </span>
           <el-tooltip content="请输入层级" placement="top" effect="dark">
@@ -177,8 +177,6 @@
               @click="info.flipH = !info.flipH"
             ></i>
           </el-tooltip>
-          <!-- <span class="label"> {{ $lang("是否可移动") }}:</span
-      ><el-checkbox v-model="info.locked"></el-checkbox> -->
         </p>
         <!-- <p>
       <span class="label"> {{ $lang("背景图片") }}:</span>
@@ -596,7 +594,7 @@ export default {
   name: "deviceCommonStyleCom",
   data() {
     return {
-      activeNames: ["1", "2"],
+      activeNames: ["name"],
       animationDirectionList: Object.freeze(Constants.ANIMATIONDIRECTIONLIST),
       animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
       borderStyleList: Object.freeze(Constants.SVGBORDERSTYLELIST),

@@ -143,10 +143,7 @@
           </radialGradient>
         </template>
       </defs>
-      <polygon
-        :points="info.points"
-        :style="svgStyle"
-      />
+      <polygon :points="info.points" :style="svgStyle" />
     </svg>
   </div>
 </template>
@@ -276,8 +273,8 @@ export default {
       }
       styles["stroke-width"] = borderWidth;
       info.points = new SVG.PointArray(points).size(
-        width - borderWidth*2,
-        height - borderWidth*2
+        width - borderWidth * 2,
+        height - borderWidth * 2
       );
       if (backgroundType == "purity") {
         //纯色

@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -21,7 +22,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(),
+    ...mapGetters({
+      showType: "canvas/getShowType"
+    }),
     //渐变颜色样式
     gradientStyle() {
       let { info = {} } = this;
@@ -174,11 +177,28 @@ export default {
     //     info.height = height;
     //   }
     // });
+    this.init();
     this.$emit("success"); //组件加载完成回调
   },
   methods: {
     ...mapMutations({}),
-    ...mapActions({})
+    ...mapActions({}),
+    init() {
+      let { info = {}, showType = "" } = this;
+      if (showType != "edit") {
+        let { id = "" } = info || {};
+        let { $vm } = window;
+        // let { deviceId = "" } = bindData || {};
+        $vm.$on(`devicePointEvent_${id}`, ({ device, point = {} }) => {
+          bmCommon.log("dynamicTextCom", device, point);
+          let { value = "", unit = "" } = point || {};
+          info.content = value;
+          info.unit = unit;
+          // info.width = $(this.$refs.bmText).width();
+          // this.$emit("success"); //组件加载完成回调
+        });
+      }
+    }
   }
 };
 </script>

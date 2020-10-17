@@ -35,5 +35,5 @@ export default {
   setPlatform(state, item) {
     bmCommon.setItem(Constants.LOCALSTORAGEKEY.PLATFORM, item);
     state.platform = item;
-  },
+  }
 };

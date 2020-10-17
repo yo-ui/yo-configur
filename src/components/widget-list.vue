@@ -7,7 +7,7 @@
           <p>{{ item.name }}</p>
         </template>
         <el-collapse
-          v-model="activeNames"
+          v-model="item.activeNames"
           v-if="item.groupList && item.groupList.length > 0"
         >
           <el-collapse-item
@@ -70,7 +70,7 @@ export default {
   data() {
     let tabList = Object.freeze(Constants.COMPONENTLIBRARY);
     return {
-      activeNames: ["pipeline-system"],
+      activeNames: [],
       tabList,
       activeIndex: tabList[0].code
     };
@@ -99,7 +99,7 @@ export default {
     ...mapActions({
       selectComAction: "canvas/selectCom",
       // upload2OssAction: "upload2Oss",
-      createHistoryAction: "canvas/createHistory",
+      createHistoryAction: "canvas/createHistory"
       // createRecordAction: "canvas/createRecord"
     }),
     initEvent() {

@@ -177,8 +177,6 @@
               @click="info.flipH = !info.flipH"
             ></i>
           </el-tooltip>
-          <!-- <span class="label"> {{ $lang("是否可移动") }}:</span
-      ><el-checkbox v-model="info.locked"></el-checkbox> -->
         </p>
         <!-- <p>
       <span class="label"> {{ $lang("背景图片") }}:</span>
