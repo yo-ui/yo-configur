@@ -2,13 +2,16 @@
   <div class="bm-basic-block-com" :style="comStyle">
     <img src="/static/img/device/device-defult.png" />
     <div class="text-box" :style="textStyle">
-      <p class="name">正向有功电量</p>
-      <p class="val">00.00<small>kWh</small></p>
+      <p class="name">{{ info.pointName || "正向有功电量" }}</p>
+      <p class="val">
+        {{ info.content }}<small>{{ info.unit || "kWh" }}</small>
+      </p>
     </div>
   </div>
 </template>
 
 <script>
+import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -204,19 +207,29 @@ export default {
     }
   },
   mounted() {
-    this.$emit("success"); //组件加载完成回调
+    this.init();
+    // this.$emit("success"); //组件加载完成回调
   },
   methods: {
     ...mapMutations({}),
-    ...mapActions({})
-    // blurEvent(e) {
-    //   let { target } = e;
-    //   let { info = {} } = this;
-    //   let name = $(target)
-    //     .text()
-    //     .trim();
-    //   info.name = name;
-    // }
+    ...mapActions({}),
+    init() {
+      let { info = {}, showType = "" } = this;
+      if (showType != "edit") {
+        let { id = "" } = info || {};
+        let { $vm } = window;
+        // let { deviceId = "" } = bindData || {};
+        $vm.$on(`devicePointEvent_${id}`, ({ device, point = {} }) => {
+          bmCommon.log("blockCom", device, point);
+          let { value = "", unit = "", descr = "" } = point || {};
+          info.content = value;
+          info.pointName = descr;
+          info.unit = unit;
+          // info.width = $(this.$refs.bmText).width();
+          // this.$emit("success"); //组件加载完成回调
+        });
+      }
+    }
   }
 };
 </script>

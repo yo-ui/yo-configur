@@ -283,24 +283,24 @@ export default {
       });
     },
     resetCanvasSize() {
-      let $window = $(window);
-      let w_height = $window.height();
-      let w_width = $window.width();
-      let { canvas = {} } = this;
-      let { width = 0, height = 0 } = canvas || {};
-      let h_ratio = w_height / height;
-      let w_ratio = w_width / width;
-      let scale = w_ratio;
-      // let left = (w_width - width) / 2;
-      // let top = ((w_height - height) * scale) / 2;
-      if (h_ratio > w_ratio) {
-        scale = h_ratio;
-        // left = ((w_width - width) * scale) / 2;
-        // top = (w_height - height) / 2;
-      }
-      // canvas.left = left;
-      // canvas.top = top;
-      this.setZoom(scale);
+      // let $window = $(window);
+      // let w_height = $window.height();
+      // let w_width = $window.width();
+      // let { canvas = {} } = this;
+      // let { width = 0, height = 0 } = canvas || {};
+      // let h_ratio = w_height / height;
+      // let w_ratio = w_width / width;
+      // let scale = w_ratio;
+      // // let left = (w_width - width) / 2;
+      // // let top = ((w_height - height) * scale) / 2;
+      // if (h_ratio > w_ratio) {
+      //   scale = h_ratio;
+      //   // left = ((w_width - width) * scale) / 2;
+      //   // top = (w_height - height) / 2;
+      // }
+      // // canvas.left = left;
+      // // canvas.top = top;
+      // this.setZoom(scale);
     },
     showDeviceInfoEvent(bindData = {}) {
       let { deviceId = "" } = bindData || {};

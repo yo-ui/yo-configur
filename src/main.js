@@ -17,9 +17,9 @@ import "vue-slider-component/theme/default.css";
 
 Vue.component("VueSlider", VueSlider);
 
-// 引入vue-amap
+// // 引入vue-amap
 import VueAMap from "vue-amap";
-// Vue.use(skeleton);
+Vue.use(VueAMap);
 // 初始化vue-amap
 VueAMap.initAMapApiLoader({
   // 高德的key
@@ -40,7 +40,6 @@ VueAMap.initAMapApiLoader({
   // 高德 sdk 版本，默认为 1.4.4
   v: Constants.AMAP.version
 });
-
 Vue.use(Plugins);
 Vue.use(Filters);
 Vue.use(Directives);

@@ -9,7 +9,7 @@ let baseData = {
   borderRadius: 0,
   scale: "scale(1,1)",
   left: 0,
-  content: "文本内容",
+  content: "",
   name: "文本标题",
   dataType: "", //绑定数据类型  device point
   styleCode: "", //样式组件代码
@@ -653,6 +653,9 @@ export default [
           borderRadius: 0,
           borderWidth: 1,
           dataType: "point",
+          content: "0.00",
+          unit: "",
+          pointName: "",
           width: "",
           height: "",
           scaleable: false, //是否可缩放操作

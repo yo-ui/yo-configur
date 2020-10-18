@@ -60,6 +60,15 @@ const Routers = [
     component: () => import(/* webpackChunkName: "bm-login" */ "@/pages/Login")
   },
   {
+    path: RouterURL.video.path,
+    name: RouterURL.video.name,
+    meta: {
+      title: RouterURL.video.title
+      // requireAuth: routerAuth //是否需要登录
+    },
+    component: () => import(/* webpackChunkName: "bm-video" */ "@/pages/Video")
+  },
+  {
     path: "*",
     // component: NotFound
     redirect: RouterURL.not.path

@@ -13,13 +13,14 @@
   >
     <div class="info">
       <p class="txt">
-        {{ info.name }} {{info.showCoverStatus}}
+        {{ info.name }}
+        <!-- {{info.showCoverStatus}} -->
         <!-- {{ moving }}--{{ info.rotateable }}--{{ info.locked }} -->
       </p>
     </div>
     <div
       class="cover"
-      v-if="info.showCoverStatus"
+      v-if="info.showCoverStatus && showType == 'edit'"
       @dblclick.prevent="info.showCoverStatus = false"
     ></div>
     <!-- ((!moving && info.rotateable) || rotating) &&

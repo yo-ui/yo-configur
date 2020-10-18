@@ -1,11 +1,12 @@
 <template>
-  <div class="bm-basic-map-com" :style="comStyle">
+  <div class="bm-basic-map-com" :style="comStyle" v-loading="dataLoadingStatus">
     <el-amap-search-box
       :search-option="amap.searchOption"
       class="search-box"
       :on-search-result="amap.onSearchResult"
     ></el-amap-search-box>
     <el-amap
+      v-if="!dataLoadingStatus"
       class="map-box"
       :vid="`amapBox_${info.id}`"
       :amap-manager="amapManager"
@@ -24,8 +25,9 @@
 </template>
 
 <script>
+import bmCommon from "@/common/common";
 /* eslint-disable no-undef */
-import { AMapManager } from "vue-amap";
+import { AMapManager, lazyAMapApiLoaderInstance } from "vue-amap";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -33,6 +35,7 @@ export default {
   data() {
     let center = [121.59996, 31.197646];
     return {
+      dataLoadingStatus: true,
       // 地图管理对象
       amapManager: new AMapManager(),
       condition: {},
@@ -87,11 +90,6 @@ export default {
                   if (position) {
                     let { lng = "", lat = "" } = position || {};
                     let pos = [lng, lat];
-                    // self.lng = result.position.lng;
-                    // self.lat = result.position.lat;
-                    // self.center = [self.lng, self.lat];
-                    // self.loaded = true;
-                    // self.$nextTick();
                     amap.center = pos;
                     marker.position = pos;
                   }
@@ -103,7 +101,7 @@ export default {
         // 地图事件
         events: {
           init: () => {
-            // this.fixedPosition();
+            this.fixedPosition();
           },
           click: e => {
             this.getPosition(e, true);
@@ -219,46 +217,58 @@ export default {
     }
   },
   mounted() {
-    this.$emit("success"); //组件加载完成回调
+    this.init();
+    // this.$emit("success"); //组件加载完成回调
   },
   methods: {
     ...mapMutations({}),
     ...mapActions({}),
-    //定位
-    // fixedPosition() {
-    //   let { amapManager, amap = {}, marker = {} } = this;
-    //   // let that = this;
-    //   let map = amapManager.getMap();
-    //   let geolocation = new AMap.Geolocation({
-    //     enableHighAccuracy: true, //是否使用高精度定位，默认:true
-    //     timeout: 10000, //超过10秒后停止定位，默认：无穷大
-    //     maximumAge: 0, //定位结果缓存0毫秒，默认：0
-    //     convert: true, //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
-    //     showButton: true, //显示定位按钮，默认：true
-    //     buttonPosition: "LB", //定位按钮停靠位置，默认：'LB'，左下角
-    //     buttonOffset: new AMap.Pixel(10, 20), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
-    //     showMarker: false, //定位成功后在定位到的位置显示点标记，默认：true
-    //     showCircle: false, //定位成功后用圆圈表示定位精度范围，默认：true
-    //     panToLocation: true, //定位成功后将定位到的位置作为地图中心点，默认：true
-    //     zoomToAccuracy: false //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
-    //   });
-    //   function onComplete(obj) {
-    //     let { position = {} } = obj || {};
-    //     let { lat = "", lng = "" } = position || [];
-    //     let pos = [lng, lat];
-    //     amap.center = pos;
-    //     marker.position = pos;
-    //     // that.setBuildingLocation(pos);
-    //   }
+    init() {
+      this.$nextTick(() => {
+        lazyAMapApiLoaderInstance.load().then(() => {
+          this.timeoutId = setTimeout(() => {
+            clearTimeout(this.timeoutId);
+            this.dataLoadingStatus = false;
+          }, 300);
+          // bmCommon.log("-------加载完成");
+        });
+      });
+    },
+    // 定位
+    fixedPosition() {
+      let { amapManager, amap = {}, marker = {} } = this;
+      // let that = this;
+      let map = amapManager.getMap();
+      let geolocation = new AMap.Geolocation({
+        enableHighAccuracy: true, //是否使用高精度定位，默认:true
+        timeout: 10000, //超过10秒后停止定位，默认：无穷大
+        maximumAge: 0, //定位结果缓存0毫秒，默认：0
+        convert: true, //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+        showButton: true, //显示定位按钮，默认：true
+        buttonPosition: "LB", //定位按钮停靠位置，默认：'LB'，左下角
+        buttonOffset: new AMap.Pixel(10, 20), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+        showMarker: false, //定位成功后在定位到的位置显示点标记，默认：true
+        showCircle: false, //定位成功后用圆圈表示定位精度范围，默认：true
+        panToLocation: true, //定位成功后将定位到的位置作为地图中心点，默认：true
+        zoomToAccuracy: false //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+      });
+      function onComplete(obj) {
+        let { position = {} } = obj || {};
+        let { lat = "", lng = "" } = position || [];
+        let pos = [lng, lat];
+        amap.center = pos;
+        marker.position = pos;
+        // that.setBuildingLocation(pos);
+      }
 
-    //   function onError(obj) {
-    //     // bmCommon.log(obj.message);
-    //   }
-    //   map && map.addControl(geolocation);
-    //   geolocation.getCurrentPosition();
-    //   AMap.event.addListener(geolocation, "complete", onComplete); //返回定位信息
-    //   AMap.event.addListener(geolocation, "error", onError);
-    // },
+      function onError(obj) {
+        // bmCommon.log(obj.message);
+      }
+      map && map.addControl(geolocation);
+      geolocation.getCurrentPosition();
+      AMap.event.addListener(geolocation, "complete", onComplete); //返回定位信息
+      AMap.event.addListener(geolocation, "error", onError);
+    },
     // 获取位置信息
     getPosition(e, flag) {
       let { lnglat = {} } = e || {};
