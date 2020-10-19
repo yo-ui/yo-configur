@@ -34,17 +34,27 @@ export default {
       activeCom: "canvas/getActiveCom", //选中组件
       activeComs: "canvas/getActiveComs", //选中组件
       selectBox: "canvas/getSelectBox", //选取框
+      zoom: "canvas/getZoom", //放大缩小
       canvas: "canvas/getCanvas" //画布组件
     }),
     // moving(){
     //   return this.$store?.state?.canvas?.moving;
     // },
     comStyle() {
-      let { selectBox } = this;
-      let { left = 0, top = 0, width = 0, height = 0 } = selectBox;
+      let { selectBox = {}, zoom = 0 } = this;
+      let {
+        left = 0,
+        top = 0,
+        width = 0,
+        height = 0,
+        transformOrigin = "left top"
+      } = selectBox;
       return {
         left: `${left}px`,
         top: `${top}px`,
+        // transform: `scale(${zoom})`,
+        // webkitTransform: `scale(${zoom})`,
+        // transformOrigin: `${transformOrigin}`,
         width: `${width}px`,
         height: `${height}px`
       };
@@ -138,7 +148,9 @@ export default {
       // if (dx > 5 || dy > 5) {
       this.showBoxStatus = true;
       // }
+      // selectBox.transformOrigin = "left top";
       if (dx < 0) {
+        // selectBox.transformOrigin = "right bottom";
         selectBox.left = x;
         selectBox.width = Math.abs(dx);
       } else {
@@ -155,11 +167,13 @@ export default {
       // selectBox.width = Math.abs(dx);
       // selectBox.height = Math.abs(dy);
     },
+    //计算组件是否被框选
     selectComs(selectBox = {}) {
       let {
         widgetList = [],
         // selectBox = {},
         // activeComs = [],
+        // zoom = 1,
         canvas = {}
       } = this;
       let activeComs = [];
@@ -170,8 +184,11 @@ export default {
         width: boxWidth = 0,
         height: boxHeight = 0
       } = selectBox || {};
-      let offset = $(".view-box").offset();
-      let { left = 0, top = 0 } = offset || {};
+      // let offset = $(".view-box").offset();
+      // let canvas_offset = document
+      //   .querySelector(".canvas-box")
+      //   .getBoundingClientRect();
+      // let { left = 0, top = 0 } = canvas_offset || {};
       // boxX = boxX + left;
       // boxY = boxY + top;
       let boxX1 = boxX + boxWidth;
@@ -181,12 +198,20 @@ export default {
       points.push([boxX1, boxY]);
       points.push([boxX, boxY1]);
       points.push([boxX1, boxY1]);
+      // points = new SVG.PointArray(points).size(
+      //   boxWidth * zoom,
+      //   boxHeight * zoom
+      // );
       // let ids = [];
       if (boxWidth > 1) {
         widgetList.forEach(item => {
-          let { left: x = 0, top: y = 0, width = 0, height = 0 } = item || {};
-          x = x + left;
-          y = y + top;
+          // let { left: x = 0, top: y = 0, width = 0, height = 0 } = item || {};
+          let { id = "" } = item || {};
+          let obj = document.getElementById(`box_${id}`);
+          let rect = obj.getBoundingClientRect();
+          let { left: x = 0, top: y = 0, width = 0, height = 0 } = rect || {};
+          // x = x + left;
+          // y = y + top;
           let x1 = x + width;
           let y1 = y + height;
           if (
@@ -230,11 +255,13 @@ export default {
 @import (reference) "./../assets/less/common.less";
 .bm-select-com {
   .squ(100%);
+  // transform-origin: left top;
   .posa;
-  .bor(2px dashed #00f);
+  .bor(1px solid #0a57ca);
   pointer-events: none;
   z-index: 999;
   top: 0;
   left: 0;
+  .bc(rgba(148, 148, 249, 0.386));
 }
 </style>

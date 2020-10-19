@@ -89,6 +89,12 @@
       // min-width: 60px;
       .click;
       .bor(0);
+      &.is-disabled{
+        &:hover,&:focus{
+          cursor: not-allowed;
+        }
+        cursor: not-allowed;
+      }
       &.dropdown{
         .p(9px 0px 9px 15px);
         &>span{

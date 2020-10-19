@@ -535,22 +535,19 @@ export default {
         return;
       }
       let min = Math.min(...activeComs.map(item => Number(item.top)));
-      let max = Math.max(
-        ...activeComs.map(
-          item =>
-            Number(item.top) +
-            (Number(item.height) || Number(item.originHeight))
-        )
-      );
+      let max = Math.max(...activeComs.map(item => Number(item.top)));
       let range = (max - min) / (length - 1);
       let index = 1;
-      activeComs.forEach(item => {
-        let { height = "", top = "", originHeight = "" } = item || {};
+      let _activeComs = (bmCommon.clone(activeComs) || []).sort(
+        (a, b) => a.top - b.top
+      );
+      _activeComs.forEach(item => {
+        let { height = "", top = "", originHeight = "", id = "" } = item || {};
         let _max = (Number(height) || Number(originHeight)) + Number(top);
         let _min = Number(top);
+        let _obj = activeComs.find(_item => _item.id == id);
         if (min != _min && _max != max) {
-          item.top =
-            min + range * index - (Number(height) || Number(originHeight)) / 2;
+          _obj.top = min + range * index;
           index++;
         }
       });
@@ -563,21 +560,19 @@ export default {
         return;
       }
       let min = Math.min(...activeComs.map(item => Number(item.left)));
-      let max = Math.max(
-        ...activeComs.map(
-          item =>
-            Number(item.left) + (Number(item.width) || Number(item.originWidth))
-        )
-      );
+      let max = Math.max(...activeComs.map(item => Number(item.left)));
       let range = (max - min) / (length - 1);
       let index = 1;
-      activeComs.forEach(item => {
-        let { width = "", left = "", originWidth = "" } = item || {};
+      let _activeComs = (bmCommon.clone(activeComs) || []).sort(
+        (a, b) => a.left - b.left
+      );
+      _activeComs.forEach(item => {
+        let { width = "", left = "", originWidth = "", id = "" } = item || {};
         let _max = (Number(width) || Number(originWidth)) + Number(left);
         let _min = Number(left);
+        let _obj = activeComs.find(_item => _item.id == id);
         if (min != _min && _max != max) {
-          item.left =
-            min + range * index - (Number(width) || Number(originWidth)) / 2;
+          _obj.left = min + range * index;
           index++;
         }
       });

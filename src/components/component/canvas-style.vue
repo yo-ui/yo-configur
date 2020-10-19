@@ -74,31 +74,42 @@
           ></el-input>
         </p>
         <p>
-          <span class="label"> {{ $lang("页面高度") }}:</span
-          ><el-input-number
-            controls-position="right"
-            clearable
-            v-model.number="info.height"
-            :placeholder="$lang('请输入页面高度')"
-          ></el-input-number
-          >px
+          <span class="label"> {{ $lang("页面宽度") }}:</span>
+          <el-tooltip
+            :content="$lang('请输入页面宽度')"
+            placement="top"
+            effect="dark"
+          >
+            <el-input-number
+              controls-position="right"
+              v-model.number="info.width"
+              clearable
+              :placeholder="$lang('请输入页面宽度')"
+            ></el-input-number>
+          </el-tooltip>
           <el-slider
-            v-model="info.height"
+            v-model="info.width"
             :max="3000"
             :format-tooltip="val => val"
           ></el-slider>
         </p>
         <p>
-          <span class="label"> {{ $lang("页面宽度") }}:</span
-          ><el-input-number
-            controls-position="right"
-            v-model.number="info.width"
-            clearable
-            :placeholder="$lang('请输入页面宽度')"
-          ></el-input-number
-          >px
+          <span class="label"> {{ $lang("页面高度") }}:</span>
+
+          <el-tooltip
+            :content="$lang('请输入页面高度')"
+            placement="top"
+            effect="dark"
+          >
+            <el-input-number
+              controls-position="right"
+              clearable
+              v-model.number="info.height"
+              :placeholder="$lang('请输入页面高度')"
+            ></el-input-number
+          ></el-tooltip>
           <el-slider
-            v-model="info.width"
+            v-model="info.height"
             :max="3000"
             :format-tooltip="val => val"
           ></el-slider>
