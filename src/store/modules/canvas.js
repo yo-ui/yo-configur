@@ -310,7 +310,6 @@ export default {
       var dy = y - startY;
       // var left = state.originX + Math.floor((dx * 100) / state.zoom);
       // var top = state.originY + Math.floor((dy * 100) / state.zoom);
-
       let { length = 0 } = activeComs || [];
       if (length > 1) {
         activeComs.forEach(item => {

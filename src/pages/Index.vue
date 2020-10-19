@@ -335,7 +335,7 @@ export default {
       setOrganizeList: "common/setOrganizeList",
       setZoom: "canvas/setZoom",
       setWidgetList: "canvas/setWidgetList", //设置组件列表
-      setActiveCom: "canvas/setActiveCom",//设置当前选中组件
+      setActiveCom: "canvas/setActiveCom", //设置当前选中组件
       setCanvas: "canvas/setCanvas",
       setCanvasData: "canvas/setCanvasData",
       setActiveComs: "canvas/setActiveComs",
@@ -558,11 +558,14 @@ export default {
       e.stopPropagation();
       // e.preventDefault();
       bmCommon.log("index keydow", e);
-      let { activeCom } = this;
+      let { activeCom = {}, activeComs = [] } = this;
+      let { length = 0 } = activeComs || [];
       let { type = "", id = "", locked = false } = activeCom || {};
-      if (type == "canvas" || !id) {
-        //如果选中的是画布或未选中组件则直接返回
-        return;
+      if(length<2){
+        if (type == "canvas" || !id) {
+          //如果选中的是画布或未选中组件则直接返回
+          return;
+        }
       }
       //默认移动距离
       let dis = 1;
@@ -578,7 +581,13 @@ export default {
         if (shiftKey) {
           dis = shiftDis;
         }
-        activeCom.left -= dis;
+        if (length > 1) {
+          activeComs.forEach(item => {
+            item.left -= dis;
+          });
+        } else {
+          activeCom.left -= dis;
+        }
         // bmCommon.log("左", activeCom);
       } else if (keyCode === 38) {
         // 上
@@ -586,7 +595,13 @@ export default {
         if (shiftKey) {
           dis = shiftDis;
         }
-        activeCom.top -= dis;
+        if (length > 1) {
+          activeComs.forEach(item => {
+            item.top -= dis;
+          });
+        } else {
+          activeCom.top -= dis;
+        }
         // bmCommon.log("上", activeCom);
       } else if (keyCode === 39) {
         // 右
@@ -594,7 +609,14 @@ export default {
         if (shiftKey) {
           dis = shiftDis;
         }
-        activeCom.left += dis;
+
+        if (length > 1) {
+          activeComs.forEach(item => {
+            item.left += dis;
+          });
+        } else {
+          activeCom.left += dis;
+        }
         // bmCommon.log("右", activeCom);
       } else if (keyCode === 40) {
         // 下
@@ -602,7 +624,13 @@ export default {
         if (shiftKey) {
           dis = shiftDis;
         }
-        activeCom.top += dis;
+        if (length > 1) {
+          activeComs.forEach(item => {
+            item.top += dis;
+          });
+        } else {
+          activeCom.top += dis;
+        }
         // bmCommon.log("下", activeCom);
       } else if (keyCode == 67) {
         // C
