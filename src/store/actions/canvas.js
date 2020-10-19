@@ -50,7 +50,7 @@ export default {
   // canvasStartUrl: `${host}/configur/canvas/start`,
   async canvasStart(context, options) {
     let url = URL.canvasStartUrl;
-    const data = await get({
+    const data = await post({
       url: url,
       params: options,
       store: context
@@ -61,7 +61,7 @@ export default {
   // canvasStopUrl: `${host}/configur/canvas/stop`,
   async canvasStop(context, options) {
     let url = URL.canvasStopUrl;
-    const data = await get({
+    const data = await post({
       url: url,
       params: options,
       store: context

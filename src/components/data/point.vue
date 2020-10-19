@@ -3,6 +3,7 @@
   <el-dialog
     class="bm-dialog-point-com"
     v-dialogDrag="true"
+    @keydown.native.stop
     :title="$lang('数据绑定')"
     :visible.sync="showDialogStatus"
     width="500px"

@@ -4,6 +4,7 @@
     class="bm-dialog-device-com"
     v-dialogDrag="true"
     :title="$lang('数据绑定')"
+    @keydown.native.stop
     :visible.sync="showDialogStatus"
     width="500px"
     ><el-form

@@ -21,8 +21,11 @@
     <div
       class="cover"
       v-if="info.showCoverStatus && showType == 'edit'"
-      @dblclick.prevent="info.showCoverStatus = false"
-    ></div>
+      @dblclick.prevent.stop="info.showCoverStatus = false"
+    >
+      <!-- ----------- =-====={{ !moving }} --{{ rotating }}--
+      {{ !moving || rotating }}==={{ showRotateStatus }} -->
+    </div>
     <!-- ((!moving && info.rotateable) || rotating) &&
           !info.locked &&
           !info.showCoverStatus -->
@@ -161,6 +164,7 @@ export default {
     // this.loadSuccess();
     let { info = {} } = this;
     info.showCoverStatus = true;
+    this.setActiveCom(info);
   },
   components: {
     ...widgets
@@ -170,36 +174,25 @@ export default {
       showType: "canvas/getShowType", //当前显示类型
       moving: "canvas/getMoving"
     }),
+    // ((!moving && info.rotateable) || rotating) &&
+    //       !info.locked &&
+    //       !info.showCoverStatus
     showRotateStatus() {
-      let { moving = false, info = {} } = this;
-      let {
-        rotateable = true,
-        locked = false,
-        rotating = false,
-        showCoverStatus = true
-      } = info || {};
-      return (
-        ((!moving && rotateable) || rotating) && !locked && !showCoverStatus
-      );
+      let { moving = false, rotating = false, info = {} } = this;
+      let { rotateable = true, locked = false, showCoverStatus = true } =
+        info || {};
+      return (!moving || rotating) && rotateable && !locked && showCoverStatus;
     },
     showRotateOriginStatus() {
-      let { info = {} } = this;
-      let {
-        rotateable = true,
-        locked = false,
-        rotating = false,
-        showCoverStatus = true
-      } = info || {};
+      let { info = {}, rotating = false } = this;
+      let { rotateable = true, locked = false, showCoverStatus = true } =
+        info || {};
       return rotateable && !locked && rotating && !showCoverStatus;
     },
     scaleBoxStatus() {
-      let { moving = false, info = {} } = this;
-      let {
-        scaleable = true,
-        locked = false,
-        rotating = false,
-        showCoverStatus = true
-      } = info || {};
+      let { moving = false, rotating = false, info = {} } = this;
+      let { scaleable = true, locked = false, showCoverStatus = true } =
+        info || {};
       // !moving && scaleable && !info.locked && !rotating && showCoverStatus
       return !moving && scaleable && !locked && !rotating && showCoverStatus;
     },
@@ -270,6 +263,7 @@ export default {
   methods: {
     ...mapMutations({
       initMove: "canvas/initMove",
+      setActiveCom: "canvas/setActiveCom",//设置当前选中组件
       resize: "canvas/resize",
       rotate: "canvas/rotate",
       stopMove: "canvas/stopMove"

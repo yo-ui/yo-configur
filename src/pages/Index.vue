@@ -335,7 +335,7 @@ export default {
       setOrganizeList: "common/setOrganizeList",
       setZoom: "canvas/setZoom",
       setWidgetList: "canvas/setWidgetList", //设置组件列表
-      setActiveCom: "canvas/setActiveCom",
+      setActiveCom: "canvas/setActiveCom",//设置当前选中组件
       setCanvas: "canvas/setCanvas",
       setCanvasData: "canvas/setCanvasData",
       setActiveComs: "canvas/setActiveComs",

@@ -8,6 +8,7 @@ let baseData = {
   borderColor: "",
   borderRadius: 0,
   scale: "scale(1,1)",
+  // showCoverStatus:true,//默认显示覆盖层
   left: 0,
   content: "",
   name: "文本标题",
@@ -619,8 +620,9 @@ export default [
           color: "#fff",
           borderRadius: 20,
           dataType: "device",
-          width: "",
-          height: "",
+          backgroundColor: "#4195ea",
+          width: 75,
+          height: 35,
           content: "控制",
           textAlign: "center"
           // scaleable: false //是否可缩放操作
@@ -814,16 +816,6 @@ export default [
         data: {
           ...baseData,
           src: "/static/video/video.mp4",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // backgroundImage: "",
-          // backgroundSize: "100% 100%",
-          // backgroundRepeat: "repeat",
-          // borderRadius: 0,
-          // scale: "scale(1,1)",
-          // opacity: 100,
-          // left: 0,
           controls: true,
           autoplay: false,
           loop: false,
@@ -832,12 +824,6 @@ export default [
           poster: "",
           width: 480,
           height: 280
-          // rotate: 0,
-          // top: 0,
-          // scaleable: true, //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // locked: true //是否可拖动
         }
       },
       {
@@ -847,7 +833,11 @@ export default [
         data: {
           ...baseData,
           src: "http://192.168.0.134/hls/test.m3u8",
+          dataType: "device",
           width: 480,
+          autoplay: false,
+          // loop: false,
+          muted: false,
           height: 280
         }
       },

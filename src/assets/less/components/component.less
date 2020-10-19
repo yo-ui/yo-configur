@@ -42,6 +42,8 @@
     .db(none);
     z-index: 2;
     .posa;
+    // .borc(@themes);
+    .bor(1px solid @themes);
     &::before{
       .db(none);
     }
@@ -82,13 +84,22 @@
     .fz(22);
     .tranf(translate(-50%,0));
     .squ(@circle-width);
-    .bor(1px solid @border);
     .bc(@white);
     .br(50%);
+    border-width: 2px;
     cursor:url(/static/img/configur/rotate.png), pointer;
     &:hover{
       .tranf(translate(-50%,0) scale(1.5));
       .c(@themes);
+    }
+    &::after{
+      .posa;
+      .h(16);
+      .w(1);
+      top:100%;
+      left:@circle-width/2px;
+      content: '';
+      .bc(@themes);
     }
     // &::before{
     //   .db(none);
@@ -111,7 +122,7 @@
     .squ(@square-width);
     // .br(50%);
     cursor: nw-resize;
-    .bor(1px solid @border);
+    // .bor(1px solid @border);
     .bc(@white);
     &::before{
       .db(none);
@@ -129,7 +140,7 @@
     .squ(@square-width);
     .bc(@white);
     cursor: n-resize;
-    .bor(1px solid @border);
+    // .bor(1px solid @border);
     &::before{
       .db(none);
     }
@@ -146,7 +157,7 @@
     .bc(@white);
     // .br(50%);
     cursor: ne-resize;
-    .bor(1px solid @border);
+    // .bor(1px solid @border);
     &::before{
       .db(none);
     }
@@ -163,7 +174,7 @@
     .squ(@square-width);
     .bc(@white);
     cursor: w-resize;
-    .bor(1px solid @border);
+    // .bor(1px solid @border);
     &::before{
       .db(none);
     }
@@ -180,7 +191,7 @@
     .squ(@square-width);
     .bc(@white);
     cursor: e-resize;
-    .bor(1px solid @border);
+    // .bor(1px solid @border);
     &::before{
       .db(none);
     }
@@ -197,7 +208,7 @@
     .squ(@square-width);
     // .br(50%);
     .bc(@white);
-    .bor(1px solid @border);
+    // .bor(1px solid @border);
     &::before{
       .db(none);
     }
@@ -214,7 +225,7 @@
     .squ(@square-width);
     .bc(@white);
     cursor: s-resize;
-    .bor(1px solid @border);
+    // .bor(1px solid @border);
     &::before{
       .db(none);
     }
@@ -231,7 +242,7 @@
     // .br(50%);
     cursor: se-resize;
     .bc(@white);
-    .bor(1px solid @border);
+    // .bor(1px solid @border);
     &::before{
       .db(none);
     }
