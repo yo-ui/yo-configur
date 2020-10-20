@@ -80,6 +80,10 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-device" */ "@/components/component/device/common/index.vue"
     ),
+  deviceDbCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-db" */ "@/components/component/device/db/index.vue"
+    ),
   materialCommonCom: () =>
     import(
       /* webpackChunkName: "bm-component-material" */ "@/components/component/material/common/index.vue"
@@ -206,6 +210,10 @@ let styles = {
   deviceCommonStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-style" */ "@/components/component/device/common/style.vue"
+    ),
+  deviceDbStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-db-style" */ "@/components/component/device/db/style.vue"
     ),
   materialCommonStyleCom: () =>
     import(

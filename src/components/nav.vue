@@ -283,6 +283,7 @@ export default {
   methods: {
     ...mapMutations({
       setActiveCom: "canvas/setActiveCom",
+      setActiveComs: "canvas/setActiveComs",
       setCanvasData: "canvas/setCanvasData",
       setZoom: "canvas/setZoom",
       setHistoryIndex: "canvas/setHistoryIndex",
@@ -330,19 +331,36 @@ export default {
       );
     },
     copyEvent() {
-      let { activeCom = {}, widgetList = [] } = this;
+      let { activeCom = {}, widgetList = [], activeComs = [] } = this;
       let { type = "" } = activeCom || {};
-      if (!type || type == "canvas") {
-        this.$$msgError(this.$lang("请选择要复制的组件"));
-        return;
+      let { length = 0 } = activeComs || [];
+      if (length < 2) {
+        if (!type || type == "canvas") {
+          this.$$msgError(this.$lang("请选择要复制的组件"));
+          return;
+        }
       }
-      let id = bmCommon.uuid();
-      let orders = widgetList.map(item => item.order);
-      let order = Math.max(...orders);
-      order += 1;
-      let item = { ...activeCom, id, order };
-      widgetList.push(item);
-      this.setActiveCom(item);
+      let _activeComs = [];
+      let callback = item => {
+        let id = bmCommon.uuid();
+        let orders = widgetList.map(item => item.order);
+        let order = Math.max(...orders);
+        order += 1;
+        let _item = { ...item, id, order };
+        widgetList.push(_item);
+        if (length > 1) {
+          _activeComs.push(_item);
+        }
+      };
+      if (length > 1) {
+        activeComs.forEach(item => {
+          callback(item);
+        });
+        this.setActiveComs(_activeComs);
+      } else {
+        callback(activeCom || {});
+        this.setActiveCom(activeCom);
+      }
     },
     deleteEvent() {
       let { activeCom = {}, widgetList = [] } = this;

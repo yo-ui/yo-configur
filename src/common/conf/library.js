@@ -1609,7 +1609,7 @@ export default [
         comList: [
           {
             name: "电表",
-            code: "deviceCommon",
+            code: "deviceDb",
             icon: "/static/img/configur/db.png",
             data: {
               ...baseData,

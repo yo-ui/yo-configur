@@ -202,6 +202,8 @@ export default {
       let { previewData = {} } = this;
       let { widgetList = [], canvas = {} } = previewData || {};
       this.setWidgetList(widgetList || []);
+      canvas.left=0
+      canvas.top=0
       this.setCanvas(canvas || {});
       this.resetCanvasSize();
       this.loadWebsocketData(widgetList);

@@ -219,6 +219,8 @@ export default {
         canvas.height = height;
         canvas.canvasId = canvasId;
         canvas.canvasType = type; //1为编辑   2为预览
+        canvas.left=0
+        canvas.top=0
         this.setCanvas(canvas);
         this.setWidgetList(widgetList);
         this.resetCanvasSize();

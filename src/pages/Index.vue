@@ -27,6 +27,7 @@
                 <!-- {{bgStyle}} -->
                 <!-- {{canvas}} -->
                 <!-- {{ activeCom }} -->
+                <!-- {{ copyCom }} -->
               </div>
             </div>
             <bm-com
@@ -57,13 +58,11 @@
       </div>
       <bm-info ref="bmInfo" v-show="rightMenuStatus"></bm-info>
     </div>
+    <!-- showContextMenuStatus&&(activeCom.type != 'canvas' || activeComs.length > 1) -->
     <ul
       class="context-menu"
       ref="contextMenuBox"
-      v-show="
-        showContextMenuStatus &&
-          (activeCom.type != 'canvas' || activeComs.length > 1)
-      "
+      v-show="showContextMenuStatus"
       :style="contextMenuStyle"
     >
       <li
@@ -561,7 +560,7 @@ export default {
       let { activeCom = {}, activeComs = [] } = this;
       let { length = 0 } = activeComs || [];
       let { type = "", id = "", locked = false } = activeCom || {};
-      if(length<2){
+      if (length < 2) {
         if (type == "canvas" || !id) {
           //如果选中的是画布或未选中组件则直接返回
           return;
@@ -681,44 +680,82 @@ export default {
     },
     //剪切
     cutEvent() {
-      let { activeCom = {}, widgetList = [] } = this;
-      let { id = "" } = activeCom;
-      this.copyCom = bmCommon.clone(activeCom || {});
-      let index = widgetList.findIndex(item => id == item.id);
-      widgetList.splice(index, 1);
+      let { activeCom = {}, widgetList = [], activeComs = [] } = this;
+      let { length = 0 } = activeComs || [];
+      let copyCom = null;
+      if (length > 1) {
+        copyCom = bmCommon.clone(activeComs || []);
+        activeComs.forEach(item => {
+          let { id = "" } = item || {};
+          let index = widgetList.findIndex(_item => id == _item.id);
+          widgetList.splice(index, 1);
+        });
+      } else {
+        let { id = "" } = activeCom;
+        copyCom = bmCommon.clone(activeCom || {});
+        let index = widgetList.findIndex(item => id == item.id);
+        widgetList.splice(index, 1);
+      }
+      this.copyCom = copyCom;
       this.selectComAction();
       this.showContextMenuStatus = false;
     },
     // 复制
     copyEvent() {
-      let { activeCom = {} } = this;
-      this.copyCom = bmCommon.clone(activeCom || {});
+      let { activeCom = {}, activeComs = [] } = this;
+      // this.copyCom = bmCommon.clone(activeCom || {});
+      let { length = 0 } = activeComs || [];
+      let copyCom = null;
+      if (length > 1) {
+        copyCom = bmCommon.clone(activeComs || []);
+      } else {
+        copyCom = bmCommon.clone(activeCom || {});
+      }
+      this.copyCom = copyCom;
       this.showContextMenuStatus = false;
     },
     // 粘贴
     pasteEvent(e) {
       let { copyCom = {}, widgetList = [] } = this;
-      let id = bmCommon.uuid();
+      let { length = 0 } = copyCom || {};
+      let _activeComs = [];
       // let obj = widgetList[widgetList.length - 1] || {};
-      let { width = 0, height = 0, left = 0, top = 0 } = copyCom || {};
+      let pos = {};
       if (e) {
-        let pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
-        let { x = "", y = "" } = pos || {};
-        left = x - width / 2;
-        top = y - height / 2;
+        pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
       }
-      let orders = widgetList.map(item => item.order);
-      let order = Math.max(...orders);
-      order += 1;
-      let item = {
-        ...copyCom,
-        id,
-        order,
-        left: left,
-        top: top
+      let callback = item => {
+        let orders = widgetList.map(item => item.order);
+        let order = Math.max(...orders);
+        let { width = 0, height = 0, left = 0, top = 0 } = item || {};
+        if (e) {
+          let { x = "", y = "" } = pos || {};
+          left = x - width / 2;
+          top = y - height / 2;
+        }
+        order += 1;
+        let id = bmCommon.uuid();
+        let _item = {
+          ...item,
+          id,
+          order,
+          left: left,
+          top: top
+        };
+        widgetList.push(_item);
+        if (length > 1) {
+          _activeComs.push(_item);
+        }
       };
-      widgetList.push(item);
-      this.setActiveCom(item);
+      if (length > 1) {
+        copyCom.forEach(item => {
+          callback(item);
+        });
+        this.setActiveComs(_activeComs);
+      } else {
+        callback(copyCom || {});
+        this.setActiveCom(copyCom);
+      }
       this.showContextMenuStatus = false;
     },
     deleteItem(item = {}) {

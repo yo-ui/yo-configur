@@ -408,99 +408,24 @@ export default {
       // }
       return styles || {};
     }
-    // textStyle() {
-    //   let { info = {} } = this;
-    //   let {
-    //     // width = "",
-    //     // height = "",
-    //     color = "",
-    //     // borderColor = "",
-    //     // borderStyle = "",
-    //     // borderWidth = "",
-    //     // scale = "",
-    //     fontFamily = "",
-    //     fontSize = "",
-    //     fontWeight = "",
-    //     fontStyle = ""
-    //     // backgroundColor = "",
-    //     // backgroundImage = "",
-    //     // backgroundRepeat = "",
-    //     // backgroundSize = ""
-    //   } = info || {};
-    //   let styles = {};
-
-    //   // if (width) {
-    //   //   styles["width"] = `${width}px`;
-    //   // }
-    //   // if (height) {
-    //   //   styles["height"] = `${height}px`;
-    //   // }
-    //   // if (backgroundRepeat) {
-    //   //   styles["backgroundRepeat"] = backgroundRepeat;
-    //   // }
-    //   // if (backgroundSize) {
-    //   //   styles["backgroundSize"] = backgroundSize;
-    //   // }
-    //   // if (borderColor) {
-    //   //   styles["borderColor"] = borderColor;
-    //   // }
-    //   // if (borderStyle) {
-    //   //   styles["borderStyle"] = borderStyle;
-    //   // }
-    //   // // if (borderWidth) {
-    //   // styles["borderWidth"] = `${borderWidth}px`;
-    //   // }
-    //   // if (scale) {
-    //   //   (styles["transform"] = `${scale}`),
-    //   //     (styles["-webkit-transform"] = `${scale}`),
-    //   //     (styles["-ms-transform"] = `${scale}`),
-    //   //     (styles["-o-transform"] = `${scale}`),
-    //   //     (styles["-moz-transform"] = `${scale}`);
-    //   // }
-    //   if (color) {
-    //     styles["color"] = color;
-    //   }
-    //   if (fontSize) {
-    //     styles["fontSize"] = `${fontSize}px`;
-    //   }
-    //   if (fontFamily) {
-    //     styles["fontFamily"] = `${fontFamily}`;
-    //   }
-    //   if (fontWeight) {
-    //     styles["fontWeight"] = fontWeight;
-    //   }
-    //   if (fontStyle) {
-    //     styles["fontStyle"] = fontStyle;
-    //   }
-    //   // if (backgroundColor) {
-    //   //   styles["backgroundColor"] = backgroundColor;
-    //   // }
-    //   // if (backgroundImage) {
-    //   //   styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
-    //   // }
-    //   return styles || {};
-    // }
   },
-  mounted() {
+  created() {
     let { info = {} } = this;
     let { gradientStyle = {} } = info || {};
     info.points = new SVG.PointArray(points);
     info.vBoxx = 0;
     info.vBoxy = 0;
     gradientStyle.gradientId = bmCommon.uuid();
+    this.setActiveCom(info);
+  },
+  mounted() {
     // this.$emit("success"); //组件加载完成回调
   },
   methods: {
-    ...mapMutations({}),
+    ...mapMutations({
+      setActiveCom: "canvas/setActiveCom" //设置当前选中组件
+    }),
     ...mapActions({})
-    // blurEvent(e) {
-    //   let { target } = e;
-    //   let { info = {} } = this;
-    //   let name = $(target)
-    //     .text()
-    //     .trim();
-    //   info.name = name;
-    // }
   }
 };
 </script>
