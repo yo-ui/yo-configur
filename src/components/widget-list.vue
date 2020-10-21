@@ -94,7 +94,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setWidgetList: "canvas/setWidgetList", //设置组件列表
+      // setWidgetList: "canvas/setWidgetList", //设置组件列表
       setLinkPoint: "canvas/setLinkPoint" //设置连接点信息
     }),
     ...mapActions({

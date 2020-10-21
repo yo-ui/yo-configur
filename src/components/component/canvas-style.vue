@@ -68,7 +68,7 @@
         <p>
           <span class="label"> {{ $lang("组态标题") }}: </span>
           <el-input
-            v-model="info.name"
+            v-model="info.content"
             clearable
             :placeholder="$lang('请输入组态标题')"
           ></el-input>
@@ -430,7 +430,6 @@
     </el-collapse>
     <!-- <h2>{{ $lang("功能选择") }}</h2> -->
 
-    <!-- <h2>{{ info.name }}</h2> -->
 
     <!-- <h2>{{ $lang("交互") }}</h2>
     <h2>{{ $lang("动画") }}</h2> -->
@@ -439,18 +438,18 @@
 
 <script>
 import bmCommon from "@/common/common";
-import COMPONENTLIBRARY from "@/common/conf/library";
+// import {componentLibrary} from "@/common/conf/library";
 import { Constants } from "@/common/env";
-const ASSISTMAP = {};
-COMPONENTLIBRARY.forEach(item => {
-  let { code = "", comList = [] } = item || {};
-  if (code == "assist") {
-    comList.forEach(_item => {
-      let { alias = "" } = _item || {};
-      ASSISTMAP[alias] = _item;
-    });
-  }
-});
+const ASSISTMAP = Constants.COMPONENTLIBRARYMAP;
+// Constants.COMPONENTLIBRARY.forEach(item => {
+//   let { code = "", comList = [] } = item || {};
+//   if (code == "assist") {
+//     comList.forEach(_item => {
+//       let { alias = "" } = _item || {};
+//       ASSISTMAP[alias] = _item;
+//     });
+//   }
+// });
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {

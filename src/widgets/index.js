@@ -84,6 +84,35 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-device-db" */ "@/components/component/device/db/index.vue"
     ),
+    deviceShsbCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-shsb" */ "@/components/component/device/shsb/index.vue"
+    ),
+    deviceZysfjCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-zysfj" */ "@/components/component/device/zysfj/index.vue"
+    ),
+    deviceXfsbCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-xfsb" */ "@/components/component/device/xfsb/index.vue"
+    ),
+    deviceCyfjCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-cyfj" */ "@/components/component/device/cyfj/index.vue"
+    ),
+    deviceKgCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-kg" */ "@/components/component/device/kg/index.vue"
+    ),
+    deviceDenggCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dengg" */ "@/components/component/device/dengg/index.vue"
+    ),
+    deviceDengpCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dengp" */ "@/components/component/device/dengp/index.vue"
+    ),
+
   materialCommonCom: () =>
     import(
       /* webpackChunkName: "bm-component-material" */ "@/components/component/material/common/index.vue"
@@ -215,6 +244,35 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-device-db-style" */ "@/components/component/device/db/style.vue"
     ),
+  deviceShsbStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-shsb-style" */ "@/components/component/device/shsb/style.vue"
+    ),
+  deviceZysfjStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-zysfj-style" */ "@/components/component/device/zysfj/style.vue"
+    ),
+  deviceXfsbStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-xfsb-style" */ "@/components/component/device/xfsb/style.vue"
+    ),
+  deviceCyfjStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-cyfj-style" */ "@/components/component/device/cyfj/style.vue"
+    ),
+  deviceKgStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-kg-style" */ "@/components/component/device/kg/style.vue"
+    ),
+  deviceDenggStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dengg-style" */ "@/components/component/device/dengg/style.vue"
+    ),
+  deviceDengpStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dengp-style" */ "@/components/component/device/dengp/style.vue"
+    ),
+
   materialCommonStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-material-common-style" */ "@/components/component/material/common/style.vue"
@@ -244,4 +302,10 @@ let datas = {
     )
 };
 
-export { widgets, styles, datas };
+let infos = {
+  deviceInfoCom: () =>
+    import(
+      /* webpackChunkName: "bm-device-info" */ "@/components/data/device-info.vue"
+    )
+};
+export { widgets, styles, datas, infos };

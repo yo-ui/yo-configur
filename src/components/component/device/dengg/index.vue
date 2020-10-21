@@ -1,11 +1,11 @@
-// 电表
+// 灯管
 <template>
-  <div class="bm-device-db-com" :style="comStyle">
+  <div class="bm-device-dengg-com" :style="comStyle">
     <!-- :viewBox="`${info.vBoxx} ${info.vBoxy} ${info.width} ${info.height}`" -->
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      :viewBox="`0 0 70 69`"
+      viewBox="0 0 164 30"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
@@ -137,225 +137,180 @@
         </template> -->
       </defs>
       <g>
-        <linearGradient
-          id="db_1_"
-          gradientUnits="userSpaceOnUse"
-          x1="60.525"
-          y1="62.945"
-          x2="54.1179"
-          y2="57.8484"
-        >
-          <stop offset="0" style="stop-color:#C2C8CE" />
-          <stop offset="1" style="stop-color:#848689" />
-        </linearGradient>
-        <path
-          class="db-st0"
-          d="M67.73,41h-54.5v10.34c0,1.9,1.54,3.44,3.44,3.44h33.57l5.49,12.81l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69
-                  l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73V41z"
-        />
-        <path
-          id="XMLID_657_"
-          class="db-st1"
-          d="M56.5,55.08H2v10.34c0,1.9,1.54,3.44,3.44,3.44h47.62c1.9,0,3.44-1.54,3.44-3.44V55.08z"
-        />
-        <linearGradient
-          id="db_11_"
-          gradientUnits="userSpaceOnUse"
-          x1="29.2499"
-          y1="58.6952"
-          x2="29.2499"
-          y2="49.8142"
-        >
-          <stop offset="0" style="stop-color:#000000;stop-opacity:0" />
-          <stop offset="1" style="stop-color:#000000" />
-        </linearGradient>
-        <rect
-          id="XMLID_658_"
-          x="2"
-          y="54.06"
-          class="db-st2"
-          width="54.5"
-          height="8.88"
-        />
-        <rect
-          id="XMLID_656_"
-          x="1"
-          y="15.08"
-          class="db-st3"
-          width="56.5"
-          height="39"
-        />
-        <path
-          id="XMLID_653_"
-          class="db-st1"
-          d="M58.5,55.08H0v-41h58.5V55.08z M2,53.08h54.5v-37H2V53.08z"
-        />
-        <polygon
-          id="XMLID_652_"
-          class="db-st4"
-          points="58.5,14.08 0,14.08 12.23,0 69.73,0 	"
-        />
-        <g id="XMLID_647_">
-          <rect
-            id="XMLID_651_"
-            x="9.5"
-            y="21.5"
-            class="db-st5"
-            width="40"
-            height="12"
+        <g id="dengg_12_">
+          <polygon
+            id="dengg_15_"
+            class="dengg-st0"
+            points="6.68,8.67 15.58,1.46 15.58,15.42 7.64,31.09 		"
           />
-          <path
-            id="XMLID_648_"
-            class="db-st6"
-            d="M50.5,34.5h-42v-14h42V34.5z M10.5,32.5h38v-10h-38V32.5z"
+          <polygon
+            id="dengg_14_"
+            class="dengg-st1"
+            points="7.64,15.49 3.82,19.37 0,15.49 8.54,1.46 15.58,1.46 		"
+          />
+          <rect
+            id="dengg_13_"
+            x="0"
+            y="15.49"
+            class="dengg-st2"
+            width="7.64"
+            height="15.59"
           />
         </g>
-        <circle id="XMLID_646_" class="db-st7" cx="11.97" cy="63.16" r="2.03" />
-        <circle id="XMLID_645_" class="db-st7" cx="29.22" cy="63.16" r="2.03" />
-        <circle id="XMLID_659_" class="db-st7" cx="46.22" cy="63.16" r="2.03" />
-        <rect
-          id="XMLID_644_"
-          x="9.74"
-          y="36.5"
-          class="db-st6"
-          width="4.48"
-          height="2.5"
-        />
-        <rect
-          id="XMLID_643_"
-          x="19.74"
-          y="36.5"
-          class="db-st6"
-          width="4.48"
-          height="2.5"
-        />
-        <rect
-          id="XMLID_635_"
-          x="29.74"
-          y="36.5"
-          class="db-st6"
-          width="4.48"
-          height="2.5"
-        />
-        <rect
-          id="XMLID_634_"
-          x="39.74"
-          y="36.5"
-          class="db-st6"
-          width="4.48"
-          height="2.5"
-        />
-        <rect
-          id="XMLID_6_"
-          x="8.74"
-          y="37.5"
-          class="db-st7"
-          width="4.48"
-          height="2.5"
-        />
-        <rect
-          id="XMLID_5_"
-          x="18.74"
-          y="37.5"
-          class="db-st7"
-          width="4.48"
-          height="2.5"
-        />
-        <rect
-          id="XMLID_4_"
-          x="28.74"
-          y="37.5"
-          class="db-st7"
-          width="4.48"
-          height="2.5"
-        />
-        <rect
-          id="XMLID_2_"
-          x="38.74"
-          y="37.5"
-          class="db-st7"
-          width="4.48"
-          height="2.5"
-        />
-        <rect
-          id="XMLID_632_"
-          x="9.61"
-          y="44.98"
-          class="db-st8"
-          width="6.72"
-          height="3.69"
-        />
-        <rect
-          id="XMLID_552_"
-          x="19.61"
-          y="44.98"
-          class="db-st8"
-          width="6.72"
-          height="3.69"
-        />
-        <rect
-          id="XMLID_551_"
-          x="29.61"
-          y="44.98"
-          class="db-st8"
-          width="6.72"
-          height="3.69"
-        />
-        <rect
-          id="XMLID_9_"
-          x="8.61"
-          y="45.98"
-          class="db-st9"
-          width="6.72"
-          height="3.69"
-        />
-        <rect
-          id="XMLID_8_"
-          x="18.61"
-          y="45.98"
-          class="db-st9"
-          width="6.72"
-          height="3.69"
-        />
-        <rect
-          id="XMLID_7_"
-          x="28.61"
-          y="45.98"
-          class="db-st9"
-          width="6.72"
-          height="3.69"
-        />
-        <rect
-          id="XMLID_550_"
-          x="8.48"
-          y="42.05"
-          class="db-st4"
-          width="36.74"
-          height="1"
-        />
         <linearGradient
-          id="db_12_"
+          id="dengg_19_"
           gradientUnits="userSpaceOnUse"
-          x1="64.1155"
-          y1="55.0819"
-          x2="64.1155"
-          y2="0"
+          x1="84.58"
+          y1="16.4783"
+          x2="84.58"
+          y2="6.4783"
         >
-          <stop offset="0" style="stop-color:#C2C8CE" />
-          <stop offset="1" style="stop-color:#848689" />
+          <stop offset="0" style="stop-color:#828282" />
+          <stop offset="0.5561" style="stop-color:#C2C2C2" />
+          <stop offset="1" style="stop-color:#7A7A7A" />
         </linearGradient>
         <path
-          id="db_1_"
-          class="db-st10"
-          d="M69.73,41L58.5,55.08v-41L69.73,0V41z"
+          id="dengg_11_"
+          class="dengg-st6"
+          d="M154.72,6.48H14.44c-1.4,0-2.54,2.24-2.54,5s1.14,5,2.54,5h140.28c1.4,0,2.54-2.24,2.54-5
+                  S156.12,6.48,154.72,6.48z"
         />
-      </g>
-      <g class="SVG_alert" v-if="pointValue == 2">
+        <linearGradient
+          id="dengg_20_"
+          gradientUnits="userSpaceOnUse"
+          x1="81.3582"
+          y1="24.959"
+          x2="81.3582"
+          y2="13.7458"
+        >
+          <stop offset="0" style="stop-color:#828282" />
+          <stop offset="0.5561" style="stop-color:#C2C2C2" />
+          <stop offset="1" style="stop-color:#7A7A7A" />
+        </linearGradient>
         <path
-          class="db-st11"
-          d="M69.73,0h-57.5L0,14.08v41h2v7.86v2.48c0,1.9,1.54,3.44,3.44,3.44h47.62c1.08,0,2.04-0.51,2.67-1.29
-                  l0.01,0.01l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73v-7.84l2-2.51V0z"
+          id="dengg_9_"
+          class="dengg-st7"
+          d="M151.83,13.75H10.89c-1.34,0-2.42,2.51-2.42,5.61s1.08,5.61,2.42,5.61h140.93
+                  c1.34,0,2.42-2.51,2.42-5.61S153.16,13.75,151.83,13.75z"
         />
+        <g id="dengg_5_">
+          <polygon
+            id="dengg_8_"
+            class="dengg-st0"
+            points="154.68,8.67 163.58,1.46 163.58,15.42 155.64,31.09 		"
+          />
+          <polygon
+            id="dengg_7_"
+            class="dengg-st1"
+            points="155.64,15.49 151.82,19.37 148,15.49 156.54,1.46 163.58,1.46 		"
+          />
+          <rect
+            id="dengg_6_"
+            x="148"
+            y="15.49"
+            class="dengg-st2"
+            width="7.64"
+            height="15.59"
+          />
+        </g>
+      </g>
+      <g class="SVG_ani" v-if="pointValue == 1">
+        <g id="dengg_1416_">
+          <polygon
+            id="dengg_1419_"
+            class="dengg-st0"
+            points="6.68,8.67 15.58,1.46 15.58,15.42 7.64,31.09 		"
+          />
+          <polygon
+            id="dengg_1418_"
+            class="dengg-st1"
+            points="7.64,15.49 3.82,19.37 0,15.49 8.54,1.46 15.58,1.46 		"
+          />
+          <rect
+            id="dengg_1417_"
+            x="0"
+            y="15.49"
+            class="dengg-st2"
+            width="7.64"
+            height="15.59"
+          />
+        </g>
+        <linearGradient
+          id="dengg_16_"
+          gradientUnits="userSpaceOnUse"
+          x1="84.58"
+          y1="16.4783"
+          x2="84.58"
+          y2="6.4783"
+        >
+          <stop offset="0" style="stop-color:#B6DEFF" />
+          <stop offset="0.5561" style="stop-color:#FFFFFF" />
+          <stop offset="1" style="stop-color:#B6DEFF" />
+        </linearGradient>
+        <path
+          id="dengg_1411_"
+          class="dengg-st3"
+          d="M154.72,6.48H14.44c-1.4,0-2.54,2.24-2.54,5s1.14,5,2.54,5h140.28c1.4,0,2.54-2.24,2.54-5
+                  S156.12,6.48,154.72,6.48z"
+        />
+
+        <radialGradient
+          id="dengg_17_"
+          cx="74.2881"
+          cy="-1150.5645"
+          r="61.9705"
+          gradientTransform="matrix(1.161 0 0 0.3685 -4.9993 446.8132)"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0" style="stop-color:#FFFFFF" />
+          <stop offset="1" style="stop-color:#B6DEFF;stop-opacity:0" />
+        </radialGradient>
+        <ellipse
+          id="dengg_1408_"
+          class="dengg-st4"
+          cx="81.25"
+          cy="22.84"
+          rx="71.95"
+          ry="22.84"
+        />
+        <linearGradient
+          id="dengg_18_"
+          gradientUnits="userSpaceOnUse"
+          x1="81.3582"
+          y1="24.959"
+          x2="81.3582"
+          y2="13.7458"
+        >
+          <stop offset="0" style="stop-color:#B6DEFF" />
+          <stop offset="0.5561" style="stop-color:#FFFFFF" />
+          <stop offset="1" style="stop-color:#B6DEFF" />
+        </linearGradient>
+        <path
+          id="dengg_1410_"
+          class="dengg-st5"
+          d="M151.83,13.75H10.89c-1.34,0-2.42,2.51-2.42,5.61s1.08,5.61,2.42,5.61h140.93
+                  c1.34,0,2.42-2.51,2.42-5.61S153.16,13.75,151.83,13.75z"
+        />
+        <g id="dengg_1_">
+          <polygon
+            id="dengg_4_"
+            class="dengg-st0"
+            points="154.68,8.67 163.58,1.46 163.58,15.42 155.64,31.09 		"
+          />
+          <polygon
+            id="dengg_3_"
+            class="dengg-st1"
+            points="155.64,15.49 151.82,19.37 148,15.49 156.54,1.46 163.58,1.46 		"
+          />
+          <rect
+            id="dengg_2_"
+            x="148"
+            y="15.49"
+            class="dengg-st2"
+            width="7.64"
+            height="15.59"
+          />
+        </g>
       </g>
     </svg>
   </div>
@@ -366,12 +321,12 @@ import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 
-const pointCode='SwSts'
+const pointCode = "SwSts";
 export default {
-  name: "deviceDbCom",
+  name: "deviceDenggCom",
   data() {
     return {
-      pointValue: "" // expr:'SwSts',stop:0,start:1,alarm:2
+      pointValue: "1" // expr:'SwSts',stop:0,start:1,alarm:2
     };
   },
   props: {
@@ -475,7 +430,7 @@ export default {
         let { $vm } = window;
         // let { deviceId = "" } = bindData || {};
         $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
-          bmCommon.log("deviceDbCom", device);
+          bmCommon.log("deviceShsbCom", device);
           let { pointList = [] } = device || {};
           let point = pointList.find(item => {
             let { point: id = "" } = item || {};
@@ -484,6 +439,7 @@ export default {
           if (point) {
             let { value = "" } = point || {};
             this.pointValue = value;
+            // this.pointValue = parseInt(Math.random() * 3);
           }
           // let { value = "", unit = "",id='' } = point || {};
           // info.content = value;
@@ -506,42 +462,29 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import (reference) "./../../../../assets/less/common.less";
-.db-st0 {
-  fill: url(#db_1_);
+.dengg-st0 {
+  fill: #98a1a8;
 }
-.db-st1 {
-  fill: #dfe3e8;
-}
-.db-st2 {
-  fill: url(#db_11_);
-}
-.db-st3 {
-  fill: #ffffff;
-}
-.db-st4 {
+.dengg-st1 {
   fill: #c2c8ce;
 }
-.db-st5 {
-  fill: #848776;
+.dengg-st2 {
+  fill: #dfe3e8;
 }
-.db-st6 {
-  fill: #25282b;
+.dengg-st3 {
+  fill: url(#dengg_16_);
 }
-.db-st7 {
-  fill: #8f9499;
+.dengg-st4 {
+  fill: url(#dengg_17_);
 }
-.db-st8 {
-  fill: #5b280e;
+.dengg-st5 {
+  fill: url(#dengg_18_);
 }
-.db-st9 {
-  fill: #f95d06;
+.dengg-st6 {
+  fill: url(#dengg_19_);
 }
-.db-st10 {
-  fill: url(#db_12_);
-}
-.db-st11 {
-  opacity: 0.4;
-  fill: #ff0000;
+.dengg-st7 {
+  fill: url(#dengg_20_);
 }
 </style>
 <style lang="less">

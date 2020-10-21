@@ -1,5 +1,7 @@
 <template>
-  <img :src="info.backgroundImage" :style="comStyle" />
+  <div class="img-box" :style="comStyle">
+    <img :src="info.backgroundImage" />
+  </div>
 </template>
 
 <script>
@@ -63,7 +65,9 @@ export default {
         styles["borderStyle"] = borderStyle;
       }
       styles["borderWidth"] = `${borderWidth}px`;
-      styles["opacity"] = opacity / 100;
+      if (opacity) {
+        styles["opacity"] = opacity / 100;
+      }
       styles["borderRadius"] = `${borderRadius}px`;
       if (scale) {
         (styles["transform"] = `${scale}`),

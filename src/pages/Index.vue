@@ -134,7 +134,7 @@
     </ul>
     <bm-footer ref="bmFooter"></bm-footer>
     <bm-select ref="bmSelect"></bm-select>
-
+    <bm-control ref="bmControl"></bm-control>
     <bm-device ref="bmDevice"></bm-device>
     <bm-point ref="bmPoint"></bm-point>
   </div>
@@ -175,6 +175,8 @@ export default {
       import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
     bmSelect: () =>
       import(/* webpackChunkName: "iot-select-com" */ "@/components/select"),
+    bmControl: () =>
+      import(/* webpackChunkName: "iot-control-com" */ "@/components/control"),
     bmFooter,
     // : () =>
     //   import(/* webpackChunkName: "iot-footer-com" */ "@/components/footer"),
@@ -382,6 +384,18 @@ export default {
           canvas.canvasId = canvasId;
           canvas.canvasType = type; //1为编辑   2为预览
           this.setCanvas(canvas);
+          widgetList.forEach(item => {
+            let { alias = "", type = "" } = item || {};
+            if (!alias) {
+              alias = type;
+            }
+            let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
+            let { data = {} } = _item || {};
+            let { infoType = "" } = data || {};
+            item.showCoverStatus = true;
+            item.infoType = infoType;
+            item.alias = alias;
+          });
           this.setWidgetList(widgetList);
           this.setCanvasData(data);
         } else {
@@ -418,9 +432,12 @@ export default {
       //注册按键键盘事件
       $(document).on("keydown", this.keydownEvent);
       //注册绑定设备事件
-      // eslint-disable-next-line no-undef
       $vm.$on("bindDevice", item => {
         this.addDataEvent(item);
+      });
+      //注册显示控制处理事件
+      $vm.$on("control", item => {
+        this.$refs.bmControl.show(item);
       });
       // //注册窗口变换事件
       // $(window).on("resize", this.resizeEvent);
@@ -555,13 +572,20 @@ export default {
       } = e;
       ctrlKey = ctrlKey || metaKey; //(ctrl(cmd))
       e.stopPropagation();
-      // e.preventDefault();
       bmCommon.log("index keydow", e);
       let { activeCom = {}, activeComs = [] } = this;
       let { length = 0 } = activeComs || [];
       let { type = "", id = "", locked = false } = activeCom || {};
+      if (keyCode == 83) {
+        // ctrl+S
+        if (ctrlKey) {
+          e.preventDefault();
+          $vm.$emit("save")
+        }
+        return;
+      }
       if (length < 2) {
-        if (type == "canvas" || !id) {
+        if ((type == "canvas" || !id)) {
           //如果选中的是画布或未选中组件则直接返回
           return;
         }
@@ -671,11 +695,10 @@ export default {
         if (ctrlKey && shiftKey) {
           this.lockEvent(!locked);
         }
-      } else if (keyCode == 46) {
+      }  else if (keyCode == 46) {
         // Delete
         this.deleteEvent();
       }
-
       this.createHistoryAction();
     },
     //剪切

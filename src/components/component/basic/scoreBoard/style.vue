@@ -19,7 +19,7 @@
     <!-- <p>
       <span class="label"> {{ $lang("图片名称") }}: </span>
       <el-input
-        v-model="info.name"
+        v-model="info.content"
         clearable
         :placeholder="$lang('请输入图片名称')"
       ></el-input>

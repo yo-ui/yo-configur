@@ -24,17 +24,22 @@
                 v-if="
                   item.bindData &&
                     item.bindData.deviceId &&
-                    !item.bindData.devicePoint
+                    !item.bindData.devicePoint &&
+                    item.infoType
                 "
                 popper-class="device-info-popover"
                 placement="right"
                 :key="index"
-                @show="showDeviceInfoEvent(item.bindData)"
-                :title="deviceInfo.name"
+                @show="showInfoEvent(item)"
                 width="400"
                 trigger="hover"
               >
-                <bm-device-info :pointList="deviceInfo.points"></bm-device-info>
+                <!-- @show="showInfoEvent(item.bindData)" -->
+                <!-- <bm-device-info :pointList="deviceInfo.points"></bm-device-info> -->
+                <component
+                  :ref="`bmInfoCom_${item.id}`"
+                  :is="`${item.infoType}InfoCom`"
+                />
                 <bm-com
                   slot="reference"
                   class="view"
@@ -57,12 +62,14 @@
         </div>
       </div>
     </div>
+    <bm-control ref="bmControl"></bm-control>
   </div>
 </template>
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 import bmCom from "@/components/component";
+import { infos } from "@/widgets/index";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -71,20 +78,23 @@ export default {
     return {
       condition: {
         canvasId: ""
-      },
-      deviceInfo: {},
-      showContextMenuStatus: false,
-      showContextMenuType: 1, //1 组件右键菜单   2是画布右键菜单
-      copyCom: "",
-      contextMenuStyle: {}
+      }
+      // deviceInfo: {},
+      // showContextMenuStatus: false,
+      // showContextMenuType: 1, //1 组件右键菜单   2是画布右键菜单
+      // copyCom: "",
+      // contextMenuStyle: {}
     };
   },
   components: {
     bmCom,
-    bmDeviceInfo: () =>
-      import(
-        /* webpackChunkName: "bm-device-info" */ "@/components/data/device-info.vue"
-      )
+    ...infos,
+    bmControl: () =>
+      import(/* webpackChunkName: "iot-control-com" */ "@/components/control"),
+    // bmDeviceInfo: () =>
+    //   import(
+    //     /* webpackChunkName: "bm-device-info" */ "@/components/data/device-info.vue"
+    //   )
   },
   computed: {
     ...mapGetters({
@@ -190,7 +200,7 @@ export default {
     ...mapActions({
       initConfigWebsocketAction: "initConfigWebsocket",
       canvasGetAction: "canvasGet",
-      commonGetDeviceAction: "commonGetDevice",
+      // commonGetDeviceAction: "commonGetDevice",
       pushAction: "push"
     }),
     init() {
@@ -219,9 +229,20 @@ export default {
         canvas.height = height;
         canvas.canvasId = canvasId;
         canvas.canvasType = type; //1为编辑   2为预览
-        canvas.left=0
-        canvas.top=0
+        canvas.left = 0;
+        canvas.top = 0;
         this.setCanvas(canvas);
+        widgetList.forEach(item => {
+          let { alias = "", type = "" } = item || {};
+          if (!alias) {
+            alias = type;
+          }
+          let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
+          let { data = {} } = _item || {};
+          let { infoType = "" } = data || {};
+          item.showCoverStatus = true;
+          item.infoType = infoType;
+        });
         this.setWidgetList(widgetList);
         this.resetCanvasSize();
         this.loadWebsocketData(widgetList);
@@ -230,6 +251,10 @@ export default {
     },
     initEvent() {
       $(window).on("resize", this.resetCanvasSize);
+      //注册显示控制处理事件
+      $vm.$on("control", item => {
+        this.$refs.bmControl.show(item);
+      });
     },
     loadWebsocketData(widgetList = []) {
       let deviceIdList = [];
@@ -304,12 +329,15 @@ export default {
       // // canvas.top = top;
       // this.setZoom(scale);
     },
-    showDeviceInfoEvent(bindData = {}) {
-      let { deviceId = "" } = bindData || {};
-      this.commonGetDeviceFunc(deviceId, device => {
-        bmCommon.log(device);
-        this.deviceInfo = device || {};
-      });
+    showInfoEvent(info = {}) {
+      let { id = "" } = info || {};
+      let key = `bmInfoCom_${id}`;
+      this.$refs[key][0]?.show(info);
+      // let { deviceId = "" } = bindData || {};
+      // this.commonGetDeviceFunc(deviceId, device => {
+      //   bmCommon.log(device);
+      //   this.deviceInfo = device || {};
+      // });
     },
     // // 获取登录信息
     // commonVerifyInfoFunc(callback) {
@@ -360,31 +388,31 @@ export default {
           bmCommon.error("获取数据失败=>canvasGet", err);
         });
     },
-    // 获取设备信息
-    commonGetDeviceFunc(deviceId, callback) {
-      let value = {};
-      if (!deviceId) {
-        this.dataLoadingStatus = false;
-        return;
-      }
-      this.dataLoadingStatus = true;
-      this.commonGetDeviceAction({ deviceId })
-        .then(({ data }) => {
-          let { code = "", result = {}, message = "" } = data || {};
-          if (code == Constants.CODES.SUCCESS) {
-            value = result || {};
-          } else {
-            bmCommon.error(message);
-          }
-          this.dataLoadingStatus = false;
-          callback && callback(value || {});
-        })
-        .catch(err => {
-          this.dataLoadingStatus = false;
-          callback && callback(value || {});
-          bmCommon.error("获取数据失败=>commonGetDevice", err);
-        });
-    },
+    // // 获取设备信息
+    // commonGetDeviceFunc(deviceId, callback) {
+    //   let value = {};
+    //   if (!deviceId) {
+    //     this.dataLoadingStatus = false;
+    //     return;
+    //   }
+    //   this.dataLoadingStatus = true;
+    //   this.commonGetDeviceAction({ deviceId })
+    //     .then(({ data }) => {
+    //       let { code = "", result = {}, message = "" } = data || {};
+    //       if (code == Constants.CODES.SUCCESS) {
+    //         value = result || {};
+    //       } else {
+    //         bmCommon.error(message);
+    //       }
+    //       this.dataLoadingStatus = false;
+    //       callback && callback(value || {});
+    //     })
+    //     .catch(err => {
+    //       this.dataLoadingStatus = false;
+    //       callback && callback(value || {});
+    //       bmCommon.error("获取数据失败=>commonGetDevice", err);
+    //     });
+    // },
     // 开始推送设备信息
     pushFunc(deviceIdList = [], callback) {
       let value = {};

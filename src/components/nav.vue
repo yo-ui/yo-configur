@@ -301,6 +301,9 @@ export default {
     // 初始化
     init() {
       // this.storeProductFunc();
+      $vm.$on("save", () => {
+        this.saveEvent();
+      });
     },
     saveEvent() {
       let { canvas = {}, canvasData: data = {}, widgetList = [] } = this;

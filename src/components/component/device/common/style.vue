@@ -22,7 +22,7 @@
         <!-- <p>
       <span class="label"> {{ $lang("文本名称") }}: </span>
       <el-input
-        v-model="info.name"
+        v-model="info.content"
         clearable
         :placeholder="$lang('请输入文本名称')"
       ></el-input>

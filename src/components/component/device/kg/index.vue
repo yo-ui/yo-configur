@@ -1,11 +1,11 @@
-// 电表
+// 开关
 <template>
-  <div class="bm-device-db-com" :style="comStyle">
+  <div class="bm-device-fksb-com" :style="comStyle" @click="controlEvent">
     <!-- :viewBox="`${info.vBoxx} ${info.vBoxy} ${info.width} ${info.height}`" -->
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      :viewBox="`0 0 70 69`"
+      viewBox="0 0 43 40"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
@@ -136,226 +136,103 @@
           </radialGradient>
         </template> -->
       </defs>
-      <g>
-        <linearGradient
-          id="db_1_"
-          gradientUnits="userSpaceOnUse"
-          x1="60.525"
-          y1="62.945"
-          x2="54.1179"
-          y2="57.8484"
-        >
-          <stop offset="0" style="stop-color:#C2C8CE" />
-          <stop offset="1" style="stop-color:#848689" />
-        </linearGradient>
+      <g class="SVG_ani" v-if="pointValue == 1">
         <path
-          class="db-st0"
-          d="M67.73,41h-54.5v10.34c0,1.9,1.54,3.44,3.44,3.44h33.57l5.49,12.81l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69
-                  l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73V41z"
+          id="XMLID_1351_"
+          class="kg-st0"
+          d="M39.7,0H3.3C1.5,0,0,1.5,0,3.3v1.9h43V3.3C43,1.5,41.5,0,39.7,0z"
         />
         <path
-          id="XMLID_657_"
-          class="db-st1"
-          d="M56.5,55.08H2v10.34c0,1.9,1.54,3.44,3.44,3.44h47.62c1.9,0,3.44-1.54,3.44-3.44V55.08z"
-        />
-        <linearGradient
-          id="db_11_"
-          gradientUnits="userSpaceOnUse"
-          x1="29.2499"
-          y1="58.6952"
-          x2="29.2499"
-          y2="49.8142"
-        >
-          <stop offset="0" style="stop-color:#000000;stop-opacity:0" />
-          <stop offset="1" style="stop-color:#000000" />
-        </linearGradient>
-        <rect
-          id="XMLID_658_"
-          x="2"
-          y="54.06"
-          class="db-st2"
-          width="54.5"
-          height="8.88"
-        />
-        <rect
-          id="XMLID_656_"
-          x="1"
-          y="15.08"
-          class="db-st3"
-          width="56.5"
-          height="39"
+          id="XMLID_1350_"
+          class="kg-st1"
+          d="M39.7,40.9H3.3c-1.8,0-3.3-1.5-3.3-3.3V5.2c0-1.8,1.5-3.3,3.3-3.3h36.5c1.8,0,3.3,1.5,3.3,3.3
+                          v32.5C43,39.5,41.5,40.9,39.7,40.9z"
         />
         <path
-          id="XMLID_653_"
-          class="db-st1"
-          d="M58.5,55.08H0v-41h58.5V55.08z M2,53.08h54.5v-37H2V53.08z"
+          id="XMLID_1353_"
+          class="kg-st2"
+          d="M35.5,36.1H7.5C6.1,36.1,5,35,5,33.6V8.4C5,7,6.1,5.9,7.5,5.9h28.1C36.9,5.9,38,7,38,8.4v25.2
+                          C38,35,36.9,36.1,35.5,36.1z"
         />
-        <polygon
-          id="XMLID_652_"
-          class="db-st4"
-          points="58.5,14.08 0,14.08 12.23,0 69.73,0 	"
+        <path
+          id="XMLID_1352_"
+          class="kg-st3"
+          d="M34.5,36.1H8.5C7.1,36.1,6,35,6,33.6V11.4C6,10,7.1,8.9,8.5,8.9h26.1c1.4,0,2.5,1.1,2.5,2.5
+                          v22.2C37,35,35.9,36.1,34.5,36.1z"
         />
-        <g id="XMLID_647_">
-          <rect
-            id="XMLID_651_"
-            x="9.5"
-            y="21.5"
-            class="db-st5"
-            width="40"
-            height="12"
+        <path
+          id="XMLID_1355_"
+          class="kg-st4"
+          d="M21.8,14.5h-0.7c-0.5,0-1-0.4-1-1V8.9h2.6v4.6C22.8,14,22.4,14.5,21.8,14.5z"
+        />
+        <g id="XMLID_1383_">
+          <path
+            id="XMLID_1384_"
+            class="kg-st5"
+            d="M11.9,24c0-1.5,0.4-2.8,1.2-3.6c0.8-0.9,1.9-1.3,3.2-1.3c0.9,0,1.6,0.2,2.3,0.6
+                            s1.2,1,1.6,1.7c0.4,0.7,0.5,1.6,0.5,2.5c0,0.9-0.2,1.8-0.6,2.5s-0.9,1.3-1.6,1.7c-0.7,0.4-1.5,0.6-2.3,0.6c-0.9,0-1.7-0.2-2.3-0.6
+                            s-1.2-1-1.6-1.7S11.9,24.8,11.9,24z M13.2,24c0,1.1,0.3,2,0.9,2.6c0.6,0.6,1.4,1,2.3,1c0.9,0,1.7-0.3,2.3-1
+                            c0.6-0.7,0.9-1.6,0.9-2.8c0-0.8-0.1-1.4-0.4-2c-0.3-0.6-0.6-1-1.1-1.3c-0.5-0.3-1-0.5-1.7-0.5c-0.9,0-1.6,0.3-2.3,0.9
+                            C13.5,21.6,13.2,22.6,13.2,24z"
           />
           <path
-            id="XMLID_648_"
-            class="db-st6"
-            d="M50.5,34.5h-42v-14h42V34.5z M10.5,32.5h38v-10h-38V32.5z"
+            id="XMLID_1387_"
+            class="kg-st5"
+            d="M22.4,28.5v-9.3h1.3l4.9,7.3v-7.3h1.2v9.3h-1.3l-4.9-7.3v7.3H22.4z"
           />
         </g>
-        <circle id="XMLID_646_" class="db-st7" cx="11.97" cy="63.16" r="2.03" />
-        <circle id="XMLID_645_" class="db-st7" cx="29.22" cy="63.16" r="2.03" />
-        <circle id="XMLID_659_" class="db-st7" cx="46.22" cy="63.16" r="2.03" />
-        <rect
-          id="XMLID_644_"
-          x="9.74"
-          y="36.5"
-          class="db-st6"
-          width="4.48"
-          height="2.5"
-        />
-        <rect
-          id="XMLID_643_"
-          x="19.74"
-          y="36.5"
-          class="db-st6"
-          width="4.48"
-          height="2.5"
-        />
-        <rect
-          id="XMLID_635_"
-          x="29.74"
-          y="36.5"
-          class="db-st6"
-          width="4.48"
-          height="2.5"
-        />
-        <rect
-          id="XMLID_634_"
-          x="39.74"
-          y="36.5"
-          class="db-st6"
-          width="4.48"
-          height="2.5"
-        />
-        <rect
-          id="XMLID_6_"
-          x="8.74"
-          y="37.5"
-          class="db-st7"
-          width="4.48"
-          height="2.5"
-        />
-        <rect
-          id="XMLID_5_"
-          x="18.74"
-          y="37.5"
-          class="db-st7"
-          width="4.48"
-          height="2.5"
-        />
-        <rect
-          id="XMLID_4_"
-          x="28.74"
-          y="37.5"
-          class="db-st7"
-          width="4.48"
-          height="2.5"
-        />
-        <rect
-          id="XMLID_2_"
-          x="38.74"
-          y="37.5"
-          class="db-st7"
-          width="4.48"
-          height="2.5"
-        />
-        <rect
-          id="XMLID_632_"
-          x="9.61"
-          y="44.98"
-          class="db-st8"
-          width="6.72"
-          height="3.69"
-        />
-        <rect
-          id="XMLID_552_"
-          x="19.61"
-          y="44.98"
-          class="db-st8"
-          width="6.72"
-          height="3.69"
-        />
-        <rect
-          id="XMLID_551_"
-          x="29.61"
-          y="44.98"
-          class="db-st8"
-          width="6.72"
-          height="3.69"
-        />
-        <rect
-          id="XMLID_9_"
-          x="8.61"
-          y="45.98"
-          class="db-st9"
-          width="6.72"
-          height="3.69"
-        />
-        <rect
-          id="XMLID_8_"
-          x="18.61"
-          y="45.98"
-          class="db-st9"
-          width="6.72"
-          height="3.69"
-        />
-        <rect
-          id="XMLID_7_"
-          x="28.61"
-          y="45.98"
-          class="db-st9"
-          width="6.72"
-          height="3.69"
-        />
-        <rect
-          id="XMLID_550_"
-          x="8.48"
-          y="42.05"
-          class="db-st4"
-          width="36.74"
-          height="1"
-        />
-        <linearGradient
-          id="db_12_"
-          gradientUnits="userSpaceOnUse"
-          x1="64.1155"
-          y1="55.0819"
-          x2="64.1155"
-          y2="0"
-        >
-          <stop offset="0" style="stop-color:#C2C8CE" />
-          <stop offset="1" style="stop-color:#848689" />
-        </linearGradient>
-        <path
-          id="db_1_"
-          class="db-st10"
-          d="M69.73,41L58.5,55.08v-41L69.73,0V41z"
-        />
       </g>
-      <g class="SVG_alert" v-if="pointValue == 2">
+
+      <g class="SVG_sta" v-if="pointValue === 0">
         <path
-          class="db-st11"
-          d="M69.73,0h-57.5L0,14.08v41h2v7.86v2.48c0,1.9,1.54,3.44,3.44,3.44h47.62c1.08,0,2.04-0.51,2.67-1.29
-                  l0.01,0.01l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73v-7.84l2-2.51V0z"
+          id="XMLID_1373_"
+          class="kg-st0"
+          d="M39.7,0H3.3C1.5,0,0,1.5,0,3.3v1.9h43V3.3C43,1.5,41.5,0,39.7,0z"
         />
+        <path
+          id="XMLID_1372_"
+          class="kg-st1"
+          d="M39.7,40.9H3.3c-1.8,0-3.3-1.5-3.3-3.3V5.2c0-1.8,1.5-3.3,3.3-3.3h36.5c1.8,0,3.3,1.5,3.3,3.3
+                          v32.5C43,39.5,41.5,40.9,39.7,40.9z"
+        />
+        <path
+          id="XMLID_1366_"
+          class="kg-st2"
+          d="M35.5,36.1H7.5C6.1,36.1,5,35,5,33.6V8.4C5,7,6.1,5.9,7.5,5.9h28.1C36.9,5.9,38,7,38,8.4v25.2
+                          C38,35,36.9,36.1,35.5,36.1z"
+        />
+        <path
+          id="XMLID_1364_"
+          class="kg-st3"
+          d="M34.5,34.1H8.5C7.1,34.1,6,33,6,31.6V9.4C6,8,7.1,6.9,8.5,6.9h26.1C35.9,6.9,37,8,37,9.4v22.2
+                          C37,33,35.9,34.1,34.5,34.1z"
+        />
+        <path
+          id="XMLID_1363_"
+          class="kg-st2"
+          d="M21.8,12.5h-0.7c-0.5,0-1-0.4-1-1V6.9h2.6v4.6C22.8,12,22.4,12.5,21.8,12.5z"
+        />
+        <g id="XMLID_1374_">
+          <path
+            id="XMLID_1375_"
+            class="kg-st2"
+            d="M8.9,24c0-1.5,0.4-2.8,1.2-3.6c0.8-0.9,1.9-1.3,3.2-1.3c0.9,0,1.6,0.2,2.3,0.6
+                            c0.7,0.4,1.2,1,1.6,1.7c0.4,0.7,0.5,1.6,0.5,2.5c0,0.9-0.2,1.8-0.6,2.5s-0.9,1.3-1.6,1.7c-0.7,0.4-1.5,0.6-2.3,0.6
+                            c-0.9,0-1.7-0.2-2.3-0.6s-1.2-1-1.6-1.7S8.9,24.8,8.9,24z M10.2,24c0,1.1,0.3,2,0.9,2.6c0.6,0.6,1.4,1,2.3,1c0.9,0,1.7-0.3,2.3-1
+                            c0.6-0.7,0.9-1.6,0.9-2.8c0-0.8-0.1-1.4-0.4-2c-0.3-0.6-0.6-1-1.1-1.3c-0.5-0.3-1-0.5-1.7-0.5c-0.9,0-1.6,0.3-2.3,0.9
+                            C10.5,21.6,10.2,22.6,10.2,24z"
+          />
+          <path
+            id="XMLID_1379_"
+            class="kg-st2"
+            d="M19.5,28.5v-9.3h6.3v1.1h-5v2.9h4.4v1.1h-4.4v4.2H19.5z"
+          />
+          <path
+            id="XMLID_1381_"
+            class="kg-st2"
+            d="M27.4,28.5v-9.3h6.3v1.1h-5v2.9H33v1.1h-4.4v4.2H27.4z"
+          />
+        </g>
       </g>
     </svg>
   </div>
@@ -365,13 +242,12 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-
-const pointCode='SwSts'
+const pointCode = "SwSts";
 export default {
-  name: "deviceDbCom",
+  name: "deviceZysfjCom",
   data() {
     return {
-      pointValue: "" // expr:'SwSts',stop:0,start:1,alarm:2
+      pointValue: "1" // expr:'SwSts',stop:0,start:1,alarm:2
     };
   },
   props: {
@@ -475,7 +351,7 @@ export default {
         let { $vm } = window;
         // let { deviceId = "" } = bindData || {};
         $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
-          bmCommon.log("deviceDbCom", device);
+          bmCommon.log("deviceShsbCom", device);
           let { pointList = [] } = device || {};
           let point = pointList.find(item => {
             let { point: id = "" } = item || {};
@@ -484,6 +360,7 @@ export default {
           if (point) {
             let { value = "" } = point || {};
             this.pointValue = value;
+            // this.pointValue = parseInt(Math.random() * 3);
           }
           // let { value = "", unit = "",id='' } = point || {};
           // info.content = value;
@@ -492,6 +369,18 @@ export default {
           // this.$emit("success"); //组件加载完成回调
         });
       }
+    },
+    controlEvent() {
+      let { info = {}, pointValue = "" } = this;
+      let { bindData = {} } = info;
+      let { deviceId = "" } = bindData || {};
+      if (!deviceId) {
+        return;
+      }
+      // let { $vm } = window;
+      let point = pointCode;
+      let value = pointValue === 0 ? 1 : 0;
+      $vm.$emit("control", { deviceId, point, value });
     }
     // blurEvent(e) {
     //   let { target } = e;
@@ -506,42 +395,23 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import (reference) "./../../../../assets/less/common.less";
-.db-st0 {
-  fill: url(#db_1_);
+.kg-st0 {
+  fill: #b0b9c1;
 }
-.db-st1 {
+.kg-st1 {
   fill: #dfe3e8;
 }
-.db-st2 {
-  fill: url(#db_11_);
+.kg-st2 {
+  fill: #c0c7cc;
 }
-.db-st3 {
+.kg-st3 {
   fill: #ffffff;
 }
-.db-st4 {
-  fill: #c2c8ce;
+.kg-st4 {
+  fill: #90f22a;
 }
-.db-st5 {
-  fill: #848776;
-}
-.db-st6 {
-  fill: #25282b;
-}
-.db-st7 {
-  fill: #8f9499;
-}
-.db-st8 {
-  fill: #5b280e;
-}
-.db-st9 {
-  fill: #f95d06;
-}
-.db-st10 {
-  fill: url(#db_12_);
-}
-.db-st11 {
-  opacity: 0.4;
-  fill: #ff0000;
+.kg-st5 {
+  fill: #67ba06;
 }
 </style>
 <style lang="less">

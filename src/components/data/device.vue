@@ -77,20 +77,39 @@
         :rules="[{ required: true, message: '请选择设备', trigger: 'change' }]"
       >
         <el-select
-          v-model="condition.deviceId"
+          v-model="device"
           filterable
           clearable
-          placeholder="请选择设备名称"
           @change="selectDeviceEvent"
+          placeholder="请选择设备名称"
+          value-key="id"
         >
           <el-option
             v-for="item in deviceList"
             :key="item.id"
             :label="item.name"
-            :value="item.id"
+            :value="item"
           >
           </el-option>
         </el-select>
+      </el-form-item>
+      <h2 class="tip">{{ $lang("注:选择需要显示的点位") }}</h2>
+      <el-form-item
+        prop="pointIds"
+        :label="$lang('点位选择')"
+        :rules="[
+          { required: true, message: '请选择需要显示的点位', trigger: 'change' }
+        ]"
+      >
+        <el-checkbox-group v-model="condition.pointIds" :min="1">
+          <el-checkbox
+            v-for="(item, index) in pointList"
+            :key="index"
+            :label="item.id"
+          >
+            {{ item.name }}
+          </el-checkbox>
+        </el-checkbox-group>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -114,9 +133,9 @@ export default {
     return {
       showDialogStatus: false,
       deviceList: [],
+      pointList: [],
+      device: null,
       dataLoadingStatus: true,
-      // pointList: [],
-      // device: {},
       showPopoverStatus: false,
       defaultExpandedKeys: [],
       condition: {
@@ -124,6 +143,7 @@ export default {
         orgName: "",
         orgId: "",
         deviceId: "",
+        pointIds: [],
         // pointId: "",
         deviceName: ""
         // pointName: ""
@@ -141,13 +161,22 @@ export default {
       // activeComs: "canvas/getActiveComs",
       treeData: "common/getOrganizeList",
       widgetList: "canvas/getWidgetList"
-    })
+    }),
+    deviceMap() {
+      let { deviceList = [] } = this;
+      let map = {};
+      deviceList.forEach(item => {
+        let { id = "" } = item || {};
+        map[id] = item || {};
+      });
+      return map || {};
+    }
   },
   methods: {
     ...mapMutations({
       // setActiveCom: "canvas/setActiveCom",
       // setZoom: "canvas/setZoom",
-      setWidgetList: "canvas/setWidgetList"
+      // setWidgetList: "canvas/setWidgetList"
       // setOrganizeList: "common/setOrganizeList"
       // setLeftMenuStatus: "canvas/setLeftMenuStatus",
       // setRightMenuStatus: "canvas/setRightMenuStatus"
@@ -174,14 +203,18 @@ export default {
     },
     show(item = {}) {
       let { treeData = [], condition } = this;
-      this.defaultExpandedKeys = [id];
       let { id = "", bindData = {} } = item || {};
-      let { devicePoint = "", deviceId = "", orgId = "" } = bindData || {};
+      let { devicePoint = "", deviceId = "", orgId = "", pointIds = [] } =
+        bindData || {};
+      this.deviceList = null;
+      this.pointList = null;
       this.showDialogStatus = true;
-      condition.comId = id; //组件id
       this.resetStatus = false;
+      this.$refs.form?.resetFields();
+      condition.comId = id; //组件id
       if (orgId) {
         condition.deviceId = deviceId;
+        condition.pointIds = pointIds;
         condition.pointId = devicePoint;
         condition.orgId = orgId;
         this.defaultExpandedKeys = [orgId];
@@ -207,23 +240,38 @@ export default {
       this.showDialogStatus = false;
     },
     loadDeviceList() {
-      // let { condition } = this;
       this.dataLoadingStatus = true;
       this.commonDevicePointsFunc((list = []) => {
         this.deviceList = list || [];
-        // let { deviceId = "" } = condition;
-        // if (!deviceId) {
-        //   let [device = {}] = list || [];
-        //   let { id = "" } = device || {};
-        //   condition.deviceId = id;
-        // }
-        // this.device = device || {};
-        // this.pointList = points || [];
-        // let [point = {}] = points || [];
-        // let { id: pointId = "" } = point || {};
-        // condition.pointId = pointId;
+        let { condition, deviceMap = {} } = this;
+        let { deviceId = "", pointIds = [] } = condition;
+        if (deviceId) {
+          let device = deviceMap[deviceId] || {}; // let [device = {}] = list || [];
+          this.device = device || {};
+          let { points = [], id = "" } = device || {};
+          condition.deviceId = id;
+          this.device = device || {};
+          this.pointList = points || [];
+          let { length = 0 } = pointIds || [];
+          if (length < 1) {
+            condition.pointIds = points.map(item => {
+              return item.id;
+            });
+          }
+        }
+        this.dataLoadingStatus = false;
       });
-      this.dataLoadingStatus = false;
+    },
+    selectDeviceEvent() {
+      let { condition } = this;
+      let { device = {} } = this;
+      let { points = [], id = "" } = device || {};
+      condition.deviceId = id;
+      this.resetStatus = false;
+      this.pointList = points || [];
+      // let [point = {}] = points || [];
+      // let { id: pointId = "" } = point || {};
+      // condition.pointId = pointId;
     },
     //过滤树结点
     filterTree(val, data) {
@@ -234,9 +282,9 @@ export default {
       val = val.toUpperCase();
       return name.indexOf(val) != -1;
     },
-    selectDeviceEvent() {
-      this.resetStatus = false;
-    },
+    // selectDeviceEvent() {
+    //   this.resetStatus = false;
+    // },
     //点击组织事件
     nodeClickEvent(item, node, com) {
       let { condition } = this;
@@ -252,7 +300,9 @@ export default {
       let { condition } = this;
       condition.orgId = "";
       condition.orgName = "";
+      this.device = null;
       condition.deviceId = "";
+      condition.pointIds = [];
       this.resetStatus = true;
       this.$nextTick(() => {
         this.$refs.form?.clearValidate();
@@ -262,11 +312,17 @@ export default {
       let { resetStatus = false } = this;
       let callback = () => {
         let { widgetList = [], condition } = this;
-        let { orgId = "", deviceId = "", comId = "" } = condition;
+        let {
+          orgId = "",
+          deviceId = "",
+          comId = "",
+          pointIds = []
+        } = condition;
         let activeCom = widgetList.find(item => item.id == comId) || {};
         activeCom.bindData = {
           orgId,
-          deviceId
+          deviceId,
+          pointIds
         };
         this.showDialogStatus = false;
       };

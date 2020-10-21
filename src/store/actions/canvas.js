@@ -28,7 +28,7 @@ export default {
   // canvasControlUrl: `${host}/configur/canvas/control`,
   async canvasControl(context, options) {
     let url = URL.canvasControlUrl;
-    const data = await get({
+    const data = await post({
       url: url,
       params: options,
       store: context

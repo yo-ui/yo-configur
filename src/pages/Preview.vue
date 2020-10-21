@@ -11,21 +11,28 @@
           >
             <div class="bg" :style="bgStyle"></div>
             <template v-for="(item, index) in widgetList">
+              <!-- {{ item.infoType }}{{ item.bindData }}<br /> -->
               <el-popover
                 v-if="
                   item.bindData &&
                     item.bindData.deviceId &&
-                    !item.bindData.devicePoint
+                    !item.bindData.devicePoint &&
+                    item.infoType
                 "
                 popper-class="device-info-popover"
                 placement="right"
                 :key="index"
-                @show="showDeviceInfoEvent(item.bindData)"
-                :title="deviceInfo.name"
+                @show="showInfoEvent(item)"
                 width="400"
                 trigger="hover"
               >
-                <bm-device-info :pointList="deviceInfo.points"></bm-device-info>
+                <!-- @show="showInfoEvent(item.bindData)" -->
+                <!-- {{ `${item.infoType}InfoCom` }} -->
+                <!-- <bm-device-info :pointList="deviceInfo.points"></bm-device-info> -->
+                <component
+                  :ref="`bmInfoCom_${item.id}`"
+                  :is="`${item.infoType}InfoCom`"
+                />
                 <bm-com
                   slot="reference"
                   class="preview"
@@ -51,12 +58,14 @@
         </div>
       </div>
     </div>
+    <bm-control ref="bmControl"></bm-control>
   </div>
 </template>
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 import bmCom from "@/components/component";
+import { infos } from "@/widgets/index";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -65,21 +74,24 @@ export default {
     return {
       condition: {
         canvasId: ""
-      },
-      deviceInfo: {},
-      showContextMenuStatus: false,
-      showContextMenuType: 1, //1 组件右键菜单   2是画布右键菜单
-      copyCom: "",
-      contextMenuStyle: {}
+      }
+      // deviceInfo: {},
+      // showContextMenuStatus: false,
+      // showContextMenuType: 1, //1 组件右键菜单   2是画布右键菜单
+      // copyCom: "",
+      // contextMenuStyle: {}
     };
   },
   // mixins: [mixins],
   components: {
     bmCom,
-    bmDeviceInfo: () =>
-      import(
-        /* webpackChunkName: "bm-device-info" */ "@/components/data/device-info.vue"
-      )
+    ...infos,
+    bmControl: () =>
+      import(/* webpackChunkName: "iot-control-com" */ "@/components/control")
+    // bmDeviceInfo: () =>
+    //   import(
+    //     /* webpackChunkName: "bm-device-info" */ "@/components/data/device-info.vue"
+    //   )
   },
   computed: {
     ...mapGetters({
@@ -141,24 +153,24 @@ export default {
       return styles;
     },
     canvasStyle() {
-      let { zoom = 0, canvas = {}, gradientStyle = {} } = this;
+      let { canvas = {}, gradientStyle = {} } = this;
       let {
-        left = 0,
-        top = 0,
+        // left = 0,
+        // top = 0,
         height = "",
         width = "",
         backgroundType = "",
         backgroundColor = "#fff"
         // backgroundImage = ""
       } = canvas;
-      zoom = zoom / 100;
+      // zoom = zoom / 100;
       let styles = {
-        left: `${left}px`,
-        top: `${top}px`,
+        // left: `${left}px`,
+        // top: `${top}px`,
         // backgroundColor: `${backgroundColor}`,
-        transform: `scale(${zoom})`,
-        webkitTransform: `scale(${zoom})`,
-        transformOrigin: `left top`
+        // transform: `scale(${zoom})`,
+        // webkitTransform: `scale(${zoom})`,
+        // transformOrigin: `left top`
       };
       if (width) {
         styles["width"] = `${width}px`;
@@ -189,7 +201,7 @@ export default {
     ...mapActions({
       initConfigWebsocketAction: "initConfigWebsocket",
       canvasGetAction: "canvasGet",
-      commonGetDeviceAction: "commonGetDevice",
+      commonDeviceListAction: "commonDeviceList",
       pushAction: "push"
     }),
     init() {
@@ -201,15 +213,36 @@ export default {
       this.setShowType(Constants.SHOWTYPEMAP.PREVIEW);
       let { previewData = {} } = this;
       let { widgetList = [], canvas = {} } = previewData || {};
+      widgetList.forEach(item => {
+        let { alias = "", type = "" } = item || {};
+        if (!alias) {
+          alias = type;
+        }
+        let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
+        let { data = {} } = _item || {};
+        let { infoType = "" } = data || {};
+        item.showCoverStatus = true;
+        item.infoType = infoType;
+        item.alias = alias;
+      });
       this.setWidgetList(widgetList || []);
-      canvas.left=0
-      canvas.top=0
+      canvas.left = 0;
+      canvas.top = 0;
       this.setCanvas(canvas || {});
       this.resetCanvasSize();
       this.loadWebsocketData(widgetList);
     },
     initEvent() {
       $(window).on("resize", this.resetCanvasSize);
+      //注册显示控制处理事件
+      $vm.$on("control", item => {
+        this.$refs.bmControl.show(item);
+      });
+      //注册设备点位参数事件
+      $vm.$on("deviceList", item => {
+        let { ids = [], callback = () => {} } = item || {};
+        this.commonDeviceListFunc(ids, callback);
+      });
     },
     loadWebsocketData(widgetList = []) {
       let deviceIdList = [];
@@ -264,12 +297,15 @@ export default {
         });
       });
     },
-    showDeviceInfoEvent(bindData = {}) {
-      let { deviceId = "" } = bindData || {};
-      this.commonGetDeviceFunc(deviceId, device => {
-        bmCommon.log(device);
-        this.deviceInfo = device || {};
-      });
+    showInfoEvent(info = {}) {
+      let { id = "" } = info || {};
+      let key = `bmInfoCom_${id}`;
+      this.$refs[key][0]?.show(info);
+      // let { deviceId = "" } = bindData || {};
+      // this.commonGetDeviceFunc(deviceId, device => {
+      //   bmCommon.log(device);
+      //   this.deviceInfo = device || {};
+      // });
     },
     resetCanvasSize() {
       // let $window = $(window);
@@ -322,31 +358,31 @@ export default {
           bmCommon.error("获取数据失败=>canvasGet", err);
         });
     },
-    // 获取设备信息
-    commonGetDeviceFunc(deviceId, callback) {
-      let value = {};
-      if (!deviceId) {
-        this.dataLoadingStatus = false;
-        return;
-      }
-      this.dataLoadingStatus = true;
-      this.commonGetDeviceAction({ deviceId })
-        .then(({ data }) => {
-          let { code = "", result = {}, message = "" } = data || {};
-          if (code == Constants.CODES.SUCCESS) {
-            value = result || {};
-          } else {
-            bmCommon.error(message);
-          }
-          this.dataLoadingStatus = false;
-          callback && callback(value || {});
-        })
-        .catch(err => {
-          this.dataLoadingStatus = false;
-          callback && callback(value || {});
-          bmCommon.error("获取数据失败=>commonGetDevice", err);
-        });
-    },
+    // // 获取设备信息
+    // commonGetDeviceFunc(deviceId, callback) {
+    //   let value = {};
+    //   if (!deviceId) {
+    //     this.dataLoadingStatus = false;
+    //     return;
+    //   }
+    //   this.dataLoadingStatus = true;
+    //   this.commonGetDeviceAction({ deviceId })
+    //     .then(({ data }) => {
+    //       let { code = "", result = {}, message = "" } = data || {};
+    //       if (code == Constants.CODES.SUCCESS) {
+    //         value = result || {};
+    //       } else {
+    //         bmCommon.error(message);
+    //       }
+    //       this.dataLoadingStatus = false;
+    //       callback && callback(value || {});
+    //     })
+    //     .catch(err => {
+    //       this.dataLoadingStatus = false;
+    //       callback && callback(value || {});
+    //       bmCommon.error("获取数据失败=>commonGetDevice", err);
+    //     });
+    // },
     // 开始推送设备信息
     pushFunc(deviceIdList = [], callback) {
       let value = {};
@@ -365,6 +401,24 @@ export default {
         .catch(err => {
           callback && callback(value || {});
           bmCommon.error("获取数据失败=>push", err);
+        });
+    },
+    // 设备点位参数
+    commonDeviceListFunc(ids = [], callback) {
+      let value = [];
+      this.commonDeviceListAction({ ids: JSON.stringify(ids) })
+        .then(({ data }) => {
+          let { code = "", result = [], message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || [];
+          } else {
+            bmCommon.error(message);
+          }
+          callback && callback(value || []);
+        })
+        .catch(err => {
+          callback && callback(value || []);
+          bmCommon.error("获取数据失败=>commonDeviceList", err);
         });
     }
   },

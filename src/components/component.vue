@@ -11,7 +11,7 @@
     :style="boxStyle"
     :class="animate ? `animated ${animate}` : ''"
   >
-    <div class="info">
+    <div class="info" v-if="showType == 'edit'">
       <p class="txt">
         {{ info.name }}
         <!-- {{info.showCoverStatus}} -->
@@ -160,11 +160,19 @@ export default {
     //   default: ""
     // }
   },
+  created() {
+    // let { info = {} } = this;
+    // let { type = "", id = "" } = info || {};
+    // let item = Constants.COMPONENTLIBRARYMAP[type] || {};
+    // let { data = {} } = item || {};
+    // let { infoType = "" } = data || {};
+    // info.showCoverStatus = true;
+    // info.infoType = infoType;
+    // this.selectComAction(id);
+    // this.setActiveCom(info);
+  },
   mounted() {
     // this.loadSuccess();
-    let { info = {} } = this;
-    info.showCoverStatus = true;
-    this.setActiveCom(info);
   },
   components: {
     ...widgets
@@ -178,23 +186,42 @@ export default {
     //       !info.locked &&
     //       !info.showCoverStatus
     showRotateStatus() {
-      let { moving = false, rotating = false, info = {} } = this;
+      let { moving = false, rotating = false, info = {}, showType = "" } = this;
       let { rotateable = true, locked = false, showCoverStatus = true } =
         info || {};
-      return (!moving || rotating) && rotateable && !locked && showCoverStatus;
+      return (
+        (!moving || rotating) &&
+        rotateable &&
+        !locked &&
+        showCoverStatus &&
+        showType == "edit"
+      );
     },
     showRotateOriginStatus() {
-      let { info = {}, rotating = false } = this;
+      let { info = {}, rotating = false, showType = "" } = this;
       let { rotateable = true, locked = false, showCoverStatus = true } =
         info || {};
-      return rotateable && !locked && rotating && !showCoverStatus;
+      return (
+        rotateable &&
+        !locked &&
+        rotating &&
+        !showCoverStatus &&
+        showType == "edit"
+      );
     },
     scaleBoxStatus() {
-      let { moving = false, rotating = false, info = {} } = this;
+      let { moving = false, rotating = false, info = {}, showType = "" } = this;
       let { scaleable = true, locked = false, showCoverStatus = true } =
         info || {};
       // !moving && scaleable && !info.locked && !rotating && showCoverStatus
-      return !moving && scaleable && !locked && !rotating && showCoverStatus;
+      return (
+        !moving &&
+        scaleable &&
+        !locked &&
+        !rotating &&
+        showCoverStatus &&
+        showType == "edit"
+      );
     },
     boxStyle() {
       let { info = {} } = this;
@@ -263,12 +290,14 @@ export default {
   methods: {
     ...mapMutations({
       initMove: "canvas/initMove",
-      setActiveCom: "canvas/setActiveCom",//设置当前选中组件
+      setActiveCom: "canvas/setActiveCom", //设置当前选中组件
       resize: "canvas/resize",
       rotate: "canvas/rotate",
       stopMove: "canvas/stopMove"
     }),
-    ...mapActions(),
+    ...mapActions({
+      selectComAction: "canvas/selectCom"
+    }),
     loadSuccess() {
       this.$nextTick(() => {
         let bmCom = this.$refs.bmCom;

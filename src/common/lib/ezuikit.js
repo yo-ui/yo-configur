@@ -1536,6 +1536,7 @@
     }
   };
   EZUIPlayer.prototype.destroy = function (i) {
+    const _this = this;
     _this.jSPlugin.JS_DestroyWorker();
   }
   

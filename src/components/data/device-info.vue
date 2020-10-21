@@ -4,30 +4,90 @@
     class="bm-device-info-com"
     ref="form"
     label-width="120px"
-    v-if="pointList && pointList.length > 0"
+    v-loading="dataLoadingStatus"
   >
-    <el-form-item :label="item.name" v-for="item in pointList" :key="item.id">
-      {{ item.value || "--" }} <small v-if="item.unit">{{ item.unit }}</small>
-    </el-form-item>
+    <h2 class="title">{{ deviceInfo.name }}</h2>
+    <!-- {{ pointIds }} -->
+    <template v-if="pointList && pointList.length > 0">
+      <el-form-item
+        :label="item.name"
+        v-for="(item, index) in pointList"
+        :key="index"
+      >
+        {{ item.value || "--" }} <small v-if="item.unit">{{ item.unit }}</small>
+      </el-form-item>
+    </template>
   </el-form>
 </template>
 
 <script>
-// import bmCommon from "@/common/common";
-// import { Constants } from "@/common/env";
+import bmCommon from "@/common/common";
+import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  props: ["pointList"],
+  name: "deviceInfoCom",
+  // props: ["info"],
   data() {
-    return {};
+    return {
+      dataLoadingStatus: true,
+      deviceInfo: {},
+      pointIds: []
+    };
   },
   computed: {
-    ...mapGetters()
+    ...mapGetters(),
+    pointList() {
+      let { deviceInfo = {}, pointIds = [] } = this;
+      let { points = [] } = deviceInfo || {};
+      let { length = 0 } = pointIds || [];
+      if (length < 1) {
+        return points || [];
+      }
+      return (points || []).filter(item => {
+        return pointIds.indexOf(item.id) > -1;
+      });
+    }
   },
   methods: {
     ...mapMutations(),
-    ...mapActions()
+    ...mapActions({
+      commonGetDeviceAction: "commonGetDevice"
+    }),
+    show(info = {}) {
+      let { bindData = {} } = info || {};
+      let { deviceId = "", pointIds = [] } = bindData || {};
+      this.pointIds = pointIds || [];
+      this.commonGetDeviceFunc(deviceId, device => {
+        bmCommon.log(device);
+        this.deviceInfo = device || {};
+      });
+    },
+    // 获取设备信息
+    commonGetDeviceFunc(deviceId, callback) {
+      let value = {};
+      if (!deviceId) {
+        this.dataLoadingStatus = false;
+        return;
+      }
+      this.dataLoadingStatus = true;
+      this.commonGetDeviceAction({ deviceId })
+        .then(({ data }) => {
+          let { code = "", result = {}, message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || {};
+          } else {
+            bmCommon.error(message);
+          }
+          this.dataLoadingStatus = false;
+          callback && callback(value || {});
+        })
+        .catch(err => {
+          this.dataLoadingStatus = false;
+          callback && callback(value || {});
+          bmCommon.error("获取数据失败=>commonGetDevice", err);
+        });
+    }
   }
 };
 </script>

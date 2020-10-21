@@ -104,7 +104,7 @@ let baseData = {
   flipV: false, //是否垂直翻转
   flipH: false //是否水平翻转
 };
-export default [
+let componentLibrary = [
   {
     name: "形状",
     code: "shape",
@@ -114,7 +114,6 @@ export default [
         name: "矩形",
         code: "materialRectangle",
         icon: "/static/img/configur/material/rectangle.png",
-
         data: {
           ...baseData,
           styleCode: "material",
@@ -123,6 +122,7 @@ export default [
           width: 200,
           height: 100
           // dataType: "device",
+          // infoType:"device",
           // equalScaleable: true //是否等比例缩放
         }
       },
@@ -138,6 +138,7 @@ export default [
           width: 100,
           height: 100
           // dataType: "device",
+          // infoType:"device",
           // equalScaleable: true //是否等比例缩放
         }
       },
@@ -155,6 +156,7 @@ export default [
           width: 100,
           height: 100
           // dataType: "device",
+          // infoType:"device",
           // equalScaleable: true //是否等比例缩放
         }
       },
@@ -170,6 +172,7 @@ export default [
           width: 100,
           height: 100
           // dataType: "device",
+          // infoType:"device",
           // equalScaleable: true //是否等比例缩放
         }
       },
@@ -185,6 +188,7 @@ export default [
           width: 100,
           height: 100
           // dataType: "device",
+          // infoType:"device",
           // equalScaleable: true //是否等比例缩放
         }
       },
@@ -200,6 +204,7 @@ export default [
           width: 100,
           height: 100
           // dataType: "device",
+          // infoType:"device",
           // equalScaleable: true //是否等比例缩放
         }
       }
@@ -620,6 +625,7 @@ export default [
           color: "#fff",
           borderRadius: 20,
           dataType: "device",
+          infoType: "device",
           backgroundColor: "#4195ea",
           width: 75,
           height: 35,
@@ -667,6 +673,14 @@ export default [
       {
         name: "横向滚动文本",
         code: "vScrollText",
+        icon: "/static/img/configur/announcement.png",
+        data: {
+          ...baseData
+        }
+      },
+      {
+        name: "纵向滚动文本",
+        code: "hScrollText",
         icon: "/static/img/configur/announcement.png",
         data: {
           ...baseData
@@ -834,11 +848,12 @@ export default [
           ...baseData,
           src: "http://192.168.0.134/hls/test.m3u8",
           dataType: "device",
+          infoType: "device",
           width: 480,
+          height: 280,
           autoplay: false,
           // loop: false,
           muted: false,
-          height: 280
         }
       },
       {
@@ -1621,9 +1636,10 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 70,
+              height: 69,
               dataType: "device",
+              infoType: "device",
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -1636,6 +1652,7 @@ export default [
           {
             name: "单项导轨电表",
             code: "deviceCommon",
+            alias: "dxdgdb",
             icon: "/static/img/configur/dxdgdb.png",
             data: {
               ...baseData,
@@ -1647,9 +1664,10 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 64,
+              height: 60,
               dataType: "device",
+              infoType: "device",
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -1662,6 +1680,7 @@ export default [
           {
             name: "I/O控制模块",
             code: "deviceCommon",
+            alias: "iokzmk",
             icon: "/static/img/configur/iokzmk.png",
             data: {
               ...baseData,
@@ -1673,9 +1692,10 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 53,
+              height: 48,
               dataType: "device",
+              infoType: "device",
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -1688,6 +1708,7 @@ export default [
           {
             name: "断路器",
             code: "deviceCommon",
+            alias: "dlq",
             icon: "/static/img/configur/dlq.png",
             data: {
               ...baseData,
@@ -1699,9 +1720,10 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 45,
+              height: 45,
               dataType: "device",
+              infoType: "device",
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -1714,6 +1736,7 @@ export default [
           {
             name: "壁挂式电表",
             code: "deviceCommon",
+            alias: "bgsdb",
             icon: "/static/img/configur/bgsdb.png",
             data: {
               ...baseData,
@@ -1725,9 +1748,10 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 58,
+              height: 75,
               dataType: "device",
+              infoType: "device",
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -1740,6 +1764,7 @@ export default [
           {
             name: "接地刀闸",
             code: "deviceCommon",
+            alias: "jddz",
             icon: "/static/img/configur/jddz.png",
             data: {
               ...baseData,
@@ -1751,9 +1776,10 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 70,
+              height: 60,
               dataType: "device",
+              infoType: "device",
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -1766,6 +1792,7 @@ export default [
           {
             name: "电力电容器",
             code: "deviceCommon",
+            alias: "dldrq",
             icon: "/static/img/configur/dldrq.png",
             data: {
               backgroundImage: "/static/img/svg/dldrq.svg",
@@ -1776,9 +1803,10 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 71,
+              height: 64,
               dataType: "device",
+              infoType: "device",
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -1791,6 +1819,7 @@ export default [
           {
             name: "变压器",
             code: "deviceCommon",
+            alias: "byq",
             icon: "/static/img/configur/byq.png",
             data: {
               backgroundImage: "/static/img/svg/byq.svg",
@@ -1801,9 +1830,10 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 90,
+              height: 97,
               dataType: "device",
+              infoType: "device",
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -1822,6 +1852,7 @@ export default [
           {
             name: "螺翼式水表",
             code: "deviceCommon",
+            alias: "lyssb",
             icon: "/static/img/configur/lyssb.png",
             data: {
               ...baseData,
@@ -1833,8 +1864,8 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 72,
+              height: 68,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -1847,7 +1878,9 @@ export default [
           {
             name: "阀控水表",
             code: "deviceCommon",
-            icon: "/static/img/configur/sbfk.png",
+            // code: "deviceFksb",
+            alias: "fksb",
+            icon: "/static/img/configur/fksb.png",
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/fksb.svg",
@@ -1858,8 +1891,10 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 97,
+              height: 56,
+              dataType: "device",
+              infoType: "device",
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -1872,6 +1907,7 @@ export default [
           {
             name: "旋翼式水表",
             code: "deviceCommon",
+            alias: "xyssb",
             icon: "/static/img/configur/xyssb.png",
             data: {
               ...baseData,
@@ -1883,8 +1919,8 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 80,
+              height: 55,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -1897,6 +1933,7 @@ export default [
           {
             name: "超时波流量计",
             code: "deviceCommon",
+            alias: "csbllj",
             icon: "/static/img/configur/csbllj.png",
             data: {
               ...baseData,
@@ -1908,8 +1945,8 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 52,
+              height: 78,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -1922,6 +1959,7 @@ export default [
           {
             name: "插卡式水表",
             code: "deviceCommon",
+            alias: "ckssb",
             icon: "/static/img/configur/ckssb.png",
             data: {
               ...baseData,
@@ -1933,7 +1971,7 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
+              width: 88,
               height: 50,
               // rotate: 0,
               // top: 0,
@@ -1946,7 +1984,8 @@ export default [
           },
           {
             name: "生活水泵",
-            code: "deviceCommon",
+            code: "deviceShsb",
+            alias: "shsb",
             icon: "/static/img/configur/shsb.png",
             data: {
               ...baseData,
@@ -1958,8 +1997,10 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              dataType: "device",
+              infoType: "device",
+              width: 235,
+              height: 171,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -1972,6 +2013,7 @@ export default [
           {
             name: "集水井",
             code: "deviceCommon",
+            alias: "jsj",
             icon: "/static/img/configur/jsj.png",
             data: {
               ...baseData,
@@ -1983,8 +2025,8 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 324,
+              height: 238,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -1997,6 +2039,7 @@ export default [
           {
             name: "水箱",
             code: "deviceCommon",
+            alias: "sx",
             icon: "/static/img/configur/sx.png",
             data: {
               ...baseData,
@@ -2008,8 +2051,8 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 300,
+              height: 275,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2021,7 +2064,8 @@ export default [
           },
           {
             name: "消防水泵",
-            code: "deviceCommon",
+            code: "deviceXfsb",
+            alias: "xfsb",
             icon: "/static/img/configur/xfsb.png",
             data: {
               ...baseData,
@@ -2033,8 +2077,10 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              dataType: "device",
+              infoType: "device",
+              width: 152,
+              height: 200,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2046,7 +2092,8 @@ export default [
           },
           {
             name: "抽烟风机",
-            code: "deviceCommon",
+            code: "deviceCyfj",
+            alias: "cyfj",
             icon: "/static/img/configur/cyfj.png",
             data: {
               ...baseData,
@@ -2058,8 +2105,8 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 346,
+              height: 317,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2071,7 +2118,8 @@ export default [
           },
           {
             name: "正压送风机",
-            code: "deviceCommon",
+            code: "deviceZysfj",
+            alias: "zysfj",
             icon: "/static/img/configur/zysfj.png",
             data: {
               ...baseData,
@@ -2083,8 +2131,10 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              dataType: "device",
+              infoType: "device",
+              width: 346,
+              height: 317,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2097,6 +2147,7 @@ export default [
           {
             name: "蓄水装置",
             code: "deviceCommon",
+            alias: "xszz",
             icon: "/static/img/configur/xszz.png",
             data: {
               ...baseData,
@@ -2108,8 +2159,8 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 144,
+              height: 300,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2122,6 +2173,7 @@ export default [
           {
             name: "手动水阀",
             code: "deviceCommon",
+            alias: "sdsf",
             icon: "/static/img/configur/sdsf.png",
             data: {
               ...baseData,
@@ -2133,8 +2185,8 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 94,
+              height: 97,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2147,6 +2199,7 @@ export default [
           {
             name: "集水器",
             code: "deviceCommon",
+            alias: "jsq",
             icon: "/static/img/configur/jsq.png",
             data: {
               backgroundImage: "/static/img/svg/jsq.svg",
@@ -2157,9 +2210,10 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 30,
+              width: 206,
+              height: 104,
               dataType: "device",
+              infoType: "device",
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2172,6 +2226,7 @@ export default [
           {
             name: "分水器",
             code: "deviceCommon",
+            alias: "fsq",
             icon: "/static/img/configur/fsq.png",
             data: {
               backgroundImage: "/static/img/svg/fsq.svg",
@@ -2182,9 +2237,10 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 30,
+              width: 206,
+              height: 104,
               dataType: "device",
+              infoType: "device",
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2202,14 +2258,17 @@ export default [
         comList: [
           {
             name: "开关",
-            code: "deviceCommon",
+            code: "deviceKg",
+            alias: "kg",
             icon: "/static/img/configur/kg.png",
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/kg.svg",
               backgroundImageOn: "/static/img/svg/kg-on.svg",
-              width: 50,
-              height: 50,
+              dataType: "device",
+              infoType: "device",
+              width: 43,
+              height: 40,
               equalScaleable: true //是否等比例缩放
               // scaleable: true, //是否可缩放操作
               // rotateable: true, //是否可旋转操作
@@ -2219,11 +2278,14 @@ export default [
           },
           {
             name: "灯管",
-            code: "deviceCommon",
+            code: "deviceDengg",
+            alias: "dengg",
             icon: "/static/img/configur/dengg.png",
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/dengg.svg",
+              dataType: "device",
+              infoType: "device",
               // borderWidth: 0,
               // borderStyle: "none",
               // borderColor: "",
@@ -2231,8 +2293,8 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 20,
+              width: 164,
+              height: 30,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2244,11 +2306,14 @@ export default [
           },
           {
             name: "灯泡",
-            code: "deviceCommon",
+            code: "deviceDengp",
+            alias: "dengp",
             icon: "/static/img/configur/dengp.png",
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/dengp.svg",
+              dataType: "device",
+              infoType: "device",//显示详情组件前缀名
               // borderWidth: 0,
               // borderStyle: "none",
               // borderColor: "",
@@ -2256,8 +2321,8 @@ export default [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 20,
-              height: 30,
+              width: 32,
+              height: 50,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2276,6 +2341,7 @@ export default [
           {
             name: "整体式热量表",
             code: "deviceCommon",
+            alias: "ztsrlb",
             icon: "/static/img/configur/ztsrlb.png",
             data: {
               ...baseData,
@@ -2301,6 +2367,7 @@ export default [
           {
             name: "组合式热量表",
             code: "deviceCommon",
+            alias: "zhsrlb",
             icon: "/static/img/configur/zhsrlb.png",
             data: {
               ...baseData,
@@ -2326,6 +2393,7 @@ export default [
           {
             name: "挂式空调",
             code: "deviceCommon",
+            alias: "gskt",
             icon: "/static/img/configur/gskt.png",
             data: {
               ...baseData,
@@ -2351,6 +2419,7 @@ export default [
           {
             name: "立式空调",
             code: "deviceCommon",
+            alias: "lskt",
             icon: "/static/img/configur/lskt.png",
             data: {
               ...baseData,
@@ -2376,6 +2445,7 @@ export default [
           {
             name: "风冷热器",
             code: "deviceCommon",
+            alias: "flrq",
             icon: "/static/img/configur/flrq.png",
             data: {
               ...baseData,
@@ -2401,6 +2471,7 @@ export default [
           {
             name: "板式换热器",
             code: "deviceCommon",
+            alias: "bshrq",
             icon: "/static/img/configur/bshrq.png",
             data: {
               ...baseData,
@@ -2426,6 +2497,7 @@ export default [
           {
             name: "冷却塔",
             code: "deviceCommon",
+            alias: "lqt",
             icon: "/static/img/configur/lqt.png",
             data: {
               ...baseData,
@@ -2451,6 +2523,7 @@ export default [
           {
             name: "排风机",
             code: "deviceCommon",
+            alias: "pfj",
             icon: "/static/img/configur/pfj.png",
             data: {
               ...baseData,
@@ -2476,6 +2549,7 @@ export default [
           {
             name: "燃气锅炉",
             code: "deviceCommon",
+            alias: "rqgl",
             icon: "/static/img/configur/rqgl.png",
             data: {
               ...baseData,
@@ -2507,6 +2581,7 @@ export default [
           {
             name: "湿式报警阀",
             code: "deviceCommon",
+            alias: "ssbjf",
             icon: "/static/img/configur/ssbjf.png",
             data: {
               ...baseData,
@@ -2532,6 +2607,7 @@ export default [
           {
             name: "烟雾报警传感器",
             code: "deviceCommon",
+            alias: "ywbjcgq",
             icon: "/static/img/configur/ywbjcgq.png",
             data: {
               ...baseData,
@@ -2557,6 +2633,7 @@ export default [
           {
             name: "红外人体感应器",
             code: "deviceCommon",
+            alias: "hwrtgyq",
             icon: "/static/img/configur/hwrtgyq.png",
             data: {
               ...baseData,
@@ -2582,6 +2659,7 @@ export default [
           {
             name: "摄像头",
             code: "deviceCommon",
+            alias: "sxt",
             icon: "/static/img/configur/sxt.png",
             data: {
               ...baseData,
@@ -2607,6 +2685,7 @@ export default [
           {
             name: "门磁报警器",
             code: "deviceCommon",
+            alias: "mcbjq",
             icon: "/static/img/configur/mcbjq.png",
             data: {
               ...baseData,
@@ -2632,6 +2711,7 @@ export default [
           {
             name: "漏水报警器",
             code: "deviceCommon",
+            alias: "lsbjq",
             icon: "/static/img/configur/lsbjq.png",
             data: {
               ...baseData,
@@ -2663,6 +2743,7 @@ export default [
           {
             name: "光伏电池板",
             code: "deviceCommon",
+            alias: "gfdcb",
             icon: "/static/img/configur/gfdcb.png",
             data: {
               ...baseData,
@@ -2688,6 +2769,7 @@ export default [
           {
             name: "光伏逆变器",
             code: "deviceCommon",
+            alias: "gfnbq",
             icon: "/static/img/configur/gfnbq.png",
             data: {
               ...baseData,
@@ -2719,6 +2801,7 @@ export default [
           {
             name: "拉绳式测距",
             code: "deviceCommon",
+            alias: "lsscj",
             icon: "/static/img/configur/lsscj.png",
             data: {
               ...baseData,
@@ -2744,6 +2827,7 @@ export default [
           {
             name: "超声波测距",
             code: "deviceCommon",
+            alias: "csbcj",
             icon: "/static/img/configur/csbcj.png",
             data: {
               ...baseData,
@@ -2769,6 +2853,7 @@ export default [
           {
             name: "液晶屏传感器",
             code: "deviceCommon",
+            alias: "hjjccgqa",
             icon: "/static/img/configur/hjjccgqa.png",
             data: {
               ...baseData,
@@ -2794,6 +2879,7 @@ export default [
           {
             name: "传感器",
             code: "deviceCommon",
+            alias: "hjjccgqb",
             icon: "/static/img/configur/hjjccgqb.png",
             data: {
               ...baseData,
@@ -2819,6 +2905,7 @@ export default [
           {
             name: "小型气象站",
             code: "deviceCommon",
+            alias: "xxqxz",
             icon: "/static/img/configur/xxqxz.png",
             data: {
               ...baseData,
@@ -2850,6 +2937,7 @@ export default [
           {
             name: "客用电梯",
             code: "deviceCommon",
+            alias: "kydt",
             icon: "/static/img/configur/kydt.png",
             data: {
               ...baseData,
@@ -2898,6 +2986,7 @@ export default [
               width: 600,
               height: 40
               // dataType: "device",
+              // infoType:"device",
               // equalScaleable: true //是否等比例缩放
             }
           },
@@ -2913,6 +3002,7 @@ export default [
               width: 800,
               height: 80
               // dataType: "device",
+              // infoType:"device",
               // equalScaleable: true //是否等比例缩放
             }
           }
@@ -2926,3 +3016,32 @@ export default [
     ]
   }
 ];
+let componentLibraryMap = {};
+componentLibrary.forEach(item => {
+  let { comList = [], groupList = [] } = item || {};
+  let { length = 0 } = groupList || [];
+  if (length > 0) {
+    groupList.forEach(_item => {
+      let { comList = [] } = _item || {};
+      comList.forEach(__item => {
+        let { code = "", alias = "" } = __item || {};
+        if (!alias) {
+          alias = code;
+        }
+        componentLibraryMap[alias] = __item || {};
+      });
+    });
+  } else {
+    comList.forEach(_item => {
+      let { code = "", alias = "" } = _item || {};
+      if (!alias) {
+        alias = code;
+      }
+      componentLibraryMap[alias] = _item || {};
+    });
+  }
+});
+export default {
+  componentLibrary,
+  componentLibraryMap
+};

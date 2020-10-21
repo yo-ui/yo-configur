@@ -1,7 +1,7 @@
 <template>
+    <!-- @blur.stop="blurEvent" -->
   <div
     class="bm-basic-rich-text-com ql-editor"
-    @blur.stop="blurEvent"
     :style="comStyle"
     v-html="info.content"
   ></div>
@@ -169,14 +169,14 @@ export default {
   methods: {
     ...mapMutations({}),
     ...mapActions({}),
-    blurEvent(e) {
-      let { target } = e;
-      let { info = {} } = this;
-      let name = $(target)
-        .text()
-        .trim();
-      info.name = name;
-    }
+    // blurEvent(e) {
+    //   let { target } = e;
+    //   let { info = {} } = this;
+    //   let content = $(target)
+    //     .text()
+    //     .trim();
+    //   info.content = content;
+    // }
   }
 };
 </script>

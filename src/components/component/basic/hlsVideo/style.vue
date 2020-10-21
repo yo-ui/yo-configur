@@ -21,7 +21,7 @@
         <!-- <p>
       <span class="label"> {{ $lang("文本名称") }}: </span>
       <el-input
-        v-model="info.name"
+        v-model="info.content"
         clearable
         :placeholder="$lang('请输入文本名称')"
       ></el-input>
@@ -556,10 +556,10 @@
       <span class="label">{{ $lang("控制条") }}:</span>
       <el-switch v-model="info.controls"> </el-switch>
     </p> -->
-        <!-- <p>
+        <p>
           <span class="label">{{ $lang("自动播放") }}:</span>
           <el-switch v-model="info.autoplay"> </el-switch>
-        </p> -->
+        </p>
         <!-- <p>
       <span class="label">{{ $lang("循环播放") }}:</span>
       <el-switch v-model="info.loop"> </el-switch>

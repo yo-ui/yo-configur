@@ -1,6 +1,6 @@
-// 电表
+// 阀控水表
 <template>
-  <div class="bm-device-db-com" :style="comStyle">
+  <div class="bm-device-fksb-com" :style="comStyle">
     <!-- :viewBox="`${info.vBoxx} ${info.vBoxy} ${info.width} ${info.height}`" -->
     <svg
       version="1.1"
@@ -368,7 +368,7 @@ const { mapActions, mapMutations, mapGetters } = Vuex;
 
 const pointCode='SwSts'
 export default {
-  name: "deviceDbCom",
+  name: "deviceFksbCom",
   data() {
     return {
       pointValue: "" // expr:'SwSts',stop:0,start:1,alarm:2
@@ -475,7 +475,7 @@ export default {
         let { $vm } = window;
         // let { deviceId = "" } = bindData || {};
         $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
-          bmCommon.log("deviceDbCom", device);
+          bmCommon.log("deviceFksbCom", device);
           let { pointList = [] } = device || {};
           let point = pointList.find(item => {
             let { point: id = "" } = item || {};

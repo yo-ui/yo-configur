@@ -8,8 +8,12 @@
  */
 import URL from "./conf/url.conf";
 import apiConfig from "./conf";
-import COMPONENTLIBRARY from "./conf/library";
-
+import lib from "./conf/library";
+const {
+  componentLibrary: COMPONENTLIBRARY,
+  componentLibraryMap: COMPONENTLIBRARYMAP
+} = lib || {};
+// console.log(lib);
 //常量定义
 const PLATFORM = "IOT_CONFIGUR_";
 const DIR = "configur/";
@@ -87,6 +91,7 @@ const Constants = {
   },
   // 组件map
   COMPONENTLIBRARY,
+  COMPONENTLIBRARYMAP,
   BACKGROUNDSIZELIST: [
     { code: "100% 100%", name: "拉伸以充满画布" },
     { code: "cover", name: "充满画布" },

@@ -7,6 +7,7 @@ module.exports = {
   },
   "globals":{
     "document": true,
+    "$vm":true,
     "localStorage": true,
     "window": true,
     "SVG":true

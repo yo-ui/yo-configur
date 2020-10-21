@@ -2,7 +2,6 @@
   <div class="bm-data-com">
     <el-collapse v-model="activeNames">
       <el-collapse-item :title="$lang('通用绑定')" name="name">
-        <!-- <h2>{{ info.name }}</h2> -->
         <p v-if="info.dataType == 'device'">
           <span class="label"> {{ $lang("绑定设备") }}: </span>
           <el-tooltip

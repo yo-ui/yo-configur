@@ -111,11 +111,11 @@ export default {
       let { width = "" } = info || {};
       return width;
     },
-    // autoplay() {
-    //   let { info = {} } = this;
-    //   let { autoplay = "" } = info || {};
-    //   return autoplay;
-    // },
+    autoplay() {
+      let { info = {} } = this;
+      let { autoplay = "" } = info || {};
+      return autoplay;
+    },
     muted() {
       let { info = {} } = this;
       let { muted = "" } = info || {};
@@ -235,7 +235,11 @@ export default {
     init() {
       this.$nextTick(() => {
         // this.hlsVideo()
-        // this.ezuikitVideo();
+        let { info = {} } = this;
+        let { autoplay = false } = info || {};
+        if (autoplay) {
+          this.ezuikitVideo();
+        }
       });
     },
     hlsVideo() {
@@ -333,9 +337,8 @@ export default {
       let { condition, cameraPlayer = null, info = {} } = this;
       let { accessToken = "", serial = "", lineType = 2 } = condition;
       let line = lineType == 2 ? "" : ".hd";
-      let { width = "", height = "", muted = false } =
-        info || {};
-      let autoplay=true;
+      let { width = "", height = "", muted = false } = info || {};
+      let autoplay = true;
       var url = `ezopen://open.ys7.com/${serial}/1${line}.live`;
       this.playStatus = true;
       // this.played = true;
@@ -476,15 +479,15 @@ export default {
         this.destroy();
       }
     },
-    // autoplay(newVal, oldVal) {
-    //   if (newVal != oldVal) {
-    //     if (newVal) {
-    //       this.ezuikitVideo();
-    //     } else {
-    //       this.destroy();
-    //     }
-    //   }
-    // },
+    autoplay(newVal, oldVal) {
+      if (newVal != oldVal) {
+        if (newVal) {
+          this.ezuikitVideo();
+        } else {
+          this.destroy();
+        }
+      }
+    },
     muted(newVal, oldVal) {
       if (newVal != oldVal) {
         this.mutedPlay(newVal);

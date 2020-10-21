@@ -202,14 +202,17 @@ export default {
       // eslint-disable-next-line no-undef
       $vm.$emit("bindDevice", item);
     }
+  },
+  watch: {
+    "activeCom.type"(newVal, oldVal) {
+      if (newVal != oldVal) {
+        if (newVal == "canvas") {
+          let { tabList = [] } = this;
+          this.activeIndex = tabList[0].code;
+        }
+      }
+    }
   }
-  // watch: {
-  //   widgetList(newVal, oldVal) {
-  //     // if (newVal != oldVal) {
-  //       this.loadComList();
-  //     // }
-  //   }
-  // }
 };
 </script>
 

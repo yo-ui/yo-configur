@@ -15,7 +15,6 @@
         :title="$lang('移动画布')"
       ></i>
     </p> -->
-    <!-- <h2>{{ info.name }}</h2> -->
 
     <el-collapse v-model="activeNames">
       <el-collapse-item :title="info.name" name="name">

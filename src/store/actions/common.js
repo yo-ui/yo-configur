@@ -33,7 +33,7 @@ export default {
   },
   // : `${host}/configur/common/deviceList`,
   async commonDeviceList(context, options) {
-    const data = await post({
+    const data = await get({
       url: URL.commonDeviceListUrl,
       params: options,
       store: context
