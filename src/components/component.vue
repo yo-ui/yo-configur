@@ -11,7 +11,7 @@
     :style="boxStyle"
     :class="animate ? `animated ${animate}` : ''"
   >
-    <div class="info" v-if="showType == 'edit'">
+    <div class="info" v-if="showType == 'edit' && !moving">
       <p class="txt">
         {{ info.name }}
         <!-- {{info.showCoverStatus}} -->
@@ -21,10 +21,10 @@
     <div
       class="cover"
       v-if="info.showCoverStatus && showType == 'edit'"
-      @dblclick.prevent.stop="info.showCoverStatus = false"
+      @dblclick.prevent.stop="coverEvent"
     >
-      <!-- ----------- =-====={{ !moving }} --{{ rotating }}--
-      {{ !moving || rotating }}==={{ showRotateStatus }} -->
+    {{info.showCoverStatus}}
+      <!-- ----------- =-====={{ !moving }} --{{ rotating }}--==={{ showRotateStatus }} -->
     </div>
     <!-- ((!moving && info.rotateable) || rotating) &&
           !info.locked &&
@@ -360,6 +360,11 @@ export default {
         bmComBox,
         direction
       });
+    },
+    coverEvent() {
+      let { info = {} } = this;
+      bmCommon.error('dbclick')
+      info.showCoverStatus = false;
     },
     mouseupEvent(e) {
       $(document).off("mousemove", this.mousemoveEvent);

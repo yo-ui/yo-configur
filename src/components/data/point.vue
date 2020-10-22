@@ -255,11 +255,9 @@ export default {
       });
     },
     selectDeviceEvent() {
-      let { condition } = this;
-      let { device = {} } = this;
+      let { condition, device = {} } = this;
       let { points = [], id = "" } = device || {};
       condition.deviceId = id;
-
       this.resetStatus = false;
       this.pointList = points || [];
       // let [point = {}] = points || [];

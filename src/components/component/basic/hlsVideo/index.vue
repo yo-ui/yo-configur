@@ -13,7 +13,7 @@
     <source :src="info.src" />
   </video> -->
   <div class="bm-basic-hls-video-com" :style="comStyle">
-    <div id="cameraPlayer"></div>
+    <div :id="`cameraPlayer_${info.id}`"></div>
     <!-- <video id="cameraPlayer"
     ref="bmVideo"
     :controls="info.controls"
@@ -337,14 +337,14 @@ export default {
       let { condition, cameraPlayer = null, info = {} } = this;
       let { accessToken = "", serial = "", lineType = 2 } = condition;
       let line = lineType == 2 ? "" : ".hd";
-      let { width = "", height = "", muted = false } = info || {};
+      let { width = "", height = "", muted = false, id = "" } = info || {};
       let autoplay = true;
       var url = `ezopen://open.ys7.com/${serial}/1${line}.live`;
       this.playStatus = true;
       // this.played = true;
       cameraPlayer?.stop();
       let params = {
-        id: "cameraPlayer",
+        id: `cameraPlayer_${id}`,
         autoplay,
         url,
         accessToken,

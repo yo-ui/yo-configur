@@ -93,24 +93,30 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <h2 class="tip">{{ $lang("注:选择需要显示的点位") }}</h2>
-      <el-form-item
-        prop="pointIds"
-        :label="$lang('点位选择')"
-        :rules="[
-          { required: true, message: '请选择需要显示的点位', trigger: 'change' }
-        ]"
-      >
-        <el-checkbox-group v-model="condition.pointIds" :min="1">
-          <el-checkbox
-            v-for="(item, index) in pointList"
-            :key="index"
-            :label="item.id"
-          >
-            {{ item.name }}
-          </el-checkbox>
-        </el-checkbox-group>
-      </el-form-item>
+      <template v-if="condition.infoType">
+        <h2 class="tip">{{ $lang("注:选择需要显示的点位") }}</h2>
+        <el-form-item
+          prop="pointIds"
+          :label="$lang('点位选择')"
+          :rules="[
+            {
+              required: true,
+              message: '请选择需要显示的点位',
+              trigger: 'change'
+            }
+          ]"
+        >
+          <el-checkbox-group v-model="condition.pointIds" :min="1">
+            <el-checkbox
+              v-for="(item, index) in pointList"
+              :key="index"
+              :label="item.id"
+            >
+              {{ item.name }}
+            </el-checkbox>
+          </el-checkbox-group>
+        </el-form-item>
+      </template>
     </el-form>
     <template #footer>
       <!-- <el-button @click="closeEvent">{{ $lang("关闭") }}</el-button> -->
@@ -143,6 +149,7 @@ export default {
         orgName: "",
         orgId: "",
         deviceId: "",
+        infoType: "",
         pointIds: [],
         // pointId: "",
         deviceName: ""
@@ -203,7 +210,7 @@ export default {
     },
     show(item = {}) {
       let { treeData = [], condition } = this;
-      let { id = "", bindData = {} } = item || {};
+      let { id = "", bindData = {}, infoType = "" } = item || {};
       let { devicePoint = "", deviceId = "", orgId = "", pointIds = [] } =
         bindData || {};
       this.deviceList = null;
@@ -212,6 +219,7 @@ export default {
       this.resetStatus = false;
       this.$refs.form?.resetFields();
       condition.comId = id; //组件id
+      condition.infoType = infoType;
       if (orgId) {
         condition.deviceId = deviceId;
         condition.pointIds = pointIds;
@@ -263,12 +271,17 @@ export default {
       });
     },
     selectDeviceEvent() {
-      let { condition } = this;
-      let { device = {} } = this;
-      let { points = [], id = "" } = device || {};
+      let { condition, device = {} } = this;
+      let { points = [], id = "", pointIds = [] } = device || {};
       condition.deviceId = id;
       this.resetStatus = false;
       this.pointList = points || [];
+      let { length = 0 } = pointIds || [];
+      if (length < 1) {
+        condition.pointIds = points.map(item => {
+          return item.id;
+        });
+      }
       // let [point = {}] = points || [];
       // let { id: pointId = "" } = point || {};
       // condition.pointId = pointId;

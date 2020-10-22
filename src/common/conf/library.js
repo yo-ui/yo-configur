@@ -6,6 +6,7 @@ let baseData = {
   borderWidth: 0,
   borderStyle: "none",
   borderColor: "",
+  showCoverStatus: true,
   borderRadius: 0,
   scale: "scale(1,1)",
   // showCoverStatus:true,//默认显示覆盖层
@@ -228,7 +229,7 @@ let componentLibrary = [
               ...baseData,
               width: 400,
               height: 300,
-              dataType: "device"
+              dataType: "point"
             }
           },
           {
@@ -278,7 +279,7 @@ let componentLibrary = [
               ...baseData,
               width: 400,
               height: 300,
-              dataType: "device"
+              dataType: "point"
             }
           },
           {
@@ -848,12 +849,12 @@ let componentLibrary = [
           ...baseData,
           src: "http://192.168.0.134/hls/test.m3u8",
           dataType: "device",
-          infoType: "device",
+          // infoType: "device",
           width: 480,
           height: 280,
           autoplay: false,
           // loop: false,
-          muted: false,
+          muted: false
         }
       },
       {
@@ -1344,8 +1345,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 30,
-              height: 30
+              width: 80,
+              height: 80
               // rotate: 0,
               // top: 0,
               // equalScaleable: false, //是否等比例缩放
@@ -1370,8 +1371,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 30,
-              height: 30
+              width: 80,
+              height: 80
               // rotate: 0,
               // top: 0,
               // equalScaleable: true, //是否等比例缩放
@@ -1396,8 +1397,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 30,
-              height: 30
+              width: 80,
+              height: 80
               // rotate: 0,
               // top: 0,
               // equalScaleable: true, //是否等比例缩放
@@ -1422,8 +1423,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 30,
-              height: 30
+              width: 80,
+              height: 80
               // rotate: 0,
               // top: 0,
               // equalScaleable: true, //是否等比例缩放
@@ -1448,8 +1449,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 30,
-              height: 30
+              width: 80,
+              height: 80
               // rotate: 0,
               // top: 0,
               // equalScaleable: true, //是否等比例缩放
@@ -1474,8 +1475,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 30,
-              height: 30
+              width: 80,
+              height: 80
               // rotate: 0,
               // top: 0,
               // equalScaleable: true, //是否等比例缩放
@@ -1500,8 +1501,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 30,
-              height: 30
+              width: 80,
+              height: 80
               // rotate: 0,
               // top: 0,
               // equalScaleable: true, //是否等比例缩放
@@ -1526,8 +1527,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 30,
-              height: 30
+              width: 80,
+              height: 80
               // rotate: 0,
               // top: 0,
               // equalScaleable: true, //是否等比例缩放
@@ -1552,8 +1553,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 30,
-              height: 30
+              width: 80,
+              height: 80
               // rotate: 0,
               // top: 0,
               // equalScaleable: true, //是否等比例缩放
@@ -1579,7 +1580,7 @@ let componentLibrary = [
               // opacity: 100,
               // left: 0,
               width: 150,
-              height: 30
+              height: 80
               // rotate: 0,
               // top: 0,
               // equalScaleable: false, //是否等比例缩放
@@ -1604,7 +1605,7 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 30,
+              width: 80,
               height: 150
               // rotate: 0,
               // top: 0,
@@ -2313,7 +2314,7 @@ let componentLibrary = [
               ...baseData,
               backgroundImage: "/static/img/svg/dengp.svg",
               dataType: "device",
-              infoType: "device",//显示详情组件前缀名
+              infoType: "device", //显示详情组件前缀名
               // borderWidth: 0,
               // borderStyle: "none",
               // borderColor: "",
@@ -2353,8 +2354,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 60,
+              height: 36,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2379,8 +2380,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 82,
+              height: 68,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2405,8 +2406,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 30,
+              width: 163,
+              height: 64,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2431,8 +2432,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 70,
-              height: 160,
+              width: 96,
+              height: 228,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2444,7 +2445,7 @@ let componentLibrary = [
           },
           {
             name: "风冷热器",
-            code: "deviceCommon",
+            code: "deviceFlrq",
             alias: "flrq",
             icon: "/static/img/configur/flrq.png",
             data: {
@@ -2457,8 +2458,10 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              dataType: "device",
+              infoType: "device", //显示详情组件前缀名
+              width: 400,
+              height: 320,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2483,8 +2486,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 281,
+              height: 260,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2496,7 +2499,7 @@ let componentLibrary = [
           },
           {
             name: "冷却塔",
-            code: "deviceCommon",
+            code: "deviceLqt",
             alias: "lqt",
             icon: "/static/img/configur/lqt.png",
             data: {
@@ -2509,8 +2512,10 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 150,
-              height: 150,
+              dataType: "device",
+              infoType: "device", //显示详情组件前缀名
+              width: 275,
+              height: 315,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2522,7 +2527,7 @@ let componentLibrary = [
           },
           {
             name: "排风机",
-            code: "deviceCommon",
+            code: "devicePfj",
             alias: "pfj",
             icon: "/static/img/configur/pfj.png",
             data: {
@@ -2535,8 +2540,10 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              dataType: "device",
+              infoType: "device", //显示详情组件前缀名
+              width: 200,
+              height: 165,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2548,7 +2555,7 @@ let componentLibrary = [
           },
           {
             name: "燃气锅炉",
-            code: "deviceCommon",
+            code: "deviceRqgl",
             alias: "rqgl",
             icon: "/static/img/configur/rqgl.png",
             data: {
@@ -2561,8 +2568,10 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 70,
-              height: 50,
+              dataType: "device",
+              infoType: "device", //显示详情组件前缀名
+              width: 606,
+              height: 417,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2580,7 +2589,7 @@ let componentLibrary = [
         comList: [
           {
             name: "湿式报警阀",
-            code: "deviceCommon",
+            code: "deviceSsbjf",
             alias: "ssbjf",
             icon: "/static/img/configur/ssbjf.png",
             data: {
@@ -2593,8 +2602,10 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              dataType: "device",
+              infoType: "device", //显示详情组件前缀名
+              width: 240,
+              height: 210,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2619,8 +2630,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 42,
+              height: 35,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2645,8 +2656,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 43,
+              height: 41,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2658,7 +2669,7 @@ let componentLibrary = [
           },
           {
             name: "摄像头",
-            code: "deviceCommon",
+            code: "deviceSxt",
             alias: "sxt",
             icon: "/static/img/configur/sxt.png",
             data: {
@@ -2671,8 +2682,10 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              dataType: "device",
+              // infoType: "device", //显示详情组件前缀名
+              width: 74,
+              height: 58,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2697,8 +2710,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 48,
+              height: 44,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2723,8 +2736,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 34,
+              height: 44,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2755,8 +2768,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 182,
+              height: 136,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2781,8 +2794,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 140,
+              height: 154,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2813,8 +2826,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 51,
+              height: 49,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2839,8 +2852,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 56,
+              height: 33,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2866,7 +2879,7 @@ let componentLibrary = [
               // opacity: 100,
               // left: 0,
               width: 50,
-              height: 50,
+              height: 80,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2891,8 +2904,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 52,
+              height: 58,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2917,8 +2930,8 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 50,
-              height: 50,
+              width: 135,
+              height: 178,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -2936,7 +2949,7 @@ let componentLibrary = [
         comList: [
           {
             name: "客用电梯",
-            code: "deviceCommon",
+            code: "deviceKydt",
             alias: "kydt",
             icon: "/static/img/configur/kydt.png",
             data: {
@@ -2949,8 +2962,10 @@ let componentLibrary = [
               // scale: "scale(1,1)",
               // opacity: 100,
               // left: 0,
-              width: 100,
-              height: 140,
+              dataType: "device",
+              infoType: "device", //显示详情组件前缀名
+              width: 230,
+              height: 290,
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放

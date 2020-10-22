@@ -205,35 +205,29 @@ export default {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
         let { id = "" } = info || {};
-        let { $vm } = window;
-        // let { deviceId = "" } = bindData || {};
+        let { bindData = {} } = info || {};
+        let { deviceId = "", devicePoint = "" } = bindData || {};
+        if (!deviceId) {
+          return;
+        }
         $vm.$on(`devicePointEvent_${id}`, ({ device, point = {} }) => {
           bmCommon.log("displayCom", device, point);
           let { value = "", unit = "" } = point || {};
           info.content = value;
           info.unit = unit;
-          // info.width = $(this.$refs.bmText).width();
           this.$emit("success"); //组件加载完成回调
         });
-        let { bindData = {} } = info || {};
-        let { deviceId = "", devicePoint = "" } = bindData || {};
         $vm.$emit(`deviceList`, {
           ids: [deviceId],
-          callback(deviceList = []) {
-            bmCommon.log("display-deviceList", devicePoint,deviceId,deviceList);
+          callback: (deviceList = []) => {
             let device = deviceList.find(item => {
               return deviceId == item.id;
             });
             if (device) {
-            bmCommon.log("display-deviceList  1", device);
               let { points = [] } = device || {};
               let pointObj = points.find(item => {
-
-                bmCommon.log("points.filter", item.id ,devicePoint);
                 return item.id == devicePoint;
               });
-
-            bmCommon.log("display-deviceList  2", device,pointObj,devicePoint);
               if (pointObj) {
                 let { value = "", unit = "" } = pointObj || {};
                 info.content = value;

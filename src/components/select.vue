@@ -41,13 +41,13 @@ export default {
     //   return this.$store?.state?.canvas?.moving;
     // },
     comStyle() {
-      let { selectBox = {}, zoom = 0 } = this;
+      let { selectBox = {} } = this;
       let {
         left = 0,
         top = 0,
         width = 0,
-        height = 0,
-        transformOrigin = "left top"
+        height = 0
+        // transformOrigin = "left top"
       } = selectBox;
       return {
         left: `${left}px`,

@@ -199,7 +199,6 @@ export default {
       });
     },
     addEvent(item = {}) {
-      // eslint-disable-next-line no-undef
       $vm.$emit("bindDevice", item);
     }
   },

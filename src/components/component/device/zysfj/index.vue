@@ -1,6 +1,6 @@
 // 正压送风机
 <template>
-  <div class="bm-device-fksb-com" :style="comStyle">
+  <div class="bm-device-zysfj-com" :style="comStyle">
     <!-- :viewBox="`${info.vBoxx} ${info.vBoxy} ${info.width} ${info.height}`" -->
     <svg
       version="1.1"
@@ -1435,7 +1435,7 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-const pointCode='SwSts'
+const pointCode = "SwSts";
 export default {
   name: "deviceZysfjCom",
   data() {

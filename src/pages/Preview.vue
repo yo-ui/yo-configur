@@ -59,6 +59,7 @@
       </div>
     </div>
     <bm-control ref="bmControl"></bm-control>
+    <bm-camera-previewer ref="bmCameraPreviewer"></bm-camera-previewer>
   </div>
 </template>
 <script>
@@ -87,7 +88,11 @@ export default {
     bmCom,
     ...infos,
     bmControl: () =>
-      import(/* webpackChunkName: "iot-control-com" */ "@/components/control")
+      import(/* webpackChunkName: "iot-control-com" */ "@/components/control"),
+    bmCameraPreviewer: () =>
+      import(
+        /* webpackChunkName: "iot-camera-previewer-com" */ "@/components/camera-previewer"
+      )
     // bmDeviceInfo: () =>
     //   import(
     //     /* webpackChunkName: "bm-device-info" */ "@/components/data/device-info.vue"
@@ -201,6 +206,8 @@ export default {
     ...mapActions({
       initConfigWebsocketAction: "initConfigWebsocket",
       canvasGetAction: "canvasGet",
+      commonGetDeviceAction: "commonGetDevice",
+      commonDevicePointHstDataAction: "commonDevicePointHstData",
       commonDeviceListAction: "commonDeviceList",
       pushAction: "push"
     }),
@@ -219,10 +226,11 @@ export default {
           alias = type;
         }
         let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
-        let { data = {} } = _item || {};
-        let { infoType = "" } = data || {};
+        let { data = {} } = _item || {};        
+        let { infoType = "",dataType="" } = data || {};
         item.showCoverStatus = true;
         item.infoType = infoType;
+        item.dataType = dataType;
         item.alias = alias;
       });
       this.setWidgetList(widgetList || []);
@@ -242,6 +250,29 @@ export default {
       $vm.$on("deviceList", item => {
         let { ids = [], callback = () => {} } = item || {};
         this.commonDeviceListFunc(ids, callback);
+      });
+      //注册获取设备信息事件
+      $vm.$on("device", item => {
+        let { deviceId = "", callback = () => {} } = item || {};
+        this.commonGetDeviceFunc(deviceId, callback);
+      });
+      //注册获取设备点位历史数据事件
+      $vm.$on("device-point-hst-data", item => {
+        let {
+          deviceId = "",
+          point = "",
+          startTime = "",
+          endTime = "",
+          callback = () => {}
+        } = item || {};
+        this.commonDevicePointHstDataFunc(
+          { deviceId, point, startTime, endTime },
+          callback
+        );
+      });
+      //注册摄像头预览事件
+      $vm.$on("camera-preview", item => {
+        this.$refs.bmCameraPreviewer.show(item);
       });
     },
     loadWebsocketData(widgetList = []) {
@@ -358,31 +389,68 @@ export default {
           bmCommon.error("获取数据失败=>canvasGet", err);
         });
     },
-    // // 获取设备信息
-    // commonGetDeviceFunc(deviceId, callback) {
-    //   let value = {};
-    //   if (!deviceId) {
-    //     this.dataLoadingStatus = false;
-    //     return;
-    //   }
-    //   this.dataLoadingStatus = true;
-    //   this.commonGetDeviceAction({ deviceId })
-    //     .then(({ data }) => {
-    //       let { code = "", result = {}, message = "" } = data || {};
-    //       if (code == Constants.CODES.SUCCESS) {
-    //         value = result || {};
-    //       } else {
-    //         bmCommon.error(message);
-    //       }
-    //       this.dataLoadingStatus = false;
-    //       callback && callback(value || {});
-    //     })
-    //     .catch(err => {
-    //       this.dataLoadingStatus = false;
-    //       callback && callback(value || {});
-    //       bmCommon.error("获取数据失败=>commonGetDevice", err);
-    //     });
-    // },
+    // 获取设备信息
+    commonGetDeviceFunc(deviceId, callback) {
+      let value = {};
+      if (!deviceId) {
+        callback && callback(value || {});
+        return;
+      }
+      this.commonGetDeviceAction({ deviceId })
+        .then(({ data }) => {
+          let { code = "", result = {}, message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || {};
+          } else {
+            bmCommon.error(message);
+          }
+          callback && callback(value || {});
+        })
+        .catch(err => {
+          callback && callback(value || {});
+          bmCommon.error("获取数据失败=>commonGetDevice", err);
+        });
+    },
+    // 获取设备点位信息
+    commonDevicePointHstDataFunc(params, callback) {
+      let value = {};
+      // let { condition, deviceInfo = {} } = this;
+      let { deviceId = "", point = "" } = params || {};
+      if (!deviceId) {
+        callback && callback(value || {});
+        return;
+      }
+      if (!point) {
+        callback && callback(value || {});
+        return;
+      }
+      // let { point = "" } = condition;
+      // let startTime = this.$moment().format("YYYY-MM-DD 00:00:00");
+      // let endTime = this.$moment().format("YYYY-MM-DD HH:mm:ss");
+      // this.dataLoadingStatus = true;
+      this.commonDevicePointHstDataAction(
+        params
+        // deviceId,
+        // point,
+        // startTime,
+        // endTime
+      )
+        .then(({ data }) => {
+          let { code = "", result = {}, message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || {};
+          } else {
+            bmCommon.error(message);
+          }
+          // this.dataLoadingStatus = false;
+          callback && callback(value || {});
+        })
+        .catch(err => {
+          // this.dataLoadingStatus = false;
+          callback && callback(value || {});
+          bmCommon.error("获取数据失败=>commonDevicePointHstData", err);
+        });
+    },
     // 开始推送设备信息
     pushFunc(deviceIdList = [], callback) {
       let value = {};

@@ -187,7 +187,11 @@ export default {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
         let { id = "" } = info || {};
-        let { $vm } = window;
+        let { bindData = {} } = info || {};
+        let { deviceId = "", devicePoint = "" } = bindData || {};
+        if (!deviceId) {
+          return;
+        }
         // let { deviceId = "" } = bindData || {};
         $vm.$on(`devicePointEvent_${id}`, ({ device, point = {} }) => {
           bmCommon.log("dynamicTextCom", device, point);
@@ -196,6 +200,27 @@ export default {
           info.unit = unit;
           // info.width = $(this.$refs.bmText).width();
           // this.$emit("success"); //组件加载完成回调
+        });
+
+        $vm.$emit(`deviceList`, {
+          ids: [deviceId],
+          callback(deviceList = []) {
+            let device = deviceList.find(item => {
+              return deviceId == item.id;
+            });
+            if (device) {
+              let { points = [] } = device || {};
+              let pointObj = points.find(item => {
+                return item.id == devicePoint;
+              });
+              if (pointObj) {
+                let { value = "", unit = "" } = pointObj || {};
+                info.content = value;
+                info.unit = unit;
+              }
+            }
+            this.$emit("success"); //组件加载完成回调
+          }
         });
       }
     }

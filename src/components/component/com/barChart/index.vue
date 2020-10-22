@@ -1,11 +1,35 @@
 <template>
-  <v-chart
-    theme="macarons"
-    autoresize
-    :style="comStyle"
-    :init-options="{ renderer: 'svg' }"
-    :options="chartOptions"
-  />
+  <div class="bm-basic-line-chart-com">
+    <h2 class="title">
+      {{ deviceInfo.name || "设备"
+      }}<el-select
+        v-if="
+          deviceInfo.points &&
+            deviceInfo.points.length > 0 &&
+            showType == 'edit'
+        "
+        v-model="condition.point"
+        placeholder="请选择设备点位"
+        filterable
+        @change="selectPointEvent"
+      >
+        <el-option
+          v-for="item in deviceInfo.points"
+          :key="item.id"
+          :label="item.name"
+          :value="item.id"
+        >
+        </el-option> </el-select
+      >{{ $lang("实时数据") }}
+    </h2>
+    <v-chart
+      theme="macarons"
+      autoresize
+      :style="comStyle"
+      :init-options="{ renderer: 'svg' }"
+      :options="chartOptions"
+    />
+  </div>
 </template>
 
 <script>
@@ -15,6 +39,10 @@ export default {
   name: "barCom",
   data() {
     return {
+      deviceInfo: {},
+      condition: {
+        point: ""
+      },
       chartOptions: {}
     };
   },
@@ -27,7 +55,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(),
+    ...mapGetters({
+      showType: "canvas/getShowType" //当前显示类型
+    }),
 
     //渐变颜色样式
     gradientStyle() {
@@ -160,10 +190,15 @@ export default {
           data: times
         },
         title: {
-          text: this.$lang("设备实时数据")
+          text: this.$lang("设备实时数据"),
+          show: false
         },
         tooltip: {
           trigger: "axis"
+        },
+        grid: {
+          top: "15%",
+          bottom: "8%"
         },
         yAxis: {
           type: "value"

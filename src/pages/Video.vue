@@ -29,7 +29,7 @@
     </div>
     <iframe
       id="videos"
-      :src="api+videoSrc"
+      :src="api + videoSrc"
       frameborder="0"
       :width="width"
       :height="height"
@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       apiList,
-      api:apiList[0],
+      api: apiList[0],
       nowIndex: 0,
       videoSrc: "https://v.qq.com/x/cover/p8bvvfh82dqrqgq.html",
       isShow: false,

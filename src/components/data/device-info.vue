@@ -14,7 +14,19 @@
         v-for="(item, index) in pointList"
         :key="index"
       >
+        <!-- <template v-if="item.type==2||item.type==4">
+        <el-select v-model="condition." placeholder="" clearable filterable v-if="item.optionValList&&item.optionValList.length>0">
+          <el-option v-for="(_item,_index) in item.optionValList"
+            :key="_index"
+            :label="_item"
+            :value="_item.value">
+          </el-option>
+        </el-select>
+        
+      </template>
+      <template v-else> -->
         {{ item.value || "--" }} <small v-if="item.unit">{{ item.unit }}</small>
+        <!-- </template> -->
       </el-form-item>
     </template>
   </el-form>

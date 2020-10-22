@@ -63,6 +63,8 @@
       class="context-menu"
       ref="contextMenuBox"
       v-show="showContextMenuStatus"
+      @mouseenter="showContenxtMenuEvent"
+      @mouseleave="hideContextMenuEvent"
       :style="contextMenuStyle"
     >
       <li
@@ -351,7 +353,8 @@ export default {
       orgStrucListByLevelAction: "orgStrucListByLevel",
       canvasGetAction: "canvasGet",
       createHistoryAction: "canvas/createHistory",
-      // commonVerifyInfoAction: "commonVerifyInfo",
+      commonGetDeviceAction: "commonGetDevice",
+      commonDevicePointHstDataAction: "commonDevicePointHstData",
       selectComsAction: "canvas/selectComs"
     }),
     init() {
@@ -383,6 +386,8 @@ export default {
           canvas.height = height;
           canvas.canvasId = canvasId;
           canvas.canvasType = type; //1为编辑   2为预览
+          canvas.left = 0;
+          canvas.top = 0;
           this.setCanvas(canvas);
           widgetList.forEach(item => {
             let { alias = "", type = "" } = item || {};
@@ -391,9 +396,10 @@ export default {
             }
             let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
             let { data = {} } = _item || {};
-            let { infoType = "" } = data || {};
-            item.showCoverStatus = true;
+            let { infoType = "", dataType = "" } = data || {};
+            // item.showCoverStatus = true;
             item.infoType = infoType;
+            item.dataType = dataType;
             item.alias = alias;
           });
           this.setWidgetList(widgetList);
@@ -439,6 +445,25 @@ export default {
       $vm.$on("control", item => {
         this.$refs.bmControl.show(item);
       });
+      //注册获取设备信息事件
+      $vm.$on("device", item => {
+        let { deviceId = "", callback = () => {} } = item || {};
+        this.commonGetDeviceFunc(deviceId, callback);
+      });
+      //注册获取设备点位历史数据事件
+      $vm.$on("device-point-hst-data", item => {
+        let {
+          deviceId = "",
+          point = "",
+          startTime = "",
+          endTime = "",
+          callback = () => {}
+        } = item || {};
+        this.commonDevicePointHstDataFunc(
+          { deviceId, point, startTime, endTime },
+          callback
+        );
+      });
       // //注册窗口变换事件
       // $(window).on("resize", this.resizeEvent);
       // $(document).on("keyup", this.keyupEvent);
@@ -461,12 +486,42 @@ export default {
           break;
       }
     },
+    zoomEvent(val = 0) {
+      let { getZoom: zoom = 0, canvas = {} } = this;
+      if (val) {
+        zoom = zoom * 100 + val;
+        if (zoom > 10 && zoom < 200) {
+          this.setZoom(zoom / 100);
+        }
+      } else {
+        this.setZoom(1);
+        canvas.left = 0;
+        canvas.top = 0;
+      }
+    },
     // resizeEvent(){
     //   let {canvas={}}=this
     //   let $window=$(window)
     //   let height=$window.height()
     //   let width=$window.width()
     // },
+    closeContenxtMenuEvent() {
+      bmCommon.log("closeContenxtMenuEvent");
+      this.showContextMenuStatus = true;
+      this._showContextMenuTimeoutId = setTimeout(() => {
+        clearTimeout(this._showContextMenuTimeoutId);
+        this.showContextMenuStatus = false;
+      }, 1000);
+    },
+    showContenxtMenuEvent() {
+      bmCommon.log("showContenxtMenuEvent");
+      clearTimeout(this._showContextMenuTimeoutId);
+    },
+    hideContextMenuEvent() {
+      clearTimeout(this._showContextMenuTimeoutId);
+      bmCommon.log("hideContextMenuEvent");
+      this.showContextMenuStatus = false;
+    },
     viewBoxContextmenuEvent(e) {
       e.stopPropagation();
       e.preventDefault();
@@ -474,7 +529,7 @@ export default {
       if (ctrlKey) {
         return;
       }
-      this.showContextMenuStatus = true;
+      this.closeContenxtMenuEvent();
       let $parent = $(target).parents(".bm-component-com");
       let type = $(target).attr("data-type");
       let id = $(target).attr("data-id");
@@ -494,12 +549,13 @@ export default {
         let pos = bmCommon.getMousePosition(e);
         let { x = "", y = "" } = pos || {};
         let contextMenuBox = this.$refs.contextMenuBox;
-        let { offsetHeight = 0 } = contextMenuBox || {};
+        let { offsetHeight = 0, offsetWidth = 0 } = contextMenuBox || {};
         let { innerHeight = 0 } = window;
-        y = y > innerHeight - offsetHeight ? innerHeight - offsetHeight : y;
+        y = y > innerHeight - offsetHeight + 5 ? innerHeight - offsetHeight : y;
+        x = x > innerWidth - offsetWidth + 5 ? innerWidth - offsetWidth : x;
         this.contextMenuStyle = {
-          left: x + "px",
-          top: y + "px"
+          left: x - 5 + "px",
+          top: y - 5 + "px"
         };
       });
     },
@@ -550,8 +606,8 @@ export default {
         }
       } else {
         this.showContextMenuType = 2;
-        let { activeCom = {} } = this;
-        activeCom.showCoverStatus = true;
+        // let { activeCom = {} } = this;
+        // activeCom.showCoverStatus = true;
         // 取消选中组件
         this.selectComAction(id);
         this.selectComsAction(id);
@@ -573,19 +629,40 @@ export default {
       ctrlKey = ctrlKey || metaKey; //(ctrl(cmd))
       e.stopPropagation();
       bmCommon.log("index keydow", e);
-      let { activeCom = {}, activeComs = [] } = this;
+      let { activeCom = {}, activeComs = [], widgetList = [] } = this;
       let { length = 0 } = activeComs || [];
       let { type = "", id = "", locked = false } = activeCom || {};
       if (keyCode == 83) {
-        // ctrl+S
+        // ctrl+S  保存
         if (ctrlKey) {
           e.preventDefault();
-          $vm.$emit("save")
+          $vm.$emit("save");
+        }
+        return;
+      } else if (keyCode == 65) {
+        // ctrl+a 全选
+        if (ctrlKey) {
+          e.preventDefault();
+          this.setActiveComs(bmCommon.clone(widgetList));
+        }
+        return;
+      } else if (keyCode == 189) {
+        // ctrl+- 缩小
+        if (ctrlKey) {
+          e.preventDefault();
+          this.zoomEvent(-10);
+        }
+        return;
+      } else if (keyCode == 187) {
+        // ctrl++放大
+        if (ctrlKey) {
+          e.preventDefault();
+          this.zoomEvent(10);
         }
         return;
       }
       if (length < 2) {
-        if ((type == "canvas" || !id)) {
+        if (type == "canvas" || !id) {
           //如果选中的是画布或未选中组件则直接返回
           return;
         }
@@ -695,7 +772,7 @@ export default {
         if (ctrlKey && shiftKey) {
           this.lockEvent(!locked);
         }
-      }  else if (keyCode == 46) {
+      } else if (keyCode == 46) {
         // Delete
         this.deleteEvent();
       }
@@ -924,6 +1001,68 @@ export default {
           this.setOrganizeList(value || []);
           callback && callback(value || []);
           bmCommon.error("获取数据失败=>orgStrucListByLevel", err);
+        });
+    },
+    // 获取设备信息
+    commonGetDeviceFunc(deviceId, callback) {
+      let value = {};
+      if (!deviceId) {
+        callback && callback(value || {});
+        return;
+      }
+      this.commonGetDeviceAction({ deviceId })
+        .then(({ data }) => {
+          let { code = "", result = {}, message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || {};
+          } else {
+            bmCommon.error(message);
+          }
+          callback && callback(value || {});
+        })
+        .catch(err => {
+          callback && callback(value || {});
+          bmCommon.error("获取数据失败=>commonGetDevice", err);
+        });
+    },
+    // 获取设备点位信息
+    commonDevicePointHstDataFunc(params, callback) {
+      let value = {};
+      // let { condition, deviceInfo = {} } = this;
+      let { deviceId = "", point = "" } = params || {};
+      if (!deviceId) {
+        callback && callback(value || {});
+        return;
+      }
+      if (!point) {
+        callback && callback(value || {});
+        return;
+      }
+      // let { point = "" } = condition;
+      // let startTime = this.$moment().format("YYYY-MM-DD 00:00:00");
+      // let endTime = this.$moment().format("YYYY-MM-DD HH:mm:ss");
+      // this.dataLoadingStatus = true;
+      this.commonDevicePointHstDataAction(
+        params
+        // deviceId,
+        // point,
+        // startTime,
+        // endTime
+      )
+        .then(({ data }) => {
+          let { code = "", result = {}, message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || {};
+          } else {
+            bmCommon.error(message);
+          }
+          // this.dataLoadingStatus = false;
+          callback && callback(value || {});
+        })
+        .catch(err => {
+          // this.dataLoadingStatus = false;
+          callback && callback(value || {});
+          bmCommon.error("获取数据失败=>commonDevicePointHstData", err);
         });
     }
   },
