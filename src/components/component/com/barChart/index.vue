@@ -8,7 +8,7 @@
             deviceInfo.points.length > 0 &&
             showType == 'edit'
         "
-        v-model="condition.point"
+        v-model="info.bindData.devicePoint"
         placeholder="请选择设备点位"
         filterable
         @change="selectPointEvent"
@@ -171,19 +171,97 @@ export default {
     ...mapMutations({}),
     ...mapActions({}),
     init() {
-      this.loadChartOptions();
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { deviceId = "" } = bindData || {};
+      // condition.deviceId=deviceId
+      // condition.devicePoint=devicePoint
+      if (deviceId) {
+        this.loadDeviceInfo();
+      } else {
+        this.loadChartOptions();
+      }
     },
-    loadChartOptions() {
+    selectPointEvent() {
+      this.loadPointData();
+    },
+    loadDeviceInfo() {
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { deviceId = "", devicePoint = "" } = bindData || {};
+      $vm.$emit("device", {
+        deviceId,
+        callback: (device = {}) => {
+          this.deviceInfo = device || {};
+          // let { condition } = this;
+          if (!devicePoint) {
+            let { points = [] } = device || {};
+            let [point = {}] = points || [];
+            let { id = "" } = point || {};
+            info.bindData.devicePoint = id;
+          }
+          this.loadPointData();
+        }
+      });
+      // this.commonGetDeviceFunc(deviceId, (device = {}) => {
+      //   this.deviceInfo = device || {};
+      //   let { condition } = this;
+      //   let { points = [] } = device || {};
+      //   let [point = {}] = points || [];
+      //   let { id = "" } = point || {};
+      //   condition.point = id;
+      //   this.loadPointData();
+      // });
+    },
+    loadPointData() {
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { deviceId = "", devicePoint: point = "" } = bindData || {};
+      let startTime = this.$moment().format("YYYY-MM-DD 00:00:00");
+      let endTime = this.$moment().format("YYYY-MM-DD HH:mm:ss");
+      $vm.$emit("device-point-hst-data", {
+        point,
+        startTime,
+        endTime,
+        deviceId,
+        callback: data => {
+          this.loadChartOptions(data);
+        }
+      });
+      // this.commonDevicePointHstDataFunc(data => {
+      //   this.loadChartOptions(data);
+      // });
+    },
+    loadChartOptions(data) {
       let times = [];
       let values = [];
-      for (let i = 0; i < 12; i++) {
-        times.push(
-          this.$moment()
-            .subtract(i, "d")
-            .format("YYYY-MM-DD")
-        );
-        values.push(parseInt(Math.random() * 1000));
+      let name = this.$lang("用量");
+      if (data) {
+        let { dataList = [], name: _name = "" } = data || {};
+        dataList.forEach(item => {
+          let { time = "", value = "" } = item || {};
+          times.push(time);
+          values.push(Number(value));
+        });
+        name = _name;
+      } else {
+        for (let i = 0; i < 12; i++) {
+          times.push(
+            this.$moment()
+              .subtract(i, "d")
+              .format("YYYY-MM-DD")
+          );
+          values.push(parseInt(Math.random() * 1000));
+        }
       }
+      // for (let i = 0; i < 12; i++) {
+      //   times.push(
+      //     this.$moment()
+      //       .subtract(i, "d")
+      //       .format("YYYY-MM-DD")
+      //   );
+      //   values.push(parseInt(Math.random() * 1000));
+      // }
       this.chartOptions = {
         xAxis: {
           type: "category",
@@ -205,6 +283,7 @@ export default {
         },
         series: [
           {
+            name,
             data: values,
             type: "bar"
           }
@@ -219,6 +298,16 @@ export default {
     //     .trim();
     //   info.name = name;
     // }
+  },
+  watch: {
+    "info.bindData"(newVal, oldVal) {
+      if (newVal && oldVal && newVal.deviceId != oldVal.deviceId) {
+        let { deviceId = "" } = newVal || {};
+        if (deviceId) {
+          this.loadDeviceInfo(deviceId);
+        }
+      }
+    }
   }
 };
 </script>

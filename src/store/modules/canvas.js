@@ -616,6 +616,7 @@ export default {
         activeCom = {},
         activeComs = []
       } = state;
+      activeCom.showCoverStatus = true;
       if (!id) {
         activeCom = canvas;
         context.commit("setActiveCom", activeCom);
@@ -625,11 +626,10 @@ export default {
           //如果未找到当前组件 在已选组件中 说明选择新组件  清除多选组件
           context.commit("setActiveComs", []);
         }
-        // activeCom.showCoverStatus = true;
         activeCom = widgetList.find(item => item.id == id);
         let { length = 0 } = activeComs || [];
         if (length < 2) {
-          // activeCom.showCoverStatus = true;
+          activeCom.showCoverStatus = true;
           context.commit("setActiveCom", activeCom);
         }
       }
