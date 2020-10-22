@@ -11,7 +11,7 @@
     :style="boxStyle"
     :class="animate ? `animated ${animate}` : ''"
   >
-    <div class="info" v-if="showType == 'edit' && !moving">
+    <div class="info" v-show="showType == 'edit' && !moving">
       <p class="txt">
         {{ info.name }}
         <!-- {{info.showCoverStatus}} -->
@@ -23,8 +23,8 @@
       v-show="info.showCoverStatus && showType == 'edit'"
       @dblclick.prevent.stop="coverEvent"
     >
-    {{info.showCoverStatus}}
-      <!-- ----------- =-====={{ !moving }} --{{ rotating }}--==={{ showRotateStatus }} -->
+      <!-- ----------- =-====={{ !moving }} --{{ rotating }}--
+      {{ !moving || rotating }}==={{ showRotateStatus }} -->
     </div>
     <!-- ((!moving && info.rotateable) || rotating) &&
           !info.locked &&

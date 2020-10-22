@@ -3,7 +3,7 @@ export default {
   methods: {
     initMoveEvent(e) {
       e.stopPropagation();
-      e.preventDefault();
+      // e.preventDefault();
       let { activeCom = {} } = this;
       // var activeCom = this.$vpd.state.activeElement
       let pos = bmCommon.getMousePosition(e);
@@ -15,17 +15,10 @@ export default {
       //   originX: activeCom.left,
       //   originY: activeCom.top
       // })
-      let {
-        left,
-        top,
-        width,
-        height,
-        // editable = false,
-        // showCoverStatus = true
-      } = activeCom || {};
-      // if (!editable && !showCoverStatus) {
-      //   e.preventDefault();
-      // }
+      let { left, top, width, height, editable = false } = activeCom || {};
+      if (!editable) {
+        e.preventDefault();
+      }
       this.initMove({
         startX: x,
         startY: y,
@@ -36,14 +29,21 @@ export default {
       });
 
       // 绑定鼠标移动事件
+      // document.addEventListener('mousemove', this.mousemoveEvent, true)
       $(document).on("mousemove", this.mousemoveEvent);
-      // 取消鼠标移动事件
       $(document).on("mouseup", this.mouseupEvent);
+
+      // 取消鼠标移动事件
+      // document.addEventListener('mouseup', this.mouseupEvent, true)
     },
 
     mousemoveEvent(e) {
       e.stopPropagation();
-      e.preventDefault();
+      // e.preventDefault();
+      // this.$vpd.commit('move', {
+      //   x: e.pageX,
+      //   y: e.pageY
+      // })
 
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
