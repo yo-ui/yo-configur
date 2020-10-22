@@ -308,6 +308,10 @@ export default {
       // var target = state.activeCom;
       var dx = x - startX;
       var dy = y - startY;
+      // bmCommon.error(dx, dy);
+      if (!(dx > 1 || dy > 1)) {
+        return;
+      }
       // var left = state.originX + Math.floor((dx * 100) / state.zoom);
       // var top = state.originY + Math.floor((dy * 100) / state.zoom);
       let { length = 0 } = activeComs || [];
@@ -682,7 +686,7 @@ export default {
         time,
         img,
         type: "auto", //自动记录
-        widgetList
+        widgetList: bmCommon.clone(widgetList)
       });
       context.commit("setRecordList", recordList);
     },

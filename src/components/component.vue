@@ -20,7 +20,7 @@
     </div>
     <div
       class="cover"
-      v-if="info.showCoverStatus && showType == 'edit'"
+      v-show="info.showCoverStatus && showType == 'edit'"
       @dblclick.prevent.stop="coverEvent"
     >
     {{info.showCoverStatus}}

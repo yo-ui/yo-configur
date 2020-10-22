@@ -578,12 +578,17 @@ export default {
         this.showContextMenuType = 1;
         // 绑定移动事件：只有从属于 page 的，除背景图以外的元件才能移动
         // let [item = {}] = activeComs || [];
+        let { activeCom: _activeCom = {} } = this;
+        let { id: _id = "" } = _activeCom || {};
         //如果 shift ctrl 被按住则进行 多选和取消选择
         if (shiftKey || ctrlKey) {
           // let { locked = false } = activeCom || {};
           this.selectComsAction(id); //选中组件
         } else {
-          this.selectComAction(id); //选中组件
+          if (id != _id) {
+            // 如果是已经选中了则不做处理
+            this.selectComAction(id); //选中组件
+          }
         }
         let {
           activeComs = [],
@@ -606,8 +611,8 @@ export default {
         }
       } else {
         this.showContextMenuType = 2;
-        // let { activeCom = {} } = this;
-        // activeCom.showCoverStatus = true;
+        let { activeCom = {} } = this;
+        activeCom.showCoverStatus = true;
         // 取消选中组件
         this.selectComAction(id);
         this.selectComsAction(id);
