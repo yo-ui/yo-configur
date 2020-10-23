@@ -7,7 +7,7 @@ import View from './View';
 import Edit from './Edit';
 
 $(document).ready(function() {
-    let config = getConfig();
+    let config = getConfig()
     if(config.debug) {
       content(1);
     }else {

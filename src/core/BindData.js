@@ -6,7 +6,7 @@ class BindData {
 
   constructor(stage) {
     this.stage = stage;
-    this.bindData = {orgId:'',deviceId:''}
+    this.bindData = {deviceId:''}
     this.property;
     this.points = [];
   }
@@ -27,9 +27,9 @@ class BindData {
       that.bindData = that.property.config.bindData;
       let content = $(`<div>
                         <div style="display: flex;margin: 10px 0px;height: 32px">
-                          <div class="bm-tabs-group" style="width: 100px"><span class="active">设备</span><span>组织</span></div>
-                          <input type="text" class="device-s-input form-control" placeholder="请输入设备名称" style="flex: 1;" />
-                          <div class="organiz-panel bm-select-panel" style="z-index: 4;flex: 1;display: none">
+                          <div class="bm-tabs-group bm-tabs-group--lg" style="width: 140px"><span class="active">设备</span><span>组织</span></div>
+                          <input type="search" class="device-s-input form-control form-control--lg" placeholder="请输入设备名称" style="flex: 1;" />
+                          <div class="organiz-panel bm-select-panel bm-select-panel--lg" style="z-index: 4;flex: 1;display: none">
                            <span class="select">
                              <span class="text">请选择组织</span>
                              <i class="icon fa fa-down"></i>
@@ -39,12 +39,12 @@ class BindData {
                            </div>
                           </div>
                         </div>   
-                        <div class="device-list" style="padding: 5px;border: 1px solid #ddd;height: 100px;max-height: 300px;overflow: auto">
-                          <ul class="bm-action-list"></ul>
+                        <div class="device-list" style="padding: 5px;border: 1px solid #ddd;height: 100px;height: 300px;overflow: auto">
+                          <ul class="bm-action-list bm-action-list--lg"></ul>
                         </div>                                     
                       </div>`);
       that.panel = new Panel(this.stage);
-      that.panel.init("绑定数据",content,500);
+      that.panel.init("绑定数据",content,700);
       that.panel.confirm(function () {
         that.property.config.bindData = that.bindData;
       })
@@ -98,8 +98,8 @@ class BindData {
     let that = this;
     that.stage.option.organizList(function(dataList) {
       if(dataList.length>0) {
-        if(!that.bindData.orgId) {
-          that.bindData.orgId = dataList[0].id;
+        if(!that.orgId) {
+          that.orgId = dataList[0].id;
         }
         that.organizs = dataList;
         that.createOrganiz();
@@ -118,7 +118,7 @@ class BindData {
       li.attr('title', data.name);
       li.text(data.name);
       li.css({'padding-left': (data.level*20+5)+"px"});
-      if(that.bindData.orgId == data.id) {
+      if(that.orgId == data.id) {
         $('.organiz-panel').find('.text').text(data.name);
         li.addClass('active')
       }
@@ -130,7 +130,7 @@ class BindData {
         $(this).parent().parent().hide();
         let id = $(this).data('id');
         let name = $(this).attr('title');
-        that.bindData.orgId = id;
+        that.orgId = id;
         $('.organiz-panel').find('.text').text(name);
         that.dList();
       });
@@ -141,7 +141,7 @@ class BindData {
   //设备列表
   dList() {
     let that = this;
-    let id = that.bindData.orgId;
+    let id = that.orgId;
     if(id) {
       that.stage.option.devicePoints(id,function(deviceList) {
         that.deviceList = deviceList;

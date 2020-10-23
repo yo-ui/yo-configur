@@ -1,7 +1,6 @@
 #root {
   width: 100%;
   height: 100%;
-  background-color: #B5B7B6;
   overflow: auto;
 }
 .bm-stage {
@@ -210,20 +209,31 @@
 .bm-area {
   position: relative;
   border: 1px inset #dcdee0;
-  margin: 20px 5px;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 .bm-area > span {
   position: absolute;
-  top: -8px;
+  top: -6px;
   background-color: #fff;
   margin-left: 10px;
   padding: 0 5px;
-  font-weight: bold;
-  font-size: 15px;
 }
 .bm-area > div {
-  padding: 10px;
-  height: 38px;
+  padding: 15px 10px 10px 10px;
+}
+.bm-area > div > span {
+  vertical-align: top;
+  margin-right: 10px;
+}
+.bm-area > div > .bm-area-line {
+  line-height: 32px;
+}
+.bm-area > div > .bm-area-line > span {
+  margin-right: 10px;
+}
+.bm-area > div > .bm-area-line input {
+  width: 80px;
 }
 .bm-help {
   position: fixed;
@@ -231,7 +241,12 @@
   left: 10px;
   color: #fff;
   font-size: 20px;
+  font-weight: bold;
   cursor: pointer;
+  color: #000;
+}
+.bm-help:hover {
+  color: #108cee;
 }
 .bm-style {
   display: flex;
@@ -429,6 +444,172 @@
   margin-top: -4px;
   font-size: 20px;
 }
-.bm-add-minus > i:hover {
-  color: #12a3ff;
+.bm-add-minus:hover {
+  color: #108cee;
+}
+.bm-data-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.bm-data-view > .shade {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000;
+  opacity: 0.5;
+  z-index: 1;
+}
+.bm-data-view > .body {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -200px;
+  margin-top: -65px;
+  width: 400px;
+  height: 130px;
+  background-color: #fff;
+  border-radius: 2px;
+  z-index: 2;
+}
+.bm-data-view > .body > .header {
+  line-height: 30px;
+  border-bottom: 1px solid #ddd;
+  height: 30px;
+  padding-left: 10px;
+  font-size: 15px;
+}
+.bm-data-view > .body > .header i {
+  float: right;
+  margin-top: 10px;
+  width: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+.bm-data-view > .body > .header i:hover {
+  color: #ee0a24;
+}
+.bm-data-view > .body > .content {
+  padding: 10px;
+}
+.bm-data-view > .body > .content > span {
+  vertical-align: middle;
+}
+.bm-data-view > .body > .floor {
+  line-height: 40px;
+  text-align: right;
+  padding: 0 10px;
+  border-top: 1px solid #ddd;
+}
+.bm-data-view > .body > .floor > span {
+  width: 70px;
+}
+.bm-breakpoint {
+  display: inline-block;
+  width: 80px;
+  padding: 5px 9px;
+}
+.bm-breakpoint > input {
+  width: 80px;
+  margin-bottom: 5px;
+}
+.bm-data-source {
+  display: flex;
+  height: 100%;
+}
+.bm-data-source > .left {
+  width: 240px;
+  height: 100%;
+  border-right: 1px solid #ddd;
+  padding-right: 10px;
+  overflow: auto;
+}
+.bm-data-source > .right {
+  flex: 1;
+  padding-left: 10px;
+  height: 100%;
+  position: relative;
+}
+.bm-data-source--header {
+  line-height: 37px;
+  width: 100%;
+  font-size: 18px;
+  border-bottom: 1px solid #ddd;
+}
+.bm-data-source--content {
+  padding: 5px;
+}
+.bm-data-source--floor {
+  position: absolute;
+  bottom: 0px;
+  line-height: 50px;
+  border-top: 1px solid #ddd;
+  width: calc(100% - 30px);
+  padding: 10px;
+}
+.bm-data-source--floor > span {
+  width: 80px;
+}
+.bm-input-text {
+  display: flex;
+  margin-bottom: 20px;
+}
+.bm-input-text input,
+.bm-input-text select {
+  flex: 1;
+}
+.bm-input-text > .text {
+  line-height: 32px;
+  vertical-align: middle;
+  width: 60px;
+  text-align: left;
+}
+.bm-input-text > .label {
+  flex: 1;
+  line-height: 32px;
+  vertical-align: middle;
+  text-align: left;
+  font-weight: bold;
+  font-size: 14px;
+}
+.bm-input-text > .icon {
+  line-height: 32px;
+  vertical-align: middle;
+  width: 60px;
+  text-align: right;
+  cursor: pointer;
+  color: #108cee;
+}
+.bm-input-text > .icon > i {
+  font-size: 14px;
+}
+.bm-input-text > .icon:hover {
+  opacity: 0.8;
+}
+.flicker {
+  -webkit-animation: twinkling 1s infinite ease-in-out;
+  animation: twinkling 1s infinite ease-in-out;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes twinkling {
+  0% {
+    opacity: 0.1;
+    filter: alpha(opacity=10);
+    -webkit-transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    -webkit-transform: scale(1.12);
+  }
+  100% {
+    opacity: 0.1;
+    filter: alpha(opacity=10);
+    -webkit-transform: scale(1);
+  }
 }

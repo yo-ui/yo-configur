@@ -26,7 +26,7 @@ class Keydown {
         }else if(e.ctrlKey&&e.keyCode==65) {//ctrl+a 动画
           stage.toolbar.animation();
           e.preventDefault();
-        }else if(e.ctrlKey&&e.keyCode==87) {//ctrl+w 选中舞台
+        }else if(e.ctrlKey&&e.keyCode==81) {//ctrl+w 选中舞台
           stage.triggerClick();
           e.preventDefault();
         }else if(e.ctrlKey&&e.keyCode==67) {//ctrl+c 复制
@@ -70,6 +70,7 @@ class Keydown {
           stage.paw.down();
           e.preventDefault();
         }
+
       }
 		})
 	}

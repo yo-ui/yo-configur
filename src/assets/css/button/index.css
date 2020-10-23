@@ -48,8 +48,8 @@
 }
 .bm-button--info {
   color: #fff;
-  background-color: #12a3ff;
-  border: 1px solid #12a3ff;
+  background-color: #108cee;
+  border: 1px solid #108cee;
 }
 .bm-button--danger {
   color: #fff;
@@ -68,7 +68,7 @@
   color: #07c160;
 }
 .bm-button--plain.van-button--info {
-  color: #12a3ff;
+  color: #108cee;
 }
 .bm-button--plain.van-button--danger {
   color: #ee0a24;

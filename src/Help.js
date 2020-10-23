@@ -1,4 +1,4 @@
-
+import Panel from './core/Panel'
 /**
  *
  */
@@ -9,8 +9,9 @@ class Help {
   }
 
   init() {
-    this.stage.panel.init("关于组态",Help.template(),600,600)
-    this.stage.panel.show();
+    let panel = new Panel(this.stage);
+    panel.init("关于组态",Help.template(),700,500)
+    panel.show();
   }
 
   static template() {

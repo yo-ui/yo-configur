@@ -78,17 +78,16 @@ class Display extends Spirit {
 		return super.template().html(content);
 	}
 
-  initialize(ids) {
+  initialize() {
 	  let that = this;
-    this.stage.option.deviceList(ids,function(dataList) {
-      console.log(dataList);
-      dataList.forEach(function(device) {
-        let deviceId = that.config.bindData.deviceId;
+    let deviceId = that.config.bindData.deviceId
+    if(deviceId) {
+      that.stage.option.getDevice(deviceId,function (device) {
         if(deviceId==device.id) {
           that.reveal(device);
         }
-      })
-    })
+      });
+    }
   }
 
 	//
@@ -96,24 +95,29 @@ class Display extends Spirit {
     let that = this;
     if(device) {
       device.points.forEach(function(point) {
-        that.config.animations.forEach(function (animation) {
-          if(animation.type==91) {
-            let expr = animation.expr;
-            if(expr==point.id) {
-              $('#'+that.id).find('.value').text(parseFloat(point.value));
-              $('#'+that.id).find('.unit').text(point.unit);
-              $('#temp_value').html($('#'+that.id).find('div').html());
-              let width = $('#temp_value').width()
-              $('#'+that.id).find('svg').css({width: width/0.75+"px"});
-              $('#'+that.id).find('div').css({left: width*0.12+"px",width: width/0.98+"px"});
-            }
-          }
-        })
+        if(that.isAnimation) {
+          let data = {}
+          data.key = point.id;
+          data.value = point.value;
+          data.unit = point.unit;
+          that.dynamic(data);
+        }
       })
     }
 	}
 
-	//
+  valueDisplay(animation,data) {
+	  let that = this;
+    if(animation.type==91) {
+      $('#'+that.id).find('.value').text(parseFloat(data.value));
+      $('#'+that.id).find('.unit').text(data.unit);
+      $('#temp_value').html($('#'+that.id).find('div').html());
+      let width = $('#temp_value').width()
+      $('#'+that.id).find('svg').css({width: width/0.75+"px"});
+      $('#'+that.id).find('div').css({left: width*0.12+"px",width: width/0.98+"px"});
+    }
+  }
+
 	toJson() {
 		let json = {
 			className: this.className,

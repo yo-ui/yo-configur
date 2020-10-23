@@ -2,7 +2,7 @@
   display: inline-block;
   width: 40px;
   height: 100%;
-  background-color: #002C2F;
+  background-color: #e2e5ec;
   font-size: 12px;
   text-align: center;
 }
@@ -11,15 +11,14 @@
   padding: 20px 10px;
   text-align: center;
   cursor: pointer;
-  color: #999ea8;
 }
 .bm-side > li > p {
   margin-top: 5px;
 }
 .bm-side > li.active {
-  background-color: #1E646E;
+  background-color: #108cee;
   color: #fff;
 }
 .bm-side > li:not(.active):hover {
-  color: #fff;
+  color: #108cee;
 }

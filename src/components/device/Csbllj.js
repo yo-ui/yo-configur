@@ -17,12 +17,26 @@ class Csbllj extends Spirit {
 	    this.linkage = true;
       this.isLinkPoint = true;
 	    this.zIndex = 3;
-	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
+      this.isAnimation = true;
+      this.config = {
+        bindData: {deviceId: ''},
+        animations: [
+          {type: 51, text: '大小->宽度', expr: '', maxWidth: 100, minWidth: 0,site: 2},
+          {type: 52, text: '大小->高度', expr: '', maxHeight: 100, minHeight: 0,site: 2},
+          {type: 61, text: '位置->水平', expr: '', left: 0, right: 100},
+          {type: 62, text: '位置->垂直', expr: '', top: 0, bottom: 100},
+          {
+            type: 81,
+            text: '可见性',
+            expr: '',
+            value: 1
+          }]
+      }
 	}
 
 	template(){
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
-		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
+		        <svg class="canvas" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
 					 viewBox="0 0 52 78" style="enable-background:new 0 0 52 78;" xml:space="preserve">
 				<style type="text/css">
 					.csbllj-st0{fill:url(#csbllj_2_);}
@@ -111,6 +125,38 @@ class Csbllj extends Spirit {
 				</svg>
 			</div>`);
 	}
+
+  initialize() {
+    let that = this;
+    this.stage.variableList.forEach(function (variable) {
+      let data = {}
+      data.key = variable.key;
+      data.value = variable.value;
+      that.dynamic(data);
+    })
+    let deviceId = that.config.bindData.deviceId
+    if(deviceId) {
+      that.stage.option.getDevice(deviceId,function (device) {
+        if(deviceId==device.id) {
+          that.reveal(device);
+        }
+      });
+    }
+  }
+
+  reveal(device) {
+    let that = this;
+    if(device) {
+      device.points.forEach(function(point) {
+        if(that.isAnimation) {
+          let data = {}
+          data.key = point.id;
+          data.value = point.value;
+          that.dynamic(data);
+        }
+      })
+    }
+  }
 
 	toJson() {
 		let json = {

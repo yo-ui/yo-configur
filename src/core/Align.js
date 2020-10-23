@@ -120,7 +120,7 @@ class Align {
       let top = this.stage.property.y;
       $('#'+property.id).find(".fa-lock").remove();
       $('#'+property.id).css({left,top,border:'none'})
-      $('#'+property.id).trigger('contextmenu');
+      $('#'+property.id).trigger('click');
       if(property.className=="Map") {
         $('#'+property.id).find('.images-shade').show();
       }

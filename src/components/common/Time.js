@@ -18,7 +18,7 @@ class Time extends Spirit {
 	    this.zIndex = 2;
         this.config = {
 	        bindData: {orgId: '', deviceId: '', devicePoint: ''},type: 1,
-	        font: {size: 15,color: '#000000'}
+	        font: {size: 15,color: '#108cee'}
 	    }
 	}
 
@@ -26,7 +26,7 @@ class Time extends Spirit {
 		let html = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">		                
                   <div style="
                     height: ${this.height}px;
-                    width: ${this.width}px;
+                    width: ${this.width+1}px;
                     user-select: none;
                     "><span style="font-size: ${this.config.font.size}px;"></span>           
                   </div>	
@@ -133,7 +133,7 @@ class Time extends Spirit {
 	renderer() {
 	    let that = this;
 	    super.renderer();
-	    let html = $(`<div class="bm-tree">字体</div>   
+	    let html = $(`<div class="bm-tree"><i class="fa fa-down"></i>&nbsp;字体</div>   
 	                  <div class="bm-style">
 	                    <div class="text">格式：</div>	
 	                    <div class="value">

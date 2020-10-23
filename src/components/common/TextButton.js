@@ -16,18 +16,15 @@ class TextButton extends Spirit {
 	    this.moveType = 0;
 	    this.linkage = false;
 	    this.isMove = true;
-        this.isBind = true;
 	    this.zIndex = 2;
 	    this.isAnimation = true;
-        this.config = {
+	    this.config = {
         bindData: {deviceId: ''},
         font:{text: '文本',size: 11,color: '#fff'},
-        background: {color: '#0075E7',radius: 5},
+        background: {color: '#108cee',radius: 5},
         padding: {left: 5,top: 0,right: 5,bottom: 0},
         animations: [{type: 16,text: '触发按钮->离散',expr: '',value: 1},
-                     {type: 18,text: '触发按钮->显示',ids: []},
-                     {type: 19,text: '触发按钮->隐藏',ids: []},
-                     {type: 20,text: '触发按钮->组合',ids: [],color:''}]
+                       /**{type: 20,text: '触发按钮->分组',color:'#f5f5f5'}**/]
       }
       this.isGroup = true;
 	}
@@ -55,7 +52,7 @@ class TextButton extends Spirit {
 
   refresh() {
     $('#'+this.id).find('span').text(this.config.font.text);
-    $('#'+this.id).css(
+    $('#'+this.id).find('span').css(
       {'font-size': this.config.font.size+"px"},
       {'color': this.config.font.color},
       {'border-radius': this.config.background.radius+"px"},
@@ -81,50 +78,59 @@ class TextButton extends Spirit {
 	      animations.forEach(function (animation) {
 	        if(animation.type==16) {
 	          that.motion(animation);
-	        } else if(animation.type==18) {
-	          that.show(animation.ids);
-	        }else if(animation.type==19) {
-	          that.hide(animation.ids);
-	        }
+	        }else if(animation.type==20) {
+            let variable = that.stage.getVariable(animation.expr);
+	          that.group(variable,animation.color)
+          }
 	      })
 	  })
   }
 
+  group(variable,color) {
+	  let that = this;
+	  if(variable) {
+      if(variable.value==0) {
+        $('#'+this.id).find('span').css({'background-color': color})
+      }else {
+        $('#'+this.id).find('span').css(
+          {'background-color': this.config.background.color},
+        )
+      }
+      let data = Object.assign({}, variable);
+      data.value = 1;
+      this.stage.capacity.forEach(function (c) {
+        if(that.id!=c.id&&c.className=="TextButton") {
+          that.config.animations.forEach(function (animation) {
+            if(animation.type==20) {
+              if(data.value==0) {
+                $('#'+c.id).find('span').css({'background-color': animation.color})
+              }else {
+                $('#'+c.id).find('span').css(
+                  {'background-color': c.config.background.color},
+                )
+              }
+            }
+          })
+        }
+      })
+    }
+  }
+
   motion(animation) {
   	let that = this;
-  	if(animation.value==1) {
-  		let variable = that.stage.getVariable(animation.expr);
-
-  	}else if(animation.value==2) {
-  		let variable = that.stage.getVariable(animation.expr);
-  		let data = Object.assign({}, variable);
-  		data.value = variable.value==0?1:0;
-
-  	}else if(animation.value==3) {
-  		let data = that.stage.getVariable(animation.expr);
-  		data.value = data.value==0?1:0;
-
-  	}
-  }
-
-  show(ids) {
-    this.stage.capacity.forEach(function(data) {
-      ids.forEach(function(id) {
-        if(id==data.id) {
-          data.show();
-        }
-      })
-    })
-  }
-
-  hide(ids) {
-    this.stage.capacity.forEach(function(data) {
-      ids.forEach(function(id) {
-        if(id==data.id) {
-          data.hide();
-        }
-      })
-    })
+    let variable = that.stage.getVariable(animation.expr);
+    if(variable) {
+      if(animation.value==1) {
+        that.stage.variableChange(that.id,variable.key,variable.value);
+      }else if(animation.value==2) {
+        let data = Object.assign({}, variable);
+        data.value = variable.value==0?1:0;
+        that.stage.variableChange(that.id,data.key,data.value);
+      }else if(animation.value==3) {
+        variable.value = variable.value==0?1:0;
+        that.stage.variableChange(that.id,variable.key,variable.value);
+      }
+    }
   }
 
   renderer() {

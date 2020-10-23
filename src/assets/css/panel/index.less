@@ -54,7 +54,7 @@
   }
 
   &__close:hover {
-    color: @blue;
+    color: @red;
   }
 
   &__content {
@@ -179,12 +179,11 @@
       flex: 1;
       padding-right: 50px;
       padding-left: 5px;
-      line-height: 30px;
     }
 
     & > .icon {
-      line-height: 30px;
       width: 15px;
+      line-height: 32px;
     }
   }
 
@@ -230,16 +229,32 @@
   }
 }
 
+.bm-select-panel--lg {
+  & > span {
+    line-height: 36px;
+
+    & > .icon {
+      line-height: 36px;
+    }
+  }
+
+  & > div {
+    margin-top: 9px;
+
+    & > ul > li {
+      line-height: 30px;
+    }
+  }
+}
+
 /**输入下拉面板**/
 .bm-input-panel {
   display: inline-block;
   position: relative;
-  margin-bottom: 5px;
   width: 100%;
 
-  & > span {
+  & > .form {
     display: flex;
-    border: 1px solid #ddd;
     cursor: pointer;
     user-select: none;
     line-height: 30px;
@@ -257,7 +272,19 @@
     }
   }
 
-  & > div {
+  & > .input-group {
+    width: 100%;
+    position: relative;
+
+    & > i {
+      position: absolute;
+      top: 0;
+      right: 5px;
+      line-height: 32px;
+    }
+  }
+
+  & > .panel-content {
     display: none;
     position: absolute;
     top: 28px;

@@ -15,19 +15,30 @@ class Db extends Spirit {
 	    this.minWidth = 24;
 	    this.minHeight = 24;
 		  this.zIndex = 2;
-	    this.linkage = true;
+	    this.linkage = false;
 	    this.isPanel = true;
 	    this.isBind = true;
+      this.isAnimation = true;
       this.config = {
-        bindData: {orgId:'',deviceId:'',devicePoint:''},
-        state: {expr:'SwSts',stop:0,start:1,alarm:2}
+        bindData: {deviceId: ''},
+        animations: [
+          {type: 51, text: '大小->宽度', expr: '', maxWidth: 100, minWidth: 0,site: 2},
+          {type: 52, text: '大小->高度', expr: '', maxHeight: 100, minHeight: 0,site: 2},
+          {type: 61, text: '位置->水平', expr: '', left: 0, right: 100},
+          {type: 62, text: '位置->垂直', expr: '', top: 0, bottom: 100},
+          {
+            type: 81,
+            text: '可见性',
+            expr: '',
+            value: 1
+          }]
       }
 	}
 
 	template(){
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
-		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-                 viewBox="0 0 70 69" xml:space="preserve">
+		        <svg class="canvas" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
+                 viewBox="0 0 70 69" xml:space="preserve" preserveAspectRatio="none">
               <style type="text/css">
                 .db-st0{fill:url(#db_1_);}
                 .db-st1{fill:#DFE3E8;}
@@ -94,19 +105,33 @@ class Db extends Spirit {
 		        </div>`);
 	}
 
+  initialize() {
+    let that = this;
+    this.stage.variableList.forEach(function (variable) {
+      let data = {}
+      data.key = variable.key;
+      data.value = variable.value;
+      that.dynamic(data);
+    })
+    let deviceId = that.config.bindData.deviceId
+    if(deviceId) {
+      that.stage.option.getDevice(deviceId,function (device) {
+        if(deviceId==device.id) {
+          that.reveal(device);
+        }
+      });
+    }
+  }
+
   reveal(device) {
     let that = this;
-    let state = that.config.state;
     if(device) {
       device.points.forEach(function(point) {
-        if(point.id==state.expr) {
-          if(point.value==state.alarm) {
-            that.alarm();
-          }else if(point.value==state.stop) {
-            that.stop();
-          }else if(point.value==state.start) {
-            that.start();
-          }
+        if(that.isAnimation) {
+          let data = {};
+          data.key = point.id;
+          data.value = point.value;
+          that.dynamic(data);
         }
       })
     }

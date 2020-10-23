@@ -22,11 +22,11 @@ class Images extends Spirit {
 
 	template(){
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
-		        <div class="img" style="width:${this.width}px;height:${this.height}px;">
-              <img src="${this.config.url}" style="width:100%;height: 100%"/>
-              <div class="images-shade" style="position:absolute;top:0;width:100%;height: 100%"></div>
-            </div>
-		        </div>`)
+                <div class="img" style="width:${this.width}px;height:${this.height}px;">
+                  <img src="${this.config.url}" style="width:100%;height: 100%"/>
+                  <div class="images-shade" style="position:absolute;top:0;width:100%;height: 100%"></div>
+                </div>
+               </div>`)
 	}
 
 	toJson() {
@@ -43,17 +43,17 @@ class Images extends Spirit {
 	renderer() {
 		let that = this;
 		super.renderer();
-		let html = `<div class="bm-tree">图片<div class="all" title="充满画布"><i class="fa fa-all"></i></div></div>
-                  <div class="bm-cell no-hover">
+		let html = `<div class="bm-tree"><i class="fa fa-down"></i>&nbsp;图片<div class="all" title="充满画布"><i class="fa fa-all"></i></div></div>               
+                <div class="bm-cell no-hover">
                   <div class="bm-cell__title">
                     <form id="imgBg">
                       <div class="bm-upload">
-                        <span>选择图片</span>								 
+                        <div class="primary">选择图片</div>								 
                         <input type="file" name="bg"/>								 	              
                       </div>
                     </form>		
                   </div>				     		             
-			        </div>`;
+			          </div>`;
 		$('#configur_property').append(html);
 
     $('#configur_property').find('.all').on('click',function () {

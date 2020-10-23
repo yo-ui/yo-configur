@@ -1,59 +1,215 @@
+import Panel from "../Panel"
+import Toast from "../Toast";
+import Trigger from "./Trigger";
+import Group from "./Group";
+import Fill from "./Fill";
+import Visuality from "./Visuality"
+import Flicker from "./Flicker";
+import FillRatio from "./FillRatio"
+import ValueDisplay from "./ValueDisplay"
+import Location from "./Location"
+import Size from "./Size"
+import TextColor from "./TextColor"
+
 /**
  *
  */
 class Animation {
 
-  constructor(stage) {
-    this.stage = stage;
-    this.points = [];
-    this.getDevice(stage);
+   constructor(stage) {
+     this.stage = stage;
+     this.points = [];
+     this.isShow = true;
+   }
+
+   init() {
+     let that = this;
+     let deviceId = that.stage.property.config.bindData.deviceId;
+     if(deviceId) {
+       this.points = [];
+       that.stage.option.getDevice(deviceId,function (device) {
+         device.points.forEach(function (point) {
+           let data = {}
+           data.text = point.text;
+           data.name = point.name;
+           data.key = point.id;
+           that.points.push(data);
+         })
+         that.action();
+       })
+     }else {
+       that.action();
+     }
   }
 
-  init() {
+  action() {
     let that = this;
     let content = $(`<div class="animation">
                         <div style="margin: 10px 0px">
-                          <select class="a-type bm-select" style="width: 120px"></select>
-                          <div style="width: 60px;vertical-align: middle;margin-left: 10px" class="reset bm-button bm-button--small bm-button--info">重置</div>                      
+                          <select class="animation-type bm-select bm-select-panel--lg" style="width: 150px"></select>
+                          <!--<div style="width: 60px;vertical-align: middle;margin-left: 10px" class="reset bm-button bm-button--small bm-button--info">重置</div>-->                      
                         </div>
-                        <div class="animation-content" style="padding: 5px;border: 1px solid #ddd;min-height: 40px"></div>
+                        <div class="animation-content" style="padding: 5px;border: 1px solid #ddd;">                          
+                        </div>
                       </div>`)
-    this.animations = [...that.stage.property.config.animations];
+    this.animations = JSON.parse(JSON.stringify(that.stage.property.config.animations))
     this.animations.forEach(function (animation,index) {
       let option = $(`<option>${animation.text}</option>`)
       option.val(animation.type);
-      content.find('.a-type').append(option)
+      content.find('.animation-type').append(option)
       if(index==0) {
         that.createAnimation(content,animation.type);
       }
     })
-    content.find('.a-type').on('change',function () {
+    content.find('.animation-type').on('change',function () {
+      content.find('.animation-content').html('');
       that.createAnimation(content,$(this).val());
     })
+
 
     content.find('.reset').on('click', function () {
       that.reset();
     });
 
-    that.stage.panel.init("动画链接",content,600);
-    that.stage.panel.show();
-    that.stage.panel.confirm(function () {
+    let panel = new Panel(this.stage);
+    panel.init("动画链接",content,700);
+    panel.show();
+    panel.confirm(function () {
       that.stage.property.config.animations = that.animations;
+      that.stage.property.refresh();
     })
+  }
+
+  reset() {
+     if(this.animation.type==91) {
+       this.animation.expr = "";
+       $('.animation-content').find('[name=expr]').val('');
+     } else if(this.animation.type==92) {
+       this.animation.expr = "";
+       $('.animation-content').find('[name=expr]').val('');
+     }
   }
 
   createAnimation(content,type) {
     let that = this;
-    content.find('.animation-content').html('');
     this.animation = {};
-    let animations = that.stage.property.config.animations;
+    let animations = that.animations;
     animations.forEach(function (data) {
       if(data.type==type) {
         that.animation = data;
       }
     })
-    if(type==91) {
+    if(type==16) {
+      new Trigger(this).init(content);
+    } else if(type==20) {
+      new Group(this).init(content);
+    }else if(type==31||type==32||type==33) {
+      new Fill(this).init(content);
+    }else if(type==41||type==42) {
+      new TextColor(this).init(content)
+    }else if(type==51||type==52) {
+      new Size(this).init(content)
+    }else if(type==61||type==62) {
+      new Location(this).init(content)
+    }else if(type==71||type==72) {
+      new FillRatio(this).init(content);
+    }else if(type==81) {
+      new Visuality(this).init(content);
+    }else if(type==82) {
+      new Flicker(this).init(content);
+    }else if(type==90||type==91||type==92) {
+      new ValueDisplay(this).init(content)
+    }
 
+    content.find('[name=expr]').val(this.animation.expr);
+    content.find('[name=expr]').on('click',function () {
+      let dataList = [...that.points,...that.stage.variableList]
+      if(dataList.length>0) {
+        that.createPoint(dataList);
+        $(this).parent().next().show();
+      }
+    });
+
+    content.find('[name=expr]').on('input propertyChange',function () {
+      that.animation.expr = $(this).val();
+      let dataList = [...that.points,...that.stage.variableList]
+      if(dataList.length>0) {
+        that.createPoint(dataList);
+        $(this).parent().next().show();
+      }
+    });
+
+    content.find('[name=expr]').on('blur',function () {
+      if(that.isShow) {
+        $(this).parent().next().hide();
+      }
+    });
+
+    content.find('.panel-content').on('mouseleave',function (e) {
+      $(this).hide();
+      that.isShow = true;
+    });
+
+    content.find('.panel-content').on('mousemove',function (e) {
+      that.isShow = false;
+    });
+  }
+
+  createPoint(dataList) {
+    let that = this;
+    let panel = $('.bm-input-panel');
+    panel.find('ul').html('');
+    panel.find('.panel-content').show();
+    if(dataList.length>0) {
+      dataList.forEach(function (data,index) {
+        let li = $(`<li>${data.name}(${data.key})</li>`);
+        li.data("key", data.key)
+        li.on('click',function (e) {
+          panel.find('input').val($(this).data('key'));
+          that.animation.expr = $(this).data('key')
+          panel.find('.panel-content').hide();
+          e.preventDefault();
+          e.stopPropagation();
+        })
+        panel.find('ul').append(li);
+      });
+      panel.keydown(function (e) {
+        if(e.keyCode==13) {
+          $('.bm-input-panel li').each(function () {
+            if($(this).hasClass('active')) {
+              $(this).trigger('click')
+            }
+          });
+        }else if(e.keyCode==38) {
+          let element;
+          let newIndex = 0;
+          $('.bm-input-panel li').each(function (index) {
+            if($(this).hasClass('active')) {
+              element = $(this)
+              newIndex = index;
+            }
+          });
+          if(newIndex>0) {
+            element.removeClass('active')
+            element.prev().addClass('active')
+          }
+        }else if(e.keyCode==40) {
+          let element;
+          let newIndex = 0;
+          $('.bm-input-panel li').each(function (index) {
+            if($(this).hasClass('active')) {
+              element = $(this)
+              newIndex = index;
+            }
+          });
+          if(newIndex<$('.bm-input-panel li').length-1) {
+            element.removeClass('active')
+            element.next().addClass('active')
+          }
+        }
+      })
+    }else {
+      panel.find('.panel-content').hide();
     }
   }
 
@@ -103,111 +259,6 @@ class Animation {
         that.updateAnimation(that.animation);
       })
       html.find('.bm-action-list').append(li)
-    })
-  }
-
-  createPoint(points) {
-    let that = this;
-    let panel = $('.bm-input-panel');
-    panel.find('ul').html('');
-    panel.find('.content').show();
-    if(points.length>0) {
-      points.forEach(function (point,index) {
-        let li = $(`<li>${point.name}(${point.id})</li>`);
-        li.data("point", point.id)
-        li.on('click',function () {
-          panel.find('input').val($(this).data('point'));
-          panel.find('.content').hide();
-          that.animation.expr = $(this).data('point')
-        })
-        if(index==0) {
-          li.addClass('active')
-        }
-        panel.find('ul').append(li);
-      });
-      panel.keydown(function (e) {
-        if(e.keyCode==13) {
-          $('.bm-input-panel li').each(function () {
-            if($(this).hasClass('active')) {
-              $(this).trigger('click')
-            }
-          });
-        }else if(e.keyCode==38) {
-          let element;
-          let newIndex = 0;
-          $('.bm-input-panel li').each(function (index) {
-            if($(this).hasClass('active')) {
-              element = $(this)
-              newIndex = index;
-            }
-          });
-          if(newIndex>0) {
-            element.removeClass('active')
-            element.prev().addClass('active')
-          }
-        }else if(e.keyCode==40) {
-          let element;
-          let newIndex = 0;
-          $('.bm-input-panel li').each(function (index) {
-            if($(this).hasClass('active')) {
-              element = $(this)
-              newIndex = index;
-            }
-          });
-          if(newIndex<$('.bm-input-panel li').length-1) {
-            element.removeClass('active')
-            element.next().addClass('active')
-          }
-        }
-      })
-    }else {
-      panel.find('.content').hide();
-    }
-  }
-
-  createState(html) {
-    let that = this;
-    that.animation.states.forEach(function (state) {
-      let url = state.url;
-      if(!state.default) {
-        url = that.stage.imgHost+"/"+state.url;
-      }
-      let li = $(`<li>
-                     <span>${state.text}：</span>                
-                   </li>`);
-      if(!that.animation.isSwitch) {
-        let  input = $(`<input class="form-control" type="number" name="value" min="0" max="10" value="${state.value}" style="width: 40px">`)
-        input.on('change',function () {
-          state.value = $(this).val();
-        })
-        li.append(input);
-      }else {
-        let value = $(`<span>${state.value}</span>`)
-        li.append(value);
-      }
-      let upload = $(`<span>
-                           <form>
-                             <div class="bm-upload">
-                               <img src="${url}">
-                               <div><i class="fa fa-add" style="font-size: 20px;margin-top: -5px"></i></div>
-                               <input type="file"/>
-                             </div>
-                           </form>
-                        </span>`);
-
-      upload.find('form').on('change',function() {
-        let form = $(this)[0]
-        let file = $(this).find('input').get(0).files[0]
-        that.stage.option.upload(form,file,function(url) {
-          that.animation.default = false;
-          let imgUrl = that.stage.imgHost+"/"+url;
-          state.url = url;
-          upload.find('img').attr("src", imgUrl);
-          that.refresh();
-        })
-      });
-      li.append(upload);
-      html.find('.bm-content-list').append(li);
     })
   }
 }

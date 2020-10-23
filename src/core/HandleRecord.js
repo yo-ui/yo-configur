@@ -82,6 +82,7 @@ class HandleRecord {
 				let width = handle.data.width;
 				let height = handle.data.height;
 				let spirit = that.stage.create(className,x,y,width,height);
+        spirit.refresh();
 				that.stage.configurId = spirit.id;
 				that.stage.capacity.push(spirit)
 			}

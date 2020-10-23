@@ -1,4 +1,7 @@
-import Animation from './../core/Animation'
+import Animation from './animation/Animation'
+import Panel from "./Panel"
+import Toast from "./../core/Toast"
+import DataSource from "./../DataSource"
 
 /**
  * 工具栏
@@ -6,7 +9,11 @@ import Animation from './../core/Animation'
 class Toolbar {
 
 	constructor(stage) {
-		this.stage = stage;
+	  let that = this;
+	  this.stage = stage;
+    $('.bm-toolbar').find('.data').on('click',function () {
+      new DataSource(stage).init();
+    });
 	}
 
   contextMenu() {
@@ -25,6 +32,14 @@ class Toolbar {
             menus.push(menu);
           }else if(property.isAnimation) {
             let menu = {name:'动画链接',icon:'fa-bind',type: 15,key:'Ctrl+A'};
+            menus.push(menu);
+          }
+          if(Number(property.zIndex)<4) {
+            let menu = {name:'上一层',icon:'fa-up-story',type: 18,key:''};
+            menus.push(menu);
+          }
+          if(Number(property.zIndex)>0) {
+            let menu = {name:'下一层',icon:'fa-down-story',type: 19,key:''};
             menus.push(menu);
           }
         }else {
@@ -147,9 +162,28 @@ class Toolbar {
       case 15:that.animation();break;
       case 16:that.stage.combination();break;
       case 17:that.stage.resolve();break;
+      case 18:that.upStory();break;
+      case 19:that.downStory();break;
     }
   }
 
+  upStory() {
+    let zIndex = Number(this.stage.property.zIndex);
+    if(zIndex<4) {
+      this.stage.property.zIndex=zIndex+1;
+    }
+    $("#"+this.stage.id).css({'z-index':this.stage.property.zIndex})
+    $('.resize-panel').css({'z-index':this.stage.property.zIndex})
+  }
+
+  downStory() {
+    let zIndex = Number(this.stage.property.zIndex);
+    if(zIndex>0) {
+      this.stage.property.zIndex=zIndex-1;
+    }
+    $("#"+this.stage.id).css({'z-index':this.stage.property.zIndex})
+    $('.resize-panel').css({'z-index':this.stage.property.zIndex})
+  }
 
   animation() {
     let animation = new Animation(this.stage);

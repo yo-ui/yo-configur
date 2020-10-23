@@ -5,6 +5,7 @@ class Panel {
 
 	constructor(stage) {
 		this.stage = stage;
+		$('.bm-configur-panel').remove();
 		$('.main-content').append(Panel.template());
 		this.close();
 	}
@@ -50,6 +51,7 @@ class Panel {
 
   floorHide() {
     $('.bm-configur-panel__floor').hide();
+    $('.bm-configur-panel__content').css({height: 'calc(100% - 55px)'})
   }
 
   static template() {
@@ -58,8 +60,8 @@ class Panel {
                       <div class="bm-configur-panel__header"><span></span><div class="bm-configur-panel__close">×</div></div>
                       <div class="bm-configur-panel__content"></div>
                       <div class="bm-configur-panel__floor">
-                          <div class="close bm-button bm-button--small bm-button--default">关闭</div>
-                          <div class="confirm bm-button bm-button--small bm-button--primary">确定</div>
+                          <div class="close bm-button bm-button--small bm-button--default">取消</div>
+                          <div class="confirm bm-button bm-button--small bm-button--info">确定</div>
                       </div>
                   </div>
               </div>`;

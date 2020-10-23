@@ -285,7 +285,12 @@ class Edit {
         <div class="item unlock">
           <div><i class="fa fa-unlock"></i></div>
           <span>解锁</span>
-        </div>     
+        </div>   
+        <div class="halving"></div>  
+        <div class="item data">
+          <div><i class="fa fa-data"></i></div>
+          <span>数据</span>
+        </div> 
         <div class="item save pull-right">
           <div><i class="fa fa-save"></i></div>
           <span>保存</span>

@@ -15,7 +15,7 @@ class Flrb extends Spirit {
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 		  this.zIndex = 2;
-	    this.linkage = true;
+	    this.linkage = false;
 	    this.isPanel = true;
 	    this.isBind = true;
 	    this.isAnimation = true;
@@ -23,22 +23,39 @@ class Flrb extends Spirit {
 	    	bindData: {deviceId:''},
 	    	animations: [
 			    {type: 31,
-		    	 text: '填充->离散',
+		    	 text: '填充->状态',
 		    	 expr: 'SwSts',
 		    	 states: [
              {text:'停止',value: 0},
              {text:'开启',value: 1},
-             {text:'报警',value: 2}
 		    	 ],
 		    	 value: 0,
-		    	 category: 3}]
+		    	 category: 3},
+          {type: 33,
+            text: '填充->报警',
+            expr: '',
+            states: [
+              {text:'正常',value: 1},
+              {text:'报警',value: 0},
+            ],
+            value: 1,
+            category: 3},
+          {type: 51, text: '大小->宽度', expr: '', maxWidth: 100, minWidth: 0,site: 2},
+          {type: 52, text: '大小->高度', expr: '', maxHeight: 100, minHeight: 0,site: 2},
+          {type: 61, text: '位置->水平', expr: '', left: 0, right: 100},
+          {type: 62, text: '位置->垂直', expr: '', top: 0, bottom: 100},
+          {type: 81,
+            text: '可见性',
+            expr: '',
+            value: 1
+          }]
 	    };
 	}
 
 	template(){
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-           viewBox="0 0 400 320" style="enable-background:new 0 0 400 320;" xml:space="preserve">
+        <svg class="canvas" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
+           viewBox="0 0 400 320" style="enable-background:new 0 0 400 320;" xml:space="preserve" preserveAspectRatio="none">
         <style type="text/css">
           .flrb-st0{fill:#191919;}
           .flrb-st1{fill:url(#flrb_1_);}
@@ -926,41 +943,37 @@ class Flrb extends Spirit {
         </svg></div>`);
 	}
 
-	initialize() {
-		let that = this;
-	    let deviceId = that.config.bindData.deviceId
-	    if(deviceId) {
-	        that.stage.option.getDevice(deviceId,function (device) {
-	            if(deviceId==device.id) {
-	                that.reveal(device);
-	            }
-		    });
-	    }
-    }
-
-	reveal(device) {
+  initialize() {
     let that = this;
-    if(device) {
-        device.points.forEach(function(point) {
-            if(that.isAnimation) {
-              let key = point.id;
-                let value = point.value;
-                that.dynamic(key,value);
-            }
-        })
+    this.stage.variableList.forEach(function (variable) {
+      let data = {}
+      data.key = variable.key;
+      data.value = variable.value;
+      that.dynamic(data);
+    })
+    let deviceId = that.config.bindData.deviceId
+    if(deviceId) {
+      that.stage.option.getDevice(deviceId,function (device) {
+        if(deviceId==device.id) {
+          that.reveal(device);
+        }
+      });
     }
   }
 
-  fillDiscrete(animation,value) {
+  reveal(device) {
     let that = this;
-    animation.value = value;
-    let states = animation.states;
-    states.forEach(function (state) {
-      if(state.value==value) {
-        that.state(value)
-      }
-    })
-	}
+    if(device) {
+      device.points.forEach(function(point) {
+        if(that.isAnimation) {
+          let data = {}
+          data.key = point.id;
+          data.value = point.value;
+          that.dynamic(data);
+        }
+      })
+    }
+  }
 
 	toJson() {
 		let json = {

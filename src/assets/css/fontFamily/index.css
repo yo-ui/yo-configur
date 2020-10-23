@@ -142,3 +142,12 @@
 .fa-add:before {
   content: "\e042";
 }
+.fa-up-story:before {
+  content: "\e043";
+}
+.fa-down-story:before {
+  content: "\e044";
+}
+.fa-data:before {
+  content: "\e045";
+}

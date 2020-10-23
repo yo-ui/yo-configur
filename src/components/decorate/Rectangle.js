@@ -10,55 +10,126 @@ class Rectangle extends Spirit {
     this.className = "Rectangle";
     this.width = width;
     this.height = height;
-    this.minWidth = 5;
+    this.minWidth = 1;
     this.minHeight = 1;
     this.moveType = 4;
     this.linkage = false;
     this.isMove = true;
     this.zIndex = 1;
+    this.isBind = true;
     this.isAnimation = true;
     this.config = {
       bindData: {deviceId: ''},
       background: {color: '#0075E7'},
-      animations: [{type: 31,text: '填充颜色->离散',expr: '',on: '',off:''}]
+      animations: [
+        {type: 31,
+          text: '填充->开关',
+          expr: '',
+          states: [
+            {text:'关',value: 0,color:'#dddddd'},
+            {text:'开',value: 1,color:'#000000'}],
+          value: 0,
+          category: 1},
+        {type: 32,
+          text: '填充->模拟量',
+          expr: '',
+          states: [
+            {value: "",text:'状态1',color: '#dddddd'},
+            {value: "",text:'状态1',color: '#dddddd'},
+            {value: "",text:'状态1',color: '#dddddd'},
+            {value: "",text:'状态1',color: '#dddddd'},
+            {value: "",text:'状态1',color: '#dddddd'},
+            {value: "",text:'状态1',color: '#dddddd'},
+          ],
+          value: 1,
+          category: 1},
+        {type: 51, text: '大小->宽度', expr: '', maxWidth: 100, minWidth: 0,site: 2},
+        {type: 52, text: '大小->高度', expr: '', maxHeight: 100, minHeight: 0,site: 2},
+        {type: 61, text: '位置->水平', expr: '', left: 0, right: 100},
+        {type: 62, text: '位置->垂直', expr: '', top: 0, bottom: 100},
+        {type: 71, text: '填充百分比->水平', expr: '', minValue: 0, maxValue: 100, minRatio: 0, maxRatio: 100, direction: "right"},
+        {type: 72, text: '填充百分比->垂直', expr: '', minValue: 0, maxValue: 100, minRatio: 0, maxRatio: 100, direction: "top"},
+        {type: 81, text: '可见性', expr: '', value: 1}]
     }
   }
 
   template(){
     let html = $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">		                
-                  <div style="
+                  <div class="canvas" style="
                     height: ${this.height}px;
-                    width: ${this.width}px;
-                    background-color: ${this.config.background.color}">                 
-                  </div>	
+                    width: ${this.width}px;">
+                    <div class="bg" style="float:left;width:100%;height:100%;background-color: ${this.config.background.color}"></div>                 
+                  </div>            
                 </div>`)
     return html;
   }
 
   refresh() {
-    $('#'+this.id).find('div').css({'background-color':this.config.background.color});
+    $('#'+this.id).find('.bg').css({'background-color':this.config.background.color});
   }
 
-  variableChange(data) {
-  	console.log(data);
-  	let that = this;
-  	let animations = that.config.animations;
-  	animations.forEach(function(animation) {
-	  	if(animation.type==31) {
-	  		that.fillColor(animation,data);
-	  	}
+  initialize() {
+    let that = this;
+    this.stage.variableList.forEach(function (variable) {
+      let data = {}
+      data.key = variable.key;
+      data.value = variable.value;
+      that.dynamic(data);
+    })
+    let deviceId = that.config.bindData.deviceId
+    if(deviceId) {
+      that.stage.option.getDevice(deviceId,function (device) {
+        if(deviceId==device.id) {
+          that.reveal(device);
+        }
+      });
+    }
+  }
+
+  reveal(device) {
+    let that = this;
+    if(device) {
+      device.points.forEach(function(point) {
+        if(that.isAnimation) {
+          let data = {}
+          data.key = point.id;
+          data.value = point.value;
+          that.dynamic(data);
+        }
+      })
+    }
+  }
+
+  //填充（离散）
+  fillDiscrete(animation,data) {
+    let value = data.value;
+    let that = this;
+    animation.value = value;
+    let states = animation.states;
+    states.forEach(function (state) {
+      if(state.value==value) {
+        $('#'+that.id).find('.bg').css({'background-color': state.color});
+      }
     })
   }
 
-  fillColor(animation,variable) {
-  	let that = this;
-    if(variable) {
-	  	if(variable.value==0) {
-	  		$('#'+that.id).find('span').css({'background-color': animation.on})
-	  	}else if(variable.value==1) {
-	  		$('#'+that.id).find('span').css({'background-color': animation.off})
-	  	}
-    }
+  //填充（模拟量）
+  fillAnalog(animation,data) {
+    let value = data.value;
+    let that = this;
+    animation.value = value;
+    let states = animation.states;
+    states.forEach(function (state,index) {
+      let last = 0;
+      if(state.value) {
+        if(index>0) {
+          last = Number(states[index-1].value);
+        }
+        if(value>last&&value<=state.value) {
+          $('#'+that.id).find('.bg').css({'background-color': state.color});
+        }
+      }
+    })
   }
 
   toJson() {
@@ -86,7 +157,6 @@ class Rectangle extends Spirit {
     html.find("[name=bgColor]").val(that.config.background.color)
     html.find("[name=bgColor]").on('change',function() {
     	that.config.background.color = $(this).val();
-    	console.log(that.config.background.color);
     	that.refresh();
     })
   }

@@ -11,6 +11,7 @@ import Switch from './../components/common/Switch';//开关
 import Alarm from './../components/common/Alarm';//报警器
 import Combination from './../components/common/Combination';//组合
 import Table from './../components/common/Table';//表格
+import State from './../components/common/State';//表格
 //给水系统
 import Lyssb from './../components/device/Lyssb';//螺翼式水表
 import Sbfkg from './../components/device/Sbfkg';//阀控水表
@@ -99,6 +100,7 @@ class SpiritFactory {
   //静态方法
   static getInstance(className,x,y,width,height) {
     switch (className) {
+      case 'State': return new State(x,y,width,height);
       case 'Table': return new Table(x,y,width,height);
       case 'Combination': return new Combination(x,y,width,height);
       case 'Alarm': return new Alarm(x,y,width,height);

@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
   box-sizing: content-box;
-  z-index: 101;
+  z-index: 99999;
   width: 90px;
   max-width: 70%;
   min-height: 90px;

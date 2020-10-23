@@ -2,29 +2,36 @@
 
 .bm-component-list {
   display: inline-block;
-  width: 185px;
+  width: 186px;
   vertical-align: top;
-  height: 100%;
+  height: calc(100% - 50px);
   overflow-y: auto;
   overflow-x: hidden;
   padding: 5px;
   color: #666;
 
-  & > div {
-    text-align: center;
-    margin-bottom: 20px;
-    min-width: 88px;
-    display: inline-block;
 
-    & > img {
-      cursor: move;
-      border: 2px solid transparent;
-      border-radius: 2px;
-      padding: 2px;
+
+  & .piece {
+    text-align: center;
+    width: 68px;
+    height: 68px;
+    padding: 5px;
+    display: inline-block;
+    border: 1px solid transparent;
+    background-color: #fff;
+    margin: 5px;
+
+    & > p {
+      line-height: 18px;
     }
 
     & > img:hover {
-      border: 2px solid @blue;
+      cursor: move;
+    }
+
+    &:hover {
+      border: 1px solid @blue;
     }
   }
 
@@ -36,6 +43,15 @@
     padding-left: 2px;
     margin: 5px;
     font-weight: bold;
+  }
+
+  & .max {
+    text-align: center;
+    width: 155px;
+    height: 60px;
+    padding: 5px;
+    display: inline-block;
+    border: 1px solid transparent;
   }
 }
 
@@ -73,10 +89,16 @@
     }
 
     &.active {
-      background-color: #0075E7;
-      border: 1px solid #0075E7;
+      background-color: @blue;
+      border: 1px solid @blue;
       color: #fff;
     }
+  }
+}
+
+.bm-list--lg {
+  & > li {
+    line-height: 30px;
   }
 }
 
@@ -104,10 +126,6 @@
 
   & > span {
     margin-right: 10px;
-  }
-
-  & > div {
-    margin: 0 5px;
   }
 
   & > div > span {
@@ -138,6 +156,15 @@
     & > img {
       vertical-align: middle;
       margin-right: 5px;
+    }
+
+    & > span > i {
+      margin: 0 5px;
+      cursor: pointer;
+
+      &:hover {
+        color: @red;
+      }
     }
   }
 
@@ -172,5 +199,27 @@
       background-color: #12a3ff;
       color: #fff;
     }
+
+    & .edit,
+    & .close {
+      width: 30px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    & .edit:hover {
+      color: @blue;
+    }
+
+    & .close:hover {
+      color: @red;
+    }
+  }
+}
+
+.bm-action-list--lg {
+  & > li {
+    line-height: 30px;
   }
 }

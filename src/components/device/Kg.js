@@ -15,7 +15,7 @@ class Kg extends Spirit {
 	    this.minWidth = 20;
 	    this.minHeight = 20;
 		  this.zIndex = 2;
-	    this.linkage = true;
+	    this.linkage = false;
 	    this.isPanel = true;
 	    this.isBind = true;
 	    this.isAnimation = true;
@@ -23,21 +23,25 @@ class Kg extends Spirit {
 	        bindData: {deviceId: ''},
 	        animations: [
 			    {type: 31,
-		    	 text: '填充->离散',
+		    	 text: '开关状态',
 		    	 expr: 'SwSts',
            states: [
                {text:'关',value: 0},
                {text:'开',value: 1}
                ],
 		    	 value: 0,
-		    	 category: 3}]
+		    	 category: 3},
+          {type: 51, text: '大小->宽度', expr: '', maxWidth: 100, minWidth: 0,site: 2},
+          {type: 52, text: '大小->高度', expr: '', maxHeight: 100, minHeight: 0,site: 2},
+          {type: 61, text: '位置->水平', expr: '', left: 0, right: 100},
+          {type: 62, text: '位置->垂直', expr: '', top: 0, bottom: 100},]
 	    }
 	}
 
 	template(){
 		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg">
-                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-                         viewBox="0 0 43 40" xml:space="preserve">
+                  <svg class="canvas" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
+                         viewBox="0 0 43 40" xml:space="preserve" preserveAspectRatio="none">
                       <style type="text/css">
                         .kg-st0{fill:#B0B9C1;}
                         .kg-st1{fill:#DFE3E8;}
@@ -102,47 +106,48 @@ class Kg extends Spirit {
 
   initialize() {
 		let that = this;
-	    let deviceId = that.config.bindData.deviceId
-	    if(deviceId) {
-	        that.stage.option.getDevice(deviceId,function (device) {
-	            if(deviceId==device.id) {
-	                that.reveal(device);
-	            }
-		    });
-	    }
-	    $('#'+that.id).on('click',function() {
-	        that.config.animations.forEach(function(animation) {
-	        	if(animation.type==31) {
-	        		let value = animation.value==0?1:0;
-	        		that.control(deviceId,animation.expr,value)
-	        	}
-	        })
-	    });
+    let deviceId = that.config.bindData.deviceId
+    if(deviceId) {
+        that.stage.option.getDevice(deviceId,function (device) {
+            if(deviceId==device.id) {
+                that.reveal(device);
+            }
+      });
     }
+    $('#'+that.id).on('click',function() {
+        that.config.animations.forEach(function(animation) {
+          if(animation.type==31) {
+            let value = animation.value==0?1:0;
+            that.control(deviceId,animation.expr,value)
+          }
+        })
+    });
+  }
 
-    reveal(device) {
-      let that = this;
-	    if(device) {
-	        device.points.forEach(function(point) {
-	      	    if(that.isAnimation) {
-	      		    let key = point.id;
-	      	        let value = point.value;
-	                that.dynamic(key,value);
-	      	    }
-	        })
-	    }
-    }
-
-    fillDiscrete(animation,value) {
-      let that = this;
-      animation.value = value;
-      let states = animation.states;
-      states.forEach(function (state) {
-        if(state.value==value) {
-          that.state(value)
+  reveal(device) {
+    let that = this;
+    if(device) {
+      device.points.forEach(function(point) {
+        if(that.isAnimation) {
+          let data = {}
+          data.key = point.id;
+          data.value = point.value;
+          that.dynamic(data);
         }
       })
     }
+  }
+
+  fillDiscrete(animation,value) {
+    let that = this;
+    animation.value = value;
+    let states = animation.states;
+    states.forEach(function (state) {
+      if(state.value==value) {
+        that.open(value)
+      }
+    })
+  }
 }
 
 export default Kg;

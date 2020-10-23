@@ -15,13 +15,13 @@ class ViewStage {
 	    this.panel = new Panel(this);
 		  this.option.canvas(function(data) {
 			that.canvas = {id:data.id};
-	        if(!data.data) {
-	          data.data = JSON.stringify({background:{url:'',color: '#fff'},capacity:[]})
-	        }
+      if(!data.data) {
+        data.data = JSON.stringify({background:{url:'',color: '#fff'},capacity:[]})
+      }
 			that.analysis(data.width,data.height,JSON.parse(data.data));
-            that.location();
-		})
-        this.password = new Password(this);
+         that.location();
+		   })
+      this.password = new Password(this);
 	}
 
 	createStage(width,height,background) {
@@ -217,10 +217,12 @@ class ViewStage {
 			  let rotate= property.rotate;
 			  let spirit = that.create(className,x,y,width,height,rotate,id);
 			  spirit.config = property.config;
-	        if(className=="Images") {
-	          let url = that.imgHost+"/"+spirit.config.url;
-	          $('#'+spirit.id).find('img').attr('src', url);
-	        }
+			  spirit.zIndex = property.zIndex;
+        $("#"+spirit.id).css({'z-index': spirit.zIndex})
+        if(className=="Images") {
+          let url = that.imgHost+"/"+spirit.config.url;
+          $('#'+spirit.id).find('img').attr('src', url);
+        }
 			  spirit.refresh();
 			  that.capacity.push(spirit);
 			})
@@ -277,6 +279,17 @@ class ViewStage {
   		}
   	})
   	return data;
+  }
+
+  variableChange(id,key,value) {
+	  this.capacity.forEach(function (c) {
+      if(id!=c.id&&c.isAnimation) {
+        let data = {}
+        data.key = key;
+        data.value = value;
+        c.dynamic(data)
+      }
+    })
   }
 }
 

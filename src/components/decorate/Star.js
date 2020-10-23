@@ -11,12 +11,22 @@ class Star extends Spirit {
 	    this.width = width;
 	    this.height = height;
 	    this.minWidth = 1;
-        this.minHeight = 1;
+      this.minHeight = 1;
 	    this.moveType = 4;
 	    this.linkage = false;
 	    this.isMove = true;
 	    this.zIndex = 1;
-	    this.config = {background:{color: '#0075E7'}}
+      this.isAnimation = true;
+      this.config = {
+        bindData: {deviceId: ''},
+        background: {color: '#0075E7'},
+        animations: [
+          {type: 51, text: '大小->宽度', expr: '', maxWidth: 100, minWidth: 0,site: 2},
+          {type: 52, text: '大小->高度', expr: '', maxHeight: 100, minHeight: 0,site: 2},
+          {type: 61, text: '位置->水平', expr: '', left: 0, right: 100},
+          {type: 62, text: '位置->垂直', expr: '', top: 0, bottom: 100},
+          {type: 81, text: '可见性', expr: '', value: 1}]
+      }
 	}
 
 	template(){
@@ -31,6 +41,38 @@ class Star extends Spirit {
 
   refresh() {
     $('#'+this.id).find('path').css({fill: this.config.background.color})
+  }
+
+  initialize() {
+    let that = this;
+    this.stage.variableList.forEach(function (variable) {
+      let data = {}
+      data.key = variable.key;
+      data.value = variable.value;
+      that.dynamic(data);
+    })
+    let deviceId = that.config.bindData.deviceId
+    if(deviceId) {
+      that.stage.option.getDevice(deviceId,function (device) {
+        if(deviceId==device.id) {
+          that.reveal(device);
+        }
+      });
+    }
+  }
+
+  reveal(device) {
+    let that = this;
+    if(device) {
+      device.points.forEach(function(point) {
+        if(that.isAnimation) {
+          let data = {}
+          data.key = point.id;
+          data.value = point.value;
+          that.dynamic(data);
+        }
+      })
+    }
   }
 
 	toJson() {

@@ -11,7 +11,7 @@ class Arrows extends Spirit {
 	    this.width = width;
 	    this.height = height;
 	    this.minWidth = 1;
-        this.minHeight = 1;
+      this.minHeight = 1;
 	    this.moveType = 4;
 	    this.linkage = false;
 	    this.isMove = true;
@@ -32,6 +32,38 @@ class Arrows extends Spirit {
     refresh() {
         $('#'+this.id).find('polygon').css({fill: this.config.background.color})
     }
+
+  initialize() {
+    let that = this;
+    this.stage.variableList.forEach(function (variable) {
+      let data = {}
+      data.key = variable.key;
+      data.value = variable.value;
+      that.dynamic(data);
+    })
+    let deviceId = that.config.bindData.deviceId
+    if(deviceId) {
+      that.stage.option.getDevice(deviceId,function (device) {
+        if(deviceId==device.id) {
+          that.reveal(device);
+        }
+      });
+    }
+  }
+
+  reveal(device) {
+    let that = this;
+    if(device) {
+      device.points.forEach(function(point) {
+        if(that.isAnimation) {
+          let data = {}
+          data.key = point.id;
+          data.value = point.value;
+          that.dynamic(data);
+        }
+      })
+    }
+  }
 
 	toJson() {
 		let json = {

@@ -45,7 +45,7 @@
   margin-right: -5px;
 }
 .bm-configur-panel__close:hover {
-  color: #12a3ff;
+  color: #ee0a24;
 }
 .bm-configur-panel__content {
   position: relative;
@@ -150,11 +150,10 @@
   flex: 1;
   padding-right: 50px;
   padding-left: 5px;
-  line-height: 30px;
 }
 .bm-select-panel > span > .icon {
-  line-height: 30px;
   width: 15px;
+  line-height: 32px;
 }
 .bm-select-panel > div {
   display: none;
@@ -183,37 +182,57 @@
   background-color: #f5f5f5;
 }
 .bm-select-panel > div > ul > li.active {
-  background-color: #12a3ff;
+  background-color: #108cee;
   color: #fff;
 }
 .bm-select-panel > div > ul > li.no-data {
   text-align: center;
 }
+.bm-select-panel--lg > span {
+  line-height: 36px;
+}
+.bm-select-panel--lg > span > .icon {
+  line-height: 36px;
+}
+.bm-select-panel--lg > div {
+  margin-top: 9px;
+}
+.bm-select-panel--lg > div > ul > li {
+  line-height: 30px;
+}
 /**输入下拉面板**/
 .bm-input-panel {
   display: inline-block;
   position: relative;
-  margin-bottom: 5px;
   width: 100%;
 }
-.bm-input-panel > span {
+.bm-input-panel > .form {
   display: flex;
-  border: 1px solid #ddd;
   cursor: pointer;
   user-select: none;
   line-height: 30px;
 }
-.bm-input-panel > span > .text {
+.bm-input-panel > .form > .text {
   flex: 1;
   padding-right: 50px;
   padding-left: 5px;
   line-height: 30px;
 }
-.bm-input-panel > span > .icon {
+.bm-input-panel > .form > .icon {
   line-height: 30px;
   width: 15px;
 }
-.bm-input-panel > div {
+.bm-input-panel > .input-group {
+  width: 100%;
+  position: relative;
+}
+.bm-input-panel > .input-group > i {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  line-height: 32px;
+}
+.bm-input-panel > .panel-content {
   display: none;
   position: absolute;
   top: 28px;
@@ -222,28 +241,28 @@
   width: calc(100% - 2px);
   border: 1px solid #ebedf0;
 }
-.bm-input-panel > div > ul {
+.bm-input-panel > .panel-content > ul {
   max-height: 240px;
   overflow: auto;
   padding: 5px;
 }
-.bm-input-panel > div > ul > li {
+.bm-input-panel > .panel-content > ul > li {
   line-height: 24px;
   cursor: pointer;
   padding: 3px 5px;
   border-bottom: 1px solid #F5F5F5;
 }
-.bm-input-panel > div > ul > li:last-child {
+.bm-input-panel > .panel-content > ul > li:last-child {
   border-bottom: 1px solid transparent;
 }
-.bm-input-panel > div > ul > li:not(.active):hover {
+.bm-input-panel > .panel-content > ul > li:not(.active):hover {
   background-color: #f5f5f5;
 }
-.bm-input-panel > div > ul > li.active {
-  background-color: #12a3ff;
+.bm-input-panel > .panel-content > ul > li.active {
+  background-color: #108cee;
   color: #fff;
 }
-.bm-input-panel > div > ul > li.no-data {
+.bm-input-panel > .panel-content > ul > li.no-data {
   text-align: center;
 }
 /**密码面板**/
@@ -384,7 +403,7 @@
   display: none;
   position: absolute;
   z-index: 10;
-  background-color: #12a3ff;
+  background-color: #108cee;
   opacity: 0.5;
 }
 .bm-zoom-panel {

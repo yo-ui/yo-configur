@@ -11,7 +11,7 @@ class Decorate1 extends Spirit {
 	    this.width = width;
 	    this.height = height;
 	    this.minWidth = 1;
-        this.minHeight = 1;
+      this.minHeight = 1;
 	    this.moveType = 4;
 	    this.linkage = false;
 	    this.isMove = true;

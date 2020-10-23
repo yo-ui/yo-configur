@@ -363,25 +363,27 @@ class Stage {
 						</div>				
 					</div>
 		      <div class="bm-tree"><i class="fa fa-down"></i>&nbsp;背景</div>
-					<div class="bm-style">
-					  <div class="text">颜色：</div>
-						<div class="value">
-							<input type="color" name="bgColor" title="背景颜色" />
-						</div>
-					</div>
-					<div class="bm-style">
-					  <div class="text">图片：</div>
-						<div class="value">
-							<div class="bm-checkbox" style="width: 20px;vertical-align: middle;">
-								<input type='checkbox' id='subline'>
-								<label for='subline'></label>
-							</div>
-							<form id="stageBg" style="display: inline-block">
-                <div class="bm-upload" style="width: 80px">
-                  <div class="primary">选择图片</div>								 
-                  <input type="file" name="stageBg"/>								 	              
+		      <div>
+            <div class="bm-style">
+              <div class="text">颜色：</div>
+              <div class="value">
+                <input type="color" name="bgColor" title="背景颜色" />
+              </div>
+            </div>
+            <div class="bm-style">
+              <div class="text">图片：</div>
+              <div class="value">
+                <div class="bm-checkbox" style="width: 20px;vertical-align: middle;">
+                  <input type='checkbox' id='subline'>
+                  <label for='subline'></label>
                 </div>
-              </form>		
+                <form id="stageBg" style="display: inline-block">
+                  <div class="bm-upload" style="width: 80px">
+                    <div class="primary">选择图片</div>								 
+                    <input type="file" name="stageBg"/>								 	              
+                  </div>
+                </form>		
+              </div>
 						</div>
 					</div>`);
         $('#configur_property').html(html);
@@ -525,7 +527,8 @@ class Stage {
 	    	el.css({
 	            left: Number(left),
 	            top: Number(top),
-	            transform: 'rotate('+that.property.rotate+'deg)'
+	            transform: 'rotate('+that.property.rotate+'deg)',
+              'z-index': that.property.zIndex
 	        });
 	    	this.addEvent(el);
 	    	this.element.append(el);
@@ -552,10 +555,11 @@ class Stage {
 			let rotate = this.property.rotate;
 			let spirit = this.create(className,x,y,width,height,rotate);
 			if(spirit.config){
-        Object.assign(spirit.config,this.property.config)
+        spirit.config = JSON.parse(JSON.stringify(this.property.config))//深拷贝
       }
       spirit.isSubline = this.property.isSubline;
       spirit.isSelected = this.property.isSelected;
+      spirit.zIndex = this.property.zIndex;
       if(className=="Combination") {
 			  let idList = [];
 			  let ids = this.property.config.ids;
@@ -565,7 +569,7 @@ class Stage {
             if(c.id==id) {
               let configur = that.create(c.className,c.x,c.y,c.width,c.height,0);
               if(configur.config){
-                Object.assign(configur.config,c.config)
+                configur.config = JSON.parse(JSON.stringify(c.config))//深拷贝
               }
               configur.isSelected = c.isSelected;
               configur.isSubline = c.isSubline;
@@ -765,6 +769,11 @@ class Stage {
 		let that = this;
 		$('#root').html('');
 		if(data) {
+      if(data.variableList) {
+        that.variableList = data.variableList;
+      }else {
+        that.variableList = [];
+      }
 			this.createStage(width,height,data.background);
       let combinationList = []
 			data.capacity.forEach(function(c) {
@@ -784,6 +793,7 @@ class Stage {
         spirit.isDrag = c.isDrag;
         spirit.isRotate = c.isRotate;
         spirit.config = c.config;
+        $("#"+spirit.id).css({'z-index': spirit.zIndex})
         if(className=="Images") {
           let url = that.imgHost+"/"+spirit.config.url;
           $('#'+spirit.id).find('img').attr('src', url);

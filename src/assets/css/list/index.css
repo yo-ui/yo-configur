@@ -1,27 +1,31 @@
 .bm-component-list {
   display: inline-block;
-  width: 185px;
+  width: 186px;
   vertical-align: top;
-  height: 100%;
+  height: calc(100% - 50px);
   overflow-y: auto;
   overflow-x: hidden;
   padding: 5px;
   color: #666;
 }
-.bm-component-list > div {
+.bm-component-list .piece {
   text-align: center;
-  margin-bottom: 20px;
-  min-width: 88px;
+  width: 68px;
+  height: 68px;
+  padding: 5px;
   display: inline-block;
+  border: 1px solid transparent;
+  background-color: #fff;
+  margin: 5px;
 }
-.bm-component-list > div > img {
+.bm-component-list .piece > p {
+  line-height: 18px;
+}
+.bm-component-list .piece > img:hover {
   cursor: move;
-  border: 2px solid transparent;
-  border-radius: 2px;
-  padding: 2px;
 }
-.bm-component-list > div > img:hover {
-  border: 2px solid #12a3ff;
+.bm-component-list .piece:hover {
+  border: 1px solid #108cee;
 }
 .bm-component-list > span {
   width: 160px;
@@ -31,6 +35,14 @@
   padding-left: 2px;
   margin: 5px;
   font-weight: bold;
+}
+.bm-component-list .max {
+  text-align: center;
+  width: 155px;
+  height: 60px;
+  padding: 5px;
+  display: inline-block;
+  border: 1px solid transparent;
 }
 .bm-list > li {
   line-height: 30px;
@@ -57,9 +69,12 @@
   cursor: pointer;
 }
 .bm-list > li.active {
-  background-color: #0075E7;
-  border: 1px solid #0075E7;
+  background-color: #108cee;
+  border: 1px solid #108cee;
   color: #fff;
+}
+.bm-list--lg > li {
+  line-height: 30px;
 }
 .bm-common-list > li {
   line-height: 24px;
@@ -80,9 +95,6 @@
 }
 .bm-content > span {
   margin-right: 10px;
-}
-.bm-content > div {
-  margin: 0 5px;
 }
 .bm-content > div > span {
   line-height: 30px;
@@ -110,6 +122,13 @@
   vertical-align: middle;
   margin-right: 5px;
 }
+.bm-content-list > li > span > i {
+  margin: 0 5px;
+  cursor: pointer;
+}
+.bm-content-list > li > span > i:hover {
+  color: #ee0a24;
+}
 .bm-action-list > li {
   line-height: 24px;
   margin: 1px 0;
@@ -132,4 +151,20 @@
 .bm-action-list > li.active {
   background-color: #12a3ff;
   color: #fff;
+}
+.bm-action-list > li .edit,
+.bm-action-list > li .close {
+  width: 30px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 24px;
+}
+.bm-action-list > li .edit:hover {
+  color: #108cee;
+}
+.bm-action-list > li .close:hover {
+  color: #ee0a24;
+}
+.bm-action-list--lg > li {
+  line-height: 30px;
 }

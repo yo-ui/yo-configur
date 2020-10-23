@@ -20,7 +20,7 @@
 .bm-slider__bar {
   position: relative;
   height: 2px;
-  background-color: #12a3ff;
+  background-color: #108cee;
   border-radius: inherit;
   transition: width 0.2s;
 }

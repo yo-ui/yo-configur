@@ -9,6 +9,7 @@
       margin-right: 2px;
       line-height: 1.42857143;
       border-radius: 4px 4px 0 0;
+      color: #666666;
     }
 
     & > a:hover {
@@ -22,7 +23,7 @@
 
   & > li.active > a,
   & > li.active > a:hover {
-    color: #555;
+    color: @black;
     cursor: default;
   }
 }
@@ -30,7 +31,6 @@
 .bm-tabs-group {
   display: inline-block;
   vertical-align: middle;
-  height: 32px;
 
   & > span {
     display: inline-block;
@@ -52,8 +52,16 @@
   }
 }
 
+.bm-tabs-group--lg {
+  & > span {
+    line-height: 36px;
+    padding: 0 20px;
+  }
+}
+
 .bm-tabs-custom {
   margin-bottom: 0px;
+  background-color: @gray;
 
   & > .bm-tabs {
     margin: 0;

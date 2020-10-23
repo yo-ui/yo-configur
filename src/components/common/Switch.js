@@ -22,13 +22,22 @@ class Switch extends Spirit {
 	        bindData: {deviceId: ''},
           animations: [
               {type: 31,
-               text: '填充->离散',
+               text: '填充->开关',
                expr: 'SwSts',
-               states: [{value: 1,text:'开',url: 'static/images/start.png',default: true},
-                         {value: 0,text:'关',url: 'static/images/end.png',default: true}],
+               states: [{value: 0,text:'关',url: 'static/images/end.png',default: true},
+                         {value: 1,text:'开',url: 'static/images/start.png',default: true}],
                value: 0,
                isSwitch: true,
-               category: 2}]
+               category: 2},
+              {type: 51, text: '大小->宽度', expr: '', maxWidth: 100, minWidth: 0,site: 2},
+              {type: 52, text: '大小->高度', expr: '', maxHeight: 100, minHeight: 0,site: 2},
+              {type: 61, text: '位置->水平', expr: '', left: 0, right: 100},
+              {type: 62, text: '位置->垂直', expr: '', top: 0, bottom: 100},
+              {type: 81,
+                text: '可见性',
+                expr: '',
+                value: 1
+              }]
           }
 	}
 
@@ -48,15 +57,7 @@ class Switch extends Spirit {
 	  let that = this;
     that.config.animations.forEach(function (animation) {
       if(animation.type==31) {
-        animation.states.forEach(function (state) {
-          if(state.value==animation.value) {
-            if(state.default) {
-              $("#"+that.id).find('img').attr("src", state.url);
-            }else {
-              $("#"+that.id).find('img').attr("src", that.stage.imgHost+"/"+state.url);
-            }
-          }
-        })
+        that.fillDiscrete(animation,{value:animation.value})
       }
     })
   }
@@ -82,33 +83,35 @@ class Switch extends Spirit {
 	            }
 		    });
 	    }
-        $('#'+that.id).on('click',function() {
-            that.config.animations.forEach(function(animation) {
-            	if(animation.type==31) {
-            		let value = animation.value==0?1:0;
-            		that.control(deviceId,animation.expr,value,function() {
-            			animation.value = value;
-            		})
-            	}
-            })
+      $('#'+that.id).on('click',function() {
+          that.config.animations.forEach(function(animation) {
+            if(animation.type==31) {
+              let value = animation.value==0?1:0;
+              that.control(deviceId,animation.expr,value,function() {
+                animation.value = value;
+              })
+            }
+          })
 	    });
 	}
 
-	reveal(device) {
-	    let that = this;
-	    if(device) {
-	      device.points.forEach(function(point) {
-	      	if(that.isAnimation) {
-	      		let key = point.id;
-	      	    let value = point.value;
-	            that.dynamic(key,value);
-	      	}
-	      })
-	    }
-	}
+  reveal(device) {
+    let that = this;
+    if(device) {
+      device.points.forEach(function(point) {
+        if(that.isAnimation) {
+          let data = {}
+          data.key = point.id;
+          data.value = point.value;
+          that.dynamic(data);
+        }
+      })
+    }
+  }
 
 	//填充（离散）
-	fillDiscrete(animation,value) {
+	fillDiscrete(animation,data) {
+	  let value = data.value;
     let that = this;
     animation.value = value;
     let states = animation.states;

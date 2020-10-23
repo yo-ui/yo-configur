@@ -46,9 +46,9 @@
   -ms-transform: rotate(45deg);
 }
 .bm-checkbox > input:checked + label:before {
-  background-color: #12a3ff;
-  border-color: #12a3ff;
+  background-color: #108cee;
+  border-color: #108cee;
 }
 .bm-checkbox > input:checked + label:after {
-  background-color: #12a3ff;
+  background-color: #108cee;
 }

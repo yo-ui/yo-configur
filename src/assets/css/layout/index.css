@@ -5,7 +5,7 @@
   height: 40px;
   line-height: 40px;
   font-size: 16px;
-  background-color: #023459;
+  background-color: #000;
   color: #fff;
   display: flex;
 }
@@ -13,7 +13,7 @@
   cursor: pointer;
   width: 40px;
   text-align: center;
-  background-color: #023459;
+  background-color: #000;
 }
 .bm-layout__header__back > i {
   font-size: 30px;
@@ -44,18 +44,20 @@
 .bm-layout__main__left {
   width: 240px;
   height: 100%;
-  background-color: #f0f2f3;
+  background-color: #f6f7fb;
+  border-right: 1px solid #cbd3e0;
 }
 .bm-layout__main__body {
   flex: 1;
   height: 100%;
   overflow: hidden;
-  background-color: #B5B7B6;
+  background-color: #e2e5ec;
 }
 .bm-layout__main__right {
   width: 240px;
   height: 100%;
-  background-color: #f0f2f3;
+  background-color: #fff;
+  border-left: 1px solid #cbd3e0;
 }
 .bm-layout__floor {
   line-height: 40px;

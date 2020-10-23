@@ -11,25 +11,124 @@ class Circle extends Spirit {
 	    this.width = width;
 	    this.height = height;
 	    this.minWidth = 1;
-        this.minHeight = 1;
+      this.minHeight = 1;
 	    this.moveType = 4;
-	    this.linkage = false;
+	    this.linkage = true;
 	    this.isMove = true;
 	    this.zIndex = 1;
-	    this.config = {background:{color: '#0075E7'}}
+      this.isAnimation = true;
+      this.config = {
+        bindData: {deviceId: ''},
+        background: {color: '#0075E7'},
+        animations: [
+          {type: 31,
+            text: '填充->开关',
+            expr: '',
+            states: [
+              {text:'关',value: 0,color:'#dddddd'},
+              {text:'开',value: 1,color:'#000000'}],
+            value: 0,
+            category: 1},
+          {type: 32,
+            text: '填充->模拟量',
+            expr: '',
+            states: [
+              {value: "",text:'状态1',color: '#dddddd'},
+              {value: "",text:'状态1',color: '#dddddd'},
+              {value: "",text:'状态1',color: '#dddddd'},
+              {value: "",text:'状态1',color: '#dddddd'},
+              {value: "",text:'状态1',color: '#dddddd'},
+              {value: "",text:'状态1',color: '#dddddd'},
+            ],
+            value: 1,
+            category: 1},
+          {type: 51, text: '大小->宽度', expr: '', maxWidth: 100, minWidth: 0,site: 2},
+          {type: 52, text: '大小->高度', expr: '', maxHeight: 100, minHeight: 0,site: 2},
+          {type: 61, text: '位置->水平', expr: '', left: 0, right: 100},
+          {type: 62, text: '位置->垂直', expr: '', top: 0, bottom: 100},
+          {type: 71, text: '填充百分比->水平', expr: '', minValue: 0, maxValue: 100, minRatio: 0, maxRatio: 100, direction: "right"},
+          {type: 72, text: '填充百分比->垂直', expr: '', minValue: 0, maxValue: 100, minRatio: 0, maxRatio: 100, direction: "top"},
+          {type: 81, text: '可见性', expr: '', value: 1},
+          {type: 82, text: '闪烁', expr: '', color: '#0075E7', speed: 0}]
+      }
 	}
 
 	template(){
-		let content = `<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-                   viewBox="0 0 100 100" xml:space="preserve" preserveAspectRatio="none">                         
-                  <path style="fill-rule:evenodd;clip-rule:evenodd;fill:${this.config.backgroundColor};" d="M50.5,12.5c21,0,38,17,38,38s-17,38-38,38s-38-17-38-38S29.5,12.5,50.5,12.5z"/>
-                </svg>`
+		let content = `<div style="
+                      height: ${this.height}px;
+                      width: ${this.width}px">
+                      <div class="bg" style="width:100%;height:100%;border-radius: 50%;background-color: ${this.config.background.color}"></div>                 
+                    </div>`
         return super.template().html(content);
 	}
 
-    refresh() {
-        $('#'+this.id).find('path').css({fill: this.config.background.color})
+  refresh() {
+    $('#'+this.id).find('.bg').css({'background-color':this.config.background.color});
+  }
+
+  initialize() {
+    let that = this;
+    this.stage.variableList.forEach(function (variable) {
+      let data = {}
+      data.key = variable.key;
+      data.value = variable.value;
+      that.dynamic(data);
+    })
+    let deviceId = that.config.bindData.deviceId
+    if(deviceId) {
+      that.stage.option.getDevice(deviceId,function (device) {
+        if(deviceId==device.id) {
+          that.reveal(device);
+        }
+      });
     }
+  }
+
+  reveal(device) {
+    let that = this;
+    if(device) {
+      device.points.forEach(function(point) {
+        if(that.isAnimation) {
+          let data = {}
+          data.key = point.id;
+          data.value = point.value;
+          that.dynamic(data);
+        }
+      })
+    }
+  }
+
+  //填充（离散）
+  fillDiscrete(animation,data) {
+	  let value = data.value;
+    let that = this;
+    animation.value = value;
+    let states = animation.states;
+    states.forEach(function (state) {
+      if(state.value==value) {
+        $('#'+that.id).find('.bg').css({'background-color': state.color});
+      }
+    })
+  }
+
+  //填充（模拟量）
+  fillAnalog(animation,data) {
+	  let value = data.value;
+    let that = this;
+    animation.value = value;
+    let states = animation.states;
+    states.forEach(function (state,index) {
+      let last = 0;
+      if(state.value) {
+        if(index>0) {
+          last = Number(states[index-1].value);
+        }
+        if(value>last&&value<=state.value) {
+          $('#'+that.id).find('.bg').css({'background-color': state.color});
+        }
+      }
+    })
+  }
 
 	toJson() {
 		let json = {

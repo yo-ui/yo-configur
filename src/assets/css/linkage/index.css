@@ -24,7 +24,7 @@
   cursor: pointer;
 }
 .bm-linkage__item.active {
-  background-color: #12a3ff;
+  background-color: #108cee;
   color: #fff;
 }
 .bm-linkage__item:not(.active):hover {

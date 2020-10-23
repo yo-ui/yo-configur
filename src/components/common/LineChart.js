@@ -1,6 +1,6 @@
 import Spirit from './../../core/Spirit'
 import Toast from "../../core/Toast";
-import AnimationPanel from "../../core/Animation";
+import AnimationPanel from "../../core/animation/Animation";
 
 /**
  * 折线图

@@ -8,7 +8,7 @@
   vertical-align: middle;
   cursor: pointer;
   border-radius: 2px;
-  width: 60px;
+  width: 92px;
   height: 30px;
   line-height: 30px;
 
@@ -17,7 +17,7 @@
     height: 100%;
   }
 
-  & > div {
+  & > .default {
     position: absolute;
     top: 0;
     right: 0;
@@ -29,11 +29,12 @@
   }
 
 
-
-  & > div.primary {
+  & > .primary {
+    width: auto;
     opacity: 1;
     background-color: #0075E7;
     color: #fff;
+    padding: 0 10px;
   }
 
   & > input {
