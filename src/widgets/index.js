@@ -64,9 +64,56 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-barChart" */ "@/components/component/com/barChart/index.vue"
     ),
+  sequenceBarChartCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-sequenceBarChart" */ "@/components/component/com/sequenceBarChart/index.vue"
+    ),
+
+  lineBarChartCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-lineBarChart" */ "@/components/component/com/lineBarChart/index.vue"
+    ),
+  statisticsAreaLineChartCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-statisticsAreaLineChart" */ "@/components/component/com/statisticsAreaLineChart/index.vue"
+    ),
+  sequenceLineChartCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-sequenceLineChart" */ "@/components/component/com/sequenceLineChart/index.vue"
+    ),
+  sequenceAreaLineChartCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-sequenceAreaLineChart" */ "@/components/component/com/sequenceAreaLineChart/index.vue"
+    ),
+
+  scatterChartCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-scatterChart" */ "@/components/component/com/scatterChart/index.vue"
+    ),
+  bubbleChartCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-bubbleChart" */ "@/components/component/com/bubbleChart/index.vue"
+    ),
+
+  pileBarChartCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-pileBarChart" */ "@/components/component/com/pileBarChart/index.vue"
+    ),
   pieChartCom: () =>
     import(
       /* webpackChunkName: "bm-component-pieChart" */ "@/components/component/com/pieChart/index.vue"
+    ),
+  ringChartCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-ringChart" */ "@/components/component/com/ringChart/index.vue"
+    ),
+  nightingalePieChartCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-nightingalePieChart" */ "@/components/component/com/nightingalePieChart/index.vue"
+    ),
+  nightingaleRingChartCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-nightingaleRingChart" */ "@/components/component/com/nightingaleRingChart/index.vue"
     ),
   mapCom: () =>
     import(
@@ -76,6 +123,18 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-gaugeChart" */ "@/components/component/com/gaugeChart/index.vue"
     ),
+  liquidfillChartCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-liquidfillChart" */ "@/components/component/com/liquidfillChart/index.vue"
+    ),
+    areaRadarChartCom: () =>
+      import(
+        /* webpackChunkName: "bm-component-areaRadarChart" */ "@/components/component/com/areaRadarChart/index.vue"
+      ),
+    statisticsRadarChartCom: () =>
+      import(
+        /* webpackChunkName: "bm-component-statisticsRadarChart" */ "@/components/component/com/statisticsRadarChart/index.vue"
+      ),
   deviceCommonCom: () =>
     import(
       /* webpackChunkName: "bm-component-device" */ "@/components/component/device/common/index.vue"
@@ -256,14 +315,74 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-pieChart-style" */ "@/components/component/com/pieChart/style.vue"
     ),
+  ringChartStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-ringChart-style" */ "@/components/component/com/ringChart/style.vue"
+    ),
+  nightingalePieChartStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-nightingalePieChart-style" */ "@/components/component/com/nightingalePieChart/style.vue"
+    ),
+  nightingaleRingChartStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-nightingaleRingChart-style" */ "@/components/component/com/nightingaleRingChart/style.vue"
+    ),
   barChartStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-barChart-style" */ "@/components/component/com/barChart/style.vue"
     ),
+  sequenceBarChartStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-sequenceBarChart-style" */ "@/components/component/com/sequenceBarChart/style.vue"
+    ),
+  lineBarChartStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-lineBarChart-style" */ "@/components/component/com/lineBarChart/style.vue"
+    ),
+  statisticsAreaLineChartStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-statisticsAreaLineChart-style" */ "@/components/component/com/statisticsAreaLineChart/style.vue"
+    ),
+  sequenceLineChartStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-sequenceLineChart-style" */ "@/components/component/com/sequenceLineChart/style.vue"
+    ),
+  sequenceAreaLineChartStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-sequenceAreaLineChart-style" */ "@/components/component/com/sequenceAreaLineChart/style.vue"
+    ),
+
+  scatterChartStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-scatterChart" */ "@/components/component/com/scatterChart/style.vue"
+    ),
+  bubbleChartStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-bubbleChart" */ "@/components/component/com/bubbleChart/style.vue"
+    ),
+
+  pileBarChartStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-pileBarChart-style" */ "@/components/component/com/pileBarChart/style.vue"
+    ),
+
   gaugeChartStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-gaugeChart-style" */ "@/components/component/com/gaugeChart/style.vue"
     ),
+  liquidfillChartStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-liquidfillChart-style" */ "@/components/component/com/liquidfillChart/style.vue"
+    ),
+  areaRadarChartStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-areaRadarChart-style" */ "@/components/component/com/areaRadarChart/style.vue"
+    ),
+  statisticsRadarChartStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-statisticsRadarChart-style" */ "@/components/component/com/statisticsRadarChart/style.vue"
+    ),
+
   deviceCommonStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-style" */ "@/components/component/device/common/style.vue"

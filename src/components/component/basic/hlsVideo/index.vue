@@ -27,7 +27,7 @@
     <source :src="info.src" />
   </video> -->
     <!-- :class="playStatus ? 'el-icon-video-pause' : 'el-icon-video-play'" -->
-    <i
+    <!-- <i
       @click="operateEvent"
       v-if="!playStatus"
       class="play-btn el-icon-video-play"
@@ -53,7 +53,7 @@
         @mousedown="moveCameraEvent(0)"
         @mouseup="stopMoveCameraEvent(0)"
       ></i>
-    </div>
+    </div> -->
     <div class="toolbar" v-if="playStatus">
       <div class="left">
         <!-- <i
@@ -273,9 +273,7 @@ export default {
       }
     },
     cancelEvent() {
-      let { cameraPlayer = null } = this;
-      cameraPlayer && cameraPlayer.stop();
-      this.cameraPlayer = null;
+      this.destroy();
     },
     // 切换线路
     switchLineEvent() {},
@@ -378,9 +376,9 @@ export default {
     },
     destroy() {
       this.playStatus = false;
-      let { cameraPlayer, info = {} } = this;
-      let { width = "", height = "" } = info || {};
-      cameraPlayer?.reSize(width, height);
+      let { cameraPlayer } = this;
+      // let { width = "", height = "" } = info || {};
+      // cameraPlayer?.reSize(width, height);
       cameraPlayer?.stop();
       cameraPlayer?.destroy();
     },

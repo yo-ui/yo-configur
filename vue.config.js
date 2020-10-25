@@ -1,5 +1,7 @@
-var webpack = require("webpack");
+const webpack = require("webpack");
 // const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const glob = require("glob-all");
+const PurgecssPlugin = require("purgecss-webpack-plugin");
 // const vConsolePlugin = require("vconsole-webpack-plugin"); // 引入 移动端模拟开发者工具 插件 （另：https://github.com/liriliri/eruda）
 const chalk = require("chalk");
 const path = require("path");
@@ -174,6 +176,38 @@ module.exports = {
     config.plugins = [
       ...config.plugins,
       // new webpack.optimize.CommonsChunkPlugin('common.js'),
+      new PurgecssPlugin({
+        paths: glob.sync([
+          path.join(__dirname, "./src/index.html"),
+          path.join(__dirname, "./**/*.vue"),
+          path.join(__dirname, "./src/**/*.js")
+        ]),
+        extractors: [
+          {
+            extractor: class Extractor {
+              static extract(content) {
+                const validSection = content.replace(
+                  /<style([\s\S]*?)<\/style>+/gim,
+                  ""
+                );
+                return (
+                  validSection.match(/[A-Za-z0-9-_/:]*[A-Za-z0-9-_/]+/g) || []
+                );
+              }
+            },
+            extensions: ["html", "vue"]
+          }
+        ],
+        whitelist: ["html", "body"],
+        whitelistPatterns: [
+          /el-.*/,
+          /-(leave|enter|appear)(|-(to|from|active))$/,
+          /^(?!cursor-move).+-move$/,
+          /^router-link(|-exact)-active$/
+        ],
+        whitelistPatternsChildren: [/^token/, /^pre/, /^code/]
+      }),
+
       new webpack.ProvidePlugin({
         jQuery: "jquery",
         $: "jquery"

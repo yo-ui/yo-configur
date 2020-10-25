@@ -1,5 +1,6 @@
+// 统计雷达图
 <template>
-  <div class="bm-chart-box bm-basic-bar-chart-com">
+  <div class="bm-chart-box bm-basic-statistics-radar-chart-com">
     <h2 class="title">
       {{ deviceInfo.name || "设备"
       }}<el-select
@@ -33,10 +34,12 @@
 </template>
 
 <script>
+// import { graphic } from "echarts/lib/export";
+import "echarts-liquidfill";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "barChartCom",
+  name: "statisticsRadarChartCom",
   data() {
     return {
       deviceInfo: {},
@@ -235,7 +238,7 @@ export default {
     loadChartOptions(data) {
       let times = [];
       let values = [];
-      let name = this.$lang("用量");
+      // let name = this.$lang("用量");
       if (data) {
         let { dataList = [], name: _name = "" } = data || {};
         dataList.forEach(item => {
@@ -243,7 +246,7 @@ export default {
           times.push(time);
           values.push(Number(value));
         });
-        name = _name;
+        // name = _name;
       } else {
         for (let i = 0; i < 12; i++) {
           times.push(
@@ -263,29 +266,51 @@ export default {
       //   values.push(parseInt(Math.random() * 1000));
       // }
       this.chartOptions = {
-        xAxis: {
-          type: "category",
-          data: times
-        },
         title: {
-          text: this.$lang("设备实时数据"),
+          text: "基础雷达图",
           show: false
         },
-        tooltip: {
-          trigger: "axis"
+        tooltip: {},
+        legend: {
+          data: ["预算分配", "实际开销"],
+          top: "8%"
         },
-        grid: {
-          top: "15%",
-          bottom: "8%"
-        },
-        yAxis: {
-          type: "value"
+        radar: {
+          // shape: 'circle',
+          center: ["50%", "60%"],
+          radius: "50%",
+          name: {
+            textStyle: {
+              color: "#000",
+              backgroundColor: "#999",
+              borderRadius: 3,
+              padding: [3, 5]
+            }
+          },
+          indicator: [
+            { name: "销售", max: 6500 },
+            { name: "管理", max: 16000 },
+            { name: "信息技术", max: 30000 },
+            { name: "客服", max: 38000 },
+            { name: "研发", max: 52000 },
+            { name: "市场", max: 25000 }
+          ]
         },
         series: [
           {
-            name,
-            data: values,
-            type: "bar"
+            name: "预算 vs 开销（Budget vs spending）",
+            type: "radar",
+            // areaStyle: {normal: {}},
+            data: [
+              {
+                value: [4300, 10000, 28000, 35000, 50000, 19000],
+                name: "预算分配"
+              },
+              {
+                value: [5000, 14000, 28000, 31000, 42000, 21000],
+                name: "实际开销"
+              }
+            ]
           }
         ]
       };

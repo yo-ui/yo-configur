@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-basic-line-chart-com">
+  <div class="bm-chart-box bm-basic-line-chart-com">
     <h2 class="title">
       {{ deviceInfo.name || "设备"
       }}<el-select

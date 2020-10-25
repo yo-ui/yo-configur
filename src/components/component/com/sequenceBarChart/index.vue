@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-chart-box bm-basic-bar-chart-com">
+  <div class="bm-chart-box bm-basic-sequence-bar-chart-com">
     <h2 class="title">
       {{ deviceInfo.name || "设备"
       }}<el-select
@@ -36,7 +36,7 @@
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "barChartCom",
+  name: "sequenceBarChartCom",
   data() {
     return {
       deviceInfo: {},
@@ -263,31 +263,29 @@ export default {
       //   values.push(parseInt(Math.random() * 1000));
       // }
       this.chartOptions = {
-        xAxis: {
-          type: "category",
-          data: times
+        legend: {
+          data:["2015", "2016", "2017"],
+          show:true
         },
-        title: {
-          text: this.$lang("设备实时数据"),
-          show: false
-        },
-        tooltip: {
-          trigger: "axis"
-        },
+        tooltip: {},
         grid: {
-          top: "15%",
+          top: "25%",
           bottom: "8%"
         },
-        yAxis: {
-          type: "value"
+        dataset: {
+          source: [
+            // ["product", "2015", "2016", "2017"],
+            ["Matcha Latte", 43.3, 85.8, 93.7],
+            ["Milk Tea", 83.1, 73.4, 55.1],
+            ["Cheese Cocoa", 86.4, 65.2, 82.5],
+            ["Walnut Brownie", 72.4, 53.9, 39.1]
+          ]
         },
-        series: [
-          {
-            name,
-            data: values,
-            type: "bar"
-          }
-        ]
+        xAxis: { type: "category" },
+        yAxis: {},
+        // Declare several bar series, each will be mapped
+        // to a column of dataset.source by default.
+        series: [{ type: "bar" }, { type: "bar" }, { type: "bar" }]
       };
     }
     // blurEvent(e) {

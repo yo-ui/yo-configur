@@ -3,12 +3,13 @@
     :title="$lang('摄像头')"
     v-dialogDrag="true"
     class="bm-camera-previewer-com"
+    @close="closeEvent"
     :visible.sync="showDialogStatus"
     width="800px"
   >
     <div class="camera-previewer-box">
       <div id="previewerPlayer"></div>
-      <i
+      <!-- <i
         @click="operateEvent"
         v-if="!playStatus"
         class="play-btn el-icon-video-play"
@@ -34,7 +35,7 @@
           @mousedown="moveCameraEvent(0)"
           @mouseup="stopMoveCameraEvent(0)"
         ></i>
-      </div>
+      </div> -->
       <div class="toolbar" v-if="playStatus">
         <div class="left">
           <i
@@ -147,6 +148,9 @@ export default {
       } else {
         previewerPlayer?.closeSound();
       }
+    },
+    closeEvent(){
+      this.destroy()
     },
     fullScreenEvent() {
       let { previewerPlayer } = this;

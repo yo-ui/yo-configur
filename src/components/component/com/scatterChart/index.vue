@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-chart-box bm-basic-bar-chart-com">
+  <div class="bm-chart-box bm-basic-scatter-chart-com">
     <h2 class="title">
       {{ deviceInfo.name || "设备"
       }}<el-select
@@ -36,7 +36,7 @@
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "barChartCom",
+  name: "scatterChartCom",
   data() {
     return {
       deviceInfo: {},
@@ -263,29 +263,25 @@ export default {
       //   values.push(parseInt(Math.random() * 1000));
       // }
       this.chartOptions = {
-        xAxis: {
-          type: "category",
-          data: times
-        },
-        title: {
-          text: this.$lang("设备实时数据"),
-          show: false
-        },
-        tooltip: {
-          trigger: "axis"
-        },
-        grid: {
-          top: "15%",
-          bottom: "8%"
-        },
-        yAxis: {
-          type: "value"
-        },
+        xAxis: {},
+        yAxis: {},
         series: [
           {
-            name,
-            data: values,
-            type: "bar"
+            symbolSize: 20,
+            data: [
+              [10.0, 8.04],
+              [8.0, 6.95],
+              [13.0, 7.58],
+              [9.0, 8.81],
+              [11.0, 8.33],
+              [14.0, 9.96],
+              [6.0, 7.24],
+              [4.0, 4.26],
+              [12.0, 10.84],
+              [7.0, 4.82],
+              [5.0, 5.68]
+            ],
+            type: "scatter"
           }
         ]
       };

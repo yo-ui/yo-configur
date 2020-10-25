@@ -34,7 +34,12 @@
               class="edit"
               :class="{
                 active: activeComIds.indexOf(item.id) > -1,
-                locked: item.locked
+                locked: item.locked,
+                opacity:
+                  activeComIds &&
+                  activeComIds.length > 0 &&
+                  !(activeComIds.indexOf(item.id) > -1) &&
+                  activeCom.type != 'canvas'
               }"
               v-for="(item, index) in widgetList"
               :data-type="item.type"
@@ -147,6 +152,8 @@ import { Constants } from "@/common/env";
 import bmCom from "@/components/component";
 import bmHeader from "@/components/header";
 import bmNav from "@/components/nav";
+import bmWidgetList from "@/components/widget-list";
+import bmInfo from "@/components/info";
 import bmFooter from "@/components/footer";
 import mixins from "@/mixins";
 // eslint-disable-next-line no-undef
@@ -182,17 +189,19 @@ export default {
     bmFooter,
     // : () =>
     //   import(/* webpackChunkName: "iot-footer-com" */ "@/components/footer"),
-    bmInfo: () =>
-      import(/* webpackChunkName: "iot-info-com" */ "@/components/info"),
+    // bmInfo: () =>
+    //   import(/* webpackChunkName: "iot-info-com" */ "@/components/info"),
     bmCom,
+    bmInfo,
+    bmWidgetList,
     // : () =>
     //   import(
     //     /* webpackChunkName: "iot-component-com" */ "@/components/component"
     //   ),
-    bmWidgetList: () =>
-      import(
-        /* webpackChunkName: "iot-widget-list-com" */ "@/components/widget-list"
-      ),
+    // bmWidgetList: () =>
+    //   import(
+    //     /* webpackChunkName: "iot-widget-list-com" */ "@/components/widget-list"
+    //   ),
     bmDevice: () =>
       import(
         /* webpackChunkName: "iot-device-com" */ "@/components/data/device"
@@ -404,6 +413,7 @@ export default {
           });
           this.setWidgetList(widgetList);
           this.setCanvasData(data);
+          this.resetCanvasSize();
         } else {
           this.$nextTick(() => {
             let $canvasBox = $(this.$refs.canvasBox);
@@ -412,6 +422,7 @@ export default {
             let height = $canvasBox.innerHeight();
             canvas.width = width;
             canvas.height = height;
+            this.resetCanvasSize();
           });
         }
         this.createHistoryAction();
@@ -437,6 +448,7 @@ export default {
       $(viewBox).on("contextmenu", this.viewBoxContextmenuEvent);
       //注册按键键盘事件
       $(document).on("keydown", this.keydownEvent);
+      $(window).on("resize", this.resetCanvasSize);
       //注册绑定设备事件
       $vm.$on("bindDevice", item => {
         this.addDataEvent(item);
@@ -470,6 +482,33 @@ export default {
       // $(document).on("mousedown", this.keydownEvent);
       // 默认选择画布
       this.selectComAction();
+    },
+
+    resetCanvasSize() {
+      this.$nextTick(() => {
+        let $window = $(window);
+        let $leftBox = $(".bm-widget-list-com");
+        let $rightBox = $(".bm-info-com");
+        let leftWidth = $leftBox.width();
+        let rightWidth = $rightBox.width();
+        // let w_height = $window.height();
+        let w_width = $window.width() - rightWidth - leftWidth - 60;
+        let { canvas = {} } = this;
+        let { width = 0 } = canvas || {};
+        // let h_ratio = w_height / height;
+        let w_ratio = w_width / width;
+        let scale = w_ratio;
+        // let left = (w_width - width) / 2;
+        // let top = ((w_height - height) * scale) / 2;
+        // if (h_ratio > w_ratio) {
+        //   scale = h_ratio;
+        //   // left = ((w_width - width) * scale) / 2;
+        //   // top = (w_height - height) / 2;
+        // }
+        // canvas.left = left;
+        // canvas.top = top;
+        this.setZoom(scale);
+      });
     },
     //添加数据事件
     addDataEvent(item = {}) {
@@ -683,6 +722,7 @@ export default {
       if (keyCode === 37) {
         // 左
         // dis = 1;
+        e.preventDefault();
         if (shiftKey) {
           dis = shiftDis;
         }
@@ -697,6 +737,7 @@ export default {
       } else if (keyCode === 38) {
         // 上
         // let dis = 1;
+        e.preventDefault();
         if (shiftKey) {
           dis = shiftDis;
         }
@@ -711,6 +752,7 @@ export default {
       } else if (keyCode === 39) {
         // 右
         // let dis = 1;
+        e.preventDefault();
         if (shiftKey) {
           dis = shiftDis;
         }
@@ -726,6 +768,7 @@ export default {
       } else if (keyCode === 40) {
         // 下
         // let dis = 1;
+        e.preventDefault();
         if (shiftKey) {
           dis = shiftDis;
         }
@@ -1082,6 +1125,8 @@ export default {
     $(viewBox).off("contextmenu", this.viewBoxContextmenuEvent);
     //注册按键键盘事件
     $(document).off("keydown", this.keydownEvent);
+
+    $(window).off("resize", this.resetCanvasSize);
   }
 };
 </script>

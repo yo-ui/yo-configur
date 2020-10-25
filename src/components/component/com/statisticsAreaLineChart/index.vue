@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-chart-box bm-basic-bar-chart-com">
+  <div class="bm-chart-box bm-basic-statistics-area-line-chart-com">
     <h2 class="title">
       {{ deviceInfo.name || "设备"
       }}<el-select
@@ -22,27 +22,30 @@
         </el-option> </el-select
       >{{ $lang("实时数据") }}
     </h2>
+    <!-- :init-options="{ renderer: 'svg' }" -->
     <v-chart
       theme="macarons"
       autoresize
       :style="comStyle"
-      :init-options="{ renderer: 'svg' }"
       :options="chartOptions"
     />
   </div>
 </template>
 
 <script>
+// import bmCommon from "@/common/common";
+// import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "barChartCom",
+  name: "statisticsAreaLineChartCom",
   data() {
     return {
       deviceInfo: {},
       condition: {
         point: ""
       },
+      // dataLoadingStatus:false,
       chartOptions: {}
     };
   },
@@ -165,11 +168,14 @@ export default {
   },
   mounted() {
     this.init();
-    this.$emit("success"); //组件加载完成回调
+    // this.$emit("success"); //组件加载完成回调
   },
   methods: {
     ...mapMutations({}),
-    ...mapActions({}),
+    ...mapActions({
+      // commonGetDeviceAction: "commonGetDevice",
+      // commonDevicePointHstDataAction: "commonDevicePointHstData"
+    }),
     init() {
       let { info = {} } = this;
       let { bindData = {} } = info || {};
@@ -254,14 +260,6 @@ export default {
           values.push(parseInt(Math.random() * 1000));
         }
       }
-      // for (let i = 0; i < 12; i++) {
-      //   times.push(
-      //     this.$moment()
-      //       .subtract(i, "d")
-      //       .format("YYYY-MM-DD")
-      //   );
-      //   values.push(parseInt(Math.random() * 1000));
-      // }
       this.chartOptions = {
         xAxis: {
           type: "category",
@@ -271,25 +269,88 @@ export default {
           text: this.$lang("设备实时数据"),
           show: false
         },
-        tooltip: {
-          trigger: "axis"
-        },
         grid: {
           top: "15%",
           bottom: "8%"
+        },
+        tooltip: {
+          trigger: "axis",
+          formatter: "{b}<br/>{c}"
         },
         yAxis: {
           type: "value"
         },
         series: [
           {
-            name,
             data: values,
-            type: "bar"
+            type: "line",
+            areaStyle: {}
           }
         ]
       };
     }
+    // // 获取设备信息
+    // commonGetDeviceFunc(deviceId, callback) {
+    //   let value = {};
+    //   if (!deviceId) {
+    //     // this.dataLoadingStatus = false;
+    //     callback && callback();
+    //     return;
+    //   }
+    //   // this.dataLoadingStatus = true;
+    //   this.commonGetDeviceAction({ deviceId })
+    //     .then(({ data }) => {
+    //       let { code = "", result = {}, message = "" } = data || {};
+    //       if (code == Constants.CODES.SUCCESS) {
+    //         value = result || {};
+    //       } else {
+    //         bmCommon.error(message);
+    //       }
+    //       // this.dataLoadingStatus = false;
+    //       callback && callback(value || {});
+    //     })
+    //     .catch(err => {
+    //       // this.dataLoadingStatus = false;
+    //       callback && callback(value || {});
+    //       bmCommon.error("获取数据失败=>commonGetDevice", err);
+    //     });
+    // },
+    // // 获取设备点位信息
+    // commonDevicePointHstDataFunc(callback) {
+    //   let value = {};
+    //   let { condition, deviceInfo = {} } = this;
+    //   let { id: deviceId = "" } = deviceInfo || {};
+    //   if (!deviceId) {
+    //     // this.dataLoadingStatus = false;
+    //     callback && callback();
+    //     return;
+    //   }
+    //   let { point = "" } = condition;
+    //   let startTime = this.$moment().format("YYYY-MM-DD 00:00:00");
+    //   let endTime = this.$moment().format("YYYY-MM-DD HH:mm:ss");
+    //   // this.dataLoadingStatus = true;
+    //   this.commonDevicePointHstDataAction({
+    //     deviceId,
+    //     point,
+    //     startTime,
+    //     endTime
+    //   })
+    //     .then(({ data }) => {
+    //       let { code = "", result = {}, message = "" } = data || {};
+    //       if (code == Constants.CODES.SUCCESS) {
+    //         value = result || {};
+    //       } else {
+    //         bmCommon.error(message);
+    //       }
+    //       // this.dataLoadingStatus = false;
+    //       callback && callback(value || {});
+    //     })
+    //     .catch(err => {
+    //       // this.dataLoadingStatus = false;
+    //       callback && callback(value || {});
+    //       bmCommon.error("获取数据失败=>commonDevicePointHstData", err);
+    //     });
+    // }
     // blurEvent(e) {
     //   let { target } = e;
     //   let { info = {} } = this;
@@ -313,5 +374,5 @@ export default {
 </script>
 
 <style lang="less">
-@import (less) "../../../../assets/less/components/component/basic/bar.less";
+@import (less) "../../../../assets/less/components/component/basic/line.less";
 </style>

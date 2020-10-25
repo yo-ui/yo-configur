@@ -1,20 +1,48 @@
 <template>
-  <v-chart
-    theme="macarons"
-    autoresize
-    :style="comStyle"
-    :init-options="{ renderer: 'svg' }"
-    :options="chartOptions"
-  />
+  <div class="bm-chart-box bm-basic-gauge-chart-com">
+    <h2 class="title">
+      {{ deviceInfo.name || "设备"
+      }}<el-select
+        v-if="
+          deviceInfo.points &&
+            deviceInfo.points.length > 0 &&
+            showType == 'edit'
+        "
+        v-model="info.bindData.devicePoint"
+        placeholder="请选择设备点位"
+        filterable
+        @change="selectPointEvent"
+      >
+        <el-option
+          v-for="item in deviceInfo.points"
+          :key="item.id"
+          :label="item.name"
+          :value="item.id"
+        >
+        </el-option> </el-select
+      >{{ $lang("实时数据") }}
+    </h2>
+    <v-chart
+      theme="macarons"
+      autoresize
+      :style="comStyle"
+      :init-options="{ renderer: 'svg' }"
+      :options="chartOptions"
+    />
+  </div>
 </template>
 
 <script>
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "gaugeCom",
+  name: "gaugeChartCom",
   data() {
     return {
+      deviceInfo: {},
+      condition: {
+        point: ""
+      },
       chartOptions: {}
     };
   },
@@ -141,9 +169,68 @@ export default {
     ...mapMutations({}),
     ...mapActions({}),
     init() {
-      this.loadChartOptions();
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { deviceId = "" } = bindData || {};
+      // condition.deviceId=deviceId
+      // condition.devicePoint=devicePoint
+      if (deviceId) {
+        this.loadDeviceInfo();
+      } else {
+        this.loadChartOptions();
+      }
     },
-    loadChartOptions() {
+    selectPointEvent() {
+      this.loadPointData();
+    },
+    loadDeviceInfo() {
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { deviceId = "", devicePoint = "" } = bindData || {};
+      $vm.$emit("device", {
+        deviceId,
+        callback: (device = {}) => {
+          this.deviceInfo = device || {};
+          // let { condition } = this;
+          if (!devicePoint) {
+            let { points = [] } = device || {};
+            let [point = {}] = points || [];
+            let { id = "" } = point || {};
+            info.bindData.devicePoint = id;
+          }
+          this.loadPointData();
+        }
+      });
+      // this.commonGetDeviceFunc(deviceId, (device = {}) => {
+      //   this.deviceInfo = device || {};
+      //   let { condition } = this;
+      //   let { points = [] } = device || {};
+      //   let [point = {}] = points || [];
+      //   let { id = "" } = point || {};
+      //   condition.point = id;
+      //   this.loadPointData();
+      // });
+    },
+    loadPointData() {
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { deviceId = "", devicePoint: point = "" } = bindData || {};
+      let startTime = this.$moment().format("YYYY-MM-DD 00:00:00");
+      let endTime = this.$moment().format("YYYY-MM-DD HH:mm:ss");
+      $vm.$emit("device-point-hst-data", {
+        point,
+        startTime,
+        endTime,
+        deviceId,
+        callback: data => {
+          this.loadChartOptions(data);
+        }
+      });
+      // this.commonDevicePointHstDataFunc(data => {
+      //   this.loadChartOptions(data);
+      // });
+    },
+    loadChartOptions(data) {
       let times = [];
       let values = [];
       for (let i = 0; i < 12; i++) {
@@ -156,7 +243,8 @@ export default {
       }
       this.chartOptions = {
         title: {
-          text: this.$lang("设备实时数据")
+          text: this.$lang("设备实时数据"),
+          show:false,
         },
         tooltip: {
           trigger: "axis"

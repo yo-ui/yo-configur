@@ -1,3 +1,4 @@
+// 饼图
 <template>
   <!-- <v-chart
     theme="macarons"
@@ -6,7 +7,7 @@
     :init-options="{ renderer: 'svg' }"
     :options="chartOptions"
   /> -->
-  <div class="bm-basic-pie-chart-com">
+  <div class="bm-chart-box bm-basic-pie-chart-com">
     <h2 class="title">
       {{ deviceInfo.name || "设备"
       }}<el-select
