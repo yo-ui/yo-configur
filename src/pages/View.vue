@@ -248,6 +248,7 @@ export default {
       canvasGetAction: "canvasGet",
       commonGetDeviceAction: "commonGetDevice",
       commonDevicePointHstDataAction: "commonDevicePointHstData",
+      commonDeviceListAction: "commonDeviceList",
       pushAction: "push"
     }),
     init() {
