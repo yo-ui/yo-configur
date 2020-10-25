@@ -73,6 +73,7 @@ export default {
       this.commonGetDeviceFunc(deviceId, device => {
         bmCommon.log(device);
         this.deviceInfo = device || {};
+        this.$emit("load", info);
       });
     },
     // 获取设备信息

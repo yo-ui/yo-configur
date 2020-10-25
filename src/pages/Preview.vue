@@ -2,7 +2,29 @@
   <div class="bm-preview-page">
     <div class="flex-content">
       <div class="content-box">
-        <div class="view-box" ref="viewBox">
+        <div class="zoom-box">
+          <!--<el-button-group>
+            <el-button type="primary" size="default" @click="">
+              <i class="el-icon-zoom-in"></i>
+            </el-button>
+            <el-button type="primary" size="default" @click="zoomE">
+              <i class="el-icon-zoom-in"></i>
+            </el-button>
+          </el-button-group> -->
+
+          <el-button-group>
+            <el-button @click="zoomEvent(-20)">
+              <i class="el-icon-zoom-out"></i>
+            </el-button>
+            <el-button @click="zoomEvent(0)">
+              <i class="el-icon-search"></i>
+              {{ parseInt(boxZoom) }}%
+            </el-button>
+            <el-button @click="zoomEvent(20)">
+              <i class="el-icon-zoom-in"></i> </el-button
+          ></el-button-group>
+        </div>
+        <div class="view-box" ref="viewBox" :style="canvasBoxStyle">
           <div
             class="canvas-box"
             ref="canvasBox"
@@ -24,6 +46,7 @@
                 :key="index"
                 @show="showInfoEvent(item)"
                 width="400"
+                :ref="`popover_${item.id}`"
                 trigger="hover"
               >
                 <!-- @show="showInfoEvent(item.bindData)" -->
@@ -31,6 +54,7 @@
                 <!-- <bm-device-info :pointList="deviceInfo.points"></bm-device-info> -->
                 <component
                   :ref="`bmInfoCom_${item.id}`"
+                  @load="loadEvent"
                   :is="`${item.infoType}InfoCom`"
                 />
                 <bm-com
@@ -75,7 +99,8 @@ export default {
     return {
       condition: {
         canvasId: ""
-      }
+      },
+      boxZoom: 100
       // deviceInfo: {},
       // showContextMenuStatus: false,
       // showContextMenuType: 1, //1 组件右键菜单   2是画布右键菜单
@@ -157,8 +182,24 @@ export default {
       }
       return styles;
     },
+    canvasBoxStyle() {
+      let { boxZoom = 100 } = this;
+      boxZoom = boxZoom / 100;
+      let styles = {
+        // left: `${left}px`,
+        // top: `${top}px`,
+        // backgroundColor: `${backgroundColor}`,
+        transform: `scale(${boxZoom})`,
+        // webkitTransform: `scale(${zoom})`,
+        transformOrigin: `center top`
+      };
+      // if (backgroundImage) {
+      //   styles["backgroundImage"] = `url(${backgroundImage})`;
+      // }
+      return styles || {};
+    },
     canvasStyle() {
-      let { canvas = {}, gradientStyle = {} } = this;
+      let { canvas = {}, gradientStyle = {}, zoom = 100 } = this;
       let {
         // left = 0,
         // top = 0,
@@ -168,14 +209,14 @@ export default {
         backgroundColor = "#fff"
         // backgroundImage = ""
       } = canvas;
-      // zoom = zoom / 100;
+      zoom = zoom / 100;
       let styles = {
         // left: `${left}px`,
         // top: `${top}px`,
         // backgroundColor: `${backgroundColor}`,
-        // transform: `scale(${zoom})`,
+        transform: `scale(${zoom})`,
         // webkitTransform: `scale(${zoom})`,
-        // transformOrigin: `left top`
+        transformOrigin: `left top`
       };
       if (width) {
         styles["width"] = `${width}px`;
@@ -226,8 +267,8 @@ export default {
           alias = type;
         }
         let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
-        let { data = {} } = _item || {};        
-        let { infoType = "",dataType="" } = data || {};
+        let { data = {} } = _item || {};
+        let { infoType = "", dataType = "" } = data || {};
         item.showCoverStatus = true;
         item.infoType = infoType;
         item.dataType = dataType;
@@ -239,6 +280,13 @@ export default {
       this.setCanvas(canvas || {});
       this.resetCanvasSize();
       this.loadWebsocketData(widgetList);
+    },
+    loadEvent(item) {
+      const { id = "" } = item || {};
+      const key = `popover_${id}`;
+      this.$nextTick(() => {
+        this.$refs[key][0]?.updatePopper();
+      });
     },
     initEvent() {
       $(window).on("resize", this.resetCanvasSize);
@@ -274,6 +322,17 @@ export default {
       $vm.$on("camera-preview", item => {
         this.$refs.bmCameraPreviewer.show(item);
       });
+    },
+    zoomEvent(val = 0) {
+      let { boxZoom = 0 } = this;
+      if (val) {
+        boxZoom = boxZoom + val;
+        if (boxZoom > 10 && boxZoom < 200) {
+          this.boxZoom = boxZoom;
+        }
+      } else {
+        this.boxZoom = 100;
+      }
     },
     loadWebsocketData(widgetList = []) {
       let deviceIdList = [];
@@ -339,24 +398,24 @@ export default {
       // });
     },
     resetCanvasSize() {
-      // let $window = $(window);
-      // let w_height = $window.height();
-      // let w_width = $window.width();
-      // let { canvas = {} } = this;
-      // let { width = 0, height = 0 } = canvas || {};
-      // let h_ratio = w_height / height;
-      // let w_ratio = w_width / width;
-      // let scale = w_ratio;
-      // // let left = (w_width - width) / 2;
-      // // let top = ((w_height - height) * scale) / 2;
-      // if (h_ratio > w_ratio) {
-      //   scale = h_ratio;
-      //   // left = ((w_width - width) * scale) / 2;
-      //   // top = (w_height - height) / 2;
-      // }
-      // // canvas.left = left;
-      // // canvas.top = top;
-      // this.setZoom(scale);
+      let $window = $(window);
+      let w_height = $window.height();
+      let w_width = $window.width();
+      let { canvas = {} } = this;
+      let { width = 0, height = 0 } = canvas || {};
+      let h_ratio = w_height / height;
+      let w_ratio = w_width / width;
+      let scale = w_ratio;
+      // let left = (w_width - width) / 2;
+      // let top = ((w_height - height) * scale) / 2;
+      if (h_ratio > w_ratio) {
+        scale = h_ratio;
+        // left = ((w_width - width) * scale) / 2;
+        // top = (w_height - height) / 2;
+      }
+      // canvas.left = left;
+      // canvas.top = top;
+      this.setZoom(scale);
     },
     // 初始化websocket
     initConfigWebsocketFunc(callback) {

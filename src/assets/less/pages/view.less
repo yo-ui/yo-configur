@@ -1,7 +1,7 @@
 @import (reference) "./../common.less";
 .bm-view-page{
   .df;
-  .bc(@body-bg);
+  .bc(@white);
   .oh;
   // .posa;
   // .flex(1);
@@ -55,7 +55,20 @@
     .posr;
     .touch;
     justify-content: space-between;
-    
+    .zoom-box{
+      .posf;
+      z-index:2;
+      right: 10%;
+      top:10%;
+      opacity: 0.2;
+      &:hover{
+        opacity: 1;
+      }
+      .el-button{
+        .bc(rgba(0,0,0,0.5));
+        .c(@white);
+      }
+    }
     .view-box{
       // .flex(1);
       // .m(30px 30px 50px);

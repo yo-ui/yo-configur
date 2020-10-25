@@ -2,7 +2,29 @@
   <div class="bm-view-page">
     <div class="flex-content">
       <div class="content-box">
-        <div class="view-box" ref="viewBox">
+        <div class="zoom-box">
+          <!--<el-button-group>
+            <el-button type="primary" size="default" @click="">
+              <i class="el-icon-zoom-in"></i>
+            </el-button>
+            <el-button type="primary" size="default" @click="zoomE">
+              <i class="el-icon-zoom-in"></i>
+            </el-button>
+          </el-button-group> -->
+
+          <el-button-group>
+            <el-button @click="zoomEvent(-20)">
+              <i class="el-icon-zoom-out"></i>
+            </el-button>
+            <el-button @click="zoomEvent(0)">
+              <i class="el-icon-search"></i>
+              {{ parseInt(boxZoom) }}%
+            </el-button>
+            <el-button @click="zoomEvent(20)">
+              <i class="el-icon-zoom-in"></i> </el-button
+          ></el-button-group>
+        </div>
+        <div class="view-box" ref="viewBox" :style="canvasBoxStyle">
           <div
             class="canvas-box"
             ref="canvasBox"
@@ -31,12 +53,14 @@
                 placement="right"
                 :key="index"
                 @show="showInfoEvent(item)"
+                :ref="`popover_${item.id}`"
                 width="400"
                 trigger="hover"
               >
                 <!-- @show="showInfoEvent(item.bindData)" -->
                 <!-- <bm-device-info :pointList="deviceInfo.points"></bm-device-info> -->
                 <component
+                  @load="loadEvent"
                   :ref="`bmInfoCom_${item.id}`"
                   :is="`${item.infoType}InfoCom`"
                 />
@@ -79,7 +103,8 @@ export default {
     return {
       condition: {
         canvasId: ""
-      }
+      },
+      boxZoom: 100
       // deviceInfo: {},
       // showContextMenuStatus: false,
       // showContextMenuType: 1, //1 组件右键菜单   2是画布右键菜单
@@ -152,6 +177,22 @@ export default {
         styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
       }
       return styles;
+    },
+    canvasBoxStyle() {
+      let { boxZoom = 100 } = this;
+      boxZoom = boxZoom / 100;
+      let styles = {
+        // left: `${left}px`,
+        // top: `${top}px`,
+        // backgroundColor: `${backgroundColor}`,
+        transform: `scale(${boxZoom})`,
+        // webkitTransform: `scale(${zoom})`,
+        transformOrigin: `center top`
+      };
+      // if (backgroundImage) {
+      //   styles["backgroundImage"] = `url(${backgroundImage})`;
+      // }
+      return styles || {};
     },
     canvasStyle() {
       let { zoom = 0, canvas = {}, gradientStyle = {} } = this;
@@ -292,6 +333,24 @@ export default {
         this.$refs.bmCameraPreviewer.show(item);
       });
     },
+    loadEvent(item) {
+      const { id = "" } = item || {};
+      const key = `popover_${id}`;
+      this.$nextTick(() => {
+        this.$refs[key][0]?.updatePopper();
+      });
+    },
+    zoomEvent(val = 0) {
+      let { boxZoom = 0 } = this;
+      if (val) {
+        boxZoom = boxZoom + val;
+        if (boxZoom > 10 && boxZoom < 200) {
+          this.boxZoom = boxZoom;
+        }
+      } else {
+        this.boxZoom = 100;
+      }
+    },
     loadWebsocketData(widgetList = []) {
       let deviceIdList = [];
       widgetList.forEach(item => {
@@ -346,24 +405,24 @@ export default {
       });
     },
     resetCanvasSize() {
-      // let $window = $(window);
-      // let w_height = $window.height();
-      // let w_width = $window.width();
-      // let { canvas = {} } = this;
-      // let { width = 0, height = 0 } = canvas || {};
-      // let h_ratio = w_height / height;
-      // let w_ratio = w_width / width;
-      // let scale = w_ratio;
-      // // let left = (w_width - width) / 2;
-      // // let top = ((w_height - height) * scale) / 2;
-      // if (h_ratio > w_ratio) {
-      //   scale = h_ratio;
-      //   // left = ((w_width - width) * scale) / 2;
-      //   // top = (w_height - height) / 2;
-      // }
-      // // canvas.left = left;
-      // // canvas.top = top;
-      // this.setZoom(scale);
+      let $window = $(window);
+      let w_height = $window.height();
+      let w_width = $window.width();
+      let { canvas = {} } = this;
+      let { width = 0, height = 0 } = canvas || {};
+      let h_ratio = w_height / height;
+      let w_ratio = w_width / width;
+      let scale = w_ratio;
+      // let left = (w_width - width) / 2;
+      // let top = ((w_height - height) * scale) / 2;
+      if (h_ratio > w_ratio) {
+        scale = h_ratio;
+        // left = ((w_width - width) * scale) / 2;
+        // top = (w_height - height) / 2;
+      }
+      // canvas.left = left;
+      // canvas.top = top;
+      this.setZoom(scale);
     },
     showInfoEvent(info = {}) {
       let { id = "" } = info || {};
@@ -374,6 +433,24 @@ export default {
       //   bmCommon.log(device);
       //   this.deviceInfo = device || {};
       // });
+    },
+    // 设备点位参数
+    commonDeviceListFunc(ids = [], callback) {
+      let value = [];
+      this.commonDeviceListAction({ ids: JSON.stringify(ids) })
+        .then(({ data }) => {
+          let { code = "", result = [], message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || [];
+          } else {
+            bmCommon.error(message);
+          }
+          callback && callback(value || []);
+        })
+        .catch(err => {
+          callback && callback(value || []);
+          bmCommon.error("获取数据失败=>commonDeviceList", err);
+        });
     },
     // // 获取登录信息
     // commonVerifyInfoFunc(callback) {
