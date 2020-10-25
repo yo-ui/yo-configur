@@ -6,7 +6,7 @@ import bmCommon from "@/common/common";
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import apiConfig from "@/common/conf/index";
-let { wsServiceHost = "", wsManageHost = "" } = apiConfig || {};
+let { serviceHost = "", manageHost = "" } = apiConfig || {};
 // let variablePool = {};
 
 // variablePool.websocketMap = {}; //初始化Websocket 连接池
@@ -38,10 +38,10 @@ export default {
     let url = URL.websocketUrl;
     if (platform == "service") {
       //应用平台跳转过来
-      url = `${wsServiceHost}${url}`;
+      url = `${serviceHost}${url}`;
     } else if (platform == "manage") {
       //管理平台跳转过来
-      url = `${wsManageHost}${url}`;
+      url = `${manageHost}${url}`;
     }
     let socket = new SockJS(`${url}?x-access-token=${token}`);
     let stompClient = Stomp.over(socket);
