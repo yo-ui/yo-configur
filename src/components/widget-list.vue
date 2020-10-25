@@ -86,6 +86,7 @@ export default {
   computed: {
     ...mapGetters({
       widgetList: "canvas/getWidgetList", //组件列表
+      zoom: "canvas/getZoom", //放大缩小
       canvas: "canvas/getCanvas" //画布属性
     })
   },
@@ -152,7 +153,7 @@ export default {
       e.preventDefault();
       // bmCommon.log("拖到目标元素", e.target);
       e.stopPropagation();
-      let { widgetList = [], canvas = {} } = this;
+      let { widgetList = [], canvas = {},zoom=1 } = this;
       let { originalEvent = {} } = e;
       let offset = $(".view-box").offset();
       let { dataTransfer = {} } = originalEvent;
@@ -172,10 +173,12 @@ export default {
         let { left = 0, top = 0 } = offset || {};
         let { x = 0, y = 0 } = pos || {};
         let { width = 0, height = 0, alias = "" } = data || {};
-        let { left: _left = 0, top: _top = 0 } = canvas || {};
-        // bmCommon.log("释放当前元素",data, target, width, height, left, top, x, y);
-        left = x - left - _left - width / 2;
-        top = y - top - _top - height / 2;
+        // let { left: _left = 0, top: _top = 0 } = canvas || {};
+        bmCommon.log("释放当前元素", width, height, left, top, x, y);
+        // left = x - left - _left - width / 2;
+        // top = y - top - _top - height / 2;
+        left = x/zoom - left /zoom - width / 2;
+        top = y/zoom - top /zoom - height / 2;
         let orders = widgetList.map(item => item.order);
         let order = 1;
         if (orders && orders.length > 0) {

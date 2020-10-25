@@ -492,7 +492,11 @@ export default {
         let leftWidth = $leftBox.width();
         let rightWidth = $rightBox.width();
         // let w_height = $window.height();
-        let w_width = $window.width() - rightWidth - leftWidth - 60;
+        let w_width = $window.width();
+        if (w_width < 1280) {
+          w_width = 1280;
+        }
+        w_width = w_width - rightWidth - leftWidth - 60;
         let { canvas = {} } = this;
         let { width = 0 } = canvas || {};
         // let h_ratio = w_height / height;

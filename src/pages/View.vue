@@ -408,6 +408,9 @@ export default {
       let $window = $(window);
       let w_height = $window.height();
       let w_width = $window.width();
+      if (w_width < 1280) {
+        w_width = 1280;
+      }
       let { canvas = {} } = this;
       let { width = 0, height = 0 } = canvas || {};
       let h_ratio = w_height / height;
