@@ -187,6 +187,10 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-device-rqgl" */ "@/components/component/device/rqgl/index.vue"
     ),
+  deviceLsdglCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-lsdgl" */ "@/components/component/device/lsdgl/index.vue"
+    ),
   deviceSsbjfCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-ssbjf" */ "@/components/component/device/ssbjf/index.vue"
@@ -245,6 +249,10 @@ let styles = {
   canvasStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-canvas-style" */ "@/components/component/canvas-style.vue"
+    ),
+  groupStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-group-style" */ "@/components/component/group-style.vue"
     ),
   textStyleCom: () =>
     import(
@@ -434,6 +442,10 @@ let styles = {
   deviceRqglStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-rqgl-style" */ "@/components/component/device/rqgl/style.vue"
+    ),
+  deviceLsdglStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-lsdgl-style" */ "@/components/component/device/lsdgl/style.vue"
     ),
   deviceSsbjfStyleCom: () =>
     import(

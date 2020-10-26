@@ -112,6 +112,7 @@ export default {
       // contextMenuStyle: {}
     };
   },
+  props: ["canvasId", "type"],
   components: {
     bmCom,
     ...infos,
@@ -256,6 +257,12 @@ export default {
       let { condition, canvas = {}, $route } = this;
       let { query = {} } = $route;
       let { canvasId = "", type = 1 } = query || {};
+      if (canvasId) {
+        canvasId = this.canvasId;
+      }
+      if (type) {
+        type = this.type;
+      }
       condition.canvasId = canvasId;
       this.setShowType(Constants.SHOWTYPEMAP.VIEW);
       this.canvasGetFunc((detail = {}) => {

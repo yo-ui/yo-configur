@@ -1,7 +1,7 @@
 <template>
-  <div class="bm-canvas-style-com">
+  <div class="bm-group-style-com">
     <el-collapse v-model="activeNames">
-      <el-collapse-item title="功能选择" name="1">
+      <!-- <el-collapse-item :title="$lang('组合')" name="group">
         <p>
           <el-tooltip
             :content="$lang('选择组件')"
@@ -40,9 +40,9 @@
             ></i>
           </el-tooltip>
         </p>
-      </el-collapse-item>
-      <el-collapse-item title="画布" name="2">
-        <p>
+      </el-collapse-item> -->
+      <el-collapse-item :title="$lang('组合')" name="group">
+        <!-- <p>
           <span class="label"> {{ $lang("画布封面") }}: </span>
           <bm-upload ref="bmUpload" @success="successCallback(info, 'poster')">
             <el-button type="primary">
@@ -72,8 +72,8 @@
             clearable
             :placeholder="$lang('请输入组态标题')"
           ></el-input>
-        </p>
-        <p>
+        </p> -->
+        <!-- <p>
           <span class="label"> {{ $lang("页面宽度") }}:</span>
           <el-tooltip
             :content="$lang('请输入页面宽度')"
@@ -113,7 +113,7 @@
             :max="3000"
             :format-tooltip="val => val"
           ></el-slider>
-        </p>
+        </p> -->
         <p>
           <span class="label">{{ $lang("填充颜色") }}:</span>
           <el-select
@@ -354,8 +354,8 @@
         </el-option>
       </el-select>
     </p> -->
-        <p>
-          <span class="label"> {{ $lang("显示网格") }}:</span
+        <!-- <p>
+          <span class="label"> {{ $lang("是否显示网格") }}:</span
           ><el-checkbox v-model="info.isGrid"></el-checkbox>
         </p>
         <template v-if="info.isGrid">
@@ -397,8 +397,8 @@
               >px
             </span>
           </p>
-        </template>
-        <p>
+        </template> -->
+        <!-- <p>
           <span class="label"> {{ $lang("缩放") }}:</span>
           <i
             class="el-icon-zoom-in"
@@ -415,6 +415,94 @@
             @click="zoomEvent()"
             :title="$lang('重置')"
           ></i>
+        </p> -->
+
+        <p class="btn-box">
+          <el-tooltip content="隐藏" placement="top" effect="dark">
+            <i
+              class="el-icon-view"
+              :class="{ active: !info.visible }"
+              @click="clickStatusEvent('visible', !info.visible)"
+            ></i>
+          </el-tooltip>
+          <el-tooltip content="锁定" placement="top" effect="dark">
+            <i
+              class="el-icon-lock"
+              :class="{ active: info.locked }"
+              @click="clickStatusEvent('locked', !info.locked)"
+            ></i>
+          </el-tooltip>
+          <el-tooltip content="垂直翻转" placement="top" effect="dark">
+            <i
+              class="bomi bomi-flip-v"
+              :class="{ active: info.flipV }"
+              @click="clickStatusEvent('flipV', !info.flipV)"
+            ></i>
+          </el-tooltip>
+          <el-tooltip content="水平翻转" placement="top" effect="dark">
+            <i
+              class="bomi bomi-flip-h"
+              :class="{ active: info.flipH }"
+              @click="clickStatusEvent('flipH', !info.flipH)"
+            ></i>
+          </el-tooltip>
+        </p>
+      </el-collapse-item>
+      <el-collapse-item :title="$lang('字体设置')" name="font">
+        <p>
+          <span class="label">{{ $lang("字体颜色") }}:</span>
+          <el-color-picker v-model="info.color" show-alpha></el-color-picker>
+        </p>
+        <p>
+          <span class="label">{{ $lang("字体大小") }}:</span>
+          {{ info.fontSize }} px
+          <el-slider
+            v-model="info.fontSize"
+            :min="10"
+            :max="100"
+            :format-tooltip="val => val + ' px'"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label">{{ $lang("字体") }}:</span>
+          <el-select
+            v-model="info.fontFamily"
+            :placeholder="$lang('请选择字体')"
+          >
+            <el-option
+              v-for="item in fontFamilyList"
+              :key="item.code"
+              :label="$lang(item.name)"
+              :value="item.code"
+            >
+            </el-option>
+          </el-select>
+        </p>
+        <p>
+          <span class="label">{{ $lang("字体样式") }}:</span>
+          <span class="font-style">
+            <span
+              class="bold"
+              @click="setFontWeight"
+              :title="$lang('粗体')"
+              :class="{ active: info.fontWeight == 'bold' }"
+              >B</span
+            >
+            <span
+              class="italic"
+              @click="setFontStyle"
+              :title="$lang('斜体')"
+              :class="{ active: info.fontStyle == 'italic' }"
+              >I</span
+            >
+            <span
+              class="underline"
+              @click="setTextDecoration"
+              :title="$lang('下划线')"
+              :class="{ active: info.textDecoration == 'underline' }"
+              >U</span
+            >
+          </span>
         </p>
       </el-collapse-item>
       <!-- <el-collapse-item title="交互" name="3"> </el-collapse-item>
@@ -452,7 +540,7 @@ const ASSISTMAP = Constants.COMPONENTLIBRARYMAP;
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "canvasStyleCom",
+  name: "groupStyleCom",
   data() {
     let gridStyleList = Object.freeze([
       { code: "1", name: "默认20*20", value: { width: 20, height: 20 } },
@@ -467,11 +555,17 @@ export default {
       gridStyleMap[item.code] = item || {};
     });
     return {
-      activeNames: ["1", "2"],
+      activeNames: ["group"],
       gridStyleList,
+      info: {
+        flipV: false,
+        flipH: false,
+        visible: true,
+        locked: false
+      },
       flipModeList: Object.freeze(Constants.FLIPMODELIST),
       BACKGROUNDSIZELIST: Object.freeze(Constants.BACKGROUNDSIZELIST),
-      // fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
+      fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
       tileModeList: Object.freeze(Constants.TILEMODELIST),
       gridStyleMap,
       backgroundTypeList: Object.freeze(Constants.BACKGROUNDTYPELIST),
@@ -485,19 +579,20 @@ export default {
       // }
     };
   },
-  props: {
-    info: {
-      type: Object,
-      default: () => {
-        return {};
-      }
-    }
-  },
+  // props: {
+  //   info: {
+  //     type: Object,
+  //     default: () => {
+  //       return {};
+  //     }
+  //   }
+  // },
   computed: {
     ...mapGetters({
       zoom: "canvas/getZoom", //放大缩小
       widgetList: "canvas/getWidgetList", //组件列表
       canvas: "canvas/getCanvas", //画布
+      activeComs: "canvas/getActiveComs", //选中组件
       linkPoint: "canvas/getLinkPoint" //画布
     }),
     gradientStyle() {
@@ -560,8 +655,8 @@ export default {
       )
   },
   beforeDestroy() {
-    $(document).off("mousedown", this.mousedownEvent);
-    $(document).off("mousedown", this.mousedownCanvasPaintEvent);
+    // $(document).off("mousedown", this.mousedownEvent);
+    // $(document).off("mousedown", this.mousedownCanvasPaintEvent);
   },
   methods: {
     ...mapMutations({
@@ -674,329 +769,371 @@ export default {
         canvas.top = 0;
       }
     },
-    unCanvasMoveEvent() {
-      $(document).off("mousedown", this.mousedownEvent);
-    },
-    unCanvasPaintEvent() {
-      $(document).off("mousedown", this.mousedownCanvasPaintEvent);
-    },
-    canvasMoveEvent() {
-      $(document).on("mousedown", this.mousedownEvent);
-    },
-    canvasPaintEvent() {
-      $(document).on("mousedown", this.mousedownCanvasPaintEvent);
-    },
-    mousedownEvent(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      let { canvas = {} } = this;
-      let pos = bmCommon.getMousePosition(e);
-      let { x = "", y = "" } = pos || {};
-      let { left, top } = canvas || {};
-      this.initMove({
-        startX: x,
-        startY: y,
-        originX: left,
-        originY: top
+    // unCanvasMoveEvent() {
+    //   $(document).off("mousedown", this.mousedownEvent);
+    // },
+    // unCanvasPaintEvent() {
+    //   $(document).off("mousedown", this.mousedownCanvasPaintEvent);
+    // },
+    // canvasMoveEvent() {
+    //   $(document).on("mousedown", this.mousedownEvent);
+    // },
+    // canvasPaintEvent() {
+    //   $(document).on("mousedown", this.mousedownCanvasPaintEvent);
+    // },
+    clickStatusEvent(key, value) {
+      let { info = {}, activeComs = [] } = this;
+      info[key] = value;
+      activeComs.forEach(item => {
+        item[key] = value;
       });
-
-      $(document).on("mousemove", this.mousemoveEvent);
-      $(document).on("mouseup", this.mouseupEvent);
-    },
-    mousemoveEvent(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      let pos = bmCommon.getMousePosition(e);
-      let { x = "", y = "" } = pos || {};
-      this.canvasMoving({ x, y });
-    },
-    mouseupEvent(e) {
-      $(document).off("mousemove", this.mousemoveEvent);
-      $(document).off("mouseup", this.mouseupEvent);
-      this.stopMove();
     },
 
-    mousedownCanvasPaintEvent(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      let { widgetList = [], linkPoint, condition } = this;
-      let pos = bmCommon.getMousePosition(e);
-      let { x = "", y = "" } = pos || {};
-      if (!linkPoint) {
-        this.$$msgError("请先创建连接点");
-        return;
+    setFontWeight() {
+      let { info = {} } = this;
+      let { fontWeight = "" } = info || {};
+      if (fontWeight == "bold") {
+        fontWeight = "";
+      } else {
+        fontWeight = "bold";
       }
-      let _offset = $(".view-box").offset();
-      let offset = $(".content-box").offset();
-      let { left: __left = 0, top: __top = 0 } = _offset || {};
-      let { left: _left = 0, top: _top = 0 } = offset || {};
-      let { left = 0, top = 0, width = 0, height = 0, alias = "" } =
-        linkPoint || {};
-      // let { left=0, top=0 } = canvas || {};
-      // this.initMove({
-      //   startX: x,
-      //   startY: y
-      //   // originX: left,
-      //   // originY: top
-      // });
-      // let angle = bmCommon.getAngles({
-      //   point1: { x: left, y: top },
-      //   point2: { x, y }
-      // });
-      condition.startX = x;
-      condition.startY = y;
-      // let dis = {
-      x = x - (left + _left + __left);
-      y = y - (top + _top + __top);
-      // };
-      // let x = changeX - startX;
-      // let y = changeY - startY;
-      let item = {};
-      let assist = "water_vertical"; //垂直
-      //   assist = "water_horizontal"; //水平
-      if (
-        (x > 0 && y < 0 && x > Math.abs(y)) ||
-        (x > 0 && y > 0 && x > y) ||
-        (x > 0 && y == 0)
-      ) {
-        //右移动
-        bmCommon.group("右移动");
-        // left = left + width;
-        // if (alias != "water_horizontal") {
-        assist = "water_horizontal";
-        // }
-        let obj = ASSISTMAP[assist];
-        let { data = {}, alias: _alias = "", name = "", code: type = "" } =
-          obj || {};
-        left = left + width;
-        if (alias != "linkPoint" && alias != "water_horizontal") {
-          top = top + height;
-        }
-        let id = bmCommon.uuid();
-        let orders = widgetList.map(item => item.order);
-        let order = Math.max(...orders);
-        order += 1;
-        item = {
-          ...data,
-          order,
-          type,
-          name,
-          alias: _alias,
-          id,
-          left,
-          top
-        };
-      } else if (
-        (y > 0 && x < 0 && y > Math.abs(x)) ||
-        (y > 0 && x > 0 && y > x) ||
-        (y > 0 && x == 0)
-      ) {
-        //下移动
-        bmCommon.group("下移动");
-        // if (alias != "water_vertical") {
-        assist = "water_vertical";
-        // }
-        let obj = ASSISTMAP[assist];
-        let { data = {}, alias: _alias = "", name = "", code: type = "" } =
-          obj || {};
-        top = top + height;
-        if (alias != "linkPoint" && alias != "water_vertical") {
-          left = left + width;
-        }
-        let id = bmCommon.uuid();
-        let orders = widgetList.map(item => item.order);
-        let order = Math.max(...orders);
-        order += 1;
-        item = {
-          ...data,
-          order,
-          type,
-          name,
-          alias: _alias,
-          id,
-          left,
-          top
-        };
-      } else if (
-        (x < 0 && y > 0 && Math.abs(x) > y) ||
-        (x < 0 && y < 0 && Math.abs(x) > Math.abs(y)) ||
-        (x < 0 && y == 0)
-      ) {
-        //左移动
-        bmCommon.group("左移动");
-        // if (alias != "water_horizontal") {
-        assist = "water_horizontal";
-        // }
-        let obj = ASSISTMAP[assist];
-        let {
-          data = {},
-          alias: _alias = "",
-          name = "",
-          code: type = "",
-          width: _width = ""
-        } = obj || {};
-        left = left - width - _width;
-        if (alias != "linkPoint" && alias != "water_horizontal") {
-          top = top + height;
-        }
-        let id = bmCommon.uuid();
-        let orders = widgetList.map(item => item.order);
-        let order = Math.max(...orders);
-        order += 1;
-        item = {
-          ...data,
-          order,
-          type,
-          name,
-          alias: _alias,
-          id,
-          left,
-          top
-        };
-      } else if (
-        (y < 0 && x < 0 && Math.abs(y) > Math.abs(x)) ||
-        (y < 0 && x > 0 && Math.abs(y) > x) ||
-        (y < 0 && x == 0)
-      ) {
-        //上移动
-        bmCommon.group("上移动");
-        // if (alias != "water_vertical") {
-        assist = "water_vertical";
-        // }
-        let obj = ASSISTMAP[assist];
-        let {
-          data = {},
-          alias: _alias = "",
-          name = "",
-          code: type = "",
-          height: _height = ""
-        } = obj || {};
-        top = top - height - _height;
-        if (alias != "linkPoint" && alias != "water_vertical") {
-          left = left + width;
-        }
-        let id = bmCommon.uuid();
-        let orders = widgetList.map(item => item.order);
-        let order = Math.max(...orders);
-        order += 1;
-        item = {
-          ...data,
-          order,
-          type,
-          name,
-          alias: _alias,
-          id,
-          left,
-          top
-        };
-      } else if (x == 0 && y == 0) {
-        bmCommon.group("位置没变");
-        return;
+      info.fontWeight = fontWeight;
+    },
+    setTextDecoration() {
+      let { info = {} } = this;
+      let { textDecoration = "" } = info || {};
+      if (textDecoration == "underline") {
+        textDecoration = "";
+      } else {
+        textDecoration = "underline";
       }
-      // let obj = ASSISTMAP[assist];
-      // let { data = {}, alias: _alias = "", name = "", code: type = "" } =
-      //   obj || {};
-      // let id = bmCommon.uuid();
-      // let orders = widgetList.map(item => item.order);
-      // let order = Math.max(...orders);
-      // order += 1;
-      // let item = {
-      //   ...data,
-      //   order,
-      //   type,
-      //   name,
-      //   alias: _alias,
-      //   id,
-      //   left,
-      //   top
-      // };
-      widgetList.push(item);
-      this.setLinkPoint(item);
-      // bmCommon.log(dis, "paint");
-      // let assist = "water_vertical"; //垂直
-      // if (dis.x > dis.y) {
-      //   assist = "water_horizontal"; //水平
-      //   left = left + width;
-      // } else {
-      //   top = top + height;
-      // }
-      // let obj = ASSISTMAP[assist];
-      // let { data = {}, alias = "", name = "", code: type = "" } = obj || {};
-      // let id = bmCommon.uuid();
-      // let orders = widgetList.map(item => item.order);
-      // let order = Math.max(...orders);
-      // order += 1;
-      // let item = {
-      //   ...data,
-      //   order,
-      //   type,
-      //   name,
-      //   alias,
-      //   id,
-      //   left,
-      //   top
-      // };
-      // widgetList.push(item);
-      // this.setLinkPoint(item);
-      $(document).on("mousemove", this.mousemoveCanvasPaintEvent);
-      $(document).on("mouseup", this.mouseupCanvasPaintEvent);
+      info.textDecoration = textDecoration;
     },
-    mousemoveCanvasPaintEvent(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      // let { widgetList = [], linkPoint, condition } = this;
-      // let pos = bmCommon.getMousePosition(e);
-      // let { x: changeX = "", y: changeY = "" } = pos || {};
-      // let { startX = "", startY = "" } = condition;
-      // let x = changeX - startX;
-      // let y = changeY - startY;
-      // if (
-      //   (x > 0 && y < 0 && x > Math.abs(y)) ||
-      //   (x > 0 && y > 0 && x > y) ||
-      //   (x > 0 && y == 0)
-      // ) {
-      //   //右移动
-      //   bmCommon.group("右移动");
-      // } else if (
-      //   (y > 0 && x < 0 && y > Math.abs(x)) ||
-      //   (y > 0 && x > 0 && y > x) ||
-      //   (y > 0 && x == 0)
-      // ) {
-      //   //下移动
-      //   bmCommon.group("下移动");
-      // } else if (
-      //   (x < 0 && y > 0 && Math.abs(x) > y) ||
-      //   (x < 0 && y < 0 && Math.abs(x) > Math.abs(y)) ||
-      //   (x < 0 && y == 0)
-      // ) {
-      //   //左移动
-      //   bmCommon.group("左移动");
-      // } else if (
-      //   (y < 0 && x < 0 && Math.abs(y) > Math.abs(x)) ||
-      //   (y < 0 && x > 0 && Math.abs(y) > x) ||
-      //   (y < 0 && x == 0)
-      // ) {
-      //   //上移动
-      //   bmCommon.group("上移动");
-      // } else if (x == 0 && y == 0) {
-      //   bmCommon.group("位置没变");
-      // }
-      // this.canvasMoving({ x, y });
-      // condition.startX = changeX;
-      // condition.startY = changeY;
+    setFontStyle() {
+      let { info = {} } = this;
+      let { fontStyle = "" } = info || {};
+      if (fontStyle == "italic") {
+        fontStyle = "";
+      } else {
+        fontStyle = "italic";
+      }
+      info.fontStyle = fontStyle;
     },
-    mouseupCanvasPaintEvent(e) {
-      $(document).off("mousemove", this.mousemoveCanvasPaintEvent);
-      $(document).off("mouseup", this.mouseupCanvasPaintEvent);
-      this.stopMove();
+    textAlignEvent(item) {
+      let { info = {} } = this;
+      info.textAlign = item;
     }
+    // mousedownEvent(e) {
+    //   e.stopPropagation();
+    //   e.preventDefault();
+    //   let { canvas = {} } = this;
+    //   let pos = bmCommon.getMousePosition(e);
+    //   let { x = "", y = "" } = pos || {};
+    //   let { left, top } = canvas || {};
+    //   this.initMove({
+    //     startX: x,
+    //     startY: y,
+    //     originX: left,
+    //     originY: top
+    //   });
+
+    //   $(document).on("mousemove", this.mousemoveEvent);
+    //   $(document).on("mouseup", this.mouseupEvent);
+    // },
+    // mousemoveEvent(e) {
+    //   e.stopPropagation();
+    //   e.preventDefault();
+    //   let pos = bmCommon.getMousePosition(e);
+    //   let { x = "", y = "" } = pos || {};
+    //   this.canvasMoving({ x, y });
+    // },
+    // mouseupEvent(e) {
+    //   $(document).off("mousemove", this.mousemoveEvent);
+    //   $(document).off("mouseup", this.mouseupEvent);
+    //   this.stopMove();
+    // },
+
+    // mousedownCanvasPaintEvent(e) {
+    //   e.stopPropagation();
+    //   e.preventDefault();
+    //   let { widgetList = [], linkPoint, condition } = this;
+    //   let pos = bmCommon.getMousePosition(e);
+    //   let { x = "", y = "" } = pos || {};
+    //   if (!linkPoint) {
+    //     this.$$msgError("请先创建连接点");
+    //     return;
+    //   }
+    //   let _offset = $(".view-box").offset();
+    //   let offset = $(".content-box").offset();
+    //   let { left: __left = 0, top: __top = 0 } = _offset || {};
+    //   let { left: _left = 0, top: _top = 0 } = offset || {};
+    //   let { left = 0, top = 0, width = 0, height = 0, alias = "" } =
+    //     linkPoint || {};
+    //   // let { left=0, top=0 } = canvas || {};
+    //   // this.initMove({
+    //   //   startX: x,
+    //   //   startY: y
+    //   //   // originX: left,
+    //   //   // originY: top
+    //   // });
+    //   // let angle = bmCommon.getAngles({
+    //   //   point1: { x: left, y: top },
+    //   //   point2: { x, y }
+    //   // });
+    //   condition.startX = x;
+    //   condition.startY = y;
+    //   // let dis = {
+    //   x = x - (left + _left + __left);
+    //   y = y - (top + _top + __top);
+    //   // };
+    //   // let x = changeX - startX;
+    //   // let y = changeY - startY;
+    //   let item = {};
+    //   let assist = "water_vertical"; //垂直
+    //   //   assist = "water_horizontal"; //水平
+    //   if (
+    //     (x > 0 && y < 0 && x > Math.abs(y)) ||
+    //     (x > 0 && y > 0 && x > y) ||
+    //     (x > 0 && y == 0)
+    //   ) {
+    //     //右移动
+    //     bmCommon.group("右移动");
+    //     // left = left + width;
+    //     // if (alias != "water_horizontal") {
+    //     assist = "water_horizontal";
+    //     // }
+    //     let obj = ASSISTMAP[assist];
+    //     let { data = {}, alias: _alias = "", name = "", code: type = "" } =
+    //       obj || {};
+    //     left = left + width;
+    //     if (alias != "linkPoint" && alias != "water_horizontal") {
+    //       top = top + height;
+    //     }
+    //     let id = bmCommon.uuid();
+    //     let orders = widgetList.map(item => item.order);
+    //     let order = Math.max(...orders);
+    //     order += 1;
+    //     item = {
+    //       ...data,
+    //       order,
+    //       type,
+    //       name,
+    //       alias: _alias,
+    //       id,
+    //       left,
+    //       top
+    //     };
+    //   } else if (
+    //     (y > 0 && x < 0 && y > Math.abs(x)) ||
+    //     (y > 0 && x > 0 && y > x) ||
+    //     (y > 0 && x == 0)
+    //   ) {
+    //     //下移动
+    //     bmCommon.group("下移动");
+    //     // if (alias != "water_vertical") {
+    //     assist = "water_vertical";
+    //     // }
+    //     let obj = ASSISTMAP[assist];
+    //     let { data = {}, alias: _alias = "", name = "", code: type = "" } =
+    //       obj || {};
+    //     top = top + height;
+    //     if (alias != "linkPoint" && alias != "water_vertical") {
+    //       left = left + width;
+    //     }
+    //     let id = bmCommon.uuid();
+    //     let orders = widgetList.map(item => item.order);
+    //     let order = Math.max(...orders);
+    //     order += 1;
+    //     item = {
+    //       ...data,
+    //       order,
+    //       type,
+    //       name,
+    //       alias: _alias,
+    //       id,
+    //       left,
+    //       top
+    //     };
+    //   } else if (
+    //     (x < 0 && y > 0 && Math.abs(x) > y) ||
+    //     (x < 0 && y < 0 && Math.abs(x) > Math.abs(y)) ||
+    //     (x < 0 && y == 0)
+    //   ) {
+    //     //左移动
+    //     bmCommon.group("左移动");
+    //     // if (alias != "water_horizontal") {
+    //     assist = "water_horizontal";
+    //     // }
+    //     let obj = ASSISTMAP[assist];
+    //     let {
+    //       data = {},
+    //       alias: _alias = "",
+    //       name = "",
+    //       code: type = "",
+    //       width: _width = ""
+    //     } = obj || {};
+    //     left = left - width - _width;
+    //     if (alias != "linkPoint" && alias != "water_horizontal") {
+    //       top = top + height;
+    //     }
+    //     let id = bmCommon.uuid();
+    //     let orders = widgetList.map(item => item.order);
+    //     let order = Math.max(...orders);
+    //     order += 1;
+    //     item = {
+    //       ...data,
+    //       order,
+    //       type,
+    //       name,
+    //       alias: _alias,
+    //       id,
+    //       left,
+    //       top
+    //     };
+    //   } else if (
+    //     (y < 0 && x < 0 && Math.abs(y) > Math.abs(x)) ||
+    //     (y < 0 && x > 0 && Math.abs(y) > x) ||
+    //     (y < 0 && x == 0)
+    //   ) {
+    //     //上移动
+    //     bmCommon.group("上移动");
+    //     // if (alias != "water_vertical") {
+    //     assist = "water_vertical";
+    //     // }
+    //     let obj = ASSISTMAP[assist];
+    //     let {
+    //       data = {},
+    //       alias: _alias = "",
+    //       name = "",
+    //       code: type = "",
+    //       height: _height = ""
+    //     } = obj || {};
+    //     top = top - height - _height;
+    //     if (alias != "linkPoint" && alias != "water_vertical") {
+    //       left = left + width;
+    //     }
+    //     let id = bmCommon.uuid();
+    //     let orders = widgetList.map(item => item.order);
+    //     let order = Math.max(...orders);
+    //     order += 1;
+    //     item = {
+    //       ...data,
+    //       order,
+    //       type,
+    //       name,
+    //       alias: _alias,
+    //       id,
+    //       left,
+    //       top
+    //     };
+    //   } else if (x == 0 && y == 0) {
+    //     bmCommon.group("位置没变");
+    //     return;
+    //   }
+    //   // let obj = ASSISTMAP[assist];
+    //   // let { data = {}, alias: _alias = "", name = "", code: type = "" } =
+    //   //   obj || {};
+    //   // let id = bmCommon.uuid();
+    //   // let orders = widgetList.map(item => item.order);
+    //   // let order = Math.max(...orders);
+    //   // order += 1;
+    //   // let item = {
+    //   //   ...data,
+    //   //   order,
+    //   //   type,
+    //   //   name,
+    //   //   alias: _alias,
+    //   //   id,
+    //   //   left,
+    //   //   top
+    //   // };
+    //   widgetList.push(item);
+    //   this.setLinkPoint(item);
+    //   // bmCommon.log(dis, "paint");
+    //   // let assist = "water_vertical"; //垂直
+    //   // if (dis.x > dis.y) {
+    //   //   assist = "water_horizontal"; //水平
+    //   //   left = left + width;
+    //   // } else {
+    //   //   top = top + height;
+    //   // }
+    //   // let obj = ASSISTMAP[assist];
+    //   // let { data = {}, alias = "", name = "", code: type = "" } = obj || {};
+    //   // let id = bmCommon.uuid();
+    //   // let orders = widgetList.map(item => item.order);
+    //   // let order = Math.max(...orders);
+    //   // order += 1;
+    //   // let item = {
+    //   //   ...data,
+    //   //   order,
+    //   //   type,
+    //   //   name,
+    //   //   alias,
+    //   //   id,
+    //   //   left,
+    //   //   top
+    //   // };
+    //   // widgetList.push(item);
+    //   // this.setLinkPoint(item);
+    //   $(document).on("mousemove", this.mousemoveCanvasPaintEvent);
+    //   $(document).on("mouseup", this.mouseupCanvasPaintEvent);
+    // },
+    // mousemoveCanvasPaintEvent(e) {
+    //   e.stopPropagation();
+    //   e.preventDefault();
+    //   // let { widgetList = [], linkPoint, condition } = this;
+    //   // let pos = bmCommon.getMousePosition(e);
+    //   // let { x: changeX = "", y: changeY = "" } = pos || {};
+    //   // let { startX = "", startY = "" } = condition;
+    //   // let x = changeX - startX;
+    //   // let y = changeY - startY;
+    //   // if (
+    //   //   (x > 0 && y < 0 && x > Math.abs(y)) ||
+    //   //   (x > 0 && y > 0 && x > y) ||
+    //   //   (x > 0 && y == 0)
+    //   // ) {
+    //   //   //右移动
+    //   //   bmCommon.group("右移动");
+    //   // } else if (
+    //   //   (y > 0 && x < 0 && y > Math.abs(x)) ||
+    //   //   (y > 0 && x > 0 && y > x) ||
+    //   //   (y > 0 && x == 0)
+    //   // ) {
+    //   //   //下移动
+    //   //   bmCommon.group("下移动");
+    //   // } else if (
+    //   //   (x < 0 && y > 0 && Math.abs(x) > y) ||
+    //   //   (x < 0 && y < 0 && Math.abs(x) > Math.abs(y)) ||
+    //   //   (x < 0 && y == 0)
+    //   // ) {
+    //   //   //左移动
+    //   //   bmCommon.group("左移动");
+    //   // } else if (
+    //   //   (y < 0 && x < 0 && Math.abs(y) > Math.abs(x)) ||
+    //   //   (y < 0 && x > 0 && Math.abs(y) > x) ||
+    //   //   (y < 0 && x == 0)
+    //   // ) {
+    //   //   //上移动
+    //   //   bmCommon.group("上移动");
+    //   // } else if (x == 0 && y == 0) {
+    //   //   bmCommon.group("位置没变");
+    //   // }
+    //   // this.canvasMoving({ x, y });
+    //   // condition.startX = changeX;
+    //   // condition.startY = changeY;
+    // },
+    // mouseupCanvasPaintEvent(e) {
+    //   $(document).off("mousemove", this.mousemoveCanvasPaintEvent);
+    //   $(document).off("mouseup", this.mouseupCanvasPaintEvent);
+    //   this.stopMove();
+    // }
   }
 };
 </script>
 
 <style lang="less">
 @import (reference) "./../../assets/less/common.less";
-.bm-canvas-style-com {
+.bm-group-style-com {
   p {
     .icon-paint {
       .bi("/static/img/configur/water.png");

@@ -72,12 +72,12 @@
       @mouseleave="hideContextMenuEvent"
       :style="contextMenuStyle"
     >
-      <li
+      <!-- <li
         @click="cutEvent"
         v-if="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("添加到自定义") }} <small>Ctrl+X</small>
-      </li>
+      </li> -->
       <li
         @click="cutEvent"
         v-if="showContextMenuType == 1 && !activeCom.locked"
@@ -605,7 +605,8 @@ export default {
     viewBoxMousedownEvent(e) {
       // e.stopPropagation();
       // e.preventDefault();
-      let { target, shiftKey = false, ctrlKey = false } = e;
+      let { target, shiftKey = false, ctrlKey = false, metaKey = false } = e;
+      ctrlKey = ctrlKey || metaKey; //(ctrl(cmd))
       let $parent = $(target).parents(".bm-component-com");
       let type = $(target).attr("data-type");
       let id = $(target).attr("data-id");
@@ -860,8 +861,14 @@ export default {
       let copyCom = null;
       if (length > 1) {
         copyCom = bmCommon.clone(activeComs || []);
+        copyCom.forEach(item => {
+          item.left = item.left + 10;
+          item.top = item.top + 10;
+        });
       } else {
         copyCom = bmCommon.clone(activeCom || {});
+        copyCom.left = copyCom.left + 10;
+        copyCom.top = copyCom.top + 10;
       }
       this.copyCom = copyCom;
       this.showContextMenuStatus = false;
@@ -891,8 +898,8 @@ export default {
           ...item,
           id,
           order,
-          left: left,
-          top: top
+          left,
+          top
         };
         widgetList.push(_item);
         if (length > 1) {

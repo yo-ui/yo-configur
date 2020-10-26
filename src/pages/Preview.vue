@@ -108,6 +108,7 @@ export default {
       // contextMenuStyle: {}
     };
   },
+  props: ["canvasId", "type"],
   // mixins: [mixins],
   components: {
     bmCom,
@@ -256,6 +257,9 @@ export default {
       let { condition, $route } = this;
       let { query = {} } = $route;
       let { canvasId = "" } = query || {};
+      if (canvasId) {
+        canvasId = this.canvasId;
+      }
       condition.canvasId = canvasId;
       this.initEvent();
       this.setShowType(Constants.SHOWTYPEMAP.PREVIEW);

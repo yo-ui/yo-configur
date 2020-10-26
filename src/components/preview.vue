@@ -13,14 +13,19 @@
       {{ $lang("预览") }}
       <i class="el-icon-monitor" @click="$openPage(iframeUrl, true)"></i>
     </template>
-    <div v-loading="dataLoadingStatus">
-      <iframe
-        :src="iframeUrl"
-        frameborder="0"
-        v-if="showDialogStatus"
-        @load="loadEvent"
-      ></iframe>
-    </div>
+    <!-- <div v-loading="dataLoadingStatus"> -->
+    <iframe
+      :src="iframeUrl"
+      frameborder="0"
+      v-if="showDialogStatus"
+      @load="loadEvent"
+    ></iframe>
+    <!-- <bm-preview
+      ref="bmPreview"
+      :canvasId="$route.query.canvasId"
+      :type="$route.query.type"
+    ></bm-preview> -->
+    <!-- </div> -->
     <!-- <template #footer>
       <el-button
         type="primary"
@@ -49,7 +54,9 @@ export default {
       }
     };
   },
-  components: {},
+  components: {
+    // bmPreview: () => import(/* webpackChunkName: "iot-preview-com" */ "@/pages/Preview")
+  },
   computed: {
     ...mapGetters({
       // canvas: "canvas/getCanvas",

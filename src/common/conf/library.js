@@ -2580,6 +2580,34 @@ let componentLibrary = [
               // editable: false, //内容是否可编辑
               // locked: true //是否可拖动
             }
+          },
+          {
+            name: "立式电锅炉",
+            code: "deviceLsdgl",
+            alias: "lsdgl",
+            icon: "/static/img/configur/lsdgl.png",
+            data: {
+              ...baseData,
+              // backgroundImage: "/static/img/svg/rqgl.svg",
+              // borderWidth: 0,
+              // borderStyle: "none",
+              // borderColor: "",
+              // borderRadius: 0,
+              // scale: "scale(1,1)",
+              // opacity: 100,
+              // left: 0,
+              dataType: "device",
+              infoType: "device", //显示详情组件前缀名
+              width: 100,
+              height: 194,
+              // rotate: 0,
+              // top: 0,
+              equalScaleable: true //是否等比例缩放
+              // scaleable: true, //是否可缩放操作
+              // rotateable: true, //是否可旋转操作
+              // editable: false, //内容是否可编辑
+              // locked: true //是否可拖动
+            }
           }
         ]
       },

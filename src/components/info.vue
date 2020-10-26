@@ -20,7 +20,13 @@
         class="com-style"
         v-if="activeCom.type"
         :info="activeCom"
-        :is="`${activeCom.styleCode || activeCom.type}StyleCom`"
+        :is="
+          `${
+            activeComs && activeComs.length > 1
+              ? 'group'
+              : activeCom.styleCode || activeCom.type
+          }StyleCom`
+        "
       ></component>
     </template>
     <template v-if="activeIndex == 'dataBind'">
@@ -124,7 +130,8 @@ export default {
   computed: {
     ...mapGetters({
       getWidgetList: "canvas/getWidgetList",
-      activeCom: "canvas/getActiveCom" //选中对象
+      activeCom: "canvas/getActiveCom", //选中对象
+      activeComs: "canvas/getActiveComs" //选中多选对象
     }),
 
     dragOptions() {
