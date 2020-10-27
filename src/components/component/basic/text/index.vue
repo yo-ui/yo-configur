@@ -4,7 +4,7 @@
     @blur.stop="blurEvent"
     :style="comStyle"
   >
-    {{ info.name }}
+    {{ info.content }}
   </div>
 </template>
 

@@ -2,6 +2,7 @@ import bmCommon from "@/common/common";
 let baseData = {
   backgroundImage: "",
   backgroundSize: "100% 100%",
+  backgroundColor: "",
   backgroundRepeat: "repeat",
   borderWidth: 0,
   borderStyle: "none",
@@ -548,6 +549,7 @@ let componentLibrary = [
         icon: "/static/img/configur/dataing.png",
         data: {
           ...baseData,
+          content: "静态文本",
           // backgroundImage: "",
           // backgroundSize: "100% 100%",
           // backgroundRepeat: "repeat",
