@@ -242,7 +242,10 @@ export default {
     //   let { info = {} } = this;
     //   info.backgroundImage = url;
     // }
-  }
+  },
+  mounted() {    
+    this.$emit("success"); //组件加载完成回调
+  },
 };
 </script>
 <style lang="less">

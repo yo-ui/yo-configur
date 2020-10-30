@@ -15,7 +15,7 @@
         :title="$lang('移动画布')"
       ></i>
     </p> -->
-    <h2>{{ info.name }}</h2>
+    <!-- <h2>{{ info.name }}</h2> -->
     <!-- <p>
       <span class="label"> {{ $lang("文本名称") }}: </span>
       <el-input
@@ -24,6 +24,9 @@
         :placeholder="$lang('请输入文本名称')"
       ></el-input>
     </p> -->
+
+    <el-collapse v-model="activeNames">
+      <el-collapse-item :title="info.name" name="name">
     <p>
       <span class="label"> {{ $lang("层级") }}: </span>
       <el-input-number
@@ -82,13 +85,18 @@
     </p>
     <p>
       <span class="label"> {{ $lang("横坐标") }}:</span>
-      <el-input-number
-        controls-position="right"
-        clearable
-        v-model.number="info.left"
-        :placeholder="$lang('请输入横坐标')"
-      ></el-input-number>
-      px
+      <el-tooltip
+        :content="$lang('请输入横坐标')"
+        placement="top"
+        effect="dark"
+      >
+        <el-input-number
+          controls-position="right"
+          clearable
+          v-model.number="info.left"
+          :placeholder="$lang('请输入横坐标')"
+        ></el-input-number>
+      </el-tooltip>
       <el-slider
         v-model="info.left"
         :max="3500"
@@ -98,13 +106,18 @@
     </p>
     <p>
       <span class="label"> {{ $lang("纵坐标") }}:</span>
-      <el-input-number
-        controls-position="right"
-        clearable
-        v-model.number="info.top"
-        :placeholder="$lang('请输入纵坐标')"
-      ></el-input-number>
-      px
+      <el-tooltip
+        :content="$lang('请输入纵坐标')"
+        placement="top"
+        effect="dark"
+      >
+        <el-input-number
+          controls-position="right"
+          clearable
+          v-model.number="info.top"
+          :placeholder="$lang('请输入纵坐标')"
+        ></el-input-number>
+      </el-tooltip>
       <el-slider
         v-model="info.top"
         :max="3500"
@@ -114,6 +127,11 @@
     </p>
     <p>
       <span class="label"> {{ $lang("旋转角度") }}:</span>
+      <el-tooltip
+        :content="$lang('请输入旋转角度')"
+        placement="top"
+        effect="dark"
+      >
       <el-input-number
         controls-position="right"
         clearable
@@ -122,6 +140,7 @@
         v-model.number="info.rotate"
         :placeholder="$lang('请输入旋转角度')"
       ></el-input-number>
+      </el-tooltip>
       deg
       <el-slider
         v-model="info.rotate"
@@ -160,6 +179,8 @@
         ></i>
       </el-tooltip>
     </p>
+      </el-collapse-item>
+      <el-collapse-item :title="$lang('外观')" name="outward">
     <p>
       <span class="label">{{ $lang("填充颜色") }}:</span>
       <el-select
@@ -476,6 +497,8 @@
         </span>
       </span>
     </p>
+      </el-collapse-item>
+      <el-collapse-item :title="$lang('文字设置')" name="font">
     <p>
       <span class="label">{{ $lang("字体颜色") }}:</span>
       <el-color-picker v-model="info.color" show-alpha></el-color-picker>
@@ -768,8 +791,76 @@
       </p>
     </template>
 
-    <h2>{{ $lang("交互") }}</h2>
-    <h2>{{ $lang("动画") }}</h2>
+      </el-collapse-item>
+      <el-collapse-item :title="$lang('链接设置')" name="link">
+      </el-collapse-item>
+      <el-collapse-item title="动画" name="animation">
+        <p>
+          <span class="label">{{ $lang("动画类型") }}:</span>
+          <el-select v-model="info.animation.name" placeholder="请选择动画类型">
+            <el-option-group
+              v-for="group in animateGroupList"
+              :key="group.code"
+              :label="group.code"
+            >
+              <el-option
+                v-for="item in group.list"
+                :key="item.code"
+                :label="item.code"
+                :value="item.code"
+              >
+              </el-option>
+            </el-option-group>
+          </el-select>
+        </p>
+        <p>
+          <span class="label">{{ $lang("动画速度") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            :step="0.1"
+            :max="2"
+            v-model.number="info.animation.duration"
+            :placeholder="$lang('动画速度')"
+          ></el-input-number>
+          px
+          <el-slider
+            v-model="info.animation.duration"
+            :step="0.1"
+            :max="2"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label">{{ $lang("播放次数") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            v-model.number="info.animation.iterationCount"
+            :placeholder="$lang('播放次数')"
+          ></el-input-number>
+          px
+          <el-slider
+            v-model="info.animation.iterationCount"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label">{{ $lang("播放方式") }}:</span>
+          <el-radio-group v-model="info.animation.direction">
+            <el-radio
+              v-for="item in animationDirectionList"
+              :key="item.code"
+              :label="item.code"
+            >
+              {{ item.name }}
+            </el-radio>
+          </el-radio-group>
+        </p>
+      </el-collapse-item>
+    </el-collapse>
+    <!-- <h2>{{ $lang("交互") }}</h2>
+    <h2>{{ $lang("动画") }}</h2> -->
   </div>
 </template>
 
@@ -782,6 +873,9 @@ export default {
   name: "dynamicTextStyleCom",
   data() {
     return {
+      activeNames: ["name"],
+      animationDirectionList: Object.freeze(Constants.ANIMATIONDIRECTIONLIST),
+      animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
       borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
       backgroundTypeList: Object.freeze(Constants.BACKGROUNDTYPELIST),
       centerList: Object.freeze(Constants.CENTERLIST),
