@@ -208,6 +208,10 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-material" */ "@/components/component/material/common/index.vue"
     ),
+  materialLineCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-line" */ "@/components/component/material/line/index.vue"
+    ),
   materialRectangleCom: () =>
     import(
       /* webpackChunkName: "bm-component-material-rectangle" */ "@/components/component/material/rectangle/index.vue"

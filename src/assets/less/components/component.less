@@ -14,6 +14,13 @@
   // .pointer;
   cursor: move;
   white-space: nowrap;
+  &.materialLine{
+    .bor(none);
+    .box-s(none)!important;
+    .info{
+      .db(none)!important;
+    }
+  }
   &.locked{
     .borc(transparent);
   }
@@ -98,7 +105,7 @@
     }
     &::after{
       .posa;
-      .h(16);
+      .h(22);
       .w(1);
       top:100%;
       left:@circle-width/2px;
