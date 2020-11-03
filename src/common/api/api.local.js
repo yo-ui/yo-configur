@@ -18,5 +18,7 @@ module.exports = {
   // wsManageHost: "https://test-api-manage.energyiot.cn", //后端websocket接口地址
   serviceHost: "/service", //后端接口地址
   manageHost: "/manage", //后端接口地址
+  serviceLogin: "http://localhost:8086/login",
+  manageLogin: "http://localhost:8084/login",
   debug: false
 };

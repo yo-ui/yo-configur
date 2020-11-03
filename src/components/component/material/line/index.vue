@@ -176,7 +176,7 @@
         class="rect"
         width="10"
         height="10"
-        :x="info.x2-5"
+        :x="info.x2 - 5"
         fill="#fff"
         :y="info.y2 - 5"
         stroke="#0075e7"
@@ -238,13 +238,13 @@ export default {
     svgStyle() {
       let { info = {} } = this;
       let {
-        width = "",
-        height = "",
+        // width = "",
+        // height = "",
         // color = "",
-        borderColor = "",
+        // borderColor = "",
         gradientStyle = {},
-        borderStyle = "",
-        borderWidth = "",
+        // borderStyle = "",
+        lineWidth = "",
         // borderRadius = "",
         backgroundType = "",
         // opacity = "",
@@ -262,7 +262,7 @@ export default {
         // backgroundSize = ""
       } = info || {};
       let styles = {};
-      styles["stroke-width"] = borderWidth;
+      styles["stroke-width"] = lineWidth;
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {
@@ -284,12 +284,12 @@ export default {
     comStyle() {
       let { info = {} } = this;
       let {
-        width = "",
+        // width = "",
         height = "",
         // color = "",
         // borderColor = "",
         // borderStyle = "",
-        borderWidth = "",
+        // lineWidth = "",
         // borderRadius = "",
         // backgroundType = "",
         opacity = "",
@@ -320,7 +320,7 @@ export default {
       // let { w = 0, h = 0 } = rbox || {};
       // bmCommon.warn("rbox=", rbox);
       // info.width = w;
-      // info.height = h + 10 + borderWidth;
+      // info.height = h + 10 + lineWidth;
       // this.reloadSize();
       // if (backgroundRepeat) {
       //   styles["backgroundRepeat"] = backgroundRepeat;
@@ -334,7 +334,7 @@ export default {
       // if (borderStyle) {
       //   styles["borderStyle"] = borderStyle;
       // }
-      // styles["borderWidth"] = `${borderWidth}px`;
+      // styles["lineWidth"] = `${lineWidth}px`;
       styles["opacity"] = opacity / 100;
       // styles["borderRadius"] = `${borderRadius}px`;
       if (flipV || flipH) {
@@ -380,27 +380,17 @@ export default {
       return styles || {};
     }
   },
+  created() {
+    let { info = {} } = this;
+    let { x1 = 0, y1 = 0 } = info || {};
+    info.vboxX = x1;
+    info.vboxY = y1;
+  },
   mounted() {
     let { info = {} } = this;
-    let { gradientStyle = {}, x1 = 0, y1 = 0 } = info || {};
-    info.vboxX=x1
-    info.vboxY=y1
-    // info.points = new SVG.PointArray(points);
-    // info.width = 100;
-    // info.borderWidth = 20;
-    // let svg = SVG(this.$refs.svg);
-    // let group = svg.group();
-    // let rect1 = svg
-    //   .rect(10, 10)
-    //   .move(-10, borderWidth / 2)
-    //   .attr({ stroke: "#0075E7", "stroke-width": "2px" });
-    // let rect2 = svg
-    //   .rect(10, 10)
-    //   .move(width, borderWidth / 2)
-    //   .attr({ stroke: "#0075E7", "stroke-width": "2px" });
-    // group.add(rect1).add(rect2);
+    let { gradientStyle = {} } = info || {};
     this.$nextTick(() => {
-      this.reloadSize()
+      this.reloadSize();
     });
     gradientStyle.gradientId = bmCommon.uuid();
     // this.$emit("success"); //组件加载完成回调
@@ -408,16 +398,16 @@ export default {
   methods: {
     ...mapMutations({}),
     ...mapActions({}),
-    reloadSize(){
-      let {info={}}=this
-      let { borderWidth = 0 ,x1,y1,x2,y2} = info || {};
+    reloadSize() {
+      let { info = {} } = this;
+      let { x1, y1, x2, y2 } = info || {};
       let line = SVG(this.$refs.line);
       let rbox = line.rbox();
-      let bbox = line.bbox();
+      // let bbox = line.bbox();
       let { w = 0, h = 0 } = rbox || {};
-      // bmCommon.warn("rbox=", rbox);
-      info.vboxX=Math.min(x1,x2)
-      info.vboxY=Math.min(y1,y2)
+      info.vboxX = Math.min(x1, x2);
+      info.vboxY = Math.min(y1, y2);
+      // bmCommon.warn("rbox=", info.vboxX,info.vboxY);
       info.width = w;
       info.height = h + 10;
     },
@@ -434,7 +424,7 @@ export default {
     mousedownEvent(e, direction) {
       e.stopPropagation();
       e.preventDefault();
-      let { info = {} } = this;
+      // let { info = {} } = this;
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
       // let {
@@ -497,7 +487,7 @@ export default {
       var dy = y - startY;
       // let value, width, height, rotate;
       // let { equalScaleable = false } = info || {};
-      bmCommon.warn("dx,dy=",direction, dx, dy, zoom, x, y);
+      // bmCommon.warn("dx,dy=", direction, dx, dy, zoom, x, y);
 
       this.startX = x;
       this.startY = y;
@@ -508,7 +498,7 @@ export default {
         info.x2 += dx;
         info.y2 += dy;
         // }
-      this.reloadSize()
+        this.reloadSize();
         return;
       }
 
@@ -518,7 +508,7 @@ export default {
         info.x1 += dx;
         info.y1 += dy;
         // }
-      this.reloadSize()
+        this.reloadSize();
         return;
       }
     }

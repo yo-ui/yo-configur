@@ -2,7 +2,9 @@
 import { Constants } from "@/common/env";
 import bmCommon from "@/common/common";
 import apiConfig from "@/common/conf/index";
-let { serviceHost = "", manageHost = "" } = apiConfig || {};
+let { serviceHost = "", manageHost = "", manageLogin = "", serviceLogin = "" } =
+  apiConfig || {};
+let errorDialog = null;
 // import axios from "axios";
 // import Mprogress from "mprogress/mprogress.min";
 // import Qs from "qs";
@@ -59,10 +61,11 @@ async function request(type, options, callback) {
   !headers["X-Requested-With"] &&
     (headers["X-Requested-With"] = "XMLHttpRequest");
   let { $store = {} } = $vm;
+  let platform = "";
   if ($store) {
     let { getters = {} } = $store;
-    let { getUserInfo: userInfo = {}, getPlatform: platform = "" } =
-      getters || {};
+    let { getUserInfo: userInfo = {}, getPlatform = "" } = getters || {};
+    platform = getPlatform;
     // let userInfo = $store.getters.getUserInfo;
     let { token = "" } = userInfo || {};
     headers[Constants.AUTHORIZATION] = token;
@@ -114,7 +117,20 @@ async function request(type, options, callback) {
         }
         if (code == Constants.CODES.LOGIN) {
           // vm.$jumpLogin();
-          vm.$$msgWarn("当前登录已经过期，请返回重新进入！");
+          errorDialog?.close();
+          errorDialog = vm.$$msgWarn("当前登录已经过期，请返回重新进入！");
+          if (platform == "service") {
+            //应用平台跳转过来
+            url = `${serviceLogin}?redirecturl=${encodeURI(
+              location.href.replace(/&x-access-token.*$/, "")
+            )}`;
+          } else if (platform == "manage") {
+            //管理平台跳转过来
+            url = `${manageLogin}?redirecturl=${encodeURI(
+              location.href.replace(/&x-access-token.*$/, "")
+            )}`;
+          }
+          vm.$openPage(url);
           reject();
         } else if (code == Constants.CODES.REDIRECT) {
           // let url =

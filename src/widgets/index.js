@@ -51,9 +51,15 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-video" */ "@/components/component/basic/video/index.vue"
     ),
+  // hls视频流
   hlsVideoCom: () =>
     import(
       /* webpackChunkName: "bm-component-hls-video" */ "@/components/component/basic/hlsVideo/index.vue"
+    ),
+  //开关
+  switchCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-switch" */ "@/components/component/basic/switch/index.vue"
     ),
 
   lineChartCom: () =>
@@ -127,14 +133,14 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-liquidfillChart" */ "@/components/component/com/liquidfillChart/index.vue"
     ),
-    areaRadarChartCom: () =>
-      import(
-        /* webpackChunkName: "bm-component-areaRadarChart" */ "@/components/component/com/areaRadarChart/index.vue"
-      ),
-    statisticsRadarChartCom: () =>
-      import(
-        /* webpackChunkName: "bm-component-statisticsRadarChart" */ "@/components/component/com/statisticsRadarChart/index.vue"
-      ),
+  areaRadarChartCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-areaRadarChart" */ "@/components/component/com/areaRadarChart/index.vue"
+    ),
+  statisticsRadarChartCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-statisticsRadarChart" */ "@/components/component/com/statisticsRadarChart/index.vue"
+    ),
   deviceCommonCom: () =>
     import(
       /* webpackChunkName: "bm-component-device" */ "@/components/component/device/common/index.vue"
@@ -314,6 +320,10 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-hls-video-style" */ "@/components/component/basic/hlsVideo/style.vue"
     ),
+  switchStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-switch-style" */ "@/components/component/basic/switch/style.vue"
+    ),
 
   lineChartStyleCom: () =>
     import(
@@ -471,6 +481,10 @@ let styles = {
   materialStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-material-style" */ "@/components/component/material/style.vue"
+    ),
+  materialLineStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-line-style" */ "@/components/component/material/line/style.vue"
     ),
   materialRectangleStyleCom: () =>
     import(

@@ -245,7 +245,7 @@ export default {
           textStyle: {
             color: "#ccc"
           },
-          show:false,
+          show: false
         },
 
         tooltip: {

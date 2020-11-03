@@ -322,7 +322,7 @@ export default {
         // ]),
         title: {
           text: "1990 与 2015 年各国家人均寿命与 GDP",
-          show:false,
+          show: false
         },
         legend: {
           right: 10,

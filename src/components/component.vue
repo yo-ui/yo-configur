@@ -9,7 +9,7 @@
     :id="`box_${info.id}`"
     ref="bmComBox"
     :style="boxStyle"
-    :class="(animate ? `animated ${animate}` : '')+` ${info.type}`"
+    :class="(animate ? `animated ${animate}` : '') + ` ${info.type}`"
   >
     <div class="info" v-show="showType == 'edit' && !moving">
       <p class="txt">
@@ -363,7 +363,7 @@ export default {
     },
     coverEvent() {
       let { info = {} } = this;
-      bmCommon.error('dbclick')
+      bmCommon.error("dbclick");
       info.showCoverStatus = false;
     },
     mouseupEvent(e) {

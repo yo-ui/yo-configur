@@ -3,7 +3,9 @@
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      :viewBox="`${info.vBoxx} ${info.vBoxy} ${info.width} ${info.height}`"
+      :viewBox="
+        `-${info.borderWidth} -${info.borderWidth} ${info.width} ${info.height}`
+      "
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
@@ -136,6 +138,17 @@
       </defs>
       <!-- <path :d="info.points" :style="svgStyle" /> -->
       <polygon :points="info.points" :style="svgStyle" />
+      <!-- <circle
+        :cx="info.width / 2"
+        :cy="info.height / 2"
+        :r="info.innerRadius"
+        style="stroke:#006600; fill:#00cc00"
+      /> -->
+      <!-- <polygon :points="info.points1" style="stroke:#006600; fill:#00cc00" />
+      <polygon
+        :points="info.points2"
+        style="stroke:#006600; fill:#ff0000;opacity: .3;"
+      /> -->
     </svg>
   </div>
 </template>
@@ -261,43 +274,67 @@ export default {
         width / 2,
         height / 2 - innerRadius
       ]).transform(
-        new SVG.Matrix().rotate(360 / (cornerCount * 2)),
-        width / 2,
-        height / 2
+        {
+          rotate: 360 / (cornerCount * 2),
+          origin: {
+            x: width / 2,
+            y: height / 2
+          }
+        }
+        // new SVG.Matrix().rotate(360 / (cornerCount * 2)),
+        // width / 2,
+        // height / 2
       ); //内切圆初始点
+      // bmCommon.log(width / 2, height / 2 - innerRadius, innerPoint);
       let points = [];
-      let xs = [],
-        ys = [];
+      // let points1 = [];
+      // let points2 = [];
+      // let xs = [],
+      //   ys = [];
       for (let i = 0; i < cornerCount; i++) {
-        let _point = new SVG.Point(innerPoint).transform(
-          new SVG.Matrix().rotate(
-            (360 / cornerCount) * i,
-            width / 2,
-            height / 2
-          )
+        let _point = new SVG.Point(point).transform(
+          {
+            rotate: (360 / cornerCount) * i,
+            origin: { x: width / 2, y: height / 2 }
+          }
+          // new SVG.Matrix().rotate(
+          //   (360 / cornerCount) * i,
+          //   width / 2,
+          //   height / 2
+          // )
         );
-        let { x = 0, y = 0 } = _point;
-        xs.push(x);
-        ys.push(y);
+        // bmCommon.log(points.toString());
+        // let { x: _x = 0, y: _y = 0 } = _point;
+        // xs.push(_x);
+        // ys.push(_y);
         points.push(_point.toArray());
-        _point = new SVG.Point(point).transform(
-          new SVG.Matrix().rotate(
-            (360 / cornerCount) * i,
-            width / 2,
-            height / 2
-          )
+        // points2.push(_point.toArray());
+
+        _point = new SVG.Point(innerPoint).transform(
+          {
+            rotate: (360 / cornerCount) * i,
+            origin: { x: width / 2, y: height / 2 }
+          }
+          // new SVG.Matrix().rotate(
+          //   (360 / cornerCount) * i,
+          //   width / 2,
+          //   height / 2
+          // )
         );
-        let { x: _x = 0, y: _y = 0 } = _point;
-        xs.push(_x);
-        ys.push(_y);
+        // points1.push(_point.toArray());
+        // let { x = 0, y = 0 } = _point;
+        // xs.push(x);
+        // ys.push(y);
         points.push(_point.toArray());
       }
-      info.vBoxx = Math.min.apply(null, xs);
-      info.vBoxy = Math.min.apply(null, ys);
-      info.points = new SVG.PointArray(points).size(
-        width - borderWidth * 2,
-        height - borderWidth * 2
-      );
+      // bmCommon.log("内切 points", xs ,ys);
+      // info.vBoxx = Math.min.apply(null, xs);
+      // info.vBoxy = Math.min.apply(null, ys);
+      info.points = new SVG.PointArray(points)
+        .size(width - borderWidth * 2, height - borderWidth * 2)
+        .move(0, 0);
+      // info.points1 = new SVG.PointArray(points1);
+      // info.points2 = new SVG.PointArray(points2);
       // info.points = points;
       if (backgroundType == "purity") {
         //纯色
@@ -413,6 +450,8 @@ export default {
     let { info = {} } = this;
     let { gradientStyle = {} } = info || {};
     info.points = new SVG.PointArray(points);
+    // info.points1 = [];
+    // info.points2 = [];
     info.vBoxx = 0;
     info.vBoxy = 0;
     gradientStyle.gradientId = bmCommon.uuid();

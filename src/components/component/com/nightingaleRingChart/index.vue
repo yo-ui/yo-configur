@@ -241,7 +241,7 @@ export default {
           text: "南丁格尔玫瑰图",
           subtext: "纯属虚构",
           left: "center",
-          show:false
+          show: false
         },
         tooltip: {
           trigger: "item",

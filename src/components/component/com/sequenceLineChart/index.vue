@@ -264,14 +264,14 @@ export default {
       this.chartOptions = {
         title: {
           text: "折线图堆叠",
-          show:false
+          show: false
         },
         tooltip: {
           trigger: "axis"
         },
         legend: {
           data: ["邮件营销", "联盟广告", "视频广告", "直接访问", "搜索引擎"],
-          top:'10%',
+          top: "10%"
         },
         grid: {
           top: "30%",

@@ -307,7 +307,7 @@ const Constants = {
     { code: "Arial", name: "Arial" },
     { code: "Arial Black", name: "Arial Black" },
     { code: "Bookman", name: "Bookman" },
-    { code: "Comic Sans MSComic Sans MS" },
+    { code: "Comic Sans MSComic Sans MS", name: "Comic Sans MSComic Sans MS" },
     { code: "Courier", name: "Courier" },
     { code: "Courier New", name: "Courier New" },
     { code: "Digital-7Mono", name: "Digital-7Mono" },

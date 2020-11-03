@@ -282,7 +282,7 @@ export default {
             "必应",
             "其他"
           ],
-          top: "10%",
+          top: "10%"
         },
         grid: {
           top: "30%",

@@ -243,9 +243,9 @@ export default {
     //   info.backgroundImage = url;
     // }
   },
-  mounted() {    
+  mounted() {
     this.$emit("success"); //组件加载完成回调
-  },
+  }
 };
 </script>
 <style lang="less">

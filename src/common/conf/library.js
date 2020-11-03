@@ -118,22 +118,22 @@ let componentLibrary = [
         icon: "/static/img/configur/material/arrow.png",
         data: {
           ...baseData,
-          styleCode: "material",
+          // styleCode: "material",
           backgroundColor: "#0075E7",
           borderColor: "#0075E7",
-          borderWidth: 1,
-          x1:0,
-          y1:0,
-          x2:200,
-          y2:0,
+          lineWidth: 1,
+          x1: 0,
+          y1: 0,
+          x2: 200,
+          y2: 0,
           // backgroundImage: "/static/img/svg/material/arrow.svg",
           // originWidth: 100,
           // originHeight: 10,
           // dataType: "device",
           // infoType:"device",
           // equalScaleable: true //是否等比例缩放,
-          scaleable:false,//是否可缩放
-          rotateable:false,//是否可旋转
+          scaleable: false, //是否可缩放
+          rotateable: false //是否可旋转
         }
       },
       {
@@ -954,13 +954,31 @@ let componentLibrary = [
         data: {
           ...baseData,
           // dataType: "point",
+          content: true,
+          width: 80,
+          height: 35,
+          // activeColor:'#13ce66',
+          // inactiveColor:'#ff4949',
+          closeText: "关",
+          openText: "开",
+          closeColor: "#fff",
+          openColor: "#fff",
+          inactiveColor: "#aaa",
+          activeColor: "#108cee",
+          gradientStyle: {},
+          closeSliderColor: "#fff",
+          openSliderColor: "#fff",
+          sliderBorderWidth: 0,
+          sliderBorderColor: "",
+          sliderBorderStyle: "none",
+
           fontWeight: "bold",
           fontSize: 24,
-          fontFamily: "lcdD",
-          width: "",
-          height: "",
-          content: "00.00",
-          scaleable: false //是否可缩放操作
+          fontFamily: "lcdD"
+          // width: "",
+          // height: "",
+          // content: "00.00",
+          // scaleable: false //是否可缩放操作
         }
       }
     ]

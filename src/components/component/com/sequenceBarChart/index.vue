@@ -264,8 +264,8 @@ export default {
       // }
       this.chartOptions = {
         legend: {
-          data:["2015", "2016", "2017"],
-          show:true
+          data: ["2015", "2016", "2017"],
+          show: true
         },
         tooltip: {},
         grid: {

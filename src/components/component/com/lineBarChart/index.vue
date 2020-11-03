@@ -282,7 +282,7 @@ export default {
         },
         legend: {
           data: ["蒸发量", "降水量", "平均温度"],
-          top: "10%",
+          top: "10%"
         },
         grid: {
           top: "30%",

@@ -409,15 +409,21 @@
     </p>
     <p>
       <span class="label">{{ $lang("字体") }}:</span>
-      <el-select v-model="info.fontFamily" :placeholder="$lang('请选择字体')">
-        <el-option
-          v-for="item in fontFamilyList"
-          :key="item.code"
-          :label="$lang(item.name)"
-          :value="item.code"
-        >
-        </el-option>
-      </el-select>
+      <el-select
+            v-model="info.fontFamily"
+            :placeholder="$lang('请选择字体')"
+          >
+            <el-option
+              v-for="item in fontFamilyList"
+              :key="item.code"
+              :label="$lang(item.name)"
+              :value="item.code"
+            >
+              <span :style="`font-family:${item.code}`">{{
+                $lang(item.name)
+              }}</span>
+            </el-option>
+          </el-select>
     </p>
     <p>
       <span class="label">{{ $lang("字体样式") }}:</span>

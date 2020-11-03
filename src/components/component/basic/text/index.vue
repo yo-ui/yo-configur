@@ -1,5 +1,6 @@
 <template>
   <div
+    class="bm-basic-text-com"
     :contenteditable="showType == 'edit' && info.editable"
     @blur.stop="blurEvent"
     :style="comStyle"
@@ -182,4 +183,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less">
+@import "./../../../../assets/less/components/component/basic/text.less";
+</style>

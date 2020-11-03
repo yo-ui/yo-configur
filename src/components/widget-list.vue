@@ -153,7 +153,7 @@ export default {
       e.preventDefault();
       // bmCommon.log("拖到目标元素", e.target);
       e.stopPropagation();
-      let { widgetList = [], canvas = {},zoom=1 } = this;
+      let { widgetList = [], canvas = {}, zoom = 1 } = this;
       let { originalEvent = {} } = e;
       let offset = $(".view-box").offset();
       let { dataTransfer = {} } = originalEvent;
@@ -177,8 +177,8 @@ export default {
         bmCommon.log("释放当前元素", width, height, left, top, x, y);
         // left = x - left - _left - width / 2;
         // top = y - top - _top - height / 2;
-        left = x/zoom - left /zoom - width / 2;
-        top = y/zoom - top /zoom - height / 2;
+        left = x / zoom - left / zoom - width / 2;
+        top = y / zoom - top / zoom - height / 2;
         let orders = widgetList.map(item => item.order);
         let order = 1;
         if (orders && orders.length > 0) {

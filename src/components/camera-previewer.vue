@@ -132,7 +132,7 @@ export default {
         // previewerPlayer?.pause();
         previewerPlayer?.stop();
       } else {
-        this.initPlayer()
+        this.initPlayer();
       }
       this.played = !played;
     },
@@ -149,8 +149,8 @@ export default {
         previewerPlayer?.closeSound();
       }
     },
-    closeEvent(){
-      this.destroy()
+    closeEvent() {
+      this.destroy();
     },
     fullScreenEvent() {
       let { previewerPlayer } = this;

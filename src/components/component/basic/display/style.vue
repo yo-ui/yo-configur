@@ -385,6 +385,9 @@
           :label="$lang(item.name)"
           :value="item.code"
         >
+          <span :style="`font-family:${item.code}`">{{
+            $lang(item.name)
+          }}</span>
         </el-option>
       </el-select>
     </p>

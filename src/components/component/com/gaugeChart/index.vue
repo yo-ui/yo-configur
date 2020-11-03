@@ -244,7 +244,7 @@ export default {
       this.chartOptions = {
         title: {
           text: this.$lang("设备实时数据"),
-          show:false,
+          show: false
         },
         tooltip: {
           trigger: "axis"
