@@ -9,7 +9,7 @@
       ></bm-widget-list>
       <!-- <div v-else></div> -->
       <div class="content-box">
-        <div class="view-box" ref="viewBox">
+        <div class="view-box" ref="viewBox" :style="viewBoxStyle">
           <!-- {{activeComIds}} -->
           <!-- :active="activeComIds == item.id" -->
           <!-- @drop="dropEvent" -->
@@ -231,6 +231,17 @@ export default {
       let orders = widgetList.map(item => item.order);
       let order = Math.max(...orders);
       return order;
+    },
+    viewBoxStyle() {
+      let { leftMenuStatus = false, rightMenuStatus = false } = this;
+      let styles = {};
+      if (!leftMenuStatus) {
+        styles["left"] = 0;
+      }
+      if (!rightMenuStatus) {
+        styles["right"] = 0;
+      }
+      return styles;
     },
     zoom: {
       get() {
@@ -487,16 +498,27 @@ export default {
     resetCanvasSize() {
       this.$nextTick(() => {
         let $window = $(window);
+        let { leftMenuStatus = false, rightMenuStatus = false } = this;
         let $leftBox = $(".bm-widget-list-com");
         let $rightBox = $(".bm-info-com");
         let leftWidth = $leftBox.width();
+        if (!leftMenuStatus) {
+          leftWidth = 0;
+        } else {
+          leftWidth += 30;
+        }
         let rightWidth = $rightBox.width();
+        if (!rightMenuStatus) {
+          rightWidth = 0;
+        } else {
+          rightWidth += 30;
+        }
         // let w_height = $window.height();
         let w_width = $window.width();
         if (w_width < 1280) {
           w_width = 1280;
         }
-        w_width = w_width - rightWidth - leftWidth - 60;
+        w_width = w_width - rightWidth - leftWidth;
         let { canvas = {} } = this;
         let { width = 0 } = canvas || {};
         // let h_ratio = w_height / height;
@@ -1138,6 +1160,18 @@ export default {
     $(document).off("keydown", this.keydownEvent);
 
     $(window).off("resize", this.resetCanvasSize);
+  },
+  watch: {
+    rightMenuStatus(newVal, oldVal) {
+      if (newVal != oldVal) {
+        this.resetCanvasSize();
+      }
+    },
+    leftMenuStatus(newVal, oldVal) {
+      if (newVal != oldVal) {
+        this.resetCanvasSize();
+      }
+    }
   }
 };
 </script>
