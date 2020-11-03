@@ -177,7 +177,7 @@ export default {
       let name = $(target)
         .text()
         .trim();
-      info.name = name;
+      info.content = name;
     }
   }
 };
