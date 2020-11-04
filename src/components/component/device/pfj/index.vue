@@ -1004,7 +1004,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(),
+    ...mapGetters({
+      showType: "canvas/getShowType" //当前显示类型
+    }),
 
     comStyle() {
       let { info = {} } = this;

@@ -28,7 +28,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(),
+    ...mapGetters({
+      showType: "canvas/getShowType"
+    }),
 
     //渐变颜色样式
     gradientStyle() {

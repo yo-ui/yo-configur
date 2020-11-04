@@ -294,6 +294,22 @@
       .el-input-number{
         .mr(5);
         .w(100);
+        &.flex{
+          .flex(1);
+          .el-input__inner{
+            .tl;
+          }
+        }
+        &.is-controls-right{
+          &:hover{
+            span{
+              .db;
+            }
+          }
+          span{
+            .db(none);
+          }
+        }
       }
       .el-color-picker{
         .flex(1);

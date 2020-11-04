@@ -7,7 +7,7 @@
     v-dialogDrag="true"
     :title="$lang('预览')"
     :visible.sync="showDialogStatus"
-    width="800px"
+    width="70%"
   >
     <template #title>
       {{ $lang("预览") }}

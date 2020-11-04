@@ -5,35 +5,52 @@
     class="bm-control-com"
     :close-on-click-modal="false"
     :visible.sync="showDialogStatus"
+    :show-close="false"
     width="400px"
-  >
-    <bm-pay-password
-      ref="bmPayPassword"
-      :maxlength="6"
-      v-model="condition.password"
-      type="Number"
-    ></bm-pay-password>
-    <template v-slot:footer>
+    ><template #title>
+      <span class="title">
+        {{ $lang("请输入控制密码") }}
+      </span>
+      <i class="el-icon-close" @click="closeEvent"></i>
+    </template>
+    <div class="loading" v-loading="dataLoadingStatus">
+      <bm-pay-password
+        ref="bmPayPassword"
+        :maxlength="6"
+        v-model="condition.password"
+        type="Number"
+      ></bm-pay-password>
+      <div class="el-dialog__footer">
+        <el-button
+          type="primary"
+          :disabled="condition.password.length != 6"
+          @click="submitEvent"
+          >{{ $lang("确 定") }}</el-button
+        >
+      </div>
+    </div>
+    <!-- <template v-slot:footer>
       <el-button
         type="primary"
         :disabled="condition.password.length != 6"
         @click="submitEvent"
         >{{ $lang("确 定") }}</el-button
       >
-    </template>
+    </template> -->
   </el-dialog>
 </template>
 
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
-import BmPayPassword from "@/components/common/pay-password";
+import bmPayPassword from "@/components/common/pay-password";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {
     return {
       showDialogStatus: false,
+      dataLoadingStatus: false,
       condition: {
         password: ""
       }
@@ -43,7 +60,7 @@ export default {
     ...mapGetters()
   },
   components: {
-    BmPayPassword
+    bmPayPassword
   },
   methods: {
     ...mapMutations({}),
@@ -64,7 +81,13 @@ export default {
         this.$refs.bmPayPassword?.show();
       });
     },
-
+    closeEvent() {
+      this.showDialogStatus = false;
+      let { condition } = this;
+      let { callback = () => {} } = condition;
+      callback && callback(false);
+      // this.$emit("close");
+    },
     //余额支付
     submitEvent() {
       let { condition } = this;
@@ -85,8 +108,7 @@ export default {
     },
     // 获取设备点位列表
     canvasControlFunc() {
-      let that = this;
-      let { condition } = that;
+      let { condition } = this;
       let {
         deviceId = "",
         point = "",
@@ -104,28 +126,28 @@ export default {
       // }else if(payType==2){
       // }else {
       // }
-      that._canvasControlStatus = true;
-      that
-        .canvasControlAction(params)
+      this.dataLoadingStatus = true;
+      this.canvasControlAction(params)
         .then(({ data }) => {
-          that._canvasControlStatus = false;
+          this.dataLoadingStatus = false;
           let { code = "", message = "" } = data || {};
           if (code == Constants.CODES.SUCCESS) {
-            // that.$emit("success");
-            that.$$msgError("控制失败！");
+            // this.$emit("success");
+            this.$$msgError("控制失败！");
             this.showDialogStatus = false;
             callback && callback(true);
           } else {
             callback && callback(false);
-            // that.$emit("fail", message || that.$lang("控制失败！"));
+            // this.$emit("fail", message || this.$lang("控制失败！"));
             condition.password = "";
-            that.$$msgError(message || "控制失败！");
+            this.$$msgError(message || "控制失败！");
           }
         })
         .catch(err => {
-          that.$emit("fail");
+          // this.$emit("fail");
+          callback && callback(false);
           condition.password = "";
-          that._canvasControlStatus = false;
+          this.dataLoadingStatus = false;
           bmCommon.error("获取设备点位列表失败！", err);
         });
     }

@@ -10,6 +10,8 @@ module.exports = {
     "$vm":true,
     "localStorage": true,
     "window": true,
+    "Vuex":true,
+    "Vue":true,
     "SVG":true
   },
   extends: ["plugin:vue/essential", "eslint:recommended", "@vue/prettier"],

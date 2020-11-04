@@ -369,6 +369,7 @@ export default {
         originHeight,
         originRotate
       } = state;
+      state.moving = false;
       var dx = x - startX;
       var dy = y - startY;
       let value, width, height, rotate;

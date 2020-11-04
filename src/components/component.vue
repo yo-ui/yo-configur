@@ -145,7 +145,8 @@ export default {
   data() {
     return {
       animate: "",
-      rotating: false
+      rotating: false,
+      resizing: false
     };
   },
   props: {
@@ -186,13 +187,20 @@ export default {
     //       !info.locked &&
     //       !info.showCoverStatus
     showRotateStatus() {
-      let { moving = false, rotating = false, info = {}, showType = "" } = this;
+      let {
+        moving = false,
+        resizing = false,
+        rotating = false,
+        info = {},
+        showType = ""
+      } = this;
       let { rotateable = true, locked = false, showCoverStatus = true } =
         info || {};
       return (
         (!moving || rotating) &&
         rotateable &&
         !locked &&
+        !resizing &&
         showCoverStatus &&
         showType == "edit"
       );
@@ -205,17 +213,23 @@ export default {
         rotateable &&
         !locked &&
         rotating &&
-        !showCoverStatus &&
+        showCoverStatus &&
         showType == "edit"
       );
     },
     scaleBoxStatus() {
-      let { moving = false, rotating = false, info = {}, showType = "" } = this;
+      let {
+        moving = false,
+        resizing = false,
+        rotating = false,
+        info = {},
+        showType = ""
+      } = this;
       let { scaleable = true, locked = false, showCoverStatus = true } =
         info || {};
       // !moving && scaleable && !info.locked && !rotating && showCoverStatus
       return (
-        !moving &&
+        (!moving || resizing) &&
         scaleable &&
         !locked &&
         !rotating &&
@@ -371,6 +385,7 @@ export default {
       $(document).off("mouseup", this.mouseupEvent);
       this.stopMove();
       this.rotating = false;
+      this.resizing = false;
     },
     rotateClickEvent(e) {
       e.preventDefault();
@@ -381,41 +396,49 @@ export default {
     leftTopClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.resizing = true;
       this.mousedownEvent(e, "topleft");
     },
     topClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.resizing = true;
       this.mousedownEvent(e, "top");
     },
     rightTopClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.resizing = true;
       this.mousedownEvent(e, "topright");
     },
     leftClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.resizing = true;
       this.mousedownEvent(e, "left");
     },
     rightClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.resizing = true;
       this.mousedownEvent(e, "right");
     },
     leftBottomClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.resizing = true;
       this.mousedownEvent(e, "bottomleft");
     },
     bottomClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.resizing = true;
       this.mousedownEvent(e, "bottom");
     },
     rightBottomClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      this.resizing = true;
       this.mousedownEvent(e, "bottomright");
     }
   },

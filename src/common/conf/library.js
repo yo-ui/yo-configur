@@ -177,10 +177,10 @@ let componentLibrary = [
           // styleCode: "material",
           backgroundColor: "#0075E7",
           // backgroundImage: "/static/img/svg/material/star.svg",
-          cornerCount: 3,
+          cornerCount: 5,
           innerRadius: 50,
-          width: 100,
-          height: 100
+          width: 150,
+          height: 150
           // dataType: "device",
           // infoType:"device",
           // equalScaleable: true //是否等比例缩放
@@ -721,6 +721,7 @@ let componentLibrary = [
           ...baseData,
           originWidth: "", //原宽
           originHeight: "", //原高
+          content: "多行文本",
           fontSize: 14,
           width: 300,
           height: 200
@@ -838,6 +839,7 @@ let componentLibrary = [
         name: "轮播图文",
         code: "swiperText",
         icon: "/static/img/configur/imageList.png",
+        comDisabled: true, //组件不可用
         data: {
           ...baseData,
           // dataType: "point",
@@ -885,24 +887,36 @@ let componentLibrary = [
       },
       {
         name: "百分比条",
-        code: "countdownText",
+        code: "progressbar",
         icon: "/static/img/configur/percentagebar.png",
+        // comDisabled: true, // 组件是否可用
         data: {
           ...baseData,
           // dataType: "point",
-          fontWeight: "bold",
-          fontSize: 24,
-          fontFamily: "lcdD",
-          width: "",
-          height: "",
-          content: "00.00",
-          scaleable: false //是否可缩放操作
+          // fontWeight: "bold",
+          progressBackgroundColor: "#1f2e50",
+          progressForegroundColor: "#1775ea",
+          sliderBackgroundColor: "#fff",
+          fontSize: 16,
+          start: 0,
+          end: 100,
+          content: 75,
+          lineWidth:10,//百分比条宽
+          showTag:true,//显示标记
+          showPercent:true,//显示百分比
+          gradientValue:3,//渐变程度
+          // fontFamily: "lcdD",
+          width: 500,
+          height: 30
+          // content: "00.00",
+          // scaleable: false //是否可缩放操作
         }
       },
       {
         name: "iframe",
         code: "iframe",
         icon: "/static/img/configur/iframe.png",
+        comDisabled: true, //组件不可用
         data: {
           ...baseData,
           // dataType: "point",
@@ -919,6 +933,7 @@ let componentLibrary = [
         name: "下拉筛选框",
         code: "select",
         icon: "/static/img/configur/select.png",
+        comDisabled: true, //组件不可用
         data: {
           ...baseData,
           // dataType: "point",
@@ -934,6 +949,7 @@ let componentLibrary = [
       {
         name: "按钮标签",
         code: "buttontab",
+        comDisabled: true, //组件不可用
         icon: "/static/img/configur/buttontab.png",
         data: {
           ...baseData,
@@ -953,7 +969,7 @@ let componentLibrary = [
         icon: "/static/img/configur/switch.png",
         data: {
           ...baseData,
-          // dataType: "point",
+          dataType: "point",
           content: true,
           width: 80,
           height: 35,
@@ -973,8 +989,8 @@ let componentLibrary = [
           sliderBorderStyle: "none",
 
           fontWeight: "bold",
-          fontSize: 24,
-          fontFamily: "lcdD"
+          fontSize: 24
+          // fontFamily: "lcdD"
           // width: "",
           // height: "",
           // content: "00.00",
@@ -1002,6 +1018,7 @@ let componentLibrary = [
         name: "行政区地图",
         code: "districtMap",
         icon: "/static/img/configur/position.png",
+        comDisabled: true, //组件不可用
         data: {
           ...baseData,
           width: 550,
@@ -1012,6 +1029,7 @@ let componentLibrary = [
         name: "设备地图",
         code: "deviceMap",
         icon: "/static/img/configur/position.png",
+        comDisabled: true, //组件不可用
         data: {
           ...baseData,
           width: 550,
@@ -1032,6 +1050,7 @@ let componentLibrary = [
         name: "地图热力图",
         code: "hotMap",
         icon: "/static/img/configur/position.png",
+        comDisabled: true, //组件不可用
         data: {
           ...baseData,
           width: 550,

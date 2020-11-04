@@ -259,7 +259,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(),
+    ...mapGetters({
+      showType: "canvas/getShowType"
+    }),
 
     comStyle() {
       let { info = {} } = this;

@@ -233,6 +233,9 @@
             </el-option>
           </el-select>
         </p> -->
+      
+      </el-collapse-item>
+      <el-collapse-item :title="$lang('样式')" name="style">
         <p>
           <span class="label">{{ $lang("填充颜色") }}:</span>
           <el-select

@@ -233,6 +233,8 @@
             </el-option>
           </el-select>
         </p> -->
+      </el-collapse-item>
+      <el-collapse-item :title="$lang('样式')" name="style">
         <p>
           <span class="label">{{ $lang("填充颜色") }}:</span>
           <el-select
@@ -518,7 +520,7 @@
           ></el-color-picker>
         </p>
       </el-collapse-item>
-      <el-collapse-item title="动画" name="2">
+      <el-collapse-item :title="$lang('动画')" name="animation">
         <p>
           <span class="label">{{ $lang("动画类型") }}:</span>
           <el-select v-model="info.animation.name" placeholder="请选择动画类型">

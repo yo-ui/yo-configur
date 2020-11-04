@@ -61,6 +61,11 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-switch" */ "@/components/component/basic/switch/index.vue"
     ),
+  //百分比进度条
+  progressbarCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-progressbar" */ "@/components/component/basic/progressbar/index.vue"
+    ),
 
   lineChartCom: () =>
     import(
@@ -324,6 +329,10 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-switch-style" */ "@/components/component/basic/switch/style.vue"
     ),
+  progressbarStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-progressbar-style" */ "@/components/component/basic/progressbar/style.vue"
+    ),
 
   lineChartStyleCom: () =>
     import(
@@ -486,10 +495,10 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-material-line-style" */ "@/components/component/material/line/style.vue"
     ),
-  materialRectangleStyleCom: () =>
-    import(
-      /* webpackChunkName: "bm-component-material-rectangle-style" */ "@/components/component/material/rectangle/style.vue"
-    ),
+  // materialRectangleStyleCom: () =>
+  //   import(
+  //     /* webpackChunkName: "bm-component-material-rectangle-style" */ "@/components/component/material/rectangle/style.vue"
+  //   ),
   materialStarStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-material-star-style" */ "@/components/component/material/star/style.vue"

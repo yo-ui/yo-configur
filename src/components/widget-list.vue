@@ -25,6 +25,7 @@
                 @click.stop="clickEvent(__item)"
                 :data-item="JSON.stringify(__item)"
               >
+                <div class="cover" v-if="__item.comDisabled"></div>
                 <i
                   class="bm-icon"
                   :style="`background-image:url(${__item.icon})`"
@@ -37,12 +38,13 @@
         <ul class="com-box" v-else>
           <li
             v-for="(_item, _index) in item.comList"
-            draggable
+            :draggable="!_item.comDisabled"
             @mousedown.stop
             :key="`${item.code}_${_index}`"
             @click.stop="clickEvent(_item)"
-            :data-item="JSON.stringify(_item)"
+            :data-item="!_item.comDisabled ? JSON.stringify(_item) : ''"
           >
+            <div class="cover" v-if="_item.comDisabled"></div>
             <i
               class="bm-icon"
               :style="`background-image:url(${_item.icon})`"
@@ -117,11 +119,21 @@ export default {
       if (item) {
         item = JSON.parse(item);
       }
-      let { data = {}, name = "", code: type = "", alias = "" } = item || {};
+      let {
+        data = {},
+        name = "",
+        code: type = "",
+        alias = "",
+        comDisabled = false
+      } = item || {};
       // bmCommon.log("开始拖动元素", target, data);
+      if (comDisabled) {
+        this.$$msgWarn("当前组件不可用");
+        return;
+      }
       dataTransfer.setData(
         "data",
-        JSON.stringify({ ...data, type, name, alias })
+        JSON.stringify({ ...data, type, name, alias, comDisabled })
       );
       this.dragenterEvent(e);
     },
@@ -153,7 +165,7 @@ export default {
       e.preventDefault();
       // bmCommon.log("拖到目标元素", e.target);
       e.stopPropagation();
-      let { widgetList = [], canvas = {}, zoom = 1 } = this;
+      let { widgetList = [], zoom = 1 } = this;
       let { originalEvent = {} } = e;
       let offset = $(".view-box").offset();
       let { dataTransfer = {} } = originalEvent;
@@ -172,8 +184,13 @@ export default {
         let pos = bmCommon.getMousePosition(e);
         let { left = 0, top = 0 } = offset || {};
         let { x = 0, y = 0 } = pos || {};
-        let { width = 0, height = 0, alias = "" } = data || {};
+        let { width = 0, height = 0, alias = "", comDisabled = false } =
+          data || {};
         // let { left: _left = 0, top: _top = 0 } = canvas || {};
+        if (comDisabled) {
+          this.$$msgWarn("当前组件不可用");
+          return;
+        }
         bmCommon.log("释放当前元素", width, height, left, top, x, y);
         // left = x - left - _left - width / 2;
         // top = y - top - _top - height / 2;
@@ -229,8 +246,13 @@ export default {
         code: type = "",
         left = 0,
         top = 0,
+        comDisabled = false,
         alias = ""
       } = item || {};
+      if (comDisabled) {
+        this.$$msgWarn("当前组件不可用");
+        return;
+      }
       let id = bmCommon.uuid();
       let orders = widgetList.map(item => item.order);
       let order = 1;
@@ -243,6 +265,7 @@ export default {
         type,
         name,
         order,
+        comDisabled,
         id,
         alias,
         left,
