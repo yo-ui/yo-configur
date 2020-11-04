@@ -3,10 +3,8 @@
     <div class="background" :style="backgroundStyle">
       <div class="foreground" :style="foregroundStyle">
         <span v-if="info.showTag" class="text" :style="textStyle"
-          >{{ $toBig((info.content / (info.end - info.start)) * 100, 0) }}
-          <template v-if="info.showPercent">
-            %
-          </template>
+          >{{ $toBig(info.content, 0)
+          }}<template v-if="info.showPercent">%</template>
         </span>
         <span class="slider" :style="sliderStyle"></span>
         <i
@@ -67,6 +65,8 @@ export default {
       let {
         lineWidth = "",
         progressForegroundColor = "",
+        sliderBackgroundColor = "#fff",
+        gradientValue = 0,
         start = "",
         end = "",
         content = ""
@@ -78,9 +78,17 @@ export default {
         // styles["width"] = `${height - border - sliderBorderWidth}px`;
         styles["borderRadius"] = `${lineWidth / 2}px`;
       }
-      styles["width"] = `${this.$toBig((content / (end - start)) * 100, 0)}%`;
+      styles["width"] = `${this.$toBig(
+        ((content - start) / (end - start)) * 100,
+        0
+      )}%`;
       if (progressForegroundColor) {
         styles["backgroundColor"] = progressForegroundColor;
+        let colors = [
+          `${progressForegroundColor} 0%`,
+          `${sliderBackgroundColor} ${(100 - gradientValue) * 10}%`
+        ];
+        styles.backgroundImage = `linear-gradient(90deg, ${colors.join()})`;
       }
       // if (sliderBorderColor) {
       //   styles["borderColor"] = sliderBorderColor;
@@ -120,30 +128,44 @@ export default {
     },
     tagStyle() {
       let { info = {} } = this;
-      let { closeColor = "" } = info || {};
+      let { progressForegroundColor = "", lineWidth = "" } = info || {};
       let styles = {};
-      if (closeColor) {
-        styles["color"] = closeColor;
+      if (progressForegroundColor) {
+        styles["color"] = progressForegroundColor;
+        styles["fontSize"] = `${lineWidth}px`;
       }
+      let margin = lineWidth * 0.2;
+      styles["right"] = `${margin}px`;
       return styles;
     },
     //滑块样式
     sliderStyle() {
       let { info = {} } = this;
-      let { closeColor = "" } = info || {};
+      let { sliderBackgroundColor = "", lineWidth = "" } = info || {};
       let styles = {};
-      if (closeColor) {
-        styles["color"] = closeColor;
+      if (sliderBackgroundColor) {
+        styles["backgroundColor"] = sliderBackgroundColor;
+      }
+      if (lineWidth) {
+        let margin = lineWidth * 0.2;
+        styles["width"] = `${lineWidth - margin}px`;
+        styles["height"] = `${lineWidth - margin}px`;
+        styles["right"] = `${margin}px`;
+        styles[
+          "boxShadow"
+        ] = `0px 0px ${lineWidth}px 5px ${sliderBackgroundColor}`;
       }
       return styles;
     },
     textStyle() {
       let { info = {} } = this;
-      let { openColor = "" } = info || {};
+      let { openColor = "", lineWidth = "" } = info || {};
       let styles = {};
       if (openColor) {
         styles["color"] = openColor;
       }
+      let margin = lineWidth * 0.2;
+      styles["right"] = `${margin}px`;
       return styles;
     },
     comStyle() {
@@ -335,17 +357,24 @@ export default {
       .posa;
       left: 0;
       top: 0;
+      .slider {
+        .posa;
+        right: 0;
+        top: 50%;
+        .tranf(translate(0, -50%));
+        .br(50%);
+      }
       .text {
         .posa;
         right: 0;
-        .tranf(translate(50%, 0));
+        .tranf(translate(25%, 0));
         bottom: 100%;
       }
       .tag {
         .posa;
         right: 0;
-        .tranf(translate(50%, 0));
-        top: 100%;
+        .tranf(translate(25%, 0));
+        top: 80%;
       }
     }
   }

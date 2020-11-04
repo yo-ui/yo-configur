@@ -66,6 +66,11 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-progressbar" */ "@/components/component/basic/progressbar/index.vue"
     ),
+  //iframe
+  iframeCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-iframe" */ "@/components/component/basic/iframe/index.vue"
+    ),
 
   lineChartCom: () =>
     import(
@@ -332,6 +337,10 @@ let styles = {
   progressbarStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-progressbar-style" */ "@/components/component/basic/progressbar/style.vue"
+    ),
+  iframeStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-iframe-style" */ "@/components/component/basic/iframe/style.vue"
     ),
 
   lineChartStyleCom: () =>

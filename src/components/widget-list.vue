@@ -191,7 +191,7 @@ export default {
           this.$$msgWarn("当前组件不可用");
           return;
         }
-        bmCommon.log("释放当前元素", width, height, left, top, x, y);
+        // bmCommon.log("释放当前元素", width, height, left, top, x, y);
         // left = x - left - _left - width / 2;
         // top = y - top - _top - height / 2;
         left = x / zoom - left / zoom - width / 2;

@@ -811,10 +811,12 @@ let componentLibrary = [
           fontWeight: "bold",
           fontSize: 24,
           fontFamily: "lcdD",
-          width: "",
-          height: "",
-          content: "00.00",
-          scaleable: false //是否可缩放操作
+          width: 200,
+          format: "YYYY-MM-DD HH:mm:ss",
+          height: 50,
+          textAlign: "center"
+          // content: "00.00"
+          // scaleable: false //是否可缩放操作
         }
       },
       {
@@ -901,10 +903,10 @@ let componentLibrary = [
           start: 0,
           end: 100,
           content: 75,
-          lineWidth:10,//百分比条宽
-          showTag:true,//显示标记
-          showPercent:true,//显示百分比
-          gradientValue:3,//渐变程度
+          lineWidth: 10, //百分比条宽
+          showTag: true, //显示标记
+          showPercent: true, //显示百分比
+          gradientValue: 3, //渐变程度
           // fontFamily: "lcdD",
           width: 500,
           height: 30
@@ -916,17 +918,18 @@ let componentLibrary = [
         name: "iframe",
         code: "iframe",
         icon: "/static/img/configur/iframe.png",
-        comDisabled: true, //组件不可用
+        // comDisabled: true, //组件不可用
         data: {
           ...baseData,
           // dataType: "point",
-          fontWeight: "bold",
-          fontSize: 24,
-          fontFamily: "lcdD",
-          width: "",
-          height: "",
-          content: "00.00",
-          scaleable: false //是否可缩放操作
+          // fontWeight: "bold",
+          // fontSize: 24,
+          // fontFamily: "lcdD",
+          content: "https://www.energyiot.cn",
+          width: 500,
+          height: 500
+          // content: "00.00",
+          // scaleable: false //是否可缩放操作
         }
       },
       {

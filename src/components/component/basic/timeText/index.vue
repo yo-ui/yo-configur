@@ -1,5 +1,5 @@
 <template>
-  <div ref="bmCom" :style="comStyle">
+  <div ref="bmCom" class="bm-time-text-com" :style="comStyle">
     {{ date.format(info.format || "YYYY-MM-DD HH:mm:ss") }}
   </div>
 </template>
@@ -119,6 +119,7 @@ export default {
       }
       if (height) {
         styles["height"] = `${height}px`;
+        styles["lineHeight"] = `${height}px`;
       }
       if (scale) {
         (styles["transform"] = `${scale}`),
@@ -177,7 +178,7 @@ export default {
     //   }
     // });
     this.init();
-    this.$emit("success"); //组件加载完成回调
+    // this.$emit("success"); //组件加载完成回调
   },
   methods: {
     ...mapMutations({}),
@@ -196,4 +197,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less">
+// @import (reference) "./../../../../assets/less/common.less";
+// .bm-time-text-com {
+//   // .df;
+//   // align-items: center;
+//   // .lh(100%);
+// }
+</style>
