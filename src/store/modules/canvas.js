@@ -36,6 +36,7 @@ export default {
       width: 0, //画布宽
       height: 0, //画布高
       poster: "", //封面图
+      uploadPoster: "", //上传封面图
       backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
       gradientStyle: {
         type: "linear", //渐变类型  linear 线性  radial 径向

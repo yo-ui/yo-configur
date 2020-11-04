@@ -1,7 +1,7 @@
 <template>
   <div class="bm-canvas-style-com">
     <el-collapse v-model="activeNames">
-      <el-collapse-item title="功能选择" name="1">
+      <el-collapse-item :title="$lang('功能选择')" name="function">
         <p>
           <el-tooltip
             :content="$lang('选择组件')"
@@ -41,15 +41,19 @@
           </el-tooltip>
         </p>
       </el-collapse-item>
-      <el-collapse-item title="画布" name="2">
+      <el-collapse-item :title="$lang('画布')" name="name">
         <p>
           <span class="label"> {{ $lang("画布封面") }}: </span>
-          <bm-upload ref="bmUpload" @success="successCallback(info, 'poster')">
+          <bm-upload ref="bmUpload" @success="successPosterCallback">
             <el-button type="primary">
-              {{ $lang(info.poster ? "替换图片" : "选择图片") }}</el-button
+              {{
+                $lang(
+                  info.uploadPoster || info.poster ? "替换图片" : "选择图片"
+                )
+              }}</el-button
             >
           </bm-upload>
-          <el-button v-if="info.poster" @click="info.poster = ''">{{
+          <el-button v-if="info.uploadPoster" @click="info.uploadPoster = ''">{{
             $lang("重置")
           }}</el-button>
         </p>
@@ -58,8 +62,10 @@
           <span
             class="img-box"
             :style="
-              info.poster
-                ? `background-image:url(${$loadImgUrl(info.poster)})`
+              info.uploadPoster || info.poster
+                ? `background-image:url(${$loadImgUrl(
+                    info.uploadPoster || info.poster
+                  )})`
                 : ''
             "
           >
@@ -68,7 +74,7 @@
         <p>
           <span class="label"> {{ $lang("组态标题") }}: </span>
           <el-input
-            v-model="info.content"
+            v-model="info.name"
             clearable
             :placeholder="$lang('请输入组态标题')"
           ></el-input>
@@ -467,7 +473,7 @@ export default {
       gridStyleMap[item.code] = item || {};
     });
     return {
-      activeNames: ["1", "2"],
+      activeNames: ["function", "name"],
       gridStyleList,
       flipModeList: Object.freeze(Constants.FLIPMODELIST),
       BACKGROUNDSIZELIST: Object.freeze(Constants.BACKGROUNDSIZELIST),
@@ -575,6 +581,10 @@ export default {
     successCallback(url) {
       let { info = {} } = this;
       info.backgroundImage = url;
+    },
+    successPosterCallback(url) {
+      let { info = {} } = this;
+      info.uploadPoster = url;
     },
     actionEvent(item) {
       let { canvas = {} } = this;

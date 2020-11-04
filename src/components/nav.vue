@@ -463,10 +463,10 @@ export default {
             formData
           },
           img => {
-            let { poster = "" } = canvas || {};
-            if (!poster) {
-              canvas.poster = img;
-            }
+            // let { poster = "" } = canvas || {};
+            // if (!poster) {
+            canvas.poster = img;
+            // }
             this.createRecordAction({ img });
           }
         );

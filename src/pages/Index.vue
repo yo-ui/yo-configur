@@ -425,6 +425,7 @@ export default {
           this.setWidgetList(widgetList);
           this.setCanvasData(data);
           this.resetCanvasSize();
+          this.selectComAction();
         } else {
           this.$nextTick(() => {
             let $canvasBox = $(this.$refs.canvasBox);
@@ -434,6 +435,7 @@ export default {
             canvas.width = width;
             canvas.height = height;
             this.resetCanvasSize();
+            this.selectComAction();
           });
         }
         this.createHistoryAction();

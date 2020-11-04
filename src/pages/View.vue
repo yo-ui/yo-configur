@@ -277,7 +277,7 @@ export default {
         let { canvasData = {} } = data || {};
         let { widgetList = [], canvas: _canvas } = canvasData || {};
         if (_canvas) {
-          canvas = _canvas || {};
+          canvas = { ...canvas, ...(_canvas || {}) };
         }
         canvas.name = name;
         canvas.width = width;
