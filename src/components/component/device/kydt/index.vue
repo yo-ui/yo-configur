@@ -5,11 +5,91 @@
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
+      :width="info.width"
+      :height="info.height"
       viewBox="0 0 230 290"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
-      <defs>
+      <defs
+        v-html="
+          `
+        <style type='text/css'>
+        .kydt-st0 {
+          fill: #e7e7e5;
+        }
+        .kydt-st1 {
+          opacity: 0.3;
+        }
+        .kydt-st2 {
+          fill: #5b5e6f;
+        }
+        .kydt-st3 {
+          fill: #cbcbc9;
+        }
+        .kydt-st4 {
+          fill: url(#kydt_1_);
+        }
+        .kydt-st5 {
+          fill: url(#kydt_2_);
+        }
+        .kydt-st6 {
+          opacity: 0.6;
+        }
+        .kydt-st7 {
+          fill: #a5a9ac;
+        }
+        .kydt-st8 {
+          fill: #c3c3c1;
+        }
+        .kydt-st9 {
+          fill: url(#kydt_3_);
+        }
+        .kydt-st10 {
+          fill: #ffffff;
+        }
+        .kydt-st11 {
+          fill: #7a7e89;
+        }
+        .kydt-st12 {
+          fill: url(#kydt_4_);
+        }
+        .kydt-st13 {
+          fill: url(#kydt_5_);
+        }
+        .kydt-st14 {
+          fill: #ff0000;
+        }
+        .kydt-st15 {
+          fill: url(#kydt_6_);
+        }
+        .kydt-st16 {
+          opacity: 0.4;
+          fill: #ff0000;
+        }
+        .kydt-st17 {
+          fill: url(#kydt_7_);
+        }
+        .kydt-st18 {
+          opacity: 0.4;
+        }
+
+        .show {
+          display: default;
+        }
+        .hide {
+          display: none;
+        }
+        .f1 {
+          display: default;
+        }
+        .f2 {
+          display: none;
+        }
+      </style>
+      `
+        "
+      >
         <!-- <template v-if="info.backgroundType == 'gradient'">
           <linearGradient
             :id="info.gradientStyle.gradientId"
@@ -520,77 +600,77 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import (reference) "./../../../../assets/less/common.less";
-.kydt-st0 {
-  fill: #e7e7e5;
-}
-.kydt-st1 {
-  opacity: 0.3;
-}
-.kydt-st2 {
-  fill: #5b5e6f;
-}
-.kydt-st3 {
-  fill: #cbcbc9;
-}
-.kydt-st4 {
-  fill: url(#kydt_1_);
-}
-.kydt-st5 {
-  fill: url(#kydt_2_);
-}
-.kydt-st6 {
-  opacity: 0.6;
-}
-.kydt-st7 {
-  fill: #a5a9ac;
-}
-.kydt-st8 {
-  fill: #c3c3c1;
-}
-.kydt-st9 {
-  fill: url(#kydt_3_);
-}
-.kydt-st10 {
-  fill: #ffffff;
-}
-.kydt-st11 {
-  fill: #7a7e89;
-}
-.kydt-st12 {
-  fill: url(#kydt_4_);
-}
-.kydt-st13 {
-  fill: url(#kydt_5_);
-}
-.kydt-st14 {
-  fill: #ff0000;
-}
-.kydt-st15 {
-  fill: url(#kydt_6_);
-}
-.kydt-st16 {
-  opacity: 0.4;
-  fill: #ff0000;
-}
-.kydt-st17 {
-  fill: url(#kydt_7_);
-}
-.kydt-st18 {
-  opacity: 0.4;
-}
+// .kydt-st0 {
+//   fill: #e7e7e5;
+// }
+// .kydt-st1 {
+//   opacity: 0.3;
+// }
+// .kydt-st2 {
+//   fill: #5b5e6f;
+// }
+// .kydt-st3 {
+//   fill: #cbcbc9;
+// }
+// .kydt-st4 {
+//   fill: url(#kydt_1_);
+// }
+// .kydt-st5 {
+//   fill: url(#kydt_2_);
+// }
+// .kydt-st6 {
+//   opacity: 0.6;
+// }
+// .kydt-st7 {
+//   fill: #a5a9ac;
+// }
+// .kydt-st8 {
+//   fill: #c3c3c1;
+// }
+// .kydt-st9 {
+//   fill: url(#kydt_3_);
+// }
+// .kydt-st10 {
+//   fill: #ffffff;
+// }
+// .kydt-st11 {
+//   fill: #7a7e89;
+// }
+// .kydt-st12 {
+//   fill: url(#kydt_4_);
+// }
+// .kydt-st13 {
+//   fill: url(#kydt_5_);
+// }
+// .kydt-st14 {
+//   fill: #ff0000;
+// }
+// .kydt-st15 {
+//   fill: url(#kydt_6_);
+// }
+// .kydt-st16 {
+//   opacity: 0.4;
+//   fill: #ff0000;
+// }
+// .kydt-st17 {
+//   fill: url(#kydt_7_);
+// }
+// .kydt-st18 {
+//   opacity: 0.4;
+// }
 
-.show {
-  display: default;
-}
-.hide {
-  display: none;
-}
-.f1 {
-  display: default;
-}
-.f2 {
-  display: none;
-}
+// .show {
+//   display: default;
+// }
+// .hide {
+//   display: none;
+// }
+// .f1 {
+//   display: default;
+// }
+// .f2 {
+//   display: none;
+// }
 </style>
 <style lang="less">
 @import (less) "../../../../assets/less/components/component/device/common.less";

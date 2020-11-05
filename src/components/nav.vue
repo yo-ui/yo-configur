@@ -233,7 +233,10 @@
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
-const html2canvas = require("@/common/lib/html2canvas");
+// const html2canvas = require("@/common/lib/html2canvas");
+import html2canvas from "html2canvas";
+
+import Canvg from "canvg";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -453,7 +456,40 @@ export default {
     },
     uploadImg() {
       let { canvas = {} } = this;
-      html2canvas($(".canvas-box")[0], {}).then(_canvas => {
+      // 转化成canvas
+      let targetDom = $(".canvas-box");
+      // 将当前页面DOM克隆
+      let copyDom = targetDom.clone();
+      copyDom.find("svg").each(function(index, node) {
+        let parentNode = node.parentNode;
+        let svg = node.outerHTML.trim();
+        let canvas = document.createElement("canvas");
+        let ctx = canvas.getContext("2d");
+        let v = Canvg.fromString(ctx, svg, {
+          ignoreAnimation: false,
+          log: true
+        });
+        v.start();
+        // if (node.style.position) {
+        //   canvas.style.position += node.style.position;
+        //   canvas.style.left += node.style.left;
+        //   canvas.style.top += node.style.top;
+        // }
+        parentNode.removeChild(node);
+        $(parentNode).prepend($(canvas));
+      });
+      $(".view-box").prepend(copyDom);
+      targetDom.hide();
+      html2canvas(copyDom[0], {
+        useCORS: true,
+        allowTaint: true,
+        // taintTest: false,
+        logging: true
+      }).then(_canvas => {
+        // html2canvas($(".canvas-box")[0], {}).then(_canvas => {
+        // 将clone页面删除
+        copyDom.remove();
+        targetDom.show();
         let blob = bmCommon.convertBase64ToBlob(_canvas.toDataURL());
         let formData = new FormData();
         formData.append("files", blob, `${Date.now()}.png`);

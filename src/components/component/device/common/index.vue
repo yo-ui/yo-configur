@@ -1,6 +1,7 @@
 <template>
   <div class="img-box" :style="comStyle">
-    <img :src="info.backgroundImage" />
+    <!-- <img :src="info.backgroundImage" /> -->
+    <!-- <div :style -->
   </div>
 </template>
 
@@ -34,13 +35,13 @@ export default {
         borderWidth = "",
         borderRadius = "",
         opacity = "",
-        scale = ""
+        // scale = "",
         // fontFamily = "",
         // fontSize = "",
         // fontWeight = "",
         // fontStyle = ""
         // backgroundColor = "",
-        // backgroundImage = "",
+        backgroundImage = "",
         // backgroundRepeat = "",
         // backgroundSize = ""
       } = info || {};
@@ -69,13 +70,13 @@ export default {
         styles["opacity"] = opacity / 100;
       }
       styles["borderRadius"] = `${borderRadius}px`;
-      if (scale) {
-        (styles["transform"] = `${scale}`),
-          (styles["-webkit-transform"] = `${scale}`),
-          (styles["-ms-transform"] = `${scale}`),
-          (styles["-o-transform"] = `${scale}`),
-          (styles["-moz-transform"] = `${scale}`);
-      }
+      // if (scale) {
+      //   (styles["transform"] = `${scale}`),
+      //     (styles["-webkit-transform"] = `${scale}`),
+      //     (styles["-ms-transform"] = `${scale}`),
+      //     (styles["-o-transform"] = `${scale}`),
+      //     (styles["-moz-transform"] = `${scale}`);
+      // }
       // if (color) {
       //   styles["color"] = color;
       // }
@@ -94,9 +95,9 @@ export default {
       // if (backgroundColor) {
       //   styles["backgroundColor"] = backgroundColor;
       // }
-      // if (backgroundImage) {
-      //   styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
-      // }
+      if (backgroundImage) {
+        styles["backgroundImage"] = `url(${backgroundImage})`;
+      }
       return styles || {};
     },
     textStyle() {

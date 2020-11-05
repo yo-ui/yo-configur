@@ -6,136 +6,61 @@
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 74 58"
+      :width="info.width"
+      :height="info.height"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
-      <defs>
-        <!-- <template v-if="info.backgroundType == 'gradient'">
-          <linearGradient
-            :id="info.gradientStyle.gradientId"
-            :x1="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '0%',
-                  135: '0%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y1="
-              `${
-                {
-                  0: '100%',
-                  45: '100%',
-                  90: '100%',
-                  135: '0%',
-                  180: '0%',
-                  225: '0%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :x2="
-              `${
-                {
-                  0: '0%',
-                  45: '100%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '0%',
-                  270: '0%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y2="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            v-if="info.gradientStyle.type == 'linear'"
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </linearGradient>
-          <radialGradient
-            :id="info.gradientStyle.gradientId"
-            v-else-if="info.gradientStyle.type == 'radial'"
-            :cx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :cy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :r="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '160%',
-                '100% 0%': '150%',
-                '0% 100%': '150%',
-                '100% 100%': '140%'
-              }[info.gradientStyle.center]
-            "
-            :fx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :fy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </radialGradient>
-        </template> -->
-      </defs>
+      <defs
+        v-html="
+          `
+        <style type='text/css'>
+          .sxta-st0 {
+            fill: #c2c8ce;
+          }
+          .sxta-st1 {
+            fill: #a5aeb5;
+          }
+          .sxta-st2 {
+            fill: #dfe3e8;
+          }
+          .sxta-st3 {
+            fill: url(#sxta_2_);
+          }
+          .sxta-st4 {
+            fill: url(#sxta_3_);
+          }
+          .sxta-st5 {
+            fill: #979ca0;
+          }
+          .sxta-st6 {
+            fill: url(#sxta_4_);
+          }
+          .sxta-st7 {
+            fill: #5a636b;
+          }
+          .sxta-st8 {
+            fill: url(#sxta_5_);
+          }
+          .sxta-st9 {
+            fill: url(#sxta_6_);
+          }
+          .sxta-st10 {
+            fill: url(#sxta_7_);
+          }
+          .sxta-st11 {
+            fill: url(#sxta_8_);
+          }
+          .sxta-st12 {
+            fill: url(#sxta_9_);
+          }
+          .sxta-st13 {
+            fill: url(#sxta_10_);
+          }
+          </style>
+      `
+        "
+      ></defs>
       <polygon
         id="sxta_1444_"
         class="sxta-st0"
@@ -486,51 +411,7 @@ export default {
   }
 };
 </script>
-<style lang="less" scoped>
-// @import (reference) "./../../../../assets/less/common.less";
-.sxta-st0 {
-  fill: #c2c8ce;
-}
-.sxta-st1 {
-  fill: #a5aeb5;
-}
-.sxta-st2 {
-  fill: #dfe3e8;
-}
-.sxta-st3 {
-  fill: url(#sxta_2_);
-}
-.sxta-st4 {
-  fill: url(#sxta_3_);
-}
-.sxta-st5 {
-  fill: #979ca0;
-}
-.sxta-st6 {
-  fill: url(#sxta_4_);
-}
-.sxta-st7 {
-  fill: #5a636b;
-}
-.sxta-st8 {
-  fill: url(#sxta_5_);
-}
-.sxta-st9 {
-  fill: url(#sxta_6_);
-}
-.sxta-st10 {
-  fill: url(#sxta_7_);
-}
-.sxta-st11 {
-  fill: url(#sxta_8_);
-}
-.sxta-st12 {
-  fill: url(#sxta_9_);
-}
-.sxta-st13 {
-  fill: url(#sxta_10_);
-}
-</style>
+
 <style lang="less">
 @import (less) "../../../../assets/less/components/component/device/common.less";
 </style>

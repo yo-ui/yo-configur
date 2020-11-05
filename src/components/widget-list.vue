@@ -60,7 +60,6 @@
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
-// const html2canvas = require("@/common/lib/html2canvas");
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 const Props = {
@@ -222,22 +221,6 @@ export default {
       }
       this.dragleaveEvent(e);
     },
-    // uploadImg() {
-    //   // html2canvas($(".canvas-box")[0], {}).then(canvas => {
-    //   //   let blob = bmCommon.convertBase64ToBlob(canvas.toDataURL());
-    //   //   let formData = new FormData();
-    //   //   formData.append("files", blob, `${Date.now()}.png`);
-    //   //   formData.append("subDir", Constants.UPLOADDIR.FILE);
-    //   //   this.upload2OssFunc(
-    //   //     {
-    //   //       formData
-    //   //     },
-    //   //     img => {
-    //         // this.createRecordAction({  });
-    //   //     }
-    //   //   );
-    //   // });
-    // },
     clickEvent(item) {
       let { widgetList = [] } = this;
       let {

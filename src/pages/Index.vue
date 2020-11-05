@@ -399,7 +399,7 @@ export default {
           let { canvasData = {} } = data || {};
           let { widgetList = [], canvas: _canvas } = canvasData || {};
           if (_canvas) {
-            canvas = _canvas || {};
+            canvas = { ...canvas, ...(_canvas || {}) };
           }
           canvas.name = name;
           canvas.width = width;
@@ -573,7 +573,7 @@ export default {
     //   let width=$window.width()
     // },
     closeContenxtMenuEvent() {
-      bmCommon.log("closeContenxtMenuEvent");
+      // bmCommon.log("closeContenxtMenuEvent");
       this.showContextMenuStatus = true;
       this._showContextMenuTimeoutId = setTimeout(() => {
         clearTimeout(this._showContextMenuTimeoutId);
@@ -581,12 +581,12 @@ export default {
       }, 1000);
     },
     showContenxtMenuEvent() {
-      bmCommon.log("showContenxtMenuEvent");
+      // bmCommon.log("showContenxtMenuEvent");
       clearTimeout(this._showContextMenuTimeoutId);
     },
     hideContextMenuEvent() {
       clearTimeout(this._showContextMenuTimeoutId);
-      bmCommon.log("hideContextMenuEvent");
+      // bmCommon.log("hideContextMenuEvent");
       this.showContextMenuStatus = false;
     },
     viewBoxContextmenuEvent(e) {

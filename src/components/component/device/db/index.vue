@@ -6,136 +6,56 @@
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       :viewBox="`0 0 70 69`"
+      :width="info.width"
+      :height="info.height"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
-      <defs>
-        <!-- <template v-if="info.backgroundType == 'gradient'">
-          <linearGradient
-            :id="info.gradientStyle.gradientId"
-            :x1="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '0%',
-                  135: '0%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y1="
-              `${
-                {
-                  0: '100%',
-                  45: '100%',
-                  90: '100%',
-                  135: '0%',
-                  180: '0%',
-                  225: '0%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :x2="
-              `${
-                {
-                  0: '0%',
-                  45: '100%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '0%',
-                  270: '0%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y2="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            v-if="info.gradientStyle.type == 'linear'"
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </linearGradient>
-          <radialGradient
-            :id="info.gradientStyle.gradientId"
-            v-else-if="info.gradientStyle.type == 'radial'"
-            :cx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :cy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :r="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '160%',
-                '100% 0%': '150%',
-                '0% 100%': '150%',
-                '100% 100%': '140%'
-              }[info.gradientStyle.center]
-            "
-            :fx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :fy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </radialGradient>
-        </template> -->
-      </defs>
+      <defs
+        v-html="
+          `
+        <style type='text/css'>
+      .db-st0 {
+          fill: url(#db_1_);
+        }
+        .db-st1 {
+          fill: #dfe3e8;
+        }
+        .db-st2 {
+          fill: url(#db_11_);
+        }
+        .db-st3 {
+          fill: #ffffff;
+        }
+        .db-st4 {
+          fill: #c2c8ce;
+        }
+        .db-st5 {
+          fill: #848776;
+        }
+        .db-st6 {
+          fill: #25282b;
+        }
+        .db-st7 {
+          fill: #8f9499;
+        }
+        .db-st8 {
+          fill: #5b280e;
+        }
+        .db-st9 {
+          fill: #f95d06;
+        }
+        .db-st10 {
+          fill: url(#db_12_);
+        }
+        .db-st11 {
+          opacity: 0.4;
+          fill: #ff0000;
+        }
+      </style>
+      `
+        "
+      ></defs>
       <g>
         <linearGradient
           id="db_1_"
@@ -508,43 +428,43 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import (reference) "./../../../../assets/less/common.less";
-.db-st0 {
-  fill: url(#db_1_);
-}
-.db-st1 {
-  fill: #dfe3e8;
-}
-.db-st2 {
-  fill: url(#db_11_);
-}
-.db-st3 {
-  fill: #ffffff;
-}
-.db-st4 {
-  fill: #c2c8ce;
-}
-.db-st5 {
-  fill: #848776;
-}
-.db-st6 {
-  fill: #25282b;
-}
-.db-st7 {
-  fill: #8f9499;
-}
-.db-st8 {
-  fill: #5b280e;
-}
-.db-st9 {
-  fill: #f95d06;
-}
-.db-st10 {
-  fill: url(#db_12_);
-}
-.db-st11 {
-  opacity: 0.4;
-  fill: #ff0000;
-}
+// .db-st0 {
+//   fill: url(#db_1_);
+// }
+// .db-st1 {
+//   fill: #dfe3e8;
+// }
+// .db-st2 {
+//   fill: url(#db_11_);
+// }
+// .db-st3 {
+//   fill: #ffffff;
+// }
+// .db-st4 {
+//   fill: #c2c8ce;
+// }
+// .db-st5 {
+//   fill: #848776;
+// }
+// .db-st6 {
+//   fill: #25282b;
+// }
+// .db-st7 {
+//   fill: #8f9499;
+// }
+// .db-st8 {
+//   fill: #5b280e;
+// }
+// .db-st9 {
+//   fill: #f95d06;
+// }
+// .db-st10 {
+//   fill: url(#db_12_);
+// }
+// .db-st11 {
+//   opacity: 0.4;
+//   fill: #ff0000;
+// }
 </style>
 <style lang="less">
 @import (less) "../../../../assets/less/components/component/device/common.less";

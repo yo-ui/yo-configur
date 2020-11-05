@@ -40,7 +40,6 @@
 <script>
 // import bmCommon from "@/common/common";
 // import { Constants } from "@/common/env";
-// const html2canvas = require("@/common/lib/html2canvas");
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -102,65 +101,6 @@ export default {
     closeEvent() {
       this.showDialogStatus = false;
     }
-    // submitEvent() {
-    //   let { widgetList = [], condition, recordList = [] } = this;
-    //   let { remark: name = "" } = condition;
-    //   let time = this.$moment().valueOf();
-    //   let id = bmCommon.uuid();
-    //   html2canvas($(".canvas-box")[0], {}).then(canvas => {
-    //     // window.open(canvas.toDataURL())
-    //     // bmCommon.log(canvas.toDataURL());
-    //     let blob = bmCommon.convertBase64ToBlob(canvas.toDataURL());
-    //     let formData = new FormData();
-    //     formData.append("files", blob, `${Date.now()}.png`);
-    //     formData.append("subDir", Constants.UPLOADDIR.FILE);
-    //     this.upload2OssFunc(
-    //       {
-    //         formData
-    //       },
-    //       img => {
-    //         recordList.unshift({
-    //           id,
-    //           name,
-    //           time,
-    //           img,
-    //           type: "manual", //手动记录
-    //           widgetList
-    //         });
-    //         this.setRecordList(recordList);
-    //         this.showDialogStatus = false;
-    //       }
-    //     );
-    //   });
-    // },
-    // //上传图片
-    // upload2OssFunc(options, callback) {
-    //   let value = "";
-    //   if (this._upload2OssStatus) {
-    //     return;
-    //   }
-    //   this._upload2OssStatus = true;
-    //   this.upload2OssAction(options)
-    //     .then(({ data }) => {
-    //       let { code = "", result = [], message = "" } = data || {};
-    //       if (code == Constants.CODES.SUCCESS) {
-    //         let [fileName = ""] = result || [];
-    //         // this.$$msgSuccess("添附件成功");
-    //         value = fileName;
-    //       } else {
-    //         // this.$$msgError(message || "添附件失败");
-    //         bmCommon.error(message || "图片上传失败");
-    //       }
-    //       callback && callback(value);
-    //       this._upload2OssStatus = false;
-    //     })
-    //     .catch(err => {
-    //       callback && callback(value);
-    //       // this.$$msgError("添附件失败");
-    //       this._upload2OssStatus = false;
-    //       bmCommon.error("图片上传失败", err);
-    //     });
-    // }
   },
   mounted() {
     this.init();
