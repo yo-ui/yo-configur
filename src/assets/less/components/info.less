@@ -1,13 +1,31 @@
 @import (reference) "./../common.less";
 .bm-info-com{
-  .borl(1px solid @grayE);
+  .borl(1px solid #cbd3e0);
   .posr;
   z-index: 2;
+  .bc(#f6f7fb);
   .el-tabs{
-    .mt(15);
-    .ml(15);
+    .pt(15);
+    .pl(15);
+    .borb(1px solid #e2e5ec);
+    // .pb(1)
     .el-tabs__header{
       .mb(0);
+      .bor(none);
+    }
+    .el-tabs__nav{
+      .bort(none);
+      .borl(none);
+      .borr(none);
+    }
+    .el-tabs__item{
+      .bor(none);
+      .fw(400);
+      .c(@gray6);
+      &.is-active{
+        .bc(@white);
+        .c(@gray3);
+      }
     }
   }
   .com-data{
@@ -19,13 +37,50 @@
     }
   }
   .com-style{
-    .p(10px 15px);
+    // .p(10px 15px);
     .touch-y;
     .flex(1);
     .el-collapse{
+      .bort(none);
+      .mt(1);
       .el-collapse-item{
+        &.is-disabled{
+          .el-collapse-item__header{
+            .c(@gray3);
+            cursor:default;
+          }
+        }
+        &.is-active{
+          .el-collapse-item__header{
+            .bc(transparent);
+          }
+        }
+        &:first-child{
+          .el-collapse-item__header{
+            .bc(transparent);
+            .el-collapse-item__arrow{
+              .db(none);
+            }
+          }
+        }
+        .el-collapse-item__header{
+          .pl(15);
+          .lh(40);
+          .h(40);
+        }
         .el-collapse-item__wrap{
           overflow:initial;
+          .bc(transparent);
+          .el-collapse-item__content{
+            .pl(15);
+            .pr(15);
+            .pb(5);
+            p{
+              &:first-child{
+                .mt(0);
+              }
+            }
+          }
         }
       }
     }

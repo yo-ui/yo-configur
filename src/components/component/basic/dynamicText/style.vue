@@ -409,7 +409,7 @@
                 </el-option>
               </el-select>
             </p>
-            <p>
+            <!-- <p>
               <span class="label"> {{ $lang("翻转方式") }}:</span>
               <el-select
                 v-model="info.scale"
@@ -423,7 +423,7 @@
                 >
                 </el-option>
               </el-select>
-            </p>
+            </p> -->
           </template>
         </template>
         <p class="margin-box">
@@ -803,8 +803,8 @@
           </p>
         </template>
       </el-collapse-item>
-      <el-collapse-item :title="$lang('链接设置')" name="link">
-      </el-collapse-item>
+      <!-- <el-collapse-item :title="$lang('链接设置')" name="link">
+      </el-collapse-item> -->
       <el-collapse-item title="动画" name="animation">
         <p>
           <span class="label">{{ $lang("动画类型") }}:</span>

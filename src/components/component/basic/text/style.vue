@@ -16,7 +16,7 @@
       ></i>
     </p> -->
     <el-collapse v-model="activeNames">
-      <el-collapse-item :title="info.name" name="name">
+      <el-collapse-item :title="info.name" name="name" disabled>
         <!-- <h2>{{ info.name }}</h2> -->
         <p>
           <span class="label"> {{ $lang("文本名称") }}: </span>
@@ -176,6 +176,8 @@
             ></i>
           </el-tooltip>
         </p>
+      </el-collapse-item>
+      <el-collapse-item :title="$lang('外观')" name="outward">
         <p>
           <span class="label">{{ $lang("填充颜色") }}:</span>
           <el-select
@@ -405,6 +407,16 @@
             </p>
           </template>
         </template>
+      </el-collapse-item>
+      <!-- <p>
+        <span class="label"> {{ $lang("文本名称") }}: </span>
+        <el-input
+          v-model="info.content"
+          clearable
+          :placeholder="$lang('请输入文本名称')"
+        ></el-input>
+      </p> -->
+      <el-collapse-item :title="$lang('边距')" name="outward">
         <p class="margin-box">
           <span class="label">{{ $lang("外边距") }}:</span>
           <span class="c-box">
@@ -784,7 +796,7 @@
       <!-- <h2>{{ $lang("交互") }}</h2>
     <h2>{{ $lang("动画") }}</h2> -->
       <!-- <el-collapse-item title="交互" name="2"> </el-collapse-item> -->
-      <el-collapse-item title="动画" name="animation">
+      <el-collapse-item :title="$lang('动画')" name="animation">
         <p>
           <span class="label">{{ $lang("动画类型") }}:</span>
           <el-select v-model="info.animation.name" placeholder="请选择动画类型">

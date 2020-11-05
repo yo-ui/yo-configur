@@ -49,71 +49,89 @@
         </el-dropdown>
       </el-button-group> -->
       <el-button-group>
-        <el-dropdown
+        <!-- <el-dropdown
           trigger="click"
           @command="spreadCommandEvent"
           placement="bottom-start"
+        > -->
+        <el-popover
+          popper-class="popover-list"
+          placement="bottom"
+          width="auto"
+          trigger="click"
+          v-model="showSpreadPopoverStatus"
+          :disabled="activeComs.length < 3"
         >
-          <!-- :disabled="activeComs.length < 3" -->
-          <el-button class="dropdown">
+          <el-button
+            slot="reference"
+            class="dropdown"
+            :disabled="activeComs.length < 3"
+          >
             <span class="txt">
               <i :class="`bomi bomi-${condition.spreadType}`"></i>
               {{ $lang("分布") }} </span
             ><i class="el-icon-caret-bottom"></i
           ></el-button>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="h-center"
-              ><i class="bomi bomi-h-center"></i>水平分布</el-dropdown-item
-            >
-            <el-dropdown-item command="v-center"
-              ><i class="bomi bomi-v-center"></i>垂直分布</el-dropdown-item
-            >
-          </el-dropdown-menu>
-        </el-dropdown>
-        <el-dropdown
+          <ul class="dropdown-list">
+            <li @click="spreadCommandEvent('h-center')">
+              <i class="bomi bomi-h-center"></i>水平分布
+            </li>
+            <li @click="spreadCommandEvent('v-center')">
+              <i class="bomi bomi-v-center"></i>垂直分布
+            </li>
+          </ul>
+        </el-popover>
+        <!-- <el-dropdown
           trigger="click"
           @command="alignCommandEvent"
           placement="bottom-start"
+        > -->
+        <el-popover
+          popper-class="popover-list"
+          placement="bottom"
+          width="auto"
+          trigger="click"
+          v-model="showAlignPopoverStatus"
+          :disabled="activeComs.length < 2"
         >
-          <!-- :disabled="activeComs.length < 1" -->
-          <el-button class="dropdown">
+          <el-button
+            slot="reference"
+            class="dropdown"
+            :disabled="activeComs.length < 2"
+          >
             <span class="txt">
               <i :class="`bomi bomi-align-${condition.alignType}`"></i>
               {{ $lang("对齐") }}
             </span>
             <i class="el-icon-caret-bottom"></i>
           </el-button>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="left"
-              ><i class="bomi bomi-align-left"></i>左对齐</el-dropdown-item
-            >
-            <el-dropdown-item command="h-center"
-              ><i class="bomi bomi-align-h-center"></i
-              >水平居中</el-dropdown-item
-            >
-            <el-dropdown-item command="right"
-              ><i class="bomi bomi-align-right"></i>右对齐</el-dropdown-item
-            >
-            <el-dropdown-item command="left-right"
-              ><i class="bomi bomi-align-left-right"></i
-              >左右对齐</el-dropdown-item
-            >
-            <el-dropdown-item command="top"
-              ><i class="bomi bomi-align-top"></i>上对齐</el-dropdown-item
-            >
-            <el-dropdown-item command="v-center"
-              ><i class="bomi bomi-align-v-center"></i
-              >垂直居中</el-dropdown-item
-            >
-            <el-dropdown-item command="bottom"
-              ><i class="bomi bomi-align-bottom"></i>下对齐</el-dropdown-item
-            >
-            <el-dropdown-item command="top-bottom"
-              ><i class="bomi bomi-align-top-bottom"></i
-              >上下对齐</el-dropdown-item
-            >
-          </el-dropdown-menu>
-        </el-dropdown>
+          <ul class="dropdown-list">
+            <li @click="alignCommandEvent('left')">
+              <i class="bomi bomi-align-left"></i>左对齐
+            </li>
+            <li @click="alignCommandEvent('h-center')">
+              <i class="bomi bomi-align-h-center"></i>水平居中
+            </li>
+            <li @click="alignCommandEvent('right')">
+              <i class="bomi bomi-align-right"></i>右对齐
+            </li>
+            <li @click="alignCommandEvent('left-right')">
+              <i class="bomi bomi-align-left-right"></i>左右对齐
+            </li>
+            <li @click="alignCommandEvent('top')">
+              <i class="bomi bomi-align-top"></i>上对齐
+            </li>
+            <li @click="alignCommandEvent('v-center')">
+              <i class="bomi bomi-align-v-center"></i>垂直居中
+            </li>
+            <li @click="alignCommandEvent('bottom')">
+              <i class="bomi bomi-align-bottom"></i>下对齐
+            </li>
+            <li @click="alignCommandEvent('top-bottom')">
+              <i class="bomi bomi-align-top-bottom"></i>上下对齐
+            </li>
+          </ul>
+        </el-popover>
         <!-- :disabled="
               !(
                 activeComs.length > 0 ||
@@ -121,23 +139,62 @@
               ) ||
                 (topOrder == activeCom.order && bottomOrder == activeCom.order)
             " -->
-        <el-dropdown
+        <!-- <el-dropdown
           trigger="click"
           @command="orderCommandEvent"
           placement="bottom-start"
+          :disabled="!(activeComs.length > 0 || activeCom.type != 'canvas')"
+        > -->
+        <el-popover
+          popper-class="popover-list"
+          placement="bottom"
+          width="auto"
+          v-model="showArrangePopoverStatus"
+          trigger="click"
         >
-          <el-button class="dropdown">
-            <span class="txt">
+          <el-button
+            slot="reference"
+            class="dropdown"
+            :disabled="!(activeComs.length > 0 || activeCom.type != 'canvas')"
+            ><span class="txt">
               <i class="bomi bomi-arrange"></i>
               {{ $lang("排列") }}
             </span>
             <i class="el-icon-caret-bottom"></i>
           </el-button>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item
+          <ul class="dropdown-list">
+            <li
+              @click="orderCommandEvent('top')"
+              :disabled="topOrder == activeCom.order"
+            >
+              <i class="bomi bomi-move-top"></i>置顶
+            </li>
+            <li
+              @click="orderCommandEvent('bottom')"
+              :disabled="bottomOrder == activeCom.order"
+            >
+              <i class="bomi bomi-move-bottom"></i>置底
+            </li>
+            <li
+              @click="orderCommandEvent('up')"
+              :disabled="topOrder == activeCom.order"
+            >
+              <i class="bomi bomi-move-up"></i>前移
+            </li>
+            <li
+              @click="orderCommandEvent('down')"
+              :disabled="bottomOrder == activeCom.order"
+            >
+              <i class="bomi bomi-move-down"></i>后移
+            </li>
+          </ul>
+        </el-popover>
+
+        <!-- <el-dropdown-menu slot="dropdown">
+            <li
               command="top"
               :disabled="topOrder == activeCom.order"
-              ><i class="bomi bomi-move-top"></i>置顶</el-dropdown-item
+              ><i class="bomi bomi-move-top"></i>置顶</li
             >
             <el-dropdown-item
               command="bottom"
@@ -155,7 +212,7 @@
               ><i class="bomi bomi-move-down"></i>后移</el-dropdown-item
             >
           </el-dropdown-menu>
-        </el-dropdown>
+        </el-dropdown> -->
       </el-button-group>
 
       <!-- <el-button-group>
@@ -166,29 +223,37 @@
       </el-button-group> -->
 
       <el-button-group>
-        <el-dropdown
+        <!-- <el-dropdown
           trigger="click"
           @command="setThemesEvent"
           placement="bottom-start"
+        > -->
+        <el-popover
+          popper-class="popover-list"
+          placement="bottom"
+          width="auto"
+          v-model="showThemesPopoverStatus"
+          trigger="click"
         >
-          <span>
-            <el-button>
+          <el-button class="dropdown" slot="reference">
+            <span class="txt">
               <i class="el-icon-s-grid"></i>
-              {{ $lang("皮肤") }} </el-button
-            ><i class="el-icon-caret-bottom"></i
-          ></span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="white"
-              ><i class="skin skin-white"></i>简洁白</el-dropdown-item
-            >
-            <el-dropdown-item command="black"
-              ><i class="skin skin-black"></i>酷炫黑</el-dropdown-item
-            >
-            <el-dropdown-item command="blue"
-              ><i class="skin skin-blue"></i>荧光蓝</el-dropdown-item
-            >
-          </el-dropdown-menu>
-        </el-dropdown>
+              {{ $lang("皮肤") }}
+            </span>
+            <i class="el-icon-caret-bottom"></i
+          ></el-button>
+          <ul class="dropdown-list">
+            <li @click="setThemesEvent('white')">
+              <i class="skin skin-white"></i>简洁白
+            </li>
+            <li @click="setThemesEvent('black')">
+              <i class="skin skin-black"></i>酷炫黑
+            </li>
+            <li @click="setThemesEvent('blue')">
+              <i class="skin skin-blue"></i>荧光蓝
+            </li>
+          </ul>
+        </el-popover>
       </el-button-group>
       <el-button @click="leftMenuEvent">
         <i class="el-icon-s-fold"></i>
@@ -242,6 +307,10 @@ const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {
     return {
+      showArrangePopoverStatus: false,
+      showSpreadPopoverStatus: false,
+      showThemesPopoverStatus: false,
+      showAlignPopoverStatus: false,
       condition: {
         // historyIndex: 0,
         alignType: "left",
@@ -298,6 +367,7 @@ export default {
     ...mapActions({
       selectComAction: "canvas/selectCom",
       createRecordAction: "canvas/createRecord",
+      createHistoryAction: "canvas/createHistory",
       canvasSaveAction: "canvasSave",
       upload2OssAction: "upload2Oss"
     }),
@@ -571,6 +641,7 @@ export default {
             break;
         }
       });
+      this.showThemesPopoverStatus = false;
     },
     spreadCommandEvent(cmd) {
       let { condition } = this;
@@ -583,6 +654,8 @@ export default {
           this.spreadHCenterEvent();
           break;
       }
+      this.showSpreadPopoverStatus = false;
+      this.createHistoryAction();
     },
     // 垂直分布
     spreadVCenterEvent() {
@@ -665,6 +738,8 @@ export default {
         default:
           break;
       }
+      this.showAlignPopoverStatus = false;
+      this.createHistoryAction();
     },
     // 左右对齐
     alignLeftRightEvent() {
@@ -804,6 +879,8 @@ export default {
         default:
           break;
       }
+      this.showArrangePopoverStatus = false;
+      this.createHistoryAction();
     },
     // 上移一层
     moveUpEvent() {

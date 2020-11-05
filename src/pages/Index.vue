@@ -370,12 +370,12 @@ export default {
     }),
     ...mapActions({
       selectComAction: "canvas/selectCom",
+      selectComsAction: "canvas/selectComs",
       orgStrucListByLevelAction: "orgStrucListByLevel",
       canvasGetAction: "canvasGet",
       createHistoryAction: "canvas/createHistory",
       commonGetDeviceAction: "commonGetDevice",
       commonDevicePointHstDataAction: "commonDevicePointHstData",
-      selectComsAction: "canvas/selectComs"
     }),
     init() {
       this.initEvent();
@@ -700,7 +700,7 @@ export default {
         // altKey = false
       } = e;
       ctrlKey = ctrlKey || metaKey; //(ctrl(cmd))
-      e.stopPropagation();
+      // e.stopPropagation();
       bmCommon.log("index keydow", e);
       let { activeCom = {}, activeComs = [], widgetList = [] } = this;
       let { length = 0 } = activeComs || [];

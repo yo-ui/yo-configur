@@ -621,13 +621,13 @@ let componentLibrary = [
           fontFamily: "lcdD",
           // originWidth: "", //原宽
           // originHeight: "", //原高
-          width: "",
-          height: "",
+          width: 100,
+          height: 40,
           // opacity: 100,
           // left: 0,
           // top: 0,
-          content: "00.00",
-          scaleable: false //是否可缩放操作
+          content: "00.00"
+          // scaleable: false //是否可缩放操作
           // rotateable: true, //是否可旋转操作
           // editable: false, //内容是否可编辑
           // locked: true //是否可拖动
@@ -640,7 +640,11 @@ let componentLibrary = [
         data: {
           ...baseData,
           width: 160,
-          height: 160
+          height: 160,
+          isAssignUrl: false,
+          content: "",
+          contentRepeat:'',
+          contentSize:'',
         }
       },
       {
@@ -672,9 +676,13 @@ let componentLibrary = [
           fontSize: 18,
           fontFamily: "lcdD",
           dataType: "point",
+          textAlign: "center",
           width: 75,
           height: 36,
-          scaleable: false //是否可缩放操作
+          unitFontFamily: "lcdD",
+          unitFontSize: "10",
+          unitColor: "#fff"
+          // scaleable: false //是否可缩放操作
         }
       },
       {

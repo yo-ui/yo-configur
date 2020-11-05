@@ -176,11 +176,17 @@ export default {
   methods: {
     ...mapMutations({
       setWidgetList: "canvas/setWidgetList",
-      setActiveCom: "canvas/setActiveCom"
+      // setActiveCom: "canvas/setActiveCom",
     }),
-    ...mapActions(),
+    ...mapActions({
+      selectComAction: "canvas/selectCom",
+      selectComsAction: "canvas/selectComs"
+    }),
     selectComEvent(item) {
-      this.setActiveCom(item);
+      // this.setActiveCom(item);
+      this.selectComsAction();
+      let { id = "" } = item || {};
+      this.selectComAction(id);
     },
     changeEvent(item) {
       // bmCommon.log(item);
