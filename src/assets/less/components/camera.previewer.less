@@ -1,0 +1,116 @@
+// 引入全局方法
+@import "../common.less";
+.bm-camera-previewer-com{
+  .camera-previewer-box{
+    .posr;
+    // .bor(1px solid @red);
+    .h(400);
+    .bc(@dark);
+    .oh;
+    // min-height: 600px;
+    &:hover{
+      // .play-btn{
+      //   .db;
+      // }
+      .operate-box{
+        .db;
+      }
+    }
+  }
+  .el-dialog__body{
+    .p(10px);
+  }
+   
+    .toolbar{
+      .posa;
+      left:0;
+      .w(100%);
+      bottom:0;
+      .df;
+      justify-content: space-between;
+      align-items: center;
+      i{
+        .c(@white);
+        .fz(16);
+        .p(5px 10px);
+        .click;
+        &:hover{
+          .c(@themes);
+        }
+      }
+    }
+    .operate-box{
+      .posa;
+      right: 15px;
+      top:15px;
+      .db(none);
+      .squ(100);
+      .bc(rgba(255,255,255,.2));
+      .br(50%);
+      i{
+        .fz(20);
+        .posa;
+        .pointer;
+        .c(@gray9);
+        .fw(700);
+        &:hover{
+          .c(@white);
+          .bc(rgba(0,0,0,.3));
+        }
+      }
+      .el-icon-arrow-left{
+        left:10px;
+        top:50%;
+        .p(10px 2px);
+        .tranf(translate(0,-50%));
+      }
+      .el-icon-arrow-right{
+        right:10px;
+        top:50%;
+        .p(10px 2px);
+        .tranf(translate(0,-50%));
+      }
+      .el-icon-arrow-up{
+        top:10px;
+        .p(2px 10px);
+        left:50%;
+        .tranf(translate(-50%,0));
+      }
+      .el-icon-arrow-down{
+        bottom:10px;
+        .p(2px 10px);
+        left:50%;
+        .tranf(translate(-50%,0));
+      }
+    }
+    .play-btn{
+      // .bor(2px solid @white);
+      .br(15px);
+      .pointer;
+      .posa;
+      left:0;
+      top:0;
+      .df;
+      align-items: center;
+      justify-content: center;
+      // .db(none);
+      // .tranf(translate(-50%,-50%));
+      .c(@white);
+      .fz(80);
+      .squ(100%);
+      .tc;
+      // min-width: 30px;
+      // max-width: 90px;
+      // .p(20px 30px);
+      .bc(@dark);
+    }
+    .loading-container{
+      .squ(100%)!important;
+    }
+    .loading-item{
+      left:50%!important;
+      top:50%!important;
+      .tranf(translate(-50%,-50%))!important;
+      .squ(100%)!important;
+    }
+}

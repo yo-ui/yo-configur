@@ -1,0 +1,134 @@
+@import (reference) "./../common.less";
+.el-dropdown-menu{
+    .el-dropdown-menu__item{
+      .df;
+      align-items: center;
+      .lh(40);
+      &:hover{
+        .bc(transparent);
+      }
+      .bomi{
+        .fz(28);
+        .mr(10);
+      }
+      .skin{
+        .squ(20);
+        .bor(1px solid @grayE);
+        &.skin-white{
+          .bc(@white);
+        }
+        &.skin-black{
+          .bc(#1f2b48);
+        }
+        &.skin-blue{
+          .bc(#15cef2);
+        }
+      }
+    }
+  // }
+}
+.bm-nav-com{
+  .bc(@white);
+  .h(60);
+  .posr;
+  // z-index: 2;
+  // .box-s(0px 6px 10px 1px @grayE);
+  // .c(@white);
+  .df;
+  justify-content: space-between;
+  align-items: center;
+  .title{
+    .flex(1);
+    .fz(25);
+    .tc;
+  }
+  // i{
+  //   .click;
+  //   // .mr(15);
+  //   // .p(10px);
+  //   .df;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   justify-content: center;
+  //   .fz(14);
+  //   &::before{
+  //     .fz(30);
+  //   }
+  // }
+  .el-dropdown{
+    min-width: 70px;
+  }
+  .el-button-group{
+    .df;
+    align-items: center;
+    justify-content: center;
+    .posr;
+    .p(0 15px);
+    &::before{
+      .bc(@grayE);
+      .posa;
+      .h(25);
+      .w(1);
+      left:0;
+    }
+    &.last{
+      &::after{
+        .bc(@grayE);
+        .posa;
+        .h(30);
+        .w(1);
+        right:0;
+      }
+    }
+  }
+  .left,.right{
+    .df;
+    align-items: center;
+    .el-button{
+      .bc(transparent);
+      // min-width: 60px;
+      .click;
+      .bor(0);
+      &.is-disabled{
+        &:hover,&:focus{
+          cursor: not-allowed;
+        }
+        cursor: not-allowed;
+      }
+      &.dropdown{
+        .p(9px 0px 9px 15px);
+        &>span{
+          flex-direction: row;
+          .txt{
+            .df;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+        .el-icon-caret-bottom{
+          .fz(14);
+          .ml(10);
+        }
+      }
+      &>span{
+        .df;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        // .c(@white);
+      }
+      i{
+        .fz(26);
+        .mb(5);
+      }
+      .el-icon-minus,.el-icon-plus{
+        .mb(0);
+      }
+    }
+    // i{
+    //   .ml(15);
+    //   .fz(30);
+    // }
+  }
+}

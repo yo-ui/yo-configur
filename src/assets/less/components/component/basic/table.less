@@ -1,0 +1,45 @@
+@import (reference) "./../../../common.less";
+.bm-basic-table-com{
+  &.el-table{
+    th,tr{
+      .bc(transparent);
+    }
+    th,td{
+      .p(0);
+      .borb(none);
+    }
+    tr{
+      th{
+        &:nth-last-child(2){
+          .cell{
+            span{
+              .borr(none)!important;
+            }
+          }
+        }
+      }
+    }
+    tr{
+      td{
+        &:last-child{
+          .cell{
+            span{
+              .borr(none)!important;
+            }
+          }
+        }
+      }
+    }
+    .cell{
+      .m(0);
+      .p(0);
+      span{
+        .db;
+        .p(8px 10px);
+        .fw(normal);
+        // .borr(1px solid @blue);
+        // .borb(1px solid @blue);
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@import (reference) "./../common.less";
+.bm-dialog-preview-com{
+  iframe{
+    .wh(100%;700);
+  }
+  .el-dialog{
+    min-width: 800px;
+    .el-dialog__header{
+      .df;
+      justify-content: space-between;
+      align-items: center;
+      // .fz(16);
+      .el-icon-monitor{
+        .fz(20);
+        .mr(30);
+        .mt(0);
+        .click;
+      }
+    }
+    .el-dialog__body{
+      .p(0);
+      min-height: 600px;
+      .bm-preview-page{
+        min-height: 600px;
+      }
+    }
+  }
+}
