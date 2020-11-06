@@ -25,7 +25,26 @@
       ></el-input>
     </p> -->
     <el-collapse v-model="activeNames">
-      <el-collapse-item :title="info.name" name="name">
+      <el-collapse-item :title="info.name" name="name" disabled>
+        <template slot="title">
+          {{ info.name }}
+          <div class="right">
+            <el-tooltip
+              :content="$lang('全部折叠')"
+              placement="top"
+              effect="dark"
+            >
+              <i class="el-icon-folder-remove" @click="closeAll"></i>
+            </el-tooltip>
+            <el-tooltip
+              :content="$lang('全部展开')"
+              placement="top"
+              effect="dark"
+            >
+              <i class="el-icon-folder-opened" @click="openAll"></i>
+            </el-tooltip>
+          </div>
+        </template>
         <p>
           <span class="label"> {{ $lang("层级") }}: </span>
           <el-input-number
@@ -431,7 +450,7 @@
       <el-color-picker v-model="info.borderColor" show-alpha></el-color-picker>
     </p> -->
       </el-collapse-item>
-      <el-collapse-item :title="$lang('文字设置')" name="font">
+      <el-collapse-item :title="$lang('文字设置')" name="fontSet">
         <p>
           <span class="label">{{ $lang("字体颜色") }}:</span>
           <el-color-picker v-model="info.color" show-alpha></el-color-picker>
@@ -587,7 +606,8 @@
             >
           </span>
         </p>
-
+      </el-collapse-item>
+      <el-collapse-item :title="$lang('边距')" name="margin">
         <p class="margin-box">
           <span class="label">{{ $lang("外边距") }}:</span>
           <span class="c-box">
@@ -1054,6 +1074,18 @@ export default {
     textAlignEvent(item) {
       let { info = {} } = this;
       info.textAlign = item;
+    },
+    openAll() {
+      this.activeNames = [
+        "name",
+        "unitStyle",
+        "margin",
+        "fontSet",
+        "animation"
+      ];
+    },
+    closeAll() {
+      this.activeNames = ["name"];
     }
   }
 };

@@ -214,7 +214,9 @@ export default {
         }
         widgetList.push(item);
         this.createHistoryAction();
-        this.selectComAction(id);
+        this.$nextTick(() => {
+          this.selectComAction(id);
+        });
         // this.createRecordAction();
         // this.uploadImg();
         // this.setWidgetList(widgetList);

@@ -643,8 +643,8 @@ let componentLibrary = [
           height: 160,
           isAssignUrl: false,
           content: "",
-          contentRepeat:'',
-          contentSize:'',
+          contentRepeat: "",
+          contentSize: ""
         }
       },
       {
@@ -717,6 +717,7 @@ let componentLibrary = [
         name: "纵向滚动文本",
         code: "hScrollText",
         icon: "/static/img/configur/announcement.png",
+        comDisabled: true, //组件不可用
         data: {
           ...baseData
         }

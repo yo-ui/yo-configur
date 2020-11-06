@@ -26,107 +26,181 @@
     </p> -->
 
     <el-collapse v-model="activeNames">
-      <el-collapse-item :title="info.name" name="name">
-    <p>
-      <span class="label"> {{ $lang("层级") }}: </span>
-      <el-input-number
-        controls-position="right"
-        clearable
-        v-model.number="info.order"
-        :placeholder="$lang('请输入层级')"
-      ></el-input-number>
-      <el-slider
-        v-model="info.order"
-        :max="200"
-        :format-tooltip="val => val"
-      ></el-slider>
-    </p>
-    <p>
-      <span class="label"> {{ $lang("宽度") }}:</span>{{ info.width }}
-      <el-slider
-        v-model="info.width"
-        :max="1980"
-        :format-tooltip="val => val"
-      ></el-slider>
-    </p>
-    <p>
-      <span class="label"> {{ $lang("高度") }}:</span>{{ info.height }}
-      <el-slider
-        v-model="info.height"
-        :max="1080"
-        :format-tooltip="val => val"
-      ></el-slider>
-    </p>
-    <p>
-      <span class="label"> {{ $lang("横坐标") }}:</span>{{ info.left }}
-      <el-slider
-        v-model="info.left"
-        :max="3500"
-        :min="-3500"
-        :format-tooltip="val => val"
-      ></el-slider>
-    </p>
-    <p>
-      <span class="label"> {{ $lang("纵坐标") }}:</span>{{ info.top }}
-      <el-slider
-        v-model="info.top"
-        :max="3500"
-        :min="-3500"
-        :format-tooltip="val => val"
-      ></el-slider>
-    </p>
-    <p>
-      <span class="label"> {{ $lang("旋转角度") }}:</span>
-      <el-input-number
-        controls-position="right"
-        clearable
-        :min="-360"
-        :max="360"
-        v-model.number="info.rotate"
-        :placeholder="$lang('请输入旋转角度')"
-      ></el-input-number>
-      deg
-      <el-slider
-        v-model="info.rotate"
-        :min="-360"
-        :max="360"
-        :format-tooltip="val => val + ' deg'"
-      ></el-slider>
-    </p>
-    <p class="btn-box">
-      <el-tooltip content="隐藏" placement="top" effect="dark">
-        <i
-          class="el-icon-view"
-          :class="{ active: !info.visible }"
-          @click="info.visible = !info.visible"
-        ></i>
-      </el-tooltip>
-      <el-tooltip content="锁定" placement="top" effect="dark">
-        <i
-          class="el-icon-lock"
-          :class="{ active: info.locked }"
-          @click="info.locked = !info.locked"
-        ></i>
-      </el-tooltip>
-      <el-tooltip content="垂直翻转" placement="top" effect="dark">
-        <i
-          class="bomi bomi-flip-v"
-          :class="{ active: info.flipV }"
-          @click="info.flipV = !info.flipV"
-        ></i>
-      </el-tooltip>
-      <el-tooltip content="水平翻转" placement="top" effect="dark">
-        <i
-          class="bomi bomi-flip-h"
-          :class="{ active: info.flipH }"
-          @click="info.flipH = !info.flipH"
-        ></i>
-      </el-tooltip>
-    </p>
-
-    </el-collapse-item>
-    <el-collapse-item :title="$lang('外观')" name="outward">
-      <p>
+      <el-collapse-item :title="info.name" name="name" disabled>
+        <template slot="title">
+          {{ info.name }}
+          <div class="right">
+            <el-tooltip
+              :content="$lang('全部折叠')"
+              placement="top"
+              effect="dark"
+            >
+              <i class="el-icon-folder-remove" @click="closeAll"></i>
+            </el-tooltip>
+            <el-tooltip
+              :content="$lang('全部展开')"
+              placement="top"
+              effect="dark"
+            >
+              <i class="el-icon-folder-opened" @click="openAll"></i>
+            </el-tooltip>
+          </div>
+        </template>
+        <p>
+          <span class="label"> {{ $lang("层级") }}: </span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            v-model.number="info.order"
+            :placeholder="$lang('请输入层级')"
+          ></el-input-number>
+          <el-slider
+            v-model="info.order"
+            :max="200"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label"> {{ $lang("宽度") }}:</span>
+          <template v-if="info.scaleable">
+            <el-input-number
+              controls-position="right"
+              clearable
+              v-model.number="info.width"
+              :placeholder="$lang('请输入宽度')"
+            ></el-input-number>
+            px
+          </template>
+          <template v-else>
+            {{ $toBig(info.width || info.originWidth, 0) }} px
+          </template>
+          <el-slider
+            v-if="info.scaleable"
+            v-model="info.width"
+            :max="1980"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label"> {{ $lang("高度") }}:</span
+          ><template v-if="info.scaleable">
+            <el-input-number
+              controls-position="right"
+              clearable
+              v-model.number="info.height"
+              :placeholder="$lang('请输入高度')"
+            ></el-input-number>
+            px
+          </template>
+          <template v-else>
+            {{ $toBig(info.height || info.originHeight, 0) }} px
+          </template>
+          <el-slider
+            v-if="info.scaleable"
+            v-model="info.height"
+            :max="1080"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label"> {{ $lang("横坐标") }}:</span>
+          <el-tooltip
+            :content="$lang('请输入横坐标')"
+            placement="top"
+            effect="dark"
+          >
+            <el-input-number
+              controls-position="right"
+              clearable
+              v-model.number="info.left"
+              :placeholder="$lang('请输入横坐标')"
+            ></el-input-number>
+          </el-tooltip>
+          <el-slider
+            v-model="info.left"
+            :max="3500"
+            :min="-3500"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label"> {{ $lang("纵坐标") }}:</span>
+          <el-tooltip
+            :content="$lang('请输入纵坐标')"
+            placement="top"
+            effect="dark"
+          >
+            <el-input-number
+              controls-position="right"
+              clearable
+              v-model.number="info.top"
+              :placeholder="$lang('请输入纵坐标')"
+            ></el-input-number>
+          </el-tooltip>
+          <el-slider
+            v-model="info.top"
+            :max="3500"
+            :min="-3500"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label"> {{ $lang("旋转角度") }}:</span>
+          <el-tooltip
+            :content="$lang('请输入旋转角度')"
+            placement="top"
+            effect="dark"
+          >
+            <el-input-number
+              controls-position="right"
+              clearable
+              :min="-360"
+              :max="360"
+              v-model.number="info.rotate"
+              :placeholder="$lang('请输入旋转角度')"
+            ></el-input-number>
+          </el-tooltip>
+          deg
+          <el-slider
+            v-model="info.rotate"
+            :min="-360"
+            :max="360"
+            :format-tooltip="val => val + ' deg'"
+          ></el-slider>
+        </p>
+        <p class="btn-box">
+          <el-tooltip content="隐藏" placement="top" effect="dark">
+            <i
+              class="el-icon-view"
+              :class="{ active: !info.visible }"
+              @click="info.visible = !info.visible"
+            ></i>
+          </el-tooltip>
+          <el-tooltip content="锁定" placement="top" effect="dark">
+            <i
+              class="el-icon-lock"
+              :class="{ active: info.locked }"
+              @click="info.locked = !info.locked"
+            ></i>
+          </el-tooltip>
+          <el-tooltip content="垂直翻转" placement="top" effect="dark">
+            <i
+              class="bomi bomi-flip-v"
+              :class="{ active: info.flipV }"
+              @click="info.flipV = !info.flipV"
+            ></i>
+          </el-tooltip>
+          <el-tooltip content="水平翻转" placement="top" effect="dark">
+            <i
+              class="bomi bomi-flip-h"
+              :class="{ active: info.flipH }"
+              @click="info.flipH = !info.flipH"
+            ></i>
+          </el-tooltip>
+        </p>
+      </el-collapse-item>
+      <el-collapse-item :title="$lang('外观')" name="outward">
+        <p>
           <span class="label">{{ $lang("填充颜色") }}:</span>
           <el-select
             v-model="info.backgroundType"
@@ -371,7 +445,7 @@
             </p> -->
           </template>
         </template>
-    <!-- <p>
+        <!-- <p>
       <span class="label">{{ $lang("图片背景色") }}:</span>
       <el-color-picker
         v-model="info.backgroundColor"
@@ -430,54 +504,67 @@
         </el-select>
       </p>
     </template> -->
-    <p>
-      <span class="label"> {{ $lang("边框样式") }}:</span
-      ><el-select
-        v-model="info.borderStyle"
-        :placeholder="$lang('请选择边框样式')"
-      >
-        <el-option
-          v-for="item in borderStyleList"
-          :key="item.code"
-          :label="$lang(item.name)"
-          :value="item.code"
-        >
-        </el-option>
-      </el-select>
-    </p>
-    <p>
-      <span class="label"> {{ $lang("边框大小") }}:</span>{{ info.borderWidth }}
-      <el-slider
-        v-model="info.borderWidth"
-        :min="0"
-        :max="20"
-        :format-tooltip="val => val + ' px'"
-      ></el-slider>
-    </p>
-    <p>
-      <span class="label"> {{ $lang("边框圆角") }}:</span>
-      <el-input-number
-        controls-position="right"
-        clearable
-        :min="0"
-        :max="50"
-        v-model.number="info.borderRadius"
-        :placeholder="$lang('请输入边框圆角')"
-      ></el-input-number>
-      px
-      <el-slider
-        v-model="info.borderRadius"
-        :min="0"
-        :max="50"
-        :format-tooltip="val => val + ' px'"
-      ></el-slider>
-    </p>
-    <p>
-      <span class="label">{{ $lang("边框颜色") }}:</span>
-      <el-color-picker v-model="info.borderColor" show-alpha></el-color-picker>
-    </p>
-
-    <p class="margin-box">
+        <p>
+          <span class="label"> {{ $lang("边框样式") }}:</span
+          ><el-select
+            v-model="info.borderStyle"
+            :placeholder="$lang('请选择边框样式')"
+          >
+            <el-option
+              v-for="item in borderStyleList"
+              :key="item.code"
+              :label="$lang(item.name)"
+              :value="item.code"
+            >
+            </el-option>
+          </el-select>
+        </p>
+        <p>
+          <span class="label"> {{ $lang("边框大小") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            :min="0"
+            :max="200"
+            v-model.number="info.borderWidth"
+            :placeholder="$lang('请输入边框大小')"
+          ></el-input-number>
+          px
+          <el-slider
+            v-model="info.borderWidth"
+            :min="0"
+            :max="200"
+            :format-tooltip="val => val + ' px'"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label"> {{ $lang("边框圆角") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            :min="0"
+            :max="200"
+            v-model.number="info.borderRadius"
+            :placeholder="$lang('请输入边框圆角')"
+          ></el-input-number>
+          px
+          <el-slider
+            v-model="info.borderRadius"
+            :min="0"
+            :max="200"
+            :format-tooltip="val => val + ' px'"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label">{{ $lang("边框颜色") }}:</span>
+          <el-color-picker
+            v-model="info.borderColor"
+            show-alpha
+          ></el-color-picker>
+        </p>
+      </el-collapse-item>
+      <el-collapse-item :title="$lang('边距')" name="margin">
+        <p class="margin-box">
           <span class="label">{{ $lang("外边距") }}:</span>
           <span class="c-box">
             <span>
@@ -551,57 +638,64 @@
             </span>
           </span>
         </p>
-    </el-collapse-item>
+      </el-collapse-item>
 
-    <el-collapse-item :title="$lang('图片')" name="image">
-      <p>
-      <span class="label"> {{ $lang("指定地址") }}:</span>
-      <el-switch v-model="info.isAssignUrl">
-      </el-switch>
-      
-    </p>
-      <p>
-      <span class="label"> {{ $lang("图片") }}:</span>
-      <bm-upload ref="bmUpload" @success="successUrlCallback">
-        <el-button type="primary">
-          {{ $lang(info.content ? "替换图片" : "选择图片") }}</el-button
-        >
-      </bm-upload>
-    </p>
-    <template v-if="info.content"
-      ><p>
-        <span class="label"> {{ $lang("平铺方式") }}:</span>
-        <el-select
-          v-model="info.contentRepeat"
-          :placeholder="$lang('请选择平铺方式')"
-        >
-          <el-option
-            v-for="item in tileModeList"
-            :key="item.code"
-            :label="$lang(item.name)"
-            :value="item.code"
+      <el-collapse-item :title="$lang('图片')" name="image">
+        <p>
+          <span class="label"> {{ $lang("指定地址") }}:</span>
+          <el-switch v-model="info.isAssignUrl"> </el-switch>
+        </p>
+        <p v-if="info.isAssignUrl">
+          <span class="label"> {{ $lang("图片地址") }}:</span>
+          <el-input
+            v-model="info.content"
+            clearable
+            :placeholder="$lang('请输入图片地址')"
           >
-          </el-option>
-        </el-select>
-      </p>
-      <p>
-        <span class="label"> {{ $lang("填充模式") }}:</span>
-        <el-select
-          v-model="info.contentSize"
-          :placeholder="$lang('请选择填充模式')"
-        >
-          <el-option
-            v-for="item in BACKGROUNDSIZELIST"
-            :key="item.code"
-            :label="$lang(item.name)"
-            :value="item.code"
-          >
-          </el-option>
-        </el-select>
-      </p>
-    </template>
-    </el-collapse-item>
-<el-collapse-item title="动画" name="animation">
+          </el-input>
+        </p>
+        <p v-else>
+          <span class="label"> {{ $lang("图片") }}:</span>
+          <bm-upload ref="bmUpload" @success="successUrlCallback">
+            <el-button type="primary">
+              {{ $lang(info.content ? "替换图片" : "选择图片") }}</el-button
+            >
+          </bm-upload>
+        </p>
+        <template v-if="info.content"
+          ><p>
+            <span class="label"> {{ $lang("平铺方式") }}:</span>
+            <el-select
+              v-model="info.contentRepeat"
+              :placeholder="$lang('请选择平铺方式')"
+            >
+              <el-option
+                v-for="item in tileModeList"
+                :key="item.code"
+                :label="$lang(item.name)"
+                :value="item.code"
+              >
+              </el-option>
+            </el-select>
+          </p>
+          <p>
+            <span class="label"> {{ $lang("填充模式") }}:</span>
+            <el-select
+              v-model="info.contentSize"
+              :placeholder="$lang('请选择填充模式')"
+            >
+              <el-option
+                v-for="item in BACKGROUNDSIZELIST"
+                :key="item.code"
+                :label="$lang(item.name)"
+                :value="item.code"
+              >
+              </el-option>
+            </el-select>
+          </p>
+        </template>
+      </el-collapse-item>
+      <el-collapse-item title="动画" name="animation">
         <p>
           <span class="label">{{ $lang("动画类型") }}:</span>
           <el-select v-model="info.animation.name" placeholder="请选择动画类型">
@@ -680,6 +774,9 @@ export default {
   name: "imageStyleCom",
   data() {
     return {
+      activeNames: ["name"],
+      animationDirectionList: Object.freeze(Constants.ANIMATIONDIRECTIONLIST),
+      animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
       borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
       backgroundTypeList: Object.freeze(Constants.BACKGROUNDTYPELIST),
       centerList: Object.freeze(Constants.CENTERLIST),
@@ -758,6 +855,12 @@ export default {
     successUrlCallback(url) {
       let { info = {} } = this;
       info.content = url;
+    },
+    openAll() {
+      this.activeNames = ["name", "outward", "margin","image", "animation"];
+    },
+    closeAll() {
+      this.activeNames = ["name"];
     }
   }
 };

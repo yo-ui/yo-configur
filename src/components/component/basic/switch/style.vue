@@ -16,7 +16,26 @@
       ></i>
     </p> -->
     <el-collapse v-model="activeNames">
-      <el-collapse-item :title="info.name" name="name">
+      <el-collapse-item :title="info.name" name="name" disabled>
+        <template slot="title">
+          {{ info.name }}
+          <div class="right">
+            <el-tooltip
+              :content="$lang('全部折叠')"
+              placement="top"
+              effect="dark"
+            >
+              <i class="el-icon-folder-remove" @click="closeAll"></i>
+            </el-tooltip>
+            <el-tooltip
+              :content="$lang('全部展开')"
+              placement="top"
+              effect="dark"
+            >
+              <i class="el-icon-folder-opened" @click="openAll"></i>
+            </el-tooltip>
+          </div>
+        </template>
         <!-- <h2>{{ info.name }}</h2> -->
         <!-- <p>
           <span class="label"> {{ $lang("文本名称") }}: </span>
