@@ -1211,6 +1211,18 @@ export default {
         fontStyle = "italic";
       }
       info.fontStyle = fontStyle;
+    },
+    openAll() {
+      this.activeNames = [
+        "name",
+        "backgroundStyle",
+        "fontStyle",
+        "sliderStyle",
+        "animation"
+      ];
+    },
+    closeAll() {
+      this.activeNames = ["name"];
     }
     // textAlignEvent(item) {
     //   let { info = {} } = this;

@@ -822,6 +822,61 @@
           </p>
         </template>
       </el-collapse-item>
+
+      <el-collapse-item :title="$lang('单位样式')" name="unitStyle">
+        <p>
+          <span class="label">{{ $lang("单位") }}:</span>
+          <el-input
+            v-model="info.unit"
+            :placeholder="$lang('请输入单位')"
+            size="normal"
+            clearable
+          ></el-input>
+        </p>
+        <p>
+          <span class="label">{{ $lang("字体颜色") }}:</span>
+          <el-color-picker
+            v-model="info.unitColor"
+            show-alpha
+          ></el-color-picker>
+        </p>
+        <p>
+          <span class="label">{{ $lang("字体大小") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            :min="10"
+            :max="1000"
+            v-model.number="info.unitFontSize"
+            :placeholder="$lang('请输入边框大小')"
+          ></el-input-number>
+          px
+          <el-slider
+            v-model="info.unitFontSize"
+            :min="10"
+            :max="1000"
+            :format-tooltip="val => val + ' px'"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label">{{ $lang("字体") }}:</span>
+          <el-select
+            v-model="info.unitFontFamily"
+            :placeholder="$lang('请选择字体')"
+          >
+            <el-option
+              v-for="item in fontFamilyList"
+              :key="item.code"
+              :label="$lang(item.name)"
+              :value="item.code"
+            >
+              <span :style="`font-family:${item.code}`">{{
+                $lang(item.name)
+              }}</span>
+            </el-option>
+          </el-select>
+        </p>
+      </el-collapse-item>
       <!-- <el-collapse-item :title="$lang('链接设置')" name="link">
       </el-collapse-item> -->
       <el-collapse-item title="动画" name="animation">

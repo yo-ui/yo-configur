@@ -1093,6 +1093,12 @@ export default {
     textAlignEvent(item) {
       let { info = {} } = this;
       info.textAlign = item;
+    },
+    openAll() {
+      this.activeNames = ["name", "outward","fontSet", "margin", "animation"];
+    },
+    closeAll() {
+      this.activeNames = ["name"];
     }
   }
 };

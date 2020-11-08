@@ -252,7 +252,6 @@
             </el-option>
           </el-select>
         </p> -->
-      
       </el-collapse-item>
       <el-collapse-item :title="$lang('样式')" name="style">
         <p>
@@ -807,6 +806,12 @@ export default {
         gradientStyle.valueIndex = index;
         this.$refs.slider?.focus(index + 1);
       }
+    },
+    openAll() {
+      this.activeNames = ["name", "style", "shape", "animation"];
+    },
+    closeAll() {
+      this.activeNames = ["name"];
     }
     // setFontWeight() {
     //   let { info = {} } = this;

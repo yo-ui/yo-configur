@@ -267,15 +267,25 @@ export default {
       return styles || {};
     }
   },
+  created() {
+    let { info = {} } = this;
+    info.dataType = "device";
+    this.setActiveCom(info);
+  },
+  mounted() {
+    this.init();
+  },
   methods: {
-    ...mapMutations({}),
+    ...mapMutations({
+      setActiveCom: "canvas/setActiveCom" //设置当前选中组件
+    }),
     ...mapActions({}),
     controlEvent() {
       let { info = {} } = this;
       let { content = false, bindData = {} } = info || {};
-      info.content = !content;
       let { deviceId = "" } = bindData || {};
       if (!deviceId) {
+        info.content = !content;
         return;
       }
       let point = pointCode;
@@ -287,6 +297,8 @@ export default {
         callback: flag => {
           if (!flag) {
             info.content = content; //如果取消则重置结果
+          } else {
+            info.content = !content;
           }
         }
       });

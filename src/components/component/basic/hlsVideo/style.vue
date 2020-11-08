@@ -751,6 +751,12 @@ export default {
     successCallback(url) {
       let { info = {} } = this;
       info.poster = url;
+    },
+    openAll() {
+      this.activeNames = ["name", "outward","fontSet", "margin", "animation"];
+    },
+    closeAll() {
+      this.activeNames = ["name"];
     }
     // setFontWeight() {
     //   let { info = {} } = this;

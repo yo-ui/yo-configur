@@ -261,6 +261,7 @@ let componentLibrary = [
             name: "时序柱状图",
             code: "sequenceBarChart",
             icon: "/static/img/configur/curve.png",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 400,
@@ -272,6 +273,7 @@ let componentLibrary = [
             name: "折线柱状图",
             code: "lineBarChart",
             icon: "/static/img/configur/curve.png",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 400,
@@ -283,6 +285,7 @@ let componentLibrary = [
             name: "堆叠柱状图",
             code: "pileBarChart",
             icon: "/static/img/configur/curve.png",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 400,
@@ -311,6 +314,7 @@ let componentLibrary = [
             name: "统计面积图",
             code: "statisticsAreaLineChart",
             icon: "/static/img/configur/curve.png",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 400,
@@ -322,6 +326,7 @@ let componentLibrary = [
             name: "时序折线图",
             code: "sequenceLineChart",
             icon: "/static/img/configur/curve.png",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 400,
@@ -333,6 +338,7 @@ let componentLibrary = [
             name: "时序面积图",
             code: "sequenceAreaLineChart",
             icon: "/static/img/configur/curve.png",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 400,
@@ -350,6 +356,7 @@ let componentLibrary = [
             name: "散点图",
             code: "scatterChart",
             icon: "/static/img/configur/curve.png",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 400,
@@ -361,6 +368,7 @@ let componentLibrary = [
             name: "气泡图",
             code: "bubbleChart",
             icon: "/static/img/configur/curve.png",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 400,
@@ -389,6 +397,7 @@ let componentLibrary = [
             name: "水球图",
             code: "liquidfillChart",
             icon: "/static/img/configur/meter.png",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 400,
@@ -406,6 +415,7 @@ let componentLibrary = [
             name: "统计雷达图",
             code: "statisticsRadarChart",
             icon: "/static/img/configur/meter.png",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 400,
@@ -417,6 +427,7 @@ let componentLibrary = [
             name: "面积雷达图",
             code: "areaRadarChart",
             icon: "/static/img/configur/meter.png",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 400,
@@ -445,6 +456,7 @@ let componentLibrary = [
             name: "圆环图",
             code: "ringChart",
             icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 500,
@@ -456,6 +468,7 @@ let componentLibrary = [
             name: "南丁格尔图",
             code: "nightingalePieChart",
             icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 500,
@@ -467,6 +480,7 @@ let componentLibrary = [
             name: "南丁格尔环图",
             code: "nightingaleRingChart",
             icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 500,
@@ -484,6 +498,7 @@ let componentLibrary = [
             name: "统计条形图",
             code: "statisticsBarTypeChart",
             icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 500,
@@ -495,6 +510,7 @@ let componentLibrary = [
             name: "堆叠条形图",
             code: "pileBarTypeChart",
             icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 500,
@@ -506,6 +522,7 @@ let componentLibrary = [
             name: "时序条形图",
             code: "sequenceBarTypeChart",
             icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 500,
@@ -523,6 +540,7 @@ let componentLibrary = [
             name: "双Y轴图",
             code: "doubleYChart",
             icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 500,
@@ -540,6 +558,7 @@ let componentLibrary = [
             name: "三维柱状图",
             code: "3dBarChart",
             icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 500,
@@ -551,6 +570,7 @@ let componentLibrary = [
             name: "三维散点图",
             code: "3dScatterChart",
             icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
             data: {
               ...baseData,
               width: 500,
@@ -626,7 +646,11 @@ let componentLibrary = [
           // opacity: 100,
           // left: 0,
           // top: 0,
-          content: "00.00"
+          content: "00.00",
+          unit:'℃',
+          unitFontFamily: "lcdD",
+          unitFontSize: 10,
+          unitColor: "#999"
           // scaleable: false //是否可缩放操作
           // rotateable: true, //是否可旋转操作
           // editable: false, //内容是否可编辑
@@ -679,8 +703,9 @@ let componentLibrary = [
           textAlign: "center",
           width: 75,
           height: 36,
+          unit:'℃',
           unitFontFamily: "lcdD",
-          unitFontSize: "10",
+          unitFontSize: 10,
           unitColor: "#fff"
           // scaleable: false //是否可缩放操作
         }
@@ -1052,6 +1077,7 @@ let componentLibrary = [
         name: "建筑地图",
         code: "buildingMap",
         icon: "/static/img/configur/position.png",
+        comDisabled: true, //组件不可用
         data: {
           ...baseData,
           width: 550,

@@ -15,7 +15,7 @@
         :title="$lang('移动画布')"
       ></i>
     </p> -->
-    <h2>{{ info.name }}</h2>
+    <!-- <h2>{{ info.name }}</h2> -->
     <!-- <p>
       <span class="label"> {{ $lang("文本名称") }}: </span>
       <el-input
@@ -24,6 +24,27 @@
         :placeholder="$lang('请输入文本名称')"
       ></el-input>
     </p> -->
+     <el-collapse v-model="activeNames">
+      <el-collapse-item :title="info.name" name="name" disabled>
+        <template slot="title">
+          {{ info.name }}
+          <div class="right">
+            <el-tooltip
+              :content="$lang('全部折叠')"
+              placement="top"
+              effect="dark"
+            >
+              <i class="el-icon-folder-remove" @click="closeAll"></i>
+            </el-tooltip>
+            <el-tooltip
+              :content="$lang('全部展开')"
+              placement="top"
+              effect="dark"
+            >
+              <i class="el-icon-folder-opened" @click="openAll"></i>
+            </el-tooltip>
+          </div>
+        </template>
     <p>
       <span class="label"> {{ $lang("层级") }}: </span>
       <el-input-number
@@ -167,6 +188,9 @@
         ></i>
       </el-tooltip>
     </p>
+
+      </el-collapse-item>
+      <el-collapse-item :title="$lang('样式')" name="style">
     <p>
       <span class="label">{{ $lang("填充颜色") }}:</span>
       <el-select
@@ -520,9 +544,74 @@
       <span class="label">{{ $lang("边框颜色") }}:</span>
       <el-color-picker v-model="info.borderColor" show-alpha></el-color-picker>
     </p>
+      </el-collapse-item>
+      <el-collapse-item title="动画" name="animation">
+        <p>
+          <span class="label">{{ $lang("动画类型") }}:</span>
+          <el-select v-model="info.animation.name" placeholder="请选择动画类型">
+            <el-option-group
+              v-for="group in animateGroupList"
+              :key="group.code"
+              :label="group.code"
+            >
+              <el-option
+                v-for="item in group.list"
+                :key="item.code"
+                :label="item.code"
+                :value="item.code"
+              >
+              </el-option>
+            </el-option-group>
+          </el-select>
+        </p>
+        <p>
+          <span class="label">{{ $lang("动画速度") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            :step="0.1"
+            :max="2"
+            v-model.number="info.animation.duration"
+            :placeholder="$lang('动画速度')"
+          ></el-input-number>
+          px
+          <el-slider
+            v-model="info.animation.duration"
+            :step="0.1"
+            :max="2"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label">{{ $lang("播放次数") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            v-model.number="info.animation.iterationCount"
+            :placeholder="$lang('播放次数')"
+          ></el-input-number>
+          <el-slider
+            v-model="info.animation.iterationCount"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label">{{ $lang("播放方式") }}:</span>
+          <el-radio-group v-model="info.animation.direction">
+            <el-radio
+              v-for="item in animationDirectionList"
+              :key="item.code"
+              :label="item.code"
+            >
+              {{ item.name }}
+            </el-radio>
+          </el-radio-group>
+        </p>
+      </el-collapse-item>
+    </el-collapse>
 
-    <h2>{{ $lang("交互") }}</h2>
-    <h2>{{ $lang("动画") }}</h2>
+    <!-- <h2>{{ $lang("交互") }}</h2>
+    <h2>{{ $lang("动画") }}</h2> -->
   </div>
 </template>
 
@@ -535,6 +624,9 @@ export default {
   name: "barChartStyleCom",
   data() {
     return {
+      activeNames: ["name"],
+      animationDirectionList: Object.freeze(Constants.ANIMATIONDIRECTIONLIST),
+      animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
       borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
       backgroundTypeList: Object.freeze(Constants.BACKGROUNDTYPELIST),
       centerList: Object.freeze(Constants.CENTERLIST),
@@ -677,6 +769,12 @@ export default {
         gradientStyle.valueIndex = index;
         this.$refs.slider?.focus(index + 1);
       }
+    },
+    openAll() {
+      this.activeNames = ["name", "style", "animation"];
+    },
+    closeAll() {
+      this.activeNames = ["name"];
     }
     // setFontWeight() {
     //   let { info = {} } = this;

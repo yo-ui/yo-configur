@@ -748,6 +748,18 @@ export default {
         gradientStyle.valueIndex = index;
         this.$refs.slider?.focus(index + 1);
       }
+    },
+    openAll() {
+      this.activeNames = [
+        "name",
+        "backgroundStyle",
+        "fontStyle",
+        "sliderStyle",
+        "animation"
+      ];
+    },
+    closeAll() {
+      this.activeNames = ["name"];
     }
     // setFontWeight() {
     //   let { info = {} } = this;
