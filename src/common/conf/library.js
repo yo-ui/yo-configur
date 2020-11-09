@@ -647,7 +647,7 @@ let componentLibrary = [
           // left: 0,
           // top: 0,
           content: "00.00",
-          unit:'℃',
+          unit: "℃",
           unitFontFamily: "lcdD",
           unitFontSize: 10,
           unitColor: "#999"
@@ -703,7 +703,7 @@ let componentLibrary = [
           textAlign: "center",
           width: 75,
           height: 36,
-          unit:'℃',
+          unit: "℃",
           unitFontFamily: "lcdD",
           unitFontSize: 10,
           unitColor: "#fff"
@@ -868,7 +868,7 @@ let componentLibrary = [
           fontSize: 24,
           fontFamily: "lcdD",
           width: 300,
-          height: 35,
+          height: 35
           // scaleable: false //是否可缩放操作
         }
       },
@@ -1754,7 +1754,7 @@ let componentLibrary = [
           },
           {
             name: "单项导轨电表",
-            code: "deviceCommon",
+            code: "deviceDxdgdb",
             alias: "dxdgdb",
             icon: "/static/img/configur/dxdgdb.png",
             data: {
@@ -1782,7 +1782,7 @@ let componentLibrary = [
           },
           {
             name: "I/O控制模块",
-            code: "deviceCommon",
+            code: "deviceIokzmk",
             alias: "iokzmk",
             icon: "/static/img/configur/iokzmk.png",
             data: {
@@ -1797,8 +1797,8 @@ let componentLibrary = [
               // left: 0,
               width: 53,
               height: 48,
-              dataType: "device",
-              infoType: "device",
+              dataType: "device", // 数据绑定类型
+              infoType: "device", // 信息展示处理
               // rotate: 0,
               // top: 0,
               equalScaleable: true //是否等比例缩放
@@ -1810,7 +1810,7 @@ let componentLibrary = [
           },
           {
             name: "断路器",
-            code: "deviceCommon",
+            code: "deviceDuanluqi",
             alias: "dlq",
             icon: "/static/img/configur/dlq.png",
             data: {
@@ -1838,7 +1838,7 @@ let componentLibrary = [
           },
           {
             name: "壁挂式电表",
-            code: "deviceCommon",
+            code: "deviceBgsdb",
             alias: "bgsdb",
             icon: "/static/img/configur/bgsdb.png",
             data: {
@@ -1866,7 +1866,7 @@ let componentLibrary = [
           },
           {
             name: "接地刀闸",
-            code: "deviceCommon",
+            code: "deviceJddz",
             alias: "jddz",
             icon: "/static/img/configur/jddz.png",
             data: {
@@ -1894,10 +1894,11 @@ let componentLibrary = [
           },
           {
             name: "电力电容器",
-            code: "deviceCommon",
+            code: "deviceDldrq",
             alias: "dldrq",
             icon: "/static/img/configur/dldrq.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/dldrq.svg",
               // borderWidth: 0,
               // borderStyle: "none",
@@ -1921,10 +1922,11 @@ let componentLibrary = [
           },
           {
             name: "变压器",
-            code: "deviceCommon",
+            code: "deviceByq",
             alias: "byq",
             icon: "/static/img/configur/byq.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/byq.svg",
               // borderWidth: 0,
               // borderStyle: "none",

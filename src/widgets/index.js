@@ -159,6 +159,34 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-device-db" */ "@/components/component/device/db/index.vue"
     ),
+  deviceDxdgdbCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dxdgdb" */ "@/components/component/device/dxdgdb/index.vue"
+    ),
+  deviceIokzmkCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-iokzmk" */ "@/components/component/device/iokzmk/index.vue"
+    ),
+  deviceDuanluqiCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-duanluqi" */ "@/components/component/device/duanluqi/index.vue"
+    ),
+  deviceBgsdbCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-bgsdb" */ "@/components/component/device/bgsdb/index.vue"
+    ),
+  deviceJddzCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-jddz" */ "@/components/component/device/jddz/index.vue"
+    ),
+  deviceDldrqCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dldrq" */ "@/components/component/device/dldrq/index.vue"
+    ),
+  deviceByqCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-byq" */ "@/components/component/device/byq/index.vue"
+    ),
   deviceShsbCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-shsb" */ "@/components/component/device/shsb/index.vue"
@@ -430,6 +458,34 @@ let styles = {
   deviceDbStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-db-style" */ "@/components/component/device/db/style.vue"
+    ),
+  deviceDxdgdbStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dxdgdb-style" */ "@/components/component/device/dxdgdb/style.vue"
+    ),
+  deviceIokzmkStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-iokzmk-style" */ "@/components/component/device/iokzmk/style.vue"
+    ),
+  deviceDuanluqiStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-duanluqi-style" */ "@/components/component/device/duanluqi/style.vue"
+    ),
+  deviceBgsdbStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-bgsdb-style" */ "@/components/component/device/bgsdb/style.vue"
+    ),
+  deviceJddzStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-jddz-style" */ "@/components/component/device/jddz/style.vue"
+    ),
+  deviceDldrqStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dldrq-style" */ "@/components/component/device/dldrq/style.vue"
+    ),
+  deviceByqStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-byq-style" */ "@/components/component/device/byq/style.vue"
     ),
   deviceShsbStyleCom: () =>
     import(

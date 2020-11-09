@@ -1,4 +1,3 @@
-// 电表
 <template>
   <div class="bm-device-common-style-com">
     <!-- <h2>{{ $lang("功能选择") }}</h2>
@@ -17,6 +16,14 @@
       ></i>
     </p> -->
     <!-- <h2>{{ info.name }}</h2> -->
+    <!-- <p>
+      <span class="label"> {{ $lang("文本名称") }}: </span>
+      <el-input
+        v-model="info.content"
+        clearable
+        :placeholder="$lang('请输入文本名称')"
+      ></el-input>
+    </p> -->
     <el-collapse v-model="activeNames">
       <el-collapse-item :title="info.name" name="name" disabled>
         <template slot="title">
@@ -38,14 +45,6 @@
             </el-tooltip>
           </div>
         </template>
-        <!-- <p>
-      <span class="label"> {{ $lang("文本名称") }}: </span>
-      <el-input
-        v-model="info.content"
-        clearable
-        :placeholder="$lang('请输入文本名称')"
-      ></el-input>
-    </p> -->
         <p>
           <span class="label"> {{ $lang("层级") }}: </span>
           <el-input-number
@@ -749,7 +748,11 @@ export default {
       }
     },
     openAll() {
-      this.activeNames = ["name", "outward", "animation"];
+      this.activeNames = [
+        "name",
+        "outward",
+        "animation"
+      ];
     },
     closeAll() {
       this.activeNames = ["name"];
