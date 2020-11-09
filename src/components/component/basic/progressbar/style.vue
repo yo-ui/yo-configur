@@ -1321,9 +1321,9 @@ export default {
     openAll() {
       this.activeNames = [
         "name",
-        "backgroundStyle",
-        "fontStyle",
-        "sliderStyle",
+        "outward",
+        "style",
+        "content",
         "animation"
       ];
     },

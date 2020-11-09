@@ -1,3 +1,4 @@
+//仪表盘
 <template>
   <div class="bm-chart-box bm-basic-gauge-chart-com">
     <h2 class="title">

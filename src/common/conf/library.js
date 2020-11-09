@@ -734,6 +734,7 @@ let componentLibrary = [
         name: "横向滚动文本",
         code: "vScrollText",
         icon: "/static/img/configur/announcement.png",
+        comDisabled: true, //组件不可用
         data: {
           ...baseData
         }
@@ -800,6 +801,7 @@ let componentLibrary = [
         name: "记分牌",
         code: "scoreBoard",
         icon: "/static/img/configur/scoreboard.png",
+        comDisabled: true, // 组件是否可用
         data: {
           ...baseData,
           originWidth: "", //原宽
@@ -810,7 +812,7 @@ let componentLibrary = [
           integerSeat: "#", // 空白  0  #
           decimal: 4, //小数位
           decimalSeat: "0", //  0  #
-          scaleable: false,
+          // scaleable: false,
           value: 100.1, //数值
           board: {
             width: 20,
@@ -859,16 +861,15 @@ let componentLibrary = [
         icon: "/static/img/configur/timeclock.png",
         data: {
           ...baseData,
-          time: 100, //100s
+          content: 100, //100s
           format: "{dd}天{hh}小时{mm}分{ss}秒",
           // dataType: "point",
           fontWeight: "bold",
           fontSize: 24,
           fontFamily: "lcdD",
-          width: "",
-          height: "",
-          content: "00.00",
-          scaleable: false //是否可缩放操作
+          width: 300,
+          height: 35,
+          // scaleable: false //是否可缩放操作
         }
       },
       {

@@ -1132,9 +1132,9 @@ export default {
     openAll() {
       this.activeNames = [
         "name",
-        "backgroundStyle",
-        "fontStyle",
-        "sliderStyle",
+        "outward",
+        "tableHeader",
+        "cell",
         "animation"
       ];
     },
