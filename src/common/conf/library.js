@@ -1956,7 +1956,7 @@ let componentLibrary = [
         comList: [
           {
             name: "螺翼式水表",
-            code: "deviceCommon",
+            code: "deviceLyssb",
             alias: "lyssb",
             icon: "/static/img/configur/lyssb.png",
             data: {
@@ -1982,7 +1982,7 @@ let componentLibrary = [
           },
           {
             name: "阀控水表",
-            code: "deviceCommon",
+            code: "deviceFksb",
             // code: "deviceFksb",
             alias: "fksb",
             icon: "/static/img/configur/fksb.png",
@@ -2011,7 +2011,7 @@ let componentLibrary = [
           },
           {
             name: "旋翼式水表",
-            code: "deviceCommon",
+            code: "deviceXyssb",
             alias: "xyssb",
             icon: "/static/img/configur/xyssb.png",
             data: {

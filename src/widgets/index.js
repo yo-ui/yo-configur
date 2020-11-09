@@ -199,6 +199,18 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-device-xfsb" */ "@/components/component/device/xfsb/index.vue"
     ),
+  deviceLyssbCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-lyssb" */ "@/components/component/device/lyssb/index.vue"
+    ),
+  deviceFksbCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-fksb" */ "@/components/component/device/fksb/index.vue"
+    ),
+  deviceXyssbCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-xyssb" */ "@/components/component/device/xyssb/index.vue"
+    ),
   deviceCyfjCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-cyfj" */ "@/components/component/device/cyfj/index.vue"
@@ -499,6 +511,19 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-device-xfsb-style" */ "@/components/component/device/xfsb/style.vue"
     ),
+  deviceLyssbStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-lyssb-style" */ "@/components/component/device/lyssb/style.vue"
+    ),
+  deviceFksbStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-fksb-style" */ "@/components/component/device/fksb/style.vue"
+    ),
+  deviceXyssbStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-xyssb-style" */ "@/components/component/device/xyssb/style.vue"
+    ),
+
   deviceCyfjStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-cyfj-style" */ "@/components/component/device/cyfj/style.vue"
