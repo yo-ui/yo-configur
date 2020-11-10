@@ -1,15 +1,24 @@
+//纵向滚动组件
 <template>
-  <div ref="bmCom" class="bm-v-scroll-text-com" :style="comStyle">
-    <div :style="textStyle" ref="text" class="inner-text">
-      {{ info.content }}
+  <div ref="bmCom" class="bm-h-scroll-text-com" :style="comStyle">
+    <div class="text-box" ref="text" :style="textStyle">
+      <div
+        class="inner-text"
+        :style="innerTextStyle"
+        v-for="(item, index) in info.contentList"
+        :key="index"
+      >
+        {{ item.text }}
+      </div>
     </div>
   </div>
 </template>
 <script>
+import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "vScrollTextCom",
+  name: "hScrollTextCom",
   data() {
     return {
       transform: "",
@@ -139,11 +148,69 @@ export default {
     textStyle() {
       let { info = {}, transition = "", transform = "" } = this;
       let {
-        // width = "",
-        height = "",
-        color = "",
+        width = ""
+        // height = "",
+        // color = "",
         // shadow = {},
         // shadowable = false,
+        // textShadow = {},
+        // textAlign = "",
+        // textShadowable = false,
+        // fontFamily = "",
+        // fontWeight = "",
+        // fontStyle = "",
+        // textDecoration = "",
+        // fontSize = ""
+      } = info || {};
+      let styles = {};
+      // if (textAlign) {
+      //   styles["textAlign"] = textAlign;
+      //   if (textAlign == "justify") {
+      //     styles["text-align-last"] = textAlign;
+      //   }
+      // }
+      // if (textShadowable) {
+      //   let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
+      //   styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
+      // }
+      if (width) {
+        styles["width"] = `${width}px`;
+      }
+      // if (height) {
+      //   styles["height"] = `${height}px`;
+      //   styles["line-height"] = `${height}px`;
+      // }
+      // if (color) {
+      //   styles["color"] = color;
+      // }
+      if (transition) {
+        styles["transition"] = `${transition}`;
+      }
+      if (transform) {
+        styles["transform"] = `${transform}`;
+      }
+      // if (fontSize) {
+      //   styles["fontSize"] = `${fontSize}px`;
+      // }
+      // if (fontFamily) {
+      //   styles["fontFamily"] = `${fontFamily}`;
+      // }
+      // if (fontWeight) {
+      //   styles["fontWeight"] = fontWeight;
+      // }
+      // if (fontStyle) {
+      //   styles["fontStyle"] = fontStyle;
+      // }
+      // if (textDecoration) {
+      //   styles["textDecoration"] = textDecoration;
+      // }
+      return styles || {};
+    },
+    innerTextStyle() {
+      let { info = {} } = this;
+      let {
+        lineHeight = "",
+        color = "",
         textShadow = {},
         textAlign = "",
         textShadowable = false,
@@ -164,21 +231,12 @@ export default {
         let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
         styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
       }
-      // if (width) {
-      //   styles["width"] = `${width}px`;
-      // }
-      if (height) {
-        styles["height"] = `${height}px`;
-        styles["line-height"] = `${height}px`;
+      if (lineHeight) {
+        styles["height"] = `${lineHeight}px`;
+        styles["line-height"] = `${lineHeight}px`;
       }
       if (color) {
         styles["color"] = color;
-      }
-      if (transition) {
-        styles["transition"] = `${transition}`;
-      }
-      if (transform) {
-        styles["transform"] = `${transform}`;
       }
       if (fontSize) {
         styles["fontSize"] = `${fontSize}px`;
@@ -225,8 +283,8 @@ export default {
       clearTimeout(this.endTimeoutId);
       this.$nextTick(() => {
         let text = this.$refs.text;
-        let width = text.offsetWidth;
-        info.textWidth = width;
+        let height = text.offsetHeight;
+        info.textHeight = height;
         this.scrollAction();
         // this.timeoutId=setTimeout(()=>{
         //   clearTimeout(this.timeoutId)
@@ -239,26 +297,79 @@ export default {
     },
     scrollAction() {
       let { info = {} } = this;
-      let { stayTime = 0, scrollTime = 0, textWidth = 0, width = 0 } =
-        info || {};
+      let {
+        stayTime = 0
+        // scrollTime = 0,
+        // textHeight = 0,
+        // height = 0,
+        // contentList = []
+      } = info || {};
+      let index = 0;
+      this.startTimeoutId = setTimeout(() => {
+        clearTimeout(this.startTimeoutId);
+        this.scrollLineAction(index);
+        // this.scrollTimeoutId = setTimeout(() => {
+        //   clearTimeout(this.scrollTimeoutId);
+        // }, scrollTime);
+      }, stayTime);
+    },
+    //每行的滚动
+    scrollLineAction(index) {
+      let { info = {} } = this;
+      let {
+        contentList = [],
+        scrollHeight = 0,
+        lineHeight = 0,
+        scrollTime = 0,
+        lineTime = 0,
+        stayTime = 0
+      } = info || {};
+      let { length = 0 } = contentList || [];
+      // let item = contentList[index] || {};
+      // let { height: _height = 0 } = item || {};
+      scrollHeight += lineHeight;
+      info.scrollHeight = scrollHeight;
+      bmCommon.log(
+        "scrollHeight=",
+        scrollHeight,
+        ",height=",
+        lineHeight,
+        "index=",
+        index
+      );
+      if (index >= length) {
+        index = 0;
+        this.endTimeoutId = setTimeout(() => {
+          clearTimeout(this.endTimeoutId);
+          this.transform = "";
+          this.transition = "";
+          info.scrollHeight = 0;
+          this.scrollAction();
+        }, stayTime);
+      }
       this.timeoutId = setTimeout(() => {
         clearTimeout(this.timeoutId);
-        this.transform = `translateX(-${textWidth - width}px)`;
+        this.transform = `translateY(-${scrollHeight}px)`;
         this.transition = `transform ${scrollTime}ms linear 0s`;
         this.scrollTimeoutId = setTimeout(() => {
-          clearTimeout(this.scrollTimeoutId);
+          clearTimeout(this.timeoutId);
           this.endTimeoutId = setTimeout(() => {
             clearTimeout(this.endTimeoutId);
-            this.transform = "";
+            // this.transform = "";
             this.transition = "";
-            this.scrollAction();
-          }, stayTime);
+            this.scrollLineAction(++index);
+          }, lineTime);
         }, scrollTime);
-      }, stayTime);
+      }, lineTime);
     }
   },
   watch: {
     "info.scrollTime"(newVal, oldVal) {
+      if (newVal != oldVal) {
+        this.init();
+      }
+    },
+    "info.lineTime"(newVal, oldVal) {
       if (newVal != oldVal) {
         this.init();
       }
@@ -274,11 +385,11 @@ export default {
 
 <style lang="less" scoped>
 @import (reference) "./../../../../assets/less/common.less";
-.bm-v-scroll-text-com {
+.bm-h-scroll-text-com {
   .oh;
   .inner-text {
     white-space: nowrap;
-    .dib;
+    .db;
   }
 }
 </style>

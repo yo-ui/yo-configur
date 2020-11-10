@@ -1,10 +1,51 @@
 import bmCommon from "@/common/common";
+let animation = {
+  name: "",
+  direction: "normal",
+  duration: 0.8,
+  iterationCount: 1
+};
+let shadow = {
+  color: "#eee",
+  x: 0, //X偏移量
+  y: 0, //Y偏移量
+  blur: 0, //模糊半径
+  spread: 0, //阴影大小
+  type: "" //阴影类型 //空为外阴影  inset 为内阴影
+};
+let textShadow = {
+  color: "#eee",
+  x: 0, //X偏移量
+  y: 0, //Y偏移量
+  blur: 0 //模糊半径
+};
+let gradientStyle = {
+  type: "linear", //渐变类型  linear 线性  radial 径向
+  angle: 0,
+  center: "50% 50%",
+  values: [0, 100],
+  radialShape: "circle",
+  valueIndex: 0,
+  gradientId: "",
+  valueOptions: [
+    //   {
+    //   // disabled: true
+    // }, {
+    //   // disabled: true
+    // }
+  ],
+  valueList: [
+    { code: "#108cee", value: 0 },
+    { code: "#545fc8", value: 100 }
+  ]
+};
 let baseData = {
   backgroundImage: "",
   backgroundSize: "100% 100%",
   backgroundColor: "",
   backgroundRepeat: "repeat",
   borderWidth: 0,
+  comName: "", //
   borderStyle: "none",
   borderColor: "",
   showCoverStatus: true,
@@ -22,12 +63,7 @@ let baseData = {
     deviceId: "",
     orgId: ""
   }, //绑定的数据
-  animation: {
-    name: "",
-    direction: "normal",
-    duration: 0.8,
-    iterationCount: 1
-  },
+  animation,
   color: "",
   originWidth: "", //原宽
   originHeight: "", //原高
@@ -61,42 +97,11 @@ let baseData = {
   paddingRight: 0,
   textAlign: "left",
   shadowable: false,
-  shadow: {
-    color: "#eee",
-    x: 0, //X偏移量
-    y: 0, //Y偏移量
-    blur: 0, //模糊半径
-    spread: 0, //阴影大小
-    type: "" //阴影类型 //空为外阴影  inset 为内阴影
-  },
+  shadow,
   textShadowable: false,
-  textShadow: {
-    color: "#eee",
-    x: 0, //X偏移量
-    y: 0, //Y偏移量
-    blur: 0 //模糊半径
-  },
+  textShadow,
   backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
-  gradientStyle: {
-    type: "linear", //渐变类型  linear 线性  radial 径向
-    angle: 0,
-    center: "50% 50%",
-    values: [0, 100],
-    radialShape: "circle",
-    valueIndex: 0,
-    gradientId: "",
-    valueOptions: [
-      //   {
-      //   // disabled: true
-      // }, {
-      //   // disabled: true
-      // }
-    ],
-    valueList: [
-      { code: "#108cee", value: 0 },
-      { code: "#545fc8", value: 100 }
-    ]
-  },
+  gradientStyle,
   equalScaleable: false, //是否等比例缩放
   scaleable: true, //是否可缩放操作
   rotateable: true, //是否可旋转操作
@@ -734,18 +739,40 @@ let componentLibrary = [
         name: "横向滚动文本",
         code: "vScrollText",
         icon: "/static/img/configur/announcement.png",
-        comDisabled: true, //组件不可用
+        // comDisabled: true, //组件不可用
         data: {
-          ...baseData
+          ...baseData,
+          scrollTime: 8000, //滚动持续时间
+          stayTime: 3000, //首尾停留时间
+          content:
+            "组态支持横向滚动的公告组件了！这条公告会循环滚动播放，您可以使用它来公布一些信息。它也可以绑定数据源从而动态显示信息。"
         }
       },
       {
         name: "纵向滚动文本",
         code: "hScrollText",
         icon: "/static/img/configur/announcement.png",
-        comDisabled: true, //组件不可用
+        // comDisabled: true, //组件不可用
         data: {
-          ...baseData
+          ...baseData,
+          scrollTime: 500, //滚动持续时间
+          lineTime: 3000, //每行停留时间
+          stayTime: 3000, //首尾停留时间
+          lineHeight: 30, //每行高度
+          contentList: [
+            {
+              text: "组态支持纵向滚动的公告组件了！",
+            },
+            {
+              text: "这些公告会自动滚动，循环播放。",
+            },
+            {
+              text: "您可以用它来公布一系列的信息",
+            },
+            {
+              text: "也可以绑定到数据源的某一列上",
+            }
+          ]
         }
       },
       {

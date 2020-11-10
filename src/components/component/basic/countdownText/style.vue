@@ -802,27 +802,37 @@
         <p>
           <span class="label">{{ $lang("字体样式") }}:</span>
           <span class="font-style">
-            <span
-              class="bold"
-              @click="setFontWeight"
-              :title="$lang('粗体')"
-              :class="{ active: info.fontWeight == 'bold' }"
-              >B</span
+            <el-tooltip :content="$lang('加粗')" placement="top" effect="dark">
+              <span
+                class="bold"
+                @click="setFontWeight"
+                :title="$lang('粗体')"
+                :class="{ active: info.fontWeight == 'bold' }"
+                >B</span
+              >
+            </el-tooltip>
+            <el-tooltip :content="$lang('倾斜')" placement="top" effect="dark">
+              <span
+                class="italic"
+                @click="setFontStyle"
+                :title="$lang('斜体')"
+                :class="{ active: info.fontStyle == 'italic' }"
+                >I</span
+              >
+            </el-tooltip>
+            <el-tooltip
+              :content="$lang('下划线')"
+              placement="top"
+              effect="dark"
             >
-            <span
-              class="italic"
-              @click="setFontStyle"
-              :title="$lang('斜体')"
-              :class="{ active: info.fontStyle == 'italic' }"
-              >I</span
-            >
-            <span
-              class="underline"
-              @click="setTextDecoration"
-              :title="$lang('下划线')"
-              :class="{ active: info.textDecoration == 'underline' }"
-              >U</span
-            >
+              <span
+                class="underline"
+                @click="setTextDecoration"
+                :title="$lang('下划线')"
+                :class="{ active: info.textDecoration == 'underline' }"
+                >U</span
+              >
+            </el-tooltip>
           </span>
         </p>
       </el-collapse-item>

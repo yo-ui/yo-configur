@@ -744,27 +744,37 @@
         <p>
           <span class="label">{{ $lang("字体样式") }}:</span>
           <span class="font-style">
-            <span
-              class="bold"
-              @click="setFontWeight(info.theader)"
-              :title="$lang('粗体')"
-              :class="{ active: info.theader.fontWeight == 'bold' }"
-              >B</span
+            <el-tooltip :content="$lang('加粗')" placement="top" effect="dark">
+              <span
+                class="bold"
+                @click="setFontWeight"
+                :title="$lang('粗体')"
+                :class="{ active: info.fontWeight == 'bold' }"
+                >B</span
+              >
+            </el-tooltip>
+            <el-tooltip :content="$lang('倾斜')" placement="top" effect="dark">
+              <span
+                class="italic"
+                @click="setFontStyle"
+                :title="$lang('斜体')"
+                :class="{ active: info.fontStyle == 'italic' }"
+                >I</span
+              >
+            </el-tooltip>
+            <el-tooltip
+              :content="$lang('下划线')"
+              placement="top"
+              effect="dark"
             >
-            <span
-              class="italic"
-              @click="setFontStyle(info.theader)"
-              :title="$lang('斜体')"
-              :class="{ active: info.theader.fontStyle == 'italic' }"
-              >I</span
-            >
-            <span
-              class="underline"
-              @click="setTextDecoration(info.theader)"
-              :title="$lang('下划线')"
-              :class="{ active: info.theader.textDecoration == 'underline' }"
-              >U</span
-            >
+              <span
+                class="underline"
+                @click="setTextDecoration"
+                :title="$lang('下划线')"
+                :class="{ active: info.textDecoration == 'underline' }"
+                >U</span
+              >
+            </el-tooltip>
           </span>
         </p>
         <!-- <h2>{{ $lang("单元格") }}</h2> -->
@@ -844,27 +854,37 @@
         <p>
           <span class="label">{{ $lang("字体样式") }}:</span>
           <span class="font-style">
-            <span
-              class="bold"
-              @click="setFontWeight(info.tbody)"
-              :title="$lang('粗体')"
-              :class="{ active: info.tbody.fontWeight == 'bold' }"
-              >B</span
+            <el-tooltip :content="$lang('加粗')" placement="top" effect="dark">
+              <span
+                class="bold"
+                @click="setFontWeight"
+                :title="$lang('粗体')"
+                :class="{ active: info.fontWeight == 'bold' }"
+                >B</span
+              >
+            </el-tooltip>
+            <el-tooltip :content="$lang('倾斜')" placement="top" effect="dark">
+              <span
+                class="italic"
+                @click="setFontStyle"
+                :title="$lang('斜体')"
+                :class="{ active: info.fontStyle == 'italic' }"
+                >I</span
+              >
+            </el-tooltip>
+            <el-tooltip
+              :content="$lang('下划线')"
+              placement="top"
+              effect="dark"
             >
-            <span
-              class="italic"
-              @click="setFontStyle(info.tbody)"
-              :title="$lang('斜体')"
-              :class="{ active: info.tbody.fontStyle == 'italic' }"
-              >I</span
-            >
-            <span
-              class="underline"
-              @click="setTextDecoration(info.tbody)"
-              :title="$lang('下划线')"
-              :class="{ active: info.tbody.textDecoration == 'underline' }"
-              >U</span
-            >
+              <span
+                class="underline"
+                @click="setTextDecoration"
+                :title="$lang('下划线')"
+                :class="{ active: info.textDecoration == 'underline' }"
+                >U</span
+              >
+            </el-tooltip>
           </span>
         </p>
       </el-collapse-item>

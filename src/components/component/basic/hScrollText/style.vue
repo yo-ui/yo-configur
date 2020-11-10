@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-time-text-style-com">
+  <div class="bm-v-scroll-text-style-com">
     <!-- <h2>{{ $lang("功能选择") }}</h2>
     <p>
       <i
@@ -16,15 +16,6 @@
       ></i>
     </p> -->
     <!-- <h2>{{ info.name }}</h2> -->
-    <!-- <p>
-      <span class="label"> {{ $lang("文本名称") }}: </span>
-      <el-input
-        v-model="info.content"
-        clearable
-        :placeholder="$lang('请输入文本名称')"
-      ></el-input>
-    </p> -->
-
     <el-collapse v-model="activeNames">
       <el-collapse-item :title="info.name" name="name" disabled>
         <template slot="title">
@@ -46,6 +37,14 @@
             </el-tooltip>
           </div>
         </template>
+        <p>
+          <span class="label"> {{ $lang("名称") }}: </span>
+          <el-input
+            v-model="info.comName"
+            clearable
+            :placeholder="$lang('请输入名称')"
+          ></el-input>
+        </p>
         <p>
           <span class="label"> {{ $lang("层级") }}: </span>
           <el-input-number
@@ -412,23 +411,9 @@
                 </el-option>
               </el-select>
             </p>
-            <p>
-              <span class="label"> {{ $lang("翻转方式") }}:</span>
-              <el-select
-                v-model="info.scale"
-                :placeholder="$lang('请选择翻转方式')"
-              >
-                <el-option
-                  v-for="item in flipModeList"
-                  :key="item.code"
-                  :label="$lang(item.name)"
-                  :value="item.code"
-                >
-                </el-option>
-              </el-select>
-            </p>
           </template>
         </template>
+
         <p>
           <span class="label"> {{ $lang("边框样式") }}:</span
           ><el-select
@@ -444,7 +429,6 @@
             </el-option>
           </el-select>
         </p>
-        
         <template v-if="info.borderStyle != 'none'">
           <p>
             <span class="label"> {{ $lang("边框大小") }}:</span>
@@ -662,35 +646,138 @@
           </span>
         </p>
       </el-collapse-item>
-      <el-collapse-item :title="$lang('文字样式')" name="fontStyle">
+      <el-collapse-item title="" name="empty" disabled class="unfold">
         <p>
-          <span class="label">{{ $lang("显示格式") }}:</span>
-          <el-select
-            v-model="info.format"
-            :placeholder="$lang('请选择显示格式')"
+          <span class="label">{{ $lang("滚动速度") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            :step="1"
+            :max="200000"
+            v-model.number="info.scrollTime"
+            :placeholder="$lang('滚动速度')"
+          ></el-input-number>
+          毫秒
+          <el-slider
+            v-model="info.scrollTime"
+            :step="1"
+            :max="200000"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label">{{ $lang("每行停留") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            :step="1"
+            :max="200000"
+            v-model.number="info.lineTime"
+            :placeholder="$lang('每行停留')"
+          ></el-input-number>
+          毫秒
+          <el-slider
+            v-model="info.lineTime"
+            :step="1"
+            :max="200000"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label">{{ $lang("首尾停留") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            :step="1"
+            :max="200000"
+            v-model.number="info.stayTime"
+            :placeholder="$lang('首尾停留')"
+          ></el-input-number>
+          毫秒
+          <el-slider
+            v-model="info.stayTime"
+            :step="1"
+            :max="200000"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+      </el-collapse-item>
+      <el-collapse-item name="fontContent" class="no-right no-border">
+        <!-- @tab-click="tabClickEvent" -->
+
+        <template slot="title">
+          {{ $lang("文字内容") }}
+          <div class="right">
+            <el-tooltip :content="$lang('删除')" placement="top" effect="dark">
+              <i
+                class="el-icon-delete-solid"
+                @click.stop="removeContentEvent"
+              ></i>
+            </el-tooltip>
+            <el-tooltip :content="$lang('添加')" placement="top" effect="dark">
+              <i class="el-icon-plus" @click.stop="addContentEvent"></i>
+            </el-tooltip>
+          </div>
+        </template>
+        <el-tabs
+          v-model="tabActive"
+          class="collapse-item-tab"
+          type="card"
+          tab-position="top"
+        >
+          <el-tab-pane
+            v-for="(item, index) in info.contentList"
+            :key="index"
+            :label="$lang('行')"
+            :name="index + ''"
           >
-            <el-option
-              v-for="item in formatList"
-              :key="item.code"
-              :label="$lang(item.name)"
-              :value="item.code"
-            >
-            </el-option>
-          </el-select>
+          </el-tab-pane>
+        </el-tabs>
+        <p>
+          <span class="label">{{ $lang("文字") }}:</span>
+          <el-input
+            clearable
+            :placeholder="$lang('请输入文字')"
+            v-model="info.contentList[tabActive].text"
+            show-alpha
+          ></el-input>
+        </p>
+      </el-collapse-item>
+      <el-collapse-item title="" name="empty1" disabled class="unfold">
+        <p>
+          <span class="label">{{ $lang("每行高度") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            :step="1"
+            :max="200000"
+            v-model.number="info.lineHeight"
+            :placeholder="$lang('滚动持续')"
+          ></el-input-number>
+          px
+          <el-slider
+            v-model="info.lineHeight"
+            :step="1"
+            :max="200000"
+            :format-tooltip="val => val"
+          ></el-slider>
         </p>
         <p>
           <span class="label">{{ $lang("字体颜色") }}:</span>
-          <el-color-picker v-model="info.color" show-alpha></el-color-picker>
+          <el-color-picker
+            v-model="info.color"
+            show-alpha
+          ></el-color-picker>
         </p>
         <p>
-          <span class="label">{{ $lang("字体阴影") }}:</span>
+          <span class="label">{{ $lang("阴影") }}:</span>
           <el-switch
-            v-model="info.textShadowable"
+            v-model="info.shadowable"
             active-color="#4195ea"
             inactive-color="#ccc"
           ></el-switch>
         </p>
-        <template v-if="info.textShadowable">
+        <template v-if="info.shadowable">
           <p class="shadow-box">
             <span class="c-box">
               <span>
@@ -722,55 +809,61 @@
                   :placeholder="$lang('Y轴位移')"
                 ></el-input-number>
               </span>
+              <span>
+                <el-tooltip
+                  :content="$lang('R-模糊半径')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <span>R</span> </el-tooltip
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.shadow.blur"
+                  :placeholder="$lang('模糊半径')"
+                ></el-input-number>
+              </span>
             </span>
           </p>
           <p>
-            <span class="label">{{ $lang("模糊半径") }}:</span>
+            <span class="label">{{ $lang("阴影大小") }}:</span>
             <el-input-number
               controls-position="right"
               clearable
-              v-model.number="info.textShadow.blur"
-              :placeholder="$lang('模糊半径')"
+              v-model.number="info.shadow.spread"
+              :placeholder="$lang('阴影大小')"
             ></el-input-number>
             px
             <el-slider
-              v-model="info.textShadow.blur"
+              v-model="info.shadow.spread"
               :min="0"
               :max="50"
               :format-tooltip="val => val + ' px'"
             ></el-slider>
           </p>
           <p>
+            <span class="label">{{ $lang("阴影类型") }}:</span>
+            <el-select
+              v-model="info.shadow.type"
+              :placeholder="$lang('请选择阴影类型')"
+            >
+              <el-option
+                v-for="item in shadowTypeList"
+                :key="item.code"
+                :label="$lang(item.name)"
+                :value="item.code"
+              >
+              </el-option>
+            </el-select>
+          </p>
+          <p>
             <span class="label">{{ $lang("阴影颜色") }}:</span>
             <el-color-picker
-              v-model="info.textShadow.color"
+              v-model="info.shadow.color"
               show-alpha
             ></el-color-picker>
           </p>
         </template>
-        <p class="align">
-          <span class="label">{{ $lang("对齐") }}:</span>
-          <i
-            class="bomi bomi-text-left"
-            @click="textAlignEvent('left')"
-            :class="{ active: info.textAlign == 'left' }"
-          ></i>
-          <i
-            class="bomi bomi-text-center"
-            @click="textAlignEvent('center')"
-            :class="{ active: info.textAlign == 'center' }"
-          ></i>
-          <i
-            class="bomi bomi-text-right"
-            @click="textAlignEvent('right')"
-            :class="{ active: info.textAlign == 'right' }"
-          ></i>
-          <i
-            class="bomi bomi-text-justify"
-            @click="textAlignEvent('justify')"
-            :class="{ active: info.textAlign == 'justify' }"
-          ></i>
-        </p>
         <p>
           <span class="label">{{ $lang("字体大小") }}:</span>
           {{ info.fontSize }} px
@@ -807,7 +900,9 @@
                 class="bold"
                 @click="setFontWeight"
                 :title="$lang('粗体')"
-                :class="{ active: info.fontWeight == 'bold' }"
+                :class="{
+                  active: info.fontWeight == 'bold'
+                }"
                 >B</span
               >
             </el-tooltip>
@@ -816,7 +911,9 @@
                 class="italic"
                 @click="setFontStyle"
                 :title="$lang('斜体')"
-                :class="{ active: info.fontStyle == 'italic' }"
+                :class="{
+                  active: info.fontStyle == 'italic'
+                }"
                 >I</span
               >
             </el-tooltip>
@@ -829,14 +926,40 @@
                 class="underline"
                 @click="setTextDecoration"
                 :title="$lang('下划线')"
-                :class="{ active: info.textDecoration == 'underline' }"
+                :class="{
+                  active:
+                    info.textDecoration == 'underline'
+                }"
                 >U</span
               >
             </el-tooltip>
           </span>
         </p>
+        <p class="align">
+          <span class="label">{{ $lang("对齐") }}:</span>
+          <i
+            class="bomi bomi-text-left"
+            @click="textAlignEvent('left')"
+            :class="{ active: info.textAlign == 'left' }"
+          ></i>
+          <i
+            class="bomi bomi-text-center"
+            @click="textAlignEvent('center')"
+            :class="{ active: info.textAlign == 'center' }"
+          ></i>
+          <i
+            class="bomi bomi-text-right"
+            @click="textAlignEvent('right')"
+            :class="{ active: info.textAlign == 'right' }"
+          ></i>
+          <i
+            class="bomi bomi-text-justify"
+            @click="textAlignEvent('justify')"
+            :class="{ active: info.textAlign == 'justify' }"
+          ></i>
+        </p>
       </el-collapse-item>
-      <el-collapse-item title="动画" name="animation">
+      <el-collapse-item :title="$lang('动画')" name="animation">
         <p>
           <span class="label">{{ $lang("动画类型") }}:</span>
           <el-select v-model="info.animation.name" placeholder="请选择动画类型">
@@ -881,7 +1004,6 @@
             v-model.number="info.animation.iterationCount"
             :placeholder="$lang('播放次数')"
           ></el-input-number>
-          px
           <el-slider
             v-model="info.animation.iterationCount"
             :format-tooltip="val => val"
@@ -901,8 +1023,6 @@
         </p>
       </el-collapse-item>
     </el-collapse>
-    <!-- <h2>{{ $lang("交互") }}</h2>
-    <h2>{{ $lang("动画") }}</h2> -->
   </div>
 </template>
 
@@ -912,28 +1032,12 @@ import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "timeTextStyleCom",
+  name: "vScrollTextStyleCom",
   data() {
-    let formatList = Object.freeze([
-      { code: "YYYY-MM-DD HH:mm:ss", name: "年月日时分秒" },
-      { code: "YYYY-MM-DD HH:mm", name: "年月日时分" },
-      { code: "YYYY-MM-DD HH", name: "年月日时" },
-      { code: "YYYY-MM-DD", name: "年月日" },
-      { code: "YYYY-MM", name: "年月" },
-      { code: "YYYY", name: "年" },
-      { code: "MM-DD", name: "月日" },
-      { code: "MM", name: "月" },
-      { code: "DD", name: "日" },
-      { code: "HH:mm:ss", name: "时分秒" },
-      { code: "HH:mm", name: "时分" },
-      { code: "HH", name: "时" },
-      { code: "mm:ss", name: "分秒" },
-      { code: "mm", name: "分" },
-      { code: "ss", name: "秒" }
-    ]);
     return {
-      activeNames: ["name"],
-      formatList,
+      currentTab: null,
+      tabActive: "0",
+      activeNames: ["name", "empty", "empty1", "fontContent"],
       animationDirectionList: Object.freeze(Constants.ANIMATIONDIRECTIONLIST),
       animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
       borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
@@ -1081,7 +1185,7 @@ export default {
       }
     },
     setFontWeight() {
-      let { info = {} } = this;
+      let { info = {}} = this;
       let { fontWeight = "" } = info || {};
       if (fontWeight == "bold") {
         fontWeight = "";
@@ -1101,7 +1205,7 @@ export default {
       info.textDecoration = textDecoration;
     },
     setFontStyle() {
-      let { info = {} } = this;
+      let { info = {}} = this;
       let { fontStyle = "" } = info || {};
       if (fontStyle == "italic") {
         fontStyle = "";
@@ -1110,6 +1214,11 @@ export default {
       }
       info.fontStyle = fontStyle;
     },
+    // tabClickEvent(item) {
+    //   let { info = {}, tabActive = 0 } = this;
+    //   let { contentList = [] } = info || {};
+    //   this.currentTab = contentList[tabActive] || {};
+    // },
     textAlignEvent(item) {
       let { info = {} } = this;
       info.textAlign = item;
@@ -1117,14 +1226,28 @@ export default {
     openAll() {
       this.activeNames = [
         "name",
-        "outward",
+        "empty",
+        "empty1",
+        "fontContent",
         "margin",
-        "fontStyle",
+        "outward",
         "animation"
       ];
     },
     closeAll() {
-      this.activeNames = ["name"];
+      this.activeNames = ["name", "empty", "empty1"];
+    },
+    removeContentEvent() {
+      let { info = {}, tabActive = 0 } = this;
+      let { contentList = [] } = info || {};
+      contentList.splice(tabActive, 1);
+    },
+    addContentEvent() {
+      let { info = {} } = this;
+      let { contentList = [] } = info || {};
+      contentList.push({
+        text: ""
+      });
     }
   }
 };

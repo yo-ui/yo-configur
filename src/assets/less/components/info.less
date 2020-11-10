@@ -9,6 +9,21 @@
     .pl(15);
     .borb(1px solid #e2e5ec);
     // .pb(1)
+    &.collapse-item-tab{
+      .borb(none);
+      .pt(0);
+      .el-tabs__nav-next, .el-tabs__nav-prev{
+        .lh(32);
+      }
+      .el-tabs__item{
+        .h(30);
+        .lh(30);
+        &.is-active{
+          .bc(@themes);
+          .c(@white);
+        }
+      }
+    }
     .el-tabs__header{
       .mb(0);
       .bor(none);
@@ -45,6 +60,11 @@
       // .mt(1);
       .el-collapse-item{
         .posr;
+        &.unfold{
+          .el-collapse-item__header{
+            .db(none);
+          }
+        }
         &.is-disabled{
           .el-collapse-item__header{
             .c(@gray3);
@@ -54,6 +74,26 @@
         &.is-active{
           .el-collapse-item__header{
             .bc(transparent);
+            &::before{
+              content:"\e790";
+            }
+          }
+        }
+        &.no-border{
+          .el-collapse-item__wrap{
+            .borb(none);
+          }
+        }
+        &.no-right{
+          .el-collapse-item__header{
+            .el-collapse-item__arrow{
+              .db(none);
+            }
+            .right{
+              i{
+                .fz(16);
+              }
+            }
           }
         }
         &:first-child{
@@ -62,7 +102,12 @@
             .posf;
             .w(375);
             z-index: 1;
+            .fz(15);
+            .fw(400);
             .el-collapse-item__arrow{
+              .db(none);
+            }
+            &::before{
               .db(none);
             }
           }
@@ -71,12 +116,19 @@
           }
         }
         .el-collapse-item__header{
-          .pl(15);
+          .pl(20);
           .lh(40);
           .h(40);
           .df;
           justify-content: space-between;
           align-items: center;
+          font-family: element-icons!important;
+          .posr;
+          &::before{
+            content:"\e791";
+            .posa;
+            left:5px;
+          }
           .right{
             .fz(22);
             .pr(10);
@@ -339,7 +391,7 @@
           .lh(25);
           .mr(10);
           &.active{
-            .bor(1px solid @grayE);
+            .bor(1px solid #e2e5ec);
           }
         }
         .bold{
