@@ -264,6 +264,7 @@ export default {
       // }
       this.chartOptions = {
         tooltip: {
+          name,
           trigger: "axis",
           axisPointer: {
             type: "cross",

@@ -11,7 +11,7 @@
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
-       <defs
+      <defs
         v-html="
           `
         <style type='text/css'>

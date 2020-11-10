@@ -1,6 +1,6 @@
-// 消防水泵
+// 立式电锅炉
 <template>
-  <div class="bm-device-xfsb-com" :style="comStyle">
+  <div class="bm-device-lsdgl-com" :style="comStyle">
     <!-- :viewBox="`${info.vBoxx} ${info.vBoxy} ${info.width} ${info.height}`" -->
     <svg
       version="1.1"
@@ -9,133 +9,80 @@
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
-      <defs>
-        <!-- <template v-if="info.backgroundType == 'gradient'">
-          <linearGradient
-            :id="info.gradientStyle.gradientId"
-            :x1="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '0%',
-                  135: '0%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y1="
-              `${
-                {
-                  0: '100%',
-                  45: '100%',
-                  90: '100%',
-                  135: '0%',
-                  180: '0%',
-                  225: '0%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :x2="
-              `${
-                {
-                  0: '0%',
-                  45: '100%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '0%',
-                  270: '0%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y2="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            v-if="info.gradientStyle.type == 'linear'"
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </linearGradient>
-          <radialGradient
-            :id="info.gradientStyle.gradientId"
-            v-else-if="info.gradientStyle.type == 'radial'"
-            :cx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :cy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :r="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '160%',
-                '100% 0%': '150%',
-                '0% 100%': '150%',
-                '100% 100%': '140%'
-              }[info.gradientStyle.center]
-            "
-            :fx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :fy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </radialGradient>
-        </template> -->
-      </defs>
+      <defs
+        v-html="
+          `<style type='text/css'>
+      
+.st0 {
+  fill: #d0d4d8;
+}
+.st1 {
+  fill: url(#XMLID_2_);
+}
+.st2 {
+  fill: none;
+  stroke: #d0d4d8;
+  stroke-width: 0.75;
+  stroke-miterlimit: 10;
+}
+.st3 {
+  fill: #333333;
+}
+.st4 {
+  fill: url(#SVGID_1_);
+}
+.st5 {
+  fill: url(#SVGID_2_);
+}
+.st6 {
+  fill: url(#SVGID_3_);
+}
+.st7 {
+  fill: #3b3b3b;
+}
+.st8 {
+  fill: #ffffff;
+}
+.st9 {
+  fill: url(#SVGID_4_);
+}
+.st10 {
+  fill: url(#SVGID_5_);
+}
+.st11 {
+  fill: url(#SVGID_6_);
+}
+.st12 {
+  fill: #848776;
+}
+.st13 {
+  fill: #25282b;
+}
+.st14 {
+  fill: #444444;
+}
+.st15 {
+  fill: #666666;
+}
+.st16 {
+  fill: #7d7d7d;
+}
+.st17 {
+  fill: url(#SVGID_7_);
+}
+.st18 {
+  fill: #2f3133;
+}
+.st19 {
+  fill: #fffa63;
+}
+.st20 {
+  opacity: 0.38;
+  fill: #ff0000;
+}
+      </style>`
+        "
+      ></defs>
       <g id="图层_2">
         <path
           id="XMLID_1032_"
@@ -531,7 +478,7 @@ const { mapActions, mapMutations, mapGetters } = Vuex;
 
 const pointCode = "SwSts";
 export default {
-  name: "deviceXfsbCom",
+  name: "deviceLsdglCom",
   data() {
     return {
       pointValue: "1" // expr:'SwSts',stop:0,start:1,alarm:2
@@ -672,74 +619,5 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import (reference) "./../../../../assets/less/common.less";
-.st0 {
-  fill: #d0d4d8;
-}
-.st1 {
-  fill: url(#XMLID_2_);
-}
-.st2 {
-  fill: none;
-  stroke: #d0d4d8;
-  stroke-width: 0.75;
-  stroke-miterlimit: 10;
-}
-.st3 {
-  fill: #333333;
-}
-.st4 {
-  fill: url(#SVGID_1_);
-}
-.st5 {
-  fill: url(#SVGID_2_);
-}
-.st6 {
-  fill: url(#SVGID_3_);
-}
-.st7 {
-  fill: #3b3b3b;
-}
-.st8 {
-  fill: #ffffff;
-}
-.st9 {
-  fill: url(#SVGID_4_);
-}
-.st10 {
-  fill: url(#SVGID_5_);
-}
-.st11 {
-  fill: url(#SVGID_6_);
-}
-.st12 {
-  fill: #848776;
-}
-.st13 {
-  fill: #25282b;
-}
-.st14 {
-  fill: #444444;
-}
-.st15 {
-  fill: #666666;
-}
-.st16 {
-  fill: #7d7d7d;
-}
-.st17 {
-  fill: url(#SVGID_7_);
-}
-.st18 {
-  fill: #2f3133;
-}
-.st19 {
-  fill: #fffa63;
-}
-.st20 {
-  opacity: 0.38;
-  fill: #ff0000;
-}
-</style>
-<style lang="less">
-@import (less) "../../../../assets/less/components/component/device/common.less";
+// @import (less) "../../../../assets/less/components/component/device/common.less";
 </style>

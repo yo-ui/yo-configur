@@ -2491,44 +2491,5 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import (reference) "./../../../../assets/less/common.less";
-// .db-st0 {
-//   fill: url(#db_1_);
-// }
-// .db-st1 {
-//   fill: #dfe3e8;
-// }
-// .db-st2 {
-//   fill: url(#db_11_);
-// }
-// .db-st3 {
-//   fill: #ffffff;
-// }
-// .db-st4 {
-//   fill: #c2c8ce;
-// }
-// .db-st5 {
-//   fill: #848776;
-// }
-// .db-st6 {
-//   fill: #25282b;
-// }
-// .db-st7 {
-//   fill: #8f9499;
-// }
-// .db-st8 {
-//   fill: #5b280e;
-// }
-// .db-st9 {
-//   fill: #f95d06;
-// }
-// .db-st10 {
-//   fill: url(#db_12_);
-// }
-// .db-st11 {
-//   opacity: 0.4;
-//   fill: #ff0000;
-// }
-</style>
-<style lang="less">
-@import (less) "../../../../assets/less/components/component/device/common.less";
+// @import (less) "../../../../assets/less/components/component/device/common.less";
 </style>

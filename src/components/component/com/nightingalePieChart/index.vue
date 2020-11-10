@@ -249,6 +249,7 @@ export default {
         },
 
         tooltip: {
+          name,
           trigger: "item",
           formatter: "{a} <br/>{b} : {c} ({d}%)"
         },

@@ -8,134 +8,134 @@
       viewBox="0 0 606 417"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
+      :width="info.width"
+      :height="info.height"
     >
-      <defs>
-        <!-- <template v-if="info.backgroundType == 'gradient'">
-          <linearGradient
-            :id="info.gradientStyle.gradientId"
-            :x1="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '0%',
-                  135: '0%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y1="
-              `${
-                {
-                  0: '100%',
-                  45: '100%',
-                  90: '100%',
-                  135: '0%',
-                  180: '0%',
-                  225: '0%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :x2="
-              `${
-                {
-                  0: '0%',
-                  45: '100%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '0%',
-                  270: '0%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y2="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            v-if="info.gradientStyle.type == 'linear'"
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </linearGradient>
-          <radialGradient
-            :id="info.gradientStyle.gradientId"
-            v-else-if="info.gradientStyle.type == 'radial'"
-            :cx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :cy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :r="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '160%',
-                '100% 0%': '150%',
-                '0% 100%': '150%',
-                '100% 100%': '140%'
-              }[info.gradientStyle.center]
-            "
-            :fx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :fy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </radialGradient>
-        </template> -->
-      </defs>
+      <defs
+        v-html="
+          `<style type='text/css'>
+          .rqgl-st0{fill:#191919;}
+                .rqgl-st1{fill:#404549;}
+                .rqgl-st2{fill:#48555B;}
+                .rqgl-st3{opacity:0.8;fill:#FFFFFF;enable-background:new    ;}
+                .rqgl-st4{fill:url(#rqgl_1_);}
+                .rqgl-st5{fill:url(#rqgl_2_);}
+                .rqgl-st6{fill:url(#rqgl_3_);}
+                .rqgl-st7{fill:#203972;}
+                .rqgl-st8{fill:url(#rqgl_4_);}
+                .rqgl-st9{fill:url(#rqgl_5_);}
+                .rqgl-st10{fill:url(#rqgl_6_);}
+                .rqgl-st11{fill:url(#rqgl_7_);}
+                .rqgl-st12{fill:url(#rqgl_8_);}
+                .rqgl-st13{fill:url(#rqgl_9_);}
+                .rqgl-st14{fill:url(#rqgl_10_);}
+                .rqgl-st15{fill:#556066;}
+                .rqgl-st16{fill:url(#rqgl_11_);}
+                .rqgl-st17{fill:#798D9B;}
+                .rqgl-st18{fill:#475258;}
+                .rqgl-st19{fill:#5E6C72;}
+                .rqgl-st20{fill:#354658;}
+                .rqgl-st21{fill:url(#rqgl_12_);}
+                .rqgl-st22{opacity:0.3;}
+                .rqgl-st23{fill:url(#rqgl_13_);}
+                .rqgl-st24{fill:url(#rqgl_14_);}
+                .rqgl-st25{fill:url(#rqgl_15_);}
+                .rqgl-st26{fill:url(#rqgl_16_);}
+                .rqgl-st27{opacity:0.25;fill:#400000;}
+                .rqgl-st28{opacity:0.3;fill:#400000;}
+                .rqgl-st29{opacity:0.4;fill:#400000;}
+                .rqgl-st30{opacity:0.5;fill:#400000;}
+                .rqgl-st31{fill:url(#rqgl_17_);}
+                .rqgl-st32{fill:url(#rqgl_18_);}
+                .rqgl-st33{fill:url(#rqgl_19_);}
+                .rqgl-st34{fill:#40444D;}
+                .rqgl-st35{fill:url(#rqgl_20_);}
+                .rqgl-st36{fill:url(#rqgl_21_);}
+                .rqgl-st37{fill:url(#rqgl_22_);}
+                .rqgl-st38{fill:url(#rqgl_23_);}
+                .rqgl-st39{fill:url(#rqgl_24_);}
+                .rqgl-st40{fill:url(#rqgl_25_);}
+                .rqgl-st41{fill:url(#rqgl_26_);}
+                .rqgl-st42{fill:url(#rqgl_27_);}
+                .rqgl-st43{fill:url(#rqgl_28_);}
+                .rqgl-st44{fill:url(#rqgl_29_);}
+                .rqgl-st45{fill:url(#rqgl_30_);}
+                .rqgl-st46{fill:url(#rqgl_31_);}
+                .rqgl-st47{fill:url(#rqgl_32_);}
+                .rqgl-st48{fill:url(#rqgl_33_);}
+                .rqgl-st49{fill:url(#rqgl_34_);}
+                .rqgl-st50{opacity:0.75;fill:url(#rqgl_35_);}
+                .rqgl-st51{opacity:0.5;fill:url(#rqgl_36_);}
+                .rqgl-st52{fill:url(#rqgl_37_);}
+                .rqgl-st53{fill:url(#rqgl_38_);}
+                .rqgl-st54{fill:url(#rqgl_39_);}
+                .rqgl-st55{fill:url(#rqgl_40_);}
+                .rqgl-st56{opacity:0.56;fill:#FFFFFF;}
+                .rqgl-st57{opacity:0.56;fill:#FFFF5A;}
+                .rqgl-st58{fill:url(#rqgl_41_);}
+                .rqgl-st59{opacity:0.75;fill:url(#rqgl_42_);}
+                .rqgl-st60{opacity:0.5;fill:url(#rqgl_43_);}
+                .rqgl-st61{fill:url(#rqgl_44_);}
+                .rqgl-st62{fill:url(#rqgl_45_);}
+                .rqgl-st63{fill:url(#rqgl_46_);}
+                .rqgl-st64{fill:url(#rqgl_47_);}
+                .rqgl-st65{opacity:0.75;fill:url(#rqgl_48_);}
+                .rqgl-st66{opacity:0.5;fill:url(#rqgl_49_);}
+                .rqgl-st67{fill:url(#rqgl_50_);}
+                .rqgl-st68{fill:url(#rqgl_51_);}
+                .rqgl-st69{fill:url(#rqgl_52_);}
+                .rqgl-st70{fill:url(#rqgl_53_);}
+                .rqgl-st71{fill:url(#rqgl_54_);}
+                .rqgl-st72{fill:url(#rqgl_55_);}
+                .rqgl-st73{opacity:0.75;fill:url(#rqgl_56_);}
+                .rqgl-st74{fill:url(#rqgl_57_);}
+                .rqgl-st75{fill:url(#rqgl_58_);}
+                .rqgl-st76{fill:url(#rqgl_59_);}
+                .rqgl-st77{fill:url(#rqgl_60_);}
+                .rqgl-st78{fill:url(#rqgl_61_);}
+                .rqgl-st79{opacity:0.75;fill:url(#rqgl_62_);}
+                .rqgl-st80{fill:url(#rqgl_63_);}
+                .rqgl-st81{fill:url(#rqgl_64_);}
+                .rqgl-st82{fill:url(#rqgl_65_);}
+                .rqgl-st83{fill:url(#rqgl_66_);}
+                .rqgl-st84{fill:url(#rqgl_67_);}
+                .rqgl-st85{opacity:0.75;fill:url(#rqgl_68_);}
+                .rqgl-st86{opacity:0.5;fill:url(#rqgl_69_);}
+                .rqgl-st87{fill:url(#rqgl_70_);}
+                .rqgl-st88{fill:url(#rqgl_71_);}
+                .rqgl-st89{fill:url(#rqgl_72_);}
+                .rqgl-st90{fill:url(#rqgl_73_);}
+                .rqgl-st91{fill:url(#rqgl_74_);}
+                .rqgl-st92{fill:url(#rqgl_75_);}
+                .rqgl-st93{opacity:0.75;fill:url(#rqgl_76_);}
+                .rqgl-st94{opacity:0.5;fill:url(#rqgl_77_);}
+                .rqgl-st95{fill:url(#rqgl_78_);}
+                .rqgl-st96{fill:url(#rqgl_79_);}
+                .rqgl-st97{fill:url(#rqgl_80_);}
+                .rqgl-st98{opacity:0.42;fill:#FFFF5A;}
+                .rqgl-st99{fill:url(#rqgl_81_);}
+                .rqgl-st100{fill:url(#rqgl_82_);}
+                .rqgl-st101{fill:url(#rqgl_83_);}
+                .rqgl-st102{opacity:0.75;fill:url(#rqgl_84_);}
+                .rqgl-st103{fill:url(#rqgl_85_);}
+                .rqgl-st104{fill:url(#rqgl_86_);}
+                .rqgl-st105{fill:url(#rqgl_87_);}
+                .rqgl-st106{fill:url(#rqgl_88_);}
+                .rqgl-st107{opacity:0.4;fill:#FF0000;}
+              
+                .show {display:default;}
+                .hide {display:none;}
+                .f1 {display:default;}
+                .f2 {display:none;}
+                .f3 {display:none;}
+                .f4 {display:none;}
+                .f5 {display:none;}
+                .f6 {display:none;}
+                .f7 {display:none;}
+                .f8 {display:none;}
+      </style>`
+        "
+      ></defs>
       <g id="SVG_base">
         <polygon
           class="rqgl-st0"
@@ -2496,381 +2496,5 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import (reference) "./../../../../assets/less/common.less";
-.rqgl-st0 {
-  fill: #191919;
-}
-.rqgl-st1 {
-  fill: #404549;
-}
-.rqgl-st2 {
-  fill: #48555b;
-}
-.rqgl-st3 {
-  opacity: 0.8;
-  fill: #ffffff;
-  enable-background: new;
-}
-.rqgl-st4 {
-  fill: url(#rqgl_1_);
-}
-.rqgl-st5 {
-  fill: url(#rqgl_2_);
-}
-.rqgl-st6 {
-  fill: url(#rqgl_3_);
-}
-.rqgl-st7 {
-  fill: #203972;
-}
-.rqgl-st8 {
-  fill: url(#rqgl_4_);
-}
-.rqgl-st9 {
-  fill: url(#rqgl_5_);
-}
-.rqgl-st10 {
-  fill: url(#rqgl_6_);
-}
-.rqgl-st11 {
-  fill: url(#rqgl_7_);
-}
-.rqgl-st12 {
-  fill: url(#rqgl_8_);
-}
-.rqgl-st13 {
-  fill: url(#rqgl_9_);
-}
-.rqgl-st14 {
-  fill: url(#rqgl_10_);
-}
-.rqgl-st15 {
-  fill: #556066;
-}
-.rqgl-st16 {
-  fill: url(#rqgl_11_);
-}
-.rqgl-st17 {
-  fill: #798d9b;
-}
-.rqgl-st18 {
-  fill: #475258;
-}
-.rqgl-st19 {
-  fill: #5e6c72;
-}
-.rqgl-st20 {
-  fill: #354658;
-}
-.rqgl-st21 {
-  fill: url(#rqgl_12_);
-}
-.rqgl-st22 {
-  opacity: 0.3;
-}
-.rqgl-st23 {
-  fill: url(#rqgl_13_);
-}
-.rqgl-st24 {
-  fill: url(#rqgl_14_);
-}
-.rqgl-st25 {
-  fill: url(#rqgl_15_);
-}
-.rqgl-st26 {
-  fill: url(#rqgl_16_);
-}
-.rqgl-st27 {
-  opacity: 0.25;
-  fill: #400000;
-}
-.rqgl-st28 {
-  opacity: 0.3;
-  fill: #400000;
-}
-.rqgl-st29 {
-  opacity: 0.4;
-  fill: #400000;
-}
-.rqgl-st30 {
-  opacity: 0.5;
-  fill: #400000;
-}
-.rqgl-st31 {
-  fill: url(#rqgl_17_);
-}
-.rqgl-st32 {
-  fill: url(#rqgl_18_);
-}
-.rqgl-st33 {
-  fill: url(#rqgl_19_);
-}
-.rqgl-st34 {
-  fill: #40444d;
-}
-.rqgl-st35 {
-  fill: url(#rqgl_20_);
-}
-.rqgl-st36 {
-  fill: url(#rqgl_21_);
-}
-.rqgl-st37 {
-  fill: url(#rqgl_22_);
-}
-.rqgl-st38 {
-  fill: url(#rqgl_23_);
-}
-.rqgl-st39 {
-  fill: url(#rqgl_24_);
-}
-.rqgl-st40 {
-  fill: url(#rqgl_25_);
-}
-.rqgl-st41 {
-  fill: url(#rqgl_26_);
-}
-.rqgl-st42 {
-  fill: url(#rqgl_27_);
-}
-.rqgl-st43 {
-  fill: url(#rqgl_28_);
-}
-.rqgl-st44 {
-  fill: url(#rqgl_29_);
-}
-.rqgl-st45 {
-  fill: url(#rqgl_30_);
-}
-.rqgl-st46 {
-  fill: url(#rqgl_31_);
-}
-.rqgl-st47 {
-  fill: url(#rqgl_32_);
-}
-.rqgl-st48 {
-  fill: url(#rqgl_33_);
-}
-.rqgl-st49 {
-  fill: url(#rqgl_34_);
-}
-.rqgl-st50 {
-  opacity: 0.75;
-  fill: url(#rqgl_35_);
-}
-.rqgl-st51 {
-  opacity: 0.5;
-  fill: url(#rqgl_36_);
-}
-.rqgl-st52 {
-  fill: url(#rqgl_37_);
-}
-.rqgl-st53 {
-  fill: url(#rqgl_38_);
-}
-.rqgl-st54 {
-  fill: url(#rqgl_39_);
-}
-.rqgl-st55 {
-  fill: url(#rqgl_40_);
-}
-.rqgl-st56 {
-  opacity: 0.56;
-  fill: #ffffff;
-}
-.rqgl-st57 {
-  opacity: 0.56;
-  fill: #ffff5a;
-}
-.rqgl-st58 {
-  fill: url(#rqgl_41_);
-}
-.rqgl-st59 {
-  opacity: 0.75;
-  fill: url(#rqgl_42_);
-}
-.rqgl-st60 {
-  opacity: 0.5;
-  fill: url(#rqgl_43_);
-}
-.rqgl-st61 {
-  fill: url(#rqgl_44_);
-}
-.rqgl-st62 {
-  fill: url(#rqgl_45_);
-}
-.rqgl-st63 {
-  fill: url(#rqgl_46_);
-}
-.rqgl-st64 {
-  fill: url(#rqgl_47_);
-}
-.rqgl-st65 {
-  opacity: 0.75;
-  fill: url(#rqgl_48_);
-}
-.rqgl-st66 {
-  opacity: 0.5;
-  fill: url(#rqgl_49_);
-}
-.rqgl-st67 {
-  fill: url(#rqgl_50_);
-}
-.rqgl-st68 {
-  fill: url(#rqgl_51_);
-}
-.rqgl-st69 {
-  fill: url(#rqgl_52_);
-}
-.rqgl-st70 {
-  fill: url(#rqgl_53_);
-}
-.rqgl-st71 {
-  fill: url(#rqgl_54_);
-}
-.rqgl-st72 {
-  fill: url(#rqgl_55_);
-}
-.rqgl-st73 {
-  opacity: 0.75;
-  fill: url(#rqgl_56_);
-}
-.rqgl-st74 {
-  fill: url(#rqgl_57_);
-}
-.rqgl-st75 {
-  fill: url(#rqgl_58_);
-}
-.rqgl-st76 {
-  fill: url(#rqgl_59_);
-}
-.rqgl-st77 {
-  fill: url(#rqgl_60_);
-}
-.rqgl-st78 {
-  fill: url(#rqgl_61_);
-}
-.rqgl-st79 {
-  opacity: 0.75;
-  fill: url(#rqgl_62_);
-}
-.rqgl-st80 {
-  fill: url(#rqgl_63_);
-}
-.rqgl-st81 {
-  fill: url(#rqgl_64_);
-}
-.rqgl-st82 {
-  fill: url(#rqgl_65_);
-}
-.rqgl-st83 {
-  fill: url(#rqgl_66_);
-}
-.rqgl-st84 {
-  fill: url(#rqgl_67_);
-}
-.rqgl-st85 {
-  opacity: 0.75;
-  fill: url(#rqgl_68_);
-}
-.rqgl-st86 {
-  opacity: 0.5;
-  fill: url(#rqgl_69_);
-}
-.rqgl-st87 {
-  fill: url(#rqgl_70_);
-}
-.rqgl-st88 {
-  fill: url(#rqgl_71_);
-}
-.rqgl-st89 {
-  fill: url(#rqgl_72_);
-}
-.rqgl-st90 {
-  fill: url(#rqgl_73_);
-}
-.rqgl-st91 {
-  fill: url(#rqgl_74_);
-}
-.rqgl-st92 {
-  fill: url(#rqgl_75_);
-}
-.rqgl-st93 {
-  opacity: 0.75;
-  fill: url(#rqgl_76_);
-}
-.rqgl-st94 {
-  opacity: 0.5;
-  fill: url(#rqgl_77_);
-}
-.rqgl-st95 {
-  fill: url(#rqgl_78_);
-}
-.rqgl-st96 {
-  fill: url(#rqgl_79_);
-}
-.rqgl-st97 {
-  fill: url(#rqgl_80_);
-}
-.rqgl-st98 {
-  opacity: 0.42;
-  fill: #ffff5a;
-}
-.rqgl-st99 {
-  fill: url(#rqgl_81_);
-}
-.rqgl-st100 {
-  fill: url(#rqgl_82_);
-}
-.rqgl-st101 {
-  fill: url(#rqgl_83_);
-}
-.rqgl-st102 {
-  opacity: 0.75;
-  fill: url(#rqgl_84_);
-}
-.rqgl-st103 {
-  fill: url(#rqgl_85_);
-}
-.rqgl-st104 {
-  fill: url(#rqgl_86_);
-}
-.rqgl-st105 {
-  fill: url(#rqgl_87_);
-}
-.rqgl-st106 {
-  fill: url(#rqgl_88_);
-}
-.rqgl-st107 {
-  opacity: 0.4;
-  fill: #ff0000;
-}
-
-// .show {display:default;}
-// .hide {display:none;}
-.f1 {
-  display: default;
-}
-.f2 {
-  display: none;
-}
-.f3 {
-  display: none;
-}
-.f4 {
-  display: none;
-}
-.f5 {
-  display: none;
-}
-.f6 {
-  display: none;
-}
-.f7 {
-  display: none;
-}
-.f8 {
-  display: none;
-}
-</style>
-<style lang="less">
-@import (less) "../../../../assets/less/components/component/device/common.less";
+// @import (less) "../../../../assets/less/components/component/device/common.less";
 </style>

@@ -6,136 +6,133 @@
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 400 320"
+      :width="info.width"
+      :height="info.height"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
-      <defs>
-        <!-- <template v-if="info.backgroundType == 'gradient'">
-          <linearGradient
-            :id="info.gradientStyle.gradientId"
-            :x1="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '0%',
-                  135: '0%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y1="
-              `${
-                {
-                  0: '100%',
-                  45: '100%',
-                  90: '100%',
-                  135: '0%',
-                  180: '0%',
-                  225: '0%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :x2="
-              `${
-                {
-                  0: '0%',
-                  45: '100%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '0%',
-                  270: '0%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y2="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            v-if="info.gradientStyle.type == 'linear'"
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </linearGradient>
-          <radialGradient
-            :id="info.gradientStyle.gradientId"
-            v-else-if="info.gradientStyle.type == 'radial'"
-            :cx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :cy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :r="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '160%',
-                '100% 0%': '150%',
-                '0% 100%': '150%',
-                '100% 100%': '140%'
-              }[info.gradientStyle.center]
-            "
-            :fx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :fy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </radialGradient>
-        </template> -->
-      </defs>
+      <defs
+        v-html="
+          `<style type='text/css'>
+
+          .flrb-st0{fill:#191919;}
+          .flrb-st1{fill:url(#flrb_1_);}
+          .flrb-st2{fill:url(#flrb_2_);}
+          .flrb-st3{fill:url(#flrb_3_);}
+          .flrb-st4{fill:url(#flrb_4_);}
+          .flrb-st5{fill:url(#flrb_5_);}
+          .flrb-st6{fill:url(#flrb_6_);}
+          .flrb-st7{fill:url(#flrb_7_);}
+          .flrb-st8{fill:url(#flrb_8_);}
+          .flrb-st9{fill:url(#flrb_9_);}
+          .flrb-st10{fill:#BC4B59;}
+          .flrb-st11{fill:url(#flrb_10_);}
+          .flrb-st12{fill:url(#flrb_11_);}
+          .flrb-st13{fill:url(#flrb_12_);}
+          .flrb-st14{opacity:0.4;fill:#FFFFFF;}
+          .flrb-st15{opacity:0.3;}
+          .flrb-st16{fill:url(#flrb_13_);}
+          .flrb-st17{fill:url(#flrb_14_);}
+          .flrb-st18{fill:#FFFFFF;}
+          .flrb-st19{fill:#585F60;}
+          .flrb-st20{fill:#FCFCFC;}
+          .flrb-st21{fill:url(#flrb_15_);}
+          .flrb-st22{fill:url(#flrb_16_);}
+          .flrb-st23{fill:url(#flrb_17_);}
+          .flrb-st24{fill:url(#flrb_18_);}
+          .flrb-st25{fill:url(#flrb_19_);}
+          .flrb-st26{fill:url(#flrb_20_);}
+          .flrb-st27{fill:url(#flrb_21_);}
+          .flrb-st28{fill:#707070;}
+          .flrb-st29{fill:url(#flrb_22_);}
+          .flrb-st30{fill:url(#flrb_23_);}
+          .flrb-st31{fill:url(#flrb_24_);}
+          .flrb-st32{fill:#181D1E;}
+          .flrb-st33{fill:url(#flrb_25_);}
+          .flrb-st34{fill:url(#flrb_26_);}
+          .flrb-st35{fill:url(#flrb_27_);}
+          .flrb-st36{fill:url(#flrb_28_);}
+          .flrb-st37{fill:url(#flrb_29_);}
+          .flrb-st38{fill:url(#flrb_30_);}
+          .flrb-st39{fill:url(#flrb_31_);}
+          .flrb-st40{fill:url(#flrb_32_);}
+          .flrb-st41{fill:url(#flrb_33_);}
+          .flrb-st42{fill:url(#flrb_34_);}
+          .flrb-st43{fill:url(#flrb_35_);}
+          .flrb-st44{fill:url(#flrb_36_);}
+          .flrb-st45{fill:url(#flrb_37_);}
+          .flrb-st46{fill:url(#flrb_38_);}
+          .flrb-st47{fill:url(#flrb_39_);}
+          .flrb-st48{fill:url(#flrb_40_);}
+          .flrb-st49{fill:url(#flrb_41_);}
+          .flrb-st50{fill:url(#flrb_42_);}
+          .flrb-st51{fill:url(#flrb_43_);}
+          .flrb-st52{fill:url(#flrb_44_);}
+          .flrb-st53{fill:url(#flrb_45_);}
+          .flrb-st54{fill:#808484;}
+          .flrb-st55{fill:url(#flrb_46_);}
+          .flrb-st56{fill:url(#flrb_47_);}
+          .flrb-st57{fill:url(#flrb_48_);}
+          .flrb-st58{fill:none;stroke:#798689;stroke-width:2;stroke-miterlimit:10;}
+          .flrb-st59{fill:url(#flrb_49_);}
+          .flrb-st60{fill:url(#flrb_50_);}
+          .flrb-st61{fill:url(#flrb_51_);}
+          .flrb-st62{fill:#3D3F3F;}
+          .flrb-st63{fill:url(#flrb_52_);}
+          .flrb-st64{fill:url(#XMLID_40_);}
+          .flrb-st65{fill:#D6D6D6;}
+          .flrb-st66{fill:url(#XMLID_43_);}
+          .flrb-st67{fill:url(#XMLID_44_);}
+          .flrb-st68{fill:url(#XMLID_45_);}
+          .flrb-st69{fill:url(#XMLID_46_);}
+          .flrb-st70{fill:url(#XMLID_55_);}
+          .flrb-st71{fill:url(#XMLID_56_);}
+          .flrb-st72{fill:url(#XMLID_59_);}
+          .flrb-st73{fill:url(#XMLID_60_);}
+          .flrb-st74{fill:url(#XMLID_63_);}
+          .flrb-st75{fill:url(#XMLID_64_);}
+          .flrb-st76{fill:url(#XMLID_70_);}
+          .flrb-st77{fill:url(#XMLID_71_);}
+          .flrb-st78{fill:url(#XMLID_73_);}
+          .flrb-st79{fill:url(#XMLID_74_);}
+          .flrb-st80{fill:url(#XMLID_82_);}
+          .flrb-st81{fill:url(#XMLID_83_);}
+          .flrb-st82{fill:url(#XMLID_115_);}
+          .flrb-st83{fill:url(#XMLID_116_);}
+          .flrb-st84{fill:url(#XMLID_117_);}
+          .flrb-st85{fill:url(#XMLID_118_);}
+          .flrb-st86{fill:url(#XMLID_119_);}
+          .flrb-st87{fill:url(#XMLID_120_);}
+          .flrb-st88{fill:url(#XMLID_121_);}
+          .flrb-st89{fill:url(#XMLID_122_);}
+          .flrb-st90{fill:url(#XMLID_123_);}
+          .flrb-st91{fill:url(#XMLID_124_);}
+          .flrb-st92{fill:url(#XMLID_125_);}
+          .flrb-st93{fill:url(#XMLID_126_);}
+          .flrb-st94{fill:url(#XMLID_133_);}
+          .flrb-st95{fill:url(#XMLID_134_);}
+          .flrb-st96{fill:url(#XMLID_135_);}
+          .flrb-st97{fill:url(#XMLID_136_);}
+          .flrb-st98{fill:url(#XMLID_137_);}
+          .flrb-st99{fill:url(#XMLID_138_);}
+          .flrb-st100{fill:url(#XMLID_139_);}
+          .flrb-st101{fill:url(#XMLID_140_);}
+          .flrb-st102{fill:url(#XMLID_141_);}
+          .flrb-st103{fill:url(#XMLID_142_);}
+          .flrb-st104{fill:url(#XMLID_143_);}
+          .flrb-st105{fill:url(#XMLID_144_);}
+          .flrb-st106{fill:url(#XMLID_151_);}
+          .flrb-st107{fill:url(#XMLID_152_);}
+          .flrb-st108{fill:#F2F2F2;}
+          .flrb-st109{fill:url(#XMLID_153_);}
+          .flrb-st110{fill:url(#XMLID_154_);}
+          .flrb-st111{fill:url(#XMLID_155_);}
+          .flrb-st112{fill:url(#XMLID_156_);}
+          .flrb-st113{fill:url(#XMLID_157_);}
+          .flrb-st114{opacity:0.4;fill:#FF0303;}
+      </style>`
+        "
+      ></defs>
       <g id="SVG_base1">
         <polygon
           class="flrb-st0"
@@ -2404,357 +2401,5 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import (reference) "./../../../../assets/less/common.less";
-.flrb-st0 {
-  fill: #191919;
-}
-.flrb-st1 {
-  fill: url(#flrb_1_);
-}
-.flrb-st2 {
-  fill: url(#flrb_2_);
-}
-.flrb-st3 {
-  fill: url(#flrb_3_);
-}
-.flrb-st4 {
-  fill: url(#flrb_4_);
-}
-.flrb-st5 {
-  fill: url(#flrb_5_);
-}
-.flrb-st6 {
-  fill: url(#flrb_6_);
-}
-.flrb-st7 {
-  fill: url(#flrb_7_);
-}
-.flrb-st8 {
-  fill: url(#flrb_8_);
-}
-.flrb-st9 {
-  fill: url(#flrb_9_);
-}
-.flrb-st10 {
-  fill: #bc4b59;
-}
-.flrb-st11 {
-  fill: url(#flrb_10_);
-}
-.flrb-st12 {
-  fill: url(#flrb_11_);
-}
-.flrb-st13 {
-  fill: url(#flrb_12_);
-}
-.flrb-st14 {
-  opacity: 0.4;
-  fill: #ffffff;
-}
-.flrb-st15 {
-  opacity: 0.3;
-}
-.flrb-st16 {
-  fill: url(#flrb_13_);
-}
-.flrb-st17 {
-  fill: url(#flrb_14_);
-}
-.flrb-st18 {
-  fill: #ffffff;
-}
-.flrb-st19 {
-  fill: #585f60;
-}
-.flrb-st20 {
-  fill: #fcfcfc;
-}
-.flrb-st21 {
-  fill: url(#flrb_15_);
-}
-.flrb-st22 {
-  fill: url(#flrb_16_);
-}
-.flrb-st23 {
-  fill: url(#flrb_17_);
-}
-.flrb-st24 {
-  fill: url(#flrb_18_);
-}
-.flrb-st25 {
-  fill: url(#flrb_19_);
-}
-.flrb-st26 {
-  fill: url(#flrb_20_);
-}
-.flrb-st27 {
-  fill: url(#flrb_21_);
-}
-.flrb-st28 {
-  fill: #707070;
-}
-.flrb-st29 {
-  fill: url(#flrb_22_);
-}
-.flrb-st30 {
-  fill: url(#flrb_23_);
-}
-.flrb-st31 {
-  fill: url(#flrb_24_);
-}
-.flrb-st32 {
-  fill: #181d1e;
-}
-.flrb-st33 {
-  fill: url(#flrb_25_);
-}
-.flrb-st34 {
-  fill: url(#flrb_26_);
-}
-.flrb-st35 {
-  fill: url(#flrb_27_);
-}
-.flrb-st36 {
-  fill: url(#flrb_28_);
-}
-.flrb-st37 {
-  fill: url(#flrb_29_);
-}
-.flrb-st38 {
-  fill: url(#flrb_30_);
-}
-.flrb-st39 {
-  fill: url(#flrb_31_);
-}
-.flrb-st40 {
-  fill: url(#flrb_32_);
-}
-.flrb-st41 {
-  fill: url(#flrb_33_);
-}
-.flrb-st42 {
-  fill: url(#flrb_34_);
-}
-.flrb-st43 {
-  fill: url(#flrb_35_);
-}
-.flrb-st44 {
-  fill: url(#flrb_36_);
-}
-.flrb-st45 {
-  fill: url(#flrb_37_);
-}
-.flrb-st46 {
-  fill: url(#flrb_38_);
-}
-.flrb-st47 {
-  fill: url(#flrb_39_);
-}
-.flrb-st48 {
-  fill: url(#flrb_40_);
-}
-.flrb-st49 {
-  fill: url(#flrb_41_);
-}
-.flrb-st50 {
-  fill: url(#flrb_42_);
-}
-.flrb-st51 {
-  fill: url(#flrb_43_);
-}
-.flrb-st52 {
-  fill: url(#flrb_44_);
-}
-.flrb-st53 {
-  fill: url(#flrb_45_);
-}
-.flrb-st54 {
-  fill: #808484;
-}
-.flrb-st55 {
-  fill: url(#flrb_46_);
-}
-.flrb-st56 {
-  fill: url(#flrb_47_);
-}
-.flrb-st57 {
-  fill: url(#flrb_48_);
-}
-.flrb-st58 {
-  fill: none;
-  stroke: #798689;
-  stroke-width: 2;
-  stroke-miterlimit: 10;
-}
-.flrb-st59 {
-  fill: url(#flrb_49_);
-}
-.flrb-st60 {
-  fill: url(#flrb_50_);
-}
-.flrb-st61 {
-  fill: url(#flrb_51_);
-}
-.flrb-st62 {
-  fill: #3d3f3f;
-}
-.flrb-st63 {
-  fill: url(#flrb_52_);
-}
-.flrb-st64 {
-  fill: url(#XMLID_40_);
-}
-.flrb-st65 {
-  fill: #d6d6d6;
-}
-.flrb-st66 {
-  fill: url(#XMLID_43_);
-}
-.flrb-st67 {
-  fill: url(#XMLID_44_);
-}
-.flrb-st68 {
-  fill: url(#XMLID_45_);
-}
-.flrb-st69 {
-  fill: url(#XMLID_46_);
-}
-.flrb-st70 {
-  fill: url(#XMLID_55_);
-}
-.flrb-st71 {
-  fill: url(#XMLID_56_);
-}
-.flrb-st72 {
-  fill: url(#XMLID_59_);
-}
-.flrb-st73 {
-  fill: url(#XMLID_60_);
-}
-.flrb-st74 {
-  fill: url(#XMLID_63_);
-}
-.flrb-st75 {
-  fill: url(#XMLID_64_);
-}
-.flrb-st76 {
-  fill: url(#XMLID_70_);
-}
-.flrb-st77 {
-  fill: url(#XMLID_71_);
-}
-.flrb-st78 {
-  fill: url(#XMLID_73_);
-}
-.flrb-st79 {
-  fill: url(#XMLID_74_);
-}
-.flrb-st80 {
-  fill: url(#XMLID_82_);
-}
-.flrb-st81 {
-  fill: url(#XMLID_83_);
-}
-.flrb-st82 {
-  fill: url(#XMLID_115_);
-}
-.flrb-st83 {
-  fill: url(#XMLID_116_);
-}
-.flrb-st84 {
-  fill: url(#XMLID_117_);
-}
-.flrb-st85 {
-  fill: url(#XMLID_118_);
-}
-.flrb-st86 {
-  fill: url(#XMLID_119_);
-}
-.flrb-st87 {
-  fill: url(#XMLID_120_);
-}
-.flrb-st88 {
-  fill: url(#XMLID_121_);
-}
-.flrb-st89 {
-  fill: url(#XMLID_122_);
-}
-.flrb-st90 {
-  fill: url(#XMLID_123_);
-}
-.flrb-st91 {
-  fill: url(#XMLID_124_);
-}
-.flrb-st92 {
-  fill: url(#XMLID_125_);
-}
-.flrb-st93 {
-  fill: url(#XMLID_126_);
-}
-.flrb-st94 {
-  fill: url(#XMLID_133_);
-}
-.flrb-st95 {
-  fill: url(#XMLID_134_);
-}
-.flrb-st96 {
-  fill: url(#XMLID_135_);
-}
-.flrb-st97 {
-  fill: url(#XMLID_136_);
-}
-.flrb-st98 {
-  fill: url(#XMLID_137_);
-}
-.flrb-st99 {
-  fill: url(#XMLID_138_);
-}
-.flrb-st100 {
-  fill: url(#XMLID_139_);
-}
-.flrb-st101 {
-  fill: url(#XMLID_140_);
-}
-.flrb-st102 {
-  fill: url(#XMLID_141_);
-}
-.flrb-st103 {
-  fill: url(#XMLID_142_);
-}
-.flrb-st104 {
-  fill: url(#XMLID_143_);
-}
-.flrb-st105 {
-  fill: url(#XMLID_144_);
-}
-.flrb-st106 {
-  fill: url(#XMLID_151_);
-}
-.flrb-st107 {
-  fill: url(#XMLID_152_);
-}
-.flrb-st108 {
-  fill: #f2f2f2;
-}
-.flrb-st109 {
-  fill: url(#XMLID_153_);
-}
-.flrb-st110 {
-  fill: url(#XMLID_154_);
-}
-.flrb-st111 {
-  fill: url(#XMLID_155_);
-}
-.flrb-st112 {
-  fill: url(#XMLID_156_);
-}
-.flrb-st113 {
-  fill: url(#XMLID_157_);
-}
-.flrb-st114 {
-  opacity: 0.4;
-  fill: #ff0303;
-}
-</style>
-<style lang="less">
-@import (less) "../../../../assets/less/components/component/device/common.less";
+// @import (less) "../../../../assets/less/components/component/device/common.less";
 </style>

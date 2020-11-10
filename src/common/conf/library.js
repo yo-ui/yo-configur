@@ -2447,7 +2447,7 @@ let componentLibrary = [
         comList: [
           {
             name: "整体式热量表",
-            code: "deviceCommon",
+            code: "deviceZtsrlb",
             alias: "ztsrlb",
             icon: "/static/img/configur/ztsrlb.png",
             data: {
@@ -2473,7 +2473,7 @@ let componentLibrary = [
           },
           {
             name: "组合式热量表",
-            code: "deviceCommon",
+            code: "deviceZhsrlb",
             alias: "zhsrlb",
             icon: "/static/img/configur/zhsrlb.png",
             data: {
@@ -2499,7 +2499,7 @@ let componentLibrary = [
           },
           {
             name: "挂式空调",
-            code: "deviceCommon",
+            code: "deviceGskt",
             alias: "gskt",
             icon: "/static/img/configur/gskt.png",
             data: {
@@ -2525,7 +2525,7 @@ let componentLibrary = [
           },
           {
             name: "立式空调",
-            code: "deviceCommon",
+            code: "deviceLskt",
             alias: "lskt",
             icon: "/static/img/configur/lskt.png",
             data: {
@@ -2579,7 +2579,7 @@ let componentLibrary = [
           },
           {
             name: "板式换热器",
-            code: "deviceCommon",
+            code: "deviceBshrq",
             alias: "bshrq",
             icon: "/static/img/configur/bshrq.png",
             data: {
@@ -2751,7 +2751,7 @@ let componentLibrary = [
           },
           {
             name: "烟雾报警传感器",
-            code: "deviceCommon",
+            code: "deviceYwbjcgq",
             alias: "ywbjcgq",
             icon: "/static/img/configur/ywbjcgq.png",
             data: {
@@ -2777,7 +2777,7 @@ let componentLibrary = [
           },
           {
             name: "红外人体感应器",
-            code: "deviceCommon",
+            code: "deviceHwrtgyq",
             alias: "hwrtgyq",
             icon: "/static/img/configur/hwrtgyq.png",
             data: {
@@ -2831,7 +2831,7 @@ let componentLibrary = [
           },
           {
             name: "门磁报警器",
-            code: "deviceCommon",
+            code: "deviceMcbjq",
             alias: "mcbjq",
             icon: "/static/img/configur/mcbjq.png",
             data: {
@@ -2857,7 +2857,7 @@ let componentLibrary = [
           },
           {
             name: "漏水报警器",
-            code: "deviceCommon",
+            code: "deviceLsbjq",
             alias: "lsbjq",
             icon: "/static/img/configur/lsbjq.png",
             data: {
@@ -2889,7 +2889,7 @@ let componentLibrary = [
         comList: [
           {
             name: "光伏电池板",
-            code: "deviceCommon",
+            code: "deviceGfdcb",
             alias: "gfdcb",
             icon: "/static/img/configur/gfdcb.png",
             data: {
@@ -2915,7 +2915,7 @@ let componentLibrary = [
           },
           {
             name: "光伏逆变器",
-            code: "deviceCommon",
+            code: "deviceGfnbq",
             alias: "gfnbq",
             icon: "/static/img/configur/gfnbq.png",
             data: {
@@ -2947,7 +2947,7 @@ let componentLibrary = [
         comList: [
           {
             name: "拉绳式测距",
-            code: "deviceCommon",
+            code: "deviceLsscj",
             alias: "lsscj",
             icon: "/static/img/configur/lsscj.png",
             data: {
@@ -2973,7 +2973,7 @@ let componentLibrary = [
           },
           {
             name: "超声波测距",
-            code: "deviceCommon",
+            code: "deviceCsbcj",
             alias: "csbcj",
             icon: "/static/img/configur/csbcj.png",
             data: {
@@ -2999,9 +2999,9 @@ let componentLibrary = [
           },
           {
             name: "液晶屏传感器",
-            code: "deviceCommon",
-            alias: "hjjccgqa",
-            icon: "/static/img/configur/hjjccgqa.png",
+            code: "deviceYjpcgq",
+            alias: "yjpcgq",
+            icon: "/static/img/configur/yjpcgq.png",
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/yjpcgq.svg",
@@ -3025,9 +3025,9 @@ let componentLibrary = [
           },
           {
             name: "传感器",
-            code: "deviceCommon",
-            alias: "hjjccgqb",
-            icon: "/static/img/configur/hjjccgqb.png",
+            code: "deviceCgq",
+            alias: "cgq",
+            icon: "/static/img/configur/cgq.png",
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/cgq.svg",
@@ -3051,7 +3051,7 @@ let componentLibrary = [
           },
           {
             name: "小型气象站",
-            code: "deviceCommon",
+            code: "deviceXxqxz",
             alias: "xxqxz",
             icon: "/static/img/configur/xxqxz.png",
             data: {
