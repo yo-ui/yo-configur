@@ -6,136 +6,62 @@
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 346 317"
+      :width="info.width"
+      :height="info.height"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
-      <defs>
-        <!-- <template v-if="info.backgroundType == 'gradient'">
-          <linearGradient
-            :id="info.gradientStyle.gradientId"
-            :x1="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '0%',
-                  135: '0%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y1="
-              `${
-                {
-                  0: '100%',
-                  45: '100%',
-                  90: '100%',
-                  135: '0%',
-                  180: '0%',
-                  225: '0%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :x2="
-              `${
-                {
-                  0: '0%',
-                  45: '100%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '0%',
-                  270: '0%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y2="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            v-if="info.gradientStyle.type == 'linear'"
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </linearGradient>
-          <radialGradient
-            :id="info.gradientStyle.gradientId"
-            v-else-if="info.gradientStyle.type == 'radial'"
-            :cx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :cy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :r="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '160%',
-                '100% 0%': '150%',
-                '0% 100%': '150%',
-                '100% 100%': '140%'
-              }[info.gradientStyle.center]
-            "
-            :fx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :fy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </radialGradient>
-        </template> -->
-      </defs>
+      <defs
+        v-html="
+          `
+        <style type='text/css'>
+              .cyfj-st0{fill:#013E2E;}
+              .cyfj-st1{fill:url(#cyfj_1_);}
+              .cyfj-st2{fill:url(#cyfj_2_);}
+              .cyfj-st3{fill:url(#cyfj_3_);}
+              .cyfj-st4{fill:url(#cyfj_4_);}
+              .cyfj-st5{fill:url(#cyfj_5_);}
+              .cyfj-st6{fill:#C0554F;}
+              .cyfj-st7{fill:url(#cyfj_6_);}
+              .cyfj-st8{fill:#69121A;}
+              .cyfj-st9{fill:url(#cyfj_7_);}
+              .cyfj-st10{fill:url(#cyfj_8_);}
+              .cyfj-st11{fill:url(#cyfj_9_);}
+              .cyfj-st12{fill:url(#cyfj_10_);}
+              .cyfj-st13{fill:url(#cyfj_11_);}
+              .cyfj-st14{fill:url(#cyfj_12_);}
+              .cyfj-st15{fill:url(#cyfj_13_);}
+              .cyfj-st16{fill:url(#cyfj_14_);}
+              .cyfj-st17{fill:url(#cyfj_15_);}
+              .cyfj-st18{fill:url(#cyfj_16_);}
+              .cyfj-st19{fill:url(#cyfj_17_);}
+              .cyfj-st20{fill:url(#cyfj_18_);}
+              .cyfj-st21{fill:url(#cyfj_19_);}
+              .cyfj-st22{fill:url(#cyfj_20_);}
+              .cyfj-st23{fill:url(#cyfj_21_);}
+              .cyfj-st24{fill:url(#cyfj_22_);}
+              .cyfj-st25{fill:url(#cyfj_23_);}
+              .cyfj-st26{fill:url(#cyfj_24_);}
+              .cyfj-st27{fill:url(#cyfj_25_);}
+              .cyfj-st28{fill:url(#cyfj_26_);}
+              .cyfj-st29{fill:url(#cyfj_27_);}
+              .cyfj-st30{fill:url(#cyfj_28_);}
+              .cyfj-st31{fill:url(#cyfj_29_);}
+              .cyfj-st32{fill:url(#cyfj_30_);}
+              .cyfj-st33{opacity:0.3;}
+              .cyfj-st34{opacity:0.2;fill:#ADD8CB;}
+              .cyfj-st35{fill:url(#cyfj_31_);}
+              .cyfj-st36{fill:url(#cyfj_32_);}
+              .cyfj-st37{fill:url(#cyfj_33_);}
+              .cyfj-st38{fill:url(#cyfj_34_);}
+              .cyfj-st39{fill:#387E73;}
+              .cyfj-st40{fill:#528781;}
+              .cyfj-st41{fill:#719E9B;}
+              .cyfj-st42{opacity:0.5;fill:#FF0000;}
+      </style>
+      `
+        "
+      ></defs>
       <g id="SVG_base1">
         <path
           class="cyfj-st0"

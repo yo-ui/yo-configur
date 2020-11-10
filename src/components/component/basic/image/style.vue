@@ -857,7 +857,7 @@ export default {
       info.content = url;
     },
     openAll() {
-      this.activeNames = ["name", "outward", "margin","image", "animation"];
+      this.activeNames = ["name", "outward", "margin", "image", "animation"];
     },
     closeAll() {
       this.activeNames = ["name"];

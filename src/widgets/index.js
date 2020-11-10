@@ -211,6 +211,39 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-device-xyssb" */ "@/components/component/device/xyssb/index.vue"
     ),
+  deviceCsblljCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-csbllj" */ "@/components/component/device/csbllj/index.vue"
+    ),
+  deviceCkssbCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-ckssb" */ "@/components/component/device/ckssb/index.vue"
+    ),
+  deviceJsjCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-jsj" */ "@/components/component/device/jsj/index.vue"
+    ),
+  deviceSxCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sx" */ "@/components/component/device/sx/index.vue"
+    ),
+  deviceXszzCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-xszz" */ "@/components/component/device/xszz/index.vue"
+    ),
+  deviceSdsfCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sdsf" */ "@/components/component/device/sdsf/index.vue"
+    ),
+  deviceJsqCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-jsq" */ "@/components/component/device/jsq/index.vue"
+    ),
+  deviceFsqCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-fsq" */ "@/components/component/device/fsq/index.vue"
+    ),
+
   deviceCyfjCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-cyfj" */ "@/components/component/device/cyfj/index.vue"
@@ -522,6 +555,38 @@ let styles = {
   deviceXyssbStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-xyssb-style" */ "@/components/component/device/xyssb/style.vue"
+    ),
+  deviceCsblljStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-csbllj-style" */ "@/components/component/device/csbllj/style.vue"
+    ),
+  deviceCkssbStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-ckssb-style" */ "@/components/component/device/ckssb/style.vue"
+    ),
+  deviceJsjStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-jsj-style" */ "@/components/component/device/jsj/style.vue"
+    ),
+  deviceSxStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sx-style" */ "@/components/component/device/sx/style.vue"
+    ),
+  deviceXszzStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-xszz-style" */ "@/components/component/device/xszz/style.vue"
+    ),
+  deviceSdsfStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sdsf-style" */ "@/components/component/device/sdsf/style.vue"
+    ),
+  deviceJsqStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-jsq-style" */ "@/components/component/device/jsq/style.vue"
+    ),
+  deviceFsqStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-fsq-style" */ "@/components/component/device/fsq/style.vue"
     ),
 
   deviceCyfjStyleCom: () =>

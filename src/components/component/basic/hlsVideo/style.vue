@@ -101,7 +101,7 @@
             :format-tooltip="val => val"
           ></el-slider>
         </p>
-        
+
         <p>
           <span class="label"> {{ $lang("横坐标") }}:</span>
           <el-input-number
@@ -766,7 +766,7 @@ export default {
       info.poster = url;
     },
     openAll() {
-      this.activeNames = ["name", "outward","content", "margin", "animation"];
+      this.activeNames = ["name", "outward", "content", "margin", "animation"];
     },
     closeAll() {
       this.activeNames = ["name"];

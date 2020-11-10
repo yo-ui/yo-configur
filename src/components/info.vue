@@ -175,7 +175,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setWidgetList: "canvas/setWidgetList",
+      setWidgetList: "canvas/setWidgetList"
       // setActiveCom: "canvas/setActiveCom",
     }),
     ...mapActions({

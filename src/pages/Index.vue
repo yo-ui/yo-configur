@@ -375,7 +375,7 @@ export default {
       canvasGetAction: "canvasGet",
       createHistoryAction: "canvas/createHistory",
       commonGetDeviceAction: "commonGetDevice",
-      commonDevicePointHstDataAction: "commonDevicePointHstData",
+      commonDevicePointHstDataAction: "commonDevicePointHstData"
     }),
     init() {
       this.initEvent();

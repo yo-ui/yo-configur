@@ -6,136 +6,65 @@
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 152 200"
+      :width="info.width"
+      :height="info.height"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
-      <defs>
-        <!-- <template v-if="info.backgroundType == 'gradient'">
-          <linearGradient
-            :id="info.gradientStyle.gradientId"
-            :x1="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '0%',
-                  135: '0%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y1="
-              `${
-                {
-                  0: '100%',
-                  45: '100%',
-                  90: '100%',
-                  135: '0%',
-                  180: '0%',
-                  225: '0%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :x2="
-              `${
-                {
-                  0: '0%',
-                  45: '100%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '0%',
-                  270: '0%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y2="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            v-if="info.gradientStyle.type == 'linear'"
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </linearGradient>
-          <radialGradient
-            :id="info.gradientStyle.gradientId"
-            v-else-if="info.gradientStyle.type == 'radial'"
-            :cx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :cy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :r="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '160%',
-                '100% 0%': '150%',
-                '0% 100%': '150%',
-                '100% 100%': '140%'
-              }[info.gradientStyle.center]
-            "
-            :fx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :fy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </radialGradient>
-        </template> -->
-      </defs>
+      <defs
+        v-html="
+          `
+        <style type='text/css'>
+       .st0{fill:#E88880;}
+        .st1{fill:#B41511;}
+        .st2{fill:url(#SVGID_1_);}
+        .st3{fill:#FB8085;}
+        .st4{fill:url(#SVGID_2_);}
+        .st5{fill:url(#SVGID_3_);}
+        .st6{fill:url(#SVGID_4_);}
+        .st7{fill:url(#SVGID_5_);}
+        .st8{fill:url(#SVGID_6_);}
+        .st9{fill:#F8422A;}
+        .st10{fill:url(#SVGID_7_);}
+        .st11{fill:url(#SVGID_8_);}
+        .st12{fill:url(#SVGID_9_);}
+        .st13{fill:url(#SVGID_10_);}
+        .st14{fill:url(#SVGID_11_);}
+        .st15{fill:url(#SVGID_12_);}
+        .st16{fill:url(#SVGID_13_);}
+        .st17{fill:url(#SVGID_14_);}
+        .st18{fill:url(#SVGID_15_);}
+        .st19{fill:url(#SVGID_16_);}
+        .st20{fill:url(#SVGID_17_);}
+        .st21{fill:url(#SVGID_18_);}
+        .st22{fill:url(#SVGID_19_);}
+        .st23{fill:url(#SVGID_20_);}
+        .st24{fill:url(#SVGID_21_);}
+        .st25{fill:url(#SVGID_22_);}
+        .st26{fill:url(#SVGID_23_);}
+        .st27{fill:url(#SVGID_24_);}
+        .st28{display:none;}
+        .st29{display:inline;}
+        .st30{fill:#600B0B;}
+        .st31{fill:#1E0000;}
+        .st32{fill:#AA3F3F;}
+        .st33{fill:url(#SVGID_25_);}
+        .st34{opacity:0.5;}
+        .st35{fill:#FFFFFF;}
+        .st36{fill:#0E1F3D;}
+        .st37{fill:url(#SVGID_26_);}
+        .st38{fill:url(#SVGID_27_);}
+        .st39{opacity:0.7;fill:#CC7979;}
+      
+        .show {display:default;}
+        .hide {display:none;}
+        .f1 {display:default;}
+        .f2 {display:none;}
+        .f3 {display:none;}
+      </style>
+      `
+        "
+      ></defs>
       <g id="SVG_base">
         <rect x="23.61" y="191.45" class="st0" width="76.5" height="8.55" />
         <polygon

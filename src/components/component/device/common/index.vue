@@ -41,7 +41,7 @@ export default {
         // fontWeight = "",
         // fontStyle = ""
         // backgroundColor = "",
-        backgroundImage = "",
+        backgroundImage = ""
         // backgroundRepeat = "",
         // backgroundSize = ""
       } = info || {};

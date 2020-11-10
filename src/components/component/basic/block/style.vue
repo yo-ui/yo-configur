@@ -837,7 +837,7 @@ export default {
       }
     },
     openAll() {
-      this.activeNames = ["name", "outward","fontSet", "margin", "animation"];
+      this.activeNames = ["name", "outward", "fontSet", "margin", "animation"];
     },
     closeAll() {
       this.activeNames = ["name"];

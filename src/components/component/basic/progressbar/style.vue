@@ -1319,13 +1319,7 @@ export default {
       info.fontStyle = fontStyle;
     },
     openAll() {
-      this.activeNames = [
-        "name",
-        "outward",
-        "style",
-        "content",
-        "animation"
-      ];
+      this.activeNames = ["name", "outward", "style", "content", "animation"];
     },
     closeAll() {
       this.activeNames = ["name"];

@@ -6,136 +6,61 @@
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 235 171"
+      :width="info.width"
+      :height="info.height"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
-      <defs>
-        <!-- <template v-if="info.backgroundType == 'gradient'">
-          <linearGradient
-            :id="info.gradientStyle.gradientId"
-            :x1="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '0%',
-                  135: '0%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y1="
-              `${
-                {
-                  0: '100%',
-                  45: '100%',
-                  90: '100%',
-                  135: '0%',
-                  180: '0%',
-                  225: '0%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :x2="
-              `${
-                {
-                  0: '0%',
-                  45: '100%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '0%',
-                  270: '0%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y2="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            v-if="info.gradientStyle.type == 'linear'"
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </linearGradient>
-          <radialGradient
-            :id="info.gradientStyle.gradientId"
-            v-else-if="info.gradientStyle.type == 'radial'"
-            :cx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :cy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :r="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '160%',
-                '100% 0%': '150%',
-                '0% 100%': '150%',
-                '100% 100%': '140%'
-              }[info.gradientStyle.center]
-            "
-            :fx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :fy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </radialGradient>
-        </template> -->
-      </defs>
+      <defs
+        v-html="
+          `
+        <style type='text/css'>
+      .shsb-st0{fill:#0E1F3D;}
+              .shsb-st1{fill:#203972;}
+              .shsb-st2{fill:url(#Shsb_1_);}
+              .shsb-st3{fill:url(#Shsb_2_);}
+              .shsb-st4{opacity:0.8;fill:#FFFFFF;enable-background:new    ;}
+              .shsb-st5{fill:url(#Shsb_3_);}
+              .shsb-st6{fill:url(#Shsb_4_);}
+              .shsb-st7{fill:url(#Shsb_5_);}
+              .shsb-st8{fill:url(#Shsb_6_);}
+              .shsb-st9{fill:url(#Shsb_7_);}
+              .shsb-st10{fill:url(#Shsb_8_);}
+              .shsb-st11{fill:url(#Shsb_9_);}
+              .shsb-st12{fill:#2C6977;}
+              .shsb-st13{fill:url(#Shsb_10_);}
+              .shsb-st14{fill:url(#Shsb_11_);}
+              .shsb-st15{fill:#0A3055;}
+              .shsb-st16{fill:url(#Shsb_12_);}
+              .shsb-st17{fill:url(#Shsb_13_);}
+              .shsb-st18{fill:#8CC9EA;}
+              .shsb-st19{fill:url(#Shsb_14_);}
+              .shsb-st20{fill:url(#Shsb_15_);}
+              .shsb-st21{fill:url(#Shsb_16_);}
+              .shsb-st22{fill:url(#Shsb_17_);}
+              .shsb-st23{fill:url(#Shsb_18_);}
+              .shsb-st24{fill:url(#Shsb_19_);}
+              .shsb-st25{fill:url(#Shsb_20_);}
+              .shsb-st26{fill:url(#Shsb_21_);}
+              .shsb-st27{fill:url(#Shsb_22_);}
+              .shsb-st28{fill:url(#Shsb_23_);}
+              .shsb-st29{fill:url(#Shsb_24_);}
+              .shsb-st30{fill:url(#Shsb_25_);}
+              .shsb-st31{fill:url(#Shsb_26_);}
+              .shsb-st32{fill:url(#Shsb_27_);}
+              .shsb-st33{fill:#489ACC;}
+              .shsb-st34{fill:url(#Shsb_28_);}
+              .shsb-st35{fill:#7BB8D6;}
+              .shsb-st36{fill:url(#Shsb_29_);}
+              .shsb-st37{opacity:0.5;}
+              .shsb-st38{fill:#FFFFFF;}
+              .shsb-st39{fill:url(#Shsb_30_);}
+              .shsb-st40{fill:url(#Shsb_31_);}
+              .shsb-st41{opacity:0.6;fill:#FF0000;}
+      </style>
+      `
+        "
+      ></defs>
       <g id="SVG_base">
         <polygon
           class="shsb-st0"
@@ -1121,136 +1046,5 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import (reference) "./../../../../assets/less/common.less";
-.shsb-st0 {
-  fill: #0e1f3d;
-}
-.shsb-st1 {
-  fill: #203972;
-}
-.shsb-st2 {
-  fill: url(#Shsb_1_);
-}
-.shsb-st3 {
-  fill: url(#Shsb_2_);
-}
-.shsb-st4 {
-  opacity: 0.8;
-  fill: #ffffff;
-  enable-background: new;
-}
-.shsb-st5 {
-  fill: url(#Shsb_3_);
-}
-.shsb-st6 {
-  fill: url(#Shsb_4_);
-}
-.shsb-st7 {
-  fill: url(#Shsb_5_);
-}
-.shsb-st8 {
-  fill: url(#Shsb_6_);
-}
-.shsb-st9 {
-  fill: url(#Shsb_7_);
-}
-.shsb-st10 {
-  fill: url(#Shsb_8_);
-}
-.shsb-st11 {
-  fill: url(#Shsb_9_);
-}
-.shsb-st12 {
-  fill: #2c6977;
-}
-.shsb-st13 {
-  fill: url(#Shsb_10_);
-}
-.shsb-st14 {
-  fill: url(#Shsb_11_);
-}
-.shsb-st15 {
-  fill: #0a3055;
-}
-.shsb-st16 {
-  fill: url(#Shsb_12_);
-}
-.shsb-st17 {
-  fill: url(#Shsb_13_);
-}
-.shsb-st18 {
-  fill: #8cc9ea;
-}
-.shsb-st19 {
-  fill: url(#Shsb_14_);
-}
-.shsb-st20 {
-  fill: url(#Shsb_15_);
-}
-.shsb-st21 {
-  fill: url(#Shsb_16_);
-}
-.shsb-st22 {
-  fill: url(#Shsb_17_);
-}
-.shsb-st23 {
-  fill: url(#Shsb_18_);
-}
-.shsb-st24 {
-  fill: url(#Shsb_19_);
-}
-.shsb-st25 {
-  fill: url(#Shsb_20_);
-}
-.shsb-st26 {
-  fill: url(#Shsb_21_);
-}
-.shsb-st27 {
-  fill: url(#Shsb_22_);
-}
-.shsb-st28 {
-  fill: url(#Shsb_23_);
-}
-.shsb-st29 {
-  fill: url(#Shsb_24_);
-}
-.shsb-st30 {
-  fill: url(#Shsb_25_);
-}
-.shsb-st31 {
-  fill: url(#Shsb_26_);
-}
-.shsb-st32 {
-  fill: url(#Shsb_27_);
-}
-.shsb-st33 {
-  fill: #489acc;
-}
-.shsb-st34 {
-  fill: url(#Shsb_28_);
-}
-.shsb-st35 {
-  fill: #7bb8d6;
-}
-.shsb-st36 {
-  fill: url(#Shsb_29_);
-}
-.shsb-st37 {
-  opacity: 0.5;
-}
-.shsb-st38 {
-  fill: #ffffff;
-}
-.shsb-st39 {
-  fill: url(#Shsb_30_);
-}
-.shsb-st40 {
-  fill: url(#Shsb_31_);
-}
-.shsb-st41 {
-  opacity: 0.6;
-  fill: #ff0000;
-}
-</style>
-<style lang="less">
-@import (less) "../../../../assets/less/components/component/device/common.less";
+// @import (less) "../../../../assets/less/components/component/device/common.less";
 </style>

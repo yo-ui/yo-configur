@@ -2037,7 +2037,7 @@ let componentLibrary = [
           },
           {
             name: "超时波流量计",
-            code: "deviceCommon",
+            code: "deviceCsbllj",
             alias: "csbllj",
             icon: "/static/img/configur/csbllj.png",
             data: {
@@ -2063,7 +2063,7 @@ let componentLibrary = [
           },
           {
             name: "插卡式水表",
-            code: "deviceCommon",
+            code: "deviceCkssb",
             alias: "ckssb",
             icon: "/static/img/configur/ckssb.png",
             data: {
@@ -2117,7 +2117,7 @@ let componentLibrary = [
           },
           {
             name: "集水井",
-            code: "deviceCommon",
+            code: "deviceJsj",
             alias: "jsj",
             icon: "/static/img/configur/jsj.png",
             data: {
@@ -2143,7 +2143,7 @@ let componentLibrary = [
           },
           {
             name: "水箱",
-            code: "deviceCommon",
+            code: "deviceSx",
             alias: "sx",
             icon: "/static/img/configur/sx.png",
             data: {
@@ -2251,7 +2251,7 @@ let componentLibrary = [
           },
           {
             name: "蓄水装置",
-            code: "deviceCommon",
+            code: "deviceXszz",
             alias: "xszz",
             icon: "/static/img/configur/xszz.png",
             data: {
@@ -2277,7 +2277,7 @@ let componentLibrary = [
           },
           {
             name: "手动水阀",
-            code: "deviceCommon",
+            code: "deviceSdsf",
             alias: "sdsf",
             icon: "/static/img/configur/sdsf.png",
             data: {
@@ -2303,10 +2303,11 @@ let componentLibrary = [
           },
           {
             name: "集水器",
-            code: "deviceCommon",
+            code: "deviceJsq",
             alias: "jsq",
             icon: "/static/img/configur/jsq.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/jsq.svg",
               // borderWidth: 0,
               // borderStyle: "none",
@@ -2330,10 +2331,11 @@ let componentLibrary = [
           },
           {
             name: "分水器",
-            code: "deviceCommon",
+            code: "deviceFsq",
             alias: "fsq",
             icon: "/static/img/configur/fsq.png",
             data: {
+              ...baseData,
               backgroundImage: "/static/img/svg/fsq.svg",
               // borderWidth: 0,
               // borderStyle: "none",

@@ -1095,7 +1095,7 @@ export default {
       info.textAlign = item;
     },
     openAll() {
-      this.activeNames = ["name", "outward", "margin","fontSet", "animation"];
+      this.activeNames = ["name", "outward", "margin", "fontSet", "animation"];
     },
     closeAll() {
       this.activeNames = ["name"];
