@@ -710,7 +710,12 @@ export default {
       ctrlKey = ctrlKey || metaKey; //(ctrl(cmd))
       // e.stopPropagation();
       bmCommon.log("index keydow", e);
-      let { activeCom = {}, activeComs = [], widgetList = [] } = this;
+      let {
+        activeCom = {},
+        copyCom = null,
+        activeComs = [],
+        widgetList = []
+      } = this;
       let { length = 0 } = activeComs || [];
       let { type = "", id = "", locked = false } = activeCom || {};
       if (keyCode == 83) {
@@ -742,7 +747,7 @@ export default {
         }
         return;
       }
-      if (length < 2) {
+      if (length < 2 && copyCom == null) {
         if (type == "canvas" || !id) {
           //如果选中的是画布或未选中组件则直接返回
           return;
@@ -907,13 +912,19 @@ export default {
     },
     // 粘贴
     pasteEvent(e) {
-      let { copyCom = {}, widgetList = [] } = this;
+      let {
+        copyCom = {},
+        widgetList = [],
+        getZoom: zoom = 1,
+        canvas = {}
+      } = this;
       let { length = 0 } = copyCom || {};
       let _activeComs = [];
       // let obj = widgetList[widgetList.length - 1] || {};
       let pos = {};
       if (e) {
-        pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
+        // pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
+        pos = bmCommon.getMousePosition(e);
       }
       let callback = item => {
         let orders = widgetList.map(item => item.order);
@@ -921,8 +932,11 @@ export default {
         let { width = 0, height = 0, left = 0, top = 0 } = item || {};
         if (e) {
           let { x = "", y = "" } = pos || {};
-          left = x - width / 2;
-          top = y - height / 2;
+          let offset = $(".view-box").offset();
+          let { left: __left = 0, top: __top = 0 } = offset || {};
+          let { left: _left = 0, top: _top = 0 } = canvas || {};
+          left = x/ zoom - width / 2 - _left / zoom - __left / zoom;
+          top = y/ zoom - height / 2 - _top / zoom - __top / zoom;
         }
         order += 1;
         let id = bmCommon.uuid();
