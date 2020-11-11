@@ -43,6 +43,7 @@ let baseData = {
   backgroundImage: "",
   backgroundSize: "100% 100%",
   backgroundColor: "",
+  backgroundPosition: "center",
   backgroundRepeat: "repeat",
   borderWidth: 0,
   comName: "", //

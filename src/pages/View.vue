@@ -149,13 +149,17 @@ export default {
     },
     bgStyle() {
       let { canvas = {} } = this;
-      let { backgroundSize = "", backgroundImage = "" } = canvas || {};
+      let { backgroundSize = "", backgroundImage = "", backgroundRepeat = "" } =
+        canvas || {};
       let styles = {};
       if (backgroundImage) {
-        styles["backgroundImage"] = `url(${backgroundImage})`;
+        styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
       }
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
+      }
+      if (backgroundRepeat) {
+        styles["backgroundRepeat"] = backgroundRepeat;
       }
       return styles || {};
     },

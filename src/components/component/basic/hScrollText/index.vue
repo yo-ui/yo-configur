@@ -317,27 +317,23 @@ export default {
     scrollLineAction(index) {
       let { info = {} } = this;
       let {
-        contentList = [],
+        // contentList = [],
         scrollHeight = 0,
+        textHeight = 0,
+        height = 0,
         lineHeight = 0,
         scrollTime = 0,
         lineTime = 0,
         stayTime = 0
       } = info || {};
-      let { length = 0 } = contentList || [];
+      // let { length = 0 } = contentList || [];
       // let item = contentList[index] || {};
       // let { height: _height = 0 } = item || {};
+      let _height = textHeight - height + lineHeight;
+      let length = Math.round(_height / lineHeight);
       scrollHeight += lineHeight;
       info.scrollHeight = scrollHeight;
-      bmCommon.log(
-        "scrollHeight=",
-        scrollHeight,
-        ",height=",
-        lineHeight,
-        "index=",
-        index
-      );
-      if (index >= length) {
+      if (index >= length - 1) {
         index = 0;
         this.endTimeoutId = setTimeout(() => {
           clearTimeout(this.endTimeoutId);
@@ -346,13 +342,24 @@ export default {
           info.scrollHeight = 0;
           this.scrollAction();
         }, stayTime);
+        return;
       }
+      bmCommon.log(
+        "scrollHeight=",
+        scrollHeight,
+        ",height=",
+        lineHeight,
+        "index=",
+        index,
+        "length=",
+        length
+      );
       this.timeoutId = setTimeout(() => {
         clearTimeout(this.timeoutId);
         this.transform = `translateY(-${scrollHeight}px)`;
         this.transition = `transform ${scrollTime}ms linear 0s`;
         this.scrollTimeoutId = setTimeout(() => {
-          clearTimeout(this.timeoutId);
+          clearTimeout(this.scrollTimeoutId);
           this.endTimeoutId = setTimeout(() => {
             clearTimeout(this.endTimeoutId);
             // this.transform = "";
@@ -362,6 +369,12 @@ export default {
         }, scrollTime);
       }, lineTime);
     }
+  },
+  beforeDestroy() {
+    clearTimeout(this.timeoutId);
+    clearTimeout(this.startTimeoutId);
+    clearTimeout(this.scrollTimeoutId);
+    clearTimeout(this.endTimeoutId);
   },
   watch: {
     "info.scrollTime"(newVal, oldVal) {
