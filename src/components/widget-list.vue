@@ -164,7 +164,7 @@ export default {
       e.preventDefault();
       // bmCommon.log("拖到目标元素", e.target);
       e.stopPropagation();
-      let { widgetList = [], zoom = 1 } = this;
+      let { widgetList = [], zoom = 1, canvas = {} } = this;
       let { originalEvent = {} } = e;
       let offset = $(".view-box").offset();
       let { dataTransfer = {} } = originalEvent;
@@ -185,7 +185,7 @@ export default {
         let { x = 0, y = 0 } = pos || {};
         let { width = 0, height = 0, alias = "", comDisabled = false } =
           data || {};
-        // let { left: _left = 0, top: _top = 0 } = canvas || {};
+        let { left: _left = 0, top: _top = 0 } = canvas || {};
         if (comDisabled) {
           this.$$msgWarn("当前组件不可用");
           return;
@@ -193,8 +193,8 @@ export default {
         // bmCommon.log("释放当前元素", width, height, left, top, x, y);
         // left = x - left - _left - width / 2;
         // top = y - top - _top - height / 2;
-        left = x / zoom - left / zoom - width / 2;
-        top = y / zoom - top / zoom - height / 2;
+        left = x / zoom - _left / zoom - left / zoom - width / 2;
+        top = y / zoom - _top / zoom - top / zoom - height / 2;
         let orders = widgetList.map(item => item.order);
         let order = 1;
         if (orders && orders.length > 0) {
@@ -213,6 +213,7 @@ export default {
           this.setLinkPoint(item);
         }
         widgetList.push(item);
+        canvas.action = "select";
         this.createHistoryAction();
         this.$nextTick(() => {
           this.selectComAction(id);
@@ -224,7 +225,7 @@ export default {
       this.dragleaveEvent(e);
     },
     clickEvent(item) {
-      let { widgetList = [] } = this;
+      let { widgetList = [], canvas = {} } = this;
       let {
         data = {},
         name = "",
@@ -260,6 +261,7 @@ export default {
         this.setLinkPoint(item);
       }
       widgetList.push(_item);
+      canvas.action = "select";
       this.createHistoryAction();
       this.selectComAction(id);
       // this.createRecordAction();

@@ -326,6 +326,7 @@ export default {
         top = 0,
         height = "",
         width = "",
+        // action = "",
         backgroundType = "",
         backgroundColor = "#fff"
         // backgroundImage = ""
@@ -338,6 +339,9 @@ export default {
         transform: `scale(${zoom})`,
         webkitTransform: `scale(${zoom})`
       };
+      // if (action == "move") {
+      //   styles["transformOrigin"] = `center`;
+      // }
       if (width) {
         styles["width"] = `${width}px`;
       }
