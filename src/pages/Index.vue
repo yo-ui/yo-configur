@@ -929,14 +929,22 @@ export default {
       let callback = item => {
         let orders = widgetList.map(item => item.order);
         let order = Math.max(...orders);
-        let { width = 0, height = 0, left = 0, top = 0 } = item || {};
+        let {
+          width = 0,
+          height = 0,
+          left = 0,
+          top = 0,
+          pasteLeft = 0,
+          pasteTop = 0
+        } = item || {};
         if (e) {
           let { x = "", y = "" } = pos || {};
           let offset = $(".view-box").offset();
           let { left: __left = 0, top: __top = 0 } = offset || {};
           let { left: _left = 0, top: _top = 0 } = canvas || {};
-          left = x/ zoom - width / 2 - _left / zoom - __left / zoom;
-          top = y/ zoom - height / 2 - _top / zoom - __top / zoom;
+          left =
+            x / zoom - width / 2 - _left / zoom - __left / zoom + pasteLeft;
+          top = y / zoom - height / 2 - _top / zoom - __top / zoom + pasteTop;
         }
         order += 1;
         let id = bmCommon.uuid();
@@ -953,7 +961,15 @@ export default {
         }
       };
       if (length > 1) {
+        copyCom.sort((a, b) => {
+          return a.left - b.left;
+        });
+        let [first = {}] = copyCom || [];
+        let { left = 0, top = 0 } = first || {};
         copyCom.forEach(item => {
+          //设置粘贴初始位置
+          item.pasteLeft = item.left - left;
+          item.pasteTop = item.top - top;
           callback(item);
         });
         this.setActiveComs(_activeComs);

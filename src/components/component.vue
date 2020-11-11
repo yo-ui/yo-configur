@@ -349,6 +349,7 @@ export default {
         rotate: originRotate = ""
       } = info || {};
       this.direction = direction;
+      this.setActiveCom(info);
       this.initMove({
         startX: x,
         startY: y,
