@@ -211,8 +211,7 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-
-const pointCode = "SwSts";
+let pointCode = "SwSts";
 export default {
   name: "deviceDenggCom",
   data() {
@@ -319,9 +318,10 @@ export default {
     init() {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
-        let { id = "" } = info || {};
+        let { id = "", bindData = {} } = info || {};
         let { $vm } = window;
-        // let { deviceId = "" } = bindData || {};
+        let { devicePoint = "" } = bindData || {};
+        pointCode = devicePoint;
         $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
           bmCommon.log("deviceShsbCom", device);
           let { pointList = [] } = device || {};

@@ -2419,7 +2419,7 @@ let componentLibrary = [
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/dengg.svg",
-              dataType: "device",
+              dataType: "point",
               infoType: "device",
               // borderWidth: 0,
               // borderStyle: "none",
@@ -2447,7 +2447,7 @@ let componentLibrary = [
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/dengp.svg",
-              dataType: "device",
+              dataType: "point",
               infoType: "device", //显示详情组件前缀名
               // borderWidth: 0,
               // borderStyle: "none",

@@ -725,6 +725,18 @@ export default {
           $vm.$emit("save");
         }
         return;
+      } else if (keyCode == 90) {
+        // 撤销 Ctrl+Z
+        if (ctrlKey) {
+          e.preventDefault();
+          $vm.$emit("cancel");
+        }
+      } else if (keyCode == 89) {
+        // 还原 Ctrl+Y
+        if (ctrlKey) {
+          e.preventDefault();
+          $vm.$emit("resume");
+        }
       } else if (keyCode == 65) {
         // ctrl+a 全选
         if (ctrlKey) {
@@ -866,7 +878,6 @@ export default {
         // Delete
         this.deleteEvent();
       }
-      this.createHistoryAction();
     },
     //剪切
     cutEvent() {
@@ -920,31 +931,35 @@ export default {
       } = this;
       let { length = 0 } = copyCom || {};
       let _activeComs = [];
+      let _activeCom = {};
       // let obj = widgetList[widgetList.length - 1] || {};
       let pos = {};
       if (e) {
         // pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
         pos = bmCommon.getMousePosition(e);
       }
-      let callback = item => {
+      let { x = "", y = "" } = pos || {};
+      let offset = $(".view-box").offset();
+      let { left: _left = 0, top: _top = 0 } = canvas || {};
+      let pasteLeft = 0,
+        pasteTop = 0;
+      let callback = (item, index) => {
         let orders = widgetList.map(item => item.order);
         let order = Math.max(...orders);
-        let {
-          width = 0,
-          height = 0,
-          left = 0,
-          top = 0,
-          pasteLeft = 0,
-          pasteTop = 0
-        } = item || {};
+        let { width = 0, height = 0, left = 0, top = 0 } = item || {};
         if (e) {
-          let { x = "", y = "" } = pos || {};
-          let offset = $(".view-box").offset();
           let { left: __left = 0, top: __top = 0 } = offset || {};
-          let { left: _left = 0, top: _top = 0 } = canvas || {};
-          left =
-            x / zoom - width / 2 - _left / zoom - __left / zoom + pasteLeft;
-          top = y / zoom - height / 2 - _top / zoom - __top / zoom + pasteTop;
+          let temp_left = x / zoom - width / 2 - _left / zoom - __left / zoom;
+          let temp_top = y / zoom - height / 2 - _top / zoom - __top / zoom;
+          if (index == 0) {
+            pasteLeft = temp_left - left;
+            pasteTop = temp_top - top;
+            left = temp_left;
+            top = temp_top;
+          } else {
+            left = left + pasteLeft;
+            top = top + pasteTop;
+          }
         }
         order += 1;
         let id = bmCommon.uuid();
@@ -958,25 +973,36 @@ export default {
         widgetList.push(_item);
         if (length > 1) {
           _activeComs.push(_item);
+        } else {
+          _activeCom = _item;
         }
       };
       if (length > 1) {
         copyCom.sort((a, b) => {
-          return a.left - b.left;
+          return a.order - b.order;
         });
-        let [first = {}] = copyCom || [];
-        let { left = 0, top = 0 } = first || {};
-        copyCom.forEach(item => {
-          //设置粘贴初始位置
-          item.pasteLeft = item.left - left;
-          item.pasteTop = item.top - top;
-          callback(item);
+        // let minLeft = Math.min.call(
+        //   Math,
+        //   ...copyCom.map(item => item.left || 0)
+        // );
+        // let minTop = Math.min.call(
+        //   Math,
+        //   ...copyCom.map(item => item.left || 0)
+        // );
+        // let [first = {}] = copyCom || [];
+        // let { left = 0, top = 0 } = first || {};
+        copyCom.forEach((item, index) => {
+          // //设置粘贴初始位置
+          // item.pasteLeft = item.left - minLeft;
+          // item.pasteTop = item.top - minTop;
+          callback(item, index);
         });
         this.setActiveComs(_activeComs);
       } else {
         callback(copyCom || {});
-        this.setActiveCom(copyCom);
+        this.setActiveCom(_activeCom);
       }
+      this.createHistoryAction();
       this.showContextMenuStatus = false;
     },
     deleteItem(item = {}) {
@@ -1005,12 +1031,14 @@ export default {
       }
       this.selectComAction();
       this.showContextMenuStatus = false;
+      this.createHistoryAction();
     },
     // 锁定/解锁
     lockEvent(locked) {
       let { activeCom = {} } = this;
       activeCom.locked = locked;
       this.showContextMenuStatus = false;
+      this.createHistoryAction();
     },
     // 上移一层
     moveUpEvent() {
@@ -1024,6 +1052,7 @@ export default {
       // let { order: _order = "" } = obj || {};
       activeCom.order = _order;
       obj.order = order;
+      this.createHistoryAction();
     },
     // 下移一层
     moveDownEvent() {
@@ -1038,6 +1067,7 @@ export default {
       // let { order: _order = "" } = obj || {};
       activeCom.order = _order;
       obj.order = order;
+      this.createHistoryAction();
     },
     // 置底
     moveBottomEvent() {
@@ -1053,6 +1083,7 @@ export default {
         item.order++;
       });
       activeCom.order = 0;
+      this.createHistoryAction();
     },
     // 置顶
     moveTopEvent() {
@@ -1065,6 +1096,7 @@ export default {
         return;
       }
       activeCom.order = order + 1;
+      this.createHistoryAction();
     },
     // // 获取登录信息
     // commonVerifyInfoFunc(callback) {

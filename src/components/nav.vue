@@ -374,8 +374,17 @@ export default {
     // 初始化
     init() {
       // this.storeProductFunc();
+      //保存
       $vm.$on("save", () => {
         this.saveEvent();
+      });
+      //撤销
+      $vm.$on("cancel", () => {
+        this.cancelEvent();
+      });
+      //还原
+      $vm.$on("resume", () => {
+        this.resumeEvent();
       });
     },
     saveEvent() {

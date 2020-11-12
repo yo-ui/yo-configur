@@ -131,7 +131,7 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-const pointCode = "SwSts";
+let pointCode = "SwSts";
 export default {
   name: "deviceKgCom",
   data() {
@@ -264,11 +264,12 @@ export default {
     controlEvent() {
       let { info = {}, pointValue = "" } = this;
       let { bindData = {} } = info;
-      let { deviceId = "" } = bindData || {};
+      let { deviceId = "", devicePoint = "" } = bindData || {};
       if (!deviceId) {
         return;
       }
       // let { $vm } = window;
+      pointCode = devicePoint;
       let point = pointCode;
       let value = pointValue === 0 ? 1 : 0;
       $vm.$emit("control", { deviceId, point, value });
