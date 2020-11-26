@@ -25,7 +25,12 @@
           (info.type == 'panel' &&
             info.showCoverStatus &&
             activeCom.type == 'panel') ||
-          activeCom.type == 'canvas'
+          activeCom.type == 'canvas' ||
+          (info.type == 'panel' &&
+            info.children &&
+            info.children.findIndex(item => item.id == activeCom.id) < 0 &&
+            activeCom.type != 'panel' &&
+            activeCom.type != 'canvas')
       "
       @dblclick.prevent.stop="coverEvent"
     >
@@ -226,30 +231,38 @@ export default {
       return ids || [];
     },
     boxClasses() {
-      let { info = {}, animate = "", locked = false, activeComIds = "" } = this;
+      let {
+        info = {},
+        animate = "",
+        locked = false,
+        activeComIds = "",
+        showType = ""
+      } = this;
       let { type = "" } = info || {};
       let classes = [];
-      if (animate) {
-        classes.push("animated");
-        classes.push(`${animate}`);
-      }
-      if (type) {
-        classes.push(`${type}`);
-      }
-      if (activeComIds.indexOf(info.id) > -1) {
-        classes.push("active");
-      }
-      if (locked) {
-        classes.push("lock");
-      }
-      if (
-        activeComIds &&
-        activeComIds.length > 0 &&
-        !(activeComIds.indexOf(info.id) > -1) &&
-        // activeCom.type != 'canvas'&&
-        type != "panel"
-      ) {
-        classes.push("opacity");
+      if (showType == "edit") {
+        if (animate) {
+          classes.push("animated");
+          classes.push(`${animate}`);
+        }
+        if (type) {
+          classes.push(`${type}`);
+        }
+        if (activeComIds.indexOf(info.id) > -1) {
+          classes.push("active");
+        }
+        if (
+          activeComIds &&
+          activeComIds.length > 0 &&
+          !(activeComIds.indexOf(info.id) > -1) &&
+          // activeCom.type != 'canvas'&&
+          type != "panel"
+        ) {
+          classes.push("opacity");
+        }
+        if (locked) {
+          classes.push("lock");
+        }
       }
       return classes.join(" ");
     },

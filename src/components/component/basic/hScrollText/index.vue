@@ -286,38 +286,22 @@ export default {
         let height = text.offsetHeight;
         info.textHeight = height;
         this.scrollAction();
-        // this.timeoutId=setTimeout(()=>{
-        //   clearTimeout(this.timeoutId)
-        //   info.transform=''
-        //   this.scrollTimeoutId=setTimeout(()=>{
-        //     clearTimeout(this.timeoutId)
-        //   },scrollTime)
-        // },stayTime)
       });
     },
     scrollAction() {
       let { info = {} } = this;
-      let {
-        stayTime = 0
-        // scrollTime = 0,
-        // textHeight = 0,
-        // height = 0,
-        // contentList = []
-      } = info || {};
+      let { stayTime = 0 } = info || {};
       let index = 0;
       this.startTimeoutId = setTimeout(() => {
         clearTimeout(this.startTimeoutId);
+        info.scrollHeight = 0;
         this.scrollLineAction(index);
-        // this.scrollTimeoutId = setTimeout(() => {
-        //   clearTimeout(this.scrollTimeoutId);
-        // }, scrollTime);
       }, stayTime);
     },
     //每行的滚动
     scrollLineAction(index) {
       let { info = {} } = this;
       let {
-        // contentList = [],
         scrollHeight = 0,
         textHeight = 0,
         height = 0,
@@ -326,9 +310,6 @@ export default {
         lineTime = 0,
         stayTime = 0
       } = info || {};
-      // let { length = 0 } = contentList || [];
-      // let item = contentList[index] || {};
-      // let { height: _height = 0 } = item || {};
       let _height = textHeight - height + lineHeight;
       let length = Math.round(_height / lineHeight);
       scrollHeight += lineHeight;
@@ -344,16 +325,16 @@ export default {
         }, stayTime);
         return;
       }
-      bmCommon.log(
-        "scrollHeight=",
-        scrollHeight,
-        ",height=",
-        lineHeight,
-        "index=",
-        index,
-        "length=",
-        length
-      );
+      // bmCommon.log(
+      //   "scrollHeight=",
+      //   scrollHeight,
+      //   ",height=",
+      //   lineHeight,
+      //   "index=",
+      //   index,
+      //   "length=",
+      //   length
+      // );
       this.timeoutId = setTimeout(() => {
         clearTimeout(this.timeoutId);
         this.transform = `translateY(-${scrollHeight}px)`;

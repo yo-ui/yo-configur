@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-image-style-com">
+  <div class="bm-panel-style-com">
     <!-- <h2>{{ $lang("功能选择") }}</h2>
     <p>
       <i
@@ -26,9 +26,9 @@
     </p> -->
 
     <el-collapse v-model="activeNames">
-      <el-collapse-item :title="info.name" name="name" disabled>
+      <el-collapse-item :title="infoName" name="name" disabled>
         <template slot="title">
-          {{ info.name }}
+          {{ infoName }}
           <div class="right">
             <el-tooltip
               :content="$lang('全部折叠')"
@@ -766,12 +766,12 @@
 </template>
 
 <script>
-// import bmCommon from "@/common/common";
+import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "imageStyleCom",
+  name: "panelStyleCom",
   data() {
     return {
       activeNames: ["name"],
@@ -803,7 +803,49 @@ export default {
       )
   },
   computed: {
-    ...mapGetters(),
+    ...mapGetters({
+      activeCom: "canvas/getActiveCom", //选中对象
+      activeComs: "canvas/getActiveComs" //选中多选对象
+    }),
+    infoName() {
+      let { activeComs = [], activeCom = {} } = this;
+      let { children = [], name = "" } = activeCom || {};
+      let { length = 0 } = activeComs || [];
+      // let com = ""; //`${type}StyleCom`;
+      // type = styleCode || type;
+      if (length > 1) {
+        let set = new Set();
+        activeComs.forEach(item => {
+          let { name = "" } = item || {};
+          set.add(name);
+        });
+        let { size = 0 } = set || {};
+        if (size > 0) {
+          if (size == 1 && !set.has("")) {
+            [name = ""] = Array.from(set);
+          } else {
+            name = "组合";
+          }
+        }
+      } else {
+        let set = new Set();
+        children.forEach(item => {
+          let { name = "" } = item || {};
+          set.add(name);
+        });
+        let { size = 0 } = set || {};
+        if (size > 0) {
+          if (size == 1 && !set.has("")) {
+            [name = ""] = Array.from(set);
+          } else {
+            name = "组合";
+          }
+        }
+      }
+      bmCommon.log(name)
+      // com = `${type}StyleCom`;
+      return name;
+    },
     gradientStyle() {
       let { info = {}, gradientStyleMap = [] } = this;
       let { gradientStyle = {} } = info || {};

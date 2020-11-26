@@ -647,6 +647,7 @@ export default {
         let index = activeComs.findIndex(item => item.id == id);
         if (index < 0) {
           //如果未找到当前组件 在已选组件中 说明选择新组件  清除多选组件
+          activeComs = [];
           context.commit("setActiveComs", []);
         }
         try {
@@ -708,9 +709,10 @@ export default {
         }
       }
       let { length = 0 } = activeComs || [];
-      activeCom = canvas;
-      if (length == 1) {
+      if (length > 0) {
         [activeCom = {}] = activeComs || [];
+      } else {
+        activeCom = canvas;
       }
       context.commit("setActiveCom", activeCom);
       // context.commit("setActiveCom", activeCom);

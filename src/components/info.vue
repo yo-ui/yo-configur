@@ -129,11 +129,48 @@ export default {
     }),
     styleCom() {
       let { activeComs = [], activeCom = {} } = this;
-      return `${
-        activeComs && activeComs.length > 1
-          ? "group"
-          : activeCom.styleCode || activeCom.type
-      }StyleCom`;
+      let { type = "", children = [], styleCode = "" } = activeCom || {};
+      let { length = 0 } = activeComs || [];
+      let com = ""; //`${type}StyleCom`;
+      type = styleCode || type;
+      if (length > 1) {
+        let set = new Set();
+        activeComs.forEach(item => {
+          let { type = "" } = item || {};
+          set.add(type);
+        });
+        let { size = 0 } = set || {};
+        if (size > 0) {
+          if (size == 1 && !set.has("")) {
+            [type = ""] = Array.from(set);
+            // com = `${type}StyleCom`;
+          } else {
+            type = "panel";
+          }
+        }
+      } else {
+        let set = new Set();
+        children.forEach(item => {
+          let { type = "" } = item || {};
+          set.add(type);
+        });
+        let { size = 0 } = set || {};
+        if (size > 0) {
+          if (size == 1 && !set.has("")) {
+            [type = ""] = Array.from(set);
+            // com = `${type}StyleCom`;
+          } else {
+            type = "panel";
+          }
+        }
+      }
+      com = `${type}StyleCom`;
+      return com;
+      // return `${
+      //   activeComs && length > 1
+      //     ? "group"
+      //     : activeCom.styleCode || activeCom.type
+      // }StyleCom`;
     },
     dragOptions() {
       return {

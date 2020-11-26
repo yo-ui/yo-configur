@@ -60,14 +60,47 @@
                 <bm-com
                   slot="reference"
                   class="preview"
-                  :class="{
-                    locked: item.locked
-                  }"
                   :data-type="item.type"
                   :data-id="item.id"
                   :info="item"
                   :key="index"
-                ></bm-com>
+                >
+                  <template v-if="item.children && item.children.length > 0">
+                    <template v-for="(_item, _index) in item.children">
+                      <el-popover
+                        v-if="
+                          _item.bindData &&
+                            _item.bindData.deviceId &&
+                            !_item.bindData.devicePoint &&
+                            _item.infoType
+                        "
+                        popper-class="device-info-popover"
+                        placement="right"
+                        :key="_index"
+                        @show="showInfoEvent(_item)"
+                        width="400"
+                        :ref="`popover_${_item.id}`"
+                        trigger="hover"
+                      >
+                        <!-- v-for="(_item, _index) in item.children" -->
+                        <component
+                          :ref="`bmInfoCom_${_item.id}`"
+                          @load="loadEvent"
+                          :is="`${_item.infoType}InfoCom`"
+                        />
+                        <bm-com
+                          slot="reference"
+                          class="preview"
+                          :data-type="_item.type"
+                          :data-id="_item.id"
+                          :info="_item"
+                          :key="_index"
+                        >
+                        </bm-com>
+                      </el-popover>
+                    </template>
+                  </template>
+                </bm-com>
               </el-popover>
               <bm-com
                 v-else
@@ -76,7 +109,19 @@
                 :data-id="item.id"
                 :info="item"
                 :key="index"
-              ></bm-com>
+              >
+                <template v-if="item.children && item.children.length > 0">
+                  <bm-com
+                    class="preview"
+                    v-for="(_item, _index) in item.children"
+                    :data-type="_item.type"
+                    :data-id="_item.id"
+                    :info="_item"
+                    :key="_index"
+                  >
+                  </bm-com>
+                </template>
+              </bm-com>
             </template>
           </div>
         </div>
@@ -413,17 +458,17 @@ export default {
         w_width = 1280;
       }
       let { canvas = {} } = this;
-      let { width = 0, height = 0 } = canvas || {};
-      let h_ratio = w_height / height;
+      let { width = 0 } = canvas || {};
+      // let h_ratio = w_height / height;
       let w_ratio = w_width / width;
       let scale = w_ratio;
       // let left = (w_width - width) / 2;
       // let top = ((w_height - height) * scale) / 2;
-      if (h_ratio > w_ratio) {
-        scale = h_ratio;
-        // left = ((w_width - width) * scale) / 2;
-        // top = (w_height - height) / 2;
-      }
+      // if (h_ratio < w_ratio) {
+      //   scale = h_ratio;
+      //   // left = ((w_width - width) * scale) / 2;
+      //   // top = (w_height - height) / 2;
+      // }
       // canvas.left = left;
       // canvas.top = top;
       this.setZoom(scale);

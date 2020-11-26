@@ -226,8 +226,10 @@ export default {
         });
         let { length = 0 } = activeComs || [];
         let activeCom = canvas;
-        if (length == 1) {
+        if (length > 0) {
           [activeCom = {}] = activeComs || [];
+        } else {
+          activeCom = canvas;
         }
         this.setActiveCom(activeCom);
         this.setActiveComs(activeComs);
