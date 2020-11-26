@@ -32,29 +32,35 @@
             </div>
             <bm-com
               class="edit"
-              :class="{
-                active: activeComIds.indexOf(item.id) > -1,
-                locked: item.locked,
-                opacity:
-                  activeComIds &&
-                  activeComIds.length > 0 &&
-                  !(activeComIds.indexOf(item.id) > -1) &&
-                  activeCom.type != 'canvas'
-              }"
               v-for="(item, index) in widgetList"
               :data-type="item.type"
               :data-id="item.id"
               :info="item"
               :key="index"
-            ></bm-com>
+            >
+              <template v-if="item.children && item.children.length > 0">
+                <bm-com
+                  class="edit"
+                  v-for="(_item, _index) in item.children"
+                  :data-type="_item.type"
+                  :data-id="_item.id"
+                  :info="_item"
+                  :key="_index"
+                >
+                </bm-com>
+              </template>
+            </bm-com>
             <bm-lines ref="bmLines"></bm-lines>
+            <!-- <bm-group ref="bmGroup" v-if="isSameGroup">{{
+              isSameGroup
+            }}</bm-group> -->
           </div>
           <div class="slider-box" @mousedown.stop>
             {{ $toBig(zoom, 0) + "%" }}
             <!-- @input="changeZoomEvent" -->
             <el-slider
               v-model="zoom"
-              :max="200"
+              :max="1000"
               @mousedown.stop
               :format-tooltip="val => val + '%'"
             ></el-slider>
@@ -72,12 +78,24 @@
       @mouseleave="hideContextMenuEvent"
       :style="contextMenuStyle"
     >
-      <!-- <li
+      <li
         @click="cutEvent"
         v-if="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("添加到自定义") }} <small>Ctrl+X</small>
-      </li> -->
+      </li>
+      <li
+        @click="composeEvent"
+        v-if="showContextMenuType == 1 && activeComs && activeComs.length > 1"
+      >
+        {{ $lang("组合") }} <small>Ctrl+G</small>
+      </li>
+      <li
+        @click="unComposeEvent"
+        v-if="showContextMenuType == 1 && activeCom.type == 'panel'"
+      >
+        {{ $lang("打散") }} <small>Ctrl+Shift+G</small>
+      </li>
       <li
         @click="cutEvent"
         v-if="showContextMenuType == 1 && !activeCom.locked"
@@ -182,6 +200,8 @@ export default {
     //   import(/* webpackChunkName: "iot-header-com" */ "@/components/header"),
     bmLines: () =>
       import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
+    // bmGroup: () =>
+    //   import(/* webpackChunkName: "iot-group-com" */ "@/components/group"),
     bmSelect: () =>
       import(/* webpackChunkName: "iot-select-com" */ "@/components/select"),
     bmControl: () =>
@@ -226,6 +246,33 @@ export default {
       let order = Math.min(...orders);
       return order;
     },
+    // isSameGroup() {
+    //   let { activeComs = [], widgetList = [], activeCom = {} } = this;
+    //   let set = new Set();
+    //   let { length = 0 } = activeComs || [];
+    //   if (length > 0) {
+    //     activeComs.forEach(item => {
+    //       let { groupList = [] } = item || {};
+    //       let [group = ""] = groupList || [];
+    //       // if (group) {
+    //       set.add(group);
+    //       // }
+    //     });
+    //     return set.size == 1 && !set.has("");
+    //   } else {
+    //     let { groupList = [], type = "" } = activeCom || {};
+    //     let [group = ""] = groupList || [];
+    //     let widgets = [];
+    //     if (group && type != "canvas") {
+    //       widgets = widgetList.filter(item => {
+    //         let { groupList = [] } = item || {};
+    //         let [_group = ""] = groupList || [];
+    //         return _group == group;
+    //       });
+    //     }
+    //     return widgets.length > 1;
+    //   }
+    // },
     topOrder() {
       let { widgetList = [] } = this;
       let orders = widgetList.map(item => item.order);
@@ -250,26 +297,6 @@ export default {
       set(val) {
         this.setZoom(val / 100);
       }
-    },
-    activeComIds() {
-      // let { activeCom = {} } = this;
-      // let { id = "" } = activeCom || {};
-      // return id || "";
-      let {
-        // widgetList = [],
-        // selectBox = {},
-        activeComs = [],
-        activeCom = {}
-      } = this;
-      let ids = [];
-      let { length = 0 } = activeComs || [];
-      if (length > 1) {
-        ids = activeComs.map(item => item.id);
-      } else {
-        let { id = "" } = activeCom || {};
-        ids.push(id);
-      }
-      return ids || [];
     },
     gridStyle() {
       let { canvas = {} } = this;
@@ -418,7 +445,7 @@ export default {
           canvas.top = 0;
           this.setCanvas(canvas);
           widgetList.forEach(item => {
-            let { alias = "", type = "" } = item || {};
+            let { alias = "", type = ""} = item || {};
             if (!alias) {
               alias = type;
             }
@@ -878,6 +905,16 @@ export default {
         // Delete
         this.deleteEvent();
       }
+    },
+    //打散事件
+    unComposeEvent() {
+      $vm.$emit("un-compose");
+      this.showContextMenuStatus = false;
+    },
+    //组合事件
+    composeEvent() {
+      $vm.$emit("compose");
+      this.showContextMenuStatus = false;
     },
     //剪切
     cutEvent() {

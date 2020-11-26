@@ -20,13 +20,7 @@
         class="com-style"
         v-if="activeCom.type"
         :info="activeCom"
-        :is="
-          `${
-            activeComs && activeComs.length > 1
-              ? 'group'
-              : activeCom.styleCode || activeCom.type
-          }StyleCom`
-        "
+        :is="styleCom"
       ></component>
     </template>
     <template v-if="activeIndex == 'dataBind'">
@@ -133,7 +127,14 @@ export default {
       activeCom: "canvas/getActiveCom", //选中对象
       activeComs: "canvas/getActiveComs" //选中多选对象
     }),
-
+    styleCom() {
+      let { activeComs = [], activeCom = {} } = this;
+      return `${
+        activeComs && activeComs.length > 1
+          ? "group"
+          : activeCom.styleCode || activeCom.type
+      }StyleCom`;
+    },
     dragOptions() {
       return {
         animation: 0,

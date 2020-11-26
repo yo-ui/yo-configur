@@ -1,56 +1,75 @@
 let widgets = {
+  // 静态文本
   textCom: () =>
     import(
       /* webpackChunkName: "bm-component-text" */ "@/components/component/basic/text/index.vue"
     ),
+  // 容器 组合
+  panelCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-panel" */ "@/components/component/basic/panel/index.vue"
+    ),
+  // 动态文本
   dynamicTextCom: () =>
     import(
       /* webpackChunkName: "bm-component-dynamicText" */ "@/components/component/basic/dynamicText/index.vue"
     ),
+  // 按钮
   buttonCom: () =>
     import(
       /* webpackChunkName: "bm-component-button" */ "@/components/component/basic/button/index.vue"
     ),
+  // 图片
   imageCom: () =>
     import(
       /* webpackChunkName: "bm-component-image" */ "@/components/component/basic/image/index.vue"
     ),
+  // 显示
   displayCom: () =>
     import(
       /* webpackChunkName: "bm-component-display" */ "@/components/component/basic/display/index.vue"
     ),
+  // 块
   blockCom: () =>
     import(
       /* webpackChunkName: "bm-component-block" */ "@/components/component/basic/block/index.vue"
     ),
+  // 表格
   tableCom: () =>
     import(
       /* webpackChunkName: "bm-component-table" */ "@/components/component/basic/table/index.vue"
     ),
+  // 横向滚动文本
   vScrollTextCom: () =>
     import(
       /* webpackChunkName: "bm-component-vScrollText" */ "@/components/component/basic/vScrollText/index.vue"
     ),
+  // 竖向滚动文本
   hScrollTextCom: () =>
     import(
       /* webpackChunkName: "bm-component-hScrollText" */ "@/components/component/basic/hScrollText/index.vue"
     ),
+  // 富文本
   richTextCom: () =>
     import(
       /* webpackChunkName: "bm-component-richText" */ "@/components/component/basic/richText/index.vue"
     ),
+  // 计分牌
   scoreBoardCom: () =>
     import(
       /* webpackChunkName: "bm-component-scoreBoard" */ "@/components/component/basic/scoreBoard/index.vue"
     ),
+  // 计时器
   timeTextCom: () =>
     import(
       /* webpackChunkName: "bm-component-timeText" */ "@/components/component/basic/timeText/index.vue"
     ),
+  // 倒计时
   countdownTextCom: () =>
     import(
       /* webpackChunkName: "bm-component-countdownText" */ "@/components/component/basic/countdownText/index.vue"
     ),
+  // 视频
   videoCom: () =>
     import(
       /* webpackChunkName: "bm-component-video" */ "@/components/component/basic/video/index.vue"
@@ -461,27 +480,32 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-canvas-style" */ "@/components/component/canvas-style.vue"
     ),
-    // 组
+  // 组
   groupStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-group-style" */ "@/components/component/group-style.vue"
     ),
-    // 静态文本
+  // 静态文本
   textStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-text-style" */ "@/components/component/basic/text/style.vue"
     ),
-    // 动态文本
+  // 容器 组合
+  panelStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-panel-style" */ "@/components/component/basic/panel/style.vue"
+    ),
+  // 动态文本
   dynamicTextStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-dynamicText-style" */ "@/components/component/basic/dynamicText/style.vue"
     ),
-    // 按钮
+  // 按钮
   buttonStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-button-style" */ "@/components/component/basic/button/style.vue"
     ),
-    // 图片
+  // 图片
   imageStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-image-style" */ "@/components/component/basic/image/style.vue"
@@ -490,22 +514,22 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-display-style" */ "@/components/component/basic/display/style.vue"
     ),
-    // 块状组件
+  // 块状组件
   blockStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-block-style" */ "@/components/component/basic/block/style.vue"
     ),
-    // 表格
+  // 表格
   tableStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-table-style" */ "@/components/component/basic/table/style.vue"
     ),
-    // 横向滚动文本
+  // 横向滚动文本
   vScrollTextStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-vScrollText-style" */ "@/components/component/basic/vScrollText/style.vue"
     ),
-    // 纵向滚动文本
+  // 纵向滚动文本
   hScrollTextStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-hScrollText-style" */ "@/components/component/basic/hScrollText/style.vue"
@@ -514,42 +538,42 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-richText-style" */ "@/components/component/basic/richText/style.vue"
     ),
-    // 记分牌
+  // 记分牌
   scoreBoardStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-scoreBoard-style" */ "@/components/component/basic/scoreBoard/style.vue"
     ),
-    // 时间
+  // 时间
   timeTextStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-timeText-style" */ "@/components/component/basic/timeText/style.vue"
     ),
-    // 倒计时
+  // 倒计时
   countdownTextStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-countdownText-style" */ "@/components/component/basic/countdownText/style.vue"
     ),
-    // 视频
+  // 视频
   videoStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-video-style" */ "@/components/component/basic/video/style.vue"
     ),
-    // 视频流
+  // 视频流
   hlsVideoStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-hls-video-style" */ "@/components/component/basic/hlsVideo/style.vue"
     ),
-    // switch 按钮
+  // switch 按钮
   switchStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-switch-style" */ "@/components/component/basic/switch/style.vue"
     ),
-    // 百分比进度条
+  // 百分比进度条
   progressbarStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-progressbar-style" */ "@/components/component/basic/progressbar/style.vue"
     ),
-    // iframe
+  // iframe
   iframeStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-iframe-style" */ "@/components/component/basic/iframe/style.vue"

@@ -856,6 +856,57 @@ export default {
       let { info = {} } = this;
       info.content = url;
     },
+    sliderChangeEvent(values, index) {
+      let { info = {} } = this;
+      let { gradientStyle = {} } = info || {};
+      let { valueList = [] } = gradientStyle || {};
+      let { length = 0 } = valueList || [];
+      if (index == 0) {
+        values[0] = 0;
+        this.$refs.slider?.setValue(values);
+      } else if (index == length - 1) {
+        values[length - 1] = 100;
+        this.$refs.slider?.setValue(values);
+      }
+      gradientStyle.valueIndex = index;
+      valueList[index].value = values[index];
+    },
+    sliderDragStartEvent(index) {
+      let { info = {} } = this;
+      let { gradientStyle = {} } = info || {};
+      gradientStyle.valueIndex = index;
+    },
+    //添加渐变光圈
+    addApertureEvent() {
+      let { info = {} } = this;
+      let { gradientStyle = {} } = info || {};
+      let { valueList = [], values = [] } = gradientStyle || {};
+      let { length = 0 } = valueList || [];
+      let item = (valueList || [])[length - 1];
+      let { code = "", value = 0 } = item || {};
+      value = parseInt(value / Math.pow(2, length - 1));
+      let index = 1;
+      valueList.splice(index, 0, { code, value });
+      values.splice(index, 0, value);
+      gradientStyle.valueIndex = index;
+      this.$refs.slider?.focus(index + 1);
+    },
+    removeApertureEvent() {
+      let { info = {} } = this;
+      let { gradientStyle = {} } = info || {};
+      let { valueList = [], values = [], valueIndex = 0 } = gradientStyle || {};
+      let { length = 0 } = valueList || [];
+      // let item = (valueList || [])[length - 1];
+      // let { code = "", value = 0 } = item || {};
+      // value = parseInt(value / length);
+      if (length > 2 && valueIndex > 0 && valueIndex < length - 1) {
+        valueList.splice(valueIndex, 1);
+        values.splice(valueIndex, 1);
+        let index = 1;
+        gradientStyle.valueIndex = index;
+        this.$refs.slider?.focus(index + 1);
+      }
+    },
     openAll() {
       this.activeNames = ["name", "outward", "margin", "image", "animation"];
     },

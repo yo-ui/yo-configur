@@ -8,6 +8,7 @@
 @border:#383e41;
 .bm-component-com{
   .posa;
+  pointer-events: auto;
   // .fz(22);
   // .p(10px);
   .bor(2px dashed transparent);
@@ -41,9 +42,9 @@
     &.active{
       .borc(@themes);
       // &:hover{
-        .operate-btn{
-          .db;
-        }
+      &>.operate-btn{
+        .db;
+      }
       // }
     }
   }

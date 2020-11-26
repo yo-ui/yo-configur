@@ -762,16 +762,16 @@ let componentLibrary = [
           lineHeight: 30, //每行高度
           contentList: [
             {
-              text: "组态支持纵向滚动的公告组件了！",
+              text: "组态支持纵向滚动的公告组件了！"
             },
             {
-              text: "这些公告会自动滚动，循环播放。",
+              text: "这些公告会自动滚动，循环播放。"
             },
             {
-              text: "您可以用它来公布一系列的信息",
+              text: "您可以用它来公布一系列的信息"
             },
             {
-              text: "也可以绑定到数据源的某一列上",
+              text: "也可以绑定到数据源的某一列上"
             }
           ]
         }
@@ -3193,6 +3193,15 @@ let componentLibrary = [
     ]
   }
 ];
+let componentPanel = {
+  name: "组合",
+  code: "panel",
+  data: {
+    ...baseData,
+    width: 600,
+    height: 400
+  }
+};
 let componentLibraryMap = {};
 componentLibrary.forEach(item => {
   let { comList = [], groupList = [] } = item || {};
@@ -3219,6 +3228,7 @@ componentLibrary.forEach(item => {
   }
 });
 export default {
+  componentPanel,
   componentLibrary,
   componentLibraryMap
 };

@@ -42,6 +42,14 @@
         </p>
       </el-collapse-item> -->
       <el-collapse-item :title="$lang('组合')" name="group">
+        <p v-if="isSameGroup">
+          <span class="label"> {{ $lang("名称") }}: </span>
+          <el-input
+            v-model="info.name"
+            clearable
+            :placeholder="$lang('请输入组合名称')"
+          ></el-input>
+        </p>
         <!-- <p>
           <span class="label"> {{ $lang("画布封面") }}: </span>
           <bm-upload ref="bmUpload" @success="successCallback(info, 'poster')">
@@ -1104,6 +1112,18 @@ export default {
       activeComs: "canvas/getActiveComs", //选中组件
       linkPoint: "canvas/getLinkPoint" //画布
     }),
+    isSameGroup() {
+      let { activeComs = [] } = this;
+      let set = new Set();
+      activeComs.forEach(item => {
+        let { groupList = [] } = item || {};
+        let [group = ""] = groupList || [];
+        if (group) {
+          set.add(group);
+        }
+      });
+      return set.size == 1;
+    },
     gradientStyle() {
       let { info = {}, gradientStyleMap = [] } = this;
       let { gradientStyle = {} } = info || {};

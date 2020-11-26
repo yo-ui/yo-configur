@@ -31,8 +31,8 @@
         <el-button @click="zoomEvent(20)">
           <i class="el-icon-plus"></i> </el-button
       ></el-button-group>
-      <!-- <el-button-group>
-        <el-dropdown trigger="click">
+      <el-button-group>
+        <!-- <el-dropdown trigger="click">
           <span>
             <el-button
               ><i class="el-icon-files"></i> {{ $lang("组合") }}</el-button
@@ -46,8 +46,45 @@
               ><i class="el-icon-files"></i>打散</el-dropdown-item
             >
           </el-dropdown-menu>
-        </el-dropdown>
-      </el-button-group> -->
+        </el-dropdown> -->
+        <el-popover
+          popper-class="popover-list"
+          placement="bottom"
+          width="auto"
+          trigger="click"
+          v-model="showGroupPopoverStatus"
+          :disabled="!(activeComs.length > 1 || activeCom.type == 'panel')"
+        >
+          <el-button
+            slot="reference"
+            class="dropdown"
+            :disabled="!(activeComs.length > 1 || activeCom.type == 'panel')"
+          >
+            <span class="txt">
+              <i :class="`bomi bomi-group`"></i>
+              {{ $lang("组合") }} </span
+            ><i class="el-icon-caret-bottom"></i
+          ></el-button>
+          <ul class="dropdown-list">
+            <li
+              @click="groupCommandEvent('group')"
+              :class="{
+                disabled: activeComs.length < 2
+              }"
+            >
+              <i class="bomi bomi-group"></i>{{ $lang("组合") }}
+            </li>
+            <li
+              @click="groupCommandEvent('ungroup')"
+              :class="{
+                disabled: activeCom.type != 'panel'
+              }"
+            >
+              <i class="bomi bomi-ungroup"></i>{{ $lang("打散") }}
+            </li>
+          </ul>
+        </el-popover>
+      </el-button-group>
       <el-button-group>
         <!-- <el-dropdown
           trigger="click"
@@ -165,25 +202,25 @@
           <ul class="dropdown-list">
             <li
               @click="orderCommandEvent('top')"
-              :disabled="topOrder == activeCom.order"
+              :class="{ disabled: topOrder == activeCom.order }"
             >
               <i class="bomi bomi-move-top"></i>置顶
             </li>
             <li
               @click="orderCommandEvent('bottom')"
-              :disabled="bottomOrder == activeCom.order"
+              :class="{ disabled: bottomOrder == activeCom.order }"
             >
               <i class="bomi bomi-move-bottom"></i>置底
             </li>
             <li
               @click="orderCommandEvent('up')"
-              :disabled="topOrder == activeCom.order"
+              :class="{ disabled: topOrder == activeCom.order }"
             >
               <i class="bomi bomi-move-up"></i>前移
             </li>
             <li
               @click="orderCommandEvent('down')"
-              :disabled="bottomOrder == activeCom.order"
+              :class="{ disabled: bottomOrder == activeCom.order }"
             >
               <i class="bomi bomi-move-down"></i>后移
             </li>
@@ -307,6 +344,7 @@ const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {
     return {
+      showGroupPopoverStatus: false,
       showArrangePopoverStatus: false,
       showSpreadPopoverStatus: false,
       showThemesPopoverStatus: false,
@@ -377,6 +415,14 @@ export default {
       //保存
       $vm.$on("save", () => {
         this.saveEvent();
+      });
+      //组合
+      $vm.$on("compose", () => {
+        this.composeEvent();
+      });
+      //打散
+      $vm.$on("un-compose", () => {
+        this.unComposeEvent();
       });
       //撤销
       $vm.$on("cancel", () => {
@@ -652,6 +698,122 @@ export default {
       });
       this.showThemesPopoverStatus = false;
     },
+    //组合  打散操作
+    groupCommandEvent(cmd) {
+      // let { condition } = this;
+      // condition.groupType = cmd;
+      switch (cmd) {
+        case "group":
+          this.composeEvent();
+          break;
+        case "ungroup":
+          this.unComposeEvent();
+          break;
+      }
+      this.showGroupPopoverStatus = false;
+      this.createHistoryAction();
+    },
+    // 组合
+    composeEvent() {
+      let { widgetList = [], activeComs = [] } = this;
+      let {
+        data = {},
+        name = "",
+        code: type = "",
+        left = 0,
+        top = 0,
+        comDisabled = false,
+        alias = ""
+      } = Constants.COMPONENTPANEL || {};
+      let children = [];
+      activeComs.forEach(item => {
+        children.push(item);
+        let index = widgetList.findIndex(_item => item.id == _item.id);
+        while (index > -1) {
+          widgetList.splice(index, 1);
+          index = widgetList.findIndex(_item => item.id == _item.id);
+        }
+      });
+      let orders = widgetList.map(item => item.order);
+      let order = 1;
+      if (orders && orders.length > 0) {
+        order = Math.max(...orders);
+        order += 1;
+      }
+      let id = bmCommon.uuid();
+      let group1 = bmCommon.clone(children || []);
+      let group2 = bmCommon.clone(children || []);
+      group1.sort((a, b) => a.left - b.left);
+      // let max_left = Math.max(...group1.map(item => item.left + item.width));
+      group2.sort((a, b) => a.top - b.top);
+      // let max_top = Math.max(...group2.map(item => item.top + item.height));
+      let { left: minLeft = 0 } = group1[0] || {};
+      // let { width: maxWidth = 0, left: maxLeft = 0 } = group1[length - 1] || {};
+      // let minLeft = minLeft;
+      // maxLeft = maxLeft + maxWidth - minLeft;
+      // max_left = max_left - minLeft;
+      // if (maxLeft < max_left) {
+      //   maxLeft = max_left;
+      // }
+      let { top: minTop = 0 } = group2[0] || {};
+      // let { height: maxHeight = 0, top: maxTop = 0 } = group2[length - 1] || {};
+      // let minTop = minTop;
+      // maxTop = maxTop + maxHeight - minTop;
+      // max_top = max_top - minTop;
+      // if (maxTop < max_top) {
+      //   maxTop = max_top;
+      // }
+      // width = maxLeft;
+      // height = maxTop;
+      left = minLeft;
+      top = minTop;
+      children.forEach((item, index) => {
+        item.left -= left;
+        item.top -= top;
+        item.order = index;
+      });
+      let item = {
+        ...data,
+        type,
+        name,
+        order,
+        comDisabled,
+        id,
+        alias,
+        left,
+        top,
+        children
+      };
+      widgetList.push(item);
+      // canvas.action = "select";
+      this.createHistoryAction();
+      this.$nextTick(() => {
+        this.selectComAction(id);
+      });
+      // this.showContextMenuStatus = false;
+    },
+    // 打散
+    unComposeEvent() {
+      let { activeCom = {}, widgetList = [] } = this;
+      let widgets = [];
+      let { children = [], left = 0, top = 0, id = "" } = activeCom || {};
+      let orders = widgetList.map(item => item.order);
+      let order = 1;
+      if (orders && orders.length > 0) {
+        order = Math.max(...orders);
+        order += 1;
+      }
+      children.forEach((item, index) => {
+        item.left += left;
+        item.top += top;
+        // item.rotate -= rotate;
+        item.order = index + order;
+        widgets.push(item);
+      });
+      let index = widgetList.findIndex(item => id == item.id);
+      widgetList.splice(index, 1, ...widgets);
+    },
+    // 分布操作
     spreadCommandEvent(cmd) {
       let { condition } = this;
       condition.spreadType = cmd;

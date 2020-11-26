@@ -521,6 +521,11 @@ export default {
       let value = {};
       let { condition } = this;
       let { canvasId = "" } = condition;
+      if (!(deviceIdList && deviceIdList.length > 0)) {
+        callback && callback(value || {});
+        bmCommon.error(`deviceIdList为空,'{${deviceIdList}}'`);
+        return;
+      }
       this.pushAction({ canvasId, deviceIdList })
         .then(({ data }) => {
           let { code = "", result = {}, message = "" } = data || {};

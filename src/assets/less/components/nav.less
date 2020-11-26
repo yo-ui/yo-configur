@@ -12,15 +12,20 @@
     .pr(15);
     .oh;
     li{
-      // .df;
+      .df;
       .click;
-      // align-items: center;
+      align-items: center;
       // .flex(1);
       .p(0 15px);
       .w(100%);
       &:hover{
         .bc(#ecf5ff);
         .c(@themes);
+      }
+      &.disabled{
+        .c(#C0C4CC);
+        .bc(transparent);
+        cursor: not-allowed;
       }
     }
     .bomi{
