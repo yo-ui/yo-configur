@@ -14,8 +14,6 @@
     <div class="info" v-show="showType == 'edit' && !moving">
       <p class="txt">
         {{ info.name }}
-        <!-- {{info.showCoverStatus}} -->
-        <!-- {{ moving }}--{{ info.rotateable }}--{{ info.locked }} -->
       </p>
     </div>
     <div
@@ -34,19 +32,14 @@
       "
       @dblclick.prevent.stop="coverEvent"
     >
-      <!-- ----------- =-====={{ !moving }} --{{ rotating }}--
-      {{ !moving || rotating }}==={{ showRotateStatus }} -->
+      {{ info.parentId }}
     </div>
-    <!-- ((!moving && info.rotateable) || rotating) &&
-          !info.locked &&
-          !info.showCoverStatus -->
     <i
       class="operate-btn el-icon-refresh-right"
       v-if="showRotateStatus"
       @mousedown.stop="rotateClickEvent"
       title="旋转"
     ></i>
-    <!-- info.rotateable && !info.locked && rotating && !info.showCoverStatus -->
     <i
       class="operate-btn el-icon-axis"
       :style="
@@ -191,7 +184,6 @@ export default {
     // let item = Constants.COMPONENTLIBRARYMAP[type] || {};
     // let { data = {} } = item || {};
     // let { infoType = "" } = data || {};
-    // info.showCoverStatus = true;
     // info.infoType = infoType;
     // this.selectComAction(id);
     // this.setActiveCom(info);
@@ -266,9 +258,6 @@ export default {
       }
       return classes.join(" ");
     },
-    // ((!moving && info.rotateable) || rotating) &&
-    //       !info.locked &&
-    //       !info.showCoverStatus
     showRotateStatus() {
       let {
         moving = false,
@@ -418,9 +407,8 @@ export default {
       if (!iterationCount) {
         iterationCount = "infinite";
       }
-      if (!showCoverStatus) {
-        styles["pointer-events"] = "none";
-      }
+      // styles["pointer-events"] = !showCoverStatus ? "auto" : "none";
+      // bmCommon.log("pointer-events=",showCoverStatus)
       styles["animation-iteration-count"] = iterationCount;
       styles["animation-duration"] = duration;
       styles["animation-direction"] = direction;

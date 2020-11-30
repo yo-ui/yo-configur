@@ -1,18 +1,19 @@
 <template>
-  <button
-    class="btn-com"
-    :style="comStyle"
-    :contenteditable="info.editable"
-    @blur.stop="blurEvent"
-  >
-    {{ info.content }}
-  </button>
+  <div class="button-tab-com" :style="comStyle">
+    <button
+      :style="btnStyle"
+      :contenteditable="info.editable"
+      @blur.stop="blurEvent"
+    >
+      {{ info.content }}
+    </button>
+  </div>
 </template>
 
 <script>
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "buttonCom",
+  name: "buttonTabCom",
   data() {
     return {};
   },

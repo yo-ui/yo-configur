@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <!-- <div> -->
     <!-- <h2>{{ $lang("功能选择") }}</h2>
     <p>
       <i
@@ -16,7 +16,7 @@
       ></i>
     </p> -->
 
-    <el-collapse v-model="activeNames">
+    <el-collapse class="bm-button-tab-style-com" v-model="activeNames">
       <el-collapse-item :title="info.name" name="name" disabled>
         <template slot="title">
           {{ info.name }}
@@ -915,7 +915,7 @@
         </p>
       </el-collapse-item>
     </el-collapse>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -924,7 +924,7 @@ import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "buttonStyleCom",
+  name: "bmButtonTabStyleCom",
   data() {
     return {
       activeNames: ["name"],
@@ -1121,15 +1121,11 @@ export default {
     }
   },
   watch: {
-    activeComs() {
-      let { activeCom = {} } = this;
-      this.oldInfo = { ...(activeCom || {}) };
-    },
     info: {
       handler: function(newVal, oldVal) {
         let { activeComs = [], oldInfo = {} } = this;
         let { length = 0 } = activeComs || [];
-        if (length > 1 && oldVal) {
+        if (length > 1) {
           // if (newVal != oldVal) {
           for (let i in newVal) {
             bmCommon.log(newVal[i], oldInfo[i]);

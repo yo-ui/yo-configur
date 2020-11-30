@@ -220,21 +220,6 @@ export default {
       moving: "canvas/getMoving",
       zoom: "canvas/getZoom" //放大缩小
     }),
-
-    // scaleBoxStatus() {
-    //   let { moving = false, rotating = false, info = {}, showType = "" } = this;
-    //   let { scaleable = true, locked = false, showCoverStatus = true } =
-    //     info || {};
-    //   // !moving && scaleable && !info.locked && !rotating && showCoverStatus
-    //   return (
-    //     !moving &&
-    //     scaleable &&
-    //     !locked &&
-    //     !rotating &&
-    //     showCoverStatus &&
-    //     showType == "edit"
-    //   );
-    // },
     svgStyle() {
       let { info = {} } = this;
       let {

@@ -43,26 +43,73 @@
       >
         <transition-group type="transition" name="flip-list">
           <li
-            :class="{ active: activeComId == item.id }"
             v-for="item in widgetList"
-            @click="selectComEvent(item)"
+            @click.stop="selectComEvent(item)"
             :key="item.id"
             class="item"
           >
-            {{ item.name }}
-            <!-- --{{ item.zIndex }}--{{ item.order }} -->
-            <el-tooltip
-              :content="$lang('添加绑定')"
-              placement="top"
-              effect="dark"
+            <div class="title" :class="{ active: activeComId == item.id }">
+              {{ item.name }}
+              <!-- --{{ item.zIndex }}--{{ item.order }} -->
+              <template v-if="item.children && item.children.length > 0">
+                <i
+                  :class="
+                    `
+                    ${
+                      { true: 'el-icon-plus', false: 'el-icon-minus' }[
+                        !widgetMap[item.id]
+                      ]
+                    }
+                  `
+                  "
+                  @click.stop="showChildEvent(item)"
+                ></i>
+              </template>
+              <el-tooltip
+                v-else
+                :content="$lang('添加绑定')"
+                placement="top"
+                effect="dark"
+              >
+                <i
+                  v-if="item.dataType"
+                  class="el-icon-link"
+                  @click.stop="addEvent(item)"
+                  :class="{ active: item.bindData && item.bindData.orgId }"
+                ></i>
+              </el-tooltip>
+            </div>
+            <ul
+              v-if="item.children && item.children.length > 0"
+              v-show="!!widgetMap[item.id]"
             >
-              <i
-                v-if="item.dataType"
-                class="el-icon-link"
-                @click.stop="addEvent(item)"
-                :class="{ active: item.bindData && item.bindData.orgId }"
-              ></i>
-            </el-tooltip>
+              <li
+                :class="{ active: activeComId == _item.id }"
+                v-for="_item in item.children"
+                @click.stop="selectComEvent(_item)"
+                :key="_item.id"
+                class="item"
+              >
+                <div class="title" :class="{ active: activeComId == _item.id }">
+                  {{ _item.name }}
+                  <!-- --{{ item.zIndex }}--{{ item.order }} -->
+                  <el-tooltip
+                    :content="$lang('添加绑定')"
+                    placement="top"
+                    effect="dark"
+                  >
+                    <i
+                      v-if="_item.dataType"
+                      class="el-icon-link"
+                      @click.stop="addEvent(_item)"
+                      :class="{
+                        active: _item.bindData && _item.bindData.orgId
+                      }"
+                    ></i>
+                  </el-tooltip>
+                </div>
+              </li>
+            </ul>
           </li>
         </transition-group>
         <!-- <button slot="footer" @click="addPeople">Add</button> -->
@@ -103,7 +150,7 @@ export default {
     ]);
     return {
       tabList,
-      comList: [],
+      widgetMap: {},
       // widgetList: [],
       activeIndex: tabList[0].code
     };
@@ -241,14 +288,21 @@ export default {
       }
     },
     init() {
-      this.loadComList();
+      // this.loadComList();
     },
-    loadComList() {
-      let { widgetList = [] } = this;
-      this.comList = bmCommon.clone(widgetList).sort((a, b) => {
-        return b.order - a.order;
-      });
+    showChildEvent(item) {
+      // bmCommon.log()
+      let { id = "" } = item || {};
+      let { widgetMap = {} } = this;
+      this.$set(widgetMap, id, !widgetMap[id]);
+      // bmCommon.log(widgetMap);
     },
+    // loadComList() {
+    //   let { widgetList = [] } = this;
+    //   this.comList = bmCommon.clone(widgetList).sort((a, b) => {
+    //     return b.order - a.order;
+    //   });
+    // },
     addEvent(item = {}) {
       $vm.$emit("bindDevice", item);
     }

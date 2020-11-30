@@ -417,13 +417,13 @@ export default {
         this.saveEvent();
       });
       //组合
-      $vm.$on("compose", () => {
-        this.composeEvent();
+      $vm.$on("group-command", cmd => {
+        this.groupCommandEvent(cmd);
       });
-      //打散
-      $vm.$on("un-compose", () => {
-        this.unComposeEvent();
-      });
+      // //打散
+      // $vm.$on("un-compose", () => {
+      //   this.unComposeEvent();
+      // });
       //撤销
       $vm.$on("cancel", () => {
         this.cancelEvent();
@@ -431,6 +431,10 @@ export default {
       //还原
       $vm.$on("resume", () => {
         this.resumeEvent();
+      });
+      //排序
+      $vm.$on("order-command", cmd => {
+        this.orderCommandEvent(cmd);
       });
     },
     saveEvent() {
@@ -726,6 +730,10 @@ export default {
         alias = ""
       } = Constants.COMPONENTPANEL || {};
       let children = [];
+      let { length = 0 } = activeComs || [];
+      if (length < 2) {
+        return;
+      }
       activeComs.forEach(item => {
         children.push(item);
         let index = widgetList.findIndex(_item => item.id == _item.id);
@@ -769,6 +777,7 @@ export default {
       top = minTop;
       children.forEach((item, index) => {
         item.left -= left;
+        item.parentId = id;
         item.top -= top;
         item.order = index;
       });
@@ -803,11 +812,16 @@ export default {
         order = Math.max(...orders);
         order += 1;
       }
+      let { length = 0 } = children || [];
+      if (length < 1) {
+        return;
+      }
       children.forEach((item, index) => {
         item.left += left;
         item.top += top;
         // item.rotate -= rotate;
         item.order = index + order;
+        delete item.parentId;
         widgets.push(item);
       });
       let index = widgetList.findIndex(item => id == item.id);
@@ -1055,9 +1069,15 @@ export default {
     },
     // 上移一层
     moveUpEvent() {
-      this.showContextMenuStatus = false;
-      let { activeCom = {}, widgetList = [] } = this;
-      let { order = "" } = activeCom;
+      // this.showContextMenuStatus = false;
+      let { activeCom = {}, widgetList: _widgetList = [] } = this;
+      let { order = "", parentId = "" } = activeCom || {};
+      let widgetList = _widgetList || [];
+      if (parentId) {
+        let parent = _widgetList.find(item => item.id == parentId);
+        let { children = [] } = parent || {};
+        widgetList = children || [];
+      }
       let orders = widgetList.map(item => item.order).sort((a, b) => a - b);
       let _order = orders.find(item => item > order);
       let obj = widgetList.find(item => _order == item.order);
@@ -1068,9 +1088,15 @@ export default {
     },
     // 下移一层
     moveDownEvent() {
-      this.showContextMenuStatus = false;
-      let { activeCom = {}, widgetList = [] } = this;
-      let { order = "" } = activeCom;
+      // this.showContextMenuStatus = false;
+      let { activeCom = {}, widgetList: _widgetList = [] } = this;
+      let { order = "", parentId = "" } = activeCom || {};
+      let widgetList = _widgetList || [];
+      if (parentId) {
+        let parent = _widgetList.find(item => item.id == parentId);
+        let { children = [] } = parent || {};
+        widgetList = children || [];
+      }
       // let obj = widgetList.find(item => order > item.order);
       // let { order: _order = "" } = obj || {};
       let orders = widgetList.map(item => item.order).sort((a, b) => b - a);
@@ -1082,8 +1108,15 @@ export default {
     },
     // 置底
     moveBottomEvent() {
-      this.showContextMenuStatus = false;
-      let { activeCom = {}, widgetList = [] } = this;
+      // this.showContextMenuStatus = false;
+      let { activeCom = {}, widgetList: _widgetList = [] } = this;
+      let { parentId = "" } = activeCom || {};
+      let widgetList = _widgetList || [];
+      if (parentId) {
+        let parent = _widgetList.find(item => item.id == parentId);
+        let { children = [] } = parent || {};
+        widgetList = children || [];
+      }
       let orders = widgetList.map(item => item.order);
       let order = Math.min(...orders);
       let { order: _order = 1 } = activeCom || {};
@@ -1097,8 +1130,15 @@ export default {
     },
     // 置顶
     moveTopEvent() {
-      this.showContextMenuStatus = false;
-      let { activeCom = {}, widgetList = [] } = this;
+      // this.showContextMenuStatus = false;
+      let { activeCom = {}, widgetList: _widgetList = [] } = this;
+      let { parentId = "" } = activeCom || {};
+      let widgetList = _widgetList || [];
+      if (parentId) {
+        let parent = _widgetList.find(item => item.id == parentId);
+        let { children = [] } = parent || {};
+        widgetList = children || [];
+      }
       let orders = widgetList.map(item => item.order);
       let order = Math.max(...orders);
       let { order: _order = 1 } = activeCom || {};

@@ -639,7 +639,7 @@ export default {
         activeCom = {},
         activeComs = []
       } = state;
-      activeCom.showCoverStatus = true;
+      // activeCom.showCoverStatus = true;
       if (!id) {
         activeCom = canvas;
         context.commit("setActiveCom", activeCom);
@@ -647,8 +647,8 @@ export default {
         let index = activeComs.findIndex(item => item.id == id);
         if (index < 0) {
           //如果未找到当前组件 在已选组件中 说明选择新组件  清除多选组件
-          activeComs = [];
-          context.commit("setActiveComs", []);
+          activeComs = [activeCom];
+          // context.commit("setActiveComs", activeComs);
         }
         try {
           widgetList.forEach(item => {
@@ -676,6 +676,7 @@ export default {
         if ((length < 2 && activeCom) || type == "panel") {
           activeCom.showCoverStatus = true;
           context.commit("setActiveCom", activeCom);
+          context.commit("setActiveComs", [activeCom]);
         }
       }
     },
@@ -692,10 +693,11 @@ export default {
         activeComs.splice(0, length);
         return;
       }
-      let { id: _id = "" } = activeCom || {};
-      if (_id && _id != id) {
-        activeComs.push(activeCom);
-      }
+      // let { id: _id = "" } = activeCom || {};
+      // let index=activeComs.findIndex(item=>item.id==_id)
+      // if (_id && index<0) {
+      //   activeComs.push(activeCom);
+      // }
       let index = activeComs.findIndex(item => item.id == id);
       // bmCommon.log(index, "-------");
       //如果在已选中组件内找到则移除

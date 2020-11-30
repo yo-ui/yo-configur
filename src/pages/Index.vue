@@ -452,7 +452,6 @@ export default {
             let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
             let { data = {} } = _item || {};
             let { infoType = "", dataType = "" } = data || {};
-            // item.showCoverStatus = true;
             item.infoType = infoType;
             item.dataType = dataType;
             item.alias = alias;
@@ -876,6 +875,14 @@ export default {
         if (ctrlKey) {
           this.cutEvent();
         }
+      } else if (keyCode == 71) {
+        // G
+        e.preventDefault();
+        if (ctrlKey&&shiftKey) {
+          this.unComposeEvent()
+        }else if(ctrlKey) {
+          this.composeEvent()
+        }
       } else if (keyCode == 219) {
         // ctrl+[
         // ctrl+shift+[
@@ -908,12 +915,13 @@ export default {
     },
     //打散事件
     unComposeEvent() {
-      $vm.$emit("un-compose");
+      // $vm.$emit("un-compose");
+      $vm.$emit("group-command","ungroup");
       this.showContextMenuStatus = false;
     },
     //组合事件
     composeEvent() {
-      $vm.$emit("compose");
+      $vm.$emit("group-command","group");
       this.showContextMenuStatus = false;
     },
     //剪切
@@ -1079,61 +1087,69 @@ export default {
     },
     // 上移一层
     moveUpEvent() {
+      //排序
+      $vm.$emit("order-command","up");
       this.showContextMenuStatus = false;
-      let { activeCom = {}, widgetList = [] } = this;
-      let { order = "" } = activeCom;
-      let orders = widgetList.map(item => item.order).sort((a, b) => a - b);
-      let _order = orders.find(item => item > order);
-      let obj = widgetList.find(item => _order == item.order);
-      // let obj = widgetList.find(item => order < item.order);
-      // let { order: _order = "" } = obj || {};
-      activeCom.order = _order;
-      obj.order = order;
-      this.createHistoryAction();
+      // let { activeCom = {}, widgetList = [] } = this;
+      // let { order = "" } = activeCom;
+      // let orders = widgetList.map(item => item.order).sort((a, b) => a - b);
+      // let _order = orders.find(item => item > order);
+      // let obj = widgetList.find(item => _order == item.order);
+      // // let obj = widgetList.find(item => order < item.order);
+      // // let { order: _order = "" } = obj || {};
+      // activeCom.order = _order;
+      // obj.order = order;
+      // this.createHistoryAction();
     },
     // 下移一层
     moveDownEvent() {
+      //排序
+      $vm.$emit("order-command","down");
       this.showContextMenuStatus = false;
-      let { activeCom = {}, widgetList = [] } = this;
-      let { order = "" } = activeCom;
-      let orders = widgetList.map(item => item.order).sort((a, b) => b - a);
-      // bmCommon.log("orders=>", orders, order);
-      let _order = orders.find(item => item < order);
-      let obj = widgetList.find(item => _order == item.order);
-      // bmCommon.log("obj=>", _order, obj.order);
-      // let { order: _order = "" } = obj || {};
-      activeCom.order = _order;
-      obj.order = order;
-      this.createHistoryAction();
+      // let { activeCom = {}, widgetList = [] } = this;
+      // let { order = "" } = activeCom;
+      // let orders = widgetList.map(item => item.order).sort((a, b) => b - a);
+      // // bmCommon.log("orders=>", orders, order);
+      // let _order = orders.find(item => item < order);
+      // let obj = widgetList.find(item => _order == item.order);
+      // // bmCommon.log("obj=>", _order, obj.order);
+      // // let { order: _order = "" } = obj || {};
+      // activeCom.order = _order;
+      // obj.order = order;
+      // this.createHistoryAction();
     },
     // 置底
     moveBottomEvent() {
+      //排序
+      $vm.$emit("order-command","bottom");
       this.showContextMenuStatus = false;
-      let { activeCom = {}, widgetList = [] } = this;
-      let orders = widgetList.map(item => item.order);
-      let order = Math.min(...orders);
-      let { order: _order = 1 } = activeCom || {};
-      if (order == _order) {
-        return;
-      }
-      widgetList.forEach(item => {
-        item.order++;
-      });
-      activeCom.order = 0;
-      this.createHistoryAction();
+      // let { activeCom = {}, widgetList = [] } = this;
+      // let orders = widgetList.map(item => item.order);
+      // let order = Math.min(...orders);
+      // let { order: _order = 1 } = activeCom || {};
+      // if (order == _order) {
+      //   return;
+      // }
+      // widgetList.forEach(item => {
+      //   item.order++;
+      // });
+      // activeCom.order = 0;
+      // this.createHistoryAction();
     },
     // 置顶
     moveTopEvent() {
+      //排序
+      $vm.$emit("order-command","top");
       this.showContextMenuStatus = false;
-      let { activeCom = {}, widgetList = [] } = this;
-      let orders = widgetList.map(item => item.order);
-      let order = Math.max(...orders);
-      let { order: _order = 1 } = activeCom || {};
-      if (order == _order) {
-        return;
-      }
-      activeCom.order = order + 1;
-      this.createHistoryAction();
+      // let { activeCom = {}, widgetList = [] } = this;
+      // let orders = widgetList.map(item => item.order);
+      // let order = Math.max(...orders);
+      // let { order: _order = 1 } = activeCom || {};
+      // if (order == _order) {
+      //   return;
+      // }
+      // activeCom.order = order + 1;
+      // this.createHistoryAction();
     },
     // // 获取登录信息
     // commonVerifyInfoFunc(callback) {

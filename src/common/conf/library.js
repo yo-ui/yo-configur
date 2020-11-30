@@ -49,10 +49,9 @@ let baseData = {
   comName: "", //
   borderStyle: "none",
   borderColor: "",
-  showCoverStatus: true,
   borderRadius: 0,
   scale: "scale(1,1)",
-  // showCoverStatus:true,//默认显示覆盖层
+  showCoverStatus: true, //默认显示覆盖层
   left: 0,
   content: "",
   name: "文本标题",
@@ -1015,7 +1014,7 @@ let componentLibrary = [
       {
         name: "按钮标签",
         code: "buttontab",
-        comDisabled: true, //组件不可用
+        // comDisabled: true, //组件不可用
         icon: "/static/img/configur/buttontab.png",
         data: {
           ...baseData,

@@ -30,6 +30,18 @@
             ></i>
           </el-tooltip>
         </p>
+        <!-- v-if="info.dataType == 'component'" -->
+        <p>
+          <span class="label"> {{ $lang("绑定组件") }}: </span>
+          <el-select v-model="info.bindData.comId">
+            <el-option
+              :key="item.id"
+              v-for="item in widgetList"
+              :label="`${item.name}(${item.id})`"
+              :value="item.id"
+            ></el-option>
+          </el-select>
+        </p>
       </el-collapse-item>
     </el-collapse>
   </div>
@@ -57,7 +69,9 @@ export default {
   },
   components: {},
   computed: {
-    ...mapGetters()
+    ...mapGetters({
+      widgetList: "canvas/getWidgetList"
+    })
   },
   methods: {
     ...mapMutations({}),

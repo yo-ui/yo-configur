@@ -79,6 +79,11 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-hls-video" */ "@/components/component/basic/hlsVideo/index.vue"
     ),
+  //按钮标签
+  buttontabCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-buttontab" */ "@/components/component/basic/buttontab/index.vue"
+    ),
   //开关
   switchCom: () =>
     import(
@@ -567,6 +572,11 @@ let styles = {
   switchStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-switch-style" */ "@/components/component/basic/switch/style.vue"
+    ),
+  // buttontab 按钮标签
+  buttontabStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-buttontab-style" */ "@/components/component/basic/buttontab/style.vue"
     ),
   // 百分比进度条
   progressbarStyleCom: () =>
