@@ -764,10 +764,7 @@
         </p>
         <p>
           <span class="label">{{ $lang("字体颜色") }}:</span>
-          <el-color-picker
-            v-model="info.color"
-            show-alpha
-          ></el-color-picker>
+          <el-color-picker v-model="info.color" show-alpha></el-color-picker>
         </p>
         <p>
           <span class="label">{{ $lang("阴影") }}:</span>
@@ -927,8 +924,7 @@
                 @click="setTextDecoration"
                 :title="$lang('下划线')"
                 :class="{
-                  active:
-                    info.textDecoration == 'underline'
+                  active: info.textDecoration == 'underline'
                 }"
                 >U</span
               >
@@ -1185,7 +1181,7 @@ export default {
       }
     },
     setFontWeight() {
-      let { info = {}} = this;
+      let { info = {} } = this;
       let { fontWeight = "" } = info || {};
       if (fontWeight == "bold") {
         fontWeight = "";
@@ -1205,7 +1201,7 @@ export default {
       info.textDecoration = textDecoration;
     },
     setFontStyle() {
-      let { info = {}} = this;
+      let { info = {} } = this;
       let { fontStyle = "" } = info || {};
       if (fontStyle == "italic") {
         fontStyle = "";

@@ -452,7 +452,7 @@ export default {
     },
     resetCanvasSize() {
       let $window = $(window);
-      let w_height = $window.height();
+      // let w_height = $window.height();
       let w_width = $window.width();
       if (w_width < 1280) {
         w_width = 1280;

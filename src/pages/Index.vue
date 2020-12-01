@@ -445,7 +445,7 @@ export default {
           canvas.top = 0;
           this.setCanvas(canvas);
           widgetList.forEach(item => {
-            let { alias = "", type = ""} = item || {};
+            let { alias = "", type = "" } = item || {};
             if (!alias) {
               alias = type;
             }
@@ -878,10 +878,10 @@ export default {
       } else if (keyCode == 71) {
         // G
         e.preventDefault();
-        if (ctrlKey&&shiftKey) {
-          this.unComposeEvent()
-        }else if(ctrlKey) {
-          this.composeEvent()
+        if (ctrlKey && shiftKey) {
+          this.unComposeEvent();
+        } else if (ctrlKey) {
+          this.composeEvent();
         }
       } else if (keyCode == 219) {
         // ctrl+[
@@ -916,12 +916,12 @@ export default {
     //打散事件
     unComposeEvent() {
       // $vm.$emit("un-compose");
-      $vm.$emit("group-command","ungroup");
+      $vm.$emit("group-command", "ungroup");
       this.showContextMenuStatus = false;
     },
     //组合事件
     composeEvent() {
-      $vm.$emit("group-command","group");
+      $vm.$emit("group-command", "group");
       this.showContextMenuStatus = false;
     },
     //剪切
@@ -1050,33 +1050,34 @@ export default {
       this.createHistoryAction();
       this.showContextMenuStatus = false;
     },
-    deleteItem(item = {}) {
-      let { widgetList = [] } = this;
-      let { id = "" } = item || {};
-      let index = widgetList.findIndex(item => id == item.id);
-      widgetList.splice(index, 1);
-      this.selectComAction();
-      // this.showContextMenuStatus = false;
-    },
+    // deleteItem(item = {}) {
+    //   let { widgetList = [] } = this;
+    //   let { id = "" } = item || {};
+    //   let index = widgetList.findIndex(item => id == item.id);
+    //   widgetList.splice(index, 1);
+    //   this.selectComAction();
+    //   // this.showContextMenuStatus = false;
+    // },
     // 删除
     deleteEvent() {
-      let { activeCom = {}, activeComs = [] } = this;
-      let { length = 0 } = activeComs || [];
-      if (length > 1) {
-        activeComs.forEach(item => {
-          this.deleteItem(item);
-        });
-      } else {
-        this.deleteItem(activeCom);
-        // let { id = "" } = activeCom;
-        // let index = widgetList.findIndex(item => id == item.id);
-        // widgetList.splice(index, 1);
-        // this.selectComAction();
-        // this.showContextMenuStatus = false;
-      }
-      this.selectComAction();
+      // let { activeCom = {}, activeComs = [] } = this;
+      // let { length = 0 } = activeComs || [];
+      // if (length > 1) {
+      //   activeComs.forEach(item => {
+      //     this.deleteItem(item);
+      //   });
+      // } else {
+      //   this.deleteItem(activeCom);
+      //   // let { id = "" } = activeCom;
+      //   // let index = widgetList.findIndex(item => id == item.id);
+      //   // widgetList.splice(index, 1);
+      //   // this.selectComAction();
+      //   // this.showContextMenuStatus = false;
+      // }
+      // this.selectComAction();
+      // this.createHistoryAction();
+      $vm.$emit("delete-command");
       this.showContextMenuStatus = false;
-      this.createHistoryAction();
     },
     // 锁定/解锁
     lockEvent(locked) {
@@ -1088,7 +1089,7 @@ export default {
     // 上移一层
     moveUpEvent() {
       //排序
-      $vm.$emit("order-command","up");
+      $vm.$emit("order-command", "up");
       this.showContextMenuStatus = false;
       // let { activeCom = {}, widgetList = [] } = this;
       // let { order = "" } = activeCom;
@@ -1104,7 +1105,7 @@ export default {
     // 下移一层
     moveDownEvent() {
       //排序
-      $vm.$emit("order-command","down");
+      $vm.$emit("order-command", "down");
       this.showContextMenuStatus = false;
       // let { activeCom = {}, widgetList = [] } = this;
       // let { order = "" } = activeCom;
@@ -1121,7 +1122,7 @@ export default {
     // 置底
     moveBottomEvent() {
       //排序
-      $vm.$emit("order-command","bottom");
+      $vm.$emit("order-command", "bottom");
       this.showContextMenuStatus = false;
       // let { activeCom = {}, widgetList = [] } = this;
       // let orders = widgetList.map(item => item.order);
@@ -1139,7 +1140,7 @@ export default {
     // 置顶
     moveTopEvent() {
       //排序
-      $vm.$emit("order-command","top");
+      $vm.$emit("order-command", "top");
       this.showContextMenuStatus = false;
       // let { activeCom = {}, widgetList = [] } = this;
       // let orders = widgetList.map(item => item.order);

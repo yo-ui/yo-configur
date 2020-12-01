@@ -1,5 +1,5 @@
 <template>
-  <!-- <div> -->
+  <div class="bm-button-tab-style-com">
     <!-- <h2>{{ $lang("功能选择") }}</h2>
     <p>
       <i
@@ -16,8 +16,8 @@
       ></i>
     </p> -->
 
-    <el-collapse class="bm-button-tab-style-com" v-model="activeNames">
-      <el-collapse-item :title="info.name" name="name" disabled>
+    <el-collapse v-model="activeNames">
+      <el-collapse-item name="name" disabled>
         <template slot="title">
           {{ info.name }}
           <div class="right">
@@ -40,7 +40,7 @@
         <p>
           <span class="label"> {{ $lang("按钮名称") }}: </span>
           <el-input
-            v-model="info.content"
+            v-model="info.comName"
             clearable
             :placeholder="$lang('请输入按钮名称')"
           ></el-input>
@@ -223,6 +223,340 @@
             ></i>
           </el-tooltip>
         </p>
+      </el-collapse-item>
+      <el-collapse-item
+        :title="$lang('样式')"
+        name="style"
+        class="no-right no-border"
+      >
+        <!-- @tab-click="tabClickEvent" -->
+        <el-collapse class="tab-collapse" v-model="tabActiveNames">
+          <el-collapse-item title="" name="empty" disabled class="unfold">
+            <p>
+              <span class="label">{{ $lang("当前值") }}:</span>
+              <el-input
+                clearable
+                :placeholder="$lang('请输入当前值')"
+                v-model="info.content"
+              ></el-input>
+            </p>
+          </el-collapse-item>
+          <el-collapse-item name="tab">
+            <template slot="title">
+              {{ $lang("标签项") }}
+              <div class="right">
+                <el-tooltip
+                  :content="$lang('删除')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <i
+                    class="el-icon-delete-solid"
+                    @click.stop="removeContentEvent"
+                  ></i>
+                </el-tooltip>
+                <el-tooltip
+                  :content="$lang('添加')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <i class="el-icon-plus" @click.stop="addContentEvent"></i>
+                </el-tooltip>
+              </div>
+            </template>
+            <el-tabs
+              v-model="tabActive"
+              class="collapse-item-tab"
+              type="card"
+              tab-position="top"
+            >
+              <el-tab-pane
+                v-for="(item, index) in info.contentList"
+                :key="index"
+                :label="$lang('选项')"
+                :name="index + ''"
+              >
+              </el-tab-pane>
+            </el-tabs>
+            <p>
+              <span class="label">{{ $lang("值") }}:</span>
+              <el-input
+                clearable
+                :placeholder="$lang('请输入值')"
+                v-model="info.contentList[tabActive].code"
+              ></el-input>
+            </p>
+            <p>
+              <span class="label">{{ $lang("文字") }}:</span>
+              <el-input
+                clearable
+                :placeholder="$lang('请输入文字')"
+                v-model="info.contentList[tabActive].text"
+              ></el-input>
+            </p>
+            <p>
+              <span class="label">{{ $lang("值") }}:</span>
+              <el-input
+                clearable
+                :placeholder="$lang('请输入值')"
+                v-model="info.contentList[tabActive].value"
+              ></el-input>
+            </p>
+          </el-collapse-item>
+          <el-collapse-item title="" name="empty" disabled class="unfold">
+            <p>
+              <span class="label">{{ $lang("按钮宽度") }}:</span>
+
+              <el-tooltip
+                :content="$lang('请输入按钮宽度')"
+                placement="top"
+                effect="dark"
+              >
+                <el-input-number
+                  controls-position="right"
+                  clearable
+                  :min="0"
+                  :max="1000"
+                  v-model.number="info.button.width"
+                  :placeholder="$lang('请输入按钮宽度')"
+                ></el-input-number>
+              </el-tooltip>
+              <el-slider
+                v-model="info.button.width"
+                :min="0"
+                :max="1000"
+                :format-tooltip="val => val"
+              ></el-slider>
+              <!-- <el-input
+                clearable
+                :placeholder="$lang('请输入按钮宽度')"
+                v-model="info.button.width"
+              ></el-input> -->
+            </p>
+            <p>
+              <span class="label">{{ $lang("按钮高度") }}:</span>
+
+              <el-tooltip
+                :content="$lang('请输入按钮高度')"
+                placement="top"
+                effect="dark"
+              >
+                <el-input-number
+                  controls-position="right"
+                  clearable
+                  :min="0"
+                  :max="1000"
+                  v-model.number="info.button.height"
+                  :placeholder="$lang('请输入按钮高度')"
+                ></el-input-number>
+              </el-tooltip>
+              <el-slider
+                v-model="info.button.height"
+                :min="0"
+                :max="1000"
+                :format-tooltip="val => val"
+              ></el-slider>
+              <!-- <el-input
+                clearable
+                :placeholder="$lang('请输入按钮高度')"
+                v-model="info.button.height"
+              ></el-input> -->
+            </p>
+          </el-collapse-item>
+          <el-collapse-item :title="$lang('按钮样式')" name="button">
+            <p>
+              <span class="label">{{ $lang("字体颜色") }}:</span>
+              <el-color-picker
+                v-model="info.button.color"
+                show-alpha
+              ></el-color-picker>
+            </p>
+            <p>
+              <span class="label">{{ $lang("字体阴影") }}:</span>
+              <el-switch
+                v-model="info.button.textShadowable"
+                active-color="#4195ea"
+                inactive-color="#ccc"
+              ></el-switch>
+            </p>
+            <template v-if="info.button.textShadowable">
+              <p class="shadow-box">
+                <span class="c-box">
+                  <span>
+                    <el-tooltip
+                      :content="$lang('X-X轴位移')"
+                      placement="top"
+                      effect="dark"
+                    >
+                      <span>X</span>
+                    </el-tooltip>
+                    <el-input-number
+                      controls-position="right"
+                      clearable
+                      v-model.number="info.button.textShadow.x"
+                      :placeholder="$lang('X轴位移')"
+                    ></el-input-number>
+                  </span>
+                  <span>
+                    <el-tooltip
+                      :content="$lang('Y-Y轴位移')"
+                      placement="top"
+                      effect="dark"
+                    >
+                      <span>Y</span> </el-tooltip
+                    ><el-input-number
+                      controls-position="right"
+                      clearable
+                      v-model.number="info.button.textShadow.y"
+                      :placeholder="$lang('Y轴位移')"
+                    ></el-input-number>
+                  </span>
+                </span>
+              </p>
+              <p>
+                <span class="label">{{ $lang("模糊半径") }}:</span>
+                <el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.button.textShadow.blur"
+                  :placeholder="$lang('模糊半径')"
+                ></el-input-number>
+                px
+                <el-slider
+                  v-model="info.button.textShadow.blur"
+                  :min="0"
+                  :max="50"
+                  :format-tooltip="val => val + ' px'"
+                ></el-slider>
+              </p>
+              <p>
+                <span class="label">{{ $lang("阴影颜色") }}:</span>
+                <el-color-picker
+                  v-model="info.button.textShadow.color"
+                  show-alpha
+                ></el-color-picker>
+              </p>
+            </template>
+            <p>
+              <span class="label">{{ $lang("字体大小") }}:</span>
+              <el-tooltip
+                :content="$lang('请输入字体大小')"
+                placement="top"
+                effect="dark"
+              >
+                <el-input-number
+                  controls-position="right"
+                  clearable
+                  :min="10"
+                  :max="200"
+                  v-model.number="info.button.fontSize"
+                  :placeholder="$lang('请输入字体大小')"
+                ></el-input-number>
+              </el-tooltip>
+              <el-slider
+                v-model="info.button.fontSize"
+                :min="10"
+                :max="200"
+                :format-tooltip="val => val"
+              ></el-slider>
+              <!-- {{ info.button.fontSize }} px
+              <el-slider
+                v-model="info.button.fontSize"
+                :min="10"
+                :max="100"
+                :format-tooltip="val => val + ' px'"
+              ></el-slider> -->
+            </p>
+            <p>
+              <span class="label">{{ $lang("字体") }}:</span>
+              <el-select
+                v-model="info.button.fontFamily"
+                :placeholder="$lang('请选择字体')"
+              >
+                <el-option
+                  v-for="item in fontFamilyList"
+                  :key="item.code"
+                  :label="$lang(item.name)"
+                  :value="item.code"
+                >
+                  <span :style="`font-family:${item.code}`">{{
+                    $lang(item.name)
+                  }}</span>
+                </el-option>
+              </el-select>
+            </p>
+            <p>
+              <span class="label">{{ $lang("字体样式") }}:</span>
+              <span class="font-style">
+                <el-tooltip
+                  :content="$lang('加粗')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <span
+                    class="bold"
+                    @click="setFontWeight(info.button)"
+                    :title="$lang('粗体')"
+                    :class="{ active: info.button.fontWeight == 'bold' }"
+                    >B</span
+                  >
+                </el-tooltip>
+                <el-tooltip
+                  :content="$lang('倾斜')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <span
+                    class="italic"
+                    @click="setFontStyle(info.button)"
+                    :title="$lang('斜体')"
+                    :class="{ active: info.button.fontStyle == 'italic' }"
+                    >I</span
+                  >
+                </el-tooltip>
+                <el-tooltip
+                  :content="$lang('下划线')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <span
+                    class="underline"
+                    @click="setTextDecoration(info.button)"
+                    :title="$lang('下划线')"
+                    :class="{
+                      active: info.button.textDecoration == 'underline'
+                    }"
+                    >U</span
+                  >
+                </el-tooltip>
+              </span>
+            </p>
+
+            <p class="align">
+              <span class="label">{{ $lang("对齐") }}:</span>
+              <i
+                class="bomi bomi-text-left"
+                @click="textAlignEvent(info.button, 'left')"
+                :class="{ active: info.button.textAlign == 'left' }"
+              ></i>
+              <i
+                class="bomi bomi-text-center"
+                @click="textAlignEvent(info.button, 'center')"
+                :class="{ active: info.button.textAlign == 'center' }"
+              ></i>
+              <i
+                class="bomi bomi-text-right"
+                @click="textAlignEvent(info.button, 'right')"
+                :class="{ active: info.button.textAlign == 'right' }"
+              ></i>
+              <i
+                class="bomi bomi-text-justify"
+                @click="textAlignEvent(info.button, 'justify')"
+                :class="{ active: info.button.textAlign == 'justify' }"
+              ></i>
+            </p>
+          </el-collapse-item>
+        </el-collapse>
       </el-collapse-item>
       <el-collapse-item :title="$lang('外观')" name="outward">
         <p>
@@ -717,7 +1051,7 @@
             <el-tooltip :content="$lang('加粗')" placement="top" effect="dark">
               <span
                 class="bold"
-                @click="setFontWeight"
+                @click="setFontWeight(info)"
                 :title="$lang('粗体')"
                 :class="{ active: info.fontWeight == 'bold' }"
                 >B</span
@@ -726,7 +1060,7 @@
             <el-tooltip :content="$lang('倾斜')" placement="top" effect="dark">
               <span
                 class="italic"
-                @click="setFontStyle"
+                @click="setFontStyle(info)"
                 :title="$lang('斜体')"
                 :class="{ active: info.fontStyle == 'italic' }"
                 >I</span
@@ -739,7 +1073,7 @@
             >
               <span
                 class="underline"
-                @click="setTextDecoration"
+                @click="setTextDecoration(info)"
                 :title="$lang('下划线')"
                 :class="{ active: info.textDecoration == 'underline' }"
                 >U</span
@@ -752,22 +1086,22 @@
           <span class="label">{{ $lang("对齐") }}:</span>
           <i
             class="bomi bomi-text-left"
-            @click="textAlignEvent('left')"
+            @click="textAlignEvent(info, 'left')"
             :class="{ active: info.textAlign == 'left' }"
           ></i>
           <i
             class="bomi bomi-text-center"
-            @click="textAlignEvent('center')"
+            @click="textAlignEvent(info, 'center')"
             :class="{ active: info.textAlign == 'center' }"
           ></i>
           <i
             class="bomi bomi-text-right"
-            @click="textAlignEvent('right')"
+            @click="textAlignEvent(info, 'right')"
             :class="{ active: info.textAlign == 'right' }"
           ></i>
           <i
             class="bomi bomi-text-justify"
-            @click="textAlignEvent('justify')"
+            @click="textAlignEvent(info, 'justify')"
             :class="{ active: info.textAlign == 'justify' }"
           ></i>
         </p>
@@ -915,7 +1249,7 @@
         </p>
       </el-collapse-item>
     </el-collapse>
-  <!-- </div> -->
+  </div>
 </template>
 
 <script>
@@ -927,7 +1261,9 @@ export default {
   name: "bmButtonTabStyleCom",
   data() {
     return {
-      activeNames: ["name"],
+      tabActive: "0",
+      activeNames: ["name", "style"],
+      tabActiveNames: ["empty"],
       animationDirectionList: Object.freeze(Constants.ANIMATIONDIRECTIONLIST),
       animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
       borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
@@ -1079,8 +1415,8 @@ export default {
         this.$refs.slider?.focus(index + 1);
       }
     },
-    setFontWeight() {
-      let { info = {} } = this;
+    setFontWeight(info) {
+      // let { info = {} } = this;
       let { fontWeight = "" } = info || {};
       if (fontWeight == "bold") {
         fontWeight = "";
@@ -1089,8 +1425,8 @@ export default {
       }
       info.fontWeight = fontWeight;
     },
-    setTextDecoration() {
-      let { info = {} } = this;
+    setTextDecoration(info) {
+      // let { info = {} } = this;
       let { textDecoration = "" } = info || {};
       if (textDecoration == "underline") {
         textDecoration = "";
@@ -1099,8 +1435,8 @@ export default {
       }
       info.textDecoration = textDecoration;
     },
-    setFontStyle() {
-      let { info = {} } = this;
+    setFontStyle(info) {
+      // let { info = {} } = this;
       let { fontStyle = "" } = info || {};
       if (fontStyle == "italic") {
         fontStyle = "";
@@ -1109,15 +1445,36 @@ export default {
       }
       info.fontStyle = fontStyle;
     },
-    textAlignEvent(item) {
-      let { info = {} } = this;
+    textAlignEvent(info, item) {
+      // let { info = {} } = this;
       info.textAlign = item;
     },
     openAll() {
-      this.activeNames = ["name", "outward", "margin", "fontSet", "animation"];
+      this.activeNames = [
+        "name",
+        "style",
+        "outward",
+        "margin",
+        "fontSet",
+        "animation"
+      ];
     },
     closeAll() {
       this.activeNames = ["name"];
+    },
+    removeContentEvent() {
+      let { info = {}, tabActive = 0 } = this;
+      let { contentList = [] } = info || {};
+      contentList.splice(tabActive, 1);
+    },
+    addContentEvent() {
+      let { info = {} } = this;
+      let { contentList = [] } = info || {};
+      contentList.push({
+        text: "",
+        code: "",
+        value: ""
+      });
     }
   },
   watch: {
@@ -1146,4 +1503,32 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less">
+@import (reference) "./../../../../assets/less/common.less";
+.bm-button-tab-style-com {
+  .el-collapse {
+    .el-collapse-item {
+      .el-collapse-item__content {
+        .tab-collapse {
+          .el-collapse-item__header {
+            .lh(35);
+            .h(35);
+            .fz(12);
+            .right {
+              i {
+                .fz(13);
+              }
+            }
+          }
+          .el-collapse-item__wrap {
+            .pt(0);
+          }
+        }
+        // .el-tabs {
+        //   .mt(10);
+        // }
+      }
+    }
+  }
+}
+</style>

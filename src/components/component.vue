@@ -198,6 +198,7 @@ export default {
     ...mapGetters({
       showType: "canvas/getShowType", //当前显示类型
       zoom: "canvas/getZoom", //放大缩小
+      draging: "canvas/getDraging", //组件拖动状态
       activeComs: "canvas/getActiveComs", //选中对象
       activeCom: "canvas/getActiveCom", //选中对象
       moving: "canvas/getMoving"
@@ -342,7 +343,7 @@ export default {
     //   }
     // },
     boxStyle() {
-      let { info = {}, activeCom = {} } = this;
+      let { info = {}, activeCom = {}, draging = false } = this;
       let {
         left = "",
         top = "",
@@ -350,7 +351,7 @@ export default {
         // height = "",
         animation = {},
         order: zIndex = "",
-        showCoverStatus = true,
+        // showCoverStatus = true,
         // matrix = "",
         rotate = "",
         transformOrigin = "",
@@ -408,6 +409,8 @@ export default {
         iterationCount = "infinite";
       }
       // styles["pointer-events"] = !showCoverStatus ? "auto" : "none";
+      styles["pointer-events"] = !draging ? "auto" : "none";
+      // bmCommon.log("draging",draging)
       // bmCommon.log("pointer-events=",showCoverStatus)
       styles["animation-iteration-count"] = iterationCount;
       styles["animation-duration"] = duration;

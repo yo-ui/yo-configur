@@ -444,7 +444,7 @@
             </el-option>
           </el-select>
         </p>
-        
+
         <template v-if="info.borderStyle != 'none'">
           <p>
             <span class="label"> {{ $lang("边框大小") }}:</span>

@@ -217,7 +217,7 @@ export default {
   computed: {
     ...mapGetters({
       showType: "canvas/getShowType", //当前显示类型
-      moving: "canvas/getMoving",
+      // moving: "canvas/getMoving",
       zoom: "canvas/getZoom" //放大缩小
     }),
     svgStyle() {

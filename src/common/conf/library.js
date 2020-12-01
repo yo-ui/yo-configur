@@ -614,7 +614,7 @@ let componentLibrary = [
           fontSize: 24,
           // opacity: 100,
           // fontFamily: "",
-          width: 300,
+          width: 100,
           height: 60,
           // rotate: 0,
           // top: 0,
@@ -1019,13 +1019,73 @@ let componentLibrary = [
         data: {
           ...baseData,
           // dataType: "point",
-          fontWeight: "bold",
-          fontSize: 24,
-          fontFamily: "lcdD",
+          // fontWeight: "bold",
+          // fontSize: 24,
+          // fontFamily: "lcdD",
           width: "",
           height: "",
-          content: "00.00",
-          scaleable: false //是否可缩放操作
+          content: "b",
+          button: {
+            height: 40, //按钮高度
+            width: 80, //按钮宽度
+            color: "#333",
+            fontFamily: "",
+            fontSize: 14,
+            fontWeight: "",
+            fontStyle: "",
+            textDecoration: "",
+            textAlign: "center",
+            textShadowable: false,
+            textShadow,
+            marginTop: 0,
+            marginBottom: 0,
+            marginLeft: 0,
+            marginRight: 0,
+            paddingTop: 0,
+            paddingBottom: 0,
+            paddingLeft: 0,
+            paddingRight: 0,
+            backgroundColor: "#fff",
+            backgroundImage: "",
+            backgroundRepeat: "",
+            backgroundSize: "",
+            backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
+            gradientStyle,
+            borderRadiusTopLeft: 0,
+            borderRadiusTopRight: 0,
+            borderRadiusBottomLeft: 0,
+            borderRadiusBottomRight: 0,
+            borderWidth: 1,
+            borderStyle: "solid",
+            borderColor: "#ccc"
+          },
+          buttonActive: {
+            color: "#fff",
+            backgroundColor: "#4195ea",
+            textShadowable: false,
+            textShadow,
+            backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
+            gradientStyle,
+            borderColor: "#4195ea"
+          },
+          contentList: [
+            {
+              text: "标签A",
+              code: "a",
+              value: ""
+            },
+            {
+              text: "标签B",
+              code: "b",
+              value: ""
+            },
+            {
+              text: "标签C",
+              code: "c",
+              value: ""
+            }
+          ]
+          // scaleable: false //是否可缩放操作
         }
       },
       {

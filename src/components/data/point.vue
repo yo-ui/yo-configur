@@ -184,7 +184,7 @@ export default {
     }),
     ...mapActions({
       // selectComAction: "canvas/selectCom"
-      commonDevicePointsAction: "commonDevicePoints",
+      commonDevicePointsAction: "commonDevicePoints"
       // proxyDeviceMonitoringDeviceControlledPointsAction:
       //   "proxyDeviceMonitoringDeviceControlledPoints"
     }),

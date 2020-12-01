@@ -842,7 +842,7 @@ export default {
           }
         }
       }
-      bmCommon.log(name)
+      bmCommon.log(name);
       // com = `${type}StyleCom`;
       return name;
     },

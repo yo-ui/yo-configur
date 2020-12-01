@@ -428,6 +428,10 @@ export default {
       $vm.$on("cancel", () => {
         this.cancelEvent();
       });
+      //删除
+      $vm.$on("delete-command", () => {
+        this.deleteEvent();
+      });
       //还原
       $vm.$on("resume", () => {
         this.resumeEvent();
@@ -498,19 +502,36 @@ export default {
       }
     },
     deleteEvent() {
-      let { activeCom = {}, widgetList = [] } = this;
+      let { activeCom = {}, widgetList = [], activeComs = [] } = this;
       let { id = "", type = "" } = activeCom;
-      if (!type || type == "canvas") {
-        this.$$msgError(this.$lang("请选择要删除的组件"));
-        return;
+      let { length = 0 } = activeComs || [];
+      if (length > 1) {
+        activeComs.forEach(item => {
+          this.deleteItem(item);
+        });
+      } else {
+        if (!type || type == "canvas") {
+          this.$$msgError(this.$lang("请选择要删除的组件"));
+          return;
+        }
+        let index = widgetList.findIndex(item => id == item.id);
+        if (index < 0) {
+          this.$$msgError(this.$lang("请选择要删除的组件"));
+          return;
+        }
+        this.deleteItem(activeCom);
       }
+      this.selectComAction();
+      // this.showContextMenuStatus = false;
+      this.createHistoryAction();
+    },
+    deleteItem(item = {}) {
+      let { widgetList = [] } = this;
+      let { id = "" } = item || {};
       let index = widgetList.findIndex(item => id == item.id);
-      if (index < 0) {
-        this.$$msgError(this.$lang("请选择要删除的组件"));
-        return;
-      }
       widgetList.splice(index, 1);
       this.selectComAction();
+      // this.showContextMenuStatus = false;
     },
     resumeEvent() {
       let { historyList = [], historyIndex = 0 } = this;

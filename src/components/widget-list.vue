@@ -88,6 +88,7 @@ export default {
     ...mapGetters({
       widgetList: "canvas/getWidgetList", //组件列表
       zoom: "canvas/getZoom", //放大缩小
+      draging: "canvas/getDraging", //组件拖动状态
       canvas: "canvas/getCanvas" //画布属性
     })
   },
@@ -97,7 +98,8 @@ export default {
   methods: {
     ...mapMutations({
       // setWidgetList: "canvas/setWidgetList", //设置组件列表
-      setLinkPoint: "canvas/setLinkPoint" //设置连接点信息
+      setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
+      setDraging: "canvas/setDraging" //设置连接点信息
     }),
     ...mapActions({
       selectComAction: "canvas/selectCom",
@@ -107,6 +109,11 @@ export default {
     }),
     initEvent() {
       $(document).on("dragstart", this.dragstartEvent);
+      $(document).on("dragend", this.dragendEvent);
+    },
+    dragendEvent(e) {
+      e.stopPropagation();
+      this.dragleaveEvent(e);
     },
     dragstartEvent(e) {
       //dataTransfer.setData()方法设置数据类型和拖动的数据
@@ -134,6 +141,7 @@ export default {
         "data",
         JSON.stringify({ ...data, type, name, alias, comDisabled })
       );
+      this.setDraging(true);
       this.dragenterEvent(e);
     },
     dragenterEvent(e) {
@@ -152,13 +160,14 @@ export default {
       // e.preventDefault();
     },
     dragleaveEvent(e) {
-      e.stopPropagation();
+      e?.stopPropagation();
       // e.preventDefault();
       // bmCommon.log("离开当前元素", e.target);
       // $(document).off("dragleave", this.dragleaveEvent);
       $(document).off("dragover", this.dragoverEvent);
       // $(document).off("drop", this.dropEvent);
       $(".content-box").off("drop", this.dropEvent);
+      this.setDraging(false);
     },
     dropEvent(e) {
       e.preventDefault();
@@ -298,8 +307,8 @@ export default {
   },
   beforeDestroy() {
     $(document).off("dragstart", this.dragstartEvent);
-    $(document).off("dragover", this.dragoverEvent);
-    $(".content-box").off("drop", this.dropEvent);
+    $(document).off("dragend", this.dragendEvent);
+    this.dragleaveEvent();
   }
 };
 </script>

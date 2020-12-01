@@ -81,7 +81,8 @@ export default {
     originY: 0, // 选中元件的纵向初始值
     startX: 0, // 鼠标摁下时的横坐标
     startY: 0, // 鼠标摁下时的纵坐标
-    moving: false // 是否正在移动元件（参考线仅在移动元件时显示）
+    moving: false, // 是否正在移动元件（参考线仅在移动元件时显示）
+    draging: false // 创建组件正在拖动
     // financeEnterpriserProvincesCacheMap: null
   },
   getters: {
@@ -105,6 +106,9 @@ export default {
     },
     getMoving(state) {
       return state.moving;
+    },
+    getDraging(state) {
+      return state.draging;
     },
     getHistoryList(state) {
       return state.historyList;
@@ -197,6 +201,10 @@ export default {
     //设置画布缩放值
     setZoom(state, item) {
       state.zoom = item;
+    },
+    //设置组件初始拖动状态
+    setDraging(state, item) {
+      state.draging = item;
     },
     //设置选中对象
     setActiveCom(state, item) {
@@ -643,6 +651,7 @@ export default {
       if (!id) {
         activeCom = canvas;
         context.commit("setActiveCom", activeCom);
+        context.commit("setActiveComs", []);
       } else {
         let index = activeComs.findIndex(item => item.id == id);
         if (index < 0) {

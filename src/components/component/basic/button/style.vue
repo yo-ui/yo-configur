@@ -1126,10 +1126,11 @@ export default {
       this.oldInfo = { ...(activeCom || {}) };
     },
     info: {
-      handler: function(newVal, oldVal) {
+      handler:function (newVal, oldVal) {
         let { activeComs = [], oldInfo = {} } = this;
         let { length = 0 } = activeComs || [];
-        if (length > 1 && oldVal) {
+        let {id=""}=oldInfo||{}
+        if (length > 1 && id) {
           // if (newVal != oldVal) {
           for (let i in newVal) {
             bmCommon.log(newVal[i], oldInfo[i]);

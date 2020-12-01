@@ -192,7 +192,7 @@ export default {
             [type = ""] = Array.from(set);
             // com = `${type}StyleCom`;
           } else {
-            type = "panel";
+            type = "group";
           }
         }
       } else {
@@ -207,11 +207,12 @@ export default {
             [type = ""] = Array.from(set);
             // com = `${type}StyleCom`;
           } else {
-            type = "panel";
+            type = "group";
           }
         }
       }
       com = `${type}StyleCom`;
+      bmCommon.log("panel==>", com);
       return com;
       // return `${
       //   activeComs && length > 1
