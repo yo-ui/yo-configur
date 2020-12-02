@@ -929,6 +929,11 @@ let datas = {
   commonDataCom: () =>
     import(
       /* webpackChunkName: "bm-component-data" */ "@/components/component/data.vue"
+    ),
+    //标签绑定数据
+  buttontabDataCom: () =>
+    import(
+      /* webpackChunkName: "bm-component--data" */ "@/components/component/basic/buttontab/data.vue"
     )
 };
 

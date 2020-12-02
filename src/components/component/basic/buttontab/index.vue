@@ -6,7 +6,7 @@
       :key="index"
       :contenteditable="info.editable"
       @click="clickEvent(item)"
-      @blur.stop="blurEvent($event,item)"
+      @blur.stop="blurEvent($event, item)"
     >
       {{ item.text }}
     </button>
@@ -33,70 +33,68 @@ export default {
     ...mapGetters({}),
     //渐变颜色样式
     gradientStyle() {
-      let { info = {} } = this;
-      let { gradientStyle = {} } = info || {};
-      let {
-        type = "",
-        angle = "",
-        center = "",
-        radialShape = "",
-        valueList = []
-      } = gradientStyle || {};
-      let styles = {};
-      let colors = valueList.map(item => `${item.code} ${item.value}%`);
-      if (type == "linear") {
-        styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
-      } else if (type == "radial") {
-        styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
-      }
-      return styles;
+      return (info = {}) => {
+        // let { info = {} } = this;
+        let { gradientStyle = {} } = info || {};
+        let {
+          type = "",
+          angle = "",
+          center = "",
+          radialShape = "",
+          valueList = []
+        } = gradientStyle || {};
+        let styles = {};
+        let colors = valueList.map(item => `${item.code} ${item.value}%`);
+        if (type == "linear") {
+          styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
+        } else if (type == "radial") {
+          styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+        }
+        return styles;
+      };
     },
-    buttonGradientStyle() {
-      let { info = {} } = this;
-      let { button = {} } = info || {};
-      let { gradientStyle = {} } = button || {};
-      let {
-        type = "",
-        angle = "",
-        center = "",
-        radialShape = "",
-        valueList = []
-      } = gradientStyle || {};
-      let styles = {};
-      let colors = valueList.map(item => `${item.code} ${item.value}%`);
-      if (type == "linear") {
-        styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
-      } else if (type == "radial") {
-        styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
-      }
-      return styles;
-    },
-    buttonActiveGradientStyle() {
-      let { info = {} } = this;
-      let { buttonActive = {} } = info || {};
-      let { gradientStyle = {} } = buttonActive || {};
-      let {
-        type = "",
-        angle = "",
-        center = "",
-        radialShape = "",
-        valueList = []
-      } = gradientStyle || {};
-      let styles = {};
-      let colors = valueList.map(item => `${item.code} ${item.value}%`);
-      if (type == "linear") {
-        styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
-      } else if (type == "radial") {
-        styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
-      }
-      return styles;
-    },
+    // buttonGradientStyle() {
+    //   let { info = {} } = this;
+    //   let { button = {} } = info || {};
+    //   let { gradientStyle = {} } = button || {};
+    //   let {
+    //     type = "",
+    //     angle = "",
+    //     center = "",
+    //     radialShape = "",
+    //     valueList = []
+    //   } = gradientStyle || {};
+    //   let styles = {};
+    //   let colors = valueList.map(item => `${item.code} ${item.value}%`);
+    //   if (type == "linear") {
+    //     styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
+    //   } else if (type == "radial") {
+    //     styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+    //   }
+    //   return styles;
+    // },
+    // buttonActiveGradientStyle() {
+    //   let { info = {} } = this;
+    //   let { buttonActive = {} } = info || {};
+    //   let { gradientStyle = {} } = buttonActive || {};
+    //   let {
+    //     type = "",
+    //     angle = "",
+    //     center = "",
+    //     radialShape = "",
+    //     valueList = []
+    //   } = gradientStyle || {};
+    //   let styles = {};
+    //   let colors = valueList.map(item => `${item.code} ${item.value}%`);
+    //   if (type == "linear") {
+    //     styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
+    //   } else if (type == "radial") {
+    //     styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+    //   }
+    //   return styles;
+    // },
     btnStyle() {
-      let {
-        info = {},
-        buttonGradientStyle = {},
-        buttonActiveGradientStyle = {}
-      } = this;
+      let { info = {}, gradientStyle = {} } = this;
       let {
         width: _width = 0,
         button = {},
@@ -140,7 +138,7 @@ export default {
       let { length = 0 } = contentList || [];
       // bmCommon.log(length,index);
       return (item, index) => {
-        let { code = "" } = item || {};
+        let { value = "" } = item || {};
         let styles = {
           margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
           padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
@@ -240,9 +238,9 @@ export default {
           }
         } else if (backgroundType == "gradient") {
           //渐变
-          styles = { ...styles, ...buttonGradientStyle };
+          styles = { ...styles, ...gradientStyle(button) };
         }
-        if (content == code) {
+        if (content == value) {
           //按钮选中的样式
           let {
             color = "",
@@ -252,6 +250,11 @@ export default {
             backgroundSize = "",
             textShadowable = false,
             textShadow = {},
+            fontFamily = "",
+            fontSize = "",
+            fontWeight = "",
+            fontStyle = "",
+            textDecoration = "",
             backgroundType = "", //纯色和渐变色 purity  纯色  gradients 渐变色
             borderColor = ""
           } = buttonActive || {};
@@ -259,7 +262,21 @@ export default {
           if (color) {
             styles["color"] = color;
           }
-
+          if (fontSize) {
+            styles["fontSize"] = `${fontSize}px`;
+          }
+          if (fontFamily) {
+            styles["fontFamily"] = `${fontFamily}`;
+          }
+          if (fontWeight) {
+            styles["fontWeight"] = fontWeight;
+          }
+          if (fontStyle) {
+            styles["fontStyle"] = fontStyle;
+          }
+          if (textDecoration) {
+            styles["textDecoration"] = textDecoration;
+          }
           if (textShadowable) {
             let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
             styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
@@ -285,14 +302,14 @@ export default {
             }
           } else if (backgroundType == "gradient") {
             //渐变
-            styles = { ...styles, ...buttonActiveGradientStyle };
+            styles = { ...styles, ...gradientStyle(buttonActive) };
           }
         }
         return styles || {};
       };
     },
     comStyle() {
-      let { info = {}, gradientStyle = {} } = this;
+      let { info = {}, gradientStyle } = this;
       let {
         width = "",
         height = "",
@@ -404,7 +421,7 @@ export default {
         }
       } else if (backgroundType == "gradient") {
         //渐变
-        styles = { ...styles, ...gradientStyle };
+        styles = { ...styles, ...gradientStyle(info) };
       }
       return styles || {};
     }
@@ -415,7 +432,7 @@ export default {
   methods: {
     ...mapMutations(),
     ...mapActions(),
-    blurEvent(e,item) {
+    blurEvent(e, item) {
       let { target } = e;
       let name = $(target)
         .text()
@@ -424,9 +441,9 @@ export default {
     },
     clickEvent(item) {
       let { info = {} } = this;
-      let { code = "" } = item || {};
-      info.content = code;
-      bmCommon.log(info.content, code);
+      let { value = "" } = item || {};
+      info.content = value;
+      bmCommon.log(info.content, value);
     }
   }
 };

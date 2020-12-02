@@ -305,6 +305,10 @@
       {{ canvas.name }}
     </div> -->
     <div class="right">
+      <el-button @click="clearEvent">
+        <i class="el-icon-toilet-paper"></i>
+        清缓存
+      </el-button>
       <el-button @click="saveEvent">
         <i class="bomi bomi-save"></i>
         保存
@@ -366,6 +370,7 @@ export default {
   },
   computed: {
     ...mapGetters({
+      userInfo: "getUserInfo",
       historyList: "canvas/getHistoryList",
       historyIndex: "canvas/getHistoryIndex",
       canvas: "canvas/getCanvas",
@@ -392,6 +397,7 @@ export default {
   },
   methods: {
     ...mapMutations({
+      setUserInfo: "setUserInfo",
       setActiveCom: "canvas/setActiveCom",
       setActiveComs: "canvas/setActiveComs",
       setCanvasData: "canvas/setCanvasData",
@@ -440,6 +446,14 @@ export default {
       $vm.$on("order-command", cmd => {
         this.orderCommandEvent(cmd);
       });
+    },
+    //清空缓存
+    clearEvent() {
+      let { userInfo = {} } = this;
+      localStorage.clear();
+      sessionStorage.clear();
+      this.setUserInfo(userInfo);
+      this.$$msgSuccess("缓存清除成功");
     },
     saveEvent() {
       let { canvas = {}, canvasData: data = {}, widgetList = [] } = this;
@@ -502,8 +516,8 @@ export default {
       }
     },
     deleteEvent() {
-      let { activeCom = {}, widgetList = [], activeComs = [] } = this;
-      let { id = "", type = "" } = activeCom;
+      let { activeCom = {}, activeComs = [] } = this;
+      let { type = "" } = activeCom;
       let { length = 0 } = activeComs || [];
       if (length > 1) {
         activeComs.forEach(item => {
@@ -511,11 +525,6 @@ export default {
         });
       } else {
         if (!type || type == "canvas") {
-          this.$$msgError(this.$lang("请选择要删除的组件"));
-          return;
-        }
-        let index = widgetList.findIndex(item => id == item.id);
-        if (index < 0) {
           this.$$msgError(this.$lang("请选择要删除的组件"));
           return;
         }
@@ -528,9 +537,21 @@ export default {
     deleteItem(item = {}) {
       let { widgetList = [] } = this;
       let { id = "" } = item || {};
-      let index = widgetList.findIndex(item => id == item.id);
+      let index = widgetList.findIndex(_item => id == _item.id);
+      bmCommon.log(
+        "widgetList=",
+        widgetList.length,
+        index,
+        id,
+        widgetList.map(item => item.id),
+        index < 0
+      );
+      if (index < 0) {
+        this.$$msgError(this.$lang("请选择要删除的组件"));
+        return;
+      }
       widgetList.splice(index, 1);
-      this.selectComAction();
+      // this.selectComAction();
       // this.showContextMenuStatus = false;
     },
     resumeEvent() {
@@ -727,6 +748,9 @@ export default {
     groupCommandEvent(cmd) {
       // let { condition } = this;
       // condition.groupType = cmd;
+      if (!cmd) {
+        return;
+      }
       switch (cmd) {
         case "group":
           this.composeEvent();
@@ -850,6 +874,9 @@ export default {
     },
     // 分布操作
     spreadCommandEvent(cmd) {
+      if (!cmd) {
+        return;
+      }
       let { condition } = this;
       condition.spreadType = cmd;
       switch (cmd) {
@@ -914,6 +941,9 @@ export default {
       });
     },
     alignCommandEvent(cmd) {
+      if (!cmd) {
+        return;
+      }
       let { condition } = this;
       condition.alignType = cmd;
       switch (cmd) {
@@ -1069,6 +1099,9 @@ export default {
       });
     },
     orderCommandEvent(cmd) {
+      if (!cmd) {
+        return;
+      }
       switch (cmd) {
         case "up":
           this.moveUpEvent();

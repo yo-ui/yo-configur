@@ -1,4 +1,8 @@
 import bmCommon from "@/common/common";
+let position = {
+  originX: 0,
+  originY: 0
+};
 export default {
   methods: {
     initMoveEvent(e) {
@@ -27,6 +31,8 @@ export default {
         originWidth: width,
         originHeight: height
       });
+      position.originX = left;
+      position.originY = top;
 
       // 绑定鼠标移动事件
       // document.addEventListener('mousemove', this.mousemoveEvent, true)
@@ -44,7 +50,7 @@ export default {
       //   x: e.pageX,
       //   y: e.pageY
       // })
-
+      bmCommon.log("组件移动");
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
       this.moving({
@@ -55,7 +61,8 @@ export default {
 
     mouseupEvent() {
       let { activeCom = {} } = this;
-      let { alias = "" } = activeCom || {};
+      let { alias = "", left = 0, top = 0 } = activeCom || {};
+      let { originX = 0, originY = 0 } = position || {};
       // document.removeEventListener('mousemove', this.mousemoveEvent, true)
       $(document).off("mousemove", this.mousemoveEvent);
       $(document).off("mouseup", this.mouseupEvent);
@@ -64,8 +71,11 @@ export default {
       if (alias == "linkPoint") {
         this.setLinkPoint(activeCom);
       }
+      bmCommon.log("组件停止移动");
       this.stopMove();
-      this.createHistoryAction();
+      if (Math.abs(originX - left) > 5 || Math.abs(originY - top) > 5) {
+        this.createHistoryAction();
+      }
     }
   }
 };

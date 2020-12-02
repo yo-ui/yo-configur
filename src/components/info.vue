@@ -305,7 +305,7 @@ export default {
     //   });
     // },
     addEvent(item = {}) {
-      $vm.$emit("bindDevice", item);
+      $vm.$emit("bind-device", item);
     }
   },
   watch: {

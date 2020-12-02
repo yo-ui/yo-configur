@@ -108,7 +108,7 @@
       >
         {{ $lang("复制") }}<small>Ctrl+C</small>
       </li>
-      <li @click="pasteEvent" v-if="showContextMenuType == 2 && !!copyCom">
+      <li @click="pasteEvent" v-if="!!copyCom">
         {{ $lang("粘贴") }}<small>Ctrl+V</small>
       </li>
       <li
@@ -445,15 +445,17 @@ export default {
           canvas.top = 0;
           this.setCanvas(canvas);
           widgetList.forEach(item => {
-            let { alias = "", type = "" } = item || {};
+            let { alias = "", type = "",bindData={} } = item || {};
             if (!alias) {
               alias = type;
             }
             let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
             let { data = {} } = _item || {};
-            let { infoType = "", dataType = "" } = data || {};
+            let { infoType = "", dataType = "",bindData:_bindData={} ,dataCode=""} = data || {};
             item.infoType = infoType;
             item.dataType = dataType;
+            item.dataCode = dataCode;
+            item.bindData={..._bindData,...bindData};
             item.alias = alias;
           });
           this.setWidgetList(widgetList);
@@ -497,7 +499,7 @@ export default {
       $(document).on("keydown", this.keydownEvent);
       $(window).on("resize", this.resetCanvasSize);
       //注册绑定设备事件
-      $vm.$on("bindDevice", item => {
+      $vm.$on("bind-device", item => {
         this.addDataEvent(item);
       });
       //注册显示控制处理事件
@@ -1044,7 +1046,7 @@ export default {
         });
         this.setActiveComs(_activeComs);
       } else {
-        callback(copyCom || {});
+        callback(copyCom || {},0);
         this.setActiveCom(_activeCom);
       }
       this.createHistoryAction();

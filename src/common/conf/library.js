@@ -39,6 +39,20 @@ let gradientStyle = {
     { code: "#545fc8", value: 100 }
   ]
 };
+let bindData = {
+  devicePoint: "", //点位
+  deviceId: "", //设备id
+  orgId: "", //组织id
+  x: "", //x 坐标
+  y: "", //y 坐标
+  height: "", //高
+  width: "", //宽
+  visible: "", //显隐
+  rotate: "", //旋转角度
+  tagList: "", //标签 key
+  content: "", //读取值 key
+  writeContent: "" //写入值 key
+};
 let baseData = {
   backgroundImage: "",
   backgroundSize: "100% 100%",
@@ -58,11 +72,7 @@ let baseData = {
   dataType: "", //绑定数据类型  device point
   styleCode: "", //样式组件代码
   dataCode: "common", //数据绑定组件代码
-  bindData: {
-    devicePoint: "",
-    deviceId: "",
-    orgId: ""
-  }, //绑定的数据
+  bindData, //绑定的数据
   animation,
   color: "",
   originWidth: "", //原宽
@@ -1018,6 +1028,7 @@ let componentLibrary = [
         icon: "/static/img/configur/buttontab.png",
         data: {
           ...baseData,
+          dataCode: "buttontab",
           // dataType: "point",
           // fontWeight: "bold",
           // fontSize: 24,
@@ -1064,6 +1075,11 @@ let componentLibrary = [
             backgroundColor: "#4195ea",
             textShadowable: false,
             textShadow,
+            fontFamily: "",
+            fontSize: 14,
+            fontWeight: "",
+            fontStyle: "",
+            textDecoration: "",
             backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
             gradientStyle,
             borderColor: "#4195ea"
@@ -1071,18 +1087,15 @@ let componentLibrary = [
           contentList: [
             {
               text: "标签A",
-              code: "a",
-              value: ""
+              value: "a"
             },
             {
               text: "标签B",
-              code: "b",
-              value: ""
+              value: "b"
             },
             {
               text: "标签C",
-              code: "c",
-              value: ""
+              value: "c"
             }
           ]
           // scaleable: false //是否可缩放操作
