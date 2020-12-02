@@ -1,7 +1,6 @@
 <template>
   <div class="bm-data-com">
     <el-collapse v-model="activeNames">
-
       <bm-common-data :info="info"></bm-common-data>
       <!-- <el-collapse-item :title="$lang('通用绑定')" name="name" disabled>
         <p>

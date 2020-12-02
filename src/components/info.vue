@@ -131,7 +131,7 @@
 
 <script>
 import bmCommon from "@/common/common";
-// import { Constants } from "@/common/env";
+import { Constants } from "@/common/env";
 import { styles, datas } from "@/widgets/index";
 import draggable from "vuedraggable";
 // eslint-disable-next-line no-undef
@@ -141,6 +141,25 @@ const Props = {
     "text" //静态文本
   ]
 };
+const watches = {};
+for (let i in Constants.BASEDATA) {
+  if (i != "id") {
+    let key = `activeCom.${i}`;
+    watches[key] = {
+      handler(newVal, oldVal) {
+        let { activeComs = [] } = this;
+        let { length = 0 } = activeComs || [];
+        if (length > 1) {
+          bmCommon.log("属性变更");
+          activeComs.forEach(item => {
+            item[i] = newVal;
+          });
+        }
+      },
+      deep: true
+    };
+  }
+}
 export default {
   data() {
     let tabList = Object.freeze([
@@ -258,6 +277,7 @@ export default {
   },
   mounted() {
     this.init();
+    bmCommon.log("style 初始化");
   },
   methods: {
     ...mapMutations({
@@ -316,7 +336,8 @@ export default {
           this.activeIndex = tabList[0].code;
         }
       }
-    }
+    },
+    ...watches
   }
 };
 </script>

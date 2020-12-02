@@ -1002,8 +1002,8 @@ export default {
     }
   },
   created() {
-    let { info = {} } = this;
-    this.oldInfo = bmCommon.clone(info || {});
+    // let { info = {} } = this;
+    // this.oldInfo = bmCommon.clone(info || {});
   },
   methods: {
     ...mapMutations({}),
@@ -1118,34 +1118,6 @@ export default {
     },
     closeAll() {
       this.activeNames = ["name"];
-    }
-  },
-  watch: {
-    activeComs() {
-      let { activeCom = {} } = this;
-      this.oldInfo = { ...(activeCom || {}) };
-    },
-    info: {
-      handler:function (newVal, oldVal) {
-        let { activeComs = [], oldInfo = {} } = this;
-        let { length = 0 } = activeComs || [];
-        let {id=""}=oldInfo||{}
-        if (length > 1 && id) {
-          // if (newVal != oldVal) {
-          for (let i in newVal) {
-            bmCommon.log(newVal[i], oldInfo[i]);
-            if (newVal[i] != oldInfo[i] && i != "id") {
-              activeComs.forEach(item => {
-                item[i] = newVal[i];
-              });
-            }
-          }
-          this.oldInfo = { ...(newVal || {}) };
-          // }
-        }
-      },
-      immediate: true,
-      deep: true //对象内部的属性监听，也叫深度监听
     }
   }
 };

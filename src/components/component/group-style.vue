@@ -879,100 +879,46 @@ import bmCommon from "@/common/common";
 // import {componentLibrary} from "@/common/conf/library";
 import { Constants } from "@/common/env";
 const { mapActions, mapMutations, mapGetters } = Vuex;
+let info = { ...Constants.BASEDATA };
+info["name"] = "组合";
+const watches = {};
+for (let i in Constants.BASEDATA) {
+  if (i != "id") {
+    let key = `info.${i}`;
+    watches[key] = {
+      handler(newVal, oldVal) {
+        let { activeComs = [] } = this;
+        let { length = 0 } = activeComs || [];
+        if (length > 1) {
+          bmCommon.log("属性变更");
+          activeComs.forEach(item => {
+            item[i] = newVal;
+          });
+        }
+      },
+      deep: true
+    };
+  }
+}
 export default {
   name: "groupStyleCom",
   data() {
     return {
       activeNames: ["name"],
-      info: {
-        name:"组合",
-        flipV: false,
-        flipH: false,
-        visible: true,
-        locked: false,
-        backgroundImage: "",
-        backgroundSize: "100% 100%",
-        backgroundColor: "",
-        backgroundRepeat: "repeat",
-        borderWidth: 0,
-        borderStyle: "none",
-        borderColor: "",
-        showCoverStatus: true,
-        borderRadius: 0,
-        animation: {
-          name: "",
-          direction: "normal",
-          duration: 0.8,
-          iterationCount: 1
-        },
-        scaleable:true,
-        fontWeight: "",
-        textDecoration: "",
-        fontStyle: "",
-        fontSize: 14,
-        opacity: 100,
-        fontFamily: "",
-        marginTop: 0,
-        marginBottom: 0,
-        marginLeft: 0,
-        marginRight: 0,
-        paddingTop: 0,
-        paddingBottom: 0,
-        paddingLeft: 0,
-        paddingRight: 0,
-        textAlign: "left",
-        shadowable: false,
-        shadow: {
-          color: "#eee",
-          x: 0, //X偏移量
-          y: 0, //Y偏移量
-          blur: 0, //模糊半径
-          spread: 0, //阴影大小
-          type: "" //阴影类型 //空为外阴影  inset 为内阴影
-        },
-        textShadowable: false,
-        textShadow: {
-          color: "#eee",
-          x: 0, //X偏移量
-          y: 0, //Y偏移量
-          blur: 0 //模糊半径
-        },
-        // backgroundColor: "",
-        backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
-        gradientStyle: {
-          type: "linear", //渐变类型  linear 线性  radial 径向
-          angle: 0,
-          center: "50% 50%",
-          values: [0, 100],
-          radialShape: "circle",
-          valueIndex: 0,
-          gradientId: "",
-          valueOptions: [
-            //   {
-            //   // disabled: true
-            // }, {
-            //   // disabled: true
-            // }
-          ],
-          valueList: [
-            { code: "#108cee", value: 0 },
-            { code: "#545fc8", value: 100 }
-          ]
-        }
-      },
-      animationDirectionList: Object.freeze(Constants.ANIMATIONDIRECTIONLIST),
-      animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
-      borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
-      flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      BACKGROUNDSIZELIST: Object.freeze(Constants.BACKGROUNDSIZELIST),
-      fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
-      tileModeList: Object.freeze(Constants.TILEMODELIST),
+      info,
+      // animationDirectionList: Object.freeze(Constants.ANIMATIONDIRECTIONLIST),
+      // animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
+      // borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
+      // flipModeList: Object.freeze(Constants.FLIPMODELIST),
+      // BACKGROUNDSIZELIST: Object.freeze(Constants.BACKGROUNDSIZELIST),
+      // fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
+      // tileModeList: Object.freeze(Constants.TILEMODELIST),
       // gridStyleMap,
-      backgroundTypeList: Object.freeze(Constants.BACKGROUNDTYPELIST),
-      centerList: Object.freeze(Constants.CENTERLIST),
-      radialShapeList: Object.freeze(Constants.RADIALSHAPELIST),
+      // backgroundTypeList: Object.freeze(Constants.BACKGROUNDTYPELIST),
+      // centerList: Object.freeze(Constants.CENTERLIST),
+      // radialShapeList: Object.freeze(Constants.RADIALSHAPELIST),
       angelList: Object.freeze(Constants.ANGELLIST),
-      gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
+      // gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
       condition: {}
       // info: {
       //   action: "select" //move select
@@ -992,9 +938,9 @@ export default {
       // zoom: "canvas/getZoom", //放大缩小
       // widgetList: "canvas/getWidgetList", //组件列表
       canvas: "canvas/getCanvas", //画布
-      activeComs: "canvas/getActiveComs", //选中组件
+      activeComs: "canvas/getActiveComs" //选中组件
       // linkPoint: "canvas/getLinkPoint" //画布
-    }),
+    })
     // isSameGroup() {
     //   let { activeComs = [] } = this;
     //   let set = new Set();
@@ -1293,29 +1239,7 @@ export default {
     }
   },
   watch: {
-    info: {
-      handler: function(newVal, oldVal) {
-        // let { activeComs = [], oldInfo = {} } = this;
-        // let { length = 0 } = activeComs || [];
-        // // let { name = "" } = oldInfo || {};
-        // if (length > 1 ) {
-        //   // if (newVal != oldInfo) {
-        //   for (let i in newVal) {
-        //     bmCommon.log(newVal[i], oldVal[i]);
-        //     if (newVal[i] != oldVal[i] && i != "id") {
-        //       activeComs.forEach(item => {
-        //         bmCommon.log("值有变化 ",i)
-        //         item[i] = newVal[i];
-        //       });
-        //     }
-        //   }
-        //   // this.oldVal = { ...(newVal || {}) };
-        //   // }
-        // }
-      },
-      immediate: true,
-      deep: true //对象内部的属性监听，也叫深度监听
-    }
+    ...watches
   }
 };
 </script>

@@ -445,17 +445,22 @@ export default {
           canvas.top = 0;
           this.setCanvas(canvas);
           widgetList.forEach(item => {
-            let { alias = "", type = "",bindData={} } = item || {};
+            let { alias = "", type = "", bindData = {} } = item || {};
             if (!alias) {
               alias = type;
             }
             let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
             let { data = {} } = _item || {};
-            let { infoType = "", dataType = "",bindData:_bindData={} ,dataCode=""} = data || {};
+            let {
+              infoType = "",
+              dataType = "",
+              bindData: _bindData = {},
+              dataCode = ""
+            } = data || {};
             item.infoType = infoType;
             item.dataType = dataType;
             item.dataCode = dataCode;
-            item.bindData={..._bindData,...bindData};
+            item.bindData = { ..._bindData, ...bindData };
             item.alias = alias;
           });
           this.setWidgetList(widgetList);
@@ -684,6 +689,7 @@ export default {
         // let [item = {}] = activeComs || [];
         let { activeCom: _activeCom = {} } = this;
         let { id: _id = "" } = _activeCom || {};
+        _activeCom.showCoverStatus = true;
         //如果 shift ctrl 被按住则进行 多选和取消选择
         if (shiftKey || ctrlKey) {
           // let { locked = false } = activeCom || {};
@@ -715,8 +721,11 @@ export default {
         }
       } else {
         this.showContextMenuType = 2;
-        let { activeCom = {} } = this;
+        let { activeCom = {}, activeComs = [] } = this;
         activeCom.showCoverStatus = true;
+        activeComs.forEach(item => {
+          item.showCoverStatus = true;
+        });
         // 取消选中组件
         this.selectComAction(id);
         this.selectComsAction(id);
@@ -1046,7 +1055,7 @@ export default {
         });
         this.setActiveComs(_activeComs);
       } else {
-        callback(copyCom || {},0);
+        callback(copyCom || {}, 0);
         this.setActiveCom(_activeCom);
       }
       this.createHistoryAction();

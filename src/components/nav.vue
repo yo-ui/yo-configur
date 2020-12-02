@@ -305,6 +305,10 @@
       {{ canvas.name }}
     </div> -->
     <div class="right">
+      <el-button @click="dataEvent">
+        <i class="el-icon-data-analysis"></i>
+        数据表
+      </el-button>
       <el-button @click="clearEvent">
         <i class="el-icon-toilet-paper"></i>
         清缓存
@@ -333,6 +337,7 @@
     <bm-record ref="bmRecord"></bm-record>
     <bm-fallback ref="bmFallback"></bm-fallback>
     <bm-preview ref="bmPreview"></bm-preview>
+    <bm-data-table ref="bmDataTable"></bm-data-table>
   </div>
 </template>
 
@@ -362,11 +367,19 @@ export default {
   },
   components: {
     bmRecord: () =>
-      import(/* webpackChunkName: "iot-record-com" */ "@/components/record"),
+      import(/* webpackChunkName: "bm-com-record-com" */ "@/components/record"),
     bmPreview: () =>
-      import(/* webpackChunkName: "iot-preview-com" */ "@/components/preview"),
+      import(
+        /* webpackChunkName: "bm-com-preview-com" */ "@/components/preview"
+      ),
+    bmDataTable: () =>
+      import(
+        /* webpackChunkName: "bm-component-data-table-com" */ "@/components/data/data-table"
+      ),
     bmFallback: () =>
-      import(/* webpackChunkName: "iot-fallback-com" */ "@/components/fallback")
+      import(
+        /* webpackChunkName: "bm-com-fallback-com" */ "@/components/fallback"
+      )
   },
   computed: {
     ...mapGetters({
@@ -446,6 +459,10 @@ export default {
       $vm.$on("order-command", cmd => {
         this.orderCommandEvent(cmd);
       });
+    },
+    //数据表入口
+    dataEvent() {
+      this.$refs.bmDataTable?.show();
     },
     //清空缓存
     clearEvent() {

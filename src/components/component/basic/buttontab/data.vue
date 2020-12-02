@@ -47,7 +47,7 @@
           >
             <i
               class="el-icon-link"
-              @click.stop="writeEvent(info,'writeContent')"
+              @click.stop="writeEvent(info, 'writeContent')"
               :class="{
                 active: info.bindData && info.bindData.writeContent !== ''
               }"
@@ -97,7 +97,7 @@ export default {
       // eslint-disable-next-line no-undef
       $vm.$emit("bind-device", item);
     },
-    writeEvent(item={}){
+    writeEvent(item = {}) {
       $vm.$emit("bind-write", item);
     }
   }

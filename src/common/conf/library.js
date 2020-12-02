@@ -123,481 +123,6 @@ let baseData = {
 };
 let componentLibrary = [
   {
-    name: "形状",
-    code: "shape",
-    icon: "bomi bomi-shape",
-    comList: [
-      {
-        name: "直线",
-        code: "materialLine",
-        icon: "/static/img/configur/material/arrow.png",
-        data: {
-          ...baseData,
-          // styleCode: "material",
-          backgroundColor: "#0075E7",
-          borderColor: "#0075E7",
-          lineWidth: 1,
-          x1: 0,
-          y1: 0,
-          x2: 200,
-          y2: 0,
-          // backgroundImage: "/static/img/svg/material/arrow.svg",
-          // originWidth: 100,
-          // originHeight: 10,
-          // dataType: "device",
-          // infoType:"device",
-          // equalScaleable: true //是否等比例缩放,
-          scaleable: false, //是否可缩放
-          rotateable: false //是否可旋转
-        }
-      },
-      {
-        name: "矩形",
-        code: "materialRectangle",
-        icon: "/static/img/configur/material/rectangle.png",
-        data: {
-          ...baseData,
-          styleCode: "material",
-          // backgroundImage: "/static/img/svg/material/rectangle.svg",
-          backgroundColor: "#0075E7",
-          width: 200,
-          height: 100
-          // dataType: "device",
-          // infoType:"device",
-          // equalScaleable: true //是否等比例缩放
-        }
-      },
-      {
-        name: "箭头",
-        code: "materialArrow",
-        icon: "/static/img/configur/material/arrow.png",
-        data: {
-          ...baseData,
-          styleCode: "material",
-          backgroundColor: "#0075E7",
-          // backgroundImage: "/static/img/svg/material/arrow.svg",
-          width: 100,
-          height: 100
-          // dataType: "device",
-          // infoType:"device",
-          // equalScaleable: true //是否等比例缩放
-        }
-      },
-      {
-        name: "星形",
-        code: "materialStar",
-        icon: "/static/img/configur/material/star.png",
-        data: {
-          ...baseData,
-          // styleCode: "material",
-          backgroundColor: "#0075E7",
-          // backgroundImage: "/static/img/svg/material/star.svg",
-          cornerCount: 5,
-          innerRadius: 50,
-          width: 150,
-          height: 150
-          // dataType: "device",
-          // infoType:"device",
-          // equalScaleable: true //是否等比例缩放
-        }
-      },
-      {
-        name: "圆形",
-        code: "materialCircle",
-        icon: "/static/img/configur/material/circle.png",
-        data: {
-          ...baseData,
-          styleCode: "material",
-          backgroundColor: "#0075E7",
-          // backgroundImage: "/static/img/svg/material/circle.svg",
-          width: 100,
-          height: 100
-          // dataType: "device",
-          // infoType:"device",
-          // equalScaleable: true //是否等比例缩放
-        }
-      },
-      {
-        name: "四边形",
-        code: "materialQuadrangle",
-        icon: "/static/img/configur/material/quadrangle.png",
-        data: {
-          ...baseData,
-          styleCode: "material",
-          backgroundColor: "#0075E7",
-          // backgroundImage: "/static/img/svg/material/quadrangle.svg",
-          width: 100,
-          height: 100
-          // dataType: "device",
-          // infoType:"device",
-          // equalScaleable: true //是否等比例缩放
-        }
-      },
-      {
-        name: "多边形",
-        code: "materialPolygon",
-        icon: "/static/img/configur/material/polygon.png",
-        data: {
-          ...baseData,
-          styleCode: "material",
-          backgroundColor: "#0075E7",
-          // backgroundImage: "/static/img/svg/material/polygon.svg",
-          width: 100,
-          height: 100
-          // dataType: "device",
-          // infoType:"device",
-          // equalScaleable: true //是否等比例缩放
-        }
-      }
-    ]
-  },
-  {
-    name: "图表",
-    code: "chart",
-    icon: "bomi bomi-chart",
-    activeNames: ["bar-chart"],
-    groupList: [
-      {
-        groupName: "柱状图",
-        groupCode: "bar-chart",
-        comList: [
-          {
-            name: "统计柱状图",
-            code: "barChart",
-            icon: "/static/img/configur/bar.jpg",
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "point"
-            }
-          },
-          {
-            name: "时序柱状图",
-            code: "sequenceBarChart",
-            icon: "/static/img/configur/curve.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "折线柱状图",
-            code: "lineBarChart",
-            icon: "/static/img/configur/curve.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "堆叠柱状图",
-            code: "pileBarChart",
-            icon: "/static/img/configur/curve.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          }
-        ]
-      },
-      {
-        groupName: "折线图",
-        groupCode: "line-chart",
-        comList: [
-          {
-            name: "统计折线图",
-            code: "lineChart",
-            icon: "/static/img/configur/curve.png",
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "point"
-            }
-          },
-          {
-            name: "统计面积图",
-            code: "statisticsAreaLineChart",
-            icon: "/static/img/configur/curve.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "时序折线图",
-            code: "sequenceLineChart",
-            icon: "/static/img/configur/curve.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "时序面积图",
-            code: "sequenceAreaLineChart",
-            icon: "/static/img/configur/curve.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          }
-        ]
-      },
-      {
-        groupName: "散点气泡图",
-        groupCode: "scatter-bubble-chart",
-        comList: [
-          {
-            name: "散点图",
-            code: "scatterChart",
-            icon: "/static/img/configur/curve.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "气泡图",
-            code: "bubbleChart",
-            icon: "/static/img/configur/curve.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          }
-        ]
-      },
-      {
-        groupName: "单值图表",
-        groupCode: "single-value-chart",
-        comList: [
-          {
-            name: "仪表盘",
-            code: "gaugeChart",
-            icon: "/static/img/configur/meter.png",
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "水球图",
-            code: "liquidfillChart",
-            icon: "/static/img/configur/meter.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          }
-        ]
-      },
-      {
-        groupName: "雷达图",
-        groupCode: "radar-chart",
-        comList: [
-          {
-            name: "统计雷达图",
-            code: "statisticsRadarChart",
-            icon: "/static/img/configur/meter.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "面积雷达图",
-            code: "areaRadarChart",
-            icon: "/static/img/configur/meter.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          }
-        ]
-      },
-      {
-        groupName: "饼图",
-        groupCode: "pie-chart",
-        comList: [
-          {
-            name: "饼图",
-            code: "pieChart",
-            icon: "/static/img/configur/piechart.jpg",
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "圆环图",
-            code: "ringChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "南丁格尔图",
-            code: "nightingalePieChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "南丁格尔环图",
-            code: "nightingaleRingChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          }
-        ]
-      },
-      {
-        groupName: "条形图",
-        groupCode: "bar-type-chart",
-        comList: [
-          {
-            name: "统计条形图",
-            code: "statisticsBarTypeChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "堆叠条形图",
-            code: "pileBarTypeChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "时序条形图",
-            code: "sequenceBarTypeChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          }
-        ]
-      },
-      {
-        groupName: "混合图",
-        groupCode: "mix-chart",
-        comList: [
-          {
-            name: "双Y轴图",
-            code: "doubleYChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          }
-        ]
-      },
-      {
-        groupName: "三维图",
-        groupCode: "3d-chart",
-        comList: [
-          {
-            name: "三维柱状图",
-            code: "3dBarChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "三维散点图",
-            code: "3dScatterChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
     name: "通用",
     code: "basic",
     icon: "el-icon-s-grid",
@@ -625,7 +150,7 @@ let componentLibrary = [
           // opacity: 100,
           // fontFamily: "",
           width: 100,
-          height: 60,
+          height: 40,
           // rotate: 0,
           // top: 0,
           // scaleable: true, //是否可缩放操作
@@ -1135,387 +660,6 @@ let componentLibrary = [
           // scaleable: false //是否可缩放操作
         }
       }
-    ]
-  },
-  {
-    code: "component",
-    icon: "el-icon-map-location",
-    name: "地图",
-    comList: [
-      {
-        name: "地图",
-        code: "map",
-        icon: "/static/img/configur/position.png",
-        data: {
-          ...baseData,
-          width: 550,
-          height: 400
-        }
-      },
-      {
-        name: "行政区地图",
-        code: "districtMap",
-        icon: "/static/img/configur/position.png",
-        comDisabled: true, //组件不可用
-        data: {
-          ...baseData,
-          width: 550,
-          height: 400
-        }
-      },
-      {
-        name: "设备地图",
-        code: "deviceMap",
-        icon: "/static/img/configur/position.png",
-        comDisabled: true, //组件不可用
-        data: {
-          ...baseData,
-          width: 550,
-          height: 400
-        }
-      },
-      {
-        name: "建筑地图",
-        code: "buildingMap",
-        icon: "/static/img/configur/position.png",
-        comDisabled: true, //组件不可用
-        data: {
-          ...baseData,
-          width: 550,
-          height: 400
-        }
-      },
-      {
-        name: "地图热力图",
-        code: "hotMap",
-        icon: "/static/img/configur/position.png",
-        comDisabled: true, //组件不可用
-        data: {
-          ...baseData,
-          width: 550,
-          height: 400
-        }
-      }
-      // {
-      //   name: "散点图",
-      //   code: "scatter",
-      //   icon: "/static/img/configur/dataing.png",
-      //   data: {
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     opacity:100,
-      //     left: 0,
-      //     width: 300,
-      //     height: 60,
-      //     rotate: 0,
-      //     top: 0,
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "地理坐标图",
-      //   code: "geomap",
-      //   icon: "/static/img/configur/dataing.png",
-      //   data: {
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     opacity:100,
-      //     left: 0,
-      //     width: 300,
-      //     height: 60,
-      //     rotate: 0,
-      //     top: 0,
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "K线图",
-      //   code: "candlestick",
-      //   icon: "/static/img/configur/dataing.png",
-      //   data: {
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     opacity:100,
-      //     left: 0,
-      //     width: 300,
-      //     height: 60,
-      //     rotate: 0,
-      //     top: 0,
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "雷达图",
-      //   code: "radar",
-      //   icon: "/static/img/configur/dataing.png",
-      //   data: {
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     opacity:100,
-      //     left: 0,
-      //     width: 300,
-      //     height: 60,
-      //     rotate: 0,
-      //     top: 0,
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "盒须图",
-      //   code: "boxplot",
-      //   icon: "/static/img/configur/dataing.png",
-      //   data: {
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     opacity:100,
-      //     left: 0,
-      //     width: 300,
-      //     height: 60,
-      //     rotate: 0,
-      //     top: 0,
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "热力图",
-      //   code: "heatmap",
-      //   icon: "/static/img/configur/dataing.png",
-      //   data: {
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     opacity:100,
-      //     left: 0,
-      //     width: 300,
-      //     height: 60,
-      //     rotate: 0,
-      //     top: 0,
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "关系图",
-      //   code: "graph",
-      //   icon: "/static/img/configur/dataing.png",
-      //   data: {
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     opacity:100,
-      //     left: 0,
-      //     width: 300,
-      //     height: 60,
-      //     rotate: 0,
-      //     top: 0,
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "路径图",
-      //   code: "lines",
-      //   icon: "/static/img/configur/dataing.png",
-      //   data: {
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     opacity:100,
-      //     left: 0,
-      //     width: 300,
-      //     height: 60,
-      //     rotate: 0,
-      //     top: 0,
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "树图",
-      //   code: "tree",
-      //   icon: "/static/img/configur/dataing.png",
-      //   data: {
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     opacity:100,
-      //     left: 0,
-      //     width: 300,
-      //     height: 60,
-      //     rotate: 0,
-      //     top: 0,
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "矩形树图",
-      //   code: "treemap",
-      //   icon: "/static/img/configur/dataing.png",
-      //   data: {
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     opacity:100,
-      //     left: 0,
-      //     width: 300,
-      //     height: 60,
-      //     rotate: 0,
-      //     top: 0,
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "旭日图",
-      //   code: "sunburst",
-      //   icon: "/static/img/configur/dataing.png",
-      //   data: {
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     opacity:100,
-      //     left: 0,
-      //     width: 300,
-      //     height: 60,
-      //     rotate: 0,
-      //     top: 0,
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "平行坐标系图",
-      //   code: "parallel",
-      //   icon: "/static/img/configur/dataing.png",
-      //   data: {
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     opacity:100,
-      //     left: 0,
-      //     width: 300,
-      //     height: 60,
-      //     rotate: 0,
-      //     top: 0,
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "桑基图",
-      //   code: "sankey",
-      //   icon: "/static/img/configur/dataing.png",
-      //   data: {
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     opacity:100,
-      //     left: 0,
-      //     width: 300,
-      //     height: 60,
-      //     rotate: 0,
-      //     top: 0,
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "漏斗图",
-      //   code: "funnel",
-      //   icon: "/static/img/configur/dataing.png",
-      //   data: {
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     opacity:100,
-      //     left: 0,
-      //     width: 300,
-      //     height: 60,
-      //     rotate: 0,
-      //     top: 0,
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "象形柱图",
-      //   code: "text",
-      //   icon: "/static/img/configur/dataing.png",
-      //   data: {
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     opacity:100,
-      //     left: 0,
-      //     width: 300,
-      //     height: 60,
-      //     rotate: 0,
-      //     top: 0,
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
-      // {
-      //   name: "象形柱图",
-      //   code: "text",
-      //   icon: "/static/img/configur/dataing.png",
-      //   data: {
-      //     borderWidth: 0,
-      //     borderStyle: "none",
-      //     borderColor: "",
-      //     opacity:100,
-      //     left: 0,
-      //     width: 300,
-      //     height: 60,
-      //     rotate: 0,
-      //     top: 0,
-      //     scaleable: true, //是否可缩放操作
-      //     rotateable: true, //是否可旋转操作
-      //     editable: false, //内容是否可编辑
-      //     locked: true //是否可拖动
-      //   }
-      // },
     ]
   },
   {
@@ -3214,6 +2358,863 @@ let componentLibrary = [
     ]
   },
   {
+    name: "图表",
+    code: "chart",
+    icon: "bomi bomi-chart",
+    activeNames: ["bar-chart"],
+    groupList: [
+      {
+        groupName: "柱状图",
+        groupCode: "bar-chart",
+        comList: [
+          {
+            name: "统计柱状图",
+            code: "barChart",
+            icon: "/static/img/configur/bar.jpg",
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "point"
+            }
+          },
+          {
+            name: "时序柱状图",
+            code: "sequenceBarChart",
+            icon: "/static/img/configur/curve.png",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "折线柱状图",
+            code: "lineBarChart",
+            icon: "/static/img/configur/curve.png",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "堆叠柱状图",
+            code: "pileBarChart",
+            icon: "/static/img/configur/curve.png",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      },
+      {
+        groupName: "折线图",
+        groupCode: "line-chart",
+        comList: [
+          {
+            name: "统计折线图",
+            code: "lineChart",
+            icon: "/static/img/configur/curve.png",
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "point"
+            }
+          },
+          {
+            name: "统计面积图",
+            code: "statisticsAreaLineChart",
+            icon: "/static/img/configur/curve.png",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "时序折线图",
+            code: "sequenceLineChart",
+            icon: "/static/img/configur/curve.png",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "时序面积图",
+            code: "sequenceAreaLineChart",
+            icon: "/static/img/configur/curve.png",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      },
+      {
+        groupName: "散点气泡图",
+        groupCode: "scatter-bubble-chart",
+        comList: [
+          {
+            name: "散点图",
+            code: "scatterChart",
+            icon: "/static/img/configur/curve.png",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "气泡图",
+            code: "bubbleChart",
+            icon: "/static/img/configur/curve.png",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      },
+      {
+        groupName: "单值图表",
+        groupCode: "single-value-chart",
+        comList: [
+          {
+            name: "仪表盘",
+            code: "gaugeChart",
+            icon: "/static/img/configur/meter.png",
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "水球图",
+            code: "liquidfillChart",
+            icon: "/static/img/configur/meter.png",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      },
+      {
+        groupName: "雷达图",
+        groupCode: "radar-chart",
+        comList: [
+          {
+            name: "统计雷达图",
+            code: "statisticsRadarChart",
+            icon: "/static/img/configur/meter.png",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "面积雷达图",
+            code: "areaRadarChart",
+            icon: "/static/img/configur/meter.png",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 400,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      },
+      {
+        groupName: "饼图",
+        groupCode: "pie-chart",
+        comList: [
+          {
+            name: "饼图",
+            code: "pieChart",
+            icon: "/static/img/configur/piechart.jpg",
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "圆环图",
+            code: "ringChart",
+            icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "南丁格尔图",
+            code: "nightingalePieChart",
+            icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "南丁格尔环图",
+            code: "nightingaleRingChart",
+            icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      },
+      {
+        groupName: "条形图",
+        groupCode: "bar-type-chart",
+        comList: [
+          {
+            name: "统计条形图",
+            code: "statisticsBarTypeChart",
+            icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "堆叠条形图",
+            code: "pileBarTypeChart",
+            icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "时序条形图",
+            code: "sequenceBarTypeChart",
+            icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      },
+      {
+        groupName: "混合图",
+        groupCode: "mix-chart",
+        comList: [
+          {
+            name: "双Y轴图",
+            code: "doubleYChart",
+            icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      },
+      {
+        groupName: "三维图",
+        groupCode: "3d-chart",
+        comList: [
+          {
+            name: "三维柱状图",
+            code: "3dBarChart",
+            icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          },
+          {
+            name: "三维散点图",
+            code: "3dScatterChart",
+            icon: "/static/img/configur/piechart.jpg",
+            comDisabled: true, //组件不可用
+            data: {
+              ...baseData,
+              width: 500,
+              height: 300,
+              dataType: "device"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  
+  {
+    code: "component",
+    icon: "el-icon-map-location",
+    name: "地图",
+    comList: [
+      {
+        name: "地图",
+        code: "map",
+        icon: "/static/img/configur/position.png",
+        data: {
+          ...baseData,
+          width: 550,
+          height: 400
+        }
+      },
+      {
+        name: "行政区地图",
+        code: "districtMap",
+        icon: "/static/img/configur/position.png",
+        comDisabled: true, //组件不可用
+        data: {
+          ...baseData,
+          width: 550,
+          height: 400
+        }
+      },
+      {
+        name: "设备地图",
+        code: "deviceMap",
+        icon: "/static/img/configur/position.png",
+        comDisabled: true, //组件不可用
+        data: {
+          ...baseData,
+          width: 550,
+          height: 400
+        }
+      },
+      {
+        name: "建筑地图",
+        code: "buildingMap",
+        icon: "/static/img/configur/position.png",
+        comDisabled: true, //组件不可用
+        data: {
+          ...baseData,
+          width: 550,
+          height: 400
+        }
+      },
+      {
+        name: "地图热力图",
+        code: "hotMap",
+        icon: "/static/img/configur/position.png",
+        comDisabled: true, //组件不可用
+        data: {
+          ...baseData,
+          width: 550,
+          height: 400
+        }
+      }
+      // {
+      //   name: "散点图",
+      //   code: "scatter",
+      //   icon: "/static/img/configur/dataing.png",
+      //   data: {
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     opacity:100,
+      //     left: 0,
+      //     width: 300,
+      //     height: 60,
+      //     rotate: 0,
+      //     top: 0,
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     locked: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "地理坐标图",
+      //   code: "geomap",
+      //   icon: "/static/img/configur/dataing.png",
+      //   data: {
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     opacity:100,
+      //     left: 0,
+      //     width: 300,
+      //     height: 60,
+      //     rotate: 0,
+      //     top: 0,
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     locked: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "K线图",
+      //   code: "candlestick",
+      //   icon: "/static/img/configur/dataing.png",
+      //   data: {
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     opacity:100,
+      //     left: 0,
+      //     width: 300,
+      //     height: 60,
+      //     rotate: 0,
+      //     top: 0,
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     locked: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "雷达图",
+      //   code: "radar",
+      //   icon: "/static/img/configur/dataing.png",
+      //   data: {
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     opacity:100,
+      //     left: 0,
+      //     width: 300,
+      //     height: 60,
+      //     rotate: 0,
+      //     top: 0,
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     locked: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "盒须图",
+      //   code: "boxplot",
+      //   icon: "/static/img/configur/dataing.png",
+      //   data: {
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     opacity:100,
+      //     left: 0,
+      //     width: 300,
+      //     height: 60,
+      //     rotate: 0,
+      //     top: 0,
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     locked: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "热力图",
+      //   code: "heatmap",
+      //   icon: "/static/img/configur/dataing.png",
+      //   data: {
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     opacity:100,
+      //     left: 0,
+      //     width: 300,
+      //     height: 60,
+      //     rotate: 0,
+      //     top: 0,
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     locked: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "关系图",
+      //   code: "graph",
+      //   icon: "/static/img/configur/dataing.png",
+      //   data: {
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     opacity:100,
+      //     left: 0,
+      //     width: 300,
+      //     height: 60,
+      //     rotate: 0,
+      //     top: 0,
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     locked: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "路径图",
+      //   code: "lines",
+      //   icon: "/static/img/configur/dataing.png",
+      //   data: {
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     opacity:100,
+      //     left: 0,
+      //     width: 300,
+      //     height: 60,
+      //     rotate: 0,
+      //     top: 0,
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     locked: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "树图",
+      //   code: "tree",
+      //   icon: "/static/img/configur/dataing.png",
+      //   data: {
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     opacity:100,
+      //     left: 0,
+      //     width: 300,
+      //     height: 60,
+      //     rotate: 0,
+      //     top: 0,
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     locked: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "矩形树图",
+      //   code: "treemap",
+      //   icon: "/static/img/configur/dataing.png",
+      //   data: {
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     opacity:100,
+      //     left: 0,
+      //     width: 300,
+      //     height: 60,
+      //     rotate: 0,
+      //     top: 0,
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     locked: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "旭日图",
+      //   code: "sunburst",
+      //   icon: "/static/img/configur/dataing.png",
+      //   data: {
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     opacity:100,
+      //     left: 0,
+      //     width: 300,
+      //     height: 60,
+      //     rotate: 0,
+      //     top: 0,
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     locked: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "平行坐标系图",
+      //   code: "parallel",
+      //   icon: "/static/img/configur/dataing.png",
+      //   data: {
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     opacity:100,
+      //     left: 0,
+      //     width: 300,
+      //     height: 60,
+      //     rotate: 0,
+      //     top: 0,
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     locked: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "桑基图",
+      //   code: "sankey",
+      //   icon: "/static/img/configur/dataing.png",
+      //   data: {
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     opacity:100,
+      //     left: 0,
+      //     width: 300,
+      //     height: 60,
+      //     rotate: 0,
+      //     top: 0,
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     locked: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "漏斗图",
+      //   code: "funnel",
+      //   icon: "/static/img/configur/dataing.png",
+      //   data: {
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     opacity:100,
+      //     left: 0,
+      //     width: 300,
+      //     height: 60,
+      //     rotate: 0,
+      //     top: 0,
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     locked: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "象形柱图",
+      //   code: "text",
+      //   icon: "/static/img/configur/dataing.png",
+      //   data: {
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     opacity:100,
+      //     left: 0,
+      //     width: 300,
+      //     height: 60,
+      //     rotate: 0,
+      //     top: 0,
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     locked: true //是否可拖动
+      //   }
+      // },
+      // {
+      //   name: "象形柱图",
+      //   code: "text",
+      //   icon: "/static/img/configur/dataing.png",
+      //   data: {
+      //     borderWidth: 0,
+      //     borderStyle: "none",
+      //     borderColor: "",
+      //     opacity:100,
+      //     left: 0,
+      //     width: 300,
+      //     height: 60,
+      //     rotate: 0,
+      //     top: 0,
+      //     scaleable: true, //是否可缩放操作
+      //     rotateable: true, //是否可旋转操作
+      //     editable: false, //内容是否可编辑
+      //     locked: true //是否可拖动
+      //   }
+      // },
+    ]
+  },
+  {
+    name: "形状",
+    code: "shape",
+    icon: "bomi bomi-shape",
+    comList: [
+      {
+        name: "直线",
+        code: "materialLine",
+        icon: "/static/img/configur/material/arrow.png",
+        data: {
+          ...baseData,
+          // styleCode: "material",
+          backgroundColor: "#0075E7",
+          borderColor: "#0075E7",
+          lineWidth: 1,
+          x1: 0,
+          y1: 0,
+          x2: 200,
+          y2: 0,
+          // backgroundImage: "/static/img/svg/material/arrow.svg",
+          // originWidth: 100,
+          // originHeight: 10,
+          // dataType: "device",
+          // infoType:"device",
+          // equalScaleable: true //是否等比例缩放,
+          scaleable: false, //是否可缩放
+          rotateable: false //是否可旋转
+        }
+      },
+      {
+        name: "矩形",
+        code: "materialRectangle",
+        icon: "/static/img/configur/material/rectangle.png",
+        data: {
+          ...baseData,
+          styleCode: "material",
+          // backgroundImage: "/static/img/svg/material/rectangle.svg",
+          backgroundColor: "#0075E7",
+          width: 200,
+          height: 100
+          // dataType: "device",
+          // infoType:"device",
+          // equalScaleable: true //是否等比例缩放
+        }
+      },
+      {
+        name: "箭头",
+        code: "materialArrow",
+        icon: "/static/img/configur/material/arrow.png",
+        data: {
+          ...baseData,
+          styleCode: "material",
+          backgroundColor: "#0075E7",
+          // backgroundImage: "/static/img/svg/material/arrow.svg",
+          width: 100,
+          height: 100
+          // dataType: "device",
+          // infoType:"device",
+          // equalScaleable: true //是否等比例缩放
+        }
+      },
+      {
+        name: "星形",
+        code: "materialStar",
+        icon: "/static/img/configur/material/star.png",
+        data: {
+          ...baseData,
+          // styleCode: "material",
+          backgroundColor: "#0075E7",
+          // backgroundImage: "/static/img/svg/material/star.svg",
+          cornerCount: 5,
+          innerRadius: 50,
+          width: 150,
+          height: 150
+          // dataType: "device",
+          // infoType:"device",
+          // equalScaleable: true //是否等比例缩放
+        }
+      },
+      {
+        name: "圆形",
+        code: "materialCircle",
+        icon: "/static/img/configur/material/circle.png",
+        data: {
+          ...baseData,
+          styleCode: "material",
+          backgroundColor: "#0075E7",
+          // backgroundImage: "/static/img/svg/material/circle.svg",
+          width: 100,
+          height: 100
+          // dataType: "device",
+          // infoType:"device",
+          // equalScaleable: true //是否等比例缩放
+        }
+      },
+      {
+        name: "四边形",
+        code: "materialQuadrangle",
+        icon: "/static/img/configur/material/quadrangle.png",
+        data: {
+          ...baseData,
+          styleCode: "material",
+          backgroundColor: "#0075E7",
+          // backgroundImage: "/static/img/svg/material/quadrangle.svg",
+          width: 100,
+          height: 100
+          // dataType: "device",
+          // infoType:"device",
+          // equalScaleable: true //是否等比例缩放
+        }
+      },
+      {
+        name: "多边形",
+        code: "materialPolygon",
+        icon: "/static/img/configur/material/polygon.png",
+        data: {
+          ...baseData,
+          styleCode: "material",
+          backgroundColor: "#0075E7",
+          // backgroundImage: "/static/img/svg/material/polygon.svg",
+          width: 100,
+          height: 100
+          // dataType: "device",
+          // infoType:"device",
+          // equalScaleable: true //是否等比例缩放
+        }
+      }
+    ]
+  },
+  {
     code: "material",
     icon: "el-icon-files",
     name: "素材",
@@ -3300,6 +3301,7 @@ componentLibrary.forEach(item => {
   }
 });
 export default {
+  baseData,
   componentPanel,
   componentLibrary,
   componentLibraryMap

@@ -51,14 +51,6 @@ export default {
       height: ""
     };
   },
-  // watch: {
-  //   videoSrc: function() {
-  //     document.getElementById("videos").src = this.getApi;
-  //   },
-  //   nowIndex: function() {
-  //     document.getElementById("videos").src = this.getApi;
-  //   }
-  // },
   directives: {
     focus: {
       inserted: function(el) {
@@ -67,32 +59,8 @@ export default {
     }
   },
   methods: {
-    // toggleList: function() {
-    //   if (this.isShow == false) {
-    //     this.isShow = true;
-    //   } else {
-    //     this.isShow = false;
-    //   }
-    // },
-    // selectApi: function(index) {
-    //   this.nowIndex = index;
-    //   this.toggleList();
-    // }
   },
-  // computed: {
-  //   getNowApiName: function() {
-  //     return this.nowIndex + 1;
-  //   },
-  //   getApi: function() {
-  //     return this.api[this.nowIndex] + this.videoSrc;
-  //   }
-  // },
   mounted() {
-    // let that = this;
-    // // 点击空白区域，列表消失
-    // document.documentElement.addEventListener("click", function() {
-    //   that.isShow = false;
-    // });
     // 计算屏幕长宽
     this.width = $(window).width() + "px";
     this.height = $(window).height() - 50 + "px";

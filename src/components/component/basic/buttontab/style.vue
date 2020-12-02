@@ -550,7 +550,10 @@
             <template v-if="info.button.backgroundType == 'gradient'">
               <p>
                 <span class="label">{{ $lang("渐变颜色") }}:</span>
-                <span class="gradient" :style="gradientStyle(info.button)"></span>
+                <span
+                  class="gradient"
+                  :style="gradientStyle(info.button)"
+                ></span>
                 <!-- {{ gradientStyle }} -->
               </p>
               <p>
@@ -561,7 +564,9 @@
                 >
                   <el-radio-button
                     :style="
-                      `background-image:${gradientStyleMap(info.button)[item.code]}`
+                      `background-image:${
+                        gradientStyleMap(info.button)[item.code]
+                      }`
                     "
                     :title="item.name"
                     v-for="item in gradientTypeList"
@@ -1621,7 +1626,7 @@ export default {
       activeComs: "canvas/getActiveComs" //选中组件
     }),
     gradientStyle() {
-      return (info)=>{
+      return info => {
         let { gradientStyleMap } = this;
         let { gradientStyle = {} } = info || {};
         let { type = "" } = gradientStyle || {};
@@ -1629,7 +1634,7 @@ export default {
           backgroundImage: gradientStyleMap(info)[type]
         };
         return styles;
-      }
+      };
     },
     // buttonGradientStyle() {
     //   let { info = {}, buttonGradientStyleMap = [] } = this;
@@ -1652,7 +1657,7 @@ export default {
     //   return styles;
     // },
     gradientStyleMap() {
-      return (info)=>{
+      return info => {
         // let { info = {} } = this;
         let { gradientStyle = {} } = info || {};
         let { angle = "", center = "", radialShape = "", valueList = [] } =
@@ -1662,8 +1667,7 @@ export default {
           linear: `linear-gradient(${angle}deg, ${colors.join()})`,
           radial: `radial-gradient(${radialShape} at ${center}, ${colors.join()})`
         };
-      }
-      
+      };
     },
     // buttonGradientStyleMap() {
     //   let { info = {} } = this;
@@ -1690,14 +1694,14 @@ export default {
     //   };
     // },
     gradientLinearStyle() {
-      return (info)=>{
+      return info => {
         // let { info = {} } = this;
         let { gradientStyle = {} } = info || {};
         let { valueList = [] } = gradientStyle || {};
         let colors = valueList.map(item => `${item.code} ${item.value}%`);
         return `background-image:linear-gradient(90deg, ${colors.join()})`;
-      }
-    },
+      };
+    }
     // buttonGradientLinearStyle() {
     //   let { info = {} } = this;
     //   let { button = {} } = info || {};
@@ -1955,29 +1959,6 @@ export default {
         code: "",
         value: ""
       });
-    }
-  },
-  watch: {
-    info: {
-      handler: function(newVal, oldVal) {
-        let { activeComs = [], oldInfo = {} } = this;
-        let { length = 0 } = activeComs || [];
-        if (length > 1) {
-          // if (newVal != oldVal) {
-          for (let i in newVal) {
-            bmCommon.log(newVal[i], oldInfo[i]);
-            if (newVal[i] != oldInfo[i] && i != "id") {
-              activeComs.forEach(item => {
-                item[i] = newVal[i];
-              });
-            }
-          }
-          this.oldInfo = { ...(newVal || {}) };
-          // }
-        }
-      },
-      immediate: true,
-      deep: true //对象内部的属性监听，也叫深度监听
     }
   }
 };

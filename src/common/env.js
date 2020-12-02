@@ -11,6 +11,7 @@ import apiConfig from "./conf";
 import lib from "./conf/library";
 const {
   componentLibrary: COMPONENTLIBRARY,
+  baseData: BASEDATA,
   componentLibraryMap: COMPONENTLIBRARYMAP,
   componentPanel: COMPONENTPANEL
 } = lib || {};
@@ -94,6 +95,7 @@ const Constants = {
   COMPONENTLIBRARY,
   COMPONENTLIBRARYMAP,
   COMPONENTPANEL,
+  BASEDATA,
   BACKGROUNDSIZELIST: [
     { code: "100% 100%", name: "拉伸以充满画布" },
     { code: "cover", name: "充满画布" },
