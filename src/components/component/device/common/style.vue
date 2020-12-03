@@ -1,22 +1,6 @@
 // 电表
 <template>
   <div class="bm-device-common-style-com">
-    <!-- <h2>{{ $lang("功能选择") }}</h2>
-    <p>
-      <i
-        class="el-icon-rank"
-        :class="{ active: info.action == 'select' }"
-        @click="actionEvent('select')"
-        :title="$lang('选择组件')"
-      ></i>
-      <i
-        class="el-icon-thumb"
-        :class="{ active: info.action == 'move' }"
-        @click="actionEvent('move')"
-        :title="$lang('移动画布')"
-      ></i>
-    </p> -->
-    <!-- <h2>{{ info.name }}</h2> -->
     <el-collapse v-model="activeNames">
       <el-collapse-item :title="info.name" name="name" disabled>
         <template slot="title">
@@ -220,7 +204,7 @@
           :placeholder="$lang('请选择填充模式')"
         >
           <el-option
-            v-for="item in deviceCommonFormList"
+            v-for="item in backgroundSizeList"
             :key="item.code"
             :label="$lang(item.name)"
             :value="item.code"
@@ -527,6 +511,7 @@
         <p>
           <span class="label">{{ $lang("动画类型") }}:</span>
           <el-select v-model="info.animation.name" placeholder="请选择动画类型">
+            <el-option :label="$lang('无')" value=""></el-option>
             <el-option-group
               v-for="group in animateGroupList"
               :key="group.code"
@@ -611,8 +596,8 @@ export default {
       radialShapeList: Object.freeze(Constants.RADIALSHAPELIST),
       angelList: Object.freeze(Constants.ANGELLIST),
       gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
-      flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      // deviceCommonFormList: Object.freeze(Constants.BACKGROUNDSIZELIST),
+      // flipModeList: Object.freeze(Constants.FLIPMODELIST),
+      // backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
       fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST)
       // tileModeList: Object.freeze(Constants.TILEMODELIST)
     };

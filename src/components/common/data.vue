@@ -61,7 +61,7 @@
           :class="{ active: info.bindData && info.bindData.visible !== '' }"
         ></i>
       </el-tooltip>
-    </p>
+    </p> -->
     <p v-if="info.dataType == 'device'">
       <span class="label"> {{ $lang("绑定设备") }}: </span>
       <el-tooltip
@@ -77,7 +77,7 @@
           }"
         ></i>
       </el-tooltip>
-    </p> -->
+    </p>
     <p v-if="info.dataType == 'point'">
       <span class="label"> {{ $lang("绑定点位") }}: </span>
       <el-tooltip

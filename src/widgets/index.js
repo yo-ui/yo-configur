@@ -188,6 +188,57 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-device" */ "@/components/component/device/common/index.vue"
     ),
+
+  // 水管（水平）
+  deviceSgHCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-h" */ "@/components/component/device/sg-h/index.vue"
+    ),
+  // 水管（垂直）
+  deviceSgVCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-v" */ "@/components/component/device/sg-v/index.vue"
+    ),
+  // 水管（上）
+  deviceSgTopCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-top" */ "@/components/component/device/sg-top/index.vue"
+    ),
+  // 水管（下）
+  deviceSgBottomCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-bottom" */ "@/components/component/device/sg-bottom/index.vue"
+    ),
+  // 水管（左）
+  deviceSgLeftCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-left" */ "@/components/component/device/sg-left/index.vue"
+    ),
+  // 水管（左上）
+  deviceSgLeftTopCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-left-top" */ "@/components/component/device/sg-left-top/index.vue"
+    ),
+  // 水管（左下）
+  deviceSgLeftBottomCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-left-bottom" */ "@/components/component/device/sg-left-bottom/index.vue"
+    ),
+  // 水管（右）
+  deviceSgRightCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-right" */ "@/components/component/device/sg-right/index.vue"
+    ),
+  // 水管（右上）
+  deviceSgRightTopCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-right-top" */ "@/components/component/device/sg-right-top/index.vue"
+    ),
+  // 水管（右下）
+  deviceSgRightBottomCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-right-bottom" */ "@/components/component/device/sg-right-bottom/index.vue"
+    ),
   // 电表
   deviceDbCom: () =>
     import(
@@ -682,6 +733,56 @@ let styles = {
   deviceCommonStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-style" */ "@/components/component/device/common/style.vue"
+    ),
+  // 水管（水平）
+  deviceSgHStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-h-style" */ "@/components/component/device/sg-h/style.vue"
+    ),
+  // 水管（垂直）
+  deviceSgVStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-v-style" */ "@/components/component/device/sg-v/style.vue"
+    ),
+  // 水管（上）
+  deviceSgTopStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-top-style" */ "@/components/component/device/sg-top/style.vue"
+    ),
+  // 水管（下）
+  deviceSgBottomStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-bottom-style" */ "@/components/component/device/sg-bottom/style.vue"
+    ),
+  // 水管（左）
+  deviceSgLeftStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-left-style" */ "@/components/component/device/sg-left/style.vue"
+    ),
+  // 水管（左上）
+  deviceSgLeftTopStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-left-top-style" */ "@/components/component/device/sg-left-top/style.vue"
+    ),
+  // 水管（左下）
+  deviceSgLeftBottomStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-left-bottom-style" */ "@/components/component/device/sg-left-bottom/style.vue"
+    ),
+  // 水管（右）
+  deviceSgRightStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-right-style" */ "@/components/component/device/sg-right/style.vue"
+    ),
+  // 水管（右上）
+  deviceSgRightTopStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-right-top-style" */ "@/components/component/device/sg-right-top/style.vue"
+    ),
+  // 水管（右下）
+  deviceSgRightBottomStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sg-right-bottom-style" */ "@/components/component/device/sg-right-bottom/style.vue"
     ),
   deviceDbStyleCom: () =>
     import(

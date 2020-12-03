@@ -27,7 +27,7 @@
               :title="$lang('移动画布')"
             ></i>
           </el-tooltip>
-          <el-tooltip
+          <!-- <el-tooltip
             :content="$lang('拼装水管')"
             placement="top"
             effect="dark"
@@ -38,7 +38,7 @@
               @click="actionEvent('paint')"
               :title="$lang('拼装水管')"
             ></i>
-          </el-tooltip>
+          </el-tooltip> -->
         </p>
       </el-collapse-item>
       <el-collapse-item :title="$lang('画布')" name="name">

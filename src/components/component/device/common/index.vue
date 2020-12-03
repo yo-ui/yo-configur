@@ -1,6 +1,8 @@
 <template>
-  <div class="img-box" :style="comStyle">
+  <div class="img-box">
     <!-- <img :src="info.backgroundImage" /> -->
+
+    <img :src="info.backgroundImage" :style="comStyle" />
     <!-- <div :style -->
   </div>
 </template>
@@ -34,14 +36,14 @@ export default {
         borderStyle = "",
         borderWidth = "",
         borderRadius = "",
-        opacity = "",
+        opacity = ""
         // scale = "",
         // fontFamily = "",
         // fontSize = "",
         // fontWeight = "",
         // fontStyle = ""
         // backgroundColor = "",
-        backgroundImage = ""
+        // backgroundImage = ""
         // backgroundRepeat = "",
         // backgroundSize = ""
       } = info || {};
@@ -95,9 +97,9 @@ export default {
       // if (backgroundColor) {
       //   styles["backgroundColor"] = backgroundColor;
       // }
-      if (backgroundImage) {
-        styles["backgroundImage"] = `url(${backgroundImage})`;
-      }
+      // if (backgroundImage) {
+      //   styles["backgroundImage"] = `url(${backgroundImage})`;
+      // }
       return styles || {};
     },
     textStyle() {

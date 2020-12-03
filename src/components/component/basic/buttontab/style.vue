@@ -1517,6 +1517,7 @@
         <p>
           <span class="label">{{ $lang("动画类型") }}:</span>
           <el-select v-model="info.animation.name" placeholder="请选择动画类型">
+            <el-option :label="$lang('无')" value=""></el-option>
             <el-option-group
               v-for="group in animateGroupList"
               :key="group.code"
@@ -1532,50 +1533,52 @@
             </el-option-group>
           </el-select>
         </p>
-        <p>
-          <span class="label">{{ $lang("动画速度") }}:</span>
-          <el-input-number
-            controls-position="right"
-            clearable
-            :step="0.1"
-            :max="2"
-            v-model.number="info.animation.duration"
-            :placeholder="$lang('动画速度')"
-          ></el-input-number>
-          px
-          <el-slider
-            v-model="info.animation.duration"
-            :step="0.1"
-            :max="2"
-            :format-tooltip="val => val"
-          ></el-slider>
-        </p>
-        <p>
-          <span class="label">{{ $lang("播放次数") }}:</span>
-          <el-input-number
-            controls-position="right"
-            clearable
-            v-model.number="info.animation.iterationCount"
-            :placeholder="$lang('播放次数')"
-          ></el-input-number>
-          px
-          <el-slider
-            v-model="info.animation.iterationCount"
-            :format-tooltip="val => val"
-          ></el-slider>
-        </p>
-        <p>
-          <span class="label">{{ $lang("播放方式") }}:</span>
-          <el-radio-group v-model="info.animation.direction">
-            <el-radio
-              v-for="item in animationDirectionList"
-              :key="item.code"
-              :label="item.code"
-            >
-              {{ item.name }}
-            </el-radio>
-          </el-radio-group>
-        </p>
+        
+        <template v-if="info.animation.name">
+          <p>
+            <span class="label">{{ $lang("动画速度") }}:</span>
+            <el-input-number
+              controls-position="right"
+              clearable
+              :step="0.1"
+              :max="2"
+              v-model.number="info.animation.duration"
+              :placeholder="$lang('动画速度')"
+            ></el-input-number>
+            px
+            <el-slider
+              v-model="info.animation.duration"
+              :step="0.1"
+              :max="2"
+              :format-tooltip="val => val"
+            ></el-slider>
+          </p>
+          <p>
+            <span class="label">{{ $lang("播放次数") }}:</span>
+            <el-input-number
+              controls-position="right"
+              clearable
+              v-model.number="info.animation.iterationCount"
+              :placeholder="$lang('播放次数')"
+            ></el-input-number>
+            <el-slider
+              v-model="info.animation.iterationCount"
+              :format-tooltip="val => val"
+            ></el-slider>
+          </p>
+          <p>
+            <span class="label">{{ $lang("播放方式") }}:</span>
+            <el-radio-group v-model="info.animation.direction">
+              <el-radio
+                v-for="item in animationDirectionList"
+                :key="item.code"
+                :label="item.code"
+              >
+                {{ item.name }}
+              </el-radio>
+            </el-radio-group>
+          </p>
+        </template>
       </el-collapse-item>
     </el-collapse>
   </div>

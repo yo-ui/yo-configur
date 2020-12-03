@@ -803,6 +803,7 @@
             @change="animationChangeEvent('name')"
             placeholder="请选择动画类型"
           >
+            <el-option :label="$lang('无')" value=""> </el-option>
             <el-option-group
               v-for="group in animateGroupList"
               :key="group.code"

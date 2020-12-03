@@ -209,7 +209,7 @@
           :placeholder="$lang('请选择填充模式')"
         >
           <el-option
-            v-for="item in deviceCommonFormList"
+            v-for="item in backgroundSizeList"
             :key="item.code"
             :label="$lang(item.name)"
             :value="item.code"
@@ -524,6 +524,7 @@
         <p>
           <span class="label">{{ $lang("动画类型") }}:</span>
           <el-select v-model="info.animation.name" placeholder="请选择动画类型">
+            <el-option :label="$lang('无')" value=""></el-option>
             <el-option-group
               v-for="group in animateGroupList"
               :key="group.code"
@@ -609,7 +610,7 @@ export default {
       angelList: Object.freeze(Constants.ANGELLIST),
       gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
       // flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      // deviceCommonFormList: Object.freeze(Constants.BACKGROUNDSIZELIST),
+      // backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
       fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST)
       // tileModeList: Object.freeze(Constants.TILEMODELIST)
     };

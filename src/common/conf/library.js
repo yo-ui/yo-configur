@@ -688,290 +688,145 @@ let componentLibrary = [
         //   icon: "el-icon-files",
         //   name: "辅助",
         comList: [
-          {
-            name: "连接点",
-            alias: "linkPoint",
-            code: "assistCommon",
-            icon: "/static/img/configur/link-point.png",
-            data: {
-              ...baseData,
-              backgroundImage: "/static/img/svg/link-point.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
-              width: 80,
-              height: 80
-              // rotate: 0,
-              // top: 0,
-              // equalScaleable: false, //是否等比例缩放
-              // scaleable: false, //是否可缩放操作
-              // rotateable: false, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
-            }
-          },
+          // {
+          //   name: "连接点",
+          //   alias: "linkPoint",
+          //   code: "assistCommon",
+          //   icon: "/static/img/configur/link-point.png",
+          //   data: {
+          //     ...baseData,
+          //     backgroundImage: "/static/img/svg/link-point.svg",
+          //     width: 80,
+          //     height: 80
+          //   }
+          // },
           {
             name: "水管（上）",
-            code: "assistCommon",
+            // code: "deviceSgTop",
+            code: "deviceCommon",
             alias: "water_top",
             icon: "/static/img/configur/h-top.png",
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-top.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
-              width: 80,
-              height: 80
-              // rotate: 0,
-              // top: 0,
-              // equalScaleable: true, //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
+              width: 40,
+              height: 40
             }
           },
           {
             name: "水管（下）",
-            code: "assistCommon",
+            // code: "deviceSgBottom",
+            code: "deviceCommon",
             alias: "water_bottom",
             icon: "/static/img/configur/h-bottom.png",
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-bottom.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
-              width: 80,
-              height: 80
-              // rotate: 0,
-              // top: 0,
-              // equalScaleable: true, //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
+              width: 40,
+              height: 40
             }
           },
           {
             name: "水管（左）",
-            code: "assistCommon",
+            // code: "deviceSgLeft",
+            code: "deviceCommon",
             alias: "water_left",
             icon: "/static/img/configur/v-left.png",
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-left.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
-              width: 80,
-              height: 80
-              // rotate: 0,
-              // top: 0,
-              // equalScaleable: true, //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
+              width: 40,
+              height: 40
             }
           },
           {
             name: "水管（右）",
-            code: "assistCommon",
+            // code: "deviceSgRight",
+            code: "deviceCommon",
             alias: "water_right",
             icon: "/static/img/configur/v-right.png",
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-right.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
-              width: 80,
-              height: 80
-              // rotate: 0,
-              // top: 0,
-              // equalScaleable: true, //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
+              width: 40,
+              height: 40
             }
           },
           {
             name: "水管（左上）",
-            code: "assistCommon",
+            // code: "deviceSgLeftTop",
+            code: "deviceCommon",
             alias: "water_lefttop",
             icon: "/static/img/configur/t-1.png",
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-topleft.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
-              width: 80,
-              height: 80
-              // rotate: 0,
-              // top: 0,
-              // equalScaleable: true, //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
+              width: 40,
+              height: 40
             }
           },
           {
             name: "水管（左下）",
             alias: "water_leftbottom",
-            code: "assistCommon",
+            // code: "deviceSgLeftBottom",
+            code: "deviceCommon",
             icon: "/static/img/configur/t-4.png",
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-bottomleft.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
-              width: 80,
-              height: 80
-              // rotate: 0,
-              // top: 0,
-              // equalScaleable: true, //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
+              width: 40,
+              height: 40
             }
           },
           {
             name: "水管（右上）",
             alias: "water_righttop",
-            code: "assistCommon",
+            // code: "deviceSgRightTop",
+            code: "deviceCommon",
             icon: "/static/img/configur/t-2.png",
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-topright.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
-              width: 80,
-              height: 80
-              // rotate: 0,
-              // top: 0,
-              // equalScaleable: true, //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
+              width: 40,
+              height: 40
             }
           },
           {
             name: "水管（右下）",
             alias: "water_rightbottom",
-            code: "assistCommon",
+            // code: "deviceSgRightBottom",
+            code: "deviceCommon",
             icon: "/static/img/configur/t-3.png",
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-bottomright.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
-              width: 80,
-              height: 80
-              // rotate: 0,
-              // top: 0,
-              // equalScaleable: true, //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
+              width: 40,
+              height: 40
             }
           },
           {
             name: "水管（水平）",
             alias: "water_horizontal",
-            code: "assistCommon",
+            // code: "deviceCommon",
+            code: "deviceCommon",
             icon: "/static/img/configur/h.png",
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-h.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
-              width: 150,
-              height: 80
-              // rotate: 0,
-              // top: 0,
-              // equalScaleable: false, //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
+              width: 75,
+              height: 40
             }
           },
           {
             name: "水管（垂直）",
-            code: "assistCommon",
+            code: "deviceCommon",
             alias: "water_vertical",
             icon: "/static/img/configur/v.png",
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/shuiguan-v.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
-              width: 80,
-              height: 150
-              // rotate: 0,
-              // top: 0,
-              // equalScaleable: false, //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
+              width: 40,
+              height: 75
             }
           }
         ]
@@ -988,24 +843,11 @@ let componentLibrary = [
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/db.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
               width: 70,
               height: 69,
               dataType: "device",
               infoType: "device",
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {

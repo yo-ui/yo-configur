@@ -295,10 +295,10 @@ export default {
         point,
         value,
         callback: flag => {
-          if (!flag) {
-            info.content = content; //如果取消则重置结果
-          } else {
+          if (flag) {
             info.content = !content;
+          } else {
+            info.content = content; //如果取消则重置结果
           }
         }
       });

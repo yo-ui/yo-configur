@@ -198,7 +198,7 @@
           :placeholder="$lang('请选择填充模式')"
         >
           <el-option
-            v-for="item in deviceCommonFormList"
+            v-for="item in backgroundSizeList"
             :key="item.code"
             :label="$lang(item.name)"
             :value="item.code"
@@ -516,7 +516,7 @@ export default {
       angelList: Object.freeze(Constants.ANGELLIST),
       gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
       flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      // deviceCommonFormList: Object.freeze(Constants.BACKGROUNDSIZELIST),
+      // backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
       fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST)
       // tileModeList: Object.freeze(Constants.TILEMODELIST)
     };
