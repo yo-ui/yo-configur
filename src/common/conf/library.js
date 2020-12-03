@@ -59,10 +59,10 @@ let baseData = {
   backgroundColor: "",
   backgroundPosition: "center",
   backgroundRepeat: "repeat",
-  borderWidth: 0,
+  borderWidth: 1,
   comName: "", //
   borderStyle: "none",
-  borderColor: "",
+  borderColor: "#000",
   borderRadius: 0,
   scale: "scale(1,1)",
   showCoverStatus: true, //默认显示覆盖层
@@ -415,6 +415,18 @@ let componentLibrary = [
           textAlign: "center"
           // content: "00.00"
           // scaleable: false //是否可缩放操作
+        }
+      },
+      {
+        name: "指南针",
+        code: "compass",
+        icon: "/static/img/configur/compass.png",
+        data: {
+          ...baseData,
+          // dataType: "point",
+          width: 100,
+          height: 100,
+          equalScaleable: true //是否等比缩放
         }
       },
       {

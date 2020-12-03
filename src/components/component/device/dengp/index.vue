@@ -1,6 +1,6 @@
 // 灯泡
 <template>
-  <div class="bm-device-dengp-com" :style="comStyle">
+  <div class="bm-device-dengp-com" :style="comStyle"  @click="controlEvent">
     <!-- :viewBox="`${info.vBoxx} ${info.vBoxy} ${info.width} ${info.height}`" -->
     <svg
       version="1.1"
@@ -301,6 +301,19 @@ export default {
           // this.$emit("success"); //组件加载完成回调
         });
       }
+    },
+    controlEvent() {
+      let { info = {}, pointValue = "" } = this;
+      let { bindData = {} } = info;
+      let { deviceId = "", devicePoint = "" } = bindData || {};
+      if (!deviceId) {
+        return;
+      }
+      // let { $vm } = window;
+      pointCode = devicePoint;
+      let point = pointCode;
+      let value = pointValue === 0 ? 1 : 0;
+      $vm.$emit("control", { deviceId, point, value });
     }
     // blurEvent(e) {
     //   let { target } = e;

@@ -1363,7 +1363,7 @@
                 :placeholder="$lang('请选择填充模式')"
               >
                 <el-option
-                  v-for="item in BACKGROUNDSIZELIST"
+                  v-for="item in backgroundSizeList"
                   :key="item.code"
                   :label="$lang(item.name)"
                   :value="item.code"
@@ -1602,7 +1602,7 @@ export default {
       angelList: Object.freeze(Constants.ANGELLIST),
       gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
       flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      BACKGROUNDSIZELIST: Object.freeze(Constants.BACKGROUNDSIZELIST),
+      backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
       fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
       tileModeList: Object.freeze(Constants.TILEMODELIST)
     };
@@ -1636,26 +1636,6 @@ export default {
         return styles;
       };
     },
-    // buttonGradientStyle() {
-    //   let { info = {}, buttonGradientStyleMap = [] } = this;
-    //   let { button = {} } = info || {};
-    //   let { gradientStyle = {} } = button || {};
-    //   let { type = "" } = gradientStyle || {};
-    //   let styles = {
-    //     backgroundImage: buttonGradientStyleMap[type]
-    //   };
-    //   return styles;
-    // },
-    // buttonActiveGradientStyle() {
-    //   let { info = {}, buttonActiveGradientStyleMap = [] } = this;
-    //   let { buttonActive = {} } = info || {};
-    //   let { gradientStyle = {} } = buttonActive || {};
-    //   let { type = "" } = gradientStyle || {};
-    //   let styles = {
-    //     backgroundImage: buttonActiveGradientStyleMap[type]
-    //   };
-    //   return styles;
-    // },
     gradientStyleMap() {
       return info => {
         // let { info = {} } = this;
@@ -1669,30 +1649,6 @@ export default {
         };
       };
     },
-    // buttonGradientStyleMap() {
-    //   let { info = {} } = this;
-    //   let { button = {} } = info || {};
-    //   let { gradientStyle = {} } = button || {};
-    //   let { angle = "", center = "", radialShape = "", valueList = [] } =
-    //     gradientStyle || {};
-    //   let colors = valueList.map(item => `${item.code} ${item.value}%`);
-    //   return {
-    //     linear: `linear-gradient(${angle}deg, ${colors.join()})`,
-    //     radial: `radial-gradient(${radialShape} at ${center}, ${colors.join()})`
-    //   };
-    // },
-    // buttonActiveGradientStyleMap() {
-    //   let { info = {} } = this;
-    //   let { buttonActive = {} } = info || {};
-    //   let { gradientStyle = {} } = buttonActive || {};
-    //   let { angle = "", center = "", radialShape = "", valueList = [] } =
-    //     gradientStyle || {};
-    //   let colors = valueList.map(item => `${item.code} ${item.value}%`);
-    //   return {
-    //     linear: `linear-gradient(${angle}deg, ${colors.join()})`,
-    //     radial: `radial-gradient(${radialShape} at ${center}, ${colors.join()})`
-    //   };
-    // },
     gradientLinearStyle() {
       return info => {
         // let { info = {} } = this;
@@ -1702,22 +1658,6 @@ export default {
         return `background-image:linear-gradient(90deg, ${colors.join()})`;
       };
     }
-    // buttonGradientLinearStyle() {
-    //   let { info = {} } = this;
-    //   let { button = {} } = info || {};
-    //   let { gradientStyle = {} } = button || {};
-    //   let { valueList = [] } = gradientStyle || {};
-    //   let colors = valueList.map(item => `${item.code} ${item.value}%`);
-    //   return `background-image:linear-gradient(90deg, ${colors.join()})`;
-    // },
-    // buttonActiveGradientLinearStyle() {
-    //   let { info = {} } = this;
-    //   let { buttonActive = {} } = info || {};
-    //   let { gradientStyle = {} } = buttonActive || {};
-    //   let { valueList = [] } = gradientStyle || {};
-    //   let colors = valueList.map(item => `${item.code} ${item.value}%`);
-    //   return `background-image:linear-gradient(90deg, ${colors.join()})`;
-    // }
   },
   created() {
     let { info = {} } = this;
@@ -1794,12 +1734,6 @@ export default {
       let { gradientStyle = {} } = buttonActive || {};
       gradientStyle.valueIndex = index;
     },
-    // sliderDraggingEvent(value, index) {
-    //   this.sliderDragStartEvent(index);
-    // },
-    // sliderDragEndEvent(index) {
-    //   this.sliderDragStartEvent(index);
-    // },
     //添加渐变光圈
     addApertureEvent(info, sliderKey) {
       // let { info = {} } = this;
@@ -1833,72 +1767,6 @@ export default {
         this.$refs[sliderKey]?.focus(index + 1);
       }
     },
-    // //添加渐变光圈
-    // buttonAddApertureEvent() {
-    //   let { info = {} } = this;
-    //   let { button = {} } = info || {};
-    //   let { gradientStyle = {} } = button || {};
-    //   let { valueList = [], values = [] } = gradientStyle || {};
-    //   let { length = 0 } = valueList || [];
-    //   let item = (valueList || [])[length - 1];
-    //   let { code = "", value = 0 } = item || {};
-    //   value = parseInt(value / Math.pow(2, length - 1));
-    //   let index = 1;
-    //   valueList.splice(index, 0, { code, value });
-    //   values.splice(index, 0, value);
-    //   gradientStyle.valueIndex = index;
-    //   this.$refs.buttonSlider?.focus(index + 1);
-    // },
-    // buttonRemoveApertureEvent() {
-    //   let { info = {} } = this;
-    //   let { button = {} } = info || {};
-    //   let { gradientStyle = {} } = button || {};
-    //   let { valueList = [], values = [], valueIndex = 0 } = gradientStyle || {};
-    //   let { length = 0 } = valueList || [];
-    //   // let item = (valueList || [])[length - 1];
-    //   // let { code = "", value = 0 } = item || {};
-    //   // value = parseInt(value / length);
-    //   if (length > 2 && valueIndex > 0 && valueIndex < length - 1) {
-    //     valueList.splice(valueIndex, 1);
-    //     values.splice(valueIndex, 1);
-    //     let index = 1;
-    //     gradientStyle.valueIndex = index;
-    //     this.$refs.buttonSlider?.focus(index + 1);
-    //   }
-    // },
-    // //添加渐变光圈
-    // buttonActiveAddApertureEvent() {
-    //   let { info = {} } = this;
-    //   let { buttonActive = {} } = info || {};
-    //   let { gradientStyle = {} } = buttonActive || {};
-    //   let { valueList = [], values = [] } = gradientStyle || {};
-    //   let { length = 0 } = valueList || [];
-    //   let item = (valueList || [])[length - 1];
-    //   let { code = "", value = 0 } = item || {};
-    //   value = parseInt(value / Math.pow(2, length - 1));
-    //   let index = 1;
-    //   valueList.splice(index, 0, { code, value });
-    //   values.splice(index, 0, value);
-    //   gradientStyle.valueIndex = index;
-    //   this.$refs.buttonActiveSlider?.focus(index + 1);
-    // },
-    // buttonActiveRemoveApertureEvent() {
-    //   let { info = {} } = this;
-    //   let { buttonActive = {} } = info || {};
-    //   let { gradientStyle = {} } = buttonActive || {};
-    //   let { valueList = [], values = [], valueIndex = 0 } = gradientStyle || {};
-    //   let { length = 0 } = valueList || [];
-    //   // let item = (valueList || [])[length - 1];
-    //   // let { code = "", value = 0 } = item || {};
-    //   // value = parseInt(value / length);
-    //   if (length > 2 && valueIndex > 0 && valueIndex < length - 1) {
-    //     valueList.splice(valueIndex, 1);
-    //     values.splice(valueIndex, 1);
-    //     let index = 1;
-    //     gradientStyle.valueIndex = index;
-    //     this.$refs.buttonActiveSlider?.focus(index + 1);
-    //   }
-    // },
     setFontWeight(info) {
       // let { info = {} } = this;
       let { fontWeight = "" } = info || {};

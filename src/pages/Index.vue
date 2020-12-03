@@ -502,6 +502,7 @@ export default {
       $(viewBox).on("contextmenu", this.viewBoxContextmenuEvent);
       //注册按键键盘事件
       $(document).on("keydown", this.keydownEvent);
+      $(document).on("keyup", this.keyupEvent);
       $(window).on("resize", this.resetCanvasSize);
       //注册绑定设备事件
       $vm.$on("bind-device", item => {
@@ -530,10 +531,6 @@ export default {
           callback
         );
       });
-      // //注册窗口变换事件
-      // $(window).on("resize", this.resizeEvent);
-      // $(document).on("keyup", this.keyupEvent);
-      // $(document).on("mousedown", this.keydownEvent);
       // 默认选择画布
       this.selectComAction();
     },
@@ -733,9 +730,20 @@ export default {
       }
       this.showContextMenuStatus = false;
     },
-    // keyupEvent(e) {
-    //   this.shiftCtrlKeyDownStatus = false;
-    // },
+    keyupEvent(e) {
+      let {
+        keyCode = "",
+        // shiftKey = false,
+        // ctrlKey = false,
+        // metaKey = false
+        // altKey = false
+      } = e;
+      // ctrlKey = ctrlKey || metaKey; //(ctrl(cmd))
+      if(keyCode==32){
+         // 空格
+        $vm.$emit("canvas-action","select")
+      }
+    },
     keydownEvent(e) {
       let {
         keyCode = "",
@@ -919,6 +927,10 @@ export default {
         if (ctrlKey && shiftKey) {
           this.lockEvent(!locked);
         }
+      } else if (keyCode == 32) {
+        // 空格
+        e.preventDefault();
+        $vm.$emit("canvas-action","move")
       } else if (keyCode == 46) {
         // Delete
         this.deleteEvent();
@@ -1295,6 +1307,7 @@ export default {
     $(viewBox).off("contextmenu", this.viewBoxContextmenuEvent);
     //注册按键键盘事件
     $(document).off("keydown", this.keydownEvent);
+    $(document).off("keyup", this.keyupEvent);
 
     $(window).off("resize", this.resetCanvasSize);
   },

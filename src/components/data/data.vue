@@ -1,85 +1,146 @@
 //设备数据绑定
 <template>
-  <div class="bm-dialog-data-table-com">
-    <el-dialog
-      class=""
-      v-dialogDrag="true"
-      :title="$lang('数据表')"
-      @keydown.native.stop
-      :visible.sync="showDialogStatus"
-      width="80%"
-    >
-      <!-- @open="handleOpen"
-      @close="handleClose"> -->
-      <div class="flex-content">
-        <div class="left">
-          <div class="title">
-            {{ $lang("数据表") }}
-            <i class="el-icon-plus" @click="addEvent">{{ $lang("新建") }}</i>
-          </div>
-          <el-menu :default-active="defaultActive">
-            <el-menu-item
-              :index="`${item.id}`"
-              :key="item.id"
-              v-for="item in menuList"
-            >
-              <div class="txt">
-                <i class="el-icon-document"></i>
-                <span slot="title">{{ $lang(item.name) }}</span>
-              </div>
-              <div class="icon-box">
-                <i class="icon-circle"></i>
-                <el-dropdown trigger="click">
-                  <i class="el-icon-more"></i>
-                  <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>{{ $lang("运行") }}</el-dropdown-item>
-                    <el-dropdown-item>{{ $lang("暂停") }}</el-dropdown-item>
-                    <el-dropdown-item>{{ $lang("编辑") }}</el-dropdown-item>
-                    <el-dropdown-item>{{ $lang("删除") }}</el-dropdown-item>
-                  </el-dropdown-menu>
-                </el-dropdown>
-              </div>
-            </el-menu-item>
-          </el-menu>
-        </div>
-        <div class="right"></div>
-      </div>
-      <template #footer>
-        <el-button @click="closeEvent">{{ $lang("关闭") }}</el-button>
-        <!-- <el-button @click="resetEvent">{{ $lang("重置") }}</el-button> -->
-        <el-button type="primary" @click="submitEvent">{{
-          $lang("确定")
-        }}</el-button>
+  <el-dialog
+    class="bm-dialog-data-com"
+    v-dialogDrag="true"
+    :title="$lang(`${condition.id ? '修改' : '新建'}数据表`)"
+    @keydown.native.stop
+    :visible.sync="showDialogStatus"
+    width="900px"
+  >
+    <el-steps :active="defaultActive" simple>
+      <template v-if="condition.type == 'simulate'">
+        <el-step :title="$lang('配置模拟数据')">
+          <template #icon>
+            1
+          </template>
+        </el-step>
+        <el-step :title="$lang('预览数据')">
+          <template #icon>
+            2
+          </template>
+        </el-step>
       </template>
-    </el-dialog>
-    <bm-data ref="bmData"></bm-data>
-  </div>
+      <template v-else-if="condition.type == 'static'">
+        <el-step :title="$lang('上传文件')">
+          <template #icon>
+            1
+          </template></el-step
+        >
+        <el-step :title="$lang('修改数据')">
+          <template #icon>
+            2
+          </template></el-step
+        >
+      </template>
+      <template v-else-if="condition.type == 'interactive'">
+        <el-step :title="$lang('配置交互数据')">
+          <template #icon>
+            1
+          </template></el-step
+        >
+        <el-step :title="$lang('预览数据')">
+          <template #icon>
+            2
+          </template></el-step
+        >
+      </template>
+    </el-steps>
+    <el-form
+      :model="condition"
+      ref="form"
+      label-width="100px"
+      :inline="false"
+      size="normal"
+    >
+      <el-form-item :label="$lang('名称')" required>
+        <el-input v-model="condition.name" clearable maxlength="50"></el-input>
+      </el-form-item>
+      <el-form-item :label="$lang('类型')" required>
+        <el-radio-group v-model="condition.type">
+          <el-radio-button
+            v-for="item in typeList"
+            :key="item.code"
+            :label="item.code"
+            :disabled="!!item.disabled"
+          >
+            {{ item.name }}
+          </el-radio-button>
+        </el-radio-group>
+      </el-form-item>
+
+      <template v-if="condition.type == 'static'">
+        <el-form-item :label="$lang('文件类型')" required>
+          <el-radio-group v-model="condition.fileType">
+            <el-radio label="JSON">
+              JSON
+            </el-radio>
+            <el-radio label="CSV">
+              CSV
+            </el-radio>
+          </el-radio-group>
+          <el-upload
+            :action="uploadUrl"
+            :headers="uploadHeaders"
+            ref="upload"
+            :auto-upload="false"
+            :limit="1"
+          >
+            <el-button slot="trigger" size="small" type="primary"
+              >选择文件</el-button
+            >
+            <div slot="tip" class="el-upload__tip">
+              jpg/png files with a size less than 500kb
+            </div>
+          </el-upload>
+        </el-form-item>
+      </template>
+    </el-form>
+
+    <template #footer>
+      <el-button @click="closeEvent">{{ $lang("取消") }}</el-button>
+      <!-- <el-button @click="resetEvent">{{ $lang("取消") }}</el-button> -->
+      <el-button type="primary" @click="submitEvent">{{
+        $lang("确定")
+      }}</el-button>
+    </template>
+  </el-dialog>
 </template>
 
 <script>
 /* eslint-disable vue/no-parsing-error */
-
 // import bmCommon from "@/common/common";
 // import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "bm-dialog-data-table-com",
+  name: "bm-dialog-data-com",
   data() {
-    let menuList = [];
-    for (let i = 0; i < 6; i++) {
-      menuList.push({ id: i, name: `数据${i}` });
-    }
+    let typeList = Object.freeze([
+      { code: "simulate", name: "模拟数据" },
+      { code: "static", name: "静态数据", disabled: true },
+      { code: "interactive", name: "交互数据" }
+    ]);
     return {
       showDialogStatus: false,
-      menuList,
-      defaultActive: "0",
+      typeList,
+      defaultActive: 0,
       // pointList: [],
       // device: null,
       dataLoadingStatus: true,
       // showPopoverStatus: false,
       // defaultExpandedKeys: [],
+      uploadHeaders: {},
+      uploadUrl: "",
       condition: {
+        id: "",
+        name: "", //名称
+        type: typeList[0].code, //类型
+        line: 10, //单次更新行数
+        time: 2, //单次更新时间间隔
+        updateType: "append", // append 追加 overide 覆盖
+        colums: {} //表列
+
         // orgKeywords: "",
         // orgName: "",
         // orgId: "",
@@ -88,14 +149,11 @@ export default {
         // pointIds: [],
         // // pointId: "",
         // deviceName: ""
-        // pointName: ""
+        // // pointName: ""
       }
     };
   },
-  components: {
-    bmData: () =>
-      import(/* webpackChunkName: "bm-data-com" */ "@/components/data/data")
-  },
+  components: {},
   computed: {
     ...mapGetters({
       // canvas: "canvas/getCanvas",
@@ -185,9 +243,7 @@ export default {
     closeEvent() {
       this.showDialogStatus = false;
     },
-    addEvent() {
-      this.$refs.bmData?.show({});
-    },
+    addEvent() {},
     // loadDeviceList() {
     //   this.dataLoadingStatus = true;
     //   this.commonDevicePointsFunc((list = []) => {
@@ -227,7 +283,7 @@ export default {
     //   // let { id: pointId = "" } = point || {};
     //   // condition.pointId = pointId;
     // },
-    //过滤树结点
+    // //过滤树结点
     // filterTree(val, data) {
     //   if (!val) {
     //     return true;
@@ -239,7 +295,7 @@ export default {
     // selectDeviceEvent() {
     //   this.resetStatus = false;
     // },
-    // //点击组织事件
+    //点击组织事件
     // nodeClickEvent(item, node, com) {
     //   let { condition } = this;
     //   let { id = "", name = "" } = item || {};
@@ -350,5 +406,5 @@ export default {
 </script>
 
 <style lang="less">
-@import (less) "../../assets/less/components/data/data.table.less";
+@import (less) "../../assets/less/components/data/data.less";
 </style>

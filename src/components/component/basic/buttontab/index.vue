@@ -53,46 +53,6 @@ export default {
         return styles;
       };
     },
-    // buttonGradientStyle() {
-    //   let { info = {} } = this;
-    //   let { button = {} } = info || {};
-    //   let { gradientStyle = {} } = button || {};
-    //   let {
-    //     type = "",
-    //     angle = "",
-    //     center = "",
-    //     radialShape = "",
-    //     valueList = []
-    //   } = gradientStyle || {};
-    //   let styles = {};
-    //   let colors = valueList.map(item => `${item.code} ${item.value}%`);
-    //   if (type == "linear") {
-    //     styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
-    //   } else if (type == "radial") {
-    //     styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
-    //   }
-    //   return styles;
-    // },
-    // buttonActiveGradientStyle() {
-    //   let { info = {} } = this;
-    //   let { buttonActive = {} } = info || {};
-    //   let { gradientStyle = {} } = buttonActive || {};
-    //   let {
-    //     type = "",
-    //     angle = "",
-    //     center = "",
-    //     radialShape = "",
-    //     valueList = []
-    //   } = gradientStyle || {};
-    //   let styles = {};
-    //   let colors = valueList.map(item => `${item.code} ${item.value}%`);
-    //   if (type == "linear") {
-    //     styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
-    //   } else if (type == "radial") {
-    //     styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
-    //   }
-    //   return styles;
-    // },
     btnStyle() {
       let { info = {}, gradientStyle = {} } = this;
       let {

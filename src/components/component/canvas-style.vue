@@ -562,6 +562,10 @@ export default {
         canvas.height = Number(height);
       }
     });
+    //监控画布操作
+    $vm.$on("canvas-action", item => {
+      this.actionEvent(item);
+    });
   },
   components: {
     bmUpload: () =>
