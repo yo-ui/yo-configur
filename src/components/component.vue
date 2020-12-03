@@ -32,7 +32,7 @@
       "
       @dblclick.prevent.stop="coverEvent"
     >
-      {{ info.parentId }}
+      <!-- {{ info.parentId }} -->
     </div>
     <i
       class="operate-btn el-icon-refresh-right"
