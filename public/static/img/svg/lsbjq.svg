@@ -1,30 +1,4 @@
-<<<<<<< HEAD:src/components/device/Lsbjq.js
-import Spirit from './../../core/Spirit'
-
-/**
- * 漏水报警器
- */
-class Lsbjq extends Spirit {
-
-	constructor(x=10, y=10,width,height) {
-        super(x, y);
-	    this.name = "漏水报警器";
-	    this.className = "Lsbjq";
-	    this.width = width;
-	    this.height = height;
-      this.minWidth = 20;
-      this.minHeight = 20;
-	    this.moveType = 4;
-	    this.zIndex = 2;
-	    this.linkage = true;
-	}
-
-	template(){
-		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
-		     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-=======
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
->>>>>>> origin/dev-new:public/static/img/svg/lsbjq.svg
 					 viewBox="0 0 34 44" style="enable-background:new 0 0 34 44;" xml:space="preserve">
 				<style type="text/css">
 					.lsbjq-st0{fill:url(#lsbjq_2_);}
@@ -87,25 +61,4 @@ class Lsbjq extends Spirit {
 					v26C23.2,40.5,22.5,41.1,21.7,41.1z"/>
 				<ellipse id="XMLID_1570_" class="lsbjq-st4" cx="17" cy="20.2" rx="4.4" ry="3.9"/>
 				<ellipse id="XMLID_1569_" class="lsbjq-st5" cx="17" cy="20.7" rx="3.9" ry="3.4"/>
-<<<<<<< HEAD:src/components/device/Lsbjq.js
 				</svg>
-			</div>`);
-	}
-
-	toJson() {
-		let json = {
-			className:this.className,
-			moveType:this.moveType,
-			linkage:this.linkage,
-			minWidth:this.minWidth,
-			minHeight:this.minHeight,
-			zIndex:this.zIndex
-		};
-		return Object.assign(super.toJson(),json);
-	}
-}
-
-export default Lsbjq;
-=======
-				</svg>
->>>>>>> origin/dev-new:public/static/img/svg/lsbjq.svg

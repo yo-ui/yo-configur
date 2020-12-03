@@ -248,6 +248,7 @@ export default {
           formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
         legend: {
+          name,
           // left: "center",
           top: "top",
           data: [

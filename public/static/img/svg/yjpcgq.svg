@@ -1,30 +1,4 @@
-<<<<<<< HEAD:src/components/device/Hjjccgqa.js
-import Spirit from './../../core/Spirit'
-
-/**
- * 带液晶屏的环境监测传感器
- */
-class Hjjccgqa extends Spirit {
-
-	constructor(x=10, y=10,width,height) {
-        super(x, y);
-	    this.name = "带液晶屏的环境监测传感器";
-	    this.className = "Hjjccgqa";
-	    this.width = width;
-	    this.height = height;
-	    this.moveType = 4;
-	    this.minWidth = 20;
-	    this.minHeight = 20;
-	    this.linkage = true;
-	    this.zIndex = 2;
-	}
-
-	template(){
-		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
-		      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-=======
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
->>>>>>> origin/dev-new:public/static/img/svg/yjpcgq.svg
 					 viewBox="0 0 50 80" style="enable-background:new 0 0 50 80;" xml:space="preserve">
 				<style type="text/css">
 					.hjjccgqa-st0{fill:url(#hjjccgqa_2_);}
@@ -94,26 +68,4 @@ class Hjjccgqa extends Spirit {
 					<path id="hjjccgqa_1079_" d="M40.7,6c-0.3,0.2-0.6,0.4-1,0.5v9c0.4-0.1,0.7-0.3,1-0.5V6z"/>
 					<path id="hjjccgqa_1080_" d="M38.7,6.8c-0.3,0.1-0.7,0.1-1,0.1v9c0.3,0,0.7-0.1,1-0.1V6.8z"/>
 				</g>
-<<<<<<< HEAD:src/components/device/Hjjccgqa.js
 				</svg>
-			</div>`);
-	}
-
-	toJson() {
-		let json = {
-			className: this.className,
-			moveType: this.moveType,
-			linkage: this.linkage,
-			minWidth: this.minWidth,
-			minHeight: this.minHeight,
-			zIndex: this.zIndex
-		};
-		return Object.assign(super.toJson(),json);
-	}
-
-}
-
-export default Hjjccgqa;
-=======
-				</svg>
->>>>>>> origin/dev-new:public/static/img/svg/yjpcgq.svg

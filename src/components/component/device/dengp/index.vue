@@ -1,141 +1,31 @@
 // 灯泡
 <template>
-  <div class="bm-device-dengp-com" :style="comStyle">
+  <div class="bm-device-dengp-com" :style="comStyle"  @click="controlEvent">
     <!-- :viewBox="`${info.vBoxx} ${info.vBoxy} ${info.width} ${info.height}`" -->
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="10 0 32 50"
+      :width="info.width"
+      :height="info.height"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
-      <defs>
-        <!-- <template v-if="info.backgroundType == 'gradient'">
-          <linearGradient
-            :id="info.gradientStyle.gradientId"
-            :x1="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '0%',
-                  135: '0%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y1="
-              `${
-                {
-                  0: '100%',
-                  45: '100%',
-                  90: '100%',
-                  135: '0%',
-                  180: '0%',
-                  225: '0%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :x2="
-              `${
-                {
-                  0: '0%',
-                  45: '100%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '0%',
-                  270: '0%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y2="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            v-if="info.gradientStyle.type == 'linear'"
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </linearGradient>
-          <radialGradient
-            :id="info.gradientStyle.gradientId"
-            v-else-if="info.gradientStyle.type == 'radial'"
-            :cx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :cy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :r="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '160%',
-                '100% 0%': '150%',
-                '0% 100%': '150%',
-                '100% 100%': '140%'
-              }[info.gradientStyle.center]
-            "
-            :fx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :fy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </radialGradient>
-        </template> -->
-      </defs>
+      <defs
+        v-html="
+          `
+        <style type='text/css'>
+        .dengp-st0{fill:url(#dengp_2_);}
+        .dengp-st1{fill:url(#dengp_3_);}
+        .dengp-st2{fill:url(#dengp_4_);}
+        .dengp-st3{fill:#AEB4BA;}
+        .dengp-st4{fill:#4B5156;}
+        .dengp-st5{fill:url(#dengp_5_);}
+        .dengp-st6{fill:url(#dengp_6_);}
+      </style>
+      `
+        "
+      ></defs>
       <g>
         <radialGradient
           id="dengp_5_"
@@ -282,8 +172,7 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-
-const pointCode = "SwSts";
+let pointCode = "SwSts";
 export default {
   name: "deviceDengpCom",
   data() {
@@ -389,9 +278,10 @@ export default {
     init() {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
-        let { id = "" } = info || {};
+        let { id = "", bindData = {} } = info || {};
         let { $vm } = window;
-        // let { deviceId = "" } = bindData || {};
+        let { devicePoint = "" } = bindData || {};
+        pointCode = devicePoint;
         $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
           bmCommon.log("deviceShsbCom", device);
           let { pointList = [] } = device || {};
@@ -411,6 +301,19 @@ export default {
           // this.$emit("success"); //组件加载完成回调
         });
       }
+    },
+    controlEvent() {
+      let { info = {}, pointValue = "" } = this;
+      let { bindData = {} } = info;
+      let { deviceId = "", devicePoint = "" } = bindData || {};
+      if (!deviceId) {
+        return;
+      }
+      // let { $vm } = window;
+      pointCode = devicePoint;
+      let point = pointCode;
+      let value = pointValue === 0 ? 1 : 0;
+      $vm.$emit("control", { deviceId, point, value });
     }
     // blurEvent(e) {
     //   let { target } = e;
@@ -425,28 +328,5 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import (reference) "./../../../../assets/less/common.less";
-.dengp-st0 {
-  fill: url(#dengp_2_);
-}
-.dengp-st1 {
-  fill: url(#dengp_3_);
-}
-.dengp-st2 {
-  fill: url(#dengp_4_);
-}
-.dengp-st3 {
-  fill: #aeb4ba;
-}
-.dengp-st4 {
-  fill: #4b5156;
-}
-.dengp-st5 {
-  fill: url(#dengp_5_);
-}
-.dengp-st6 {
-  fill: url(#dengp_6_);
-}
-</style>
-<style lang="less">
-@import (less) "../../../../assets/less/components/component/device/common.less";
+// @import (less) "../../../../assets/less/components/component/device/common.less";
 </style>

@@ -1,30 +1,4 @@
-<<<<<<< HEAD:src/components/device/Gskt.js
-import Spirit from './../../core/Spirit'
-
-/**
- * 挂式空调
- */
-class Gskt extends Spirit {
-
-	constructor(x=10, y=10,width,height) {
-        super(x, y);
-	    this.name = "挂式空调";
-	    this.className = "Gskt";
-	    this.width = width;
-	    this.height = height;
-	    this.moveType = 4;
-	    this.minWidth = 20;
-	    this.minHeight = 20;
-	    this.linkage = false;
-	    this.zIndex = 2;
-	}
-
-	template(){
-		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
-		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-=======
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
->>>>>>> origin/dev-new:public/static/img/svg/gskt.svg
 					 viewBox="0 0 163 64" style="enable-background:new 0 0 163 64;" xml:space="preserve" preserveAspectRatio="none">
 				<style type="text/css">
 					.gskt-st0{fill:#D0D4D8;}
@@ -79,26 +53,4 @@ class Gskt extends Spirit {
 					<polygon id="XMLID_1005_" class="gskt-st4" points="58.8,9 102.9,9 102.8,7 59,7 	"/>
 					<polygon id="XMLID_1008_" class="gskt-st4" points="54.4,7 8.8,7 8.2,9 54.3,9 	"/>
 				</g>
-<<<<<<< HEAD:src/components/device/Gskt.js
 				</svg>
-			</div>`);
-	}
-
-	toJson() {
-		let json = {
-			className: this.className,
-			moveType: this.moveType,
-			linkage: this.linkage,
-			minWidth: this.minWidth,
-			minHeight: this.minHeight,
-			zIndex: this.zIndex
-		};
-		return Object.assign(super.toJson(),json);
-	}
-
-}
-
-export default Gskt;
-=======
-				</svg>
->>>>>>> origin/dev-new:public/static/img/svg/gskt.svg

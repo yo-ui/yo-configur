@@ -32,15 +32,6 @@
             :class="canvas.action"
           >
             <div class="bg" :style="bgStyle"></div>
-            <!-- <bm-com
-              class="view"
-              v-for="(item, index) in widgetList"
-              :data-type="item.type"
-              :data-id="item.id"
-              type="view"
-              :info="item"
-              :key="index"
-            ></bm-com> -->
             <template v-for="(item, index) in widgetList">
               <el-popover
                 v-if="
@@ -57,8 +48,6 @@
                 width="400"
                 trigger="hover"
               >
-                <!-- @show="showInfoEvent(item.bindData)" -->
-                <!-- <bm-device-info :pointList="deviceInfo.points"></bm-device-info> -->
                 <component
                   @load="loadEvent"
                   :ref="`bmInfoCom_${item.id}`"
@@ -70,17 +59,64 @@
                   :data-type="item.type"
                   :data-id="item.id"
                   :info="item"
-                ></bm-com>
+                >
+                  <template v-if="item.children && item.children.length > 0">
+                    <template v-for="(_item, _index) in item.children">
+                      <el-popover
+                        v-if="
+                          _item.bindData &&
+                            _item.bindData.deviceId &&
+                            !_item.bindData.devicePoint &&
+                            _item.infoType
+                        "
+                        popper-class="device-info-popover"
+                        placement="right"
+                        :key="_index"
+                        @show="showInfoEvent(_item)"
+                        width="400"
+                        :ref="`popover_${_item.id}`"
+                        trigger="hover"
+                      >
+                        <!-- v-for="(_item, _index) in item.children" -->
+                        <component
+                          :ref="`bmInfoCom_${_item.id}`"
+                          @load="loadEvent"
+                          :is="`${_item.infoType}InfoCom`"
+                        />
+                        <bm-com
+                          slot="reference"
+                          class="view"
+                          :data-type="_item.type"
+                          :data-id="_item.id"
+                          :info="_item"
+                          :key="_index"
+                        >
+                        </bm-com>
+                      </el-popover>
+                    </template>
+                  </template>
+                </bm-com>
               </el-popover>
               <bm-com
                 v-else
                 class="view"
                 :data-type="item.type"
                 :data-id="item.id"
-                type="view"
                 :info="item"
                 :key="index"
-              ></bm-com>
+              >
+                <template v-if="item.children && item.children.length > 0">
+                  <bm-com
+                    class="view"
+                    v-for="(_item, _index) in item.children"
+                    :data-type="_item.type"
+                    :data-id="_item.id"
+                    :info="_item"
+                    :key="_index"
+                  >
+                  </bm-com>
+                </template>
+              </bm-com>
             </template>
           </div>
         </div>
@@ -149,13 +185,17 @@ export default {
     },
     bgStyle() {
       let { canvas = {} } = this;
-      let { backgroundSize = "", backgroundImage = "" } = canvas || {};
+      let { backgroundSize = "", backgroundImage = "", backgroundRepeat = "" } =
+        canvas || {};
       let styles = {};
       if (backgroundImage) {
-        styles["backgroundImage"] = `url(${backgroundImage})`;
+        styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
       }
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
+      }
+      if (backgroundRepeat) {
+        styles["backgroundRepeat"] = backgroundRepeat;
       }
       return styles || {};
     },
@@ -517,6 +557,11 @@ export default {
       let value = {};
       let { condition } = this;
       let { canvasId = "" } = condition;
+      if (!(deviceIdList && deviceIdList.length > 0)) {
+        callback && callback(value || {});
+        bmCommon.error(`deviceIdList为空,'{${deviceIdList}}'`);
+        return;
+      }
       this.pushAction({ canvasId, deviceIdList })
         .then(({ data }) => {
           let { code = "", result = {}, message = "" } = data || {};

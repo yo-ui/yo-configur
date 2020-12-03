@@ -107,20 +107,7 @@ export default {
       )
   },
   watch: {
-    // isClear(val) {
-    //   // 触发清除文本域内容
-    //   if (val) {
-    //     this.editor.txt.clear();
-    //     this._info = null;
-    //   }
-    // },
-    // value: function(value) {
-    //   if (value !== this.quillEditor.getText()) {
-    //     this.quillEditor.setText(value);
-    //   }
-    // },
     "condition.content"(value) {
-      // bmCommon.log(value);
       this.$emit("change", value);
     }
     // value为编辑框输入的内容，这里我监听了一下值，当父组件调用得时候，如果给value赋值了，子组件将会显示父组件赋给的值

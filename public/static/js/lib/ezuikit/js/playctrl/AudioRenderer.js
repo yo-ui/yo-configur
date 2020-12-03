@@ -99,9 +99,9 @@ var AudioRenderer = function () {
             viewTalk.setUint16(32, channels * bitsPerSample / 8, true);
             /* bits per sample */
             viewTalk.setUint16(34, bitsPerSample, true);
-            /* linkage chunk identifier */
+            /* data chunk identifier */
             this.writeString(viewTalk, 36, 'data');
-            /* linkage chunk length */
+            /* data chunk length */
             viewTalk.setUint32(40, dataLen, true);
             this.setBufferToDataview(viewTalk, 44, dataBuf);
 

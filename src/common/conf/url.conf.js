@@ -19,5 +19,8 @@ export default {
   canvasTokenUrl: `/configur/canvas/token`,
   canvasStartUrl: `/configur/canvas/start`,
   canvasStopUrl: `/configur/canvas/stop`,
+  //应用平台
+  // proxyDeviceMonitoringDeviceControlledPointsUrl: `${host}/proxy/deviceMonitoring/device/controlled/points`, //获取设备可控制点位列表
+
   upload2OssUrl: `/upload/upload2Oss` //上传文件到阿里云oss
 };

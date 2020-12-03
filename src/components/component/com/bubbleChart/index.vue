@@ -237,7 +237,7 @@ export default {
     loadChartOptions(data) {
       let times = [];
       let values = [];
-      // let name = this.$lang("用量");
+      let name = this.$lang("用量");
       if (data) {
         let { dataList = [], name: _name = "" } = data || {};
         dataList.forEach(item => {
@@ -245,7 +245,7 @@ export default {
           times.push(time);
           values.push(Number(value));
         });
-        // name = _name;
+        name = _name;
       } else {
         for (let i = 0; i < 12; i++) {
           times.push(
@@ -325,6 +325,7 @@ export default {
           show: false
         },
         legend: {
+          name,
           right: 10,
           data: ["1990", "2015"]
         },

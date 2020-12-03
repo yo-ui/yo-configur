@@ -4,12 +4,14 @@
     :style="comStyle"
     :contenteditable="info.editable"
     @blur.stop="blurEvent"
+    @click="clickEvent"
   >
     {{ info.content }}
   </button>
 </template>
 
 <script>
+const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "buttonCom",
   data() {
@@ -24,6 +26,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      userInfo: "getUserInfo"
+    }),
     //渐变颜色样式
     gradientStyle() {
       let { info = {} } = this;
@@ -166,6 +171,8 @@ export default {
     this.$emit("success"); //组件加载完成回调
   },
   methods: {
+    ...mapMutations(),
+    ...mapActions(),
     blurEvent(e) {
       let { target } = e;
       let { info = {} } = this;
@@ -173,6 +180,27 @@ export default {
         .text()
         .trim();
       info.name = name;
+    },
+    clickEvent() {
+      let { info = {}, userInfo = {} } = this;
+      let { bindData = {} } = info || {};
+      let { comId = "", content = "" } = bindData || {};
+      if (comId) {
+        let com = document.getElementById(`box_${comId}`);
+        let vm = com.__vue__;
+        let { info: _info = {} } = vm || {};
+        let href = decodeURIComponent(content);
+        while (href.indexOf("x-access-token") > -1) {
+          href = href.replace(
+            /x-access-token(.*)(&|\S)(.*)$/,
+            ($0, $1, $2, $3) => {
+              return $3;
+            }
+          );
+        }
+        let { token = "" } = userInfo || {};
+        _info.content = this.$linkUrl(content, { "x-access-token": token });
+      }
     }
   }
 };

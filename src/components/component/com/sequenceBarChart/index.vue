@@ -264,6 +264,7 @@ export default {
       // }
       this.chartOptions = {
         legend: {
+          name,
           data: ["2015", "2016", "2017"],
           show: true
         },

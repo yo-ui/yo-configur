@@ -2,7 +2,7 @@
   <div ref="bmCom" :style="comStyle">
     <bm-countdown
       ref="bmCountdown"
-      :time="info.time"
+      :time="info.content"
       :format="info.format"
     ></bm-countdown>
   </div>

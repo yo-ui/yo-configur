@@ -25,7 +25,26 @@
       ></el-input>
     </p> -->
     <el-collapse v-model="activeNames">
-      <el-collapse-item :title="info.name" name="name">
+      <el-collapse-item :title="info.name" name="name" disabled>
+        <template slot="title">
+          {{ info.name }}
+          <div class="right">
+            <el-tooltip
+              :content="$lang('全部折叠')"
+              placement="top"
+              effect="dark"
+            >
+              <i class="el-icon-folder-remove" @click="closeAll"></i>
+            </el-tooltip>
+            <el-tooltip
+              :content="$lang('全部展开')"
+              placement="top"
+              effect="dark"
+            >
+              <i class="el-icon-folder-opened" @click="openAll"></i>
+            </el-tooltip>
+          </div>
+        </template>
         <p>
           <span class="label"> {{ $lang("层级") }}: </span>
           <el-input-number
@@ -426,291 +445,7 @@
             </p>
           </template>
         </template>
-        <!-- <p>
-          <span class="label">{{ $lang("图片背景色") }}:</span>
-          <el-color-picker
-            v-model="info.backgroundColor"
-            show-alpha
-          ></el-color-picker>
-        </p>
-        <p>
-          <span class="label"> {{ $lang("图片") }}:</span>
-          <bm-upload ref="bmUpload" @success="successCallback">
-            <el-button type="primary">
-              {{
-                $lang(info.backgroundImage ? "替换图片" : "选择图片")
-              }}</el-button
-            >
-          </bm-upload>
-        </p>
-        <template v-if="info.backgroundImage"
-          ><p>
-            <span class="label"> {{ $lang("平铺方式") }}:</span>
-            <el-select
-              v-model="info.backgroundRepeat"
-              :placeholder="$lang('请选择平铺方式')"
-            >
-              <el-option
-                v-for="item in tileModeList"
-                :key="item.code"
-                :label="$lang(item.name)"
-                :value="item.code"
-              >
-              </el-option>
-            </el-select>
-          </p>
-          <p>
-            <span class="label"> {{ $lang("填充模式") }}:</span>
-            <el-select
-              v-model="info.backgroundSize"
-              :placeholder="$lang('请选择填充模式')"
-            >
-              <el-option
-                v-for="item in BACKGROUNDSIZELIST"
-                :key="item.code"
-                :label="$lang(item.name)"
-                :value="item.code"
-              >
-              </el-option>
-            </el-select>
-          </p>
-          <p>
-        <span class="label"> {{ $lang("翻转方式") }}:</span>
-        <el-select v-model="info.scale" :placeholder="$lang('请选择翻转方式')">
-          <el-option
-            v-for="item in flipModeList"
-            :key="item.code"
-            :label="$lang(item.name)"
-            :value="item.code"
-          >
-          </el-option>
-        </el-select>
-      </p>
-        </template> -->
 
-        <p class="margin-box">
-          <span class="label">{{ $lang("外边距") }}:</span>
-          <span class="c-box">
-            <span>
-              上<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.marginTop"
-                :placeholder="$lang('上外边距')"
-              ></el-input-number>
-            </span>
-            <span>
-              下<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.marginBottom"
-                :placeholder="$lang('下外边距')"
-              ></el-input-number>
-            </span>
-            <span>
-              左<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.marginLeft"
-                :placeholder="$lang('左外边距')"
-              ></el-input-number>
-            </span>
-            <span>
-              右<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.marginRight"
-                :placeholder="$lang('右外边距')"
-              ></el-input-number>
-            </span>
-          </span>
-        </p>
-        <p class="padding-box">
-          <span class="label">{{ $lang("内边距") }}:</span>
-          <span class="c-box">
-            <span>
-              上<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.paddingTop"
-                :placeholder="$lang('上内边距')"
-              ></el-input-number>
-            </span>
-            <span>
-              下<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.paddingBottom"
-                :placeholder="$lang('下内边距')"
-              ></el-input-number>
-            </span>
-            <span>
-              左<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.paddingLeft"
-                :placeholder="$lang('左内边距')"
-              ></el-input-number>
-            </span>
-            <span>
-              右<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.paddingRight"
-                :placeholder="$lang('右内边距')"
-              ></el-input-number>
-            </span>
-          </span>
-        </p>
-      </el-collapse-item>
-      <el-collapse-item :title="$lang('文字设置')" name="font">
-        <p>
-          <span class="label">{{ $lang("字体颜色") }}:</span>
-          <el-color-picker v-model="info.color" show-alpha></el-color-picker>
-        </p>
-        <p>
-          <span class="label">{{ $lang("字体阴影") }}:</span>
-          <el-switch
-            v-model="info.textShadowable"
-            active-color="#4195ea"
-            inactive-color="#ccc"
-          ></el-switch>
-        </p>
-        <template v-if="info.textShadowable">
-          <p class="shadow-box">
-            <span class="c-box">
-              <span>
-                <el-tooltip
-                  :content="$lang('X-X轴位移')"
-                  placement="top"
-                  effect="dark"
-                >
-                  <span>X</span>
-                </el-tooltip>
-                <el-input-number
-                  controls-position="right"
-                  clearable
-                  v-model.number="info.shadow.x"
-                  :placeholder="$lang('X轴位移')"
-                ></el-input-number>
-              </span>
-              <span>
-                <el-tooltip
-                  :content="$lang('Y-Y轴位移')"
-                  placement="top"
-                  effect="dark"
-                >
-                  <span>Y</span> </el-tooltip
-                ><el-input-number
-                  controls-position="right"
-                  clearable
-                  v-model.number="info.shadow.y"
-                  :placeholder="$lang('Y轴位移')"
-                ></el-input-number>
-              </span>
-            </span>
-          </p>
-          <p>
-            <span class="label">{{ $lang("模糊半径") }}:</span>
-            <el-input-number
-              controls-position="right"
-              clearable
-              v-model.number="info.textShadow.blur"
-              :placeholder="$lang('模糊半径')"
-            ></el-input-number>
-            px
-            <el-slider
-              v-model="info.textShadow.blur"
-              :min="0"
-              :max="50"
-              :format-tooltip="val => val + ' px'"
-            ></el-slider>
-          </p>
-          <p>
-            <span class="label">{{ $lang("阴影颜色") }}:</span>
-            <el-color-picker
-              v-model="info.textShadow.color"
-              show-alpha
-            ></el-color-picker>
-          </p>
-        </template>
-        <p class="align">
-          <span class="label">{{ $lang("对齐") }}:</span>
-          <i
-            class="bomi bomi-text-left"
-            @click="textAlignEvent('left')"
-            :class="{ active: info.textAlign == 'left' }"
-          ></i>
-          <i
-            class="bomi bomi-text-center"
-            @click="textAlignEvent('center')"
-            :class="{ active: info.textAlign == 'center' }"
-          ></i>
-          <i
-            class="bomi bomi-text-right"
-            @click="textAlignEvent('right')"
-            :class="{ active: info.textAlign == 'right' }"
-          ></i>
-          <i
-            class="bomi bomi-text-justify"
-            @click="textAlignEvent('justify')"
-            :class="{ active: info.textAlign == 'justify' }"
-          ></i>
-        </p>
-        <p>
-          <span class="label">{{ $lang("字体大小") }}:</span>
-          {{ info.fontSize }} px
-          <el-slider
-            v-model="info.fontSize"
-            :min="10"
-            :max="100"
-            :format-tooltip="val => val + ' px'"
-          ></el-slider>
-        </p>
-        <p>
-          <span class="label">{{ $lang("字体") }}:</span>
-          <el-select
-            v-model="info.fontFamily"
-            :placeholder="$lang('请选择字体')"
-          >
-            <el-option
-              v-for="item in fontFamilyList"
-              :key="item.code"
-              :label="$lang(item.name)"
-              :value="item.code"
-            >
-              <span :style="`font-family:${item.code}`">{{
-                $lang(item.name)
-              }}</span>
-            </el-option>
-          </el-select>
-        </p>
-        <p>
-          <span class="label">{{ $lang("字体样式") }}:</span>
-          <span class="font-style">
-            <span
-              class="bold"
-              @click="setFontWeight"
-              :title="$lang('粗体')"
-              :class="{ active: info.fontWeight == 'bold' }"
-              >B</span
-            >
-            <span
-              class="italic"
-              @click="setFontStyle"
-              :title="$lang('斜体')"
-              :class="{ active: info.fontStyle == 'italic' }"
-              >I</span
-            >
-            <span
-              class="underline"
-              @click="setTextDecoration"
-              :title="$lang('下划线')"
-              :class="{ active: info.textDecoration == 'underline' }"
-              >U</span
-            >
-          </span>
-        </p>
         <p>
           <span class="label"> {{ $lang("边框样式") }}:</span
           ><el-select
@@ -864,9 +599,305 @@
             ></el-color-picker>
           </p>
         </template>
+        <!-- <p>
+          <span class="label">{{ $lang("图片背景色") }}:</span>
+          <el-color-picker
+            v-model="info.backgroundColor"
+            show-alpha
+          ></el-color-picker>
+        </p>
+        <p>
+          <span class="label"> {{ $lang("图片") }}:</span>
+          <bm-upload ref="bmUpload" @success="successCallback">
+            <el-button type="primary">
+              {{
+                $lang(info.backgroundImage ? "替换图片" : "选择图片")
+              }}</el-button
+            >
+          </bm-upload>
+        </p>
+        <template v-if="info.backgroundImage"
+          ><p>
+            <span class="label"> {{ $lang("平铺方式") }}:</span>
+            <el-select
+              v-model="info.backgroundRepeat"
+              :placeholder="$lang('请选择平铺方式')"
+            >
+              <el-option
+                v-for="item in tileModeList"
+                :key="item.code"
+                :label="$lang(item.name)"
+                :value="item.code"
+              >
+              </el-option>
+            </el-select>
+          </p>
+          <p>
+            <span class="label"> {{ $lang("填充模式") }}:</span>
+            <el-select
+              v-model="info.backgroundSize"
+              :placeholder="$lang('请选择填充模式')"
+            >
+              <el-option
+                v-for="item in BACKGROUNDSIZELIST"
+                :key="item.code"
+                :label="$lang(item.name)"
+                :value="item.code"
+              >
+              </el-option>
+            </el-select>
+          </p>
+          <p>
+        <span class="label"> {{ $lang("翻转方式") }}:</span>
+        <el-select v-model="info.scale" :placeholder="$lang('请选择翻转方式')">
+          <el-option
+            v-for="item in flipModeList"
+            :key="item.code"
+            :label="$lang(item.name)"
+            :value="item.code"
+          >
+          </el-option>
+        </el-select>
+      </p>
+        </template> -->
       </el-collapse-item>
-      <el-collapse-item :title="$lang('链接设置')" name="link">
+      <el-collapse-item :title="$lang('边距')" name="margin">
+        <p class="margin-box">
+          <span class="label">{{ $lang("外边距") }}:</span>
+          <span class="c-box">
+            <span>
+              上<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.marginTop"
+                :placeholder="$lang('上外边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              下<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.marginBottom"
+                :placeholder="$lang('下外边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              左<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.marginLeft"
+                :placeholder="$lang('左外边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              右<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.marginRight"
+                :placeholder="$lang('右外边距')"
+              ></el-input-number>
+            </span>
+          </span>
+        </p>
+        <p class="padding-box">
+          <span class="label">{{ $lang("内边距") }}:</span>
+          <span class="c-box">
+            <span>
+              上<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.paddingTop"
+                :placeholder="$lang('上内边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              下<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.paddingBottom"
+                :placeholder="$lang('下内边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              左<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.paddingLeft"
+                :placeholder="$lang('左内边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              右<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.paddingRight"
+                :placeholder="$lang('右内边距')"
+              ></el-input-number>
+            </span>
+          </span>
+        </p>
       </el-collapse-item>
+      <el-collapse-item :title="$lang('文字设置')" name="fontSet">
+        <p>
+          <span class="label">{{ $lang("字体颜色") }}:</span>
+          <el-color-picker v-model="info.color" show-alpha></el-color-picker>
+        </p>
+        <p>
+          <span class="label">{{ $lang("字体阴影") }}:</span>
+          <el-switch
+            v-model="info.textShadowable"
+            active-color="#4195ea"
+            inactive-color="#ccc"
+          ></el-switch>
+        </p>
+        <template v-if="info.textShadowable">
+          <p class="shadow-box">
+            <span class="c-box">
+              <span>
+                <el-tooltip
+                  :content="$lang('X-X轴位移')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <span>X</span>
+                </el-tooltip>
+                <el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.shadow.x"
+                  :placeholder="$lang('X轴位移')"
+                ></el-input-number>
+              </span>
+              <span>
+                <el-tooltip
+                  :content="$lang('Y-Y轴位移')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <span>Y</span> </el-tooltip
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.shadow.y"
+                  :placeholder="$lang('Y轴位移')"
+                ></el-input-number>
+              </span>
+            </span>
+          </p>
+          <p>
+            <span class="label">{{ $lang("模糊半径") }}:</span>
+            <el-input-number
+              controls-position="right"
+              clearable
+              v-model.number="info.textShadow.blur"
+              :placeholder="$lang('模糊半径')"
+            ></el-input-number>
+            px
+            <el-slider
+              v-model="info.textShadow.blur"
+              :min="0"
+              :max="50"
+              :format-tooltip="val => val + ' px'"
+            ></el-slider>
+          </p>
+          <p>
+            <span class="label">{{ $lang("阴影颜色") }}:</span>
+            <el-color-picker
+              v-model="info.textShadow.color"
+              show-alpha
+            ></el-color-picker>
+          </p>
+        </template>
+        <p class="align">
+          <span class="label">{{ $lang("对齐") }}:</span>
+          <i
+            class="bomi bomi-text-left"
+            @click="textAlignEvent('left')"
+            :class="{ active: info.textAlign == 'left' }"
+          ></i>
+          <i
+            class="bomi bomi-text-center"
+            @click="textAlignEvent('center')"
+            :class="{ active: info.textAlign == 'center' }"
+          ></i>
+          <i
+            class="bomi bomi-text-right"
+            @click="textAlignEvent('right')"
+            :class="{ active: info.textAlign == 'right' }"
+          ></i>
+          <i
+            class="bomi bomi-text-justify"
+            @click="textAlignEvent('justify')"
+            :class="{ active: info.textAlign == 'justify' }"
+          ></i>
+        </p>
+        <p>
+          <span class="label">{{ $lang("字体大小") }}:</span>
+          {{ info.fontSize }} px
+          <el-slider
+            v-model="info.fontSize"
+            :min="10"
+            :max="100"
+            :format-tooltip="val => val + ' px'"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label">{{ $lang("字体") }}:</span>
+          <el-select
+            v-model="info.fontFamily"
+            :placeholder="$lang('请选择字体')"
+          >
+            <el-option
+              v-for="item in fontFamilyList"
+              :key="item.code"
+              :label="$lang(item.name)"
+              :value="item.code"
+            >
+              <span :style="`font-family:${item.code}`">{{
+                $lang(item.name)
+              }}</span>
+            </el-option>
+          </el-select>
+        </p>
+        <p>
+          <span class="label">{{ $lang("字体样式") }}:</span>
+          <span class="font-style">
+            <el-tooltip :content="$lang('加粗')" placement="top" effect="dark">
+              <span
+                class="bold"
+                @click="setFontWeight"
+                :title="$lang('粗体')"
+                :class="{ active: info.fontWeight == 'bold' }"
+                >B</span
+              >
+            </el-tooltip>
+            <el-tooltip :content="$lang('倾斜')" placement="top" effect="dark">
+              <span
+                class="italic"
+                @click="setFontStyle"
+                :title="$lang('斜体')"
+                :class="{ active: info.fontStyle == 'italic' }"
+                >I</span
+              >
+            </el-tooltip>
+            <el-tooltip
+              :content="$lang('下划线')"
+              placement="top"
+              effect="dark"
+            >
+              <span
+                class="underline"
+                @click="setTextDecoration"
+                :title="$lang('下划线')"
+                :class="{ active: info.textDecoration == 'underline' }"
+                >U</span
+              >
+            </el-tooltip>
+          </span>
+        </p>
+      </el-collapse-item>
+      <!-- <el-collapse-item :title="$lang('链接设置')" name="link">
+      </el-collapse-item> -->
       <el-collapse-item title="动画" name="animation">
         <p>
           <span class="label">{{ $lang("动画类型") }}:</span>
@@ -1127,6 +1158,12 @@ export default {
     textAlignEvent(item) {
       let { info = {} } = this;
       info.textAlign = item;
+    },
+    openAll() {
+      this.activeNames = ["name", "outward", "margin", "fontSet", "animation"];
+    },
+    closeAll() {
+      this.activeNames = ["name"];
     }
   }
 };

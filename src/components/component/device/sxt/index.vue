@@ -413,5 +413,5 @@ export default {
 </script>
 
 <style lang="less">
-@import (less) "../../../../assets/less/components/component/device/common.less";
+// @import (less) "../../../../assets/less/components/component/device/common.less";
 </style>

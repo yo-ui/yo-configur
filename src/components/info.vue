@@ -20,13 +20,7 @@
         class="com-style"
         v-if="activeCom.type"
         :info="activeCom"
-        :is="
-          `${
-            activeComs && activeComs.length > 1
-              ? 'group'
-              : activeCom.styleCode || activeCom.type
-          }StyleCom`
-        "
+        :is="styleCom"
       ></component>
     </template>
     <template v-if="activeIndex == 'dataBind'">
@@ -49,26 +43,73 @@
       >
         <transition-group type="transition" name="flip-list">
           <li
-            :class="{ active: activeComId == item.id }"
             v-for="item in widgetList"
-            @click="selectComEvent(item)"
+            @click.stop="selectComEvent(item)"
             :key="item.id"
             class="item"
           >
-            {{ item.name }}
-            <!-- --{{ item.zIndex }}--{{ item.order }} -->
-            <el-tooltip
-              :content="$lang('添加绑定')"
-              placement="top"
-              effect="dark"
+            <div class="title" :class="{ active: activeComId == item.id }">
+              {{ item.name }}
+              <!-- --{{ item.zIndex }}--{{ item.order }} -->
+              <template v-if="item.children && item.children.length > 0">
+                <i
+                  :class="
+                    `
+                    ${
+                      { true: 'el-icon-plus', false: 'el-icon-minus' }[
+                        !widgetMap[item.id]
+                      ]
+                    }
+                  `
+                  "
+                  @click.stop="showChildEvent(item)"
+                ></i>
+              </template>
+              <el-tooltip
+                v-else
+                :content="$lang('添加绑定')"
+                placement="top"
+                effect="dark"
+              >
+                <i
+                  v-if="item.dataType"
+                  class="el-icon-link"
+                  @click.stop="addEvent(item)"
+                  :class="{ active: item.bindData && item.bindData.orgId }"
+                ></i>
+              </el-tooltip>
+            </div>
+            <ul
+              v-if="item.children && item.children.length > 0"
+              v-show="!!widgetMap[item.id]"
             >
-              <i
-                v-if="item.dataType"
-                class="el-icon-link"
-                @click.stop="addEvent(item)"
-                :class="{ active: item.bindData && item.bindData.orgId }"
-              ></i>
-            </el-tooltip>
+              <li
+                :class="{ active: activeComId == _item.id }"
+                v-for="_item in item.children"
+                @click.stop="selectComEvent(_item)"
+                :key="_item.id"
+                class="item"
+              >
+                <div class="title" :class="{ active: activeComId == _item.id }">
+                  {{ _item.name }}
+                  <!-- --{{ item.zIndex }}--{{ item.order }} -->
+                  <el-tooltip
+                    :content="$lang('添加绑定')"
+                    placement="top"
+                    effect="dark"
+                  >
+                    <i
+                      v-if="_item.dataType"
+                      class="el-icon-link"
+                      @click.stop="addEvent(_item)"
+                      :class="{
+                        active: _item.bindData && _item.bindData.orgId
+                      }"
+                    ></i>
+                  </el-tooltip>
+                </div>
+              </li>
+            </ul>
           </li>
         </transition-group>
         <!-- <button slot="footer" @click="addPeople">Add</button> -->
@@ -90,7 +131,7 @@
 
 <script>
 import bmCommon from "@/common/common";
-// import { Constants } from "@/common/env";
+import { Constants } from "@/common/env";
 import { styles, datas } from "@/widgets/index";
 import draggable from "vuedraggable";
 // eslint-disable-next-line no-undef
@@ -100,6 +141,25 @@ const Props = {
     "text" //静态文本
   ]
 };
+const watches = {};
+for (let i in Constants.BASEDATA) {
+  if (i != "id") {
+    let key = `activeCom.${i}`;
+    watches[key] = {
+      handler(newVal, oldVal) {
+        let { activeComs = [] } = this;
+        let { length = 0 } = activeComs || [];
+        if (length > 1) {
+          bmCommon.log("属性变更");
+          activeComs.forEach(item => {
+            item[i] = newVal;
+          });
+        }
+      },
+      deep: true
+    };
+  }
+}
 export default {
   data() {
     let tabList = Object.freeze([
@@ -109,7 +169,7 @@ export default {
     ]);
     return {
       tabList,
-      comList: [],
+      widgetMap: {},
       // widgetList: [],
       activeIndex: tabList[0].code
     };
@@ -133,7 +193,52 @@ export default {
       activeCom: "canvas/getActiveCom", //选中对象
       activeComs: "canvas/getActiveComs" //选中多选对象
     }),
-
+    styleCom() {
+      let { activeComs = [], activeCom = {} } = this;
+      let { type = "", children = [], styleCode = "" } = activeCom || {};
+      let { length = 0 } = activeComs || [];
+      let com = ""; //`${type}StyleCom`;
+      type = styleCode || type;
+      if (length > 1) {
+        let set = new Set();
+        activeComs.forEach(item => {
+          let { type = "" } = item || {};
+          set.add(type);
+        });
+        let { size = 0 } = set || {};
+        if (size > 0) {
+          if (size == 1 && !set.has("")) {
+            [type = ""] = Array.from(set);
+            // com = `${type}StyleCom`;
+          } else {
+            type = "group";
+          }
+        }
+      } else {
+        let set = new Set();
+        children.forEach(item => {
+          let { type = "" } = item || {};
+          set.add(type);
+        });
+        let { size = 0 } = set || {};
+        if (size > 0) {
+          if (size == 1 && !set.has("")) {
+            [type = ""] = Array.from(set);
+            // com = `${type}StyleCom`;
+          } else {
+            type = "group";
+          }
+        }
+      }
+      com = `${type}StyleCom`;
+      bmCommon.log("panel==>", com);
+      return com;
+      // return `${
+      //   activeComs && length > 1
+      //     ? "group"
+      //     : activeCom.styleCode || activeCom.type
+      // }StyleCom`;
+    },
     dragOptions() {
       return {
         animation: 0,
@@ -172,15 +277,22 @@ export default {
   },
   mounted() {
     this.init();
+    bmCommon.log("style 初始化");
   },
   methods: {
     ...mapMutations({
-      setWidgetList: "canvas/setWidgetList",
-      setActiveCom: "canvas/setActiveCom"
+      setWidgetList: "canvas/setWidgetList"
+      // setActiveCom: "canvas/setActiveCom",
     }),
-    ...mapActions(),
+    ...mapActions({
+      selectComAction: "canvas/selectCom",
+      selectComsAction: "canvas/selectComs"
+    }),
     selectComEvent(item) {
-      this.setActiveCom(item);
+      // this.setActiveCom(item);
+      this.selectComsAction();
+      let { id = "" } = item || {};
+      this.selectComAction(id);
     },
     changeEvent(item) {
       // bmCommon.log(item);
@@ -197,16 +309,23 @@ export default {
       }
     },
     init() {
-      this.loadComList();
+      // this.loadComList();
     },
-    loadComList() {
-      let { widgetList = [] } = this;
-      this.comList = bmCommon.clone(widgetList).sort((a, b) => {
-        return b.order - a.order;
-      });
+    showChildEvent(item) {
+      // bmCommon.log()
+      let { id = "" } = item || {};
+      let { widgetMap = {} } = this;
+      this.$set(widgetMap, id, !widgetMap[id]);
+      // bmCommon.log(widgetMap);
     },
+    // loadComList() {
+    //   let { widgetList = [] } = this;
+    //   this.comList = bmCommon.clone(widgetList).sort((a, b) => {
+    //     return b.order - a.order;
+    //   });
+    // },
     addEvent(item = {}) {
-      $vm.$emit("bindDevice", item);
+      $vm.$emit("bind-device", item);
     }
   },
   watch: {
@@ -217,7 +336,8 @@ export default {
           this.activeIndex = tabList[0].code;
         }
       }
-    }
+    },
+    ...watches
   }
 };
 </script>

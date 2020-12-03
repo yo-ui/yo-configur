@@ -119,18 +119,23 @@ async function request(type, options, callback) {
           // vm.$jumpLogin();
           errorDialog?.close();
           errorDialog = vm.$$msgWarn("当前登录已经过期，请返回重新进入！");
+          let href = decodeURIComponent(location.href);
+          while (href.indexOf("x-access-token") > -1) {
+            href = href.replace(
+              /x-access-token(.*)(&|\S)(.*)$/,
+              ($0, $1, $2, $3) => {
+                return $3;
+              }
+            );
+          }
           if (platform == "service") {
             //应用平台跳转过来
-            url = `${serviceLogin}?redirecturl=${encodeURI(
-              location.href.replace(/&x-access-token.*$/, "")
-            )}`;
+            href = `${serviceLogin}?redirecturl=${encodeURIComponent(href)}`;
           } else if (platform == "manage") {
             //管理平台跳转过来
-            url = `${manageLogin}?redirecturl=${encodeURI(
-              location.href.replace(/&x-access-token.*$/, "")
-            )}`;
+            href = `${manageLogin}?redirecturl=${encodeURIComponent(href)}`;
           }
-          vm.$openPage(url);
+          vm.$openPage(href);
           reject();
         } else if (code == Constants.CODES.REDIRECT) {
           // let url =

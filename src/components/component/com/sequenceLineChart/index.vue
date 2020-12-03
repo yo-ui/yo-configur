@@ -270,6 +270,7 @@ export default {
           trigger: "axis"
         },
         legend: {
+          name,
           data: ["邮件营销", "联盟广告", "视频广告", "直接访问", "搜索引擎"],
           top: "10%"
         },

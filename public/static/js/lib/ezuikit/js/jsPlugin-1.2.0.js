@@ -2930,7 +2930,7 @@
             var i;
             if (void 0 === n && 1 === t.nodeType)
               if (
-                ((i = 'linkage-' + e.replace(Ut, '-$&').toLowerCase()),
+                ((i = 'data-' + e.replace(Ut, '-$&').toLowerCase()),
                 (n = t.getAttribute(i)),
                 'string' == typeof n)
               ) {
@@ -5919,7 +5919,7 @@
                     for (r = s.length; r--; )
                       s[r] &&
                         ((o = s[r].name),
-                        0 === o.indexOf('linkage-') &&
+                        0 === o.indexOf('data-') &&
                           ((o = bt.camelCase(o.slice(5))), S(a, o, t[o])));
                     Ht.set(a, 'hasDataAttrs', !0);
                   }
@@ -13070,7 +13070,7 @@
                 try {
                   return decodeURIComponent(escape(l.stringify(t)));
                 } catch (t) {
-                  throw Error('Malformed UTF-8 linkage');
+                  throw Error('Malformed UTF-8 data');
                 }
               },
               parse: function(t) {

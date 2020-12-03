@@ -26,7 +26,26 @@
     </p> -->
 
     <el-collapse v-model="activeNames">
-      <el-collapse-item :title="info.name" name="name">
+      <el-collapse-item :title="info.name" name="name" disabled>
+        <template slot="title">
+          {{ info.name }}
+          <div class="right">
+            <el-tooltip
+              :content="$lang('全部折叠')"
+              placement="top"
+              effect="dark"
+            >
+              <i class="el-icon-folder-remove" @click="closeAll"></i>
+            </el-tooltip>
+            <el-tooltip
+              :content="$lang('全部展开')"
+              placement="top"
+              effect="dark"
+            >
+              <i class="el-icon-folder-opened" @click="openAll"></i>
+            </el-tooltip>
+          </div>
+        </template>
         <p>
           <span class="label"> {{ $lang("层级") }}: </span>
           <el-input-number
@@ -706,27 +725,37 @@
         <p>
           <span class="label">{{ $lang("字体样式") }}:</span>
           <span class="font-style">
-            <span
-              class="bold"
-              @click="setFontWeight"
-              :title="$lang('粗体')"
-              :class="{ active: info.fontWeight == 'bold' }"
-              >B</span
+            <el-tooltip :content="$lang('加粗')" placement="top" effect="dark">
+              <span
+                class="bold"
+                @click="setFontWeight"
+                :title="$lang('粗体')"
+                :class="{ active: info.fontWeight == 'bold' }"
+                >B</span
+              >
+            </el-tooltip>
+            <el-tooltip :content="$lang('倾斜')" placement="top" effect="dark">
+              <span
+                class="italic"
+                @click="setFontStyle"
+                :title="$lang('斜体')"
+                :class="{ active: info.fontStyle == 'italic' }"
+                >I</span
+              >
+            </el-tooltip>
+            <el-tooltip
+              :content="$lang('下划线')"
+              placement="top"
+              effect="dark"
             >
-            <span
-              class="italic"
-              @click="setFontStyle"
-              :title="$lang('斜体')"
-              :class="{ active: info.fontStyle == 'italic' }"
-              >I</span
-            >
-            <span
-              class="underline"
-              @click="setTextDecoration"
-              :title="$lang('下划线')"
-              :class="{ active: info.textDecoration == 'underline' }"
-              >U</span
-            >
+              <span
+                class="underline"
+                @click="setTextDecoration"
+                :title="$lang('下划线')"
+                :class="{ active: info.textDecoration == 'underline' }"
+                >U</span
+              >
+            </el-tooltip>
           </span>
         </p> -->
 
@@ -1074,6 +1103,19 @@ export default {
     textAlignEvent(item) {
       let { info = {} } = this;
       info.textAlign = item;
+    },
+    openAll() {
+      this.activeNames = [
+        "name",
+        "outward",
+        "fontSet",
+        "margin",
+        "link",
+        "animation"
+      ];
+    },
+    closeAll() {
+      this.activeNames = ["name"];
     }
   }
 };

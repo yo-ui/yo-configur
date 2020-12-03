@@ -1,6 +1,9 @@
 <template>
   <div ref="bmCom" :style="comStyle">
-    {{ info.content }}
+    <span
+      >{{ info.content
+      }}<small :style="unitStyle">{{ info.unit || "℃" }}</small></span
+    >
   </div>
 </template>
 
@@ -159,6 +162,78 @@ export default {
       } else if (backgroundType == "gradient") {
         //渐变
         styles = { ...styles, ...gradientStyle };
+      }
+      return styles || {};
+    },
+    // textStyle() {
+    //   let { info = {} } = this;
+    //   let {
+    //     color = "",
+    //     textShadow = {},
+    //     textShadowable = false,
+    //     textAlign = "",
+    //     fontFamily = "",
+    //     fontSize = "",
+    //     fontWeight = "",
+    //     fontStyle = "",
+    //     textDecoration = "",
+
+    //     marginTop = 0,
+    //     marginBottom = 0,
+    //     marginLeft = 0,
+    //     marginRight = 0,
+    //     paddingTop = 0,
+    //     paddingBottom = 0,
+    //     paddingLeft = 0,
+    //     paddingRight = 0
+    //   } = info || {};
+    //   let styles = {
+    //     margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
+    //     padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
+    //   };
+    //   if (color) {
+    //     styles["color"] = color;
+    //   }
+    //   if (fontSize) {
+    //     styles["fontSize"] = `${fontSize}px`;
+    //   }
+    //   if (fontFamily) {
+    //     styles["fontFamily"] = `${fontFamily}`;
+    //   }
+    //   if (fontWeight) {
+    //     styles["fontWeight"] = fontWeight;
+    //   }
+    //   if (fontStyle) {
+    //     styles["fontStyle"] = fontStyle;
+    //   }
+    //   if (textAlign) {
+    //     styles["textAlign"] = textAlign;
+    //     if (textAlign == "justify") {
+    //       styles["text-align-last"] = textAlign;
+    //     }
+    //   }
+    //   if (textDecoration) {
+    //     styles["textDecoration"] = textDecoration;
+    //   }
+    //   if (textShadowable) {
+    //     let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
+    //     styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
+    //   }
+    //   return styles || {};
+    // },
+    unitStyle() {
+      let { info = {} } = this;
+      let { unitColor = "", unitFontFamily = "", unitFontSize = "" } =
+        info || {};
+      let styles = {};
+      if (unitColor) {
+        styles["color"] = unitColor;
+      }
+      if (unitFontSize) {
+        styles["fontSize"] = `${unitFontSize}px`;
+      }
+      if (unitFontFamily) {
+        styles["fontFamily"] = `${unitFontFamily}`;
       }
       return styles || {};
     }

@@ -1,28 +1,4 @@
-<<<<<<< HEAD:src/components/assist/DownWater.js
-import Spirit from './../../core/Spirit'
-
-/**
- * 水管（下）
- */
-class DownWater extends Spirit {
-
-	constructor(x=10, y=10) {
-        super(x, y);
-	    this.name = "水管（下）";
-	    this.className = "DownWater";
-	    this.width = 10;
-	    this.height = 16;
-	    this.isSplice = true;
-	    this.zIndex = 1;
-      this.isWater = true;
-	}
-
-	template(){
-		return `<div id="${this.id}" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex}">
-		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-=======
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
->>>>>>> origin/dev-new:public/static/img/svg/shuiguan-bottom.svg
 					 xml:space="preserve" width="10" height="10">
 				<style type="text/css">
 						.downWater-st0{fill:url(#downWater_6_);}
@@ -75,22 +51,4 @@ class DownWater extends Spirit {
 							<path id="XMLID_2_" class="downWater-st6" d="M10,2C8.8,2,8,1.2,8,0v2H10z"/>
 						</g>
 					</g>
-<<<<<<< HEAD:src/components/assist/DownWater.js
 				</svg>
-				</div>`;
-	}
-
-	toJson(){
-		let json = {
-			className: this.className,
-			zIndex: this.zIndex,
-			isRotate: this.isRotate
-		};
-		return Object.assign(super.toJson(),json);
-	}
-}
-
-export default DownWater;
-=======
-				</svg>
->>>>>>> origin/dev-new:public/static/img/svg/shuiguan-bottom.svg

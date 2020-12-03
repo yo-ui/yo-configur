@@ -6,136 +6,64 @@
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 240 210"
+      :width="info.width"
+      :height="info.height"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
-      <defs>
-        <!-- <template v-if="info.backgroundType == 'gradient'">
-          <linearGradient
-            :id="info.gradientStyle.gradientId"
-            :x1="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '0%',
-                  135: '0%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y1="
-              `${
-                {
-                  0: '100%',
-                  45: '100%',
-                  90: '100%',
-                  135: '0%',
-                  180: '0%',
-                  225: '0%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :x2="
-              `${
-                {
-                  0: '0%',
-                  45: '100%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '0%',
-                  270: '0%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y2="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            v-if="info.gradientStyle.type == 'linear'"
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </linearGradient>
-          <radialGradient
-            :id="info.gradientStyle.gradientId"
-            v-else-if="info.gradientStyle.type == 'radial'"
-            :cx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :cy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :r="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '160%',
-                '100% 0%': '150%',
-                '0% 100%': '150%',
-                '100% 100%': '140%'
-              }[info.gradientStyle.center]
-            "
-            :fx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :fy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </radialGradient>
-        </template> -->
-      </defs>
+      <defs
+        v-html="
+          `<style type='text/css'>
+              .ssbjf-st0{fill:url(#ssbjf_1_);}
+              .ssbjf-st1{fill:url(#ssbjf_2_);}
+              .ssbjf-st2{fill:#FFB6BB;}
+              .ssbjf-st3{fill:url(#ssbjf_3_);}
+              .ssbjf-st4{fill:url(#ssbjf_4_);}
+              .ssbjf-st5{fill:url(#ssbjf_5_);}
+              .ssbjf-st6{fill:url(#ssbjf_6_);}
+              .ssbjf-st7{fill:url(#ssbjf_7_);}
+              .ssbjf-st8{fill:url(#ssbjf_8_);}
+              .ssbjf-st9{fill:url(#ssbjf_9_);}
+              .ssbjf-st10{fill:#5C5C5C;}
+              .ssbjf-st11{fill:url(#ssbjf_10_);}
+              .ssbjf-st12{fill:#B71C27;}
+              .ssbjf-st13{fill:url(#ssbjf_11_);}
+              .ssbjf-st14{fill:url(#ssbjf_12_);}
+              .ssbjf-st15{fill:url(#ssbjf_13_);}
+              .ssbjf-st16{fill:url(#ssbjf_14_);}
+              .ssbjf-st17{fill:url(#ssbjf_15_);}
+              .ssbjf-st18{fill:url(#ssbjf_16_);}
+              .ssbjf-st19{fill:url(#ssbjf_17_);}
+              .ssbjf-st20{fill:url(#ssbjf_18_);}
+              .ssbjf-st21{fill:url(#ssbjf_19_);}
+              .ssbjf-st22{fill:#2F3338;}
+              .ssbjf-st23{fill:#FFFFFF;}
+              .ssbjf-st24{fill:url(#ssbjf_20_);}
+              .ssbjf-st25{fill:url(#ssbjf_21_);}
+              .ssbjf-st26{fill:url(#ssbjf_22_);}
+              .ssbjf-st27{fill:url(#ssbjf_23_);}
+              .ssbjf-st28{fill:url(#ssbjf_24_);}
+              .ssbjf-st29{fill:url(#ssbjf_25_);}
+              .ssbjf-st30{fill:url(#ssbjf_26_);}
+              .ssbjf-st31{fill:url(#ssbjf_27_);}
+              .ssbjf-st32{fill:url(#ssbjf_28_);}
+              .ssbjf-st33{fill:url(#ssbjf_29_);}
+              .ssbjf-st34{fill:url(#ssbjf_30_);}
+              .ssbjf-st35{fill:url(#ssbjf_31_);}
+              .ssbjf-st36{fill:url(#ssbjf_32_);}
+              .ssbjf-st37{fill:url(#ssbjf_33_);}
+              .ssbjf-st38{fill:url(#ssbjf_34_);}
+              .ssbjf-st39{fill:url(#ssbjf_35_);}
+              .ssbjf-st40{fill:url(#ssbjf_36_);}
+            
+              .show {display:default;}
+              .hide {display:none;}
+              .f1 {display:default;}
+              .f2 {display:none;}
+              .f3 {display:none;}
+      </style>`
+        "
+      ></defs>
       <g id="SVG_base">
         <linearGradient
           id="ssbjf_1_"
@@ -879,7 +807,7 @@ export default {
   name: "deviceSsbjfCom",
   data() {
     return {
-      pointValue: "1" // expr:'SwSts',stop:0,start:1,alarm:2
+      pointValue: "0" // expr:'SwSts',stop:0,start:1,alarm:2
     };
   },
   props: {
@@ -1017,146 +945,5 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import (reference) "./../../../../assets/less/common.less";
-.ssbjf-st0 {
-  fill: url(#ssbjf_1_);
-}
-.ssbjf-st1 {
-  fill: url(#ssbjf_2_);
-}
-.ssbjf-st2 {
-  fill: #ffb6bb;
-}
-.ssbjf-st3 {
-  fill: url(#ssbjf_3_);
-}
-.ssbjf-st4 {
-  fill: url(#ssbjf_4_);
-}
-.ssbjf-st5 {
-  fill: url(#ssbjf_5_);
-}
-.ssbjf-st6 {
-  fill: url(#ssbjf_6_);
-}
-.ssbjf-st7 {
-  fill: url(#ssbjf_7_);
-}
-.ssbjf-st8 {
-  fill: url(#ssbjf_8_);
-}
-.ssbjf-st9 {
-  fill: url(#ssbjf_9_);
-}
-.ssbjf-st10 {
-  fill: #5c5c5c;
-}
-.ssbjf-st11 {
-  fill: url(#ssbjf_10_);
-}
-.ssbjf-st12 {
-  fill: #b71c27;
-}
-.ssbjf-st13 {
-  fill: url(#ssbjf_11_);
-}
-.ssbjf-st14 {
-  fill: url(#ssbjf_12_);
-}
-.ssbjf-st15 {
-  fill: url(#ssbjf_13_);
-}
-.ssbjf-st16 {
-  fill: url(#ssbjf_14_);
-}
-.ssbjf-st17 {
-  fill: url(#ssbjf_15_);
-}
-.ssbjf-st18 {
-  fill: url(#ssbjf_16_);
-}
-.ssbjf-st19 {
-  fill: url(#ssbjf_17_);
-}
-.ssbjf-st20 {
-  fill: url(#ssbjf_18_);
-}
-.ssbjf-st21 {
-  fill: url(#ssbjf_19_);
-}
-.ssbjf-st22 {
-  fill: #2f3338;
-}
-.ssbjf-st23 {
-  fill: #ffffff;
-}
-.ssbjf-st24 {
-  fill: url(#ssbjf_20_);
-}
-.ssbjf-st25 {
-  fill: url(#ssbjf_21_);
-}
-.ssbjf-st26 {
-  fill: url(#ssbjf_22_);
-}
-.ssbjf-st27 {
-  fill: url(#ssbjf_23_);
-}
-.ssbjf-st28 {
-  fill: url(#ssbjf_24_);
-}
-.ssbjf-st29 {
-  fill: url(#ssbjf_25_);
-}
-.ssbjf-st30 {
-  fill: url(#ssbjf_26_);
-}
-.ssbjf-st31 {
-  fill: url(#ssbjf_27_);
-}
-.ssbjf-st32 {
-  fill: url(#ssbjf_28_);
-}
-.ssbjf-st33 {
-  fill: url(#ssbjf_29_);
-}
-.ssbjf-st34 {
-  fill: url(#ssbjf_30_);
-}
-.ssbjf-st35 {
-  fill: url(#ssbjf_31_);
-}
-.ssbjf-st36 {
-  fill: url(#ssbjf_32_);
-}
-.ssbjf-st37 {
-  fill: url(#ssbjf_33_);
-}
-.ssbjf-st38 {
-  fill: url(#ssbjf_34_);
-}
-.ssbjf-st39 {
-  fill: url(#ssbjf_35_);
-}
-.ssbjf-st40 {
-  fill: url(#ssbjf_36_);
-}
-
-.show {
-  display: default;
-}
-.hide {
-  display: none;
-}
-.f1 {
-  display: default;
-}
-.f2 {
-  display: none;
-}
-.f3 {
-  display: none;
-}
-</style>
-<style lang="less">
-@import (less) "../../../../assets/less/components/component/device/common.less";
+// @import (less) "../../../../assets/less/components/component/device/common.less";
 </style>

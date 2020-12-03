@@ -9,6 +9,7 @@
       v-if="!info.backgroundImage"
       @success="successCallback"
     ></bm-upload> -->
+    <div class="image" :style="imageStyle"></div>
   </div>
 </template>
 
@@ -62,7 +63,7 @@ export default {
         borderStyle = "",
         borderWidth = "",
         borderRadius = "",
-        scale = "",
+        // scale = "",
         backgroundColor = "",
         backgroundType = "",
         backgroundImage = "",
@@ -84,13 +85,13 @@ export default {
       }
       styles["borderWidth"] = `${borderWidth}px`;
       styles["borderRadius"] = `${borderRadius}px`;
-      if (scale) {
-        (styles["transform"] = `${scale}`),
-          (styles["-webkit-transform"] = `${scale}`),
-          (styles["-ms-transform"] = `${scale}`),
-          (styles["-o-transform"] = `${scale}`),
-          (styles["-moz-transform"] = `${scale}`);
-      }
+      // if (scale) {
+      //   (styles["transform"] = `${scale}`),
+      //     (styles["-webkit-transform"] = `${scale}`),
+      //     (styles["-ms-transform"] = `${scale}`),
+      //     (styles["-o-transform"] = `${scale}`),
+      //     (styles["-moz-transform"] = `${scale}`);
+      // }
       // if (color) {
       //   styles["color"] = color;
       // }
@@ -114,6 +115,79 @@ export default {
         //渐变
         styles = { ...styles, ...gradientStyle };
       }
+      return styles || {};
+    },
+    imageStyle() {
+      let { info = {} } = this;
+      let {
+        width = "",
+        height = "",
+        // borderColor = "",
+        // borderStyle = "",
+        // borderWidth = "",
+        // borderRadius = "",
+        // scale = "",
+        content = "",
+        contentRepeat = "",
+        // backgroundType = "",
+        // backgroundImage = "",
+        // backgroundRepeat = "",
+        contentSize = ""
+      } = info || {};
+      let styles = {};
+      if (content) {
+        styles["backgroundImage"] = `url(${this.$loadImgUrl(content)})`;
+        if (contentRepeat) {
+          styles["backgroundRepeat"] = contentRepeat;
+        }
+        if (contentSize) {
+          styles["backgroundSize"] = contentSize;
+        }
+      }
+      if (width) {
+        styles["width"] = `${width}px`;
+      }
+      if (height) {
+        styles["height"] = `${height}px`;
+      }
+      // if (borderColor) {
+      //   styles["borderColor"] = borderColor;
+      // }
+      // if (borderStyle) {
+      //   styles["borderStyle"] = borderStyle;
+      // }
+      // styles["borderWidth"] = `${borderWidth}px`;
+      // styles["borderRadius"] = `${borderRadius}px`;
+      // if (scale) {
+      //   (styles["transform"] = `${scale}`),
+      //     (styles["-webkit-transform"] = `${scale}`),
+      //     (styles["-ms-transform"] = `${scale}`),
+      //     (styles["-o-transform"] = `${scale}`),
+      //     (styles["-moz-transform"] = `${scale}`);
+      // }
+      // if (color) {
+      //   styles["color"] = color;
+      // }
+      // if (backgroundType == "purity") {
+      //   //纯色
+      //   if (backgroundColor) {
+      //     styles["backgroundColor"] = backgroundColor;
+      //   }
+      //   if (content) {
+      //     styles["content"] = `url(${this.$loadImgUrl(
+      //       content
+      //     )})`;
+      //     if (backgroundRepeat) {
+      //       styles["backgroundRepeat"] = backgroundRepeat;
+      //     }
+      //     if (backgroundSize) {
+      //       styles["backgroundSize"] = backgroundSize;
+      //     }
+      //   }
+      // } else if (backgroundType == "gradient") {
+      //   //渐变
+      //   styles = { ...styles, ...gradientStyle };
+      // }
       return styles || {};
     }
   },

@@ -1,31 +1,4 @@
-<<<<<<< HEAD:src/components/device/Sxdgdb.js
-import Spirit from './../../core/Spirit'
-
-/**
- * 三相导轨电表
- */
-class Sxdgdb extends Spirit {
-
-	constructor(x=10, y=10,width,height) {
-        super(x, y);
-	    this.name = "三相导轨电表";
-	    this.className = "Sxdgdb";
-	    this.width = width;
-	    this.height = height;
-	    this.moveType = 4;
-	    this.minWidth = 20;
-	    this.minHeight = 20;
-		  this.zIndex = 2;
-	    this.linkage = true;
-	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
-	}
-
-	template(){
-		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
-		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-=======
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
->>>>>>> origin/dev-new:public/static/img/svg/sxdgdb.svg
 					 viewBox="0 0 92 60" style="enable-background:new 0 0 92 60;" xml:space="preserve">
 				<style type="text/css">
 					.sxdgdb-st0{fill:#C1C7CC;}
@@ -62,56 +35,4 @@ class Sxdgdb extends Spirit {
 				<rect id="XMLID_12_" x="73.5" y="36.3" class="sxdgdb-st5" width="6.7" height="3.7"/>
 				<rect id="XMLID_14_" x="53.3" y="28.4" class="sxdgdb-st0" width="24.8" height="1"/>
 				<rect id="XMLID_15_" x="53.3" y="30.5" class="sxdgdb-st0" width="13.4" height="1"/>
-<<<<<<< HEAD:src/components/device/Sxdgdb.js
 				</svg>
-			</div>`);
-	}
-
-	toJson() {
-		let json = {
-			className: this.className,
-			moveType: this.moveType,
-			linkage: this.linkage,
-			minWidth: this.minWidth,
-			minHeight: this.minHeight,
-			zIndex: this.zIndex
-		};
-		return Object.assign(super.toJson(),json);
-	}
-
-	viewPanel(device) {
-		let that = this;
-		if(device) {
-			$('.bm-view-panel').html('');
-			let point = {name:'',value:'',unit:''}
-			if(device.points) {
-				device.points.forEach(function(data) {
-					if(data.id=="WPP") {
-						point.value = parseFloat(data.value);
-						point.unit = data.unit;
-						point.name = data.name;
-					}
-				});
-			}
-			if(point.unit) {
-				let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,12)}</div>`);
-			    let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
-			    let img = $(`<img height="50"/>`);
-			    img.attr('src',"static/images/device/icon-dt1.png");
-			    let div = $(`<div class="bm-img-text">
-			                     <p>${point.name}</p>
-			                     <span>${parseFloat(point.value)}</span><small>&nbsp;${point.unit}</small>
-			                 </div>`)
-			    vpc.append(img).append(div)
-				$('.bm-view-panel').append(vpt).append(vpc);
-				$('.bm-view-panel').css({width:200});
-				$('.bm-view-panel').show();
-			}
-		}
-	}
-}
-
-export default Sxdgdb;
-=======
-				</svg>
->>>>>>> origin/dev-new:public/static/img/svg/sxdgdb.svg

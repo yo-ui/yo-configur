@@ -17,7 +17,26 @@
     </p> -->
 
     <el-collapse v-model="activeNames">
-      <el-collapse-item :title="info.name" name="name">
+      <el-collapse-item :title="info.name" name="name" disabled>
+        <template slot="title">
+          {{ info.name }}
+          <div class="right">
+            <el-tooltip
+              :content="$lang('全部折叠')"
+              placement="top"
+              effect="dark"
+            >
+              <i class="el-icon-folder-remove" @click="closeAll"></i>
+            </el-tooltip>
+            <el-tooltip
+              :content="$lang('全部展开')"
+              placement="top"
+              effect="dark"
+            >
+              <i class="el-icon-folder-opened" @click="openAll"></i>
+            </el-tooltip>
+          </div>
+        </template>
         <p>
           <span class="label"> {{ $lang("按钮名称") }}: </span>
           <el-input
@@ -451,146 +470,149 @@
             </el-option>
           </el-select>
         </p>
-        <p>
-          <span class="label"> {{ $lang("边框大小") }}:</span>
-          <el-input-number
-            controls-position="right"
-            clearable
-            :min="0"
-            :max="20"
-            v-model.number="info.borderWidth"
-            :placeholder="$lang('请输入边框大小')"
-          ></el-input-number>
-          px
-          <el-slider
-            v-model="info.borderWidth"
-            :min="0"
-            :max="20"
-            :format-tooltip="val => val + ' px'"
-          ></el-slider>
-        </p>
-        <p>
-          <span class="label"> {{ $lang("边框圆角") }}:</span>
-          <el-input-number
-            controls-position="right"
-            clearable
-            :min="0"
-            :max="50"
-            v-model.number="info.borderRadius"
-            :placeholder="$lang('请输入边框圆角')"
-          ></el-input-number>
-          px
-          <el-slider
-            v-model="info.borderRadius"
-            :min="0"
-            :max="50"
-            :format-tooltip="val => val + ' px'"
-          ></el-slider>
-        </p>
-        <p>
-          <span class="label">{{ $lang("边框颜色") }}:</span>
-          <el-color-picker
-            v-model="info.borderColor"
-            show-alpha
-          ></el-color-picker>
-        </p>
-        <p>
-          <span class="label">{{ $lang("盒子阴影") }}:</span>
-          <el-switch
-            v-model="info.shadowable"
-            active-color="#4195ea"
-            inactive-color="#ccc"
-          ></el-switch>
-        </p>
-        <template v-if="info.shadowable">
-          <p class="shadow-box">
-            <span class="c-box">
-              <span>
-                <el-tooltip
-                  :content="$lang('X-X轴位移')"
-                  placement="top"
-                  effect="dark"
-                >
-                  <span>X</span>
-                </el-tooltip>
-                <el-input-number
-                  controls-position="right"
-                  clearable
-                  v-model.number="info.shadow.x"
-                  :placeholder="$lang('X轴位移')"
-                ></el-input-number>
-              </span>
-              <span>
-                <el-tooltip
-                  :content="$lang('Y-Y轴位移')"
-                  placement="top"
-                  effect="dark"
-                >
-                  <span>Y</span> </el-tooltip
-                ><el-input-number
-                  controls-position="right"
-                  clearable
-                  v-model.number="info.shadow.y"
-                  :placeholder="$lang('Y轴位移')"
-                ></el-input-number>
-              </span>
-              <span>
-                <el-tooltip
-                  :content="$lang('R-模糊半径')"
-                  placement="top"
-                  effect="dark"
-                >
-                  <span>R</span> </el-tooltip
-                ><el-input-number
-                  controls-position="right"
-                  clearable
-                  v-model.number="info.shadow.blur"
-                  :placeholder="$lang('模糊半径')"
-                ></el-input-number>
-              </span>
-            </span>
-          </p>
+
+        <template v-if="info.borderStyle != 'none'">
           <p>
-            <span class="label">{{ $lang("阴影大小") }}:</span>
+            <span class="label"> {{ $lang("边框大小") }}:</span>
             <el-input-number
               controls-position="right"
               clearable
-              v-model.number="info.shadow.spread"
-              :placeholder="$lang('阴影大小')"
+              :min="0"
+              :max="20"
+              v-model.number="info.borderWidth"
+              :placeholder="$lang('请输入边框大小')"
             ></el-input-number>
             px
             <el-slider
-              v-model="info.shadow.spread"
+              v-model="info.borderWidth"
+              :min="0"
+              :max="20"
+              :format-tooltip="val => val + ' px'"
+            ></el-slider>
+          </p>
+          <p>
+            <span class="label"> {{ $lang("边框圆角") }}:</span>
+            <el-input-number
+              controls-position="right"
+              clearable
+              :min="0"
+              :max="50"
+              v-model.number="info.borderRadius"
+              :placeholder="$lang('请输入边框圆角')"
+            ></el-input-number>
+            px
+            <el-slider
+              v-model="info.borderRadius"
               :min="0"
               :max="50"
               :format-tooltip="val => val + ' px'"
             ></el-slider>
           </p>
           <p>
-            <span class="label">{{ $lang("阴影类型") }}:</span>
-            <el-select
-              v-model="info.shadow.type"
-              :placeholder="$lang('请选择阴影类型')"
-            >
-              <el-option
-                v-for="item in shadowTypeList"
-                :key="item.code"
-                :label="$lang(item.name)"
-                :value="item.code"
-              >
-              </el-option>
-            </el-select>
-          </p>
-          <p>
-            <span class="label">{{ $lang("阴影颜色") }}:</span>
+            <span class="label">{{ $lang("边框颜色") }}:</span>
             <el-color-picker
-              v-model="info.shadow.color"
+              v-model="info.borderColor"
               show-alpha
             ></el-color-picker>
           </p>
+          <p>
+            <span class="label">{{ $lang("盒子阴影") }}:</span>
+            <el-switch
+              v-model="info.shadowable"
+              active-color="#4195ea"
+              inactive-color="#ccc"
+            ></el-switch>
+          </p>
+          <template v-if="info.shadowable">
+            <p class="shadow-box">
+              <span class="c-box">
+                <span>
+                  <el-tooltip
+                    :content="$lang('X-X轴位移')"
+                    placement="top"
+                    effect="dark"
+                  >
+                    <span>X</span>
+                  </el-tooltip>
+                  <el-input-number
+                    controls-position="right"
+                    clearable
+                    v-model.number="info.shadow.x"
+                    :placeholder="$lang('X轴位移')"
+                  ></el-input-number>
+                </span>
+                <span>
+                  <el-tooltip
+                    :content="$lang('Y-Y轴位移')"
+                    placement="top"
+                    effect="dark"
+                  >
+                    <span>Y</span> </el-tooltip
+                  ><el-input-number
+                    controls-position="right"
+                    clearable
+                    v-model.number="info.shadow.y"
+                    :placeholder="$lang('Y轴位移')"
+                  ></el-input-number>
+                </span>
+                <span>
+                  <el-tooltip
+                    :content="$lang('R-模糊半径')"
+                    placement="top"
+                    effect="dark"
+                  >
+                    <span>R</span> </el-tooltip
+                  ><el-input-number
+                    controls-position="right"
+                    clearable
+                    v-model.number="info.shadow.blur"
+                    :placeholder="$lang('模糊半径')"
+                  ></el-input-number>
+                </span>
+              </span>
+            </p>
+            <p>
+              <span class="label">{{ $lang("阴影大小") }}:</span>
+              <el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.shadow.spread"
+                :placeholder="$lang('阴影大小')"
+              ></el-input-number>
+              px
+              <el-slider
+                v-model="info.shadow.spread"
+                :min="0"
+                :max="50"
+                :format-tooltip="val => val + ' px'"
+              ></el-slider>
+            </p>
+            <p>
+              <span class="label">{{ $lang("阴影类型") }}:</span>
+              <el-select
+                v-model="info.shadow.type"
+                :placeholder="$lang('请选择阴影类型')"
+              >
+                <el-option
+                  v-for="item in shadowTypeList"
+                  :key="item.code"
+                  :label="$lang(item.name)"
+                  :value="item.code"
+                >
+                </el-option>
+              </el-select>
+            </p>
+            <p>
+              <span class="label">{{ $lang("阴影颜色") }}:</span>
+              <el-color-picker
+                v-model="info.shadow.color"
+                show-alpha
+              ></el-color-picker>
+            </p>
+          </template>
         </template>
       </el-collapse-item>
-      <el-collapse-item :title="$lang('文字设置')" name="font">
+      <el-collapse-item :title="$lang('文字设置')" name="fontSet">
         <p>
           <span class="label">{{ $lang("字体颜色") }}:</span>
           <el-color-picker v-model="info.color" show-alpha></el-color-picker>
@@ -692,27 +714,37 @@
         <p>
           <span class="label">{{ $lang("字体样式") }}:</span>
           <span class="font-style">
-            <span
-              class="bold"
-              @click="setFontWeight"
-              :title="$lang('粗体')"
-              :class="{ active: info.fontWeight == 'bold' }"
-              >B</span
+            <el-tooltip :content="$lang('加粗')" placement="top" effect="dark">
+              <span
+                class="bold"
+                @click="setFontWeight"
+                :title="$lang('粗体')"
+                :class="{ active: info.fontWeight == 'bold' }"
+                >B</span
+              >
+            </el-tooltip>
+            <el-tooltip :content="$lang('倾斜')" placement="top" effect="dark">
+              <span
+                class="italic"
+                @click="setFontStyle"
+                :title="$lang('斜体')"
+                :class="{ active: info.fontStyle == 'italic' }"
+                >I</span
+              >
+            </el-tooltip>
+            <el-tooltip
+              :content="$lang('下划线')"
+              placement="top"
+              effect="dark"
             >
-            <span
-              class="italic"
-              @click="setFontStyle"
-              :title="$lang('斜体')"
-              :class="{ active: info.fontStyle == 'italic' }"
-              >I</span
-            >
-            <span
-              class="underline"
-              @click="setTextDecoration"
-              :title="$lang('下划线')"
-              :class="{ active: info.textDecoration == 'underline' }"
-              >U</span
-            >
+              <span
+                class="underline"
+                @click="setTextDecoration"
+                :title="$lang('下划线')"
+                :class="{ active: info.textDecoration == 'underline' }"
+                >U</span
+              >
+            </el-tooltip>
           </span>
         </p>
 
@@ -739,6 +771,8 @@
             :class="{ active: info.textAlign == 'justify' }"
           ></i>
         </p>
+      </el-collapse-item>
+      <el-collapse-item :title="$lang('边距')" name="margin">
         <p class="margin-box">
           <span class="label">{{ $lang("外边距") }}:</span>
           <span class="c-box">
@@ -814,8 +848,8 @@
           </span>
         </p>
       </el-collapse-item>
-      <el-collapse-item :title="$lang('链接设置')" name="link">
-      </el-collapse-item>
+      <!-- <el-collapse-item :title="$lang('链接设置')" name="link">
+      </el-collapse-item> -->
       <el-collapse-item title="动画" name="animation">
         <p>
           <span class="label">{{ $lang("动画类型") }}:</span>
@@ -885,7 +919,7 @@
 </template>
 
 <script>
-// import bmCommon from "@/common/common";
+import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
@@ -923,7 +957,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(),
+    ...mapGetters({
+      activeComs: "canvas/getActiveComs" //选中组件
+    }),
     gradientStyle() {
       let { info = {}, gradientStyleMap = [] } = this;
       let { gradientStyle = {} } = info || {};
@@ -964,6 +1000,10 @@ export default {
       let colors = valueList.map(item => `${item.code} ${item.value}%`);
       return `background-image:linear-gradient(90deg, ${colors.join()})`;
     }
+  },
+  created() {
+    // let { info = {} } = this;
+    // this.oldInfo = bmCommon.clone(info || {});
   },
   methods: {
     ...mapMutations({}),
@@ -1072,6 +1112,12 @@ export default {
     textAlignEvent(item) {
       let { info = {} } = this;
       info.textAlign = item;
+    },
+    openAll() {
+      this.activeNames = ["name", "outward", "margin", "fontSet", "animation"];
+    },
+    closeAll() {
+      this.activeNames = ["name"];
     }
   }
 };

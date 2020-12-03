@@ -264,6 +264,7 @@ export default {
       // }
       this.chartOptions = {
         tooltip: {
+          name,
           trigger: "axis",
           axisPointer: {
             // 坐标轴指示器，坐标轴触发有效

@@ -1,30 +1,4 @@
-<<<<<<< HEAD:src/components/device/Lskt.js
-import Spirit from './../../core/Spirit'
-
-/**
- * 立式空调
- */
-class Lskt extends Spirit {
-
-	constructor(x=10, y=10,width,height) {
-        super(x, y);
-	    this.name = "立式空调";
-	    this.className = "Lskt";
-	    this.width = width;
-	    this.height = height;
-	    this.minWidth = 20;
-	    this.minHeight = 20;
-      this.moveType = 4;
-	    this.linkage = true;
-	    this.zIndex = 2;
-	}
-
-	template(){
-		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
-		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-=======
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
->>>>>>> origin/dev-new:public/static/img/svg/lskt.svg
 					 viewBox="0 0 96 228" style="enable-background:new 0 0 96 228;" xml:space="preserve">
 				<style type="text/css">
 					.lskt-st0{fill:#D0D4D8;}
@@ -95,26 +69,4 @@ class Lskt extends Spirit {
 					<path id="XMLID_1018_" class="lskt-st7" d="M88.7,29.3v-5.4c0-1.6-1.3-2.8-2.8-2.8H9.4c-1.6,0-2.8,1.3-2.8,2.8v5.4H88.7z"/>
 				</g>
 				<path id="XMLID_1017_" class="lskt-st8" d="M95.1,154.6c0,1.7-2.4,3.1-5.4,3.1H5.6c-3,0-5.4-1.4-5.4-3.1"/>
-<<<<<<< HEAD:src/components/device/Lskt.js
 				</svg>
-			</div>`);
-	}
-
-	toJson() {
-		let json = {
-			className: this.className,
-			moveType: this.moveType,
-			linkage: this.linkage,
-			minWidth: this.minWidth,
-			minHeight: this.minHeight,
-			zIndex: this.zIndex
-		};
-		return Object.assign(super.toJson(),json);
-	}
-
-}
-
-export default Lskt;
-=======
-				</svg>
->>>>>>> origin/dev-new:public/static/img/svg/lskt.svg

@@ -1,32 +1,4 @@
-<<<<<<< HEAD:src/components/device/Xyssb.js
-import Spirit from './../../core/Spirit'
-
-/**
- * 旋翼式水表
- */
-class Xyssb extends Spirit {
-
-	constructor(x=10, y=10,width,height) {
-        super(x, y);
-	    this.name = "旋翼式水表";
-	    this.className = "Xyssb";
-	    this.width = width;
-	    this.height = height;
-	    this.moveType = 4;
-	    this.minWidth = 20;
-	    this.minHeight = 20;
-		  this.zIndex = 2;
-	    this.linkage = true;
-      this.isLinkPoint = true;
-	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
-	}
-
-	template(){
-		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg">
-		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-=======
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
->>>>>>> origin/dev-new:public/static/img/svg/xyssb.svg
 					 viewBox="0 0 80 55" style="enable-background:new 0 0 80 55;" xml:space="preserve">
 				<style type="text/css">
 					.xyssb-st0{fill:url(#xyssb_2_);}
@@ -103,57 +75,4 @@ class Xyssb extends Spirit {
 				<ellipse id="XMLID_919_" class="xyssb-st11" cx="40" cy="15.5" rx="2.9" ry="2.2"/>
 				<path id="XMLID_918_" class="xyssb-st12" d="M39.7,3.6c8.8,0,16,5.5,16.3,12.3c0-0.2,0-0.3,0-0.5c0-7-7.3-12.7-16.3-12.7
 					S23.4,8.4,23.4,15.5c0,0.2,0,0.3,0,0.5C23.7,9.1,30.9,3.6,39.7,3.6z"/>
-<<<<<<< HEAD:src/components/device/Xyssb.js
 				</svg>
-			</div>`);
-	}
-
-	toJson() {
-		let json = {
-			className: this.className,
-			moveType: this.moveType,
-			linkage: this.linkage,
-			minWidth: this.minWidth,
-			minHeight: this.minHeight,
-			zIndex: this.zIndex,
-      isLinkPoint: this.isLinkPoint
-		};
-		return Object.assign(super.toJson(),json);
-	}
-
-  createLinkPoint() {
-    let x = parseInt(this.x+this.width-8);
-    let y = parseInt(this.y+this.height/2-(3-this.height/40))
-    let spirit = this.stage.create("LinkPoint",x,y,10,10);
-    spirit.isAuto = true;
-    this.stage.capacity.push(spirit);
-    let x2 = parseInt(this.x-3);
-    let y2 = parseInt(this.y+this.height/2-(3-this.height/40));
-    let spirit2 = this.stage.create("LinkPoint",x2,y2,10,10);
-    spirit2.isAuto = true;
-    this.stage.capacity.push(spirit2);
-  }
-
-	viewPanel(device) {
-		if(device) {
-			let that = this;
-			$('.bm-view-panel').html('');
-			let vpt = $(`<div class="bm-view-panel__title">${device.name}</div>`);
-		    let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
-		    let img = $(`<img src="static/images/device/icon-dt3.png" height="50"/>`);
-		    let div = $(`<div class="bm-img-text">
-		                 <p>累积流量</p>
-		                 <span>${parseFloat(device.points[0].value)}</span><small>&nbsp;${device.points[0].unit}</small>
-		                </div>`)
-		    vpc.append(img).append(div)
-			$('.bm-view-panel').append(vpt).append(vpc);
-			$('.bm-view-panel').css({width:200});
-			$('.bm-view-panel').show();
-		}
-	}
-}
-
-export default Xyssb;
-=======
-				</svg>
->>>>>>> origin/dev-new:public/static/img/svg/xyssb.svg

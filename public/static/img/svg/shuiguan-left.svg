@@ -1,28 +1,4 @@
-<<<<<<< HEAD:src/components/assist/LeftWater.js
-import Spirit from './../../core/Spirit'
-
-/**
- * 水管（左）
- */
-class LeftWater extends Spirit {
-
-	constructor(x=10, y=10) {
-        super(x, y);
-	    this.name = "水管（左）";
-	    this.className = "LeftWater";
-	    this.width = 10;
-	    this.height = 14;
-	    this.isSplice = true;
-	    this.zIndex = 1;
-      this.isWater = true;
-	}
-
-	template(){
-		return `<div id="${this.id}" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex}">
-		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-=======
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
->>>>>>> origin/dev-new:public/static/img/svg/shuiguan-left.svg
 					 viewBox="0 0 10 10" xml:space="preserve" width = "10" height="10">
 				<style type="text/css">
 					.leftWater-st0{fill:url(#leftWater_6_);}
@@ -75,22 +51,4 @@ class LeftWater extends Spirit {
 						<path id="XMLID_2_" class="leftWater-st6" d="M8,10c0-1.2,0.8-2,2-2H8V10z"/>
 					</g>
 				</g>
-<<<<<<< HEAD:src/components/assist/LeftWater.js
 				</svg>
-				</div>`;
-	}
-
-	toJson(){
-		let json = {
-			className:this.className,
-			zIndex: this.zIndex,
-			isRotate: this.isRotate
-		};
-		return Object.assign(super.toJson(),json);
-	}
-}
-
-export default LeftWater;
-=======
-				</svg>
->>>>>>> origin/dev-new:public/static/img/svg/shuiguan-left.svg

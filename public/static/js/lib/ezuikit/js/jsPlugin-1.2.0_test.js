@@ -1738,7 +1738,7 @@ function (t, e) {
                 }
                 function S(t, e, n) {
                     var i;
-                    if (void 0 === n && 1 === t.nodeType) if (i = "linkage-" + e.replace(Ut, "-$&").toLowerCase(), n = t.getAttribute(i), "string" == typeof n) {
+                    if (void 0 === n && 1 === t.nodeType) if (i = "data-" + e.replace(Ut, "-$&").toLowerCase(), n = t.getAttribute(i), "string" == typeof n) {
                         try {
                             n = g(n)
                         } catch (t) {}
@@ -3501,7 +3501,7 @@ function (t, e) {
                                 s = a && a.attributes;
                             if (void 0 === e) {
                                     if (this.length && (t = jt.get(a), 1 === a.nodeType && !Ht.get(a, "hasDataAttrs"))) {
-                                        for (r = s.length; r--;) s[r] && (o = s[r].name, 0 === o.indexOf("linkage-") && (o = bt.camelCase(o.slice(5)), S(a, o, t[o])));
+                                        for (r = s.length; r--;) s[r] && (o = s[r].name, 0 === o.indexOf("data-") && (o = bt.camelCase(o.slice(5)), S(a, o, t[o])));
                                         Ht.set(a, "hasDataAttrs", !0)
                                     }
                                     return t
@@ -8343,7 +8343,7 @@ function (t, e) {
                         try {
                             return decodeURIComponent(escape(l.stringify(t)))
                         } catch (t) {
-                            throw Error("Malformed UTF-8 linkage")
+                            throw Error("Malformed UTF-8 data")
                         }
                     },
                     parse: function (t) {

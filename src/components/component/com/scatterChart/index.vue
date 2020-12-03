@@ -263,7 +263,9 @@ export default {
       //   values.push(parseInt(Math.random() * 1000));
       // }
       this.chartOptions = {
-        xAxis: {},
+        xAxis: {
+          name
+        },
         yAxis: {},
         series: [
           {

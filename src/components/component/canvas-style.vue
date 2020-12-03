@@ -364,6 +364,10 @@
           <span class="label"> {{ $lang("显示网格") }}:</span
           ><el-checkbox v-model="info.isGrid"></el-checkbox>
         </p>
+        <!-- <p>
+          <span class="label"> {{ $lang("显示缩放") }}:</span
+          ><el-checkbox v-model="info.isGrid"></el-checkbox>
+        </p> -->
         <template v-if="info.isGrid">
           <p>
             <span class="label"> {{ $lang("网格样式") }}:</span
@@ -557,6 +561,10 @@ export default {
         canvas.width = Number(width);
         canvas.height = Number(height);
       }
+    });
+    //监控画布操作
+    $vm.$on("canvas-action", item => {
+      this.actionEvent(item);
     });
   },
   components: {

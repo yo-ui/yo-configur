@@ -6,136 +6,100 @@
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 275 315"
+      :width="info.width"
+      :height="info.height"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
-      <defs>
-        <!-- <template v-if="info.backgroundType == 'gradient'">
-          <linearGradient
-            :id="info.gradientStyle.gradientId"
-            :x1="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '0%',
-                  135: '0%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y1="
-              `${
-                {
-                  0: '100%',
-                  45: '100%',
-                  90: '100%',
-                  135: '0%',
-                  180: '0%',
-                  225: '0%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :x2="
-              `${
-                {
-                  0: '0%',
-                  45: '100%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '0%',
-                  270: '0%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y2="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            v-if="info.gradientStyle.type == 'linear'"
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </linearGradient>
-          <radialGradient
-            :id="info.gradientStyle.gradientId"
-            v-else-if="info.gradientStyle.type == 'radial'"
-            :cx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :cy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :r="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '160%',
-                '100% 0%': '150%',
-                '0% 100%': '150%',
-                '100% 100%': '140%'
-              }[info.gradientStyle.center]
-            "
-            :fx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :fy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </radialGradient>
-        </template> -->
-      </defs>
+      <defs
+        v-html="
+          `<style type='text/css'>
+      
+                .lqt-st0{fill:url(#lqt_1_);}
+                .lqt-st1{fill:url(#lqt_2_);}
+                .lqt-st2{fill:#3D3D3D;}
+                .lqt-st3{fill:#BCBCBC;}
+                .lqt-st4{fill:#7C7C7C;}
+                .lqt-st5{fill:url(#lqt_3_);}
+                .lqt-st6{fill:url(#lqt_4_);}
+                .lqt-st7{fill:url(#lqt_5_);}
+                .lqt-st8{fill:url(#lqt_6_);}
+                .lqt-st9{fill:url(#lqt_7_);}
+                .lqt-st10{opacity:0.4;fill:#FFFFFF;}
+                .lqt-st11{fill:url(#lqt_8_);}
+                .lqt-st12{fill:url(#lqt_9_);}
+                .lqt-st13{opacity:0.2;}
+                .lqt-st14{opacity:0.3;}
+                .lqt-st15{fill:#D8D9D4;}
+                .lqt-st16{fill:#4C4C4C;}
+                .lqt-st17{opacity:0.8;}
+                .lqt-st18{fill:#333333;}
+                .lqt-st19{fill:url(#lqt_10_);}
+                .lqt-st20{fill:url(#lqt_11_);}
+                .lqt-st21{fill:url(#lqt_12_);}
+                .lqt-st22{fill:url(#lqt_13_);}
+                .lqt-st23{fill:url(#lqt_14_);}
+                .lqt-st24{fill:url(#lqt_15_);}
+                .lqt-st25{fill:url(#lqt_16_);}
+                .lqt-st26{fill:url(#lqt_17_);}
+                .lqt-st27{fill:url(#lqt_18_);}
+                .lqt-st28{fill:url(#lqt_19_);}
+                .lqt-st29{fill:url(#lqt_20_);}
+                .lqt-st30{fill:url(#lqt_21_);}
+                .lqt-st31{fill:url(#lqt_22_);}
+                .lqt-st32{fill:url(#lqt_23_);}
+                .lqt-st33{fill:url(#lqt_24_);}
+                .lqt-st34{fill:url(#lqt_25_);}
+                .lqt-st35{fill:url(#lqt_26_);}
+                .lqt-st36{fill:url(#lqt_27_);}
+                .lqt-st37{fill:url(#lqt_28_);}
+                .lqt-st38{fill:url(#lqt_29_);}
+                .lqt-st39{fill:url(#lqt_30_);}
+                .lqt-st40{fill:url(#lqt_31_);}
+                .lqt-st41{fill:url(#lqt_32_);}
+                .lqt-st42{fill:url(#lqt_33_);}
+                .lqt-st43{fill:url(#lqt_34_);}
+                .lqt-st44{fill:url(#lqt_35_);}
+                .lqt-st45{fill:url(#lqt_36_);}
+                .lqt-st46{fill:url(#lqt_37_);}
+                .lqt-st47{fill:url(#lqt_38_);}
+                .lqt-st48{fill:url(#lqt_39_);}
+                .lqt-st49{fill:url(#lqt_40_);}
+                .lqt-st50{fill:url(#lqt_41_);}
+                .lqt-st51{fill:url(#lqt_42_);}
+                .lqt-st52{fill:url(#lqt_43_);}
+                .lqt-st53{fill:url(#lqt_44_);}
+                .lqt-st54{fill:url(#lqt_45_);}
+                .lqt-st55{fill:url(#lqt_46_);}
+                .lqt-st56{fill:url(#lqt_47_);}
+                .lqt-st57{fill:url(#lqt_48_);}
+                .lqt-st58{fill:url(#lqt_49_);}
+                .lqt-st59{fill:url(#lqt_50_);}
+                .lqt-st60{fill:url(#lqt_51_);}
+                .lqt-st61{fill:url(#lqt_52_);}
+                .lqt-st62{fill:url(#lqt_53_);}
+                .lqt-st63{fill:url(#lqt_54_);}
+                .lqt-st64{fill:url(#lqt_55_);}
+                .lqt-st65{fill:url(#lqt_56_);}
+                .lqt-st66{fill:url(#lqt_57_);}
+                .lqt-st67{fill:#D6D6D6;}
+                .lqt-st68{fill:#93958A;}
+                .lqt-st69{fill:#3F3F3F;}
+                .lqt-st70{fill:url(#lqt_58_);}
+                .lqt-st71{fill:url(#lqt_59_);}
+                .lqt-st72{fill:url(#lqt_60_);}
+                .lqt-st73{fill:url(#lqt_61_);}
+                .lqt-st74{fill:url(#lqt_62_);}
+                .lqt-st75{fill:url(#lqt_63_);}
+                .lqt-st76{fill:url(#lqt_64_);}
+                .lqt-st77{fill:url(#lqt_65_);}
+                .lqt-st78{fill:#E5E5E5;}
+                .lqt-st79{fill:url(#lqt_66_);}
+                .lqt-st80{fill:url(#lqt_67_);}
+                .lqt-st81{opacity:0.4;fill:#FF0000;}
+      </style>`
+        "
+      ></defs>
       <g id="SVG_base">
         <linearGradient
           id="lqt_1_"
@@ -2138,255 +2102,5 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import (reference) "./../../../../assets/less/common.less";
-.lqt-st0 {
-  fill: url(#lqt_1_);
-}
-.lqt-st1 {
-  fill: url(#lqt_2_);
-}
-.lqt-st2 {
-  fill: #3d3d3d;
-}
-.lqt-st3 {
-  fill: #bcbcbc;
-}
-.lqt-st4 {
-  fill: #7c7c7c;
-}
-.lqt-st5 {
-  fill: url(#lqt_3_);
-}
-.lqt-st6 {
-  fill: url(#lqt_4_);
-}
-.lqt-st7 {
-  fill: url(#lqt_5_);
-}
-.lqt-st8 {
-  fill: url(#lqt_6_);
-}
-.lqt-st9 {
-  fill: url(#lqt_7_);
-}
-.lqt-st10 {
-  opacity: 0.4;
-  fill: #ffffff;
-}
-.lqt-st11 {
-  fill: url(#lqt_8_);
-}
-.lqt-st12 {
-  fill: url(#lqt_9_);
-}
-.lqt-st13 {
-  opacity: 0.2;
-}
-.lqt-st14 {
-  opacity: 0.3;
-}
-.lqt-st15 {
-  fill: #d8d9d4;
-}
-.lqt-st16 {
-  fill: #4c4c4c;
-}
-.lqt-st17 {
-  opacity: 0.8;
-}
-.lqt-st18 {
-  fill: #333333;
-}
-.lqt-st19 {
-  fill: url(#lqt_10_);
-}
-.lqt-st20 {
-  fill: url(#lqt_11_);
-}
-.lqt-st21 {
-  fill: url(#lqt_12_);
-}
-.lqt-st22 {
-  fill: url(#lqt_13_);
-}
-.lqt-st23 {
-  fill: url(#lqt_14_);
-}
-.lqt-st24 {
-  fill: url(#lqt_15_);
-}
-.lqt-st25 {
-  fill: url(#lqt_16_);
-}
-.lqt-st26 {
-  fill: url(#lqt_17_);
-}
-.lqt-st27 {
-  fill: url(#lqt_18_);
-}
-.lqt-st28 {
-  fill: url(#lqt_19_);
-}
-.lqt-st29 {
-  fill: url(#lqt_20_);
-}
-.lqt-st30 {
-  fill: url(#lqt_21_);
-}
-.lqt-st31 {
-  fill: url(#lqt_22_);
-}
-.lqt-st32 {
-  fill: url(#lqt_23_);
-}
-.lqt-st33 {
-  fill: url(#lqt_24_);
-}
-.lqt-st34 {
-  fill: url(#lqt_25_);
-}
-.lqt-st35 {
-  fill: url(#lqt_26_);
-}
-.lqt-st36 {
-  fill: url(#lqt_27_);
-}
-.lqt-st37 {
-  fill: url(#lqt_28_);
-}
-.lqt-st38 {
-  fill: url(#lqt_29_);
-}
-.lqt-st39 {
-  fill: url(#lqt_30_);
-}
-.lqt-st40 {
-  fill: url(#lqt_31_);
-}
-.lqt-st41 {
-  fill: url(#lqt_32_);
-}
-.lqt-st42 {
-  fill: url(#lqt_33_);
-}
-.lqt-st43 {
-  fill: url(#lqt_34_);
-}
-.lqt-st44 {
-  fill: url(#lqt_35_);
-}
-.lqt-st45 {
-  fill: url(#lqt_36_);
-}
-.lqt-st46 {
-  fill: url(#lqt_37_);
-}
-.lqt-st47 {
-  fill: url(#lqt_38_);
-}
-.lqt-st48 {
-  fill: url(#lqt_39_);
-}
-.lqt-st49 {
-  fill: url(#lqt_40_);
-}
-.lqt-st50 {
-  fill: url(#lqt_41_);
-}
-.lqt-st51 {
-  fill: url(#lqt_42_);
-}
-.lqt-st52 {
-  fill: url(#lqt_43_);
-}
-.lqt-st53 {
-  fill: url(#lqt_44_);
-}
-.lqt-st54 {
-  fill: url(#lqt_45_);
-}
-.lqt-st55 {
-  fill: url(#lqt_46_);
-}
-.lqt-st56 {
-  fill: url(#lqt_47_);
-}
-.lqt-st57 {
-  fill: url(#lqt_48_);
-}
-.lqt-st58 {
-  fill: url(#lqt_49_);
-}
-.lqt-st59 {
-  fill: url(#lqt_50_);
-}
-.lqt-st60 {
-  fill: url(#lqt_51_);
-}
-.lqt-st61 {
-  fill: url(#lqt_52_);
-}
-.lqt-st62 {
-  fill: url(#lqt_53_);
-}
-.lqt-st63 {
-  fill: url(#lqt_54_);
-}
-.lqt-st64 {
-  fill: url(#lqt_55_);
-}
-.lqt-st65 {
-  fill: url(#lqt_56_);
-}
-.lqt-st66 {
-  fill: url(#lqt_57_);
-}
-.lqt-st67 {
-  fill: #d6d6d6;
-}
-.lqt-st68 {
-  fill: #93958a;
-}
-.lqt-st69 {
-  fill: #3f3f3f;
-}
-.lqt-st70 {
-  fill: url(#lqt_58_);
-}
-.lqt-st71 {
-  fill: url(#lqt_59_);
-}
-.lqt-st72 {
-  fill: url(#lqt_60_);
-}
-.lqt-st73 {
-  fill: url(#lqt_61_);
-}
-.lqt-st74 {
-  fill: url(#lqt_62_);
-}
-.lqt-st75 {
-  fill: url(#lqt_63_);
-}
-.lqt-st76 {
-  fill: url(#lqt_64_);
-}
-.lqt-st77 {
-  fill: url(#lqt_65_);
-}
-.lqt-st78 {
-  fill: #e5e5e5;
-}
-.lqt-st79 {
-  fill: url(#lqt_66_);
-}
-.lqt-st80 {
-  fill: url(#lqt_67_);
-}
-.lqt-st81 {
-  opacity: 0.4;
-  fill: #ff0000;
-}
-</style>
-<style lang="less">
-@import (less) "../../../../assets/less/components/component/device/common.less";
+// @import (less) "../../../../assets/less/components/component/device/common.less";
 </style>

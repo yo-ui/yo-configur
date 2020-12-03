@@ -1,32 +1,82 @@
 @import (reference) "./../common.less";
-.el-dropdown-menu{
-    .el-dropdown-menu__item{
+.popover-list{
+  width: auto!important;
+  min-width: 100px;
+  .p(0);
+  .dropdown-list{
+    .df;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    .lh(40);
+    .pr(15);
+    .oh;
+    li{
       .df;
+      .click;
       align-items: center;
-      .lh(40);
+      // .flex(1);
+      .p(0 15px);
+      .w(100%);
       &:hover{
+        .bc(#ecf5ff);
+        .c(@themes);
+      }
+      &.disabled{
+        .c(#C0C4CC);
         .bc(transparent);
-      }
-      .bomi{
-        .fz(28);
-        .mr(10);
-      }
-      .skin{
-        .squ(20);
-        .bor(1px solid @grayE);
-        &.skin-white{
-          .bc(@white);
-        }
-        &.skin-black{
-          .bc(#1f2b48);
-        }
-        &.skin-blue{
-          .bc(#15cef2);
-        }
+        cursor: not-allowed;
       }
     }
-  // }
+    .bomi{
+      .fz(28);
+      .mr(10);
+      // .ml(15);
+    }
+    .skin{
+      .squ(20);
+      .bor(1px solid @grayE);
+      .mr(10);
+      &.skin-white{
+        .bc(@white);
+      }
+      &.skin-black{
+        .bc(#1f2b48);
+      }
+      &.skin-blue{
+        .bc(#15cef2);
+      }
+    }
+  }
 }
+// .el-dropdown-menu{
+//     .el-dropdown-menu__item{
+//       .df;
+//       align-items: center;
+//       .lh(40);
+//       &:hover{
+//         .bc(transparent);
+//       }
+//       .bomi{
+//         .fz(28);
+//         .mr(10);
+//       }
+//       .skin{
+//         .squ(20);
+//         .bor(1px solid @grayE);
+//         &.skin-white{
+//           .bc(@white);
+//         }
+//         &.skin-black{
+//           .bc(#1f2b48);
+//         }
+//         &.skin-blue{
+//           .bc(#15cef2);
+//         }
+//       }
+//     }
+//   // }
+// }
 .bm-nav-com{
   .bc(@white);
   .h(60);
@@ -34,9 +84,11 @@
   // z-index: 2;
   // .box-s(0px 6px 10px 1px @grayE);
   // .c(@white);
-  .df;
-  justify-content: space-between;
-  align-items: center;
+  .nav-box{
+    .df;
+    justify-content: space-between;
+    align-items: center;
+  }
   .title{
     .flex(1);
     .fz(25);

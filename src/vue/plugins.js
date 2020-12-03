@@ -282,6 +282,23 @@ export default {
         this.$jumpPage("login", { redirecturl: redirecturl });
       }
     };
+    //拼接url
+    Vue.prototype.$linkUrl = function(url, params) {
+      if (url.indexOf("?") > -1) {
+        let arr = [];
+        for (let i in params) {
+          arr.push(`${i}=${params[i]}`);
+        }
+        url += arr.join("&");
+      } else {
+        let arr = [];
+        for (let i in params) {
+          arr.push(`${i}=${params[i]}`);
+        }
+        url += `?` + arr.join("&");
+      }
+      return url;
+    };
 
     //全局跳转
     Vue.prototype.$jumpPage = (url = "", params = {}, query = {}, redirect) => {

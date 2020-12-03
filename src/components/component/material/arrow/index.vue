@@ -8,6 +8,8 @@
           info.height
         }`
       "
+      :width="`${info.width}`"
+      :height="`${info.height}`"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >

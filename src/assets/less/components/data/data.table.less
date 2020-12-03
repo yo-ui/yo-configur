@@ -1,0 +1,87 @@
+@import (reference) "./../../common.less";
+.bm-dialog-data-table-com{
+  .el-dialog{
+    max-width: 1200px;
+  }
+  .el-dialog__body{
+    .p(0 0 20px);
+    min-height: 500px;
+    .df;
+  }
+  .flex-content{
+    // flex-direction: ;
+    .mt(0);
+    .flex(1);
+    .df;
+    .left{
+      // .df;
+      // flex-direction: column;
+      // min-width: 220px;
+      .db;
+      .bc(#f6f7fa);
+      .w(220);
+      .title{
+        // .w(100%);
+        .fz(15);
+        .h(40);
+        .lh(40);
+        .pl(15);
+        .pr(10);
+        .df;
+        .c(@gray3);
+        .fw(700);
+        .bc(#e1e4ec);
+        justify-content: space-between;
+        align-items: center;
+        i{
+          .fz(14);
+          .c(@themes);
+          .click;
+          &::before{
+            .fz(13);
+            .mr(5);
+          }
+        }
+      }
+      .el-menu{
+        .w(100%);
+        .borr(none);
+        .bc(#f6f7fa);
+        .el-menu-item{
+          .lh(40);
+          .h(40);
+          .pr(5);
+          .borl(4px solid transparent);
+          .df;
+          justify-content: space-between;
+          align-items: center;
+          &.is-active{
+            .bc(@white);
+            .borlc(@themes);
+          }
+          .icon-box{
+            .df;
+            justify-content: flex-end;
+            align-items: center;
+            .icon-circle{
+              .bc(orange);
+              .squ(8);
+              .br(50%);
+            }
+            .el-icon-more{
+              .fz(12);
+              .click;
+              .ml(5);
+            }
+            .el-dropdown{
+              min-width: auto;
+            }
+          }
+        }
+      }
+    }
+    .right{
+      .flex(1);
+    }
+  }
+}

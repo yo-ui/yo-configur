@@ -32,29 +32,35 @@
             </div>
             <bm-com
               class="edit"
-              :class="{
-                active: activeComIds.indexOf(item.id) > -1,
-                locked: item.locked,
-                opacity:
-                  activeComIds &&
-                  activeComIds.length > 0 &&
-                  !(activeComIds.indexOf(item.id) > -1) &&
-                  activeCom.type != 'canvas'
-              }"
               v-for="(item, index) in widgetList"
               :data-type="item.type"
               :data-id="item.id"
               :info="item"
               :key="index"
-            ></bm-com>
+            >
+              <template v-if="item.children && item.children.length > 0">
+                <bm-com
+                  class="edit"
+                  v-for="(_item, _index) in item.children"
+                  :data-type="_item.type"
+                  :data-id="_item.id"
+                  :info="_item"
+                  :key="_index"
+                >
+                </bm-com>
+              </template>
+            </bm-com>
             <bm-lines ref="bmLines"></bm-lines>
+            <!-- <bm-group ref="bmGroup" v-if="isSameGroup">{{
+              isSameGroup
+            }}</bm-group> -->
           </div>
           <div class="slider-box" @mousedown.stop>
             {{ $toBig(zoom, 0) + "%" }}
             <!-- @input="changeZoomEvent" -->
             <el-slider
               v-model="zoom"
-              :max="200"
+              :max="1000"
               @mousedown.stop
               :format-tooltip="val => val + '%'"
             ></el-slider>
@@ -72,12 +78,24 @@
       @mouseleave="hideContextMenuEvent"
       :style="contextMenuStyle"
     >
-      <!-- <li
+      <li
         @click="cutEvent"
         v-if="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("添加到自定义") }} <small>Ctrl+X</small>
-      </li> -->
+      </li>
+      <li
+        @click="composeEvent"
+        v-if="showContextMenuType == 1 && activeComs && activeComs.length > 1"
+      >
+        {{ $lang("组合") }} <small>Ctrl+G</small>
+      </li>
+      <li
+        @click="unComposeEvent"
+        v-if="showContextMenuType == 1 && activeCom.type == 'panel'"
+      >
+        {{ $lang("打散") }} <small>Ctrl+Shift+G</small>
+      </li>
       <li
         @click="cutEvent"
         v-if="showContextMenuType == 1 && !activeCom.locked"
@@ -90,7 +108,7 @@
       >
         {{ $lang("复制") }}<small>Ctrl+C</small>
       </li>
-      <li @click="pasteEvent" v-if="showContextMenuType == 2 && !!copyCom">
+      <li @click="pasteEvent" v-if="!!copyCom">
         {{ $lang("粘贴") }}<small>Ctrl+V</small>
       </li>
       <li
@@ -182,6 +200,8 @@ export default {
     //   import(/* webpackChunkName: "iot-header-com" */ "@/components/header"),
     bmLines: () =>
       import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
+    // bmGroup: () =>
+    //   import(/* webpackChunkName: "iot-group-com" */ "@/components/group"),
     bmSelect: () =>
       import(/* webpackChunkName: "iot-select-com" */ "@/components/select"),
     bmControl: () =>
@@ -226,6 +246,33 @@ export default {
       let order = Math.min(...orders);
       return order;
     },
+    // isSameGroup() {
+    //   let { activeComs = [], widgetList = [], activeCom = {} } = this;
+    //   let set = new Set();
+    //   let { length = 0 } = activeComs || [];
+    //   if (length > 0) {
+    //     activeComs.forEach(item => {
+    //       let { groupList = [] } = item || {};
+    //       let [group = ""] = groupList || [];
+    //       // if (group) {
+    //       set.add(group);
+    //       // }
+    //     });
+    //     return set.size == 1 && !set.has("");
+    //   } else {
+    //     let { groupList = [], type = "" } = activeCom || {};
+    //     let [group = ""] = groupList || [];
+    //     let widgets = [];
+    //     if (group && type != "canvas") {
+    //       widgets = widgetList.filter(item => {
+    //         let { groupList = [] } = item || {};
+    //         let [_group = ""] = groupList || [];
+    //         return _group == group;
+    //       });
+    //     }
+    //     return widgets.length > 1;
+    //   }
+    // },
     topOrder() {
       let { widgetList = [] } = this;
       let orders = widgetList.map(item => item.order);
@@ -251,26 +298,6 @@ export default {
         this.setZoom(val / 100);
       }
     },
-    activeComIds() {
-      // let { activeCom = {} } = this;
-      // let { id = "" } = activeCom || {};
-      // return id || "";
-      let {
-        // widgetList = [],
-        // selectBox = {},
-        activeComs = [],
-        activeCom = {}
-      } = this;
-      let ids = [];
-      let { length = 0 } = activeComs || [];
-      if (length > 1) {
-        ids = activeComs.map(item => item.id);
-      } else {
-        let { id = "" } = activeCom || {};
-        ids.push(id);
-      }
-      return ids || [];
-    },
     gridStyle() {
       let { canvas = {} } = this;
       let { isGrid = false, gridStyle = {} } = canvas || {};
@@ -285,13 +312,17 @@ export default {
     },
     bgStyle() {
       let { canvas = {} } = this;
-      let { backgroundSize = "", backgroundImage = "" } = canvas || {};
+      let { backgroundSize = "", backgroundImage = "", backgroundRepeat = "" } =
+        canvas || {};
       let styles = {};
       if (backgroundImage) {
-        styles["backgroundImage"] = `url(${backgroundImage})`;
+        styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
       }
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
+      }
+      if (backgroundRepeat) {
+        styles["backgroundRepeat"] = backgroundRepeat;
       }
       return styles || {};
     },
@@ -322,6 +353,7 @@ export default {
         top = 0,
         height = "",
         width = "",
+        // action = "",
         backgroundType = "",
         backgroundColor = "#fff"
         // backgroundImage = ""
@@ -334,6 +366,9 @@ export default {
         transform: `scale(${zoom})`,
         webkitTransform: `scale(${zoom})`
       };
+      // if (action == "move") {
+      //   styles["transformOrigin"] = `center`;
+      // }
       if (width) {
         styles["width"] = `${width}px`;
       }
@@ -370,12 +405,12 @@ export default {
     }),
     ...mapActions({
       selectComAction: "canvas/selectCom",
+      selectComsAction: "canvas/selectComs",
       orgStrucListByLevelAction: "orgStrucListByLevel",
       canvasGetAction: "canvasGet",
       createHistoryAction: "canvas/createHistory",
       commonGetDeviceAction: "commonGetDevice",
-      commonDevicePointHstDataAction: "commonDevicePointHstData",
-      selectComsAction: "canvas/selectComs"
+      commonDevicePointHstDataAction: "commonDevicePointHstData"
     }),
     init() {
       this.initEvent();
@@ -410,16 +445,22 @@ export default {
           canvas.top = 0;
           this.setCanvas(canvas);
           widgetList.forEach(item => {
-            let { alias = "", type = "" } = item || {};
+            let { alias = "", type = "", bindData = {} } = item || {};
             if (!alias) {
               alias = type;
             }
             let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
             let { data = {} } = _item || {};
-            let { infoType = "", dataType = "" } = data || {};
-            // item.showCoverStatus = true;
+            let {
+              infoType = "",
+              dataType = "",
+              bindData: _bindData = {},
+              dataCode = ""
+            } = data || {};
             item.infoType = infoType;
             item.dataType = dataType;
+            item.dataCode = dataCode;
+            item.bindData = { ..._bindData, ...bindData };
             item.alias = alias;
           });
           this.setWidgetList(widgetList);
@@ -461,9 +502,10 @@ export default {
       $(viewBox).on("contextmenu", this.viewBoxContextmenuEvent);
       //注册按键键盘事件
       $(document).on("keydown", this.keydownEvent);
+      $(document).on("keyup", this.keyupEvent);
       $(window).on("resize", this.resetCanvasSize);
       //注册绑定设备事件
-      $vm.$on("bindDevice", item => {
+      $vm.$on("bind-device", item => {
         this.addDataEvent(item);
       });
       //注册显示控制处理事件
@@ -489,10 +531,6 @@ export default {
           callback
         );
       });
-      // //注册窗口变换事件
-      // $(window).on("resize", this.resizeEvent);
-      // $(document).on("keyup", this.keyupEvent);
-      // $(document).on("mousedown", this.keydownEvent);
       // 默认选择画布
       this.selectComAction();
     },
@@ -648,6 +686,7 @@ export default {
         // let [item = {}] = activeComs || [];
         let { activeCom: _activeCom = {} } = this;
         let { id: _id = "" } = _activeCom || {};
+        _activeCom.showCoverStatus = true;
         //如果 shift ctrl 被按住则进行 多选和取消选择
         if (shiftKey || ctrlKey) {
           // let { locked = false } = activeCom || {};
@@ -679,8 +718,11 @@ export default {
         }
       } else {
         this.showContextMenuType = 2;
-        let { activeCom = {} } = this;
+        let { activeCom = {}, activeComs = [] } = this;
         activeCom.showCoverStatus = true;
+        activeComs.forEach(item => {
+          item.showCoverStatus = true;
+        });
         // 取消选中组件
         this.selectComAction(id);
         this.selectComsAction(id);
@@ -688,9 +730,20 @@ export default {
       }
       this.showContextMenuStatus = false;
     },
-    // keyupEvent(e) {
-    //   this.shiftCtrlKeyDownStatus = false;
-    // },
+    keyupEvent(e) {
+      let {
+        keyCode = "",
+        // shiftKey = false,
+        // ctrlKey = false,
+        // metaKey = false
+        // altKey = false
+      } = e;
+      // ctrlKey = ctrlKey || metaKey; //(ctrl(cmd))
+      if(keyCode==32){
+         // 空格
+        $vm.$emit("canvas-action","select")
+      }
+    },
     keydownEvent(e) {
       let {
         keyCode = "",
@@ -700,9 +753,14 @@ export default {
         // altKey = false
       } = e;
       ctrlKey = ctrlKey || metaKey; //(ctrl(cmd))
-      e.stopPropagation();
+      // e.stopPropagation();
       bmCommon.log("index keydow", e);
-      let { activeCom = {}, activeComs = [], widgetList = [] } = this;
+      let {
+        activeCom = {},
+        copyCom = null,
+        activeComs = [],
+        widgetList = []
+      } = this;
       let { length = 0 } = activeComs || [];
       let { type = "", id = "", locked = false } = activeCom || {};
       if (keyCode == 83) {
@@ -712,6 +770,18 @@ export default {
           $vm.$emit("save");
         }
         return;
+      } else if (keyCode == 90) {
+        // 撤销 Ctrl+Z
+        if (ctrlKey) {
+          e.preventDefault();
+          $vm.$emit("cancel");
+        }
+      } else if (keyCode == 89) {
+        // 还原 Ctrl+Y
+        if (ctrlKey) {
+          e.preventDefault();
+          $vm.$emit("resume");
+        }
       } else if (keyCode == 65) {
         // ctrl+a 全选
         if (ctrlKey) {
@@ -734,7 +804,7 @@ export default {
         }
         return;
       }
-      if (length < 2) {
+      if (length < 2 && copyCom == null) {
         if (type == "canvas" || !id) {
           //如果选中的是画布或未选中组件则直接返回
           return;
@@ -824,6 +894,14 @@ export default {
         if (ctrlKey) {
           this.cutEvent();
         }
+      } else if (keyCode == 71) {
+        // G
+        e.preventDefault();
+        if (ctrlKey && shiftKey) {
+          this.unComposeEvent();
+        } else if (ctrlKey) {
+          this.composeEvent();
+        }
       } else if (keyCode == 219) {
         // ctrl+[
         // ctrl+shift+[
@@ -849,11 +927,25 @@ export default {
         if (ctrlKey && shiftKey) {
           this.lockEvent(!locked);
         }
+      } else if (keyCode == 32) {
+        // 空格
+        e.preventDefault();
+        $vm.$emit("canvas-action","move")
       } else if (keyCode == 46) {
         // Delete
         this.deleteEvent();
       }
-      this.createHistoryAction();
+    },
+    //打散事件
+    unComposeEvent() {
+      // $vm.$emit("un-compose");
+      $vm.$emit("group-command", "ungroup");
+      this.showContextMenuStatus = false;
+    },
+    //组合事件
+    composeEvent() {
+      $vm.$emit("group-command", "group");
+      this.showContextMenuStatus = false;
     },
     //剪切
     cutEvent() {
@@ -899,22 +991,43 @@ export default {
     },
     // 粘贴
     pasteEvent(e) {
-      let { copyCom = {}, widgetList = [] } = this;
+      let {
+        copyCom = {},
+        widgetList = [],
+        getZoom: zoom = 1,
+        canvas = {}
+      } = this;
       let { length = 0 } = copyCom || {};
       let _activeComs = [];
+      let _activeCom = {};
       // let obj = widgetList[widgetList.length - 1] || {};
       let pos = {};
       if (e) {
-        pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
+        // pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
+        pos = bmCommon.getMousePosition(e);
       }
-      let callback = item => {
+      let { x = "", y = "" } = pos || {};
+      let offset = $(".view-box").offset();
+      let { left: _left = 0, top: _top = 0 } = canvas || {};
+      let pasteLeft = 0,
+        pasteTop = 0;
+      let callback = (item, index) => {
         let orders = widgetList.map(item => item.order);
         let order = Math.max(...orders);
         let { width = 0, height = 0, left = 0, top = 0 } = item || {};
         if (e) {
-          let { x = "", y = "" } = pos || {};
-          left = x - width / 2;
-          top = y - height / 2;
+          let { left: __left = 0, top: __top = 0 } = offset || {};
+          let temp_left = x / zoom - width / 2 - _left / zoom - __left / zoom;
+          let temp_top = y / zoom - height / 2 - _top / zoom - __top / zoom;
+          if (index == 0) {
+            pasteLeft = temp_left - left;
+            pasteTop = temp_top - top;
+            left = temp_left;
+            top = temp_top;
+          } else {
+            left = left + pasteLeft;
+            top = top + pasteTop;
+          }
         }
         order += 1;
         let id = bmCommon.uuid();
@@ -928,44 +1041,65 @@ export default {
         widgetList.push(_item);
         if (length > 1) {
           _activeComs.push(_item);
+        } else {
+          _activeCom = _item;
         }
       };
       if (length > 1) {
-        copyCom.forEach(item => {
-          callback(item);
+        copyCom.sort((a, b) => {
+          return a.order - b.order;
+        });
+        // let minLeft = Math.min.call(
+        //   Math,
+        //   ...copyCom.map(item => item.left || 0)
+        // );
+        // let minTop = Math.min.call(
+        //   Math,
+        //   ...copyCom.map(item => item.left || 0)
+        // );
+        // let [first = {}] = copyCom || [];
+        // let { left = 0, top = 0 } = first || {};
+        copyCom.forEach((item, index) => {
+          // //设置粘贴初始位置
+          // item.pasteLeft = item.left - minLeft;
+          // item.pasteTop = item.top - minTop;
+          callback(item, index);
         });
         this.setActiveComs(_activeComs);
       } else {
-        callback(copyCom || {});
-        this.setActiveCom(copyCom);
+        callback(copyCom || {}, 0);
+        this.setActiveCom(_activeCom);
       }
+      this.createHistoryAction();
       this.showContextMenuStatus = false;
     },
-    deleteItem(item = {}) {
-      let { widgetList = [] } = this;
-      let { id = "" } = item || {};
-      let index = widgetList.findIndex(item => id == item.id);
-      widgetList.splice(index, 1);
-      this.selectComAction();
-      // this.showContextMenuStatus = false;
-    },
+    // deleteItem(item = {}) {
+    //   let { widgetList = [] } = this;
+    //   let { id = "" } = item || {};
+    //   let index = widgetList.findIndex(item => id == item.id);
+    //   widgetList.splice(index, 1);
+    //   this.selectComAction();
+    //   // this.showContextMenuStatus = false;
+    // },
     // 删除
     deleteEvent() {
-      let { activeCom = {}, activeComs = [] } = this;
-      let { length = 0 } = activeComs || [];
-      if (length > 1) {
-        activeComs.forEach(item => {
-          this.deleteItem(item);
-        });
-      } else {
-        this.deleteItem(activeCom);
-        // let { id = "" } = activeCom;
-        // let index = widgetList.findIndex(item => id == item.id);
-        // widgetList.splice(index, 1);
-        // this.selectComAction();
-        // this.showContextMenuStatus = false;
-      }
-      this.selectComAction();
+      // let { activeCom = {}, activeComs = [] } = this;
+      // let { length = 0 } = activeComs || [];
+      // if (length > 1) {
+      //   activeComs.forEach(item => {
+      //     this.deleteItem(item);
+      //   });
+      // } else {
+      //   this.deleteItem(activeCom);
+      //   // let { id = "" } = activeCom;
+      //   // let index = widgetList.findIndex(item => id == item.id);
+      //   // widgetList.splice(index, 1);
+      //   // this.selectComAction();
+      //   // this.showContextMenuStatus = false;
+      // }
+      // this.selectComAction();
+      // this.createHistoryAction();
+      $vm.$emit("delete-command");
       this.showContextMenuStatus = false;
     },
     // 锁定/解锁
@@ -973,60 +1107,73 @@ export default {
       let { activeCom = {} } = this;
       activeCom.locked = locked;
       this.showContextMenuStatus = false;
+      this.createHistoryAction();
     },
     // 上移一层
     moveUpEvent() {
+      //排序
+      $vm.$emit("order-command", "up");
       this.showContextMenuStatus = false;
-      let { activeCom = {}, widgetList = [] } = this;
-      let { order = "" } = activeCom;
-      let orders = widgetList.map(item => item.order).sort((a, b) => a - b);
-      let _order = orders.find(item => item > order);
-      let obj = widgetList.find(item => _order == item.order);
-      // let obj = widgetList.find(item => order < item.order);
-      // let { order: _order = "" } = obj || {};
-      activeCom.order = _order;
-      obj.order = order;
+      // let { activeCom = {}, widgetList = [] } = this;
+      // let { order = "" } = activeCom;
+      // let orders = widgetList.map(item => item.order).sort((a, b) => a - b);
+      // let _order = orders.find(item => item > order);
+      // let obj = widgetList.find(item => _order == item.order);
+      // // let obj = widgetList.find(item => order < item.order);
+      // // let { order: _order = "" } = obj || {};
+      // activeCom.order = _order;
+      // obj.order = order;
+      // this.createHistoryAction();
     },
     // 下移一层
     moveDownEvent() {
+      //排序
+      $vm.$emit("order-command", "down");
       this.showContextMenuStatus = false;
-      let { activeCom = {}, widgetList = [] } = this;
-      let { order = "" } = activeCom;
-      let orders = widgetList.map(item => item.order).sort((a, b) => b - a);
-      // bmCommon.log("orders=>", orders, order);
-      let _order = orders.find(item => item < order);
-      let obj = widgetList.find(item => _order == item.order);
-      // bmCommon.log("obj=>", _order, obj.order);
-      // let { order: _order = "" } = obj || {};
-      activeCom.order = _order;
-      obj.order = order;
+      // let { activeCom = {}, widgetList = [] } = this;
+      // let { order = "" } = activeCom;
+      // let orders = widgetList.map(item => item.order).sort((a, b) => b - a);
+      // // bmCommon.log("orders=>", orders, order);
+      // let _order = orders.find(item => item < order);
+      // let obj = widgetList.find(item => _order == item.order);
+      // // bmCommon.log("obj=>", _order, obj.order);
+      // // let { order: _order = "" } = obj || {};
+      // activeCom.order = _order;
+      // obj.order = order;
+      // this.createHistoryAction();
     },
     // 置底
     moveBottomEvent() {
+      //排序
+      $vm.$emit("order-command", "bottom");
       this.showContextMenuStatus = false;
-      let { activeCom = {}, widgetList = [] } = this;
-      let orders = widgetList.map(item => item.order);
-      let order = Math.min(...orders);
-      let { order: _order = 1 } = activeCom || {};
-      if (order == _order) {
-        return;
-      }
-      widgetList.forEach(item => {
-        item.order++;
-      });
-      activeCom.order = 0;
+      // let { activeCom = {}, widgetList = [] } = this;
+      // let orders = widgetList.map(item => item.order);
+      // let order = Math.min(...orders);
+      // let { order: _order = 1 } = activeCom || {};
+      // if (order == _order) {
+      //   return;
+      // }
+      // widgetList.forEach(item => {
+      //   item.order++;
+      // });
+      // activeCom.order = 0;
+      // this.createHistoryAction();
     },
     // 置顶
     moveTopEvent() {
+      //排序
+      $vm.$emit("order-command", "top");
       this.showContextMenuStatus = false;
-      let { activeCom = {}, widgetList = [] } = this;
-      let orders = widgetList.map(item => item.order);
-      let order = Math.max(...orders);
-      let { order: _order = 1 } = activeCom || {};
-      if (order == _order) {
-        return;
-      }
-      activeCom.order = order + 1;
+      // let { activeCom = {}, widgetList = [] } = this;
+      // let orders = widgetList.map(item => item.order);
+      // let order = Math.max(...orders);
+      // let { order: _order = 1 } = activeCom || {};
+      // if (order == _order) {
+      //   return;
+      // }
+      // activeCom.order = order + 1;
+      // this.createHistoryAction();
     },
     // // 获取登录信息
     // commonVerifyInfoFunc(callback) {
@@ -1160,6 +1307,7 @@ export default {
     $(viewBox).off("contextmenu", this.viewBoxContextmenuEvent);
     //注册按键键盘事件
     $(document).off("keydown", this.keydownEvent);
+    $(document).off("keyup", this.keyupEvent);
 
     $(window).off("resize", this.resetCanvasSize);
   },

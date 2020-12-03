@@ -1,30 +1,4 @@
-<<<<<<< HEAD:src/components/device/Byq.js
-import Spirit from './../../core/Spirit'
-
-/**
- * 变压器
- */
-class Byq extends Spirit {
-
-	constructor(x=10, y=10,width,height) {
-        super(x, y);
-	    this.name = "变压器";
-	    this.className = "Byq";
-	    this.width = width;
-	    this.height = height;
-	    this.moveType = 4;
-	    this.minWidth = 20;
-	    this.minHeight = 20;
-	    this.linkage = true;
-	    this.zIndex = 2;
-	}
-
-	template(){
-		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
-		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-=======
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
->>>>>>> origin/dev-new:public/static/img/svg/byq.svg
 					 viewBox="0 0 90 97" style="enable-background:new 0 0 90 97;" xml:space="preserve">
 				<style type="text/css">
 					.byq-st0{fill:#A3A3AE;}
@@ -401,25 +375,4 @@ class Byq extends Spirit {
 						<rect id="XMLID_257_" x="55.9" y="25.9" class="byq-st53" width="2.3" height="31.2"/>
 					</g>
 				</g>
-<<<<<<< HEAD:src/components/device/Byq.js
 				</svg>
-			</div>`);
-	}
-
-	toJson() {
-		let json = {
-			className:this.className,
-			moveType:this.moveType,
-			linkage:this.linkage,
-			minWidth:this.minWidth,
-			minHeight:this.minHeight,
-			zIndex: this.zIndex
-		};
-		return Object.assign(super.toJson(),json);
-	}
-}
-
-export default Byq;
-=======
-				</svg>
->>>>>>> origin/dev-new:public/static/img/svg/byq.svg

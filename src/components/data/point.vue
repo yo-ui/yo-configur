@@ -185,6 +185,8 @@ export default {
     ...mapActions({
       // selectComAction: "canvas/selectCom"
       commonDevicePointsAction: "commonDevicePoints"
+      // proxyDeviceMonitoringDeviceControlledPointsAction:
+      //   "proxyDeviceMonitoringDeviceControlledPoints"
     }),
     // 初始化
     init() {

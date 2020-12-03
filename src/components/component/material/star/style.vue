@@ -25,7 +25,26 @@
       ></el-input>
     </p> -->
     <el-collapse v-model="activeNames">
-      <el-collapse-item :title="info.name" name="name">
+      <el-collapse-item :title="info.name" name="name" disabled>
+        <template slot="title">
+          {{ info.name }}
+          <div class="right">
+            <el-tooltip
+              :content="$lang('全部折叠')"
+              placement="top"
+              effect="dark"
+            >
+              <i class="el-icon-folder-remove" @click="closeAll"></i>
+            </el-tooltip>
+            <el-tooltip
+              :content="$lang('全部展开')"
+              placement="top"
+              effect="dark"
+            >
+              <i class="el-icon-folder-opened" @click="openAll"></i>
+            </el-tooltip>
+          </div>
+        </template>
         <p>
           <span class="label"> {{ $lang("层级") }}: </span>
           <el-tooltip content="请输入层级" placement="top" effect="dark">
@@ -89,8 +108,19 @@
           ></el-slider>
         </p>
         <p>
-          <span class="label"> {{ $lang("横坐标") }}:</span
-          >{{ $toBig(info.left, 0) }} px
+          <span class="label"> {{ $lang("横坐标") }}:</span>
+          <el-tooltip
+            :content="$lang('请输入横坐标')"
+            placement="top"
+            effect="dark"
+          >
+            <el-input-number
+              controls-position="right"
+              clearable
+              v-model.number="info.left"
+              :placeholder="$lang('请输入横坐标')"
+            ></el-input-number>
+          </el-tooltip>
           <el-slider
             v-model="info.left"
             :max="3500"
@@ -99,8 +129,19 @@
           ></el-slider>
         </p>
         <p>
-          <span class="label"> {{ $lang("纵坐标") }}:</span
-          >{{ $toBig(info.top, 0) }} px
+          <span class="label"> {{ $lang("纵坐标") }}:</span>
+          <el-tooltip
+            :content="$lang('请输入纵坐标')"
+            placement="top"
+            effect="dark"
+          >
+            <el-input-number
+              controls-position="right"
+              clearable
+              v-model.number="info.top"
+              :placeholder="$lang('请输入纵坐标')"
+            ></el-input-number>
+          </el-tooltip>
           <el-slider
             v-model="info.top"
             :max="3500"
@@ -233,7 +274,6 @@
             </el-option>
           </el-select>
         </p> -->
-      
       </el-collapse-item>
       <el-collapse-item :title="$lang('样式')" name="style">
         <p>
@@ -788,6 +828,12 @@ export default {
         gradientStyle.valueIndex = index;
         this.$refs.slider?.focus(index + 1);
       }
+    },
+    openAll() {
+      this.activeNames = ["name", "style", "shape", "animation"];
+    },
+    closeAll() {
+      this.activeNames = ["name"];
     }
     // setFontWeight() {
     //   let { info = {} } = this;

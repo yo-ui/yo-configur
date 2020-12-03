@@ -88,6 +88,7 @@ export default {
     ...mapGetters({
       widgetList: "canvas/getWidgetList", //组件列表
       zoom: "canvas/getZoom", //放大缩小
+      draging: "canvas/getDraging", //组件拖动状态
       canvas: "canvas/getCanvas" //画布属性
     })
   },
@@ -97,7 +98,8 @@ export default {
   methods: {
     ...mapMutations({
       // setWidgetList: "canvas/setWidgetList", //设置组件列表
-      setLinkPoint: "canvas/setLinkPoint" //设置连接点信息
+      setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
+      setDraging: "canvas/setDraging" //设置连接点信息
     }),
     ...mapActions({
       selectComAction: "canvas/selectCom",
@@ -107,6 +109,11 @@ export default {
     }),
     initEvent() {
       $(document).on("dragstart", this.dragstartEvent);
+      $(document).on("dragend", this.dragendEvent);
+    },
+    dragendEvent(e) {
+      e.stopPropagation();
+      this.dragleaveEvent(e);
     },
     dragstartEvent(e) {
       //dataTransfer.setData()方法设置数据类型和拖动的数据
@@ -134,6 +141,7 @@ export default {
         "data",
         JSON.stringify({ ...data, type, name, alias, comDisabled })
       );
+      this.setDraging(true);
       this.dragenterEvent(e);
     },
     dragenterEvent(e) {
@@ -152,19 +160,20 @@ export default {
       // e.preventDefault();
     },
     dragleaveEvent(e) {
-      e.stopPropagation();
+      e?.stopPropagation();
       // e.preventDefault();
       // bmCommon.log("离开当前元素", e.target);
       // $(document).off("dragleave", this.dragleaveEvent);
       $(document).off("dragover", this.dragoverEvent);
       // $(document).off("drop", this.dropEvent);
       $(".content-box").off("drop", this.dropEvent);
+      this.setDraging(false);
     },
     dropEvent(e) {
       e.preventDefault();
       // bmCommon.log("拖到目标元素", e.target);
       e.stopPropagation();
-      let { widgetList = [], zoom = 1 } = this;
+      let { widgetList = [], zoom = 1, canvas = {} } = this;
       let { originalEvent = {} } = e;
       let offset = $(".view-box").offset();
       let { dataTransfer = {} } = originalEvent;
@@ -185,7 +194,7 @@ export default {
         let { x = 0, y = 0 } = pos || {};
         let { width = 0, height = 0, alias = "", comDisabled = false } =
           data || {};
-        // let { left: _left = 0, top: _top = 0 } = canvas || {};
+        let { left: _left = 0, top: _top = 0 } = canvas || {};
         if (comDisabled) {
           this.$$msgWarn("当前组件不可用");
           return;
@@ -193,8 +202,8 @@ export default {
         // bmCommon.log("释放当前元素", width, height, left, top, x, y);
         // left = x - left - _left - width / 2;
         // top = y - top - _top - height / 2;
-        left = x / zoom - left / zoom - width / 2;
-        top = y / zoom - top / zoom - height / 2;
+        left = x / zoom - _left / zoom - left / zoom - width / 2;
+        top = y / zoom - _top / zoom - top / zoom - height / 2;
         let orders = widgetList.map(item => item.order);
         let order = 1;
         if (orders && orders.length > 0) {
@@ -213,8 +222,11 @@ export default {
           this.setLinkPoint(item);
         }
         widgetList.push(item);
+        canvas.action = "select";
         this.createHistoryAction();
-        this.selectComAction(id);
+        this.$nextTick(() => {
+          this.selectComAction(id);
+        });
         // this.createRecordAction();
         // this.uploadImg();
         // this.setWidgetList(widgetList);
@@ -222,7 +234,7 @@ export default {
       this.dragleaveEvent(e);
     },
     clickEvent(item) {
-      let { widgetList = [] } = this;
+      let { widgetList = [], canvas = {} } = this;
       let {
         data = {},
         name = "",
@@ -258,6 +270,7 @@ export default {
         this.setLinkPoint(item);
       }
       widgetList.push(_item);
+      canvas.action = "select";
       this.createHistoryAction();
       this.selectComAction(id);
       // this.createRecordAction();
@@ -294,8 +307,8 @@ export default {
   },
   beforeDestroy() {
     $(document).off("dragstart", this.dragstartEvent);
-    $(document).off("dragover", this.dragoverEvent);
-    $(".content-box").off("drop", this.dropEvent);
+    $(document).off("dragend", this.dragendEvent);
+    this.dragleaveEvent();
   }
 };
 </script>

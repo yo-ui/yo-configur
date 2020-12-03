@@ -262,6 +262,7 @@ export default {
       }
       this.chartOptions = {
         xAxis: {
+          name,
           type: "category",
           data: times
         },

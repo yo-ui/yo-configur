@@ -164,111 +164,111 @@ var logger = exportedLogger;
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
-  // fired before MediaSource is attaching to media element - linkage: { media }
+  // fired before MediaSource is attaching to media element - data: { media }
   MEDIA_ATTACHING: 'hlsMediaAttaching',
-  // fired when MediaSource has been succesfully attached to media element - linkage: { }
+  // fired when MediaSource has been succesfully attached to media element - data: { }
   MEDIA_ATTACHED: 'hlsMediaAttached',
-  // fired before detaching MediaSource from media element - linkage: { }
+  // fired before detaching MediaSource from media element - data: { }
   MEDIA_DETACHING: 'hlsMediaDetaching',
-  // fired when MediaSource has been detached from media element - linkage: { }
+  // fired when MediaSource has been detached from media element - data: { }
   MEDIA_DETACHED: 'hlsMediaDetached',
-  // fired when we buffer is going to be reset - linkage: { }
+  // fired when we buffer is going to be reset - data: { }
   BUFFER_RESET: 'hlsBufferReset',
-  // fired when we know about the codecs that we need buffers for to push into - linkage: {tracks : { container, codec, levelCodec, initSegment, metadata }}
+  // fired when we know about the codecs that we need buffers for to push into - data: {tracks : { container, codec, levelCodec, initSegment, metadata }}
   BUFFER_CODECS: 'hlsBufferCodecs',
-  // fired when sourcebuffers have been created - linkage: { tracks : tracks }
+  // fired when sourcebuffers have been created - data: { tracks : tracks }
   BUFFER_CREATED: 'hlsBufferCreated',
-  // fired when we append a segment to the buffer - linkage: { segment: segment object }
+  // fired when we append a segment to the buffer - data: { segment: segment object }
   BUFFER_APPENDING: 'hlsBufferAppending',
-  // fired when we are done with appending a media segment to the buffer - linkage : { parent : segment parent that triggered BUFFER_APPENDING, pending : nb of segments waiting for appending for this segment parent}
+  // fired when we are done with appending a media segment to the buffer - data : { parent : segment parent that triggered BUFFER_APPENDING, pending : nb of segments waiting for appending for this segment parent}
   BUFFER_APPENDED: 'hlsBufferAppended',
-  // fired when the stream is finished and we want to notify the media buffer that there will be no more linkage - linkage: { }
+  // fired when the stream is finished and we want to notify the media buffer that there will be no more data - data: { }
   BUFFER_EOS: 'hlsBufferEos',
-  // fired when the media buffer should be flushed - linkage { startOffset, endOffset }
+  // fired when the media buffer should be flushed - data { startOffset, endOffset }
   BUFFER_FLUSHING: 'hlsBufferFlushing',
-  // fired when the media buffer has been flushed - linkage: { }
+  // fired when the media buffer has been flushed - data: { }
   BUFFER_FLUSHED: 'hlsBufferFlushed',
-  // fired to signal that a manifest loading starts - linkage: { url : manifestURL}
+  // fired to signal that a manifest loading starts - data: { url : manifestURL}
   MANIFEST_LOADING: 'hlsManifestLoading',
-  // fired after manifest has been loaded - linkage: { levels : [available quality levels], audioTracks : [ available audio tracks], url : manifestURL, stats : { trequest, tfirst, tload, mtime}}
+  // fired after manifest has been loaded - data: { levels : [available quality levels], audioTracks : [ available audio tracks], url : manifestURL, stats : { trequest, tfirst, tload, mtime}}
   MANIFEST_LOADED: 'hlsManifestLoaded',
-  // fired after manifest has been parsed - linkage: { levels : [available quality levels], firstLevel : index of first quality level appearing in Manifest}
+  // fired after manifest has been parsed - data: { levels : [available quality levels], firstLevel : index of first quality level appearing in Manifest}
   MANIFEST_PARSED: 'hlsManifestParsed',
-  // fired when a level switch is requested - linkage: { level : id of new level } // deprecated in favor LEVEL_SWITCHING
+  // fired when a level switch is requested - data: { level : id of new level } // deprecated in favor LEVEL_SWITCHING
   LEVEL_SWITCH: 'hlsLevelSwitch',
-  // fired when a level switch is requested - linkage: { level : id of new level }
+  // fired when a level switch is requested - data: { level : id of new level }
   LEVEL_SWITCHING: 'hlsLevelSwitching',
-  // fired when a level switch is effective - linkage: { level : id of new level }
+  // fired when a level switch is effective - data: { level : id of new level }
   LEVEL_SWITCHED: 'hlsLevelSwitched',
-  // fired when a level playlist loading starts - linkage: { url : level URL, level : id of level being loaded}
+  // fired when a level playlist loading starts - data: { url : level URL, level : id of level being loaded}
   LEVEL_LOADING: 'hlsLevelLoading',
-  // fired when a level playlist loading finishes - linkage: { details : levelDetails object, level : id of loaded level, stats : { trequest, tfirst, tload, mtime} }
+  // fired when a level playlist loading finishes - data: { details : levelDetails object, level : id of loaded level, stats : { trequest, tfirst, tload, mtime} }
   LEVEL_LOADED: 'hlsLevelLoaded',
-  // fired when a level's details have been updated based on previous details, after it has been loaded - linkage: { details : levelDetails object, level : id of updated level }
+  // fired when a level's details have been updated based on previous details, after it has been loaded - data: { details : levelDetails object, level : id of updated level }
   LEVEL_UPDATED: 'hlsLevelUpdated',
-  // fired when a level's PTS information has been updated after parsing a fragment - linkage: { details : levelDetails object, level : id of updated level, drift: PTS drift observed when parsing last fragment }
+  // fired when a level's PTS information has been updated after parsing a fragment - data: { details : levelDetails object, level : id of updated level, drift: PTS drift observed when parsing last fragment }
   LEVEL_PTS_UPDATED: 'hlsLevelPtsUpdated',
-  // fired to notify that audio track lists has been updated - linkage: { audioTracks : audioTracks }
+  // fired to notify that audio track lists has been updated - data: { audioTracks : audioTracks }
   AUDIO_TRACKS_UPDATED: 'hlsAudioTracksUpdated',
-  // fired when an audio track switch occurs - linkage: { id : audio track id } // deprecated in favor AUDIO_TRACK_SWITCHING
+  // fired when an audio track switch occurs - data: { id : audio track id } // deprecated in favor AUDIO_TRACK_SWITCHING
   AUDIO_TRACK_SWITCH: 'hlsAudioTrackSwitch',
-  // fired when an audio track switching is requested - linkage: { id : audio track id }
+  // fired when an audio track switching is requested - data: { id : audio track id }
   AUDIO_TRACK_SWITCHING: 'hlsAudioTrackSwitching',
-  // fired when an audio track switch actually occurs - linkage: { id : audio track id }
+  // fired when an audio track switch actually occurs - data: { id : audio track id }
   AUDIO_TRACK_SWITCHED: 'hlsAudioTrackSwitched',
-  // fired when an audio track loading starts - linkage: { url : audio track URL, id : audio track id }
+  // fired when an audio track loading starts - data: { url : audio track URL, id : audio track id }
   AUDIO_TRACK_LOADING: 'hlsAudioTrackLoading',
-  // fired when an audio track loading finishes - linkage: { details : levelDetails object, id : audio track id, stats : { trequest, tfirst, tload, mtime } }
+  // fired when an audio track loading finishes - data: { details : levelDetails object, id : audio track id, stats : { trequest, tfirst, tload, mtime } }
   AUDIO_TRACK_LOADED: 'hlsAudioTrackLoaded',
-  // fired to notify that subtitle track lists has been updated - linkage: { subtitleTracks : subtitleTracks }
+  // fired to notify that subtitle track lists has been updated - data: { subtitleTracks : subtitleTracks }
   SUBTITLE_TRACKS_UPDATED: 'hlsSubtitleTracksUpdated',
-  // fired when an subtitle track switch occurs - linkage: { id : subtitle track id }
+  // fired when an subtitle track switch occurs - data: { id : subtitle track id }
   SUBTITLE_TRACK_SWITCH: 'hlsSubtitleTrackSwitch',
-  // fired when a subtitle track loading starts - linkage: { url : subtitle track URL, id : subtitle track id }
+  // fired when a subtitle track loading starts - data: { url : subtitle track URL, id : subtitle track id }
   SUBTITLE_TRACK_LOADING: 'hlsSubtitleTrackLoading',
-  // fired when a subtitle track loading finishes - linkage: { details : levelDetails object, id : subtitle track id, stats : { trequest, tfirst, tload, mtime } }
+  // fired when a subtitle track loading finishes - data: { details : levelDetails object, id : subtitle track id, stats : { trequest, tfirst, tload, mtime } }
   SUBTITLE_TRACK_LOADED: 'hlsSubtitleTrackLoaded',
-  // fired when a subtitle fragment has been processed - linkage: { success : boolean, frag : the processed frag }
+  // fired when a subtitle fragment has been processed - data: { success : boolean, frag : the processed frag }
   SUBTITLE_FRAG_PROCESSED: 'hlsSubtitleFragProcessed',
-  // fired when the first timestamp is found - linkage: { id : demuxer id, initPTS: initPTS, frag : fragment object }
+  // fired when the first timestamp is found - data: { id : demuxer id, initPTS: initPTS, frag : fragment object }
   INIT_PTS_FOUND: 'hlsInitPtsFound',
-  // fired when a fragment loading starts - linkage: { frag : fragment object }
+  // fired when a fragment loading starts - data: { frag : fragment object }
   FRAG_LOADING: 'hlsFragLoading',
-  // fired when a fragment loading is progressing - linkage: { frag : fragment object, { trequest, tfirst, loaded } }
+  // fired when a fragment loading is progressing - data: { frag : fragment object, { trequest, tfirst, loaded } }
   FRAG_LOAD_PROGRESS: 'hlsFragLoadProgress',
-  // Identifier for fragment load aborting for emergency switch down - linkage: { frag : fragment object }
+  // Identifier for fragment load aborting for emergency switch down - data: { frag : fragment object }
   FRAG_LOAD_EMERGENCY_ABORTED: 'hlsFragLoadEmergencyAborted',
-  // fired when a fragment loading is completed - linkage: { frag : fragment object, payload : fragment payload, stats : { trequest, tfirst, tload, length } }
+  // fired when a fragment loading is completed - data: { frag : fragment object, payload : fragment payload, stats : { trequest, tfirst, tload, length } }
   FRAG_LOADED: 'hlsFragLoaded',
-  // fired when a fragment has finished decrypting - linkage: { id : demuxer id, frag: fragment object, payload : fragment payload, stats : { tstart, tdecrypt } }
+  // fired when a fragment has finished decrypting - data: { id : demuxer id, frag: fragment object, payload : fragment payload, stats : { tstart, tdecrypt } }
   FRAG_DECRYPTED: 'hlsFragDecrypted',
-  // fired when Init Segment has been extracted from fragment - linkage: { id : demuxer id, frag: fragment object, moov : moov MP4 box, codecs : codecs found while parsing fragment }
+  // fired when Init Segment has been extracted from fragment - data: { id : demuxer id, frag: fragment object, moov : moov MP4 box, codecs : codecs found while parsing fragment }
   FRAG_PARSING_INIT_SEGMENT: 'hlsFragParsingInitSegment',
-  // fired when parsing sei text is completed - linkage: { id : demuxer id, frag: fragment object, samples : [ sei samples pes ] }
+  // fired when parsing sei text is completed - data: { id : demuxer id, frag: fragment object, samples : [ sei samples pes ] }
   FRAG_PARSING_USERDATA: 'hlsFragParsingUserdata',
-  // fired when parsing id3 is completed - linkage: { id : demuxer id, frag: fragment object, samples : [ id3 samples pes ] }
+  // fired when parsing id3 is completed - data: { id : demuxer id, frag: fragment object, samples : [ id3 samples pes ] }
   FRAG_PARSING_METADATA: 'hlsFragParsingMetadata',
-  // fired when linkage have been extracted from fragment - linkage: { id : demuxer id, frag: fragment object, data1 : moof MP4 box or TS fragments, data2 : mdat MP4 box or null}
+  // fired when data have been extracted from fragment - data: { id : demuxer id, frag: fragment object, data1 : moof MP4 box or TS fragments, data2 : mdat MP4 box or null}
   FRAG_PARSING_DATA: 'hlsFragParsingData',
-  // fired when fragment parsing is completed - linkage: { id : demuxer id, frag: fragment object }
+  // fired when fragment parsing is completed - data: { id : demuxer id, frag: fragment object }
   FRAG_PARSED: 'hlsFragParsed',
-  // fired when fragment remuxed MP4 boxes have all been appended into SourceBuffer - linkage: { id : demuxer id, frag : fragment object, stats : { trequest, tfirst, tload, tparsed, tbuffered, length, bwEstimate } }
+  // fired when fragment remuxed MP4 boxes have all been appended into SourceBuffer - data: { id : demuxer id, frag : fragment object, stats : { trequest, tfirst, tload, tparsed, tbuffered, length, bwEstimate } }
   FRAG_BUFFERED: 'hlsFragBuffered',
-  // fired when fragment matching with current media position is changing - linkage : { id : demuxer id, frag : fragment object }
+  // fired when fragment matching with current media position is changing - data : { id : demuxer id, frag : fragment object }
   FRAG_CHANGED: 'hlsFragChanged',
-  // Identifier for a FPS drop event - linkage: { curentDropped, currentDecoded, totalDroppedFrames }
+  // Identifier for a FPS drop event - data: { curentDropped, currentDecoded, totalDroppedFrames }
   FPS_DROP: 'hlsFpsDrop',
-  //triggered when FPS drop triggers auto level capping - linkage: { level, droppedlevel }
+  //triggered when FPS drop triggers auto level capping - data: { level, droppedlevel }
   FPS_DROP_LEVEL_CAPPING: 'hlsFpsDropLevelCapping',
-  // Identifier for an error event - linkage: { type : error type, details : error details, fatal : if true, hls.js cannot/will not try to recover, if false, hls.js will try to recover,other error specific linkage }
+  // Identifier for an error event - data: { type : error type, details : error details, fatal : if true, hls.js cannot/will not try to recover, if false, hls.js will try to recover,other error specific data }
   ERROR: 'hlsError',
-  // fired when hls.js instance starts destroying. Different from MEDIA_DETACHED as one could want to detach and reattach a media to the instance of hls.js to handle mid-rolls for example - linkage: { }
+  // fired when hls.js instance starts destroying. Different from MEDIA_DETACHED as one could want to detach and reattach a media to the instance of hls.js to handle mid-rolls for example - data: { }
   DESTROYING: 'hlsDestroying',
-  // fired when a decrypt key loading starts - linkage: { frag : fragment object }
+  // fired when a decrypt key loading starts - data: { frag : fragment object }
   KEY_LOADING: 'hlsKeyLoading',
-  // fired when a decrypt key loading is completed - linkage: { frag : fragment object, payload : key payload, stats : { trequest, tfirst, tload, length } }
+  // fired when a decrypt key loading is completed - data: { frag : fragment object, payload : key payload, stats : { trequest, tfirst, tload, length } }
   KEY_LOADED: 'hlsKeyLoaded',
-  // fired upon stream controller state transitions - linkage: { previousState, nextState }
+  // fired upon stream controller state transitions - data: { previousState, nextState }
   STREAM_STATE_TRANSITION: 'hlsStreamStateTransition'
 });
 
@@ -297,46 +297,46 @@ var ErrorDetails = {
   KEY_SYSTEM_NO_ACCESS: 'keySystemNoAccess',
   KEY_SYSTEM_NO_SESSION: 'keySystemNoSession',
   KEY_SYSTEM_LICENSE_REQUEST_FAILED: 'keySystemLicenseRequestFailed',
-  // Identifier for a manifest load error - linkage: { url : faulty URL, response : { code: error code, text: error text }}
+  // Identifier for a manifest load error - data: { url : faulty URL, response : { code: error code, text: error text }}
   MANIFEST_LOAD_ERROR: 'manifestLoadError',
-  // Identifier for a manifest load timeout - linkage: { url : faulty URL, response : { code: error code, text: error text }}
+  // Identifier for a manifest load timeout - data: { url : faulty URL, response : { code: error code, text: error text }}
   MANIFEST_LOAD_TIMEOUT: 'manifestLoadTimeOut',
-  // Identifier for a manifest parsing error - linkage: { url : faulty URL, reason : error reason}
+  // Identifier for a manifest parsing error - data: { url : faulty URL, reason : error reason}
   MANIFEST_PARSING_ERROR: 'manifestParsingError',
-  // Identifier for a manifest with only incompatible codecs error - linkage: { url : faulty URL, reason : error reason}
+  // Identifier for a manifest with only incompatible codecs error - data: { url : faulty URL, reason : error reason}
   MANIFEST_INCOMPATIBLE_CODECS_ERROR: 'manifestIncompatibleCodecsError',
-  // Identifier for a level load error - linkage: { url : faulty URL, response : { code: error code, text: error text }}
+  // Identifier for a level load error - data: { url : faulty URL, response : { code: error code, text: error text }}
   LEVEL_LOAD_ERROR: 'levelLoadError',
-  // Identifier for a level load timeout - linkage: { url : faulty URL, response : { code: error code, text: error text }}
+  // Identifier for a level load timeout - data: { url : faulty URL, response : { code: error code, text: error text }}
   LEVEL_LOAD_TIMEOUT: 'levelLoadTimeOut',
-  // Identifier for a level switch error - linkage: { level : faulty level Id, event : error description}
+  // Identifier for a level switch error - data: { level : faulty level Id, event : error description}
   LEVEL_SWITCH_ERROR: 'levelSwitchError',
-  // Identifier for an audio track load error - linkage: { url : faulty URL, response : { code: error code, text: error text }}
+  // Identifier for an audio track load error - data: { url : faulty URL, response : { code: error code, text: error text }}
   AUDIO_TRACK_LOAD_ERROR: 'audioTrackLoadError',
-  // Identifier for an audio track load timeout - linkage: { url : faulty URL, response : { code: error code, text: error text }}
+  // Identifier for an audio track load timeout - data: { url : faulty URL, response : { code: error code, text: error text }}
   AUDIO_TRACK_LOAD_TIMEOUT: 'audioTrackLoadTimeOut',
-  // Identifier for fragment load error - linkage: { frag : fragment object, response : { code: error code, text: error text }}
+  // Identifier for fragment load error - data: { frag : fragment object, response : { code: error code, text: error text }}
   FRAG_LOAD_ERROR: 'fragLoadError',
-  // Identifier for fragment loop loading error - linkage: { frag : fragment object}
+  // Identifier for fragment loop loading error - data: { frag : fragment object}
   FRAG_LOOP_LOADING_ERROR: 'fragLoopLoadingError',
-  // Identifier for fragment load timeout error - linkage: { frag : fragment object}
+  // Identifier for fragment load timeout error - data: { frag : fragment object}
   FRAG_LOAD_TIMEOUT: 'fragLoadTimeOut',
-  // Identifier for a fragment decryption error event - linkage: {id : demuxer Id,frag: fragment object, reason : parsing error description }
+  // Identifier for a fragment decryption error event - data: {id : demuxer Id,frag: fragment object, reason : parsing error description }
   FRAG_DECRYPT_ERROR: 'fragDecryptError',
-  // Identifier for a fragment parsing error event - linkage: { id : demuxer Id, reason : parsing error description }
+  // Identifier for a fragment parsing error event - data: { id : demuxer Id, reason : parsing error description }
   // will be renamed DEMUX_PARSING_ERROR and switched to MUX_ERROR in the next major release
   FRAG_PARSING_ERROR: 'fragParsingError',
-  // Identifier for a remux alloc error event - linkage: { id : demuxer Id, frag : fragment object, bytes : nb of bytes on which allocation failed , reason : error text }
+  // Identifier for a remux alloc error event - data: { id : demuxer Id, frag : fragment object, bytes : nb of bytes on which allocation failed , reason : error text }
   REMUX_ALLOC_ERROR: 'remuxAllocError',
-  // Identifier for decrypt key load error - linkage: { frag : fragment object, response : { code: error code, text: error text }}
+  // Identifier for decrypt key load error - data: { frag : fragment object, response : { code: error code, text: error text }}
   KEY_LOAD_ERROR: 'keyLoadError',
-  // Identifier for decrypt key load timeout error - linkage: { frag : fragment object}
+  // Identifier for decrypt key load timeout error - data: { frag : fragment object}
   KEY_LOAD_TIMEOUT: 'keyLoadTimeOut',
-  // Triggered when an exception occurs while adding a sourceBuffer to MediaSource - linkage : {  err : exception , mimeType : mimeType }
+  // Triggered when an exception occurs while adding a sourceBuffer to MediaSource - data : {  err : exception , mimeType : mimeType }
   BUFFER_ADD_CODEC_ERROR: 'bufferAddCodecError',
-  // Identifier for a buffer append error - linkage: append error description
+  // Identifier for a buffer append error - data: append error description
   BUFFER_APPEND_ERROR: 'bufferAppendError',
-  // Identifier for a buffer appending error event - linkage: appending error description
+  // Identifier for a buffer appending error event - data: appending error description
   BUFFER_APPENDING_ERROR: 'bufferAppendingError',
   // Identifier for a buffer stalled error event
   BUFFER_STALLED_ERROR: 'bufferStalledError',
@@ -536,8 +536,8 @@ var ID3 = function () {
   }
 
   /**
-   * Returns true if an ID3 header can be found at offset in linkage
-   * @param {Uint8Array} data - The linkage to search in
+   * Returns true if an ID3 header can be found at offset in data
+   * @param {Uint8Array} data - The data to search in
    * @param {number} offset - The offset at which to start searching
    * @return {boolean} - True if an ID3 header is found
    */
@@ -572,8 +572,8 @@ var ID3 = function () {
   };
 
   /**
-   * Returns true if an ID3 footer can be found at offset in linkage
-   * @param {Uint8Array} linkage - The linkage to search in
+   * Returns true if an ID3 footer can be found at offset in data
+   * @param {Uint8Array} data - The data to search in
    * @param {number} offset - The offset at which to start searching
    * @return {boolean} - True if an ID3 footer is found
    */
@@ -600,10 +600,10 @@ var ID3 = function () {
   };
 
   /**
-   * Returns any adjacent ID3 tags found in linkage starting at offset, as one block of linkage
-   * @param {Uint8Array} linkage - The linkage to search in
+   * Returns any adjacent ID3 tags found in data starting at offset, as one block of data
+   * @param {Uint8Array} data - The data to search in
    * @param {number} offset - The offset at which to start searching
-   * @return {Uint8Array} - The block of linkage containing any ID3 tags found
+   * @return {Uint8Array} - The block of data containing any ID3 tags found
    */
 
 
@@ -643,8 +643,8 @@ var ID3 = function () {
   };
 
   /**
-   * Searches for the Elementary Stream timestamp found in the ID3 linkage chunk
-   * @param {Uint8Array} linkage - Block of linkage containing one or more ID3 tags
+   * Searches for the Elementary Stream timestamp found in the ID3 data chunk
+   * @param {Uint8Array} data - Block of data containing one or more ID3 tags
    * @return {number} - The timestamp
    */
 
@@ -688,7 +688,7 @@ var ID3 = function () {
 
   /**
    * Returns an array of ID3 frames found in all the ID3 tags in the id3Data
-   * @param {Uint8Array} id3Data - The ID3 linkage containing one or more ID3 tags
+   * @param {Uint8Array} id3Data - The ID3 data containing one or more ID3 tags
    * @return {ID3 frame[]} - Array of ID3 frame objects
    */
 
@@ -709,7 +709,7 @@ var ID3 = function () {
         if (frame) {
           frames.push(frame);
         }
-        //skip frame header and frame linkage
+        //skip frame header and frame data
         offset += frameData.size + 10;
       }
 
@@ -754,7 +754,7 @@ var ID3 = function () {
 
   ID3._decodePrivFrame = function _decodePrivFrame(frame) {
     /*
-    Format: <text string>\0<binary linkage>
+    Format: <text string>\0<binary data>
     */
     if (frame.size < 2) {
       return undefined;
@@ -1732,7 +1732,7 @@ var MP4Demuxer = function () {
     buffer[offset + 3] = value & 0xff;
   };
 
-  // Find the linkage for a box specified by its path
+  // Find the data for a box specified by its path
 
 
   MP4Demuxer.findBox = function findBox(data, path) {
@@ -1781,14 +1781,14 @@ var MP4Demuxer = function () {
       i = endbox;
     }
 
-    // we've finished searching all of linkage
+    // we've finished searching all of data
     return results;
   };
 
   MP4Demuxer.parseSegmentIndex = function parseSegmentIndex(initSegment) {
 
     var moov = MP4Demuxer.findBox(initSegment, ['moov'])[0];
-    var moovEndOffset = moov ? moov.end : null; // we need this in case we need to chop of garbage of the end of current linkage
+    var moovEndOffset = moov ? moov.end : null; // we need this in case we need to chop of garbage of the end of current data
 
     var index = 0;
     var sidx = MP4Demuxer.findBox(initSegment, ['sidx']);
@@ -2021,7 +2021,7 @@ var MP4Demuxer = function () {
     });
   };
 
-  // feed incoming linkage to the front of the parsing pipeline
+  // feed incoming data to the front of the parsing pipeline
 
 
   MP4Demuxer.prototype.append = function append(data, timeOffset, contiguous, accurateTimeOffset) {
@@ -2097,7 +2097,7 @@ function getAudioConfig(observer, data, offset, audioCodec) {
   adtsChanelConfig = (data[offset + 2] & 0x01) << 2;
   // byte 3
   adtsChanelConfig |= (data[offset + 3] & 0xC0) >>> 6;
-  logger["b" /* logger */].log('manifest codec:' + audioCodec + ',ADTS linkage:type:' + adtsObjectType + ',sampleingIndex:' + adtsSampleingIndex + '[' + adtsSampleingRates[adtsSampleingIndex] + 'Hz],channelConfig:' + adtsChanelConfig);
+  logger["b" /* logger */].log('manifest codec:' + audioCodec + ',ADTS data:type:' + adtsObjectType + ',sampleingIndex:' + adtsSampleingIndex + '[' + adtsSampleingRates[adtsSampleingIndex] + 'Hz],channelConfig:' + adtsChanelConfig);
   // firefox: freq less than 24kHz = AAC SBR (HE-AAC)
   if (/firefox/i.test(userAgent)) {
     if (adtsSampleingIndex >= 6) {
@@ -2215,7 +2215,7 @@ function isHeader(data, offset) {
 
 function adts_probe(data, offset) {
   // same as isHeader but we also check that ADTS frame follows last ADTS frame
-  // or end of linkage is reached
+  // or end of data is reached
   if (offset + 1 < data.length && isHeaderPattern(data, offset)) {
     // ADTS header Length
     var headerLength = getHeaderLength(data, offset);
@@ -2252,7 +2252,7 @@ function parseFrameHeader(data, offset, pts, frameIndex, frameDuration) {
   var headerLength, frameLength, stamp;
   var length = data.length;
 
-  // The protection skip bit tells us if we have 2 bytes of CRC linkage at the end of the ADTS header
+  // The protection skip bit tells us if we have 2 bytes of CRC data at the end of the ADTS header
   headerLength = getHeaderLength(data, offset);
   // retrieve frame size
   frameLength = getFullFrameLength(data, offset);
@@ -2260,7 +2260,7 @@ function parseFrameHeader(data, offset, pts, frameIndex, frameDuration) {
 
   if (frameLength > 0 && offset + headerLength + frameLength <= length) {
     stamp = pts + frameIndex * frameDuration;
-    //logger.log(`AAC frame, offset/length/total/pts:${offset+headerLength}/${frameLength}/${linkage.byteLength}/${(stamp/90).toFixed(0)}`);
+    //logger.log(`AAC frame, offset/length/total/pts:${offset+headerLength}/${frameLength}/${data.byteLength}/${(stamp/90).toFixed(0)}`);
     return { headerLength: headerLength, frameLength: frameLength, stamp: stamp };
   }
 
@@ -2275,7 +2275,7 @@ function appendFrame(track, data, offset, pts, frameIndex) {
     var headerLength = header.headerLength;
     var frameLength = header.frameLength;
 
-    //logger.log(`AAC frame, offset/length/total/pts:${offset+headerLength}/${frameLength}/${linkage.byteLength}/${(stamp/90).toFixed(0)}`);
+    //logger.log(`AAC frame, offset/length/total/pts:${offset+headerLength}/${frameLength}/${data.byteLength}/${(stamp/90).toFixed(0)}`);
     var aacSample = {
       unit: data.subarray(offset + headerLength, offset + headerLength + frameLength),
       pts: stamp,
@@ -2338,7 +2338,7 @@ var aacdemuxer_AACDemuxer = function () {
     return false;
   };
 
-  // feed incoming linkage to the front of the parsing pipeline
+  // feed incoming data to the front of the parsing pipeline
 
 
   AACDemuxer.prototype.append = function append(data, timeOffset, contiguous, accurateTimeOffset) {
@@ -2493,7 +2493,7 @@ var MpegAudio = {
 
     probe: function probe(data, offset) {
         // same as isHeader but we also check that MPEG frame follows last MPEG frame
-        // or end of linkage is reached
+        // or end of data is reached
         if (offset + 1 < data.length && this.isHeaderPattern(data, offset)) {
             // MPEG header Length
             var headerLength = 4;
@@ -2527,7 +2527,7 @@ var exp_golomb_ExpGolomb = function () {
     exp_golomb__classCallCheck(this, ExpGolomb);
 
     this.data = data;
-    // the number of bytes left to examine in this.linkage
+    // the number of bytes left to examine in this.data
     this.bytesAvailable = data.byteLength;
     // the current word being examined
     this.word = 0; // :uint
@@ -2549,7 +2549,7 @@ var exp_golomb_ExpGolomb = function () {
     }
     workingBytes.set(data.subarray(position, position + availableBytes));
     this.word = new DataView(workingBytes.buffer).getUint32(0);
-    // track the amount of this.linkage that has been processed
+    // track the amount of this.data that has been processed
     this.bitsAvailable = availableBytes * 8;
     this.bytesAvailable -= availableBytes;
   };
@@ -2741,7 +2741,7 @@ var exp_golomb_ExpGolomb = function () {
     skipBits(3); // reserved_zero_3bits u(3),
     levelIdc = readUByte(); //level_idc u(8)
     skipUEG(); // seq_parameter_set_id
-    // some profiles have more optional linkage we don't need
+    // some profiles have more optional data we don't need
     if (profileIdc === 100 || profileIdc === 110 || profileIdc === 122 || profileIdc === 244 || profileIdc === 44 || profileIdc === 83 || profileIdc === 86 || profileIdc === 118 || profileIdc === 128) {
       var chromaFormatIdc = readUEG();
       if (chromaFormatIdc === 3) {
@@ -3139,7 +3139,7 @@ var tsdemuxer_TSDemuxer = function () {
 
   TSDemuxer.prototype.resetTimeStamp = function resetTimeStamp() {};
 
-  // feed incoming linkage to the front of the parsing pipeline
+  // feed incoming data to the front of the parsing pipeline
 
 
   TSDemuxer.prototype.append = function append(data, timeOffset, contiguous, accurateTimeOffset) {
@@ -3458,7 +3458,7 @@ var tsdemuxer_TSDemuxer = function () {
     }
 
     // we might need up to 19 bytes to read PES header
-    // if first chunk of linkage is less than 19 bytes, let's merge it with following ones until we get 19 bytes
+    // if first chunk of data is less than 19 bytes, let's merge it with following ones until we get 19 bytes
     // usually only one merge is needed (and this is rare ...)
     while (data[0].length < 19 && data.length > 1) {
       var newData = new Uint8Array(data[0].length + data[1].length);
@@ -3583,7 +3583,7 @@ var tsdemuxer_TSDemuxer = function () {
         createAVCSample = function createAVCSample(key, pts, dts, debug) {
       return { key: key, pts: pts, dts: dts, units: [], debug: debug };
     };
-    //free pes.linkage to save up some memory
+    //free pes.data to save up some memory
     pes.data = null;
 
     // if new NAL units found and last sample still there, let's push ...
@@ -3851,7 +3851,7 @@ var tsdemuxer_TSDemuxer = function () {
       } else if (value === 1) {
         if (lastUnitStart >= 0) {
           unit = { data: array.subarray(lastUnitStart, i - state - 1), type: lastUnitType };
-          //logger.log('pushing NALU, type/size:' + unit.type + '/' + unit.linkage.byteLength);
+          //logger.log('pushing NALU, type/size:' + unit.type + '/' + unit.data.byteLength);
           units.push(unit);
         } else {
           // lastUnitStart is undefined => this is the first start code found in this PES packet
@@ -3869,7 +3869,7 @@ var tsdemuxer_TSDemuxer = function () {
                 lastUnit.data = lastUnit.data.subarray(0, lastUnit.data.byteLength - lastState);
               }
             }
-            // If NAL units are not starting right at the beginning of the PES packet, push preceding linkage into previous NAL unit.
+            // If NAL units are not starting right at the beginning of the PES packet, push preceding data into previous NAL unit.
             overflow = i - state - 1;
             if (overflow > 0) {
               //logger.log('first NALU found with overflow:' + overflow);
@@ -3898,11 +3898,11 @@ var tsdemuxer_TSDemuxer = function () {
     if (lastUnitStart >= 0 && state >= 0) {
       unit = { data: array.subarray(lastUnitStart, len), type: lastUnitType, state: state };
       units.push(unit);
-      //logger.log('pushing NALU, type/size/state:' + unit.type + '/' + unit.linkage.byteLength + '/' + state);
+      //logger.log('pushing NALU, type/size/state:' + unit.type + '/' + unit.data.byteLength + '/' + state);
     }
     // no NALu found
     if (units.length === 0) {
-      // append pes.linkage to previous NAL unit
+      // append pes.data to previous NAL unit
       var _lastUnit = this._getLastNalUnit();
       if (_lastUnit) {
         var _tmp = new Uint8Array(_lastUnit.data.byteLength + array.byteLength);
@@ -3943,7 +3943,7 @@ var tsdemuxer_TSDemuxer = function () {
       return data;
     }
 
-    // Create a new array to hold the NAL unit linkage
+    // Create a new array to hold the NAL unit data
     newLength = length - EPBPositions.length;
     newData = new Uint8Array(newLength);
     var sourceIndex = 0;
@@ -4103,7 +4103,7 @@ var mp3demuxer_MP3Demuxer = function () {
   MP3Demuxer.prototype.resetTimeStamp = function resetTimeStamp() {};
 
   MP3Demuxer.probe = function probe(data) {
-    // check if linkage contains ID3 timestamp and MPEG sync word
+    // check if data contains ID3 timestamp and MPEG sync word
     var offset, length;
     var id3Data = id3["a" /* default */].getID3Data(data, 0);
     if (id3Data && id3["a" /* default */].getTimeStamp(id3Data) !== undefined) {
@@ -4120,7 +4120,7 @@ var mp3demuxer_MP3Demuxer = function () {
     return false;
   };
 
-  // feed incoming linkage to the front of the parsing pipeline
+  // feed incoming data to the front of the parsing pipeline
 
 
   MP3Demuxer.prototype.append = function append(data, timeOffset, contiguous, accurateTimeOffset) {
@@ -4922,8 +4922,8 @@ var mp4_remuxer_MP4Remuxer = function () {
     //   let unitsString = '';
     //   for (let j = 0; j < units.length ; j++) {
     //     unitsString += units[j].type + ',';
-    //     if (units[j].linkage.length < 500) {
-    //       unitsString += Hex.hexDump(units[j].linkage);
+    //     if (units[j].data.length < 500) {
+    //       unitsString += Hex.hexDump(units[j].data);
     //     }
     //   }
     //   logger.log(avcSample.pts + '/' + avcSample.dts + ',' + unitsString + avcSample.units.length);
@@ -5039,7 +5039,7 @@ var mp4_remuxer_MP4Remuxer = function () {
       _sample.pts = Math.max(_sample.pts, _sample.dts);
     }
 
-    /* concatenate the video linkage and construct the mdat in place
+    /* concatenate the video data and construct the mdat in place
       (need 8 more bytes to fill length and mpdat type) */
     var mdatSize = naluLen + 4 * nbNalu + 8;
     try {
@@ -5313,7 +5313,7 @@ var mp4_remuxer_MP4Remuxer = function () {
         // remember first PTS of our audioSamples
         firstPTS = _pts;
         if (track.len > 0) {
-          /* concatenate the audio linkage and construct the mdat in place
+          /* concatenate the audio data and construct the mdat in place
             (need 8 more bytes to fill length and mdat type) */
           var mdatSize = rawMPEG ? track.len : track.len + 8;
           offset = rawMPEG ? 0 : 8;
@@ -5776,7 +5776,7 @@ var event_handler_EventHandler = function () {
   };
 
   /**
-   * arguments: event (string), linkage (any)
+   * arguments: event (string), data (any)
    */
 
 
@@ -5872,7 +5872,7 @@ var fragment_Fragment = function () {
   };
 
   /**
-   * Utility method for parseLevelPlaylist to get a fragment's decryption linkage from the currently parsed encryption key linkage
+   * Utility method for parseLevelPlaylist to get a fragment's decryption data from the currently parsed encryption key data
    * @param levelkey - a playlist's encryption info
    * @param segmentNumber - the fragment's segment number
    * @returns {*} - an object to be applied as a fragment's decryptdata
@@ -6486,9 +6486,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
- * PlaylistLoader - delegate for media manifest/playlist loading tasks. Takes care of parsing media to internal linkage-models.
+ * PlaylistLoader - delegate for media manifest/playlist loading tasks. Takes care of parsing media to internal data-models.
  *
- * Once loaded, dispatches events with parsed linkage-models of manifest/levels/audio/subtitle tracks.
+ * Once loaded, dispatches events with parsed data-models of manifest/levels/audio/subtitle tracks.
  *
  * Uses loader(s) set in config to do actual internal loading of resource tasks.
  *
@@ -6562,8 +6562,8 @@ var playlist_loader_PlaylistLoader = function (_EventHandler) {
   PlaylistLoader.getResponseUrl = function getResponseUrl(response, context) {
     var url = response.url;
     // responseURL not supported on some browsers (it is used to detect URL redirection)
-    // linkage-uri mode also not supported (but no need to detect redirection)
-    if (url === undefined || url.indexOf('linkage:') === 0) {
+    // data-uri mode also not supported (but no need to detect redirection)
+    if (url === undefined || url.indexOf('data:') === 0) {
       // fallback to initial URL
       url = context.url;
     }
@@ -7123,7 +7123,7 @@ var fragment_loader_FragmentLoader = function (_EventHandler) {
     this.hls.trigger(events["a" /* default */].ERROR, { type: errors["b" /* ErrorTypes */].NETWORK_ERROR, details: errors["a" /* ErrorDetails */].FRAG_LOAD_TIMEOUT, fatal: false, frag: context.frag, networkDetails: networkDetails });
   };
 
-  // linkage will be used for progressive parsing
+  // data will be used for progressive parsing
 
 
   FragmentLoader.prototype.loadprogress = function loadprogress(stats, context, data) {
@@ -8919,7 +8919,7 @@ var stream_controller_StreamController = function (_TaskLoop) {
         this.tick();
       } else {
         this.state = State.PARSING;
-        // transmux the MPEG-TS linkage to ISO-BMFF segments
+        // transmux the MPEG-TS data to ISO-BMFF segments
         var duration = details.totalduration,
             level = fragCurrent.level,
             sn = fragCurrent.sn,
@@ -10066,7 +10066,7 @@ var id3_track_controller_ID3TrackController = function (_EventHandler) {
 
     // Attempt to recreate Safari functionality by creating
     // WebKitDataCue objects when available and store the decoded
-    // ID3 linkage in the value property of the cue
+    // ID3 data in the value property of the cue
     var Cue = window.WebKitDataCue || window.VTTCue || window.TextTrackCue;
 
     for (var i = 0; i < samples.length; i++) {
@@ -10125,7 +10125,7 @@ var EWMA = function () {
   function EWMA(halfLife) {
     ewma__classCallCheck(this, EWMA);
 
-    // Larger values of alpha expire historical linkage more slowly.
+    // Larger values of alpha expire historical data more slowly.
     this.alpha_ = halfLife ? Math.exp(Math.log(0.5) / halfLife) : 0;
     this.estimate_ = 0;
     this.totalWeight_ = 0;
@@ -10902,8 +10902,8 @@ var buffer_controller_BufferController = function (_EventHandler) {
         return;
       }
     }
-    logger["b" /* logger */].log('all media linkage available, signal endOfStream() to MediaSource and stop loading fragment');
-    //Notify the media element that it now has all of the media linkage
+    logger["b" /* logger */].log('all media data available, signal endOfStream() to MediaSource and stop loading fragment');
+    //Notify the media element that it now has all of the media data
     try {
       mediaSource.endOfStream();
     } catch (e) {
@@ -11031,7 +11031,7 @@ var buffer_controller_BufferController = function (_EventHandler) {
             if (!sb.updating) {
               // reset sourceBuffer ended flag before appending segment
               sb.ended = false;
-              //logger.log(`appending ${segment.content} ${type} SB, size:${segment.linkage.length}, ${segment.parent}`);
+              //logger.log(`appending ${segment.content} ${type} SB, size:${segment.data.length}, ${segment.parent}`);
               this.parent = segment.parent;
               sb.appendBuffer(segment.data);
               this.appendError = 0;
@@ -11059,7 +11059,7 @@ var buffer_controller_BufferController = function (_EventHandler) {
             }
             event.details = errors["a" /* ErrorDetails */].BUFFER_APPEND_ERROR;
             /* with UHD content, we could get loop of quota exceeded error until
-              browser is able to evict some linkage from sourcebuffer. retrying help recovering this
+              browser is able to evict some data from sourcebuffer. retrying help recovering this
             */
             if (this.appendError > hls.config.appendErrorMaxRetry) {
               logger["b" /* logger */].log('fail ' + hls.config.appendErrorMaxRetry + ' times to append segment in sourceBuffer');
@@ -11579,7 +11579,7 @@ var xhr_loader_XhrLoader = function () {
     }
     var onProgress = this.callbacks.onProgress;
     if (onProgress) {
-      // third arg is to provide on progress linkage
+      // third arg is to provide on progress data
       onProgress(stats, this.context, null, xhr);
     }
   };
@@ -12353,7 +12353,7 @@ var audio_stream_controller_AudioStreamController = function (_TaskLoop) {
         this.tick();
       } else {
         this.state = audio_stream_controller_State.PARSING;
-        // transmux the MPEG-TS linkage to ISO-BMFF segments
+        // transmux the MPEG-TS data to ISO-BMFF segments
         this.appended = false;
         if (!this.demuxer) {
           this.demuxer = new demux_demuxer(this.hls, 'audio');
@@ -12462,7 +12462,7 @@ var audio_stream_controller_AudioStreamController = function (_TaskLoop) {
       var pendingData = this.pendingData;
 
       if (!pendingData) {
-        console.warn('Apparently attempt to enqueue media payload without codec initialization linkage upfront');
+        console.warn('Apparently attempt to enqueue media payload without codec initialization data upfront');
         hls.trigger(events["a" /* default */].ERROR, { type: errors["b" /* ErrorTypes */].MEDIA_ERROR, details: null, fatal: true });
         return;
       }
@@ -12639,7 +12639,7 @@ var audio_stream_controller_AudioStreamController = function (_TaskLoop) {
 
     var pendingData = this.pendingData;
     if (pendingData && pendingData.length) {
-      logger["b" /* logger */].log('appending pending audio linkage on Buffer Flushed');
+      logger["b" /* logger */].log('appending pending audio data on Buffer Flushed');
       pendingData.forEach(function (appendObj) {
         _this3.hls.trigger(events["a" /* default */].BUFFER_APPENDING, appendObj);
       });
@@ -12759,7 +12759,7 @@ var audio_stream_controller_AudioStreamController = function (_TaskLoop) {
      * the spec.
      */
 
-    // Lets us know when the VTTCue's linkage has changed in such a way that we need
+    // Lets us know when the VTTCue's data has changed in such a way that we need
     // to recompute its display state. This lets us compute its display state
     // lazily.
     cue.hasBeenReset = false;
@@ -12992,7 +12992,7 @@ var StringDecoder = function StringDecoder() {
         return '';
       }
       if (typeof data !== 'string') {
-        throw new Error('Error - expected string linkage.');
+        throw new Error('Error - expected string data.');
       }
       return decodeURIComponent(encodeURIComponent(data));
     }
@@ -13223,11 +13223,11 @@ VTTParser.prototype = {
   parse: function parse(data) {
     var self = this;
 
-    // If there is no linkage then we won't decode it, but will just try to parse
+    // If there is no data then we won't decode it, but will just try to parse
     // whatever is in buffer already. This may occur in circumstances, for
     // example when flush() is called.
     if (data) {
-      // Try to decode the linkage that we received.
+      // Try to decode the data that we received.
       self.buffer += self.decoder.decode(data, { stream: true });
     }
 
@@ -13326,7 +13326,7 @@ VTTParser.prototype = {
             }
             self.cue = new vttcue(0, 0, '');
             self.state = 'CUE';
-            // 30-39 - Check if self line contains an optional identifier or timing linkage.
+            // 30-39 - Check if self line contains an optional identifier or timing data.
             if (line.indexOf('-->') === -1) {
               self.cue.id = line;
               continue;
@@ -13629,7 +13629,7 @@ var getCharForByte = function getCharForByte(byte) {
 
 var NR_ROWS = 15,
     NR_COLS = 100;
-// Tables to look up row from PAC linkage
+// Tables to look up row from PAC data
 var rowsLowCh1 = { 0x11: 1, 0x12: 3, 0x15: 5, 0x16: 7, 0x17: 9, 0x10: 11, 0x13: 12, 0x14: 14 };
 var rowsHighCh1 = { 0x11: 2, 0x12: 4, 0x15: 6, 0x16: 8, 0x17: 10, 0x13: 13, 0x14: 15 };
 var rowsLowCh2 = { 0x19: 1, 0x1A: 3, 0x1D: 5, 0x1E: 7, 0x1F: 9, 0x18: 11, 0x1B: 12, 0x1C: 14 };
@@ -14371,7 +14371,7 @@ var Cea608Parser = function () {
     };
 
     /**
-     * Add linkage for time t in forms of list of bytes (unsigned ints). The bytes are treated as pairs.
+     * Add data for time t in forms of list of bytes (unsigned ints). The bytes are treated as pairs.
      */
 
 
@@ -14420,7 +14420,7 @@ var Cea608Parser = function () {
                 this.dataCounters.char += 2;
             } else {
                 this.dataCounters.other += 2;
-                cea_608_parser_logger.log('WARNING', 'Couldn\'t parse cleaned linkage ' + numArrayToHexArray([a, b]) + ' orig: ' + numArrayToHexArray([byteList[i], byteList[i + 1]]));
+                cea_608_parser_logger.log('WARNING', 'Couldn\'t parse cleaned data ' + numArrayToHexArray([a, b]) + ' orig: ' + numArrayToHexArray([byteList[i], byteList[i + 1]]));
             }
         }
     };
@@ -15990,14 +15990,14 @@ var eme_controller_EMEController = function (_EventHandler) {
     logger["b" /* logger */].log('Got EME message event, creating license request');
 
     this._requestLicense(message, function (data) {
-      logger["b" /* logger */].log('Received license linkage, updating key-session');
+      logger["b" /* logger */].log('Received license data, updating key-session');
       keySession.update(data);
     });
   };
 
   EMEController.prototype._onMediaEncrypted = function _onMediaEncrypted(initDataType, initData) {
 
-    logger["b" /* logger */].log('Media is encrypted using "' + initDataType + '" init linkage type');
+    logger["b" /* logger */].log('Media is encrypted using "' + initDataType + '" init data type');
 
     this._isMediaEncrypted = true;
     this._mediaEncryptionInitDataType = initDataType;
@@ -16062,7 +16062,7 @@ var eme_controller_EMEController = function (_EventHandler) {
     var initDataType = this._mediaEncryptionInitDataType;
     var initData = this._mediaEncryptionInitData;
 
-    logger["b" /* logger */].log('Generating key-session request for "' + initDataType + '" init linkage type');
+    logger["b" /* logger */].log('Generating key-session request for "' + initDataType + '" init data type');
 
     keysListItem.mediaKeysSessionInitialized = true;
 
@@ -16080,7 +16080,7 @@ var eme_controller_EMEController = function (_EventHandler) {
 
   /**
    * @param {string} url License server URL
-   * @param {ArrayBuffer} keyMessage Message linkage issued by key-system
+   * @param {ArrayBuffer} keyMessage Message data issued by key-system
    * @param {function} callback Called when XHR has succeeded
    * @returns {XMLHttpRequest} Unsent (but opened state) XHR object
    */
@@ -16123,7 +16123,7 @@ var eme_controller_EMEController = function (_EventHandler) {
   /**
    * @param {XMLHttpRequest} xhr
    * @param {string} url License server URL
-   * @param {ArrayBuffer} keyMessage Message linkage issued by key-system
+   * @param {ArrayBuffer} keyMessage Message data issued by key-system
    * @param {function} callback Called when XHR has succeeded
    *
    */
@@ -16161,7 +16161,7 @@ var eme_controller_EMEController = function (_EventHandler) {
   /**
    * @param {object} keysListItem
    * @param {ArrayBuffer} keyMessage
-   * @returns {ArrayBuffer} Challenge linkage posted to license server
+   * @returns {ArrayBuffer} Challenge data posted to license server
    */
 
 
@@ -17142,7 +17142,7 @@ var DemuxerWorker = function DemuxerWorker(self) {
 
   self.addEventListener('message', function (ev) {
     var data = ev.data;
-    //console.log('demuxer cmd:' + linkage.cmd);
+    //console.log('demuxer cmd:' + data.cmd);
     switch (data.cmd) {
       case 'init':
         var config = JSON.parse(data.config);

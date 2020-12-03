@@ -1,32 +1,4 @@
-<<<<<<< HEAD:src/components/device/Ckssb.js
-import Spirit from './../../core/Spirit'
-
-/**
- * 插卡式水表
- */
-class Ckssb extends Spirit {
-
-	constructor(x=10, y=10,width,height) {
-        super(x, y);
-	    this.name = "插卡式水表";
-	    this.className = "Ckssb";
-	    this.width = width;
-	    this.height = height;
-	    this.moveType = 4;
-	    this.minWidth = 20;
-	    this.minHeight = 20;
-	    this.linkage = true;
-	    this.isLinkPoint = true;
-	    this.zIndex = 3;
-	    this.config = {bindData: {orgId:'',deviceId:'',devicePoint:''}}
-	}
-
-	template(){
-		return $(`<div id="${this.id}" class="configur-spirit" style="position:absolute;left:${this.x}px;top: ${this.y}px;z-index: ${this.zIndex};transform: rotate(${this.rotate}deg)">
-		        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${this.width}" height="${this.height}"
-=======
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
->>>>>>> origin/dev-new:public/static/img/svg/ckssb.svg
 					 viewBox="0 0 88 50" style="enable-background:new 0 0 88 50;" xml:space="preserve">
 				<style type="text/css">
 					.ckssb-st0{fill:url(#ckssb_2_);}
@@ -110,65 +82,4 @@ class Ckssb extends Spirit {
 					<rect id="XMLID_903_" x="60.1" y="5.8" class="ckssb-st13" width="7.1" height="21.5"/>
 					<path id="XMLID_900_" class="st14" d="M68.3,4.8v23.5h-9.1V4.8H68.3z M66.3,26.3V6.8h-5.1v19.5H66.3z"/>
 				</g>
-<<<<<<< HEAD:src/components/device/Ckssb.js
 				</svg>
-			</div>`);
-	}
-
-	toJson() {
-		let json = {
-			className: this.className,
-			moveType: this.moveType,
-			linkage: this.linkage,
-			minWidth: this.minWidth,
-			minHeight: this.minHeight,
-			zIndex: this.zIndex,
-      isLinkPoint: this.isLinkPoint
-		};
-		return Object.assign(super.toJson(),json);
-	}
-
-  createLinkPoint() {
-    let x = this.x+this.width-8;
-    let y = this.y+this.height/2-4
-    let spirit = this.stage.create("LinkPoint",x,y,10,10);
-    spirit.isAuto = true;
-    this.stage.capacity.push(spirit);
-    let x2 = this.x-3;
-    let y2 = this.y+this.height/2-4;
-    let spirit2 = this.stage.create("LinkPoint",x2,y2,10,10);
-    spirit2.isAuto = true;
-    this.stage.capacity.push(spirit2);
-  }
-
-	viewPanel(device) {
-		let that = this;
-    let point = {name:'',value:0,unit:''}
-    if(device.points) {
-      device.points.forEach(function(data) {
-        if(data.id=="TF") {
-          point.value = parseFloat(data.value);
-          point.unit = data.unit;
-          point.name = data.name;
-        }
-      });
-    }
-    $('.bm-view-panel').html('');
-    let vpt = $(`<div class="bm-view-panel__title">${that.lengthFormat(device.name,12)}</div>`);
-    let vpc = $(`<div class="bm-view-panel__content" style="height: 50px;overflow: hidden;"></div>`);
-    let img = $(`<img src="static/images/device/icon-dt3.png" height="50"/>`);
-    let div = $(`<div class="bm-img-text">
-                 <p>累积流量</p>
-                 <span>${that.floatFormat(point.value)}</span><small>&nbsp;${point.unit}</small>
-                </div>`)
-    vpc.append(img).append(div)
-    $('.bm-view-panel').append(vpt).append(vpc);
-    $('.bm-view-panel').css({width:200});
-    $('.bm-view-panel').show();
-	}
-}
-
-export default Ckssb;
-=======
-				</svg>
->>>>>>> origin/dev-new:public/static/img/svg/ckssb.svg
