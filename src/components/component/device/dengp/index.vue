@@ -1,6 +1,6 @@
 // 灯泡
 <template>
-  <div class="bm-device-dengp-com" :style="comStyle"  @click="controlEvent">
+  <div class="bm-device-dengp-com" :style="comStyle" @click="controlEvent">
     <!-- :viewBox="`${info.vBoxx} ${info.vBoxy} ${info.width} ${info.height}`" -->
     <svg
       version="1.1"
@@ -177,7 +177,7 @@ export default {
   name: "deviceDengpCom",
   data() {
     return {
-      pointValue: "1" // expr:'SwSts',stop:0,start:1,alarm:2
+      pointValue: "0" // expr:'SwSts',stop:0,start:1,alarm:2
     };
   },
   props: {
@@ -291,7 +291,7 @@ export default {
           });
           if (point) {
             let { value = "" } = point || {};
-            this.pointValue = value;
+            this.pointValue = Number(value);
             // this.pointValue = parseInt(Math.random() * 3);
           }
           // let { value = "", unit = "",id='' } = point || {};
@@ -313,7 +313,18 @@ export default {
       pointCode = devicePoint;
       let point = pointCode;
       let value = pointValue === 0 ? 1 : 0;
-      $vm.$emit("control", { deviceId, point, value });
+      $vm.$emit("control", {
+        deviceId,
+        point,
+        value,
+        callback: flag => {
+          if (flag) {
+            this.pointValue = value;
+          } else {
+            this.pointValue = pointValue; //如果取消则重置结果
+          }
+        }
+      });
     }
     // blurEvent(e) {
     //   let { target } = e;

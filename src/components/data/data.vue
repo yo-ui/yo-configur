@@ -6,7 +6,7 @@
     :title="$lang(`${condition.id ? '修改' : '新建'}数据表`)"
     @keydown.native.stop
     :visible.sync="showDialogStatus"
-    width="900px"
+    width="1000px"
   >
     <el-steps :active="defaultActive" simple>
       <template v-if="condition.type == 'simulate'">
@@ -49,7 +49,8 @@
     <el-form
       :model="condition"
       ref="form"
-      label-width="100px"
+      label-width="120px"
+      label-suffix=":"
       :inline="false"
       size="normal"
     >
@@ -95,14 +96,135 @@
           </el-upload>
         </el-form-item>
       </template>
+      <template v-else-if="condition.type == 'simulate'">
+        <el-form-item :label="$lang('单次更新行数')" required>
+          <el-input-number
+            controls-position="right"
+            v-model="condition.line"
+            :placeholder="$lang('请输入单次更新行数')"
+            size="normal"
+            :min="1"
+            :max="1000"
+            clearable
+          ></el-input-number>
+          <el-tooltip
+            :content="$lang('单批次生成的数据行数，范围为[1,1000]！')"
+            placement="top"
+            effect="dark"
+          >
+            <i class="el-icon-warning-outline"></i>
+          </el-tooltip>
+        </el-form-item>
+        <el-form-item :label="$lang('更新时间间隔')" required>
+          <el-input-number
+            controls-position="right"
+            v-model="condition.time"
+            :placeholder="$lang('请输入更新时间间隔')"
+            size="normal"
+            :min="0"
+            :max="1000"
+            clearable
+          ></el-input-number>
+          <el-tooltip
+            :content="
+              $lang('单位为秒，范围为[0,1000],0表示仅生成一次，无后续更新！')
+            "
+            placement="top"
+            effect="dark"
+          >
+            <i class="el-icon-warning-outline"></i>
+          </el-tooltip>
+        </el-form-item>
+        <el-form-item :label="$lang('数据更新方式')" required>
+          <el-radio-group v-model="condition.updateType">
+            <el-radio-button
+              v-for="item in updateTypeList"
+              :key="item.code"
+              :label="item.code"
+            >
+              {{ item.name }}
+            </el-radio-button>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item :label="$lang('数据表格式')" required>
+          <el-table
+            header-row-class-name="table-header"
+            :data="condition.columns"
+            border
+            stripe
+            min-height="300"
+          >
+            <el-table-column
+              align="center"
+              v-for="item in simulateTableKeys"
+              :prop="item.code"
+              :key="item.code"
+              :label="item.name"
+            >
+              <template #header>
+                {{ item.name }}
+                <el-tooltip
+                  v-if="item.descr"
+                  :content="$lang(item.descr)"
+                  placement="top"
+                  effect="dark"
+                >
+                  <i class="el-icon-warning-outline"></i>
+                </el-tooltip>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-form-item>
+      </template>
+      <template v-else-if="condition.type == 'interactive'">
+        <el-form-item :label="$lang('说明')" required>
+          {{
+            $lang(
+              "交互数据表可以让各个组件之间协同通讯，以达成一些交互效果（例如切换 Tab时隐藏/显示其他组件）,一个交互数据可以让多套组件使用，因此推荐一个仪表盘只创建一个交互数据。交互数据表不能添加后续的操作流程（如新建列，列排序等）。"
+            )
+          }}
+        </el-form-item>
+        <el-form-item :label="$lang('交互内容')" required>
+          <el-table
+            header-row-class-name="table-header"
+            :data="condition.columns"
+            border
+            stripe
+            min-height="300"
+          >
+            <el-table-column
+              align="center"
+              v-for="item in interactiveTableKeys"
+              :prop="item.code"
+              :key="item.code"
+              :label="item.name"
+            >
+              <template #header>
+                {{ item.name }}
+                <el-tooltip
+                  v-if="item.descr"
+                  :content="$lang(item.descr)"
+                  placement="top"
+                  effect="dark"
+                >
+                  <i class="el-icon-warning-outline"></i>
+                </el-tooltip>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-form-item>
+      </template>
     </el-form>
 
     <template #footer>
-      <el-button @click="closeEvent">{{ $lang("取消") }}</el-button>
       <!-- <el-button @click="resetEvent">{{ $lang("取消") }}</el-button> -->
-      <el-button type="primary" @click="submitEvent">{{
-        $lang("确定")
+      <el-button type="primary" @click="prevEvent" v-if="defaultActive > 0">{{
+        $lang("上一步")
       }}</el-button>
+      <el-button type="primary" @click="submitEvent">{{
+        $lang(defaultActive == 1 ? "确定" : "下一步")
+      }}</el-button>
+      <el-button @click="closeEvent">{{ $lang("取消") }}</el-button>
     </template>
   </el-dialog>
 </template>
@@ -121,9 +243,32 @@ export default {
       { code: "static", name: "静态数据", disabled: true },
       { code: "interactive", name: "交互数据" }
     ]);
+    let updateTypeList = Object.freeze([
+      { code: "append", name: "追加" },
+      { code: "overide", name: "覆盖" }
+    ]);
+    //模拟数据表格式
+    let simulateTableKeys = Object.freeze([
+      { code: "index", name: "序号" },
+      { code: "name", name: "列名", descr: "数据表每一列的名称" },
+      { code: "type", name: "类型", descr: "数据表每一列的类型" },
+      { code: "rule", name: "生成规则", descr: "数据表每一列的数据生成规则" }
+    ]);
+    //交互数据表格式
+    let interactiveTableKeys = Object.freeze([
+      { code: "data", name: "数据", descr: "每个单元格的数据，必填" },
+      {
+        code: "descr",
+        name: "说明",
+        descr: "每个数据的说明，选填,类似代码注释"
+      }
+    ]);
     return {
       showDialogStatus: false,
       typeList,
+      updateTypeList,
+      interactiveTableKeys,
+      simulateTableKeys,
       defaultActive: 0,
       // pointList: [],
       // device: null,
@@ -139,8 +284,7 @@ export default {
         line: 10, //单次更新行数
         time: 2, //单次更新时间间隔
         updateType: "append", // append 追加 overide 覆盖
-        colums: {} //表列
-
+        columns: [] //表列
         // orgKeywords: "",
         // orgName: "",
         // orgId: "",
@@ -211,6 +355,7 @@ export default {
       //   bindData || {};
       // this.deviceList = null;
       // this.pointList = null;
+      this.defaultActive = 0;
       this.showDialogStatus = true;
       // this.resetStatus = false;
       // this.$refs.form?.resetFields();
@@ -318,8 +463,15 @@ export default {
         this.$refs.form?.clearValidate();
       });
     },
+    prevEvent() {
+      this.defaultActive = 0;
+    },
     submitEvent() {
-      let { resetStatus = false } = this;
+      let { defaultActive = 0 } = this;
+      if (defaultActive != 1) {
+        this.defaultActive = 1;
+        return;
+      }
       let callback = () => {
         let { widgetList = [], condition } = this;
         let {

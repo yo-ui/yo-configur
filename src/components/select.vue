@@ -224,14 +224,14 @@ export default {
             activeComs.push(item);
           }
         });
-        let { length = 0 } = activeComs || [];
-        let activeCom = canvas;
-        if (length > 0) {
-          [activeCom = {}] = activeComs || [];
-        } else {
-          activeCom = canvas;
-        }
-        this.setActiveCom(activeCom);
+        // let { length = 0 } = activeComs || [];
+        // let activeCom = canvas;
+        // if (length > 0) {
+        //   [activeCom = {}] = activeComs || [];
+        // } else {
+        //   activeCom = canvas;
+        // }
+        // this.setActiveCom(activeCom);
         this.setActiveComs(activeComs);
       }
       // bmCommon.log("activeComs", activeComs);

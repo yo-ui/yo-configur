@@ -2,8 +2,9 @@
   <div ref="bmCom" :style="comStyle">
     <span
       >{{ info.content
-      }}<small :style="unitStyle">{{ info.unit || "℃" }}</small></span
+      }}<small :style="unitStyle">{{ info.unit || "" }}</small></span
     >
+    <!-- ℃ -->
   </div>
 </template>
 
