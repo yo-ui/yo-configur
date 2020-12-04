@@ -19,6 +19,6 @@ module.exports = {
   serviceHost: "/service", //后端接口地址
   manageHost: "/manage", //后端接口地址
   serviceLogin: "https://eiot.energyiot.cn/login",
-  manageLogin: "https://eiot.energyiot.cn/login",
+  manageLogin: "https://m.energyiot.cn/login",
   debug: false
 };
