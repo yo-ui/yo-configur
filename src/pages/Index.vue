@@ -444,6 +444,7 @@ export default {
           canvas.left = 0;
           canvas.top = 0;
           this.setCanvas(canvas);
+          let widgets = [];
           widgetList.forEach(item => {
             let { alias = "", type = "", bindData = {} } = item || {};
             if (!alias) {
@@ -452,18 +453,26 @@ export default {
             let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
             let { data = {} } = _item || {};
             let {
-              infoType = "",
-              dataType = "",
-              bindData: _bindData = {},
-              dataCode = ""
+              // infoType = "",
+              // dataType = "",
+              bindData: _bindData = {}
+              // dataCode = ""
             } = data || {};
-            item.infoType = infoType;
-            item.dataType = dataType;
-            item.dataCode = dataCode;
-            item.bindData = { ..._bindData, ...bindData };
             item.alias = alias;
+            for (let i in data) {
+              if (!item[i]) {
+                item[i] = data[i];
+              }
+            }
+            item.bindData = { ..._bindData, ...bindData };
+            // item.infoType = infoType;
+            // item.dataType = dataType;
+            // item.dataCode = dataCode;
+            if (type && type != "canvas") {
+              widgets.push(item);
+            }
           });
-          this.setWidgetList(widgetList);
+          this.setWidgetList(widgets || []);
           this.setCanvasData(data);
           this.resetCanvasSize();
           this.selectComAction();
@@ -732,16 +741,16 @@ export default {
     },
     keyupEvent(e) {
       let {
-        keyCode = "",
+        keyCode = ""
         // shiftKey = false,
         // ctrlKey = false,
         // metaKey = false
         // altKey = false
       } = e;
       // ctrlKey = ctrlKey || metaKey; //(ctrl(cmd))
-      if(keyCode==32){
-         // 空格
-        $vm.$emit("canvas-action","select")
+      if (keyCode == 32) {
+        // 空格
+        $vm.$emit("canvas-action", "select");
       }
     },
     keydownEvent(e) {
@@ -930,7 +939,7 @@ export default {
       } else if (keyCode == 32) {
         // 空格
         e.preventDefault();
-        $vm.$emit("canvas-action","move")
+        $vm.$emit("canvas-action", "move");
       } else if (keyCode == 46) {
         // Delete
         this.deleteEvent();

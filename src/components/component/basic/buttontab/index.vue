@@ -1,12 +1,12 @@
 <template>
   <div class="button-tab-com" :style="comStyle">
+    <!-- @blur.stop="blurEvent($event, item)" -->
     <button
       :style="btnStyle(item, index)"
       v-for="(item, index) in info.contentList"
       :key="index"
       :contenteditable="info.editable"
       @click="clickEvent(item)"
-      @blur.stop="blurEvent($event, item)"
     >
       {{ item.text }}
     </button>
@@ -136,14 +136,18 @@ export default {
           } else {
             if (_width < 2 * width) {
               //竖向
-              styles[
-                "borderWidth"
-              ] = `${borderWidth}px ${borderWidth}px 0 ${borderWidth}px`;
+              if (!(marginBottom > 0 || marginTop > 0)) {
+                styles[
+                  "borderWidth"
+                ] = `${borderWidth}px ${borderWidth}px 0 ${borderWidth}px`;
+              }
             } else {
               //横向
-              styles[
-                "borderWidth"
-              ] = `${borderWidth}px 0 ${borderWidth}px ${borderWidth}px`;
+              if (!(marginRight > 0 || marginLeft > 0)) {
+                styles[
+                  "borderWidth"
+                ] = `${borderWidth}px 0 ${borderWidth}px ${borderWidth}px`;
+              }
             }
           }
         }

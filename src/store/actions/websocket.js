@@ -43,7 +43,7 @@ export default {
       //管理平台跳转过来
       url = `${manageHost}${url}`;
     }
-    bmCommon.log("websocket url=",url);
+    bmCommon.log("websocket url=", url);
     let socket = new SockJS(`${url}?x-access-token=${token}`);
     let stompClient = Stomp.over(socket);
     let headers = {};

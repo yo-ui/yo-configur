@@ -105,7 +105,7 @@
           />
         </g>
       </g>
-      <g class="SVG_ani" v-if="pointValue == 1">
+      <g class="SVG_ani" v-if="info.content">
         <g id="dengg_1416_">
           <polygon
             id="dengg_1419_"
@@ -216,7 +216,7 @@ export default {
   name: "deviceDenggCom",
   data() {
     return {
-      pointValue: "0" // expr:'SwSts',stop:0,start:1,alarm:2
+      // pointValue: "0" // expr:'SwSts',stop:0,start:1,alarm:2
     };
   },
   props: {
@@ -309,6 +309,12 @@ export default {
   },
   mounted() {
     // this.$emit("success"); //组件加载完成回调
+    let { info = {} } = this;
+    // bmCommon.log("dengg mounted=", info.content);
+    let { content = "" } = info || {};
+    if (content === "") {
+      info.content = false;
+    }
     this.init();
   },
   methods: {
@@ -331,37 +337,32 @@ export default {
           });
           if (point) {
             let { value = "" } = point || {};
-            this.pointValue = Number(value);
-            // this.pointValue = parseInt(Math.random() * 3);
+            info.content = value == 1 ? true : false;
           }
-          // let { value = "", unit = "",id='' } = point || {};
-          // info.content = value;
-          // info.unit = unit;
-          // info.width = $(this.$refs.bmText).width();
-          // this.$emit("success"); //组件加载完成回调
         });
       }
     },
     controlEvent() {
-      let { info = {}, pointValue = "" } = this;
-      let { bindData = {} } = info;
+      let { info = {} } = this;
+      let { bindData = {}, content = false } = info;
       let { deviceId = "", devicePoint = "" } = bindData || {};
       if (!deviceId) {
+        info.content = !content;
         return;
       }
       // let { $vm } = window;
       pointCode = devicePoint;
       let point = pointCode;
-      let value = pointValue === 0 ? 1 : 0;
+      let value = !content ? 1 : 0;
       $vm.$emit("control", {
         deviceId,
         point,
         value,
         callback: flag => {
           if (flag) {
-            this.pointValue = value;
+            info.content = !content;
           } else {
-            this.pointValue = pointValue; //如果取消则重置结果
+            info.content = content; //如果取消则重置结果
           }
         }
       });

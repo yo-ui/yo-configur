@@ -488,10 +488,10 @@ export default {
         };
         this.showDialogStatus = false;
       };
-      if (resetStatus) {
-        callback && callback();
-        return;
-      }
+      // if (resetStatus) {
+      //   callback && callback();
+      //   return;
+      // }
       this.$refs.form?.validate((valid, msg) => {
         if (valid) {
           callback();

@@ -1,7 +1,6 @@
-// 接地刀闸
+// 指南针
 <template>
   <div class="bm-basic-compass-com" :style="comStyle">
-    <!-- :viewBox="`${info.vBoxx} ${info.vBoxy} ${info.width} ${info.height}`" -->
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -13,72 +12,93 @@
     >
       <defs
         v-html="
-          `
-        <style type='text/css'>
-	.st0{fill:#FFFFFF;}
-	.st1{fill:#BFBFBF;}
-	.st2{fill-rule:evenodd;clip-rule:evenodd;fill:#C60909;}
-	.st3{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+          `<style type='text/css'>
+            .compass-st0{opacity:0.3;fill:#494949;}
+            .compass-st1{opacity:0.3;}
+            .compass-st2{fill:#FFFFFF;}
+            .compass-st3{fill-rule:evenodd;clip-rule:evenodd;fill:#C60909;}
+            .compass-st4{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
       </style>
       `
         "
       ></defs>
-
       <g id="图层_3">
         <path
-          class="st0"
+          class="compass-st0"
           d="M100,3C46.4,3,3,46.4,3,100s43.4,97,97,97s97-43.4,97-97S153.6,3,100,3L100,3z"
         />
       </g>
-      <g id="图层_1">
+      <g id="图层_5">
+        <g class="compass-st1">
+          <path
+            class="compass-st2"
+            d="M23.5,85C29.7,53.3,55.1,28.5,87,23.1v-2C54,26.5,27.7,52.2,21.4,85H23.5z"
+          />
+          <path
+            class="compass-st2"
+            d="M112,22.9c32.4,5,58.3,30.1,64.5,62.1h2c-6.3-33.1-33.1-59-66.6-64.1V22.9z"
+          />
+          <path
+            class="compass-st2"
+            d="M87,176.9c-32.6-5.5-58.4-31.3-63.9-63.9h-2c5.5,33.7,32.2,60.4,65.9,65.9V176.9z"
+          />
+          <path
+            class="compass-st2"
+            d="M176.9,113c-5.6,32.9-31.8,58.9-64.9,64.1v2c34.2-5.2,61.3-32,66.9-66.1H176.9z"
+          />
+        </g>
+      </g>
+      <g id="图层_6">
         <path
-          class="st1"
+          class="compass-st2"
           d="M100,41c32.5,0,59,26.5,59,59s-26.5,59-59,59s-59-26.5-59-59S67.5,41,100,41 M100,37c-34.8,0-63,28.2-63,63
 		s28.2,63,63,63s63-28.2,63-63S134.8,37,100,37L100,37z"
         />
         <g>
-          <rect x="98" y="39.2" class="st1" width="4" height="13.8" />
-          <rect x="98" y="147" class="st1" width="4" height="13.8" />
+          <rect x="98" y="39.2" class="compass-st2" width="4" height="13.8" />
+          <rect x="98" y="147" class="compass-st2" width="4" height="13.8" />
         </g>
         <g>
-          <rect x="147" y="98" class="st1" width="13.8" height="4" />
-          <rect x="39.2" y="98" class="st1" width="13.8" height="4" />
+          <rect x="147" y="98" class="compass-st2" width="13.8" height="4" />
+          <rect x="39.2" y="98" class="compass-st2" width="13.8" height="4" />
         </g>
-        <polygon class="st2" points="100,146 82.4,100 100,54 117.6,100 	" />
-        <polygon class="st3" points="100,140 84.7,100 115.3,100 	" />
       </g>
+      <g id="图层_1">
+        <polygon
+          class="compass-st3"
+          points="100,146 82.4,100 100,54 117.6,100"
+        />
+        <polygon class="compass-st4" points="100,140 84.7,100 115.3,100" />
+      </g>
+      <g id="图层_7"></g>
       <g id="图层_2">
         <g>
-          <g>
-            <path
-              d="M92.9,27.5V8.9h2.6c2.8,4.4,9.2,14.3,10.3,16.3h0c-0.2-2.6-0.1-5.4-0.1-8.4V8.9h1.9v18.6h-2.5
-				c-2.6-4.2-9.2-14.6-10.4-16.7h0c0.1,2.3,0.1,5.2,0.1,8.6v8.1H92.9z"
-            />
-          </g>
+          <path
+            class="compass-st2"
+            d="M92.8,30.5V12h3.3c2.7,4.3,8.5,13.6,9.5,15.6h0c-0.2-2.4-0.2-5.3-0.2-8.3V12h2.3v18.6h-3.1
+			c-2.5-4-8.5-14-9.7-16h0c0.1,2.1,0.1,5.3,0.1,8.6v7.4H92.8z"
+          />
         </g>
         <g>
-          <g>
-            <path
-              d="M94.5,184.5c0.5,2.4,2.1,3.7,5,3.7c3.2,0,4.4-1.5,4.4-3.5c0-2-0.9-3.2-4.9-4.1c-4.1-1-5.8-2.4-5.8-5.1
-				c0-2.6,1.9-4.9,6-4.9c4.2,0,6,2.5,6.3,4.9h-2c-0.4-1.8-1.6-3.2-4.4-3.2c-2.5,0-3.9,1.1-3.9,3.1c0,1.9,1.1,2.7,4.5,3.5
-				c5.3,1.3,6.1,3.4,6.1,5.7c0,2.9-2.1,5.2-6.5,5.2c-4.7,0-6.5-2.6-6.9-5.3H94.5z"
-            />
-          </g>
+          <path
+            class="compass-st2"
+            d="M95,184.4c0.5,2.2,2,3.4,4.7,3.4c2.9,0,4-1.4,4-3.1c0-1.9-0.9-2.9-4.6-3.8c-4.4-1.1-5.9-2.6-5.9-5.2
+			c0-2.8,2-5,6.2-5c4.4,0,6.2,2.6,6.5,5h-2.5c-0.3-1.7-1.4-3-4.1-3c-2.3,0-3.5,1-3.5,2.8c0,1.7,1,2.4,4.3,3.2
+			c5.3,1.3,6.2,3.3,6.2,5.7c0,3-2.2,5.3-6.8,5.3c-4.7,0-6.7-2.6-7.1-5.4H95z"
+          />
         </g>
         <g>
-          <g>
-            <path
-              d="M184.2,99.6h-9.4v7.3h10.3l-0.3,1.7h-11.9V89.9h11.7v1.7h-9.9v6.3h9.4V99.6z"
-            />
-          </g>
+          <path
+            class="compass-st2"
+            d="M184.4,99.9h-9.2v6.6h10.1l-0.3,2.1h-12.2V90h12.1v2.1h-9.7v5.7h9.2V99.9z"
+          />
         </g>
         <g>
-          <g>
-            <path
-              d="M14.1,108.5L9,89.9h2c1.3,5.2,3.8,14.3,4.2,16.5h0c0.4-2,3.2-11.6,4.5-16.5h2c1.2,4.4,4,14.6,4.3,16.4h0
-				c0.6-2.9,3.5-12.3,4.6-16.4h1.9L27,108.5h-2.1c-1.2-4.3-3.9-14.3-4.2-16.1h0c-0.5,2.6-3.2,11.7-4.4,16.1H14.1z"
-            />
-          </g>
+          <path
+            class="compass-st2"
+            d="M12.9,108.5L8,90h2.6c1.4,6.1,3.4,13.8,3.8,15.9h0c0.5-2.4,3-11.1,4.2-15.9H21c1.1,4.1,3.6,13.6,4.1,15.8h0
+			c0.6-3.2,3.2-12,4.2-15.8h2.4l-5.4,18.6h-2.6c-1.1-4.3-3.5-13.1-4-15.3h0c-0.6,2.8-2.9,11.1-4.1,15.3H12.9z"
+          />
         </g>
       </g>
     </svg>
@@ -133,7 +153,7 @@ export default {
       };
     },
     comStyle() {
-      let { info = {} ,gradientStyle} = this;
+      let { info = {}, gradientStyle } = this;
       let {
         width = "",
         height = "",
@@ -295,45 +315,5 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-// @import (reference) "./../../../../assets/less/common.less";
-// .db-st0 {
-//   fill: url(#db_1_);
-// }
-// .db-st1 {
-//   fill: #dfe3e8;
-// }
-// .db-st2 {
-//   fill: url(#db_11_);
-// }
-// .db-st3 {
-//   fill: #ffffff;
-// }
-// .db-st4 {
-//   fill: #c2c8ce;
-// }
-// .db-st5 {
-//   fill: #848776;
-// }
-// .db-st6 {
-//   fill: #25282b;
-// }
-// .db-st7 {
-//   fill: #8f9499;
-// }
-// .db-st8 {
-//   fill: #5b280e;
-// }
-// .db-st9 {
-//   fill: #f95d06;
-// }
-// .db-st10 {
-//   fill: url(#db_12_);
-// }
-// .db-st11 {
-//   opacity: 0.4;
-//   fill: #ff0000;
-// }
-</style>
-<style lang="less">
-@import (less) "../../../../assets/less/components/component/device/common.less";
+// @import (less) "../../../../assets/less/components/component/device/common.less";
 </style>

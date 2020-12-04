@@ -3,7 +3,7 @@
     <el-collapse v-model="activeNames">
       <!-- <el-collapse-item :title="$lang('通用绑定')" name="name" disabled> -->
       <bm-common-data :info="info"></bm-common-data>
-      <el-collapse-item :title="$lang('属性绑定')" name="props">
+      <!-- <el-collapse-item :title="$lang('属性绑定')" name="props">
         <p>
           <span class="label"> {{ $lang("标签项") }}: </span>
           <el-tooltip
@@ -54,7 +54,7 @@
             ></i>
           </el-tooltip>
         </p>
-      </el-collapse-item>
+      </el-collapse-item> -->
     </el-collapse>
   </div>
 </template>

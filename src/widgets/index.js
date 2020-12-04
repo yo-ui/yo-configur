@@ -69,6 +69,11 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-compass" */ "@/components/component/basic/compass/index.vue"
     ),
+  // 指南针1
+  compass1Com: () =>
+    import(
+      /* webpackChunkName: "bm-component-compass1" */ "@/components/component/basic/compass1/index.vue"
+    ),
   // 倒计时
   countdownTextCom: () =>
     import(
@@ -613,6 +618,11 @@ let styles = {
   compassStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-compass-style" */ "@/components/component/basic/compass/style.vue"
+    ),
+  // 指南针1
+  compass1StyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-compass1-style" */ "@/components/component/basic/compass1/style.vue"
     ),
   // 倒计时
   countdownTextStyleCom: () =>

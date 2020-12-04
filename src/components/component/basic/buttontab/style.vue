@@ -30,6 +30,14 @@
           ></el-input>
         </p>
         <p>
+          <span class="label">{{ $lang("组件名称") }}:</span>
+          <el-input
+            v-model="info.comName"
+            clearable
+            :placeholder="$lang('请输入组件名称')"
+          ></el-input>
+        </p>
+        <p>
           <span class="label"> {{ $lang("层级") }}: </span>
           <el-tooltip
             :content="$lang('请输入层级')"
@@ -787,6 +795,80 @@
                 </span>
               </span>
             </p>
+            <p class="margin-box">
+              <span class="label">{{ $lang("外边距") }}:</span>
+              <span class="c-box">
+                <span>
+                  上<el-input-number
+                    controls-position="right"
+                    clearable
+                    v-model.number="info.button.marginTop"
+                    :placeholder="$lang('上外边距')"
+                  ></el-input-number>
+                </span>
+                <span>
+                  下<el-input-number
+                    controls-position="right"
+                    clearable
+                    v-model.number="info.button.marginBottom"
+                    :placeholder="$lang('下外边距')"
+                  ></el-input-number>
+                </span>
+                <span>
+                  左<el-input-number
+                    controls-position="right"
+                    clearable
+                    v-model.number="info.button.marginLeft"
+                    :placeholder="$lang('左外边距')"
+                  ></el-input-number>
+                </span>
+                <span>
+                  右<el-input-number
+                    controls-position="right"
+                    clearable
+                    v-model.number="info.button.marginRight"
+                    :placeholder="$lang('右外边距')"
+                  ></el-input-number>
+                </span>
+              </span>
+            </p>
+            <p class="padding-box">
+              <span class="label">{{ $lang("内边距") }}:</span>
+              <span class="c-box">
+                <span>
+                  上<el-input-number
+                    controls-position="right"
+                    clearable
+                    v-model.number="info.button.paddingTop"
+                    :placeholder="$lang('上内边距')"
+                  ></el-input-number>
+                </span>
+                <span>
+                  下<el-input-number
+                    controls-position="right"
+                    clearable
+                    v-model.number="info.button.paddingBottom"
+                    :placeholder="$lang('下内边距')"
+                  ></el-input-number>
+                </span>
+                <span>
+                  左<el-input-number
+                    controls-position="right"
+                    clearable
+                    v-model.number="info.button.paddingLeft"
+                    :placeholder="$lang('左内边距')"
+                  ></el-input-number>
+                </span>
+                <span>
+                  右<el-input-number
+                    controls-position="right"
+                    clearable
+                    v-model.number="info.button.paddingRight"
+                    :placeholder="$lang('右内边距')"
+                  ></el-input-number>
+                </span>
+              </span>
+            </p>
           </el-collapse-item>
           <el-collapse-item
             class="tab-collapse-item"
@@ -1533,7 +1615,7 @@
             </el-option-group>
           </el-select>
         </p>
-        
+
         <template v-if="info.animation.name">
           <p>
             <span class="label">{{ $lang("动画速度") }}:</span>

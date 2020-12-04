@@ -133,14 +133,14 @@ export default {
           let { code = "", message = "" } = data || {};
           if (code == Constants.CODES.SUCCESS) {
             // this.$emit("success");
-            this.$$msgError("控制失败！");
             this.showDialogStatus = false;
             callback && callback(true);
           } else {
             callback && callback(false);
             // this.$emit("fail", message || this.$lang("控制失败！"));
             condition.password = "";
-            this.$$msgError(message || "控制失败！");
+            this.$$msgError("控制失败！");
+            bmCommon.error(message);
           }
         })
         .catch(err => {

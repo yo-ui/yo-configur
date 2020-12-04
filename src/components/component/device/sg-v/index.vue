@@ -38,8 +38,8 @@
           x="2"
           y="0"
           style="fill:url(#XMLID_V_)"
-      :width="info.width"
-      :height="info.height"
+          :width="info.width"
+          :height="info.height"
         />
       </g>
     </svg>
