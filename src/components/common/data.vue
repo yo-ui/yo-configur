@@ -111,14 +111,14 @@
         </template>
       </el-select>
     </p>
-    <p v-if="info.bindData.comId">
+    <!-- <p v-if="info.bindData.comId">
       <el-input
         v-model="info.bindData.content"
         :placeholder="$lang('请输入绑定的数据(地址|数字|字符串)')"
         size="normal"
         clearable
       ></el-input>
-    </p>
+    </p> -->
   </el-collapse-item>
   <!-- </el-collapse> -->
   <!-- </div> -->

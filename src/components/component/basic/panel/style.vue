@@ -47,6 +47,14 @@
           </div>
         </template>
         <p>
+          <span class="label">{{ $lang("组件名称") }}:</span>
+          <el-input
+            v-model="info.comName"
+            clearable
+            :placeholder="$lang('请输入组件名称')"
+          ></el-input>
+        </p>
+        <p>
           <span class="label"> {{ $lang("层级") }}: </span>
           <el-input-number
             controls-position="right"

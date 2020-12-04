@@ -3,6 +3,14 @@
     <el-collapse v-model="activeNames">
       <el-collapse-item :title="info.name" name="1">
         <p>
+          <span class="label">{{ $lang("组件名称") }}:</span>
+          <el-input
+            v-model="info.comName"
+            clearable
+            :placeholder="$lang('请输入组件名称')"
+          ></el-input>
+        </p>
+        <p>
           <span class="label"> {{ $lang("层级") }}: </span>
           <el-tooltip content="请输入层级" placement="top" effect="dark">
             <el-input-number
