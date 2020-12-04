@@ -402,7 +402,7 @@ export default {
         return;
       }
       data.canvasData = {
-        widgetList,
+        widgetList: widgetList.filter(item => item.type != "canvas"),
         canvas
       };
       if (!data.background) {

@@ -1,30 +1,5 @@
 <template>
   <div class="bm-iframe-style-com">
-    <!-- <h2>{{ $lang("功能选择") }}</h2>
-    <p>
-      <i
-        class="el-icon-rank"
-        :class="{ active: info.action == 'select' }"
-        @click="actionEvent('select')"
-        :title="$lang('选择组件')"
-      ></i>
-      <i
-        class="el-icon-thumb"
-        :class="{ active: info.action == 'move' }"
-        @click="actionEvent('move')"
-        :title="$lang('移动画布')"
-      ></i>
-    </p> -->
-    <!-- <h2>{{ info.name }}</h2> -->
-    <!-- <p>
-      <span class="label"> {{ $lang("文本名称") }}: </span>
-      <el-input
-        v-model="info.content"
-        clearable
-        :placeholder="$lang('请输入文本名称')"
-      ></el-input>
-    </p> -->
-
     <el-collapse v-model="activeNames">
       <el-collapse-item :title="info.name" name="name" disabled>
         <template slot="title">
@@ -864,7 +839,7 @@
             </el-option-group>
           </el-select>
         </p>
-        
+
         <template v-if="info.animation.name">
           <p>
             <span class="label">{{ $lang("动画速度") }}:</span>

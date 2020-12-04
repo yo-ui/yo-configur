@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-button-tab-style-com">
+  <div class="bm-basic-select-style-com">
     <el-collapse v-model="activeNames">
       <el-collapse-item name="name" disabled>
         <template slot="title">
@@ -1664,7 +1664,7 @@ import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "bmButtonTabStyleCom",
+  name: "bmSelectStyleCom",
   data() {
     return {
       tabActive: "0",

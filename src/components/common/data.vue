@@ -94,25 +94,31 @@
         ></i>
       </el-tooltip>
     </p>
-    <!-- <p>
+    <p>
       <span class="label"> {{ $lang("绑定组件") }}: </span>
-      <el-select v-model="info.bindData.comId">
-        <el-option
-          :key="item.id"
-          v-for="item in widgetList"
-          :label="`${item.comName}(${item.id})`"
-          :value="item.id"
-        ></el-option>
+      <el-select
+        v-model="info.bindData.comId"
+        :placeholder="$lang('请选择需要绑定的组件')"
+      >
+        <el-option value="" :label="$lang('无')"></el-option>
+        <template v-for="item in widgetList">
+          <el-option
+            :key="item.id"
+            v-if="info.id != item.id"
+            :label="`${item.comName}(${item.id})`"
+            :value="item.id"
+          ></el-option>
+        </template>
       </el-select>
     </p>
-    <p v-if="info.bindData.comId !== ''">
+    <p v-if="info.bindData.comId">
       <el-input
         v-model="info.bindData.content"
         :placeholder="$lang('请输入绑定的数据(地址|数字|字符串)')"
         size="normal"
         clearable
       ></el-input>
-    </p> -->
+    </p>
   </el-collapse-item>
   <!-- </el-collapse> -->
   <!-- </div> -->

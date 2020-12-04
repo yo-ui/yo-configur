@@ -267,17 +267,23 @@ export default {
       return styles || {};
     }
   },
-  created() {
-    let { info = {} } = this;
-    info.dataType = "device";
-    this.setActiveCom(info);
-  },
+  // created() {
+  //   let { info = {} } = this;
+  //   info.dataType = "device";
+  //   this.setActiveCom(info);
+  // },
   mounted() {
+    let { info = {} } = this;
+    // bmCommon.log("kg mounted=", info.content);
+    let { content = "" } = info || {};
+    if (content === "") {
+      info.content = false;
+    }
     this.init();
   },
   methods: {
     ...mapMutations({
-      setActiveCom: "canvas/setActiveCom" //设置当前选中组件
+      // setActiveCom: "canvas/setActiveCom" //设置当前选中组件
     }),
     ...mapActions({}),
     controlEvent() {
@@ -319,13 +325,7 @@ export default {
           if (point) {
             let { value = "" } = point || {};
             info.content = value == 1 ? true : false;
-            // this.pointValue = parseInt(Math.random() * 3);
           }
-          // let { value = "", unit = "",id='' } = point || {};
-          // info.content = value;
-          // info.unit = unit;
-          // info.width = $(this.$refs.bmText).width();
-          // this.$emit("success"); //组件加载完成回调
         });
       }
     }

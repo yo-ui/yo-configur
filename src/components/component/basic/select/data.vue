@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-button-tab-data-com">
+  <div class="bm-basic-select-data-com">
     <el-collapse v-model="activeNames">
       <!-- <el-collapse-item :title="$lang('通用绑定')" name="name" disabled> -->
       <bm-common-data :info="info"></bm-common-data>
@@ -65,7 +65,7 @@
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "buttontabDataCom",
+  name: "selectDataCom",
   data() {
     return {
       activeNames: ["name", "props", "write"]

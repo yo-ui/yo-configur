@@ -293,53 +293,7 @@ export default {
   methods: {
     ...mapMutations({}),
     ...mapActions({}),
-    // controlEvent() {
-    //   let { info = {} } = this;
-    //   let { content = false, bindData = {} } = info || {};
-    //   info.content = !content;
-    //   let { deviceId = "" } = bindData || {};
-    //   if (!deviceId) {
-    //     return;
-    //   }
-    //   let point = pointCode;
-    //   let value = !content ? 1 : 0;
-    //   $vm.$emit("control", {
-    //     deviceId,
-    //     point,
-    //     value,
-    //     callback: flag => {
-    //       if (!flag) {
-    //         info.content = content; //如果取消则重置结果
-    //       }
-    //     }
-    //   });
-    // },
-    init() {
-      // let { info = {}, showType = "" } = this;
-      // if (showType != "edit") {
-      //   let { id = "" } = info || {};
-      //   let { $vm } = window;
-      //   // let { deviceId = "" } = bindData || {};
-      //   $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
-      //     bmCommon.log("bmProgressbarCom", device);
-      //     let { pointList = [] } = device || {};
-      //     let point = pointList.find(item => {
-      //       let { point: id = "" } = item || {};
-      //       return id == pointCode; // SwSts  开关状态
-      //     });
-      //     if (point) {
-      //       let { value = "" } = point || {};
-      //       info.content = value == 1 ? true : false;
-      //       // this.pointValue = parseInt(Math.random() * 3);
-      //     }
-      //     // let { value = "", unit = "",id='' } = point || {};
-      //     // info.content = value;
-      //     // info.unit = unit;
-      //     // info.width = $(this.$refs.bmText).width();
-      //     // this.$emit("success"); //组件加载完成回调
-      //   });
-      // }
-    }
+    init() {}
   }
 };
 </script>

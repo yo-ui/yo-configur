@@ -173,33 +173,6 @@ export default {
         });
       }
     }
-    // controlEvent() {
-    //   let { info = {}, pointValue = "" } = this;
-    //   let { bindData = {} } = info;
-    //   let { deviceId = "", devicePoint = "" } = bindData || {};
-    //   if (!deviceId) {
-    //     return;
-    //   }
-    //   // let { $vm } = window;
-    //   pointCode = devicePoint;
-    //   let point = pointCode;
-    //   let value = pointValue === 0 ? 1 : 0;
-    //   $vm.$emit("control", { deviceId, point, value,callback: flag => {
-    //   if (flag) {
-    //   this.pointValue = value;
-    // } else {
-    //   this.pointValue = pointValue; //如果取消则重置结果
-    // }
-    // } });
-    // }
-    // blurEvent(e) {
-    //   let { target } = e;
-    //   let { info = {} } = this;
-    //   let name = $(target)
-    //     .text()
-    //     .trim();
-    //   info.name = name;
-    // }
   }
 };
 </script>

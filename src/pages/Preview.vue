@@ -314,20 +314,38 @@ export default {
       this.setShowType(Constants.SHOWTYPEMAP.PREVIEW);
       let { previewData = {} } = this;
       let { widgetList = [], canvas = {} } = previewData || {};
+      let widgets = [];
       widgetList.forEach(item => {
-        let { alias = "", type = "" } = item || {};
+        let { alias = "", type = "", bindData = {} } = item || {};
         if (!alias) {
           alias = type;
         }
         let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
         let { data = {} } = _item || {};
-        let { infoType = "", dataType = "" } = data || {};
-        item.showCoverStatus = true;
-        item.infoType = infoType;
-        item.dataType = dataType;
-        item.alias = alias;
+        // let { infoType = "", dataType = "" } = data || {};
+        // item.showCoverStatus = true;
+        // item.infoType = infoType;
+        // item.dataType = dataType;
+        let {
+          // infoType = "",
+          // dataType = "",
+          bindData: _bindData = {}
+          // dataCode = ""
+        } = data || {};
+        for (let i in data) {
+          if (!item[i]) {
+            item[i] = data[i];
+          }
+        }
+        item.bindData = { ..._bindData, ...bindData };
+        // item.infoType = infoType;
+        // item.dataType = dataType;
+        // item.dataCode = dataCode;
+        if (type && type != "canvas") {
+          widgets.push(item);
+        }
       });
-      this.setWidgetList(widgetList || []);
+      this.setWidgetList(widgets || []);
       canvas.left = 0;
       canvas.top = 0;
       this.setCanvas(canvas || {});

@@ -870,7 +870,7 @@
             </el-option-group>
           </el-select>
         </p>
-        
+
         <template v-if="info.animation.name">
           <p>
             <span class="label">{{ $lang("动画速度") }}:</span>

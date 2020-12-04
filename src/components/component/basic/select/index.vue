@@ -1,15 +1,16 @@
 <template>
-  <div class="button-tab-com" :style="comStyle">
-    <!-- @blur.stop="blurEvent($event, item)" -->
-    <button
+  <div class="bm-select-com" :style="comStyle">
+    <!-- <button
       :style="btnStyle(item, index)"
       v-for="(item, index) in info.contentList"
       :key="index"
       :contenteditable="info.editable"
       @click="clickEvent(item)"
+      @blur.stop="blurEvent($event, item)"
     >
       {{ item.text }}
-    </button>
+    </button> -->
+    <div class="select"></div>
   </div>
 </template>
 
@@ -17,7 +18,7 @@
 import bmCommon from "@/common/common";
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "buttonTabCom",
+  name: "bmSelectCom",
   data() {
     return {};
   },
@@ -136,14 +137,14 @@ export default {
           } else {
             if (_width < 2 * width) {
               //竖向
-              if (!(marginBottom > 0 || marginTop > 0)) {
+              if (marginBottom > 0) {
                 styles[
                   "borderWidth"
                 ] = `${borderWidth}px ${borderWidth}px 0 ${borderWidth}px`;
               }
             } else {
               //横向
-              if (!(marginRight > 0 || marginLeft > 0)) {
+              if (marginRight > 0) {
                 styles[
                   "borderWidth"
                 ] = `${borderWidth}px 0 ${borderWidth}px ${borderWidth}px`;

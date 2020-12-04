@@ -13,70 +13,70 @@
         v-html="
           `<style type='text/css'>
       
-.st0 {
+.lsdgl-st0 {
   fill: #d0d4d8;
 }
-.st1 {
+.lsdgl-st1 {
   fill: url(#XMLID_2_);
 }
-.st2 {
+.lsdgl-st2 {
   fill: none;
   stroke: #d0d4d8;
   stroke-width: 0.75;
   stroke-miterlimit: 10;
 }
-.st3 {
+.lsdgl-st3 {
   fill: #333333;
 }
-.st4 {
+.lsdgl-st4 {
   fill: url(#SVGID_1_);
 }
-.st5 {
+.lsdgl-st5 {
   fill: url(#SVGID_2_);
 }
-.st6 {
+.lsdgl-st6 {
   fill: url(#SVGID_3_);
 }
-.st7 {
+.lsdgl-st7 {
   fill: #3b3b3b;
 }
-.st8 {
+.lsdgl-st8 {
   fill: #ffffff;
 }
-.st9 {
+.lsdgl-st9 {
   fill: url(#SVGID_4_);
 }
-.st10 {
+.lsdgl-st10 {
   fill: url(#SVGID_5_);
 }
-.st11 {
+.lsdgl-st11 {
   fill: url(#SVGID_6_);
 }
-.st12 {
+.lsdgl-st12 {
   fill: #848776;
 }
-.st13 {
+.lsdgl-st13 {
   fill: #25282b;
 }
-.st14 {
+.lsdgl-st14 {
   fill: #444444;
 }
-.st15 {
+.lsdgl-st15 {
   fill: #666666;
 }
-.st16 {
+.lsdgl-st16 {
   fill: #7d7d7d;
 }
-.st17 {
+.lsdgl-st17 {
   fill: url(#SVGID_7_);
 }
-.st18 {
+.lsdgl-st18 {
   fill: #2f3133;
 }
-.st19 {
+.lsdgl-st19 {
   fill: #fffa63;
 }
-.st20 {
+.lsdgl-st20 {
   opacity: 0.38;
   fill: #ff0000;
 }
@@ -86,7 +86,7 @@
       <g id="图层_2">
         <path
           id="XMLID_1032_"
-          class="st0"
+          class="lsdgl-st0"
           d="M96.1,195H5.7c-2.5,0-4.5-2-4.5-4.5V14.4l2.9-8.9C5,3.1,6.8,1,9.3,1h83.2
 		c2.5,0,4.4,2.2,5.2,4.5l2.9,8.9v176.1C100.6,193,98.6,195,96.1,195z"
         />
@@ -105,18 +105,24 @@
         </linearGradient>
         <path
           id="XMLID_1031_"
-          class="st1"
+          class="lsdgl-st1"
           d="M94.5,194.4H7.3c-3.1,0-5.6-2.5-5.6-5.6v-171c0-3.1,2.5-5.6,5.6-5.6h87.2
 		c3.1,0,5.6,2.5,5.6,5.6v171C100.1,191.9,97.6,194.4,94.5,194.4z"
         />
         <path
           id="XMLID_1017_"
-          class="st2"
+          class="lsdgl-st2"
           d="M100.4,72.3c0,1.2-1.7,2.2-3.9,2.2H5.2c-2.1,0-3.9-1-3.9-2.2"
         />
         <g>
           <polygon points="35.2,24.7 24,25 13.9,24.7 13.9,23.7 35.2,23.7 		" />
-          <rect x="13.9" y="24.7" class="st3" width="21.4" height="15.5" />
+          <rect
+            x="13.9"
+            y="24.7"
+            class="lsdgl-st3"
+            width="21.4"
+            height="15.5"
+          />
           <linearGradient
             id="SVGID_1_"
             gradientUnits="userSpaceOnUse"
@@ -129,14 +135,20 @@
             <stop offset="1" style="stop-color:#B5BABD" />
           </linearGradient>
           <polygon
-            class="st4"
+            class="lsdgl-st4"
             points="33.3,34.4 30.5,37.3 16.7,37.3 16.7,26.7 33.3,26.7 		"
           />
           <polygon points="15.8,37.3 15.8,38.3 29.5,38.3 30.5,37.3 		" />
         </g>
         <g>
           <polygon points="62.2,24.7 51,25 40.9,24.7 40.9,23.7 62.2,23.7 		" />
-          <rect x="40.9" y="24.7" class="st3" width="21.4" height="15.5" />
+          <rect
+            x="40.9"
+            y="24.7"
+            class="lsdgl-st3"
+            width="21.4"
+            height="15.5"
+          />
           <linearGradient
             id="SVGID_2_"
             gradientUnits="userSpaceOnUse"
@@ -149,14 +161,20 @@
             <stop offset="1" style="stop-color:#B5BABD" />
           </linearGradient>
           <polygon
-            class="st5"
+            class="lsdgl-st5"
             points="60.3,34.4 57.5,37.3 43.7,37.3 43.7,26.7 60.3,26.7 		"
           />
           <polygon points="42.8,37.3 42.8,38.3 56.5,38.3 57.5,37.3 		" />
         </g>
         <g>
           <polygon points="89.2,24.7 78,25 67.9,24.7 67.9,23.7 89.2,23.7 		" />
-          <rect x="67.9" y="24.7" class="st3" width="21.4" height="15.5" />
+          <rect
+            x="67.9"
+            y="24.7"
+            class="lsdgl-st3"
+            width="21.4"
+            height="15.5"
+          />
           <linearGradient
             id="SVGID_3_"
             gradientUnits="userSpaceOnUse"
@@ -169,14 +187,14 @@
             <stop offset="1" style="stop-color:#B5BABD" />
           </linearGradient>
           <polygon
-            class="st6"
+            class="lsdgl-st6"
             points="87.3,34.4 84.5,37.3 70.7,37.3 70.7,26.7 87.3,26.7 		"
           />
           <polygon points="69.8,37.3 69.8,38.3 83.5,38.3 84.5,37.3 		" />
         </g>
         <g>
-          <circle class="st7" cx="29" cy="58" r="4.9" />
-          <circle class="st8" cx="29" cy="59" r="4.6" />
+          <circle class="lsdgl-st7" cx="29" cy="58" r="4.9" />
+          <circle class="lsdgl-st8" cx="29" cy="59" r="4.6" />
           <linearGradient
             id="SVGID_4_"
             gradientUnits="userSpaceOnUse"
@@ -188,11 +206,11 @@
             <stop offset="0" style="stop-color:#8CD400" />
             <stop offset="1" style="stop-color:#4D7F00" />
           </linearGradient>
-          <circle class="st9" cx="29" cy="59" r="3.5" />
+          <circle class="lsdgl-st9" cx="29" cy="59" r="3.5" />
         </g>
         <g>
-          <circle class="st7" cx="51.3" cy="58" r="4.9" />
-          <circle class="st8" cx="51.3" cy="59" r="4.6" />
+          <circle class="lsdgl-st7" cx="51.3" cy="58" r="4.9" />
+          <circle class="lsdgl-st8" cx="51.3" cy="59" r="4.6" />
           <linearGradient
             id="SVGID_5_"
             gradientUnits="userSpaceOnUse"
@@ -204,11 +222,11 @@
             <stop offset="0" style="stop-color:#FF8955" />
             <stop offset="1" style="stop-color:#970000" />
           </linearGradient>
-          <circle class="st10" cx="51.3" cy="59" r="3.5" />
+          <circle class="lsdgl-st10" cx="51.3" cy="59" r="3.5" />
         </g>
         <g>
-          <circle class="st7" cx="74.3" cy="58" r="4.9" />
-          <circle class="st8" cx="74.3" cy="59" r="4.6" />
+          <circle class="lsdgl-st7" cx="74.3" cy="58" r="4.9" />
+          <circle class="lsdgl-st8" cx="74.3" cy="59" r="4.6" />
           <linearGradient
             id="SVGID_6_"
             gradientUnits="userSpaceOnUse"
@@ -220,33 +238,33 @@
             <stop offset="0" style="stop-color:#FF8955" />
             <stop offset="1" style="stop-color:#970000" />
           </linearGradient>
-          <circle class="st11" cx="74.3" cy="59" r="3.5" />
+          <circle class="lsdgl-st11" cx="74.3" cy="59" r="3.5" />
         </g>
         <g id="XMLID_620_">
           <rect
             id="XMLID_624_"
             x="36.7"
             y="85.9"
-            class="st12"
+            class="lsdgl-st12"
             width="30"
             height="16.9"
           />
           <path
             id="XMLID_621_"
-            class="st13"
+            class="lsdgl-st13"
             d="M67.7,103.9h-32V84.9h32V103.9z M37.7,101.9h28V86.9h-28V101.9z"
           />
         </g>
         <g id="XMLID_543_">
           <path
             id="XMLID_546_"
-            class="st14"
+            class="lsdgl-st14"
             d="M19.2,99.5c-1.5,0-2.6,1.2-2.6,2.6v15.4c0,1.5,1.2,2.6,2.6,2.6c1.5,0,2.6-1.2,2.6-2.6v-15.4
 			C21.8,100.7,20.7,99.5,19.2,99.5z"
           />
           <path
             id="XMLID_354_"
-            class="st15"
+            class="lsdgl-st15"
             d="M19.2,101c-0.8,0-1.4,0.6-1.4,1.4v14.9c0,0.8,0.6,1.4,1.4,1.4c0.8,0,1.4-0.6,1.4-1.4v-14.9
 			C20.6,101.6,20,101,19.2,101z"
           />
@@ -256,7 +274,7 @@
             x="14"
             y="183.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -126.1876 64.9021)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -265,7 +283,7 @@
             x="22"
             y="183.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -123.8444 70.559)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -274,7 +292,7 @@
             x="30"
             y="183.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -121.5013 76.2158)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -283,7 +301,7 @@
             x="38"
             y="183.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -119.1581 81.8727)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -292,7 +310,7 @@
             x="46"
             y="183.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -116.815 87.5295)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -301,7 +319,7 @@
             x="54"
             y="183.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -114.4718 93.1864)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -310,7 +328,7 @@
             x="62"
             y="183.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -112.1287 98.8433)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -319,7 +337,7 @@
             x="70"
             y="183.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -109.7856 104.5001)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -328,7 +346,7 @@
             x="78"
             y="183.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -107.4424 110.157)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -337,7 +355,7 @@
             x="86"
             y="183.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -105.0993 115.8138)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -347,7 +365,7 @@
             x="18"
             y="176.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -120.0663 65.6803)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -356,7 +374,7 @@
             x="26"
             y="176.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -117.7231 71.3372)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -364,7 +382,7 @@
             x="34"
             y="176.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -115.38 76.994)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -373,7 +391,7 @@
             x="42"
             y="176.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -113.0368 82.6509)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -382,7 +400,7 @@
             x="50"
             y="176.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -110.6937 88.3077)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -391,7 +409,7 @@
             x="58"
             y="176.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -108.3505 93.9646)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -400,7 +418,7 @@
             x="66"
             y="176.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -106.0074 99.6214)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -409,7 +427,7 @@
             x="74"
             y="176.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -103.6642 105.2783)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -418,7 +436,7 @@
             x="82"
             y="176.5"
             transform="matrix(0.7071 -0.7071 0.7071 0.7071 -101.3211 110.9351)"
-            class="st16"
+            class="lsdgl-st16"
             width="2.5"
             height="2.5"
           />
@@ -440,17 +458,17 @@
           <stop offset="0.9465" style="stop-color:#394147" />
         </linearGradient>
         <path
-          class="st17"
+          class="lsdgl-st17"
           d="M1.8,75v113.8c0,3.1,2.5,5.6,5.6,5.6h87.2c3.1,0,5.6-2.5,5.6-5.6V75H1.8z"
         />
         <path
-          class="st18"
+          class="lsdgl-st18"
           d="M100,189.4l-1.9-6c-0.8-2.3-2.8-4.5-5.2-4.5H9c-2.5,0-4.3,2.1-5.2,4.5l-1.9,6c0.3,2.8,2.7,4.9,5.5,4.9h87.2
 		C97.3,194.4,99.7,192.2,100,189.4z"
         />
         <g>
           <path
-            class="st19"
+            class="lsdgl-st19"
             d="M78.8,171h-2.7c-4,0-7.2-3.2-7.2-7.2V89c0-1.8-1.4-3.2-3.2-3.2h-2.7c-1.8,0-3.2,1.4-3.2,3.2v74.8
 			c0,4-3.2,7.2-7.2,7.2h-2.7c-4,0-7.2-3.2-7.2-7.2V89c0-1.8-1.4-3.2-3.2-3.2H37c-1.8,0-3.2,1.4-3.2,3.2v74.8c0,4-3.2,7.2-7.2,7.2H24
 			c-4,0-7.2-3.2-7.2-7.2v-80h4v80c0,1.8,1.4,3.2,3.2,3.2h2.7c1.8,0,3.2-1.4,3.2-3.2V89c0-4,3.2-7.2,7.2-7.2h2.7c4,0,7.2,3.2,7.2,7.2
@@ -462,7 +480,7 @@
 
       <g id="SVG_alert" v-if="pointValue == 2">
         <path
-          class="st20"
+          class="lsdgl-st20"
           d="M97.7,5.5C96.9,3.2,95,1,92.5,1H9.3C6.8,1,5,3.1,4.1,5.5l-2.9,8.9v176.1c0,2.5,2,4.5,4.5,4.5h90.4
 		c2.5,0,4.5-2,4.5-4.5V14.4L97.7,5.5z"
         />

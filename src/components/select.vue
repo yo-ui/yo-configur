@@ -170,11 +170,11 @@ export default {
     //计算组件是否被框选
     selectComs(selectBox = {}) {
       let {
-        widgetList = [],
+        widgetList = []
         // selectBox = {},
         // activeComs = [],
         // zoom = 1,
-        canvas = {}
+        // canvas = {}
       } = this;
       let activeComs = [];
       let {

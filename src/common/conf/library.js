@@ -430,6 +430,18 @@ let componentLibrary = [
         }
       },
       {
+        name: "指南针1",
+        code: "compass1",
+        icon: "/static/img/configur/compass1.png",
+        data: {
+          ...baseData,
+          // dataType: "point",
+          width: 100,
+          height: 100,
+          equalScaleable: true //是否等比缩放
+        }
+      },
+      {
         name: "倒计时",
         code: "countdownText",
         icon: "/static/img/configur/timeclock.png",
@@ -545,7 +557,7 @@ let componentLibrary = [
         name: "下拉筛选框",
         code: "select",
         icon: "/static/img/configur/select.png",
-        comDisabled: true, //组件不可用
+        // comDisabled: true, //组件不可用
         data: {
           ...baseData,
           // dataType: "point",
@@ -645,7 +657,7 @@ let componentLibrary = [
         data: {
           ...baseData,
           dataType: "point",
-          content: true,
+          // content: false,
           width: 80,
           height: 35,
           // activeColor:'#13ce66',
@@ -1519,6 +1531,7 @@ let componentLibrary = [
               backgroundImage: "/static/img/svg/dengp.svg",
               dataType: "point",
               infoType: "device", //显示详情组件前缀名
+              opened: 0,
               // borderWidth: 0,
               // borderStyle: "none",
               // borderColor: "",
@@ -2557,7 +2570,7 @@ let componentLibrary = [
       }
     ]
   },
-  
+
   {
     code: "component",
     icon: "el-icon-map-location",
