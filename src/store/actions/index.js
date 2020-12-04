@@ -9,11 +9,15 @@ import canvasActions from "@/store/actions/canvas"; //画布相关
 import uploadActions from "@/store/actions/upload"; //上传相关
 import orgStrucActions from "@/store/actions/orgStruc"; //组织结构相关
 import websocketActions from "@/store/actions/websocket"; //websocket相关
+import deviceActions from "@/store/actions/device"; //设备相关
+import modelActions from "@/store/actions/model"; //基础建模
 export default {
   ...uploadActions,
   ...canvasActions,
   ...orgStrucActions,
   ...commonActions,
   ...websocketActions,
+  ...deviceActions,
+  ...modelActions,
   ...webActions
 };
