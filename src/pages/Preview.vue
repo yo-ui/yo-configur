@@ -292,6 +292,7 @@ export default {
       setZoom: "canvas/setZoom",
       setWidgetList: "canvas/setWidgetList", //设置组件列表
       setCanvas: "canvas/setCanvas",
+      setPlatform: "setPlatform",
       setShowType: "canvas/setShowType"
     }),
     ...mapActions({
@@ -305,10 +306,12 @@ export default {
     init() {
       let { condition, $route } = this;
       let { query = {} } = $route;
-      let { canvasId = "" } = query || {};
+      let { canvasId = "", type = 1 } = query || {};
       if (!canvasId) {
         canvasId = this.canvasId;
       }
+      let platform = type == 2 ? "service" : "manage";
+      this.setPlatform(platform); //type： 2 为应用平台过来  1为管理平台过来
       condition.canvasId = canvasId;
       this.initEvent();
       this.setShowType(Constants.SHOWTYPEMAP.PREVIEW);

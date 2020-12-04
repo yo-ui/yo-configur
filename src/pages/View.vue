@@ -281,6 +281,7 @@ export default {
     ...mapMutations({
       setZoom: "canvas/setZoom",
       setShowType: "canvas/setShowType",
+      setPlatform: "setPlatform",
       setWidgetList: "canvas/setWidgetList", //设置组件列表
       setCanvas: "canvas/setCanvas"
     }),
@@ -303,6 +304,8 @@ export default {
       if (type) {
         type = this.type;
       }
+      let platform = type == 2 ? "service" : "manage";
+      this.setPlatform(platform); //type： 2 为应用平台过来  1为管理平台过来
       condition.canvasId = canvasId;
       this.setShowType(Constants.SHOWTYPEMAP.VIEW);
       this.canvasGetFunc((detail = {}) => {
