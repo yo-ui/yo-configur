@@ -91,7 +91,7 @@ export default {
       store: context
     });
     return data;
-  },
+  }
   // //批量添加设备
   // async modelDeviceBatchInsert(context, options) {
   //   const data = await post({

@@ -189,15 +189,6 @@ export default {
         let com = document.getElementById(`box_${comId}`);
         let vm = com.__vue__;
         let { info: _info = {} } = vm || {};
-        let href = decodeURIComponent(content);
-        while (href.indexOf("x-access-token") > -1) {
-          href = href.replace(
-            /x-access-token(.*)(&|\S)(.*)$/,
-            ($0, $1, $2, $3) => {
-              return $3;
-            }
-          );
-        }
         let { token = "" } = userInfo || {};
         _info.content = this.$linkUrl(content, { "x-access-token": token });
       }

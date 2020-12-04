@@ -34,7 +34,7 @@ export default {
       store: context
     });
     return data;
-  },
+  }
   // // `${host}/device/camara/get/{deviceId}`, //查询单个【摄像头】
   // async deviceCamaraGet(context, options) {
   //   const data = await get({

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "buttonTabCom",
@@ -30,7 +30,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({}),
+    ...mapGetters({
+      userInfo: "getUserInfo"
+    }),
     //渐变颜色样式
     gradientStyle() {
       return (info = {}) => {
@@ -404,10 +406,18 @@ export default {
       item.name = name;
     },
     clickEvent(item) {
-      let { info = {} } = this;
+      let { info = {}, userInfo = {} } = this;
       let { value = "" } = item || {};
+      let { bindData = "" } = info || {};
       info.content = value;
-      bmCommon.log(info.content, value);
+      let { comId = "" } = bindData || {};
+      if (comId) {
+        let com = document.getElementById(`box_${comId}`);
+        let vm = com.__vue__;
+        let { info: _info = {} } = vm || {};
+        let { token = "" } = userInfo || {};
+        _info.content = this.$linkUrl(value, { "x-access-token": token });
+      }
     }
   }
 };
