@@ -201,18 +201,18 @@ export default {
       showType: "canvas/getShowType", //当前显示类型
       zoom: "canvas/getZoom", //放大缩小
       draging: "canvas/getDraging", //组件拖动状态
-      // activeCom: "canvas/getActiveCom", //选中对象
+      activeCom: "canvas/getActiveCom", //选中对象
       activeComs: "canvas/getActiveComs", //选中对象
       moving: "canvas/getMoving"
     }),
-    activeCom() {
-      let activeCom = this.$store.getters["canvas/getActiveCom"];
-      // this.oldInfo = { ...(activeCom || {}) };
-      for (let i in activeCom) {
-        oldInfo[i] = activeCom[i];
-      }
-      return activeCom;
-    },
+    // activeCom() {
+    //   let activeCom = this.$store.getters["canvas/getActiveCom"];
+    //   // this.oldInfo = { ...(activeCom || {}) };
+    //   for (let i in activeCom) {
+    //     oldInfo[i] = activeCom[i];
+    //   }
+    //   return activeCom;
+    // },
     activeComIds() {
       // let { activeCom = {} } = this;
       // let { id = "" } = activeCom || {};

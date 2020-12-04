@@ -1531,7 +1531,6 @@ let componentLibrary = [
               backgroundImage: "/static/img/svg/dengp.svg",
               dataType: "point",
               infoType: "device", //显示详情组件前缀名
-              opened: 0,
               // borderWidth: 0,
               // borderStyle: "none",
               // borderColor: "",

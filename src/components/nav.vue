@@ -396,7 +396,8 @@ export default {
     },
     saveEvent() {
       let { canvas = {}, canvasData: data = {}, widgetList = [] } = this;
-      let { width = "", height = "", canvasId: id = "",name="" } = canvas || {};
+      let { width = "", height = "", canvasId: id = "", name = "" } =
+        canvas || {};
       this.setCanvasData(data);
       if (!id) {
         return;
