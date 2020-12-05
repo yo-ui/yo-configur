@@ -100,6 +100,7 @@ export default {
         return;
       }
       // let pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
+      this.setActiveCom(canvas);
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
       selectBox.left = x;
@@ -109,6 +110,7 @@ export default {
       selectBox.width = 0;
       selectBox.height = 0;
       selectBox.moving = true;
+      this.selectBoxShowStatus = true;
       // bmCommon.log(e.clientX, e.clientY, x, y);
       $(document).on("mousemove", this.mousemoveEvent);
       $(document).on("mouseup", this.mouseupEvent);
@@ -132,6 +134,7 @@ export default {
       // bmCommon.log("鼠标松开");
       selectBox.moving = false;
       this.showBoxStatus = false;
+      // this.selectBoxShowStatus = false;
       $(document).off("mousemove", this.mousemoveEvent);
       $(document).off("mouseup", this.mouseupEvent);
     },
@@ -170,7 +173,8 @@ export default {
     //计算组件是否被框选
     selectComs(selectBox = {}) {
       let {
-        widgetList = []
+        widgetList = [],
+        selectBoxShowStatus = false
         // selectBox = {},
         // activeComs = [],
         // zoom = 1,
@@ -221,9 +225,12 @@ export default {
             bmCommon.isInPolygon([x1, y1], points)
           ) {
             // ids.push(id);
-            // if (index == 0) {
-            //   this.setActiveCom(item);
-            // }
+            // bmCommon.log(selectBoxShowStatus, "------",index);
+            if (selectBoxShowStatus) {
+              // bmCommon.log(selectBoxShowStatus, "#######");
+              this.selectBoxShowStatus = false;
+              this.setActiveCom(item);
+            }
             activeComs.push(item);
           }
         });
@@ -249,7 +256,6 @@ export default {
       //     ids.push(id);
       //   }
       // }
-      // bmCommon.log(ids, "------");
       // return ids || [];
     }
   }
