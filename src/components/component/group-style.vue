@@ -876,7 +876,7 @@
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 // import {componentLibrary} from "@/common/conf/library";
 import { Constants } from "@/common/env";
 const { mapActions, mapMutations, mapGetters } = Vuex;
@@ -888,13 +888,16 @@ for (let i in Constants.BASEDATA) {
     let key = `info.${i}`;
     watches[key] = {
       handler(newVal, oldVal) {
-        let { activeComs = [] } = this;
+        // let {type=""}=oldVal||{}
+        let { activeComs = [], moving = false } = this;
         let { length = 0 } = activeComs || [];
-        if (length > 1) {
-          bmCommon.log("属性变更");
-          activeComs.forEach(item => {
-            item[i] = newVal;
-          });
+        if (!moving) {
+          if (length > 1) {
+            // bmCommon.log("group 属性变更",type);
+            activeComs.forEach(item => {
+              item[i] = newVal;
+            });
+          }
         }
       },
       deep: true

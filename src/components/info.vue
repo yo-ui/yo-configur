@@ -147,13 +147,16 @@ for (let i in Constants.BASEDATA) {
     let key = `activeCom.${i}`;
     watches[key] = {
       handler(newVal, oldVal) {
-        let { activeComs = [] } = this;
+        let { activeComs = [], moving = false } = this;
+        // let {type=""}=activeCom||{}
         let { length = 0 } = activeComs || [];
-        if (length > 1) {
-          bmCommon.log("属性变更");
-          activeComs.forEach(item => {
-            item[i] = newVal;
-          });
+        if (!moving) {
+          if (length > 1) {
+            // bmCommon.log("info 属性变更",type);
+            activeComs.forEach(item => {
+              item[i] = newVal;
+            });
+          }
         }
       },
       deep: true
@@ -190,9 +193,20 @@ export default {
   computed: {
     ...mapGetters({
       getWidgetList: "canvas/getWidgetList",
+      // getActiveCom: "canvas/getActiveCom", //选中对象
       activeCom: "canvas/getActiveCom", //选中对象
+      moving: "canvas/getMoving", //组件是否移动
       activeComs: "canvas/getActiveComs" //选中多选对象
     }),
+    // activeCom() {
+    //   let { activeComs = [], getActiveCom = {} } = this;
+    //   let { length = 0 } = activeComs || [];
+    //   if (length > 1) {
+    //     let [activeCom = {}] = activeComs || [];
+    //     return activeCom || {};
+    //   }
+    //   return getActiveCom || {};
+    // },
     styleCom() {
       let { activeComs = [], activeCom = {} } = this;
       let { type = "", children = [], styleCode = "" } = activeCom || {};
@@ -231,7 +245,7 @@ export default {
         }
       }
       com = `${type}StyleCom`;
-      bmCommon.log("panel==>", com);
+      // bmCommon.log("panel==>", com);
       return com;
       // return `${
       //   activeComs && length > 1

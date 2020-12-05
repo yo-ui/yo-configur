@@ -1,7 +1,7 @@
 @import (reference) "./../../common.less";
 .bm-dialog-data-com{
   .el-dialog__body{
-    .p(0 0 20px);
+    .p(0 0 10px);
     min-height: 500px;
     // .df;
     flex-direction: column;
@@ -47,13 +47,28 @@
       }
     }
   }
+  .line{
+    .bc(@grayE);
+    .h(1);
+    // .w(100%);
+    .m(10px 30px 0);
+  }
+  .tip{
+    .c(@gray9);
+  }
   .el-form{
     .m(20px 30px 0);
+    .touch-y;
+    .pr(20);
+    max-height: 420px;
+    .posr;
     .el-form-item__label{
       .tl;
     }
     .el-form-item__content{
       .lh(30);
+      .df;
+      align-items: center;
     }
     .el-icon-warning-outline{
       .fz(22);
@@ -93,6 +108,25 @@
         min-height: 250px;
         .el-table__body{
           .posa;
+          .cell{
+            .df;
+            align-items: center;
+            justify-content: center;
+            i{
+              .fz(15);
+              .p(5px);
+            }
+            .el-icon-edit-outline{
+              .ml(10);
+              .click;
+              &.opacity{
+                opacity:0;
+              }
+            }
+            .rule-select{
+              .w(150);
+            }
+          }
         }
       }
       .el-table__empty-block{

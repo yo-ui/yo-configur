@@ -175,6 +175,7 @@ let componentLibrary = [
           // borderColor: "",
           // borderRadius: 0,
           fontWeight: "bold",
+          decimal: 1, //小数位
           // textDecoration: "",
           // fontStyle: "",
           fontSize: 24,
@@ -242,6 +243,7 @@ let componentLibrary = [
           dataType: "point",
           textAlign: "center",
           width: 75,
+          decimal: 1, //小数位
           height: 36,
           unit: "℃",
           unitFontFamily: "lcdD",
@@ -363,7 +365,7 @@ let componentLibrary = [
         name: "记分牌",
         code: "scoreBoard",
         icon: "/static/img/configur/scoreboard.png",
-        comDisabled: true, // 组件是否可用
+        // comDisabled: true, // 组件是否可用
         data: {
           ...baseData,
           originWidth: "", //原宽

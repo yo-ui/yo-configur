@@ -32,7 +32,8 @@
       "
       @dblclick.prevent.stop="coverEvent"
     >
-      <!-- {{ info.parentId }} -->
+      <!-- {{ activeComIds }} -->
+      <!-- {{activeCom.id}} -->
     </div>
     <i
       class="operate-btn el-icon-refresh-right"
@@ -157,7 +158,7 @@ import { widgets } from "@/widgets/index";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 const state = {};
-const oldInfo = {};
+// const oldInfo = {};
 export default {
   data() {
     return {
@@ -223,9 +224,10 @@ export default {
         activeComs = [],
         activeCom = {}
       } = this;
+      // bmCommon.log("activeComIds=",activeComs.length);
       let ids = [];
       let { length = 0 } = activeComs || [];
-      if (length > 1) {
+      if (length > 0) {
         ids = activeComs.map(item => item.id);
       } else {
         let { id = "" } = activeCom || {};

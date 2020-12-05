@@ -419,7 +419,7 @@ export default {
       let { query = {} } = $route;
       // this.commonVerifyInfoFunc((info = {}) => {
       // 166
-      let { canvasId = "", type = 1 } = query || {};
+      let { canvasId = "", type = "" } = query || {};
       condition.canvasId = canvasId;
       let platform = type == 2 ? "service" : "manage";
       this.setPlatform(platform); //type： 2 为应用平台过来  1为管理平台过来

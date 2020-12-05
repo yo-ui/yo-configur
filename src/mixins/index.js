@@ -50,7 +50,7 @@ export default {
       //   x: e.pageX,
       //   y: e.pageY
       // })
-      bmCommon.log("组件移动");
+      // bmCommon.log("组件移动");
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
       this.moving({
@@ -71,7 +71,7 @@ export default {
       if (alias == "linkPoint") {
         this.setLinkPoint(activeCom);
       }
-      bmCommon.log("组件停止移动");
+      // bmCommon.log("组件停止移动");
       this.stopMove();
       if (Math.abs(originX - left) > 5 || Math.abs(originY - top) > 5) {
         this.createHistoryAction();
