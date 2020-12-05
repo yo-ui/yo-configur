@@ -889,9 +889,10 @@ for (let i in Constants.BASEDATA) {
     watches[key] = {
       handler(newVal, oldVal) {
         // let {type=""}=oldVal||{}
-        let { activeComs = [], moving = false } = this;
+        let { activeComs = [], moving = false, selectBox = {} } = this;
+        let { moving: _moving = false } = selectBox || {};
         let { length = 0 } = activeComs || [];
-        if (!moving) {
+        if (!(moving || _moving)) {
           if (length > 1) {
             // bmCommon.log("group 属性变更",type);
             activeComs.forEach(item => {
@@ -942,6 +943,7 @@ export default {
       // zoom: "canvas/getZoom", //放大缩小
       // widgetList: "canvas/getWidgetList", //组件列表
       canvas: "canvas/getCanvas", //画布
+      selectBox: "canvas/getSelectBox", //选取框
       activeComs: "canvas/getActiveComs" //选中组件
       // linkPoint: "canvas/getLinkPoint" //画布
     })
