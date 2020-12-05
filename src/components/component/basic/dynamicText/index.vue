@@ -1,7 +1,7 @@
 <template>
   <div ref="bmCom" :style="comStyle">
     <span
-      >{{ info.content
+      >{{ this.$toBig(info.content, info.decimal)
       }}<small :style="unitStyle">{{ info.unit || "" }}</small></span
     >
     <!-- ℃ -->

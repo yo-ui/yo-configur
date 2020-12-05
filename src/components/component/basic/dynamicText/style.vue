@@ -505,6 +505,29 @@
       </el-collapse-item>
       <el-collapse-item :title="$lang('文字设置')" name="fontSet">
         <p>
+          <span class="label">{{ $lang("小数位数") }}:</span>
+          <el-tooltip
+            :content="$lang('请输入小数位数')"
+            placement="top"
+            effect="dark"
+          >
+            <el-input-number
+              controls-position="right"
+              clearable
+              :min="1"
+              :max="50"
+              v-model.number="info.decimal"
+              :placeholder="$lang('请输入小数位数')"
+            ></el-input-number>
+          </el-tooltip>
+          <el-slider
+            v-model="info.decimal"
+            :max="50"
+            :min="1"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+        <p>
           <span class="label">{{ $lang("字体颜色") }}:</span>
           <el-color-picker v-model="info.color" show-alpha></el-color-picker>
         </p>

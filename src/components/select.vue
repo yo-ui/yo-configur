@@ -204,7 +204,7 @@ export default {
       // );
       // let ids = [];
       if (boxWidth > 1) {
-        widgetList.forEach(item => {
+        widgetList.forEach((item, index) => {
           // let { left: x = 0, top: y = 0, width = 0, height = 0 } = item || {};
           let { id = "" } = item || {};
           let obj = document.getElementById(`box_${id}`);
@@ -221,6 +221,9 @@ export default {
             bmCommon.isInPolygon([x1, y1], points)
           ) {
             // ids.push(id);
+            // if (index == 0) {
+            //   this.setActiveCom(item);
+            // }
             activeComs.push(item);
           }
         });

@@ -101,7 +101,7 @@
       </g>
     </svg>
     <span ref="bmText" class="text" :style="textStyle"
-      >{{ info.content
+      >{{ this.$toBig(info.content, info.decimal)
       }}<small :style="unitStyle">{{ info.unit || "℃" }}</small></span
     >
   </div>

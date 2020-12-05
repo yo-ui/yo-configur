@@ -190,9 +190,19 @@ export default {
   computed: {
     ...mapGetters({
       getWidgetList: "canvas/getWidgetList",
+      // getActiveCom: "canvas/getActiveCom", //选中对象
       activeCom: "canvas/getActiveCom", //选中对象
       activeComs: "canvas/getActiveComs" //选中多选对象
     }),
+    // activeCom() {
+    //   let { activeComs = [], getActiveCom = {} } = this;
+    //   let { length = 0 } = activeComs || [];
+    //   if (length > 1) {
+    //     let [activeCom = {}] = activeComs || [];
+    //     return activeCom || {};
+    //   }
+    //   return getActiveCom || {};
+    // },
     styleCom() {
       let { activeComs = [], activeCom = {} } = this;
       let { type = "", children = [], styleCode = "" } = activeCom || {};

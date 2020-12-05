@@ -297,11 +297,11 @@ export default {
       this.initEvent();
       let { condition, canvas = {}, $route } = this;
       let { query = {} } = $route;
-      let { canvasId = "", type = 1 } = query || {};
+      let { canvasId = "", type = "" } = query || {};
       if (!canvasId) {
         canvasId = this.canvasId;
       }
-      if (type) {
+      if (!type) {
         type = this.type;
       }
       let platform = type == 2 ? "service" : "manage";

@@ -178,6 +178,9 @@ export default {
     Vue.prototype.$format = function(num, fixed) {
       try {
         num = Number(num);
+        if (isNaN(num)) {
+          throw new Error();
+        }
       } catch (ex) {
         return num;
       }
@@ -192,6 +195,14 @@ export default {
     ) {
       if (!num) {
         num = 0;
+      }
+      try {
+        num = Number(num);
+        if (isNaN(num)) {
+          throw new Error();
+        }
+      } catch (ex) {
+        return num;
       }
       let val = "";
       try {
