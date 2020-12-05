@@ -1,6 +1,6 @@
 import { URL } from "@/common/env";
 import bmCommon from "@/common/common";
-import { get, post } from "@/store/axios";
+import { get } from "@/store/axios";
 export default {
   // // `${host}/device/add`, //添加单个【网关设备】
   // async deviceAdd(context, options) {

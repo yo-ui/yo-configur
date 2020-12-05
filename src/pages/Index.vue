@@ -398,6 +398,7 @@ export default {
       setCanvasData: "canvas/setCanvasData",
       setActiveComs: "canvas/setActiveComs",
       initMove: "canvas/initMove",
+      setPlatform: "setPlatform",
       setShowType: "canvas/setShowType",
       setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
       moving: "canvas/moving",
@@ -420,6 +421,8 @@ export default {
       // 166
       let { canvasId = "", type = 1 } = query || {};
       condition.canvasId = canvasId;
+      let platform = type == 2 ? "service" : "manage";
+      this.setPlatform(platform); //type： 2 为应用平台过来  1为管理平台过来
       this.setShowType(Constants.SHOWTYPEMAP.EDIT);
       this.canvasGetFunc((detail = {}) => {
         let {
