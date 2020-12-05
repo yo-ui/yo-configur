@@ -306,7 +306,7 @@ export default {
     init() {
       let { condition, $route } = this;
       let { query = {} } = $route;
-      let { canvasId = "", type = 1 } = query || {};
+      let { canvasId = "", type = "" } = query || {};
       if (!canvasId) {
         canvasId = this.canvasId;
       }
