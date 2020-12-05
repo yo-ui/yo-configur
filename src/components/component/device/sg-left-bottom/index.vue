@@ -21,14 +21,24 @@
         "
       ></defs>
       <g>
-				
-        <radialGradient id="XMLID_LD_" cx="294.8083" cy="-271.2963" r="7.9785" gradientTransform="matrix(-1 0 0 -1 304.7776 -271.3311)" gradientUnits="userSpaceOnUse">
-					<stop  offset="0.2512" style="stop-color:#777C7F"/>
-					<stop  offset="0.62" style="stop-color:#FFFFFF"/>
-					<stop  offset="1" style="stop-color:#777C7F"/>
-				</radialGradient>
-				<path id="XMLID_536_" style="fill:url(#XMLID_LD_)" d="M10,8l0-6.2C8.9,1.8,8.2,1.1,8.2,0L2,0C2,4.4,5.6,8,10,8z"/>
-			</g>
+        <radialGradient
+          id="XMLID_LD_"
+          cx="294.8083"
+          cy="-271.2963"
+          r="7.9785"
+          gradientTransform="matrix(-1 0 0 -1 304.7776 -271.3311)"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0.2512" style="stop-color:#777C7F" />
+          <stop offset="0.62" style="stop-color:#FFFFFF" />
+          <stop offset="1" style="stop-color:#777C7F" />
+        </radialGradient>
+        <path
+          id="XMLID_536_"
+          style="fill:url(#XMLID_LD_)"
+          d="M10,8l0-6.2C8.9,1.8,8.2,1.1,8.2,0L2,0C2,4.4,5.6,8,10,8z"
+        />
+      </g>
     </svg>
   </div>
 </template>

@@ -69,6 +69,11 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-compass" */ "@/components/component/basic/compass/index.vue"
     ),
+  // 指南针1
+  compass1Com: () =>
+    import(
+      /* webpackChunkName: "bm-component-compass1" */ "@/components/component/basic/compass1/index.vue"
+    ),
   // 倒计时
   countdownTextCom: () =>
     import(
@@ -103,6 +108,11 @@ let widgets = {
   iframeCom: () =>
     import(
       /* webpackChunkName: "bm-component-iframe" */ "@/components/component/basic/iframe/index.vue"
+    ),
+  //下拉框
+  selectCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-select" */ "@/components/component/basic/select/index.vue"
     ),
 
   lineChartCom: () =>
@@ -614,6 +624,11 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-compass-style" */ "@/components/component/basic/compass/style.vue"
     ),
+  // 指南针1
+  compass1StyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-compass1-style" */ "@/components/component/basic/compass1/style.vue"
+    ),
   // 倒计时
   countdownTextStyleCom: () =>
     import(
@@ -648,6 +663,11 @@ let styles = {
   iframeStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-iframe-style" */ "@/components/component/basic/iframe/style.vue"
+    ),
+  // 下拉框
+  selectStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-select-style" */ "@/components/component/basic/select/style.vue"
     ),
 
   lineChartStyleCom: () =>
@@ -1044,7 +1064,12 @@ let datas = {
   //标签绑定数据
   buttontabDataCom: () =>
     import(
-      /* webpackChunkName: "bm-component--data" */ "@/components/component/basic/buttontab/data.vue"
+      /* webpackChunkName: "bm-component-buttontab-data" */ "@/components/component/basic/buttontab/data.vue"
+    ),
+  //下拉框绑定数据
+  selectDataCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-select-data" */ "@/components/component/basic/select/data.vue"
     )
 };
 

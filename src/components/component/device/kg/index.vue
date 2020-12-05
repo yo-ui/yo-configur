@@ -25,7 +25,7 @@
       `
         "
       ></defs>
-      <g class="SVG_ani" v-if="pointValue == 1">
+      <g class="SVG_ani" v-if="info.content">
         <path
           id="XMLID_1351_"
           class="kg-st0"
@@ -72,7 +72,7 @@
         </g>
       </g>
 
-      <g class="SVG_sta" v-if="pointValue === 0">
+      <g class="SVG_sta" v-else>
         <path
           id="XMLID_1373_"
           class="kg-st0"
@@ -229,6 +229,12 @@ export default {
   },
   mounted() {
     // this.$emit("success"); //组件加载完成回调
+    let { info = {} } = this;
+    // bmCommon.log("kg mounted=", info.content);
+    let { content = "" } = info || {};
+    if (content === "") {
+      info.content = false;
+    }
     this.init();
   },
   methods: {
@@ -250,7 +256,7 @@ export default {
           });
           if (point) {
             let { value = "" } = point || {};
-            this.pointValue = Number(value);
+            info.content = value == 1 ? true : false;
             // this.pointValue = parseInt(Math.random() * 3);
           }
           // let { value = "", unit = "",id='' } = point || {};
@@ -262,25 +268,26 @@ export default {
       }
     },
     controlEvent() {
-      let { info = {}, pointValue = "" } = this;
-      let { bindData = {} } = info;
+      let { info = {} } = this;
+      let { content = false, bindData = {} } = info;
       let { deviceId = "", devicePoint = "" } = bindData || {};
       if (!deviceId) {
+        info.content = !content;
         return;
       }
       // let { $vm } = window;
       pointCode = devicePoint;
       let point = pointCode;
-      let value = pointValue === 0 ? 1 : 0;
+      let value = !content ? 1 : 0;
       $vm.$emit("control", {
         deviceId,
         point,
         value,
         callback: flag => {
           if (flag) {
-            this.pointValue = value;
+            info.content = !content;
           } else {
-            this.pointValue = pointValue; //如果取消则重置结果
+            info.content = content; //如果取消则重置结果
           }
         }
       });

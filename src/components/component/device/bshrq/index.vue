@@ -15,104 +15,104 @@
         v-html="
           `
         <style type='text/css'>
-              .st0{fill:url(#SVGID_1_);}
-              .st1{fill:url(#SVGID_2_);}
-              .st2{fill:url(#SVGID_3_);}
-              .st3{fill:#204C8B;}
-              .st4{fill:#7AACE2;}
-              .st5{opacity:0.6;fill:#BBDFFF;}
-              .st6{opacity:0.8;fill:#BBDFFF;}
-              .st7{fill:url(#SVGID_4_);}
-              .st8{fill:url(#SVGID_5_);}
-              .st9{fill:url(#SVGID_6_);}
-              .st10{fill:url(#SVGID_7_);}
-              .st11{fill:url(#SVGID_8_);}
-              .st12{fill:url(#SVGID_9_);}
-              .st13{fill:url(#SVGID_10_);}
-              .st14{fill:url(#SVGID_11_);}
-              .st15{fill:url(#SVGID_12_);}
-              .st16{fill:url(#SVGID_13_);}
-              .st17{fill:url(#SVGID_14_);}
-              .st18{fill:url(#SVGID_15_);}
-              .st19{fill:url(#SVGID_16_);}
-              .st20{fill:url(#SVGID_17_);}
-              .st21{fill:url(#SVGID_18_);}
-              .st22{fill:url(#SVGID_19_);}
-              .st23{fill:url(#SVGID_20_);}
-              .st24{fill:url(#SVGID_21_);}
-              .st25{fill:url(#SVGID_22_);}
-              .st26{fill:url(#SVGID_23_);}
-              .st27{fill:url(#SVGID_24_);}
-              .st28{fill:url(#SVGID_25_);}
-              .st29{fill:url(#SVGID_26_);}
-              .st30{fill:url(#SVGID_27_);}
-              .st31{fill:url(#SVGID_28_);}
-              .st32{fill:url(#SVGID_29_);}
-              .st33{fill:url(#SVGID_30_);}
-              .st34{fill:url(#SVGID_31_);}
-              .st35{fill:url(#SVGID_32_);}
-              .st36{fill:url(#SVGID_33_);}
-              .st37{fill:url(#SVGID_34_);}
-              .st38{fill:url(#SVGID_35_);}
-              .st39{fill:url(#SVGID_36_);}
-              .st40{fill:url(#SVGID_37_);}
-              .st41{fill:url(#SVGID_38_);}
-              .st42{fill:url(#SVGID_39_);}
-              .st43{fill:url(#SVGID_40_);}
-              .st44{fill:url(#SVGID_41_);}
-              .st45{fill:url(#SVGID_42_);}
-              .st46{fill:url(#SVGID_43_);}
-              .st47{fill:url(#SVGID_44_);}
-              .st48{fill:url(#SVGID_45_);}
-              .st49{fill:url(#SVGID_46_);}
-              .st50{fill:url(#SVGID_47_);}
-              .st51{fill:url(#SVGID_48_);}
-              .st52{fill:url(#SVGID_49_);}
-              .st53{fill:url(#SVGID_50_);}
-              .st54{fill:url(#SVGID_51_);}
-              .st55{fill:url(#SVGID_52_);}
-              .st56{fill:url(#SVGID_53_);}
-              .st57{fill:url(#SVGID_54_);}
-              .st58{fill:url(#SVGID_55_);}
-              .st59{fill:url(#SVGID_56_);}
-              .st60{fill:url(#SVGID_57_);}
-              .st61{fill:url(#SVGID_58_);}
-              .st62{fill:url(#SVGID_59_);}
-              .st63{fill:url(#SVGID_60_);}
-              .st64{fill:url(#SVGID_61_);}
-              .st65{fill:url(#SVGID_62_);}
-              .st66{fill:url(#SVGID_63_);}
-              .st67{fill:url(#SVGID_64_);}
-              .st68{fill:url(#SVGID_65_);}
-              .st69{opacity:0.7;fill:#353535;}
-              .st70{fill:url(#SVGID_66_);}
-              .st71{fill:url(#SVGID_67_);}
-              .st72{fill:url(#SVGID_68_);}
-              .st73{fill:url(#SVGID_69_);}
-              .st74{fill:#CECECE;}
-              .st75{fill:url(#SVGID_70_);}
-              .st76{fill:url(#SVGID_71_);}
-              .st77{fill:url(#SVGID_72_);}
-              .st78{fill:url(#SVGID_73_);}
-              .st79{fill:url(#SVGID_74_);}
-              .st80{fill:url(#SVGID_75_);}
-              .st81{fill:url(#SVGID_76_);}
-              .st82{fill:url(#SVGID_77_);}
-              .st83{fill:url(#SVGID_78_);}
-              .st84{fill:url(#SVGID_79_);}
-              .st85{fill:url(#SVGID_80_);}
-              .st86{fill:url(#SVGID_81_);}
-              .st87{fill:url(#SVGID_82_);}
-              .st88{fill:url(#SVGID_83_);}
-              .st89{fill:url(#SVGID_84_);}
-              .st90{fill:url(#SVGID_85_);}
-              .st91{fill:url(#SVGID_86_);}
-              .st92{fill:url(#SVGID_87_);}
-              .st93{fill:url(#SVGID_88_);}
-              .st94{fill:url(#SVGID_89_);}
-              .st95{fill:url(#SVGID_90_);}
-              .st96{fill:url(#SVGID_91_);}
-              .st97{fill:url(#SVGID_92_);}
+              .bshrq-st0{fill:url(#SVGID_1_);}
+              .bshrq-st1{fill:url(#SVGID_2_);}
+              .bshrq-st2{fill:url(#SVGID_3_);}
+              .bshrq-st3{fill:#204C8B;}
+              .bshrq-st4{fill:#7AACE2;}
+              .bshrq-st5{opacity:0.6;fill:#BBDFFF;}
+              .bshrq-st6{opacity:0.8;fill:#BBDFFF;}
+              .bshrq-st7{fill:url(#SVGID_4_);}
+              .bshrq-st8{fill:url(#SVGID_5_);}
+              .bshrq-st9{fill:url(#SVGID_6_);}
+              .bshrq-st10{fill:url(#SVGID_7_);}
+              .bshrq-st11{fill:url(#SVGID_8_);}
+              .bshrq-st12{fill:url(#SVGID_9_);}
+              .bshrq-st13{fill:url(#SVGID_10_);}
+              .bshrq-st14{fill:url(#SVGID_11_);}
+              .bshrq-st15{fill:url(#SVGID_12_);}
+              .bshrq-st16{fill:url(#SVGID_13_);}
+              .bshrq-st17{fill:url(#SVGID_14_);}
+              .bshrq-st18{fill:url(#SVGID_15_);}
+              .bshrq-st19{fill:url(#SVGID_16_);}
+              .bshrq-st20{fill:url(#SVGID_17_);}
+              .bshrq-st21{fill:url(#SVGID_18_);}
+              .bshrq-st22{fill:url(#SVGID_19_);}
+              .bshrq-st23{fill:url(#SVGID_20_);}
+              .bshrq-st24{fill:url(#SVGID_21_);}
+              .bshrq-st25{fill:url(#SVGID_22_);}
+              .bshrq-st26{fill:url(#SVGID_23_);}
+              .bshrq-st27{fill:url(#SVGID_24_);}
+              .bshrq-st28{fill:url(#SVGID_25_);}
+              .bshrq-st29{fill:url(#SVGID_26_);}
+              .bshrq-st30{fill:url(#SVGID_27_);}
+              .bshrq-st31{fill:url(#SVGID_28_);}
+              .bshrq-st32{fill:url(#SVGID_29_);}
+              .bshrq-st33{fill:url(#SVGID_30_);}
+              .bshrq-st34{fill:url(#SVGID_31_);}
+              .bshrq-st35{fill:url(#SVGID_32_);}
+              .bshrq-st36{fill:url(#SVGID_33_);}
+              .bshrq-st37{fill:url(#SVGID_34_);}
+              .bshrq-st38{fill:url(#SVGID_35_);}
+              .bshrq-st39{fill:url(#SVGID_36_);}
+              .bshrq-st40{fill:url(#SVGID_37_);}
+              .bshrq-st41{fill:url(#SVGID_38_);}
+              .bshrq-st42{fill:url(#SVGID_39_);}
+              .bshrq-st43{fill:url(#SVGID_40_);}
+              .bshrq-st44{fill:url(#SVGID_41_);}
+              .bshrq-st45{fill:url(#SVGID_42_);}
+              .bshrq-st46{fill:url(#SVGID_43_);}
+              .bshrq-st47{fill:url(#SVGID_44_);}
+              .bshrq-st48{fill:url(#SVGID_45_);}
+              .bshrq-st49{fill:url(#SVGID_46_);}
+              .bshrq-st50{fill:url(#SVGID_47_);}
+              .bshrq-st51{fill:url(#SVGID_48_);}
+              .bshrq-st52{fill:url(#SVGID_49_);}
+              .bshrq-st53{fill:url(#SVGID_50_);}
+              .bshrq-st54{fill:url(#SVGID_51_);}
+              .bshrq-st55{fill:url(#SVGID_52_);}
+              .bshrq-st56{fill:url(#SVGID_53_);}
+              .bshrq-st57{fill:url(#SVGID_54_);}
+              .bshrq-st58{fill:url(#SVGID_55_);}
+              .bshrq-st59{fill:url(#SVGID_56_);}
+              .bshrq-st60{fill:url(#SVGID_57_);}
+              .bshrq-st61{fill:url(#SVGID_58_);}
+              .bshrq-st62{fill:url(#SVGID_59_);}
+              .bshrq-st63{fill:url(#SVGID_60_);}
+              .bshrq-st64{fill:url(#SVGID_61_);}
+              .bshrq-st65{fill:url(#SVGID_62_);}
+              .bshrq-st66{fill:url(#SVGID_63_);}
+              .bshrq-st67{fill:url(#SVGID_64_);}
+              .bshrq-st68{fill:url(#SVGID_65_);}
+              .bshrq-st69{opacity:0.7;fill:#353535;}
+              .bshrq-st70{fill:url(#SVGID_66_);}
+              .bshrq-st71{fill:url(#SVGID_67_);}
+              .bshrq-st72{fill:url(#SVGID_68_);}
+              .bshrq-st73{fill:url(#SVGID_69_);}
+              .bshrq-st74{fill:#CECECE;}
+              .bshrq-st75{fill:url(#SVGID_70_);}
+              .bshrq-st76{fill:url(#SVGID_71_);}
+              .bshrq-st77{fill:url(#SVGID_72_);}
+              .bshrq-st78{fill:url(#SVGID_73_);}
+              .bshrq-st79{fill:url(#SVGID_74_);}
+              .bshrq-st80{fill:url(#SVGID_75_);}
+              .bshrq-st81{fill:url(#SVGID_76_);}
+              .bshrq-st82{fill:url(#SVGID_77_);}
+              .bshrq-st83{fill:url(#SVGID_78_);}
+              .bshrq-st84{fill:url(#SVGID_79_);}
+              .bshrq-st85{fill:url(#SVGID_80_);}
+              .bshrq-st86{fill:url(#SVGID_81_);}
+              .bshrq-st87{fill:url(#SVGID_82_);}
+              .bshrq-st88{fill:url(#SVGID_83_);}
+              .bshrq-st89{fill:url(#SVGID_84_);}
+              .bshrq-st90{fill:url(#SVGID_85_);}
+              .bshrq-st91{fill:url(#SVGID_86_);}
+              .bshrq-st92{fill:url(#SVGID_87_);}
+              .bshrq-st93{fill:url(#SVGID_88_);}
+              .bshrq-st94{fill:url(#SVGID_89_);}
+              .bshrq-st95{fill:url(#SVGID_90_);}
+              .bshrq-st96{fill:url(#SVGID_91_);}
+              .bshrq-st97{fill:url(#SVGID_92_);}
       </style>
       `
         "
@@ -146,7 +146,7 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="st0"
+        class="bshrq-st0"
         d="M7.78,100.1V86.69h-5.6c0,0-2.18,2.01-2.18,6.71c0,5.56,2.18,6.71,2.18,6.71H7.78z"
       />
       <linearGradient
@@ -178,7 +178,7 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="st1"
+        class="bshrq-st1"
         d="M7.78,197.23v-13.41h-5.6c0,0-2.18,2.01-2.18,6.71c0,5.56,2.18,6.71,2.18,6.71H7.78z"
       />
       <g>
@@ -194,28 +194,34 @@
           <stop offset="1" style="stop-color:#2B68AB" />
         </linearGradient>
         <polygon
-          class="st2"
+          class="bshrq-st2"
           points="71.97,219.15 9.34,260 9.34,41.23 71.97,0.38 	"
         />
       </g>
       <g>
-        <rect x="2.98" y="41.23" class="st3" width="6.35" height="218.77" />
+        <rect
+          x="2.98"
+          y="41.23"
+          class="bshrq-st3"
+          width="6.35"
+          height="218.77"
+        />
       </g>
       <g>
         <polygon
-          class="st4"
+          class="bshrq-st4"
           points="65.62,0.38 71.97,0.38 9.34,41.23 2.98,41.23 	"
         />
       </g>
       <polygon
-        class="st5"
+        class="bshrq-st5"
         points="9.79,260 8.88,260 8.88,41.68 2.98,41.68 2.98,40.78 9.79,40.78 "
       />
       <rect
         x="3.27"
         y="20.35"
         transform="matrix(0.8374 -0.5466 0.5466 0.8374 -4.7613 25.6035)"
-        class="st6"
+        class="bshrq-st6"
         width="74.78"
         height="0.91"
       />
@@ -234,7 +240,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st7"
+          class="bshrq-st7"
           d="M27.91,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L26.55,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C21.26,240.86,25.05,242.91,27.91,241.05z"
         />
@@ -250,7 +256,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st8"
+          class="bshrq-st8"
           d="M29.72,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L28.37,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C23.08,240.86,26.86,242.91,29.72,241.05z"
         />
@@ -270,7 +276,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st9"
+          class="bshrq-st9"
           d="M33.35,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L32,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C26.71,240.86,30.49,242.91,33.35,241.05z"
         />
@@ -286,7 +292,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st10"
+          class="bshrq-st10"
           d="M35.17,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L33.82,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C28.52,240.86,32.31,242.91,35.17,241.05z"
         />
@@ -306,7 +312,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st11"
+          class="bshrq-st11"
           d="M38.8,241.05L78,215.48V18.41c0-3.41-3.78-5.46-6.64-3.6L37.45,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C32.16,240.86,35.94,242.91,38.8,241.05z"
         />
@@ -322,7 +328,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st12"
+          class="bshrq-st12"
           d="M40.61,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L39.26,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C33.97,240.86,37.76,242.91,40.61,241.05z"
         />
@@ -342,7 +348,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st13"
+          class="bshrq-st13"
           d="M44.24,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L42.89,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C37.6,240.86,41.39,242.91,44.24,241.05z"
         />
@@ -358,7 +364,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st14"
+          class="bshrq-st14"
           d="M46.06,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L44.71,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C39.42,240.86,43.2,242.91,46.06,241.05z"
         />
@@ -378,7 +384,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st15"
+          class="bshrq-st15"
           d="M49.69,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L48.34,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C43.05,240.86,46.83,242.91,49.69,241.05z"
         />
@@ -394,7 +400,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st16"
+          class="bshrq-st16"
           d="M51.51,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L50.16,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C44.86,240.86,48.65,242.91,51.51,241.05z"
         />
@@ -414,7 +420,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st17"
+          class="bshrq-st17"
           d="M55.14,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L53.79,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C48.5,240.86,52.28,242.91,55.14,241.05z"
         />
@@ -430,7 +436,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st18"
+          class="bshrq-st18"
           d="M56.95,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L55.6,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C50.31,240.86,54.1,242.91,56.95,241.05z"
         />
@@ -450,7 +456,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st19"
+          class="bshrq-st19"
           d="M60.58,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L59.23,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C53.94,240.86,57.73,242.91,60.58,241.05z"
         />
@@ -466,7 +472,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st20"
+          class="bshrq-st20"
           d="M62.4,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L61.05,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C55.76,240.86,59.54,242.91,62.4,241.05z"
         />
@@ -486,7 +492,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st21"
+          class="bshrq-st21"
           d="M66.03,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L64.68,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C59.39,240.86,63.17,242.91,66.03,241.05z"
         />
@@ -502,7 +508,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st22"
+          class="bshrq-st22"
           d="M67.85,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L66.5,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C61.2,240.86,64.99,242.91,67.85,241.05z"
         />
@@ -522,7 +528,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st23"
+          class="bshrq-st23"
           d="M71.48,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L70.13,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C64.84,240.86,68.62,242.91,71.48,241.05z"
         />
@@ -538,7 +544,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st24"
+          class="bshrq-st24"
           d="M73.29,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L71.94,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C66.65,240.86,70.44,242.91,73.29,241.05z"
         />
@@ -558,7 +564,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st25"
+          class="bshrq-st25"
           d="M76.92,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L75.57,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C70.28,240.86,74.07,242.91,76.92,241.05z"
         />
@@ -574,7 +580,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st26"
+          class="bshrq-st26"
           d="M78.74,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L77.39,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C72.1,240.86,75.88,242.91,78.74,241.05z"
         />
@@ -594,7 +600,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st27"
+          class="bshrq-st27"
           d="M82.37,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L81.02,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C75.73,240.86,79.51,242.91,82.37,241.05z"
         />
@@ -610,7 +616,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st28"
+          class="bshrq-st28"
           d="M84.19,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L82.84,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C77.54,240.86,81.33,242.91,84.19,241.05z"
         />
@@ -630,7 +636,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st29"
+          class="bshrq-st29"
           d="M87.82,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L86.47,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C81.18,240.86,84.96,242.91,87.82,241.05z"
         />
@@ -646,7 +652,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st30"
+          class="bshrq-st30"
           d="M89.63,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L88.28,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C82.99,240.86,86.78,242.91,89.63,241.05z"
         />
@@ -666,7 +672,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st31"
+          class="bshrq-st31"
           d="M93.26,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L91.91,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C86.62,240.86,90.41,242.91,93.26,241.05z"
         />
@@ -682,7 +688,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st32"
+          class="bshrq-st32"
           d="M95.08,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L93.73,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C88.44,240.86,92.22,242.91,95.08,241.05z"
         />
@@ -702,7 +708,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st33"
+          class="bshrq-st33"
           d="M98.71,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L97.36,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C92.07,240.86,95.85,242.91,98.71,241.05z"
         />
@@ -718,7 +724,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st34"
+          class="bshrq-st34"
           d="M100.53,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L99.17,36.93c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C93.88,240.86,97.67,242.91,100.53,241.05z"
         />
@@ -738,7 +744,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st35"
+          class="bshrq-st35"
           d="M104.16,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C97.51,240.86,101.3,242.91,104.16,241.05z"
         />
@@ -754,7 +760,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st36"
+          class="bshrq-st36"
           d="M105.97,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C99.33,240.86,103.12,242.91,105.97,241.05z"
         />
@@ -774,7 +780,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st37"
+          class="bshrq-st37"
           d="M109.6,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C102.96,240.86,106.75,242.91,109.6,241.05z"
         />
@@ -790,7 +796,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st38"
+          class="bshrq-st38"
           d="M111.42,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C104.78,240.86,108.56,242.91,111.42,241.05z"
         />
@@ -810,7 +816,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st39"
+          class="bshrq-st39"
           d="M115.05,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L113.7,36.93c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C108.41,240.86,112.19,242.91,115.05,241.05z"
         />
@@ -826,7 +832,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st40"
+          class="bshrq-st40"
           d="M116.87,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C110.22,240.86,114.01,242.91,116.87,241.05z"
         />
@@ -846,7 +852,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st41"
+          class="bshrq-st41"
           d="M120.5,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C113.85,240.86,117.64,242.91,120.5,241.05z"
         />
@@ -862,7 +868,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st42"
+          class="bshrq-st42"
           d="M122.31,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C115.67,240.86,119.45,242.91,122.31,241.05z"
         />
@@ -882,7 +888,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st43"
+          class="bshrq-st43"
           d="M125.94,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C119.3,240.86,123.09,242.91,125.94,241.05z"
         />
@@ -898,7 +904,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st44"
+          class="bshrq-st44"
           d="M127.76,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C121.12,240.86,124.9,242.91,127.76,241.05z"
         />
@@ -918,7 +924,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st45"
+          class="bshrq-st45"
           d="M131.39,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C124.75,240.86,128.53,242.91,131.39,241.05z"
         />
@@ -934,7 +940,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st46"
+          class="bshrq-st46"
           d="M133.21,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C126.56,240.86,130.35,242.91,133.21,241.05z"
         />
@@ -954,7 +960,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st47"
+          class="bshrq-st47"
           d="M136.84,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C130.19,240.86,133.98,242.91,136.84,241.05z"
         />
@@ -970,7 +976,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st48"
+          class="bshrq-st48"
           d="M138.65,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L137.3,36.93c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C132.01,240.86,135.79,242.91,138.65,241.05z"
         />
@@ -990,7 +996,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st49"
+          class="bshrq-st49"
           d="M142.28,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C135.64,240.86,139.43,242.91,142.28,241.05z"
         />
@@ -1006,7 +1012,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st50"
+          class="bshrq-st50"
           d="M144.1,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C137.46,240.86,141.24,242.91,144.1,241.05z"
         />
@@ -1026,7 +1032,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st51"
+          class="bshrq-st51"
           d="M147.73,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C141.09,240.86,144.87,242.91,147.73,241.05z"
         />
@@ -1042,7 +1048,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st52"
+          class="bshrq-st52"
           d="M149.55,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C142.9,240.86,146.69,242.91,149.55,241.05z"
         />
@@ -1062,7 +1068,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st53"
+          class="bshrq-st53"
           d="M153.18,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C146.53,240.86,150.32,242.91,153.18,241.05z"
         />
@@ -1078,7 +1084,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st54"
+          class="bshrq-st54"
           d="M154.99,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C148.35,240.86,152.13,242.91,154.99,241.05z"
         />
@@ -1098,7 +1104,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st55"
+          class="bshrq-st55"
           d="M158.62,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C151.98,240.86,155.77,242.91,158.62,241.05z"
         />
@@ -1114,7 +1120,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st56"
+          class="bshrq-st56"
           d="M160.44,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C153.8,240.86,157.58,242.91,160.44,241.05z"
         />
@@ -1134,7 +1140,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st57"
+          class="bshrq-st57"
           d="M164.07,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C157.43,240.86,161.21,242.91,164.07,241.05z"
         />
@@ -1150,7 +1156,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st58"
+          class="bshrq-st58"
           d="M165.88,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C159.24,240.86,163.03,242.91,165.88,241.05z"
         />
@@ -1170,7 +1176,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st59"
+          class="bshrq-st59"
           d="M169.52,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C162.87,240.86,166.66,242.91,169.52,241.05z"
         />
@@ -1186,7 +1192,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st60"
+          class="bshrq-st60"
           d="M171.33,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C164.69,240.86,168.47,242.91,171.33,241.05z"
         />
@@ -1206,7 +1212,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st61"
+          class="bshrq-st61"
           d="M174.96,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C168.32,240.86,172.11,242.91,174.96,241.05z"
         />
@@ -1222,7 +1228,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st62"
+          class="bshrq-st62"
           d="M176.78,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C170.14,240.86,173.92,242.91,176.78,241.05z"
         />
@@ -1242,7 +1248,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st63"
+          class="bshrq-st63"
           d="M180.41,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C173.77,240.86,177.55,242.91,180.41,241.05z"
         />
@@ -1258,7 +1264,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st64"
+          class="bshrq-st64"
           d="M182.22,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C175.58,240.86,179.37,242.91,182.22,241.05z"
         />
@@ -1278,7 +1284,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st65"
+          class="bshrq-st65"
           d="M185.86,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L184.5,36.93c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C179.21,240.86,183,242.91,185.86,241.05z"
         />
@@ -1294,7 +1300,7 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st66"
+          class="bshrq-st66"
           d="M187.67,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C181.03,240.86,184.81,242.91,187.67,241.05z"
         />
@@ -1314,7 +1320,7 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="st67"
+          class="bshrq-st67"
           d="M191.3,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C184.66,240.86,188.44,242.91,191.3,241.05z"
         />
@@ -1330,12 +1336,12 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="st68"
+          class="bshrq-st68"
           d="M193.12,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C186.48,240.86,190.26,242.91,193.12,241.05z"
         />
       </g>
-      <ellipse class="st69" cx="16.41" cy="93.27" rx="3.42" ry="6.43" />
+      <ellipse class="bshrq-st69" cx="16.41" cy="93.27" rx="3.42" ry="6.43" />
       <linearGradient
         id="SVGID_66_"
         gradientUnits="userSpaceOnUse"
@@ -1365,10 +1371,10 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="st70"
+        class="bshrq-st70"
         d="M181.13,98.39V88.26H15.65c0,0-1.65,1.52-1.65,5.07c0,4.2,1.65,5.07,1.65,5.07H181.13z"
       />
-      <ellipse class="st69" cx="16.41" cy="190.4" rx="3.42" ry="6.43" />
+      <ellipse class="bshrq-st69" cx="16.41" cy="190.4" rx="3.42" ry="6.43" />
       <linearGradient
         id="SVGID_67_"
         gradientUnits="userSpaceOnUse"
@@ -1398,7 +1404,7 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="st71"
+        class="bshrq-st71"
         d="M181.13,195.52v-10.14H15.65c0,0-1.65,1.52-1.65,5.07c0,4.2,1.65,5.07,1.65,5.07H181.13z"
       />
       <g>
@@ -1414,32 +1420,38 @@
           <stop offset="1" style="stop-color:#2B68AB" />
         </linearGradient>
         <polygon
-          class="st72"
+          class="bshrq-st72"
           points="245.62,219.15 182.98,260 182.98,41.23 245.62,0.38 	"
         />
       </g>
       <g>
-        <rect x="176.63" y="41.23" class="st3" width="6.35" height="218.77" />
+        <rect
+          x="176.63"
+          y="41.23"
+          class="bshrq-st3"
+          width="6.35"
+          height="218.77"
+        />
       </g>
       <g>
         <polygon
-          class="st4"
+          class="bshrq-st4"
           points="239.27,0.38 245.62,0.38 182.98,41.23 176.63,41.23 	"
         />
       </g>
       <polygon
-        class="st5"
+        class="bshrq-st5"
         points="183.44,260 182.53,260 182.53,41.68 176.63,41.68 176.63,40.78 183.44,40.78 "
       />
       <rect
         x="176.91"
         y="20.35"
         transform="matrix(0.8374 -0.5466 0.5466 0.8374 23.4707 120.5126)"
-        class="st6"
+        class="bshrq-st6"
         width="74.78"
         height="0.91"
       />
-      <ellipse class="st69" cx="189.59" cy="93.33" rx="4.52" ry="8.51" />
+      <ellipse class="bshrq-st69" cx="189.59" cy="93.33" rx="4.52" ry="8.51" />
       <linearGradient
         id="SVGID_69_"
         gradientUnits="userSpaceOnUse"
@@ -1469,11 +1481,11 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="st73"
+        class="bshrq-st73"
         d="M194.19,100.1V86.69h-5.6c0,0-2.18,2.01-2.18,6.71c0,5.56,2.18,6.71,2.18,6.71H194.19z"
       />
-      <ellipse class="st74" cx="194.19" cy="93.4" rx="2.85" ry="6.71" />
-      <ellipse class="st69" cx="189.59" cy="190.46" rx="4.52" ry="8.51" />
+      <ellipse class="bshrq-st74" cx="194.19" cy="93.4" rx="2.85" ry="6.71" />
+      <ellipse class="bshrq-st69" cx="189.59" cy="190.46" rx="4.52" ry="8.51" />
       <linearGradient
         id="SVGID_70_"
         gradientUnits="userSpaceOnUse"
@@ -1503,11 +1515,11 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="st75"
+        class="bshrq-st75"
         d="M194.19,197.23v-13.41h-5.6c0,0-2.18,2.01-2.18,6.71c0,5.56,2.18,6.71,2.18,6.71H194.19z"
       />
-      <ellipse class="st74" cx="194.19" cy="190.53" rx="2.85" ry="6.71" />
-      <ellipse class="st69" cx="240.42" cy="67.91" rx="4.52" ry="8.51" />
+      <ellipse class="bshrq-st74" cx="194.19" cy="190.53" rx="2.85" ry="6.71" />
+      <ellipse class="bshrq-st69" cx="240.42" cy="67.91" rx="4.52" ry="8.51" />
       <linearGradient
         id="SVGID_71_"
         gradientUnits="userSpaceOnUse"
@@ -1537,11 +1549,11 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="st76"
+        class="bshrq-st76"
         d="M245.03,74.69V61.28h-5.6c0,0-2.18,2.01-2.18,6.71c0,5.56,2.18,6.71,2.18,6.71H245.03z"
       />
-      <ellipse class="st74" cx="245.03" cy="67.98" rx="2.85" ry="6.71" />
-      <ellipse class="st69" cx="240.42" cy="165.04" rx="4.52" ry="8.51" />
+      <ellipse class="bshrq-st74" cx="245.03" cy="67.98" rx="2.85" ry="6.71" />
+      <ellipse class="bshrq-st69" cx="240.42" cy="165.04" rx="4.52" ry="8.51" />
       <linearGradient
         id="SVGID_72_"
         gradientUnits="userSpaceOnUse"
@@ -1571,12 +1583,12 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="st77"
+        class="bshrq-st77"
         d="M245.03,171.82v-13.41h-5.6c0,0-2.18,2.01-2.18,6.71c0,5.56,2.18,6.71,2.18,6.71H245.03z"
       />
-      <ellipse class="st74" cx="245.03" cy="165.11" rx="2.85" ry="6.71" />
+      <ellipse class="bshrq-st74" cx="245.03" cy="165.11" rx="2.85" ry="6.71" />
       <g>
-        <ellipse class="st69" cx="233" cy="33.33" rx="7.69" ry="14.48" />
+        <ellipse class="bshrq-st69" cx="233" cy="33.33" rx="7.69" ry="14.48" />
 
         <linearGradient
           id="SVGID_73_"
@@ -1607,7 +1619,7 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="st78"
+          class="bshrq-st78"
           d="M274.8,44.86V22.05h-43.5c0,0-3.71,3.42-3.71,11.41c0,9.45,3.71,11.41,3.71,11.41H274.8z"
         />
 
@@ -1640,7 +1652,7 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="st79"
+          class="bshrq-st79"
           d="M270.9,14.16c2.31,4.68,3.79,11.87,3.79,19.94s-1.48,15.26-3.79,19.94v5.61h-6.32
                 c-5.59,0-10.12-11.44-10.12-25.56s4.53-25.56,10.12-25.56h6.32V14.16z"
         />
@@ -1655,7 +1667,13 @@
           <stop offset="0" style="stop-color:#74716F" />
           <stop offset="1" style="stop-color:#ABAEAD" />
         </linearGradient>
-        <ellipse class="st80" cx="270.9" cy="34.11" rx="10.12" ry="25.56" />
+        <ellipse
+          class="bshrq-st80"
+          cx="270.9"
+          cy="34.11"
+          rx="10.12"
+          ry="25.56"
+        />
 
         <linearGradient
           id="SVGID_76_"
@@ -1670,7 +1688,13 @@
           <stop offset="0.648" style="stop-color:#575753" />
           <stop offset="1" style="stop-color:#262623" />
         </linearGradient>
-        <ellipse class="st81" cx="272.17" cy="34.11" rx="4.09" ry="10.34" />
+        <ellipse
+          class="bshrq-st81"
+          cx="272.17"
+          cy="34.11"
+          rx="4.09"
+          ry="10.34"
+        />
         <linearGradient
           id="SVGID_77_"
           gradientUnits="userSpaceOnUse"
@@ -1695,13 +1719,13 @@
           <stop offset="1" style="stop-color:#6F6F6A" />
         </linearGradient>
         <path
-          class="st82"
+          class="bshrq-st82"
           d="M262.75,34.11c0,13.28,4.01,24.19,9.14,25.43c-0.32,0.08-0.65,0.12-0.98,0.12
                 c-5.59,0-10.12-11.44-10.12-25.56s4.53-25.56,10.12-25.56c0.33,0,0.66,0.04,0.98,0.12C266.76,9.92,262.75,20.83,262.75,34.11z"
         />
       </g>
       <g>
-        <ellipse class="st69" cx="233" cy="194.91" rx="7.69" ry="14.48" />
+        <ellipse class="bshrq-st69" cx="233" cy="194.91" rx="7.69" ry="14.48" />
 
         <linearGradient
           id="SVGID_78_"
@@ -1732,7 +1756,7 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="st83"
+          class="bshrq-st83"
           d="M274.8,206.44v-22.81h-43.5c0,0-3.71,3.42-3.71,11.41c0,9.45,3.71,11.41,3.71,11.41H274.8z"
         />
 
@@ -1765,7 +1789,7 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="st84"
+          class="bshrq-st84"
           d="M270.9,175.74c2.31,4.68,3.79,11.87,3.79,19.94c0,8.07-1.48,15.26-3.79,19.94v5.61h-6.32
                 c-5.59,0-10.12-11.44-10.12-25.56c0-14.11,4.53-25.56,10.12-25.56h6.32V175.74z"
         />
@@ -1780,7 +1804,13 @@
           <stop offset="0" style="stop-color:#74716F" />
           <stop offset="1" style="stop-color:#ABAEAD" />
         </linearGradient>
-        <ellipse class="st85" cx="270.9" cy="195.69" rx="10.12" ry="25.56" />
+        <ellipse
+          class="bshrq-st85"
+          cx="270.9"
+          cy="195.69"
+          rx="10.12"
+          ry="25.56"
+        />
 
         <linearGradient
           id="SVGID_81_"
@@ -1795,7 +1825,13 @@
           <stop offset="0.648" style="stop-color:#575753" />
           <stop offset="1" style="stop-color:#262623" />
         </linearGradient>
-        <ellipse class="st86" cx="272.17" cy="195.69" rx="4.09" ry="10.34" />
+        <ellipse
+          class="bshrq-st86"
+          cx="272.17"
+          cy="195.69"
+          rx="4.09"
+          ry="10.34"
+        />
         <linearGradient
           id="SVGID_82_"
           gradientUnits="userSpaceOnUse"
@@ -1820,14 +1856,20 @@
           <stop offset="1" style="stop-color:#6F6F6A" />
         </linearGradient>
         <path
-          class="st87"
+          class="bshrq-st87"
           d="M262.75,195.69c0,13.28,4.01,24.19,9.14,25.43c-0.32,0.08-0.65,0.12-0.98,0.12
                 c-5.59,0-10.12-11.44-10.12-25.56c0-14.11,4.53-25.56,10.12-25.56c0.33,0,0.66,0.04,0.98,0.12
                 C266.76,171.5,262.75,182.41,262.75,195.69z"
         />
       </g>
       <g>
-        <ellipse class="st69" cx="196.69" cy="57.84" rx="7.69" ry="14.48" />
+        <ellipse
+          class="bshrq-st69"
+          cx="196.69"
+          cy="57.84"
+          rx="7.69"
+          ry="14.48"
+        />
 
         <linearGradient
           id="SVGID_83_"
@@ -1858,7 +1900,7 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="st88"
+          class="bshrq-st88"
           d="M238.49,69.37V46.56h-43.5c0,0-3.71,3.42-3.71,11.41c0,9.45,3.71,11.41,3.71,11.41H238.49z"
         />
 
@@ -1891,7 +1933,7 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="st89"
+          class="bshrq-st89"
           d="M234.59,38.67c2.31,4.68,3.79,11.87,3.79,19.94s-1.48,15.26-3.79,19.94v5.61h-6.32
                 c-5.59,0-10.12-11.44-10.12-25.56s4.53-25.56,10.12-25.56h6.32V38.67z"
         />
@@ -1906,7 +1948,13 @@
           <stop offset="0" style="stop-color:#74716F" />
           <stop offset="1" style="stop-color:#ABAEAD" />
         </linearGradient>
-        <ellipse class="st90" cx="234.59" cy="58.62" rx="10.12" ry="25.56" />
+        <ellipse
+          class="bshrq-st90"
+          cx="234.59"
+          cy="58.62"
+          rx="10.12"
+          ry="25.56"
+        />
 
         <linearGradient
           id="SVGID_86_"
@@ -1921,7 +1969,13 @@
           <stop offset="0.648" style="stop-color:#575753" />
           <stop offset="1" style="stop-color:#262623" />
         </linearGradient>
-        <ellipse class="st91" cx="235.86" cy="58.62" rx="4.09" ry="10.34" />
+        <ellipse
+          class="bshrq-st91"
+          cx="235.86"
+          cy="58.62"
+          rx="4.09"
+          ry="10.34"
+        />
         <linearGradient
           id="SVGID_87_"
           gradientUnits="userSpaceOnUse"
@@ -1946,13 +2000,19 @@
           <stop offset="1" style="stop-color:#6F6F6A" />
         </linearGradient>
         <path
-          class="st92"
+          class="bshrq-st92"
           d="M226.44,58.62c0,13.28,4.01,24.19,9.14,25.43c-0.32,0.08-0.65,0.12-0.98,0.12
                 c-5.59,0-10.12-11.44-10.12-25.56s4.53-25.56,10.12-25.56c0.33,0,0.66,0.04,0.98,0.12C230.45,34.43,226.44,45.34,226.44,58.62z"
         />
       </g>
       <g>
-        <ellipse class="st69" cx="196.69" cy="219.42" rx="7.69" ry="14.48" />
+        <ellipse
+          class="bshrq-st69"
+          cx="196.69"
+          cy="219.42"
+          rx="7.69"
+          ry="14.48"
+        />
 
         <linearGradient
           id="SVGID_88_"
@@ -1983,7 +2043,7 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="st93"
+          class="bshrq-st93"
           d="M238.49,230.95v-22.81h-43.5c0,0-3.71,3.42-3.71,11.41c0,9.45,3.71,11.41,3.71,11.41H238.49z"
         />
 
@@ -2016,7 +2076,7 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="st94"
+          class="bshrq-st94"
           d="M234.59,200.25c2.31,4.68,3.79,11.87,3.79,19.94c0,8.07-1.48,15.26-3.79,19.94v5.61h-6.32
                 c-5.59,0-10.12-11.44-10.12-25.56c0-14.11,4.53-25.56,10.12-25.56h6.32V200.25z"
         />
@@ -2031,7 +2091,13 @@
           <stop offset="0" style="stop-color:#74716F" />
           <stop offset="1" style="stop-color:#ABAEAD" />
         </linearGradient>
-        <ellipse class="st95" cx="234.59" cy="220.2" rx="10.12" ry="25.56" />
+        <ellipse
+          class="bshrq-st95"
+          cx="234.59"
+          cy="220.2"
+          rx="10.12"
+          ry="25.56"
+        />
 
         <linearGradient
           id="SVGID_91_"
@@ -2046,7 +2112,13 @@
           <stop offset="0.648" style="stop-color:#575753" />
           <stop offset="1" style="stop-color:#262623" />
         </linearGradient>
-        <ellipse class="st96" cx="235.86" cy="220.2" rx="4.09" ry="10.34" />
+        <ellipse
+          class="bshrq-st96"
+          cx="235.86"
+          cy="220.2"
+          rx="4.09"
+          ry="10.34"
+        />
         <linearGradient
           id="SVGID_92_"
           gradientUnits="userSpaceOnUse"
@@ -2071,7 +2143,7 @@
           <stop offset="1" style="stop-color:#6F6F6A" />
         </linearGradient>
         <path
-          class="st97"
+          class="bshrq-st97"
           d="M226.44,220.2c0,13.28,4.01,24.19,9.14,25.43c-0.32,0.08-0.65,0.12-0.98,0.12
                 c-5.59,0-10.12-11.44-10.12-25.56c0-14.11,4.53-25.56,10.12-25.56c0.33,0,0.66,0.04,0.98,0.12
                 C230.45,196.01,226.44,206.92,226.44,220.2z"

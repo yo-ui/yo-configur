@@ -283,7 +283,17 @@ export default {
       }
     };
     //拼接url
-    Vue.prototype.$linkUrl = function(url, params) {
+    Vue.prototype.$linkUrl = function(content, params) {
+      let href = decodeURIComponent(content);
+      while (href.indexOf("x-access-token") > -1) {
+        href = href.replace(
+          /x-access-token(.*)(&|\S)(.*)$/,
+          ($0, $1, $2, $3) => {
+            return $3;
+          }
+        );
+      }
+      let url = href || "";
       if (url.indexOf("?") > -1) {
         let arr = [];
         for (let i in params) {

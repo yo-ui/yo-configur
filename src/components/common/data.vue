@@ -78,6 +78,28 @@
         ></i>
       </el-tooltip>
     </p>
+    <template v-if="info.bindData && info.bindData.deviceId !== ''">
+      <p>
+        <span class="label"> {{ $lang("设备ID") }}: </span>
+        {{ info.bindData.deviceId }}
+      </p>
+      <p>
+        <span class="label"> {{ $lang("设备名称") }}: </span>
+        {{ device.name }}
+      </p>
+      <p>
+        <span class="label"> {{ $lang("监测位置") }}: </span>
+        {{ info.bindData.deviceId }}
+      </p>
+      <p class="top-position" v-if="pointList&&pointList.length>0">
+        <span class="label"> {{ $lang("点位列表") }}: </span>
+        <ul>
+          <li v-for="item in pointList" :key="item.id">
+            {{item.name}}
+          </li>
+        </ul>
+      </p>
+    </template>
     <p v-if="info.dataType == 'point'">
       <span class="label"> {{ $lang("绑定点位") }}: </span>
       <el-tooltip
@@ -94,18 +116,24 @@
         ></i>
       </el-tooltip>
     </p>
-    <!-- <p>
+    <p>
       <span class="label"> {{ $lang("绑定组件") }}: </span>
-      <el-select v-model="info.bindData.comId">
-        <el-option
-          :key="item.id"
-          v-for="item in widgetList"
-          :label="`${item.comName}(${item.id})`"
-          :value="item.id"
-        ></el-option>
+      <el-select
+        v-model="info.bindData.comId"
+        :placeholder="$lang('请选择需要绑定的组件')"
+      >
+        <el-option value="" :label="$lang('无')"></el-option>
+        <template v-for="item in widgetList">
+          <el-option
+            :key="item.id"
+            v-if="info.id != item.id"
+            :label="`${item.comName}(${item.id})`"
+            :value="item.id"
+          ></el-option>
+        </template>
       </el-select>
     </p>
-    <p v-if="info.bindData.comId !== ''">
+    <!-- <p v-if="info.bindData.comId">
       <el-input
         v-model="info.bindData.content"
         :placeholder="$lang('请输入绑定的数据(地址|数字|字符串)')"
@@ -120,7 +148,7 @@
 
 <script>
 import bmCommon from "@/common/common";
-// import { Constants } from "@/common/env";
+import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -128,6 +156,8 @@ export default {
   data() {
     return {
       // activeNames: ["name"]
+      device: {},
+      pointList: []
     };
   },
   props: {
@@ -144,13 +174,93 @@ export default {
       widgetList: "canvas/getWidgetList"
     })
   },
+  mounted() {
+    this.init();
+  },
   methods: {
     ...mapMutations({}),
-    ...mapActions({}),
+    ...mapActions({
+      commonGetDeviceAction: "commonGetDevice"
+      // modelDevicePointsAction: "modelDevicePoints"
+    }),
     addEvent(item = {}) {
       // eslint-disable-next-line no-undef
       bmCommon.log(item);
       $vm.$emit("bind-device", item);
+    },
+    init() {
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { pointIds = [] } = bindData || {};
+      this.commonGetDeviceFunc((device = {}) => {
+        let { points = [] } = device || {};
+        this.device = device || {};
+        this.pointList = points.filter(item => pointIds.indexOf(item.id) > -1);
+      });
+      // this.modelDevicePointsFunc((pointList = []) => {
+      //   this.pointList = pointList || [];
+      // });
+    },
+    // 获取设备信息
+    commonGetDeviceFunc(callback) {
+      let value = {};
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { deviceId = "" } = bindData || {};
+      if (!deviceId) {
+        callback && callback(value || {});
+        return;
+      }
+      this.commonGetDeviceAction({ deviceId })
+        .then(({ data }) => {
+          let { code = "", result = {}, message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || {};
+          } else {
+            bmCommon.error(message);
+          }
+          callback && callback(value || {});
+        })
+        .catch(err => {
+          callback && callback(value || {});
+          bmCommon.error("获取数据失败=>commonGetDevice", err);
+        });
+    }
+
+    // // 获取设备信息
+    // modelDevicePointsFunc(callback) {
+    //   let value = [];
+    //   let { info = {} } = this;
+    //   let { bindData = {} } = info || {};
+    //   let { deviceId = "" } = bindData || {};
+    //   if (!deviceId) {
+    //     callback && callback(value || []);
+    //     return;
+    //   }
+    //   this.modelDevicePointsAction({ deviceId })
+    //     .then(({ data }) => {
+    //       let { code = "", result = [], message = "" } = data || {};
+    //       if (code == Constants.CODES.SUCCESS) {
+    //         value = result || [];
+    //       } else {
+    //         bmCommon.error(message);
+    //       }
+    //       callback && callback(value || []);
+    //     })
+    //     .catch(err => {
+    //       callback && callback(value || []);
+    //       bmCommon.error("获取数据失败=>modelDevicePoints", err);
+    //     });
+    // }
+  },
+  watch: {
+    "info.bindData.deviceId": {
+      handler(newVal, oldVal) {
+        if (newVal != oldVal) {
+          this.init();
+        }
+      },
+      deep: true
     }
   }
 };

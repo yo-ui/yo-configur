@@ -22,5 +22,9 @@ export default {
   //应用平台
   // proxyDeviceMonitoringDeviceControlledPointsUrl: `${host}/proxy/deviceMonitoring/device/controlled/points`, //获取设备可控制点位列表
 
+  // 管理平台
+  deviceGetUrl: `/device/get/{deviceId}`, //查询单个【网关设备】
+  modelDevicePointsUrl: `/model/device/points/{deviceId}`, //获取设备点位
+
   upload2OssUrl: `/upload/upload2Oss` //上传文件到阿里云oss
 };

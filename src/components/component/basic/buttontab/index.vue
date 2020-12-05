@@ -1,12 +1,12 @@
 <template>
   <div class="button-tab-com" :style="comStyle">
+    <!-- @blur.stop="blurEvent($event, item)" -->
     <button
       :style="btnStyle(item, index)"
       v-for="(item, index) in info.contentList"
       :key="index"
       :contenteditable="info.editable"
       @click="clickEvent(item)"
-      @blur.stop="blurEvent($event, item)"
     >
       {{ item.text }}
     </button>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "buttonTabCom",
@@ -30,7 +30,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({}),
+    ...mapGetters({
+      userInfo: "getUserInfo"
+    }),
     //渐变颜色样式
     gradientStyle() {
       return (info = {}) => {
@@ -136,14 +138,18 @@ export default {
           } else {
             if (_width < 2 * width) {
               //竖向
-              styles[
-                "borderWidth"
-              ] = `${borderWidth}px ${borderWidth}px 0 ${borderWidth}px`;
+              if (!(marginBottom > 0 || marginTop > 0)) {
+                styles[
+                  "borderWidth"
+                ] = `${borderWidth}px ${borderWidth}px 0 ${borderWidth}px`;
+              }
             } else {
               //横向
-              styles[
-                "borderWidth"
-              ] = `${borderWidth}px 0 ${borderWidth}px ${borderWidth}px`;
+              if (!(marginRight > 0 || marginLeft > 0)) {
+                styles[
+                  "borderWidth"
+                ] = `${borderWidth}px 0 ${borderWidth}px ${borderWidth}px`;
+              }
             }
           }
         }
@@ -400,10 +406,18 @@ export default {
       item.name = name;
     },
     clickEvent(item) {
-      let { info = {} } = this;
+      let { info = {}, userInfo = {} } = this;
       let { value = "" } = item || {};
+      let { bindData = "" } = info || {};
       info.content = value;
-      bmCommon.log(info.content, value);
+      let { comId = "" } = bindData || {};
+      if (comId) {
+        let com = document.getElementById(`box_${comId}`);
+        let vm = com.__vue__;
+        let { info: _info = {} } = vm || {};
+        let { token = "" } = userInfo || {};
+        _info.content = this.$linkUrl(value, { "x-access-token": token });
+      }
     }
   }
 };

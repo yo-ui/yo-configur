@@ -58,8 +58,7 @@ export default {
       }
     }
   },
-  methods: {
-  },
+  methods: {},
   mounted() {
     // 计算屏幕长宽
     this.width = $(window).width() + "px";

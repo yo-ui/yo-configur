@@ -396,13 +396,14 @@ export default {
     },
     saveEvent() {
       let { canvas = {}, canvasData: data = {}, widgetList = [] } = this;
-      let { width = "", height = "", canvasId: id = "" } = canvas || {};
+      let { width = "", height = "", canvasId: id = "", name = "" } =
+        canvas || {};
       this.setCanvasData(data);
       if (!id) {
         return;
       }
       data.canvasData = {
-        widgetList,
+        widgetList: widgetList.filter(item => item.type != "canvas"),
         canvas
       };
       if (!data.background) {
