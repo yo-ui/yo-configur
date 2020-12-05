@@ -183,6 +183,9 @@ export default {
     setCanvas(state, item) {
       state.canvas = item;
     },
+    setMoving(state, item) {
+      state.moving = item;
+    },
     setShowType(state, item) {
       state.showType = item;
     },

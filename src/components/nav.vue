@@ -478,14 +478,14 @@ export default {
       let { widgetList = [] } = this;
       let { id = "" } = item || {};
       let index = widgetList.findIndex(_item => id == _item.id);
-      bmCommon.log(
-        "widgetList=",
-        widgetList.length,
-        index,
-        id,
-        widgetList.map(item => item.id),
-        index < 0
-      );
+      // bmCommon.log(
+      //   "widgetList=",
+      //   widgetList.length,
+      //   index,
+      //   id,
+      //   widgetList.map(item => item.id),
+      //   index < 0
+      // );
       if (index < 0) {
         this.$$msgError(this.$lang("请选择要删除的组件"));
         return;
