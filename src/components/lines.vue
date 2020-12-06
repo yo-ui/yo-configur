@@ -1,34 +1,35 @@
 <template>
   <div v-show="moving" class="bm-lines-com">
     <!-- 横线 -->
+    <!-- :data-id="item.id"
+      :style="{ top: item.val + 'px' }"
+      :data-name="item.name" -->
     <div
-      :class="{ active: attachHoriz(item.val) }"
+      :class="{ active: attachHoriz(item.val, item.id) }"
       v-for="item in horiz"
       :key="item.id"
-      :data-id="item.id"
-      :data-name="item.name"
-      :style="{ top: item.val + 'px' }"
+      :style="{
+        top: `${item.val}px`
+        //left: `${item.left}px`,
+        //width: `${item.width}px`
+      }"
       class="horiz"
-    >
-      <!-- {{ item.name }} -->
-      <!-- ---{{ horizontal }} -->
-      <!-- {{ moving }} -->
-    </div>
+    ></div>
 
     <!-- 竖线 -->
+    <!-- :data-id="item.id"
+      :data-name="item.name" -->
     <div
-      :class="{ active: attachVerti(item.val) }"
+      :class="{ active: attachVerti(item.val, item.id) }"
       v-for="item in verti"
       :key="item.id"
-      :data-id="item.id"
-      :data-name="item.name"
-      :style="{ left: item.val + 'px' }"
+      :style="{
+        left: `${item.val}px`
+        //height: `${item.height}px`,
+        //top: `${item.top}px`
+      }"
       class="verti"
-    >
-      <!-- {{ item.name }} -->
-      <!-- ---{{ vertical }}  -->
-      <!-- {{ moving }} -->
-    </div>
+    ></div>
   </div>
 </template>
 
@@ -47,6 +48,7 @@ export default {
     ...mapGetters({
       widgetList: "canvas/getWidgetList", //组件列表
       activeCom: "canvas/getActiveCom", //选中组件
+      activeComs: "canvas/getActiveComs", //选中组件
       moving: "canvas/getMoving", //获取鼠标移动状态
       canvas: "canvas/getCanvas" //画布组件
     }),
@@ -55,9 +57,24 @@ export default {
     // },
     guides() {
       // var state = this.$vpd.state
-      let { widgetList = [], activeCom = {}, canvas = {} } = this;
-      var guides = [];
-      var { id = "" } = activeCom || {};
+      let {
+        widgetList = [],
+        activeCom = {},
+        activeComs = [],
+        canvas = {}
+      } = this;
+      let guides = [];
+      let { length = 0 } = activeComs || [];
+      let { id = "" } = activeCom || {};
+      let ids = [];
+      if (length > 1) {
+        activeComs.forEach(item => {
+          let { id = "" } = item || {};
+          ids.push(id);
+        });
+      } else {
+        ids.push(id);
+      }
       let list = [canvas, ...widgetList];
       list.forEach((item = {}) => {
         // 排除选中元素
@@ -77,7 +94,7 @@ export default {
           top = Math.round(height / 2);
           left = Math.round(width / 2);
         } else {
-          if (_id === id) {
+          if (ids.indexOf(_id) > -1) {
             return;
           }
         }
@@ -112,22 +129,36 @@ export default {
       let { height: canvasHeight = 0 } = canvas || {};
 
       guides.forEach(val => {
-        let { top = 0, height = 0, id = "", name = "" } = val || {};
+        let { top = 0, height = 0, id = "", name = "", width = "", left = "" } =
+          val || {};
         // var top = val.top;
         var bottom = top + height;
-
+        let center = top + height / 2;
         if (cor.indexOf(top) < 0 && height && top) {
           cor.push({
-            id: `horiz-${id}-${top}`,
+            id: `horiz-${id}-${Number(top).toFixed(0)}`,
             name,
-            val: top
+            val: top,
+            width,
+            left
+          });
+        }
+        if (cor.indexOf(center) < 0 && height && center) {
+          cor.push({
+            id: `horiz-${id}-${Number(center).toFixed(0)}`,
+            name,
+            val: center,
+            width,
+            left
           });
         }
         if (cor.indexOf(bottom) < 0 && height && bottom < canvasHeight) {
           cor.push({
-            id: `horiz-${id}-${bottom}`,
+            id: `horiz-${id}-${Number(bottom).toFixed(0)}`,
             name,
-            val: bottom
+            val: bottom,
+            width,
+            left
           });
         }
       });
@@ -142,22 +173,37 @@ export default {
       let cor = [];
 
       guides.forEach(val => {
-        let { left = 0, width = 0, id = "", name = "" } = val || {};
+        let { left = 0, width = 0, id = "", name = "", top = "", height = "" } =
+          val || {};
         // var left = val.left;
         let right = left + width;
+        let center = left + width / 2;
 
         if (cor.indexOf(left) < 0 && canvasWidth && left) {
           cor.push({
-            id: `verti-${id}-${left}`,
+            id: `verti-${id}-${Number(left).toFixed(0)}`,
             name,
-            val: left
+            val: left,
+            top,
+            height
+          });
+        }
+        if (cor.indexOf(center) < 0 && canvasWidth && center) {
+          cor.push({
+            id: `verti-${id}-${Number(center).toFixed(0)}`,
+            name,
+            val: center,
+            top,
+            height
           });
         }
         if (cor.indexOf(right) < 0 && width && canvasWidth > right) {
           cor.push({
-            id: `verti-${id}-${right}`,
+            id: `verti-${id}-${Number(right).toFixed(0)}`,
             name,
-            val: right
+            val: right,
+            top,
+            height
           });
         }
       });
@@ -167,45 +213,86 @@ export default {
 
     // 移动元素上下边坐标
     horizontal() {
-      let { activeCom = {} } = this;
-      // var a = this.$vpd.state.activeElement;
-      let { type = "", height = "", originHeight = "", top = "" } =
-        activeCom || {};
-      if (type != "canvas") {
-        // if (activeCom) {
-        // let h = Math.round(height) + padding;
-        var h = Math.round(((height || originHeight) + padding) / 2);
-        // return [top, top + h];
-        return [top, top + h, top + h * 2];
+      let { activeCom = {}, activeComs = [] } = this;
+      let pos = []; //位置信息数组
+      let { length = 0 } = activeComs || [];
+      let widgets = [];
+      if (length > 1) {
+        widgets = [...activeComs];
       } else {
-        return [];
+        widgets = [activeCom];
       }
+      widgets.forEach(item => {
+        let { type = "", height = "", originHeight = "", top = "" } =
+          item || {};
+        let h = Math.round(((height || originHeight) + padding) / 2);
+        if (type != "canvas") {
+          pos.push([top, top + h, top + h * 2]);
+        }
+      });
+      return pos;
+      // } else {
+      //   return [];
+      // }
     },
 
     // 移动元素左中右坐标
     vertical() {
-      let { activeCom = {} } = this;
-      // var a = this.$vpd.state.activeElement;
-      let { type = "", width = "", originWidth = "", left = "" } =
-        activeCom || {};
-      if (type != "canvas") {
-        var w = Math.round(((width || originWidth) + padding) / 2);
-        return [left, left + w, left + w * 2];
+      let { activeCom = {}, activeComs = [] } = this;
+
+      let pos = []; //位置信息数组
+      let { length = 0 } = activeComs || [];
+      let widgets = [];
+      if (length > 1) {
+        widgets = [...activeComs];
       } else {
-        return [];
+        widgets = [activeCom];
       }
+      widgets.forEach(item => {
+        let { type = "", width = "", originWidth = "", left = "" } = item || {};
+        var w = Math.round(((width || originWidth) + padding) / 2);
+        if (type != "canvas") {
+          pos.push([left, left + w, left + w * 2]);
+        }
+      });
+      return pos;
+      // } else {
+      //   return [];
+      // }
     }
   },
   methods: {
     ...mapMutations(),
     ...mapActions(),
-    attachHoriz(value) {
+    attachHoriz(value, id) {
       let { horizontal = [] } = this;
-      return horizontal.some(val => Math.abs(val - value) <= 1);
+      // return horizontal.some(val => Math.abs(val - value) <= 5);
+      try {
+        horizontal.forEach(item => {
+          let flag = item.some(val => Math.abs(val - value) <= 5);
+          if (flag) {
+            throw new Error("找到对应位置");
+          }
+        });
+      } catch (error) {
+        return true;
+      }
+      return false;
     },
-    attachVerti(value) {
+    attachVerti(value, id) {
       let { vertical = [] } = this;
-      return vertical.some(val => Math.abs(val - value) <= 1);
+      // return vertical.some(val => Math.abs(val - value) <= 5);
+      try {
+        vertical.forEach(item => {
+          let flag = item.some(val => Math.abs(val - value) <= 5);
+          if (flag) {
+            throw new Error("找到对应位置");
+          }
+        });
+      } catch (error) {
+        return true;
+      }
+      return false;
     }
   }
 };
@@ -220,43 +307,34 @@ export default {
   z-index: 999;
   top: 0;
   left: 0;
+  // .db !important;
   .verti {
-    // position: absolute;
-    pointer-events: none;
-    .posa;
     .w(1);
-    .borl(2px dashed @white);
     .h(100%);
     top: 0;
-    // width: 1px;
-    // height: 1000%;
-    // top: -50px;
-    // background: #18ffff;
-    opacity: 0;
-    .borc(#00f);
+    .borl(2px dashed transparent);
     &.active {
       .borc(@red);
       opacity: 1;
     }
   }
   .horiz {
-    .h(0.5);
-    .posa;
+    .h(1);
     .w(100%);
     left: 0;
-    pointer-events: none;
-    .bort(2px dashed @white);
-    opacity: 0;
-    //   position: absolute;
-    //   height: 0.5px;
-    // width: 1000%;
-    // left: -500%;
-    // background: #18ffff;
-    .borc(#00f);
+    .bort(2px dashed transparent);
     &.active {
       .borc(@red);
       opacity: 1;
     }
+  }
+  .verti,
+  .horiz {
+    pointer-events: none;
+    opacity: 1;
+    .posa;
+    // .borc(#f00);
+    z-index: 9999;
   }
 }
 </style>

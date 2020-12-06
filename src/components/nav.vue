@@ -476,7 +476,10 @@ export default {
     },
     deleteItem(item = {}) {
       let { widgetList = [] } = this;
-      let { id = "" } = item || {};
+      let { id = "", type = "" } = item || {};
+      if (type == "canvas") {
+        return;
+      }
       let index = widgetList.findIndex(_item => id == _item.id);
       // bmCommon.log(
       //   "widgetList=",
