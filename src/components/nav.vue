@@ -706,7 +706,7 @@ export default {
           break;
       }
       this.showGroupPopoverStatus = false;
-      this.createHistoryAction();
+      // this.createHistoryAction();
     },
     // 组合
     composeEvent() {
@@ -834,7 +834,6 @@ export default {
           break;
       }
       this.showSpreadPopoverStatus = false;
-      this.createHistoryAction();
     },
     // 垂直分布
     spreadVCenterEvent() {
@@ -860,6 +859,7 @@ export default {
           index++;
         }
       });
+      this.createHistoryAction();
     },
     //水平分布
     spreadHCenterEvent() {
@@ -885,6 +885,7 @@ export default {
           index++;
         }
       });
+      this.createHistoryAction();
     },
     alignCommandEvent(cmd) {
       if (!cmd) {

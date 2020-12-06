@@ -147,12 +147,17 @@ for (let i in Constants.BASEDATA) {
     let key = `activeCom.${i}`;
     watches[key] = {
       handler(newVal, oldVal) {
+        let { activeCom = {} } = this;
+        let { type = "", parentId = "" } = activeCom || {};
+        // let { parentId = "" } = newVal || {};
         let { activeComs = [], moving = false, selectBox = {} } = this;
         let { moving: _moving = false } = selectBox || {};
         let { length = 0 } = activeComs || [];
-        if (!(moving || _moving)) {
+        // let { com = {} } = activeComs || [];
+        // let { parentId = "" } = com || {};
+        if (!(moving || _moving || parentId)) {
           if (length > 1) {
-            // bmCommon.log("info 属性变更",type);
+            bmCommon.log("info 属性变更", type, "parentId=", parentId);
             activeComs.forEach(item => {
               item[i] = newVal;
             });
