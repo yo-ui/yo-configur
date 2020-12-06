@@ -91,8 +91,63 @@
     // top:0;
     .posr;
     .touch;
-    justify-content: space-between;
-    
+    justify-content: space-between;    
+    .left-rule,.top-rule{
+      .posa;
+      .bg-img;
+      .bc(#f6f7fb);
+      z-index: 99999;
+      i{
+        .posa;
+      }
+    }
+    .left-rule{
+      left:250px;
+      top:30px;
+      bottom:0;
+      .w(30);
+      .bi('/static/img/common/ruler_v.png');
+      background-repeat: repeat-y;
+      .bp(center top);
+      transform-origin: top;
+      .bz(30px 100px);
+      i{
+        left:0;
+        // .ml(5);
+        // .tl;
+        writing-mode: vertical-rl;
+        .tranf(rotate(180deg));
+      }
+    }
+    .left-top-rule{
+      .posa;
+      left:250px;
+      top:0;
+      .squ(30);
+      .bc(#f6f7fb);
+    }
+    .top-rule{
+      top:0;
+      .h(30);
+      left:280px;
+      right: 0;
+      .bi('/static/img/common/ruler_h.png');
+      background-repeat: repeat-x;
+      .bp(left center);
+      .bz(100px 30px);
+      transform-origin: left;
+      i{
+        top:0;
+
+      }
+      // &::before{
+      //   content:"";
+      //   .posa;
+      //   left:-30px;
+      //   .squ(30);
+      //   .bc(#f6f7fb);
+      // }
+    }
     .view-box{
       // .flex(1);
       // .m(30px 30px 50px);

@@ -9,6 +9,37 @@
       ></bm-widget-list>
       <!-- <div v-else></div> -->
       <div class="content-box">
+        <template v-if="canvas.left == 0">
+          <div class="left-top-rule"></div>
+          <div
+            class="left-rule"
+            :style="{
+              transform: `scaleY(${getZoom})`,
+              height: `${canvas.height}px`
+            }"
+          >
+            <i
+              v-for="item in parseInt(canvas.height / getZoom / 100)"
+              :key="item"
+              :style="{ top: `${(item - 1) * 100 + 10}px` }"
+              >{{ (item - 1) * 100 }}</i
+            >
+          </div>
+          <div
+            class="top-rule"
+            :style="{
+              transform: `scaleX(${getZoom})`,
+              width: `${canvas.width}px`
+            }"
+          >
+            <i
+              v-for="item in parseInt(canvas.height / getZoom / 100)"
+              :key="item"
+              :style="{ left: `${(item - 1) * 100 + 10}px` }"
+              >{{ (item - 1) * 100 }}</i
+            >
+          </div>
+        </template>
         <div class="view-box" ref="viewBox" :style="viewBoxStyle">
           <!-- {{activeComIds}} -->
           <!-- :active="activeComIds == item.id" -->
@@ -61,6 +92,7 @@
             <el-slider
               v-model="zoom"
               :max="1000"
+              :min="1"
               @mousedown.stop
               :format-tooltip="val => val + '%'"
             ></el-slider>

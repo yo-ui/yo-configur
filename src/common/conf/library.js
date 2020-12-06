@@ -645,8 +645,8 @@ let componentLibrary = [
           // fontWeight: "bold",
           // fontSize: 24,
           // fontFamily: "lcdD",
-          width: "",
-          height: "",
+          width: 240,
+          height: 30,
           content: "b",
           button: {
             height: 40, //按钮高度
