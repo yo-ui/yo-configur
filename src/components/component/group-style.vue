@@ -876,7 +876,7 @@
 </template>
 
 <script>
-// import bmCommon from "@/common/common";
+import bmCommon from "@/common/common";
 // import {componentLibrary} from "@/common/conf/library";
 import { Constants } from "@/common/env";
 const { mapActions, mapMutations, mapGetters } = Vuex;
@@ -888,13 +888,15 @@ for (let i in Constants.BASEDATA) {
     let key = `info.${i}`;
     watches[key] = {
       handler(newVal, oldVal) {
-        // let {type=""}=oldVal||{}
+        let { activeCom = {} } = this;
+        let { type = "" } = activeCom || {};
+        let { parentId = "" } = activeCom || {};
         let { activeComs = [], moving = false, selectBox = {} } = this;
         let { moving: _moving = false } = selectBox || {};
         let { length = 0 } = activeComs || [];
-        if (!(moving || _moving)) {
+        if (!(moving || _moving || parentId)) {
           if (length > 1) {
-            // bmCommon.log("group 属性变更",type);
+            bmCommon.log("group 属性变更", type);
             activeComs.forEach(item => {
               item[i] = newVal;
             });
