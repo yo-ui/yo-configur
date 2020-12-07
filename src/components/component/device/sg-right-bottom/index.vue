@@ -22,7 +22,7 @@
       ></defs>
       <g>
         <radialGradient
-          id="XMLID_LR_"
+          id="sg_right_bottom_LR_"
           cx="296.8083"
           cy="-271.2963"
           r="7.9785"
@@ -34,8 +34,8 @@
           <stop offset="1" style="stop-color:#777C7F" />
         </radialGradient>
         <path
-          id="XMLID_536_"
-          style="fill:url(#XMLID_LR_)"
+          id="sg_right_bottom_536_"
+          style="fill:url(#sg_right_bottom_LR_)"
           d="M8,0L1.8,0c0,1.1-0.8,1.8-1.8,1.8L0,8C4.4,8,8,4.4,8,0z"
         />
       </g>

@@ -46,12 +46,12 @@
         <stop offset="1" style="stop-color:#08396B" />
       </linearGradient>
       <path
-        id="XMLID_892_"
+        id="lyssb_892_"
         class="lyssb-st0"
         d="M62.8,14.4H68c2.2,0,4,12,4,26.8s-1.8,26.8-4,26.8h-5.2V14.4z"
       />
       <ellipse
-        id="XMLID_873_"
+        id="lyssb_873_"
         class="lyssb-st1"
         cx="62.8"
         cy="41.2"
@@ -71,12 +71,12 @@
         <stop offset="1" style="stop-color:#08396B" />
       </linearGradient>
       <path
-        id="XMLID_886_"
+        id="lyssb_886_"
         class="lyssb-st2"
         d="M9.2,14.4H4c-2.2,0-4,12-4,26.8C0,56,1.8,68.1,4,68.1h5.2V14.4z"
       />
       <ellipse
-        id="XMLID_880_"
+        id="lyssb_880_"
         class="lyssb-st1"
         cx="9.2"
         cy="41.2"
@@ -96,7 +96,7 @@
         <stop offset="0.9412" style="stop-color:#19274F" />
       </linearGradient>
       <path
-        id="XMLID_876_"
+        id="lyssb_876_"
         class="lyssb-st3"
         d="M63,25.2H9.8c-0.9,0-2.2,6.9-2.2,15.5s1.3,15.5,2.2,15.5H63c0,0,1.6-4.5,1.6-15.5
 					S63,25.2,63,25.2z"
@@ -117,7 +117,7 @@
         <stop offset="1" style="stop-color:#19274F" />
       </linearGradient>
       <path
-        id="XMLID_917_"
+        id="lyssb_917_"
         class="lyssb-st4"
         d="M18.1,17.1v11.5c0,7.8,8,22.1,17.8,22.1c9.8,0,17.8-14.3,17.8-22.1V17.1H18.1z"
       />
@@ -133,12 +133,12 @@
         <stop offset="1" style="stop-color:#19274F;stop-opacity:0.8" />
       </linearGradient>
       <path
-        id="XMLID_933_"
+        id="lyssb_933_"
         class="lyssb-st5"
         d="M18.1,17.1v11.5c0,7.8,8,22.1,17.8,22.1c9.8,0,17.8-14.3,17.8-22.1V17.1H18.1z"
       />
       <ellipse
-        id="XMLID_916_"
+        id="lyssb_916_"
         class="lyssb-st1"
         cx="35.8"
         cy="17.1"
@@ -158,12 +158,12 @@
         <stop offset="1" style="stop-color:#815223" />
       </linearGradient>
       <path
-        id="XMLID_915_"
+        id="lyssb_915_"
         class="lyssb-st6"
         d="M19.7,12.8v3.7c0,7.1,7.2,12.8,16.1,12.8c8.9,0,16.1-5.7,16.1-12.8v-3.7H19.7z"
       />
       <ellipse
-        id="XMLID_914_"
+        id="lyssb_914_"
         class="lyssb-st7"
         cx="35.8"
         cy="12.8"
@@ -171,7 +171,7 @@
         ry="12.8"
       />
       <ellipse
-        id="XMLID_913_"
+        id="lyssb_913_"
         class="lyssb-st8"
         cx="35.8"
         cy="12.5"
@@ -179,7 +179,7 @@
         ry="10.3"
       />
       <ellipse
-        id="XMLID_912_"
+        id="lyssb_912_"
         class="lyssb-st9"
         cx="32.1"
         cy="6.3"
@@ -187,7 +187,7 @@
         ry="1"
       />
       <ellipse
-        id="XMLID_911_"
+        id="lyssb_911_"
         class="lyssb-st9"
         cx="32.1"
         cy="18.8"
@@ -195,7 +195,7 @@
         ry="1"
       />
       <ellipse
-        id="XMLID_910_"
+        id="lyssb_910_"
         class="lyssb-st9"
         cx="27.7"
         cy="10.4"
@@ -203,7 +203,7 @@
         ry="1"
       />
       <ellipse
-        id="XMLID_909_"
+        id="lyssb_909_"
         class="lyssb-st9"
         cx="27.7"
         cy="15.5"
@@ -211,7 +211,7 @@
         ry="1"
       />
       <rect
-        id="XMLID_908_"
+        id="lyssb_908_"
         x="42.6"
         y="9.2"
         class="lyssb-st10"
@@ -219,7 +219,7 @@
         height="1.3"
       />
       <rect
-        id="XMLID_907_"
+        id="lyssb_907_"
         x="42.6"
         y="11.9"
         class="lyssb-st10"
@@ -227,7 +227,7 @@
         height="1.3"
       />
       <rect
-        id="XMLID_906_"
+        id="lyssb_906_"
         x="42.6"
         y="14.5"
         class="lyssb-st10"
@@ -235,7 +235,7 @@
         height="1.3"
       />
       <ellipse
-        id="XMLID_905_"
+        id="lyssb_905_"
         class="lyssb-st11"
         cx="36"
         cy="12.5"
@@ -243,7 +243,7 @@
         ry="1.8"
       />
       <path
-        id="XMLID_895_"
+        id="lyssb_895_"
         class="lyssb-st12"
         d="M35.8,2.9c7.1,0,13,4.5,13.2,10c0-0.1,0-0.2,0-0.4c0-5.7-5.9-10.3-13.2-10.3
 					S22.6,6.9,22.6,12.5c0,0.1,0,0.2,0,0.4C22.9,7.4,28.7,2.9,35.8,2.9z"

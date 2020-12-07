@@ -43,7 +43,7 @@
         <stop offset="1" style="stop-color:#254934" />
       </linearGradient>
       <polygon
-        id="XMLID_1059_"
+        id="csbcj_1059_"
         class="csbcj-st0"
         points="55.9,6.2 27.5,8.2 0,6.2 4,0 51.9,0 "
       />
@@ -59,14 +59,14 @@
         <stop offset="1" style="stop-color:#254934" />
       </linearGradient>
       <rect
-        id="XMLID_1057_"
+        id="csbcj_1057_"
         y="6.2"
         class="csbcj-st1"
         width="55.9"
         height="25.8"
       />
-      <g id="XMLID_1058_">
-        <g id="XMLID_1048_">
+      <g id="csbcj_1058_">
+        <g id="csbcj_1048_">
           <linearGradient
             id="csbcj_4_"
             gradientUnits="userSpaceOnUse"
@@ -80,12 +80,12 @@
             <stop offset="1" style="stop-color:#929DA0" />
           </linearGradient>
           <path
-            id="XMLID_1047_"
+            id="csbcj_1047_"
             class="csbcj-st2"
             d="M24.6,20.3c0-5.4-4.8-9.7-10.6-9.7S3.3,14.9,3.3,20.3v3h21.3V20.3z"
           />
           <ellipse
-            id="XMLID_1042_"
+            id="csbcj_1042_"
             class="csbcj-st3"
             cx="14"
             cy="23.3"
@@ -105,7 +105,7 @@
             <stop offset="1" style="stop-color:#67787C" />
           </linearGradient>
           <ellipse
-            id="XMLID_1044_"
+            id="csbcj_1044_"
             class="csbcj-st4"
             cx="14"
             cy="23.3"
@@ -124,7 +124,7 @@
             <stop offset="1" style="stop-color:#4B5356" />
           </linearGradient>
           <path
-            id="XMLID_1049_"
+            id="csbcj_1049_"
             class="csbcj-st5"
             d="M14,14.7c-4.7,0-8.6,3.1-9.4,7.1c0.8,4,4.7,7.1,9.4,7.1s8.6-3.1,9.4-7.1
 							C22.5,17.8,18.7,14.7,14,14.7z"
@@ -141,7 +141,7 @@
             <stop offset="1" style="stop-color:#8F9A9E" />
           </linearGradient>
           <ellipse
-            id="XMLID_1045_"
+            id="csbcj_1045_"
             class="csbcj-st6"
             cx="14"
             cy="19.4"
@@ -149,7 +149,7 @@
             ry="4"
           />
           <ellipse
-            id="XMLID_1046_"
+            id="csbcj_1046_"
             class="csbcj-st7"
             cx="14"
             cy="19.4"
@@ -157,7 +157,7 @@
             ry="2.6"
           />
         </g>
-        <g id="XMLID_1050_">
+        <g id="csbcj_1050_">
           <linearGradient
             id="csbcj_8_"
             gradientUnits="userSpaceOnUse"
@@ -171,12 +171,12 @@
             <stop offset="1" style="stop-color:#929DA0" />
           </linearGradient>
           <path
-            id="XMLID_1056_"
+            id="csbcj_1056_"
             class="csbcj-st8"
             d="M52.6,20.3c0-5.4-4.8-9.7-10.6-9.7s-10.6,4.4-10.6,9.7v3h21.3V20.3z"
           />
           <ellipse
-            id="XMLID_1055_"
+            id="csbcj_1055_"
             class="csbcj-st3"
             cx="42"
             cy="23.3"
@@ -196,7 +196,7 @@
             <stop offset="1" style="stop-color:#67787C" />
           </linearGradient>
           <ellipse
-            id="XMLID_1054_"
+            id="csbcj_1054_"
             class="csbcj-st9"
             cx="42"
             cy="23.3"
@@ -215,7 +215,7 @@
             <stop offset="1" style="stop-color:#4B5356" />
           </linearGradient>
           <path
-            id="XMLID_1053_"
+            id="csbcj_1053_"
             class="csbcj-st10"
             d="M42,14.7c-4.7,0-8.6,3.1-9.4,7.1c0.8,4,4.7,7.1,9.4,7.1s8.6-3.1,9.4-7.1
 							C50.5,17.8,46.7,14.7,42,14.7z"
@@ -232,7 +232,7 @@
             <stop offset="1" style="stop-color:#8F9A9E" />
           </linearGradient>
           <ellipse
-            id="XMLID_1052_"
+            id="csbcj_1052_"
             class="csbcj-st11"
             cx="42"
             cy="19.4"
@@ -240,7 +240,7 @@
             ry="4"
           />
           <ellipse
-            id="XMLID_1051_"
+            id="csbcj_1051_"
             class="csbcj-st7"
             cx="42"
             cy="19.4"

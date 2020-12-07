@@ -41,7 +41,7 @@
           <stop offset="0.9803" style="stop-color:#777C7F" />
         </linearGradient>
         <rect
-          id="XMLID_4_"
+          id="sg_left_4_"
           x="2"
           y="0"
           class="leftWater-st0"
@@ -65,16 +65,16 @@
           <stop offset="1" style="stop-color:#777C7F" />
         </linearGradient>
         <rect
-          id="XMLID_551_"
+          id="sg_left_551_"
           x="7"
           y="2"
           class="leftWater-st1"
           width="3"
           height="6"
         />
-        <g id="XMLID_1_">
+        <g id="sg_left_1_">
           <rect
-            id="XMLID_558_"
+            id="sg_left_558_"
             x="2"
             y="2"
             class="leftWater-st2"
@@ -94,7 +94,7 @@
             <stop offset="0.62" style="stop-color:#777C7F;stop-opacity:0" />
           </radialGradient>
           <rect
-            id="XMLID_555_"
+            id="sg_left_555_"
             x="2"
             y="2"
             class="leftWater-st3"
@@ -114,7 +114,7 @@
             <stop offset="0.62" style="stop-color:#777C7F;stop-opacity:0" />
           </radialGradient>
           <rect
-            id="XMLID_554_"
+            id="sg_left_554_"
             x="2"
             y="2"
             class="leftWater-st4"
@@ -135,7 +135,7 @@
             <stop offset="0.5" style="stop-color:#777C7F;stop-opacity:0" />
           </linearGradient>
           <rect
-            id="XMLID_553_"
+            id="sg_left_553_"
             x="2"
             y="2"
             class="leftWater-st5"
@@ -143,14 +143,14 @@
             height="6"
           />
         </g>
-        <g id="XMLID_3_">
+        <g id="sg_left_3_">
           <path
-            id="XMLID_556_"
+            id="sg_left_556_"
             class="leftWater-st6"
             d="M8,0c0,1.2,0.8,2,2,2H8V0z"
           />
           <path
-            id="XMLID_2_"
+            id="sg_left_2_"
             class="leftWater-st6"
             d="M8,10c0-1.2,0.8-2,2-2H8V10z"
           />

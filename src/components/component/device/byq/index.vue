@@ -73,10 +73,10 @@
       `
         "
       ></defs>
-      <g id="XMLID_279_">
-        <g id="XMLID_278_">
+      <g id="byq_279_">
+        <g id="byq_278_">
           <rect
-            id="XMLID_277_"
+            id="byq_277_"
             x="0.2"
             y="95.1"
             class="byq-st0"
@@ -84,29 +84,29 @@
             height="1.5"
           />
           <path
-            id="XMLID_276_"
+            id="byq_276_"
             class="byq-st1"
             d="M83.3,74.3H6.1c-0.9,0-1.6,0.6-1.8,1.5L0.2,95.1h89l-4.1-19.2C85,75,84.2,74.3,83.3,74.3z"
           />
         </g>
-        <g id="XMLID_271_">
+        <g id="byq_271_">
           <polygon
-            id="XMLID_275_"
+            id="byq_275_"
             class="byq-st2"
             points="7.1,78 7.1,82.9 16.7,91.6 72.7,91.6 82.3,82.9 82.3,78 		"
           />
           <polygon
-            id="XMLID_274_"
+            id="byq_274_"
             class="byq-st3"
             points="7.1,84.5 16.7,93.1 16.7,91.6 7.1,82.9 		"
           />
           <polygon
-            id="XMLID_273_"
+            id="byq_273_"
             class="byq-st3"
             points="82.3,84.5 72.7,93.1 72.7,91.6 82.3,82.9 		"
           />
           <rect
-            id="XMLID_272_"
+            id="byq_272_"
             x="16.7"
             y="91.6"
             class="byq-st4"
@@ -114,24 +114,24 @@
             height="1.6"
           />
         </g>
-        <g id="XMLID_266_">
+        <g id="byq_266_">
           <polygon
-            id="XMLID_270_"
+            id="byq_270_"
             class="byq-st2"
             points="7.1,74.5 7.1,79.4 16.7,88.1 72.7,88.1 82.3,79.4 82.3,74.5 		"
           />
           <polygon
-            id="XMLID_269_"
+            id="byq_269_"
             class="byq-st3"
             points="7.1,81 16.7,89.6 16.7,88.1 7.1,79.4 		"
           />
           <polygon
-            id="XMLID_268_"
+            id="byq_268_"
             class="byq-st3"
             points="82.3,81 72.7,89.6 72.7,88.1 82.3,79.4 		"
           />
           <rect
-            id="XMLID_267_"
+            id="byq_267_"
             x="16.7"
             y="88.1"
             class="st4"
@@ -139,24 +139,24 @@
             height="1.6"
           />
         </g>
-        <g id="XMLID_261_">
+        <g id="byq_261_">
           <polygon
-            id="XMLID_265_"
+            id="byq_265_"
             class="byq-st2"
             points="7.1,71 7.1,75.9 16.7,84.6 72.7,84.6 82.3,75.9 82.3,71 		"
           />
           <polygon
-            id="XMLID_264_"
+            id="byq_264_"
             class="byq-st3"
             points="7.1,77.5 16.7,86.1 16.7,84.6 7.1,75.9 		"
           />
           <polygon
-            id="XMLID_263_"
+            id="byq_263_"
             class="byq-st3"
             points="82.3,77.5 72.7,86.1 72.7,84.6 82.3,75.9 		"
           />
           <rect
-            id="XMLID_262_"
+            id="byq_262_"
             x="16.7"
             y="84.6"
             class="byq-st4"
@@ -164,24 +164,24 @@
             height="1.6"
           />
         </g>
-        <g id="XMLID_252_">
+        <g id="byq_252_">
           <polygon
-            id="XMLID_260_"
+            id="byq_260_"
             class="byq-st2"
             points="7.1,67.5 7.1,72.4 16.7,81.1 72.7,81.1 82.3,72.4 82.3,67.5 		"
           />
           <polygon
-            id="XMLID_259_"
+            id="byq_259_"
             class="byq-st3"
             points="7.1,74 16.7,82.6 16.7,81.1 7.1,72.4 		"
           />
           <polygon
-            id="XMLID_256_"
+            id="byq_256_"
             class="byq-st3"
             points="82.3,74 72.7,82.6 72.7,81.1 82.3,72.4 		"
           />
           <rect
-            id="XMLID_253_"
+            id="byq_253_"
             x="16.7"
             y="81.1"
             class="byq-st4"
@@ -189,24 +189,24 @@
             height="1.6"
           />
         </g>
-        <g id="XMLID_235_">
+        <g id="byq_235_">
           <polygon
-            id="XMLID_250_"
+            id="byq_250_"
             class="byq-st2"
             points="7.1,64 7.1,68.9 16.7,77.6 72.7,77.6 82.3,68.9 82.3,64 		"
           />
           <polygon
-            id="XMLID_244_"
+            id="byq_244_"
             class="byq-st3"
             points="7.1,70.5 16.7,79.1 16.7,77.6 7.1,68.9 		"
           />
           <polygon
-            id="XMLID_241_"
+            id="byq_241_"
             class="byq-st3"
             points="82.3,70.5 72.7,79.1 72.7,77.6 82.3,68.9 		"
           />
           <rect
-            id="XMLID_238_"
+            id="byq_238_"
             x="16.7"
             y="77.6"
             class="byq-st4"
@@ -214,24 +214,24 @@
             height="1.6"
           />
         </g>
-        <g id="XMLID_220_">
+        <g id="byq_220_">
           <polygon
-            id="XMLID_232_"
+            id="byq_232_"
             class="byq-st2"
             points="7.1,60.5 7.1,65.4 16.7,74.1 72.7,74.1 82.3,65.4 82.3,60.5 		"
           />
           <polygon
-            id="XMLID_229_"
+            id="byq_229_"
             class="byq-st3"
             points="7.1,67 16.7,75.6 16.7,74.1 7.1,65.4 		"
           />
           <polygon
-            id="XMLID_226_"
+            id="byq_226_"
             class="byq-st3"
             points="82.3,67 72.7,75.6 72.7,74.1 82.3,65.4 		"
           />
           <rect
-            id="XMLID_223_"
+            id="byq_223_"
             x="16.7"
             y="74.1"
             class="st4"
@@ -239,24 +239,24 @@
             height="1.6"
           />
         </g>
-        <g id="XMLID_215_">
+        <g id="byq_215_">
           <polygon
-            id="XMLID_214_"
+            id="byq_214_"
             class="byq-st2"
             points="7.1,57 7.1,61.9 16.7,70.6 72.7,70.6 82.3,61.9 82.3,57 		"
           />
           <polygon
-            id="XMLID_205_"
+            id="byq_205_"
             class="byq-st3"
             points="7.1,63.5 16.7,72.1 16.7,70.6 7.1,61.9 		"
           />
           <polygon
-            id="XMLID_208_"
+            id="byq_208_"
             class="byq-st3"
             points="82.3,63.5 72.7,72.1 72.7,70.6 82.3,61.9 		"
           />
           <rect
-            id="XMLID_211_"
+            id="byq_211_"
             x="16.7"
             y="70.6"
             class="byq-st4"
@@ -265,7 +265,7 @@
           />
         </g>
         <rect
-          id="XMLID_280_"
+          id="byq_280_"
           x="30.2"
           y="82.1"
           class="byq-st4"
@@ -284,18 +284,18 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_281_"
+          id="byq_281_"
           class="byq-st5"
           d="M50.8,84.8H37.9c-1.7,0-3.1,1.2-3.1,2.7s1.4,2.7,3.1,2.7h12.8c1.7,0,3.1-1.2,3.1-2.7
 						S52.5,84.8,50.8,84.8z"
         />
         <polygon
-          id="XMLID_247_"
+          id="byq_247_"
           class="byq-st6"
           points="11.8,64 7.9,60.7 7.9,49.1 13.5,49.5 	"
         />
         <polygon
-          id="XMLID_248_"
+          id="byq_248_"
           class="byq-st6"
           points="77.4,64 81.3,60.7 81.3,49.1 75.7,49.5 	"
         />
@@ -312,7 +312,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_213_"
+          id="byq_213_"
           class="byq-st7"
           d="M7.8,47.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H7.8z"
         />
@@ -328,7 +328,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_212_"
+          id="byq_212_"
           class="byq-st8"
           cx="17.7"
           cy="47.3"
@@ -348,7 +348,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_210_"
+          id="byq_210_"
           class="byq-st9"
           d="M7.8,42.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H7.8z"
         />
@@ -364,7 +364,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_209_"
+          id="byq_209_"
           class="byq-st10"
           cx="17.7"
           cy="42.3"
@@ -384,7 +384,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_207_"
+          id="byq_207_"
           class="byq-st11"
           d="M7.8,37.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H7.8z"
         />
@@ -400,7 +400,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_206_"
+          id="byq_206_"
           class="byq-st12"
           cx="17.7"
           cy="37.3"
@@ -420,7 +420,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_204_"
+          id="byq_204_"
           class="byq-st13"
           d="M7.8,32.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H7.8z"
         />
@@ -436,7 +436,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_203_"
+          id="byq_203_"
           class="byq-st14"
           cx="17.7"
           cy="32.3"
@@ -456,7 +456,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_201_"
+          id="byq_201_"
           class="byq-st15"
           d="M7.8,27.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H7.8z"
         />
@@ -472,7 +472,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_200_"
+          id="byq_200_"
           class="byq-st16"
           cx="17.7"
           cy="27.3"
@@ -492,7 +492,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_198_"
+          id="byq_198_"
           class="byq-st17"
           d="M7.8,22.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H7.8z"
         />
@@ -508,7 +508,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_197_"
+          id="byq_197_"
           class="byq-st18"
           cx="17.7"
           cy="22.3"
@@ -528,7 +528,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_195_"
+          id="byq_195_"
           class="byq-st19"
           d="M7.8,17.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H7.8z"
         />
@@ -544,7 +544,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_194_"
+          id="byq_194_"
           class="byq-st20"
           cx="17.7"
           cy="17.3"
@@ -564,7 +564,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_192_"
+          id="byq_192_"
           class="byq-st21"
           d="M7.8,12.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H7.8z"
         />
@@ -580,7 +580,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_191_"
+          id="byq_191_"
           class="byq-st22"
           cx="17.7"
           cy="12.3"
@@ -600,7 +600,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_189_"
+          id="byq_189_"
           class="byq-st23"
           d="M7.8,7.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7V7.3H7.8z"
         />
@@ -616,7 +616,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_188_"
+          id="byq_188_"
           class="byq-st24"
           cx="17.7"
           cy="7.3"
@@ -624,7 +624,7 @@
           ry="4.7"
         />
         <path
-          id="XMLID_186_"
+          id="byq_186_"
           class="byq-st25"
           d="M17.7,9.1c-2.6,0-4.5-1.1-4.5-2.7s1.9-2.7,4.5-2.7s4.5,1.1,4.5,2.7S20.3,9.1,17.7,9.1z"
         />
@@ -641,7 +641,7 @@
           <stop offset="1" style="stop-color:#A9ADB6" />
         </linearGradient>
         <path
-          id="XMLID_184_"
+          id="byq_184_"
           class="byq-st26"
           d="M14.3,1.6v4.6c0,0.9,1.5,1.6,3.4,1.6c1.9,0,3.4-0.7,3.4-1.6V1.6H14.3z"
         />
@@ -657,7 +657,7 @@
           <stop offset="1" style="stop-color:#DADEE5" />
         </linearGradient>
         <ellipse
-          id="XMLID_183_"
+          id="byq_183_"
           class="byq-st27"
           cx="17.7"
           cy="1.6"
@@ -677,7 +677,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_246_"
+          id="byq_246_"
           class="byq-st28"
           d="M61.8,47.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H61.8z"
         />
@@ -693,7 +693,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_245_"
+          id="byq_245_"
           class="byq-st29"
           cx="71.7"
           cy="47.3"
@@ -713,7 +713,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_243_"
+          id="byq_243_"
           class="byq-st30"
           d="M61.8,42.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H61.8z"
         />
@@ -729,7 +729,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_242_"
+          id="byq_242_"
           class="byq-st31"
           cx="71.7"
           cy="42.3"
@@ -749,7 +749,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_240_"
+          id="byq_240_"
           class="byq-st32"
           d="M61.8,37.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H61.8z"
         />
@@ -765,7 +765,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_239_"
+          id="byq_239_"
           class="byq-st33"
           cx="71.7"
           cy="37.3"
@@ -785,7 +785,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_237_"
+          id="byq_237_"
           class="byq-st34"
           d="M61.8,32.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H61.8z"
         />
@@ -801,7 +801,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_236_"
+          id="byq_236_"
           class="byq-st35"
           cx="71.7"
           cy="32.3"
@@ -821,7 +821,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_234_"
+          id="byq_234_"
           class="byq-st36"
           d="M61.8,27.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H61.8z"
         />
@@ -837,7 +837,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_233_"
+          id="byq_233_"
           class="byq-st37"
           cx="71.7"
           cy="27.3"
@@ -857,7 +857,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_231_"
+          id="byq_231_"
           class="byq-st38"
           d="M61.8,22.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H61.8z"
         />
@@ -873,7 +873,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_230_"
+          id="byq_230_"
           class="byq-st39"
           cx="71.7"
           cy="22.3"
@@ -893,7 +893,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_228_"
+          id="byq_228_"
           class="byq-st40"
           d="M61.8,17.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H61.8z"
         />
@@ -909,7 +909,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_227_"
+          id="byq_227_"
           class="byq-st41"
           cx="71.7"
           cy="17.3"
@@ -929,7 +929,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_225_"
+          id="byq_225_"
           class="byq-st42"
           d="M61.8,12.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H61.8z"
         />
@@ -945,7 +945,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_224_"
+          id="byq_224_"
           class="byq-st43"
           cx="71.7"
           cy="12.3"
@@ -965,7 +965,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="XMLID_222_"
+          id="byq_222_"
           class="byq-st44"
           d="M61.8,7.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7V7.3H61.8z"
         />
@@ -981,7 +981,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="XMLID_221_"
+          id="byq_221_"
           class="byq-st45"
           cx="71.7"
           cy="7.3"
@@ -989,7 +989,7 @@
           ry="4.7"
         />
         <path
-          id="XMLID_218_"
+          id="byq_218_"
           class="st25"
           d="M71.7,9.1c-2.6,0-4.5-1.1-4.5-2.7s1.9-2.7,4.5-2.7s4.5,1.1,4.5,2.7S74.3,9.1,71.7,9.1z"
         />
@@ -1006,7 +1006,7 @@
           <stop offset="1" style="stop-color:#A9ADB6" />
         </linearGradient>
         <path
-          id="XMLID_217_"
+          id="byq_217_"
           class="byq-st46"
           d="M68.3,1.6v4.6c0,0.9,1.5,1.6,3.4,1.6c1.9,0,3.4-0.7,3.4-1.6V1.6H68.3z"
         />
@@ -1022,7 +1022,7 @@
           <stop offset="1" style="stop-color:#DADEE5" />
         </linearGradient>
         <ellipse
-          id="XMLID_216_"
+          id="byq_216_"
           class="byq-st47"
           cx="71.7"
           cy="1.6"
@@ -1043,24 +1043,24 @@
           <stop offset="1" style="stop-color:#A83324" />
         </linearGradient>
         <path
-          id="XMLID_190_"
+          id="byq_190_"
           class="byq-st48"
           d="M77.6,52.7c0,0-0.5,0.2-3.3-2.1c-2.8-2.2-3.7-3.7-6.3-14.6c-2-8.3-6.1-9.1-6.1-9.1H27.7
 						c0,0-4.2,0.8-6.1,9.1c-2.6,10.9-3.5,12.3-6.3,14.6c-2.8,2.2-3.3,2.1-3.3,2.1V64h10l1.8,5.1H66l1.8-5.1h9.8V52.7z"
         />
         <polygon
-          id="XMLID_202_"
+          id="byq_202_"
           class="byq-st49"
           points="21.8,64 23.6,44 23.6,69.1 	"
         />
         <polygon
-          id="XMLID_199_"
+          id="byq_199_"
           class="byq-st49"
           points="67.8,64 66,44 66,69.1 	"
         />
-        <g id="XMLID_169_">
+        <g id="byq_169_">
           <polygon
-            id="XMLID_251_"
+            id="byq_251_"
             class="byq-st50"
             points="34,56.1 32.1,56.1 30.1,26.9 36,26.9 		"
           />
@@ -1078,7 +1078,7 @@
             <stop offset="1" style="stop-color:#A83324" />
           </linearGradient>
           <rect
-            id="XMLID_249_"
+            id="byq_249_"
             x="31.9"
             y="25.9"
             class="byq-st51"
@@ -1086,9 +1086,9 @@
             height="31.2"
           />
         </g>
-        <g id="XMLID_193_">
+        <g id="byq_193_">
           <polygon
-            id="XMLID_255_"
+            id="byq_255_"
             class="byq-st50"
             points="46,56.1 44.1,56.1 42.1,26.9 48,26.9 		"
           />
@@ -1106,7 +1106,7 @@
             <stop offset="1" style="stop-color:#A83324" />
           </linearGradient>
           <rect
-            id="XMLID_254_"
+            id="byq_254_"
             x="43.9"
             y="25.9"
             class="byq-st52"
@@ -1114,9 +1114,9 @@
             height="31.2"
           />
         </g>
-        <g id="XMLID_196_">
+        <g id="byq_196_">
           <polygon
-            id="XMLID_258_"
+            id="byq_258_"
             class="byq-st50"
             points="58,56.1 56.1,56.1 54.1,26.9 60,26.9 		"
           />
@@ -1134,7 +1134,7 @@
             <stop offset="1" style="stop-color:#A83324" />
           </linearGradient>
           <rect
-            id="XMLID_257_"
+            id="byq_257_"
             x="55.9"
             y="25.9"
             class="byq-st53"

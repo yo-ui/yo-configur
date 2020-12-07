@@ -50,7 +50,7 @@
         <stop offset="1" style="stop-color:#182952" />
       </linearGradient>
       <path
-        id="XMLID_894_"
+        id="ckssb_894_"
         class="ckssb-st0"
         d="M72.2,34.6h9.1v-15h-9.1c0,0-0.4,4-0.4,8S72.2,34.6,72.2,34.6z"
       />
@@ -69,7 +69,7 @@
         <stop offset="1" style="stop-color:#A7AEB6" />
       </linearGradient>
       <rect
-        id="XMLID_893_"
+        id="ckssb_893_"
         x="79.8"
         y="18"
         class="ckssb-st1"
@@ -77,7 +77,7 @@
         height="18.1"
       />
       <path
-        id="XMLID_904_"
+        id="ckssb_904_"
         class="ckssb-st2"
         d="M75,28.8h-3.7c-0.8,0-1.5-0.7-1.5-1.5V12.5c0-0.8,0.7-1.5,1.5-1.5H75c0.8,0,1.5,0.7,1.5,1.5
 					v14.8C76.5,28.1,75.9,28.8,75,28.8z"
@@ -96,7 +96,7 @@
         <stop offset="1" style="stop-color:#182952" />
       </linearGradient>
       <path
-        id="XMLID_898_"
+        id="ckssb_898_"
         class="ckssb-st3"
         d="M13.5,22.8v9.6c0.2,9.4,10,17.1,22,17.1h29.7c3.9,0,7.1-2.5,7.1-5.7v-9.7L13.5,22.8z"
       />
@@ -115,7 +115,7 @@
         <stop offset="1" style="stop-color:#182952" />
       </linearGradient>
       <path
-        id="XMLID_897_"
+        id="ckssb_897_"
         class="ckssb-st4"
         d="M13.5,34.6H6.7v-15h6.7c0,0,0.4,4,0.4,8S13.5,34.6,13.5,34.6z"
       />
@@ -133,7 +133,7 @@
         <stop offset="1" style="stop-color:#A7AEB6" />
       </linearGradient>
       <rect
-        id="XMLID_896_"
+        id="ckssb_896_"
         y="18"
         class="ckssb-st5"
         width="8.2"
@@ -153,28 +153,28 @@
         <stop offset="1" style="stop-color:#B3B7BB" />
       </linearGradient>
       <path
-        id="XMLID_891_"
+        id="ckssb_891_"
         class="ckssb-st6"
         d="M13.5,17.5v5.1c0.2,9.4,10,17.1,22,17.1h29.7c3.9,0,7.1-2.5,7.1-5.7V16.9L13.5,17.5z"
       />
       <path
-        id="XMLID_889_"
+        id="ckssb_889_"
         class="ckssb-st7"
         d="M65.2,34.6H35.5c-12,0-21.9-7.7-22-17.1c-0.1-4.7,2.1-9.1,6.3-12.4C23.9,1.8,29.4,0,35.2,0h30
 					c3.9,0,7.1,2.5,7.1,5.7v23.3C72.3,32.1,69.1,34.6,65.2,34.6z"
       />
       <path
-        id="XMLID_888_"
+        id="ckssb_888_"
         class="ckssb-st8"
         d="M56,0.9H35.2c-11.5,0-20.8,7.3-20.6,16.3C14.8,26,24.2,33,35.5,33H56V0.9z"
       />
       <path
-        id="XMLID_887_"
+        id="ckssb_887_"
         class="ckssb-st8"
         d="M65.2,0.9h-8.3V33h8.3c3.3,0,6-2.1,6-4.7V5.5C71.2,3,68.5,0.9,65.2,0.9z"
       />
       <ellipse
-        id="XMLID_885_"
+        id="ckssb_885_"
         class="ckssb-st9"
         cx="35.2"
         cy="16.9"
@@ -182,7 +182,7 @@
         ry="13.7"
       />
       <ellipse
-        id="XMLID_884_"
+        id="ckssb_884_"
         class="ckssb-st10"
         cx="30.2"
         cy="8.6"
@@ -190,7 +190,7 @@
         ry="1.4"
       />
       <ellipse
-        id="XMLID_883_"
+        id="ckssb_883_"
         class="ckssb-st10"
         cx="30.2"
         cy="25.3"
@@ -198,7 +198,7 @@
         ry="1.4"
       />
       <ellipse
-        id="XMLID_882_"
+        id="ckssb_882_"
         class="ckssb-st10"
         cx="24.4"
         cy="14.1"
@@ -206,7 +206,7 @@
         ry="1.4"
       />
       <ellipse
-        id="XMLID_881_"
+        id="ckssb_881_"
         class="ckssb-st10"
         cx="24.4"
         cy="20.8"
@@ -214,7 +214,7 @@
         ry="1.4"
       />
       <rect
-        id="XMLID_879_"
+        id="ckssb_879_"
         x="44.3"
         y="12.5"
         class="ckssb-st11"
@@ -222,7 +222,7 @@
         height="1.8"
       />
       <rect
-        id="XMLID_878_"
+        id="ckssb_878_"
         x="44.3"
         y="16"
         class="ckssb-st11"
@@ -230,7 +230,7 @@
         height="1.8"
       />
       <rect
-        id="XMLID_877_"
+        id="ckssb_877_"
         x="44.3"
         y="19.5"
         class="ckssb-st11"
@@ -238,7 +238,7 @@
         height="1.8"
       />
       <ellipse
-        id="XMLID_875_"
+        id="ckssb_875_"
         class="ckssb-st12"
         cx="35.5"
         cy="16.9"
@@ -246,14 +246,14 @@
         ry="2.4"
       />
       <path
-        id="XMLID_874_"
+        id="ckssb_874_"
         class="ckssb-st7"
         d="M35.2,4.1c9.5,0,17.3,5.9,17.6,13.3c0-0.2,0-0.3,0-0.5c0-7.6-7.9-13.7-17.6-13.7
 					S17.6,9.4,17.6,16.9c0,0.2,0,0.3,0,0.5C18,10,25.7,4.1,35.2,4.1z"
       />
-      <g id="XMLID_899_">
+      <g id="ckssb_899_">
         <rect
-          id="XMLID_903_"
+          id="ckssb_903_"
           x="60.1"
           y="5.8"
           class="ckssb-st13"
@@ -261,7 +261,7 @@
           height="21.5"
         />
         <path
-          id="XMLID_900_"
+          id="ckssb_900_"
           class="st14"
           d="M68.3,4.8v23.5h-9.1V4.8H68.3z M66.3,26.3V6.8h-5.1v19.5H66.3z"
         />

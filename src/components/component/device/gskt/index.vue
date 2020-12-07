@@ -26,7 +26,7 @@
         "
       ></defs>
       <path
-        id="XMLID_976_"
+        id="gskt_976_"
         class="gskt-st0"
         d="M155.8,63H6.2C2.8,63,0,60.2,0,56.8V18.6L4,6.2C5.3,2.9,7.8,0,11.2,0h139.6
 					c3.4,0,6.1,3,7.2,6.2l4,12.4v38.1C162,60.2,159.2,63,155.8,63z"
@@ -45,7 +45,7 @@
         <stop offset="1" style="stop-color:#CDCFD1" />
       </linearGradient>
       <path
-        id="XMLID_993_"
+        id="gskt_993_"
         class="gskt-st1"
         d="M155.7,62.1H6.3c-3.1,0-5.6-2.5-5.6-5.6V21.2c0-3.1,2.5-5.6,5.6-5.6h149.4
 					c3.1,0,5.6,2.5,5.6,5.6v35.4C161.2,59.6,158.7,62.1,155.7,62.1z"
@@ -66,13 +66,13 @@
         <stop offset="1" style="stop-color:#FFFFFF" />
       </linearGradient>
       <path
-        id="XMLID_996_"
+        id="gskt_996_"
         class="gskt-st2"
         d="M0.8,49.8v6.8c0,3.1,2.5,5.6,5.6,5.6h149.4c3.1,0,5.6-2.5,5.6-5.6v-6.8H0.8z"
       />
-      <g id="XMLID_997_">
+      <g id="gskt_997_">
         <rect
-          id="XMLID_990_"
+          id="gskt_990_"
           x="36.7"
           y="44.6"
           class="gskt-st3"
@@ -80,7 +80,7 @@
           height="11.5"
         />
         <rect
-          id="XMLID_994_"
+          id="gskt_994_"
           x="80.4"
           y="44.6"
           class="gskt-st3"
@@ -88,7 +88,7 @@
           height="11.5"
         />
         <rect
-          id="XMLID_995_"
+          id="gskt_995_"
           x="124"
           y="44.6"
           class="gskt-st3"
@@ -97,7 +97,7 @@
         />
       </g>
       <rect
-        id="XMLID_998_"
+        id="gskt_998_"
         x="6.8"
         y="22"
         class="gskt-st4"
@@ -116,7 +116,7 @@
         <stop offset="1" style="stop-color:#040000" />
       </linearGradient>
       <rect
-        id="XMLID_999_"
+        id="gskt_999_"
         x="72.5"
         y="37.7"
         class="gskt-st5"
@@ -124,52 +124,52 @@
         height="6.4"
       />
       <polygon
-        id="XMLID_1006_"
+        id="gskt_1006_"
         class="gskt-st4"
         points="107.1,5 152.8,5 152.2,3 107,3 "
       />
       <polygon
-        id="XMLID_1009_"
+        id="gskt_1009_"
         class="gskt-st4"
         points="107.5,9 154,9 153.4,7 107.3,7 "
       />
       <polygon
-        id="XMLID_1010_"
+        id="gskt_1010_"
         class="gskt-st4"
         points="107.8,13 155.2,13 154.6,11 107.6,11 "
       />
-      <g id="XMLID_1007_">
+      <g id="gskt_1007_">
         <polygon
-          id="XMLID_1012_"
+          id="gskt_1012_"
           class="gskt-st4"
           points="54.1,11 7.6,11 7,13 53.9,13 	"
         />
         <polygon
-          id="XMLID_1013_"
+          id="gskt_1013_"
           class="gskt-st4"
           points="58.5,13 103.3,13 103.1,11 58.6,11 	"
         />
       </g>
-      <g id="XMLID_1001_">
+      <g id="gskt_1001_">
         <polygon
-          id="XMLID_1002_"
+          id="gskt_1002_"
           class="gskt-st4"
           points="59.1,5 102.6,5 102.4,3 59.3,3 	"
         />
         <polygon
-          id="XMLID_1004_"
+          id="gskt_1004_"
           class="gskt-st4"
           points="54.8,3 10,3 9.4,5 54.6,5 	"
         />
       </g>
-      <g id="XMLID_1003_">
+      <g id="gskt_1003_">
         <polygon
-          id="XMLID_1005_"
+          id="gskt_1005_"
           class="gskt-st4"
           points="58.8,9 102.9,9 102.8,7 59,7 	"
         />
         <polygon
-          id="XMLID_1008_"
+          id="gskt_1008_"
           class="gskt-st4"
           points="54.4,7 8.8,7 8.2,9 54.3,9 	"
         />

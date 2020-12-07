@@ -41,7 +41,7 @@
       ></defs>
       <g>
         <rect
-          id="XMLID_656_"
+          id="display_656_"
           x="1"
           y="4.1"
           class="display-st0"
@@ -49,12 +49,12 @@
           height="38"
         />
         <path
-          id="XMLID_653_"
+          id="display_653_"
           class="display-st1"
           d="M81.5,43.1H0v-40h81.5V43.1z M2,41.1h77.5v-36H2V41.1z"
         />
         <polygon
-          id="XMLID_652_"
+          id="display_652_"
           class="display-st2"
           points="81.5,3.1 0,3.1 8.2,0 88.7,0 	"
         />
@@ -70,22 +70,22 @@
           <stop offset="1" style="stop-color:#848689" />
         </linearGradient>
         <path
-          id="XMLID_1_"
+          id="display_1_"
           class="display-st3"
           d="M88.7,40l-7.2,3.1v-40L88.7,0V40z"
         />
       </g>
       <g>
         <path
-          id="XMLID_10_"
+          id="display_10_"
           class="display-st4"
           d="M76.5,37.1H5v-5h71.5V37.1z"
         />
       </g>
       <g>
-        <g id="XMLID_647_">
+        <g id="display_647_">
           <rect
-            id="XMLID_651_"
+            id="display_651_"
             x="6.5"
             y="8.5"
             class="display-st5"
@@ -93,7 +93,7 @@
             height="19"
           />
           <path
-            id="XMLID_648_"
+            id="display_648_"
             class="st6"
             d="M76.5,28.5h-71v-21h71V28.5z M7.5,26.5h67v-17h-67V26.5z"
           />

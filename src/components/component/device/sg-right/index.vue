@@ -16,12 +16,12 @@
           `
         <style type='text/css'>
       
-					.sg-right-st0{fill:url(#XMLID_6_);}
-					.sg-right-st1{fill:url(#XMLID_7_);}
+					.sg-right-st0{fill:url(#sg_right_6_);}
+					.sg-right-st1{fill:url(#sg_right_7_);}
 					.sg-right-st2{fill:#FFFFFF;}
-					.sg-right-st3{fill:url(#XMLID_8_);}
-					.sg-right-st4{fill:url(#XMLID_9_);}
-					.sg-right-st5{fill:url(#XMLID_10_);}
+					.sg-right-st3{fill:url(#sg_right_8_);}
+					.sg-right-st4{fill:url(#sg_right_9_);}
+					.sg-right-st5{fill:url(#sg_right_10_);}
 					.sg-right-st6{fill:#777C7F;}
       </style>
       `
@@ -29,7 +29,7 @@
       ></defs>
       <g>
         <linearGradient
-          id="XMLID_6_"
+          id="sg_right_6_"
           gradientUnits="userSpaceOnUse"
           x1="-150.9816"
           y1="989.4756"
@@ -42,7 +42,7 @@
           <stop offset="0.9803" style="stop-color:#777C7F" />
         </linearGradient>
         <rect
-          id="XMLID_4_"
+          id="sg_right_4_"
           x="2"
           y="0"
           class="sg-right-st0"
@@ -51,7 +51,7 @@
         />
 
         <linearGradient
-          id="XMLID_7_"
+          id="sg_right_7_"
           gradientUnits="userSpaceOnUse"
           x1="-142.9816"
           y1="990.9756"
@@ -66,16 +66,16 @@
           <stop offset="1" style="stop-color:#777C7F" />
         </linearGradient>
         <rect
-          id="XMLID_551_"
+          id="sg_right_551_"
           x="0"
           y="2"
           class="sg-right-st1"
           width="3"
           height="6"
         />
-        <g id="XMLID_1_">
+        <g id="sg_right_1_">
           <rect
-            id="XMLID_558_"
+            id="sg_right_558_"
             x="2"
             y="2"
             class="sg-right-st2"
@@ -84,7 +84,7 @@
           />
 
           <radialGradient
-            id="XMLID_8_"
+            id="sg_right_8_"
             cx="-431.5536"
             cy="395.9081"
             r="13.4118"
@@ -95,7 +95,7 @@
             <stop offset="0.62" style="stop-color:#777C7F;stop-opacity:0" />
           </radialGradient>
           <rect
-            id="XMLID_555_"
+            id="sg_right_555_"
             x="2"
             y="2"
             class="sg-right-st3"
@@ -104,7 +104,7 @@
           />
 
           <radialGradient
-            id="XMLID_9_"
+            id="sg_right_9_"
             cx="-431.2906"
             cy="379.9474"
             r="13.4117"
@@ -115,7 +115,7 @@
             <stop offset="0.62" style="stop-color:#777C7F;stop-opacity:0" />
           </radialGradient>
           <rect
-            id="XMLID_554_"
+            id="sg_right_554_"
             x="2"
             y="2"
             class="sg-right-st4"
@@ -124,7 +124,7 @@
           />
 
           <linearGradient
-            id="XMLID_10_"
+            id="sg_right_10_"
             gradientUnits="userSpaceOnUse"
             x1="-443.0012"
             y1="392.7758"
@@ -136,7 +136,7 @@
             <stop offset="0.5" style="stop-color:#777C7F;stop-opacity:0" />
           </linearGradient>
           <rect
-            id="XMLID_553_"
+            id="sg_right_553_"
             x="2"
             y="2"
             class="sg-right-st5"
@@ -144,14 +144,14 @@
             height="6"
           />
         </g>
-        <g id="XMLID_3_">
+        <g id="sg_right_3_">
           <path
-            id="XMLID_556_"
+            id="sg_right_556_"
             class="sg-right-st6"
             d="M2,10c0-1.2-0.8-2-2-2h2V10z"
           />
           <path
-            id="XMLID_2_"
+            id="sg_right_2_"
             class="sg-right-st6"
             d="M2,0c0,1.2-0.8,2-2,2h2V0z"
           />

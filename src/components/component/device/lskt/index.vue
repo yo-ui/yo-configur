@@ -29,7 +29,7 @@
         "
       ></defs>
       <path
-        id="XMLID_1032_"
+        id="lskt_1032_"
         class="lskt-st0"
         d="M89.2,227.8H6.2c-3.4,0-6.2-2.8-6.2-6.2V18.6L4,6.2C5.3,2.9,7.8,0,11.2,0h72.9
 					c3.4,0,6.1,3,7.2,6.2l4,12.4v202.9C95.4,225,92.6,227.8,89.2,227.8z"
@@ -48,38 +48,38 @@
         <stop offset="1" style="stop-color:#CDCFD1" />
       </linearGradient>
       <path
-        id="XMLID_1031_"
+        id="lskt_1031_"
         class="lskt-st1"
         d="M89.1,226.9H6.3c-3.1,0-5.6-2.5-5.6-5.6V21.2c0-3.1,2.5-5.6,5.6-5.6h82.7
 					c3.1,0,5.6,2.5,5.6,5.6v200.2C94.6,224.4,92.1,226.9,89.1,226.9z"
       />
       <polygon
-        id="XMLID_1023_"
+        id="lskt_1023_"
         class="lskt-st2"
         points="49.5,5 86.1,5 85.5,3 49.3,3 "
       />
       <polygon
-        id="XMLID_1022_"
+        id="lskt_1022_"
         class="lskt-st2"
         points="49.8,9 87.3,9 86.7,7 49.7,7 "
       />
       <polygon
-        id="XMLID_1021_"
+        id="lskt_1021_"
         class="lskt-st2"
         points="50.2,13 88.5,13 87.9,11 50,11 "
       />
       <polygon
-        id="XMLID_1020_"
+        id="lskt_1020_"
         class="lskt-st2"
         points="45.1,11 7.6,11 7,13 44.9,13 "
       />
       <polygon
-        id="XMLID_1016_"
+        id="lskt_1016_"
         class="lskt-st2"
         points="45.8,3 10,3 9.4,5 45.6,5 "
       />
       <polygon
-        id="XMLID_1011_"
+        id="lskt_1011_"
         class="lskt-st2"
         points="45.4,7 8.8,7 8.2,9 45.3,9 "
       />
@@ -95,7 +95,7 @@
         <stop offset="1" style="stop-color:#000000" />
       </linearGradient>
       <rect
-        id="XMLID_1000_"
+        id="lskt_1000_"
         x="39.3"
         y="83.2"
         class="lskt-st3"
@@ -103,12 +103,12 @@
         height="6.4"
       />
       <path
-        id="XMLID_1033_"
+        id="lskt_1033_"
         class="lskt-st2"
         d="M86.1,56.5H9.2c-1.8,0-3.3-1.5-3.3-3.3V23.7c0-1.8,1.5-3.3,3.3-3.3h76.9
 					c1.8,0,3.3,1.5,3.3,3.3v29.5C89.4,55,87.9,56.5,86.1,56.5z"
       />
-      <g id="XMLID_1015_">
+      <g id="lskt_1015_">
         <linearGradient
           id="lskt_4_"
           gradientUnits="userSpaceOnUse"
@@ -124,7 +124,7 @@
           <stop offset="1" style="stop-color:#FFFFFF" />
         </linearGradient>
         <rect
-          id="XMLID_1024_"
+          id="lskt_1024_"
           x="6.6"
           y="38.8"
           class="lskt-st4"
@@ -146,7 +146,7 @@
           <stop offset="1" style="stop-color:#FFFFFF" />
         </linearGradient>
         <rect
-          id="XMLID_1027_"
+          id="lskt_1027_"
           x="6.6"
           y="30.3"
           class="lskt-st5"
@@ -168,7 +168,7 @@
           <stop offset="1" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          id="XMLID_1019_"
+          id="lskt_1019_"
           class="lskt-st6"
           d="M6.6,47.3V53c0,1.6,1.3,2.8,2.8,2.8h76.5c1.6,0,2.8-1.3,2.8-2.8v-5.6H6.6z"
         />
@@ -187,13 +187,13 @@
           <stop offset="1" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          id="XMLID_1018_"
+          id="lskt_1018_"
           class="lskt-st7"
           d="M88.7,29.3v-5.4c0-1.6-1.3-2.8-2.8-2.8H9.4c-1.6,0-2.8,1.3-2.8,2.8v5.4H88.7z"
         />
       </g>
       <path
-        id="XMLID_1017_"
+        id="lskt_1017_"
         class="lskt-st8"
         d="M95.1,154.6c0,1.7-2.4,3.1-5.4,3.1H5.6c-3,0-5.4-1.4-5.4-3.1"
       />

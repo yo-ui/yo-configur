@@ -40,7 +40,7 @@
           <stop offset="0.5" style="stop-color:#FFFFFF" />
           <stop offset="0.9803" style="stop-color:#777C7F" />
         </linearGradient>
-        <rect id="XMLID_4_" y="2" class="downWater-st0" width="10" height="6" />
+        <rect id="sg_bottom_4_" y="2" class="downWater-st0" width="10" height="6" />
 
         <linearGradient
           id="downWater_7_"
@@ -58,15 +58,15 @@
           <stop offset="1" style="stop-color:#777C7F" />
         </linearGradient>
         <rect
-          id="XMLID_551_"
+          id="sg_bottom_551_"
           x="2"
           class="downWater-st1"
           width="6"
           height="3"
         />
-        <g id="XMLID_1_">
+        <g id="sg_bottom_1_">
           <rect
-            id="XMLID_558_"
+            id="sg_bottom_558_"
             x="2"
             y="2"
             class="downWater-st2"
@@ -86,7 +86,7 @@
             <stop offset="0.62" style="stop-color:#777C7F;stop-opacity:0" />
           </radialGradient>
           <rect
-            id="XMLID_555_"
+            id="sg_bottom_555_"
             x="2"
             y="2"
             class="downWater-st3"
@@ -106,7 +106,7 @@
             <stop offset="0.62" style="stop-color:#777C7F;stop-opacity:0" />
           </radialGradient>
           <rect
-            id="XMLID_554_"
+            id="sg_bottom_554_"
             x="2"
             y="2"
             class="downWater-st4"
@@ -127,7 +127,7 @@
             <stop offset="0.5" style="stop-color:#777C7F;stop-opacity:0" />
           </linearGradient>
           <rect
-            id="XMLID_553_"
+            id="sg_bottom_553_"
             x="2"
             y="2"
             class="downWater-st5"
@@ -135,14 +135,14 @@
             height="6"
           />
         </g>
-        <g id="XMLID_3_">
+        <g id="sg_bottom_3_">
           <path
-            id="XMLID_556_"
+            id="sg_bottom_556_"
             class="downWater-st6"
             d="M0,2c1.2,0,2-0.8,2-2v2H0z"
           />
           <path
-            id="XMLID_2_"
+            id="sg_bottom_2_"
             class="downWater-st6"
             d="M10,2C8.8,2,8,1.2,8,0v2H10z"
           />

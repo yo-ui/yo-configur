@@ -48,11 +48,11 @@
         <stop offset="1" style="stop-color:#19274F" />
       </linearGradient>
       <path
-        id="XMLID_938_"
+        id="xyssb_938_"
         class="xyssb-st0"
         d="M16.1,21.3v9.4c0,10.4,6,23.9,23.6,23.9c19,0,23.6-13.5,23.6-23.9v-9.4H16.1z"
       />
-      <g id="XMLID_931_">
+      <g id="xyssb_931_">
         <linearGradient
           id="xyssb_3_"
           gradientUnits="userSpaceOnUse"
@@ -66,7 +66,7 @@
           <stop offset="0.9412" style="stop-color:#19274F" />
         </linearGradient>
         <path
-          id="XMLID_934_"
+          id="xyssb_934_"
           class="xyssb-st1"
           d="M20.5,45.5L4.9,41V26l11.9-4c0,0-0.1,6.8,0.9,13.1C18.4,40.6,20.5,45.5,20.5,45.5z"
         />
@@ -84,14 +84,14 @@
           <stop offset="1" style="stop-color:#A7AEB6" />
         </linearGradient>
         <rect
-          id="XMLID_932_"
+          id="xyssb_932_"
           y="22.4"
           class="xyssb-st2"
           width="6.3"
           height="22.1"
         />
       </g>
-      <g id="XMLID_935_">
+      <g id="xyssb_935_">
         <linearGradient
           id="xyssb_5_"
           gradientUnits="userSpaceOnUse"
@@ -106,7 +106,7 @@
           <stop offset="0.9412" style="stop-color:#19274F" />
         </linearGradient>
         <path
-          id="XMLID_937_"
+          id="xyssb_937_"
           class="xyssb-st3"
           d="M59.3,45.5L75,41V26l-11.9-4c0,0,0.1,6.8-0.9,13.1C61.4,40.6,59.3,45.5,59.3,45.5z"
         />
@@ -126,7 +126,7 @@
           <stop offset="1" style="stop-color:#A7AEB6" />
         </linearGradient>
         <rect
-          id="XMLID_936_"
+          id="xyssb_936_"
           x="73.6"
           y="22.4"
           class="xyssb-st4"
@@ -135,7 +135,7 @@
         />
       </g>
       <ellipse
-        id="XMLID_930_"
+        id="xyssb_930_"
         class="xyssb-st5"
         cx="39.7"
         cy="21.3"
@@ -155,12 +155,12 @@
         <stop offset="1" style="stop-color:#815223" />
       </linearGradient>
       <path
-        id="XMLID_929_"
+        id="xyssb_929_"
         class="xyssb-st6"
         d="M19.9,15.7v4.5C19.9,29,28.7,36,39.7,36c11,0,19.8-7,19.8-15.7v-4.5H19.9z"
       />
       <ellipse
-        id="XMLID_928_"
+        id="xyssb_928_"
         class="xyssb-st7"
         cx="39.7"
         cy="15.7"
@@ -168,7 +168,7 @@
         ry="15.7"
       />
       <ellipse
-        id="XMLID_927_"
+        id="xyssb_927_"
         class="xyssb-st8"
         cx="39.7"
         cy="15.5"
@@ -176,7 +176,7 @@
         ry="12.7"
       />
       <ellipse
-        id="XMLID_926_"
+        id="xyssb_926_"
         class="xyssb-st9"
         cx="35"
         cy="7.7"
@@ -184,7 +184,7 @@
         ry="1.3"
       />
       <ellipse
-        id="XMLID_925_"
+        id="xyssb_925_"
         class="xyssb-st9"
         cx="35"
         cy="23.2"
@@ -192,7 +192,7 @@
         ry="1.3"
       />
       <ellipse
-        id="XMLID_924_"
+        id="xyssb_924_"
         class="xyssb-st9"
         cx="29.7"
         cy="12.8"
@@ -200,7 +200,7 @@
         ry="1.3"
       />
       <ellipse
-        id="XMLID_923_"
+        id="xyssb_923_"
         class="xyssb-st9"
         cx="29.7"
         cy="19.1"
@@ -208,7 +208,7 @@
         ry="1.3"
       />
       <rect
-        id="XMLID_922_"
+        id="xyssb_922_"
         x="48.1"
         y="11.4"
         class="xyssb-st10"
@@ -216,7 +216,7 @@
         height="1.6"
       />
       <rect
-        id="XMLID_921_"
+        id="xyssb_921_"
         x="48.1"
         y="14.6"
         class="xyssb-st10"
@@ -224,7 +224,7 @@
         height="1.6"
       />
       <rect
-        id="XMLID_920_"
+        id="xyssb_920_"
         x="48.1"
         y="17.9"
         class="xyssb-st10"
@@ -232,7 +232,7 @@
         height="1.6"
       />
       <ellipse
-        id="XMLID_919_"
+        id="xyssb_919_"
         class="xyssb-st11"
         cx="40"
         cy="15.5"
@@ -240,7 +240,7 @@
         ry="2.2"
       />
       <path
-        id="XMLID_918_"
+        id="xyssb_918_"
         class="xyssb-st12"
         d="M39.7,3.6c8.8,0,16,5.5,16.3,12.3c0-0.2,0-0.3,0-0.5c0-7-7.3-12.7-16.3-12.7
 					S23.4,8.4,23.4,15.5c0,0.2,0,0.3,0,0.5C23.7,9.1,30.9,3.6,39.7,3.6z"

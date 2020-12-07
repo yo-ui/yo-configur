@@ -17,7 +17,7 @@
   fill: #d0d4d8;
 }
 .lsdgl-st1 {
-  fill: url(#XMLID_2_);
+  fill: url(#lsdgl_2_);
 }
 .lsdgl-st2 {
   fill: none;
@@ -85,13 +85,13 @@
       ></defs>
       <g id="图层_2">
         <path
-          id="XMLID_1032_"
+          id="lsdgl_1032_"
           class="lsdgl-st0"
           d="M96.1,195H5.7c-2.5,0-4.5-2-4.5-4.5V14.4l2.9-8.9C5,3.1,6.8,1,9.3,1h83.2
 		c2.5,0,4.4,2.2,5.2,4.5l2.9,8.9v176.1C100.6,193,98.6,195,96.1,195z"
         />
         <linearGradient
-          id="XMLID_2_"
+          id="lsdgl_2_"
           gradientUnits="userSpaceOnUse"
           x1="1.7594"
           y1="103.3102"
@@ -104,13 +104,13 @@
           <stop offset="1" style="stop-color:#CDCFD1" />
         </linearGradient>
         <path
-          id="XMLID_1031_"
+          id="lsdgl_1031_"
           class="lsdgl-st1"
           d="M94.5,194.4H7.3c-3.1,0-5.6-2.5-5.6-5.6v-171c0-3.1,2.5-5.6,5.6-5.6h87.2
 		c3.1,0,5.6,2.5,5.6,5.6v171C100.1,191.9,97.6,194.4,94.5,194.4z"
         />
         <path
-          id="XMLID_1017_"
+          id="lsdgl_1017_"
           class="lsdgl-st2"
           d="M100.4,72.3c0,1.2-1.7,2.2-3.9,2.2H5.2c-2.1,0-3.9-1-3.9-2.2"
         />
@@ -240,9 +240,9 @@
           </linearGradient>
           <circle class="lsdgl-st11" cx="74.3" cy="59" r="3.5" />
         </g>
-        <g id="XMLID_620_">
+        <g id="lsdgl_620_">
           <rect
-            id="XMLID_624_"
+            id="lsdgl_624_"
             x="36.7"
             y="85.9"
             class="lsdgl-st12"
@@ -250,20 +250,20 @@
             height="16.9"
           />
           <path
-            id="XMLID_621_"
+            id="lsdgl_621_"
             class="lsdgl-st13"
             d="M67.7,103.9h-32V84.9h32V103.9z M37.7,101.9h28V86.9h-28V101.9z"
           />
         </g>
-        <g id="XMLID_543_">
+        <g id="lsdgl_543_">
           <path
-            id="XMLID_546_"
+            id="lsdgl_546_"
             class="lsdgl-st14"
             d="M19.2,99.5c-1.5,0-2.6,1.2-2.6,2.6v15.4c0,1.5,1.2,2.6,2.6,2.6c1.5,0,2.6-1.2,2.6-2.6v-15.4
 			C21.8,100.7,20.7,99.5,19.2,99.5z"
           />
           <path
-            id="XMLID_354_"
+            id="lsdgl_354_"
             class="lsdgl-st15"
             d="M19.2,101c-0.8,0-1.4,0.6-1.4,1.4v14.9c0,0.8,0.6,1.4,1.4,1.4c0.8,0,1.4-0.6,1.4-1.4v-14.9
 			C20.6,101.6,20,101,19.2,101z"

@@ -79,56 +79,56 @@
           .flrb-st61{fill:url(#flrb_51_);}
           .flrb-st62{fill:#3D3F3F;}
           .flrb-st63{fill:url(#flrb_52_);}
-          .flrb-st64{fill:url(#XMLID_40_);}
+          .flrb-st64{fill:url(#flrq_40_);}
           .flrb-st65{fill:#D6D6D6;}
-          .flrb-st66{fill:url(#XMLID_43_);}
-          .flrb-st67{fill:url(#XMLID_44_);}
-          .flrb-st68{fill:url(#XMLID_45_);}
-          .flrb-st69{fill:url(#XMLID_46_);}
-          .flrb-st70{fill:url(#XMLID_55_);}
-          .flrb-st71{fill:url(#XMLID_56_);}
-          .flrb-st72{fill:url(#XMLID_59_);}
-          .flrb-st73{fill:url(#XMLID_60_);}
-          .flrb-st74{fill:url(#XMLID_63_);}
-          .flrb-st75{fill:url(#XMLID_64_);}
-          .flrb-st76{fill:url(#XMLID_70_);}
-          .flrb-st77{fill:url(#XMLID_71_);}
-          .flrb-st78{fill:url(#XMLID_73_);}
-          .flrb-st79{fill:url(#XMLID_74_);}
-          .flrb-st80{fill:url(#XMLID_82_);}
-          .flrb-st81{fill:url(#XMLID_83_);}
-          .flrb-st82{fill:url(#XMLID_115_);}
-          .flrb-st83{fill:url(#XMLID_116_);}
-          .flrb-st84{fill:url(#XMLID_117_);}
-          .flrb-st85{fill:url(#XMLID_118_);}
-          .flrb-st86{fill:url(#XMLID_119_);}
-          .flrb-st87{fill:url(#XMLID_120_);}
-          .flrb-st88{fill:url(#XMLID_121_);}
-          .flrb-st89{fill:url(#XMLID_122_);}
-          .flrb-st90{fill:url(#XMLID_123_);}
-          .flrb-st91{fill:url(#XMLID_124_);}
-          .flrb-st92{fill:url(#XMLID_125_);}
-          .flrb-st93{fill:url(#XMLID_126_);}
-          .flrb-st94{fill:url(#XMLID_133_);}
-          .flrb-st95{fill:url(#XMLID_134_);}
-          .flrb-st96{fill:url(#XMLID_135_);}
-          .flrb-st97{fill:url(#XMLID_136_);}
-          .flrb-st98{fill:url(#XMLID_137_);}
-          .flrb-st99{fill:url(#XMLID_138_);}
-          .flrb-st100{fill:url(#XMLID_139_);}
-          .flrb-st101{fill:url(#XMLID_140_);}
-          .flrb-st102{fill:url(#XMLID_141_);}
-          .flrb-st103{fill:url(#XMLID_142_);}
-          .flrb-st104{fill:url(#XMLID_143_);}
-          .flrb-st105{fill:url(#XMLID_144_);}
-          .flrb-st106{fill:url(#XMLID_151_);}
-          .flrb-st107{fill:url(#XMLID_152_);}
+          .flrb-st66{fill:url(#flrq_43_);}
+          .flrb-st67{fill:url(#flrq_44_);}
+          .flrb-st68{fill:url(#flrq_45_);}
+          .flrb-st69{fill:url(#flrq_46_);}
+          .flrb-st70{fill:url(#flrq_55_);}
+          .flrb-st71{fill:url(#flrq_56_);}
+          .flrb-st72{fill:url(#flrq_59_);}
+          .flrb-st73{fill:url(#flrq_60_);}
+          .flrb-st74{fill:url(#flrq_63_);}
+          .flrb-st75{fill:url(#flrq_64_);}
+          .flrb-st76{fill:url(#flrq_70_);}
+          .flrb-st77{fill:url(#flrq_71_);}
+          .flrb-st78{fill:url(#flrq_73_);}
+          .flrb-st79{fill:url(#flrq_74_);}
+          .flrb-st80{fill:url(#flrq_82_);}
+          .flrb-st81{fill:url(#flrq_83_);}
+          .flrb-st82{fill:url(#flrq_115_);}
+          .flrb-st83{fill:url(#flrq_116_);}
+          .flrb-st84{fill:url(#flrq_117_);}
+          .flrb-st85{fill:url(#flrq_118_);}
+          .flrb-st86{fill:url(#flrq_119_);}
+          .flrb-st87{fill:url(#flrq_120_);}
+          .flrb-st88{fill:url(#flrq_121_);}
+          .flrb-st89{fill:url(#flrq_122_);}
+          .flrb-st90{fill:url(#flrq_123_);}
+          .flrb-st91{fill:url(#flrq_124_);}
+          .flrb-st92{fill:url(#flrq_125_);}
+          .flrb-st93{fill:url(#flrq_126_);}
+          .flrb-st94{fill:url(#flrq_133_);}
+          .flrb-st95{fill:url(#flrq_134_);}
+          .flrb-st96{fill:url(#flrq_135_);}
+          .flrb-st97{fill:url(#flrq_136_);}
+          .flrb-st98{fill:url(#flrq_137_);}
+          .flrb-st99{fill:url(#flrq_138_);}
+          .flrb-st100{fill:url(#flrq_139_);}
+          .flrb-st101{fill:url(#flrq_140_);}
+          .flrb-st102{fill:url(#flrq_141_);}
+          .flrb-st103{fill:url(#flrq_142_);}
+          .flrb-st104{fill:url(#flrq_143_);}
+          .flrb-st105{fill:url(#flrq_144_);}
+          .flrb-st106{fill:url(#flrq_151_);}
+          .flrb-st107{fill:url(#flrq_152_);}
           .flrb-st108{fill:#F2F2F2;}
-          .flrb-st109{fill:url(#XMLID_153_);}
-          .flrb-st110{fill:url(#XMLID_154_);}
-          .flrb-st111{fill:url(#XMLID_155_);}
-          .flrb-st112{fill:url(#XMLID_156_);}
-          .flrb-st113{fill:url(#XMLID_157_);}
+          .flrb-st109{fill:url(#flrq_153_);}
+          .flrb-st110{fill:url(#flrq_154_);}
+          .flrb-st111{fill:url(#flrq_155_);}
+          .flrb-st112{fill:url(#flrq_156_);}
+          .flrb-st113{fill:url(#flrq_157_);}
           .flrb-st114{opacity:0.4;fill:#FF0303;}
       </style>`
         "
@@ -1089,7 +1089,7 @@
           points="15.79,305 15.79,222.09 13.82,222.09 13.82,306.98 294.15,306.98 294.15,305 	"
         />
         <linearGradient
-          id="XMLID_40_"
+          id="flrq_40_"
           gradientUnits="userSpaceOnUse"
           x1="79.3585"
           y1="33.4556"
@@ -1102,18 +1102,18 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_100_"
+          id="flrq_100_"
           class="flrb-st64"
           d="M79.36,17.44v14.58c0,9.78,19.33,17.44,44,17.44c24.67,0,44-7.66,44-17.44V17.44H79.36z"
         />
         <path
-          id="XMLID_98_"
+          id="flrq_98_"
           class="flrb-st65"
           d="M123.36,34.89c-24.67,0-44-7.66-44-17.44S98.69,0,123.36,0c24.67,0,44,7.66,44,17.44
             S148.03,34.89,123.36,34.89z"
         />
         <linearGradient
-          id="XMLID_43_"
+          id="flrq_43_"
           gradientUnits="userSpaceOnUse"
           x1="77.7964"
           y1="39.8915"
@@ -1126,20 +1126,20 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_96_"
+          id="flrq_96_"
           class="flrb-st66"
           d="M77.8,28.9v2.98c0,10.84,19.59,19.01,45.56,19.01s45.56-8.17,45.56-19.01V28.9
             c0,0-1.64,18.12-45.3,18.12C80.39,47.02,77.8,28.9,77.8,28.9z"
         />
         <path
-          id="XMLID_95_"
+          id="flrq_95_"
           class="flrb-st65"
           d="M167.36,23.76v5.14c0,9.78-19.33,17.44-44,17.44c-24.67,0-44-7.66-44-17.44v-5.14
             c-1.01,1.62-1.56,3.34-1.56,5.14c0,10.84,19.59,19.01,45.56,19.01s45.56-8.17,45.56-19.01C168.92,27.11,168.37,25.39,167.36,23.76z
             "
         />
         <linearGradient
-          id="XMLID_44_"
+          id="flrq_44_"
           gradientUnits="userSpaceOnUse"
           x1="81.9621"
           y1="17.4439"
@@ -1153,7 +1153,7 @@
           <stop offset="1" style="stop-color:#434448" />
         </linearGradient>
         <ellipse
-          id="XMLID_77_"
+          id="flrq_77_"
           class="flrb-st67"
           cx="123.36"
           cy="17.44"
@@ -1161,7 +1161,7 @@
           ry="14.84"
         />
         <linearGradient
-          id="XMLID_45_"
+          id="flrq_45_"
           gradientUnits="userSpaceOnUse"
           x1="180.7609"
           y1="33.4556"
@@ -1174,18 +1174,18 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_17_"
+          id="flrq_17_"
           class="flrb-st68"
           d="M180.76,17.44v14.58c0,9.78,19.33,17.44,44,17.44c24.67,0,44-7.66,44-17.44V17.44H180.76z"
         />
         <path
-          id="XMLID_15_"
+          id="flrq_15_"
           class="flrb-st65"
           d="M224.76,34.89c-24.67,0-44-7.66-44-17.44S200.09,0,224.76,0c24.67,0,44,7.66,44,17.44
             S249.43,34.89,224.76,34.89z"
         />
         <linearGradient
-          id="XMLID_46_"
+          id="flrq_46_"
           gradientUnits="userSpaceOnUse"
           x1="179.1987"
           y1="39.8915"
@@ -1198,20 +1198,20 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_13_"
+          id="flrq_13_"
           class="flrb-st69"
           d="M179.2,28.9v2.98c0,10.84,19.59,19.01,45.56,19.01s45.56-8.17,45.56-19.01V28.9
             c0,0-1.64,18.12-45.3,18.12C181.8,47.02,179.2,28.9,179.2,28.9z"
         />
         <path
-          id="XMLID_12_"
+          id="flrq_12_"
           class="flrb-st65"
           d="M268.76,23.76v5.14c0,9.78-19.33,17.44-44,17.44c-24.67,0-44-7.66-44-17.44v-5.14
             c-1.01,1.62-1.56,3.34-1.56,5.14c0,10.84,19.59,19.01,45.56,19.01s45.56-8.17,45.56-19.01C270.32,27.11,269.78,25.39,268.76,23.76z
             "
         />
         <linearGradient
-          id="XMLID_55_"
+          id="flrq_55_"
           gradientUnits="userSpaceOnUse"
           x1="183.3645"
           y1="17.4439"
@@ -1225,7 +1225,7 @@
           <stop offset="1" style="stop-color:#434448" />
         </linearGradient>
         <ellipse
-          id="XMLID_11_"
+          id="flrq_11_"
           class="flrb-st70"
           cx="224.76"
           cy="17.44"
@@ -1233,7 +1233,7 @@
           ry="14.84"
         />
         <linearGradient
-          id="XMLID_56_"
+          id="flrq_56_"
           gradientUnits="userSpaceOnUse"
           x1="282.1632"
           y1="33.4556"
@@ -1246,18 +1246,18 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_35_"
+          id="flrq_35_"
           class="flrb-st71"
           d="M282.16,17.44v14.58c0,9.78,19.33,17.44,44,17.44c24.67,0,44-7.66,44-17.44V17.44H282.16z"
         />
         <path
-          id="XMLID_33_"
+          id="flrq_33_"
           class="flrb-st65"
           d="M326.16,34.89c-24.67,0-44-7.66-44-17.44S301.49,0,326.16,0c24.67,0,44,7.66,44,17.44
             S350.84,34.89,326.16,34.89z"
         />
         <linearGradient
-          id="XMLID_59_"
+          id="flrq_59_"
           gradientUnits="userSpaceOnUse"
           x1="280.6011"
           y1="39.8915"
@@ -1270,20 +1270,20 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_31_"
+          id="flrq_31_"
           class="flrb-st72"
           d="M280.6,28.9v2.98c0,10.84,19.59,19.01,45.56,19.01c25.97,0,45.56-8.17,45.56-19.01V28.9
             c0,0-1.64,18.12-45.3,18.12C283.2,47.02,280.6,28.9,280.6,28.9z"
         />
         <path
-          id="XMLID_30_"
+          id="flrq_30_"
           class="flrb-st65"
           d="M370.16,23.76v5.14c0,9.78-19.33,17.44-44,17.44c-24.67,0-44-7.66-44-17.44v-5.14
             c-1.01,1.62-1.56,3.34-1.56,5.14c0,10.84,19.59,19.01,45.56,19.01c25.97,0,45.56-8.17,45.56-19.01
             C371.73,27.11,371.18,25.39,370.16,23.76z"
         />
         <linearGradient
-          id="XMLID_60_"
+          id="flrq_60_"
           gradientUnits="userSpaceOnUse"
           x1="284.7668"
           y1="17.4439"
@@ -1297,7 +1297,7 @@
           <stop offset="1" style="stop-color:#434448" />
         </linearGradient>
         <ellipse
-          id="XMLID_29_"
+          id="flrq_29_"
           class="flrb-st73"
           cx="326.16"
           cy="17.44"
@@ -1305,7 +1305,7 @@
           ry="14.84"
         />
         <linearGradient
-          id="XMLID_63_"
+          id="flrq_63_"
           gradientUnits="userSpaceOnUse"
           x1="33.4676"
           y1="69.1686"
@@ -1318,18 +1318,18 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_107_"
+          id="flrq_107_"
           class="flrb-st74"
           d="M33.47,53.16v14.58c0,9.78,19.33,17.44,44,17.44c24.67,0,44-7.66,44-17.44V53.16H33.47z"
         />
         <path
-          id="XMLID_105_"
+          id="flrq_105_"
           class="flrb-st65"
           d="M77.47,70.6c-24.67,0-44-7.66-44-17.44s19.33-17.44,44-17.44c24.67,0,44,7.66,44,17.44
             S102.14,70.6,77.47,70.6z"
         />
         <linearGradient
-          id="XMLID_64_"
+          id="flrq_64_"
           gradientUnits="userSpaceOnUse"
           x1="31.9054"
           y1="75.6045"
@@ -1342,19 +1342,19 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_103_"
+          id="flrq_103_"
           class="flrb-st75"
           d="M31.91,64.61v2.98c0,10.84,19.59,19.01,45.56,19.01s45.56-8.17,45.56-19.01v-2.98
             c0,0-1.64,18.12-45.3,18.12C34.5,82.73,31.91,64.61,31.91,64.61z"
         />
         <path
-          id="XMLID_102_"
+          id="flrq_102_"
           class="flrb-st65"
           d="M121.47,59.48v5.14c0,9.78-19.33,17.44-44,17.44c-24.67,0-44-7.66-44-17.44v-5.14
             c-1.01,1.62-1.56,3.34-1.56,5.14c0,10.84,19.59,19.01,45.56,19.01s45.56-8.17,45.56-19.01C123.03,62.82,122.48,61.1,121.47,59.48z"
         />
         <linearGradient
-          id="XMLID_70_"
+          id="flrq_70_"
           gradientUnits="userSpaceOnUse"
           x1="36.0712"
           y1="53.1569"
@@ -1368,7 +1368,7 @@
           <stop offset="1" style="stop-color:#434448" />
         </linearGradient>
         <ellipse
-          id="XMLID_94_"
+          id="flrq_94_"
           class="flrb-st76"
           cx="77.47"
           cy="53.16"
@@ -1376,7 +1376,7 @@
           ry="14.84"
         />
         <linearGradient
-          id="XMLID_71_"
+          id="flrq_71_"
           gradientUnits="userSpaceOnUse"
           x1="134.8699"
           y1="69.1686"
@@ -1389,18 +1389,18 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_80_"
+          id="flrq_80_"
           class="flrb-st77"
           d="M134.87,53.16v14.58c0,9.78,19.33,17.44,44,17.44c24.67,0,44-7.66,44-17.44V53.16H134.87z"
         />
         <path
-          id="XMLID_78_"
+          id="flrq_78_"
           class="flrb-st65"
           d="M178.87,70.6c-24.67,0-44-7.66-44-17.44s19.33-17.44,44-17.44c24.67,0,44,7.66,44,17.44
             S203.54,70.6,178.87,70.6z"
         />
         <linearGradient
-          id="XMLID_73_"
+          id="flrq_73_"
           gradientUnits="userSpaceOnUse"
           x1="133.3078"
           y1="75.6045"
@@ -1413,19 +1413,19 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_69_"
+          id="flrq_69_"
           class="flrb-st78"
           d="M133.31,64.61v2.98c0,10.84,19.59,19.01,45.56,19.01s45.56-8.17,45.56-19.01v-2.98
             c0,0-1.64,18.12-45.3,18.12C135.91,82.73,133.31,64.61,133.31,64.61z"
         />
         <path
-          id="XMLID_68_"
+          id="flrq_68_"
           class="flrb-st65"
           d="M222.87,59.48v5.14c0,9.78-19.33,17.44-44,17.44c-24.67,0-44-7.66-44-17.44v-5.14
             c-1.01,1.62-1.56,3.34-1.56,5.14c0,10.84,19.59,19.01,45.56,19.01s45.56-8.17,45.56-19.01C224.43,62.82,223.88,61.1,222.87,59.48z"
         />
         <linearGradient
-          id="XMLID_74_"
+          id="flrq_74_"
           gradientUnits="userSpaceOnUse"
           x1="137.4735"
           y1="53.1569"
@@ -1439,7 +1439,7 @@
           <stop offset="1" style="stop-color:#434448" />
         </linearGradient>
         <ellipse
-          id="XMLID_67_"
+          id="flrq_67_"
           class="flrb-st79"
           cx="178.87"
           cy="53.16"
@@ -1447,7 +1447,7 @@
           ry="14.84"
         />
         <linearGradient
-          id="XMLID_82_"
+          id="flrq_82_"
           gradientUnits="userSpaceOnUse"
           x1="236.2723"
           y1="69.1686"
@@ -1460,18 +1460,18 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_53_"
+          id="flrq_53_"
           class="flrb-st80"
           d="M236.27,53.16v14.58c0,9.78,19.33,17.44,44,17.44c24.67,0,44-7.66,44-17.44V53.16H236.27z"
         />
         <path
-          id="XMLID_51_"
+          id="flrq_51_"
           class="flrb-st65"
           d="M280.27,70.6c-24.67,0-44-7.66-44-17.44s19.33-17.44,44-17.44c24.67,0,44,7.66,44,17.44
             S304.95,70.6,280.27,70.6z"
         />
         <linearGradient
-          id="XMLID_83_"
+          id="flrq_83_"
           gradientUnits="userSpaceOnUse"
           x1="234.7102"
           y1="75.6045"
@@ -1484,20 +1484,20 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_49_"
+          id="flrq_49_"
           class="flrb-st81"
           d="M234.71,64.61v2.98c0,10.84,19.59,19.01,45.56,19.01c25.97,0,45.56-8.17,45.56-19.01v-2.98
             c0,0-1.64,18.12-45.3,18.12C237.31,82.73,234.71,64.61,234.71,64.61z"
         />
         <path
-          id="XMLID_48_"
+          id="flrq_48_"
           class="flrb-st65"
           d="M324.27,59.48v5.14c0,9.78-19.33,17.44-44,17.44c-24.67,0-44-7.66-44-17.44v-5.14
             c-1.01,1.62-1.56,3.34-1.56,5.14c0,10.84,19.59,19.01,45.56,19.01c25.97,0,45.56-8.17,45.56-19.01
             C325.84,62.82,325.29,61.1,324.27,59.48z"
         />
         <linearGradient
-          id="XMLID_115_"
+          id="flrq_115_"
           gradientUnits="userSpaceOnUse"
           x1="238.8759"
           y1="53.1569"
@@ -1511,7 +1511,7 @@
           <stop offset="1" style="stop-color:#434448" />
         </linearGradient>
         <ellipse
-          id="XMLID_47_"
+          id="flrq_47_"
           class="flrb-st82"
           cx="280.27"
           cy="53.16"
@@ -1529,7 +1529,7 @@
             repeatCount="indefinite"
           />
           <linearGradient
-            id="XMLID_116_"
+            id="flrq_116_"
             gradientUnits="userSpaceOnUse"
             x1="83.7917"
             y1="17.6888"
@@ -1540,13 +1540,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_131_"
+            id="flrq_131_"
             class="flrb-st83"
             d="M152.57,26.82l6.76-3.17l-31.78-5.95l30.58-6.74l-6.76-3.17l-26.4,8.47l-9.35-12.01
             l-10.94,1.21l15.46,11.18l-36.36-0.68l0,3.92l35.95-1.56l-13.12,11.59l10.94,1.21l6.76-12.15L152.57,26.82z"
           />
           <linearGradient
-            id="XMLID_117_"
+            id="flrq_117_"
             gradientUnits="userSpaceOnUse"
             x1="185.1941"
             y1="17.6888"
@@ -1557,13 +1557,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_129_"
+            id="flrq_129_"
             class="flrb-st84"
             d="M253.97,26.82l6.76-3.17l-31.78-5.95l30.58-6.74l-6.76-3.17l-26.4,8.47l-9.35-12.01
             l-10.94,1.21l15.46,11.18l-36.36-0.68l0,3.92l35.95-1.56l-13.12,11.59l10.94,1.21l6.76-12.15L253.97,26.82z"
           />
           <linearGradient
-            id="XMLID_118_"
+            id="flrq_118_"
             gradientUnits="userSpaceOnUse"
             x1="286.5964"
             y1="17.6888"
@@ -1574,13 +1574,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_127_"
+            id="flrq_127_"
             class="flrb-st85"
             d="M355.38,26.82l6.76-3.17l-31.78-5.95l30.58-6.74l-6.76-3.17l-26.4,8.47l-9.35-12.01
             L307.5,5.46l15.46,11.18l-36.36-0.68v3.92l35.95-1.56l-13.12,11.59l10.94,1.21l6.76-12.15L355.38,26.82z"
           />
           <linearGradient
-            id="XMLID_119_"
+            id="flrq_119_"
             gradientUnits="userSpaceOnUse"
             x1="37.9008"
             y1="53.4018"
@@ -1591,13 +1591,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_149_"
+            id="flrq_149_"
             class="flrb-st86"
             d="M106.68,62.53l6.76-3.17l-31.78-5.95l30.58-6.74l-6.76-3.17l-26.4,8.47l-9.35-12.01
             L58.8,41.17l15.46,11.18L37.9,51.68l0,3.92l35.95-1.56L60.73,65.63l10.94,1.21l6.76-12.15L106.68,62.53z"
           />
           <linearGradient
-            id="XMLID_120_"
+            id="flrq_120_"
             gradientUnits="userSpaceOnUse"
             x1="139.3031"
             y1="53.4018"
@@ -1608,13 +1608,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_147_"
+            id="flrq_147_"
             class="flrb-st87"
             d="M208.08,62.53l6.76-3.17l-31.78-5.95l30.58-6.74l-6.76-3.17l-26.4,8.47l-9.35-12.01
             l-10.94,1.21l15.46,11.18l-36.36-0.68l0,3.92l35.95-1.56l-13.12,11.59l10.94,1.21l6.76-12.15L208.08,62.53z"
           />
           <linearGradient
-            id="XMLID_121_"
+            id="flrq_121_"
             gradientUnits="userSpaceOnUse"
             x1="240.7055"
             y1="53.4018"
@@ -1625,7 +1625,7 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_145_"
+            id="flrq_145_"
             class="flrb-st88"
             d="M309.48,62.53l6.76-3.17l-31.78-5.95l30.58-6.74l-6.76-3.17l-26.4,8.47l-9.35-12.01
             l-10.94,1.21l15.46,11.18l-36.36-0.68l0,3.92l35.95-1.56l-13.12,11.59l10.94,1.21l6.76-12.15L309.48,62.53z"
@@ -1639,7 +1639,7 @@
             repeatCount="indefinite"
           />
           <linearGradient
-            id="XMLID_122_"
+            id="flrq_122_"
             gradientUnits="userSpaceOnUse"
             x1="84.0992"
             y1="18.0815"
@@ -1650,13 +1650,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_65_"
+            id="flrq_65_"
             class="flrb-st89"
             d="M159.34,23.18l3.55-3.73l-35.61-2.31l22.98-9.64l-9.31-2.31l-17.43,10.84L103.76,5.6
             l-9.31,2.31l24.83,9.01L84.1,20.1l3.55,3.73l32.78-5.28l-1.98,12.41l11.5,0l-4.58-12.27L159.34,23.18z"
           />
           <linearGradient
-            id="XMLID_123_"
+            id="flrq_123_"
             gradientUnits="userSpaceOnUse"
             x1="185.5016"
             y1="18.0815"
@@ -1667,13 +1667,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_7_"
+            id="flrq_7_"
             class="flrb-st90"
             d="M260.75,23.18l3.55-3.73l-35.61-2.31l22.98-9.64l-9.31-2.31l-17.43,10.84L205.17,5.6
             l-9.31,2.31l24.83,9.01l-35.2,3.19l3.55,3.73l32.78-5.28l-1.98,12.41l11.5,0l-4.58-12.27L260.75,23.18z"
           />
           <linearGradient
-            id="XMLID_124_"
+            id="flrq_124_"
             gradientUnits="userSpaceOnUse"
             x1="286.904"
             y1="18.0815"
@@ -1684,13 +1684,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_21_"
+            id="flrq_21_"
             class="flrb-st91"
             d="M362.15,23.18l3.55-3.73l-35.61-2.31l22.98-9.64l-9.31-2.31l-17.43,10.84L306.57,5.6
             l-9.31,2.31l24.83,9.01l-35.2,3.19l3.55,3.73l32.78-5.28l-1.98,12.41l11.5,0l-4.58-12.27L362.15,23.18z"
           />
           <linearGradient
-            id="XMLID_125_"
+            id="flrq_125_"
             gradientUnits="userSpaceOnUse"
             x1="38.2083"
             y1="53.7945"
@@ -1701,13 +1701,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_88_"
+            id="flrq_88_"
             class="flrb-st92"
             d="M113.45,58.89l3.55-3.73L81.4,52.85l22.98-9.64l-9.31-2.31L77.64,51.75L57.87,41.32
             l-9.31,2.31l24.83,9.01l-35.2,3.19l3.55,3.73l32.78-5.28l-1.98,12.41h11.5l-4.58-12.27L113.45,58.89z"
           />
           <linearGradient
-            id="XMLID_126_"
+            id="flrq_126_"
             gradientUnits="userSpaceOnUse"
             x1="139.6107"
             y1="53.7945"
@@ -1718,13 +1718,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_61_"
+            id="flrq_61_"
             class="flrb-st93"
             d="M214.86,58.89l3.55-3.73l-35.61-2.31l22.98-9.64l-9.31-2.31l-17.43,10.84l-19.77-10.43
             l-9.31,2.31l24.83,9.01l-35.2,3.19l3.55,3.73l32.78-5.28l-1.98,12.41h11.5l-4.58-12.27L214.86,58.89z"
           />
           <linearGradient
-            id="XMLID_133_"
+            id="flrq_133_"
             gradientUnits="userSpaceOnUse"
             x1="241.013"
             y1="53.7945"
@@ -1735,7 +1735,7 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_41_"
+            id="flrq_41_"
             class="flrb-st94"
             d="M316.26,58.89l3.55-3.73l-35.61-2.31l22.98-9.64l-9.31-2.31l-17.43,10.84l-19.77-10.43
             l-9.31,2.31l24.83,9.01l-35.2,3.19l3.55,3.73l32.78-5.28l-1.98,12.41h11.5l-4.58-12.27L316.26,58.89z"
@@ -1749,7 +1749,7 @@
             repeatCount="indefinite"
           />
           <linearGradient
-            id="XMLID_134_"
+            id="flrq_134_"
             gradientUnits="userSpaceOnUse"
             x1="87.1534"
             y1="17.3816"
@@ -1760,13 +1760,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_92_"
+            id="flrq_92_"
             class="flrb-st95"
             d="M162.69,19.1v-3.92l-35.95,1.56l13.12-11.59l-10.94-1.21l-6.76,12.15L93.91,8.25l-6.76,3.17
             l31.78,5.95l-30.58,6.74l6.76,3.17l26.4-8.47l9.35,12.01l10.94-1.21l-15.46-11.18L162.69,19.1z"
           />
           <linearGradient
-            id="XMLID_135_"
+            id="flrq_135_"
             gradientUnits="userSpaceOnUse"
             x1="188.5558"
             y1="17.3816"
@@ -1777,13 +1777,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_90_"
+            id="flrq_90_"
             class="flrb-st96"
             d="M264.1,19.1v-3.92l-35.95,1.56l13.12-11.59l-10.94-1.21l-6.76,12.15l-28.25-7.84l-6.76,3.17
             l31.78,5.95l-30.58,6.74l6.76,3.17l26.4-8.47l9.35,12.01l10.94-1.21l-15.46-11.18L264.1,19.1z"
           />
           <linearGradient
-            id="XMLID_136_"
+            id="flrq_136_"
             gradientUnits="userSpaceOnUse"
             x1="289.9581"
             y1="17.3816"
@@ -1794,13 +1794,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_86_"
+            id="flrq_86_"
             class="flrb-st97"
             d="M365.5,19.1v-3.92l-35.95,1.56l13.12-11.59l-10.94-1.21l-6.76,12.15l-28.25-7.84l-6.76,3.17
             l31.78,5.95l-30.58,6.74l6.76,3.17l26.4-8.47l9.35,12.01l10.94-1.21l-15.46-11.18L365.5,19.1z"
           />
           <linearGradient
-            id="XMLID_137_"
+            id="flrq_137_"
             gradientUnits="userSpaceOnUse"
             x1="41.2625"
             y1="53.0946"
@@ -1811,13 +1811,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_113_"
+            id="flrq_113_"
             class="flrb-st98"
             d="M116.8,54.82v-3.92l-35.95,1.56l13.12-11.59l-10.94-1.21L76.27,51.8l-28.25-7.84l-6.76,3.17
             l31.78,5.95l-30.58,6.74L49.22,63l26.4-8.47l9.35,12.01l10.94-1.21L80.44,54.14L116.8,54.82z"
           />
           <linearGradient
-            id="XMLID_138_"
+            id="flrq_138_"
             gradientUnits="userSpaceOnUse"
             x1="142.6648"
             y1="53.0946"
@@ -1828,13 +1828,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_111_"
+            id="flrq_111_"
             class="flrb-st99"
             d="M218.2,54.82v-3.92l-35.95,1.56l13.12-11.59l-10.94-1.21l-6.76,12.15l-28.25-7.84l-6.76,3.17
             l31.78,5.95l-30.58,6.74l6.76,3.17l26.4-8.47l9.35,12.01l10.94-1.21l-15.46-11.18L218.2,54.82z"
           />
           <linearGradient
-            id="XMLID_139_"
+            id="flrq_139_"
             gradientUnits="userSpaceOnUse"
             x1="244.0672"
             y1="53.0946"
@@ -1845,7 +1845,7 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_109_"
+            id="flrq_109_"
             class="flrb-st100"
             d="M319.61,54.82v-3.92l-35.95,1.56l13.12-11.59l-10.94-1.21l-6.76,12.15l-28.25-7.84
             l-6.76,3.17l31.78,5.95l-30.58,6.74l6.76,3.17l26.4-8.47l9.35,12.01l10.94-1.21l-15.46-11.18L319.61,54.82z"
@@ -1859,7 +1859,7 @@
             repeatCount="indefinite"
           />
           <linearGradient
-            id="XMLID_140_"
+            id="flrq_140_"
             gradientUnits="userSpaceOnUse"
             x1="83.719"
             y1="16.8772"
@@ -1870,13 +1870,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_75_"
+            id="flrq_75_"
             class="flrb-st101"
             d="M162.52,14.85l-3.55-3.73l-32.78,5.28l1.98-12.41h-11.5l4.58,12.27l-33.97-4.48l-3.55,3.73
             l35.61,2.31l-22.98,9.64l9.31,2.31l17.43-10.84l19.77,10.43l9.31-2.31l-24.83-9.01L162.52,14.85z"
           />
           <linearGradient
-            id="XMLID_141_"
+            id="flrq_141_"
             gradientUnits="userSpaceOnUse"
             x1="185.1214"
             y1="16.8772"
@@ -1887,13 +1887,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_3_"
+            id="flrq_3_"
             class="flrb-st102"
             d="M263.92,14.85l-3.55-3.73l-32.78,5.28l1.98-12.41h-11.5l4.58,12.27l-33.97-4.48l-3.55,3.73
             l35.61,2.31l-22.98,9.64l9.31,2.31l17.43-10.84l19.77,10.43l9.31-2.31l-24.83-9.01L263.92,14.85z"
           />
           <linearGradient
-            id="XMLID_142_"
+            id="flrq_142_"
             gradientUnits="userSpaceOnUse"
             x1="286.5237"
             y1="16.8772"
@@ -1904,13 +1904,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_5_"
+            id="flrq_5_"
             class="flrb-st103"
             d="M365.32,14.85l-3.55-3.73l-32.78,5.28l1.98-12.41h-11.5l4.58,12.27l-33.97-4.48l-3.55,3.73
             l35.61,2.31l-22.98,9.64l9.31,2.31l17.43-10.84l19.77,10.43l9.31-2.31l-24.83-9.01L365.32,14.85z"
           />
           <linearGradient
-            id="XMLID_143_"
+            id="flrq_143_"
             gradientUnits="userSpaceOnUse"
             x1="37.8281"
             y1="52.5902"
@@ -1921,13 +1921,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_84_"
+            id="flrq_84_"
             class="flrb-st104"
             d="M116.63,50.57l-3.55-3.73l-32.78,5.28l1.98-12.41h-11.5l4.58,12.27l-33.97-4.48l-3.55,3.73
             l35.61,2.31l-22.98,9.64l9.31,2.31l17.43-10.84l19.77,10.43l9.31-2.31l-24.83-9.01L116.63,50.57z"
           />
           <linearGradient
-            id="XMLID_144_"
+            id="flrq_144_"
             gradientUnits="userSpaceOnUse"
             x1="139.2304"
             y1="52.5902"
@@ -1938,13 +1938,13 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_57_"
+            id="flrq_57_"
             class="flrb-st105"
             d="M218.03,50.57l-3.55-3.73l-32.78,5.28l1.98-12.41h-11.5l4.58,12.27l-33.97-4.48l-3.55,3.73
             l35.61,2.31l-22.98,9.64l9.31,2.31l17.43-10.84l19.77,10.43l9.31-2.31l-24.83-9.01L218.03,50.57z"
           />
           <linearGradient
-            id="XMLID_151_"
+            id="flrq_151_"
             gradientUnits="userSpaceOnUse"
             x1="240.6328"
             y1="52.5902"
@@ -1955,7 +1955,7 @@
             <stop offset="0.9947" style="stop-color:#B9BDC1" />
           </linearGradient>
           <path
-            id="XMLID_37_"
+            id="flrq_37_"
             class="flrb-st106"
             d="M319.43,50.57l-3.55-3.73l-32.78,5.28l1.98-12.41h-11.5l4.58,12.27l-33.97-4.48l-3.55,3.73
             l35.61,2.31l-22.98,9.64l9.31,2.31L280,54.63l19.77,10.43l9.31-2.31l-24.83-9.01L319.43,50.57z"
@@ -1965,7 +1965,7 @@
 
       <g class="SVG_sta" v-if="pointValue === 0">
         <linearGradient
-          id="XMLID_140_"
+          id="flrq_140_"
           gradientUnits="userSpaceOnUse"
           x1="83.719"
           y1="16.8772"
@@ -1976,13 +1976,13 @@
           <stop offset="0.9947" style="stop-color:#B9BDC1" />
         </linearGradient>
         <path
-          id="XMLID_75_"
+          id="flrq_75_"
           class="flrb-st101"
           d="M162.52,14.85l-3.55-3.73l-32.78,5.28l1.98-12.41h-11.5l4.58,12.27l-33.97-4.48l-3.55,3.73
             l35.61,2.31l-22.98,9.64l9.31,2.31l17.43-10.84l19.77,10.43l9.31-2.31l-24.83-9.01L162.52,14.85z"
         />
         <linearGradient
-          id="XMLID_141_"
+          id="flrq_141_"
           gradientUnits="userSpaceOnUse"
           x1="185.1214"
           y1="16.8772"
@@ -1993,13 +1993,13 @@
           <stop offset="0.9947" style="stop-color:#B9BDC1" />
         </linearGradient>
         <path
-          id="XMLID_3_"
+          id="flrq_3_"
           class="flrb-st102"
           d="M263.92,14.85l-3.55-3.73l-32.78,5.28l1.98-12.41h-11.5l4.58,12.27l-33.97-4.48l-3.55,3.73
             l35.61,2.31l-22.98,9.64l9.31,2.31l17.43-10.84l19.77,10.43l9.31-2.31l-24.83-9.01L263.92,14.85z"
         />
         <linearGradient
-          id="XMLID_142_"
+          id="flrq_142_"
           gradientUnits="userSpaceOnUse"
           x1="286.5237"
           y1="16.8772"
@@ -2010,13 +2010,13 @@
           <stop offset="0.9947" style="stop-color:#B9BDC1" />
         </linearGradient>
         <path
-          id="XMLID_5_"
+          id="flrq_5_"
           class="flrb-st103"
           d="M365.32,14.85l-3.55-3.73l-32.78,5.28l1.98-12.41h-11.5l4.58,12.27l-33.97-4.48l-3.55,3.73
             l35.61,2.31l-22.98,9.64l9.31,2.31l17.43-10.84l19.77,10.43l9.31-2.31l-24.83-9.01L365.32,14.85z"
         />
         <linearGradient
-          id="XMLID_143_"
+          id="flrq_143_"
           gradientUnits="userSpaceOnUse"
           x1="37.8281"
           y1="52.5902"
@@ -2027,13 +2027,13 @@
           <stop offset="0.9947" style="stop-color:#B9BDC1" />
         </linearGradient>
         <path
-          id="XMLID_84_"
+          id="flrq_84_"
           class="flrb-st104"
           d="M116.63,50.57l-3.55-3.73l-32.78,5.28l1.98-12.41h-11.5l4.58,12.27l-33.97-4.48l-3.55,3.73
             l35.61,2.31l-22.98,9.64l9.31,2.31l17.43-10.84l19.77,10.43l9.31-2.31l-24.83-9.01L116.63,50.57z"
         />
         <linearGradient
-          id="XMLID_144_"
+          id="flrq_144_"
           gradientUnits="userSpaceOnUse"
           x1="139.2304"
           y1="52.5902"
@@ -2044,13 +2044,13 @@
           <stop offset="0.9947" style="stop-color:#B9BDC1" />
         </linearGradient>
         <path
-          id="XMLID_57_"
+          id="flrq_57_"
           class="flrb-st105"
           d="M218.03,50.57l-3.55-3.73l-32.78,5.28l1.98-12.41h-11.5l4.58,12.27l-33.97-4.48l-3.55,3.73
             l35.61,2.31l-22.98,9.64l9.31,2.31l17.43-10.84l19.77,10.43l9.31-2.31l-24.83-9.01L218.03,50.57z"
         />
         <linearGradient
-          id="XMLID_151_"
+          id="flrq_151_"
           gradientUnits="userSpaceOnUse"
           x1="240.6328"
           y1="52.5902"
@@ -2061,7 +2061,7 @@
           <stop offset="0.9947" style="stop-color:#B9BDC1" />
         </linearGradient>
         <path
-          id="XMLID_37_"
+          id="flrq_37_"
           class="flrb-st106"
           d="M319.43,50.57l-3.55-3.73l-32.78,5.28l1.98-12.41h-11.5l4.58,12.27l-33.97-4.48l-3.55,3.73
             l35.61,2.31l-22.98,9.64l9.31,2.31L280,54.63l19.77,10.43l9.31-2.31l-24.83-9.01L319.43,50.57z"
@@ -2070,7 +2070,7 @@
 
       <g id="SVG_base2">
         <linearGradient
-          id="XMLID_152_"
+          id="flrq_152_"
           gradientUnits="userSpaceOnUse"
           x1="115.4583"
           y1="16.9678"
@@ -2083,12 +2083,12 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_28_"
+          id="flrq_28_"
           class="flrb-st107"
           d="M115.46,13.79v3.65c0,1.5,3.56,2.71,7.95,2.71c4.39,0,7.95-1.21,7.95-2.71v-3.65H115.46z"
         />
         <ellipse
-          id="XMLID_27_"
+          id="flrq_27_"
           class="flrb-st108"
           cx="123.41"
           cy="13.79"
@@ -2096,7 +2096,7 @@
           ry="2.71"
         />
         <linearGradient
-          id="XMLID_153_"
+          id="flrq_153_"
           gradientUnits="userSpaceOnUse"
           x1="216.8606"
           y1="16.9678"
@@ -2109,12 +2109,12 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_26_"
+          id="flrq_26_"
           class="flrb-st109"
           d="M216.86,13.79v3.65c0,1.5,3.56,2.71,7.95,2.71c4.39,0,7.95-1.21,7.95-2.71v-3.65H216.86z"
         />
         <ellipse
-          id="XMLID_25_"
+          id="flrq_25_"
           class="flrb-st108"
           cx="224.81"
           cy="13.79"
@@ -2122,7 +2122,7 @@
           ry="2.71"
         />
         <linearGradient
-          id="XMLID_154_"
+          id="flrq_154_"
           gradientUnits="userSpaceOnUse"
           x1="318.263"
           y1="16.9678"
@@ -2135,12 +2135,12 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_24_"
+          id="flrq_24_"
           class="flrb-st110"
           d="M318.26,13.79v3.65c0,1.5,3.56,2.71,7.95,2.71c4.39,0,7.95-1.21,7.95-2.71v-3.65H318.26z"
         />
         <ellipse
-          id="XMLID_23_"
+          id="flrq_23_"
           class="flrb-st108"
           cx="326.21"
           cy="13.79"
@@ -2148,7 +2148,7 @@
           ry="2.71"
         />
         <linearGradient
-          id="XMLID_155_"
+          id="flrq_155_"
           gradientUnits="userSpaceOnUse"
           x1="69.5673"
           y1="52.6808"
@@ -2161,12 +2161,12 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_20_"
+          id="flrq_20_"
           class="flrb-st111"
           d="M69.57,49.5v3.65c0,1.5,3.56,2.71,7.95,2.71c4.39,0,7.95-1.21,7.95-2.71V49.5H69.57z"
         />
         <ellipse
-          id="XMLID_19_"
+          id="flrq_19_"
           class="flrb-st108"
           cx="77.52"
           cy="49.5"
@@ -2174,7 +2174,7 @@
           ry="2.71"
         />
         <linearGradient
-          id="XMLID_156_"
+          id="flrq_156_"
           gradientUnits="userSpaceOnUse"
           x1="170.9697"
           y1="52.6808"
@@ -2187,12 +2187,12 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_10_"
+          id="flrq_10_"
           class="flrb-st112"
           d="M170.97,49.5v3.65c0,1.5,3.56,2.71,7.95,2.71c4.39,0,7.95-1.21,7.95-2.71V49.5H170.97z"
         />
         <ellipse
-          id="XMLID_9_"
+          id="flrq_9_"
           class="flrb-st108"
           cx="178.92"
           cy="49.5"
@@ -2200,7 +2200,7 @@
           ry="2.71"
         />
         <linearGradient
-          id="XMLID_157_"
+          id="flrq_157_"
           gradientUnits="userSpaceOnUse"
           x1="272.372"
           y1="52.6808"
@@ -2213,12 +2213,12 @@
           <stop offset="0.9947" style="stop-color:#686B6D" />
         </linearGradient>
         <path
-          id="XMLID_2_"
+          id="flrq_2_"
           class="flrb-st113"
           d="M272.37,49.5v3.65c0,1.5,3.56,2.71,7.95,2.71c4.39,0,7.95-1.21,7.95-2.71V49.5H272.37z"
         />
         <ellipse
-          id="XMLID_1_"
+          id="flrq_1_"
           class="flrb-st108"
           cx="280.32"
           cy="49.5"

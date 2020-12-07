@@ -45,7 +45,7 @@
         <stop offset="1" style="stop-color:#B9751C" />
       </linearGradient>
       <path
-        id="XMLID_1041_"
+        id="lsscj_1041_"
         class="lsscj-st0"
         d="M7.6,37H0.9C0.3,37,0,38,0,39s0.3,2,0.9,2h6.7V37z"
       />
@@ -63,22 +63,22 @@
         <stop offset="1" style="stop-color:#294B5E" />
       </linearGradient>
       <path
-        id="XMLID_1040_"
+        id="lsscj_1040_"
         class="lsscj-st1"
         d="M14.2,36H7.8c-0.9,0-1.3,1.6-1.3,3c0,1.5,0.5,3,1.3,3h6.5V36z"
       />
       <polygon
-        id="XMLID_1026_"
+        id="lsscj_1026_"
         class="lsscj-st2"
         points="50.9,44.3 30.3,46.3 11.7,44.3 11.7,35.3 31.8,33.3 50.9,35.3 "
       />
       <polygon
-        id="XMLID_1014_"
+        id="lsscj_1014_"
         class="lsscj-st3"
         points="50.9,30.6 11.7,30.6 15.7,18.1 46.9,18.1 "
       />
       <rect
-        id="XMLID_1025_"
+        id="lsscj_1025_"
         x="11.7"
         y="30.6"
         class="lsscj-st4"
@@ -86,7 +86,7 @@
         height="4.7"
       />
       <rect
-        id="XMLID_1028_"
+        id="lsscj_1028_"
         x="11.7"
         y="44.3"
         class="lsscj-st4"
@@ -106,12 +106,12 @@
         <stop offset="1" style="stop-color:#919C9F" />
       </linearGradient>
       <path
-        id="XMLID_1035_"
+        id="lsscj_1035_"
         class="lsscj-st5"
         d="M20.8,10.7v14c0,2.1,5.4,3.2,10.5,3.2s10.4-1.1,10.4-3.2v-14H20.8z"
       />
       <ellipse
-        id="XMLID_1029_"
+        id="lsscj_1029_"
         class="lsscj-st6"
         cx="17.1"
         cy="27.4"
@@ -119,7 +119,7 @@
         ry="1.2"
       />
       <ellipse
-        id="XMLID_1030_"
+        id="lsscj_1030_"
         class="lsscj-st6"
         cx="45.1"
         cy="27.4"
@@ -127,7 +127,7 @@
         ry="1.2"
       />
       <ellipse
-        id="XMLID_1034_"
+        id="lsscj_1034_"
         class="lsscj-st6"
         cx="43.8"
         cy="20.2"
@@ -135,7 +135,7 @@
         ry="0.9"
       />
       <ellipse
-        id="XMLID_1036_"
+        id="lsscj_1036_"
         class="lsscj-st6"
         cx="18.7"
         cy="20.2"
@@ -155,12 +155,12 @@
         <stop offset="1" style="stop-color:#294B5E" />
       </linearGradient>
       <path
-        id="XMLID_1039_"
+        id="lsscj_1039_"
         class="lsscj-st7"
         d="M18.7,3.9v16.9c0,2.5,6.5,3.8,12.6,3.8s12.5-1.3,12.5-3.8V3.9L18.7,3.9z"
       />
       <path
-        id="XMLID_1037_"
+        id="lsscj_1037_"
         class="lsscj-st3"
         d="M31.3,7.9c-6.1,0-12.6-1.4-12.6-3.9c0-2.6,6.5-3.9,12.6-3.9s12.6,1.4,12.6,3.9
 					C43.8,6.5,37.4,7.9,31.3,7.9z"
@@ -178,7 +178,7 @@
         <stop offset="1" style="stop-color:#919C9F" />
       </linearGradient>
       <path
-        id="XMLID_1043_"
+        id="lsscj_1043_"
         class="lsscj-st8"
         d="M31.3,12.7c-6.1,0-12.6-1.3-12.6-3.8v8c0,2.5,6.5,3.8,12.6,3.8c6.1,0,12.5-1.3,12.5-3.8v-8
 					C43.8,11.3,37.4,12.7,31.3,12.7z"

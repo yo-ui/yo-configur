@@ -33,7 +33,7 @@
           <stop offset="1" style="stop-color:#777C7F" />
         </radialGradient>
         <path
-          id="XMLID_536_"
+          id="sg_right_top_536_"
           style="fill:url(#RUWater_RU_)"
           d="M0,2l0,6.2c1.1,0,1.8,0.8,1.8,1.8L8,10C8,5.6,4.4,2,0,2z"
         />

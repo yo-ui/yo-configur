@@ -33,7 +33,7 @@
       `
         "
       ></defs>
-      <g id="XMLID_1_">
+      <g id="zhsrlb_1_">
         <linearGradient
           id="zhsrlb_3_"
           gradientUnits="userSpaceOnUse"
@@ -48,7 +48,7 @@
           <stop offset="1" style="stop-color:#0E255A" />
         </linearGradient>
         <path
-          id="XMLID_992_"
+          id="zhsrlb_992_"
           class="zhsrlb-st0"
           d="M13.5,51.9H6.7v-15h6.7c0,0,0.4,4,0.4,8S13.5,51.9,13.5,51.9z"
         />
@@ -68,7 +68,7 @@
           <stop offset="1" style="stop-color:#BF7600" />
         </linearGradient>
         <rect
-          id="XMLID_991_"
+          id="zhsrlb_991_"
           y="35.3"
           class="zhsrlb-st1"
           width="8.2"
@@ -89,7 +89,7 @@
           <stop offset="1" style="stop-color:#0E255A" />
         </linearGradient>
         <path
-          id="XMLID_989_"
+          id="zhsrlb_989_"
           class="zhsrlb-st2"
           d="M68.2,51.9H75v-15h-6.7c0,0-0.4,4-0.4,8S68.2,51.9,68.2,51.9z"
         />
@@ -111,7 +111,7 @@
           <stop offset="1" style="stop-color:#BF7600" />
         </linearGradient>
         <rect
-          id="XMLID_982_"
+          id="zhsrlb_982_"
           x="73.5"
           y="35.3"
           class="zhsrlb-st3"
@@ -119,41 +119,41 @@
           height="18.1"
         />
         <path
-          id="XMLID_987_"
+          id="zhsrlb_987_"
           class="zhsrlb-st4"
           d="M70,14.9H12L17.2,2c0.4-1.2,1.6-2,2.9-2h41.7c1.3,0,2.4,0.8,2.9,2L70,14.9z"
         />
         <path
-          id="XMLID_986_"
+          id="zhsrlb_986_"
           class="zhsrlb-st5"
           d="M66.7,67.4H15.3c-1.8,0-3.3-1.5-3.3-3.3V14.9c0-1.8,1.5-3.3,3.3-3.3h51.5
 						c1.8,0,3.3,1.5,3.3,3.3v49.2C70,65.9,68.5,67.4,66.7,67.4z"
         />
         <path
-          id="XMLID_984_"
+          id="zhsrlb_984_"
           class="zhsrlb-st6"
           d="M63.2,62.1H18.7c-1,0-1.8-0.8-1.8-1.8V17.5c0-1,0.8-1.8,1.8-1.8h44.5c1,0,1.8,0.8,1.8,1.8
 						v42.8C65,61.3,64.2,62.1,63.2,62.1z"
         />
         <path
-          id="XMLID_983_"
+          id="zhsrlb_983_"
           class="zhsrlb-st7"
           d="M63.2,59.5H18.7c-1,0-1.8-0.8-1.8-1.8v2.6c0,1,0.8,1.8,1.8,1.8h44.5c1,0,1.8-0.8,1.8-1.8v-2.6
 						C65,58.7,64.2,59.5,63.2,59.5z"
         />
         <path
-          id="XMLID_988_"
+          id="zhsrlb_988_"
           class="zhsrlb-st8"
           d="M17.1,7.6h47.8c1.1,0,2,0.5,2.6,1.3l-1.8-4.5c-0.6-1-1.6-1.6-2.8-1.6H19
 						c-1.2,0-2.3,0.7-2.8,1.6l-0.3,0.8c-0.1,0.3-0.2,0.4-0.3,0.7l-0.9,2.1l-0.4,1C14.9,8.3,15.9,7.6,17.1,7.6z"
         />
         <path
-          id="XMLID_980_"
+          id="zhsrlb_980_"
           class="zhsrlb-st9"
           d="M60.1,49.6H21.8V19.5h38.3V49.6z"
         />
         <rect
-          id="XMLID_979_"
+          id="zhsrlb_979_"
           x="25.7"
           y="40.4"
           class="zhsrlb-st10"
@@ -161,7 +161,7 @@
           height="2.5"
         />
         <rect
-          id="XMLID_978_"
+          id="zhsrlb_978_"
           x="33.7"
           y="40.4"
           class="zhsrlb-st10"
@@ -169,16 +169,16 @@
           height="2.5"
         />
         <rect
-          id="XMLID_977_"
+          id="zhsrlb_977_"
           x="25.5"
           y="44.9"
           class="zhsrlb-st10"
           width="30.3"
           height="1"
         />
-        <g id="XMLID_967_">
+        <g id="zhsrlb_967_">
           <rect
-            id="XMLID_971_"
+            id="zhsrlb_971_"
             x="26.8"
             y="24.8"
             class="zhsrlb-st11"
@@ -186,34 +186,34 @@
             height="12"
           />
           <path
-            id="XMLID_968_"
+            id="zhsrlb_968_"
             class="zhsrlb-st10"
             d="M56.1,37.8H25.8v-14h30.3V37.8z M27.8,35.8h26.3v-10H27.8V35.8z"
           />
         </g>
         <circle
-          id="XMLID_972_"
+          id="zhsrlb_972_"
           class="zhsrlb-st10"
           cx="26.3"
           cy="54.8"
           r="2.5"
         />
         <circle
-          id="XMLID_973_"
+          id="zhsrlb_973_"
           class="zhsrlb-st12"
           cx="26.3"
           cy="54.8"
           r="1.9"
         />
         <circle
-          id="XMLID_975_"
+          id="zhsrlb_975_"
           class="zhsrlb-st10"
           cx="55.3"
           cy="54.8"
           r="2.5"
         />
         <circle
-          id="XMLID_974_"
+          id="zhsrlb_974_"
           class="zhsrlb-st13"
           cx="55.3"
           cy="54.8"

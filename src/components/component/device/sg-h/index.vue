@@ -13,7 +13,7 @@
     >
       <defs>
         <linearGradient
-          id="XMLID_U_"
+          id="sg_h_U_"
           gradientUnits="userSpaceOnUse"
           x1="-149.4816"
           y1="-983.9756"
@@ -27,10 +27,10 @@
         </linearGradient>
       </defs>
       <rect
-        id="XMLID_551_"
+        id="sg_h_551_"
         x="0"
         y="0"
-        style="fill:url(#XMLID_U_)"
+        style="fill:url(#sg_h_U_)"
         :width="`${info.width}`"
         height="10"
       />

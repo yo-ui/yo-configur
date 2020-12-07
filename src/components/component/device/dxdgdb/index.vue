@@ -28,9 +28,9 @@
       `
         "
       ></defs>
-      <g id="XMLID_710_">
+      <g id="dxdgdb_710_">
         <rect
-          id="XMLID_719_"
+          id="dxdgdb_719_"
           x="2"
           y="46.7"
           class="dxdgdb-st0"
@@ -38,7 +38,7 @@
           height="4.5"
         />
         <rect
-          id="XMLID_718_"
+          id="dxdgdb_718_"
           x="2"
           y="51.2"
           class="dxdgdb-st1"
@@ -46,7 +46,7 @@
           height="8.6"
         />
         <rect
-          id="XMLID_717_"
+          id="dxdgdb_717_"
           x="1"
           y="17.7"
           class="dxdgdb-st2"
@@ -54,17 +54,17 @@
           height="29"
         />
         <path
-          id="XMLID_714_"
+          id="dxdgdb_714_"
           class="dxdgdb-st1"
           d="M64,47.7H0v-31h64V47.7z M2,45.7h53v-27H2V45.7z"
         />
         <polygon
-          id="XMLID_713_"
+          id="dxdgdb_713_"
           class="dxdgdb-st0"
           points="64,16.7 0,16.7 2,12.4 62,12.4 	"
         />
         <rect
-          id="XMLID_712_"
+          id="dxdgdb_712_"
           x="2"
           y="3.7"
           class="dxdgdb-st1"
@@ -72,16 +72,16 @@
           height="8.7"
         />
         <polygon
-          id="XMLID_711_"
+          id="dxdgdb_711_"
           class="dxdgdb-st0"
           points="59,0.2 5,0.2 2,3.7 62,3.7 	"
         />
       </g>
-      <circle id="XMLID_709_" class="dxdgdb-st3" cx="11.5" cy="8.1" r="2" />
-      <circle id="XMLID_708_" class="dxdgdb-st3" cx="45.2" cy="8.1" r="2" />
-      <g id="XMLID_703_">
+      <circle id="dxdgdb_709_" class="dxdgdb-st3" cx="11.5" cy="8.1" r="2" />
+      <circle id="dxdgdb_708_" class="dxdgdb-st3" cx="45.2" cy="8.1" r="2" />
+      <g id="dxdgdb_703_">
         <rect
-          id="XMLID_707_"
+          id="dxdgdb_707_"
           x="10.5"
           y="25.1"
           class="dxdgdb-st4"
@@ -89,15 +89,15 @@
           height="12"
         />
         <path
-          id="XMLID_704_"
+          id="dxdgdb_704_"
           class="dxdgdb-st5"
           d="M38.5,38.1h-29v-14h29V38.1z M11.5,36.1h25v-10h-25V36.1z"
         />
       </g>
-      <circle id="XMLID_702_" class="dxdgdb-st3" cx="11.5" cy="54.1" r="2" />
-      <circle id="XMLID_701_" class="dxdgdb-st3" cx="45.2" cy="54.1" r="2" />
+      <circle id="dxdgdb_702_" class="dxdgdb-st3" cx="11.5" cy="54.1" r="2" />
+      <circle id="dxdgdb_701_" class="dxdgdb-st3" cx="45.2" cy="54.1" r="2" />
       <rect
-        id="XMLID_700_"
+        id="dxdgdb_700_"
         x="43.1"
         y="22.1"
         class="dxdgdb-st3"
@@ -105,7 +105,7 @@
         height="2.5"
       />
       <rect
-        id="XMLID_699_"
+        id="dxdgdb_699_"
         x="43"
         y="36.6"
         class="dxdgdb-st6"
@@ -113,7 +113,7 @@
         height="3.7"
       />
       <rect
-        id="XMLID_698_"
+        id="dxdgdb_698_"
         x="42.8"
         y="28.6"
         class="dxdgdb-st0"
@@ -121,16 +121,16 @@
         height="1"
       />
       <rect
-        id="XMLID_697_"
+        id="dxdgdb_697_"
         x="42.8"
         y="30.7"
         class="dxdgdb-st0"
         width="5.4"
         height="1"
       />
-      <g id="XMLID_748_">
+      <g id="dxdgdb_748_">
         <rect
-          id="XMLID_676_"
+          id="dxdgdb_676_"
           x="58.8"
           y="25.8"
           class="dxdgdb-st7"
@@ -138,7 +138,7 @@
           height="16"
         />
         <circle
-          id="XMLID_694_"
+          id="dxdgdb_694_"
           class="dxdgdb-st8"
           cx="59.2"
           cy="22.2"

@@ -172,11 +172,11 @@
         <stop offset="1" style="stop-color:#0E255A" />
       </linearGradient>
       <path
-        id="XMLID_843_"
+        id="fksb_843_"
         class="sbfkg-st0"
         d="M13.5,29.8V37c0,7.9,5.4,18.3,21.2,18.3C51.9,55.2,56,44.9,56,37v-7.2H13.5z"
       />
-      <g id="XMLID_840_">
+      <g id="fksb_840_">
         <linearGradient
           id="sbfkg_3_"
           gradientUnits="userSpaceOnUse"
@@ -192,7 +192,7 @@
           <stop offset="1" style="stop-color:#0E255A" />
         </linearGradient>
         <path
-          id="XMLID_842_"
+          id="fksb_842_"
           class="sbfkg-st1"
           d="M83.2,38H90V23h-6.7c0,0-0.4,4-0.4,8S83.2,38,83.2,38z"
         />
@@ -212,7 +212,7 @@
           <stop offset="1" style="stop-color:#A7AFB7" />
         </linearGradient>
         <rect
-          id="XMLID_841_"
+          id="fksb_841_"
           x="88.5"
           y="21.4"
           class="sbfkg-st2"
@@ -234,7 +234,7 @@
         <stop offset="1" style="stop-color:#A7AFB7" />
       </linearGradient>
       <path
-        id="XMLID_839_"
+        id="fksb_839_"
         class="sbfkg-st3"
         d="M12.5,17.2v16.1c0,10,10.2,18,22.8,18c12.6,0,22.8-8.1,22.8-18V17.2H12.5z"
       />
@@ -250,18 +250,18 @@
         <stop offset="1" style="stop-color:#A7AFB7" />
       </linearGradient>
       <path
-        id="XMLID_838_"
+        id="fksb_838_"
         class="sbfkg-st4"
         d="M84.9,31.2h-2l-0.1-7c-0.3-2.1-1.3-3.6-3.4-3.6H48.3V48h32.3c2.4,0,4.4-2,4.3-4.4h0V31.2z"
       />
       <path
-        id="XMLID_837_"
+        id="fksb_837_"
         class="sbfkg-st5"
         d="M84.8,30.4l-2-16.2c-0.3-2.1-2.2-3.6-4.3-3.6H49c4,2.8,8.7,4.9,8.9,8.9
 					c0.3,5.8-1.2,11.6-9.6,15.9l0,0h32.3C83.2,35.4,85.3,33,84.8,30.4z"
       />
       <ellipse
-        id="XMLID_836_"
+        id="fksb_836_"
         class="sbfkg-st6"
         cx="35.2"
         cy="18.6"
@@ -269,14 +269,14 @@
         ry="18"
       />
       <ellipse
-        id="XMLID_835_"
+        id="fksb_835_"
         class="sbfkg-st5"
         cx="35.2"
         cy="17.2"
         rx="21.7"
         ry="17.2"
       />
-      <g id="XMLID_832_">
+      <g id="fksb_832_">
         <linearGradient
           id="sbfkg_7_"
           gradientUnits="userSpaceOnUse"
@@ -291,7 +291,7 @@
           <stop offset="1" style="stop-color:#0E255A" />
         </linearGradient>
         <path
-          id="XMLID_834_"
+          id="fksb_834_"
           class="sbfkg-st7"
           d="M13.5,38H6.7V23h6.7c0,0,0.4,4,0.4,8S13.5,38,13.5,38z"
         />
@@ -309,7 +309,7 @@
           <stop offset="1" style="stop-color:#A7AFB7" />
         </linearGradient>
         <rect
-          id="XMLID_833_"
+          id="fksb_833_"
           x="0"
           y="21.4"
           class="sbfkg-st8"
@@ -318,7 +318,7 @@
         />
       </g>
       <ellipse
-        id="XMLID_831_"
+        id="fksb_831_"
         class="sbfkg-st9"
         cx="35.2"
         cy="16.7"
@@ -326,7 +326,7 @@
         ry="13.7"
       />
       <ellipse
-        id="XMLID_830_"
+        id="fksb_830_"
         class="sbfkg-st10"
         cx="30.2"
         cy="8.3"
@@ -334,7 +334,7 @@
         ry="1.4"
       />
       <ellipse
-        id="XMLID_829_"
+        id="fksb_829_"
         class="sbfkg-st10"
         cx="30.2"
         cy="25"
@@ -342,7 +342,7 @@
         ry="1.4"
       />
       <ellipse
-        id="XMLID_828_"
+        id="fksb_828_"
         class="sbfkg-st10"
         cx="24.4"
         cy="13.8"
@@ -350,7 +350,7 @@
         ry="1.4"
       />
       <ellipse
-        id="XMLID_827_"
+        id="fksb_827_"
         class="sbfkg-st10"
         cx="24.4"
         cy="20.6"
@@ -358,7 +358,7 @@
         ry="1.4"
       />
       <rect
-        id="XMLID_826_"
+        id="fksb_826_"
         x="44.3"
         y="12.3"
         class="sbfkg-st11"
@@ -366,7 +366,7 @@
         height="1.8"
       />
       <rect
-        id="XMLID_825_"
+        id="fksb_825_"
         x="44.3"
         y="15.8"
         class="sbfkg-st11"
@@ -374,7 +374,7 @@
         height="1.8"
       />
       <rect
-        id="XMLID_824_"
+        id="fksb_824_"
         x="44.3"
         y="19.3"
         class="sbfkg-st11"
@@ -382,7 +382,7 @@
         height="1.8"
       />
       <ellipse
-        id="XMLID_823_"
+        id="fksb_823_"
         class="sbfkg-st12"
         cx="35.5"
         cy="16.7"
@@ -390,13 +390,13 @@
         ry="2.4"
       />
       <path
-        id="XMLID_822_"
+        id="fksb_822_"
         class="sbfkg-st6"
         d="M35.2,3.8c9.5,0,17.3,5.9,17.6,13.3c0-0.2,0-0.3,0-0.5c0-7.6-7.9-13.7-17.6-13.7
 					S17.6,9.1,17.6,16.7c0,0.2,0,0.3,0,0.5C18,9.7,25.7,3.8,35.2,3.8z"
       />
       <rect
-        id="XMLID_845_"
+        id="fksb_845_"
         x="60.4"
         y="21.4"
         transform="matrix(0.5478 0.8366 -0.8366 0.5478 50.1581 -48.4209)"
@@ -405,7 +405,7 @@
         height="1.5"
       />
       <rect
-        id="XMLID_821_"
+        id="fksb_821_"
         x="68.2"
         y="12.7"
         transform="matrix(0.8364 0.5481 -0.5481 0.8364 23.4452 -34.1823)"

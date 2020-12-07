@@ -15,13 +15,13 @@
         v-html="
           `
         <style type='text/css'>        
-	.dengp-st0{fill:url(#XMLID_2_);}
-	.dengp-st1{fill:url(#XMLID_3_);}
-	.dengp-st2{fill:url(#XMLID_4_);}
+	.dengp-st0{fill:url(#dengp_2_);}
+	.dengp-st1{fill:url(#dengp_3_);}
+	.dengp-st2{fill:url(#dengp_4_);}
 	.dengp-st3{fill:#AEB4BA;}
 	.dengp-st4{fill:#4B5156;}
-	.dengp-st5{fill:url(#XMLID_5_);}
-	.dengp-st6{fill:url(#XMLID_6_);}
+	.dengp-st5{fill:url(#dengp_5_);}
+	.dengp-st6{fill:url(#dengp_6_);}
       </style>
       `
         "
@@ -29,7 +29,7 @@
 
       <g id="图层_1" v-if="info.content">
         <radialGradient
-          id="XMLID_2_"
+          id="dengp_2_"
           cx="26.186"
           cy="33.7572"
           r="26.186"
@@ -39,14 +39,14 @@
           <stop offset="1" style="stop-color:#FCFCB1;stop-opacity:0" />
         </radialGradient>
         <circle
-          id="XMLID_1409_"
+          id="dengp_1409_"
           class="dengp-st0"
           cx="26.2"
           cy="33.8"
           r="26.2"
         />
         <radialGradient
-          id="XMLID_3_"
+          id="dengp_3_"
           cx="25.7781"
           cy="31.0932"
           r="15.78"
@@ -61,13 +61,13 @@
           <stop offset="1" style="stop-color:#F4F076" />
         </radialGradient>
         <path
-          id="XMLID_1407_"
+          id="dengp_1407_"
           class="dengp-st1"
           d="M32.4,17.4v-3.2H19.1v3.2c0,1.9-0.8,3.7-2.3,4.8c-3.5,2.8-5.7,7.1-5.6,12
 		c0.3,7.4,6.4,13.6,13.8,13.9c8.3,0.4,15.2-6.2,15.2-14.5c0-4.6-2.1-8.6-5.4-11.3C33.4,21.1,32.4,19.3,32.4,17.4z"
         />
         <linearGradient
-          id="XMLID_4_"
+          id="dengp_4_"
           gradientUnits="userSpaceOnUse"
           x1="18.7519"
           y1="10.7767"
@@ -79,12 +79,12 @@
           <stop offset="1" style="stop-color:#A9AEB7" />
         </linearGradient>
         <path
-          id="XMLID_1406_"
+          id="dengp_1406_"
           class="dengp-st2"
           d="M18.8,5v8.2c0,1.9,3.1,3.4,7,3.4c3.9,0,7-1.5,7-3.4V5H18.8z"
         />
         <ellipse
-          id="XMLID_1403_"
+          id="dengp_1403_"
           class="dengp-st3"
           cx="25.8"
           cy="5"
@@ -92,13 +92,13 @@
           ry="3.4"
         />
         <path
-          id="XMLID_1402_"
+          id="dengp_1402_"
           class="dengp-st4"
           d="M29.2,1.9L29.2,1.9L29.2,1.9c0,0-0.1-0.1-0.1-0.1L27.8,1h-4l-0.9,0.6
 		c-0.7,0.4-1.2,0.9-1.2,1.4c0,1.1,1.8,2,4.1,2s4.1-0.9,4.1-2C29.9,2.6,29.7,2.2,29.2,1.9z"
         />
         <ellipse
-          id="XMLID_1400_"
+          id="dengp_1400_"
           class="dengp-st3"
           cx="25.8"
           cy="1"
@@ -108,7 +108,7 @@
       </g>
       <g id="图层_2" v-else>
         <radialGradient
-          id="XMLID_5_"
+          id="dengp_5_"
           cx="25.8905"
           cy="31.0651"
           r="15.78"
@@ -118,13 +118,13 @@
           <stop offset="1" style="stop-color:#7A7A7A" />
         </radialGradient>
         <path
-          id="XMLID_1405_"
+          id="dengp_1405_"
           class="dengp-st5"
           d="M32.6,17.3v-3.2H19.2v3.2c0,1.9-0.8,3.7-2.3,4.8c-3.5,2.8-5.7,7.1-5.6,12
 		c0.3,7.4,6.4,13.6,13.8,13.9c8.3,0.4,15.2-6.2,15.2-14.5c0-4.6-2.1-8.6-5.4-11.3C33.5,21,32.6,19.3,32.6,17.3z"
         />
         <linearGradient
-          id="XMLID_6_"
+          id="dengp_6_"
           gradientUnits="userSpaceOnUse"
           x1="18.8643"
           y1="10.7485"
@@ -136,12 +136,12 @@
           <stop offset="1" style="stop-color:#A9AEB7" />
         </linearGradient>
         <path
-          id="XMLID_1399_"
+          id="dengp_1399_"
           class="dengp-st6"
           d="M18.9,5v8.2c0,1.9,3.1,3.4,7,3.4c3.9,0,7-1.5,7-3.4V5H18.9z"
         />
         <ellipse
-          id="XMLID_1398_"
+          id="dengp_1398_"
           class="dengp-st3"
           cx="25.9"
           cy="5"
@@ -149,13 +149,13 @@
           ry="3.4"
         />
         <path
-          id="XMLID_1404_"
+          id="dengp_1404_"
           class="dengp-st4"
           d="M29.3,1.9L29.3,1.9L29.3,1.9c0,0-0.1-0.1-0.1-0.1L27.9,1h-4L23,1.6c-0.7,0.4-1.2,0.9-1.2,1.4
 		c0,1.1,1.8,2,4.1,2S30,4.1,30,3C30,2.6,29.8,2.2,29.3,1.9z"
         />
         <ellipse
-          id="XMLID_1401_"
+          id="dengp_1401_"
           class="dengp-st3"
           cx="25.9"
           cy="1"

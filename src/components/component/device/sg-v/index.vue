@@ -21,7 +21,7 @@
       ></defs>
       <g>
         <linearGradient
-          id="XMLID_V_"
+          id="sg_v_V_"
           gradientUnits="userSpaceOnUse"
           x1="-149.4816"
           y1="-983.9756"
@@ -34,10 +34,10 @@
           <stop offset="1" style="stop-color:#777C7F" />
         </linearGradient>
         <rect
-          id="XMLID_551_"
+          id="sg_v_551_"
           x="2"
           y="0"
-          style="fill:url(#XMLID_V_)"
+          style="fill:url(#sg_v_V_)"
           :width="info.width"
           :height="info.height"
         />

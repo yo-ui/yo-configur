@@ -34,7 +34,7 @@
           <stop offset="1" style="stop-color:#777C7F" />
         </radialGradient>
         <path
-          id="XMLID_536_"
+          id="sg_left_top_536_"
           class="luw-st0"
           d="M2,10l6.2,0c0-1.1,0.8-1.8,1.8-1.8V2C5.6,2,2,5.6,2,10z"
         />
