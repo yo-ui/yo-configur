@@ -269,7 +269,7 @@ export default {
       // return horizontal.some(val => Math.abs(val - value) <= 5);
       try {
         horizontal.forEach(item => {
-          let flag = item.some(val => Math.abs(val - value) <= 5);
+          let flag = item.some(val => Math.abs(val - value) <= 3);
           if (flag) {
             throw new Error("找到对应位置");
           }
@@ -284,7 +284,7 @@ export default {
       // return vertical.some(val => Math.abs(val - value) <= 5);
       try {
         vertical.forEach(item => {
-          let flag = item.some(val => Math.abs(val - value) <= 5);
+          let flag = item.some(val => Math.abs(val - value) <= 3);
           if (flag) {
             throw new Error("找到对应位置");
           }

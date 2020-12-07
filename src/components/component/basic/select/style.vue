@@ -214,214 +214,27 @@
         </p>
       </el-collapse-item>
       <el-collapse-item
-        :title="$lang('样式')"
-        name="style"
+        :title="$lang('输入框')"
+        name="select"
         class="no-right no-border"
       >
         <!-- @tab-click="tabClickEvent" -->
         <el-collapse class="tab-collapse" v-model="tabActiveNames">
           <el-collapse-item title="" name="empty" disabled class="unfold">
-            <p>
-              <span class="label">{{ $lang("当前值") }}:</span>
-              <el-input
-                clearable
-                :placeholder="$lang('请输入当前值')"
-                v-model="info.content"
-              ></el-input>
-            </p>
-          </el-collapse-item>
-          <el-collapse-item class="tab-collapse-item" name="tab">
-            <template slot="title">
-              {{ $lang("标签项") }}
-              <div class="right">
-                <el-tooltip
-                  :content="$lang('删除')"
-                  placement="top"
-                  effect="dark"
-                >
-                  <i
-                    class="el-icon-delete-solid"
-                    @click.stop="removeContentEvent"
-                  ></i>
-                </el-tooltip>
-                <el-tooltip
-                  :content="$lang('添加')"
-                  placement="top"
-                  effect="dark"
-                >
-                  <i class="el-icon-plus" @click.stop="addContentEvent"></i>
-                </el-tooltip>
-              </div>
-            </template>
-            <el-tabs
-              v-model="tabActive"
-              class="collapse-item-tab"
-              type="card"
-              tab-position="top"
-            >
-              <el-tab-pane
-                v-for="(item, index) in info.contentList"
-                :key="index"
-                :label="$lang('选项')"
-                :name="index + ''"
-              >
-              </el-tab-pane>
-            </el-tabs>
-            <p>
-              <span class="label">{{ $lang("值") }}:</span>
-              <el-input
-                clearable
-                :placeholder="$lang('请输入值')"
-                v-model="info.contentList[tabActive].value"
-              ></el-input>
-            </p>
-            <p>
-              <span class="label">{{ $lang("文字") }}:</span>
-              <el-input
-                clearable
-                :placeholder="$lang('请输入文字')"
-                v-model="info.contentList[tabActive].text"
-              ></el-input>
-            </p>
-          </el-collapse-item>
-          <el-collapse-item title="" name="empty" disabled class="unfold">
-            <p>
-              <span class="label">{{ $lang("按钮宽度") }}:</span>
-
-              <el-tooltip
-                :content="$lang('请输入按钮宽度')"
-                placement="top"
-                effect="dark"
-              >
-                <el-input-number
-                  controls-position="right"
-                  clearable
-                  :min="0"
-                  :max="1000"
-                  v-model.number="info.button.width"
-                  :placeholder="$lang('请输入按钮宽度')"
-                ></el-input-number>
-              </el-tooltip>
-              <el-slider
-                v-model="info.button.width"
-                :min="0"
-                :max="1000"
-                :format-tooltip="val => val"
-              ></el-slider>
-              <!-- <el-input
-                clearable
-                :placeholder="$lang('请输入按钮宽度')"
-                v-model="info.button.width"
-              ></el-input> -->
-            </p>
-            <p>
-              <span class="label">{{ $lang("按钮高度") }}:</span>
-
-              <el-tooltip
-                :content="$lang('请输入按钮高度')"
-                placement="top"
-                effect="dark"
-              >
-                <el-input-number
-                  controls-position="right"
-                  clearable
-                  :min="0"
-                  :max="1000"
-                  v-model.number="info.button.height"
-                  :placeholder="$lang('请输入按钮高度')"
-                ></el-input-number>
-              </el-tooltip>
-              <el-slider
-                v-model="info.button.height"
-                :min="0"
-                :max="1000"
-                :format-tooltip="val => val"
-              ></el-slider>
-              <!-- <el-input
-                clearable
-                :placeholder="$lang('请输入按钮高度')"
-                v-model="info.button.height"
-              ></el-input> -->
-            </p>
           </el-collapse-item>
           <el-collapse-item
             class="tab-collapse-item"
-            :title="$lang('按钮样式')"
-            name="button"
+            :title="$lang('文字')"
+            name="font"
           >
             <p>
-              <span class="label">{{ $lang("字体颜色") }}:</span>
-              <el-color-picker
-                v-model="info.button.color"
-                show-alpha
-              ></el-color-picker>
+              <span class="label"> {{ $lang("当前值") }}: </span>
+              <el-input
+                v-model="info.content"
+                clearable
+                :placeholder="$lang('请输入当前值')"
+              ></el-input>
             </p>
-            <p>
-              <span class="label">{{ $lang("字体阴影") }}:</span>
-              <el-switch
-                v-model="info.button.textShadowable"
-                active-color="#4195ea"
-                inactive-color="#ccc"
-              ></el-switch>
-            </p>
-            <template v-if="info.button.textShadowable">
-              <p class="shadow-box">
-                <span class="c-box">
-                  <span>
-                    <el-tooltip
-                      :content="$lang('X-X轴位移')"
-                      placement="top"
-                      effect="dark"
-                    >
-                      <span>X</span>
-                    </el-tooltip>
-                    <el-input-number
-                      controls-position="right"
-                      clearable
-                      v-model.number="info.button.textShadow.x"
-                      :placeholder="$lang('X轴位移')"
-                    ></el-input-number>
-                  </span>
-                  <span>
-                    <el-tooltip
-                      :content="$lang('Y-Y轴位移')"
-                      placement="top"
-                      effect="dark"
-                    >
-                      <span>Y</span> </el-tooltip
-                    ><el-input-number
-                      controls-position="right"
-                      clearable
-                      v-model.number="info.button.textShadow.y"
-                      :placeholder="$lang('Y轴位移')"
-                    ></el-input-number>
-                  </span>
-                </span>
-              </p>
-              <p>
-                <span class="label">{{ $lang("模糊半径") }}:</span>
-                <el-input-number
-                  controls-position="right"
-                  clearable
-                  v-model.number="info.button.textShadow.blur"
-                  :placeholder="$lang('模糊半径')"
-                ></el-input-number>
-                px
-                <el-slider
-                  v-model="info.button.textShadow.blur"
-                  :min="0"
-                  :max="50"
-                  :format-tooltip="val => val + ' px'"
-                ></el-slider>
-              </p>
-              <p>
-                <span class="label">{{ $lang("阴影颜色") }}:</span>
-                <el-color-picker
-                  v-model="info.button.textShadow.color"
-                  show-alpha
-                ></el-color-picker>
-              </p>
-            </template>
             <p>
               <span class="label">{{ $lang("字体大小") }}:</span>
               <el-tooltip
@@ -434,12 +247,12 @@
                   clearable
                   :min="10"
                   :max="200"
-                  v-model.number="info.button.fontSize"
+                  v-model.number="info.fontSize"
                   :placeholder="$lang('请输入字体大小')"
                 ></el-input-number>
               </el-tooltip>
               <el-slider
-                v-model="info.button.fontSize"
+                v-model="info.fontSize"
                 :min="10"
                 :max="200"
                 :format-tooltip="val => val"
@@ -448,7 +261,7 @@
             <p>
               <span class="label">{{ $lang("字体") }}:</span>
               <el-select
-                v-model="info.button.fontFamily"
+                v-model="info.fontFamily"
                 :placeholder="$lang('请选择字体')"
               >
                 <el-option
@@ -464,6 +277,79 @@
               </el-select>
             </p>
             <p>
+              <span class="label">{{ $lang("字体颜色") }}:</span>
+              <el-color-picker
+                v-model="info.color"
+                show-alpha
+              ></el-color-picker>
+            </p>
+            <p>
+              <span class="label">{{ $lang("字体阴影") }}:</span>
+              <el-switch
+                v-model="info.textShadowable"
+                active-color="#4195ea"
+                inactive-color="#ccc"
+              ></el-switch>
+            </p>
+            <template v-if="info.textShadowable">
+              <p class="shadow-box">
+                <span class="c-box">
+                  <span>
+                    <el-tooltip
+                      :content="$lang('X-X轴位移')"
+                      placement="top"
+                      effect="dark"
+                    >
+                      <span>X</span>
+                    </el-tooltip>
+                    <el-input-number
+                      controls-position="right"
+                      clearable
+                      v-model.number="info.textShadow.x"
+                      :placeholder="$lang('X轴位移')"
+                    ></el-input-number>
+                  </span>
+                  <span>
+                    <el-tooltip
+                      :content="$lang('Y-Y轴位移')"
+                      placement="top"
+                      effect="dark"
+                    >
+                      <span>Y</span> </el-tooltip
+                    ><el-input-number
+                      controls-position="right"
+                      clearable
+                      v-model.number="info.textShadow.y"
+                      :placeholder="$lang('Y轴位移')"
+                    ></el-input-number>
+                  </span>
+                </span>
+              </p>
+              <p>
+                <span class="label">{{ $lang("模糊半径") }}:</span>
+                <el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.textShadow.blur"
+                  :placeholder="$lang('模糊半径')"
+                ></el-input-number>
+                px
+                <el-slider
+                  v-model="info.textShadow.blur"
+                  :min="0"
+                  :max="50"
+                  :format-tooltip="val => val + ' px'"
+                ></el-slider>
+              </p>
+              <p>
+                <span class="label">{{ $lang("阴影颜色") }}:</span>
+                <el-color-picker
+                  v-model="info.textShadow.color"
+                  show-alpha
+                ></el-color-picker>
+              </p>
+            </template>
+            <p>
               <span class="label">{{ $lang("字体样式") }}:</span>
               <span class="font-style">
                 <el-tooltip
@@ -473,9 +359,9 @@
                 >
                   <span
                     class="bold"
-                    @click="setFontWeight(info.button)"
+                    @click="setFontWeight(info)"
                     :title="$lang('粗体')"
-                    :class="{ active: info.button.fontWeight == 'bold' }"
+                    :class="{ active: info.fontWeight == 'bold' }"
                     >B</span
                   >
                 </el-tooltip>
@@ -486,9 +372,9 @@
                 >
                   <span
                     class="italic"
-                    @click="setFontStyle(info.button)"
+                    @click="setFontStyle(info)"
                     :title="$lang('斜体')"
-                    :class="{ active: info.button.fontStyle == 'italic' }"
+                    :class="{ active: info.fontStyle == 'italic' }"
                     >I</span
                   >
                 </el-tooltip>
@@ -499,44 +385,43 @@
                 >
                   <span
                     class="underline"
-                    @click="setTextDecoration(info.button)"
+                    @click="setTextDecoration(info)"
                     :title="$lang('下划线')"
                     :class="{
-                      active: info.button.textDecoration == 'underline'
+                      active: info.textDecoration == 'underline'
                     }"
                     >U</span
                   >
                 </el-tooltip>
               </span>
             </p>
-
-            <p class="align">
-              <span class="label">{{ $lang("对齐") }}:</span>
-              <i
-                class="bomi bomi-text-left"
-                @click="textAlignEvent(info.button, 'left')"
-                :class="{ active: info.button.textAlign == 'left' }"
-              ></i>
-              <i
-                class="bomi bomi-text-center"
-                @click="textAlignEvent(info.button, 'center')"
-                :class="{ active: info.button.textAlign == 'center' }"
-              ></i>
-              <i
-                class="bomi bomi-text-right"
-                @click="textAlignEvent(info.button, 'right')"
-                :class="{ active: info.button.textAlign == 'right' }"
-              ></i>
-              <i
-                class="bomi bomi-text-justify"
-                @click="textAlignEvent(info.button, 'justify')"
-                :class="{ active: info.button.textAlign == 'justify' }"
-              ></i>
+            <p>
+              <span class="label">{{ $lang("缩进") }}:</span>
+              <el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.textIndent"
+                :placeholder="$lang('模糊半径')"
+              ></el-input-number>
+              px
+              <el-slider
+                v-model="info.textIndent"
+                :min="0"
+                :max="50"
+                :format-tooltip="val => val + ' px'"
+              ></el-slider>
             </p>
+          </el-collapse-item>
+
+          <el-collapse-item
+            class="tab-collapse-item"
+            :title="$lang('背景框')"
+            name="background"
+          >
             <p>
               <span class="label">{{ $lang("填充颜色") }}:</span>
               <el-select
-                v-model="info.button.backgroundType"
+                v-model="info.backgroundType"
                 :placeholder="$lang('请选择填充颜色')"
               >
                 <el-option
@@ -548,33 +433,27 @@
                 </el-option>
               </el-select>
             </p>
-            <p v-if="info.button.backgroundType == 'purity'">
+            <p v-if="info.backgroundType == 'purity'">
               <span class="label">{{ $lang("纯色") }}:</span>
               <el-color-picker
-                v-model="info.button.backgroundColor"
+                v-model="info.backgroundColor"
                 show-alpha
               ></el-color-picker>
             </p>
-            <template v-if="info.button.backgroundType == 'gradient'">
+            <template v-if="info.backgroundType == 'gradient'">
               <p>
                 <span class="label">{{ $lang("渐变颜色") }}:</span>
-                <span
-                  class="gradient"
-                  :style="gradientStyle(info.button)"
-                ></span>
-                <!-- {{ gradientStyle }} -->
+                <span class="gradient" :style="gradientStyle(info)"></span>
               </p>
               <p>
                 <span class="label">{{ $lang("渐变类型") }}:</span>
                 <el-radio-group
                   class="gradient-type-group"
-                  v-model="info.button.gradientStyle.type"
+                  v-model="info.gradientStyle.type"
                 >
                   <el-radio-button
                     :style="
-                      `background-image:${
-                        gradientStyleMap(info.button)[item.code]
-                      }`
+                      `background-image:${gradientStyleMap(info)[item.code]}`
                     "
                     :title="item.name"
                     v-for="item in gradientTypeList"
@@ -585,11 +464,11 @@
                   </el-radio-button>
                 </el-radio-group>
               </p>
-              <template v-if="info.button.gradientStyle.type == 'radial'">
+              <template v-if="info.gradientStyle.type == 'radial'">
                 <p>
                   <span class="label">{{ $lang("中心") }}:</span>
                   <el-select
-                    v-model="info.button.gradientStyle.center"
+                    v-model="info.gradientStyle.center"
                     :placeholder="$lang('请选择中心位置')"
                   >
                     <el-option
@@ -604,7 +483,7 @@
                 <p>
                   <span class="label">{{ $lang("径向图形") }}:</span>
                   <el-select
-                    v-model="info.button.gradientStyle.radialShape"
+                    v-model="info.gradientStyle.radialShape"
                     :placeholder="$lang('请选择径向图形')"
                   >
                     <el-option
@@ -617,11 +496,11 @@
                   </el-select>
                 </p>
               </template>
-              <template v-if="info.button.gradientStyle.type == 'linear'">
+              <template v-if="info.gradientStyle.type == 'linear'">
                 <p>
                   <span class="label">{{ $lang("角度") }}:</span>
                   <el-select
-                    v-model="info.button.gradientStyle.angle"
+                    v-model="info.gradientStyle.angle"
                     :placeholder="$lang('请选择线性角度')"
                   >
                     <el-option
@@ -639,22 +518,21 @@
                 <el-button-group>
                   <el-button
                     plain
-                    :disabled="info.button.gradientStyle.valueList.length > 5"
-                    @click="addApertureEvent(info.button, 'buttonSlider')"
+                    :disabled="info.gradientStyle.valueList.length > 5"
+                    @click="addApertureEvent(info, 'slider')"
                     ><i class="el-icon-plus"></i
                   ></el-button>
                   <el-button
                     plain
-                    :disabled="info.button.gradientStyle.valueList.length < 3"
-                    @click="removeApertureEvent(info.button, 'buttonSlider')"
+                    :disabled="info.gradientStyle.valueList.length < 3"
+                    @click="removeApertureEvent(info, 'slider')"
                     ><i class="el-icon-minus"></i
                   ></el-button>
                 </el-button-group>
                 <el-input
                   :value="
-                    info.button.gradientStyle.valueList[
-                      info.button.gradientStyle.valueIndex
-                    ].value + ' %'
+                    info.gradientStyle.valueList[info.gradientStyle.valueIndex]
+                      .value + ' %'
                   "
                   readonly
                 ></el-input>
@@ -664,17 +542,15 @@
                 <el-color-picker
                   color-format="hex"
                   v-model="
-                    info.button.gradientStyle.valueList[
-                      info.button.gradientStyle.valueIndex
-                    ].code
+                    info.gradientStyle.valueList[info.gradientStyle.valueIndex]
+                      .code
                   "
                   show-alpha
                 ></el-color-picker>
                 <el-input
                   :value="
-                    info.button.gradientStyle.valueList[
-                      info.button.gradientStyle.valueIndex
-                    ].code
+                    info.gradientStyle.valueList[info.gradientStyle.valueIndex]
+                      .code
                   "
                   readonly
                 ></el-input>
@@ -682,14 +558,14 @@
               <p>
                 <vue-slider
                   :height="25"
-                  ref="buttonSlider"
+                  ref="slider"
                   :marks="false"
                   :hide-label="true"
                   :enable-cross="false"
-                  v-model="info.button.gradientStyle.values"
+                  v-model="info.gradientStyle.values"
                   :interval="1"
-                  @change="buttonSliderChangeEvent"
-                  @drag-start="buttonSliderDragStartEvent"
+                  @change="sliderChangeEvent"
+                  @drag-start="sliderDragStartEvent"
                   :data-value="'value'"
                 >
                   <template #tooltip>
@@ -698,7 +574,7 @@
                   <template #process>
                     <div
                       class="vue-slider-process"
-                      :style="gradientLinearStyle(info.button)"
+                      :style="gradientLinearStyle(info)"
                     ></div>
                   </template>
                   <template #dot="{index}">
@@ -706,7 +582,7 @@
                       <div
                         class="dot"
                         :style="
-                          `background-color:${info.button.gradientStyle.valueList[index].code}`
+                          `background-color:${info.gradientStyle.valueList[index].code}`
                         "
                       ></div>
                     </div>
@@ -717,7 +593,7 @@
             <p>
               <span class="label"> {{ $lang("边框样式") }}:</span
               ><el-select
-                v-model="info.button.borderStyle"
+                v-model="info.borderStyle"
                 :placeholder="$lang('请选择边框样式')"
               >
                 <el-option
@@ -730,7 +606,7 @@
               </el-select>
             </p>
 
-            <template v-if="info.button.borderStyle != 'none'">
+            <template v-if="info.borderStyle != 'none'">
               <p>
                 <span class="label"> {{ $lang("边框大小") }}:</span>
                 <el-input-number
@@ -738,12 +614,12 @@
                   clearable
                   :min="0"
                   :max="200"
-                  v-model.number="info.button.borderWidth"
+                  v-model.number="info.borderWidth"
                   :placeholder="$lang('请输入边框大小')"
                 ></el-input-number>
                 px
                 <el-slider
-                  v-model="info.button.borderWidth"
+                  v-model="info.borderWidth"
                   :min="0"
                   :max="200"
                   :format-tooltip="val => val + ' px'"
@@ -752,20 +628,29 @@
               <p>
                 <span class="label">{{ $lang("边框颜色") }}:</span>
                 <el-color-picker
-                  v-model="info.button.borderColor"
+                  v-model="info.borderColor"
+                  show-alpha
+                ></el-color-picker>
+              </p>
+              <p>
+                <el-tooltip :content="$lang('悬浮边框颜色')" placement="top" effect="dark">
+                  <span class="label">{{ $lang("悬浮边框颜色") }}:</span>
+                </el-tooltip>
+                <el-color-picker
+                  v-model="info.borderHoverColor"
                   show-alpha
                 ></el-color-picker>
               </p>
             </template>
 
-            <p class="padding-box">
+            <!-- <p class="padding-box">
               <span class="label">{{ $lang("边框圆角") }}:</span>
               <span class="c-box">
                 <span>
                   左上<el-input-number
                     controls-position="right"
                     clearable
-                    v-model.number="info.button.borderRadiusTopLeft"
+                    v-model.number="info.borderRadiusTopLeft"
                     :placeholder="$lang('左上角')"
                   ></el-input-number>
                 </span>
@@ -773,7 +658,7 @@
                   右上<el-input-number
                     controls-position="right"
                     clearable
-                    v-model.number="info.button.borderRadiusTopRight"
+                    v-model.number="info.borderRadiusTopRight"
                     :placeholder="$lang('右上角')"
                   ></el-input-number>
                 </span>
@@ -781,7 +666,7 @@
                   右下<el-input-number
                     controls-position="right"
                     clearable
-                    v-model.number="info.button.borderRadiusBottomRight"
+                    v-model.number="info.borderRadiusBottomRight"
                     :placeholder="$lang('右下角')"
                   ></el-input-number>
                 </span>
@@ -789,20 +674,20 @@
                   左下<el-input-number
                     controls-position="right"
                     clearable
-                    v-model.number="info.button.borderRadiusBottomLeft"
+                    v-model.number="info.borderRadiusBottomLeft"
                     :placeholder="$lang('左下角')"
                   ></el-input-number>
                 </span>
               </span>
-            </p>
-            <p class="margin-box">
+            </p> -->
+            <!-- <p class="margin-box">
               <span class="label">{{ $lang("外边距") }}:</span>
               <span class="c-box">
                 <span>
                   上<el-input-number
                     controls-position="right"
                     clearable
-                    v-model.number="info.button.marginTop"
+                    v-model.number="info.marginTop"
                     :placeholder="$lang('上外边距')"
                   ></el-input-number>
                 </span>
@@ -810,7 +695,7 @@
                   下<el-input-number
                     controls-position="right"
                     clearable
-                    v-model.number="info.button.marginBottom"
+                    v-model.number="info.marginBottom"
                     :placeholder="$lang('下外边距')"
                   ></el-input-number>
                 </span>
@@ -818,7 +703,7 @@
                   左<el-input-number
                     controls-position="right"
                     clearable
-                    v-model.number="info.button.marginLeft"
+                    v-model.number="info.marginLeft"
                     :placeholder="$lang('左外边距')"
                   ></el-input-number>
                 </span>
@@ -826,12 +711,12 @@
                   右<el-input-number
                     controls-position="right"
                     clearable
-                    v-model.number="info.button.marginRight"
+                    v-model.number="info.marginRight"
                     :placeholder="$lang('右外边距')"
                   ></el-input-number>
                 </span>
               </span>
-            </p>
+            </p> -->
             <p class="padding-box">
               <span class="label">{{ $lang("内边距") }}:</span>
               <span class="c-box">
@@ -839,7 +724,7 @@
                   上<el-input-number
                     controls-position="right"
                     clearable
-                    v-model.number="info.button.paddingTop"
+                    v-model.number="info.paddingTop"
                     :placeholder="$lang('上内边距')"
                   ></el-input-number>
                 </span>
@@ -847,7 +732,7 @@
                   下<el-input-number
                     controls-position="right"
                     clearable
-                    v-model.number="info.button.paddingBottom"
+                    v-model.number="info.paddingBottom"
                     :placeholder="$lang('下内边距')"
                   ></el-input-number>
                 </span>
@@ -855,7 +740,7 @@
                   左<el-input-number
                     controls-position="right"
                     clearable
-                    v-model.number="info.button.paddingLeft"
+                    v-model.number="info.paddingLeft"
                     :placeholder="$lang('左内边距')"
                   ></el-input-number>
                 </span>
@@ -863,7 +748,7 @@
                   右<el-input-number
                     controls-position="right"
                     clearable
-                    v-model.number="info.button.paddingRight"
+                    v-model.number="info.paddingRight"
                     :placeholder="$lang('右内边距')"
                   ></el-input-number>
                 </span>
@@ -872,368 +757,70 @@
           </el-collapse-item>
           <el-collapse-item
             class="tab-collapse-item"
-            :title="$lang('按钮样式-选中时')"
-            name="buttonActive"
+            :title="$lang('箭头样式')"
+            name="arrowStyle"
           >
             <p>
-              <span class="label">{{ $lang("字体颜色") }}:</span>
-              <el-color-picker
-                v-model="info.buttonActive.color"
-                show-alpha
-              ></el-color-picker>
-            </p>
-            <p>
-              <span class="label">{{ $lang("字体阴影") }}:</span>
+              <span class="label">{{ $lang("显示箭头") }}:</span>
               <el-switch
-                v-model="info.buttonActive.textShadowable"
+                v-model="info.arrow.status"
                 active-color="#4195ea"
                 inactive-color="#ccc"
               ></el-switch>
             </p>
-            <template v-if="info.buttonActive.textShadowable">
-              <p class="shadow-box">
-                <span class="c-box">
-                  <span>
-                    <el-tooltip
-                      :content="$lang('X-X轴位移')"
-                      placement="top"
-                      effect="dark"
-                    >
-                      <span>X</span>
-                    </el-tooltip>
-                    <el-input-number
-                      controls-position="right"
-                      clearable
-                      v-model.number="info.buttonActive.textShadow.x"
-                      :placeholder="$lang('X轴位移')"
-                    ></el-input-number>
-                  </span>
-                  <span>
-                    <el-tooltip
-                      :content="$lang('Y-Y轴位移')"
-                      placement="top"
-                      effect="dark"
-                    >
-                      <span>Y</span> </el-tooltip
-                    ><el-input-number
-                      controls-position="right"
-                      clearable
-                      v-model.number="info.buttonActive.textShadow.y"
-                      :placeholder="$lang('Y轴位移')"
-                    ></el-input-number>
-                  </span>
-                </span>
+            <template v-if="info.arrow.status">
+              <p>
+                <span class="label">{{ $lang("箭头颜色") }}:</span>
+                <el-color-picker
+                  v-model="info.arrow.color"
+                  show-alpha
+                ></el-color-picker>
               </p>
               <p>
-                <span class="label">{{ $lang("模糊半径") }}:</span>
+                <span class="label">{{ $lang("箭头大小") }}:</span>
                 <el-input-number
                   controls-position="right"
                   clearable
-                  v-model.number="info.buttonActive.textShadow.blur"
-                  :placeholder="$lang('模糊半径')"
+                  v-model.number="info.arrow.fontSize"
+                  :placeholder="$lang('箭头大小')"
                 ></el-input-number>
-                px
                 <el-slider
-                  v-model="info.buttonActive.textShadow.blur"
-                  :min="0"
-                  :max="50"
-                  :format-tooltip="val => val + ' px'"
+                  v-model="info.arrow.fontSize"
+                  :format-tooltip="val => val"
                 ></el-slider>
               </p>
               <p>
-                <span class="label">{{ $lang("阴影颜色") }}:</span>
-                <el-color-picker
-                  v-model="info.buttonActive.textShadow.color"
-                  show-alpha
-                ></el-color-picker>
+                <span class="label">{{ $lang("箭头加粗") }}:</span>
+                <span class="font-style">
+                  <el-tooltip
+                    :content="$lang('加粗')"
+                    placement="top"
+                    effect="dark"
+                  >
+                    <span
+                      class="bold"
+                      @click="setFontWeight(info.arrow)"
+                      :title="$lang('粗体')"
+                      :class="{ active: info.arrow.fontWeight == 'bold' }"
+                      >B</span
+                    >
+                  </el-tooltip>
+                </span>
               </p>
-            </template>
-            <p>
-              <span class="label">{{ $lang("字体大小") }}:</span>
-              <el-tooltip
-                :content="$lang('请输入字体大小')"
-                placement="top"
-                effect="dark"
-              >
+              <p>
+                <span class="label">{{ $lang("右边距") }}:</span>
                 <el-input-number
                   controls-position="right"
                   clearable
-                  :min="10"
-                  :max="200"
-                  v-model.number="info.buttonActive.fontSize"
-                  :placeholder="$lang('请输入字体大小')"
+                  v-model.number="info.arrow.marginRight"
+                  :placeholder="$lang('箭头大小')"
                 ></el-input-number>
-              </el-tooltip>
-              <el-slider
-                v-model="info.buttonActive.fontSize"
-                :min="10"
-                :max="200"
-                :format-tooltip="val => val"
-              ></el-slider>
-            </p>
-            <p>
-              <span class="label">{{ $lang("字体") }}:</span>
-              <el-select
-                v-model="info.buttonActive.fontFamily"
-                :placeholder="$lang('请选择字体')"
-              >
-                <el-option
-                  v-for="item in fontFamilyList"
-                  :key="item.code"
-                  :label="$lang(item.name)"
-                  :value="item.code"
-                >
-                  <span :style="`font-family:${item.code}`">{{
-                    $lang(item.name)
-                  }}</span>
-                </el-option>
-              </el-select>
-            </p>
-            <p>
-              <span class="label">{{ $lang("字体样式") }}:</span>
-              <span class="font-style">
-                <el-tooltip
-                  :content="$lang('加粗')"
-                  placement="top"
-                  effect="dark"
-                >
-                  <span
-                    class="bold"
-                    @click="setFontWeight(info.buttonActive)"
-                    :title="$lang('粗体')"
-                    :class="{ active: info.buttonActive.fontWeight == 'bold' }"
-                    >B</span
-                  >
-                </el-tooltip>
-                <el-tooltip
-                  :content="$lang('倾斜')"
-                  placement="top"
-                  effect="dark"
-                >
-                  <span
-                    class="italic"
-                    @click="setFontStyle(info.buttonActive)"
-                    :title="$lang('斜体')"
-                    :class="{ active: info.buttonActive.fontStyle == 'italic' }"
-                    >I</span
-                  >
-                </el-tooltip>
-                <el-tooltip
-                  :content="$lang('下划线')"
-                  placement="top"
-                  effect="dark"
-                >
-                  <span
-                    class="underline"
-                    @click="setTextDecoration(info.buttonActive)"
-                    :title="$lang('下划线')"
-                    :class="{
-                      active: info.buttonActive.textDecoration == 'underline'
-                    }"
-                    >U</span
-                  >
-                </el-tooltip>
-              </span>
-            </p>
-
-            <p>
-              <span class="label">{{ $lang("填充颜色") }}:</span>
-              <el-select
-                v-model="info.buttonActive.backgroundType"
-                :placeholder="$lang('请选择填充颜色')"
-              >
-                <el-option
-                  v-for="item in backgroundTypeList"
-                  :key="item.code"
-                  :label="$lang(item.name)"
-                  :value="item.code"
-                >
-                </el-option>
-              </el-select>
-            </p>
-            <p v-if="info.buttonActive.backgroundType == 'purity'">
-              <span class="label">{{ $lang("纯色") }}:</span>
-              <el-color-picker
-                v-model="info.buttonActive.backgroundColor"
-                show-alpha
-              ></el-color-picker>
-            </p>
-            <template v-if="info.buttonActive.backgroundType == 'gradient'">
-              <p>
-                <span class="label">{{ $lang("渐变颜色") }}:</span>
-                <span
-                  class="gradient"
-                  :style="gradientStyle(info.buttonActive)"
-                ></span>
-              </p>
-              <p>
-                <span class="label">{{ $lang("渐变类型") }}:</span>
-                <el-radio-group
-                  class="gradient-type-group"
-                  v-model="info.buttonActive.gradientStyle.type"
-                >
-                  <el-radio-button
-                    :style="
-                      `background-image:${
-                        gradientStyleMap(info.buttonActive)[item.code]
-                      }`
-                    "
-                    :title="item.name"
-                    v-for="item in gradientTypeList"
-                    :key="item.code"
-                    :label="item.code"
-                  >
-                    {{ item.name }}
-                  </el-radio-button>
-                </el-radio-group>
-              </p>
-              <template v-if="info.buttonActive.gradientStyle.type == 'radial'">
-                <p>
-                  <span class="label">{{ $lang("中心") }}:</span>
-                  <el-select
-                    v-model="info.buttonActive.gradientStyle.center"
-                    :placeholder="$lang('请选择中心位置')"
-                  >
-                    <el-option
-                      v-for="item in centerList"
-                      :key="item.code"
-                      :label="$lang(item.name)"
-                      :value="item.code"
-                    >
-                    </el-option>
-                  </el-select>
-                </p>
-                <p>
-                  <span class="label">{{ $lang("径向图形") }}:</span>
-                  <el-select
-                    v-model="info.buttonActive.gradientStyle.radialShape"
-                    :placeholder="$lang('请选择径向图形')"
-                  >
-                    <el-option
-                      v-for="item in radialShapeList"
-                      :key="item.code"
-                      :label="$lang(item.name)"
-                      :value="item.code"
-                    >
-                    </el-option>
-                  </el-select>
-                </p>
-              </template>
-              <template v-if="info.buttonActive.gradientStyle.type == 'linear'">
-                <p>
-                  <span class="label">{{ $lang("角度") }}:</span>
-                  <el-select
-                    v-model="info.buttonActive.gradientStyle.angle"
-                    :placeholder="$lang('请选择线性角度')"
-                  >
-                    <el-option
-                      v-for="item in angelList"
-                      :key="item.code"
-                      :label="$lang(item.code)"
-                      :value="item.code"
-                    >
-                    </el-option>
-                  </el-select>
-                </p>
-              </template>
-              <p class="gradient-aperture">
-                <span class="label">{{ $lang("渐变光圈") }}:</span>
-                <el-button-group>
-                  <el-button
-                    plain
-                    :disabled="
-                      info.buttonActive.gradientStyle.valueList.length > 5
-                    "
-                    @click="
-                      addApertureEvent(info.buttonActive, 'buttonActiveSlider')
-                    "
-                    ><i class="el-icon-plus"></i
-                  ></el-button>
-                  <el-button
-                    plain
-                    :disabled="
-                      info.buttonActive.gradientStyle.valueList.length < 3
-                    "
-                    @click="
-                      removeApertureEvent(
-                        info.buttonActive,
-                        'buttonActiveSlider'
-                      )
-                    "
-                    ><i class="el-icon-minus"></i
-                  ></el-button>
-                </el-button-group>
-                <el-input
-                  :value="
-                    info.buttonActive.gradientStyle.valueList[
-                      info.buttonActive.gradientStyle.valueIndex
-                    ].value + ' %'
-                  "
-                  readonly
-                ></el-input>
-              </p>
-              <p>
-                <span class="label">{{ $lang("渐变节点颜色") }}</span>
-                <el-color-picker
-                  color-format="hex"
-                  v-model="
-                    info.buttonActive.gradientStyle.valueList[
-                      info.buttonActive.gradientStyle.valueIndex
-                    ].code
-                  "
-                  show-alpha
-                ></el-color-picker>
-                <el-input
-                  :value="
-                    info.buttonActive.gradientStyle.valueList[
-                      info.buttonActive.gradientStyle.valueIndex
-                    ].code
-                  "
-                  readonly
-                ></el-input>
-              </p>
-              <p>
-                <vue-slider
-                  :height="25"
-                  ref="buttonActiveSlider"
-                  :marks="false"
-                  :hide-label="true"
-                  :enable-cross="false"
-                  v-model="info.buttonActive.gradientStyle.values"
-                  :interval="1"
-                  @change="buttonActiveSliderChangeEvent"
-                  @drag-start="buttonActiveSliderDragStartEvent"
-                  :data-value="'value'"
-                >
-                  <template #tooltip>
-                    <span></span>
-                  </template>
-                  <template #process>
-                    <div
-                      class="vue-slider-process"
-                      :style="gradientLinearStyle(info.buttonActive)"
-                    ></div>
-                  </template>
-                  <template #dot="{index}">
-                    <div class="dot-box">
-                      <div
-                        class="dot"
-                        :style="
-                          `background-color:${info.buttonActive.gradientStyle.valueList[index].code}`
-                        "
-                      ></div>
-                    </div>
-                  </template>
-                </vue-slider>
+                <el-slider
+                  v-model="info.arrow.marginRight"
+                  :format-tooltip="val => val"
+                ></el-slider>
               </p>
             </template>
-            <p>
-              <span class="label">{{ $lang("边框颜色") }}:</span>
-              <el-color-picker
-                v-model="info.buttonActive.borderColor"
-                show-alpha
-              ></el-color-picker>
-            </p>
           </el-collapse-item>
         </el-collapse>
       </el-collapse-item>
@@ -1677,7 +1264,7 @@ export default {
     return {
       tabActive: "0",
       activeNames: ["name", "style"],
-      tabActiveNames: ["empty", "tab"],
+      tabActiveNames: ["empty", "font"],
       animationDirectionList: Object.freeze(Constants.ANIMATIONDIRECTIONLIST),
       animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
       borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
@@ -1775,7 +1362,7 @@ export default {
       let { gradientStyle = {} } = info || {};
       gradientStyle.valueIndex = index;
     },
-    buttonSliderChangeEvent(values, index) {
+    sliderChangeEvent(values, index) {
       let { info = {} } = this;
       let { button = {} } = info || {};
       let { gradientStyle = {} } = button || {};
@@ -1786,21 +1373,21 @@ export default {
         this.$refs.slider?.setValue(values);
       } else if (index == length - 1) {
         values[length - 1] = 100;
-        this.$refs.buttonSlider?.setValue(values);
+        this.$refs.slider?.setValue(values);
       }
       gradientStyle.valueIndex = index;
       valueList[index].value = values[index];
     },
-    buttonSliderDragStartEvent(index) {
+    sliderDragStartEvent(index) {
       let { info = {} } = this;
       let { button = {} } = info || {};
       let { gradientStyle = {} } = button || {};
       gradientStyle.valueIndex = index;
     },
-    buttonActiveSliderChangeEvent(values, index) {
+    selectSliderChangeEvent(values, index) {
       let { info = {} } = this;
-      let { buttonActive = {} } = info || {};
-      let { gradientStyle = {} } = buttonActive || {};
+      let { select = {} } = info || {};
+      let { gradientStyle = {} } = select || {};
       let { valueList = [] } = gradientStyle || {};
       let { length = 0 } = valueList || [];
       if (index == 0) {
@@ -1808,15 +1395,15 @@ export default {
         this.$refs.slider?.setValue(values);
       } else if (index == length - 1) {
         values[length - 1] = 100;
-        this.$refs.buttonActiveSlider?.setValue(values);
+        this.$refs.selectSlider?.setValue(values);
       }
       gradientStyle.valueIndex = index;
       valueList[index].value = values[index];
     },
-    buttonActiveSliderDragStartEvent(index) {
+    selectSliderDragStartEvent(index) {
       let { info = {} } = this;
-      let { buttonActive = {} } = info || {};
-      let { gradientStyle = {} } = buttonActive || {};
+      let { select = {} } = info || {};
+      let { gradientStyle = {} } = select || {};
       gradientStyle.valueIndex = index;
     },
     //添加渐变光圈

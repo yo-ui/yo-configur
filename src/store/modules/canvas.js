@@ -753,11 +753,18 @@ export default {
     },
     createHistory(context) {
       let { getters = {} } = context;
-      let { getWidgetList: widgetList = [], getHistoryList: historyList = [] } =
-        getters || {};
+      let {
+        getWidgetList: widgetList = [],
+        getHistoryList: historyList = [],
+        getCanvas: canvas = {}
+      } = getters || {};
       historyList.unshift(bmCommon.clone(widgetList));
       context.commit("setHistoryList", historyList);
       context.commit("setHistoryIndex", 0);
+      context.commit("setPreviewData", {
+        widgetList,
+        canvas
+      });
     }
   }
 };

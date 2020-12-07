@@ -155,6 +155,10 @@ for (let i in Constants.BASEDATA) {
         let { length = 0 } = activeComs || [];
         // let { com = {} } = activeComs || [];
         // let { parentId = "" } = com || {};
+        // if (newVal != oldVal) {
+        //   this.createHistoryAction();
+        // }
+        // bmCommon.log("newVal=", newVal, "oldVal=", oldVal, "属性发生变化");
         if (!(moving || _moving || parentId)) {
           if (length > 1) {
             bmCommon.log("info 属性变更", type, "parentId=", parentId);
@@ -222,7 +226,8 @@ export default {
       if (length > 1) {
         let set = new Set();
         activeComs.forEach(item => {
-          let { type = "" } = item || {};
+          let { type = "", styleCode = "" } = item || {};
+          type = styleCode || type;
           set.add(type);
         });
         let { size = 0 } = set || {};
@@ -237,7 +242,8 @@ export default {
       } else {
         let set = new Set();
         children.forEach(item => {
-          let { type = "" } = item || {};
+          let { type = "", styleCode = "" } = item || {};
+          type = styleCode || type;
           set.add(type);
         });
         let { size = 0 } = set || {};
@@ -306,6 +312,7 @@ export default {
     }),
     ...mapActions({
       selectComAction: "canvas/selectCom",
+      createHistoryAction: "canvas/createHistory",
       selectComsAction: "canvas/selectComs"
     }),
     selectComEvent(item) {

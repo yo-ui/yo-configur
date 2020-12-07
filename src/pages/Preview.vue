@@ -293,7 +293,10 @@ export default {
       setWidgetList: "canvas/setWidgetList", //设置组件列表
       setCanvas: "canvas/setCanvas",
       setPlatform: "setPlatform",
-      setShowType: "canvas/setShowType"
+      setShowType: "canvas/setShowType",
+      stopMove: "canvas/stopMove",
+      canvasMoving: "canvas/canvasMoving",
+      initMove: "canvas/initMove"
     }),
     ...mapActions({
       initConfigWebsocketAction: "initConfigWebsocket",
@@ -364,6 +367,8 @@ export default {
     },
     initEvent() {
       $(window).on("resize", this.resetCanvasSize);
+      //滚动事件
+      $(document).on("mousewheel DOMMouseScroll", this.mouseScrollEvent);
       //注册显示控制处理事件
       $vm.$on("control", item => {
         this.$refs.bmControl.show(item);
@@ -397,6 +402,24 @@ export default {
         this.$refs.bmCameraPreviewer.show(item);
       });
     },
+    mouseScrollEvent(e) {
+      // e.preventDefault();
+      // e.stopPropagation();
+      let wheel = e.originalEvent.wheelDelta || -e.originalEvent.detail;
+      let delta = Math.max(-1, Math.min(1, wheel));
+      // let scrollTop=$(".content-box").scrollTop()
+      // bmCommon.log();
+      if (delta < 0) {
+        //向下滚动
+        bmCommon.log("向下滚动");
+        this.zoomEvent(-1);
+      } else {
+        //向上滚动
+        bmCommon.log("向上滚动");
+        this.zoomEvent(1);
+      }
+      // return false;
+    },
     zoomEvent(val = 0) {
       let { boxZoom = 0 } = this;
       if (val) {
@@ -408,6 +431,17 @@ export default {
         this.boxZoom = 100;
       }
     },
+    // canvasZoomEvent(val = 0) {
+    //   let { zoom = 0 } = this;
+    //   if (val) {
+    //     zoom = zoom + val;
+    //     if (zoom > 10 && zoom < 500) {
+    //       this.setZoom(zoom / 100);
+    //     }
+    //   } else {
+    //     this.setZoom(1);
+    //   }
+    // },
     loadWebsocketData(widgetList = []) {
       let deviceIdList = [];
       widgetList.forEach(item => {
@@ -493,6 +527,36 @@ export default {
       // canvas.left = left;
       // canvas.top = top;
       this.setZoom(scale);
+    },
+
+    mousedownEvent(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      let { canvas = {} } = this;
+      let pos = bmCommon.getMousePosition(e);
+      let { x = "", y = "" } = pos || {};
+      let { left, top } = canvas || {};
+      this.initMove({
+        startX: x,
+        startY: y,
+        originX: left,
+        originY: top
+      });
+
+      $(document).on("mousemove", this.mousemoveEvent);
+      $(document).on("mouseup", this.mouseupEvent);
+    },
+    mousemoveEvent(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      let pos = bmCommon.getMousePosition(e);
+      let { x = "", y = "" } = pos || {};
+      this.canvasMoving({ x, y });
+    },
+    mouseupEvent(e) {
+      $(document).off("mousemove", this.mousemoveEvent);
+      $(document).off("mouseup", this.mouseupEvent);
+      this.stopMove();
     },
     // 初始化websocket
     initConfigWebsocketFunc(callback) {
@@ -636,6 +700,10 @@ export default {
   },
   beforeDestroy() {
     $(window).off("resize", this.resetCanvasSize);
+    //滚动事件
+    $(document).off("mousewheel DOMMouseScroll", this.mouseScrollEvent);
+    //移动事件
+    $(document).off("mousedown", this.mousedownEvent);
   }
 };
 </script>

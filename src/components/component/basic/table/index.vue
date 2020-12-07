@@ -148,7 +148,6 @@ export default {
     },
     theaderStyle() {
       let { info = {}, gradientStyle = {} } = this;
-
       let { theader = {} } = info;
       let {
         color = "",

@@ -10,12 +10,18 @@
       <!-- <div v-else></div> -->
       <div class="content-box">
         <template v-if="canvas.left == 0">
-          <div class="left-top-rule"></div>
+          <div
+            class="left-top-rule"
+            :style="{
+              left: `${!leftMenuStatus ? '0' : ''}`
+            }"
+          ></div>
           <div
             class="left-rule"
             :style="{
               transform: `scaleY(${getZoom})`,
-              height: `${canvas.height}px`
+              height: `${canvas.height}px`,
+              left: `${!leftMenuStatus ? '0' : ''}`
             }"
           >
             <i
@@ -29,11 +35,12 @@
             class="top-rule"
             :style="{
               transform: `scaleX(${getZoom})`,
-              width: `${canvas.width}px`
+              width: `${canvas.width}px`,
+              left: `${!leftMenuStatus ? '30px' : ''}`
             }"
           >
             <i
-              v-for="item in parseInt(canvas.height / getZoom / 100)"
+              v-for="item in parseInt(canvas.width / getZoom / 100)"
               :key="item"
               :style="{ left: `${(item - 1) * 100 + 10}px` }"
               >{{ (item - 1) * 100 }}</i
@@ -379,7 +386,12 @@ export default {
       return styles;
     },
     canvasStyle() {
-      let { zoom = 0, canvas = {}, gradientStyle = {} } = this;
+      let {
+        zoom = 0,
+        canvas = {},
+        gradientStyle = {},
+        leftMenuStatus = true
+      } = this;
       let {
         left = 0,
         top = 0,
@@ -392,7 +404,7 @@ export default {
       } = canvas;
       zoom = zoom / 100;
       let styles = {
-        left: `${left}px`,
+        left: `${left + (leftMenuStatus ? 0 : 30)}px`,
         top: `${top}px`,
         // backgroundColor: `${backgroundColor}`,
         transform: `scale(${zoom})`,

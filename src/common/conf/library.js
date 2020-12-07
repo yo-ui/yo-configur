@@ -61,6 +61,7 @@ let baseData = {
   backgroundRepeat: "repeat",
   borderWidth: 1,
   comName: "", //
+  order: "",
   borderStyle: "none",
   borderColor: "#000",
   borderRadius: 0,
@@ -564,46 +565,56 @@ let componentLibrary = [
           ...baseData,
           // dataType: "point",
           fontWeight: "bold",
-          fontSize: 24,
-          fontFamily: "lcdD",
+          // fontSize: 24,
+          // fontFamily: "lcdD",
           width: 160,
           height: 30,
           content: "a",
-          button: {
-            height: 40, //按钮高度
-            width: 80, //按钮宽度
-            color: "#333",
-            fontFamily: "",
-            fontSize: 14,
+          textIndent:10,
+          //箭头
+          arrow: {
+            status: true,
             fontWeight: "",
-            fontStyle: "",
-            textDecoration: "",
-            textAlign: "center",
-            textShadowable: false,
-            textShadow,
-            marginTop: 0,
-            marginBottom: 0,
-            marginLeft: 0,
-            marginRight: 0,
-            paddingTop: 0,
-            paddingBottom: 0,
-            paddingLeft: 0,
-            paddingRight: 0,
-            backgroundColor: "#fff",
-            backgroundImage: "",
-            backgroundRepeat: "",
-            backgroundSize: "",
-            backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
-            gradientStyle,
-            borderRadiusTopLeft: 0,
-            borderRadiusTopRight: 0,
-            borderRadiusBottomLeft: 0,
-            borderRadiusBottomRight: 0,
-            borderWidth: 1,
-            borderStyle: "solid",
-            borderColor: "#ccc"
+            marginRight: 11,
+            fontSize: 16,
+            color: "#333"
           },
-          buttonActive: {
+          // input: {
+          //   // height: 40, //按钮高度
+          //   // width: 80, //按钮宽度
+          //   color: "#333",
+          //   fontFamily: "",
+          //   fontSize: 14,
+          //   fontWeight: "",
+          //   fontStyle: "",
+          //   textDecoration: "",
+          //   textAlign: "center",
+          //   textShadowable: false,
+          //   textShadow,
+          //   marginTop: 0,
+          //   marginBottom: 0,
+          //   marginLeft: 0,
+          //   marginRight: 0,
+          //   paddingTop: 0,
+          //   paddingBottom: 0,
+          //   paddingLeft: 0,
+          //   paddingRight: 0,
+          //   backgroundColor: "#fff",
+          //   backgroundImage: "",
+          //   backgroundRepeat: "",
+          //   backgroundSize: "",
+          //   backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
+          //   gradientStyle,
+          //   borderRadiusTopLeft: 0,
+          //   borderRadiusTopRight: 0,
+          //   borderRadiusBottomLeft: 0,
+          //   borderRadiusBottomRight: 0,
+          //   borderWidth: 1,
+          //   borderStyle: "solid",
+          //   borderColor: "#ccc",
+          //
+          // },
+          select: {
             color: "#fff",
             backgroundColor: "#4195ea",
             textShadowable: false,
@@ -646,7 +657,7 @@ let componentLibrary = [
           // fontSize: 24,
           // fontFamily: "lcdD",
           width: 240,
-          height: 30,
+          height: 40,
           content: "b",
           button: {
             height: 40, //按钮高度

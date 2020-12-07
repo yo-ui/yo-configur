@@ -893,6 +893,10 @@ for (let i in Constants.BASEDATA) {
         let { parentId = "" } = activeCom || {};
         let { activeComs = [], moving = false, selectBox = {} } = this;
         let { moving: _moving = false } = selectBox || {};
+        // if (newVal != oldVal) {
+        //   this.createHistoryAction();
+        // }
+        // bmCommon.log("newVal=", newVal, "oldVal=", oldVal, "属性发生变化");
         let { length = 0 } = activeComs || [];
         if (!(moving || _moving || parentId)) {
           if (length > 1) {
@@ -1036,7 +1040,9 @@ export default {
       // canvasMoving: "canvas/canvasMoving",
       // initMove: "canvas/initMove"
     }),
-    ...mapActions(),
+    ...mapActions({
+      createHistoryAction: "canvas/createHistory"
+    }),
     // successCallback(url) {
     //   let { info = {} } = this;
     //   info.backgroundImage = url;
