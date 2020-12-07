@@ -251,8 +251,8 @@ export default {
     canvasStyle() {
       let { canvas = {}, gradientStyle = {}, zoom = 100 } = this;
       let {
-        // left = 0,
-        // top = 0,
+        left = 0,
+        top = 0,
         height = "",
         width = "",
         backgroundType = "",
@@ -261,8 +261,8 @@ export default {
       } = canvas;
       zoom = zoom / 100;
       let styles = {
-        // left: `${left}px`,
-        // top: `${top}px`,
+        left: `${left}px`,
+        top: `${top}px`,
         // backgroundColor: `${backgroundColor}`,
         transform: `scale(${zoom})`,
         // webkitTransform: `scale(${zoom})`,
@@ -369,6 +369,8 @@ export default {
       $(window).on("resize", this.resetCanvasSize);
       //滚动事件
       $(document).on("mousewheel DOMMouseScroll", this.mouseScrollEvent);
+      //注册画布移动事件
+      $(document).on("mousedown", this.mousedownEvent);
       //注册显示控制处理事件
       $vm.$on("control", item => {
         this.$refs.bmControl.show(item);

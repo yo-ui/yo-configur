@@ -375,6 +375,8 @@ export default {
       $(window).on("resize", this.resetCanvasSize);
       //滚动事件
       $(document).on("mousewheel DOMMouseScroll", this.mouseScrollEvent);
+      //注册画布移动事件
+      $(document).on("mousedown", this.mousedownEvent);
       //注册显示控制处理事件
       $vm.$on("control", item => {
         this.$refs.bmControl.show(item);
