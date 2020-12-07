@@ -153,6 +153,39 @@
                 .mt(0);
               }
             }
+            .tab-collapse {
+              .el-collapse-item__header {
+                .lh(35);
+                .h(35);
+                .fz(12);
+                .right {
+                  i {
+                    .fz(13);
+                  }
+                }
+              }
+              .tab-collapse-item {
+                &:first-child{
+                  .el-collapse-item__header{
+                    // .bc(@white);
+                    &::before{
+                      .db;
+                    }
+                  }
+                }
+                .el-collapse-item__wrap {
+                  // .pt(0);
+                  .el-collapse-item__content {
+                    p {
+                      .ml(10);
+                    }
+                  }
+                }
+              }
+              .el-collapse-item__wrap {
+                .pt(0);
+              }
+            }
           }
         }
       }

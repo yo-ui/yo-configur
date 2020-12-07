@@ -174,13 +174,14 @@ export default {
     selectComs(selectBox = {}) {
       let {
         widgetList = [],
-        selectBoxShowStatus = false
+        selectBoxShowStatus = false,
         // selectBox = {},
-        // activeComs = [],
+        activeComs = [],
+        activeCom = {}
         // zoom = 1,
         // canvas = {}
       } = this;
-      let activeComs = [];
+      let widgets = [];
       let {
         // moving = false,
         left: boxX = 0,
@@ -229,20 +230,31 @@ export default {
             if (selectBoxShowStatus) {
               // bmCommon.log(selectBoxShowStatus, "#######");
               this.selectBoxShowStatus = false;
-              this.setActiveCom(item);
+              if (activeCom.id != item.id) {
+                this.setActiveCom(item);
+              }
             }
-            activeComs.push(item);
+            widgets.push(item);
           }
         });
-        // let { length = 0 } = activeComs || [];
+        // let { length = 0 } = widgets || [];
         // let activeCom = canvas;
         // if (length > 0) {
-        //   [activeCom = {}] = activeComs || [];
+        //   [activeCom = {}] = widgets || [];
         // } else {
         //   activeCom = canvas;
         // }
         // this.setActiveCom(activeCom);
-        this.setActiveComs(activeComs);
+        let oldArr = JSON.stringify(
+          widgets.map(item => item.id).sort((a, b) => a.localeCompare(b))
+        );
+        let newArr = JSON.stringify(
+          activeComs.map(item => item.id).sort((a, b) => a.localeCompare(b))
+        );
+        // bmCommon.log(oldArr,newArr)
+        if (oldArr !== newArr) {
+          this.setActiveComs(widgets);
+        }
       }
       // bmCommon.log("activeComs", activeComs);
       // else {

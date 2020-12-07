@@ -2,7 +2,7 @@
   <!-- <div class="bm-data-com">
     <el-collapse v-model="activeNames"> -->
   <el-collapse-item :title="$lang('通用绑定')" name="name" disabled>
-    <!-- <p>
+    <p>
       <span class="label"> {{ $lang("X") }}: </span>
       <el-tooltip :content="$lang('添加绑定')" placement="top" effect="dark">
         <i
@@ -61,7 +61,7 @@
           :class="{ active: info.bindData && info.bindData.visible !== '' }"
         ></i>
       </el-tooltip>
-    </p> -->
+    </p>
     <p v-if="info.dataType == 'device'">
       <span class="label"> {{ $lang("绑定设备") }}: </span>
       <el-tooltip

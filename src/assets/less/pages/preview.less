@@ -1,6 +1,21 @@
 @import (reference) "./../common.less";
 // .device-info-popover{
 
+  ::-webkit-scrollbar {/*滚动条整体样式*/
+    .squ(8);     /*高宽分别对应横竖滚动条的尺寸*/
+  }
+  ::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    .bc(@grayD);
+    .br(10px);
+    .squ(16);
+  }
+  ::-webkit-scrollbar-thumb:hover{
+    // background: #333;
+    .bc(@themes);
+  }
+  ::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    .bc(@grayE);
+  }
 // }
 .bm-preview-page{
   .df;

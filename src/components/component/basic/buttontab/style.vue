@@ -1918,41 +1918,41 @@ export default {
 </script>
 
 <style lang="less">
-@import (reference) "./../../../../assets/less/common.less";
-.bm-button-tab-style-com {
-  .el-collapse {
-    .el-collapse-item {
-      .el-collapse-item__content {
-        .tab-collapse {
-          .el-collapse-item__header {
-            .lh(35);
-            .h(35);
-            .fz(12);
-            .right {
-              i {
-                .fz(13);
-              }
-            }
-          }
-          .tab-collapse-item {
-            .el-collapse-item__wrap {
-              // .pt(0);
-              .el-collapse-item__content {
-                p {
-                  .ml(10);
-                }
-              }
-            }
-          }
-          .el-collapse-item__wrap {
-            .pt(0);
-          }
-        }
-        // .el-tabs {
-        //   .mt(10);
-        // }
-      }
-    }
-  }
-}
+// @import (reference) "./../../../../assets/less/common.less";
+// .bm-button-tab-style-com {
+//   .el-collapse {
+//     .el-collapse-item {
+//       .el-collapse-item__content {
+//         .tab-collapse {
+//           .el-collapse-item__header {
+//             .lh(35);
+//             .h(35);
+//             .fz(12);
+//             .right {
+//               i {
+//                 .fz(13);
+//               }
+//             }
+//           }
+//           .tab-collapse-item {
+//             .el-collapse-item__wrap {
+//               // .pt(0);
+//               .el-collapse-item__content {
+//                 p {
+//                   .ml(10);
+//                 }
+//               }
+//             }
+//           }
+//           .el-collapse-item__wrap {
+//             .pt(0);
+//           }
+//         }
+//         // .el-tabs {
+//         //   .mt(10);
+//         // }
+//       }
+//     }
+//   }
+// }
 </style>

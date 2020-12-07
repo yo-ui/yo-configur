@@ -228,10 +228,10 @@
         </el-button>
       </div>
       <div class="right">
-        <!-- <el-button @click="dataEvent">
+        <el-button @click="dataEvent">
           <i class="el-icon-data-analysis"></i>
           数据表
-        </el-button> -->
+        </el-button>
         <el-button @click="clearEvent">
           <i class="el-icon-toilet-paper"></i>
           清缓存
@@ -476,7 +476,10 @@ export default {
     },
     deleteItem(item = {}) {
       let { widgetList = [] } = this;
-      let { id = "" } = item || {};
+      let { id = "", type = "" } = item || {};
+      if (type == "canvas") {
+        return;
+      }
       let index = widgetList.findIndex(_item => id == _item.id);
       // bmCommon.log(
       //   "widgetList=",

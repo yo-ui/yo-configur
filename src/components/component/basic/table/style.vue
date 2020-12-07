@@ -730,18 +730,18 @@
             <el-tooltip :content="$lang('加粗')" placement="top" effect="dark">
               <span
                 class="bold"
-                @click="setFontWeight"
+                @click="setFontWeight(info.theader)"
                 :title="$lang('粗体')"
-                :class="{ active: info.fontWeight == 'bold' }"
+                :class="{ active: info.theader.fontWeight == 'bold' }"
                 >B</span
               >
             </el-tooltip>
             <el-tooltip :content="$lang('倾斜')" placement="top" effect="dark">
               <span
                 class="italic"
-                @click="setFontStyle"
+                @click="setFontStyle(info.theader)"
                 :title="$lang('斜体')"
-                :class="{ active: info.fontStyle == 'italic' }"
+                :class="{ active: info.theader.fontStyle == 'italic' }"
                 >I</span
               >
             </el-tooltip>
@@ -752,9 +752,9 @@
             >
               <span
                 class="underline"
-                @click="setTextDecoration"
+                @click="setTextDecoration(info)"
                 :title="$lang('下划线')"
-                :class="{ active: info.textDecoration == 'underline' }"
+                :class="{ active: info.theader.textDecoration == 'underline' }"
                 >U</span
               >
             </el-tooltip>
@@ -840,18 +840,18 @@
             <el-tooltip :content="$lang('加粗')" placement="top" effect="dark">
               <span
                 class="bold"
-                @click="setFontWeight"
+                @click="setFontWeight(info.tbody)"
                 :title="$lang('粗体')"
-                :class="{ active: info.fontWeight == 'bold' }"
+                :class="{ active: info.tbody.fontWeight == 'bold' }"
                 >B</span
               >
             </el-tooltip>
             <el-tooltip :content="$lang('倾斜')" placement="top" effect="dark">
               <span
                 class="italic"
-                @click="setFontStyle"
+                @click="setFontStyle(info.tbody)"
                 :title="$lang('斜体')"
-                :class="{ active: info.fontStyle == 'italic' }"
+                :class="{ active: info.tbody.fontStyle == 'italic' }"
                 >I</span
               >
             </el-tooltip>
@@ -862,9 +862,9 @@
             >
               <span
                 class="underline"
-                @click="setTextDecoration"
+                @click="setTextDecoration(info.tbody)"
                 :title="$lang('下划线')"
-                :class="{ active: info.textDecoration == 'underline' }"
+                :class="{ active: info.tbody.textDecoration == 'underline' }"
                 >U</span
               >
             </el-tooltip>
