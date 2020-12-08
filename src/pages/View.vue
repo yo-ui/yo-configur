@@ -1,5 +1,8 @@
 <template>
-  <div class="bm-view-page">
+  <div
+    class="bm-view-page"
+    :style="canvas.pageColor ? `background-color:${canvas.pageColor}` : ''"
+  >
     <div class="flex-content">
       <div class="content-box">
         <div class="zoom-box">
@@ -18,7 +21,7 @@
             </el-button>
             <el-button @click="zoomEvent(0)">
               <i class="el-icon-search"></i>
-              {{ parseInt(boxZoom) }}%
+              {{ parseInt(boxZoom * 100) }}%
             </el-button>
             <el-button @click="zoomEvent(20)">
               <i class="el-icon-zoom-in"></i> </el-button
@@ -139,8 +142,8 @@ export default {
     return {
       condition: {
         canvasId: ""
-      },
-      boxZoom: 100
+      }
+      // boxZoom: 100
       // deviceInfo: {},
       // showContextMenuStatus: false,
       // showContextMenuType: 1, //1 组件右键菜单   2是画布右键菜单
@@ -168,6 +171,7 @@ export default {
       widgetList: "canvas/getWidgetList", //组件列表
       viewData: "canvas/getPreviewData", //组件列表
       getZoom: "canvas/getZoom", //放大缩小
+      boxZoom: "canvas/getBoxZoom", //放大缩小
       // leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
       // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
       canvas: "canvas/getCanvas" //画布属性
@@ -220,15 +224,16 @@ export default {
       return styles;
     },
     canvasBoxStyle() {
-      let { boxZoom = 100 } = this;
-      boxZoom = boxZoom / 100;
+      let { boxZoom = 1 } = this;
+      // boxZoom = boxZoom / 100;
       let styles = {
         // left: `${left}px`,
         // top: `${top}px`,
         // backgroundColor: `${backgroundColor}`,
         transform: `scale(${boxZoom})`,
         // webkitTransform: `scale(${zoom})`,
-        transformOrigin: `center top`
+        // transformOrigin: `center top`
+        transformOrigin: `0 0`
       };
       // if (backgroundImage) {
       //   styles["backgroundImage"] = `url(${backgroundImage})`;
@@ -255,7 +260,8 @@ export default {
         // backgroundColor: `${backgroundColor}`,
         transform: `scale(${zoom})`,
         webkitTransform: `scale(${zoom})`,
-        transformOrigin: `left top`
+        // transformOrigin: `left top`
+        transformOrigin: `0 0`
         // webkitTransform: `scale(${zoom}) translate(-50%,-50%)`
       };
       if (width) {
@@ -280,6 +286,7 @@ export default {
   methods: {
     ...mapMutations({
       setZoom: "canvas/setZoom",
+      setBoxZoom: "canvas/setBoxZoom", //放大缩小
       setShowType: "canvas/setShowType",
       setPlatform: "setPlatform",
       setWidgetList: "canvas/setWidgetList", //设置组件列表
@@ -366,13 +373,13 @@ export default {
           }
         });
         this.setWidgetList(widgets || []);
-        this.resetCanvasSize();
+        this.resizeCanvasSize();
         this.loadWebsocketData(widgetList);
       });
       // });
     },
     initEvent() {
-      $(window).on("resize", this.resetCanvasSize);
+      $(window).on("resize", this.resizeCanvasSize);
       //滚动事件
       $(document).on("mousewheel DOMMouseScroll", this.mouseScrollEvent);
       //注册画布移动事件
@@ -418,14 +425,16 @@ export default {
       });
     },
     zoomEvent(val = 0) {
-      let { boxZoom = 0 } = this;
+      let { boxZoom = 1 } = this;
       if (val) {
-        boxZoom = boxZoom + val;
+        boxZoom = boxZoom * 100 + val;
         if (boxZoom > 10 && boxZoom < 200) {
-          this.boxZoom = boxZoom;
+          // this.boxZoom = boxZoom;
+          this.setBoxZoom(boxZoom / 100);
         }
       } else {
-        this.boxZoom = 100;
+        // this.boxZoom = 100;
+        this.setBoxZoom(1);
       }
     },
     mouseScrollEvent(e) {
@@ -438,11 +447,11 @@ export default {
       if (delta < 0) {
         //向下滚动
         bmCommon.log("向下滚动");
-        this.zoomEvent(-1);
+        this.zoomEvent(-3);
       } else {
         //向上滚动
         bmCommon.log("向上滚动");
-        this.zoomEvent(1);
+        this.zoomEvent(3);
       }
       // return false;
     },
@@ -528,12 +537,12 @@ export default {
         });
       });
     },
-    resetCanvasSize() {
+    resizeCanvasSize() {
       let $window = $(window);
       let w_height = $window.height();
       let w_width = $window.width();
-      if (w_width < 1280) {
-        w_width = 1280;
+      if (w_width < 800) {
+        w_width = 800;
       }
       let { canvas = {} } = this;
       let { width = 0, height = 0 } = canvas || {};
@@ -720,7 +729,7 @@ export default {
     this.init();
   },
   beforeDestroy() {
-    $(window).off("resize", this.resetCanvasSize);
+    $(window).off("resize", this.resizeCanvasSize);
     //滚动事件
     $(document).off("mousewheel DOMMouseScroll", this.mouseScrollEvent);
     //移动事件

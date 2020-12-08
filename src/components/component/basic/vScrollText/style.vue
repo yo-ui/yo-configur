@@ -482,6 +482,8 @@
               show-alpha
             ></el-color-picker>
           </p>
+        </template>
+
           <p>
             <span class="label">{{ $lang("盒子阴影") }}:</span>
             <el-switch
@@ -577,7 +579,6 @@
               ></el-color-picker>
             </p>
           </template>
-        </template>
       </el-collapse-item>
       <el-collapse-item :title="$lang('边距')" name="margin">
         <p class="margin-box">

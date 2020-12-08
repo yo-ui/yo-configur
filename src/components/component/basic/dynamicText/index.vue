@@ -261,6 +261,7 @@ export default {
     ...mapActions({}),
     init() {
       let { info = {}, showType = "" } = this;
+      let that = this;
       if (showType != "edit") {
         let { id = "" } = info || {};
         let { bindData = {} } = info || {};
@@ -295,7 +296,7 @@ export default {
                 info.unit = unit;
               }
             }
-            this.$emit("success"); //组件加载完成回调
+            that.$emit("success"); //组件加载完成回调
           }
         });
       }

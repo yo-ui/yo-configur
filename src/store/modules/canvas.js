@@ -11,6 +11,7 @@ export default {
     // financePricingStrategiesCacheMap: null,
     // 画布缩放值
     zoom: 1,
+    boxZoom: 1,
     historyIndex: 0, //撤销恢复记录游标
     historyList: [], //撤销恢复记录
     recordList: [], //记录点
@@ -36,6 +37,7 @@ export default {
       width: 0, //画布宽
       height: 0, //画布高
       poster: "", //封面图
+      pageColor: "#fff", //页面背景颜色
       uploadPoster: "", //上传封面图
       backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
       gradientStyle: {
@@ -152,6 +154,10 @@ export default {
     getZoom(state) {
       return state.zoom;
     },
+    //获取画布缩放值
+    getBoxZoom(state) {
+      return state.boxZoom;
+    },
     //获取选中组件对象
     getActiveCom(state) {
       return state.activeCom || {};
@@ -204,6 +210,10 @@ export default {
     //设置画布缩放值
     setZoom(state, item) {
       state.zoom = item;
+    },
+    //设置画布缩放值
+    setBoxZoom(state, item) {
+      state.boxZoom = item;
     },
     //设置组件初始拖动状态
     setDraging(state, item) {
@@ -362,6 +372,12 @@ export default {
       var left = originX + Math.floor(dx / zoom);
       var top = originY + Math.floor(dy / zoom);
       // bmCommon.log(left, top);
+      if (left > 0) {
+        left = 0;
+      }
+      if (top > 0) {
+        top = 0;
+      }
       canvas.left = left;
       canvas.top = top;
       // bmCommon.log(left, top, activeCom);

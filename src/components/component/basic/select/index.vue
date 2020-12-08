@@ -1,31 +1,56 @@
 <template>
-  <div class="bm-select-com" :style="comStyle">
-    <!-- <button
-      :style="btnStyle(item, index)"
-      v-for="(item, index) in info.contentList"
-      :key="index"
-      :contenteditable="info.editable"
-      @click="clickEvent(item)"
-      @blur.stop="blurEvent($event, item)"
+  <!-- <div  :style="selectStyle"> -->
+  <!-- <el-select
+    class="bm-select-com"
+    v-model="info.content"
+    :placeholder="$lang('请选择')"
+    filterable
+    :style="inputStyle"
+  >
+    <el-option :style="optionStyle"
+      v-for="item in info.contentList"
+      :key="item.value"
+      :label="item.text"
+      :value="item.value"
     >
-      {{ item.text }}
-    </button> -->
-    <div class="select-text" :style="inputStyle">
-      <!-- <div class="select-text"> -->
-      {{ (contentMap[info.content] || {}).text }}
+    </el-option>
+  </el-select> -->
+  <el-popover
+    class="bm-select-com"
+    popper-class="bm-select-com-poper"
+    ref="popover"
+    :visible-arrow="false"
+    placement="bottom"
+    :width="`${info.width}`"
+    :trigger="showType == 'edit' ? 'manual' : 'click'"
+    v-model="info.select.showable"
+  >
+    <!-- :style="selectStyle" -->
+    <div slot="reference" class="select-text" :style="inputStyle">
+      <span>{{ (contentMap[info.content] || {}).text }}</span>
       <i
-        class="el-icon-arrow-down"
+        :class="
+          !info.select.showable ? 'el-icon-arrow-down' : 'el-icon-arrow-up'
+        "
         v-if="info.arrow.status"
         :style="arrowStyle"
       ></i>
-      <!-- </div> -->
     </div>
-    <ul>
-      <li v-for="(item, index) in info.contentList" :key="index">
+    <!-- <div class="poper-box"> -->
+    <!-- <div class="popper__arrow" :style="selectArrowStyle"></div> -->
+    <ul class="float-box" :style="selectStyle">
+      <li
+        v-for="(item, index) in info.contentList"
+        :style="optionStyle(item, index)"
+        :key="index"
+        @click="optionClickEvent(item, index)"
+      >
         {{ item.text }}
       </li>
     </ul>
-  </div>
+    <!-- </div> -->
+  </el-popover>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -45,7 +70,11 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({}),
+    ...mapGetters({
+      zoom: "canvas/getZoom", //放大缩小
+      boxZoom: "canvas/getBoxZoom", //放大缩小
+      showType: "canvas/getShowType"
+    }),
     //渐变颜色样式
     gradientStyle() {
       return (info = {}) => {
@@ -78,17 +107,19 @@ export default {
       });
       return map || {};
     },
-    selectStyle() {
+    optionStyle() {
       let { info = {}, gradientStyle = {} } = this;
       let {
-        width: _width = 0,
-        button = {},
+        // width: _width = 0,
+        option = {},
+        select = {},
         content = "",
-        buttonActive = {},
+        optionActive = {},
+        optionHover = {},
         contentList = []
       } = info || {};
       let {
-        width = "",
+        // width = "",
         height = "",
         color = "",
         borderColor = "",
@@ -119,7 +150,7 @@ export default {
         backgroundImage = "",
         backgroundRepeat = "",
         backgroundSize = ""
-      } = button || {};
+      } = option || {};
       let { length = 0 } = contentList || [];
       // bmCommon.log(length,index);
       return (item, index) => {
@@ -128,11 +159,12 @@ export default {
           margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
           padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
         };
-        if (width) {
-          styles["width"] = `${width}px`;
-        }
+        // if (width) {
+        //   styles["width"] = `${width}px`;
+        // }
         if (height) {
           styles["height"] = `${height}px`;
+          styles["lineHeight"] = `${height}px`;
         }
         if (textAlign) {
           styles["textAlign"] = textAlign;
@@ -153,29 +185,53 @@ export default {
           styles["borderStyle"] = borderStyle;
         }
         styles["borderWidth"] = `${borderWidth}px`;
-        if (length > 1) {
-          if (index == length - 1) {
-            styles[
-              "borderWidth"
-            ] = `${borderWidth}px ${borderWidth}px ${borderWidth}px ${borderWidth}px`;
-          } else {
-            if (_width < 2 * width) {
-              //竖向
-              if (marginBottom > 0) {
-                styles[
-                  "borderWidth"
-                ] = `${borderWidth}px ${borderWidth}px 0 ${borderWidth}px`;
-              }
+        // if (length > 1) {
+        //   if (index == length - 1) {
+        //     styles[
+        //       "borderWidth"
+        //     ] = `${borderWidth}px ${borderWidth}px ${borderWidth}px ${borderWidth}px`;
+        //   } else {
+        //     if (_width < 2 * width) {
+        let { borderWidth: _borderWidth = "", borderStyle: _borderStyle = "" } =
+          select || {};
+        //竖向
+        if (marginBottom <= 0) {
+          styles[
+            "borderWidth"
+          ] = `${borderWidth}px ${borderWidth}px 0 ${borderWidth}px`;
+          if (_borderStyle != "none") {
+            if (index == 0) {
+              styles["borderWidth"] = `0 0 0 0`;
+            } else if (index == length - 1) {
+              styles["borderWidth"] = `${borderWidth}px 0 0 0`;
             } else {
-              //横向
-              if (marginRight > 0) {
-                styles[
-                  "borderWidth"
-                ] = `${borderWidth}px 0 ${borderWidth}px ${borderWidth}px`;
-              }
+              styles["borderWidth"] = `${borderWidth}px 0 0 0`;
+            }
+          } else {
+            if (index == 0) {
+              styles[
+                "borderWidth"
+              ] = `${borderWidth}px ${borderWidth}px 0 ${borderWidth}px`;
+            } else if (index == length - 1) {
+              styles[
+                "borderWidth"
+              ] = `${borderWidth}px ${borderWidth}px ${borderWidth}px ${borderWidth}px`;
             }
           }
+          // if(index==length-1&&_borderStyle=='none'){
+
+          // }
         }
+        //     } else {
+        //       //横向
+        //       if (marginRight > 0) {
+        //         styles[
+        //           "borderWidth"
+        //         ] = `${borderWidth}px 0 ${borderWidth}px ${borderWidth}px`;
+        //       }
+        //     }
+        //   }
+        // }
         styles[
           "borderRadius"
         ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
@@ -227,8 +283,9 @@ export default {
           }
         } else if (backgroundType == "gradient") {
           //渐变
-          styles = { ...styles, ...gradientStyle(button) };
+          styles = { ...styles, ...gradientStyle(option) };
         }
+        let { backgroundType = "", backgroundColor = "" } = optionHover || {};
         if (content == value) {
           //按钮选中的样式
           let {
@@ -246,7 +303,7 @@ export default {
             textDecoration = "",
             backgroundType = "", //纯色和渐变色 purity  纯色  gradients 渐变色
             borderColor = ""
-          } = buttonActive || {};
+          } = optionActive || {};
 
           if (color) {
             styles["color"] = color;
@@ -291,7 +348,7 @@ export default {
             }
           } else if (backgroundType == "gradient") {
             //渐变
-            styles = { ...styles, ...gradientStyle(buttonActive) };
+            styles = { ...styles, ...gradientStyle(optionActive) };
           }
         }
         return styles || {};
@@ -420,27 +477,37 @@ export default {
       }
       return styles || {};
     },
-    comStyle() {
-      let { info = {} } = this;
+    // selectArrowStyle() {
+    //   let { info = {} } = this;
+    //   let { select = {} } = info;
+    //   let { arrowColor = "" } = select;
+    //   let styles = {};
+    //   styles["--background-color"] = arrowColor;
+    //   return styles || {};
+    // },
+    selectStyle() {
+      let { info = {}, zoom = 1, boxZoom = 1 } = this;
+      let { select = {} } = info || {};
       let {
-        width = "",
-        height = ""
+        // width = "",
+        maxHeight = "",
         // color = "",
-        // borderColor = "",
-        // borderStyle = "",
-        // borderWidth = "",
-        // borderRadius = "",
+        borderColor = "",
+        borderStyle = "",
+        borderWidth = "",
+        borderRadius = "",
         // // scale = "",
-        // marginTop = 0,
-        // marginBottom = 0,
-        // marginLeft = 0,
-        // marginRight = 0,
-        // paddingTop = 0,
-        // paddingBottom = 0,
-        // paddingLeft = 0,
-        // paddingRight = 0,
-        // shadow = {},
-        // shadowable = false,
+        marginTop = 0,
+        marginBottom = 0,
+        marginLeft = 0,
+        marginRight = 0,
+        paddingTop = 0,
+        paddingBottom = 0,
+        paddingLeft = 0,
+        paddingRight = 0,
+        shadow = {},
+        shadowable = false,
+        arrowColor = ""
         // textShadow = {},
         // textShadowable = false,
         // textAlign = "",
@@ -453,17 +520,21 @@ export default {
         // backgroundColor = "",
         // backgroundImage = "",
         // backgroundRepeat = "",
-        // backgroundSize = ""
-      } = info || {};
+        // backgroundSize = "",
+      } = select || {};
       let styles = {
-        // margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
-        // padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
+        transformOrigin: "top",
+        margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
+        padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
       };
-      if (width) {
-        styles["width"] = `${width}px`;
+      if (zoom && boxZoom) {
+        styles["transform"] = `scale(${zoom * boxZoom})`;
       }
-      if (height) {
-        styles["height"] = `${height}px`;
+      // if (width) {
+      //   styles["width"] = `${width}px`;
+      // }
+      if (maxHeight) {
+        styles["maxHeight"] = `${maxHeight}px`;
       }
       // if (textAlign) {
       //   styles["textAlign"] = textAlign;
@@ -477,32 +548,26 @@ export default {
       // if (backgroundSize) {
       //   styles["backgroundSize"] = backgroundSize;
       // }
-      // if (borderColor) {
-      //   styles["borderColor"] = borderColor;
-      // }
-      // if (borderStyle) {
-      //   styles["borderStyle"] = borderStyle;
-      // }
-      // styles["borderWidth"] = `${borderWidth}px`;
-      // styles["borderRadius"] = `${borderRadius}px`;
-      // if (shadowable) {
-      //   let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
-      //     shadow || {};
-      //   styles[
-      //     "boxShadow"
-      //   ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
-      // }
+      styles["--background-color"] = arrowColor;
+      if (borderColor) {
+        styles["borderColor"] = borderColor;
+      }
+      if (borderStyle) {
+        styles["borderStyle"] = borderStyle;
+      }
+      styles["borderWidth"] = `${borderWidth}px`;
+      styles["borderRadius"] = `${borderRadius}px`;
+      if (shadowable) {
+        let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
+          shadow || {};
+        styles[
+          "boxShadow"
+        ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
+      }
       // if (textShadowable) {
       //   let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
       //   styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
       // }
-      // // if (scale) {
-      // //   (styles["transform"] = `${scale}`),
-      // //     (styles["-webkit-transform"] = `${scale}`),
-      // //     (styles["-ms-transform"] = `${scale}`),
-      // //     (styles["-o-transform"] = `${scale}`),
-      // //     (styles["-moz-transform"] = `${scale}`);
-      // // }
       // if (color) {
       //   styles["color"] = color;
       // }
@@ -674,31 +739,56 @@ export default {
         .trim();
       item.name = name;
     },
-    clickEvent(item) {
+    optionClickEvent(item, index) {
       let { info = {} } = this;
       let { value = "" } = item || {};
       info.content = value;
-      bmCommon.log(info.content, value);
+      info.select.showable = false;
+      // bmCommon.log(info.content, value);
     }
   }
+  // watch: {
+  //   zoom(newVal, oldVal) {
+  //     bmCommon.log(newVal,oldVal)
+  //     if (newVal != oldVal) {
+  //       this.$refs.popover.$refs.popper.style.transform = `scale(${newVal})`;
+  //     }
+  //   }
+  // }
 };
 </script>
 
 <style lang="less">
 @import (reference) "./../../../../assets/less/common.less";
+.bm-select-com-poper {
+  .p(0);
+  .m(0) !important;
+  .bc(transparent);
+  .box-s(none);
+  .bor(none);
+  // .popper__arrow{
+  // }
+  .float-box {
+    .touch-y;
+    li {
+      .pointer;
+    }
+  }
+}
 .bm-select-com {
   .posr;
   .select-text {
     .df;
+    .pointer;
     justify-content: space-between;
     align-items: center;
     .h(100%);
     &:hover {
-      border-color: var(--border-hover-color);
+      .borc(var(--border-hover-color)) !important;
     }
   }
-  .float-box {
-    .posa;
-  }
+  // .float-box {
+  //   .posa;
+  // }
 }
 </style>

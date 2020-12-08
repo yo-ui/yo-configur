@@ -1,5 +1,8 @@
 <template>
-  <div class="bm-index-page">
+  <div
+    class="bm-index-page"
+    :style="canvas.pageColor ? `background-color:${canvas.pageColor}` : ''"
+  >
     <bm-header ref="bmHeader"></bm-header>
     <bm-nav ref="bmNav"></bm-nav>
     <div class="flex-content">
@@ -741,17 +744,17 @@ export default {
         // 绑定移动事件：只有从属于 page 的，除背景图以外的元件才能移动
         // let [item = {}] = activeComs || [];
         let { activeCom: _activeCom = {} } = this;
-        let { id: _id = "" } = _activeCom || {};
+        // let { id: _id = "" } = _activeCom || {};
         _activeCom.showCoverStatus = true;
         //如果 shift ctrl 被按住则进行 多选和取消选择
         if (shiftKey || ctrlKey) {
           // let { locked = false } = activeCom || {};
           this.selectComsAction(id); //选中组件
         } else {
-          if (id != _id) {
+          // if (id != _id) {
             // 如果是已经选中了则不做处理
             this.selectComAction(id); //选中组件
-          }
+          // }
         }
         let {
           activeComs = [],
@@ -1038,6 +1041,10 @@ export default {
           item.top = item.top + 10;
         });
       } else {
+        let { type = "" } = activeCom || {};
+        if (type == "canvas") {
+          return;
+        }
         copyCom = bmCommon.clone(activeCom || {});
         copyCom.left = copyCom.left + 10;
         copyCom.top = copyCom.top + 10;
@@ -1047,12 +1054,10 @@ export default {
     },
     // 粘贴
     pasteEvent(e) {
-      let {
-        copyCom = {},
-        widgetList = [],
-        getZoom: zoom = 1,
-        canvas = {}
-      } = this;
+      let { copyCom, widgetList = [], getZoom: zoom = 1, canvas = {} } = this;
+      if (!copyCom) {
+        return;
+      }
       let { length = 0 } = copyCom || {};
       let _activeComs = [];
       let _activeCom = {};
@@ -1123,6 +1128,10 @@ export default {
         });
         this.setActiveComs(_activeComs);
       } else {
+        let { type = "" } = copyCom || {};
+        if (type == "canvas" || !type) {
+          return;
+        }
         callback(copyCom || {}, 0);
         this.setActiveCom(_activeCom);
       }

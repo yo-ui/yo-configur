@@ -121,6 +121,13 @@
           ></el-slider>
         </p>
         <p>
+          <span class="label">{{ $lang("页面背景") }}:</span>
+          <el-color-picker
+            v-model="info.pageColor"
+            show-alpha
+          ></el-color-picker>
+        </p>
+        <p>
           <span class="label">{{ $lang("填充颜色") }}:</span>
           <el-select
             v-model="info.backgroundType"

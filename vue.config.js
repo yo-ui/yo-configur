@@ -264,8 +264,8 @@ module.exports = {
       "/service": {
         // target: "http://localhost:8080",
         // target: "http://192.168.0.129:8089",
-        target: "http://test-api-eiot.energyiot.cn",
-        // target: "https://viz.energyiot.cn/service",
+        // target: "http://test-api-eiot.energyiot.cn",
+        target: "https://viz.energyiot.cn/service",
         ws: false,
         changeOrigin: true,
         pathRewrite: { "/service": "/" }
@@ -273,8 +273,8 @@ module.exports = {
       "/manage": {
         // target: "http://localhost:8080",
         // target: "http://192.168.0.129:8089",
-        // target: "https://viz.energyiot.cn/manage",
-        target: "http://test-api-manage.energyiot.cn",
+        // target: "http://test-api-manage.energyiot.cn",
+        target: "https://viz.energyiot.cn/manage",
         ws: false,
         changeOrigin: true,
         pathRewrite: { "/manage": "/" }

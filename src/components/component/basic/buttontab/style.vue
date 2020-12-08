@@ -1902,7 +1902,11 @@ export default {
     removeContentEvent() {
       let { info = {}, tabActive = 0 } = this;
       let { contentList = [] } = info || {};
-      contentList.splice(tabActive, 1);
+      let { length = 0 } = contentList || [];
+      if (length > 1) {
+        contentList.splice(tabActive, 1);
+        this.tabActive = "0";
+      }
     },
     addContentEvent() {
       let { info = {} } = this;

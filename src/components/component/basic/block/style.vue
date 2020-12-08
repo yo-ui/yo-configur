@@ -783,6 +783,7 @@ export default {
       radialShapeList: Object.freeze(Constants.RADIALSHAPELIST),
       angelList: Object.freeze(Constants.ANGELLIST),
       gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
+      shadowTypeList: Object.freeze(Constants.SHADOWTYPELIST),
       flipModeList: Object.freeze(Constants.FLIPMODELIST),
       BACKGROUNDSIZELIST: Object.freeze(Constants.BACKGROUNDSIZELIST),
       fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
