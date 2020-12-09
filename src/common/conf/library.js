@@ -64,7 +64,11 @@ let baseData = {
   order: "",
   borderStyle: "none",
   borderColor: "#000",
-  borderRadius: 0,
+  borderRadius: 0,  
+  borderRadiusTopLeft: 0,
+  borderRadiusTopRight: 0,
+  borderRadiusBottomLeft: 0,
+  borderRadiusBottomRight: 0,
   scale: "scale(1,1)",
   showCoverStatus: true, //默认显示覆盖层
   left: 0,
@@ -849,7 +853,54 @@ let componentLibrary = [
           // content: "00.00",
           // scaleable: false //是否可缩放操作
         }
-      }
+      },
+      {
+        name: "自动手动",
+        code: "amt",
+        icon: "/static/img/configur/amt.svg",
+        data: {
+          ...baseData,
+          dataType: "point",
+          width: 87,
+          height: 26,
+        }
+      },
+      {
+        name: "启停",
+        code: "startStop",
+        icon: "/static/img/configur/start-stop.svg",
+        data: {
+          ...baseData,
+          dataType: "point",
+          // content: false,
+          width: 87,
+          height: 26
+        }
+      },
+      {
+        name: "报警",
+        code: "alarm",
+        icon: "/static/img/configur/alarm.svg",
+        data: {
+          ...baseData,
+          dataType: "point",
+          // content: false,
+          width: 46,
+          height: 26,
+        }
+      },
+      {
+        name: "故障",
+        code: "fault",
+        icon: "/static/img/configur/fault.svg",
+        data: {
+          ...baseData,
+          dataType: "point",
+          // content: false,
+          width: 46,
+          height: 26,
+        }
+      },
     ]
   },
   {
@@ -1970,25 +2021,39 @@ let componentLibrary = [
             icon: "/static/img/configur/lsdgl.png",
             data: {
               ...baseData,
-              // backgroundImage: "/static/img/svg/rqgl.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
               dataType: "device",
               infoType: "device", //显示详情组件前缀名
               width: 100,
               height: 194,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
+            }
+          },
+          {
+            name: "新风控制器",
+            code: "deviceXfkzq",
+            alias: "xfkzq",
+            icon: "/static/img/configur/xfkzq.svg",
+            data: {
+              ...baseData,
+              dataType: "device",
+              infoType: "device", //显示详情组件前缀名
+              width: 85,
+              height: 58,
+              equalScaleable: true //是否等比例缩放
+            }
+          },
+          {
+            name: "温控器",
+            code: "deviceWkq",
+            alias: "wkq",
+            icon: "/static/img/configur/wkq.svg",
+            data: {
+              ...baseData,
+              dataType: "device",
+              infoType: "device", //显示详情组件前缀名
+              width: 73,
+              height: 65,
+              equalScaleable: true //是否等比例缩放
             }
           }
         ]

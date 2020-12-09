@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 85 58" style="enable-background:new 0 0 85 58;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;fill:#D8D9D9;}
+	.st2{display:inline;fill:url(#SVGID_1_);}
+	.st3{display:inline;fill:#FFFFFF;}
+	.st4{display:inline;fill:url(#SVGID_2_);}
+	.st5{display:inline;opacity:0.3;}
+	.st6{display:inline;fill:#E8E8E8;}
+	.st7{fill:#D8D9D9;}
+	.st8{fill:url(#SVGID_3_);}
+	.st9{fill:#FFFFFF;}
+	.st10{fill:url(#SVGID_4_);}
+	.st11{opacity:0.3;}
+	.st12{fill:#E8E8E8;}
+</style>
+<g id="图层_2" class="st0">
+	<path class="st1" d="M1161,550h-85v-50c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3V550z"/>
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="1118.5" y1="555" x2="1118.5" y2="502">
+		<stop  offset="0" style="stop-color:#D8D9D9"/>
+		<stop  offset="1" style="stop-color:#B1B1B2"/>
+	</linearGradient>
+	<path class="st2" d="M1158,555h-79c-1.7,0-3-1.3-3-3v-47c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3v47C1161,553.7,1159.7,555,1158,555z"
+		/>
+	<path class="st3" d="M1136,551h-53c-1.7,0-3-1.3-3-3v-39c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C1139,549.7,1137.7,551,1136,551z"
+		/>
+	<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="1109.5" y1="549" x2="1109.5" y2="506">
+		<stop  offset="0" style="stop-color:#929CAD"/>
+		<stop  offset="1" style="stop-color:#697284"/>
+	</linearGradient>
+	<path class="st4" d="M1136,549h-53c-1.7,0-3-1.3-3-3v-39c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C1139,547.7,1137.7,549,1136,549z"
+		/>
+	<rect x="1144" y="507" class="st5" width="17" height="43"/>
+	<rect x="1145" y="508" class="st3" width="15" height="5"/>
+	<rect x="1145" y="509" class="st6" width="15" height="5"/>
+	<rect x="1145" y="515" class="st3" width="15" height="5"/>
+	<rect x="1145" y="516" class="st6" width="15" height="5"/>
+	<rect x="1145" y="522" class="st3" width="15" height="5"/>
+	<rect x="1145" y="523" class="st6" width="15" height="5"/>
+	<rect x="1145" y="529" class="st3" width="15" height="5"/>
+	<rect x="1145" y="530" class="st6" width="15" height="5"/>
+	<rect x="1145" y="536" class="st3" width="15" height="5"/>
+	<rect x="1145" y="537" class="st6" width="15" height="5"/>
+	<rect x="1145" y="543" class="st3" width="15" height="5"/>
+	<rect x="1145" y="544" class="st6" width="15" height="5"/>
+</g>
+<g id="图层_1">
+	<path class="st7" d="M85,53H0V3c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3V53z"/>
+	<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="42.5" y1="58" x2="42.5" y2="5">
+		<stop  offset="0" style="stop-color:#D8D9D9"/>
+		<stop  offset="1" style="stop-color:#B1B1B2"/>
+	</linearGradient>
+	<path class="st8" d="M82,58H3c-1.7,0-3-1.3-3-3V8c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3v47C85,56.7,83.7,58,82,58z"/>
+	<path class="st9" d="M60,54H7c-1.7,0-3-1.3-3-3V12c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C63,52.7,61.7,54,60,54z"/>
+	<linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="33.5" y1="52" x2="33.5" y2="9">
+		<stop  offset="0" style="stop-color:#00BF81"/>
+		<stop  offset="1" style="stop-color:#007A7F"/>
+	</linearGradient>
+	<path class="st10" d="M60,52H7c-1.7,0-3-1.3-3-3V10c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C63,50.7,61.7,52,60,52z"/>
+	<rect x="68" y="10" class="st11" width="17" height="43"/>
+	<rect x="69" y="11" class="st9" width="15" height="5"/>
+	<rect x="69" y="12" class="st12" width="15" height="5"/>
+	<rect x="69" y="18" class="st9" width="15" height="5"/>
+	<rect x="69" y="19" class="st12" width="15" height="5"/>
+	<rect x="69" y="25" class="st9" width="15" height="5"/>
+	<rect x="69" y="26" class="st12" width="15" height="5"/>
+	<rect x="69" y="32" class="st9" width="15" height="5"/>
+	<rect x="69" y="33" class="st12" width="15" height="5"/>
+	<rect x="69" y="39" class="st9" width="15" height="5"/>
+	<rect x="69" y="40" class="st12" width="15" height="5"/>
+	<rect x="69" y="46" class="st9" width="15" height="5"/>
+	<rect x="69" y="47" class="st12" width="15" height="5"/>
+</g>
+</svg>

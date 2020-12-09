@@ -99,6 +99,27 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-switch" */ "@/components/component/basic/switch/index.vue"
     ),
+
+  // 自动手动
+  amtCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-amt" */ "@/components/component/basic/amt/index.vue"
+    ),
+  // 启停
+  startStopCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-startStop" */ "@/components/component/basic/startStop/index.vue"
+    ),
+  // 报警
+  alarmCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-alarm" */ "@/components/component/basic/alarm/index.vue"
+    ),
+  // 故障
+  faultCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-fault" */ "@/components/component/basic/fault/index.vue"
+    ),
   //百分比进度条
   progressbarCom: () =>
     import(
@@ -648,6 +669,26 @@ let styles = {
   switchStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-switch-style" */ "@/components/component/basic/switch/style.vue"
+    ),
+  // 自动手动
+  amtStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-amt-style" */ "@/components/component/basic/amt/style.vue"
+    ),
+  // 启停
+  startStopStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-startStop-style" */ "@/components/component/basic/startStop/style.vue"
+    ),
+  // 报警
+  alarmStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-alarm-style" */ "@/components/component/basic/alarm/style.vue"
+    ),
+  // 故障
+  faultStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-fault-style" */ "@/components/component/basic/fault/style.vue"
     ),
   // buttontab 按钮标签
   buttontabStyleCom: () =>
