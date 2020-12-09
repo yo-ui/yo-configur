@@ -43,7 +43,7 @@ export default {
   computed: {
     decimal() {
       let { info = {} } = this;
-      let { decimal = 0, value = "", decimalSeat = "0" } = info || {};
+      let { decimal = 0, content: value = "", decimalSeat = "0" } = info || {};
       let arr = [];
       let values = (value + "").split(".");
       let [, decimals = ""] = values || [];
@@ -56,7 +56,7 @@ export default {
     },
     integer() {
       let { info = {} } = this;
-      let { integer = 1, value = "", integerSeat = "" } = info || {};
+      let { integer = 1, content: value = "", integerSeat = "" } = info || {};
       let arr = [];
       let values = (value + "").split(".");
       let [integers = ""] = values || [];
@@ -194,7 +194,7 @@ export default {
       let {
         width = "",
         height = "",
-        distance = 0,
+        // distance = 0,
         textAlign = "",
         // fontFamily = "",
         // color = "",

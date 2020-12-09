@@ -3106,14 +3106,7 @@ export default {
       info.textAlign = item;
     },
     openAll() {
-      this.activeNames = [
-        "name",
-        "style",
-        "outward",
-        "margin",
-        "fontSet",
-        "animation"
-      ];
+      this.activeNames = ["name", "input", "select", "animation"];
     },
     closeAll() {
       this.activeNames = ["name"];

@@ -1554,8 +1554,77 @@
           </span>
         </p>
       </el-collapse-item>
-      <!-- <el-collapse-item :title="$lang('链接设置')" name="link">
-      </el-collapse-item> -->
+      <el-collapse-item :title="$lang('内容')" name="content">
+        <p>
+          <span class="label">{{ $lang("当前值") }}:</span>
+          <el-input-number
+            class="flex"
+            controls-position="right"
+            clearable
+            :min="0"
+            v-model.number="info.content"
+            :placeholder="$lang('当前值')"
+          ></el-input-number>
+          <!-- px
+          <el-slider
+            v-model="info.content"
+            :min="0"
+            :format-tooltip="val => val"
+          ></el-slider> -->
+        </p>
+        <p>
+          <span class="label">{{ $lang("整数位数") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            :min="0"
+            :max="20"
+            v-model.number="info.integer"
+            :placeholder="$lang('整数位数')"
+          ></el-input-number>
+          px
+          <el-slider
+            v-model="info.integer"
+            :min="0"
+            :max="20"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label">{{ $lang("整数补齐") }}:</span>
+          <el-select v-model="info.integerSeat" placeholder="请选择整数补齐">
+            <el-option :label="$lang('<空白>')" value=""></el-option>
+            <el-option :label="$lang('0')" value="0"></el-option>
+            <el-option :label="$lang('#')" value="#"></el-option>
+          </el-select>
+        </p>
+        <p>
+          <span class="label">{{ $lang("小数位数") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            :min="0"
+            :max="20"
+            v-model.number="info.decimal"
+            :placeholder="$lang('小数位数')"
+          ></el-input-number>
+          px
+          <el-slider
+            v-model="info.decimal"
+            :min="0"
+            :max="20"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label">{{ $lang("小数补齐") }}:</span>
+          <el-select v-model="info.decimalSeat" placeholder="请选择小数补齐">
+            <el-option :label="$lang('<空白>')" value=""></el-option>
+            <el-option :label="$lang('0')" value="0"></el-option>
+            <el-option :label="$lang('#')" value="#"></el-option>
+          </el-select>
+        </p>
+      </el-collapse-item>
       <el-collapse-item :title="$lang('动画')" name="animation">
         <p>
           <span class="label">{{ $lang("动画类型") }}:</span>
@@ -1879,7 +1948,14 @@ export default {
       info.textAlign = item;
     },
     openAll() {
-      this.activeNames = ["name", "outward", "margin", "fontSet", "animation"];
+      this.activeNames = [
+        "name",
+        "outward",
+        "margin",
+        "boardStyle",
+        "content",
+        "animation"
+      ];
     },
     closeAll() {
       this.activeNames = ["name"];

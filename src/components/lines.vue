@@ -6,8 +6,8 @@
       :data-name="item.name" -->
     <div
       :class="{ active: attachHoriz(item.val, item.id) }"
-      v-for="item in horiz"
-      :key="item.id"
+      v-for="(item, index) in horiz"
+      :key="`horiz_${index}`"
       :style="{
         top: `${item.val}px`
         //left: `${item.left}px`,
@@ -21,8 +21,8 @@
       :data-name="item.name" -->
     <div
       :class="{ active: attachVerti(item.val, item.id) }"
-      v-for="item in verti"
-      :key="item.id"
+      v-for="(item, index) in verti"
+      :key="`verti_${index}`"
       :style="{
         left: `${item.val}px`
         //height: `${item.height}px`,

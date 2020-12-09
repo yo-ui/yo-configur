@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "bmSelectCom",

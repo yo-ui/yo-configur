@@ -373,27 +373,27 @@ let componentLibrary = [
           originHeight: "", //原高
           width: "",
           height: "",
-          fontSize:28,
-          color:"#000",
+          fontSize: 28,
+          color: "#000",
           fontFamily: "Impact",
           integer: 6, //整数位
           integerSeat: "#", // 空白  0  #  整数位补足符号
           decimal: 4, //小数位
           decimalSeat: "0", //  0  #  小数位补足符号
           // scaleable: false,
-          value: 100.1, //数值
+          content: 100.1, //数值
           board: {
             width: 20,
             height: 30,
             // fontSize: 28,
             // distance: 8, //卡片间距
-            textAlign:'center',
+            textAlign: "center",
             // fontFamily: "Impact",
             backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
-            backgroundColor:"#4195ea",
+            backgroundColor: "#4195ea",
             gradientStyle,
             marginTop: 0,
-            shadowable:false,
+            shadowable: false,
             shadow,
             marginBottom: 0,
             marginLeft: 0,
@@ -408,7 +408,7 @@ let componentLibrary = [
             borderRadiusBottomRight: 0,
             borderWidth: 1,
             borderStyle: "none",
-            borderColor: "#ccc",
+            borderColor: "#ccc"
           }
         }
       },
@@ -631,11 +631,11 @@ let componentLibrary = [
             // backgroundColor: "#4195ea",
             // textShadowable: false,
             // textShadow,
-            showable:false,//默认显示
+            showable: false, //默认显示
             shadowable: false,
             shadow,
-            arrowStatus:true,
-            arrowColor:'#fff',
+            arrowStatus: true,
+            arrowColor: "#fff",
             // fontFamily: "",
             // fontSize: 14,
             // fontWeight: "",
@@ -660,7 +660,7 @@ let componentLibrary = [
           option: {
             height: 30, //按钮高度
             // width: 80, //按钮宽度
-            textIndent:10,
+            textIndent: 10,
             color: "#333",
             fontFamily: "",
             fontSize: 14,
@@ -703,7 +703,7 @@ let componentLibrary = [
             // fontStyle: "",
             // textDecoration: "",
             backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
-            gradientStyle,
+            gradientStyle
             // borderColor: "#4195ea"
           },
           optionActive: {
@@ -717,7 +717,7 @@ let componentLibrary = [
             // fontStyle: "",
             // textDecoration: "",
             backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
-            gradientStyle,
+            gradientStyle
             // borderColor: "#4195ea"
           },
           contentList: [
