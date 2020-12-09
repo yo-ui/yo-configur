@@ -1,0 +1,422 @@
+<template>
+  <div class="bm-basic-wkq-com" :style="comStyle">
+    <svg
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      :viewBox="`0 0 73 65`"
+      :width="info.width"
+      :height="info.height"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xml:space="preserve"
+    >
+      <defs
+        v-html="
+          `
+        <style type='text/css'>        
+	.wkq-st0{display:none;}
+	.wkq-st1{display:inline;fill:#D8D9D9;}
+	.wkq-st2{display:inline;fill:url(#wkq_${info.id}_SVGID_1_);}
+	.wkq-st3{display:inline;fill:#FFFFFF;}
+	.wkq-st4{display:inline;fill:url(#wkq_${info.id}_SVGID_2_);}
+	.wkq-st5{display:inline;}
+	.wkq-st6{fill:#FFFFFF;}
+	.wkq-st7{fill:#E8E8E8;}
+	.wkq-st8{fill:#D8D9D9;}
+	.wkq-st9{fill:url(#wkq_${info.id}_SVGID_3_);}
+	.wkq-st10{fill:url(#wkq_${info.id}_SVGID_4_);}
+      </style>
+      `
+        "
+      ></defs>
+
+      <g id="图层_2" v-if="info.content">
+        <path
+          class="wkq-st1"
+          d="M73,60H0V3c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3V60z"
+        />
+        <linearGradient
+          :id="`wkq_${info.id}_SVGID_1_`"
+          gradientUnits="userSpaceOnUse"
+          x1="36.5"
+          y1="65"
+          x2="36.5"
+          y2="5"
+        >
+          <stop offset="0" style="stop-color:#D8D9D9" />
+          <stop offset="1" style="stop-color:#B1B1B2" />
+        </linearGradient>
+        <path
+          class="wkq-st2"
+          d="M70,65H3c-1.7,0-3-1.3-3-3V8c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3v54C73,63.7,71.7,65,70,65z"
+        />
+        <path
+          class="wkq-st3"
+          d="M66,54H7c-1.7,0-3-1.3-3-3V12c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,52.7,67.7,54,66,54z"
+        />
+        <linearGradient
+          :id="`wkq_${info.id}_SVGID_2_`"
+          gradientUnits="userSpaceOnUse"
+          x1="36.5"
+          y1="52"
+          x2="36.5"
+          y2="9"
+        >
+          <stop offset="0" style="stop-color:#929CAD" />
+          <stop offset="1" style="stop-color:#697284" />
+        </linearGradient>
+        <path
+          class="wkq-st4"
+          d="M66,52H7c-1.7,0-3-1.3-3-3V10c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,50.7,67.7,52,66,52z"
+        />
+        <g class="wkq-st5">
+          <rect x="8" y="57" class="wkq-st6" width="9" height="4" />
+          <rect x="8" y="58" class="wkq-st7" width="9" height="4" />
+        </g>
+        <g class="wkq-st5">
+          <rect x="24" y="57" class="wkq-st6" width="9" height="4" />
+          <rect x="24" y="58" class="wkq-st7" width="9" height="4" />
+        </g>
+        <g class="wkq-st5">
+          <rect x="40" y="57" class="wkq-st6" width="9" height="4" />
+          <rect x="40" y="58" class="wkq-st7" width="9" height="4" />
+        </g>
+        <g class="wkq-st5">
+          <rect x="56" y="57" class="wkq-st6" width="9" height="4" />
+          <rect x="56" y="58" class="wkq-st7" width="9" height="4" />
+        </g>
+      </g>
+      <g id="图层_1" v-else>
+        <path
+          class="wkq-st8"
+          d="M73,60H0V3c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3V60z"
+        />
+        <linearGradient
+          :id="`wkq_${info.id}_SVGID_3_`"
+          gradientUnits="userSpaceOnUse"
+          x1="36.5"
+          y1="65"
+          x2="36.5"
+          y2="5"
+        >
+          <stop offset="0" style="stop-color:#D8D9D9" />
+          <stop offset="1" style="stop-color:#B1B1B2" />
+        </linearGradient>
+        <path
+          class="wkq-st9"
+          d="M70,65H3c-1.7,0-3-1.3-3-3V8c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3v54C73,63.7,71.7,65,70,65z"
+        />
+        <path
+          class="wkq-st6"
+          d="M66,54H7c-1.7,0-3-1.3-3-3V12c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,52.7,67.7,54,66,54z"
+        />
+        <linearGradient
+          :id="`wkq_${info.id}_SVGID_4_`"
+          gradientUnits="userSpaceOnUse"
+          x1="36.5"
+          y1="52"
+          x2="36.5"
+          y2="9"
+        >
+          <stop offset="0" style="stop-color:#0084E9" />
+          <stop offset="1" style="stop-color:#0052AA" />
+        </linearGradient>
+        <path
+          class="wkq-st10"
+          d="M66,52H7c-1.7,0-3-1.3-3-3V10c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,50.7,67.7,52,66,52z"
+        />
+        <g>
+          <rect x="8" y="57" class="wkq-st6" width="9" height="4" />
+          <rect x="8" y="58" class="wkq-st7" width="9" height="4" />
+        </g>
+        <g>
+          <rect x="24" y="57" class="wkq-st6" width="9" height="4" />
+          <rect x="24" y="58" class="wkq-st7" width="9" height="4" />
+        </g>
+        <g>
+          <rect x="40" y="57" class="wkq-st6" width="9" height="4" />
+          <rect x="40" y="58" class="wkq-st7" width="9" height="4" />
+        </g>
+        <g>
+          <rect x="56" y="57" class="wkq-st6" width="9" height="4" />
+          <rect x="56" y="58" class="wkq-st7" width="9" height="4" />
+        </g>
+      </g>
+    </svg>
+  </div>
+</template>
+
+<script>
+import bmCommon from "@/common/common";
+// eslint-disable-next-line no-undef
+const { mapActions, mapMutations, mapGetters } = Vuex;
+const pointCode = "SwSts";
+export default {
+  name: "bmBasicWkqCom",
+  data() {
+    return {};
+  },
+  props: {
+    info: {
+      type: Object,
+      default: () => {
+        return {};
+      }
+    }
+  },
+  computed: {
+    ...mapGetters({
+      showType: "canvas/getShowType" //当前显示类型
+    }),
+
+    //渐变颜色样式
+    gradientStyle() {
+      return (info = {}) => {
+        // let { info = {} } = this;
+        let { gradientStyle = {} } = info || {};
+        let {
+          type = "",
+          angle = "",
+          center = "",
+          radialShape = "",
+          valueList = []
+        } = gradientStyle || {};
+        let styles = {};
+        let colors = valueList.map(item => `${item.code} ${item.value}%`);
+        if (type == "linear") {
+          styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
+        } else if (type == "radial") {
+          styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+        }
+        return styles;
+      };
+    },
+    comStyle() {
+      let { info = {}, gradientStyle } = this;
+      let {
+        width = "",
+        height = "",
+        // color = "",
+        borderColor = "",
+        borderStyle = "",
+        borderWidth = "",
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
+        backgroundType = "",
+        backgroundColor = "",
+        backgroundImage = "",
+        // content = false,
+        // activeColor = "",
+        // inactiveColor = "",
+        // borderRadius = "",
+        // backgroundType = "",
+        // scale = "",
+        // marginTop = 0,
+        // marginBottom = 0,
+        // marginLeft = 0,
+        // marginRight = 0,
+        // paddingTop = 0,
+        // paddingBottom = 0,
+        // paddingLeft = 0,
+        // paddingRight = 0,
+        shadow = {},
+        shadowable = false
+        // textShadow = {},
+        // textShadowable = false,
+        // textAlign = "",
+        // fontFamily = "",
+        // fontSize = "",
+        // fontWeight = "",
+        // fontStyle = "",
+        // borderRadius=0,
+        // textDecoration = ""
+        // backgroundColor = "",
+        // backgroundImage = "",
+        // backgroundRepeat = "",
+        // backgroundSize = ""
+      } = info || {};
+      let styles = {
+        // margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
+        // padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
+      };
+      // if (textAlign) {
+      //   styles["textAlign"] = textAlign;
+      //   if (textAlign == "justify") {
+      //     styles["text-align-last"] = textAlign;
+      //   }
+      // }
+      if (shadowable) {
+        let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
+          shadow || {};
+        styles[
+          "boxShadow"
+        ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
+      }
+      // if (textShadowable) {
+      //   let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
+      //   styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
+      // }
+      if (width) {
+        styles["width"] = `${width}px`;
+      }
+      if (height) {
+        styles["height"] = `${height}px`;
+      }
+      // if (backgroundRepeat) {
+      //   styles["backgroundRepeat"] = backgroundRepeat;
+      // }
+      // if (backgroundSize) {
+      //   styles["backgroundSize"] = backgroundSize;
+      // }
+      if (borderColor) {
+        styles["borderColor"] = borderColor;
+      }
+      if (borderStyle) {
+        styles["borderStyle"] = borderStyle;
+      }
+      styles["borderWidth"] = `${borderWidth}px`;
+      // styles["borderRadius"] = `${borderRadius}px`;
+      // if (scale) {
+      //   (styles["transform"] = `${scale}`),
+      //     (styles["-webkit-transform"] = `${scale}`),
+      //     (styles["-ms-transform"] = `${scale}`),
+      //     (styles["-o-transform"] = `${scale}`),
+      //     (styles["-moz-transform"] = `${scale}`);
+      // }
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
+
+      // if (color) {
+      //   styles["color"] = color;
+      // }
+      // if (fontSize) {
+      //   styles["fontSize"] = `${fontSize}px`;
+      // }
+      // if (fontFamily) {
+      //   styles["fontFamily"] = `${fontFamily}`;
+      // }
+      // if (fontWeight) {
+      //   styles["fontWeight"] = fontWeight;
+      // }
+      // if (fontStyle) {
+      //   styles["fontStyle"] = fontStyle;
+      // }
+      // if (textDecoration) {
+      //   styles["textDecoration"] = textDecoration;
+      // }
+
+      if (backgroundType == "purity") {
+        //纯色
+        if (backgroundColor) {
+          styles["backgroundColor"] = backgroundColor;
+        }
+        if (backgroundImage) {
+          styles["backgroundImage"] = `url(${this.$loadImgUrl(
+            backgroundImage
+          )})`;
+        }
+      } else if (backgroundType == "gradient") {
+        //渐变
+        styles = { ...styles, ...gradientStyle(info) };
+      }
+      return styles || {};
+    }
+  },
+  // created() {
+  //   let { info = {} } = this;
+  //   info.dataType = "device";
+  //   this.setActiveCom(info);
+  // },
+  mounted() {
+    let { info = {} } = this;
+    // bmCommon.log("kg mounted=", info.content);
+    let { content = "" } = info || {};
+    if (content === "") {
+      info.content = false;
+    }
+    this.init();
+  },
+  methods: {
+    ...mapMutations({
+      // setActiveCom: "canvas/setActiveCom" //设置当前选中组件
+    }),
+    ...mapActions({}),
+    controlEvent() {
+      let { info = {} } = this;
+      let { content = false, bindData = {} } = info || {};
+      let { deviceId = "" } = bindData || {};
+      if (!deviceId) {
+        info.content = !content;
+        return;
+      }
+      let point = pointCode;
+      let value = !content ? 1 : 0;
+      $vm.$emit("control", {
+        deviceId,
+        point,
+        value,
+        callback: flag => {
+          if (flag) {
+            info.content = !content;
+          } else {
+            info.content = content; //如果取消则重置结果
+          }
+        }
+      });
+    },
+    init() {
+      let { info = {}, showType = "" } = this;
+      if (showType != "edit") {
+        let { id = "" } = info || {};
+        let { $vm } = window;
+        // let { deviceId = "" } = bindData || {};
+        $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
+          bmCommon.log("deviceKgCom", device);
+          let { pointList = [] } = device || {};
+          let point = pointList.find(item => {
+            let { point: id = "" } = item || {};
+            return id == pointCode; // SwSts  开关状态
+          });
+          if (point) {
+            let { value = "" } = point || {};
+            info.content = value == 1 ? true : false;
+          }
+        });
+      }
+    }
+  }
+};
+</script>
+
+<style lang="less">
+// @import (reference) "./../../../../assets/less/common.less";
+// .bm-basic-switch-com {
+//   .posr;
+//   .pointer;
+//   .btn-text {
+//     .posa;
+//     top: 50%;
+//     .tranf(translate(0, -50%));
+//   }
+//   .btn-close-text {
+//     right: 10%;
+//   }
+//   .btn-open-text {
+//     left: 10%;
+//   }
+//   .btn-slider {
+//     .posa;
+//     top: 50%;
+//     .br(50%);
+//     .tranf(translate(0, -50%));
+//   }
+//   .btn-close-slider {
+//     left: 4%;
+//   }
+//   .btn-open-slider {
+//     right: 4%;
+//   }
+// }
+</style>

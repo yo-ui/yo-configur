@@ -64,7 +64,7 @@ let baseData = {
   order: "",
   borderStyle: "none",
   borderColor: "#000",
-  borderRadius: 0,  
+  borderRadius: 0,
   borderRadiusTopLeft: 0,
   borderRadiusTopRight: 0,
   borderRadiusBottomLeft: 0,
@@ -862,7 +862,7 @@ let componentLibrary = [
           ...baseData,
           dataType: "point",
           width: 87,
-          height: 26,
+          height: 26
         }
       },
       {
@@ -886,7 +886,7 @@ let componentLibrary = [
           dataType: "point",
           // content: false,
           width: 46,
-          height: 26,
+          height: 26
         }
       },
       {
@@ -898,9 +898,9 @@ let componentLibrary = [
           dataType: "point",
           // content: false,
           width: 46,
-          height: 26,
+          height: 26
         }
-      },
+      }
     ]
   },
   {

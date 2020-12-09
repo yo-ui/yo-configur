@@ -450,6 +450,16 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-device-lsdgl" */ "@/components/component/device/lsdgl/index.vue"
     ),
+  // 新风控制器
+  deviceXfkzqCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-xfkzq" */ "@/components/component/device/xfkzq/index.vue"
+    ),
+  // 温控器
+  deviceWkqCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-wkq" */ "@/components/component/device/wkq/index.vue"
+    ),
   // 湿式报警阀
   deviceSsbjfCom: () =>
     import(
@@ -999,6 +1009,16 @@ let styles = {
   deviceLsdglStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-lsdgl-style" */ "@/components/component/device/lsdgl/style.vue"
+    ),
+  // 新风控制器
+  deviceXfkzqStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-xfkzq-style" */ "@/components/component/device/xfkzq/style.vue"
+    ),
+  // 温控器
+  deviceWkqStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-wkq-style" */ "@/components/component/device/wkq/style.vue"
     ),
   // 湿式报警阀
   deviceSsbjfStyleCom: () =>

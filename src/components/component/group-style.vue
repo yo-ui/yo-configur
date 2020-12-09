@@ -841,17 +841,20 @@
         </p>
         <p>
           <span class="label">{{ $lang("播放次数") }}:</span>
-          <el-input-number
-            controls-position="right"
-            clearable
-            v-model.number="info.animation.iterationCount"
-            @change="animationChangeEvent('iterationCount')"
-            :placeholder="$lang('播放次数')"
-          ></el-input-number>
-          px
+          <el-tooltip
+            :content="$lang('若播放次数为0，则为无限循环播放')"
+            placement="top"
+            effect="dark"
+          >
+            <el-input-number
+              controls-position="right"
+              clearable
+              v-model.number="info.animation.iterationCount"
+              :placeholder="$lang('播放次数')"
+            ></el-input-number>
+          </el-tooltip>
           <el-slider
             v-model="info.animation.iterationCount"
-            @change="animationChangeEvent('iterationCount')"
             :format-tooltip="val => val"
           ></el-slider>
         </p>

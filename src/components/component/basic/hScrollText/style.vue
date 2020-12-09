@@ -870,28 +870,28 @@
           </p>
         </template>
         <p>
-              <span class="label">{{ $lang("字体大小") }}:</span>
-              <el-tooltip
-                :content="$lang('请输入字体大小')"
-                placement="top"
-                effect="dark"
-              >
-                <el-input-number
-                  controls-position="right"
-                  clearable
-                  :min="10"
-                  :max="200"
-                  v-model.number="info.fontSize"
-                  :placeholder="$lang('请输入字体大小')"
-                ></el-input-number>
-              </el-tooltip>
-              <el-slider
-                v-model="info.fontSize"
-                :min="10"
-                :max="200"
-                :format-tooltip="val => val"
-              ></el-slider>
-            </p>
+          <span class="label">{{ $lang("字体大小") }}:</span>
+          <el-tooltip
+            :content="$lang('请输入字体大小')"
+            placement="top"
+            effect="dark"
+          >
+            <el-input-number
+              controls-position="right"
+              clearable
+              :min="10"
+              :max="200"
+              v-model.number="info.fontSize"
+              :placeholder="$lang('请输入字体大小')"
+            ></el-input-number>
+          </el-tooltip>
+          <el-slider
+            v-model="info.fontSize"
+            :min="10"
+            :max="200"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
         <p>
           <span class="label">{{ $lang("字体") }}:</span>
           <el-select
@@ -1016,12 +1016,18 @@
         </p>
         <p>
           <span class="label">{{ $lang("播放次数") }}:</span>
-          <el-input-number
-            controls-position="right"
-            clearable
-            v-model.number="info.animation.iterationCount"
-            :placeholder="$lang('播放次数')"
-          ></el-input-number>
+          <el-tooltip
+            :content="$lang('若播放次数为0，则为无限循环播放')"
+            placement="top"
+            effect="dark"
+          >
+            <el-input-number
+              controls-position="right"
+              clearable
+              v-model.number="info.animation.iterationCount"
+              :placeholder="$lang('播放次数')"
+            ></el-input-number>
+          </el-tooltip>
           <el-slider
             v-model="info.animation.iterationCount"
             :format-tooltip="val => val"

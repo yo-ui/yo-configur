@@ -231,7 +231,7 @@ export default {
       };
     },
     comStyle() {
-      let { info = {},gradientStyle } = this;
+      let { info = {}, gradientStyle } = this;
       let {
         width = "",
         height = "",
@@ -245,7 +245,7 @@ export default {
         borderRadiusBottomRight = 0,
         backgroundType = "",
         backgroundColor = "",
-        backgroundImage="",
+        backgroundImage = "",
         // content = false,
         // activeColor = "",
         // inactiveColor = "",
@@ -261,7 +261,7 @@ export default {
         // paddingLeft = 0,
         // paddingRight = 0,
         shadow = {},
-        shadowable = false,
+        shadowable = false
         // textShadow = {},
         // textShadowable = false,
         // textAlign = "",
@@ -324,10 +324,10 @@ export default {
       //     (styles["-o-transform"] = `${scale}`),
       //     (styles["-moz-transform"] = `${scale}`);
       // }
-       styles[
-          "borderRadius"
-        ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
-        
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
+
       // if (color) {
       //   styles["color"] = color;
       // }
@@ -346,21 +346,21 @@ export default {
       // if (textDecoration) {
       //   styles["textDecoration"] = textDecoration;
       // }
-      
-          if (backgroundType == "purity") {
-            //纯色
-            if (backgroundColor) {
-              styles["backgroundColor"] = backgroundColor;
-            }
-            if (backgroundImage) {
-              styles["backgroundImage"] = `url(${this.$loadImgUrl(
-                backgroundImage
-              )})`;
-            }
-          } else if (backgroundType == "gradient") {
-            //渐变
-            styles = { ...styles, ...gradientStyle(info) };
-          }
+
+      if (backgroundType == "purity") {
+        //纯色
+        if (backgroundColor) {
+          styles["backgroundColor"] = backgroundColor;
+        }
+        if (backgroundImage) {
+          styles["backgroundImage"] = `url(${this.$loadImgUrl(
+            backgroundImage
+          )})`;
+        }
+      } else if (backgroundType == "gradient") {
+        //渐变
+        styles = { ...styles, ...gradientStyle(info) };
+      }
       return styles || {};
     }
   },

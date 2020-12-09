@@ -6,15 +6,6 @@
     <div class="flex-content">
       <div class="content-box">
         <div class="zoom-box">
-          <!--<el-button-group>
-            <el-button type="primary" size="default" @click="">
-              <i class="el-icon-zoom-in"></i>
-            </el-button>
-            <el-button type="primary" size="default" @click="zoomE">
-              <i class="el-icon-zoom-in"></i>
-            </el-button>
-          </el-button-group> -->
-
           <el-button-group>
             <el-button @click="zoomEvent(-20)">
               <i class="el-icon-zoom-out"></i>
@@ -534,6 +525,7 @@ export default {
               point: pointObj
             });
           }
+          // $vm.$emit(`comAnimationEvent_${id}`, animation);
         });
       });
     },

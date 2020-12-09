@@ -180,9 +180,9 @@ export default {
     // }
   },
   created() {
-    let { info = {} } = this;
-    let { comName = "", name = "" } = info || {};
-    info.comName = !comName ? name : comName;
+    // let { info = {} } = this;
+    // let { comName = "", name = "" } = info || {};
+    // info.comName = !comName ? name : comName;
     // let item = Constants.COMPONENTLIBRARYMAP[type] || {};
     // let { data = {} } = item || {};
     // let { infoType = "" } = data || {};
@@ -193,6 +193,12 @@ export default {
   },
   mounted() {
     // this.loadSuccess();
+    let { info = {} } = this;
+    let { animation = {} } = info || {};
+    let that = this;
+    that.loadAnimation(animation);
+    // $vm.$on(`comAnimationEvent_${id}`, (animation = {}) => {
+    // });
   },
   components: {
     ...widgets
@@ -245,14 +251,14 @@ export default {
       } = this;
       let { type = "" } = info || {};
       let classes = [];
+      if (animate) {
+        classes.push("animated");
+        classes.push(`${animate}`);
+      }
+      if (type) {
+        classes.push(`${type}`);
+      }
       if (showType == "edit") {
-        if (animate) {
-          classes.push("animated");
-          classes.push(`${animate}`);
-        }
-        if (type) {
-          classes.push(`${type}`);
-        }
         if (activeComIds.indexOf(info.id) > -1) {
           classes.push("active");
         }
@@ -565,9 +571,7 @@ export default {
           }
         }
         return;
-      }
-
-      if (direction === "top") {
+      } else if (direction === "top") {
         height = originHeight - Math.floor((dy * 1) / zoom);
         if (height > 10) {
           activeCom.top -= height - activeCom.height;
@@ -576,9 +580,7 @@ export default {
             activeCom.width = (originWidth * height) / originHeight;
           }
         }
-      }
-
-      if (direction === "bottom") {
+      } else if (direction === "bottom") {
         value = originHeight + Math.floor((dy * 1) / zoom);
         if (value > 10) {
           activeCom.height = value > 10 ? value : 10;
@@ -587,9 +589,7 @@ export default {
           }
         }
         return;
-      }
-
-      if (direction === "left") {
+      } else if (direction === "left") {
         width = originWidth - Math.floor((dx * 1) / zoom);
         if (width > 10) {
           activeCom.left -= width - activeCom.width;
@@ -599,9 +599,7 @@ export default {
           }
         }
         return;
-      }
-
-      if (direction === "topleft") {
+      } else if (direction === "topleft") {
         width = originWidth - Math.floor((dx * 1) / zoom);
         height = originHeight - Math.floor((dy * 1) / zoom);
         if (equalScaleable) {
@@ -618,8 +616,7 @@ export default {
           activeCom.width = width > 10 ? width : 10;
         }
         return;
-      }
-      if (direction === "topright") {
+      } else if (direction === "topright") {
         width = originWidth + Math.floor((dx * 1) / zoom);
         height = originHeight - Math.floor((dy * 1) / zoom);
         if (equalScaleable) {
@@ -636,9 +633,7 @@ export default {
           activeCom.width = width > 10 ? width : 10;
         }
         return;
-      }
-
-      if (direction === "bottomleft") {
+      } else if (direction === "bottomleft") {
         height = originHeight + Math.floor((dy * 1) / zoom);
         width = originWidth - Math.floor((dx * 1) / zoom);
         if (equalScaleable) {
@@ -655,8 +650,7 @@ export default {
           activeCom.width = width > 10 ? width : 10;
         }
         return;
-      }
-      if (direction === "bottomright") {
+      } else if (direction === "bottomright") {
         height = originHeight + Math.floor((dy * 1) / zoom);
         width = originWidth + Math.floor((dx * 1) / zoom);
         if (equalScaleable) {
@@ -673,8 +667,7 @@ export default {
           activeCom.width = width > 10 ? width : 10;
         }
         return;
-      }
-      if (direction === "rotate") {
+      } else if (direction === "rotate") {
         let rect = bmComBox?.getBoundingClientRect() || {};
         let { left = 0, top = 0, width = 0, height = 0 } = rect || {};
         let center = { x: left + width / 2, y: top + height / 2 };
@@ -758,6 +751,19 @@ export default {
       e.stopPropagation();
       this.resizing = true;
       this.mousedownEvent(e, "bottomright");
+    },
+    loadAnimation(newVal) {
+      let that = this;
+      clearTimeout(that._setTimeoutId);
+      // let { info = {} } = this;
+      // let { animation = {} } = info || {};
+      let { name = "", iterationCount = "", duration = "" } = newVal || {};
+      that.animate = name;
+      if (iterationCount) {
+        that._setTimeoutId = setTimeout(() => {
+          // that.animate = "";
+        }, iterationCount * duration * 1000 + 100);
+      }
     }
   },
   beforeDestroy() {
@@ -767,19 +773,7 @@ export default {
   watch: {
     "info.animation": {
       handler(newVal, oldVal) {
-        // if (newVal != oldVal) {
-        clearTimeout(this._setTimeoutId);
-        let that = this;
-        // let { info = {} } = this;
-        // let { animation = {} } = info || {};
-        let { name = "", iterationCount = "", duration = "" } = newVal || {};
-        that.animate = name;
-        if (iterationCount) {
-          this._setTimeoutId = setTimeout(() => {
-            that.animate = "";
-          }, iterationCount * duration * 1000 + 100);
-        }
-        // }
+        this.loadAnimation(newVal);
       },
       deep: true
     }

@@ -40,7 +40,13 @@
           <stop offset="0.5" style="stop-color:#FFFFFF" />
           <stop offset="0.9803" style="stop-color:#777C7F" />
         </linearGradient>
-        <rect id="sg_bottom_4_" y="2" class="downWater-st0" width="10" height="6" />
+        <rect
+          id="sg_bottom_4_"
+          y="2"
+          class="downWater-st0"
+          width="10"
+          height="6"
+        />
 
         <linearGradient
           id="downWater_7_"

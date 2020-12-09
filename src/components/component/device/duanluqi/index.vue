@@ -82,10 +82,34 @@
         width="0.9"
         height="21.7"
       />
-      <circle id="duanluqi_24_" class="duanluqi-st4" cx="14.4" cy="32.8" r="3.5" />
-      <circle id="duanluqi_25_" class="duanluqi-st5" cx="14.4" cy="32.8" r="2.8" />
-      <circle id="duanluqi_27_" class="duanluqi-st4" cx="30.4" cy="32.8" r="3.5" />
-      <circle id="duanluqi_26_" class="duanluqi-st6" cx="30.4" cy="32.8" r="2.8" />
+      <circle
+        id="duanluqi_24_"
+        class="duanluqi-st4"
+        cx="14.4"
+        cy="32.8"
+        r="3.5"
+      />
+      <circle
+        id="duanluqi_25_"
+        class="duanluqi-st5"
+        cx="14.4"
+        cy="32.8"
+        r="2.8"
+      />
+      <circle
+        id="duanluqi_27_"
+        class="duanluqi-st4"
+        cx="30.4"
+        cy="32.8"
+        r="3.5"
+      />
+      <circle
+        id="duanluqi_26_"
+        class="duanluqi-st6"
+        cx="30.4"
+        cy="32.8"
+        r="2.8"
+      />
       <path
         id="duanluqi_35_"
         class="duanluqi-st7"

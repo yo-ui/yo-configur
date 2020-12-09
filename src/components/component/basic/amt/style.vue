@@ -758,11 +758,7 @@ export default {
       }
     },
     openAll() {
-      this.activeNames = [
-        "name",
-        "set",
-        "animation"
-      ];
+      this.activeNames = ["name", "set", "animation"];
     },
     closeAll() {
       this.activeNames = ["name"];
