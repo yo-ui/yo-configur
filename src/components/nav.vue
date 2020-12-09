@@ -499,6 +499,9 @@ export default {
     },
     resumeEvent() {
       let { historyList = [], historyIndex = 0 } = this;
+      if (!(historyIndex < 1)) {
+        return;
+      }
       // let { historyIndex = 0 } = condition;
       // let { length = 0 } = historyList || [];
       if (historyIndex < 0) {
@@ -513,6 +516,9 @@ export default {
     },
     cancelEvent() {
       let { historyList = [], historyIndex = 0 } = this;
+      if (!(historyIndex > historyList.length - 2)) {
+        return;
+      }
       // let {  } = condition;
       let { length = 0 } = historyList || [];
       if (historyIndex > length - 1) {

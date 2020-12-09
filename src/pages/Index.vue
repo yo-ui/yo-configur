@@ -92,6 +92,7 @@
               </template>
             </bm-com>
             <bm-lines ref="bmLines"></bm-lines>
+            <bm-rule-lines ref="bmRuleLines"></bm-rule-lines>
             <!-- <bm-group ref="bmGroup" v-if="isSameGroup">{{
               isSameGroup
             }}</bm-group> -->
@@ -242,6 +243,10 @@ export default {
     //   import(/* webpackChunkName: "iot-header-com" */ "@/components/header"),
     bmLines: () =>
       import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
+    bmRuleLines: () =>
+      import(
+        /* webpackChunkName: "iot-rule-lines-com" */ "@/components/rule-lines"
+      ),
     // bmGroup: () =>
     //   import(/* webpackChunkName: "iot-group-com" */ "@/components/group"),
     bmSelect: () =>
@@ -733,6 +738,7 @@ export default {
       let id = $(target).attr("data-id");
       let width = $(target).outerWidth();
       let height = $(target).outerHeight();
+      bmCommon.log(target);
       if (!type) {
         type = $parent.attr("data-type");
         id = $parent.attr("data-id");
@@ -752,8 +758,8 @@ export default {
           this.selectComsAction(id); //选中组件
         } else {
           // if (id != _id) {
-            // 如果是已经选中了则不做处理
-            this.selectComAction(id); //选中组件
+          // 如果是已经选中了则不做处理
+          this.selectComAction(id); //选中组件
           // }
         }
         let {

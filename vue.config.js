@@ -111,6 +111,8 @@ module.exports = {
     // });
   },
   configureWebpack: config => {
+    config.devtool =
+      process.env.NODE_ENV === "production" ? undefined : "source-map";
     config.externals = {
       // "./cptable": "var cptable",
       vue: "Vue",
