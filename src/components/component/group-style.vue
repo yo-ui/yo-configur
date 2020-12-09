@@ -795,7 +795,7 @@
           </template>
         </template>
       </el-collapse-item>
-      <el-collapse-item title="动画" name="animation">
+      <el-collapse-item :title="$lang('动画')" name="animation">
         <p>
           <span class="label">{{ $lang("动画类型") }}:</span>
           <el-select

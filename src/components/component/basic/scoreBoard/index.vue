@@ -96,6 +96,12 @@ export default {
         borderStyle = "",
         borderWidth = "",
         borderRadius = "",
+        fontFamily = "",
+        color = "",
+        fontWeight = "",
+        fontStyle = "",
+        textDecoration = "",
+        fontSize = "",
         marginTop = 0,
         marginBottom = 0,
         marginLeft = 0,
@@ -104,7 +110,9 @@ export default {
         paddingBottom = 0,
         paddingLeft = 0,
         paddingRight = 0,
-        scale = "",
+        // scale = "",
+        textShadow = {},
+        textShadowable = false,
         backgroundColor = "",
         backgroundType = "",
         backgroundImage = "",
@@ -121,6 +129,10 @@ export default {
       if (height) {
         styles["height"] = `${height}px`;
       }
+      if (textShadowable) {
+        let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
+        styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
+      }
       if (borderColor) {
         styles["borderColor"] = borderColor;
       }
@@ -129,16 +141,31 @@ export default {
       }
       styles["borderWidth"] = `${borderWidth}px`;
       styles["borderRadius"] = `${borderRadius}px`;
-      if (scale) {
-        (styles["transform"] = `${scale}`),
-          (styles["-webkit-transform"] = `${scale}`),
-          (styles["-ms-transform"] = `${scale}`),
-          (styles["-o-transform"] = `${scale}`),
-          (styles["-moz-transform"] = `${scale}`);
-      }
-      // if (color) {
-      //   styles["color"] = color;
+      // if (scale) {
+      //   (styles["transform"] = `${scale}`),
+      //     (styles["-webkit-transform"] = `${scale}`),
+      //     (styles["-ms-transform"] = `${scale}`),
+      //     (styles["-o-transform"] = `${scale}`),
+      //     (styles["-moz-transform"] = `${scale}`);
       // }
+      if (color) {
+        styles["color"] = color;
+      }
+      if (fontSize) {
+        styles["fontSize"] = `${fontSize}px`;
+      }
+      if (fontFamily) {
+        styles["fontFamily"] = `${fontFamily}`;
+      }
+      if (fontWeight) {
+        styles["fontWeight"] = fontWeight;
+      }
+      if (fontStyle) {
+        styles["fontStyle"] = fontStyle;
+      }
+      if (textDecoration) {
+        styles["textDecoration"] = textDecoration;
+      }
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {
@@ -169,12 +196,29 @@ export default {
         height = "",
         distance = 0,
         textAlign = "",
-        fontFamily = "",
-        color = "",
-        fontWeight = "",
-        fontStyle = "",
-        textDecoration = "",
-        fontSize = "",
+        // fontFamily = "",
+        // color = "",
+        // fontWeight = "",
+        // fontStyle = "",
+        // textDecoration = "",
+        // fontSize = "",
+        borderColor = "",
+        borderStyle = "",
+        borderWidth = "",
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
+        marginTop = 0,
+        marginBottom = 0,
+        marginLeft = 0,
+        marginRight = 0,
+        paddingTop = 0,
+        paddingBottom = 0,
+        paddingLeft = 0,
+        paddingRight = 0,
+        shadowable = false,
+        shadow,
         backgroundColor = "",
         backgroundType = "",
         backgroundImage = "",
@@ -182,37 +226,60 @@ export default {
         backgroundSize = ""
       } = board || {};
       let styles = {
-        marginRight: `${distance}px`
+        // marginRight: `${distance}px`,
+        margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
+        padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
       };
       if (width) {
         styles["width"] = `${width}px`;
+        styles["minWidth"] = `${width}px`;
       }
       if (height) {
         styles["height"] = `${height}px`;
+        styles["lineHeight"] = `${height}px`;
       }
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
+
       if (textAlign) {
         styles["textAlign"] = textAlign;
         if (textAlign == "justify") {
           styles["text-align-last"] = textAlign;
         }
       }
-      if (color) {
-        styles["color"] = color;
+      if (borderColor) {
+        styles["borderColor"] = borderColor;
       }
-      if (fontSize) {
-        styles["fontSize"] = `${fontSize}px`;
+      if (borderStyle) {
+        styles["borderStyle"] = borderStyle;
       }
-      if (fontFamily) {
-        styles["fontFamily"] = `${fontFamily}`;
-      }
-      if (fontWeight) {
-        styles["fontWeight"] = fontWeight;
-      }
-      if (fontStyle) {
-        styles["fontStyle"] = fontStyle;
-      }
-      if (textDecoration) {
-        styles["textDecoration"] = textDecoration;
+      styles["borderWidth"] = `${borderWidth}px`;
+      // styles["borderRadius"] = `${borderRadius}px`;
+      // if (color) {
+      //   styles["color"] = color;
+      // }
+      // if (fontSize) {
+      //   styles["fontSize"] = `${fontSize}px`;
+      // }
+      // if (fontFamily) {
+      //   styles["fontFamily"] = `${fontFamily}`;
+      // }
+      // if (fontWeight) {
+      //   styles["fontWeight"] = fontWeight;
+      // }
+      // if (fontStyle) {
+      //   styles["fontStyle"] = fontStyle;
+      // }
+      // if (textDecoration) {
+      //   styles["textDecoration"] = textDecoration;
+      // }
+      if (shadowable) {
+        let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
+          shadow || {};
+        styles[
+          "boxShadow"
+        ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
       }
       if (backgroundType == "purity") {
         //纯色

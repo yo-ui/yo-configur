@@ -26,7 +26,12 @@
     v-model="info.select.showable"
   >
     <!-- :style="selectStyle" -->
-    <div slot="reference" class="select-text" :style="inputStyle">
+    <div
+      slot="reference"
+      class="select-text"
+      :style="inputStyle"
+      @click="clickEvent"
+    >
       <span>{{ (contentMap[info.content] || {}).text }}</span>
       <i
         :class="
@@ -140,6 +145,7 @@ export default {
         textShadow = {},
         textShadowable = false,
         textAlign = "",
+        textIndent = "",
         fontFamily = "",
         backgroundType = "",
         fontSize = "",
@@ -185,6 +191,7 @@ export default {
           styles["borderStyle"] = borderStyle;
         }
         styles["borderWidth"] = `${borderWidth}px`;
+        styles["textIndent"] = `${textIndent}px`;
         // if (length > 1) {
         //   if (index == length - 1) {
         //     styles[
@@ -192,8 +199,7 @@ export default {
         //     ] = `${borderWidth}px ${borderWidth}px ${borderWidth}px ${borderWidth}px`;
         //   } else {
         //     if (_width < 2 * width) {
-        let { borderWidth: _borderWidth = "", borderStyle: _borderStyle = "" } =
-          select || {};
+        let { borderStyle: _borderStyle = "" } = select || {};
         //竖向
         if (marginBottom <= 0) {
           styles[
@@ -285,7 +291,42 @@ export default {
           //渐变
           styles = { ...styles, ...gradientStyle(option) };
         }
-        let { backgroundType = "", backgroundColor = "" } = optionHover || {};
+        if (optionHover) {
+          let {
+            backgroundType = "",
+            backgroundColor = "",
+            color = ""
+            // textShadowable = false,
+            // textShadow = {}
+          } = optionHover || {};
+
+          // if (textShadowable) {
+          //   let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
+          //   styles[
+          //     "--option-hover-text-shadow"
+          //   ] = `${x}px ${y}px ${blur}px ${color}`;
+          // }
+          if (color) {
+            styles["--option-hover-color"] = color;
+          }
+          if (backgroundType == "purity") {
+            //纯色
+            if (backgroundColor) {
+              styles["--option-hover-background"] = backgroundColor;
+            }
+            // if (backgroundImage) {
+            //   styles["backgroundImage"] = `url(${this.$loadImgUrl(
+            //     backgroundImage
+            //   )})`;
+            // }
+          } else if (backgroundType == "gradient") {
+            //渐变
+            let { backgroundImage = "" } = gradientStyle(optionHover);
+            if (backgroundImage) {
+              styles["--option-hover-background"] = backgroundImage;
+            }
+          }
+        }
         if (content == value) {
           //按钮选中的样式
           let {
@@ -739,6 +780,12 @@ export default {
         .trim();
       item.name = name;
     },
+    clickEvent() {
+      let { showType = "", info = {} } = this;
+      if (showType == "edit") {
+        info.select.showable = !info.select.showable;
+      }
+    },
     optionClickEvent(item, index) {
       let { info = {} } = this;
       let { value = "" } = item || {};
@@ -772,6 +819,11 @@ export default {
     .touch-y;
     li {
       .pointer;
+      &:hover {
+        background: var(--option-hover-background) !important;
+        .c(var(--option-hover-color)) !important;
+        // .ts(var(--option-hover-text-shadow)) !important;
+      }
     }
   }
 }

@@ -373,32 +373,42 @@ let componentLibrary = [
           originHeight: "", //原高
           width: "",
           height: "",
+          fontSize:28,
+          color:"#000",
+          fontFamily: "Impact",
           integer: 6, //整数位
-          integerSeat: "#", // 空白  0  #
+          integerSeat: "#", // 空白  0  #  整数位补足符号
           decimal: 4, //小数位
-          decimalSeat: "0", //  0  #
+          decimalSeat: "0", //  0  #  小数位补足符号
           // scaleable: false,
           value: 100.1, //数值
           board: {
             width: 20,
             height: 30,
-            fontSize: 28,
-            distance: 8, //卡片间距
-            fontFamily: "Impact",
+            // fontSize: 28,
+            // distance: 8, //卡片间距
+            textAlign:'center',
+            // fontFamily: "Impact",
             backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
-            gradientStyle: {
-              type: "linear", //渐变类型  linear 线性  radial 径向
-              angle: 0,
-              center: "50% 50%",
-              values: [0, 100],
-              radialShape: "circle",
-              valueIndex: 0,
-              valueOptions: [],
-              valueList: [
-                { code: "#108cee", value: 0 },
-                { code: "#545fc8", value: 100 }
-              ]
-            }
+            backgroundColor:"#4195ea",
+            gradientStyle,
+            marginTop: 0,
+            shadowable:false,
+            shadow,
+            marginBottom: 0,
+            marginLeft: 0,
+            marginRight: 8,
+            paddingTop: 0,
+            paddingBottom: 0,
+            paddingLeft: 0,
+            paddingRight: 0,
+            borderRadiusTopLeft: 0,
+            borderRadiusTopRight: 0,
+            borderRadiusBottomLeft: 0,
+            borderRadiusBottomRight: 0,
+            borderWidth: 1,
+            borderStyle: "none",
+            borderColor: "#ccc",
           }
         }
       },
@@ -650,7 +660,7 @@ let componentLibrary = [
           option: {
             height: 30, //按钮高度
             // width: 80, //按钮宽度
-            textIndent:0,
+            textIndent:10,
             color: "#333",
             fontFamily: "",
             fontSize: 14,
@@ -682,19 +692,33 @@ let componentLibrary = [
             borderStyle: "solid",
             borderColor: "#ccc"
           },
+          optionHover: {
+            color: "#fff",
+            backgroundColor: "#4195ea",
+            // textShadowable: false,
+            // textShadow,
+            // fontFamily: "",
+            // fontSize: 14,
+            // fontWeight: "",
+            // fontStyle: "",
+            // textDecoration: "",
+            backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
+            gradientStyle,
+            // borderColor: "#4195ea"
+          },
           optionActive: {
             color: "#fff",
             backgroundColor: "#4195ea",
-            textShadowable: false,
-            textShadow,
-            fontFamily: "",
-            fontSize: 14,
-            fontWeight: "",
-            fontStyle: "",
-            textDecoration: "",
+            // textShadowable: false,
+            // textShadow,
+            // fontFamily: "",
+            // fontSize: 14,
+            // fontWeight: "",
+            // fontStyle: "",
+            // textDecoration: "",
             backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
             gradientStyle,
-            borderColor: "#4195ea"
+            // borderColor: "#4195ea"
           },
           contentList: [
             {

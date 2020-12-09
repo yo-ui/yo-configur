@@ -435,7 +435,7 @@
         </p>
       </el-collapse-item>
       <!-- <el-collapse-item title="交互" name="3"> </el-collapse-item>
-      <el-collapse-item title="动画" name="4">
+      <el-collapse-item :title="$lang('动画')" name="4">
         <el-select v-model="info.animate" placeholder="请选择动画类型">
           <el-option v-for="item in options"
             :key="item.value"

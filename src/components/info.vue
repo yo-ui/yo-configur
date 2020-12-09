@@ -49,7 +49,7 @@
             class="item"
           >
             <div class="title" :class="{ active: activeComId == item.id }">
-              {{ item.name }}
+              {{ item.comName }}
               <!-- --{{ item.zIndex }}--{{ item.order }} -->
               <template v-if="item.children && item.children.length > 0">
                 <i

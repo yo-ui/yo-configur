@@ -233,7 +233,7 @@
         <template v-if="info.backgroundType == 'gradient'">
           <p>
             <span class="label">{{ $lang("渐变颜色") }}:</span>
-            <span class="gradient" :style="gradientStyle"></span>
+            <span class="gradient" :style="gradientStyle(info)"></span>
             <!-- {{ gradientStyle }} -->
           </p>
           <p>
@@ -243,7 +243,7 @@
               v-model="info.gradientStyle.type"
             >
               <el-radio-button
-                :style="`background-image:${gradientStyleMap[item.code]}`"
+                :style="`background-image:${gradientStyleMap(info)[item.code]}`"
                 :title="item.name"
                 v-for="item in gradientTypeList"
                 :key="item.code"
@@ -310,13 +310,13 @@
               <el-button
                 plain
                 :disabled="info.gradientStyle.valueList.length > 5"
-                @click="addApertureEvent"
+                @click="addApertureEvent(info, 'slider')"
                 ><i class="el-icon-plus"></i
               ></el-button>
               <el-button
                 plain
                 :disabled="info.gradientStyle.valueList.length < 3"
-                @click="removeApertureEvent"
+                @click="removeApertureEvent(info, 'slider')"
                 ><i class="el-icon-minus"></i
               ></el-button>
             </el-button-group>
@@ -372,7 +372,7 @@
               <template #process>
                 <div
                   class="vue-slider-process"
-                  :style="gradientLinearStyle"
+                  :style="gradientLinearStyle(info)"
                 ></div>
               </template>
               <template #dot="{index}">
@@ -469,24 +469,33 @@
             </el-option>
           </el-select>
         </p>
-        <p>
-          <span class="label"> {{ $lang("边框大小") }}:</span>
-          <el-input-number
-            controls-position="right"
-            clearable
-            :min="0"
-            :max="20"
-            v-model.number="info.borderWidth"
-            :placeholder="$lang('请输入边框大小')"
-          ></el-input-number>
-          px
-          <el-slider
-            v-model="info.borderWidth"
-            :min="0"
-            :max="20"
-            :format-tooltip="val => val + ' px'"
-          ></el-slider>
-        </p>
+        <template v-if="info.borderStyle != 'none'">
+          <p>
+            <span class="label"> {{ $lang("边框大小") }}:</span>
+            <el-input-number
+              controls-position="right"
+              clearable
+              :min="0"
+              :max="20"
+              v-model.number="info.borderWidth"
+              :placeholder="$lang('请输入边框大小')"
+            ></el-input-number>
+            px
+            <el-slider
+              v-model="info.borderWidth"
+              :min="0"
+              :max="20"
+              :format-tooltip="val => val + ' px'"
+            ></el-slider>
+          </p>
+          <p>
+            <span class="label">{{ $lang("边框颜色") }}:</span>
+            <el-color-picker
+              v-model="info.borderColor"
+              show-alpha
+            ></el-color-picker>
+          </p>
+        </template>
         <p>
           <span class="label"> {{ $lang("边框圆角") }}:</span>
           <el-input-number
@@ -504,13 +513,6 @@
             :max="50"
             :format-tooltip="val => val + ' px'"
           ></el-slider>
-        </p>
-        <p>
-          <span class="label">{{ $lang("边框颜色") }}:</span>
-          <el-color-picker
-            v-model="info.borderColor"
-            show-alpha
-          ></el-color-picker>
         </p>
         <p>
           <span class="label">{{ $lang("盒子阴影") }}:</span>
@@ -745,7 +747,7 @@
           </span>
         </p>
       </el-collapse-item>
-      <el-collapse-item :title="$lang('文字设置')" name="fontSet">
+      <!-- <el-collapse-item :title="$lang('文字设置')" name="fontSet">
         <p>
           <span class="label">{{ $lang("字体颜色") }}:</span>
           <el-color-picker v-model="info.color" show-alpha></el-color-picker>
@@ -820,33 +822,46 @@
           <span class="label">{{ $lang("对齐") }}:</span>
           <i
             class="bomi bomi-text-left"
-            @click="textAlignEvent('left')"
+            @click="textAlignEvent(info,'left')"
             :class="{ active: info.textAlign == 'left' }"
           ></i>
           <i
             class="bomi bomi-text-center"
-            @click="textAlignEvent('center')"
+            @click="textAlignEvent(info,'center')"
             :class="{ active: info.textAlign == 'center' }"
           ></i>
           <i
             class="bomi bomi-text-right"
-            @click="textAlignEvent('right')"
+            @click="textAlignEvent(info,'right')"
             :class="{ active: info.textAlign == 'right' }"
           ></i>
           <i
             class="bomi bomi-text-justify"
-            @click="textAlignEvent('justify')"
+            @click="textAlignEvent(info,'justify')"
             :class="{ active: info.textAlign == 'justify' }"
           ></i>
         </p>
         <p>
           <span class="label">{{ $lang("字体大小") }}:</span>
-          {{ info.fontSize }} px
+          <el-tooltip
+            :content="$lang('请输入字体大小')"
+            placement="top"
+            effect="dark"
+          >
+            <el-input-number
+              controls-position="right"
+              clearable
+              :min="10"
+              :max="200"
+              v-model.number="info.fontSize"
+              :placeholder="$lang('请输入字体大小')"
+            ></el-input-number>
+          </el-tooltip>
           <el-slider
             v-model="info.fontSize"
             :min="10"
-            :max="100"
-            :format-tooltip="val => val + ' px'"
+            :max="200"
+            :format-tooltip="val => val"
           ></el-slider>
         </p>
         <p>
@@ -873,7 +888,7 @@
             <el-tooltip :content="$lang('加粗')" placement="top" effect="dark">
               <span
                 class="bold"
-                @click="setFontWeight"
+                @click="setFontWeight(info)"
                 :title="$lang('粗体')"
                 :class="{ active: info.fontWeight == 'bold' }"
                 >B</span
@@ -882,7 +897,7 @@
             <el-tooltip :content="$lang('倾斜')" placement="top" effect="dark">
               <span
                 class="italic"
-                @click="setFontStyle"
+                @click="setFontStyle(info)"
                 :title="$lang('斜体')"
                 :class="{ active: info.fontStyle == 'italic' }"
                 >I</span
@@ -895,7 +910,7 @@
             >
               <span
                 class="underline"
-                @click="setTextDecoration"
+                @click="setTextDecoration(info)"
                 :title="$lang('下划线')"
                 :class="{ active: info.textDecoration == 'underline' }"
                 >U</span
@@ -903,10 +918,645 @@
             </el-tooltip>
           </span>
         </p>
+      </el-collapse-item> -->
+      <el-collapse-item :title="$lang('卡片样式')" name="boardStyle">
+        <!-- <p>
+          <span class="label">{{ $lang("卡片间距") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            :min="0"
+            :max="1000"
+            v-model.number="info.board.distance"
+            :placeholder="$lang('卡片间距')"
+          ></el-input-number>
+          px
+          <el-slider
+            v-model="info.board.distance"
+            :min="0"
+            :max="1000"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p> -->
+        <p class="margin-box">
+          <span class="label">{{ $lang("卡片宽高") }}:</span>
+          <span class="c-box">
+            <span>
+              宽<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.board.width"
+                :placeholder="$lang('卡片宽')"
+              ></el-input-number>
+            </span>
+            <span>
+              高<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.board.height"
+                :placeholder="$lang('卡片高')"
+              ></el-input-number>
+            </span>
+          </span>
+        </p>
+        <p>
+          <span class="label">{{ $lang("填充颜色") }}:</span>
+          <el-select
+            v-model="info.board.backgroundType"
+            :placeholder="$lang('请选择填充颜色')"
+          >
+            <el-option
+              v-for="item in backgroundTypeList"
+              :key="item.code"
+              :label="$lang(item.name)"
+              :value="item.code"
+            >
+            </el-option>
+          </el-select>
+        </p>
+        <p v-if="info.board.backgroundType == 'purity'">
+          <span class="label">{{ $lang("纯色") }}:</span>
+          <el-color-picker
+            v-model="info.board.backgroundColor"
+            show-alpha
+          ></el-color-picker>
+        </p>
+        <template v-if="info.board.backgroundType == 'gradient'">
+          <p>
+            <span class="label">{{ $lang("渐变颜色") }}:</span>
+            <span class="gradient" :style="gradientStyle(info.board)"></span>
+          </p>
+          <p>
+            <span class="label">{{ $lang("渐变类型") }}:</span>
+            <el-radio-group
+              class="gradient-type-group"
+              v-model="info.board.gradientStyle.type"
+            >
+              <el-radio-button
+                :style="
+                  `background-image:${gradientStyleMap(info.board)[item.code]}`
+                "
+                :title="item.name"
+                v-for="item in gradientTypeList"
+                :key="item.code"
+                :label="item.code"
+              >
+                {{ item.name }}
+              </el-radio-button>
+            </el-radio-group>
+          </p>
+          <template v-if="info.board.gradientStyle.type == 'radial'">
+            <p>
+              <span class="label">{{ $lang("中心") }}:</span>
+              <el-select
+                v-model="info.board.gradientStyle.center"
+                :placeholder="$lang('请选择中心位置')"
+              >
+                <el-option
+                  v-for="item in centerList"
+                  :key="item.code"
+                  :label="$lang(item.name)"
+                  :value="item.code"
+                >
+                </el-option>
+              </el-select>
+            </p>
+            <p>
+              <span class="label">{{ $lang("径向图形") }}:</span>
+              <el-select
+                v-model="info.board.gradientStyle.radialShape"
+                :placeholder="$lang('请选择径向图形')"
+              >
+                <el-option
+                  v-for="item in radialShapeList"
+                  :key="item.code"
+                  :label="$lang(item.name)"
+                  :value="item.code"
+                >
+                </el-option>
+              </el-select>
+            </p>
+          </template>
+          <template v-if="info.board.gradientStyle.type == 'linear'">
+            <p>
+              <span class="label">{{ $lang("角度") }}:</span>
+              <el-select
+                v-model="info.board.gradientStyle.angle"
+                :placeholder="$lang('请选择线性角度')"
+              >
+                <el-option
+                  v-for="item in angelList"
+                  :key="item.code"
+                  :label="$lang(item.code)"
+                  :value="item.code"
+                >
+                </el-option>
+              </el-select>
+            </p>
+          </template>
+          <p class="gradient-aperture">
+            <span class="label">{{ $lang("渐变光圈") }}:</span>
+            <el-button-group>
+              <el-button
+                plain
+                :disabled="info.board.gradientStyle.valueList.length > 5"
+                @click="addApertureEvent(info.board, 'boardSlider')"
+                ><i class="el-icon-plus"></i
+              ></el-button>
+              <el-button
+                plain
+                :disabled="info.board.gradientStyle.valueList.length < 3"
+                @click="removeApertureEvent(info.board, 'boardSlider')"
+                ><i class="el-icon-minus"></i
+              ></el-button>
+            </el-button-group>
+            <el-input
+              :value="
+                info.board.gradientStyle.valueList[
+                  info.board.gradientStyle.valueIndex
+                ].value + ' %'
+              "
+              readonly
+            ></el-input>
+          </p>
+          <p>
+            <span class="label">{{ $lang("渐变节点颜色") }}</span>
+            <el-color-picker
+              color-format="hex"
+              v-model="
+                info.board.gradientStyle.valueList[
+                  info.board.gradientStyle.valueIndex
+                ].code
+              "
+              show-alpha
+            ></el-color-picker>
+            <el-input
+              :value="
+                info.board.gradientStyle.valueList[
+                  info.board.gradientStyle.valueIndex
+                ].code
+              "
+              readonly
+            ></el-input>
+          </p>
+          <p>
+            <vue-slider
+              :height="25"
+              ref="boardSlider"
+              :marks="false"
+              :hide-label="true"
+              :enable-cross="false"
+              v-model="info.board.gradientStyle.values"
+              :interval="1"
+              @change="boardSliderChangeEvent"
+              @drag-start="boardSliderDragStartEvent"
+              :data-value="'value'"
+            >
+              <template #tooltip>
+                <span></span>
+              </template>
+              <template #process>
+                <div
+                  class="vue-slider-process"
+                  :style="gradientLinearStyle(info.board)"
+                ></div>
+              </template>
+              <template #dot="{index}">
+                <div class="dot-box">
+                  <div
+                    class="dot"
+                    :style="
+                      `background-color:${info.board.gradientStyle.valueList[index].code}`
+                    "
+                  ></div>
+                </div>
+              </template>
+            </vue-slider>
+          </p>
+        </template>
+        <p>
+          <span class="label">{{ $lang("字体颜色") }}:</span>
+          <el-color-picker v-model="info.color" show-alpha></el-color-picker>
+        </p>
+        <p>
+          <span class="label">{{ $lang("字体阴影") }}:</span>
+          <el-switch
+            v-model="info.textShadowable"
+            active-color="#4195ea"
+            inactive-color="#ccc"
+          ></el-switch>
+        </p>
+        <template v-if="info.textShadowable">
+          <p class="shadow-box">
+            <span class="c-box">
+              <span>
+                <el-tooltip
+                  :content="$lang('X-X轴位移')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <span>X</span>
+                </el-tooltip>
+                <el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.shadow.x"
+                  :placeholder="$lang('X轴位移')"
+                ></el-input-number>
+              </span>
+              <span>
+                <el-tooltip
+                  :content="$lang('Y-Y轴位移')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <span>Y</span> </el-tooltip
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.shadow.y"
+                  :placeholder="$lang('Y轴位移')"
+                ></el-input-number>
+              </span>
+            </span>
+          </p>
+          <p>
+            <span class="label">{{ $lang("模糊半径") }}:</span>
+            <el-input-number
+              controls-position="right"
+              clearable
+              v-model.number="info.textShadow.blur"
+              :placeholder="$lang('模糊半径')"
+            ></el-input-number>
+            px
+            <el-slider
+              v-model="info.textShadow.blur"
+              :min="0"
+              :max="50"
+              :format-tooltip="val => val + ' px'"
+            ></el-slider>
+          </p>
+          <p>
+            <span class="label">{{ $lang("阴影颜色") }}:</span>
+            <el-color-picker
+              v-model="info.textShadow.color"
+              show-alpha
+            ></el-color-picker>
+          </p>
+        </template>
+        <p class="align">
+          <span class="label">{{ $lang("对齐") }}:</span>
+          <i
+            class="bomi bomi-text-left"
+            @click="textAlignEvent(info.board, 'left')"
+            :class="{ active: info.board.textAlign == 'left' }"
+          ></i>
+          <i
+            class="bomi bomi-text-center"
+            @click="textAlignEvent(info.board, 'center')"
+            :class="{ active: info.board.textAlign == 'center' }"
+          ></i>
+          <i
+            class="bomi bomi-text-right"
+            @click="textAlignEvent(info.board, 'right')"
+            :class="{ active: info.board.textAlign == 'right' }"
+          ></i>
+          <i
+            class="bomi bomi-text-justify"
+            @click="textAlignEvent(info.board, 'justify')"
+            :class="{ active: info.board.textAlign == 'justify' }"
+          ></i>
+        </p>
+        <p>
+          <span class="label">{{ $lang("字体大小") }}:</span>
+          <el-tooltip
+            :content="$lang('请输入字体大小')"
+            placement="top"
+            effect="dark"
+          >
+            <el-input-number
+              controls-position="right"
+              clearable
+              :min="10"
+              :max="200"
+              v-model.number="info.fontSize"
+              :placeholder="$lang('请输入字体大小')"
+            ></el-input-number>
+          </el-tooltip>
+          <el-slider
+            v-model="info.fontSize"
+            :min="10"
+            :max="200"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
+        <p>
+          <span class="label">{{ $lang("字体") }}:</span>
+          <el-select
+            v-model="info.fontFamily"
+            :placeholder="$lang('请选择字体')"
+          >
+            <el-option
+              v-for="item in fontFamilyList"
+              :key="item.code"
+              :label="$lang(item.name)"
+              :value="item.code"
+            >
+              <span :style="`font-family:${item.code}`">{{
+                $lang(item.name)
+              }}</span>
+            </el-option>
+          </el-select>
+        </p>
+        <p>
+          <span class="label">{{ $lang("字体样式") }}:</span>
+          <span class="font-style">
+            <el-tooltip :content="$lang('加粗')" placement="top" effect="dark">
+              <span
+                class="bold"
+                @click="setFontWeight(info)"
+                :title="$lang('粗体')"
+                :class="{ active: info.fontWeight == 'bold' }"
+                >B</span
+              >
+            </el-tooltip>
+            <el-tooltip :content="$lang('倾斜')" placement="top" effect="dark">
+              <span
+                class="italic"
+                @click="setFontStyle(info)"
+                :title="$lang('斜体')"
+                :class="{ active: info.fontStyle == 'italic' }"
+                >I</span
+              >
+            </el-tooltip>
+            <el-tooltip
+              :content="$lang('下划线')"
+              placement="top"
+              effect="dark"
+            >
+              <span
+                class="underline"
+                @click="setTextDecoration(info)"
+                :title="$lang('下划线')"
+                :class="{ active: info.textDecoration == 'underline' }"
+                >U</span
+              >
+            </el-tooltip>
+          </span>
+        </p>
+
+        <p>
+          <span class="label"> {{ $lang("边框样式") }}:</span
+          ><el-select
+            v-model="info.board.borderStyle"
+            :placeholder="$lang('请选择边框样式')"
+          >
+            <el-option
+              v-for="item in borderStyleList"
+              :key="item.code"
+              :label="$lang(item.name)"
+              :value="item.code"
+            >
+            </el-option>
+          </el-select>
+        </p>
+        <template v-if="info.board.borderStyle != 'none'">
+          <p>
+            <span class="label"> {{ $lang("边框大小") }}:</span>
+            <el-input-number
+              controls-position="right"
+              clearable
+              :min="0"
+              :max="20"
+              v-model.number="info.board.borderWidth"
+              :placeholder="$lang('请输入边框大小')"
+            ></el-input-number>
+            px
+            <el-slider
+              v-model="info.board.borderWidth"
+              :min="0"
+              :max="20"
+              :format-tooltip="val => val + ' px'"
+            ></el-slider>
+          </p>
+          <p>
+            <span class="label">{{ $lang("边框颜色") }}:</span>
+            <el-color-picker
+              v-model="info.board.borderColor"
+              show-alpha
+            ></el-color-picker>
+          </p>
+        </template>
+        <p class="padding-box">
+          <span class="label">{{ $lang("边框圆角") }}:</span>
+          <span class="c-box">
+            <span>
+              左上<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.board.borderRadiusTopLeft"
+                :placeholder="$lang('左上角')"
+              ></el-input-number>
+            </span>
+            <span>
+              右上<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.board.borderRadiusTopRight"
+                :placeholder="$lang('右上角')"
+              ></el-input-number>
+            </span>
+            <span>
+              右下<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.board.borderRadiusBottomRight"
+                :placeholder="$lang('右下角')"
+              ></el-input-number>
+            </span>
+            <span>
+              左下<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.board.borderRadiusBottomLeft"
+                :placeholder="$lang('左下角')"
+              ></el-input-number>
+            </span>
+          </span>
+        </p>
+        <p>
+          <span class="label">{{ $lang("盒子阴影") }}:</span>
+          <el-switch
+            v-model="info.board.shadowable"
+            active-color="#4195ea"
+            inactive-color="#ccc"
+          ></el-switch>
+        </p>
+        <template v-if="info.board.shadowable">
+          <p class="shadow-box">
+            <span class="c-box">
+              <span>
+                <el-tooltip
+                  :content="$lang('X-X轴位移')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <span>X</span>
+                </el-tooltip>
+                <el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.board.shadow.x"
+                  :placeholder="$lang('X轴位移')"
+                ></el-input-number>
+              </span>
+              <span>
+                <el-tooltip
+                  :content="$lang('Y-Y轴位移')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <span>Y</span> </el-tooltip
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.board.shadow.y"
+                  :placeholder="$lang('Y轴位移')"
+                ></el-input-number>
+              </span>
+              <span>
+                <el-tooltip
+                  :content="$lang('R-模糊半径')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <span>R</span> </el-tooltip
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.board.shadow.blur"
+                  :placeholder="$lang('模糊半径')"
+                ></el-input-number>
+              </span>
+            </span>
+          </p>
+          <p>
+            <span class="label">{{ $lang("阴影大小") }}:</span>
+            <el-input-number
+              controls-position="right"
+              clearable
+              v-model.number="info.board.shadow.spread"
+              :placeholder="$lang('阴影大小')"
+            ></el-input-number>
+            px
+            <el-slider
+              v-model="info.board.shadow.spread"
+              :min="0"
+              :max="50"
+              :format-tooltip="val => val + ' px'"
+            ></el-slider>
+          </p>
+          <p>
+            <span class="label">{{ $lang("阴影类型") }}:</span>
+            <el-select
+              v-model="info.board.shadow.type"
+              :placeholder="$lang('请选择阴影类型')"
+            >
+              <el-option
+                v-for="item in shadowTypeList"
+                :key="item.code"
+                :label="$lang(item.name)"
+                :value="item.code"
+              >
+              </el-option>
+            </el-select>
+          </p>
+          <p>
+            <span class="label">{{ $lang("阴影颜色") }}:</span>
+            <el-color-picker
+              v-model="info.board.shadow.color"
+              show-alpha
+            ></el-color-picker>
+          </p>
+        </template>
+        <p class="margin-box">
+          <span class="label">{{ $lang("外边距") }}:</span>
+          <span class="c-box">
+            <span>
+              上<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.board.marginTop"
+                :placeholder="$lang('上外边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              下<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.board.marginBottom"
+                :placeholder="$lang('下外边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              左<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.board.marginLeft"
+                :placeholder="$lang('左外边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              右<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.board.marginRight"
+                :placeholder="$lang('右外边距')"
+              ></el-input-number>
+            </span>
+          </span>
+        </p>
+        <p class="padding-box">
+          <span class="label">{{ $lang("内边距") }}:</span>
+          <span class="c-box">
+            <span>
+              上<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.board.paddingTop"
+                :placeholder="$lang('上内边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              下<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.board.paddingBottom"
+                :placeholder="$lang('下内边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              左<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.board.paddingLeft"
+                :placeholder="$lang('左内边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              右<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.board.paddingRight"
+                :placeholder="$lang('右内边距')"
+              ></el-input-number>
+            </span>
+          </span>
+        </p>
       </el-collapse-item>
       <!-- <el-collapse-item :title="$lang('链接设置')" name="link">
       </el-collapse-item> -->
-      <el-collapse-item title="动画" name="animation">
+      <el-collapse-item :title="$lang('动画')" name="animation">
         <p>
           <span class="label">{{ $lang("动画类型") }}:</span>
           <el-select v-model="info.animation.name" placeholder="请选择动画类型">
@@ -1020,45 +1670,79 @@ export default {
   },
   computed: {
     ...mapGetters(),
+    // gradientStyle() {
+    //   let { info = {}, gradientStyleMap = [] } = this;
+    //   let { gradientStyle = {} } = info || {};
+    //   let {
+    //     type = ""
+    //     // angle = "",
+    //     // center = "",
+    //     // radialShape = "",
+    //     // valueList = []
+    //   } = gradientStyle || {};
+    //   let styles = {
+    //     backgroundImage: gradientStyleMap[type]
+    //   };
+    //   // let colors = valueList.map(item => `${item.code} ${item.value}%`);
+    //   // styles.backgroundImage = gradientStyleMap[type]
+    //   // if (type == "linear") {
+    //   //   styles.backgroundImage = gradientStyleMap[type] `linear-gradient(${angle}deg, ${colors.join()})`;
+    //   // } else if (type == "radial") {
+    //   //   styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+    //   // }
+    //   return styles;
+    // },
     gradientStyle() {
-      let { info = {}, gradientStyleMap = [] } = this;
-      let { gradientStyle = {} } = info || {};
-      let {
-        type = ""
-        // angle = "",
-        // center = "",
-        // radialShape = "",
-        // valueList = []
-      } = gradientStyle || {};
-      let styles = {
-        backgroundImage: gradientStyleMap[type]
+      return info => {
+        let { gradientStyleMap } = this;
+        let { gradientStyle = {} } = info || {};
+        let { type = "" } = gradientStyle || {};
+        let styles = {
+          backgroundImage: gradientStyleMap(info)[type]
+        };
+        return styles;
       };
-      // let colors = valueList.map(item => `${item.code} ${item.value}%`);
-      // styles.backgroundImage = gradientStyleMap[type]
-      // if (type == "linear") {
-      //   styles.backgroundImage = gradientStyleMap[type] `linear-gradient(${angle}deg, ${colors.join()})`;
-      // } else if (type == "radial") {
-      //   styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
-      // }
-      return styles;
     },
+
     gradientStyleMap() {
-      let { info = {} } = this;
-      let { gradientStyle = {} } = info || {};
-      let { angle = "", center = "", radialShape = "", valueList = [] } =
-        gradientStyle || {};
-      let colors = valueList.map(item => `${item.code} ${item.value}%`);
-      return {
-        linear: `linear-gradient(${angle}deg, ${colors.join()})`,
-        radial: `radial-gradient(${radialShape} at ${center}, ${colors.join()})`
+      return info => {
+        // let { info = {} } = this;
+        let { gradientStyle = {} } = info || {};
+        let { angle = "", center = "", radialShape = "", valueList = [] } =
+          gradientStyle || {};
+        let colors = valueList.map(item => `${item.code} ${item.value}%`);
+        return {
+          linear: `linear-gradient(${angle}deg, ${colors.join()})`,
+          radial: `radial-gradient(${radialShape} at ${center}, ${colors.join()})`
+        };
       };
     },
+    // gradientStyleMap() {
+    //   let { info = {} } = this;
+    //   let { gradientStyle = {} } = info || {};
+    //   let { angle = "", center = "", radialShape = "", valueList = [] } =
+    //     gradientStyle || {};
+    //   let colors = valueList.map(item => `${item.code} ${item.value}%`);
+    //   return {
+    //     linear: `linear-gradient(${angle}deg, ${colors.join()})`,
+    //     radial: `radial-gradient(${radialShape} at ${center}, ${colors.join()})`
+    //   };
+    // },
+    // gradientLinearStyle() {
+    //   let { info = {} } = this;
+    //   let { gradientStyle = {} } = info || {};
+    //   let { valueList = [] } = gradientStyle || {};
+    //   let colors = valueList.map(item => `${item.code} ${item.value}%`);
+    //   return `background-image:linear-gradient(90deg, ${colors.join()})`;
+    // },
     gradientLinearStyle() {
-      let { info = {} } = this;
-      let { gradientStyle = {} } = info || {};
-      let { valueList = [] } = gradientStyle || {};
-      let colors = valueList.map(item => `${item.code} ${item.value}%`);
-      return `background-image:linear-gradient(90deg, ${colors.join()})`;
+      return info => {
+        // let { info = {} } = this;
+        let { gradientStyle = {} } = info || {};
+        let { valueList = [] } = gradientStyle || {};
+        let colors = valueList.map(item => `${item.code} ${item.value}%`);
+        return `background-image:linear-gradient(90deg, ${colors.join()})`;
+      };
     }
   },
   methods: {
@@ -1089,6 +1773,28 @@ export default {
       let { gradientStyle = {} } = info || {};
       gradientStyle.valueIndex = index;
     },
+    boardSliderChangeEvent(values, index) {
+      let { info = {} } = this;
+      let { board = {} } = info;
+      let { gradientStyle = {} } = board || {};
+      let { valueList = [] } = gradientStyle || {};
+      let { length = 0 } = valueList || [];
+      if (index == 0) {
+        values[0] = 0;
+        this.$refs.boardSlider?.setValue(values);
+      } else if (index == length - 1) {
+        values[length - 1] = 100;
+        this.$refs.boardSlider?.setValue(values);
+      }
+      gradientStyle.valueIndex = index;
+      valueList[index].value = values[index];
+    },
+    boardSliderDragStartEvent(index) {
+      let { info = {} } = this;
+      let { board = {} } = info;
+      let { gradientStyle = {} } = board || {};
+      gradientStyle.valueIndex = index;
+    },
     // sliderDraggingEvent(value, index) {
     //   this.sliderDragStartEvent(index);
     // },
@@ -1106,8 +1812,8 @@ export default {
       gridStyle.height = height;
     },
     //添加渐变光圈
-    addApertureEvent() {
-      let { info = {} } = this;
+    addApertureEvent(info, sliderKey) {
+      // let { info = {} } = this;
       let { gradientStyle = {} } = info || {};
       let { valueList = [], values = [] } = gradientStyle || {};
       let { length = 0 } = valueList || [];
@@ -1118,10 +1824,11 @@ export default {
       valueList.splice(index, 0, { code, value });
       values.splice(index, 0, value);
       gradientStyle.valueIndex = index;
-      this.$refs.slider?.focus(index + 1);
+      // this.$refs.slider?.focus(index + 1);
+      this.$refs[sliderKey]?.focus(index + 1);
     },
-    removeApertureEvent() {
-      let { info = {} } = this;
+    removeApertureEvent(info, sliderKey) {
+      // let { info = {} } = this;
       let { gradientStyle = {} } = info || {};
       let { valueList = [], values = [], valueIndex = 0 } = gradientStyle || {};
       let { length = 0 } = valueList || [];
@@ -1133,11 +1840,12 @@ export default {
         values.splice(valueIndex, 1);
         let index = 1;
         gradientStyle.valueIndex = index;
-        this.$refs.slider?.focus(index + 1);
+        // this.$refs.slider?.focus(index + 1);
+        this.$refs[sliderKey]?.focus(index + 1);
       }
     },
-    setFontWeight() {
-      let { info = {} } = this;
+    setFontWeight(info) {
+      // let { info = {} } = this;
       let { fontWeight = "" } = info || {};
       if (fontWeight == "bold") {
         fontWeight = "";
@@ -1146,8 +1854,8 @@ export default {
       }
       info.fontWeight = fontWeight;
     },
-    setTextDecoration() {
-      let { info = {} } = this;
+    setTextDecoration(info) {
+      // let { info = {} } = this;
       let { textDecoration = "" } = info || {};
       if (textDecoration == "underline") {
         textDecoration = "";
@@ -1156,8 +1864,8 @@ export default {
       }
       info.textDecoration = textDecoration;
     },
-    setFontStyle() {
-      let { info = {} } = this;
+    setFontStyle(info) {
+      // let { info = {} } = this;
       let { fontStyle = "" } = info || {};
       if (fontStyle == "italic") {
         fontStyle = "";
@@ -1166,8 +1874,8 @@ export default {
       }
       info.fontStyle = fontStyle;
     },
-    textAlignEvent(item) {
-      let { info = {} } = this;
+    textAlignEvent(info, item) {
+      // let { info = {} } = this;
       info.textAlign = item;
     },
     openAll() {

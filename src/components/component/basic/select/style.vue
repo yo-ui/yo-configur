@@ -952,7 +952,7 @@
                 show-alpha
               ></el-color-picker>
             </p> -->
-            <!-- <p>
+            <p>
               <span class="label">{{ $lang("填充颜色") }}:</span>
               <el-select
                 v-model="info.select.backgroundType"
@@ -966,8 +966,8 @@
                 >
                 </el-option>
               </el-select>
-            </p> -->
-            <!-- <p v-if="info.select.backgroundType == 'purity'">
+            </p>
+            <p v-if="info.select.backgroundType == 'purity'">
               <span class="label">{{ $lang("纯色") }}:</span>
               <el-color-picker
                 v-model="info.select.backgroundColor"
@@ -979,7 +979,7 @@
                 <span class="label">{{ $lang("渐变颜色") }}:</span>
                 <span
                   class="gradient"
-                  :style="gradientStyle(info.button)"
+                  :style="gradientStyle(info.option)"
                 ></span>
               </p>
               <p>
@@ -991,7 +991,7 @@
                   <el-radio-button
                     :style="
                       `background-image:${
-                        gradientStyleMap(info.button)[item.code]
+                        gradientStyleMap(info.option)[item.code]
                       }`
                     "
                     :title="item.name"
@@ -1058,13 +1058,13 @@
                   <el-button
                     plain
                     :disabled="info.select.gradientStyle.valueList.length > 5"
-                    @click="addApertureEvent(info.button, 'buttonSlider')"
+                    @click="addApertureEvent(info.option, 'buttonSlider')"
                     ><i class="el-icon-plus"></i
                   ></el-button>
                   <el-button
                     plain
                     :disabled="info.select.gradientStyle.valueList.length < 3"
-                    @click="removeApertureEvent(info.button, 'buttonSlider')"
+                    @click="removeApertureEvent(info.option, 'buttonSlider')"
                     ><i class="el-icon-minus"></i
                   ></el-button>
                 </el-button-group>
@@ -1116,7 +1116,7 @@
                   <template #process>
                     <div
                       class="vue-slider-process"
-                      :style="gradientLinearStyle(info.button)"
+                      :style="gradientLinearStyle(info.option)"
                     ></div>
                   </template>
                   <template #dot="{index}">
@@ -1131,7 +1131,7 @@
                   </template>
                 </vue-slider>
               </p>
-            </template> -->
+            </template>
 
             <p>
               <span class="label"> {{ $lang("边框样式") }}:</span
@@ -1592,6 +1592,7 @@
                 :class="{ active: info.option.textAlign == 'justify' }"
               ></i>
             </p>
+
             <p>
               <span class="label">{{ $lang("填充颜色") }}:</span>
               <el-select
@@ -1619,9 +1620,8 @@
                 <span class="label">{{ $lang("渐变颜色") }}:</span>
                 <span
                   class="gradient"
-                  :style="gradientStyle(info.button)"
+                  :style="gradientStyle(info.option)"
                 ></span>
-                <!-- {{ gradientStyle }} -->
               </p>
               <p>
                 <span class="label">{{ $lang("渐变类型") }}:</span>
@@ -1632,7 +1632,7 @@
                   <el-radio-button
                     :style="
                       `background-image:${
-                        gradientStyleMap(info.button)[item.code]
+                        gradientStyleMap(info.option)[item.code]
                       }`
                     "
                     :title="item.name"
@@ -1699,13 +1699,13 @@
                   <el-button
                     plain
                     :disabled="info.option.gradientStyle.valueList.length > 5"
-                    @click="addApertureEvent(info.button, 'buttonSlider')"
+                    @click="addApertureEvent(info.option, 'buttonSlider')"
                     ><i class="el-icon-plus"></i
                   ></el-button>
                   <el-button
                     plain
                     :disabled="info.option.gradientStyle.valueList.length < 3"
-                    @click="removeApertureEvent(info.button, 'buttonSlider')"
+                    @click="removeApertureEvent(info.option, 'buttonSlider')"
                     ><i class="el-icon-minus"></i
                   ></el-button>
                 </el-button-group>
@@ -1741,14 +1741,14 @@
               <p>
                 <vue-slider
                   :height="25"
-                  ref="buttonSlider"
+                  ref="optionSlider"
                   :marks="false"
                   :hide-label="true"
                   :enable-cross="false"
                   v-model="info.option.gradientStyle.values"
                   :interval="1"
-                  @change="buttonSliderChangeEvent"
-                  @drag-start="buttonSliderDragStartEvent"
+                  @change="optionSliderChangeEvent"
+                  @drag-start="optionSliderDragStartEvent"
                   :data-value="'value'"
                 >
                   <template #tooltip>
@@ -1757,7 +1757,7 @@
                   <template #process>
                     <div
                       class="vue-slider-process"
-                      :style="gradientLinearStyle(info.button)"
+                      :style="gradientLinearStyle(info.option)"
                     ></div>
                   </template>
                   <template #dot="{index}">
@@ -1773,6 +1773,462 @@
                 </vue-slider>
               </p>
             </template>
+            <el-collapse class="tab-collapse" v-model="optionTabActiveNames">
+              <!-- <el-collapse-item
+                name="optionBack"
+              >
+              <template slot="title">
+          {{ $lang('选项背景') }}
+          <div class="right">
+            <el-select
+                v-model="info.option.backgroundType"
+                :placeholder="$lang('请选择填充颜色')"
+              >
+                <el-option
+                  v-for="item in backgroundTypeList"
+                  :key="item.code"
+                  :label="$lang(item.name)"
+                  :value="item.code"
+                >
+                </el-option>
+              </el-select>
+          </div>
+        </template>            
+
+              </el-collapse-item> -->
+              <el-collapse-item title="" name="empty" disabled class="unfold">
+              </el-collapse-item>
+              <el-collapse-item
+                name="optionBackHover"
+                class="tab-collapse-item"
+              >
+                <template #title>
+                  {{ $lang("选项-悬浮") }}
+                  <!-- <div class="right">
+            <el-select
+                v-model="info.optionHover.backgroundType"
+                :placeholder="$lang('请选择填充颜色')"
+              >
+                <el-option
+                  v-for="item in backgroundTypeList"
+                  :key="item.code"
+                  :label="$lang(item.name)"
+                  :value="item.code"
+                >
+                </el-option>
+              </el-select>
+          </div> -->
+                </template>
+
+                <p>
+                  <span class="label">{{ $lang("填充颜色") }}:</span>
+                  <el-select
+                    v-model="info.optionHover.backgroundType"
+                    :placeholder="$lang('请选择填充颜色')"
+                  >
+                    <el-option
+                      v-for="item in backgroundTypeList"
+                      :key="item.code"
+                      :label="$lang(item.name)"
+                      :value="item.code"
+                    >
+                    </el-option>
+                  </el-select>
+                </p>
+                <p v-if="info.optionHover.backgroundType == 'purity'">
+                  <span class="label">{{ $lang("纯色") }}:</span>
+                  <el-color-picker
+                    v-model="info.optionHover.backgroundColor"
+                    show-alpha
+                  ></el-color-picker>
+                </p>
+                <template v-if="info.optionHover.backgroundType == 'gradient'">
+                  <p>
+                    <span class="label">{{ $lang("渐变颜色") }}:</span>
+                    <span
+                      class="gradient"
+                      :style="gradientStyle(info.option)"
+                    ></span>
+                    <!-- {{ gradientStyle }} -->
+                  </p>
+                  <p>
+                    <span class="label">{{ $lang("渐变类型") }}:</span>
+                    <el-radio-group
+                      class="gradient-type-group"
+                      v-model="info.optionHover.gradientStyle.type"
+                    >
+                      <el-radio-button
+                        :style="
+                          `background-image:${
+                            gradientStyleMap(info.option)[item.code]
+                          }`
+                        "
+                        :title="item.name"
+                        v-for="item in gradientTypeList"
+                        :key="item.code"
+                        :label="item.code"
+                      >
+                        {{ item.name }}
+                      </el-radio-button>
+                    </el-radio-group>
+                  </p>
+                  <template
+                    v-if="info.optionHover.gradientStyle.type == 'radial'"
+                  >
+                    <p>
+                      <span class="label">{{ $lang("中心") }}:</span>
+                      <el-select
+                        v-model="info.optionHover.gradientStyle.center"
+                        :placeholder="$lang('请选择中心位置')"
+                      >
+                        <el-option
+                          v-for="item in centerList"
+                          :key="item.code"
+                          :label="$lang(item.name)"
+                          :value="item.code"
+                        >
+                        </el-option>
+                      </el-select>
+                    </p>
+                    <p>
+                      <span class="label">{{ $lang("径向图形") }}:</span>
+                      <el-select
+                        v-model="info.optionHover.gradientStyle.radialShape"
+                        :placeholder="$lang('请选择径向图形')"
+                      >
+                        <el-option
+                          v-for="item in radialShapeList"
+                          :key="item.code"
+                          :label="$lang(item.name)"
+                          :value="item.code"
+                        >
+                        </el-option>
+                      </el-select>
+                    </p>
+                  </template>
+                  <template
+                    v-if="info.optionHover.gradientStyle.type == 'linear'"
+                  >
+                    <p>
+                      <span class="label">{{ $lang("角度") }}:</span>
+                      <el-select
+                        v-model="info.optionHover.gradientStyle.angle"
+                        :placeholder="$lang('请选择线性角度')"
+                      >
+                        <el-option
+                          v-for="item in angelList"
+                          :key="item.code"
+                          :label="$lang(item.code)"
+                          :value="item.code"
+                        >
+                        </el-option>
+                      </el-select>
+                    </p>
+                  </template>
+                  <p class="gradient-aperture">
+                    <span class="label">{{ $lang("渐变光圈") }}:</span>
+                    <el-button-group>
+                      <el-button
+                        plain
+                        :disabled="
+                          info.optionHover.gradientStyle.valueList.length > 5
+                        "
+                        @click="
+                          addApertureEvent(
+                            info.optionHover,
+                            'optionHoverSlider'
+                          )
+                        "
+                        ><i class="el-icon-plus"></i
+                      ></el-button>
+                      <el-button
+                        plain
+                        :disabled="
+                          info.optionHover.gradientStyle.valueList.length < 3
+                        "
+                        @click="
+                          removeApertureEvent(
+                            info.optionHover,
+                            'optionHoverSlider'
+                          )
+                        "
+                        ><i class="el-icon-minus"></i
+                      ></el-button>
+                    </el-button-group>
+                    <el-input
+                      :value="
+                        info.optionHover.gradientStyle.valueList[
+                          info.optionHover.gradientStyle.valueIndex
+                        ].value + ' %'
+                      "
+                      readonly
+                    ></el-input>
+                  </p>
+                  <p>
+                    <span class="label">{{ $lang("渐变节点颜色") }}</span>
+                    <el-color-picker
+                      color-format="hex"
+                      v-model="
+                        info.optionHover.gradientStyle.valueList[
+                          info.optionHover.gradientStyle.valueIndex
+                        ].code
+                      "
+                      show-alpha
+                    ></el-color-picker>
+                    <el-input
+                      :value="
+                        info.optionHover.gradientStyle.valueList[
+                          info.optionHover.gradientStyle.valueIndex
+                        ].code
+                      "
+                      readonly
+                    ></el-input>
+                  </p>
+                  <p>
+                    <vue-slider
+                      :height="25"
+                      ref="optionHoverSlider"
+                      :marks="false"
+                      :hide-label="true"
+                      :enable-cross="false"
+                      v-model="info.optionHover.gradientStyle.values"
+                      :interval="1"
+                      @change="optionHoverSliderChangeEvent"
+                      @drag-start="optionHoverSliderDragStartEvent"
+                      :data-value="'value'"
+                    >
+                      <template #tooltip>
+                        <span></span>
+                      </template>
+                      <template #process>
+                        <div
+                          class="vue-slider-process"
+                          :style="gradientLinearStyle(info.optionHover)"
+                        ></div>
+                      </template>
+                      <template #dot="{index}">
+                        <div class="dot-box">
+                          <div
+                            class="dot"
+                            :style="
+                              `background-color:${info.optionHover.gradientStyle.valueList[index].code}`
+                            "
+                          ></div>
+                        </div>
+                      </template>
+                    </vue-slider>
+                  </p>
+                </template>
+              </el-collapse-item>
+              <el-collapse-item
+                name="optionBackActive"
+                class="tab-collapse-item"
+              >
+                <template #title>
+                  {{ $lang("选项-选中") }}
+                </template>
+                <p>
+                  <span class="label">{{ $lang("填充颜色") }}:</span>
+                  <el-select
+                    v-model="info.optionActive.backgroundType"
+                    :placeholder="$lang('请选择填充颜色')"
+                  >
+                    <el-option
+                      v-for="item in backgroundTypeList"
+                      :key="item.code"
+                      :label="$lang(item.name)"
+                      :value="item.code"
+                    >
+                    </el-option>
+                  </el-select>
+                </p>
+                <p v-if="info.optionActive.backgroundType == 'purity'">
+                  <span class="label">{{ $lang("纯色") }}:</span>
+                  <el-color-picker
+                    v-model="info.optionActive.backgroundColor"
+                    show-alpha
+                  ></el-color-picker>
+                </p>
+                <template v-if="info.optionActive.backgroundType == 'gradient'">
+                  <p>
+                    <span class="label">{{ $lang("渐变颜色") }}:</span>
+                    <span
+                      class="gradient"
+                      :style="gradientStyle(info.option)"
+                    ></span>
+                    <!-- {{ gradientStyle }} -->
+                  </p>
+                  <p>
+                    <span class="label">{{ $lang("渐变类型") }}:</span>
+                    <el-radio-group
+                      class="gradient-type-group"
+                      v-model="info.optionActive.gradientStyle.type"
+                    >
+                      <el-radio-button
+                        :style="
+                          `background-image:${
+                            gradientStyleMap(info.option)[item.code]
+                          }`
+                        "
+                        :title="item.name"
+                        v-for="item in gradientTypeList"
+                        :key="item.code"
+                        :label="item.code"
+                      >
+                        {{ item.name }}
+                      </el-radio-button>
+                    </el-radio-group>
+                  </p>
+                  <template
+                    v-if="info.optionActive.gradientStyle.type == 'radial'"
+                  >
+                    <p>
+                      <span class="label">{{ $lang("中心") }}:</span>
+                      <el-select
+                        v-model="info.optionActive.gradientStyle.center"
+                        :placeholder="$lang('请选择中心位置')"
+                      >
+                        <el-option
+                          v-for="item in centerList"
+                          :key="item.code"
+                          :label="$lang(item.name)"
+                          :value="item.code"
+                        >
+                        </el-option>
+                      </el-select>
+                    </p>
+                    <p>
+                      <span class="label">{{ $lang("径向图形") }}:</span>
+                      <el-select
+                        v-model="info.optionActive.gradientStyle.radialShape"
+                        :placeholder="$lang('请选择径向图形')"
+                      >
+                        <el-option
+                          v-for="item in radialShapeList"
+                          :key="item.code"
+                          :label="$lang(item.name)"
+                          :value="item.code"
+                        >
+                        </el-option>
+                      </el-select>
+                    </p>
+                  </template>
+                  <template
+                    v-if="info.optionActive.gradientStyle.type == 'linear'"
+                  >
+                    <p>
+                      <span class="label">{{ $lang("角度") }}:</span>
+                      <el-select
+                        v-model="info.optionActive.gradientStyle.angle"
+                        :placeholder="$lang('请选择线性角度')"
+                      >
+                        <el-option
+                          v-for="item in angelList"
+                          :key="item.code"
+                          :label="$lang(item.code)"
+                          :value="item.code"
+                        >
+                        </el-option>
+                      </el-select>
+                    </p>
+                  </template>
+                  <p class="gradient-aperture">
+                    <span class="label">{{ $lang("渐变光圈") }}:</span>
+                    <el-button-group>
+                      <el-button
+                        plain
+                        :disabled="
+                          info.optionActive.gradientStyle.valueList.length > 5
+                        "
+                        @click="
+                          addApertureEvent(
+                            info.optionActive,
+                            'optionActiveSlider'
+                          )
+                        "
+                        ><i class="el-icon-plus"></i
+                      ></el-button>
+                      <el-button
+                        plain
+                        :disabled="
+                          info.optionActive.gradientStyle.valueList.length < 3
+                        "
+                        @click="
+                          removeApertureEvent(
+                            info.optionActive,
+                            'optionActiveSlider'
+                          )
+                        "
+                        ><i class="el-icon-minus"></i
+                      ></el-button>
+                    </el-button-group>
+                    <el-input
+                      :value="
+                        info.optionActive.gradientStyle.valueList[
+                          info.optionActive.gradientStyle.valueIndex
+                        ].value + ' %'
+                      "
+                      readonly
+                    ></el-input>
+                  </p>
+                  <p>
+                    <span class="label">{{ $lang("渐变节点颜色") }}</span>
+                    <el-color-picker
+                      color-format="hex"
+                      v-model="
+                        info.optionActive.gradientStyle.valueList[
+                          info.optionActive.gradientStyle.valueIndex
+                        ].code
+                      "
+                      show-alpha
+                    ></el-color-picker>
+                    <el-input
+                      :value="
+                        info.optionActive.gradientStyle.valueList[
+                          info.optionActive.gradientStyle.valueIndex
+                        ].code
+                      "
+                      readonly
+                    ></el-input>
+                  </p>
+                  <p>
+                    <vue-slider
+                      :height="25"
+                      ref="optionActiveSlider"
+                      :marks="false"
+                      :hide-label="true"
+                      :enable-cross="false"
+                      v-model="info.optionActive.gradientStyle.values"
+                      :interval="1"
+                      @change="optionActiveSliderChangeEvent"
+                      @drag-start="optionActiveSliderDragStartEvent"
+                      :data-value="'value'"
+                    >
+                      <template #tooltip>
+                        <span></span>
+                      </template>
+                      <template #process>
+                        <div
+                          class="vue-slider-process"
+                          :style="gradientLinearStyle(info.optionActive)"
+                        ></div>
+                      </template>
+                      <template #dot="{index}">
+                        <div class="dot-box">
+                          <div
+                            class="dot"
+                            :style="
+                              `background-color:${info.optionActive.gradientStyle.valueList[index].code}`
+                            "
+                          ></div>
+                        </div>
+                      </template>
+                    </vue-slider>
+                  </p>
+                </template>
+              </el-collapse-item>
+            </el-collapse>
+
             <p>
               <span class="label"> {{ $lang("边框样式") }}:</span
               ><el-select
@@ -2289,7 +2745,7 @@
           </span>
         </p>
       </el-collapse-item> -->
-      <el-collapse-item title="动画" name="animation">
+      <el-collapse-item :title="$lang('动画')" name="animation">
         <p>
           <span class="label">{{ $lang("动画类型") }}:</span>
           <el-select v-model="info.animation.name" placeholder="请选择动画类型">
@@ -2373,6 +2829,7 @@ export default {
       activeNames: ["name", "style"],
       tabActiveNames: ["empty", "font"],
       selectTabActiveNames: ["empty", "tab"],
+      optionTabActiveNames: ["empty"],
       animationDirectionList: Object.freeze(Constants.ANIMATIONDIRECTIONLIST),
       animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
       borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
@@ -2513,6 +2970,72 @@ export default {
       let { info = {} } = this;
       let { select = {} } = info || {};
       let { gradientStyle = {} } = select || {};
+      gradientStyle.valueIndex = index;
+    },
+    optionSliderChangeEvent(values, index) {
+      let { info = {} } = this;
+      let { option = {} } = info || {};
+      let { gradientStyle = {} } = option || {};
+      let { valueList = [] } = gradientStyle || {};
+      let { length = 0 } = valueList || [];
+      if (index == 0) {
+        values[0] = 0;
+        this.$refs.slider?.setValue(values);
+      } else if (index == length - 1) {
+        values[length - 1] = 100;
+        this.$refs.optionSlider?.setValue(values);
+      }
+      gradientStyle.valueIndex = index;
+      valueList[index].value = values[index];
+    },
+    optionSliderDragStartEvent(index) {
+      let { info = {} } = this;
+      let { option = {} } = info || {};
+      let { gradientStyle = {} } = option || {};
+      gradientStyle.valueIndex = index;
+    },
+    optionHoverSliderChangeEvent(values, index) {
+      let { info = {} } = this;
+      let { optionHover = {} } = info || {};
+      let { gradientStyle = {} } = optionHover || {};
+      let { valueList = [] } = gradientStyle || {};
+      let { length = 0 } = valueList || [];
+      if (index == 0) {
+        values[0] = 0;
+        this.$refs.slider?.setValue(values);
+      } else if (index == length - 1) {
+        values[length - 1] = 100;
+        this.$refs.optionHoverSlider?.setValue(values);
+      }
+      gradientStyle.valueIndex = index;
+      valueList[index].value = values[index];
+    },
+    optionHoverSliderDragStartEvent(index) {
+      let { info = {} } = this;
+      let { optionHover = {} } = info || {};
+      let { gradientStyle = {} } = optionHover || {};
+      gradientStyle.valueIndex = index;
+    },
+    optionActiveSliderChangeEvent(values, index) {
+      let { info = {} } = this;
+      let { optionActive = {} } = info || {};
+      let { gradientStyle = {} } = optionActive || {};
+      let { valueList = [] } = gradientStyle || {};
+      let { length = 0 } = valueList || [];
+      if (index == 0) {
+        values[0] = 0;
+        this.$refs.slider?.setValue(values);
+      } else if (index == length - 1) {
+        values[length - 1] = 100;
+        this.$refs.optionActiveSlider?.setValue(values);
+      }
+      gradientStyle.valueIndex = index;
+      valueList[index].value = values[index];
+    },
+    optionActiveSliderDragStartEvent(index) {
+      let { info = {} } = this;
+      let { optionActive = {} } = info || {};
+      let { gradientStyle = {} } = optionActive || {};
       gradientStyle.valueIndex = index;
     },
     //添加渐变光圈

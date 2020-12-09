@@ -870,15 +870,28 @@
           </p>
         </template>
         <p>
-          <span class="label">{{ $lang("字体大小") }}:</span>
-          {{ info.fontSize }} px
-          <el-slider
-            v-model="info.fontSize"
-            :min="10"
-            :max="100"
-            :format-tooltip="val => val + ' px'"
-          ></el-slider>
-        </p>
+              <span class="label">{{ $lang("字体大小") }}:</span>
+              <el-tooltip
+                :content="$lang('请输入字体大小')"
+                placement="top"
+                effect="dark"
+              >
+                <el-input-number
+                  controls-position="right"
+                  clearable
+                  :min="10"
+                  :max="200"
+                  v-model.number="info.fontSize"
+                  :placeholder="$lang('请输入字体大小')"
+                ></el-input-number>
+              </el-tooltip>
+              <el-slider
+                v-model="info.fontSize"
+                :min="10"
+                :max="200"
+                :format-tooltip="val => val"
+              ></el-slider>
+            </p>
         <p>
           <span class="label">{{ $lang("字体") }}:</span>
           <el-select

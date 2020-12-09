@@ -947,7 +947,7 @@
       <!-- <h2>{{ $lang("交互") }}</h2>
     <h2>{{ $lang("动画") }}</h2> -->
       <!-- <el-collapse-item title="交互" name="2"> </el-collapse-item> -->
-      <el-collapse-item title="动画" name="animation">
+      <el-collapse-item :title="$lang('动画')" name="animation">
         <p>
           <span class="label">{{ $lang("动画类型") }}:</span>
           <el-select v-model="info.animation.name" placeholder="请选择动画类型">
