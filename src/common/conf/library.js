@@ -2035,11 +2035,35 @@ let componentLibrary = [
             icon: "/static/img/configur/xfkzq.svg",
             data: {
               ...baseData,
-              dataType: "device",
+              dataType: "point",
               infoType: "device", //显示详情组件前缀名
               width: 85,
               height: 58,
-              equalScaleable: true //是否等比例缩放
+              descrStyle: {
+                showCode: false,//是否显示代码     
+                formatNum:2,//显示字符位数
+                decimal: 1, //小数位
+                fontSize: 10,
+                color: "#fff",
+                left: 8,
+                top: 22,
+                fontFamily: "OPPOSans-M"
+              },
+              unitStyle: {
+                fontSize: 10,
+                color: "#fff",
+                left: 49,
+                top: 22,
+                fontFamily: "OPPOSans-M"
+              },
+              valueStyle: {
+                fontSize: 19,
+                color: "#fff",
+                left: 27,
+                top: 44,
+                fontFamily: "OPPOSans-H"
+              }
+              // equalScaleable: true //是否等比例缩放
             }
           },
           {
@@ -2052,8 +2076,8 @@ let componentLibrary = [
               dataType: "device",
               infoType: "device", //显示详情组件前缀名
               width: 73,
-              height: 65,
-              equalScaleable: true //是否等比例缩放
+              height: 65
+              // equalScaleable: true //是否等比例缩放
             }
           }
         ]

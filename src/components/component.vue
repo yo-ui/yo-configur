@@ -180,9 +180,9 @@ export default {
     // }
   },
   created() {
-    // let { info = {} } = this;
-    // let { comName = "", name = "" } = info || {};
-    // info.comName = !comName ? name : comName;
+    let { info = {} } = this;
+    let { comName = "", name = "" } = info || {};
+    info.comName = !comName ? name : comName;
     // let item = Constants.COMPONENTLIBRARYMAP[type] || {};
     // let { data = {} } = item || {};
     // let { infoType = "" } = data || {};

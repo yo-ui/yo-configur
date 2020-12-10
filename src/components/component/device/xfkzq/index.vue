@@ -12,81 +12,27 @@
       <defs
         v-html="
           `
-        <style type='text/css'>
-       .xfkzq-st0{display:none;}
-	.xfkzq-st1{display:inline;fill:#D8D9D9;}
-	.xfkzq-st2{display:inline;fill:url(#xfkzq_${info.id}_SVGID_1_);}
-	.xfkzq-st3{display:inline;fill:#FFFFFF;}
-	.xfkzq-st4{display:inline;fill:url(#xfkzq_${info.id}_SVGID_2_);}
-	.xfkzq-st5{display:inline;opacity:0.3;}
-	.xfkzq-st6{display:inline;fill:#E8E8E8;}
-	.xfkzq-st7{fill:#D8D9D9;}
-	.xfkzq-st8{fill:url(#xfkzq_${info.id}_SVGID_3_);}
-	.xfkzq-st9{fill:#FFFFFF;}
-	.xfkzq-st10{fill:url(#xfkzq_${info.id}_SVGID_4_);}
-	.xfkzq-st11{opacity:0.3;}
-	.xfkzq-st12{fill:#E8E8E8;}
+        <style type='text/css'>  
+	.xfkzq-st0{fill:#D8D9D9;}
+	.xfkzq-st1{fill:url(#xfkzq_${info.id}_SVGID_1_);}
+	.xfkzq-st2{fill:#FFFFFF;}
+	.xfkzq-st3{fill:url(#xfkzq_${info.id}_SVGID_2_);}
+	.xfkzq-st4{opacity:0.3;}
+	.xfkzq-st5{fill:#E8E8E8;}
+	.xfkzq-st6{fill:url(#xfkzq_${info.id}_SVGID_3_);}
+	.xfkzq-st7{fill:url(#xfkzq_${info.id}_SVGID_4_);}
+	.xfkzq-st8{font-family:'OPPOSans-M';}
+	.xfkzq-st9{font-size:10px;}
+	.xfkzq-st10{font-family:'OPPOSans-H';}
+	.xfkzq-st11{font-size:19px;}
       </style>
       `
         "
       ></defs>
 
-      <g id="图层_2" v-if="info.content">
+      <g id="图层_1" v-if="info.content">
         <path
-          class="xfkzq-st1"
-          d="M1161,550h-85v-50c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3V550z"
-        />
-        <linearGradient
-          :id="`xfkzq_${info.id}_SVGID_1_`"
-          gradientUnits="userSpaceOnUse"
-          x1="1118.5"
-          y1="555"
-          x2="1118.5"
-          y2="502"
-        >
-          <stop offset="0" style="stop-color:#D8D9D9" />
-          <stop offset="1" style="stop-color:#B1B1B2" />
-        </linearGradient>
-        <path
-          class="xfkzq-st2"
-          d="M1158,555h-79c-1.7,0-3-1.3-3-3v-47c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3v47C1161,553.7,1159.7,555,1158,555z"
-        />
-        <path
-          class="xfkzq-st3"
-          d="M1136,551h-53c-1.7,0-3-1.3-3-3v-39c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C1139,549.7,1137.7,551,1136,551z"
-        />
-        <linearGradient
-          :id="`xfkzq_${info.id}_SVGID_2_`"
-          gradientUnits="userSpaceOnUse"
-          x1="1109.5"
-          y1="549"
-          x2="1109.5"
-          y2="506"
-        >
-          <stop offset="0" style="stop-color:#929CAD" />
-          <stop offset="1" style="stop-color:#697284" />
-        </linearGradient>
-        <path
-          class="xfkzq-st4"
-          d="M1136,549h-53c-1.7,0-3-1.3-3-3v-39c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C1139,547.7,1137.7,549,1136,549z"
-        />
-        <rect x="1144" y="507" class="xfkzq-st5" width="17" height="43" />
-        <rect x="1145" y="508" class="xfkzq-st3" width="15" height="5" />
-        <rect x="1145" y="509" class="xfkzq-st6" width="15" height="5" />
-        <rect x="1145" y="515" class="xfkzq-st3" width="15" height="5" />
-        <rect x="1145" y="516" class="xfkzq-st6" width="15" height="5" />
-        <rect x="1145" y="522" class="xfkzq-st3" width="15" height="5" />
-        <rect x="1145" y="523" class="xfkzq-st6" width="15" height="5" />
-        <rect x="1145" y="529" class="xfkzq-st3" width="15" height="5" />
-        <rect x="1145" y="530" class="xfkzq-st6" width="15" height="5" />
-        <rect x="1145" y="536" class="xfkzq-st3" width="15" height="5" />
-        <rect x="1145" y="537" class="xfkzq-st6" width="15" height="5" />
-        <rect x="1145" y="543" class="xfkzq-st3" width="15" height="5" />
-        <rect x="1145" y="544" class="xfkzq-st6" width="15" height="5" />
-      </g>
-      <g id="图层_1" v-else>
-        <path
-          class="xfkzq-st7"
+          class="xfkzq-st0"
           d="M85,53H0V3c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3V53z"
         />
         <linearGradient
@@ -101,11 +47,11 @@
           <stop offset="1" style="stop-color:#B1B1B2" />
         </linearGradient>
         <path
-          class="xfkzq-st8"
+          class="xfkzq-st6"
           d="M82,58H3c-1.7,0-3-1.3-3-3V8c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3v47C85,56.7,83.7,58,82,58z"
         />
         <path
-          class="xfkzq-st9"
+          class="xfkzq-st2"
           d="M60,54H7c-1.7,0-3-1.3-3-3V12c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C63,52.7,61.7,54,60,54z"
         />
         <linearGradient
@@ -120,22 +66,106 @@
           <stop offset="1" style="stop-color:#007A7F" />
         </linearGradient>
         <path
-          class="xfkzq-st10"
+          class="xfkzq-st7"
           d="M60,52H7c-1.7,0-3-1.3-3-3V10c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C63,50.7,61.7,52,60,52z"
         />
-        <rect x="68" y="10" class="xfkzq-st11" width="17" height="43" />
-        <rect x="69" y="11" class="xfkzq-st9" width="15" height="5" />
-        <rect x="69" y="12" class="xfkzq-st12" width="15" height="5" />
-        <rect x="69" y="18" class="xfkzq-st9" width="15" height="5" />
-        <rect x="69" y="19" class="xfkzq-st12" width="15" height="5" />
-        <rect x="69" y="25" class="xfkzq-st9" width="15" height="5" />
-        <rect x="69" y="26" class="xfkzq-st12" width="15" height="5" />
-        <rect x="69" y="32" class="xfkzq-st9" width="15" height="5" />
-        <rect x="69" y="33" class="xfkzq-st12" width="15" height="5" />
-        <rect x="69" y="39" class="xfkzq-st9" width="15" height="5" />
-        <rect x="69" y="40" class="xfkzq-st12" width="15" height="5" />
-        <rect x="69" y="46" class="xfkzq-st9" width="15" height="5" />
-        <rect x="69" y="47" class="xfkzq-st12" width="15" height="5" />
+        <rect x="68" y="10" class="xfkzq-st4" width="17" height="43" />
+        <rect x="69" y="11" class="xfkzq-st2" width="15" height="5" />
+        <rect x="69" y="12" class="xfkzq-st5" width="15" height="5" />
+        <rect x="69" y="18" class="xfkzq-st2" width="15" height="5" />
+        <rect x="69" y="19" class="xfkzq-st5" width="15" height="5" />
+        <rect x="69" y="25" class="xfkzq-st2" width="15" height="5" />
+        <rect x="69" y="26" class="xfkzq-st5" width="15" height="5" />
+        <rect x="69" y="32" class="xfkzq-st2" width="15" height="5" />
+        <rect x="69" y="33" class="xfkzq-st5" width="15" height="5" />
+        <rect x="69" y="39" class="xfkzq-st2" width="15" height="5" />
+        <rect x="69" y="40" class="xfkzq-st5" width="15" height="5" />
+        <rect x="69" y="46" class="xfkzq-st2" width="15" height="5" />
+        <rect x="69" y="47" class="xfkzq-st5" width="15" height="5" />
+      </g>
+      <g id="图层_3" v-else>
+        <path
+          class="xfkzq-st0"
+          d="M85,53H0V3c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3V53z"
+        />
+        <linearGradient
+          :id="`xfkzq_${info.id}_SVGID_1_`"
+          gradientUnits="userSpaceOnUse"
+          x1="42.5"
+          y1="58"
+          x2="42.5"
+          y2="5"
+        >
+          <stop offset="0" style="stop-color:#D8D9D9" />
+          <stop offset="1" style="stop-color:#B1B1B2" />
+        </linearGradient>
+        <path
+          class="xfkzq-st1"
+          d="M82,58H3c-1.7,0-3-1.3-3-3V8c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3v47C85,56.7,83.7,58,82,58z"
+        />
+        <path
+          class="xfkzq-st2"
+          d="M60,54H7c-1.7,0-3-1.3-3-3V12c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C63,52.7,61.7,54,60,54z"
+        />
+        <linearGradient
+          :id="`xfkzq_${info.id}_SVGID_2_`"
+          gradientUnits="userSpaceOnUse"
+          x1="33.5"
+          y1="52"
+          x2="33.5"
+          y2="9"
+        >
+          <stop offset="0" style="stop-color:#929CAD" />
+          <stop offset="1" style="stop-color:#697284" />
+        </linearGradient>
+        <path
+          class="xfkzq-st3"
+          d="M60,52H7c-1.7,0-3-1.3-3-3V10c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C63,50.7,61.7,52,60,52z"
+        />
+        <rect x="68" y="10" class="xfkzq-st4" width="17" height="43" />
+        <rect x="69" y="11" class="xfkzq-st2" width="15" height="5" />
+        <rect x="69" y="12" class="xfkzq-st5" width="15" height="5" />
+        <rect x="69" y="18" class="xfkzq-st2" width="15" height="5" />
+        <rect x="69" y="19" class="xfkzq-st5" width="15" height="5" />
+        <rect x="69" y="25" class="xfkzq-st2" width="15" height="5" />
+        <rect x="69" y="26" class="xfkzq-st5" width="15" height="5" />
+        <rect x="69" y="32" class="xfkzq-st2" width="15" height="5" />
+        <rect x="69" y="33" class="xfkzq-st5" width="15" height="5" />
+        <rect x="69" y="39" class="xfkzq-st2" width="15" height="5" />
+        <rect x="69" y="40" class="xfkzq-st5" width="15" height="5" />
+        <rect x="69" y="46" class="xfkzq-st2" width="15" height="5" />
+        <rect x="69" y="47" class="xfkzq-st5" width="15" height="5" />
+      </g>
+      <g id="图层_2">
+        <text
+          transform="matrix(1 0 0 1 8 22)"
+          class="xfkzq-st2 xfkzq-st8 xfkzq-st9"
+          :style="descrStyle"
+        >
+          {{
+            info.descrStyle.showCode
+              ? devicePoint
+                ? point.id
+                : "WS"
+              : devicePoint
+              ? $ellipsis(point.name || "", info.descrStyle.formatNum, 0, "...")
+              : "风速"
+          }}
+        </text>
+        <text
+          transform="matrix(1 0 0 1 27 44)"
+          class="xfkzq-st2 xfkzq-st10 xfkzq-st11"
+          :style="valueStyle"
+        >
+          {{ info.content ? (devicePoint ? point.value : 3) : "--" }}
+        </text>
+        <text
+          transform="matrix(1 0 0 1 49 22)"
+          class="xfkzq-st2 xfkzq-st8 xfkzq-st9"
+          :style="unitStyle"
+        >
+          {{ devicePoint ? point.unit : "档" }}
+        </text>
       </g>
     </svg>
   </div>
@@ -149,7 +179,9 @@ const pointCode = "SwSts";
 export default {
   name: "bmBasicXfkzqCom",
   data() {
-    return {};
+    return {
+      point: {}
+    };
   },
   props: {
     info: {
@@ -163,6 +195,12 @@ export default {
     ...mapGetters({
       showType: "canvas/getShowType" //当前显示类型
     }),
+    devicePoint() {
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { devicePoint = "" } = bindData || {};
+      return devicePoint || "";
+    },
 
     //渐变颜色样式
     gradientStyle() {
@@ -186,6 +224,59 @@ export default {
         return styles;
       };
     },
+    descrStyle() {
+      let { info = {} } = this;
+      let { descrStyle = {} } = info || {};
+      let { color = "", left = "", top = "", fontSize = "", fontFamily = "" } =
+        descrStyle || {};
+      let styles = {
+        transform: `matrix(1, 0, 0 ,1 ,${left},${top})`
+      };
+      if (color) {
+        styles["fill"] = color;
+      }
+      if (fontSize) {
+        styles["fontSize"] = `${fontSize}px`;
+      }
+      if (fontFamily) {
+        styles["fontFamily"] = fontFamily;
+      }
+      return styles || {};
+    },
+    valueStyle() {
+      let { info = {} } = this;
+      let { valueStyle = {} } = info || {};
+      let { color = "", left = "", top = "", fontSize = "", fontFamily = "" } =
+        valueStyle || {};
+      let styles = {};
+      if (color) {
+        styles["fill"] = color;
+      }
+      if (fontSize) {
+        styles["fontSize"] = `${fontSize}px`;
+      }
+      if (fontFamily) {
+        styles["fontFamily"] = fontFamily;
+      }
+      return styles || {};
+    },
+    unitStyle() {
+      let { info = {} } = this;
+      let { unitStyle = {} } = info || {};
+      let { color = "", left = "", top = "", fontSize = "", fontFamily = "" } =
+        unitStyle || {};
+      let styles = { transform: `matrix(1, 0, 0 ,1 ,${left},${top})` };
+      if (color) {
+        styles["fill"] = color;
+      }
+      if (fontSize) {
+        styles["fontSize"] = `${fontSize}px`;
+      }
+      if (fontFamily) {
+        styles["fontFamily"] = fontFamily;
+      }
+      return styles || {};
+    },
     comStyle() {
       let { info = {}, gradientStyle } = this;
       let {
@@ -208,14 +299,14 @@ export default {
         // borderRadius = "",
         // backgroundType = "",
         // scale = "",
-        // marginTop = 0,
-        // marginBottom = 0,
-        // marginLeft = 0,
-        // marginRight = 0,
-        // paddingTop = 0,
-        // paddingBottom = 0,
-        // paddingLeft = 0,
-        // paddingRight = 0,
+        marginTop = 0,
+        marginBottom = 0,
+        marginLeft = 0,
+        marginRight = 0,
+        paddingTop = 0,
+        paddingBottom = 0,
+        paddingLeft = 0,
+        paddingRight = 0,
         shadow = {},
         shadowable = false
         // textShadow = {},
@@ -233,8 +324,8 @@ export default {
         // backgroundSize = ""
       } = info || {};
       let styles = {
-        // margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
-        // padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
+        margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
+        padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
       };
       // if (textAlign) {
       //   styles["textAlign"] = textAlign;
@@ -339,48 +430,49 @@ export default {
       // setActiveCom: "canvas/setActiveCom" //设置当前选中组件
     }),
     ...mapActions({}),
-    controlEvent() {
-      let { info = {} } = this;
-      let { content = false, bindData = {} } = info || {};
-      let { deviceId = "" } = bindData || {};
-      if (!deviceId) {
-        info.content = !content;
-        return;
-      }
-      let point = pointCode;
-      let value = !content ? 1 : 0;
-      $vm.$emit("control", {
-        deviceId,
-        point,
-        value,
-        callback: flag => {
-          if (flag) {
-            info.content = !content;
-          } else {
-            info.content = content; //如果取消则重置结果
-          }
-        }
-      });
-    },
     init() {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
         let { id = "" } = info || {};
-        let { $vm } = window;
-        // let { deviceId = "" } = bindData || {};
-        $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
-          bmCommon.log("deviceKgCom", device);
+        $vm.$on(`devicePointEvent_${id}`, ({ device, point }) => {
+          bmCommon.log("deviceXfkzqCom", device);
           let { pointList = [] } = device || {};
-          let point = pointList.find(item => {
+          this.point = point || {};
+          let _point = pointList.find(item => {
             let { point: id = "" } = item || {};
             return id == pointCode; // SwSts  开关状态
           });
-          if (point) {
-            let { value = "" } = point || {};
+          if (_point) {
+            let { value = "" } = _point || {};
             info.content = value == 1 ? true : false;
           }
         });
       }
+      this.loadDeviceInfo();
+    },
+    loadDeviceInfo() {
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { deviceId = "", devicePoint = "" } = bindData || {};
+      $vm.$emit("device", {
+        deviceId,
+        callback: (device = {}) => {
+          let { points: pointList = [] } = device || {};
+          let point = pointList.find(item => {
+            let { id = "" } = item || {};
+            return id == devicePoint; //
+          });
+          this.point = point || {};
+        }
+      });
+    }
+  },
+  watch: {
+    "info.bindData.devicePoint": {
+      handler(newVal, oldVal) {
+        this.loadDeviceInfo();
+      },
+      deep: true
     }
   }
 };
