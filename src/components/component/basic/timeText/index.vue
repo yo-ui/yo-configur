@@ -26,26 +26,28 @@ export default {
     ...mapGetters(),
     //渐变颜色样式
     gradientStyle() {
-      let { info = {} } = this;
-      let { gradientStyle = {} } = info || {};
-      let {
-        type = "",
-        angle = "",
-        center = "",
-        radialShape = "",
-        valueList = []
-      } = gradientStyle || {};
-      let styles = {};
-      let colors = valueList.map(item => `${item.code} ${item.value}%`);
-      if (type == "linear") {
-        styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
-      } else if (type == "radial") {
-        styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
-      }
-      return styles;
+      return (info = {}) => {
+        // let { info = {} } = this;
+        let { gradientStyle = {} } = info || {};
+        let {
+          type = "",
+          angle = "",
+          center = "",
+          radialShape = "",
+          valueList = []
+        } = gradientStyle || {};
+        let styles = {};
+        let colors = valueList.map(item => `${item.code} ${item.value}%`);
+        if (type == "linear") {
+          styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
+        } else if (type == "radial") {
+          styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+        }
+        return styles;
+      };
     },
     comStyle() {
-      let { info = {}, gradientStyle = {} } = this;
+      let { info = {}, gradientStyle } = this;
       let {
         width = "",
         height = "",
@@ -72,8 +74,8 @@ export default {
         fontWeight = "",
         fontStyle = "",
         textDecoration = "",
-        backgroundType = "",
         fontSize = "",
+        backgroundType = "",
         backgroundColor = "",
         backgroundImage = "",
         backgroundRepeat = "",
@@ -158,27 +160,13 @@ export default {
         }
       } else if (backgroundType == "gradient") {
         //渐变
-        styles = { ...styles, ...gradientStyle };
+        styles = { ...styles, ...gradientStyle(info) };
       }
       return styles || {};
     }
   },
   mounted() {
-    // this.$nextTick(() => {
-    //   let bmCom = this.$refs.bmCom;
-    //   let $bmCom = $(bmCom);
-    //   let { info = {} } = this;
-    //   let width = $bmCom.width();
-    //   let height = $bmCom.height();
-    //   info.originWidth = width;
-    //   info.originHeight = height;
-    //   if (info.scaleable) {
-    //     info.width = width;
-    //     info.height = height;
-    //   }
-    // });
     this.init();
-    // this.$emit("success"); //组件加载完成回调
   },
   methods: {
     ...mapMutations({}),

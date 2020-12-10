@@ -735,6 +735,7 @@
             inactive-color="#ccc"
           ></el-switch>
         </p>
+
         <template v-if="info.textShadowable">
           <p class="shadow-box">
             <span class="c-box">
@@ -749,7 +750,7 @@
                 <el-input-number
                   controls-position="right"
                   clearable
-                  v-model.number="info.shadow.x"
+                  v-model.number="info.textShadow.x"
                   :placeholder="$lang('X轴位移')"
                 ></el-input-number>
               </span>
@@ -763,7 +764,7 @@
                 ><el-input-number
                   controls-position="right"
                   clearable
-                  v-model.number="info.shadow.y"
+                  v-model.number="info.textShadow.y"
                   :placeholder="$lang('Y轴位移')"
                 ></el-input-number>
               </span>

@@ -31,9 +31,9 @@
                 v-if="
                   item.bindData &&
                     item.bindData.deviceId &&
-                    !item.bindData.devicePoint &&
-                    item.infoType
+                    item.infoType == 'device'
                 "
+                @mousedowe.native.stop
                 popper-class="device-info-popover"
                 placement="right"
                 :key="index"
@@ -60,9 +60,9 @@
                         v-if="
                           _item.bindData &&
                             _item.bindData.deviceId &&
-                            !_item.bindData.devicePoint &&
-                            _item.infoType
+                            _item.infoType == 'device'
                         "
+                        @mousedowe.native.stop
                         popper-class="device-info-popover"
                         placement="right"
                         :key="_index"

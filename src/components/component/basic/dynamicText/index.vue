@@ -261,45 +261,53 @@ export default {
     ...mapActions({}),
     init() {
       let { info = {}, showType = "" } = this;
-      let that = this;
       if (showType != "edit") {
-        let { id = "" } = info || {};
-        let { bindData = {} } = info || {};
-        let { deviceId = "", devicePoint = "" } = bindData || {};
-        if (!deviceId) {
+        let { id = "", bindData = {} } = info || {};
+        let { devicePoint = "" } = bindData || {};
+        if (!devicePoint) {
           return;
         }
-        // let { deviceId = "" } = bindData || {};
         $vm.$on(`devicePointEvent_${id}`, ({ device, point = {} }) => {
           bmCommon.log("dynamicTextCom", device, point);
           let { value = "", unit = "" } = point || {};
           info.content = value;
           info.unit = unit;
-          // info.width = $(this.$refs.bmText).width();
-          // this.$emit("success"); //组件加载完成回调
-        });
-
-        $vm.$emit(`deviceList`, {
-          ids: [deviceId],
-          callback(deviceList = []) {
-            let device = deviceList.find(item => {
-              return deviceId == item.id;
-            });
-            if (device) {
-              let { points = [] } = device || {};
-              let pointObj = points.find(item => {
-                return item.id == devicePoint;
-              });
-              if (pointObj) {
-                let { value = "", unit = "" } = pointObj || {};
-                info.content = value;
-                info.unit = unit;
-              }
-            }
-            that.$emit("success"); //组件加载完成回调
-          }
+          this.$emit("success"); //组件加载完成回调
         });
       }
+      this.loadDeviceInfo();
+    },
+    loadDeviceInfo() {
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { deviceId = "", devicePoint = "" } = bindData || {};
+      if (!deviceId) {
+        return;
+      }
+      $vm.$emit("device", {
+        deviceId,
+        callback: (device = {}) => {
+          let { points: pointList = [] } = device || {};
+          let point = pointList.find(item => {
+            let { id = "" } = item || {};
+            return id == devicePoint; //
+          });
+          if (point) {
+            let { value = "", unit = "" } = point || {};
+            info.content = value;
+            info.unit = unit;
+          }
+          this.$emit("success"); //组件加载完成回调
+        }
+      });
+    }
+  },
+  watch: {
+    "info.bindData.devicePoint": {
+      handler(newVal, oldVal) {
+        this.loadDeviceInfo();
+      },
+      deep: true
     }
   }
 };

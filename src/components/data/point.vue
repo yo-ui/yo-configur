@@ -260,6 +260,7 @@ export default {
       let { condition, device = {} } = this;
       let { points = [], id = "" } = device || {};
       condition.deviceId = id;
+      condition.pointId = "";
       this.resetStatus = false;
       this.pointList = points || [];
       // let [point = {}] = points || [];

@@ -218,19 +218,53 @@ export default {
     init() {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
-        let { id = "" } = info || {};
-        let { $vm } = window;
-        // let { deviceId = "" } = bindData || {};
+        let { id = "", bindData = {} } = info || {};
+        let { devicePoint = "" } = bindData || {};
+        if (!devicePoint) {
+          return;
+        }
         $vm.$on(`devicePointEvent_${id}`, ({ device, point = {} }) => {
           bmCommon.log("blockCom", device, point);
           let { value = "", unit = "", descr = "" } = point || {};
           info.content = value;
           info.pointName = descr;
           info.unit = unit;
-          // info.width = $(this.$refs.bmText).width();
-          // this.$emit("success"); //组件加载完成回调
+          this.$emit("success"); //组件加载完成回调
         });
       }
+      this.loadDeviceInfo();
+    },
+    loadDeviceInfo() {
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { deviceId = "", devicePoint = "" } = bindData || {};
+      if (!deviceId) {
+        return;
+      }
+      $vm.$emit("device", {
+        deviceId,
+        callback: (device = {}) => {
+          let { points: pointList = [] } = device || {};
+          let point = pointList.find(item => {
+            let { id = "" } = item || {};
+            return id == devicePoint; //
+          });
+          if (point) {
+            let { value = "", unit = "", descr = "" } = point || {};
+            info.content = value;
+            info.pointName = descr;
+            info.unit = unit;
+          }
+        }
+      });
+    }
+  },
+  watch: {
+    "info.bindData.devicePoint": {
+      handler(newVal, oldVal) {
+        this.loadDeviceInfo();
+      },
+      deep: true
     }
   }
 };

@@ -12,82 +12,25 @@
       <defs
         v-html="
           `
-        <style type='text/css'>        
-	.wkq-st0{display:none;}
-	.wkq-st1{display:inline;fill:#D8D9D9;}
-	.wkq-st2{display:inline;fill:url(#wkq_${info.id}_SVGID_1_);}
-	.wkq-st3{display:inline;fill:#FFFFFF;}
-	.wkq-st4{display:inline;fill:url(#wkq_${info.id}_SVGID_2_);}
-	.wkq-st5{display:inline;}
-	.wkq-st6{fill:#FFFFFF;}
-	.wkq-st7{fill:#E8E8E8;}
-	.wkq-st8{fill:#D8D9D9;}
-	.wkq-st9{fill:url(#wkq_${info.id}_SVGID_3_);}
-	.wkq-st10{fill:url(#wkq_${info.id}_SVGID_4_);}
+        <style type='text/css'>     
+	.wkq-st0{fill:#D8D9D9;}
+	.wkq-st1{fill:url(#wkq_${info.id}_SVGID_1_);}
+	.wkq-st2{fill:#FFFFFF;}
+	.wkq-st3{fill:url(#wkq_${info.id}_SVGID_2_);}
+	.wkq-st4{fill:#E8E8E8;}
+	.wkq-st5{fill:url(#wkq_${info.id}_SVGID_3_);}
+	.wkq-st6{fill:url(#wkq_${info.id}_SVGID_4_);}
+	.wkq-st7{font-family:'OPPOSans-M';}
+	.wkq-st8{font-size:10px;}
+	.wkq-st9{font-family:'OPPOSans-H';}
+	.wkq-st10{font-size:19px;}
       </style>
       `
         "
       ></defs>
-
-      <g id="图层_2" v-if="info.content">
+      <g id="图层_1" v-if="info.content">
         <path
-          class="wkq-st1"
-          d="M73,60H0V3c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3V60z"
-        />
-        <linearGradient
-          :id="`wkq_${info.id}_SVGID_1_`"
-          gradientUnits="userSpaceOnUse"
-          x1="36.5"
-          y1="65"
-          x2="36.5"
-          y2="5"
-        >
-          <stop offset="0" style="stop-color:#D8D9D9" />
-          <stop offset="1" style="stop-color:#B1B1B2" />
-        </linearGradient>
-        <path
-          class="wkq-st2"
-          d="M70,65H3c-1.7,0-3-1.3-3-3V8c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3v54C73,63.7,71.7,65,70,65z"
-        />
-        <path
-          class="wkq-st3"
-          d="M66,54H7c-1.7,0-3-1.3-3-3V12c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,52.7,67.7,54,66,54z"
-        />
-        <linearGradient
-          :id="`wkq_${info.id}_SVGID_2_`"
-          gradientUnits="userSpaceOnUse"
-          x1="36.5"
-          y1="52"
-          x2="36.5"
-          y2="9"
-        >
-          <stop offset="0" style="stop-color:#929CAD" />
-          <stop offset="1" style="stop-color:#697284" />
-        </linearGradient>
-        <path
-          class="wkq-st4"
-          d="M66,52H7c-1.7,0-3-1.3-3-3V10c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,50.7,67.7,52,66,52z"
-        />
-        <g class="wkq-st5">
-          <rect x="8" y="57" class="wkq-st6" width="9" height="4" />
-          <rect x="8" y="58" class="wkq-st7" width="9" height="4" />
-        </g>
-        <g class="wkq-st5">
-          <rect x="24" y="57" class="wkq-st6" width="9" height="4" />
-          <rect x="24" y="58" class="wkq-st7" width="9" height="4" />
-        </g>
-        <g class="wkq-st5">
-          <rect x="40" y="57" class="wkq-st6" width="9" height="4" />
-          <rect x="40" y="58" class="wkq-st7" width="9" height="4" />
-        </g>
-        <g class="wkq-st5">
-          <rect x="56" y="57" class="wkq-st6" width="9" height="4" />
-          <rect x="56" y="58" class="wkq-st7" width="9" height="4" />
-        </g>
-      </g>
-      <g id="图层_1" v-else>
-        <path
-          class="wkq-st8"
+          class="wkq-st0"
           d="M73,60H0V3c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3V60z"
         />
         <linearGradient
@@ -102,11 +45,11 @@
           <stop offset="1" style="stop-color:#B1B1B2" />
         </linearGradient>
         <path
-          class="wkq-st9"
+          class="wkq-st5"
           d="M70,65H3c-1.7,0-3-1.3-3-3V8c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3v54C73,63.7,71.7,65,70,65z"
         />
         <path
-          class="wkq-st6"
+          class="wkq-st2"
           d="M66,54H7c-1.7,0-3-1.3-3-3V12c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,52.7,67.7,54,66,54z"
         />
         <linearGradient
@@ -121,25 +64,122 @@
           <stop offset="1" style="stop-color:#0052AA" />
         </linearGradient>
         <path
-          class="wkq-st10"
+          class="wkq-st6"
           d="M66,52H7c-1.7,0-3-1.3-3-3V10c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,50.7,67.7,52,66,52z"
         />
         <g>
-          <rect x="8" y="57" class="wkq-st6" width="9" height="4" />
-          <rect x="8" y="58" class="wkq-st7" width="9" height="4" />
+          <rect x="8" y="57" class="wkq-st2" width="9" height="4" />
+          <rect x="8" y="58" class="wkq-st4" width="9" height="4" />
         </g>
         <g>
-          <rect x="24" y="57" class="wkq-st6" width="9" height="4" />
-          <rect x="24" y="58" class="wkq-st7" width="9" height="4" />
+          <rect x="24" y="57" class="wkq-st2" width="9" height="4" />
+          <rect x="24" y="58" class="wkq-st4" width="9" height="4" />
         </g>
         <g>
-          <rect x="40" y="57" class="wkq-st6" width="9" height="4" />
-          <rect x="40" y="58" class="wkq-st7" width="9" height="4" />
+          <rect x="40" y="57" class="wkq-st2" width="9" height="4" />
+          <rect x="40" y="58" class="wkq-st4" width="9" height="4" />
         </g>
         <g>
-          <rect x="56" y="57" class="wkq-st6" width="9" height="4" />
-          <rect x="56" y="58" class="wkq-st7" width="9" height="4" />
+          <rect x="56" y="57" class="wkq-st2" width="9" height="4" />
+          <rect x="56" y="58" class="wkq-st4" width="9" height="4" />
         </g>
+      </g>
+      <g id="图层_3" v-else>
+        <path
+          class="wkq-st0"
+          d="M73,60H0V3c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3V60z"
+        />
+        <linearGradient
+          :id="`wkq_${info.id}_SVGID_1_`"
+          gradientUnits="userSpaceOnUse"
+          x1="36.5"
+          y1="65"
+          x2="36.5"
+          y2="5"
+        >
+          <stop offset="0" style="stop-color:#D8D9D9" />
+          <stop offset="1" style="stop-color:#B1B1B2" />
+        </linearGradient>
+        <path
+          class="wkq-st1"
+          d="M70,65H3c-1.7,0-3-1.3-3-3V8c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3v54C73,63.7,71.7,65,70,65z"
+        />
+        <path
+          class="wkq-st2"
+          d="M66,54H7c-1.7,0-3-1.3-3-3V12c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,52.7,67.7,54,66,54z"
+        />
+        <linearGradient
+          :id="`wkq_${info.id}_SVGID_2_`"
+          gradientUnits="userSpaceOnUse"
+          x1="36.5"
+          y1="52"
+          x2="36.5"
+          y2="9"
+        >
+          <stop offset="0" style="stop-color:#929CAD" />
+          <stop offset="1" style="stop-color:#697284" />
+        </linearGradient>
+        <path
+          class="wkq-st3"
+          d="M66,52H7c-1.7,0-3-1.3-3-3V10c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,50.7,67.7,52,66,52z"
+        />
+        <g>
+          <rect x="8" y="57" class="wkq-st2" width="9" height="4" />
+          <rect x="8" y="58" class="wkq-st4" width="9" height="4" />
+        </g>
+        <g>
+          <rect x="24" y="57" class="wkq-st2" width="9" height="4" />
+          <rect x="24" y="58" class="wkq-st4" width="9" height="4" />
+        </g>
+        <g>
+          <rect x="40" y="57" class="wkq-st2" width="9" height="4" />
+          <rect x="40" y="58" class="wkq-st4" width="9" height="4" />
+        </g>
+        <g>
+          <rect x="56" y="57" class="wkq-st2" width="9" height="4" />
+          <rect x="56" y="58" class="wkq-st4" width="9" height="4" />
+        </g>
+      </g>
+      <g id="图层_2">
+        <text
+          transform="matrix(1 0 0 1 10 22)"
+          :style="descrStyle"
+          class="wkq-st2 wkq-st7 wkq-st8"
+        >
+          {{
+            info.descrStyle.showCode
+              ? devicePoint
+                ? point.id
+                : "Temp"
+              : $ellipsis(
+                  devicePoint ? point.name || "" : "温度",
+                  info.descrStyle.formatNum,
+                  0,
+                  "..."
+                )
+          }}
+        </text>
+        <text
+          transform="matrix(1 0 0 1 15 44)"
+          class="wkq-st2 wkq-st9 wkq-st10"
+          :style="valueStyle"
+        >
+          {{
+            info.content
+              ? $format(
+                  devicePoint ? point.value : 26.5,
+                  info.valueStyle.decimail
+                )
+              : "--"
+          }}
+        </text>
+        <text
+          transform="matrix(1 0 0 1 54 22)"
+          :style="unitStyle"
+          class="wkq-st2 wkq-st7 wkq-st8"
+        >
+          {{ devicePoint ? point.unit : "℃" }}
+        </text>
       </g>
     </svg>
   </div>
@@ -167,6 +207,12 @@ export default {
     ...mapGetters({
       showType: "canvas/getShowType" //当前显示类型
     }),
+    devicePoint() {
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { devicePoint = "" } = bindData || {};
+      return devicePoint || "";
+    },
 
     //渐变颜色样式
     gradientStyle() {
@@ -190,12 +236,64 @@ export default {
         return styles;
       };
     },
+    descrStyle() {
+      let { info = {} } = this;
+      let { descrStyle = {} } = info || {};
+      let { color = "", left = "", top = "", fontSize = "", fontFamily = "" } =
+        descrStyle || {};
+      let styles = {
+        transform: `matrix(1, 0, 0 ,1 ,${left},${top})`
+      };
+      if (color) {
+        styles["fill"] = color;
+      }
+      if (fontSize) {
+        styles["fontSize"] = `${fontSize}px`;
+      }
+      if (fontFamily) {
+        styles["fontFamily"] = fontFamily;
+      }
+      return styles || {};
+    },
+    valueStyle() {
+      let { info = {} } = this;
+      let { valueStyle = {} } = info || {};
+      let { color = "", left = "", top = "", fontSize = "", fontFamily = "" } =
+        valueStyle || {};
+      let styles = { transform: `matrix(1, 0, 0 ,1 ,${left},${top})` };
+      if (color) {
+        styles["fill"] = color;
+      }
+      if (fontSize) {
+        styles["fontSize"] = `${fontSize}px`;
+      }
+      if (fontFamily) {
+        styles["fontFamily"] = fontFamily;
+      }
+      return styles || {};
+    },
+    unitStyle() {
+      let { info = {} } = this;
+      let { unitStyle = {} } = info || {};
+      let { color = "", left = "", top = "", fontSize = "", fontFamily = "" } =
+        unitStyle || {};
+      let styles = { transform: `matrix(1, 0, 0 ,1 ,${left},${top})` };
+      if (color) {
+        styles["fill"] = color;
+      }
+      if (fontSize) {
+        styles["fontSize"] = `${fontSize}px`;
+      }
+      if (fontFamily) {
+        styles["fontFamily"] = fontFamily;
+      }
+      return styles || {};
+    },
     comStyle() {
       let { info = {}, gradientStyle } = this;
       let {
         width = "",
         height = "",
-        // color = "",
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
@@ -206,39 +304,22 @@ export default {
         backgroundType = "",
         backgroundColor = "",
         backgroundImage = "",
-        // content = false,
-        // activeColor = "",
-        // inactiveColor = "",
-        // borderRadius = "",
-        // backgroundType = "",
-        // scale = "",
-        // marginTop = 0,
-        // marginBottom = 0,
-        // marginLeft = 0,
-        // marginRight = 0,
-        // paddingTop = 0,
-        // paddingBottom = 0,
-        // paddingLeft = 0,
-        // paddingRight = 0,
+        marginTop = 0,
+        marginBottom = 0,
+        marginLeft = 0,
+        marginRight = 0,
+        paddingTop = 0,
+        paddingBottom = 0,
+        paddingLeft = 0,
+        paddingRight = 0,
         shadow = {},
-        shadowable = false
-        // textShadow = {},
-        // textShadowable = false,
-        // textAlign = "",
-        // fontFamily = "",
-        // fontSize = "",
-        // fontWeight = "",
-        // fontStyle = "",
-        // borderRadius=0,
-        // textDecoration = ""
-        // backgroundColor = "",
-        // backgroundImage = "",
-        // backgroundRepeat = "",
-        // backgroundSize = ""
+        shadowable = false,
+        backgroundRepeat = "",
+        backgroundSize = ""
       } = info || {};
       let styles = {
-        // margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
-        // padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
+        margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
+        padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
       };
       // if (textAlign) {
       //   styles["textAlign"] = textAlign;
@@ -253,22 +334,18 @@ export default {
           "boxShadow"
         ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
       }
-      // if (textShadowable) {
-      //   let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
-      //   styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
-      // }
       if (width) {
         styles["width"] = `${width}px`;
       }
       if (height) {
         styles["height"] = `${height}px`;
       }
-      // if (backgroundRepeat) {
-      //   styles["backgroundRepeat"] = backgroundRepeat;
-      // }
-      // if (backgroundSize) {
-      //   styles["backgroundSize"] = backgroundSize;
-      // }
+      if (backgroundRepeat) {
+        styles["backgroundRepeat"] = backgroundRepeat;
+      }
+      if (backgroundSize) {
+        styles["backgroundSize"] = backgroundSize;
+      }
       if (borderColor) {
         styles["borderColor"] = borderColor;
       }
@@ -276,36 +353,9 @@ export default {
         styles["borderStyle"] = borderStyle;
       }
       styles["borderWidth"] = `${borderWidth}px`;
-      // styles["borderRadius"] = `${borderRadius}px`;
-      // if (scale) {
-      //   (styles["transform"] = `${scale}`),
-      //     (styles["-webkit-transform"] = `${scale}`),
-      //     (styles["-ms-transform"] = `${scale}`),
-      //     (styles["-o-transform"] = `${scale}`),
-      //     (styles["-moz-transform"] = `${scale}`);
-      // }
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
-
-      // if (color) {
-      //   styles["color"] = color;
-      // }
-      // if (fontSize) {
-      //   styles["fontSize"] = `${fontSize}px`;
-      // }
-      // if (fontFamily) {
-      //   styles["fontFamily"] = `${fontFamily}`;
-      // }
-      // if (fontWeight) {
-      //   styles["fontWeight"] = fontWeight;
-      // }
-      // if (fontStyle) {
-      //   styles["fontStyle"] = fontStyle;
-      // }
-      // if (textDecoration) {
-      //   styles["textDecoration"] = textDecoration;
-      // }
 
       if (backgroundType == "purity") {
         //纯色
@@ -369,22 +419,53 @@ export default {
     init() {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
-        let { id = "" } = info || {};
-        let { $vm } = window;
-        // let { deviceId = "" } = bindData || {};
-        $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
-          bmCommon.log("deviceKgCom", device);
+        let { id = "", bindData = {} } = info || {};
+        let { devicePoint = "" } = bindData || {};
+        if (!devicePoint) {
+          return;
+        }
+        $vm.$on(`devicePointEvent_${id}`, ({ device, point }) => {
+          bmCommon.log("deviceWkqCom", device);
           let { pointList = [] } = device || {};
-          let point = pointList.find(item => {
+          this.point = point || {};
+          let _point = pointList.find(item => {
             let { point: id = "" } = item || {};
             return id == pointCode; // SwSts  开关状态
           });
-          if (point) {
-            let { value = "" } = point || {};
+          if (_point) {
+            let { value = "" } = _point || {};
             info.content = value == 1 ? true : false;
           }
         });
       }
+      this.loadDeviceInfo();
+    },
+    loadDeviceInfo() {
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { deviceId = "", devicePoint = "" } = bindData || {};
+      if (!deviceId) {
+        return;
+      }
+      $vm.$emit("device", {
+        deviceId,
+        callback: (device = {}) => {
+          let { points: pointList = [] } = device || {};
+          let point = pointList.find(item => {
+            let { id = "" } = item || {};
+            return id == devicePoint; //
+          });
+          this.point = point || {};
+        }
+      });
+    }
+  },
+  watch: {
+    "info.bindData.devicePoint": {
+      handler(newVal, oldVal) {
+        this.loadDeviceInfo();
+      },
+      deep: true
     }
   }
 };

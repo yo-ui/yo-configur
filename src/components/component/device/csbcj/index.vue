@@ -254,17 +254,13 @@
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-
-const pointCode = "SwSts";
 export default {
   name: "deviceCsbcjCom",
   data() {
-    return {
-      pointValue: "" // expr:'SwSts',stop:0,start:1,alarm:2
-    };
+    return {};
   },
   props: {
     info: {
@@ -278,9 +274,31 @@ export default {
     ...mapGetters({
       showType: "canvas/getShowType" //当前显示类型
     }),
+    //渐变颜色样式
+    gradientStyle() {
+      return (info = {}) => {
+        // let { info = {} } = this;
+        let { gradientStyle = {} } = info || {};
+        let {
+          type = "",
+          angle = "",
+          center = "",
+          radialShape = "",
+          valueList = []
+        } = gradientStyle || {};
+        let styles = {};
+        let colors = valueList.map(item => `${item.code} ${item.value}%`);
+        if (type == "linear") {
+          styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
+        } else if (type == "radial") {
+          styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+        }
+        return styles;
+      };
+    },
 
     comStyle() {
-      let { info = {} } = this;
+      let { info = {}, gradientStyle } = this;
       let {
         width = "",
         height = "",
@@ -290,15 +308,11 @@ export default {
         borderWidth = "",
         borderRadius = "",
         opacity = "",
-        scale = ""
-        // fontFamily = "",
-        // fontSize = "",
-        // fontWeight = "",
-        // fontStyle = ""
-        // backgroundColor = "",
-        // backgroundImage = "",
-        // backgroundRepeat = "",
-        // backgroundSize = ""
+        backgroundType = "",
+        backgroundColor = "",
+        backgroundImage = "",
+        backgroundRepeat = "",
+        backgroundSize = ""
       } = info || {};
       let styles = {};
 
@@ -308,12 +322,12 @@ export default {
       // if (height) {
       styles["height"] = `${height}px`;
       // }
-      // if (backgroundRepeat) {
-      //   styles["backgroundRepeat"] = backgroundRepeat;
-      // }
-      // if (backgroundSize) {
-      //   styles["backgroundSize"] = backgroundSize;
-      // }
+      if (backgroundRepeat) {
+        styles["backgroundRepeat"] = backgroundRepeat;
+      }
+      if (backgroundSize) {
+        styles["backgroundSize"] = backgroundSize;
+      }
       if (borderColor) {
         styles["borderColor"] = borderColor;
       }
@@ -323,34 +337,20 @@ export default {
       styles["borderWidth"] = `${borderWidth}px`;
       styles["opacity"] = opacity / 100;
       styles["borderRadius"] = `${borderRadius}px`;
-      if (scale) {
-        (styles["transform"] = `${scale}`),
-          (styles["-webkit-transform"] = `${scale}`),
-          (styles["-ms-transform"] = `${scale}`),
-          (styles["-o-transform"] = `${scale}`),
-          (styles["-moz-transform"] = `${scale}`);
+      if (backgroundType == "purity") {
+        //纯色
+        if (backgroundColor) {
+          styles["backgroundColor"] = backgroundColor;
+        }
+        if (backgroundImage) {
+          styles["backgroundImage"] = `url(${this.$loadImgUrl(
+            backgroundImage
+          )})`;
+        }
+      } else if (backgroundType == "gradient") {
+        //渐变
+        styles = { ...styles, ...gradientStyle(info) };
       }
-      // if (color) {
-      //   styles["color"] = color;
-      // }
-      // if (fontSize) {
-      //   styles["fontSize"] = `${fontSize}px`;
-      // }
-      // if (fontFamily) {
-      //   styles["fontFamily"] = `${fontFamily}`;
-      // }
-      // if (fontWeight) {
-      //   styles["fontWeight"] = fontWeight;
-      // }
-      // if (fontStyle) {
-      //   styles["fontStyle"] = fontStyle;
-      // }
-      // if (backgroundColor) {
-      //   styles["backgroundColor"] = backgroundColor;
-      // }
-      // if (backgroundImage) {
-      //   styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
-      // }
       return styles || {};
     }
   },
@@ -362,39 +362,7 @@ export default {
     ...mapMutations({}),
     ...mapActions({}),
 
-    init() {
-      let { info = {}, showType = "" } = this;
-      if (showType != "edit") {
-        let { id = "" } = info || {};
-        let { $vm } = window;
-        // let { deviceId = "" } = bindData || {};
-        $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
-          bmCommon.log("deviceDbCom", device);
-          let { pointList = [] } = device || {};
-          let point = pointList.find(item => {
-            let { point: id = "" } = item || {};
-            return id == pointCode; // SwSts  开关状态
-          });
-          if (point) {
-            let { value = "" } = point || {};
-            this.pointValue = value;
-          }
-          // let { value = "", unit = "",id='' } = point || {};
-          // info.content = value;
-          // info.unit = unit;
-          // info.width = $(this.$refs.bmText).width();
-          // this.$emit("success"); //组件加载完成回调
-        });
-      }
-    }
-    // blurEvent(e) {
-    //   let { target } = e;
-    //   let { info = {} } = this;
-    //   let name = $(target)
-    //     .text()
-    //     .trim();
-    //   info.name = name;
-    // }
+    init() {}
   }
 };
 </script>

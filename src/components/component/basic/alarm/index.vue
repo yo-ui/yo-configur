@@ -1,6 +1,5 @@
 <template>
   <div class="bm-basic-alarm-com" :style="comStyle">
-    <!-- :viewBox="`${info.vBoxx} ${info.vBoxy} ${info.width} ${info.height}`" -->
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +165,6 @@ export default {
     //渐变颜色样式
     gradientStyle() {
       return (info = {}) => {
-        // let { info = {} } = this;
         let { gradientStyle = {} } = info || {};
         let {
           type = "",
@@ -190,7 +188,6 @@ export default {
       let {
         width = "",
         height = "",
-        // color = "",
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
@@ -201,46 +198,23 @@ export default {
         backgroundType = "",
         backgroundColor = "",
         backgroundImage = "",
-        // content = false,
-        // activeColor = "",
-        // inactiveColor = "",
-        // borderRadius = "",
-        // backgroundType = "",
-        // scale = "",
-        // marginTop = 0,
-        // marginBottom = 0,
-        // marginLeft = 0,
-        // marginRight = 0,
-        // paddingTop = 0,
-        // paddingBottom = 0,
-        // paddingLeft = 0,
-        // paddingRight = 0,
+        marginTop = 0,
+        marginBottom = 0,
+        marginLeft = 0,
+        marginRight = 0,
+        paddingTop = 0,
+        paddingBottom = 0,
+        paddingLeft = 0,
+        paddingRight = 0,
         shadow = {},
-        shadowable = false
-        // textShadow = {},
-        // textShadowable = false,
-        // textAlign = "",
-        // fontFamily = "",
-        // fontSize = "",
-        // fontWeight = "",
-        // fontStyle = "",
-        // borderRadius=0,
-        // textDecoration = ""
-        // backgroundColor = "",
-        // backgroundImage = "",
-        // backgroundRepeat = "",
-        // backgroundSize = ""
+        shadowable = false,
+        backgroundRepeat = "",
+        backgroundSize = ""
       } = info || {};
       let styles = {
-        // margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
-        // padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
+        margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
+        padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
       };
-      // if (textAlign) {
-      //   styles["textAlign"] = textAlign;
-      //   if (textAlign == "justify") {
-      //     styles["text-align-last"] = textAlign;
-      //   }
-      // }
       if (shadowable) {
         let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
           shadow || {};
@@ -248,22 +222,18 @@ export default {
           "boxShadow"
         ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
       }
-      // if (textShadowable) {
-      //   let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
-      //   styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
-      // }
       if (width) {
         styles["width"] = `${width}px`;
       }
       if (height) {
         styles["height"] = `${height}px`;
       }
-      // if (backgroundRepeat) {
-      //   styles["backgroundRepeat"] = backgroundRepeat;
-      // }
-      // if (backgroundSize) {
-      //   styles["backgroundSize"] = backgroundSize;
-      // }
+      if (backgroundRepeat) {
+        styles["backgroundRepeat"] = backgroundRepeat;
+      }
+      if (backgroundSize) {
+        styles["backgroundSize"] = backgroundSize;
+      }
       if (borderColor) {
         styles["borderColor"] = borderColor;
       }
@@ -271,36 +241,9 @@ export default {
         styles["borderStyle"] = borderStyle;
       }
       styles["borderWidth"] = `${borderWidth}px`;
-      // styles["borderRadius"] = `${borderRadius}px`;
-      // if (scale) {
-      //   (styles["transform"] = `${scale}`),
-      //     (styles["-webkit-transform"] = `${scale}`),
-      //     (styles["-ms-transform"] = `${scale}`),
-      //     (styles["-o-transform"] = `${scale}`),
-      //     (styles["-moz-transform"] = `${scale}`);
-      // }
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
-
-      // if (color) {
-      //   styles["color"] = color;
-      // }
-      // if (fontSize) {
-      //   styles["fontSize"] = `${fontSize}px`;
-      // }
-      // if (fontFamily) {
-      //   styles["fontFamily"] = `${fontFamily}`;
-      // }
-      // if (fontWeight) {
-      //   styles["fontWeight"] = fontWeight;
-      // }
-      // if (fontStyle) {
-      //   styles["fontStyle"] = fontStyle;
-      // }
-      // if (textDecoration) {
-      //   styles["textDecoration"] = textDecoration;
-      // }
 
       if (backgroundType == "purity") {
         //纯色
@@ -319,14 +262,8 @@ export default {
       return styles || {};
     }
   },
-  // created() {
-  //   let { info = {} } = this;
-  //   info.dataType = "device";
-  //   this.setActiveCom(info);
-  // },
   mounted() {
     let { info = {} } = this;
-    // bmCommon.log("kg mounted=", info.content);
     let { content = "" } = info || {};
     if (content === "") {
       info.content = false;
@@ -334,9 +271,7 @@ export default {
     this.init();
   },
   methods: {
-    ...mapMutations({
-      // setActiveCom: "canvas/setActiveCom" //设置当前选中组件
-    }),
+    ...mapMutations({}),
     ...mapActions({}),
     controlEvent() {
       let { info = {} } = this;
@@ -364,11 +299,13 @@ export default {
     init() {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
-        let { id = "" } = info || {};
-        let { $vm } = window;
-        // let { deviceId = "" } = bindData || {};
+        let { id = "", bindData = {} } = info || {};
+        let { deviceId = "" } = bindData || {};
+        if (!deviceId) {
+          return;
+        }
         $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
-          bmCommon.log("deviceKgCom", device);
+          bmCommon.log("deviceAlarmCom", device);
           let { pointList = [] } = device || {};
           let point = pointList.find(item => {
             let { point: id = "" } = item || {};
@@ -380,6 +317,38 @@ export default {
           }
         });
       }
+      this.loadDeviceInfo();
+    },
+    loadDeviceInfo() {
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { deviceId = "", devicePoint = "" } = bindData || {};
+      if (!deviceId) {
+        return;
+      }
+      devicePoint = pointCode;
+      $vm.$emit("device", {
+        deviceId,
+        callback: (device = {}) => {
+          let { points: pointList = [] } = device || {};
+          let point = pointList.find(item => {
+            let { id = "" } = item || {};
+            return id == devicePoint; //
+          });
+          if (point) {
+            let { value = "" } = point || {};
+            info.content = value == 1 ? true : false;
+          }
+        }
+      });
+    }
+  },
+  watch: {
+    "info.bindData.devicePoint": {
+      handler(newVal, oldVal) {
+        this.loadDeviceInfo();
+      },
+      deep: true
     }
   }
 };

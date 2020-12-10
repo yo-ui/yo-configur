@@ -393,11 +393,13 @@ export default {
     init() {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
-        let { id = "" } = info || {};
-        let { $vm } = window;
-        // let { deviceId = "" } = bindData || {};
+        let { id = "", bindData = {} } = info || {};
+        let { deviceId = "" } = bindData || {};
+        if (!deviceId) {
+          return;
+        }
         $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
-          bmCommon.log("deviceKgCom", device);
+          bmCommon.log("deviceStartStopCom", device);
           let { pointList = [] } = device || {};
           let point = pointList.find(item => {
             let { point: id = "" } = item || {};
@@ -409,6 +411,38 @@ export default {
           }
         });
       }
+      this.loadDeviceInfo();
+    },
+    loadDeviceInfo() {
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { deviceId = "", devicePoint = "" } = bindData || {};
+      if (!deviceId) {
+        return;
+      }
+      devicePoint = pointCode;
+      $vm.$emit("device", {
+        deviceId,
+        callback: (device = {}) => {
+          let { points: pointList = [] } = device || {};
+          let point = pointList.find(item => {
+            let { id = "" } = item || {};
+            return id == devicePoint; //
+          });
+          if (point) {
+            let { value = "" } = point || {};
+            info.content = value == 1 ? true : false;
+          }
+        }
+      });
+    }
+  },
+  watch: {
+    "info.bindData.devicePoint": {
+      handler(newVal, oldVal) {
+        this.loadDeviceInfo();
+      },
+      deep: true
     }
   }
 };

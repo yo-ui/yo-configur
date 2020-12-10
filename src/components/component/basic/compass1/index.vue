@@ -110,17 +110,13 @@
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-
-const pointCode = "SwSts";
 export default {
   name: "basicCompass1Com",
   data() {
-    return {
-      pointValue: "" // expr:'SwSts',stop:0,start:1,alarm:2
-    };
+    return {};
   },
   props: {
     info: {
@@ -232,13 +228,6 @@ export default {
         let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
         styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
       }
-      // if (scale) {
-      //   (styles["transform"] = `${scale}`),
-      //     (styles["-webkit-transform"] = `${scale}`),
-      //     (styles["-ms-transform"] = `${scale}`),
-      //     (styles["-o-transform"] = `${scale}`),
-      //     (styles["-moz-transform"] = `${scale}`);
-      // }
       if (color) {
         styles["color"] = color;
       }
@@ -282,39 +271,7 @@ export default {
     ...mapMutations({}),
     ...mapActions({}),
 
-    init() {
-      let { info = {}, showType = "" } = this;
-      if (showType != "edit") {
-        let { id = "" } = info || {};
-        let { $vm } = window;
-        // let { deviceId = "" } = bindData || {};
-        $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
-          bmCommon.log("deviceDbCom", device);
-          let { pointList = [] } = device || {};
-          let point = pointList.find(item => {
-            let { point: id = "" } = item || {};
-            return id == pointCode; // SwSts  开关状态
-          });
-          if (point) {
-            let { value = "" } = point || {};
-            this.pointValue = value;
-          }
-          // let { value = "", unit = "",id='' } = point || {};
-          // info.content = value;
-          // info.unit = unit;
-          // info.width = $(this.$refs.bmText).width();
-          // this.$emit("success"); //组件加载完成回调
-        });
-      }
-    }
-    // blurEvent(e) {
-    //   let { target } = e;
-    //   let { info = {} } = this;
-    //   let name = $(target)
-    //     .text()
-    //     .trim();
-    //   info.name = name;
-    // }
+    init() {}
   }
 };
 </script>

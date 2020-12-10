@@ -87,10 +87,10 @@
         <span class="label"> {{ $lang("设备名称") }}: </span>
         {{ device.name }}
       </p>
-      <p>
+      <!-- <p>
         <span class="label"> {{ $lang("监测位置") }}: </span>
         {{ info.bindData.deviceId }}
-      </p>
+      </p> -->
       <p class="top-position" v-if="pointList&&pointList.length>0">
         <span class="label"> {{ $lang("点位列表") }}: </span>
         <ul>
