@@ -6,6 +6,8 @@
 
 <script>
 import bmCommon from "@/common/common";
+// eslint-disable-next-line no-undef
+const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "bmBasicPanelCom",
   data() {
@@ -26,35 +28,42 @@ export default {
     //   )
   },
   computed: {
+    ...mapGetters(),
+
     //渐变颜色样式
     gradientStyle() {
-      let { info = {} } = this;
-      let { gradientStyle = {} } = info || {};
-      let {
-        type = "",
-        angle = "",
-        center = "",
-        radialShape = "",
-        valueList = []
-      } = gradientStyle || {};
-      let styles = {};
-      let colors = valueList.map(item => `${item.code} ${item.value}%`);
-      if (type == "linear") {
-        styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
-      } else if (type == "radial") {
-        styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
-      }
-      return styles;
+      return (info = {}) => {
+        // let { info = {} } = this;
+        let { gradientStyle = {} } = info || {};
+        let {
+          type = "",
+          angle = "",
+          center = "",
+          radialShape = "",
+          valueList = []
+        } = gradientStyle || {};
+        let styles = {};
+        let colors = valueList.map(item => `${item.code} ${item.value}%`);
+        if (type == "linear") {
+          styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
+        } else if (type == "radial") {
+          styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+        }
+        return styles;
+      };
     },
     comStyle() {
-      let { info = {}, gradientStyle = {} } = this;
+      let { info = {}, gradientStyle } = this;
       let {
         width = "",
         height = "",
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
-        borderRadius = "",
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
         // scale = "",
         backgroundColor = "",
         backgroundType = "",
@@ -103,17 +112,9 @@ export default {
         styles["borderStyle"] = borderStyle;
       }
       styles["borderWidth"] = `${borderWidth}px`;
-      styles["borderRadius"] = `${borderRadius}px`;
-      // if (scale) {
-      //   (styles["transform"] = `${scale}`),
-      //     (styles["-webkit-transform"] = `${scale}`),
-      //     (styles["-ms-transform"] = `${scale}`),
-      //     (styles["-o-transform"] = `${scale}`),
-      //     (styles["-moz-transform"] = `${scale}`);
-      // }
-      // if (color) {
-      //   styles["color"] = color;
-      // }
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {
@@ -132,25 +133,29 @@ export default {
         }
       } else if (backgroundType == "gradient") {
         //渐变
-        styles = { ...styles, ...gradientStyle };
+        styles = { ...styles, ...gradientStyle(info) };
       }
       return styles || {};
     },
     imageStyle() {
-      let { info = {} } = this;
+      let { info = {}, gradientStyle } = this;
       let {
         width = "",
         height = "",
-        // borderColor = "",
-        // borderStyle = "",
-        // borderWidth = "",
-        // borderRadius = "",
-        // scale = "",
+        borderColor = "",
+        borderStyle = "",
+        borderWidth = "",
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
         content = "",
         contentRepeat = "",
-        // backgroundType = "",
-        // backgroundImage = "",
-        // backgroundRepeat = "",
+        backgroundColor = "",
+        backgroundType = "",
+        backgroundImage = "",
+        backgroundSize = "",
+        backgroundRepeat = "",
         contentSize = ""
       } = info || {};
       let styles = {};
@@ -169,48 +174,46 @@ export default {
       if (height) {
         styles["height"] = `${height}px`;
       }
-      // if (borderColor) {
-      //   styles["borderColor"] = borderColor;
-      // }
-      // if (borderStyle) {
-      //   styles["borderStyle"] = borderStyle;
-      // }
-      // styles["borderWidth"] = `${borderWidth}px`;
-      // styles["borderRadius"] = `${borderRadius}px`;
-      // if (scale) {
-      //   (styles["transform"] = `${scale}`),
-      //     (styles["-webkit-transform"] = `${scale}`),
-      //     (styles["-ms-transform"] = `${scale}`),
-      //     (styles["-o-transform"] = `${scale}`),
-      //     (styles["-moz-transform"] = `${scale}`);
-      // }
+      if (borderColor) {
+        styles["borderColor"] = borderColor;
+      }
+      if (borderStyle) {
+        styles["borderStyle"] = borderStyle;
+      }
+      styles["borderWidth"] = `${borderWidth}px`;
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       // if (color) {
       //   styles["color"] = color;
       // }
-      // if (backgroundType == "purity") {
-      //   //纯色
-      //   if (backgroundColor) {
-      //     styles["backgroundColor"] = backgroundColor;
-      //   }
-      //   if (content) {
-      //     styles["content"] = `url(${this.$loadImgUrl(
-      //       content
-      //     )})`;
-      //     if (backgroundRepeat) {
-      //       styles["backgroundRepeat"] = backgroundRepeat;
-      //     }
-      //     if (backgroundSize) {
-      //       styles["backgroundSize"] = backgroundSize;
-      //     }
-      //   }
-      // } else if (backgroundType == "gradient") {
-      //   //渐变
-      //   styles = { ...styles, ...gradientStyle };
-      // }
+
+      if (backgroundRepeat) {
+        styles["backgroundRepeat"] = backgroundRepeat;
+      }
+      if (backgroundSize) {
+        styles["backgroundSize"] = backgroundSize;
+      }
+      if (backgroundType == "purity") {
+        //纯色
+        if (backgroundColor) {
+          styles["backgroundColor"] = backgroundColor;
+        }
+        if (backgroundImage) {
+          styles["backgroundImage"] = `url(${this.$loadImgUrl(
+            backgroundImage
+          )})`;
+        }
+      } else if (backgroundType == "gradient") {
+        //渐变
+        styles = { ...styles, ...gradientStyle(info) };
+      }
       return styles || {};
     }
   },
   methods: {
+    ...mapMutations(),
+    ...mapActions()
     // successCallback(url) {
     //   let { info = {} } = this;
     //   info.backgroundImage = url;

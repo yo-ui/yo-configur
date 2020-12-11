@@ -1,7 +1,6 @@
 // 接地刀闸
 <template>
   <div class="bm-basic-compass1-com" :style="comStyle">
-    <!-- :viewBox="`${info.vBoxx} ${info.vBoxy} ${info.width} ${info.height}`" -->
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +160,10 @@ export default {
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
-        borderRadius = "",
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
         // scale = "",
         marginTop = 0,
         marginBottom = 0,
@@ -216,7 +218,9 @@ export default {
         styles["borderStyle"] = borderStyle;
       }
       styles["borderWidth"] = `${borderWidth}px`;
-      styles["borderRadius"] = `${borderRadius}px`;
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       if (shadowable) {
         let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
           shadow || {};

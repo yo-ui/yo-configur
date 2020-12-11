@@ -18,10 +18,9 @@
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-const pointCode = "SwSts";
 export default {
   name: "bmProgressbarCom",
   data() {
@@ -42,23 +41,25 @@ export default {
 
     //渐变颜色样式
     gradientStyle() {
-      let { info = {} } = this;
-      let { gradientStyle = {} } = info || {};
-      let {
-        type = "",
-        angle = "",
-        center = "",
-        radialShape = "",
-        valueList = []
-      } = gradientStyle || {};
-      let styles = {};
-      let colors = valueList.map(item => `${item.code} ${item.value}%`);
-      if (type == "linear") {
-        styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
-      } else if (type == "radial") {
-        styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
-      }
-      return styles;
+      return (info = {}) => {
+        // let { info = {} } = this;
+        let { gradientStyle = {} } = info || {};
+        let {
+          type = "",
+          angle = "",
+          center = "",
+          radialShape = "",
+          valueList = []
+        } = gradientStyle || {};
+        let styles = {};
+        let colors = valueList.map(item => `${item.code} ${item.value}%`);
+        if (type == "linear") {
+          styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
+        } else if (type == "radial") {
+          styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+        }
+        return styles;
+      };
     },
     foregroundStyle() {
       let { info = {} } = this;
@@ -180,7 +181,10 @@ export default {
         content = false,
         activeColor = "",
         inactiveColor = "",
-        borderRadius = "",
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
         backgroundType = "",
         // scale = "",
         marginTop = 0,
@@ -246,14 +250,9 @@ export default {
         styles["borderStyle"] = borderStyle;
       }
       styles["borderWidth"] = `${borderWidth}px`;
-      styles["borderRadius"] = `${borderRadius}px`;
-      // if (scale) {
-      //   (styles["transform"] = `${scale}`),
-      //     (styles["-webkit-transform"] = `${scale}`),
-      //     (styles["-ms-transform"] = `${scale}`),
-      //     (styles["-o-transform"] = `${scale}`),
-      //     (styles["-moz-transform"] = `${scale}`);
-      // }
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       if (color) {
         styles["color"] = color;
       }
@@ -285,7 +284,7 @@ export default {
         }
       } else if (backgroundType == "gradient") {
         //渐变
-        styles = { ...styles, ...gradientStyle };
+        styles = { ...styles, ...gradientStyle(info) };
       }
       return styles || {};
     }

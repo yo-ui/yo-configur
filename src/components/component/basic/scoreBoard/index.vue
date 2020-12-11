@@ -67,35 +67,41 @@ export default {
       }
       return [...arr, ...integers];
     },
+
     //渐变颜色样式
     gradientStyle() {
-      let { info = {} } = this;
-      let { gradientStyle = {} } = info || {};
-      let {
-        type = "",
-        angle = "",
-        center = "",
-        radialShape = "",
-        valueList = []
-      } = gradientStyle || {};
-      let styles = {};
-      let colors = valueList.map(item => `${item.code} ${item.value}%`);
-      if (type == "linear") {
-        styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
-      } else if (type == "radial") {
-        styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
-      }
-      return styles;
+      return (info = {}) => {
+        // let { info = {} } = this;
+        let { gradientStyle = {} } = info || {};
+        let {
+          type = "",
+          angle = "",
+          center = "",
+          radialShape = "",
+          valueList = []
+        } = gradientStyle || {};
+        let styles = {};
+        let colors = valueList.map(item => `${item.code} ${item.value}%`);
+        if (type == "linear") {
+          styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
+        } else if (type == "radial") {
+          styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+        }
+        return styles;
+      };
     },
     comStyle() {
-      let { info = {}, gradientStyle = {} } = this;
+      let { info = {}, gradientStyle } = this;
       let {
         width = "",
         height = "",
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
-        borderRadius = "",
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
         fontFamily = "",
         color = "",
         fontWeight = "",
@@ -140,7 +146,9 @@ export default {
         styles["borderStyle"] = borderStyle;
       }
       styles["borderWidth"] = `${borderWidth}px`;
-      styles["borderRadius"] = `${borderRadius}px`;
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       // if (scale) {
       //   (styles["transform"] = `${scale}`),
       //     (styles["-webkit-transform"] = `${scale}`),
@@ -184,12 +192,12 @@ export default {
         }
       } else if (backgroundType == "gradient") {
         //渐变
-        styles = { ...styles, ...gradientStyle };
+        styles = { ...styles, ...gradientStyle(info) };
       }
       return styles || {};
     },
     boardStyle() {
-      let { info = {}, gradientStyle = {} } = this;
+      let { info = {}, gradientStyle } = this;
       let { board = {} } = info || {};
       let {
         width = "",
@@ -255,7 +263,9 @@ export default {
         styles["borderStyle"] = borderStyle;
       }
       styles["borderWidth"] = `${borderWidth}px`;
-      // styles["borderRadius"] = `${borderRadius}px`;
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       // if (color) {
       //   styles["color"] = color;
       // }
@@ -299,7 +309,7 @@ export default {
         }
       } else if (backgroundType == "gradient") {
         //渐变
-        styles = { ...styles, ...gradientStyle };
+        styles = { ...styles, ...gradientStyle(info.board) };
       }
       return styles || {};
     }

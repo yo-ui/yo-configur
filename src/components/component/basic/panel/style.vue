@@ -428,7 +428,7 @@
                 :placeholder="$lang('请选择填充模式')"
               >
                 <el-option
-                  v-for="item in BACKGROUNDSIZELIST"
+                  v-for="item in backgroundSizeList"
                   :key="item.code"
                   :label="$lang(item.name)"
                   :value="item.code"
@@ -491,7 +491,7 @@
           :placeholder="$lang('请选择填充模式')"
         >
           <el-option
-            v-for="item in BACKGROUNDSIZELIST"
+            v-for="item in backgroundSizeList"
             :key="item.code"
             :label="$lang(item.name)"
             :value="item.code"
@@ -693,7 +693,7 @@
               :placeholder="$lang('请选择填充模式')"
             >
               <el-option
-                v-for="item in BACKGROUNDSIZELIST"
+                v-for="item in backgroundSizeList"
                 :key="item.code"
                 :label="$lang(item.name)"
                 :value="item.code"
@@ -795,7 +795,7 @@ export default {
       angelList: Object.freeze(Constants.ANGELLIST),
       gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
       flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      BACKGROUNDSIZELIST: Object.freeze(Constants.BACKGROUNDSIZELIST),
+      backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
       tileModeList: Object.freeze(Constants.TILEMODELIST)
     };
   },

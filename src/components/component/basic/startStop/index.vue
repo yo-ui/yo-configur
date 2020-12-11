@@ -1,6 +1,5 @@
 <template>
   <div class="bm-basic-start-stop-com" :style="comStyle">
-    <!-- :viewBox="`${info.vBoxx} ${info.vBoxy} ${info.width} ${info.height}`" -->
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -173,7 +172,7 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-const pointCode = "SwSts";
+let pointCode = "SwSts";
 export default {
   name: "bmBasicStartStopCom",
   data() {
@@ -230,39 +229,22 @@ export default {
         backgroundType = "",
         backgroundColor = "",
         backgroundImage = "",
-        // content = false,
-        // activeColor = "",
-        // inactiveColor = "",
-        // borderRadius = "",
-        // backgroundType = "",
-        // scale = "",
-        // marginTop = 0,
-        // marginBottom = 0,
-        // marginLeft = 0,
-        // marginRight = 0,
-        // paddingTop = 0,
-        // paddingBottom = 0,
-        // paddingLeft = 0,
-        // paddingRight = 0,
+        marginTop = 0,
+        marginBottom = 0,
+        marginLeft = 0,
+        marginRight = 0,
+        paddingTop = 0,
+        paddingBottom = 0,
+        paddingLeft = 0,
+        paddingRight = 0,
         shadow = {},
-        shadowable = false
-        // textShadow = {},
-        // textShadowable = false,
-        // textAlign = "",
-        // fontFamily = "",
-        // fontSize = "",
-        // fontWeight = "",
-        // fontStyle = "",
-        // borderRadius=0,
-        // textDecoration = ""
-        // backgroundColor = "",
-        // backgroundImage = "",
-        // backgroundRepeat = "",
-        // backgroundSize = ""
+        shadowable = false,
+        backgroundRepeat = "",
+        backgroundSize = ""
       } = info || {};
       let styles = {
-        // margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
-        // padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
+        margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
+        padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
       };
       // if (textAlign) {
       //   styles["textAlign"] = textAlign;
@@ -287,12 +269,12 @@ export default {
       if (height) {
         styles["height"] = `${height}px`;
       }
-      // if (backgroundRepeat) {
-      //   styles["backgroundRepeat"] = backgroundRepeat;
-      // }
-      // if (backgroundSize) {
-      //   styles["backgroundSize"] = backgroundSize;
-      // }
+      if (backgroundRepeat) {
+        styles["backgroundRepeat"] = backgroundRepeat;
+      }
+      if (backgroundSize) {
+        styles["backgroundSize"] = backgroundSize;
+      }
       if (borderColor) {
         styles["borderColor"] = borderColor;
       }
@@ -300,14 +282,9 @@ export default {
         styles["borderStyle"] = borderStyle;
       }
       styles["borderWidth"] = `${borderWidth}px`;
-      // styles["borderRadius"] = `${borderRadius}px`;
-      // if (scale) {
-      //   (styles["transform"] = `${scale}`),
-      //     (styles["-webkit-transform"] = `${scale}`),
-      //     (styles["-ms-transform"] = `${scale}`),
-      //     (styles["-o-transform"] = `${scale}`),
-      //     (styles["-moz-transform"] = `${scale}`);
-      // }
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
@@ -367,37 +344,38 @@ export default {
       // setActiveCom: "canvas/setActiveCom" //设置当前选中组件
     }),
     ...mapActions({}),
-    controlEvent() {
-      let { info = {} } = this;
-      let { content = false, bindData = {} } = info || {};
-      let { deviceId = "" } = bindData || {};
-      if (!deviceId) {
-        info.content = !content;
-        return;
-      }
-      let point = pointCode;
-      let value = !content ? 1 : 0;
-      $vm.$emit("control", {
-        deviceId,
-        point,
-        value,
-        callback: flag => {
-          if (flag) {
-            info.content = !content;
-          } else {
-            info.content = content; //如果取消则重置结果
-          }
-        }
-      });
-    },
+    // controlEvent() {
+    //   let { info = {} } = this;
+    //   let { content = false, bindData = {} } = info || {};
+    //   let { deviceId = "" } = bindData || {};
+    //   if (!deviceId) {
+    //     info.content = !content;
+    //     return;
+    //   }
+    //   let point = pointCode;
+    //   let value = !content ? 1 : 0;
+    //   $vm.$emit("control", {
+    //     deviceId,
+    //     point,
+    //     value,
+    //     callback: flag => {
+    //       if (flag) {
+    //         info.content = !content;
+    //       } else {
+    //         info.content = content; //如果取消则重置结果
+    //       }
+    //     }
+    //   });
+    // },
     init() {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
         let { id = "", bindData = {} } = info || {};
-        let { deviceId = "" } = bindData || {};
-        if (!deviceId) {
+        let { devicePoint = "" } = bindData || {};
+        if (!devicePoint) {
           return;
         }
+        pointCode = devicePoint;
         $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
           bmCommon.log("deviceStartStopCom", device);
           let { pointList = [] } = device || {};
@@ -448,33 +426,4 @@ export default {
 };
 </script>
 
-<style lang="less">
-// @import (reference) "./../../../../assets/less/common.less";
-// .bm-basic-switch-com {
-//   .posr;
-//   .pointer;
-//   .btn-text {
-//     .posa;
-//     top: 50%;
-//     .tranf(translate(0, -50%));
-//   }
-//   .btn-close-text {
-//     right: 10%;
-//   }
-//   .btn-open-text {
-//     left: 10%;
-//   }
-//   .btn-slider {
-//     .posa;
-//     top: 50%;
-//     .br(50%);
-//     .tranf(translate(0, -50%));
-//   }
-//   .btn-close-slider {
-//     left: 4%;
-//   }
-//   .btn-open-slider {
-//     right: 4%;
-//   }
-// }
-</style>
+<style lang="less"></style>

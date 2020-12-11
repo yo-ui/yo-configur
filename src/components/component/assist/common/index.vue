@@ -29,11 +29,10 @@ export default {
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
-        borderRadius = "",
-        opacity = "",
-        visible = true,
-        flipV = false,
-        flipH = false
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0
         // fontFamily = "",
         // fontSize = "",
         // fontWeight = "",
@@ -64,17 +63,11 @@ export default {
         styles["borderStyle"] = borderStyle;
       }
       styles["borderWidth"] = `${borderWidth}px`;
-      styles["opacity"] = opacity / 100;
-      styles["borderRadius"] = `${borderRadius}px`;
-      styles["visibility"] = `${visible ? "visible" : "hidden"}`;
-      if (flipV || flipH) {
-        let scale = `scale(${flipH ? -1 : 1},${flipV ? -1 : 1})`;
-        (styles["transform"] = `${scale}`),
-          (styles["-webkit-transform"] = `${scale}`),
-          (styles["-ms-transform"] = `${scale}`),
-          (styles["-o-transform"] = `${scale}`),
-          (styles["-moz-transform"] = `${scale}`);
-      }
+
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
+
       // if (color) {
       //   styles["color"] = color;
       // }

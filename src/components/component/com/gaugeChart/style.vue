@@ -374,7 +374,7 @@
                 :placeholder="$lang('请选择填充模式')"
               >
                 <el-option
-                  v-for="item in BACKGROUNDSIZELIST"
+                  v-for="item in backgroundSizeList"
                   :key="item.code"
                   :label="$lang(item.name)"
                   :value="item.code"
@@ -457,48 +457,240 @@
             </el-option>
           </el-select>
         </p>
-        <p>
-          <span class="label"> {{ $lang("边框大小") }}:</span>
-          <el-input-number
-            controls-position="right"
-            clearable
-            :min="0"
-            :max="20"
-            v-model.number="info.borderWidth"
-            :placeholder="$lang('请输入边框大小')"
-          ></el-input-number>
-          px
-          <el-slider
-            v-model="info.borderWidth"
-            :min="0"
-            :max="20"
-            :format-tooltip="val => val + ' px'"
-          ></el-slider>
+        <template v-if="info.borderStyle != 'none'">
+          <p>
+            <span class="label"> {{ $lang("边框大小") }}:</span>
+            <el-input-number
+              controls-position="right"
+              clearable
+              :min="0"
+              :max="20"
+              v-model.number="info.borderWidth"
+              :placeholder="$lang('请输入边框大小')"
+            ></el-input-number>
+            px
+            <el-slider
+              v-model="info.borderWidth"
+              :min="0"
+              :max="20"
+              :format-tooltip="val => val + ' px'"
+            ></el-slider>
+          </p>
+          <p>
+            <span class="label">{{ $lang("边框颜色") }}:</span>
+            <el-color-picker
+              v-model="info.borderColor"
+              show-alpha
+            ></el-color-picker>
+          </p>
+        </template>
+        <p class="padding-box">
+          <span class="label">{{ $lang("边框圆角") }}:</span>
+          <span class="c-box">
+            <span>
+              左上<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.borderRadiusTopLeft"
+                :placeholder="$lang('左上角')"
+              ></el-input-number>
+            </span>
+            <span>
+              右上<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.borderRadiusTopRight"
+                :placeholder="$lang('右上角')"
+              ></el-input-number>
+            </span>
+            <span>
+              右下<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.borderRadiusBottomRight"
+                :placeholder="$lang('右下角')"
+              ></el-input-number>
+            </span>
+            <span>
+              左下<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.borderRadiusBottomLeft"
+                :placeholder="$lang('左下角')"
+              ></el-input-number>
+            </span>
+          </span>
         </p>
         <p>
-          <span class="label"> {{ $lang("边框圆角") }}:</span>
-          <el-input-number
-            controls-position="right"
-            clearable
-            :min="0"
-            :max="50"
-            v-model.number="info.borderRadius"
-            :placeholder="$lang('请输入边框圆角')"
-          ></el-input-number>
-          px
-          <el-slider
-            v-model="info.borderRadius"
-            :min="0"
-            :max="50"
-            :format-tooltip="val => val + ' px'"
-          ></el-slider>
+          <span class="label">{{ $lang("盒子阴影") }}:</span>
+          <el-switch
+            v-model="info.shadowable"
+            active-color="#4195ea"
+            inactive-color="#ccc"
+          ></el-switch>
         </p>
-        <p>
-          <span class="label">{{ $lang("边框颜色") }}:</span>
-          <el-color-picker
-            v-model="info.borderColor"
-            show-alpha
-          ></el-color-picker>
+        <template v-if="info.shadowable">
+          <p class="shadow-box">
+            <span class="c-box">
+              <span>
+                <el-tooltip
+                  :content="$lang('X-X轴位移')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <span>X</span>
+                </el-tooltip>
+                <el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.shadow.x"
+                  :placeholder="$lang('X轴位移')"
+                ></el-input-number>
+              </span>
+              <span>
+                <el-tooltip
+                  :content="$lang('Y-Y轴位移')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <span>Y</span> </el-tooltip
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.shadow.y"
+                  :placeholder="$lang('Y轴位移')"
+                ></el-input-number>
+              </span>
+              <span>
+                <el-tooltip
+                  :content="$lang('R-模糊半径')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <span>R</span> </el-tooltip
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.shadow.blur"
+                  :placeholder="$lang('模糊半径')"
+                ></el-input-number>
+              </span>
+            </span>
+          </p>
+          <p>
+            <span class="label">{{ $lang("阴影大小") }}:</span>
+            <el-input-number
+              controls-position="right"
+              clearable
+              v-model.number="info.shadow.spread"
+              :placeholder="$lang('阴影大小')"
+            ></el-input-number>
+            px
+            <el-slider
+              v-model="info.shadow.spread"
+              :min="0"
+              :max="50"
+              :format-tooltip="val => val + ' px'"
+            ></el-slider>
+          </p>
+          <p>
+            <span class="label">{{ $lang("阴影类型") }}:</span>
+            <el-select
+              v-model="info.shadow.type"
+              :placeholder="$lang('请选择阴影类型')"
+            >
+              <el-option
+                v-for="item in shadowTypeList"
+                :key="item.code"
+                :label="$lang(item.name)"
+                :value="item.code"
+              >
+              </el-option>
+            </el-select>
+          </p>
+          <p>
+            <span class="label">{{ $lang("阴影颜色") }}:</span>
+            <el-color-picker
+              v-model="info.shadow.color"
+              show-alpha
+            ></el-color-picker>
+          </p>
+        </template>
+      </el-collapse-item>
+      <el-collapse-item :title="$lang('边距')" name="margin">
+        <p class="margin-box">
+          <span class="label">{{ $lang("外边距") }}:</span>
+          <span class="c-box">
+            <span>
+              上<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.marginTop"
+                :placeholder="$lang('上外边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              下<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.marginBottom"
+                :placeholder="$lang('下外边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              左<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.marginLeft"
+                :placeholder="$lang('左外边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              右<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.marginRight"
+                :placeholder="$lang('右外边距')"
+              ></el-input-number>
+            </span>
+          </span>
+        </p>
+        <p class="padding-box">
+          <span class="label">{{ $lang("内边距") }}:</span>
+          <span class="c-box">
+            <span>
+              上<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.paddingTop"
+                :placeholder="$lang('上内边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              下<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.paddingBottom"
+                :placeholder="$lang('下内边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              左<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.paddingLeft"
+                :placeholder="$lang('左内边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              右<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.paddingRight"
+                :placeholder="$lang('右内边距')"
+              ></el-input-number>
+            </span>
+          </span>
         </p>
       </el-collapse-item>
       <el-collapse-item :title="$lang('动画')" name="animation">
@@ -594,7 +786,7 @@ export default {
       angelList: Object.freeze(Constants.ANGELLIST),
       gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
       flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      BACKGROUNDSIZELIST: Object.freeze(Constants.BACKGROUNDSIZELIST),
+      backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
       // fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
       tileModeList: Object.freeze(Constants.TILEMODELIST)
     };
@@ -731,7 +923,7 @@ export default {
       }
     },
     openAll() {
-      this.activeNames = ["name", "outward", "animation"];
+      this.activeNames = ["name", "outward", "margin", "animation"];
     },
     closeAll() {
       this.activeNames = ["name"];

@@ -1500,23 +1500,42 @@
           </p>
         </template>
 
-        <p>
-          <span class="label"> {{ $lang("边框圆角") }}:</span>
-          <el-input-number
-            controls-position="right"
-            clearable
-            :min="0"
-            :max="50"
-            v-model.number="info.borderRadius"
-            :placeholder="$lang('请输入边框圆角')"
-          ></el-input-number>
-          px
-          <el-slider
-            v-model="info.borderRadius"
-            :min="0"
-            :max="50"
-            :format-tooltip="val => val + ' px'"
-          ></el-slider>
+        <p class="padding-box">
+          <span class="label">{{ $lang("边框圆角") }}:</span>
+          <span class="c-box">
+            <span>
+              左上<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.borderRadiusTopLeft"
+                :placeholder="$lang('左上角')"
+              ></el-input-number>
+            </span>
+            <span>
+              右上<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.borderRadiusTopRight"
+                :placeholder="$lang('右上角')"
+              ></el-input-number>
+            </span>
+            <span>
+              右下<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.borderRadiusBottomRight"
+                :placeholder="$lang('右下角')"
+              ></el-input-number>
+            </span>
+            <span>
+              左下<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.borderRadiusBottomLeft"
+                :placeholder="$lang('左下角')"
+              ></el-input-number>
+            </span>
+          </span>
         </p>
       </el-collapse-item>
       <el-collapse-item :title="$lang('边距')" name="margin">

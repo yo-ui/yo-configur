@@ -1,6 +1,3 @@
-<!-- @click="clickEvent" -->
-<!-- :class="{ active: showActiveStatus }" -->
-<!-- @mousedown.stop="mousedownEvent" -->
 <template>
   <div
     class="bm-component-com"
@@ -110,8 +107,6 @@
       @mousedown.stop="rightBottomClickEvent"
       title="右下角"
     ></i>
-    <!-- <component :info="info" :is="info.type"></component> -->
-    <!-- {{ info.type }} -->
     <component
       ref="bmCom"
       :type="showType"
@@ -120,34 +115,8 @@
       :is="`${info.type}Com`"
       @success="loadSuccess"
     >
-      <!-- <component
-        :type="showType"
-        :info="item"
-        :style="comStyle(item)"
-        v-for="(item, index) in info.children"
-        :key="index"
-        :is="`${item.type}Com`"
-        @success="loadSuccess"
-      >
-      </component> -->
       <slot></slot>
     </component>
-    <!-- <bm-text></bm-text> -->
-    <!-- <template v-if="type == 'text'">
-      <div
-        :contenteditable="editable"
-        @dblclick.stop="dbClickEvent"
-        :style="comStyle"
-      >
-        {{ content }}
-      </div>
-    </template>
-    <template v-if="type == 'image'">
-      <img
-        src="//pic.energyiot.cn/upload/180817095543907.jpg"
-        :style="comStyle"
-      />
-    </template> -->
   </div>
 </template>
 

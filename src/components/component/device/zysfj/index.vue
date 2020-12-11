@@ -1,7 +1,6 @@
 // 正压送风机
 <template>
   <div class="bm-device-zysfj-com" :style="comStyle">
-    <!-- :viewBox="`${info.vBoxx} ${info.vBoxy} ${info.width} ${info.height}`" -->
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -1427,22 +1426,44 @@ export default {
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
-        borderRadius = "",
-        opacity = "",
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
+
+        marginTop = 0,
+        marginBottom = 0,
+        marginLeft = 0,
+        marginRight = 0,
+        paddingTop = 0,
+        paddingBottom = 0,
+        paddingLeft = 0,
+        paddingRight = 0,
+        shadow = {},
+        shadowable = false,
         backgroundType = "",
         backgroundColor = "",
         backgroundImage = "",
         backgroundRepeat = "",
         backgroundSize = ""
       } = info || {};
-      let styles = {};
-
-      // if (width) {
-      styles["width"] = `${width}px`;
-      // }
-      // if (height) {
-      styles["height"] = `${height}px`;
-      // }
+      let styles = {
+        margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
+        padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
+      };
+      if (shadowable) {
+        let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
+          shadow || {};
+        styles[
+          "boxShadow"
+        ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
+      }
+      if (width) {
+        styles["width"] = `${width}px`;
+      }
+      if (height) {
+        styles["height"] = `${height}px`;
+      }
       if (backgroundRepeat) {
         styles["backgroundRepeat"] = backgroundRepeat;
       }
@@ -1456,8 +1477,10 @@ export default {
         styles["borderStyle"] = borderStyle;
       }
       styles["borderWidth"] = `${borderWidth}px`;
-      styles["opacity"] = opacity / 100;
-      styles["borderRadius"] = `${borderRadius}px`;
+
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {
@@ -1542,181 +1565,4 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import (reference) "./../../../../assets/less/common.less";
-.zysfj-st0 {
-  fill: url(#zysfj_1_);
-}
-.zysfj-st1 {
-  fill: url(#zysfj_2_);
-}
-.zysfj-st2 {
-  fill: url(#zysfj_3_);
-}
-.zysfj-st3 {
-  fill: url(#zysfj_4_);
-}
-.zysfj-st4 {
-  fill: url(#zysfj_5_);
-}
-.zysfj-st5 {
-  fill: url(#zysfj_6_);
-}
-.zysfj-st6 {
-  fill: #9daeb8;
-}
-.zysfj-st7 {
-  fill: url(#zysfj_7_);
-}
-.zysfj-st8 {
-  fill: url(#zysfj_8_);
-}
-.zysfj-st9 {
-  fill: url(#zysfj_9_);
-}
-.zysfj-st10 {
-  fill: #69121a;
-}
-.zysfj-st11 {
-  fill: #3d4d4e;
-}
-.zysfj-st12 {
-  fill: url(#zysfj_10_);
-}
-.zysfj-st13 {
-  fill: url(#zysfj_11_);
-}
-.zysfj-st14 {
-  fill: url(#zysfj_12_);
-}
-.zysfj-st15 {
-  fill: url(#zysfj_13_);
-}
-.zysfj-st16 {
-  fill: url(#zysfj_14_);
-}
-.zysfj-st17 {
-  fill: url(#zysfj_15_);
-}
-.zysfj-st18 {
-  fill: url(#zysfj_16_);
-}
-.zysfj-st19 {
-  fill: #9cacb9;
-}
-.zysfj-st20 {
-  fill: url(#zysfj_17_);
-}
-.zysfj-st21 {
-  fill: url(#zysfj_18_);
-}
-.zysfj-st22 {
-  fill: url(#zysfj_19_);
-}
-.zysfj-st23 {
-  fill: url(#zysfj_20_);
-}
-.zysfj-st24 {
-  fill: url(#zysfj_21_);
-}
-.zysfj-st25 {
-  fill: url(#zysfj_22_);
-}
-.zysfj-st26 {
-  fill: url(#zysfj_23_);
-}
-.zysfj-st27 {
-  fill: url(#zysfj_24_);
-}
-.zysfj-st28 {
-  fill: url(#zysfj_25_);
-}
-.zysfj-st29 {
-  fill: url(#zysfj_26_);
-}
-.zysfj-st30 {
-  fill: url(#zysfj_27_);
-}
-.zysfj-st31 {
-  fill: url(#zysfj_28_);
-}
-.zysfj-st32 {
-  fill: url(#zysfj_29_);
-}
-.zysfj-st33 {
-  fill: url(#zysfj_30_);
-}
-.zysfj-st34 {
-  fill: url(#zysfj_31_);
-}
-.zysfj-st35 {
-  fill: url(#zysfj_32_);
-}
-.zysfj-st36 {
-  fill: url(#zysfj_33_);
-}
-.zysfj-st37 {
-  fill: url(#zysfj_34_);
-}
-.zysfj-st38 {
-  opacity: 0.3;
-}
-.zysfj-st39 {
-  opacity: 0.2;
-  fill: #49565e;
-}
-.zysfj-st40 {
-  fill: url(#zysfj_35_);
-}
-.zysfj-st41 {
-  fill: url(#zysfj_36_);
-}
-.zysfj-st42 {
-  fill: #ced3d8;
-}
-.zysfj-st43 {
-  fill: #96a0a8;
-}
-.zysfj-st44 {
-  fill: url(#zysfj_37_);
-}
-.zysfj-st45 {
-  fill: url(#zysfj_38_);
-}
-.zysfj-st46 {
-  fill: url(#zysfj_39_);
-}
-.zysfj-st47 {
-  fill: #bfc9d0;
-}
-.zysfj-st48 {
-  fill: #e7edf1;
-}
-.zysfj-st49 {
-  opacity: 0.5;
-  fill: #243436;
-}
-.zysfj-st50 {
-  fill: url(#zysfj_40_);
-}
-.zysfj-st51 {
-  fill: url(#zysfj_41_);
-}
-.zysfj-st52 {
-  fill: url(#zysfj_42_);
-}
-.zysfj-st53 {
-  fill: url(#zysfj_43_);
-}
-.zysfj-st54 {
-  fill: url(#zysfj_44_);
-}
-.zysfj-st55 {
-  fill: url(#zysfj_45_);
-}
-.zysfj-st56 {
-  opacity: 0.4;
-  fill: #ff0000;
-}
-</style>
-<style lang="less">
-@import (less) "../../../../assets/less/components/component/device/common.less";
 </style>

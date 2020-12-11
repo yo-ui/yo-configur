@@ -411,7 +411,7 @@
                 :placeholder="$lang('请选择填充模式')"
               >
                 <el-option
-                  v-for="item in BACKGROUNDSIZELIST"
+                  v-for="item in backgroundSizeList"
                   :key="item.code"
                   :label="$lang(item.name)"
                   :value="item.code"
@@ -457,23 +457,42 @@
               :format-tooltip="val => val + ' px'"
             ></el-slider>
           </p>
-          <p>
-            <span class="label"> {{ $lang("边框圆角") }}:</span>
-            <el-input-number
-              controls-position="right"
-              clearable
-              :min="0"
-              :max="50"
-              v-model.number="info.borderRadius"
-              :placeholder="$lang('请输入边框圆角')"
-            ></el-input-number>
-            px
-            <el-slider
-              v-model="info.borderRadius"
-              :min="0"
-              :max="50"
-              :format-tooltip="val => val + ' px'"
-            ></el-slider>
+          <p class="padding-box">
+            <span class="label">{{ $lang("边框圆角") }}:</span>
+            <span class="c-box">
+              <span>
+                左上<el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.borderRadiusTopLeft"
+                  :placeholder="$lang('左上角')"
+                ></el-input-number>
+              </span>
+              <span>
+                右上<el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.borderRadiusTopRight"
+                  :placeholder="$lang('右上角')"
+                ></el-input-number>
+              </span>
+              <span>
+                右下<el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.borderRadiusBottomRight"
+                  :placeholder="$lang('右下角')"
+                ></el-input-number>
+              </span>
+              <span>
+                左下<el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.borderRadiusBottomLeft"
+                  :placeholder="$lang('左下角')"
+                ></el-input-number>
+              </span>
+            </span>
           </p>
           <p>
             <span class="label">{{ $lang("边框颜色") }}:</span>
@@ -991,7 +1010,7 @@ export default {
       angelList: Object.freeze(Constants.ANGELLIST),
       gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
       flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      BACKGROUNDSIZELIST: Object.freeze(Constants.BACKGROUNDSIZELIST),
+      backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
       fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
       tileModeList: Object.freeze(Constants.TILEMODELIST)
     };

@@ -150,8 +150,11 @@ export default {
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
-        opacity = "",
-        borderRadius = "",
+
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
         scale = ""
         // fontFamily = "",
         // fontSize = "",
@@ -182,8 +185,10 @@ export default {
       if (borderStyle) {
         styles["borderStyle"] = borderStyle;
       }
-      styles["borderRadius"] = `${borderRadius}px`;
-      styles["opacity"] = opacity / 100;
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
+
       styles["borderWidth"] = `${borderWidth}px`;
       if (scale) {
         (styles["transform"] = `${scale}`),

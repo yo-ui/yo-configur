@@ -672,7 +672,7 @@
                 :placeholder="$lang('请选择填充模式')"
               >
                 <el-option
-                  v-for="item in BACKGROUNDSIZELIST"
+                  v-for="item in backgroundSizeList"
                   :key="item.code"
                   :label="$lang(item.name)"
                   :value="item.code"
@@ -715,24 +715,44 @@
             :format-tooltip="val => val + ' px'"
           ></el-slider>
         </p>
-        <p>
-          <span class="label"> {{ $lang("边框圆角") }}:</span>
-          <el-input-number
-            controls-position="right"
-            clearable
-            :min="0"
-            :max="50"
-            v-model.number="info.borderRadius"
-            :placeholder="$lang('请输入边框圆角')"
-          ></el-input-number>
-          px
-          <el-slider
-            v-model="info.borderRadius"
-            :min="0"
-            :max="50"
-            :format-tooltip="val => val + ' px'"
-          ></el-slider>
+        <p class="padding-box">
+          <span class="label">{{ $lang("边框圆角") }}:</span>
+          <span class="c-box">
+            <span>
+              左上<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.borderRadiusTopLeft"
+                :placeholder="$lang('左上角')"
+              ></el-input-number>
+            </span>
+            <span>
+              右上<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.borderRadiusTopRight"
+                :placeholder="$lang('右上角')"
+              ></el-input-number>
+            </span>
+            <span>
+              右下<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.borderRadiusBottomRight"
+                :placeholder="$lang('右下角')"
+              ></el-input-number>
+            </span>
+            <span>
+              左下<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.borderRadiusBottomLeft"
+                :placeholder="$lang('左下角')"
+              ></el-input-number>
+            </span>
+          </span>
         </p>
+
         <p>
           <span class="label">{{ $lang("边框颜色") }}:</span>
           <el-color-picker
@@ -741,7 +761,82 @@
           ></el-color-picker>
         </p>
       </el-collapse-item>
-
+      <el-collapse-item :title="$lang('边距')" name="margin">
+        <p class="margin-box">
+          <span class="label">{{ $lang("外边距") }}:</span>
+          <span class="c-box">
+            <span>
+              上<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.marginTop"
+                :placeholder="$lang('上外边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              下<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.marginBottom"
+                :placeholder="$lang('下外边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              左<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.marginLeft"
+                :placeholder="$lang('左外边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              右<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.marginRight"
+                :placeholder="$lang('右外边距')"
+              ></el-input-number>
+            </span>
+          </span>
+        </p>
+        <p class="padding-box">
+          <span class="label">{{ $lang("内边距") }}:</span>
+          <span class="c-box">
+            <span>
+              上<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.paddingTop"
+                :placeholder="$lang('上内边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              下<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.paddingBottom"
+                :placeholder="$lang('下内边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              左<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.paddingLeft"
+                :placeholder="$lang('左内边距')"
+              ></el-input-number>
+            </span>
+            <span>
+              右<el-input-number
+                controls-position="right"
+                clearable
+                v-model.number="info.paddingRight"
+                :placeholder="$lang('右内边距')"
+              ></el-input-number>
+            </span>
+          </span>
+        </p>
+      </el-collapse-item>
       <el-collapse-item :title="$lang('动画')" name="animation">
         <p>
           <span class="label">{{ $lang("动画类型") }}:</span>

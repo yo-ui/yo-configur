@@ -220,6 +220,29 @@ export default {
       // moving: "canvas/getMoving",
       zoom: "canvas/getZoom" //放大缩小
     }),
+
+    //渐变颜色样式
+    gradientStyle() {
+      return (info = {}) => {
+        // let { info = {} } = this;
+        let { gradientStyle = {} } = info || {};
+        let {
+          type = "",
+          angle = "",
+          center = "",
+          radialShape = "",
+          valueList = []
+        } = gradientStyle || {};
+        let styles = {};
+        let colors = valueList.map(item => `${item.code} ${item.value}%`);
+        if (type == "linear") {
+          styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
+        } else if (type == "radial") {
+          styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+        }
+        return styles;
+      };
+    },
     svgStyle() {
       let { info = {} } = this;
       let {
@@ -230,13 +253,16 @@ export default {
         gradientStyle = {},
         // borderStyle = "",
         lineWidth = "",
-        // borderRadius = "",
+        // borderRadiusTopLeft = 0,
+        // borderRadiusTopRight = 0,
+        // borderRadiusBottomLeft = 0,
+        // borderRadiusBottomRight = 0,
         backgroundType = "",
-        // opacity = "",
+        //
         // scale = "",
-        // visible = true,
-        // flipV = false,
-        // flipH = false,
+        //
+        //
+        //
         // fontFamily = "",
         // fontSize = "",
         // fontWeight = "",
@@ -267,35 +293,32 @@ export default {
       return styles;
     },
     comStyle() {
-      let { info = {} } = this;
+      let { info = {}, gradientStyle } = this;
       let {
         // width = "",
         height = "",
         // color = "",
-        // borderColor = "",
-        // borderStyle = "",
-        // lineWidth = "",
-        // borderRadius = "",
-        // backgroundType = "",
-        opacity = "",
+        borderColor = "",
+        borderStyle = "",
+        borderWidth = "",
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
+        backgroundType = "",
+
         // scale = "",
-        visible = true,
-        flipV = false,
-        flipH = false
-        // fontFamily = "",
-        // fontSize = "",
-        // fontWeight = "",
-        // fontStyle = ""
-        // backgroundColor = ""
-        // backgroundImage = "",
-        // backgroundRepeat = "",
-        // backgroundSize = ""
+
+        backgroundColor = "",
+        backgroundImage = "",
+        backgroundRepeat = "",
+        backgroundSize = ""
       } = info || {};
       let styles = {};
 
       // if (width) {
       // styles["width"] = `${width}px`;
-      styles["visibility"] = `${visible ? "visible" : "hidden"}`;
+
       // }
       if (height) {
         styles["height"] = `${height}px`;
@@ -305,63 +328,40 @@ export default {
       // let { w = 0, h = 0 } = rbox || {};
       // bmCommon.warn("rbox=", rbox);
       // info.width = w;
-      // info.height = h + 10 + lineWidth;
+      // info.height = h + 10 + borderWidth;
       // this.reloadSize();
-      // if (backgroundRepeat) {
-      //   styles["backgroundRepeat"] = backgroundRepeat;
-      // }
-      // if (backgroundSize) {
-      //   styles["backgroundSize"] = backgroundSize;
-      // }
-      // if (borderColor) {
-      //   styles["borderColor"] = borderColor;
-      // }
-      // if (borderStyle) {
-      //   styles["borderStyle"] = borderStyle;
-      // }
-      // styles["lineWidth"] = `${lineWidth}px`;
-      styles["opacity"] = opacity / 100;
-      // styles["borderRadius"] = `${borderRadius}px`;
-      if (flipV || flipH) {
-        let scale = `scale(${flipH ? -1 : 1},${flipV ? -1 : 1})`;
-        (styles["transform"] = `${scale}`),
-          (styles["-webkit-transform"] = `${scale}`),
-          (styles["-ms-transform"] = `${scale}`),
-          (styles["-o-transform"] = `${scale}`),
-          (styles["-moz-transform"] = `${scale}`);
+      if (backgroundRepeat) {
+        styles["backgroundRepeat"] = backgroundRepeat;
       }
-      // if (color) {
-      //   styles["color"] = color;
-      // }
-      // if (fontSize) {
-      //   styles["fontSize"] = `${fontSize}px`;
-      // }
-      // if (fontFamily) {
-      //   styles["fontFamily"] = `${fontFamily}`;
-      // }
-      // if (fontWeight) {
-      //   styles["fontWeight"] = fontWeight;
-      // }
-      // if (fontStyle) {
-      //   styles["fontStyle"] = fontStyle;
-      // }
-      // if (backgroundType == "purity") {
-      //   //纯色
-      //   if (backgroundColor) {
-      //     styles["backgroundColor"] = backgroundColor;
-      //   }
-      //   // if (backgroundImage) {
-      //   //   styles["backgroundImage"] = `url(${this.$loadImgUrl(
-      //   //     backgroundImage
-      //   //   )})`;
-      //   // }
-      // } else if (backgroundType == "gradient") {
-      //   //渐变
-      //   styles = { ...styles, ...gradientStyle };
-      // }
-      // if (backgroundImage) {
-      //   styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
-      // }
+      if (backgroundSize) {
+        styles["backgroundSize"] = backgroundSize;
+      }
+      if (borderColor) {
+        styles["borderColor"] = borderColor;
+      }
+      if (borderStyle) {
+        styles["borderStyle"] = borderStyle;
+      }
+      styles["borderWidth"] = `${borderWidth}px`;
+
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
+
+      if (backgroundType == "purity") {
+        //纯色
+        if (backgroundColor) {
+          styles["backgroundColor"] = backgroundColor;
+        }
+        if (backgroundImage) {
+          styles["backgroundImage"] = `url(${this.$loadImgUrl(
+            backgroundImage
+          )})`;
+        }
+      } else if (backgroundType == "gradient") {
+        //渐变
+        styles = { ...styles, ...gradientStyle(info) };
+      }
       return styles || {};
     }
   },

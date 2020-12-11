@@ -701,7 +701,7 @@ export default {
       }
     },
     openAll() {
-      this.activeNames = ["name", "outward", "animation"];
+      this.activeNames = ["name", "outward", "margin", "animation"];
     },
     closeAll() {
       this.activeNames = ["name"];

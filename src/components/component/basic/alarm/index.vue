@@ -143,7 +143,7 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-const pointCode = "SwSts";
+let pointCode = "SwSts";
 export default {
   name: "bmBasicAlarmCom",
   data() {
@@ -273,37 +273,38 @@ export default {
   methods: {
     ...mapMutations({}),
     ...mapActions({}),
-    controlEvent() {
-      let { info = {} } = this;
-      let { content = false, bindData = {} } = info || {};
-      let { deviceId = "" } = bindData || {};
-      if (!deviceId) {
-        info.content = !content;
-        return;
-      }
-      let point = pointCode;
-      let value = !content ? 1 : 0;
-      $vm.$emit("control", {
-        deviceId,
-        point,
-        value,
-        callback: flag => {
-          if (flag) {
-            info.content = !content;
-          } else {
-            info.content = content; //如果取消则重置结果
-          }
-        }
-      });
-    },
+    // controlEvent() {
+    //   let { info = {} } = this;
+    //   let { content = false, bindData = {} } = info || {};
+    //   let { deviceId = "" } = bindData || {};
+    //   if (!deviceId) {
+    //     info.content = !content;
+    //     return;
+    //   }
+    //   let point = pointCode;
+    //   let value = !content ? 1 : 0;
+    //   $vm.$emit("control", {
+    //     deviceId,
+    //     point,
+    //     value,
+    //     callback: flag => {
+    //       if (flag) {
+    //         info.content = !content;
+    //       } else {
+    //         info.content = content; //如果取消则重置结果
+    //       }
+    //     }
+    //   });
+    // },
     init() {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
         let { id = "", bindData = {} } = info || {};
-        let { deviceId = "" } = bindData || {};
-        if (!deviceId) {
+        let { devicePoint = "" } = bindData || {};
+        if (!devicePoint) {
           return;
         }
+        pointCode = devicePoint;
         $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
           bmCommon.log("deviceAlarmCom", device);
           let { pointList = [] } = device || {};

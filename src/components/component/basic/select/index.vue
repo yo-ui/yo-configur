@@ -252,13 +252,6 @@ export default {
           let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
           styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
         }
-        // if (scale) {
-        //   (styles["transform"] = `${scale}`),
-        //     (styles["-webkit-transform"] = `${scale}`),
-        //     (styles["-ms-transform"] = `${scale}`),
-        //     (styles["-o-transform"] = `${scale}`),
-        //     (styles["-moz-transform"] = `${scale}`);
-        // }
         if (color) {
           styles["color"] = color;
         }
@@ -405,7 +398,10 @@ export default {
         borderHoverColor = "",
         borderStyle = "",
         borderWidth = "",
-        borderRadius = "",
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
         // scale = "",
         marginTop = 0,
         marginBottom = 0,
@@ -464,7 +460,9 @@ export default {
         styles["borderStyle"] = borderStyle;
       }
       styles["borderWidth"] = `${borderWidth}px`;
-      styles["borderRadius"] = `${borderRadius}px`;
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       if (shadowable) {
         let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
           shadow || {};
@@ -476,13 +474,6 @@ export default {
         let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
         styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
       }
-      // if (scale) {
-      //   (styles["transform"] = `${scale}`),
-      //     (styles["-webkit-transform"] = `${scale}`),
-      //     (styles["-ms-transform"] = `${scale}`),
-      //     (styles["-o-transform"] = `${scale}`),
-      //     (styles["-moz-transform"] = `${scale}`);
-      // }
       if (color) {
         styles["color"] = color;
       }
@@ -518,14 +509,6 @@ export default {
       }
       return styles || {};
     },
-    // selectArrowStyle() {
-    //   let { info = {} } = this;
-    //   let { select = {} } = info;
-    //   let { arrowColor = "" } = select;
-    //   let styles = {};
-    //   styles["--background-color"] = arrowColor;
-    //   return styles || {};
-    // },
     selectStyle() {
       let { info = {}, zoom = 1, boxZoom = 1 } = this;
       let { select = {} } = info || {};
@@ -536,7 +519,10 @@ export default {
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
-        borderRadius = "",
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
         // // scale = "",
         marginTop = 0,
         marginBottom = 0,
@@ -597,7 +583,9 @@ export default {
         styles["borderStyle"] = borderStyle;
       }
       styles["borderWidth"] = `${borderWidth}px`;
-      styles["borderRadius"] = `${borderRadius}px`;
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       if (shadowable) {
         let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
           shadow || {};
@@ -650,12 +638,15 @@ export default {
         color = "",
         fontSize = "",
         marginRight = 0,
-        fontWeight = ""
+        fontWeight = "",
         // color = "",
         // borderColor = "",
         // borderStyle = "",
         // borderWidth = "",
-        // borderRadius = "",
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0
         // // scale = "",
         // marginTop = 0,
         // marginBottom = 0,
@@ -713,7 +704,9 @@ export default {
       //   styles["borderStyle"] = borderStyle;
       // }
       // styles["borderWidth"] = `${borderWidth}px`;
-      // styles["borderRadius"] = `${borderRadius}px`;
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       // if (shadowable) {
       //   let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
       //     shadow || {};
@@ -725,13 +718,6 @@ export default {
       //   let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
       //   styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
       // }
-      // // if (scale) {
-      // //   (styles["transform"] = `${scale}`),
-      // //     (styles["-webkit-transform"] = `${scale}`),
-      // //     (styles["-ms-transform"] = `${scale}`),
-      // //     (styles["-o-transform"] = `${scale}`),
-      // //     (styles["-moz-transform"] = `${scale}`);
-      // // }
       // if (color) {
       //   styles["color"] = color;
       // }

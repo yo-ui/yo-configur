@@ -384,7 +384,7 @@
             :placeholder="$lang('请选择填充模式')"
           >
             <el-option
-              v-for="item in BACKGROUNDSIZELIST"
+              v-for="item in backgroundSizeList"
               :key="item.code"
               :label="$lang(item.name)"
               :value="item.code"

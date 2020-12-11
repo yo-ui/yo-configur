@@ -1,7 +1,6 @@
 // 超时波流量计
 <template>
   <div class="bm-device-csbllj-com" :style="comStyle">
-    <!-- :viewBox="`${info.vBoxx} ${info.vBoxy} ${info.width} ${info.height}`" -->
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -313,8 +312,11 @@ export default {
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
-        borderRadius = "",
-        opacity = "",
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
+
         backgroundType = "",
         backgroundColor = "",
         backgroundImage = "",
@@ -342,8 +344,10 @@ export default {
         styles["borderStyle"] = borderStyle;
       }
       styles["borderWidth"] = `${borderWidth}px`;
-      styles["opacity"] = opacity / 100;
-      styles["borderRadius"] = `${borderRadius}px`;
+
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {

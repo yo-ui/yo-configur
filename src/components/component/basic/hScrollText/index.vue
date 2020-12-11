@@ -63,7 +63,10 @@ export default {
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
-        borderRadius = "",
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
         marginTop = 0,
         marginBottom = 0,
         marginLeft = 0,
@@ -103,7 +106,9 @@ export default {
       if (borderStyle) {
         styles["borderStyle"] = borderStyle;
       }
-      styles["borderRadius"] = `${borderRadius}px`;
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       styles["borderWidth"] = `${borderWidth}px`;
       if (width) {
         styles["width"] = `${width}px`;

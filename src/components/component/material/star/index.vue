@@ -191,25 +191,27 @@ export default {
     ...mapGetters(),
 
     //渐变颜色样式
-    // gradientStyle() {
-    //   let { info = {} } = this;
-    //   let { gradientStyle = {} } = info || {};
-    //   let {
-    //     type = "",
-    //     angle = "",
-    //     center = "",
-    //     radialShape = "",
-    //     valueList = []
-    //   } = gradientStyle || {};
-    //   let styles = {};
-    //   let colors = valueList.map(item => `${item.code} ${item.value}%`);
-    //   if (type == "linear") {
-    //     styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
-    //   } else if (type == "radial") {
-    //     styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
-    //   }
-    //   return styles;
-    // },
+    gradientStyle() {
+      return (info = {}) => {
+        // let { info = {} } = this;
+        let { gradientStyle = {} } = info || {};
+        let {
+          type = "",
+          angle = "",
+          center = "",
+          radialShape = "",
+          valueList = []
+        } = gradientStyle || {};
+        let styles = {};
+        let colors = valueList.map(item => `${item.code} ${item.value}%`);
+        if (type == "linear") {
+          styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
+        } else if (type == "radial") {
+          styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+        }
+        return styles;
+      };
+    },
     svgStyle() {
       let { info = {} } = this;
       let {
@@ -222,13 +224,16 @@ export default {
         borderWidth = "",
         cornerCount = 3, //角数
         innerRadius = 50, //内切圆半径
-        // borderRadius = "",
+        // borderRadiusTopLeft = 0,
+        // borderRadiusTopRight = 0,
+        // borderRadiusBottomLeft = 0,
+        // borderRadiusBottomRight = 0,
         backgroundType = "",
-        // opacity = "",
+        //
         // scale = "",
-        // visible = true,
-        // flipV = false,
-        // flipH = false,
+        //
+        //
+        //
         // fontFamily = "",
         // fontSize = "",
         // fontWeight = "",
@@ -357,29 +362,23 @@ export default {
       return styles;
     },
     comStyle() {
-      let { info = {} } = this;
+      let { info = {}, gradientStyle } = this;
       let {
         width = "",
         height = "",
         // color = "",
-        // borderColor = "",
-        // borderStyle = "",
-        // borderWidth = "",
-        // borderRadius = "",
-        // backgroundType = "",
-        opacity = "",
-        // scale = "",
-        visible = true,
-        flipV = false,
-        flipH = false
-        // fontFamily = "",
-        // fontSize = "",
-        // fontWeight = "",
-        // fontStyle = ""
-        // backgroundColor = ""
-        // backgroundImage = "",
-        // backgroundRepeat = "",
-        // backgroundSize = ""
+        borderColor = "",
+        borderStyle = "",
+        borderWidth = "",
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
+        backgroundType = "",
+        backgroundColor = "",
+        backgroundImage = "",
+        backgroundRepeat = "",
+        backgroundSize = ""
       } = info || {};
       let styles = {};
 
@@ -389,62 +388,38 @@ export default {
       // if (height) {
       styles["height"] = `${height}px`;
       // }
-      // if (backgroundRepeat) {
-      //   styles["backgroundRepeat"] = backgroundRepeat;
-      // }
-      // if (backgroundSize) {
-      //   styles["backgroundSize"] = backgroundSize;
-      // }
-      // if (borderColor) {
-      //   styles["borderColor"] = borderColor;
-      // }
-      // if (borderStyle) {
-      //   styles["borderStyle"] = borderStyle;
-      // }
-      // styles["borderWidth"] = `${borderWidth}px`;
-      styles["opacity"] = opacity / 100;
-      // styles["borderRadius"] = `${borderRadius}px`;
-      styles["visibility"] = `${visible ? "visible" : "hidden"}`;
-      if (flipV || flipH) {
-        let scale = `scale(${flipH ? -1 : 1},${flipV ? -1 : 1})`;
-        (styles["transform"] = `${scale}`),
-          (styles["-webkit-transform"] = `${scale}`),
-          (styles["-ms-transform"] = `${scale}`),
-          (styles["-o-transform"] = `${scale}`),
-          (styles["-moz-transform"] = `${scale}`);
+      if (backgroundRepeat) {
+        styles["backgroundRepeat"] = backgroundRepeat;
       }
-      // if (color) {
-      //   styles["color"] = color;
-      // }
-      // if (fontSize) {
-      //   styles["fontSize"] = `${fontSize}px`;
-      // }
-      // if (fontFamily) {
-      //   styles["fontFamily"] = `${fontFamily}`;
-      // }
-      // if (fontWeight) {
-      //   styles["fontWeight"] = fontWeight;
-      // }
-      // if (fontStyle) {
-      //   styles["fontStyle"] = fontStyle;
-      // }
-      // if (backgroundType == "purity") {
-      //   //纯色
-      //   if (backgroundColor) {
-      //     styles["backgroundColor"] = backgroundColor;
-      //   }
-      //   // if (backgroundImage) {
-      //   //   styles["backgroundImage"] = `url(${this.$loadImgUrl(
-      //   //     backgroundImage
-      //   //   )})`;
-      //   // }
-      // } else if (backgroundType == "gradient") {
-      //   //渐变
-      //   styles = { ...styles, ...gradientStyle };
-      // }
-      // if (backgroundImage) {
-      //   styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
-      // }
+      if (backgroundSize) {
+        styles["backgroundSize"] = backgroundSize;
+      }
+      if (borderColor) {
+        styles["borderColor"] = borderColor;
+      }
+      if (borderStyle) {
+        styles["borderStyle"] = borderStyle;
+      }
+      styles["borderWidth"] = `${borderWidth}px`;
+
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
+
+      if (backgroundType == "purity") {
+        //纯色
+        if (backgroundColor) {
+          styles["backgroundColor"] = backgroundColor;
+        }
+        if (backgroundImage) {
+          styles["backgroundImage"] = `url(${this.$loadImgUrl(
+            backgroundImage
+          )})`;
+        }
+      } else if (backgroundType == "gradient") {
+        //渐变
+        styles = { ...styles, ...gradientStyle(info) };
+      }
       return styles || {};
     }
   },

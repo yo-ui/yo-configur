@@ -1159,7 +1159,7 @@ export default {
       shadowTypeList: Object.freeze(Constants.SHADOWTYPELIST),
       gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
       // flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      // BACKGROUNDSIZELIST: Object.freeze(Constants.BACKGROUNDSIZELIST),
+      // backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
       fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST)
       // tileModeList: Object.freeze(Constants.TILEMODELIST)
     };
@@ -1275,7 +1275,7 @@ export default {
       }
     },
     openAll() {
-      this.activeNames = ["name", "outward", "animation"];
+      this.activeNames = ["name", "outward", "margin", "animation"];
     },
     closeAll() {
       this.activeNames = ["name"];

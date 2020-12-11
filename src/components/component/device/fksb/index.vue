@@ -1,7 +1,6 @@
 // 阀控水表
 <template>
   <div class="bm-device-fksb-com" :style="comStyle">
-    <!-- :viewBox="`${info.vBoxx} ${info.vBoxy} ${info.width} ${info.height}`" -->
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -418,17 +417,13 @@
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-
-const pointCode = "SwSts";
 export default {
   name: "deviceFksbCom",
   data() {
-    return {
-      pointValue: "" // expr:'SwSts',stop:0,start:1,alarm:2
-    };
+    return {};
   },
   props: {
     info: {
@@ -475,22 +470,44 @@ export default {
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
-        borderRadius = "",
-        opacity = "",
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
+
+        marginTop = 0,
+        marginBottom = 0,
+        marginLeft = 0,
+        marginRight = 0,
+        paddingTop = 0,
+        paddingBottom = 0,
+        paddingLeft = 0,
+        paddingRight = 0,
+        shadow = {},
+        shadowable = false,
         backgroundType = "",
         backgroundColor = "",
         backgroundImage = "",
         backgroundRepeat = "",
         backgroundSize = ""
       } = info || {};
-      let styles = {};
-
-      // if (width) {
-      styles["width"] = `${width}px`;
-      // }
-      // if (height) {
-      styles["height"] = `${height}px`;
-      // }
+      let styles = {
+        margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
+        padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
+      };
+      if (shadowable) {
+        let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
+          shadow || {};
+        styles[
+          "boxShadow"
+        ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
+      }
+      if (width) {
+        styles["width"] = `${width}px`;
+      }
+      if (height) {
+        styles["height"] = `${height}px`;
+      }
       if (backgroundRepeat) {
         styles["backgroundRepeat"] = backgroundRepeat;
       }
@@ -504,8 +521,10 @@ export default {
         styles["borderStyle"] = borderStyle;
       }
       styles["borderWidth"] = `${borderWidth}px`;
-      styles["opacity"] = opacity / 100;
-      styles["borderRadius"] = `${borderRadius}px`;
+
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {
