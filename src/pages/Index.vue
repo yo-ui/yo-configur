@@ -28,7 +28,7 @@
             }"
           >
             <i
-              v-for="item in parseInt(canvas.height / getZoom / 100)"
+              v-for="item in parseInt(canvas.height / 100) + 1"
               :key="item"
               :style="{ top: `${(item - 1) * 100 + 10}px` }"
               >{{ (item - 1) * 100 }}</i
@@ -43,7 +43,7 @@
             }"
           >
             <i
-              v-for="item in parseInt(canvas.width / getZoom / 100)"
+              v-for="item in parseInt(canvas.width / 100) + 1"
               :key="item"
               :style="{ left: `${(item - 1) * 100 + 10}px` }"
               >{{ (item - 1) * 100 }}</i
