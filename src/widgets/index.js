@@ -1103,10 +1103,14 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-material-line-style" */ "@/components/component/material/line/style.vue"
     ),
-  // materialRectangleStyleCom: () =>
-  //   import(
-  //     /* webpackChunkName: "bm-component-material-rectangle-style" */ "@/components/component/material/rectangle/style.vue"
-  //   ),
+  materialRectangleStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-rectangle-style" */ "@/components/component/material/rectangle/style.vue"
+    ),
+  materialQuadrangleStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-quadrangle-style" */ "@/components/component/material/quadrangle/style.vue"
+    ),
   materialStarStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-material-star-style" */ "@/components/component/material/star/style.vue"

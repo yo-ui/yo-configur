@@ -66,6 +66,8 @@ export default {
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
+        shadow = {},
+        shadowable = false,
         borderRadiusTopLeft = 0,
         borderRadiusTopRight = 0,
         borderRadiusBottomLeft = 0,
@@ -85,6 +87,13 @@ export default {
       // if (height) {
       styles["height"] = `${height}px`;
       // }
+      if (shadowable) {
+        let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
+          shadow || {};
+        styles[
+          "boxShadow"
+        ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
+      }
       if (backgroundRepeat) {
         styles["backgroundRepeat"] = backgroundRepeat;
       }
@@ -118,33 +127,6 @@ export default {
         styles = { ...styles, ...gradientStyle };
       }
       return styles || {};
-    },
-    textStyle() {
-      let { info = {} } = this;
-      let {
-        color = "",
-        fontFamily = "",
-        fontSize = "",
-        fontWeight = "",
-        fontStyle = ""
-      } = info || {};
-      let styles = {};
-      if (color) {
-        styles["color"] = color;
-      }
-      if (fontSize) {
-        styles["fontSize"] = `${fontSize}px`;
-      }
-      if (fontFamily) {
-        styles["fontFamily"] = `${fontFamily}`;
-      }
-      if (fontWeight) {
-        styles["fontWeight"] = fontWeight;
-      }
-      if (fontStyle) {
-        styles["fontStyle"] = fontStyle;
-      }
-      return styles || {};
     }
   },
   mounted() {
@@ -153,14 +135,6 @@ export default {
   methods: {
     ...mapMutations({}),
     ...mapActions({})
-    // blurEvent(e) {
-    //   let { target } = e;
-    //   let { info = {} } = this;
-    //   let name = $(target)
-    //     .text()
-    //     .trim();
-    //   info.name = name;
-    // }
   }
 };
 </script>

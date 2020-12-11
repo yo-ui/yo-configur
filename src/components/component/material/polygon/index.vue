@@ -183,55 +183,17 @@ export default {
   },
   computed: {
     ...mapGetters(),
-
-    //渐变颜色样式
-    // gradientStyle() {
-    //   let { info = {} } = this;
-    //   let { gradientStyle = {} } = info || {};
-    //   let {
-    //     type = "",
-    //     angle = "",
-    //     center = "",
-    //     radialShape = "",
-    //     valueList = []
-    //   } = gradientStyle || {};
-    //   let styles = {};
-    //   let colors = valueList.map(item => `${item.code} ${item.value}%`);
-    //   if (type == "linear") {
-    //     styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
-    //   } else if (type == "radial") {
-    //     styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
-    //   }
-    //   return styles;
-    // },
     svgStyle() {
       let { info = {} } = this;
       let {
         width = "",
         height = "",
-        // color = "",
         borderColor = "",
         gradientStyle = {},
         borderStyle = "",
         borderWidth = "",
-        // borderRadiusTopLeft = 0,
-        // borderRadiusTopRight = 0,
-        // borderRadiusBottomLeft = 0,
-        // borderRadiusBottomRight = 0,
         backgroundType = "",
-        //
-        // scale = "",
-        //
-        //
-        //
-        // fontFamily = "",
-        // fontSize = "",
-        // fontWeight = "",
-        // fontStyle = ""
         backgroundColor = ""
-        // backgroundImage = "",
-        // backgroundRepeat = "",
-        // backgroundSize = ""
       } = info || {};
       let styles = {};
       if (borderColor) {
@@ -275,11 +237,6 @@ export default {
         if (backgroundColor) {
           styles["fill"] = backgroundColor;
         }
-        // if (backgroundImage) {
-        //   styles["backgroundImage"] = `url(${this.$loadImgUrl(
-        //     backgroundImage
-        //   )})`;
-        // }
       } else if (backgroundType == "gradient") {
         //渐变
         // styles = { ...styles, ...gradientStyle };
@@ -289,24 +246,8 @@ export default {
       return styles;
     },
     comStyle() {
-      let { info = {}, gradientStyle } = this;
-      let {
-        width = "",
-        height = "",
-        borderColor = "",
-        borderStyle = "",
-        borderWidth = "",
-        borderRadiusTopLeft = 0,
-        borderRadiusTopRight = 0,
-        borderRadiusBottomLeft = 0,
-        borderRadiusBottomRight = 0,
-
-        backgroundType = "",
-        backgroundColor = "",
-        backgroundImage = "",
-        backgroundRepeat = "",
-        backgroundSize = ""
-      } = info || {};
+      let { info = {} } = this;
+      let { width = "", height = "" } = info || {};
       let styles = {};
 
       // if (width) {
@@ -315,113 +256,9 @@ export default {
       // }
       // if (height) {
       styles["height"] = `${height}px`;
-      // }
-      if (backgroundRepeat) {
-        styles["backgroundRepeat"] = backgroundRepeat;
-      }
-      if (backgroundSize) {
-        styles["backgroundSize"] = backgroundSize;
-      }
-      if (borderColor) {
-        styles["borderColor"] = borderColor;
-      }
-      if (borderStyle) {
-        styles["borderStyle"] = borderStyle;
-      }
-      styles["borderWidth"] = `${borderWidth}px`;
 
-      styles[
-        "borderRadius"
-      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
-
-      if (backgroundType == "purity") {
-        //纯色
-        if (backgroundColor) {
-          styles["backgroundColor"] = backgroundColor;
-        }
-        if (backgroundImage) {
-          styles["backgroundImage"] = `url(${this.$loadImgUrl(
-            backgroundImage
-          )})`;
-        }
-      } else if (backgroundType == "gradient") {
-        //渐变
-        styles = { ...styles, ...gradientStyle(info) };
-      }
       return styles || {};
     }
-    // textStyle() {
-    //   let { info = {} } = this;
-    //   let {
-    //     // width = "",
-    //     // height = "",
-    //     color = "",
-    //     // borderColor = "",
-    //     // borderStyle = "",
-    //     // borderWidth = "",
-    //     // scale = "",
-    //     fontFamily = "",
-    //     fontSize = "",
-    //     fontWeight = "",
-    //     fontStyle = ""
-    //     // backgroundColor = "",
-    //     // backgroundImage = "",
-    //     // backgroundRepeat = "",
-    //     // backgroundSize = ""
-    //   } = info || {};
-    //   let styles = {};
-
-    //   // if (width) {
-    //   //   styles["width"] = `${width}px`;
-    //   // }
-    //   // if (height) {
-    //   //   styles["height"] = `${height}px`;
-    //   // }
-    //   // if (backgroundRepeat) {
-    //   //   styles["backgroundRepeat"] = backgroundRepeat;
-    //   // }
-    //   // if (backgroundSize) {
-    //   //   styles["backgroundSize"] = backgroundSize;
-    //   // }
-    //   // if (borderColor) {
-    //   //   styles["borderColor"] = borderColor;
-    //   // }
-    //   // if (borderStyle) {
-    //   //   styles["borderStyle"] = borderStyle;
-    //   // }
-    //   // // if (borderWidth) {
-    //   // styles["borderWidth"] = `${borderWidth}px`;
-    //   // }
-    //   // if (scale) {
-    //   //   (styles["transform"] = `${scale}`),
-    //   //     (styles["-webkit-transform"] = `${scale}`),
-    //   //     (styles["-ms-transform"] = `${scale}`),
-    //   //     (styles["-o-transform"] = `${scale}`),
-    //   //     (styles["-moz-transform"] = `${scale}`);
-    //   // }
-    //   if (color) {
-    //     styles["color"] = color;
-    //   }
-    //   if (fontSize) {
-    //     styles["fontSize"] = `${fontSize}px`;
-    //   }
-    //   if (fontFamily) {
-    //     styles["fontFamily"] = `${fontFamily}`;
-    //   }
-    //   if (fontWeight) {
-    //     styles["fontWeight"] = fontWeight;
-    //   }
-    //   if (fontStyle) {
-    //     styles["fontStyle"] = fontStyle;
-    //   }
-    //   // if (backgroundColor) {
-    //   //   styles["backgroundColor"] = backgroundColor;
-    //   // }
-    //   // if (backgroundImage) {
-    //   //   styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
-    //   // }
-    //   return styles || {};
-    // }
   },
   mounted() {
     let { info = {} } = this;
@@ -433,14 +270,6 @@ export default {
   methods: {
     ...mapMutations({}),
     ...mapActions({})
-    // blurEvent(e) {
-    //   let { target } = e;
-    //   let { info = {} } = this;
-    //   let name = $(target)
-    //     .text()
-    //     .trim();
-    //   info.name = name;
-    // }
   }
 };
 </script>

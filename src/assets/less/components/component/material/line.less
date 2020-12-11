@@ -1,19 +1,24 @@
 @import (reference) "./../../../common.less";
-.active{
-  .bm-material-line-com{
-    .rect{
+.active {
+  .bm-material-line-com {
+    .rect {
       .db;
     }
   }
 }
-.bm-material-line-com{
+.bm-material-line-com {
   .posr;
+  pointer-events: none;
   z-index: 1000;
-  .rect{
+  .rect {
     .db(none);
   }
-  svg{
-    overflow:inherit;
+  svg {
+    overflow: inherit;
+    line,
+    rect {
+      pointer-events: auto;
+    }
   }
   // svg{
   //   .squ(100%);

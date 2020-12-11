@@ -279,30 +279,23 @@ export default {
       return styles;
     },
     comStyle() {
-      let { info = {}, gradientStyle } = this;
+      let { info = {} } = this;
       let {
         width = "",
-        height = "",
+        height = ""
         // color = "",
-        borderColor = "",
-        borderStyle = "",
-        borderWidth = "",
-        borderRadiusTopLeft = 0,
-        borderRadiusTopRight = 0,
-        borderRadiusBottomLeft = 0,
-        borderRadiusBottomRight = 0,
-        backgroundType = "",
-
-        // scale = "",
-
-        // fontFamily = "",
-        // fontSize = "",
-        // fontWeight = "",
-        // fontStyle = ""
-        backgroundColor = "",
-        backgroundImage = "",
-        backgroundRepeat = "",
-        backgroundSize = ""
+        // borderColor = "",
+        // borderStyle = "",
+        // borderWidth = "",
+        // borderRadiusTopLeft = 0,
+        // borderRadiusTopRight = 0,
+        // borderRadiusBottomLeft = 0,
+        // borderRadiusBottomRight = 0,
+        // backgroundType = "",
+        // backgroundColor = "",
+        // backgroundImage = "",
+        // backgroundRepeat = "",
+        // backgroundSize = ""
       } = info || {};
       let styles = {};
 
@@ -313,38 +306,38 @@ export default {
       // if (height) {
       styles["height"] = `${height}px`;
       // }
-      if (backgroundRepeat) {
-        styles["backgroundRepeat"] = backgroundRepeat;
-      }
-      if (backgroundSize) {
-        styles["backgroundSize"] = backgroundSize;
-      }
-      if (borderColor) {
-        styles["borderColor"] = borderColor;
-      }
-      if (borderStyle) {
-        styles["borderStyle"] = borderStyle;
-      }
-      styles["borderWidth"] = `${borderWidth}px`;
+      // if (backgroundRepeat) {
+      //   styles["backgroundRepeat"] = backgroundRepeat;
+      // }
+      // if (backgroundSize) {
+      //   styles["backgroundSize"] = backgroundSize;
+      // }
+      // if (borderColor) {
+      //   styles["borderColor"] = borderColor;
+      // }
+      // if (borderStyle) {
+      //   styles["borderStyle"] = borderStyle;
+      // }
+      // styles["borderWidth"] = `${borderWidth}px`;
 
-      styles[
-        "borderRadius"
-      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
+      // styles[
+      //   "borderRadius"
+      // ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
 
-      if (backgroundType == "purity") {
-        //纯色
-        if (backgroundColor) {
-          styles["backgroundColor"] = backgroundColor;
-        }
-        if (backgroundImage) {
-          styles["backgroundImage"] = `url(${this.$loadImgUrl(
-            backgroundImage
-          )})`;
-        }
-      } else if (backgroundType == "gradient") {
-        //渐变
-        styles = { ...styles, ...gradientStyle(info) };
-      }
+      // if (backgroundType == "purity") {
+      //   //纯色
+      //   if (backgroundColor) {
+      //     styles["backgroundColor"] = backgroundColor;
+      //   }
+      //   if (backgroundImage) {
+      //     styles["backgroundImage"] = `url(${this.$loadImgUrl(
+      //       backgroundImage
+      //     )})`;
+      //   }
+      // } else if (backgroundType == "gradient") {
+      //   //渐变
+      //   styles = { ...styles, ...gradientStyle(info) };
+      // }
       return styles || {};
     }
   },

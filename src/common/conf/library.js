@@ -3271,7 +3271,7 @@ let componentLibrary = [
         icon: "/static/img/configur/material/rectangle.png",
         data: {
           ...baseData,
-          styleCode: "material",
+          // styleCode: "material",
           // backgroundImage: "/static/img/svg/material/rectangle.svg",
           backgroundColor: "#0075E7",
           width: 200,
@@ -3304,12 +3304,12 @@ let componentLibrary = [
         data: {
           ...baseData,
           // styleCode: "material",
-          backgroundColor: "#0075E7",
           // backgroundImage: "/static/img/svg/material/star.svg",
           cornerCount: 5,
           innerRadius: 50,
+          backgroundColor: "#0075E7",
           width: 150,
-          height: 150
+          height: 150,
           // dataType: "device",
           // infoType:"device",
           // equalScaleable: true //是否等比例缩放
@@ -3337,7 +3337,7 @@ let componentLibrary = [
         icon: "/static/img/configur/material/quadrangle.png",
         data: {
           ...baseData,
-          styleCode: "material",
+          // styleCode: "material",
           backgroundColor: "#0075E7",
           // backgroundImage: "/static/img/svg/material/quadrangle.svg",
           width: 100,

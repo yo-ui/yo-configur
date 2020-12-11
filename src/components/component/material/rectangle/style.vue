@@ -162,61 +162,6 @@
             ></i>
           </el-tooltip>
         </p>
-        <!-- <p>
-      <span class="label"> {{ $lang("背景图片") }}:</span>
-      <bm-upload ref="bmUpload" @success="successCallback">
-        <el-button type="primary">
-          {{ $lang(info.backgroundImage ? "替换图片" : "选择图片") }}</el-button
-        >
-      </bm-upload>
-    </p>
-    <template v-if="info.backgroundImage">
-      <p>
-        <span class="label"> {{ $lang("平铺方式") }}:</span>
-        <el-select
-          v-model="info.backgroundRepeat"
-          :placeholder="$lang('请选择平铺方式')"
-        >
-          <el-option
-            v-for="item in tileModeList"
-            :key="item.code"
-            :label="$lang(item.name)"
-            :value="item.code"
-          >
-          </el-option>
-        </el-select>
-      </p>
-      <p>
-        <span class="label"> {{ $lang("填充模式") }}:</span>
-        <el-select
-          v-model="info.backgroundSize"
-          :placeholder="$lang('请选择填充模式')"
-        >
-          <el-option
-            v-for="item in backgroundSizeList"
-            :key="item.code"
-            :label="$lang(item.name)"
-            :value="item.code"
-          >
-          </el-option>
-        </el-select>
-      </p>
-    </template> -->
-        <!-- <p>
-          <span class="label"> {{ $lang("翻转方式") }}:</span>
-          <el-select
-            v-model="info.scale"
-            :placeholder="$lang('请选择翻转方式')"
-          >
-            <el-option
-              v-for="item in flipModeList"
-              :key="item.code"
-              :label="$lang(item.name)"
-              :value="item.code"
-            >
-            </el-option>
-          </el-select>
-        </p> -->
       </el-collapse-item>
       <el-collapse-item :title="$lang('样式')" name="style">
         <p>
@@ -387,64 +332,6 @@
             </vue-slider>
           </p>
         </template>
-        <!-- <p>
-      <span class="label">{{ $lang("字体颜色") }}:</span>
-      <el-color-picker v-model="info.color" show-alpha></el-color-picker>
-    </p>
-    <p>
-      <span class="label">{{ $lang("字体大小") }}:</span>
-      {{ info.fontSize }} px
-      <el-slider
-        v-model="info.fontSize"
-        :min="10"
-        :max="100"
-        :format-tooltip="val => val + ' px'"
-      ></el-slider>
-    </p>
-    <p>
-      <span class="label">{{ $lang("字体") }}:</span>
-      <el-select
-            v-model="info.fontFamily"
-            :placeholder="$lang('请选择字体')"
-          >
-            <el-option
-              v-for="item in fontFamilyList"
-              :key="item.code"
-              :label="$lang(item.name)"
-              :value="item.code"
-            >
-              <span :style="`font-family:${item.code}`">{{
-                $lang(item.name)
-              }}</span>
-            </el-option>
-          </el-select>
-    </p>
-    <p>
-      <span class="label">{{ $lang("字体样式") }}:</span>
-      <span class="font-style">
-        <span
-          class="bold"
-          @click="setFontWeight"
-          :title="$lang('粗体')"
-          :class="{ active: info.fontWeight == 'bold' }"
-          >B</span
-        >
-        <span
-          class="italic"
-          @click="setFontStyle"
-          :title="$lang('斜体')"
-          :class="{ active: info.fontStyle == 'italic' }"
-          >I</span
-        >
-        <span
-          class="underline"
-          @click="setTextDecoration"
-          :title="$lang('下划线')"
-          :class="{ active: info.textDecoration == 'underline' }"
-          >U</span
-        >
-      </span>
-    </p> -->
         <p>
           <span class="label"> {{ $lang("边框样式") }}:</span
           ><el-select
@@ -457,6 +344,9 @@
               :label="$lang(item.name)"
               :value="item.code"
             >
+              <span :style="`border:3px ${item.code} #333;padding:2px 15px;`">
+                {{ $lang(item.name) }}
+              </span>
             </el-option>
           </el-select>
         </p>
@@ -791,6 +681,7 @@ export default {
       radialShapeList: Object.freeze(Constants.RADIALSHAPELIST),
       angelList: Object.freeze(Constants.ANGELLIST),
       gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
+      shadowTypeList: Object.freeze(Constants.SHADOWTYPELIST),
       // flipModeList: Object.freeze(Constants.FLIPMODELIST),
       // backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
       fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST)

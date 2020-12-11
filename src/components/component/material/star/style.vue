@@ -203,61 +203,6 @@
             ></i>
           </el-tooltip>
         </p>
-        <!-- <p>
-      <span class="label"> {{ $lang("背景图片") }}:</span>
-      <bm-upload ref="bmUpload" @success="successCallback">
-        <el-button type="primary">
-          {{ $lang(info.backgroundImage ? "替换图片" : "选择图片") }}</el-button
-        >
-      </bm-upload>
-    </p>
-    <template v-if="info.backgroundImage">
-      <p>
-        <span class="label"> {{ $lang("平铺方式") }}:</span>
-        <el-select
-          v-model="info.backgroundRepeat"
-          :placeholder="$lang('请选择平铺方式')"
-        >
-          <el-option
-            v-for="item in tileModeList"
-            :key="item.code"
-            :label="$lang(item.name)"
-            :value="item.code"
-          >
-          </el-option>
-        </el-select>
-      </p>
-      <p>
-        <span class="label"> {{ $lang("填充模式") }}:</span>
-        <el-select
-          v-model="info.backgroundSize"
-          :placeholder="$lang('请选择填充模式')"
-        >
-          <el-option
-            v-for="item in backgroundSizeList"
-            :key="item.code"
-            :label="$lang(item.name)"
-            :value="item.code"
-          >
-          </el-option>
-        </el-select>
-      </p>
-    </template> -->
-        <!-- <p>
-          <span class="label"> {{ $lang("翻转方式") }}:</span>
-          <el-select
-            v-model="info.scale"
-            :placeholder="$lang('请选择翻转方式')"
-          >
-            <el-option
-              v-for="item in flipModeList"
-              :key="item.code"
-              :label="$lang(item.name)"
-              :value="item.code"
-            >
-            </el-option>
-          </el-select>
-        </p> -->
       </el-collapse-item>
       <el-collapse-item :title="$lang('样式')" name="style">
         <p>
@@ -504,25 +449,35 @@
             </el-option>
           </el-select>
         </p>
-        <p>
-          <span class="label"> {{ $lang("边框大小") }}:</span>
-          <el-input-number
-            controls-position="right"
-            clearable
-            :min="0"
-            :max="100"
-            v-model.number="info.borderWidth"
-            :placeholder="$lang('请输入边框大小')"
-          ></el-input-number>
-          px
-          <el-slider
-            v-model="info.borderWidth"
-            :min="0"
-            :max="100"
-            :format-tooltip="val => val + ' px'"
-          ></el-slider>
-        </p>
-        <p>
+        <template v-if="info.borderStyle != 'none'">
+          <p>
+            <span class="label"> {{ $lang("边框大小") }}:</span>
+            <el-input-number
+              controls-position="right"
+              clearable
+              :min="0"
+              :max="100"
+              v-model.number="info.borderWidth"
+              :placeholder="$lang('请输入边框大小')"
+            ></el-input-number>
+            px
+            <el-slider
+              v-model="info.borderWidth"
+              :min="0"
+              :max="100"
+              :format-tooltip="val => val + ' px'"
+            ></el-slider>
+          </p>
+          <p>
+            <span class="label">{{ $lang("边框颜色") }}:</span>
+            <el-color-picker
+              v-model="info.borderColor"
+              show-alpha
+            ></el-color-picker>
+          </p>
+        </template>
+
+        <!-- <p>
           <span class="label"> {{ $lang("边框圆角") }}:</span>
           <el-input-number
             controls-position="right"
@@ -539,14 +494,7 @@
             :max="100"
             :format-tooltip="val => val + ' px'"
           ></el-slider>
-        </p>
-        <p>
-          <span class="label">{{ $lang("边框颜色") }}:</span>
-          <el-color-picker
-            v-model="info.borderColor"
-            show-alpha
-          ></el-color-picker>
-        </p>
+        </p> -->
       </el-collapse-item>
       <el-collapse-item title="形状" name="shape">
         <p>
@@ -677,7 +625,7 @@ export default {
       activeNames: ["name"],
       animationDirectionList: Object.freeze(Constants.ANIMATIONDIRECTIONLIST),
       animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
-      borderStyleList: Object.freeze(Constants.SVGBORDERSTYLELIST),
+      borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
       backgroundTypeList: Object.freeze(Constants.BACKGROUNDTYPELIST),
       centerList: Object.freeze(Constants.CENTERLIST),
       radialShapeList: Object.freeze(Constants.RADIALSHAPELIST),

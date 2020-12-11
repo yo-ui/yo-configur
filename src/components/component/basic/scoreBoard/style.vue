@@ -466,6 +466,9 @@
               :label="$lang(item.name)"
               :value="item.code"
             >
+              <span :style="`border:3px ${item.code} #333;padding:2px 15px;`">
+                {{ $lang(item.name) }}
+              </span>
             </el-option>
           </el-select>
         </p>
@@ -1338,6 +1341,9 @@
               :label="$lang(item.name)"
               :value="item.code"
             >
+              <span :style="`border:3px ${item.code} #333;padding:2px 15px;`">
+                {{ $lang(item.name) }}
+              </span>
             </el-option>
           </el-select>
         </p>
