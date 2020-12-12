@@ -2079,7 +2079,7 @@ let componentLibrary = [
             icon: "/static/img/configur/wkq.svg",
             data: {
               ...baseData,
-              dataType: "device",
+              dataType: "point",
               infoType: "device", //显示详情组件前缀名
               width: 73,
               height: 65,
