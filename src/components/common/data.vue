@@ -62,60 +62,79 @@
         ></i>
       </el-tooltip>
     </p> -->
-    <p v-if="info.dataType == 'device'">
-      <span class="label"> {{ $lang("绑定设备") }}: </span>
-      <el-tooltip
-        :content="$lang('添加设备绑定')"
-        placement="top"
-        effect="dark"
-      >
-        <i
-          class="el-icon-link"
-          @click.stop="addEvent(info)"
-          :class="{
-            active: info.bindData && info.bindData.deviceId !== ''
-          }"
-        ></i>
-      </el-tooltip>
-    </p>
-    <template v-if="info.bindData && info.bindData.deviceId !== ''">
-      <p>
-        <span class="label"> {{ $lang("设备ID") }}: </span>
-        {{ info.bindData.deviceId }}
+
+    <template v-if="info.dataType == 'device'">
+      <p >
+        <span class="label"> {{ $lang("绑定设备") }}: </span>
+        <el-tooltip
+          :content="$lang('添加设备绑定')"
+          placement="top"
+          effect="dark"
+        >
+          <i
+            class="el-icon-link"
+            @click.stop="addEvent(info)"
+            :class="{
+              active: info.bindData && info.bindData.deviceId !== ''
+            }"
+          ></i>
+        </el-tooltip>
       </p>
-      <p>
-        <span class="label"> {{ $lang("设备名称") }}: </span>
-        {{ device.name }}
-      </p>
-      <!-- <p>
-        <span class="label"> {{ $lang("监测位置") }}: </span>
-        {{ info.bindData.deviceId }}
-      </p> -->
-      <p class="top-position" v-if="pointList&&pointList.length>0">
-        <span class="label"> {{ $lang("点位列表") }}: </span>
-        <ul>
-          <li v-for="item in pointList" :key="item.id">
-            {{item.name}}
-          </li>
-        </ul>
-      </p>
+      <template v-if="info.bindData && info.bindData.deviceId!==''">
+        <p>
+          <span class="label"> {{ $lang("设备ID") }}: </span>
+          {{ info.bindData.deviceId }}
+        </p>
+        <p>
+          <span class="label"> {{ $lang("设备名称") }}: </span>
+          {{ device.name }}
+        </p>
+        <!-- <p>
+          <span class="label"> {{ $lang("监测位置") }}: </span>
+          {{ info.bindData.deviceId }}
+        </p> -->
+        <p class="top-position" v-if="pointList&&pointList.length>0">
+          <span class="label"> {{ $lang("点位列表") }}: </span>
+          <ul>
+            <li v-for="item in pointList" :key="item.id">
+              {{item.name}}
+            </li>
+          </ul>
+        </p>
+      </template>
     </template>
-    <p v-if="info.dataType == 'point'">
-      <span class="label"> {{ $lang("绑定点位") }}: </span>
-      <el-tooltip
-        :content="$lang('添加设备点位绑定')"
-        placement="top"
-        effect="dark"
-      >
-        <i
-          class="el-icon-link"
-          @click.stop="addEvent(info)"
-          :class="{
-            active: info.bindData && info.bindData.devicePoint !== ''
-          }"
-        ></i>
-      </el-tooltip>
-    </p>
+    <template v-if="info.dataType == 'point'">
+      <p >
+        <span class="label"> {{ $lang("绑定点位") }}: </span>
+        <el-tooltip
+          :content="$lang('添加设备点位绑定')"
+          placement="top"
+          effect="dark"
+        >
+          <i
+            class="el-icon-link"
+            @click.stop="addEvent(info)"
+            :class="{
+              active: info.bindData && info.bindData.devicePoint !== ''
+            }"
+          ></i>
+        </el-tooltip>
+      </p>
+      <template v-if="info.bindData && info.bindData.devicePoint!==''">
+        <p>
+          <span class="label"> {{ $lang("设备ID") }}: </span>
+          {{ info.bindData.deviceId }}
+        </p>
+        <p>
+          <span class="label"> {{ $lang("设备名称") }}: </span>
+          {{ device.name }}
+        </p>
+        <p>
+          <span class="label"> {{ $lang("点位名称") }}: </span>
+          {{ device.name }}
+        </p>
+      </template>
+    </template>
     <p>
       <span class="label"> {{ $lang("绑定组件") }}: </span>
       <el-select
@@ -191,11 +210,16 @@ export default {
     init() {
       let { info = {} } = this;
       let { bindData = {} } = info || {};
-      let { pointIds = [] } = bindData || {};
+      let { pointIds = [],devicePoint="" } = bindData || {};
       this.commonGetDeviceFunc((device = {}) => {
-        let { points = [] } = device || {};
+        let { points = [] } = device || {};        
+        if(devicePoint){
+          let {name=""}=points.find(item => item.id==devicePoint)||{};
+          device.pointName=name;
+        }else{
+          this.pointList = points.filter(item => pointIds.indexOf(item.id) > -1);
+        }
         this.device = device || {};
-        this.pointList = points.filter(item => pointIds.indexOf(item.id) > -1);
       });
       // this.modelDevicePointsFunc((pointList = []) => {
       //   this.pointList = pointList || [];
