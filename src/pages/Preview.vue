@@ -326,15 +326,12 @@ export default {
         }
         let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
         let { data = {} } = _item || {};
-        // let { infoType = "", dataType = "" } = data || {};
-        // item.showCoverStatus = true;
-        // item.infoType = infoType;
-        // item.dataType = dataType;
         let {
-          // infoType = "",
-          // dataType = "",
-          bindData: _bindData = {}
-          // dataCode = ""
+          infoType = "",
+          dataType = "",
+          bindData: _bindData = {},
+          styleCode = "",
+          dataCode = ""
         } = data || {};
         for (let i in data) {
           if (!item[i]) {
@@ -342,9 +339,11 @@ export default {
           }
         }
         item.bindData = { ..._bindData, ...bindData };
-        // item.infoType = infoType;
-        // item.dataType = dataType;
-        // item.dataCode = dataCode;
+        item.infoType = infoType;
+        item.dataType = dataType;
+        item.styleCode = styleCode;
+        item.dataCode = dataCode;
+        item.alias = alias;
         if (type && type != "canvas") {
           widgets.push(item);
         }
