@@ -131,7 +131,7 @@
         </p>
         <p>
           <span class="label"> {{ $lang("点位名称") }}: </span>
-          {{ device.name }}
+          {{ device.pointName }}
         </p>
       </template>
     </template>
