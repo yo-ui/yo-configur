@@ -262,20 +262,6 @@ export default {
     }
   },
   mounted() {
-    // this.$nextTick(() => {
-    //   let bmCom = this.$refs.bmCom;
-    //   let $bmCom = $(bmCom);
-    //   let { info = {} } = this;
-    //   let width = $bmCom.width();
-    //   let height = $bmCom.height();
-    //   info.originWidth = width;
-    //   info.originHeight = height;
-    //   if (info.scaleable) {
-    //     info.width = width;
-    //     info.height = height;
-    //   }
-    // });
-    // this.$emit("success"); //组件加载完成回调
     this.init();
   },
   methods: {

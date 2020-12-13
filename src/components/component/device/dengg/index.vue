@@ -335,7 +335,6 @@ export default {
     }
   },
   mounted() {
-    // this.$emit("success"); //组件加载完成回调
     let { info = {} } = this;
     // bmCommon.log("dengg mounted=", info.content);
     let { content = "" } = info || {};

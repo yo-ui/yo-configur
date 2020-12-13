@@ -215,7 +215,6 @@ export default {
   },
   mounted() {
     this.init();
-    // this.$emit("success"); //组件加载完成回调
   },
   methods: {
     ...mapMutations({}),
@@ -234,7 +233,6 @@ export default {
           info.content = value;
           info.pointName = descr;
           info.unit = unit;
-          this.$emit("success"); //组件加载完成回调
         });
       }
       this.loadDeviceInfo();

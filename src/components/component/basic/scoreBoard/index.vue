@@ -320,9 +320,7 @@ export default {
     //   info.backgroundImage = url;
     // }
   },
-  mounted() {
-    this.$emit("success"); //组件加载完成回调
-  }
+  mounted() {}
 };
 </script>
 <style lang="less">

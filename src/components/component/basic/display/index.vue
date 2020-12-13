@@ -306,7 +306,6 @@ export default {
     }
   },
   mounted() {
-    this.$emit("success"); //组件加载完成回调
     this.init();
   },
   methods: {
@@ -325,7 +324,6 @@ export default {
           let { value = "", unit = "" } = point || {};
           info.content = value;
           info.unit = unit;
-          this.$emit("success"); //组件加载完成回调
         });
       }
       this.loadDeviceInfo();
@@ -350,7 +348,6 @@ export default {
             info.content = value;
             info.unit = unit;
           }
-          this.$emit("success"); //组件加载完成回调
         }
       });
     }

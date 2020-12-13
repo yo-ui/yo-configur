@@ -132,7 +132,6 @@ export default {
           this.dataLoadingStatus = false;
           let { code = "", message = "" } = data || {};
           if (code == Constants.CODES.SUCCESS) {
-            // this.$emit("success");
             this.showDialogStatus = false;
             callback && callback(true);
           } else {

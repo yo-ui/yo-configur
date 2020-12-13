@@ -371,7 +371,7 @@ export default {
     let { gradientStyle = {} } = info || {};
     info.points = new SVG.PointArray(points);
     gradientStyle.gradientId = bmCommon.uuid();
-    // this.$emit("success"); //组件加载完成回调
+    //
   },
   methods: {
     ...mapMutations({}),

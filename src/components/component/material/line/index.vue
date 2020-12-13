@@ -375,7 +375,6 @@ export default {
       this.reloadSize();
     });
     gradientStyle.gradientId = bmCommon.uuid();
-    // this.$emit("success"); //组件加载完成回调
   },
   methods: {
     ...mapMutations({}),

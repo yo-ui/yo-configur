@@ -245,21 +245,7 @@ export default {
     }
   },
   mounted() {
-    // this.$nextTick(() => {
-    //   let bmCom = this.$refs.bmCom;
-    //   let $bmCom = $(bmCom);
-    //   let { info = {} } = this;
-    //   let width = $bmCom.width();
-    //   let height = $bmCom.height();
-    //   info.originWidth = width;
-    //   info.originHeight = height;
-    //   if (info.scaleable) {
-    //     info.width = width;
-    //     info.height = height;
-    //   }
-    // });
     this.init();
-    this.$emit("success"); //组件加载完成回调
   },
   methods: {
     ...mapMutations({}),
@@ -277,7 +263,6 @@ export default {
           let { value = "", unit = "" } = point || {};
           info.content = value;
           info.unit = unit;
-          this.$emit("success"); //组件加载完成回调
         });
       }
       this.loadDeviceInfo();
@@ -302,7 +287,6 @@ export default {
             info.content = value;
             info.unit = unit;
           }
-          this.$emit("success"); //组件加载完成回调
         }
       });
     }

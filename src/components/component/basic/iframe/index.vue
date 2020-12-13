@@ -185,9 +185,7 @@ export default {
       return styles || {};
     }
   },
-  mounted() {
-    this.$emit("success"); //组件加载完成回调
-  },
+  mounted() {},
   methods: {
     ...mapMutations({}),
     ...mapActions({}),

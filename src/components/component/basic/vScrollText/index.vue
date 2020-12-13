@@ -217,7 +217,7 @@ export default {
     //     info.height = height;
     //   }
     // });
-    // this.$emit("success"); //组件加载完成回调
+    //
     this.init();
   },
   methods: {

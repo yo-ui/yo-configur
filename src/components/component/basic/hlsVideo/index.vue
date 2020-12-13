@@ -268,7 +268,6 @@ export default {
   },
   mounted() {
     this.init();
-    // this.$emit("success"); //组件加载完成回调
   },
   methods: {
     ...mapMutations({}),

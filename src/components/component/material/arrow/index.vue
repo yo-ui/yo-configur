@@ -293,10 +293,7 @@ export default {
     },
     comStyle() {
       let { info = {}, gradientStyle } = this;
-      let {
-        width = "",
-        height = "",
-      } = info || {};
+      let { width = "", height = "" } = info || {};
       let styles = {
         // margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
         // padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
@@ -355,7 +352,7 @@ export default {
     let { gradientStyle = {} } = info || {};
     info.points = new SVG.PointArray(points);
     gradientStyle.gradientId = bmCommon.uuid();
-    // this.$emit("success"); //组件加载完成回调
+    //
   },
   methods: {
     ...mapMutations({}),
