@@ -456,6 +456,7 @@ export default {
       setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
       moving: "canvas/moving",
       setDeviceCacheMap: "device/setDeviceCacheMap", //设备缓存
+      setAllDeviceCacheMap: "device/setAllDeviceCacheMap", //设备缓存
       stopMove: "canvas/stopMove"
     }),
     ...mapActions({
@@ -533,8 +534,9 @@ export default {
           });
           this.setWidgetList(widgets || []);
           this.setCanvasData(data);
-          this.resetCanvasSize();
+          this.resizeCanvasSize();
           this.selectComAction();
+          this.loadWebsocketData(widgetList);
         } else {
           this.$nextTick(() => {
             let $canvasBox = $(this.$refs.canvasBox);
@@ -543,7 +545,7 @@ export default {
             let height = $canvasBox.innerHeight();
             canvas.width = width;
             canvas.height = height;
-            this.resetCanvasSize();
+            this.resizeCanvasSize();
             this.selectComAction();
           });
         }
@@ -571,7 +573,7 @@ export default {
       //注册按键键盘事件
       $(document).on("keydown", this.keydownEvent);
       $(document).on("keyup", this.keyupEvent);
-      $(window).on("resize", this.resetCanvasSize);
+      $(window).on("resize", this.resizeCanvasSize);
       //注册绑定设备事件
       $vm.$on("bind-device", item => {
         this.addDataEvent(item);
@@ -602,8 +604,28 @@ export default {
       // 默认选择画布
       this.selectComAction();
     },
+    loadWebsocketData(widgetList = []) {
+      let set = new Set();
+      let deviceIdList = [];
+      widgetList.forEach(item => {
+        let { bindData = {} } = item || {};
+        let { deviceId = "" } = bindData || {};
+        if (deviceId) {
+          set.add(deviceId);
+        }
+      });
+      deviceIdList = Array.from(set);
+      this.commonDeviceListFunc(deviceIdList, (list = []) => {
+        let map = {};
+        list.forEach(item => {
+          let { id = "" } = item || {};
+          map[id] = item || {};
+        });
+        this.setAllDeviceCacheMap(map);
+      });
+    },
 
-    resetCanvasSize() {
+    resizeCanvasSize() {
       this.$nextTick(() => {
         let $window = $(window);
         let { leftMenuStatus = false, rightMenuStatus = false } = this;
@@ -1392,17 +1414,17 @@ export default {
     $(document).off("keydown", this.keydownEvent);
     $(document).off("keyup", this.keyupEvent);
 
-    $(window).off("resize", this.resetCanvasSize);
+    $(window).off("resize", this.resizeCanvasSize);
   },
   watch: {
     rightMenuStatus(newVal, oldVal) {
       if (newVal != oldVal) {
-        this.resetCanvasSize();
+        this.resizeCanvasSize();
       }
     },
     leftMenuStatus(newVal, oldVal) {
       if (newVal != oldVal) {
-        this.resetCanvasSize();
+        this.resizeCanvasSize();
       }
     }
   }

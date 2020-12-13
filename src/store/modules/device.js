@@ -26,6 +26,10 @@ export default {
       );
       deviceCacheMap[key] = value || {};
       state.deviceCacheMap = deviceCacheMap;
+    },
+    //设置缓存对象
+    setAllDeviceCacheMap(state, item = {}) {
+      state.deviceCacheMap = item || {};
     }
   },
   actions: {}

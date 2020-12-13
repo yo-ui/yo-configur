@@ -296,6 +296,7 @@ export default {
       stopMove: "canvas/stopMove",
       canvasMoving: "canvas/canvasMoving",
       setDeviceCacheMap: "device/setDeviceCacheMap", //设备缓存
+      setAllDeviceCacheMap: "device/setAllDeviceCacheMap", //设备缓存
       initMove: "canvas/initMove"
     }),
     ...mapActions({
@@ -452,13 +453,23 @@ export default {
     //   }
     // },
     loadWebsocketData(widgetList = []) {
+      let set = new Set();
       let deviceIdList = [];
       widgetList.forEach(item => {
         let { bindData = {} } = item || {};
         let { deviceId = "" } = bindData || {};
         if (deviceId) {
-          deviceIdList.push(deviceId);
+          set.add(deviceId);
         }
+      });
+      deviceIdList = Array.from(set);
+      this.commonDeviceListFunc(deviceIdList, (list = []) => {
+        let map = {};
+        list.forEach(item => {
+          let { id = "" } = item || {};
+          map[id] = item || {};
+        });
+        this.setAllDeviceCacheMap(map);
       });
       this.pushFunc(deviceIdList, result => {
         bmCommon.log("postFunc", result);
