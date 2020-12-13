@@ -64,7 +64,7 @@
     </p> -->
 
     <template v-if="info.dataType == 'device'">
-      <p >
+      <p>
         <span class="label"> {{ $lang("绑定设备") }}: </span>
         <el-tooltip
           :content="$lang('添加设备绑定')"
@@ -80,7 +80,7 @@
           ></i>
         </el-tooltip>
       </p>
-      <template v-if="info.bindData && info.bindData.deviceId!==''">
+      <template v-if="info.bindData && info.bindData.deviceId !== ''">
         <p>
           <span class="label"> {{ $lang("设备ID") }}: </span>
           {{ info.bindData.deviceId }}
@@ -93,18 +93,18 @@
           <span class="label"> {{ $lang("监测位置") }}: </span>
           {{ info.bindData.deviceId }}
         </p> -->
-        <p class="top-position" v-if="pointList&&pointList.length>0">
+        <div class="top-position" v-if="pointList && pointList.length > 0">
           <span class="label"> {{ $lang("点位列表") }}: </span>
           <ul>
             <li v-for="item in pointList" :key="item.id">
-              {{item.name}}
+              {{ item.name }}
             </li>
           </ul>
-        </p>
+        </div>
       </template>
     </template>
     <template v-if="info.dataType == 'point'">
-      <p >
+      <p>
         <span class="label"> {{ $lang("绑定点位") }}: </span>
         <el-tooltip
           :content="$lang('添加设备点位绑定')"
@@ -120,7 +120,7 @@
           ></i>
         </el-tooltip>
       </p>
-      <template v-if="info.bindData && info.bindData.devicePoint!==''">
+      <template v-if="info.bindData && info.bindData.devicePoint !== ''">
         <p>
           <span class="label"> {{ $lang("设备ID") }}: </span>
           {{ info.bindData.deviceId }}
@@ -210,14 +210,16 @@ export default {
     init() {
       let { info = {} } = this;
       let { bindData = {} } = info || {};
-      let { pointIds = [],devicePoint="" } = bindData || {};
+      let { pointIds = [], devicePoint = "" } = bindData || {};
       this.commonGetDeviceFunc((device = {}) => {
-        let { points = [] } = device || {};        
-        if(devicePoint){
-          let {name=""}=points.find(item => item.id==devicePoint)||{};
-          device.pointName=name;
-        }else{
-          this.pointList = points.filter(item => pointIds.indexOf(item.id) > -1);
+        let { points = [] } = device || {};
+        if (devicePoint) {
+          let { name = "" } = points.find(item => item.id == devicePoint) || {};
+          device.pointName = name;
+        } else {
+          this.pointList = points.filter(
+            item => pointIds.indexOf(item.id) > -1
+          );
         }
         this.device = device || {};
       });

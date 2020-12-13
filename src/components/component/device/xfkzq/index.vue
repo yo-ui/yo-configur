@@ -418,11 +418,14 @@ export default {
         deviceId,
         callback: (device = {}) => {
           let { points: pointList = [] } = device || {};
-          let point = pointList.find(item => {
-            let { id = "" } = item || {};
-            return id == devicePoint; //
+          pointList.forEach(item => {
+            let { id = "", value = "" } = item || {};
+            if (devicePoint == id) {
+              this.point = item || {};
+            } else if (id == pointCode) {
+              info.content = value == 1 ? true : false;
+            }
           });
-          this.point = point || {};
         }
       });
     }
@@ -440,31 +443,4 @@ export default {
 
 <style lang="less">
 // @import (reference) "./../../../../assets/less/common.less";
-// .bm-basic-switch-com {
-//   .posr;
-//   .pointer;
-//   .btn-text {
-//     .posa;
-//     top: 50%;
-//     .tranf(translate(0, -50%));
-//   }
-//   .btn-close-text {
-//     right: 10%;
-//   }
-//   .btn-open-text {
-//     left: 10%;
-//   }
-//   .btn-slider {
-//     .posa;
-//     top: 50%;
-//     .br(50%);
-//     .tranf(translate(0, -50%));
-//   }
-//   .btn-close-slider {
-//     left: 4%;
-//   }
-//   .btn-open-slider {
-//     right: 4%;
-//   }
-// }
 </style>

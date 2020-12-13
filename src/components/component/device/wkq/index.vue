@@ -193,7 +193,9 @@ const pointCode = "SwSts";
 export default {
   name: "bmBasicWkqCom",
   data() {
-    return {};
+    return {
+      point: {}
+    };
   },
   props: {
     info: {
@@ -393,29 +395,29 @@ export default {
       // setActiveCom: "canvas/setActiveCom" //设置当前选中组件
     }),
     ...mapActions({}),
-    controlEvent() {
-      let { info = {} } = this;
-      let { content = false, bindData = {} } = info || {};
-      let { deviceId = "" } = bindData || {};
-      if (!deviceId) {
-        info.content = !content;
-        return;
-      }
-      let point = pointCode;
-      let value = !content ? 1 : 0;
-      $vm.$emit("control", {
-        deviceId,
-        point,
-        value,
-        callback: flag => {
-          if (flag) {
-            info.content = !content;
-          } else {
-            info.content = content; //如果取消则重置结果
-          }
-        }
-      });
-    },
+    // controlEvent() {
+    //   let { info = {} } = this;
+    //   let { content = false, bindData = {} } = info || {};
+    //   let { deviceId = "" } = bindData || {};
+    //   if (!deviceId) {
+    //     info.content = !content;
+    //     return;
+    //   }
+    //   let point = pointCode;
+    //   let value = !content ? 1 : 0;
+    //   $vm.$emit("control", {
+    //     deviceId,
+    //     point,
+    //     value,
+    //     callback: flag => {
+    //       if (flag) {
+    //         info.content = !content;
+    //       } else {
+    //         info.content = content; //如果取消则重置结果
+    //       }
+    //     }
+    //   });
+    // },
     init() {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
@@ -451,11 +453,14 @@ export default {
         deviceId,
         callback: (device = {}) => {
           let { points: pointList = [] } = device || {};
-          let point = pointList.find(item => {
-            let { id = "" } = item || {};
-            return id == devicePoint; //
+          pointList.forEach(item => {
+            let { id = "", value = "" } = item || {};
+            if (devicePoint == id) {
+              this.point = item || {};
+            } else if (id == pointCode) {
+              info.content = value == 1 ? true : false;
+            }
           });
-          this.point = point || {};
         }
       });
     }
