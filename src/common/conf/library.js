@@ -271,10 +271,10 @@ let componentLibrary = [
           content: "0.00",
           unit: "",
           pointName: "",
-          width: "",
-          height: "",
-          scaleable: false, //是否可缩放操作
-          rotateable: false //是否可旋转操作
+          width: 145,
+          height: 60
+          // scaleable: false, //是否可缩放操作
+          // rotateable: false //是否可旋转操作
         }
       },
       {
@@ -3309,7 +3309,7 @@ let componentLibrary = [
           innerRadius: 50,
           backgroundColor: "#0075E7",
           width: 150,
-          height: 150,
+          height: 150
           // dataType: "device",
           // infoType:"device",
           // equalScaleable: true //是否等比例缩放
