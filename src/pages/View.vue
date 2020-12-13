@@ -165,7 +165,8 @@ export default {
       boxZoom: "canvas/getBoxZoom", //放大缩小
       // leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
       // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
-      canvas: "canvas/getCanvas" //画布属性
+      canvas: "canvas/getCanvas", //画布属性
+      deviceCacheMap: "device/getDeviceCacheMap" //设备缓存
       // selectBox: "canvas/getSelectBox", //选取框
       // activeComs: "canvas/getActiveComs", //选中对象
       // activeCom: "canvas/getActiveCom" //选中对象
@@ -284,6 +285,7 @@ export default {
       setCanvas: "canvas/setCanvas",
       stopMove: "canvas/stopMove",
       canvasMoving: "canvas/canvasMoving",
+      setDeviceCacheMap: "device/setDeviceCacheMap", //设备缓存
       initMove: "canvas/initMove"
     }),
     ...mapActions({
@@ -385,7 +387,7 @@ export default {
       //注册获取设备信息事件
       $vm.$on("device", item => {
         let { deviceId = "", callback = () => {} } = item || {};
-        this.commonGetDeviceFunc(deviceId, callback);
+        this.commonGetDeviceFunc({ deviceId }, callback);
       });
       //注册获取设备点位历史数据事件
       $vm.$on("device-point-hst-data", item => {
@@ -554,11 +556,6 @@ export default {
       let { id = "" } = info || {};
       let key = `bmInfoCom_${id}`;
       this.$refs[key][0]?.show(info);
-      // let { deviceId = "" } = bindData || {};
-      // this.commonGetDeviceFunc(deviceId, device => {
-      //   bmCommon.log(device);
-      //   this.deviceInfo = device || {};
-      // });
     },
     // 设备点位参数
     commonDeviceListFunc(ids = [], callback) {
@@ -653,10 +650,16 @@ export default {
         });
     },
     // 获取设备信息
-    commonGetDeviceFunc(deviceId, callback) {
+    commonGetDeviceFunc({ deviceId = "" }, callback) {
       let value = {};
       if (!deviceId) {
         callback && callback(value || {});
+        return;
+      }
+      let { deviceCacheMap = {} } = this;
+      let { id = "" } = deviceCacheMap(deviceId) || {};
+      if (id) {
+        callback(deviceCacheMap(deviceId));
         return;
       }
       this.commonGetDeviceAction({ deviceId })
@@ -667,9 +670,11 @@ export default {
           } else {
             bmCommon.error(message);
           }
+          this.setDeviceCacheMap({ key: deviceId, value });
           callback && callback(value || {});
         })
         .catch(err => {
+          this.setDeviceCacheMap({ key: deviceId, value });
           callback && callback(value || {});
           bmCommon.error("获取数据失败=>commonGetDevice", err);
         });
@@ -677,7 +682,6 @@ export default {
     // 获取设备点位信息
     commonDevicePointHstDataFunc(params, callback) {
       let value = {};
-      // let { condition, deviceInfo = {} } = this;
       let { deviceId = "", point = "" } = params || {};
       if (!deviceId) {
         callback && callback(value || {});
@@ -687,17 +691,7 @@ export default {
         callback && callback(value || {});
         return;
       }
-      // let { point = "" } = condition;
-      // let startTime = this.$moment().format("YYYY-MM-DD 00:00:00");
-      // let endTime = this.$moment().format("YYYY-MM-DD HH:mm:ss");
-      // this.dataLoadingStatus = true;
-      this.commonDevicePointHstDataAction(
-        params
-        // deviceId,
-        // point,
-        // startTime,
-        // endTime
-      )
+      this.commonDevicePointHstDataAction(params)
         .then(({ data }) => {
           let { code = "", result = {}, message = "" } = data || {};
           if (code == Constants.CODES.SUCCESS) {

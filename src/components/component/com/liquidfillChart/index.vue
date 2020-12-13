@@ -210,15 +210,6 @@ export default {
           this.loadPointData();
         }
       });
-      // this.commonGetDeviceFunc(deviceId, (device = {}) => {
-      //   this.deviceInfo = device || {};
-      //   let { condition } = this;
-      //   let { points = [] } = device || {};
-      //   let [point = {}] = points || [];
-      //   let { id = "" } = point || {};
-      //   condition.point = id;
-      //   this.loadPointData();
-      // });
     },
     loadPointData() {
       let { info = {} } = this;
@@ -235,9 +226,6 @@ export default {
           this.loadChartOptions(data);
         }
       });
-      // this.commonDevicePointHstDataFunc(data => {
-      //   this.loadChartOptions(data);
-      // });
     },
     loadChartOptions(data) {
       let times = [];

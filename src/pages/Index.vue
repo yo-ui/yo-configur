@@ -283,6 +283,7 @@ export default {
       leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
       rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
       canvas: "canvas/getCanvas", //画布属性
+      deviceCacheMap: "device/getDeviceCacheMap", //设备缓存
       selectBox: "canvas/getSelectBox", //选取框
       activeComs: "canvas/getActiveComs", //选中对象
       activeCom: "canvas/getActiveCom" //选中对象
@@ -454,6 +455,7 @@ export default {
       setShowType: "canvas/setShowType",
       setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
       moving: "canvas/moving",
+      setDeviceCacheMap: "device/setDeviceCacheMap", //设备缓存
       stopMove: "canvas/stopMove"
     }),
     ...mapActions({
@@ -581,7 +583,7 @@ export default {
       //注册获取设备信息事件
       $vm.$on("device", item => {
         let { deviceId = "", callback = () => {} } = item || {};
-        this.commonGetDeviceFunc(deviceId, callback);
+        this.commonGetDeviceFunc({ deviceId }, callback);
       });
       //注册获取设备点位历史数据事件
       $vm.$on("device-point-hst-data", item => {
@@ -1307,10 +1309,16 @@ export default {
         });
     },
     // 获取设备信息
-    commonGetDeviceFunc(deviceId, callback) {
+    commonGetDeviceFunc({ deviceId = "" }, callback) {
       let value = {};
       if (!deviceId) {
         callback && callback(value || {});
+        return;
+      }
+      let { deviceCacheMap = {} } = this;
+      let { id = "" } = deviceCacheMap(deviceId) || {};
+      if (id) {
+        callback(deviceCacheMap(deviceId));
         return;
       }
       this.commonGetDeviceAction({ deviceId })
@@ -1321,9 +1329,11 @@ export default {
           } else {
             bmCommon.error(message);
           }
+          this.setDeviceCacheMap({ key: deviceId, value });
           callback && callback(value || {});
         })
         .catch(err => {
+          this.setDeviceCacheMap({ key: deviceId, value });
           callback && callback(value || {});
           bmCommon.error("获取数据失败=>commonGetDevice", err);
         });

@@ -168,6 +168,7 @@ export default {
       widgetList: "canvas/getWidgetList", //组件列表
       previewData: "canvas/getPreviewData", //组件列表
       getZoom: "canvas/getZoom", //放大缩小
+      deviceCacheMap: "device/getDeviceCacheMap", //设备缓存
       boxZoom: "canvas/getBoxZoom", //放大缩小
       canvas: "canvas/getCanvas" //画布属性
     }),
@@ -294,6 +295,7 @@ export default {
       setShowType: "canvas/setShowType",
       stopMove: "canvas/stopMove",
       canvasMoving: "canvas/canvasMoving",
+      setDeviceCacheMap: "device/setDeviceCacheMap", //设备缓存
       initMove: "canvas/initMove"
     }),
     ...mapActions({
@@ -386,7 +388,7 @@ export default {
       //注册获取设备信息事件
       $vm.$on("device", item => {
         let { deviceId = "", callback = () => {} } = item || {};
-        this.commonGetDeviceFunc(deviceId, callback);
+        this.commonGetDeviceFunc({ deviceId }, callback);
       });
       //注册获取设备点位历史数据事件
       $vm.$on("device-point-hst-data", item => {
@@ -506,11 +508,6 @@ export default {
       let { id = "" } = info || {};
       let key = `bmInfoCom_${id}`;
       this.$refs[key][0]?.show(info);
-      // let { deviceId = "" } = bindData || {};
-      // this.commonGetDeviceFunc(deviceId, device => {
-      //   bmCommon.log(device);
-      //   this.deviceInfo = device || {};
-      // });
     },
     resizeCanvasSize() {
       let $window = $(window);
@@ -597,10 +594,16 @@ export default {
         });
     },
     // 获取设备信息
-    commonGetDeviceFunc(deviceId, callback) {
+    commonGetDeviceFunc({ deviceId = "" }, callback) {
       let value = {};
       if (!deviceId) {
         callback && callback(value || {});
+        return;
+      }
+      let { deviceCacheMap = {} } = this;
+      let { id = "" } = deviceCacheMap(deviceId) || {};
+      if (id) {
+        callback(deviceCacheMap(deviceId));
         return;
       }
       this.commonGetDeviceAction({ deviceId })
@@ -611,9 +614,11 @@ export default {
           } else {
             bmCommon.error(message);
           }
+          this.setDeviceCacheMap({ key: deviceId, value });
           callback && callback(value || {});
         })
         .catch(err => {
+          this.setDeviceCacheMap({ key: deviceId, value });
           callback && callback(value || {});
           bmCommon.error("获取数据失败=>commonGetDevice", err);
         });

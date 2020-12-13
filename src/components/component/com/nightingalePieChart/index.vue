@@ -42,7 +42,7 @@
 
 <script>
 import bmCommon from "@/common/common";
-import { Constants } from "@/common/env";
+// import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -184,10 +184,7 @@ export default {
   },
   methods: {
     ...mapMutations({}),
-    ...mapActions({
-      commonGetDeviceAction: "commonGetDevice",
-      commonDevicePointHstDataAction: "commonDevicePointHstData"
-    }),
+    ...mapActions({}),
     init() {
       // this.loadChartOptions();
       let { info = {} } = this;
@@ -204,19 +201,33 @@ export default {
       this.loadPointData();
     },
     loadDeviceInfo(deviceId) {
-      this.commonGetDeviceFunc(deviceId, (device = {}) => {
-        this.deviceInfo = device || {};
-        let { condition } = this;
-        let { points = [] } = device || {};
-        let [point = {}] = points || [];
-        let { id = "" } = point || {};
-        condition.point = id;
-        this.loadPointData();
+      $vm.$emit("device", {
+        deviceId,
+        callback: (device = {}) => {
+          this.deviceInfo = device || {};
+          let { condition } = this;
+          let { points = [] } = device || {};
+          let [point = {}] = points || [];
+          let { id = "" } = point || {};
+          condition.point = id;
+          this.loadPointData();
+        }
       });
     },
     loadPointData() {
-      this.commonDevicePointHstDataFunc(data => {
-        this.loadChartOptions(data);
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { deviceId = "", devicePoint: point = "" } = bindData || {};
+      let startTime = this.$moment().format("YYYY-MM-DD 00:00:00");
+      let endTime = this.$moment().format("YYYY-MM-DD HH:mm:ss");
+      $vm.$emit("device-point-hst-data", {
+        point,
+        startTime,
+        endTime,
+        deviceId,
+        callback: data => {
+          this.loadChartOptions(data);
+        }
       });
     },
     loadChartOptions(data) {
@@ -308,77 +319,7 @@ export default {
           }
         ]
       };
-    },
-    // 获取设备信息
-    commonGetDeviceFunc(deviceId, callback) {
-      let value = {};
-      if (!deviceId) {
-        // this.dataLoadingStatus = false;
-        callback && callback();
-        return;
-      }
-      // this.dataLoadingStatus = true;
-      this.commonGetDeviceAction({ deviceId })
-        .then(({ data }) => {
-          let { code = "", result = {}, message = "" } = data || {};
-          if (code == Constants.CODES.SUCCESS) {
-            value = result || {};
-          } else {
-            bmCommon.error(message);
-          }
-          // this.dataLoadingStatus = false;
-          callback && callback(value || {});
-        })
-        .catch(err => {
-          // this.dataLoadingStatus = false;
-          callback && callback(value || {});
-          bmCommon.error("获取数据失败=>commonGetDevice", err);
-        });
-    },
-    // 获取设备点位信息
-    commonDevicePointHstDataFunc(callback) {
-      let value = {};
-      let { condition, deviceInfo = {} } = this;
-      let { id: deviceId = "" } = deviceInfo || {};
-      if (!deviceId) {
-        // this.dataLoadingStatus = false;
-        callback && callback();
-        return;
-      }
-      let { point = "" } = condition;
-      let startTime = this.$moment().format("YYYY-MM-DD 00:00:00");
-      let endTime = this.$moment().format("YYYY-MM-DD HH:mm:ss");
-      // this.dataLoadingStatus = true;
-      this.commonDevicePointHstDataAction({
-        deviceId,
-        point,
-        startTime,
-        endTime
-      })
-        .then(({ data }) => {
-          let { code = "", result = {}, message = "" } = data || {};
-          if (code == Constants.CODES.SUCCESS) {
-            value = result || {};
-          } else {
-            bmCommon.error(message);
-          }
-          // this.dataLoadingStatus = false;
-          callback && callback(value || {});
-        })
-        .catch(err => {
-          // this.dataLoadingStatus = false;
-          callback && callback(value || {});
-          bmCommon.error("获取数据失败=>commonDevicePointHstData", err);
-        });
     }
-    // blurEvent(e) {
-    //   let { target } = e;
-    //   let { info = {} } = this;
-    //   let name = $(target)
-    //     .text()
-    //     .trim();
-    //   info.name = name;
-    // }
   },
   watch: {
     "info.bindData"(newVal, oldVal) {

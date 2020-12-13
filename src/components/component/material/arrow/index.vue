@@ -292,7 +292,7 @@ export default {
       return styles;
     },
     comStyle() {
-      let { info = {}, gradientStyle } = this;
+      let { info = {} } = this;
       let { width = "", height = "" } = info || {};
       let styles = {
         // margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,

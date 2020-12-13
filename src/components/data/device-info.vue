@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import bmCommon from "@/common/common";
-import { Constants } from "@/common/env";
+// import bmCommon from "@/common/common";
+// import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -63,43 +63,18 @@ export default {
   },
   methods: {
     ...mapMutations(),
-    ...mapActions({
-      commonGetDeviceAction: "commonGetDevice"
-    }),
+    ...mapActions({}),
     show(info = {}) {
       let { bindData = {} } = info || {};
       let { deviceId = "", pointIds = [] } = bindData || {};
       this.pointIds = pointIds || [];
-      this.commonGetDeviceFunc(deviceId, device => {
-        bmCommon.log(device);
-        this.deviceInfo = device || {};
-        this.$emit("load", info);
+      $vm.$emit("device", {
+        deviceId,
+        callback: (device = {}) => {
+          this.deviceInfo = device || {};
+          this.$emit("load", info);
+        }
       });
-    },
-    // 获取设备信息
-    commonGetDeviceFunc(deviceId, callback) {
-      let value = {};
-      if (!deviceId) {
-        this.dataLoadingStatus = false;
-        return;
-      }
-      this.dataLoadingStatus = true;
-      this.commonGetDeviceAction({ deviceId })
-        .then(({ data }) => {
-          let { code = "", result = {}, message = "" } = data || {};
-          if (code == Constants.CODES.SUCCESS) {
-            value = result || {};
-          } else {
-            bmCommon.error(message);
-          }
-          this.dataLoadingStatus = false;
-          callback && callback(value || {});
-        })
-        .catch(err => {
-          this.dataLoadingStatus = false;
-          callback && callback(value || {});
-          bmCommon.error("获取数据失败=>commonGetDevice", err);
-        });
     }
   }
 };

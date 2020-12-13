@@ -167,7 +167,7 @@
 
 <script>
 import bmCommon from "@/common/common";
-import { Constants } from "@/common/env";
+// import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -199,8 +199,6 @@ export default {
   methods: {
     ...mapMutations({}),
     ...mapActions({
-      commonGetDeviceAction: "commonGetDevice"
-      // modelDevicePointsAction: "modelDevicePoints"
     }),
     addEvent(item = {}) {
       // eslint-disable-next-line no-undef
@@ -210,9 +208,11 @@ export default {
     init() {
       let { info = {} } = this;
       let { bindData = {} } = info || {};
-      let { pointIds = [], devicePoint = "" } = bindData || {};
-      this.commonGetDeviceFunc((device = {}) => {
-        let { points = [] } = device || {};
+      let { pointIds = [], deviceId="",devicePoint = "" } = bindData || {};
+      $vm.$emit("device", {
+        deviceId,
+        callback: (device = {}) => {
+          let { points = [] } = device || {};
         if (devicePoint) {
           let { name = "" } = points.find(item => item.id == devicePoint) || {};
           device.pointName = name;
@@ -222,62 +222,9 @@ export default {
           );
         }
         this.device = device || {};
+        }
       });
-      // this.modelDevicePointsFunc((pointList = []) => {
-      //   this.pointList = pointList || [];
-      // });
     },
-    // 获取设备信息
-    commonGetDeviceFunc(callback) {
-      let value = {};
-      let { info = {} } = this;
-      let { bindData = {} } = info || {};
-      let { deviceId = "" } = bindData || {};
-      if (!deviceId) {
-        callback && callback(value || {});
-        return;
-      }
-      this.commonGetDeviceAction({ deviceId })
-        .then(({ data }) => {
-          let { code = "", result = {}, message = "" } = data || {};
-          if (code == Constants.CODES.SUCCESS) {
-            value = result || {};
-          } else {
-            bmCommon.error(message);
-          }
-          callback && callback(value || {});
-        })
-        .catch(err => {
-          callback && callback(value || {});
-          bmCommon.error("获取数据失败=>commonGetDevice", err);
-        });
-    }
-
-    // // 获取设备信息
-    // modelDevicePointsFunc(callback) {
-    //   let value = [];
-    //   let { info = {} } = this;
-    //   let { bindData = {} } = info || {};
-    //   let { deviceId = "" } = bindData || {};
-    //   if (!deviceId) {
-    //     callback && callback(value || []);
-    //     return;
-    //   }
-    //   this.modelDevicePointsAction({ deviceId })
-    //     .then(({ data }) => {
-    //       let { code = "", result = [], message = "" } = data || {};
-    //       if (code == Constants.CODES.SUCCESS) {
-    //         value = result || [];
-    //       } else {
-    //         bmCommon.error(message);
-    //       }
-    //       callback && callback(value || []);
-    //     })
-    //     .catch(err => {
-    //       callback && callback(value || []);
-    //       bmCommon.error("获取数据失败=>modelDevicePoints", err);
-    //     });
-    // }
   },
   watch: {
     "info.bindData.deviceId": {

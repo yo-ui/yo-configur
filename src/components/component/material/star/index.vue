@@ -345,7 +345,7 @@ export default {
       return styles;
     },
     comStyle() {
-      let { info = {}, gradientStyle } = this;
+      let { info = {} } = this;
       let {
         width = "",
         height = ""
