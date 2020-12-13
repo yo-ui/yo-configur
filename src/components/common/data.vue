@@ -93,14 +93,14 @@
           <span class="label"> {{ $lang("监测位置") }}: </span>
           {{ info.bindData.deviceId }}
         </p> -->
-        <div class="top-position" v-if="pointList && pointList.length > 0">
+        <p class="top-position" v-if="pointList && pointList.length > 0">
           <span class="label"> {{ $lang("点位列表") }}: </span>
           <ul>
             <li v-for="item in pointList" :key="item.id">
               {{ item.name }}
             </li>
           </ul>
-        </div>
+        </p>
       </template>
     </template>
     <template v-if="info.dataType == 'point'">
