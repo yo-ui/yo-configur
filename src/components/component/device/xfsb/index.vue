@@ -14,45 +14,45 @@
         v-html="
           `
         <style type='text/css'>
-       .xfsb-st0{fill:#E88880;}
-        .xfsb-st1{fill:#B41511;}
-        .xfsb-st2{fill:url(#SVGID_1_);}
+       .xfsb-${info.id}-st0{fill:#E88880;}
+        .xfsb-${info.id}-st1{fill:#B41511;}
+        .xfsb-${info.id}-st2{fill:url(#xfsb_${info.id}_SVGID_1_);}
         .st3{fill:#FB8085;}
-        .xfsb-st4{fill:url(#SVGID_2_);}
-        .xfsb-st5{fill:url(#SVGID_3_);}
-        .xfsb-st6{fill:url(#SVGID_4_);}
-        .xfsb-st7{fill:url(#SVGID_5_);}
-        .xfsb-st8{fill:url(#SVGID_6_);}
-        .xfsb-st9{fill:#F8422A;}
-        .xfsb-st10{fill:url(#SVGID_7_);}
-        .xfsb-st11{fill:url(#SVGID_8_);}
-        .xfsb-st12{fill:url(#SVGID_9_);}
-        .xfsb-st13{fill:url(#SVGID_10_);}
-        .xfsb-st14{fill:url(#SVGID_11_);}
-        .xfsb-st15{fill:url(#SVGID_12_);}
-        .xfsb-st16{fill:url(#SVGID_13_);}
-        .xfsb-st17{fill:url(#SVGID_14_);}
-        .xfsb-st18{fill:url(#SVGID_15_);}
-        .xfsb-st19{fill:url(#SVGID_16_);}
-        .xfsb-st20{fill:url(#SVGID_17_);}
-        .xfsb-st21{fill:url(#SVGID_18_);}
-        .xfsb-st22{fill:url(#SVGID_19_);}
-        .xfsb-st23{fill:url(#SVGID_20_);}
-        .xfsb-st24{fill:url(#SVGID_21_);}
-        .xfsb-st25{fill:url(#SVGID_22_);}
-        .xfsb-st26{fill:url(#SVGID_23_);}
-        .xfsb-st27{fill:url(#SVGID_24_);}
-        .xfsb-st28{display:none;}
-        .xfsb-st29{display:inline;}
+        .xfsb-${info.id}-st4{fill:url(#xfsb_${info.id}_SVGID_2_);}
+        .xfsb-${info.id}-st5{fill:url(#xfsb_${info.id}_SVGID_3_);}
+        .xfsb-${info.id}-st6{fill:url(#xfsb_${info.id}_SVGID_4_);}
+        .xfsb-${info.id}-st7{fill:url(#xfsb_${info.id}_SVGID_5_);}
+        .xfsb-${info.id}-st8{fill:url(#xfsb_${info.id}_SVGID_6_);}
+        .xfsb-${info.id}-st9{fill:#F8422A;}
+        .xfsb-${info.id}-st10{fill:url(#xfsb_${info.id}_SVGID_7_);}
+        .xfsb-${info.id}-st11{fill:url(#xfsb_${info.id}_SVGID_8_);}
+        .xfsb-${info.id}-st12{fill:url(#xfsb_${info.id}_SVGID_9_);}
+        .xfsb-${info.id}-st13{fill:url(#xfsb_${info.id}_SVGID_10_);}
+        .xfsb-${info.id}-st14{fill:url(#xfsb_${info.id}_SVGID_11_);}
+        .xfsb-${info.id}-st15{fill:url(#xfsb_${info.id}_SVGID_12_);}
+        .xfsb-${info.id}-st16{fill:url(#xfsb_${info.id}_SVGID_13_);}
+        .xfsb-${info.id}-st17{fill:url(#xfsb_${info.id}_SVGID_14_);}
+        .xfsb-${info.id}-st18{fill:url(#xfsb_${info.id}_SVGID_15_);}
+        .xfsb-${info.id}-st19{fill:url(#xfsb_${info.id}_SVGID_16_);}
+        .xfsb-${info.id}-st20{fill:url(#xfsb_${info.id}_SVGID_17_);}
+        .xfsb-${info.id}-st21{fill:url(#xfsb_${info.id}_SVGID_18_);}
+        .xfsb-${info.id}-st22{fill:url(#xfsb_${info.id}_SVGID_19_);}
+        .xfsb-${info.id}-st23{fill:url(#xfsb_${info.id}_SVGID_20_);}
+        .xfsb-${info.id}-st24{fill:url(#xfsb_${info.id}_SVGID_21_);}
+        .xfsb-${info.id}-st25{fill:url(#xfsb_${info.id}_SVGID_22_);}
+        .xfsb-${info.id}-st26{fill:url(#xfsb_${info.id}_SVGID_23_);}
+        .xfsb-${info.id}-st27{fill:url(#xfsb_${info.id}_SVGID_24_);}
+        .xfsb-${info.id}-st28{display:none;}
+        .xfsb-${info.id}-st29{display:inline;}
         .st30{fill:#600B0B;}
         .st31{fill:#1E0000;}
         .st32{fill:#AA3F3F;}
-        .st33{fill:url(#SVGID_25_);}
+        .st33{fill:url(#xfsb_${info.id}_SVGID_25_);}
         .st34{opacity:0.5;}
         .st35{fill:#FFFFFF;}
         .st36{fill:#0E1F3D;}
-        .st37{fill:url(#SVGID_26_);}
-        .st38{fill:url(#SVGID_27_);}
+        .st37{fill:url(#xfsb_${info.id}_SVGID_26_);}
+        .st38{fill:url(#xfsb_${info.id}_SVGID_27_);}
         .st39{opacity:0.7;fill:#CC7979;}
       
         .show {display:default;}
@@ -68,16 +68,16 @@
         <rect
           x="23.61"
           y="191.45"
-          class="xfsb-st0"
+          :class="`xfsb-${info.id}-st0`"
           width="76.5"
           height="8.55"
         />
         <polygon
-          class="xfsb-st1"
+          :class="`xfsb-${info.id}-st1`"
           points="118.57,174.87 100.1,200 100.1,191.45 118.57,166.32 	"
         />
         <linearGradient
-          id="SVGID_1_"
+          :id="`xfsb_${info.id}_SVGID_1_`"
           gradientUnits="userSpaceOnUse"
           x1="72.2693"
           y1="171.537"
@@ -88,7 +88,7 @@
           <stop offset="1" style="stop-color:#8F0201" />
         </linearGradient>
         <path
-          class="xfsb-st2"
+          :class="`xfsb-${info.id}-st2`"
           d="M42.08,166.32l-18.47,25.13h76.5l18.47-25.13H42.08z"
         />
         <polygon
@@ -97,7 +97,7 @@
         />
 
         <radialGradient
-          id="SVGID_2_"
+          :id="`xfsb_${info.id}_SVGID_2_`"
           cx="0.9933"
           cy="127.1809"
           r="86.4478"
@@ -109,14 +109,14 @@
           <stop offset="1" style="stop-color:#73150D" />
         </radialGradient>
         <ellipse
-          class="xfsb-st4"
+          :class="`xfsb-${info.id}-st4`"
           cx="73.69"
           cy="148.62"
           rx="49.14"
           ry="28.82"
         />
         <linearGradient
-          id="SVGID_3_"
+          :id="`xfsb_${info.id}_SVGID_3_`"
           gradientUnits="userSpaceOnUse"
           x1="41.4307"
           y1="126.9879"
@@ -139,11 +139,11 @@
           <stop offset="1" style="stop-color:#FF7F7F" />
         </linearGradient>
         <path
-          class="xfsb-st5"
+          :class="`xfsb-${info.id}-st5`"
           d="M41.43,109.26v23.9c0,6.38,14.44,11.55,32.26,11.55c17.82,0,32.26-5.17,32.26-11.55v-23.9H41.43z"
         />
         <linearGradient
-          id="SVGID_4_"
+          :id="`xfsb_${info.id}_SVGID_4_`"
           gradientUnits="userSpaceOnUse"
           x1="41.4307"
           y1="115.6123"
@@ -156,11 +156,11 @@
           <stop offset="1" style="stop-color:#5C6063" />
         </linearGradient>
         <path
-          class="xfsb-st6"
+          :class="`xfsb-${info.id}-st6`"
           d="M41.43,112.56c3.51,5.39,16.62,9.4,32.26,9.4c15.64,0,28.75-4.01,32.26-9.4v-3.3H41.43V112.56z"
         />
         <linearGradient
-          id="SVGID_5_"
+          :id="`xfsb_${info.id}_SVGID_5_`"
           gradientUnits="userSpaceOnUse"
           x1="73.6918"
           y1="120.8099"
@@ -171,14 +171,14 @@
           <stop offset="1" style="stop-color:#323641" />
         </linearGradient>
         <ellipse
-          class="xfsb-st7"
+          :class="`xfsb-${info.id}-st7`"
           cx="73.69"
           cy="109.26"
           rx="32.26"
           ry="11.55"
         />
         <linearGradient
-          id="SVGID_6_"
+          :id="`xfsb_${info.id}_SVGID_6_`"
           gradientUnits="userSpaceOnUse"
           x1="24.5532"
           y1="148.6211"
@@ -190,24 +190,24 @@
           <stop offset="1" style="stop-color:#6A0000;stop-opacity:0.8" />
         </linearGradient>
         <ellipse
-          class="xfsb-st8"
+          :class="`xfsb-${info.id}-st8`"
           cx="73.69"
           cy="148.62"
           rx="49.14"
           ry="28.82"
         />
         <path
-          class="xfsb-st1"
+          :class="`xfsb-${info.id}-st1`"
           d="M68.03,162.48c0,0-0.3,6.25,1.52,11.31c0.77,2.15,1.67,3.75,1.67,3.75v2.25l-7.13,10.73l-2.28-19.85
           L68.03,162.48z"
         />
         <polygon
-          class="xfsb-st9"
+          :class="`xfsb-${info.id}-st9`"
           points="68.03,162.48 62.71,162.48 58.77,190.53 64.09,190.53 	"
         />
 
         <linearGradient
-          id="SVGID_7_"
+          :id="`xfsb_${info.id}_SVGID_7_`"
           gradientUnits="userSpaceOnUse"
           x1="115.3613"
           y1="-154.34"
@@ -231,12 +231,12 @@
           <stop offset="1" style="stop-color:#FF7F7F" />
         </linearGradient>
         <path
-          class="xfsb-st10"
+          :class="`xfsb-${info.id}-st10`"
           d="M119.22,138.03c-2.99,0-7.76,5.65-7.76,12.61s1.64,12.61,4.63,12.61h20.8v-25.23H119.22z"
         />
 
         <linearGradient
-          id="SVGID_8_"
+          :id="`xfsb_${info.id}_SVGID_8_`"
           gradientUnits="userSpaceOnUse"
           x1="576.8693"
           y1="299.0972"
@@ -260,12 +260,12 @@
           <stop offset="1" style="stop-color:#FF7F7F" />
         </linearGradient>
         <path
-          class="xfsb-st11"
+          :class="`xfsb-${info.id}-st11`"
           d="M141.52,130.91c2.35,4.75,3.85,12.05,3.85,20.24c0,8.19-1.5,15.49-3.85,20.24v5.7h-6.42
           c-5.67,0-10.27-11.61-10.27-25.94c0-14.33,4.6-25.94,10.27-25.94h6.42V130.91z"
         />
         <linearGradient
-          id="SVGID_9_"
+          :id="`xfsb_${info.id}_SVGID_9_`"
           gradientUnits="userSpaceOnUse"
           x1="156.2546"
           y1="155.7116"
@@ -276,7 +276,7 @@
           <stop offset="1" style="stop-color:#8F0201" />
         </linearGradient>
         <ellipse
-          class="xfsb-st12"
+          :class="`xfsb-${info.id}-st12`"
           cx="141.52"
           cy="151.15"
           rx="10.27"
@@ -284,7 +284,7 @@
         />
 
         <linearGradient
-          id="SVGID_10_"
+          :id="`xfsb_${info.id}_SVGID_10_`"
           gradientUnits="userSpaceOnUse"
           x1="561.1144"
           y1="291.3935"
@@ -297,7 +297,7 @@
           <stop offset="1" style="stop-color:#2D0503" />
         </linearGradient>
         <ellipse
-          class="xfsb-st13"
+          :class="`xfsb-${info.id}-st13`"
           cx="142.81"
           cy="151.15"
           rx="4.15"
@@ -310,7 +310,7 @@
         />
 
         <linearGradient
-          id="SVGID_11_"
+          :id="`xfsb_${info.id}_SVGID_11_`"
           gradientUnits="userSpaceOnUse"
           x1="103.3693"
           y1="-154.34"
@@ -334,12 +334,12 @@
           <stop offset="1" style="stop-color:#FF7F7F" />
         </linearGradient>
         <path
-          class="xfsb-st14"
+          :class="`xfsb-${info.id}-st14`"
           d="M29.03,138.03c2.39,0,6.2,5.65,6.2,12.61s-1.31,12.61-3.7,12.61H14.91v-25.23H29.03z"
         />
 
         <linearGradient
-          id="SVGID_12_"
+          :id="`xfsb_${info.id}_SVGID_12_`"
           gradientUnits="userSpaceOnUse"
           x1="576.8693"
           y1="313.6405"
@@ -363,13 +363,13 @@
           <stop offset="1" style="stop-color:#FF7F7F" />
         </linearGradient>
         <path
-          class="xfsb-st15"
+          :class="`xfsb-${info.id}-st15`"
           d="M10.27,130.91c-2.35,4.75-3.85,12.05-3.85,20.24c0,8.19,1.5,15.49,3.85,20.24v5.7h6.42
           c5.67,0,10.27-11.61,10.27-25.94c0-14.33-4.6-25.94-10.27-25.94h-6.42V130.91z"
         />
 
         <linearGradient
-          id="SVGID_13_"
+          :id="`xfsb_${info.id}_SVGID_13_`"
           gradientUnits="userSpaceOnUse"
           x1="141.7112"
           y1="155.7116"
@@ -381,7 +381,7 @@
           <stop offset="1" style="stop-color:#8F0201" />
         </linearGradient>
         <ellipse
-          class="xfsb-st16"
+          :class="`xfsb-${info.id}-st16`"
           cx="10.27"
           cy="151.15"
           rx="10.27"
@@ -389,7 +389,7 @@
         />
 
         <linearGradient
-          id="SVGID_14_"
+          :id="`xfsb_${info.id}_SVGID_14_`"
           gradientUnits="userSpaceOnUse"
           x1="561.1144"
           y1="305.9369"
@@ -401,7 +401,13 @@
           <stop offset="0.648" style="stop-color:#8F0201" />
           <stop offset="1" style="stop-color:#2D0503" />
         </linearGradient>
-        <ellipse class="xfsb-st17" cx="8.99" cy="151.15" rx="4.15" ry="10.49" />
+        <ellipse
+          :class="`xfsb-${info.id}-st17`"
+          cx="8.99"
+          cy="151.15"
+          rx="4.15"
+          ry="10.49"
+        />
         <path
           class="st3"
           d="M18.55,151.15c0,13.48-4.07,24.55-9.27,25.82c0.33,0.08,0.66,0.12,1,0.12c5.67,0,10.27-11.61,10.27-25.94
@@ -409,7 +415,7 @@
         />
 
         <linearGradient
-          id="SVGID_15_"
+          :id="`xfsb_${info.id}_SVGID_15_`"
           gradientUnits="userSpaceOnUse"
           x1="612.8093"
           y1="-61.2804"
@@ -422,12 +428,12 @@
           <stop offset="1" style="stop-color:#421210" />
         </linearGradient>
         <path
-          class="xfsb-st18"
+          :class="`xfsb-${info.id}-st18`"
           d="M38.46,120.12c0,9.49,15.86,17.17,35.42,17.17s35.42-7.69,35.42-17.17V40.57H38.46V120.12z"
         />
 
         <linearGradient
-          id="SVGID_16_"
+          :id="`xfsb_${info.id}_SVGID_16_`"
           gradientUnits="userSpaceOnUse"
           x1="612.8165"
           y1="-62.8003"
@@ -441,7 +447,7 @@
           <stop offset="1" style="stop-color:#AF3E43" />
         </linearGradient>
         <path
-          class="xfsb-st19"
+          :class="`xfsb-${info.id}-st19`"
           d="M36.94,38.76v1.42l0.33,0.39v83.01c0.35,1.28,0.97,2.52,1.85,3.7V42.73l2.35,2.74v84.32
           c0.57,0.5,1.19,0.99,1.85,1.46V46.45l2.35,1.22v85.08c0.59,0.34,1.21,0.67,1.85,0.98v-85.1l2.35,1.22v84.94
           c0.6,0.25,1.22,0.49,1.85,0.72v-84.7l2.35,1.22v84.27c0.61,0.19,1.22,0.37,1.85,0.54V52.41l2.35,0.46v84.56
@@ -453,7 +459,7 @@
           c0.66-0.47,1.28-0.96,1.85-1.46V44.78l2.35-2.62v85.12c0.88-1.18,1.5-2.42,1.85-3.7V41.82h-1.55l1.88-2.1v-0.97H36.94z"
         />
         <linearGradient
-          id="SVGID_17_"
+          :id="`xfsb_${info.id}_SVGID_17_`"
           gradientUnits="userSpaceOnUse"
           x1="54.0703"
           y1="88.7171"
@@ -464,12 +470,12 @@
           <stop offset="1" style="stop-color:#A80F0A" />
         </linearGradient>
         <path
-          class="xfsb-st20"
+          :class="`xfsb-${info.id}-st20`"
           d="M72.5,77.11c-8.68,0-14.38-1.68-18.43-3.72v27.77c0,1.98,1.61,3.59,3.59,3.59h32.44
           c1.98,0,3.59-1.61,3.59-3.59V72.68C87.24,75.36,80.2,77.11,72.5,77.11z"
         />
         <linearGradient
-          id="SVGID_18_"
+          :id="`xfsb_${info.id}_SVGID_18_`"
           gradientUnits="userSpaceOnUse"
           x1="56.6129"
           y1="81.7453"
@@ -482,12 +488,12 @@
           <stop offset="1" style="stop-color:#B91611" />
         </linearGradient>
         <path
-          class="xfsb-st21"
+          :class="`xfsb-${info.id}-st21`"
           d="M93.7,83.64v29.38c0,2-1.62,3.63-3.63,3.63H57.7c-2,0-3.63-1.62-3.63-3.63V83.64c0-2,1.62-3.63,3.63-3.63
           h32.38C92.08,80.01,93.7,81.63,93.7,83.64z"
         />
         <linearGradient
-          id="SVGID_19_"
+          :id="`xfsb_${info.id}_SVGID_19_`"
           gradientUnits="userSpaceOnUse"
           x1="57.8111"
           y1="109.7966"
@@ -498,7 +504,7 @@
           <stop offset="1" style="stop-color:#A80F0A" />
         </linearGradient>
         <polygon
-          class="xfsb-st22"
+          :class="`xfsb-${info.id}-st22`"
           points="92.84,108.64 85.67,115.81 63.3,115.81 56.13,108.64 56.13,90.24 63.3,83.07 85.67,83.07 
           92.84,90.24 	"
         />
@@ -509,7 +515,7 @@
         />
 
         <radialGradient
-          id="SVGID_20_"
+          :id="`xfsb_${info.id}_SVGID_20_`"
           cx="1.8133"
           cy="16.6776"
           r="52.7517"
@@ -520,11 +526,11 @@
           <stop offset="1" style="stop-color:#1D2225;stop-opacity:0" />
         </radialGradient>
         <polygon
-          class="xfsb-st23"
+          :class="`xfsb-${info.id}-st23`"
           points="37.28,78.02 37.28,29.2 110.5,26.61 110.5,79.8 	"
         />
         <linearGradient
-          id="SVGID_21_"
+          :id="`xfsb_${info.id}_SVGID_21_`"
           gradientUnits="userSpaceOnUse"
           x1="35.2356"
           y1="36.0014"
@@ -547,7 +553,7 @@
           <stop offset="1" style="stop-color:#FF7F7F" />
         </linearGradient>
         <path
-          class="xfsb-st24"
+          :class="`xfsb-${info.id}-st24`"
           d="M35.24,15.15v27.66c0,7.76,17.57,14.05,39.25,14.05c21.68,0,39.25-6.29,39.25-14.05V15.15H35.24z"
         />
         <path
@@ -555,7 +561,7 @@
           d="M35.24,19.16c4.27,6.56,20.22,11.43,39.25,11.43c19.03,0,34.97-4.87,39.25-11.43v-4.01h-78.5V19.16z"
         />
         <linearGradient
-          id="SVGID_22_"
+          :id="`xfsb_${info.id}_SVGID_22_`"
           gradientUnits="userSpaceOnUse"
           x1="74.4839"
           y1="29.1963"
@@ -566,14 +572,14 @@
           <stop offset="1" style="stop-color:#A80F0A" />
         </linearGradient>
         <ellipse
-          class="xfsb-st25"
+          :class="`xfsb-${info.id}-st25`"
           cx="74.48"
           cy="15.15"
           rx="39.25"
           ry="14.05"
         />
         <linearGradient
-          id="SVGID_23_"
+          :id="`xfsb_${info.id}_SVGID_23_`"
           gradientUnits="userSpaceOnUse"
           x1="42.0357"
           y1="15.7425"
@@ -586,7 +592,7 @@
           <stop offset="1" style="stop-color:#B91611" />
         </linearGradient>
         <path
-          class="xfsb-st26"
+          :class="`xfsb-${info.id}-st26`"
           d="M101.14,7.75H47.83l-5.8,5.79c0,5.62,14.53,10.18,32.45,10.18s32.45-4.56,32.45-10.18L101.14,7.75z"
         />
         <path
@@ -594,7 +600,7 @@
           d="M101.14,7.75H47.83L47.44,9.2c1.24,4.3,12.87,7.67,27.04,7.67c14.17,0,25.8-3.37,27.04-7.67L101.14,7.75z"
         />
         <linearGradient
-          id="SVGID_24_"
+          :id="`xfsb_${info.id}_SVGID_24_`"
           gradientUnits="userSpaceOnUse"
           x1="74.4839"
           y1="15.5072"
@@ -604,7 +610,13 @@
           <stop offset="0" style="stop-color:#FD686C" />
           <stop offset="1" style="stop-color:#A80F0A" />
         </linearGradient>
-        <ellipse class="xfsb-st27" cx="74.48" cy="7.75" rx="26.65" ry="7.75" />
+        <ellipse
+          :class="`xfsb-${info.id}-st27`"
+          cx="74.48"
+          cy="7.75"
+          rx="26.65"
+          ry="7.75"
+        />
       </g>
 
       <g class="SVG_ani" v-if="pointValue == 1">
@@ -615,7 +627,7 @@
             attributeName="class"
             repeatCount="indefinite"
           />
-          <g class="xfsb-st29">
+          <g :class="`xfsb-${info.id}-st29`">
             <path
               class="st30"
               d="M73.89,67.22c-15.57,0-28.51-4.04-31.23-9.37v65.05c0,6.22,13.98,11.26,31.23,11.26s31.23-5.04,31.23-11.26
@@ -640,7 +652,7 @@
             />
 
             <linearGradient
-              id="SVGID_25_"
+              :id="`xfsb_${info.id}_SVGID_25_`"
               gradientUnits="userSpaceOnUse"
               x1="606.0136"
               y1="1.031"
@@ -712,7 +724,7 @@
             attributeName="class"
             repeatCount="indefinite"
           />
-          <g class="xfsb-st29">
+          <g :class="`xfsb-${info.id}-st29`">
             <path
               class="st30"
               d="M73.89,67.22c-15.57,0-28.51-4.04-31.23-9.37v65.05c0,6.22,13.98,11.26,31.23,11.26s31.23-5.04,31.23-11.26
@@ -737,7 +749,7 @@
             />
 
             <linearGradient
-              id="SVGID_26_"
+              :id="`xfsb_${info.id}_SVGID_26_`"
               gradientUnits="userSpaceOnUse"
               x1="606.0136"
               y1="1.031"
@@ -801,7 +813,7 @@
             attributeName="class"
             repeatCount="indefinite"
           />
-          <g class="xfsb-st29">
+          <g :class="`xfsb-${info.id}-st29`">
             <path
               class="st30"
               d="M73.89,67.22c-15.57,0-28.51-4.04-31.23-9.37v65.05c0,6.22,13.98,11.26,31.23,11.26s31.23-5.04,31.23-11.26
@@ -826,7 +838,7 @@
             />
 
             <linearGradient
-              id="SVGID_27_"
+              :id="`xfsb_${info.id}_SVGID_27_`"
               gradientUnits="userSpaceOnUse"
               x1="606.0136"
               y1="1.031"

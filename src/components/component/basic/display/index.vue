@@ -15,25 +15,25 @@
       <defs
         v-html="
           `<style type='text/css'>
-        .display-st0 {
+        .display-${info.id}-st0 {
           fill: #ffffff;
         }
-        .display-st1 {
+        .display-${info.id}-st1 {
           fill: #dfe3e8;
         }
-        .display-st2 {
+        .display-${info.id}-st2 {
           fill: #c2c8ce;
         }
-        .display-st3 {
+        .display-${info.id}-st3 {
           fill: url(#display_4_);
         }
-        .display-st4 {
+        .display-${info.id}-st4 {
           fill: #9da1a5;
         }
-        .display-st5 {
+        .display-${info.id}-st5 {
           fill: #848776;
         }
-        .display-st6 {
+        .display-${info.id}-st6 {
           fill: #25282b;
         }
       </style>`
@@ -44,18 +44,18 @@
           id="display_656_"
           x="1"
           y="4.1"
-          class="display-st0"
+          :class="`display-${info.id}-st0`"
           width="79.5"
           height="38"
         />
         <path
           id="display_653_"
-          class="display-st1"
+          :class="`display-${info.id}-st1`"
           d="M81.5,43.1H0v-40h81.5V43.1z M2,41.1h77.5v-36H2V41.1z"
         />
         <polygon
           id="display_652_"
-          class="display-st2"
+          :class="`display-${info.id}-st2`"
           points="81.5,3.1 0,3.1 8.2,0 88.7,0 	"
         />
         <linearGradient
@@ -71,14 +71,14 @@
         </linearGradient>
         <path
           id="display_1_"
-          class="display-st3"
+          :class="`display-${info.id}-st3`"
           d="M88.7,40l-7.2,3.1v-40L88.7,0V40z"
         />
       </g>
       <g>
         <path
           id="display_10_"
-          class="display-st4"
+          :class="`display-${info.id}-st4`"
           d="M76.5,37.1H5v-5h71.5V37.1z"
         />
       </g>
@@ -88,7 +88,7 @@
             id="display_651_"
             x="6.5"
             y="8.5"
-            class="display-st5"
+            :class="`display-${info.id}-st5`"
             width="69"
             height="19"
           />

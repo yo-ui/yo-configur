@@ -14,20 +14,20 @@
         v-html="
           `
         <style type='text/css'>
-        .fksb-st0{fill:url(#fksb_2_);}
-					.fksb-st1{fill:url(#fksb_3_);}
-					.fksb-st2{fill:url(#fksb_4_);}
-					.fksb-st3{fill:url(#fksb_5_);}
-					.fksb-st4{fill:url(#fksb_6_);}
-					.fksb-st5{fill:#DFE3E8;}
-					.fksb-st6{fill:#A7AFB7;}
-					.fksb-st7{fill:url(#fksb_7_);}
-					.fksb-st8{fill:url(#fksb_8_);}
-					.fksb-st9{fill:#FFFFFF;}
-					.fksb-st10{fill:#ED431B;}
-					.fksb-st11{fill:#5D5F66;}
-					.fksb-st12{fill:#1E1E1E;}
-					.fksb-st13{fill:#4C5963;}
+        .fksb-${info.id}-st0{fill:url(#fksb_2_);}
+					.fksb-${info.id}-st1{fill:url(#fksb_3_);}
+					.fksb-${info.id}-st2{fill:url(#fksb_4_);}
+					.fksb-${info.id}-st3{fill:url(#fksb_5_);}
+					.fksb-${info.id}-st4{fill:url(#fksb_6_);}
+					.fksb-${info.id}-st5{fill:#DFE3E8;}
+					.fksb-${info.id}-st6{fill:#A7AFB7;}
+					.fksb-${info.id}-st7{fill:url(#fksb_7_);}
+					.fksb-${info.id}-st8{fill:url(#fksb_8_);}
+					.fksb-${info.id}-st9{fill:#FFFFFF;}
+					.fksb-${info.id}-st10{fill:#ED431B;}
+					.fksb-${info.id}-st11{fill:#5D5F66;}
+					.fksb-${info.id}-st12{fill:#1E1E1E;}
+					.fksb-${info.id}-st13{fill:#4C5963;}
       </style>
       `
         "
@@ -172,7 +172,7 @@
       </linearGradient>
       <path
         id="fksb_843_"
-        class="fksb-st0"
+        :class="`fksb-${info.id}-st0`"
         d="M13.5,29.8V37c0,7.9,5.4,18.3,21.2,18.3C51.9,55.2,56,44.9,56,37v-7.2H13.5z"
       />
       <g id="fksb_840_">
@@ -192,7 +192,7 @@
         </linearGradient>
         <path
           id="fksb_842_"
-          class="fksb-st1"
+          :class="`fksb-${info.id}-st1`"
           d="M83.2,38H90V23h-6.7c0,0-0.4,4-0.4,8S83.2,38,83.2,38z"
         />
 
@@ -214,7 +214,7 @@
           id="fksb_841_"
           x="88.5"
           y="21.4"
-          class="fksb-st2"
+          :class="`fksb-${info.id}-st2`"
           width="8.2"
           height="18.1"
         />
@@ -234,7 +234,7 @@
       </linearGradient>
       <path
         id="fksb_839_"
-        class="fksb-st3"
+        :class="`fksb-${info.id}-st3`"
         d="M12.5,17.2v16.1c0,10,10.2,18,22.8,18c12.6,0,22.8-8.1,22.8-18V17.2H12.5z"
       />
       <linearGradient
@@ -250,18 +250,18 @@
       </linearGradient>
       <path
         id="fksb_838_"
-        class="fksb-st4"
+        :class="`fksb-${info.id}-st4`"
         d="M84.9,31.2h-2l-0.1-7c-0.3-2.1-1.3-3.6-3.4-3.6H48.3V48h32.3c2.4,0,4.4-2,4.3-4.4h0V31.2z"
       />
       <path
         id="fksb_837_"
-        class="fksb-st5"
+        :class="`fksb-${info.id}-st5`"
         d="M84.8,30.4l-2-16.2c-0.3-2.1-2.2-3.6-4.3-3.6H49c4,2.8,8.7,4.9,8.9,8.9
 					c0.3,5.8-1.2,11.6-9.6,15.9l0,0h32.3C83.2,35.4,85.3,33,84.8,30.4z"
       />
       <ellipse
         id="fksb_836_"
-        class="fksb-st6"
+        :class="`fksb-${info.id}-st6`"
         cx="35.2"
         cy="18.6"
         rx="22.8"
@@ -269,7 +269,7 @@
       />
       <ellipse
         id="fksb_835_"
-        class="fksb-st5"
+        :class="`fksb-${info.id}-st5`"
         cx="35.2"
         cy="17.2"
         rx="21.7"
@@ -291,7 +291,7 @@
         </linearGradient>
         <path
           id="fksb_834_"
-          class="fksb-st7"
+          :class="`fksb-${info.id}-st7`"
           d="M13.5,38H6.7V23h6.7c0,0,0.4,4,0.4,8S13.5,38,13.5,38z"
         />
         <linearGradient
@@ -311,14 +311,14 @@
           id="fksb_833_"
           x="0"
           y="21.4"
-          class="fksb-st8"
+          :class="`fksb-${info.id}-st8`"
           width="8.2"
           height="18.1"
         />
       </g>
       <ellipse
         id="fksb_831_"
-        class="fksb-st9"
+        :class="`fksb-${info.id}-st9`"
         cx="35.2"
         cy="16.7"
         rx="17.6"
@@ -326,7 +326,7 @@
       />
       <ellipse
         id="fksb_830_"
-        class="fksb-st10"
+        :class="`fksb-${info.id}-st10`"
         cx="30.2"
         cy="8.3"
         rx="1.7"
@@ -334,7 +334,7 @@
       />
       <ellipse
         id="fksb_829_"
-        class="fksb-st10"
+        :class="`fksb-${info.id}-st10`"
         cx="30.2"
         cy="25"
         rx="1.7"
@@ -342,7 +342,7 @@
       />
       <ellipse
         id="fksb_828_"
-        class="fksb-st10"
+        :class="`fksb-${info.id}-st10`"
         cx="24.4"
         cy="13.8"
         rx="1.7"
@@ -350,7 +350,7 @@
       />
       <ellipse
         id="fksb_827_"
-        class="fksb-st10"
+        :class="`fksb-${info.id}-st10`"
         cx="24.4"
         cy="20.6"
         rx="1.7"
@@ -360,7 +360,7 @@
         id="fksb_826_"
         x="44.3"
         y="12.3"
-        class="fksb-st11"
+        :class="`fksb-${info.id}-st11`"
         width="4.3"
         height="1.8"
       />
@@ -368,7 +368,7 @@
         id="fksb_825_"
         x="44.3"
         y="15.8"
-        class="fksb-st11"
+        :class="`fksb-${info.id}-st11`"
         width="4.3"
         height="1.8"
       />
@@ -376,13 +376,13 @@
         id="fksb_824_"
         x="44.3"
         y="19.3"
-        class="fksb-st11"
+        :class="`fksb-${info.id}-st11`"
         width="4.3"
         height="1.8"
       />
       <ellipse
         id="fksb_823_"
-        class="fksb-st12"
+        :class="`fksb-${info.id}-st12`"
         cx="35.5"
         cy="16.7"
         rx="3.1"
@@ -390,7 +390,7 @@
       />
       <path
         id="fksb_822_"
-        class="fksb-st6"
+        :class="`fksb-${info.id}-st6`"
         d="M35.2,3.8c9.5,0,17.3,5.9,17.6,13.3c0-0.2,0-0.3,0-0.5c0-7.6-7.9-13.7-17.6-13.7
 					S17.6,9.1,17.6,16.7c0,0.2,0,0.3,0,0.5C18,9.7,25.7,3.8,35.2,3.8z"
       />
@@ -399,7 +399,7 @@
         x="60.4"
         y="21.4"
         transform="matrix(0.5478 0.8366 -0.8366 0.5478 50.1581 -48.4209)"
-        class="fksb-st13"
+        :class="`fksb-${info.id}-st13`"
         width="19"
         height="1.5"
       />
@@ -408,7 +408,7 @@
         x="68.2"
         y="12.7"
         transform="matrix(0.8364 0.5481 -0.5481 0.8364 23.4452 -34.1823)"
-        class="fksb-st13"
+        :class="`fksb-${info.id}-st13`"
         width="1.5"
         height="19"
       />

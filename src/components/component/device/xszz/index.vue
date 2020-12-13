@@ -15,24 +15,24 @@
         v-html="
           `
         <style type='text/css'>
-      .xszz-st0{fill:url(#xszz_1_);}
-              .xszz-st1{fill:url(#xszz_2_);}
-              .xszz-st2{fill:url(#xszz_3_);}
-              .xszz-st3{fill:url(#xszz_4_);}
-              .xszz-st4{fill:url(#xszz_5_);}
-              .xszz-st5{fill:url(#xszz_6_);}
-              .xszz-st6{fill:url(#xszz_7_);}
-              .xszz-st7{opacity:0.7;fill:#353535;}
-              .xszz-st8{fill:url(#xszz_8_);}
-              .xszz-st9{fill:url(#xszz_9_);}
-              .xszz-st10{fill:url(#xszz_10_);}
-              .xszz-st11{fill:url(#xszz_11_);}
-              .xszz-st12{fill:url(#xszz_12_);}
-              .xszz-st13{fill:url(#xszz_13_);}
-              .xszz-st14{fill:url(#xszz_14_);}
-              .xszz-st15{fill:url(#xszz_15_);}
-              .xszz-st16{fill:url(#xszz_16_);}
-              .xszz-st17{fill:url(#xszz_17_);}
+      .xszz-${info.id}-st0{fill:url(#xszz_1_);}
+              .xszz-${info.id}-st1{fill:url(#xszz_2_);}
+              .xszz-${info.id}-st2{fill:url(#xszz_3_);}
+              .xszz-${info.id}-st3{fill:url(#xszz_4_);}
+              .xszz-${info.id}-st4{fill:url(#xszz_5_);}
+              .xszz-${info.id}-st5{fill:url(#xszz_6_);}
+              .xszz-${info.id}-st6{fill:url(#xszz_7_);}
+              .xszz-${info.id}-st7{opacity:0.7;fill:#353535;}
+              .xszz-${info.id}-st8{fill:url(#xszz_8_);}
+              .xszz-${info.id}-st9{fill:url(#xszz_9_);}
+              .xszz-${info.id}-st10{fill:url(#xszz_10_);}
+              .xszz-${info.id}-st11{fill:url(#xszz_11_);}
+              .xszz-${info.id}-st12{fill:url(#xszz_12_);}
+              .xszz-${info.id}-st13{fill:url(#xszz_13_);}
+              .xszz-${info.id}-st14{fill:url(#xszz_14_);}
+              .xszz-${info.id}-st15{fill:url(#xszz_15_);}
+              .xszz-${info.id}-st16{fill:url(#xszz_16_);}
+              .xszz-${info.id}-st17{fill:url(#xszz_17_);}
       </style>
       `
         "
@@ -67,7 +67,7 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="xszz-st0"
+          :class="`xszz-${info.id}-st0`"
           d="M33.77,293.44c0,0-0.41,6.6-13.49,6.56c-10.98-0.03-10.68-4.45-10.68-4.45l7.79-52.34l23.34,3.48L33.77,293.44
                 z"
         />
@@ -97,7 +97,7 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="xszz-st1"
+          :class="`xszz-${info.id}-st1`"
           d="M79.79,274.85c0,0-1.11,4.42-11.8,4.42c-10.21,0-11.8-4.42-11.8-4.42v-52.91h23.6V274.85z"
         />
 
@@ -130,7 +130,7 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="xszz-st2"
+          :class="`xszz-${info.id}-st2`"
           d="M127.86,295.74c0,0-2.24,5.3-13.56,4.08c-10.12-1.1-10.9-7.22-10.9-7.22l-7.58-45.13l23.27-3.91L127.86,295.74
                 z"
         />
@@ -162,7 +162,7 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="xszz-st3"
+          :class="`xszz-${info.id}-st3`"
           d="M0,25.97v208.04c0,10.11,28.97,23.78,64.72,23.78s64.72-13.67,64.72-23.78V25.97H0z"
         />
 
@@ -183,7 +183,7 @@
           <stop offset="0.9106" style="stop-color:#252422" />
         </radialGradient>
         <path
-          class="xszz-st4"
+          :class="`xszz-${info.id}-st4`"
           d="M129.43,25.97c0,10.11-28.97,18.3-64.72,18.3S0,36.08,0,25.97S28.97,0,64.72,0S129.43,15.87,129.43,25.97z"
         />
 
@@ -199,7 +199,7 @@
           <stop offset="1" style="stop-color:#000000;stop-opacity:0.7" />
         </radialGradient>
         <path
-          class="xszz-st5"
+          :class="`xszz-${info.id}-st5`"
           d="M0,233.49v0.53c0,10.11,28.97,23.78,64.72,23.78s64.72-13.67,64.72-23.78v-0.53H0z"
         />
 
@@ -214,10 +214,16 @@
           <stop offset="0" style="stop-color:#FFFFFF;stop-opacity:0.8" />
           <stop offset="1" style="stop-color:#FFFFFF;stop-opacity:0" />
         </radialGradient>
-        <ellipse class="xszz-st6" cx="49.92" cy="21.74" rx="44.67" ry="17.37" />
+        <ellipse
+          :class="`xszz-${info.id}-st6`"
+          cx="49.92"
+          cy="21.74"
+          rx="44.67"
+          ry="17.37"
+        />
         <g>
           <ellipse
-            class="xszz-st7"
+            :class="`xszz-${info.id}-st7`"
             cx="115.24"
             cy="228.09"
             rx="4.62"
@@ -253,7 +259,7 @@
             <stop offset="1" style="stop-color:#242321" />
           </linearGradient>
           <path
-            class="xszz-st8"
+            :class="`xszz-${info.id}-st8`"
             d="M140.33,235.01v-13.69h-26.11c0,0-2.23,2.05-2.23,6.85c0,5.67,2.23,6.85,2.23,6.85H140.33z"
           />
 
@@ -286,7 +292,7 @@
             <stop offset="1" style="stop-color:#242321" />
           </linearGradient>
           <path
-            class="xszz-st9"
+            :class="`xszz-${info.id}-st9`"
             d="M137.99,216.58c1.39,2.81,2.28,7.13,2.28,11.97c0,4.84-0.89,9.16-2.28,11.97v3.37h-3.8
                   c-3.36,0-6.07-6.87-6.07-15.34c0-8.47,2.72-15.34,6.07-15.34h3.8V216.58z"
           />
@@ -302,7 +308,7 @@
             <stop offset="1" style="stop-color:#ABAEAD" />
           </linearGradient>
           <ellipse
-            class="xszz-st10"
+            :class="`xszz-${info.id}-st10`"
             cx="137.99"
             cy="228.55"
             rx="6.07"
@@ -323,7 +329,7 @@
             <stop offset="1" style="stop-color:#262623" />
           </linearGradient>
           <ellipse
-            class="xszz-st11"
+            :class="`xszz-${info.id}-st11`"
             cx="138.75"
             cy="228.55"
             rx="2.46"
@@ -353,14 +359,14 @@
             <stop offset="1" style="stop-color:#6F6F6A" />
           </linearGradient>
           <path
-            class="xszz-st12"
+            :class="`xszz-${info.id}-st12`"
             d="M133.1,228.55c0,7.97,2.41,14.52,5.48,15.27c-0.19,0.05-0.39,0.07-0.59,0.07c-3.36,0-6.07-6.87-6.07-15.34
                   c0-8.47,2.72-15.34,6.07-15.34c0.2,0,0.4,0.03,0.59,0.07C135.5,214.04,133.1,220.58,133.1,228.55z"
           />
         </g>
         <g>
           <ellipse
-            class="xszz-st7"
+            :class="`xszz-${info.id}-st7`"
             cx="115.24"
             cy="57.49"
             rx="4.62"
@@ -396,7 +402,7 @@
             <stop offset="1" style="stop-color:#242321" />
           </linearGradient>
           <path
-            class="xszz-st13"
+            :class="`xszz-${info.id}-st13`"
             d="M140.33,64.41V50.72h-26.11c0,0-2.23,2.05-2.23,6.85c0,5.67,2.23,6.85,2.23,6.85H140.33z"
           />
 
@@ -429,7 +435,7 @@
             <stop offset="1" style="stop-color:#242321" />
           </linearGradient>
           <path
-            class="xszz-st14"
+            :class="`xszz-${info.id}-st14`"
             d="M137.99,45.98c1.39,2.81,2.28,7.13,2.28,11.97s-0.89,9.16-2.28,11.97v3.37h-3.8
                   c-3.36,0-6.07-6.87-6.07-15.34s2.72-15.34,6.07-15.34h3.8V45.98z"
           />
@@ -445,7 +451,7 @@
             <stop offset="1" style="stop-color:#ABAEAD" />
           </linearGradient>
           <ellipse
-            class="xszz-st15"
+            :class="`xszz-${info.id}-st15`"
             cx="137.99"
             cy="57.95"
             rx="6.07"
@@ -466,7 +472,7 @@
             <stop offset="1" style="stop-color:#262623" />
           </linearGradient>
           <ellipse
-            class="xszz-st16"
+            :class="`xszz-${info.id}-st16`"
             cx="138.75"
             cy="57.95"
             rx="2.46"
@@ -496,7 +502,7 @@
             <stop offset="1" style="stop-color:#6F6F6A" />
           </linearGradient>
           <path
-            class="xszz-st17"
+            :class="`xszz-${info.id}-st17`"
             d="M133.1,57.95c0,7.97,2.41,14.52,5.48,15.27c-0.19,0.05-0.39,0.07-0.59,0.07c-3.36,0-6.07-6.87-6.07-15.34
                   s2.72-15.34,6.07-15.34c0.2,0,0.4,0.03,0.59,0.07C135.5,43.44,133.1,49.98,133.1,57.95z"
           />

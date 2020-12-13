@@ -14,13 +14,13 @@
         v-html="
           `
         <style type='text/css'>
-						.upWater-st0{fill:url(#upWater_6_);}
-						.upWater-st1{fill:url(#upWater_7_);}
-						.upWater-st2{fill:#FFFFFF;}
-						.upWater-st3{fill:url(#upWater_8_);}
-						.upWater-st4{fill:url(#upWater_9_);}
-						.upWater-st5{fill:url(#upWater_10_);}
-						.upWater-st6{fill:#777C7F;}
+						.upWater-${info.id}-st0{fill:url(#upWater_6_);}
+						.upWater-${info.id}-st1{fill:url(#upWater_7_);}
+						.upWater-${info.id}-st2{fill:#FFFFFF;}
+						.upWater-${info.id}-st3{fill:url(#upWater_8_);}
+						.upWater-${info.id}-st4{fill:url(#upWater_9_);}
+						.upWater-${info.id}-st5{fill:url(#upWater_10_);}
+						.upWater-${info.id}-st6{fill:#777C7F;}
       </style>
       `
         "
@@ -43,7 +43,7 @@
           id="sg_top_4_"
           x="0"
           y="2"
-          class="upWater-st0"
+          :class="`upWater-${info.id}-st0`"
           width="10"
           height="6"
         />
@@ -66,7 +66,7 @@
           id="sg_top_551_"
           x="2"
           y="7"
-          class="upWater-st1"
+          :class="`upWater-${info.id}-st1`"
           width="6"
           height="3"
         />
@@ -75,7 +75,7 @@
             id="sg_top_558_"
             x="2"
             y="2"
-            class="upWater-st2"
+            :class="`upWater-${info.id}-st2`"
             width="6"
             height="6"
           />
@@ -94,7 +94,7 @@
             id="sg_top_555_"
             x="2"
             y="2"
-            class="upWater-st3"
+            :class="`upWater-${info.id}-st3`"
             width="6"
             height="6"
           />
@@ -113,7 +113,7 @@
             id="sg_top_554_"
             x="2"
             y="2"
-            class="upWater-st4"
+            :class="`upWater-${info.id}-st4`"
             width="6"
             height="6"
           />
@@ -133,7 +133,7 @@
             id="sg_top_553_"
             x="2"
             y="2"
-            class="upWater-st5"
+            :class="`upWater-${info.id}-st5`"
             width="6"
             height="6"
           />
@@ -141,12 +141,12 @@
         <g id="sg_top_3_">
           <path
             id="sg_top_556_"
-            class="upWater-st6"
+            :class="`upWater-${info.id}-st6`"
             d="M10,8c-1.2,0-2,0.8-2,2V8H10z"
           />
           <path
             id="sg_top_2_"
-            class="upWater-st6"
+            :class="`upWater-${info.id}-st6`"
             d="M0,8c1.2,0,2,0.8,2,2V8H0z"
           />
         </g>

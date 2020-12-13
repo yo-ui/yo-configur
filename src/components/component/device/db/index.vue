@@ -14,40 +14,40 @@
         v-html="
           `
         <style type='text/css'>
-      .db-st0 {
+      .db-${info.id}-st0 {
           fill: url(#db_1_);
         }
-        .db-st1 {
+        .db-${info.id}-st1 {
           fill: #dfe3e8;
         }
-        .db-st2 {
+        .db-${info.id}-st2 {
           fill: url(#db_11_);
         }
-        .db-st3 {
+        .db-${info.id}-st3 {
           fill: #ffffff;
         }
-        .db-st4 {
+        .db-${info.id}-st4 {
           fill: #c2c8ce;
         }
-        .db-st5 {
+        .db-${info.id}-st5 {
           fill: #848776;
         }
-        .db-st6 {
+        .db-${info.id}-st6 {
           fill: #25282b;
         }
-        .db-st7 {
+        .db-${info.id}-st7 {
           fill: #8f9499;
         }
-        .db-st8 {
+        .db-${info.id}-st8 {
           fill: #5b280e;
         }
-        .db-st9 {
+        .db-${info.id}-st9 {
           fill: #f95d06;
         }
-        .db-st10 {
+        .db-${info.id}-st10 {
           fill: url(#db_12_);
         }
-        .db-st11 {
+        .db-${info.id}-st11 {
           opacity: 0.4;
           fill: #ff0000;
         }
@@ -68,13 +68,13 @@
           <stop offset="1" style="stop-color:#848689" />
         </linearGradient>
         <path
-          class="db-st0"
+          :class="`db-${info.id}-st0`"
           d="M67.73,41h-54.5v10.34c0,1.9,1.54,3.44,3.44,3.44h33.57l5.49,12.81l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69
                   l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73V41z"
         />
         <path
           id="db_657_"
-          class="db-st1"
+          :class="`db-${info.id}-st1`"
           d="M56.5,55.08H2v10.34c0,1.9,1.54,3.44,3.44,3.44h47.62c1.9,0,3.44-1.54,3.44-3.44V55.08z"
         />
         <linearGradient
@@ -92,7 +92,7 @@
           id="db_658_"
           x="2"
           y="54.06"
-          class="db-st2"
+          :class="`db-${info.id}-st2`"
           width="54.5"
           height="8.88"
         />
@@ -100,18 +100,18 @@
           id="db_656_"
           x="1"
           y="15.08"
-          class="db-st3"
+          :class="`db-${info.id}-st3`"
           width="56.5"
           height="39"
         />
         <path
           id="db_653_"
-          class="db-st1"
+          :class="`db-${info.id}-st1`"
           d="M58.5,55.08H0v-41h58.5V55.08z M2,53.08h54.5v-37H2V53.08z"
         />
         <polygon
           id="db_652_"
-          class="db-st4"
+          :class="`db-${info.id}-st4`"
           points="58.5,14.08 0,14.08 12.23,0 69.73,0 	"
         />
         <g id="db_647_">
@@ -119,24 +119,42 @@
             id="db_651_"
             x="9.5"
             y="21.5"
-            class="db-st5"
+            :class="`db-${info.id}-st5`"
             width="40"
             height="12"
           />
           <path
             id="db_648_"
-            class="db-st6"
+            :class="`db-${info.id}-st6`"
             d="M50.5,34.5h-42v-14h42V34.5z M10.5,32.5h38v-10h-38V32.5z"
           />
         </g>
-        <circle id="db_646_" class="db-st7" cx="11.97" cy="63.16" r="2.03" />
-        <circle id="db_645_" class="db-st7" cx="29.22" cy="63.16" r="2.03" />
-        <circle id="db_659_" class="db-st7" cx="46.22" cy="63.16" r="2.03" />
+        <circle
+          id="db_646_"
+          :class="`db-${info.id}-st7`"
+          cx="11.97"
+          cy="63.16"
+          r="2.03"
+        />
+        <circle
+          id="db_645_"
+          :class="`db-${info.id}-st7`"
+          cx="29.22"
+          cy="63.16"
+          r="2.03"
+        />
+        <circle
+          id="db_659_"
+          :class="`db-${info.id}-st7`"
+          cx="46.22"
+          cy="63.16"
+          r="2.03"
+        />
         <rect
           id="db_644_"
           x="9.74"
           y="36.5"
-          class="db-st6"
+          :class="`db-${info.id}-st6`"
           width="4.48"
           height="2.5"
         />
@@ -144,7 +162,7 @@
           id="db_643_"
           x="19.74"
           y="36.5"
-          class="db-st6"
+          :class="`db-${info.id}-st6`"
           width="4.48"
           height="2.5"
         />
@@ -152,7 +170,7 @@
           id="db_635_"
           x="29.74"
           y="36.5"
-          class="db-st6"
+          :class="`db-${info.id}-st6`"
           width="4.48"
           height="2.5"
         />
@@ -160,7 +178,7 @@
           id="db_634_"
           x="39.74"
           y="36.5"
-          class="db-st6"
+          :class="`db-${info.id}-st6`"
           width="4.48"
           height="2.5"
         />
@@ -168,7 +186,7 @@
           id="db_6_"
           x="8.74"
           y="37.5"
-          class="db-st7"
+          :class="`db-${info.id}-st7`"
           width="4.48"
           height="2.5"
         />
@@ -176,7 +194,7 @@
           id="db_5_"
           x="18.74"
           y="37.5"
-          class="db-st7"
+          :class="`db-${info.id}-st7`"
           width="4.48"
           height="2.5"
         />
@@ -184,7 +202,7 @@
           id="db_4_"
           x="28.74"
           y="37.5"
-          class="db-st7"
+          :class="`db-${info.id}-st7`"
           width="4.48"
           height="2.5"
         />
@@ -192,7 +210,7 @@
           id="db_2_"
           x="38.74"
           y="37.5"
-          class="db-st7"
+          :class="`db-${info.id}-st7`"
           width="4.48"
           height="2.5"
         />
@@ -200,7 +218,7 @@
           id="db_632_"
           x="9.61"
           y="44.98"
-          class="db-st8"
+          :class="`db-${info.id}-st8`"
           width="6.72"
           height="3.69"
         />
@@ -208,7 +226,7 @@
           id="db_552_"
           x="19.61"
           y="44.98"
-          class="db-st8"
+          :class="`db-${info.id}-st8`"
           width="6.72"
           height="3.69"
         />
@@ -216,7 +234,7 @@
           id="db_551_"
           x="29.61"
           y="44.98"
-          class="db-st8"
+          :class="`db-${info.id}-st8`"
           width="6.72"
           height="3.69"
         />
@@ -224,7 +242,7 @@
           id="db_9_"
           x="8.61"
           y="45.98"
-          class="db-st9"
+          :class="`db-${info.id}-st9`"
           width="6.72"
           height="3.69"
         />
@@ -232,7 +250,7 @@
           id="db_8_"
           x="18.61"
           y="45.98"
-          class="db-st9"
+          :class="`db-${info.id}-st9`"
           width="6.72"
           height="3.69"
         />
@@ -240,7 +258,7 @@
           id="db_7_"
           x="28.61"
           y="45.98"
-          class="db-st9"
+          :class="`db-${info.id}-st9`"
           width="6.72"
           height="3.69"
         />
@@ -248,7 +266,7 @@
           id="db_550_"
           x="8.48"
           y="42.05"
-          class="db-st4"
+          :class="`db-${info.id}-st4`"
           width="36.74"
           height="1"
         />
@@ -265,13 +283,13 @@
         </linearGradient>
         <path
           id="db_1_"
-          class="db-st10"
+          :class="`db-${info.id}-st10`"
           d="M69.73,41L58.5,55.08v-41L69.73,0V41z"
         />
       </g>
       <g class="SVG_alert" v-if="pointValue == 2">
         <path
-          class="db-st11"
+          :class="`db-${info.id}-st11`"
           d="M69.73,0h-57.5L0,14.08v41h2v7.86v2.48c0,1.9,1.54,3.44,3.44,3.44h47.62c1.08,0,2.04-0.51,2.67-1.29
                   l0.01,0.01l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73v-7.84l2-2.51V0z"
         />
@@ -476,40 +494,40 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import (reference) "./../../../../assets/less/common.less";
-// .db-st0 {
+// .db-${info.id}-st0 {
 //   fill: url(#db_1_);
 // }
-// .db-st1 {
+// .db-${info.id}-st1 {
 //   fill: #dfe3e8;
 // }
-// .db-st2 {
+// .db-${info.id}-st2 {
 //   fill: url(#db_11_);
 // }
-// .db-st3 {
+// .db-${info.id}-st3 {
 //   fill: #ffffff;
 // }
-// .db-st4 {
+// .db-${info.id}-st4 {
 //   fill: #c2c8ce;
 // }
-// .db-st5 {
+// .db-${info.id}-st5 {
 //   fill: #848776;
 // }
-// .db-st6 {
+// .db-${info.id}-st6 {
 //   fill: #25282b;
 // }
-// .db-st7 {
+// .db-${info.id}-st7 {
 //   fill: #8f9499;
 // }
-// .db-st8 {
+// .db-${info.id}-st8 {
 //   fill: #5b280e;
 // }
-// .db-st9 {
+// .db-${info.id}-st9 {
 //   fill: #f95d06;
 // }
-// .db-st10 {
+// .db-${info.id}-st10 {
 //   fill: url(#db_12_);
 // }
-// .db-st11 {
+// .db-${info.id}-st11 {
 //   opacity: 0.4;
 //   fill: #ff0000;
 // }

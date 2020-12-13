@@ -14,13 +14,13 @@
         v-html="
           `
         <style type='text/css'>
-      	.leftWater-st0{fill:url(#leftWater_6_);}
-					.leftWater-st1{fill:url(#leftWater_7_);}
-					.leftWater-st2{fill:#FFFFFF;}
-					.leftWater-st3{fill:url(#leftWater_8_);}
-					.leftWater-st4{fill:url(#leftWater_9_);}
-					.leftWater-st5{fill:url(#leftWater_10_);}
-					.leftWater-st6{fill:#777C7F;}
+      	.leftWater-${info.id}-st0{fill:url(#leftWater_6_);}
+					.leftWater-${info.id}-st1{fill:url(#leftWater_7_);}
+					.leftWater-${info.id}-st2{fill:#FFFFFF;}
+					.leftWater-${info.id}-st3{fill:url(#leftWater_8_);}
+					.leftWater-${info.id}-st4{fill:url(#leftWater_9_);}
+					.leftWater-${info.id}-st5{fill:url(#leftWater_10_);}
+					.leftWater-${info.id}-st6{fill:#777C7F;}
       </style>
       `
         "
@@ -43,7 +43,7 @@
           id="sg_left_4_"
           x="2"
           y="0"
-          class="leftWater-st0"
+          :class="`leftWater-${info.id}-st0`"
           width="6"
           height="10"
         />
@@ -67,7 +67,7 @@
           id="sg_left_551_"
           x="7"
           y="2"
-          class="leftWater-st1"
+          :class="`leftWater-${info.id}-st1`"
           width="3"
           height="6"
         />
@@ -76,7 +76,7 @@
             id="sg_left_558_"
             x="2"
             y="2"
-            class="leftWater-st2"
+            :class="`leftWater-${info.id}-st2`"
             width="6"
             height="6"
           />
@@ -96,7 +96,7 @@
             id="sg_left_555_"
             x="2"
             y="2"
-            class="leftWater-st3"
+            :class="`leftWater-${info.id}-st3`"
             width="6"
             height="6"
           />
@@ -116,7 +116,7 @@
             id="sg_left_554_"
             x="2"
             y="2"
-            class="leftWater-st4"
+            :class="`leftWater-${info.id}-st4`"
             width="6"
             height="6"
           />
@@ -137,7 +137,7 @@
             id="sg_left_553_"
             x="2"
             y="2"
-            class="leftWater-st5"
+            :class="`leftWater-${info.id}-st5`"
             width="6"
             height="6"
           />
@@ -145,12 +145,12 @@
         <g id="sg_left_3_">
           <path
             id="sg_left_556_"
-            class="leftWater-st6"
+            :class="`leftWater-${info.id}-st6`"
             d="M8,0c0,1.2,0.8,2,2,2H8V0z"
           />
           <path
             id="sg_left_2_"
-            class="leftWater-st6"
+            :class="`leftWater-${info.id}-st6`"
             d="M8,10c0-1.2,0.8-2,2-2H8V10z"
           />
         </g>

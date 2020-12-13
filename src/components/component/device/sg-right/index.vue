@@ -15,13 +15,13 @@
           `
         <style type='text/css'>
       
-					.sg-right-st0{fill:url(#sg_right_6_);}
-					.sg-right-st1{fill:url(#sg_right_7_);}
-					.sg-right-st2{fill:#FFFFFF;}
-					.sg-right-st3{fill:url(#sg_right_8_);}
-					.sg-right-st4{fill:url(#sg_right_9_);}
-					.sg-right-st5{fill:url(#sg_right_10_);}
-					.sg-right-st6{fill:#777C7F;}
+					.sg-right-${info.id}-st0{fill:url(#sg_right_6_);}
+					.sg-right-${info.id}-st1{fill:url(#sg_right_7_);}
+					.sg-right-${info.id}-st2{fill:#FFFFFF;}
+					.sg-right-${info.id}-st3{fill:url(#sg_right_8_);}
+					.sg-right-${info.id}-st4{fill:url(#sg_right_9_);}
+					.sg-right-${info.id}-st5{fill:url(#sg_right_10_);}
+					.sg-right-${info.id}-st6{fill:#777C7F;}
       </style>
       `
         "
@@ -44,7 +44,7 @@
           id="sg_right_4_"
           x="2"
           y="0"
-          class="sg-right-st0"
+          :class="`sg-right-${info.id}-st0`"
           width="6"
           height="10"
         />
@@ -68,7 +68,7 @@
           id="sg_right_551_"
           x="0"
           y="2"
-          class="sg-right-st1"
+          :class="`sg-right-${info.id}-st1`"
           width="3"
           height="6"
         />
@@ -77,7 +77,7 @@
             id="sg_right_558_"
             x="2"
             y="2"
-            class="sg-right-st2"
+            :class="`sg-right-${info.id}-st2`"
             width="6"
             height="6"
           />
@@ -97,7 +97,7 @@
             id="sg_right_555_"
             x="2"
             y="2"
-            class="sg-right-st3"
+            :class="`sg-right-${info.id}-st3`"
             width="6"
             height="6"
           />
@@ -117,7 +117,7 @@
             id="sg_right_554_"
             x="2"
             y="2"
-            class="sg-right-st4"
+            :class="`sg-right-${info.id}-st4`"
             width="6"
             height="6"
           />
@@ -138,7 +138,7 @@
             id="sg_right_553_"
             x="2"
             y="2"
-            class="sg-right-st5"
+            :class="`sg-right-${info.id}-st5`"
             width="6"
             height="6"
           />
@@ -146,12 +146,12 @@
         <g id="sg_right_3_">
           <path
             id="sg_right_556_"
-            class="sg-right-st6"
+            :class="`sg-right-${info.id}-st6`"
             d="M2,10c0-1.2-0.8-2-2-2h2V10z"
           />
           <path
             id="sg_right_2_"
-            class="sg-right-st6"
+            :class="`sg-right-${info.id}-st6`"
             d="M2,0c0,1.2-0.8,2-2,2h2V0z"
           />
         </g>

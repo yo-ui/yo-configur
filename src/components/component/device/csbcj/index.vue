@@ -14,18 +14,18 @@
         v-html="
           `
         <style type='text/css'>
-					.csbcj-st0{fill:url(#csbcj_2_);}
-					.csbcj-st1{fill:url(#csbcj_3_);}
-					.csbcj-st2{fill:url(#csbcj_4_);}
-					.csbcj-st3{fill:#C2C8CE;}
-					.csbcj-st4{fill:url(#csbcj_5_);}
-					.csbcj-st5{fill:url(#csbcj_6_);}
-					.csbcj-st6{fill:url(#csbcj_7_);}
-					.csbcj-st7{fill:#2F3438;}
-					.csbcj-st8{fill:url(#csbcj_8_);}
-					.csbcj-st9{fill:url(#csbcj_9_);}
-					.csbcj-st10{fill:url(#csbcj_10_);}
-					.csbcj-st11{fill:url(#csbcj_11_);}
+					.csbcj-${info.id}-st0{fill:url(#csbcj_2_);}
+					.csbcj-${info.id}-st1{fill:url(#csbcj_3_);}
+					.csbcj-${info.id}-st2{fill:url(#csbcj_4_);}
+					.csbcj-${info.id}-st3{fill:#C2C8CE;}
+					.csbcj-${info.id}-st4{fill:url(#csbcj_5_);}
+					.csbcj-${info.id}-st5{fill:url(#csbcj_6_);}
+					.csbcj-${info.id}-st6{fill:url(#csbcj_7_);}
+					.csbcj-${info.id}-st7{fill:#2F3438;}
+					.csbcj-${info.id}-st8{fill:url(#csbcj_8_);}
+					.csbcj-${info.id}-st9{fill:url(#csbcj_9_);}
+					.csbcj-${info.id}-st10{fill:url(#csbcj_10_);}
+					.csbcj-${info.id}-st11{fill:url(#csbcj_11_);}
       </style>
       `
         "
@@ -43,7 +43,7 @@
       </linearGradient>
       <polygon
         id="csbcj_1059_"
-        class="csbcj-st0"
+        :class="`csbcj-${info.id}-st0`"
         points="55.9,6.2 27.5,8.2 0,6.2 4,0 51.9,0 "
       />
       <linearGradient
@@ -60,7 +60,7 @@
       <rect
         id="csbcj_1057_"
         y="6.2"
-        class="csbcj-st1"
+        :class="`csbcj-${info.id}-st1`"
         width="55.9"
         height="25.8"
       />
@@ -80,12 +80,12 @@
           </linearGradient>
           <path
             id="csbcj_1047_"
-            class="csbcj-st2"
+            :class="`csbcj-${info.id}-st2`"
             d="M24.6,20.3c0-5.4-4.8-9.7-10.6-9.7S3.3,14.9,3.3,20.3v3h21.3V20.3z"
           />
           <ellipse
             id="csbcj_1042_"
-            class="csbcj-st3"
+            :class="`csbcj-${info.id}-st3`"
             cx="14"
             cy="23.3"
             rx="10.6"
@@ -105,7 +105,7 @@
           </linearGradient>
           <ellipse
             id="csbcj_1044_"
-            class="csbcj-st4"
+            :class="`csbcj-${info.id}-st4`"
             cx="14"
             cy="23.3"
             rx="9.5"
@@ -124,7 +124,7 @@
           </linearGradient>
           <path
             id="csbcj_1049_"
-            class="csbcj-st5"
+            :class="`csbcj-${info.id}-st5`"
             d="M14,14.7c-4.7,0-8.6,3.1-9.4,7.1c0.8,4,4.7,7.1,9.4,7.1s8.6-3.1,9.4-7.1
 							C22.5,17.8,18.7,14.7,14,14.7z"
           />
@@ -141,7 +141,7 @@
           </linearGradient>
           <ellipse
             id="csbcj_1045_"
-            class="csbcj-st6"
+            :class="`csbcj-${info.id}-st6`"
             cx="14"
             cy="19.4"
             rx="4.3"
@@ -149,7 +149,7 @@
           />
           <ellipse
             id="csbcj_1046_"
-            class="csbcj-st7"
+            :class="`csbcj-${info.id}-st7`"
             cx="14"
             cy="19.4"
             rx="2.8"
@@ -171,12 +171,12 @@
           </linearGradient>
           <path
             id="csbcj_1056_"
-            class="csbcj-st8"
+            :class="`csbcj-${info.id}-st8`"
             d="M52.6,20.3c0-5.4-4.8-9.7-10.6-9.7s-10.6,4.4-10.6,9.7v3h21.3V20.3z"
           />
           <ellipse
             id="csbcj_1055_"
-            class="csbcj-st3"
+            :class="`csbcj-${info.id}-st3`"
             cx="42"
             cy="23.3"
             rx="10.6"
@@ -196,7 +196,7 @@
           </linearGradient>
           <ellipse
             id="csbcj_1054_"
-            class="csbcj-st9"
+            :class="`csbcj-${info.id}-st9`"
             cx="42"
             cy="23.3"
             rx="9.5"
@@ -215,7 +215,7 @@
           </linearGradient>
           <path
             id="csbcj_1053_"
-            class="csbcj-st10"
+            :class="`csbcj-${info.id}-st10`"
             d="M42,14.7c-4.7,0-8.6,3.1-9.4,7.1c0.8,4,4.7,7.1,9.4,7.1s8.6-3.1,9.4-7.1
 							C50.5,17.8,46.7,14.7,42,14.7z"
           />
@@ -232,7 +232,7 @@
           </linearGradient>
           <ellipse
             id="csbcj_1052_"
-            class="csbcj-st11"
+            :class="`csbcj-${info.id}-st11`"
             cx="42"
             cy="19.4"
             rx="4.3"
@@ -240,7 +240,7 @@
           />
           <ellipse
             id="csbcj_1051_"
-            class="csbcj-st7"
+            :class="`csbcj-${info.id}-st7`"
             cx="42"
             cy="19.4"
             rx="2.8"

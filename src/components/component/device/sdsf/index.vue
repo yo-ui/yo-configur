@@ -14,23 +14,23 @@
         v-html="
           `
         <style type='text/css'>
-       .sdsf-st0{fill:url(#sdsf_1_);}
-                .sdsf-st1{fill:url(#sdsf_2_);}
-                .sdsf-st2{fill:url(#sdsf_3_);}
-                .sdsf-st3{fill:url(#sdsf_4_);}
-                .sdsf-st4{fill:url(#sdsf_5_);}
-                .sdsf-st5{fill:url(#sdsf_6_);}
-                .sdsf-st6{fill:url(#sdsf_7_);}
-                .sdsf-st7{fill:url(#sdsf_8_);}
-                .sdsf-st8{fill:url(#sdsf_9_);}
-                .sdsf-st9{opacity:0.4;}
-                .sdsf-st10{fill:url(#sdsf_10_);}
-                .sdsf-st11{fill:url(#sdsf_11_);}
-                .sdsf-st12{fill:url(#sdsf_12_);}
-                .sdsf-st13{fill:#4AA7F4;}
-                .sdsf-st14{fill:url(#sdsf_13_);}
-                .sdsf-st15{fill:url(#sdsf_14_);}
-                .sdsf-st16{fill:url(#sdsf_15_);}
+       .sdsf-${info.id}-st0{fill:url(#sdsf_1_);}
+                .sdsf-${info.id}-st1{fill:url(#sdsf_2_);}
+                .sdsf-${info.id}-st2{fill:url(#sdsf_3_);}
+                .sdsf-${info.id}-st3{fill:url(#sdsf_4_);}
+                .sdsf-${info.id}-st4{fill:url(#sdsf_5_);}
+                .sdsf-${info.id}-st5{fill:url(#sdsf_6_);}
+                .sdsf-${info.id}-st6{fill:url(#sdsf_7_);}
+                .sdsf-${info.id}-st7{fill:url(#sdsf_8_);}
+                .sdsf-${info.id}-st8{fill:url(#sdsf_9_);}
+                .sdsf-${info.id}-st9{opacity:0.4;}
+                .sdsf-${info.id}-st10{fill:url(#sdsf_10_);}
+                .sdsf-${info.id}-st11{fill:url(#sdsf_11_);}
+                .sdsf-${info.id}-st12{fill:url(#sdsf_12_);}
+                .sdsf-${info.id}-st13{fill:#4AA7F4;}
+                .sdsf-${info.id}-st14{fill:url(#sdsf_13_);}
+                .sdsf-${info.id}-st15{fill:url(#sdsf_14_);}
+                .sdsf-${info.id}-st16{fill:url(#sdsf_15_);}
       </style>
       `
         "
@@ -64,7 +64,7 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="sdsf-st0"
+        :class="`sdsf-${info.id}-st0`"
         d="M11.41,50.09c1.6,4.68,2.63,11.87,2.63,19.94s-1.03,15.26-2.63,19.94v5.61H7.02C3.14,95.59,0,84.14,0,70.03
                 c0-14.11,3.14-25.56,7.02-25.56h4.39V50.09z"
       />
@@ -79,7 +79,13 @@
         <stop offset="0" style="stop-color:#74716F" />
         <stop offset="1" style="stop-color:#ABAEAD" />
       </linearGradient>
-      <ellipse class="sdsf-st1" cx="11.41" cy="70.03" rx="7.02" ry="25.56" />
+      <ellipse
+        :class="`sdsf-${info.id}-st1`"
+        cx="11.41"
+        cy="70.03"
+        rx="7.02"
+        ry="25.56"
+      />
       <linearGradient
         id="sdsf_3_"
         gradientUnits="userSpaceOnUse"
@@ -104,7 +110,7 @@
         <stop offset="1" style="stop-color:#6F6F6A" />
       </linearGradient>
       <path
-        class="sdsf-st2"
+        :class="`sdsf-${info.id}-st2`"
         d="M5.75,70.03c0,13.28,2.78,24.19,6.34,25.43c-0.22,0.08-0.45,0.12-0.68,0.12c-3.88,0-7.02-11.44-7.02-25.56
                 s3.14-25.56,7.02-25.56c0.23,0,0.46,0.04,0.68,0.12C8.53,45.84,5.75,56.75,5.75,70.03z"
       />
@@ -137,7 +143,7 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="sdsf-st3"
+        :class="`sdsf-${info.id}-st3`"
         d="M82.59,50.09c-1.6,4.68-2.63,11.87-2.63,19.94s1.03,15.26,2.63,19.94v5.61h4.39c3.88,0,7.02-11.44,7.02-25.56
                 s-3.14-25.56-7.02-25.56h-4.39V50.09z"
       />
@@ -153,7 +159,13 @@
         <stop offset="0" style="stop-color:#74716F" />
         <stop offset="1" style="stop-color:#ABAEAD" />
       </linearGradient>
-      <ellipse class="sdsf-st4" cx="82.59" cy="70.03" rx="7.02" ry="25.56" />
+      <ellipse
+        :class="`sdsf-${info.id}-st4`"
+        cx="82.59"
+        cy="70.03"
+        rx="7.02"
+        ry="25.56"
+      />
       <linearGradient
         id="sdsf_6_"
         gradientUnits="userSpaceOnUse"
@@ -179,7 +191,7 @@
         <stop offset="1" style="stop-color:#6F6F6A" />
       </linearGradient>
       <path
-        class="sdsf-st5"
+        :class="`sdsf-${info.id}-st5`"
         d="M88.25,70.03c0,13.28-2.78,24.19-6.34,25.43c0.22,0.08,0.45,0.12,0.68,0.12c3.88,0,7.02-11.44,7.02-25.56
                 s-3.14-25.56-7.02-25.56c-0.23,0-0.46,0.04-0.68,0.12C85.47,45.84,88.25,56.75,88.25,70.03z"
       />
@@ -212,7 +224,7 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="sdsf-st6"
+        :class="`sdsf-${info.id}-st6`"
         d="M82.34,80.79c0,0,2.29-2.35,2.29-11.41c0-9.63-2.29-11.41-2.29-11.41H12.69C12.69,57.97,10,59,10,69
                 c0,12,2.69,11.79,2.69,11.79H82.34z"
       />
@@ -245,7 +257,7 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="sdsf-st7"
+        :class="`sdsf-${info.id}-st7`"
         d="M63.61,38H29.93v20.65c0,0,5.05,9.56,16.84,9.56c13.96,0,16.84-9.56,16.84-9.56V38z"
       />
       <linearGradient
@@ -259,8 +271,20 @@
         <stop offset="0" style="stop-color:#74716F" />
         <stop offset="1" style="stop-color:#ABAEAD" />
       </linearGradient>
-      <ellipse class="sdsf-st8" cx="46.77" cy="38" rx="16.84" ry="8.51" />
-      <ellipse class="sdsf-st9" cx="47.06" cy="38.92" rx="6.38" ry="2.67" />
+      <ellipse
+        :class="`sdsf-${info.id}-st8`"
+        cx="46.77"
+        cy="38"
+        rx="16.84"
+        ry="8.51"
+      />
+      <ellipse
+        :class="`sdsf-${info.id}-st9`"
+        cx="47.06"
+        cy="38.92"
+        rx="6.38"
+        ry="2.67"
+      />
       <linearGradient
         id="sdsf_10_"
         gradientUnits="userSpaceOnUse"
@@ -290,7 +314,7 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="sdsf-st10"
+        :class="`sdsf-${info.id}-st10`"
         d="M51.88,21.56H41.66V38c0,0,1.53,2.9,5.11,2.9c4.23,0,5.11-2.9,5.11-2.9V21.56z"
       />
       <radialGradient
@@ -306,7 +330,7 @@
         <stop offset="1" style="stop-color:#00447C" />
       </radialGradient>
       <path
-        class="sdsf-st11"
+        :class="`sdsf-${info.id}-st11`"
         d="M46.94,38c-20.47,0-36.5-8.35-36.5-19S26.48,0,46.94,0s36.5,8.35,36.5,19S67.41,38,46.94,38z M46.94,6
                 c-17.97,0-30.5,6.85-30.5,13s12.53,13,30.5,13s30.5-6.85,30.5-13S64.92,6,46.94,6z"
       />
@@ -324,10 +348,16 @@
         <stop offset="1" style="stop-color:#00447C" />
       </linearGradient>
       <path
-        class="sdsf-st12"
+        :class="`sdsf-${info.id}-st12`"
         d="M54.03,13.04H39.51v8.91c0,0,1.33,3.26,7.26,3.26c6.02,0,7.26-3.26,7.26-3.26V13.04z"
       />
-      <ellipse class="sdsf-st13" cx="46.77" cy="13.04" rx="7.26" ry="3.67" />
+      <ellipse
+        :class="`sdsf-${info.id}-st13`"
+        cx="46.77"
+        cy="13.04"
+        rx="7.26"
+        ry="3.67"
+      />
       <linearGradient
         id="sdsf_13_"
         gradientUnits="userSpaceOnUse"
@@ -342,7 +372,7 @@
         <stop offset="1" style="stop-color:#00447C" />
       </linearGradient>
       <path
-        class="sdsf-st14"
+        :class="`sdsf-${info.id}-st14`"
         d="M17.71,25.12l2.19,5.14l21.49-9.14c0,0,1.14-1.04,0.25-3.14c-0.91-2.13-2.44-2-2.44-2L17.71,25.12z"
       />
       <linearGradient
@@ -359,7 +389,7 @@
         <stop offset="1" style="stop-color:#00447C" />
       </linearGradient>
       <path
-        class="sdsf-st15"
+        :class="`sdsf-${info.id}-st15`"
         d="M76.33,25.12l-2.19,5.14l-21.49-9.14c0,0-1.14-1.04-0.25-3.14c0.91-2.13,2.44-2,2.44-2L76.33,25.12z"
       />
       <linearGradient
@@ -375,7 +405,7 @@
         <stop offset="1" style="stop-color:#00447C" />
       </linearGradient>
       <path
-        class="sdsf-st16"
+        :class="`sdsf-${info.id}-st16`"
         d="M46.77,9.37c0.99,0,1.93,0.1,2.79,0.28l-0.04-5.04c0,0-0.52-1.46-2.8-1.45c-2.31,0.01-2.79,1.47-2.79,1.47
                 l0.04,5.02C44.84,9.47,45.78,9.37,46.77,9.37z"
       />

@@ -25,7 +25,14 @@
         
       </template>
       <template v-else> -->
-        {{ item.value || "--" }} <small v-if="item.unit">{{ item.unit }}</small>
+        {{
+          item.status && item.status.length > 0
+            ? (item.status.find(_item => item.value == _item.value) || {}).name
+            : item.value || "--"
+        }}
+        <template v-if="!(item.status && item.status.length > 0)">
+          <small v-if="item.unit">{{ item.unit }}</small>
+        </template>
         <!-- </template> -->
       </el-form-item>
     </template>
@@ -72,6 +79,7 @@ export default {
         deviceId,
         callback: (device = {}) => {
           this.deviceInfo = device || {};
+          this.dataLoadingStatus = false;
           this.$emit("load", info);
         }
       });

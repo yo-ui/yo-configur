@@ -14,13 +14,13 @@
         v-html="
           `
         <style type='text/css'>      
-						.downWater-st0{fill:url(#downWater_6_);}
-						.downWater-st1{fill:url(#downWater_7_);}
-						.downWater-st2{fill:#FFFFFF;}
-						.downWater-st3{fill:url(#downWater_8_);}
-						.downWater-st4{fill:url(#downWater_9_);}
-						.downWater-st5{fill:url(#downWater_10_);}
-						.downWater-st6{fill:#777C7F;}
+						.downWater-${info.id}-st0{fill:url(#downWater_6_);}
+						.downWater-${info.id}-st1{fill:url(#downWater_7_);}
+						.downWater-${info.id}-st2{fill:#FFFFFF;}
+						.downWater-${info.id}-st3{fill:url(#downWater_8_);}
+						.downWater-${info.id}-st4{fill:url(#downWater_9_);}
+						.downWater-${info.id}-st5{fill:url(#downWater_10_);}
+						.downWater-${info.id}-st6{fill:#777C7F;}
       </style>
       `
         "
@@ -42,7 +42,7 @@
         <rect
           id="sg_bottom_4_"
           y="2"
-          class="downWater-st0"
+          :class="`downWater-${info.id}-st0`"
           width="10"
           height="6"
         />
@@ -65,7 +65,7 @@
         <rect
           id="sg_bottom_551_"
           x="2"
-          class="downWater-st1"
+          :class="`downWater-${info.id}-st1`"
           width="6"
           height="3"
         />
@@ -74,7 +74,7 @@
             id="sg_bottom_558_"
             x="2"
             y="2"
-            class="downWater-st2"
+            :class="`downWater-${info.id}-st2`"
             width="6"
             height="6"
           />
@@ -94,7 +94,7 @@
             id="sg_bottom_555_"
             x="2"
             y="2"
-            class="downWater-st3"
+            :class="`downWater-${info.id}-st3`"
             width="6"
             height="6"
           />
@@ -114,7 +114,7 @@
             id="sg_bottom_554_"
             x="2"
             y="2"
-            class="downWater-st4"
+            :class="`downWater-${info.id}-st4`"
             width="6"
             height="6"
           />
@@ -135,7 +135,7 @@
             id="sg_bottom_553_"
             x="2"
             y="2"
-            class="downWater-st5"
+            :class="`downWater-${info.id}-st5`"
             width="6"
             height="6"
           />
@@ -143,12 +143,12 @@
         <g id="sg_bottom_3_">
           <path
             id="sg_bottom_556_"
-            class="downWater-st6"
+            :class="`downWater-${info.id}-st6`"
             d="M0,2c1.2,0,2-0.8,2-2v2H0z"
           />
           <path
             id="sg_bottom_2_"
-            class="downWater-st6"
+            :class="`downWater-${info.id}-st6`"
             d="M10,2C8.8,2,8,1.2,8,0v2H10z"
           />
         </g>

@@ -14,21 +14,21 @@
         v-html="
           `
         <style type='text/css'>
-      .ckssb-st0{fill:url(#ckssb_2_);}
-					.ckssb-st1{fill:url(#ckssb_3_);}
-					.ckssb-st2{fill:#A5CDAD;}
-					.ckssb-st3{fill:url(#ckssb_4_);}
-					.ckssb-st4{fill:url(#ckssb_5_);}
-					.ckssb-st5{fill:url(#ckssb_6_);}
-					.ckssb-st6{fill:url(#ckssb_7_);}
-					.ckssb-st7{fill:#A7AEB6;}
-					.ckssb-st8{fill:#DFE2E8;}
-					.ckssb-st9{fill:#FFFFFF;}
-					.ckssb-st10{fill:#E04520;}
-					.ckssb-st11{fill:#5D5F65;}
-					.ckssb-st12{fill:#1D1E1E;}
-					.ckssb-st13{fill:#838776;}
-					.ckssb-st14{fill:#25282B;}
+      .ckssb-${info.id}-st0{fill:url(#ckssb_2_);}
+					.ckssb-${info.id}-st1{fill:url(#ckssb_3_);}
+					.ckssb-${info.id}-st2{fill:#A5CDAD;}
+					.ckssb-${info.id}-st3{fill:url(#ckssb_4_);}
+					.ckssb-${info.id}-st4{fill:url(#ckssb_5_);}
+					.ckssb-${info.id}-st5{fill:url(#ckssb_6_);}
+					.ckssb-${info.id}-st6{fill:url(#ckssb_7_);}
+					.ckssb-${info.id}-st7{fill:#A7AEB6;}
+					.ckssb-${info.id}-st8{fill:#DFE2E8;}
+					.ckssb-${info.id}-st9{fill:#FFFFFF;}
+					.ckssb-${info.id}-st10{fill:#E04520;}
+					.ckssb-${info.id}-st11{fill:#5D5F65;}
+					.ckssb-${info.id}-st12{fill:#1D1E1E;}
+					.ckssb-${info.id}-st13{fill:#838776;}
+					.ckssb-${info.id}-st14{fill:#25282B;}
       </style>
       `
         "
@@ -50,7 +50,7 @@
       </linearGradient>
       <path
         id="ckssb_894_"
-        class="ckssb-st0"
+        :class="`ckssb-${info.id}-st0`"
         d="M72.2,34.6h9.1v-15h-9.1c0,0-0.4,4-0.4,8S72.2,34.6,72.2,34.6z"
       />
       <linearGradient
@@ -71,13 +71,13 @@
         id="ckssb_893_"
         x="79.8"
         y="18"
-        class="ckssb-st1"
+        :class="`ckssb-${info.id}-st1`"
         width="8.2"
         height="18.1"
       />
       <path
         id="ckssb_904_"
-        class="ckssb-st2"
+        :class="`ckssb-${info.id}-st2`"
         d="M75,28.8h-3.7c-0.8,0-1.5-0.7-1.5-1.5V12.5c0-0.8,0.7-1.5,1.5-1.5H75c0.8,0,1.5,0.7,1.5,1.5
 					v14.8C76.5,28.1,75.9,28.8,75,28.8z"
       />
@@ -96,7 +96,7 @@
       </linearGradient>
       <path
         id="ckssb_898_"
-        class="ckssb-st3"
+        :class="`ckssb-${info.id}-st3`"
         d="M13.5,22.8v9.6c0.2,9.4,10,17.1,22,17.1h29.7c3.9,0,7.1-2.5,7.1-5.7v-9.7L13.5,22.8z"
       />
       <linearGradient
@@ -115,7 +115,7 @@
       </linearGradient>
       <path
         id="ckssb_897_"
-        class="ckssb-st4"
+        :class="`ckssb-${info.id}-st4`"
         d="M13.5,34.6H6.7v-15h6.7c0,0,0.4,4,0.4,8S13.5,34.6,13.5,34.6z"
       />
       <linearGradient
@@ -134,7 +134,7 @@
       <rect
         id="ckssb_896_"
         y="18"
-        class="ckssb-st5"
+        :class="`ckssb-${info.id}-st5`"
         width="8.2"
         height="18.1"
       />
@@ -153,28 +153,28 @@
       </linearGradient>
       <path
         id="ckssb_891_"
-        class="ckssb-st6"
+        :class="`ckssb-${info.id}-st6`"
         d="M13.5,17.5v5.1c0.2,9.4,10,17.1,22,17.1h29.7c3.9,0,7.1-2.5,7.1-5.7V16.9L13.5,17.5z"
       />
       <path
         id="ckssb_889_"
-        class="ckssb-st7"
+        :class="`ckssb-${info.id}-st7`"
         d="M65.2,34.6H35.5c-12,0-21.9-7.7-22-17.1c-0.1-4.7,2.1-9.1,6.3-12.4C23.9,1.8,29.4,0,35.2,0h30
 					c3.9,0,7.1,2.5,7.1,5.7v23.3C72.3,32.1,69.1,34.6,65.2,34.6z"
       />
       <path
         id="ckssb_888_"
-        class="ckssb-st8"
+        :class="`ckssb-${info.id}-st8`"
         d="M56,0.9H35.2c-11.5,0-20.8,7.3-20.6,16.3C14.8,26,24.2,33,35.5,33H56V0.9z"
       />
       <path
         id="ckssb_887_"
-        class="ckssb-st8"
+        :class="`ckssb-${info.id}-st8`"
         d="M65.2,0.9h-8.3V33h8.3c3.3,0,6-2.1,6-4.7V5.5C71.2,3,68.5,0.9,65.2,0.9z"
       />
       <ellipse
         id="ckssb_885_"
-        class="ckssb-st9"
+        :class="`ckssb-${info.id}-st9`"
         cx="35.2"
         cy="16.9"
         rx="17.6"
@@ -182,7 +182,7 @@
       />
       <ellipse
         id="ckssb_884_"
-        class="ckssb-st10"
+        :class="`ckssb-${info.id}-st10`"
         cx="30.2"
         cy="8.6"
         rx="1.7"
@@ -190,7 +190,7 @@
       />
       <ellipse
         id="ckssb_883_"
-        class="ckssb-st10"
+        :class="`ckssb-${info.id}-st10`"
         cx="30.2"
         cy="25.3"
         rx="1.7"
@@ -198,7 +198,7 @@
       />
       <ellipse
         id="ckssb_882_"
-        class="ckssb-st10"
+        :class="`ckssb-${info.id}-st10`"
         cx="24.4"
         cy="14.1"
         rx="1.7"
@@ -206,7 +206,7 @@
       />
       <ellipse
         id="ckssb_881_"
-        class="ckssb-st10"
+        :class="`ckssb-${info.id}-st10`"
         cx="24.4"
         cy="20.8"
         rx="1.7"
@@ -216,7 +216,7 @@
         id="ckssb_879_"
         x="44.3"
         y="12.5"
-        class="ckssb-st11"
+        :class="`ckssb-${info.id}-st11`"
         width="4.3"
         height="1.8"
       />
@@ -224,7 +224,7 @@
         id="ckssb_878_"
         x="44.3"
         y="16"
-        class="ckssb-st11"
+        :class="`ckssb-${info.id}-st11`"
         width="4.3"
         height="1.8"
       />
@@ -232,13 +232,13 @@
         id="ckssb_877_"
         x="44.3"
         y="19.5"
-        class="ckssb-st11"
+        :class="`ckssb-${info.id}-st11`"
         width="4.3"
         height="1.8"
       />
       <ellipse
         id="ckssb_875_"
-        class="ckssb-st12"
+        :class="`ckssb-${info.id}-st12`"
         cx="35.5"
         cy="16.9"
         rx="3.1"
@@ -246,7 +246,7 @@
       />
       <path
         id="ckssb_874_"
-        class="ckssb-st7"
+        :class="`ckssb-${info.id}-st7`"
         d="M35.2,4.1c9.5,0,17.3,5.9,17.6,13.3c0-0.2,0-0.3,0-0.5c0-7.6-7.9-13.7-17.6-13.7
 					S17.6,9.4,17.6,16.9c0,0.2,0,0.3,0,0.5C18,10,25.7,4.1,35.2,4.1z"
       />
@@ -255,7 +255,7 @@
           id="ckssb_903_"
           x="60.1"
           y="5.8"
-          class="ckssb-st13"
+          :class="`ckssb-${info.id}-st13`"
           width="7.1"
           height="21.5"
         />

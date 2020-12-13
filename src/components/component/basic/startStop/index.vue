@@ -13,15 +13,15 @@
         v-html="
           `
         <style type='text/css'>
-       	.start-stop-st0{display:none;}
-	.start-stop-st1{display:inline;fill:url(#start_stop_${info.id}_SVGID_1_);}
-	.start-stop-st2{display:inline;fill:url(#start_stop_${info.id}_SVGID_2_);}
-	.start-stop-st3{display:inline;opacity:0.6;}
-	.start-stop-st4{display:inline;}
-	.start-stop-st5{fill:#FFFFFF;}
-	.start-stop-st6{fill:url(#start_stop_${info.id}_SVGID_3_);}
-	.start-stop-st7{fill:url(#start_stop_${info.id}_SVGID_4_);}
-	.start-stop-st8{fill:#666666;}
+       	.start-stop-${info.id}-st0{display:none;}
+	.start-stop-${info.id}-st1{display:inline;fill:url(#start_stop_${info.id}_SVGID_1_);}
+	.start-stop-${info.id}-st2{display:inline;fill:url(#start_stop_${info.id}_SVGID_2_);}
+	.start-stop-${info.id}-st3{display:inline;opacity:0.6;}
+	.start-stop-${info.id}-st4{display:inline;}
+	.start-stop-${info.id}-st5{fill:#FFFFFF;}
+	.start-stop-${info.id}-st6{fill:url(#start_stop_${info.id}_SVGID_3_);}
+	.start-stop-${info.id}-st7{fill:url(#start_stop_${info.id}_SVGID_4_);}
+	.start-stop-${info.id}-st8{fill:#666666;}
       </style>
       `
         "
@@ -39,7 +39,7 @@
           <stop offset="1" style="stop-color:#B3B3B3" />
         </linearGradient>
         <path
-          class="start-stop-st1"
+          :class="`start-stop-${info.id}-st1`"
           d="M84,26H3c-1.7,0-3-1.3-3-3V3c0-1.7,1.3-3,3-3h81c1.7,0,3,1.3,3,3v20C87,24.7,85.7,26,84,26z"
         />
         <linearGradient
@@ -54,10 +54,10 @@
           <stop offset="1" style="stop-color:#929CAD" />
         </linearGradient>
         <path
-          class="start-stop-st2"
+          :class="`start-stop-${info.id}-st2`"
           d="M82,24H46c-1.7,0-3-1.3-3-3V5c0-1.7,1.3-3,3-3h36c1.7,0,3,1.3,3,3v16C85,22.7,83.7,24,82,24z"
         />
-        <g class="start-stop-st3">
+        <g :class="`start-stop-${info.id}-st3`">
           <path
             d="M8.6,17.8c0.8-1.1,1.3-2.2,1.6-3.2c0.3-1,0.4-2.3,0.4-3.9V7.3h4.7L15.2,7c-0.1-0.2-0.1-0.4-0.2-0.6
 			c-0.1-0.2-0.1-0.3-0.2-0.5L16,5.7c0.1,0.3,0.3,0.6,0.4,1.1l0.2,0.5h4.3v4.2h-9.1c0,1.4-0.2,2.6-0.5,3.6c-0.2,0.5-0.4,1.1-0.7,1.7
@@ -77,9 +77,9 @@
 			c-0.1-0.2-0.2-0.5-0.3-0.7c-0.1-0.2-0.2-0.4-0.2-0.5L27.8,12.8z M28.8,6.9V8h-5.2V6.9H28.8z"
           />
         </g>
-        <g class="start-stop-st4">
+        <g :class="`start-stop-${info.id}-st4`">
           <path
-            class="start-stop-st5"
+            :class="`start-stop-${info.id}-st5`"
             d="M51.5,12.5c0.4-0.6,0.7-1.1,1-1.7c0.3-0.6,0.5-1.1,0.8-1.7c0.2-0.6,0.5-1.1,0.6-1.7c0.2-0.6,0.4-1.1,0.5-1.7
 			l1.1,0.3c-0.2,0.6-0.4,1.2-0.5,1.7s-0.3,1-0.5,1.4v9.7h-1.1v-7.2c-0.1,0.3-0.3,0.5-0.4,0.8c-0.2,0.3-0.3,0.5-0.5,0.8L51.5,12.5z
 			 M64.3,12.3v2.5h-1.1v-1.5h-6.6v1.5h-1.1v-2.5H64.3z M60.1,5.8c0.1,0.1,0.1,0.2,0.2,0.4c0.1,0.2,0.2,0.4,0.2,0.5
@@ -89,7 +89,7 @@
 			s-0.4,0.1-0.7,0.1c-0.3,0-0.6,0.1-0.9,0.1c-0.3,0-0.5,0-0.8,0L57.5,17.6z M57.7,10.7h4.6V9.8h-4.6V10.7z"
           />
           <path
-            class="start-stop-st5"
+            :class="`start-stop-${info.id}-st5`"
             d="M73.7,5.8v4.1h4.2v1.2h-4.2V17h4.9v1.2H66V17h2.3V8.2h1.2V17h3V5.8H73.7z"
           />
         </g>
@@ -107,7 +107,7 @@
           <stop offset="1" style="stop-color:#B3B3B3" />
         </linearGradient>
         <path
-          class="start-stop-st6"
+          :class="`start-stop-${info.id}-st6`"
           d="M84,26H3c-1.7,0-3-1.3-3-3V3c0-1.7,1.3-3,3-3h81c1.7,0,3,1.3,3,3v20C87,24.7,85.7,26,84,26z"
         />
         <linearGradient
@@ -122,18 +122,18 @@
           <stop offset="1" style="stop-color:#0084E9" />
         </linearGradient>
         <path
-          class="start-stop-st7"
+          :class="`start-stop-${info.id}-st7`"
           d="M41,24H5c-1.7,0-3-1.3-3-3V5c0-1.7,1.3-3,3-3h36c1.7,0,3,1.3,3,3v16C44,22.7,42.7,24,41,24z"
         />
         <g>
           <path
-            class="start-stop-st5"
+            :class="`start-stop-${info.id}-st5`"
             d="M8.6,17.8c0.8-1.1,1.3-2.2,1.6-3.2c0.3-1,0.4-2.3,0.4-3.9V7.3h4.7L15.2,7c-0.1-0.2-0.1-0.4-0.2-0.6
 			c-0.1-0.2-0.1-0.3-0.2-0.5L16,5.7c0.1,0.3,0.3,0.6,0.4,1.1l0.2,0.5h4.3v4.2h-9.1c0,1.4-0.2,2.6-0.5,3.6c-0.2,0.5-0.4,1.1-0.7,1.7
 			c-0.3,0.6-0.6,1.2-1,1.8L8.6,17.8z M11.8,10.3h7.9v-2h-7.9V10.3z M20.6,13.2v5.4h-8.4v-5.4H20.6z M13.5,17.5h5.9v-3.1h-5.9V17.5z"
           />
           <path
-            class="start-stop-st5"
+            :class="`start-stop-${info.id}-st5`"
             d="M27.8,12.8c0.1,0.2,0.2,0.5,0.3,0.8c0.1,0.3,0.3,0.7,0.4,1.1c0.1,0.4,0.3,0.7,0.4,1.1c0.1,0.4,0.3,0.7,0.3,1
 			c0.2-0.3,0.3-0.6,0.4-0.9c0.1-0.3,0.2-0.6,0.3-0.9c0.1-0.5,0.2-1.2,0.3-2.1c0.1-0.9,0.2-1.9,0.2-3.1h-1.8V8.5h1.8l0.1-2.7h1.1
 			l-0.1,2.7h3.3c0,0.6,0,1.3,0,2c0,0.7,0,1.4,0,2.2s0,1.5-0.1,2.2c0,0.7-0.1,1.4-0.1,2c0,0.5-0.2,0.9-0.4,1.2
@@ -149,7 +149,7 @@
         </g>
         <g>
           <path
-            class="start-stop-st8"
+            :class="`start-stop-${info.id}-st8`"
             d="M51.5,12.5c0.4-0.6,0.7-1.1,1-1.7c0.3-0.6,0.5-1.1,0.8-1.7c0.2-0.6,0.5-1.1,0.6-1.7c0.2-0.6,0.4-1.1,0.5-1.7
 			l1.1,0.3c-0.2,0.6-0.4,1.2-0.5,1.7s-0.3,1-0.5,1.4v9.7h-1.1v-7.2c-0.1,0.3-0.3,0.5-0.4,0.8c-0.2,0.3-0.3,0.5-0.5,0.8L51.5,12.5z
 			 M64.3,12.3v2.5h-1.1v-1.5h-6.6v1.5h-1.1v-2.5H64.3z M60.1,5.8c0.1,0.1,0.1,0.2,0.2,0.4c0.1,0.2,0.2,0.4,0.2,0.5
@@ -159,7 +159,7 @@
 			s-0.4,0.1-0.7,0.1c-0.3,0-0.6,0.1-0.9,0.1c-0.3,0-0.5,0-0.8,0L57.5,17.6z M57.7,10.7h4.6V9.8h-4.6V10.7z"
           />
           <path
-            class="start-stop-st8"
+            :class="`start-stop-${info.id}-st8`"
             d="M73.7,5.8v4.1h4.2v1.2h-4.2V17h4.9v1.2H66V17h2.3V8.2h1.2V17h3V5.8H73.7z"
           />
         </g>

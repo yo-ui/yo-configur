@@ -14,20 +14,20 @@
         v-html="
           `
         <style type='text/css'>
-      .csbllj-st0{fill:url(#csbllj_2_);}
-					.csbllj-st1{fill:#064289;}
-					.csbllj-st2{fill:url(#csbllj_3_);}
-					.csbllj-st3{fill:url(#csbllj_4_);}
-					.csbllj-st4{fill:url(#csbllj_5_);}
-					.csbllj-st5{fill:url(#csbllj_6_);}
-					.csbllj-st6{fill:url(#csbllj_7_);}
-					.csbllj-st7{fill:#AEB4BA;}
-					.csbllj-st8{fill:url(#csbllj_8_);}
-					.csbllj-st9{fill:url(#csbllj_9_);}
-					.csbllj-st10{fill:#0E89D6;}
-					.csbllj-st11{fill:#DFE3E8;}
-					.csbllj-st12{fill:url(#csbllj_10_);}
-					.csbllj-st13{fill:url(#csbllj_11_);}
+      .csbllj-${info.id}-st0{fill:url(#csbllj_2_);}
+					.csbllj-${info.id}-st1{fill:#064289;}
+					.csbllj-${info.id}-st2{fill:url(#csbllj_3_);}
+					.csbllj-${info.id}-st3{fill:url(#csbllj_4_);}
+					.csbllj-${info.id}-st4{fill:url(#csbllj_5_);}
+					.csbllj-${info.id}-st5{fill:url(#csbllj_6_);}
+					.csbllj-${info.id}-st6{fill:url(#csbllj_7_);}
+					.csbllj-${info.id}-st7{fill:#AEB4BA;}
+					.csbllj-${info.id}-st8{fill:url(#csbllj_8_);}
+					.csbllj-${info.id}-st9{fill:url(#csbllj_9_);}
+					.csbllj-${info.id}-st10{fill:#0E89D6;}
+					.csbllj-${info.id}-st11{fill:#DFE3E8;}
+					.csbllj-${info.id}-st12{fill:url(#csbllj_10_);}
+					.csbllj-${info.id}-st13{fill:url(#csbllj_11_);}
       </style>
       `
         "
@@ -47,12 +47,12 @@
       </linearGradient>
       <path
         id="csbllj_1684_"
-        class="csbllj-st0"
+        :class="`csbllj-${info.id}-st0`"
         d="M45.1,39.6h3.7c1.6,0,2.8,8.6,2.8,19.1s-1.3,19.1-2.8,19.1h-3.7V39.6z"
       />
       <ellipse
         id="csbllj_1681_"
-        class="csbllj-st1"
+        :class="`csbllj-${info.id}-st1`"
         cx="45.1"
         cy="58.8"
         rx="2.8"
@@ -72,12 +72,12 @@
       </linearGradient>
       <path
         id="csbllj_1680_"
-        class="csbllj-st2"
+        :class="`csbllj-${info.id}-st2`"
         d="M6.9,39.6H3.2c-1.6,0-2.8,8.6-2.8,19.1s1.3,19.1,2.8,19.1h3.7V39.6z"
       />
       <ellipse
         id="csbllj_1679_"
-        class="csbllj-st1"
+        :class="`csbllj-${info.id}-st1`"
         cx="6.9"
         cy="58.8"
         rx="2.8"
@@ -97,7 +97,7 @@
       </linearGradient>
       <path
         id="csbllj_1676_"
-        class="csbllj-st3"
+        :class="`csbllj-${info.id}-st3`"
         d="M45.2,47.3H7.3c-0.7,0-1.6,4.9-1.6,11s0.9,11,1.6,11h37.9c0,0,1.2-3.2,1.2-11
 					S45.2,47.3,45.2,47.3z"
       />
@@ -117,7 +117,7 @@
       </linearGradient>
       <path
         id="csbllj_1673_"
-        class="csbllj-st4"
+        :class="`csbllj-${info.id}-st4`"
         d="M13.2,42.5v6.8c0,4.6,5.7,13.1,12.7,13.1c7,0,12.7-8.5,12.7-13.1v-6.8H13.2z"
       />
       <linearGradient
@@ -133,12 +133,12 @@
       </linearGradient>
       <path
         id="csbllj_1672_"
-        class="csbllj-st5"
+        :class="`csbllj-${info.id}-st5`"
         d="M13.2,42.5v6.8c0,4.6,5.7,13.1,12.7,13.1c7,0,12.7-8.5,12.7-13.1v-6.8H13.2z"
       />
       <ellipse
         id="csbllj_1671_"
-        class="csbllj-st1"
+        :class="`csbllj-${info.id}-st1`"
         cx="25.9"
         cy="42.5"
         rx="12.7"
@@ -158,12 +158,12 @@
       </linearGradient>
       <path
         id="csbllj_1666_"
-        class="csbllj-st6"
+        :class="`csbllj-${info.id}-st6`"
         d="M20.1,35.4v7.1c0,1.6,2.7,2.9,6.1,2.9c3.4,0,6.1-1.3,6.1-2.9v-7.1H20.1z"
       />
       <ellipse
         id="csbllj_1665_"
-        class="csbllj-st7"
+        :class="`csbllj-${info.id}-st7`"
         cx="26.2"
         cy="35.4"
         rx="6.1"
@@ -183,7 +183,7 @@
       </linearGradient>
       <path
         id="csbllj_1664_"
-        class="csbllj-st8"
+        :class="`csbllj-${info.id}-st8`"
         d="M22.3,26.9v8.6c0,0.9,1.7,1.6,3.9,1.6c2.2,0,3.9-0.7,3.9-1.6v-8.6H22.3z"
       />
       <linearGradient
@@ -200,12 +200,12 @@
       </linearGradient>
       <path
         id="csbllj_1663_"
-        class="csbllj-st9"
+        :class="`csbllj-${info.id}-st9`"
         d="M38.8,11.9C38.8,5.3,33,0,25.8,0s-13,5.3-13,11.9v5h25.9V11.9z"
       />
       <ellipse
         id="csbllj_1662_"
-        class="csbllj-st10"
+        :class="`csbllj-${info.id}-st10`"
         cx="25.8"
         cy="16.9"
         rx="13"
@@ -213,7 +213,7 @@
       />
       <ellipse
         id="csbllj_1661_"
-        class="csbllj-st11"
+        :class="`csbllj-${info.id}-st11`"
         cx="25.8"
         cy="16.9"
         rx="10.7"
@@ -233,7 +233,7 @@
       </linearGradient>
       <path
         id="csbllj_1638_"
-        class="csbllj-st12"
+        :class="`csbllj-${info.id}-st12`"
         d="M25.8,24.7c-5.6,0-10.1-3.9-10.7-8.8c0,0.3-0.1,0.7-0.1,1c0,5.4,4.8,9.8,10.7,9.8
 					c5.9,0,10.7-4.4,10.7-9.8c0-0.3,0-0.7-0.1-1C36,20.9,31.4,24.7,25.8,24.7z"
       />

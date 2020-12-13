@@ -14,15 +14,15 @@
         v-html="
           `
         <style type='text/css'>
-					.lsscj-st0{fill:url(#lsscj_2_);}
-					.lsscj-st1{fill:url(#lsscj_3_);}
-					.lsscj-st2{fill:#DFE2E8;}
-					.lsscj-st3{fill:#294866;}
-					.lsscj-st4{fill:#446C88;}
-					.lsscj-st5{fill:url(#lsscj_4_);}
-					.lsscj-st6{fill:#040000;}
-					.lsscj-st7{fill:url(#lsscj_5_);}
-					.lsscj-st8{fill:url(#lsscj_6_);}
+					.lsscj-${info.id}-st0{fill:url(#lsscj_2_);}
+					.lsscj-${info.id}-st1{fill:url(#lsscj_3_);}
+					.lsscj-${info.id}-st2{fill:#DFE2E8;}
+					.lsscj-${info.id}-st3{fill:#294866;}
+					.lsscj-${info.id}-st4{fill:#446C88;}
+					.lsscj-${info.id}-st5{fill:url(#lsscj_4_);}
+					.lsscj-${info.id}-st6{fill:#040000;}
+					.lsscj-${info.id}-st7{fill:url(#lsscj_5_);}
+					.lsscj-${info.id}-st8{fill:url(#lsscj_6_);}
       </style>
       `
         "
@@ -45,7 +45,7 @@
       </linearGradient>
       <path
         id="lsscj_1041_"
-        class="lsscj-st0"
+        :class="`lsscj-${info.id}-st0`"
         d="M7.6,37H0.9C0.3,37,0,38,0,39s0.3,2,0.9,2h6.7V37z"
       />
       <linearGradient
@@ -63,24 +63,24 @@
       </linearGradient>
       <path
         id="lsscj_1040_"
-        class="lsscj-st1"
+        :class="`lsscj-${info.id}-st1`"
         d="M14.2,36H7.8c-0.9,0-1.3,1.6-1.3,3c0,1.5,0.5,3,1.3,3h6.5V36z"
       />
       <polygon
         id="lsscj_1026_"
-        class="lsscj-st2"
+        :class="`lsscj-${info.id}-st2`"
         points="50.9,44.3 30.3,46.3 11.7,44.3 11.7,35.3 31.8,33.3 50.9,35.3 "
       />
       <polygon
         id="lsscj_1014_"
-        class="lsscj-st3"
+        :class="`lsscj-${info.id}-st3`"
         points="50.9,30.6 11.7,30.6 15.7,18.1 46.9,18.1 "
       />
       <rect
         id="lsscj_1025_"
         x="11.7"
         y="30.6"
-        class="lsscj-st4"
+        :class="`lsscj-${info.id}-st4`"
         width="39.2"
         height="4.7"
       />
@@ -88,7 +88,7 @@
         id="lsscj_1028_"
         x="11.7"
         y="44.3"
-        class="lsscj-st4"
+        :class="`lsscj-${info.id}-st4`"
         width="39.2"
         height="4.7"
       />
@@ -106,12 +106,12 @@
       </linearGradient>
       <path
         id="lsscj_1035_"
-        class="lsscj-st5"
+        :class="`lsscj-${info.id}-st5`"
         d="M20.8,10.7v14c0,2.1,5.4,3.2,10.5,3.2s10.4-1.1,10.4-3.2v-14H20.8z"
       />
       <ellipse
         id="lsscj_1029_"
-        class="lsscj-st6"
+        :class="`lsscj-${info.id}-st6`"
         cx="17.1"
         cy="27.4"
         rx="2.3"
@@ -119,7 +119,7 @@
       />
       <ellipse
         id="lsscj_1030_"
-        class="lsscj-st6"
+        :class="`lsscj-${info.id}-st6`"
         cx="45.1"
         cy="27.4"
         rx="2.3"
@@ -127,7 +127,7 @@
       />
       <ellipse
         id="lsscj_1034_"
-        class="lsscj-st6"
+        :class="`lsscj-${info.id}-st6`"
         cx="43.8"
         cy="20.2"
         rx="1.8"
@@ -135,7 +135,7 @@
       />
       <ellipse
         id="lsscj_1036_"
-        class="lsscj-st6"
+        :class="`lsscj-${info.id}-st6`"
         cx="18.7"
         cy="20.2"
         rx="1.8"
@@ -155,12 +155,12 @@
       </linearGradient>
       <path
         id="lsscj_1039_"
-        class="lsscj-st7"
+        :class="`lsscj-${info.id}-st7`"
         d="M18.7,3.9v16.9c0,2.5,6.5,3.8,12.6,3.8s12.5-1.3,12.5-3.8V3.9L18.7,3.9z"
       />
       <path
         id="lsscj_1037_"
-        class="lsscj-st3"
+        :class="`lsscj-${info.id}-st3`"
         d="M31.3,7.9c-6.1,0-12.6-1.4-12.6-3.9c0-2.6,6.5-3.9,12.6-3.9s12.6,1.4,12.6,3.9
 					C43.8,6.5,37.4,7.9,31.3,7.9z"
       />
@@ -178,7 +178,7 @@
       </linearGradient>
       <path
         id="lsscj_1043_"
-        class="lsscj-st8"
+        :class="`lsscj-${info.id}-st8`"
         d="M31.3,12.7c-6.1,0-12.6-1.3-12.6-3.8v8c0,2.5,6.5,3.8,12.6,3.8c6.1,0,12.5-1.3,12.5-3.8v-8
 					C43.8,11.3,37.4,12.7,31.3,12.7z"
       />

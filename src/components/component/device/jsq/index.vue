@@ -14,49 +14,49 @@
         v-html="
           `
         <style type='text/css'>
-      .jsq-st0{fill:url(#jsq_1_);}
-            .jsq-st1{fill:url(#jsq_2_);}
-            .jsq-st2{fill:url(#jsq_3_);}
-            .jsq-st3{fill:url(#jsq_4_);}
-            .jsq-st4{fill:url(#jsq_5_);}
-            .jsq-st5{fill:#B3BED0;}
-            .jsq-st6{fill:url(#jsq_6_);}
-            .jsq-st7{fill:url(#jsq_7_);}
-            .jsq-st8{fill:url(#jsq_8_);}
-            .jsq-st9{fill:url(#jsq_9_);}
-            .jsq-st10{fill:url(#jsq_10_);}
-            .jsq-st11{fill:url(#jsq_11_);}
-            .jsq-st12{fill:url(#jsq_12_);}
-            .jsq-st13{fill:url(#jsq_13_);}
-            .jsq-st14{fill:url(#jsq_14_);}
-            .jsq-st15{fill:url(#jsq_15_);}
-            .jsq-st16{fill:url(#jsq_16_);}
-            .jsq-st17{fill:url(#jsq_17_);}
-            .jsq-st18{fill:url(#jsq_18_);}
-            .jsq-st19{fill:url(#jsq_19_);}
-            .jsq-st20{fill:url(#jsq_20_);}
-            .jsq-st21{fill:url(#jsq_21_);}
-            .jsq-st22{fill:url(#jsq_22_);}
-            .jsq-st23{fill:url(#jsq_23_);}
-            .jsq-st24{fill:url(#jsq_24_);}
-            .jsq-st25{fill:url(#jsq_25_);}
-            .jsq-st26{fill:url(#jsq_26_);}
-            .jsq-st27{fill:url(#jsq_27_);}
-            .jsq-st28{fill:url(#jsq_28_);}
-            .jsq-st29{fill:url(#jsq_29_);}
-            .jsq-st30{fill:url(#jsq_30_);}
-            .jsq-st31{fill:url(#jsq_31_);}
-            .jsq-st32{fill:url(#jsq_32_);}
-            .jsq-st33{fill:url(#jsq_33_);}
-            .jsq-st34{fill:url(#jsq_34_);}
-            .jsq-st35{fill:url(#jsq_35_);}
-            .jsq-st36{fill:url(#jsq_36_);}
-            .jsq-st37{fill:url(#jsq_37_);}
-            .jsq-st38{fill:url(#jsq_38_);}
-            .jsq-st39{opacity:0.4;}
-            .jsq-st40{fill:#FFFFFF;}
-            .jsq-st41{fill:#5F6675;}
-            .jsq-st42{fill:#484A49;}
+      .jsq-${info.id}-st0{fill:url(#jsq_1_);}
+            .jsq-${info.id}-st1{fill:url(#jsq_2_);}
+            .jsq-${info.id}-st2{fill:url(#jsq_3_);}
+            .jsq-${info.id}-st3{fill:url(#jsq_4_);}
+            .jsq-${info.id}-st4{fill:url(#jsq_5_);}
+            .jsq-${info.id}-st5{fill:#B3BED0;}
+            .jsq-${info.id}-st6{fill:url(#jsq_6_);}
+            .jsq-${info.id}-st7{fill:url(#jsq_7_);}
+            .jsq-${info.id}-st8{fill:url(#jsq_8_);}
+            .jsq-${info.id}-st9{fill:url(#jsq_9_);}
+            .jsq-${info.id}-st10{fill:url(#jsq_10_);}
+            .jsq-${info.id}-st11{fill:url(#jsq_11_);}
+            .jsq-${info.id}-st12{fill:url(#jsq_12_);}
+            .jsq-${info.id}-st13{fill:url(#jsq_13_);}
+            .jsq-${info.id}-st14{fill:url(#jsq_14_);}
+            .jsq-${info.id}-st15{fill:url(#jsq_15_);}
+            .jsq-${info.id}-st16{fill:url(#jsq_16_);}
+            .jsq-${info.id}-st17{fill:url(#jsq_17_);}
+            .jsq-${info.id}-st18{fill:url(#jsq_18_);}
+            .jsq-${info.id}-st19{fill:url(#jsq_19_);}
+            .jsq-${info.id}-st20{fill:url(#jsq_20_);}
+            .jsq-${info.id}-st21{fill:url(#jsq_21_);}
+            .jsq-${info.id}-st22{fill:url(#jsq_22_);}
+            .jsq-${info.id}-st23{fill:url(#jsq_23_);}
+            .jsq-${info.id}-st24{fill:url(#jsq_24_);}
+            .jsq-${info.id}-st25{fill:url(#jsq_25_);}
+            .jsq-${info.id}-st26{fill:url(#jsq_26_);}
+            .jsq-${info.id}-st27{fill:url(#jsq_27_);}
+            .jsq-${info.id}-st28{fill:url(#jsq_28_);}
+            .jsq-${info.id}-st29{fill:url(#jsq_29_);}
+            .jsq-${info.id}-st30{fill:url(#jsq_30_);}
+            .jsq-${info.id}-st31{fill:url(#jsq_31_);}
+            .jsq-${info.id}-st32{fill:url(#jsq_32_);}
+            .jsq-${info.id}-st33{fill:url(#jsq_33_);}
+            .jsq-${info.id}-st34{fill:url(#jsq_34_);}
+            .jsq-${info.id}-st35{fill:url(#jsq_35_);}
+            .jsq-${info.id}-st36{fill:url(#jsq_36_);}
+            .jsq-${info.id}-st37{fill:url(#jsq_37_);}
+            .jsq-${info.id}-st38{fill:url(#jsq_38_);}
+            .jsq-${info.id}-st39{opacity:0.4;}
+            .jsq-${info.id}-st40{fill:#FFFFFF;}
+            .jsq-${info.id}-st41{fill:#5F6675;}
+            .jsq-${info.id}-st42{fill:#484A49;}
       </style>
       `
         "
@@ -79,7 +79,7 @@
         <stop offset="1" style="stop-color:#535257" />
       </linearGradient>
       <path
-        class="jsq-st0"
+        :class="`jsq-${info.id}-st0`"
         d="M182.56,23.01H21.1C12.13,23.01,0,39.12,0,58.98s12.13,35.97,21.1,35.97h161.46V23.01z"
       />
       <radialGradient
@@ -96,7 +96,7 @@
         <stop offset="1" style="stop-color:#939CAA" />
       </radialGradient>
       <path
-        class="jsq-st1"
+        :class="`jsq-${info.id}-st1`"
         d="M182.56,94.95c-8.97,0-16.24-16.1-16.24-35.97s7.27-35.97,16.24-35.97s23.05,16.1,23.05,35.97
             S191.53,94.95,182.56,94.95z"
       />
@@ -112,7 +112,7 @@
         <stop offset="1" style="stop-color:#707A83" />
       </radialGradient>
       <path
-        class="jsq-st2"
+        :class="`jsq-${info.id}-st2`"
         d="M21.57,23.01H21.1C12.13,23.01,0,39.12,0,58.98s12.13,35.97,21.1,35.97h0.47V23.01z"
       />
       <g>
@@ -126,7 +126,10 @@
           <stop offset="0.595" style="stop-color:#292A22;stop-opacity:0.5" />
           <stop offset="1" style="stop-color:#292A22;stop-opacity:0" />
         </radialGradient>
-        <polygon class="jsq-st3" points="143.83,73 120.61,94.95 141.83,95 	" />
+        <polygon
+          :class="`jsq-${info.id}-st3`"
+          points="143.83,73 120.61,94.95 141.83,95 	"
+        />
         <linearGradient
           id="jsq_5_"
           gradientUnits="userSpaceOnUse"
@@ -139,12 +142,12 @@
           <stop offset="1" style="stop-color:#757D88" />
         </linearGradient>
         <path
-          class="jsq-st4"
+          :class="`jsq-${info.id}-st4`"
           d="M147.49,73.28c0,0,1.04,4.59,2.82,7.43c1.78,2.84,3.46,5.09,3.46,5.09v9.12l-10.87,8.9l2.21-25.3L147.49,73.28
               z"
         />
         <polygon
-          class="jsq-st5"
+          :class="`jsq-${info.id}-st5`"
           points="147.49,73.28 143.62,73.28 139.04,103.83 142.91,103.83 	"
         />
       </g>
@@ -159,7 +162,10 @@
           <stop offset="0.595" style="stop-color:#292A22;stop-opacity:0.5" />
           <stop offset="1" style="stop-color:#292A22;stop-opacity:0" />
         </radialGradient>
-        <polygon class="jsq-st6" points="30.83,73 7.61,94.95 28.83,95 	" />
+        <polygon
+          :class="`jsq-${info.id}-st6`"
+          points="30.83,73 7.61,94.95 28.83,95 	"
+        />
         <linearGradient
           id="jsq_7_"
           gradientUnits="userSpaceOnUse"
@@ -172,11 +178,11 @@
           <stop offset="1" style="stop-color:#757D88" />
         </linearGradient>
         <path
-          class="jsq-st7"
+          :class="`jsq-${info.id}-st7`"
           d="M34.49,73.28c0,0,1.04,4.59,2.82,7.43c1.78,2.84,3.46,5.09,3.46,5.09v9.12l-10.87,8.9l2.21-25.3L34.49,73.28z"
         />
         <polygon
-          class="jsq-st5"
+          :class="`jsq-${info.id}-st5`"
           points="34.49,73.28 30.62,73.28 26.04,103.83 29.91,103.83 	"
         />
       </g>
@@ -192,7 +198,7 @@
         <stop offset="1" style="stop-color:#707A83" />
       </radialGradient>
       <path
-        class="jsq-st8"
+        :class="`jsq-${info.id}-st8`"
         d="M182.56,94.95c-8.97,0-16.24-16.1-16.24-35.97s7.27-35.97,16.24-35.97s23.05,16.1,23.05,35.97
             S191.53,94.95,182.56,94.95z"
       />
@@ -214,7 +220,7 @@
           <stop offset="1" style="stop-color:#535257" />
         </linearGradient>
         <path
-          class="jsq-st9"
+          :class="`jsq-${info.id}-st9`"
           d="M170.08,26.47c0,0-2.07,2.16-5.79,2.16s-5.97-2.16-5.97-2.16V6.44h11.76V26.47z"
         />
 
@@ -232,7 +238,7 @@
         <rect
           x="158.32"
           y="6.28"
-          class="jsq-st10"
+          :class="`jsq-${info.id}-st10`"
           width="11.76"
           height="9.71"
         />
@@ -253,7 +259,7 @@
           <stop offset="1" style="stop-color:#535257" />
         </linearGradient>
         <path
-          class="jsq-st11"
+          :class="`jsq-${info.id}-st11`"
           d="M174.53,4.33c-2.43-0.99-6.15-1.62-10.33-1.62s-7.9,0.63-10.33,1.62h-2.91v2.7c0,2.39,5.93,4.33,13.24,4.33
               c7.31,0,13.24-1.94,13.24-4.33v-2.7H174.53z"
         />
@@ -268,7 +274,13 @@
           <stop offset="0" style="stop-color:#B2C1D2" />
           <stop offset="1" style="stop-color:#99A3B1" />
         </linearGradient>
-        <ellipse class="jsq-st12" cx="164.2" cy="4.33" rx="13.24" ry="4.33" />
+        <ellipse
+          :class="`jsq-${info.id}-st12`"
+          cx="164.2"
+          cy="4.33"
+          rx="13.24"
+          ry="4.33"
+        />
         <linearGradient
           id="jsq_13_"
           gradientUnits="userSpaceOnUse"
@@ -281,7 +293,13 @@
           <stop offset="0.3771" style="stop-color:#78828E" />
           <stop offset="1" style="stop-color:#474B4C" />
         </linearGradient>
-        <ellipse class="jsq-st13" cx="164.2" cy="3.79" rx="5.35" ry="1.75" />
+        <ellipse
+          :class="`jsq-${info.id}-st13`"
+          cx="164.2"
+          cy="3.79"
+          rx="5.35"
+          ry="1.75"
+        />
         <linearGradient
           id="jsq_14_"
           gradientUnits="userSpaceOnUse"
@@ -295,7 +313,7 @@
           <stop offset="1" style="stop-color:#C5D2E4" />
         </linearGradient>
         <path
-          class="jsq-st14"
+          :class="`jsq-${info.id}-st14`"
           d="M164.2,7.81c-6.88,0-12.53-1.71-13.17-3.91c-0.04,0.14-0.06,0.28-0.06,0.42c0,2.39,5.93,4.33,13.24,4.33
               c7.31,0,13.24-1.94,13.24-4.33c0-0.14-0.02-0.28-0.06-0.42C176.73,6.1,171.08,7.81,164.2,7.81z"
         />
@@ -318,7 +336,7 @@
           <stop offset="1" style="stop-color:#535257" />
         </linearGradient>
         <path
-          class="jsq-st15"
+          :class="`jsq-${info.id}-st15`"
           d="M136.33,26.47c0,0-2.07,2.16-5.79,2.16c-3.72,0-5.97-2.16-5.97-2.16V6.44h11.76V26.47z"
         />
 
@@ -336,7 +354,7 @@
         <rect
           x="124.57"
           y="6.28"
-          class="jsq-st16"
+          :class="`jsq-${info.id}-st16`"
           width="11.76"
           height="9.71"
         />
@@ -357,7 +375,7 @@
           <stop offset="1" style="stop-color:#535257" />
         </linearGradient>
         <path
-          class="jsq-st17"
+          :class="`jsq-${info.id}-st17`"
           d="M140.78,4.33c-2.43-0.99-6.15-1.62-10.33-1.62c-4.18,0-7.9,0.63-10.33,1.62h-2.91v2.7
               c0,2.39,5.93,4.33,13.24,4.33c7.31,0,13.24-1.94,13.24-4.33v-2.7H140.78z"
         />
@@ -372,7 +390,13 @@
           <stop offset="0" style="stop-color:#B2C1D2" />
           <stop offset="1" style="stop-color:#99A3B1" />
         </linearGradient>
-        <ellipse class="jsq-st18" cx="130.45" cy="4.33" rx="13.24" ry="4.33" />
+        <ellipse
+          :class="`jsq-${info.id}-st18`"
+          cx="130.45"
+          cy="4.33"
+          rx="13.24"
+          ry="4.33"
+        />
         <linearGradient
           id="jsq_19_"
           gradientUnits="userSpaceOnUse"
@@ -385,7 +409,13 @@
           <stop offset="0.3771" style="stop-color:#78828E" />
           <stop offset="1" style="stop-color:#474B4C" />
         </linearGradient>
-        <ellipse class="jsq-st19" cx="130.45" cy="3.79" rx="5.35" ry="1.75" />
+        <ellipse
+          :class="`jsq-${info.id}-st19`"
+          cx="130.45"
+          cy="3.79"
+          rx="5.35"
+          ry="1.75"
+        />
         <linearGradient
           id="jsq_20_"
           gradientUnits="userSpaceOnUse"
@@ -399,7 +429,7 @@
           <stop offset="1" style="stop-color:#C5D2E4" />
         </linearGradient>
         <path
-          class="jsq-st20"
+          :class="`jsq-${info.id}-st20`"
           d="M130.45,7.81c-6.88,0-12.53-1.71-13.17-3.91c-0.04,0.14-0.06,0.28-0.06,0.42c0,2.39,5.93,4.33,13.24,4.33
               c7.31,0,13.24-1.94,13.24-4.33c0-0.14-0.02-0.28-0.06-0.42C142.98,6.1,137.33,7.81,130.45,7.81z"
         />
@@ -422,7 +452,7 @@
           <stop offset="1" style="stop-color:#535257" />
         </linearGradient>
         <path
-          class="jsq-st21"
+          :class="`jsq-${info.id}-st21`"
           d="M102.58,26.47c0,0-2.07,2.16-5.79,2.16s-5.97-2.16-5.97-2.16V6.44h11.76V26.47z"
         />
 
@@ -437,7 +467,13 @@
           <stop offset="0.595" style="stop-color:#292A22;stop-opacity:0.5" />
           <stop offset="1" style="stop-color:#292A22;stop-opacity:0" />
         </radialGradient>
-        <rect x="90.82" y="6.28" class="jsq-st22" width="11.76" height="9.71" />
+        <rect
+          x="90.82"
+          y="6.28"
+          :class="`jsq-${info.id}-st22`"
+          width="11.76"
+          height="9.71"
+        />
         <linearGradient
           id="jsq_23_"
           gradientUnits="userSpaceOnUse"
@@ -455,7 +491,7 @@
           <stop offset="1" style="stop-color:#535257" />
         </linearGradient>
         <path
-          class="jsq-st23"
+          :class="`jsq-${info.id}-st23`"
           d="M107.03,4.33C104.6,3.34,100.88,2.7,96.7,2.7s-7.9,0.63-10.33,1.62h-2.91v2.7c0,2.39,5.93,4.33,13.24,4.33
               s13.24-1.94,13.24-4.33v-2.7H107.03z"
         />
@@ -470,7 +506,13 @@
           <stop offset="0" style="stop-color:#B2C1D2" />
           <stop offset="1" style="stop-color:#99A3B1" />
         </linearGradient>
-        <ellipse class="jsq-st24" cx="96.7" cy="4.33" rx="13.24" ry="4.33" />
+        <ellipse
+          :class="`jsq-${info.id}-st24`"
+          cx="96.7"
+          cy="4.33"
+          rx="13.24"
+          ry="4.33"
+        />
         <linearGradient
           id="jsq_25_"
           gradientUnits="userSpaceOnUse"
@@ -483,7 +525,13 @@
           <stop offset="0.3771" style="stop-color:#78828E" />
           <stop offset="1" style="stop-color:#474B4C" />
         </linearGradient>
-        <ellipse class="jsq-st25" cx="96.7" cy="3.79" rx="5.35" ry="1.75" />
+        <ellipse
+          :class="`jsq-${info.id}-st25`"
+          cx="96.7"
+          cy="3.79"
+          rx="5.35"
+          ry="1.75"
+        />
         <linearGradient
           id="jsq_26_"
           gradientUnits="userSpaceOnUse"
@@ -497,7 +545,7 @@
           <stop offset="1" style="stop-color:#C5D2E4" />
         </linearGradient>
         <path
-          class="jsq-st26"
+          :class="`jsq-${info.id}-st26`"
           d="M96.7,7.81c-6.88,0-12.53-1.71-13.17-3.91c-0.04,0.14-0.06,0.28-0.06,0.42c0,2.39,5.93,4.33,13.24,4.33
               s13.24-1.94,13.24-4.33c0-0.14-0.02-0.28-0.06-0.42C109.23,6.1,103.58,7.81,96.7,7.81z"
         />
@@ -520,7 +568,7 @@
           <stop offset="1" style="stop-color:#535257" />
         </linearGradient>
         <path
-          class="jsq-st27"
+          :class="`jsq-${info.id}-st27`"
           d="M68.83,26.47c0,0-2.07,2.16-5.79,2.16s-5.97-2.16-5.97-2.16V6.44h11.76V26.47z"
         />
 
@@ -535,7 +583,13 @@
           <stop offset="0.595" style="stop-color:#292A22;stop-opacity:0.5" />
           <stop offset="1" style="stop-color:#292A22;stop-opacity:0" />
         </radialGradient>
-        <rect x="57.07" y="6.28" class="jsq-st28" width="11.76" height="9.71" />
+        <rect
+          x="57.07"
+          y="6.28"
+          :class="`jsq-${info.id}-st28`"
+          width="11.76"
+          height="9.71"
+        />
         <linearGradient
           id="jsq_29_"
           gradientUnits="userSpaceOnUse"
@@ -553,7 +607,7 @@
           <stop offset="1" style="stop-color:#535257" />
         </linearGradient>
         <path
-          class="jsq-st29"
+          :class="`jsq-${info.id}-st29`"
           d="M73.28,4.33C70.85,3.34,67.13,2.7,62.95,2.7s-7.9,0.63-10.33,1.62h-2.91v2.7c0,2.39,5.93,4.33,13.24,4.33
               s13.24-1.94,13.24-4.33v-2.7H73.28z"
         />
@@ -568,7 +622,13 @@
           <stop offset="0" style="stop-color:#B2C1D2" />
           <stop offset="1" style="stop-color:#99A3B1" />
         </linearGradient>
-        <ellipse class="jsq-st30" cx="62.95" cy="4.33" rx="13.24" ry="4.33" />
+        <ellipse
+          :class="`jsq-${info.id}-st30`"
+          cx="62.95"
+          cy="4.33"
+          rx="13.24"
+          ry="4.33"
+        />
         <linearGradient
           id="jsq_31_"
           gradientUnits="userSpaceOnUse"
@@ -581,7 +641,13 @@
           <stop offset="0.3771" style="stop-color:#78828E" />
           <stop offset="1" style="stop-color:#474B4C" />
         </linearGradient>
-        <ellipse class="jsq-st31" cx="62.95" cy="3.79" rx="5.35" ry="1.75" />
+        <ellipse
+          :class="`jsq-${info.id}-st31`"
+          cx="62.95"
+          cy="3.79"
+          rx="5.35"
+          ry="1.75"
+        />
         <linearGradient
           id="jsq_32_"
           gradientUnits="userSpaceOnUse"
@@ -595,7 +661,7 @@
           <stop offset="1" style="stop-color:#C5D2E4" />
         </linearGradient>
         <path
-          class="jsq-st32"
+          :class="`jsq-${info.id}-st32`"
           d="M62.95,7.81c-6.88,0-12.53-1.71-13.17-3.91c-0.04,0.14-0.06,0.28-0.06,0.42c0,2.39,5.93,4.33,13.24,4.33
               s13.24-1.94,13.24-4.33c0-0.14-0.02-0.28-0.06-0.42C75.48,6.1,69.83,7.81,62.95,7.81z"
         />
@@ -618,7 +684,7 @@
           <stop offset="1" style="stop-color:#535257" />
         </linearGradient>
         <path
-          class="jsq-st33"
+          :class="`jsq-${info.id}-st33`"
           d="M35.08,26.47c0,0-2.07,2.16-5.79,2.16s-5.97-2.16-5.97-2.16V6.44h11.76V26.47z"
         />
 
@@ -633,7 +699,13 @@
           <stop offset="0.595" style="stop-color:#292A22;stop-opacity:0.5" />
           <stop offset="1" style="stop-color:#292A22;stop-opacity:0" />
         </radialGradient>
-        <rect x="23.32" y="6.28" class="jsq-st34" width="11.76" height="9.71" />
+        <rect
+          x="23.32"
+          y="6.28"
+          :class="`jsq-${info.id}-st34`"
+          width="11.76"
+          height="9.71"
+        />
         <linearGradient
           id="jsq_35_"
           gradientUnits="userSpaceOnUse"
@@ -651,7 +723,7 @@
           <stop offset="1" style="stop-color:#535257" />
         </linearGradient>
         <path
-          class="jsq-st35"
+          :class="`jsq-${info.id}-st35`"
           d="M39.53,4.33C37.1,3.34,33.38,2.7,29.2,2.7s-7.9,0.63-10.33,1.62h-2.91v2.7c0,2.39,5.93,4.33,13.24,4.33
               s13.24-1.94,13.24-4.33v-2.7H39.53z"
         />
@@ -666,7 +738,13 @@
           <stop offset="0" style="stop-color:#B2C1D2" />
           <stop offset="1" style="stop-color:#99A3B1" />
         </linearGradient>
-        <ellipse class="jsq-st36" cx="29.2" cy="4.33" rx="13.24" ry="4.33" />
+        <ellipse
+          :class="`jsq-${info.id}-st36`"
+          cx="29.2"
+          cy="4.33"
+          rx="13.24"
+          ry="4.33"
+        />
         <linearGradient
           id="jsq_37_"
           gradientUnits="userSpaceOnUse"
@@ -679,7 +757,13 @@
           <stop offset="0.3771" style="stop-color:#78828E" />
           <stop offset="1" style="stop-color:#474B4C" />
         </linearGradient>
-        <ellipse class="jsq-st37" cx="29.2" cy="3.79" rx="5.35" ry="1.75" />
+        <ellipse
+          :class="`jsq-${info.id}-st37`"
+          cx="29.2"
+          cy="3.79"
+          rx="5.35"
+          ry="1.75"
+        />
         <linearGradient
           id="jsq_38_"
           gradientUnits="userSpaceOnUse"
@@ -693,20 +777,20 @@
           <stop offset="1" style="stop-color:#C5D2E4" />
         </linearGradient>
         <path
-          class="jsq-st38"
+          :class="`jsq-${info.id}-st38`"
           d="M29.2,7.81c-6.88,0-12.53-1.71-13.17-3.91c-0.04,0.14-0.06,0.28-0.06,0.42c0,2.39,5.93,4.33,13.24,4.33
               s13.24-1.94,13.24-4.33c0-0.14-0.02-0.28-0.06-0.42C41.73,6.1,36.08,7.81,29.2,7.81z"
         />
       </g>
-      <g class="jsq-st39">
+      <g :class="`jsq-${info.id}-st39`">
         <path
-          class="jsq-st40"
+          :class="`jsq-${info.id}-st40`"
           d="M111.19,38.28H73.34c-3.4,0-6.35,2.37-7.04,5.7c-0.95,4.57-1.48,9.65-1.48,15.01c0,7.35,1,14.18,2.7,19.87
               c0.75,2.49,3.08,4.17,5.68,4.17h37.14c4.59,0,7.98-4.24,7.03-8.73c-0.99-4.65-1.54-9.83-1.54-15.31c0-4.85,0.43-9.47,1.22-13.68
               C117.71,41.65,114.91,38.28,111.19,38.28z"
         />
         <path
-          class="jsq-st41"
+          :class="`jsq-${info.id}-st41`"
           d="M110.33,83.52H73.19c-2.83,0-5.36-1.86-6.16-4.53c-1.78-5.94-2.72-12.86-2.72-20.01
               c0-5.27,0.5-10.35,1.49-15.11c0.73-3.53,3.9-6.09,7.53-6.09h37.85c1.92,0,3.73,0.85,4.96,2.33c1.23,1.47,1.73,3.4,1.38,5.29
               c-0.8,4.31-1.21,8.88-1.21,13.59c0,5.32,0.51,10.44,1.53,15.21c0.49,2.3-0.08,4.67-1.55,6.49
@@ -717,19 +801,19 @@
         />
       </g>
       <polygon
-        class="jsq-st42"
+        :class="`jsq-${info.id}-st42`"
         points="86.62,75.49 88.2,62.71 75.43,64.3 80.77,66.47 73.25,73.99 76.93,77.66 84.44,70.15 "
       />
       <polygon
-        class="jsq-st42"
+        :class="`jsq-${info.id}-st42`"
         points="105.27,56.83 92.5,58.42 94.08,45.64 96.25,50.98 103.77,43.47 107.45,47.14 99.93,54.66 "
       />
       <polygon
-        class="jsq-st42"
+        :class="`jsq-${info.id}-st42`"
         points="75.43,56.83 88.2,58.42 86.62,45.64 84.44,50.98 76.93,43.47 73.25,47.14 80.77,54.66 "
       />
       <polygon
-        class="jsq-st42"
+        :class="`jsq-${info.id}-st42`"
         points="94.08,75.49 92.5,62.71 105.27,64.3 99.93,66.47 107.45,73.99 103.77,77.66 96.25,70.15 "
       />
     </svg>

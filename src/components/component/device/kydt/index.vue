@@ -14,62 +14,62 @@
         v-html="
           `
         <style type='text/css'>
-        .kydt-st0 {
+        .kydt-${info.id}-st0 {
           fill: #e7e7e5;
         }
-        .kydt-st1 {
+        .kydt-${info.id}-st1 {
           opacity: 0.3;
         }
-        .kydt-st2 {
+        .kydt-${info.id}-st2 {
           fill: #5b5e6f;
         }
-        .kydt-st3 {
+        .kydt-${info.id}-st3 {
           fill: #cbcbc9;
         }
-        .kydt-st4 {
+        .kydt-${info.id}-st4 {
           fill: url(#kydt_1_);
         }
-        .kydt-st5 {
+        .kydt-${info.id}-st5 {
           fill: url(#kydt_2_);
         }
-        .kydt-st6 {
+        .kydt-${info.id}-st6 {
           opacity: 0.6;
         }
-        .kydt-st7 {
+        .kydt-${info.id}-st7 {
           fill: #a5a9ac;
         }
-        .kydt-st8 {
+        .kydt-${info.id}-st8 {
           fill: #c3c3c1;
         }
-        .kydt-st9 {
+        .kydt-${info.id}-st9 {
           fill: url(#kydt_3_);
         }
-        .kydt-st10 {
+        .kydt-${info.id}-st10 {
           fill: #ffffff;
         }
-        .kydt-st11 {
+        .kydt-${info.id}-st11 {
           fill: #7a7e89;
         }
-        .kydt-st12 {
+        .kydt-${info.id}-st12 {
           fill: url(#kydt_4_);
         }
-        .kydt-st13 {
+        .kydt-${info.id}-st13 {
           fill: url(#kydt_5_);
         }
-        .kydt-st14 {
+        .kydt-${info.id}-st14 {
           fill: #ff0000;
         }
-        .kydt-st15 {
+        .kydt-${info.id}-st15 {
           fill: url(#kydt_6_);
         }
-        .kydt-st16 {
+        .kydt-${info.id}-st16 {
           opacity: 0.4;
           fill: #ff0000;
         }
-        .kydt-st17 {
+        .kydt-${info.id}-st17 {
           fill: url(#kydt_7_);
         }
-        .kydt-st18 {
+        .kydt-${info.id}-st18 {
           opacity: 0.4;
         }
 
@@ -217,27 +217,69 @@
       </defs>
 
       <g>
-        <rect x="89.54" y="2" class="kydt-st0" width="125" height="234" />
-        <g class="kydt-st1">
-          <rect x="107.01" y="2" class="kydt-st2" width="1.99" height="33.27" />
+        <rect
+          x="89.54"
+          y="2"
+          :class="`kydt-${info.id}-st0`"
+          width="125"
+          height="234"
+        />
+        <g :class="`kydt-${info.id}-st1`">
+          <rect
+            x="107.01"
+            y="2"
+            :class="`kydt-${info.id}-st2`"
+            width="1.99"
+            height="33.27"
+          />
         </g>
-        <g class="kydt-st1">
-          <rect x="111.01" y="2" class="kydt-st2" width="1.99" height="33.27" />
+        <g :class="`kydt-${info.id}-st1`">
+          <rect
+            x="111.01"
+            y="2"
+            :class="`kydt-${info.id}-st2`"
+            width="1.99"
+            height="33.27"
+          />
         </g>
-        <g class="kydt-st1">
-          <rect x="115.01" y="2" class="kydt-st2" width="1.99" height="33.27" />
+        <g :class="`kydt-${info.id}-st1`">
+          <rect
+            x="115.01"
+            y="2"
+            :class="`kydt-${info.id}-st2`"
+            width="1.99"
+            height="33.27"
+          />
         </g>
-        <g class="kydt-st1">
-          <rect x="185.01" y="2" class="kydt-st2" width="1.99" height="33.27" />
+        <g :class="`kydt-${info.id}-st1`">
+          <rect
+            x="185.01"
+            y="2"
+            :class="`kydt-${info.id}-st2`"
+            width="1.99"
+            height="33.27"
+          />
         </g>
-        <g class="kydt-st1">
-          <rect x="189.01" y="2" class="kydt-st2" width="1.99" height="33.27" />
+        <g :class="`kydt-${info.id}-st1`">
+          <rect
+            x="189.01"
+            y="2"
+            :class="`kydt-${info.id}-st2`"
+            width="1.99"
+            height="33.27"
+          />
         </g>
-        <g class="kydt-st1">
-          <rect x="193.01" y="2" class="kydt-st2" width="1.99" height="33.27" />
+        <g :class="`kydt-${info.id}-st1`">
+          <rect
+            x="193.01"
+            y="2"
+            :class="`kydt-${info.id}-st2`"
+            width="1.99"
+            height="33.27"
+          />
         </g>
         <polygon
-          class="kydt-st3"
+          :class="`kydt-${info.id}-st3`"
           points="89.54,237.47 28.54,281.47 28.54,46 89.54,2 	"
         />
         <g>
@@ -256,7 +298,13 @@
             <stop offset="0.8632" style="stop-color:#C3C5C7" />
             <stop offset="1" style="stop-color:#A0A4A7" />
           </linearGradient>
-          <rect x="22.54" y="48" class="kydt-st4" width="132" height="239" />
+          <rect
+            x="22.54"
+            y="48"
+            :class="`kydt-${info.id}-st4`"
+            width="132"
+            height="239"
+          />
         </g>
         <g>
           <linearGradient
@@ -271,30 +319,30 @@
             <stop offset="1" style="stop-color:#5A5D6E" />
           </linearGradient>
           <polygon
-            class="kydt-st5"
+            :class="`kydt-${info.id}-st5`"
             points="154.54,287 220.54,239 220.54,0 154.54,48 		"
           />
         </g>
-        <g class="kydt-st6">
+        <g :class="`kydt-${info.id}-st6`">
           <polygon points="87.48,48 86.28,48 86.28,287 87.48,287 87.48,48 		" />
         </g>
         <g>
           <g>
             <path
-              class="kydt-st7"
+              :class="`kydt-${info.id}-st7`"
               d="M88.54,0l-66,48h132l66-48H88.54z M153.54,46h-125l61-44h125L153.54,46z"
             />
           </g>
         </g>
         <g>
           <polygon
-            class="kydt-st8"
+            :class="`kydt-${info.id}-st8`"
             points="170.59,26.44 0,26.44 4.34,23.13 174.93,23.13 		"
           />
         </g>
         <g>
           <polygon
-            class="kydt-st2"
+            :class="`kydt-${info.id}-st2`"
             points="170.59,289 174.93,285.69 174.93,23.13 170.59,26.44 		"
           />
         </g>
@@ -312,26 +360,35 @@
             <stop offset="1" style="stop-color:#838793" />
           </linearGradient>
           <polygon
-            class="kydt-st9"
+            :class="`kydt-${info.id}-st9`"
             points="0,26.44 0,289 19,289 19,50 151,50 151,289 170.59,289 170.59,26.44 		"
           />
         </g>
         <g>
-          <polygon class="kydt-st2" points="22.54,50 19,50 19,289 22.54,287 		" />
+          <polygon
+            :class="`kydt-${info.id}-st2`"
+            points="22.54,50 19,50 19,289 22.54,287 		"
+          />
         </g>
         <g>
-          <rect x="66" y="29.44" class="kydt-st10" width="40" height="17.56" />
+          <rect
+            x="66"
+            y="29.44"
+            :class="`kydt-${info.id}-st10`"
+            width="40"
+            height="17.56"
+          />
         </g>
         <g>
           <rect
             x="153.93"
             y="156.07"
-            class="kydt-st11"
+            :class="`kydt-${info.id}-st11`"
             width="14"
             height="30.72"
           />
         </g>
-        <g class="kydt-st6">
+        <g :class="`kydt-${info.id}-st6`">
           <circle cx="161.32" cy="164.59" r="4.17" />
         </g>
         <g>
@@ -349,9 +406,14 @@
             <stop offset="0" style="stop-color:#959A9E" />
             <stop offset="1" style="stop-color:#E1E2DD" />
           </linearGradient>
-          <circle class="kydt-st12" cx="160.94" cy="164.97" r="3.78" />
+          <circle
+            :class="`kydt-${info.id}-st12`"
+            cx="160.94"
+            cy="164.97"
+            r="3.78"
+          />
         </g>
-        <g class="kydt-st6">
+        <g :class="`kydt-${info.id}-st6`">
           <circle cx="161.32" cy="178.59" r="4.17" />
         </g>
         <g>
@@ -366,7 +428,12 @@
             <stop offset="0" style="stop-color:#959A9E" />
             <stop offset="1" style="stop-color:#E1E2DD" />
           </linearGradient>
-          <circle class="kydt-st13" cx="160.94" cy="178.97" r="3.78" />
+          <circle
+            :class="`kydt-${info.id}-st13`"
+            cx="160.94"
+            cy="178.97"
+            r="3.78"
+          />
         </g>
       </g>
       <g class="SVG_ani" v-if="pointValue == 1">
@@ -378,7 +445,7 @@
             repeatCount="indefinite"
           />
           <polygon
-            class="kydt-st14"
+            :class="`kydt-${info.id}-st14`"
             points="97.72,35.27 94.27,41.16 90.81,35.27 	"
           />
 
@@ -393,9 +460,14 @@
             <stop offset="0" style="stop-color:#FF0000" />
             <stop offset="1" style="stop-color:#FF0000;stop-opacity:0" />
           </radialGradient>
-          <circle class="kydt-st15" cx="94.27" cy="38.22" r="6.78" />
+          <circle
+            :class="`kydt-${info.id}-st15`"
+            cx="94.27"
+            cy="38.22"
+            r="6.78"
+          />
           <polygon
-            class="kydt-st16"
+            :class="`kydt-${info.id}-st16`"
             points="73.81,41.16 77.27,35.27 80.72,41.16 	"
           />
         </g>
@@ -407,7 +479,7 @@
             repeatCount="indefinite"
           />
           <polygon
-            class="kydt-st14"
+            :class="`kydt-${info.id}-st14`"
             points="73.81,41.16 77.27,35.27 80.72,41.16 	"
           />
           <radialGradient
@@ -420,9 +492,14 @@
             <stop offset="0" style="stop-color:#FF0000" />
             <stop offset="1" style="stop-color:#FF0000;stop-opacity:0" />
           </radialGradient>
-          <circle class="kydt-st17" cx="77.27" cy="38.22" r="6.78" />
+          <circle
+            :class="`kydt-${info.id}-st17`"
+            cx="77.27"
+            cy="38.22"
+            r="6.78"
+          />
           <polygon
-            class="kydt-st16"
+            :class="`kydt-${info.id}-st16`"
             points="97.72,35.27 94.27,41.16 90.81,35.27 	"
           />
         </g>
@@ -430,18 +507,18 @@
 
       <g class="SVG_sta" v-if="pointValue === 0">
         <polygon
-          class="kydt-st16"
+          :class="`kydt-${info.id}-st16`"
           points="73.81,41.16 77.27,35.27 80.72,41.16 	"
         />
         <polygon
-          class="kydt-st16"
+          :class="`kydt-${info.id}-st16`"
           points="97.72,35.27 94.27,41.16 90.81,35.27 	"
         />
       </g>
       <g class="SVG_alert" v-if="pointValue == 2">
-        <g class="kydt-st18">
+        <g :class="`kydt-${info.id}-st18`">
           <polygon
-            class="kydt-st14"
+            :class="`kydt-${info.id}-st14`"
             points="220.54,0 88.54,0 56.73,23.13 4.34,23.13 0,26.44 0,289 19,289 22.54,287 86.28,287 87.48,287 
                     151,287 151,289 170.59,289 174.93,285.69 174.93,272.17 220.54,239 		"
           />

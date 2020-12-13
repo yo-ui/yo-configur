@@ -14,20 +14,20 @@
         v-html="
           `
         <style type='text/css'>
-      .mcbjq-st0{fill:#B0B9C1;}
-					.mcbjq-st1{fill:url(#mcbjq_2_);}
-					.mcbjq-st2{fill:#DFE3E8;}
-					.mcbjq-st3{fill:#99A3AA;}
-					.mcbjq-st4{fill:url(#mcbjq_3_);}
-					.mcbjq-st5{fill:#AFB8BC;}
-					.mcbjq-st6{fill:#F2F5F9;}
+      .mcbjq-${info.id}-st0{fill:#B0B9C1;}
+					.mcbjq-${info.id}-st1{fill:url(#mcbjq_2_);}
+					.mcbjq-${info.id}-st2{fill:#DFE3E8;}
+					.mcbjq-${info.id}-st3{fill:#99A3AA;}
+					.mcbjq-${info.id}-st4{fill:url(#mcbjq_3_);}
+					.mcbjq-${info.id}-st5{fill:#AFB8BC;}
+					.mcbjq-${info.id}-st6{fill:#F2F5F9;}
       </style>
       `
         "
       ></defs>
       <path
         id="mcbjq_1505_"
-        class="mcbjq-st0"
+        :class="`mcbjq-${info.id}-st0`"
         d="M22.8,0H9.3H9.2h-6C1.5,0,0,1.5,0,3.3v4.9h9.2h0.1H26V3.3C26,1.5,24.6,0,22.8,0z"
       />
       <linearGradient
@@ -43,12 +43,12 @@
       </linearGradient>
       <path
         id="mcbjq_1503_"
-        class="mcbjq-st1"
+        :class="`mcbjq-${info.id}-st1`"
         d="M9.3,42.5H3.3C1.5,42.5,0,41,0,39.2V5.7c0-1.8,1.5-3.3,3.3-3.3h6.1V42.5z"
       />
       <path
         id="mcbjq_1500_"
-        class="mcbjq-st2"
+        :class="`mcbjq-${info.id}-st2`"
         d="M22.8,43.9H10.7c-0.8,0-1.5-0.7-1.5-1.5V6.4c0-0.8,0.7-1.5,1.5-1.5h12.1
 					c1.8,0,3.3,1.5,3.3,3.3v32.5C26,42.5,24.6,43.9,22.8,43.9z"
       />
@@ -70,7 +70,7 @@
       />
       <path
         id="mcbjq_1515_"
-        class="mcbjq-st0"
+        :class="`mcbjq-${info.id}-st0`"
         d="M32.3,0l6.4,0l0.1,0l6,0C46.6,0,48,1.5,48,3.3v4.9h-9.2h-0.1H29V3.3C29,1.5,30.5,0,32.3,0z"
       />
       <linearGradient
@@ -87,18 +87,18 @@
       </linearGradient>
       <path
         id="mcbjq_1514_"
-        class="mcbjq-st4"
+        :class="`mcbjq-${info.id}-st4`"
         d="M38.7,42.5h6.1c1.8,0,3.3-1.5,3.3-3.3V5.7c0-1.8-1.5-3.3-3.3-3.3h-6.1V42.5z"
       />
       <path
         id="mcbjq_1512_"
-        class="mcbjq-st2"
+        :class="`mcbjq-${info.id}-st2`"
         d="M32.3,43.9h5.1c0.8,0,1.5-0.7,1.5-1.5V6.4c0-0.8-0.7-1.5-1.5-1.5h-5.1c-1.8,0-3.3,1.5-3.3,3.3
 					v32.5C29,42.5,30.5,43.9,32.3,43.9z"
       />
       <ellipse
         id="mcbjq_1508_"
-        class="mcbjq-st3"
+        :class="`mcbjq-${info.id}-st3`"
         cx="43.6"
         cy="9.6"
         rx="1.7"
@@ -106,7 +106,7 @@
       />
       <ellipse
         id="mcbjq_1507_"
-        class="mcbjq-st3"
+        :class="`mcbjq-${info.id}-st3`"
         cx="43.6"
         cy="35.9"
         rx="1.7"
@@ -114,7 +114,7 @@
       />
       <ellipse
         id="mcbjq_1506_"
-        class="mcbjq-st3"
+        :class="`mcbjq-${info.id}-st3`"
         cx="17.4"
         cy="12.8"
         rx="4.4"
@@ -124,7 +124,7 @@
         id="mcbjq_1509_"
         x="11.8"
         y="32.3"
-        class="mcbjq-st5"
+        :class="`mcbjq-${info.id}-st5`"
         width="11.5"
         height="1"
       />
@@ -132,7 +132,7 @@
         id="mcbjq_1510_"
         x="11.8"
         y="35.3"
-        class="mcbjq-st5"
+        :class="`mcbjq-${info.id}-st5`"
         width="11.5"
         height="1"
       />
@@ -140,13 +140,13 @@
         id="mcbjq_1511_"
         x="11.8"
         y="38.3"
-        class="mcbjq-st5"
+        :class="`mcbjq-${info.id}-st5`"
         width="11.5"
         height="1"
       />
       <ellipse
         id="mcbjq_1504_"
-        class="mcbjq-st6"
+        :class="`mcbjq-${info.id}-st6`"
         cx="17.4"
         cy="13.3"
         rx="3.9"

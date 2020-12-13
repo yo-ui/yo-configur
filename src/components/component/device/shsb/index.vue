@@ -14,61 +14,61 @@
         v-html="
           `
         <style type='text/css'>
-      .shsb-st0{fill:#0E1F3D;}
-              .shsb-st1{fill:#203972;}
-              .shsb-st2{fill:url(#Shsb_1_);}
-              .shsb-st3{fill:url(#Shsb_2_);}
-              .shsb-st4{opacity:0.8;fill:#FFFFFF;enable-background:new    ;}
-              .shsb-st5{fill:url(#Shsb_3_);}
-              .shsb-st6{fill:url(#Shsb_4_);}
-              .shsb-st7{fill:url(#Shsb_5_);}
-              .shsb-st8{fill:url(#Shsb_6_);}
-              .shsb-st9{fill:url(#Shsb_7_);}
-              .shsb-st10{fill:url(#Shsb_8_);}
-              .shsb-st11{fill:url(#Shsb_9_);}
-              .shsb-st12{fill:#2C6977;}
-              .shsb-st13{fill:url(#Shsb_10_);}
-              .shsb-st14{fill:url(#Shsb_11_);}
-              .shsb-st15{fill:#0A3055;}
-              .shsb-st16{fill:url(#Shsb_12_);}
-              .shsb-st17{fill:url(#Shsb_13_);}
-              .shsb-st18{fill:#8CC9EA;}
-              .shsb-st19{fill:url(#Shsb_14_);}
-              .shsb-st20{fill:url(#Shsb_15_);}
-              .shsb-st21{fill:url(#Shsb_16_);}
-              .shsb-st22{fill:url(#Shsb_17_);}
-              .shsb-st23{fill:url(#Shsb_18_);}
-              .shsb-st24{fill:url(#Shsb_19_);}
-              .shsb-st25{fill:url(#Shsb_20_);}
-              .shsb-st26{fill:url(#Shsb_21_);}
-              .shsb-st27{fill:url(#Shsb_22_);}
-              .shsb-st28{fill:url(#Shsb_23_);}
-              .shsb-st29{fill:url(#Shsb_24_);}
-              .shsb-st30{fill:url(#Shsb_25_);}
-              .shsb-st31{fill:url(#Shsb_26_);}
-              .shsb-st32{fill:url(#Shsb_27_);}
-              .shsb-st33{fill:#489ACC;}
-              .shsb-st34{fill:url(#Shsb_28_);}
-              .shsb-st35{fill:#7BB8D6;}
-              .shsb-st36{fill:url(#Shsb_29_);}
-              .shsb-st37{opacity:0.5;}
-              .shsb-st38{fill:#FFFFFF;}
-              .shsb-st39{fill:url(#Shsb_30_);}
-              .shsb-st40{fill:url(#Shsb_31_);}
-              .shsb-st41{opacity:0.6;fill:#FF0000;}
+      .shsb-${info.id}-st0{fill:#0E1F3D;}
+              .shsb-${info.id}-st1{fill:#203972;}
+              .shsb-${info.id}-st2{fill:url(#Shsb_1_);}
+              .shsb-${info.id}-st3{fill:url(#Shsb_2_);}
+              .shsb-${info.id}-st4{opacity:0.8;fill:#FFFFFF;enable-background:new    ;}
+              .shsb-${info.id}-st5{fill:url(#Shsb_3_);}
+              .shsb-${info.id}-st6{fill:url(#Shsb_4_);}
+              .shsb-${info.id}-st7{fill:url(#Shsb_5_);}
+              .shsb-${info.id}-st8{fill:url(#Shsb_6_);}
+              .shsb-${info.id}-st9{fill:url(#Shsb_7_);}
+              .shsb-${info.id}-st10{fill:url(#Shsb_8_);}
+              .shsb-${info.id}-st11{fill:url(#Shsb_9_);}
+              .shsb-${info.id}-st12{fill:#2C6977;}
+              .shsb-${info.id}-st13{fill:url(#Shsb_10_);}
+              .shsb-${info.id}-st14{fill:url(#Shsb_11_);}
+              .shsb-${info.id}-st15{fill:#0A3055;}
+              .shsb-${info.id}-st16{fill:url(#Shsb_12_);}
+              .shsb-${info.id}-st17{fill:url(#Shsb_13_);}
+              .shsb-${info.id}-st18{fill:#8CC9EA;}
+              .shsb-${info.id}-st19{fill:url(#Shsb_14_);}
+              .shsb-${info.id}-st20{fill:url(#Shsb_15_);}
+              .shsb-${info.id}-st21{fill:url(#Shsb_16_);}
+              .shsb-${info.id}-st22{fill:url(#Shsb_17_);}
+              .shsb-${info.id}-st23{fill:url(#Shsb_18_);}
+              .shsb-${info.id}-st24{fill:url(#Shsb_19_);}
+              .shsb-${info.id}-st25{fill:url(#Shsb_20_);}
+              .shsb-${info.id}-st26{fill:url(#Shsb_21_);}
+              .shsb-${info.id}-st27{fill:url(#Shsb_22_);}
+              .shsb-${info.id}-st28{fill:url(#Shsb_23_);}
+              .shsb-${info.id}-st29{fill:url(#Shsb_24_);}
+              .shsb-${info.id}-st30{fill:url(#Shsb_25_);}
+              .shsb-${info.id}-st31{fill:url(#Shsb_26_);}
+              .shsb-${info.id}-st32{fill:url(#Shsb_27_);}
+              .shsb-${info.id}-st33{fill:#489ACC;}
+              .shsb-${info.id}-st34{fill:url(#Shsb_28_);}
+              .shsb-${info.id}-st35{fill:#7BB8D6;}
+              .shsb-${info.id}-st36{fill:url(#Shsb_29_);}
+              .shsb-${info.id}-st37{opacity:0.5;}
+              .shsb-${info.id}-st38{fill:#FFFFFF;}
+              .shsb-${info.id}-st39{fill:url(#Shsb_30_);}
+              .shsb-${info.id}-st40{fill:url(#Shsb_31_);}
+              .shsb-${info.id}-st41{opacity:0.6;fill:#FF0000;}
       </style>
       `
         "
       ></defs>
       <g id="SVG_base">
         <polygon
-          class="shsb-st0"
+          :class="`shsb-${info.id}-st0`"
           points="21.49,155.31 40.47,140.24 40.47,128.61 21.49,143.68 	"
         />
         <rect
           x="40.47"
           y="128.61"
-          class="shsb-st1"
+          :class="`shsb-${info.id}-st1`"
           width="151.39"
           height="11.63"
         />
@@ -83,7 +83,13 @@
           <stop offset="0" style="stop-color:#3674A5" />
           <stop offset="1" style="stop-color:#4B8DC1" />
         </linearGradient>
-        <rect x="3.33" y="149.07" class="shsb-st2" width="175.18" height="22" />
+        <rect
+          x="3.33"
+          y="149.07"
+          :class="`shsb-${info.id}-st2`"
+          width="175.18"
+          height="22"
+        />
         <linearGradient
           id="Shsb_2_"
           gradientUnits="userSpaceOnUse"
@@ -96,11 +102,11 @@
           <stop offset="1" style="stop-color:#3A72AB" />
         </linearGradient>
         <polygon
-          class="shsb-st3"
+          :class="`shsb-${info.id}-st3`"
           points="211.08,145.21 178.51,171.07 178.51,149.07 211.08,123.21 	"
         />
         <polygon
-          class="shsb-st4"
+          :class="`shsb-${info.id}-st4`"
           points="178.7,149.6 3.33,149.6 3.33,148.54 178.33,148.54 210.75,122.8 211.41,123.62 	"
         />
         <linearGradient
@@ -115,7 +121,7 @@
           <stop offset="1" style="stop-color:#022952" />
         </linearGradient>
         <path
-          class="shsb-st5"
+          :class="`shsb-${info.id}-st5`"
           d="M35.91,123.21L3.33,149.07h175.18l32.57-25.86H35.91z M172.88,143.68H21.49l18.98-15.07h151.39L172.88,143.68z
                 "
         />
@@ -133,7 +139,7 @@
           <stop offset="0.8966" style="stop-color:#3C7CC2" />
         </linearGradient>
         <path
-          class="shsb-st6"
+          :class="`shsb-${info.id}-st6`"
           d="M13.01,56.67C5.82,56.67,0,69.99,0,86.42s5.82,29.75,13.01,29.75l28.49,8V48.67L13.01,56.67z"
         />
 
@@ -149,7 +155,7 @@
           <stop offset="1" style="stop-color:#000000;stop-opacity:0" />
         </radialGradient>
         <path
-          class="shsb-st7"
+          :class="`shsb-${info.id}-st7`"
           d="M13.01,56.67C5.82,56.67,0,69.99,0,86.42s5.82,29.75,13.01,29.75l28.49,8V48.67L13.01,56.67z"
         />
         <linearGradient
@@ -167,7 +173,7 @@
           <stop offset="1" style="stop-color:#5196C9" />
         </linearGradient>
         <path
-          class="shsb-st8"
+          :class="`shsb-${info.id}-st8`"
           d="M39.26,42.42c-12.15,0-22,19.7-22,44s9.85,44,22,44h27.5v-88H39.26z"
         />
         <linearGradient
@@ -181,7 +187,13 @@
           <stop offset="0" style="stop-color:#204C8B" />
           <stop offset="1" style="stop-color:#1C3850" />
         </linearGradient>
-        <ellipse class="shsb-st9" cx="66.76" cy="86.42" rx="22" ry="44" />
+        <ellipse
+          :class="`shsb-${info.id}-st9`"
+          cx="66.76"
+          cy="86.42"
+          rx="22"
+          ry="44"
+        />
         <linearGradient
           id="Shsb_8_"
           gradientUnits="userSpaceOnUse"
@@ -195,7 +207,7 @@
           <stop offset="1" style="stop-color:#183A68" />
         </linearGradient>
         <path
-          class="shsb-st10"
+          :class="`shsb-${info.id}-st10`"
           d="M70.06,44.23c-11.65,0-21.09,18.89-21.09,42.19s9.44,42.19,21.09,42.19h60.71V44.23H70.06z"
         />
         <linearGradient
@@ -213,7 +225,7 @@
           <stop offset="1" style="stop-color:#5196C9" />
         </linearGradient>
         <path
-          class="shsb-st11"
+          :class="`shsb-${info.id}-st11`"
           d="M133,42.42h-1.75l-0.48,0.4H65.82c-1.57,0.42-3.09,1.16-4.54,2.2h66.84l-3.37,2.8H58.18
                 c-0.62,0.68-1.22,1.41-1.8,2.2h67.17l-1.5,2.8h-67.5c-0.42,0.7-0.82,1.44-1.21,2.2h67.53l-1.5,2.8H52.03
                 c-0.31,0.72-0.61,1.45-0.89,2.2h67.04l-1.5,2.8h-66.5c-0.23,0.72-0.45,1.45-0.66,2.2h66.72l-0.57,2.8H48.8
@@ -224,7 +236,13 @@
                 c0.28,0.76,0.58,1.49,0.89,2.2h65.59l1.68,2.8H53.33c0.39,0.76,0.79,1.5,1.21,2.2h66.08l0.85,1.41l1.6,1.39H56.38
                 c0.58,0.79,1.18,1.52,1.8,2.2h67.43l3.22,2.8H61.28c1.45,1.04,2.97,1.79,4.54,2.2h63.42v-1.84l2.58,2.24H133V42.42z"
         />
-        <ellipse class="shsb-st12" cx="158.99" cy="86.42" rx="22" ry="44" />
+        <ellipse
+          :class="`shsb-${info.id}-st12`"
+          cx="158.99"
+          cy="86.42"
+          rx="22"
+          ry="44"
+        />
         <linearGradient
           id="Shsb_10_"
           gradientUnits="userSpaceOnUse"
@@ -240,7 +258,7 @@
           <stop offset="1" style="stop-color:#5196C9" />
         </linearGradient>
         <path
-          class="shsb-st13"
+          :class="`shsb-${info.id}-st13`"
           d="M131.49,42.42c-12.15,0-22,19.7-22,44s9.85,44,22,44h27.5v-88H131.49z"
         />
         <linearGradient
@@ -254,9 +272,15 @@
           <stop offset="0" style="stop-color:#204C8B" />
           <stop offset="1" style="stop-color:#1C3850" />
         </linearGradient>
-        <ellipse class="shsb-st14" cx="158.99" cy="86.42" rx="22" ry="44" />
+        <ellipse
+          :class="`shsb-${info.id}-st14`"
+          cx="158.99"
+          cy="86.42"
+          rx="22"
+          ry="44"
+        />
         <path
-          class="shsb-st15"
+          :class="`shsb-${info.id}-st15`"
           d="M92.49,86.42c0-6.65,0.74-12.95,2.06-18.6H66.53c-2,0-3.63,1.62-3.63,3.63v32.75c0,2,1.62,3.63,3.63,3.63
                 h28.74C93.5,101.48,92.49,94.19,92.49,86.42z"
         />
@@ -272,7 +296,7 @@
           <stop offset="1" style="stop-color:#214F81" />
         </linearGradient>
         <path
-          class="shsb-st16"
+          :class="`shsb-${info.id}-st16`"
           d="M84.24,107.82H54.53c-2,0-3.63-1.62-3.63-3.63V71.44c0-2,1.62-3.63,3.63-3.63h29.72c2,0,3.63,1.62,3.63,3.63
                 v32.75C87.87,106.19,86.25,107.82,84.24,107.82z"
         />
@@ -288,12 +312,12 @@
           <stop offset="1" style="stop-color:#428AB8" />
         </linearGradient>
         <polygon
-          class="shsb-st17"
+          :class="`shsb-${info.id}-st17`"
           points="58.97,69.89 51.74,77.13 51.74,99.71 58.97,106.94 77.55,106.94 84.79,99.71 84.79,77.13
                 77.55,69.89 	"
         />
         <polygon
-          class="shsb-st18"
+          :class="`shsb-${info.id}-st18`"
           points="77.55,69.89 58.97,69.89 57.83,71.03 75.97,71.03 83.2,78.27 83.2,101.29 84.79,99.71 84.79,77.13
                 "
         />
@@ -318,7 +342,13 @@
           <stop offset="0.8631" style="stop-color:#3C7CC2" />
           <stop offset="1" style="stop-color:#274579" />
         </radialGradient>
-        <ellipse class="shsb-st19" cx="176.89" cy="87.78" rx="33.43" ry="52" />
+        <ellipse
+          :class="`shsb-${info.id}-st19`"
+          cx="176.89"
+          cy="87.78"
+          rx="33.43"
+          ry="52"
+        />
         <linearGradient
           id="Shsb_15_"
           gradientUnits="userSpaceOnUse"
@@ -344,7 +374,13 @@
           />
           <stop offset="1" style="stop-color:#0C264B" />
         </linearGradient>
-        <ellipse class="shsb-st20" cx="176.89" cy="87.78" rx="33.43" ry="52" />
+        <ellipse
+          :class="`shsb-${info.id}-st20`"
+          cx="176.89"
+          cy="87.78"
+          rx="33.43"
+          ry="52"
+        />
         <linearGradient
           id="Shsb_16_"
           gradientUnits="userSpaceOnUse"
@@ -361,7 +397,7 @@
           <stop offset="1" style="stop-color:#3A64A4" />
         </linearGradient>
         <path
-          class="shsb-st21"
+          :class="`shsb-${info.id}-st21`"
           d="M190.86,42.41c0,0-5,5.22-13.97,5.22c-8.97,0-14.42-5.22-14.42-5.22V15.54h28.39V42.41z"
         />
         <linearGradient
@@ -379,7 +415,7 @@
           <stop offset="1" style="stop-color:#5196C9" />
         </linearGradient>
         <path
-          class="shsb-st22"
+          :class="`shsb-${info.id}-st22`"
           d="M201.59,10.44c-5.85-2.39-14.84-3.92-24.93-3.92s-19.07,1.53-24.93,3.92h-7.02v6.53
                 c0,5.77,14.3,10.44,31.94,10.44s31.94-4.68,31.94-10.44v-6.53H201.59z"
         />
@@ -395,7 +431,7 @@
           <stop offset="1" style="stop-color:#428AB8" />
         </linearGradient>
         <ellipse
-          class="shsb-st23"
+          :class="`shsb-${info.id}-st23`"
           cx="176.67"
           cy="10.44"
           rx="31.94"
@@ -413,7 +449,13 @@
           <stop offset="0.3771" style="stop-color:#4474BB" />
           <stop offset="1" style="stop-color:#0C264B" />
         </linearGradient>
-        <ellipse class="shsb-st24" cx="176.67" cy="9.14" rx="12.92" ry="4.22" />
+        <ellipse
+          :class="`shsb-${info.id}-st24`"
+          cx="176.67"
+          cy="9.14"
+          rx="12.92"
+          ry="4.22"
+        />
         <linearGradient
           id="Shsb_20_"
           gradientUnits="userSpaceOnUse"
@@ -427,7 +469,7 @@
           <stop offset="1" style="stop-color:#46A9D3" />
         </linearGradient>
         <path
-          class="shsb-st25"
+          :class="`shsb-${info.id}-st25`"
           d="M176.67,18.86c-16.59,0-30.23-4.14-31.79-9.43c-0.1,0.33-0.15,0.67-0.15,1.01c0,5.77,14.3,10.44,31.94,10.44
                 s31.94-4.68,31.94-10.44c0-0.34-0.05-0.68-0.15-1.01C206.89,14.72,193.26,18.86,176.67,18.86z"
         />
@@ -446,7 +488,7 @@
           <stop offset="1" style="stop-color:#5196C9" />
         </linearGradient>
         <ellipse
-          class="shsb-st26"
+          :class="`shsb-${info.id}-st26`"
           cx="184.33"
           cy="86.63"
           rx="8.02"
@@ -470,7 +512,7 @@
           <stop offset="1" style="stop-color:#3A64A4" />
         </linearGradient>
         <path
-          class="shsb-st27"
+          :class="`shsb-${info.id}-st27`"
           d="M186.11,101.25c0,0-5.22-2.95-5.22-13.97c0-11.75,5.22-14.42,5.22-14.42h32.87v28.39H186.11z"
         />
 
@@ -490,7 +532,7 @@
           <stop offset="1" style="stop-color:#5196C9" />
         </linearGradient>
         <path
-          class="shsb-st28"
+          :class="`shsb-${info.id}-st28`"
           d="M224.08,111.99c2.39-5.85,3.92-14.84,3.92-24.93s-1.53-19.07-3.92-24.93v-7.02h-6.53
                 c-5.77,0-10.44,14.3-10.44,31.94S211.78,119,217.55,119h6.53V111.99z"
         />
@@ -508,7 +550,7 @@
           <stop offset="1" style="stop-color:#428AB8" />
         </linearGradient>
         <ellipse
-          class="shsb-st29"
+          :class="`shsb-${info.id}-st29`"
           cx="224.08"
           cy="87.06"
           rx="10.44"
@@ -529,7 +571,7 @@
           <stop offset="1" style="stop-color:#0C264B" />
         </linearGradient>
         <ellipse
-          class="shsb-st30"
+          :class="`shsb-${info.id}-st30`"
           cx="225.38"
           cy="87.06"
           rx="4.22"
@@ -550,7 +592,7 @@
           <stop offset="1" style="stop-color:#46A9D3" />
         </linearGradient>
         <path
-          class="shsb-st31"
+          :class="`shsb-${info.id}-st31`"
           d="M215.66,87.06c0-16.59,4.14-30.23,9.43-31.79c-0.33-0.1-0.67-0.15-1.01-0.15c-5.77,0-10.44,14.3-10.44,31.94
                 S218.31,119,224.08,119c0.34,0,0.68-0.05,1.01-0.15C219.8,117.29,215.66,103.65,215.66,87.06z"
         />
@@ -566,12 +608,12 @@
           <stop offset="1" style="stop-color:#3A72AB" />
         </linearGradient>
         <path
-          class="shsb-st32"
+          :class="`shsb-${info.id}-st32`"
           d="M144.34,115.27c0,0,1.06,4.65,2.86,7.52c1.8,2.88,3.51,5.16,3.51,5.16v9.24l-11.01,9.02l2.24-25.64
                 L144.34,115.27z"
         />
         <polygon
-          class="shsb-st33"
+          :class="`shsb-${info.id}-st33`"
           points="144.34,115.27 140.43,115.27 135.78,146.22 139.7,146.22 	"
         />
         <linearGradient
@@ -586,12 +628,12 @@
           <stop offset="1" style="stop-color:#3A72AB" />
         </linearGradient>
         <path
-          class="shsb-st34"
+          :class="`shsb-${info.id}-st34`"
           d="M38.81,115.27c0,0,1.06,4.65,2.86,7.52c1.8,2.88,3.51,2.4,3.51,2.4v12.01l-11.01,9.02l2.24-25.64
                 L38.81,115.27z"
         />
         <polygon
-          class="shsb-st33"
+          :class="`shsb-${info.id}-st33`"
           points="38.81,115.27 34.89,115.27 30.25,146.22 34.17,146.22 	"
         />
       </g>
@@ -606,12 +648,12 @@
           />
           <g>
             <path
-              class="shsb-st1"
+              :class="`shsb-${info.id}-st1`"
               d="M124.01,86.42c0-19.92,6.34-36.47,14.71-39.95H70.99c-9.76,0-17.67,17.88-17.67,39.95s7.91,39.95,17.67,39.95
                   h67.73C130.36,122.89,124.01,106.34,124.01,86.42z"
             />
             <ellipse
-              class="shsb-st0"
+              :class="`shsb-${info.id}-st0`"
               cx="70.99"
               cy="86.42"
               rx="17.67"
@@ -619,12 +661,12 @@
             />
             <g>
               <path
-                class="shsb-st33"
+                :class="`shsb-${info.id}-st33`"
                 d="M138.73,126.37c-1.32-0.55-2.58-1.42-3.78-2.58h-70.2c1.94,1.66,4.05,2.58,6.25,2.58H138.73z"
               />
             </g>
             <path
-              class="shsb-st35"
+              :class="`shsb-${info.id}-st35`"
               d="M138.72,46.47H70.99c-2.19,0-4.29,0.91-6.22,2.56h70.2C136.16,47.88,137.42,47.02,138.72,46.47z"
             />
             <linearGradient
@@ -642,51 +684,51 @@
               <stop offset="1" style="stop-color:#8D9EA6" />
             </linearGradient>
             <path
-              class="shsb-st36"
+              :class="`shsb-${info.id}-st36`"
               d="M61.43,86.42c0,18.83,6.67,34.09,14.91,34.09h55.88c-4.93-7.24-8.2-19.8-8.2-34.09
                   c0-14.29,3.26-26.85,8.2-34.09H76.34C68.11,52.33,61.43,67.59,61.43,86.42z"
             />
-            <g class="shsb-st37">
+            <g :class="`shsb-${info.id}-st37`">
               <path
-                class="shsb-st38"
+                :class="`shsb-${info.id}-st38`"
                 d="M66.8,60.23h61.46c0.67-1.78,1.4-3.44,2.19-4.94H70.27C69.01,56.58,67.84,58.24,66.8,60.23z"
               />
               <path
-                class="shsb-st38"
+                :class="`shsb-${info.id}-st38`"
                 d="M124.06,83.62c0.05-1.68,0.15-3.33,0.28-4.94H61.82c-0.16,1.61-0.28,3.26-0.34,4.94H124.06z"
               />
               <path
-                class="shsb-st38"
+                :class="`shsb-${info.id}-st38`"
                 d="M124.51,76.92l0,0.05c0-0.03,0.01-0.06,0.01-0.09L124.51,76.92z"
               />
               <path
-                class="shsb-st38"
+                :class="`shsb-${info.id}-st38`"
                 d="M125.72,103.68H63.48c0.45,1.76,0.97,3.41,1.55,4.94h61.91C126.49,107.05,126.07,105.4,125.72,103.68z"
               />
               <path
-                class="shsb-st38"
+                :class="`shsb-${info.id}-st38`"
                 d="M129.64,115.93H68.89c1.26,1.66,2.63,2.92,4.09,3.69h58.68C130.94,118.5,130.27,117.27,129.64,115.93z"
               />
             </g>
             <g>
               <path
-                class="shsb-st0"
+                :class="`shsb-${info.id}-st0`"
                 d="M67.5,58.98h61.25c0.34-0.85,0.7-1.65,1.08-2.43H69.16C68.58,57.27,68.02,58.09,67.5,58.98z"
               />
               <path
-                class="shsb-st0"
+                :class="`shsb-${info.id}-st0`"
                 d="M124.51,76.92l0,0.05c0-0.03,0.01-0.06,0.01-0.09L124.51,76.92z"
               />
               <path
-                class="shsb-st0"
+                :class="`shsb-${info.id}-st0`"
                 d="M126,104.93H63.82c0.24,0.84,0.49,1.65,0.76,2.43h62.01C126.38,106.57,126.18,105.76,126,104.93z"
               />
               <path
-                class="shsb-st0"
+                :class="`shsb-${info.id}-st0`"
                 d="M130.11,116.87H69.64c0.61,0.7,1.24,1.31,1.89,1.81h59.55C130.75,118.11,130.42,117.5,130.11,116.87z"
               />
               <path
-                class="shsb-st0"
+                :class="`shsb-${info.id}-st0`"
                 d="M124.11,82.37c0.04-0.82,0.08-1.63,0.14-2.43H61.7c-0.07,0.8-0.12,1.61-0.16,2.43H124.11z"
               />
             </g>
@@ -700,12 +742,12 @@
             repeatCount="indefinite"
           />
           <path
-            class="shsb-st1"
+            :class="`shsb-${info.id}-st1`"
             d="M124.01,86.42c0-19.92,6.34-36.47,14.71-39.95H70.99c-9.76,0-17.67,17.88-17.67,39.95s7.91,39.95,17.67,39.95
                 h67.73C130.36,122.89,124.01,106.34,124.01,86.42z"
           />
           <ellipse
-            class="shsb-st0"
+            :class="`shsb-${info.id}-st0`"
             cx="70.99"
             cy="86.42"
             rx="17.67"
@@ -713,12 +755,12 @@
           />
           <g>
             <path
-              class="shsb-st33"
+              :class="`shsb-${info.id}-st33`"
               d="M138.73,126.37c-1.32-0.55-2.58-1.42-3.78-2.58h-70.2c1.94,1.66,4.05,2.58,6.25,2.58H138.73z"
             />
           </g>
           <path
-            class="shsb-st35"
+            :class="`shsb-${info.id}-st35`"
             d="M138.72,46.47H70.99c-2.19,0-4.29,0.91-6.22,2.56h70.2C136.16,47.88,137.42,47.02,138.72,46.47z"
           />
           <linearGradient
@@ -736,43 +778,43 @@
             <stop offset="1" style="stop-color:#8D9EA6" />
           </linearGradient>
           <path
-            class="shsb-st39"
+            :class="`shsb-${info.id}-st39`"
             d="M61.43,86.42c0,18.83,6.67,34.09,14.91,34.09h55.88c-4.93-7.24-8.2-19.8-8.2-34.09
                 c0-14.29,3.26-26.85,8.2-34.09H76.34C68.11,52.33,61.43,67.59,61.43,86.42z"
           />
-          <g class="shsb-st37">
+          <g :class="`shsb-${info.id}-st37`">
             <path
-              class="shsb-st38"
+              :class="`shsb-${info.id}-st38`"
               d="M124.51,76.92l0,0.05c0-0.03,0.01-0.06,0.01-0.09L124.51,76.92z"
             />
             <path
-              class="shsb-st38"
+              :class="`shsb-${info.id}-st38`"
               d="M63.73,68.23h62.19c0.38-1.72,0.82-3.37,1.3-4.94H65.39C64.77,64.82,64.22,66.47,63.73,68.23z"
             />
             <path
-              class="shsb-st38"
+              :class="`shsb-${info.id}-st38`"
               d="M127.43,110.25H65.68c0.69,1.62,1.46,3.09,2.28,4.37h61.1C128.48,113.25,127.93,111.8,127.43,110.25z"
             />
             <path
-              class="shsb-st38"
+              :class="`shsb-${info.id}-st38`"
               d="M124.3,93.62c-0.13-1.62-0.22-3.27-0.26-4.94H61.47c0.05,1.68,0.15,3.34,0.3,4.94H124.3z"
             />
           </g>
           <g>
             <path
-              class="shsb-st0"
+              :class="`shsb-${info.id}-st0`"
               d="M124.51,76.92l0,0.05c0-0.03,0.01-0.06,0.01-0.09L124.51,76.92z"
             />
             <path
-              class="shsb-st0"
+              :class="`shsb-${info.id}-st0`"
               d="M127.81,111.36H66.18c0.36,0.76,0.73,1.48,1.11,2.15h61.31C128.33,112.82,128.07,112.1,127.81,111.36z"
             />
             <path
-              class="shsb-st0"
+              :class="`shsb-${info.id}-st0`"
               d="M64.1,66.98h62.11c0.2-0.83,0.41-1.64,0.63-2.43H64.91C64.62,65.33,64.35,66.14,64.1,66.98z"
             />
             <path
-              class="shsb-st0"
+              :class="`shsb-${info.id}-st0`"
               d="M61.66,92.37h62.55c-0.05-0.8-0.09-1.61-0.12-2.43H61.51C61.55,90.75,61.6,91.56,61.66,92.37z"
             />
           </g>
@@ -785,12 +827,12 @@
             repeatCount="indefinite"
           />
           <path
-            class="shsb-st1"
+            :class="`shsb-${info.id}-st1`"
             d="M124.01,86.42c0-19.92,6.34-36.47,14.71-39.95H70.99c-9.76,0-17.67,17.88-17.67,39.95s7.91,39.95,17.67,39.95
                 h67.73C130.36,122.89,124.01,106.34,124.01,86.42z"
           />
           <ellipse
-            class="shsb-st0"
+            :class="`shsb-${info.id}-st0`"
             cx="70.99"
             cy="86.42"
             rx="17.67"
@@ -798,12 +840,12 @@
           />
           <g>
             <path
-              class="shsb-st33"
+              :class="`shsb-${info.id}-st33`"
               d="M138.73,126.37c-1.32-0.55-2.58-1.42-3.78-2.58h-70.2c1.94,1.66,4.05,2.58,6.25,2.58H138.73z"
             />
           </g>
           <path
-            class="shsb-st35"
+            :class="`shsb-${info.id}-st35`"
             d="M138.72,46.47H70.99c-2.19,0-4.29,0.91-6.22,2.56h70.2C136.16,47.88,137.42,47.02,138.72,46.47z"
           />
           <linearGradient
@@ -821,51 +863,51 @@
             <stop offset="1" style="stop-color:#8D9EA6" />
           </linearGradient>
           <path
-            class="shsb-st40"
+            :class="`shsb-${info.id}-st40`"
             d="M61.43,86.42c0,18.83,6.67,34.09,14.91,34.09h55.88c-4.93-7.24-8.2-19.8-8.2-34.09
                 c0-14.29,3.26-26.85,8.2-34.09H76.34C68.11,52.33,61.43,67.59,61.43,86.42z"
           />
-          <g class="shsb-st37">
+          <g :class="`shsb-${info.id}-st37`">
             <path
-              class="shsb-st38"
+              :class="`shsb-${info.id}-st38`"
               d="M124.59,76.23c0.19-1.69,0.43-3.34,0.72-4.94H62.98c-0.34,1.58-0.64,3.23-0.87,4.94H124.59z"
             />
             <path
-              class="shsb-st38"
+              :class="`shsb-${info.id}-st38`"
               d="M129.98,56.23c0.61-1.23,1.25-2.38,1.93-3.42H73.84c-1.57,0.61-3.06,1.78-4.43,3.42H129.98z"
             />
             <path
-              class="shsb-st38"
+              :class="`shsb-${info.id}-st38`"
               d="M124.51,76.92l0,0.05c0-0.03,0.01-0.06,0.01-0.09L124.51,76.92z"
             />
             <path
-              class="shsb-st38"
+              :class="`shsb-${info.id}-st38`"
               d="M129.39,115.36H68.47c0.93,1.33,1.93,2.42,2.99,3.26h59.6C130.47,117.61,129.91,116.52,129.39,115.36z"
             />
             <path
-              class="shsb-st38"
+              :class="`shsb-${info.id}-st38`"
               d="M125.32,101.62c-0.29-1.6-0.53-3.25-0.72-4.94H62.12c0.24,1.71,0.53,3.36,0.88,4.94H125.32z"
             />
           </g>
           <g>
             <path
-              class="shsb-st0"
+              :class="`shsb-${info.id}-st0`"
               d="M124.51,76.92l0,0.05c0-0.03,0.01-0.06,0.01-0.09L124.51,76.92z"
             />
             <path
-              class="shsb-st0"
+              :class="`shsb-${info.id}-st0`"
               d="M130.41,55.37c0.31-0.58,0.62-1.14,0.94-1.68H72.18c-0.69,0.45-1.35,1.02-1.99,1.68H130.41z"
             />
             <path
-              class="shsb-st0"
+              :class="`shsb-${info.id}-st0`"
               d="M124.75,74.98c0.11-0.82,0.22-1.63,0.35-2.43H62.72c-0.16,0.8-0.3,1.61-0.43,2.43H124.75z"
             />
             <path
-              class="shsb-st0"
+              :class="`shsb-${info.id}-st0`"
               d="M129.77,116.19H69.08c0.46,0.59,0.94,1.13,1.43,1.6h60.08C130.31,117.28,130.03,116.74,129.77,116.19z"
             />
             <path
-              class="shsb-st0"
+              :class="`shsb-${info.id}-st0`"
               d="M125.11,100.37c-0.13-0.8-0.25-1.61-0.36-2.43H62.3c0.13,0.83,0.28,1.64,0.43,2.43H125.11z"
             />
           </g>
@@ -874,7 +916,7 @@
 
       <g class="SVG_alert" v-if="pointValue == 2">
         <path
-          class="shsb-st41"
+          :class="`shsb-${info.id}-st41`"
           d="M234.52,87.06c0-17.12-4.4-31.09-9.93-31.9c-0.17-0.03-0.34-0.04-0.51-0.04h-6.53
                 c-3.85,0-7.22,6.39-9.03,15.88c-2.96-13.52-9.4-24.53-17.67-30.46V26.32c10.52-1.71,17.75-5.26,17.75-9.36v-6.53
                 c0-0.17-0.01-0.34-0.04-0.51C207.75,4.4,193.78,0,176.67,0c-17.12,0-31.09,4.4-31.9,9.93c-0.03,0.17-0.04,0.34-0.04,0.51v6.53
@@ -888,7 +930,7 @@
       </g>
       <!-- <g class="SVG_alert" v-if="pointValue == 2">
         <path
-          class="db-st11"
+          :class="`db-${info.id}-st11`"
           d="M69.73,0h-57.5L0,14.08v41h2v7.86v2.48c0,1.9,1.54,3.44,3.44,3.44h47.62c1.08,0,2.04-0.51,2.67-1.29
                   l0.01,0.01l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73v-7.84l2-2.51V0z"
         />

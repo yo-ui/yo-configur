@@ -13,13 +13,13 @@
         v-html="
           `
         <style type='text/css'>
-       	.fault-st0{display:none;}
-	.fault-st1{display:inline;fill:url(#fault_${info.id}_SVGID_1_);}
-	.fault-st2{display:inline;fill:url(#fault_${info.id}_SVGID_2_);}
-	.fault-st3{display:inline;}
-	.fault-st4{fill:#FFFFFF;}
-	.fault-st5{fill:url(#fault_${info.id}_SVGID_3_);}
-	.fault-st6{fill:url(#fault_${info.id}_SVGID_4_);}
+       	.fault-${info.id}-st0{display:none;}
+	.fault-${info.id}-st1{display:inline;fill:url(#fault_${info.id}_SVGID_1_);}
+	.fault-${info.id}-st2{display:inline;fill:url(#fault_${info.id}_SVGID_2_);}
+	.fault-${info.id}-st3{display:inline;}
+	.fault-${info.id}-st4{fill:#FFFFFF;}
+	.fault-${info.id}-st5{fill:url(#fault_${info.id}_SVGID_3_);}
+	.fault-${info.id}-st6{fill:url(#fault_${info.id}_SVGID_4_);}
       </style>
       `
         "
@@ -37,7 +37,7 @@
           <stop offset="1" style="stop-color:#B3B3B3" />
         </linearGradient>
         <path
-          class="fault-st1"
+          :class="`fault-${info.id}-st1`"
           d="M43,26H3c-1.7,0-3-1.3-3-3V3c0-1.7,1.3-3,3-3h40c1.7,0,3,1.3,3,3v20C46,24.7,44.7,26,43,26z"
         />
         <linearGradient
@@ -52,12 +52,12 @@
           <stop offset="1" style="stop-color:#E98800" />
         </linearGradient>
         <path
-          class="fault-st2"
+          :class="`fault-${info.id}-st2`"
           d="M41,24H5c-1.7,0-3-1.3-3-3V5c0-1.7,1.3-3,3-3h36c1.7,0,3,1.3,3,3v16C44,22.7,42.7,24,41,24z"
         />
-        <g class="fault-st3">
+        <g :class="`fault-${info.id}-st3`">
           <path
-            class="fault-st4"
+            :class="`fault-${info.id}-st4`"
             d="M11.3,8.3V5.9h1.2v2.4h2.3v1.2h-2.3v2.7h1.8v5.4c0.6-0.4,1.1-0.8,1.6-1.2c0.5-0.4,0.9-0.8,1.2-1.2
 			c0,0,0,0,0,0c-0.3-0.5-0.6-1.1-0.9-1.7s-0.5-1.2-0.6-1.9c-0.1,0.2-0.2,0.3-0.3,0.5c-0.1,0.2-0.2,0.3-0.3,0.5l-0.9-0.7
 			c0.3-0.4,0.6-0.9,0.9-1.4s0.5-1,0.7-1.5s0.4-1,0.6-1.5s0.3-1,0.4-1.4l1.2,0.3c-0.1,0.4-0.2,0.7-0.3,1c-0.1,0.3-0.2,0.7-0.3,1h4.5
@@ -66,7 +66,7 @@
 			c0,0.1-0.1,0.2-0.1,0.3c0,0.1-0.1,0.2-0.1,0.3c0.1,0.8,0.3,1.5,0.5,2.2c0.2,0.7,0.5,1.3,0.9,1.9c0.7-1.3,1.2-2.8,1.4-4.7H16.7z"
           />
           <path
-            class="fault-st4"
+            :class="`fault-${info.id}-st4`"
             d="M27.2,6.8v1.1C27.1,8.5,27,9,26.8,9.5s-0.3,1-0.5,1.5c0.2,0.3,0.3,0.6,0.5,0.8s0.2,0.5,0.3,0.8
 			s0.1,0.5,0.2,0.8s0.1,0.5,0.1,0.8c0,0.4,0,0.7-0.1,1c0,0.3-0.1,0.5-0.2,0.6c-0.1,0.2-0.2,0.3-0.4,0.4c-0.2,0.1-0.4,0.1-0.6,0.2
 			c-0.1,0-0.3,0-0.4,0c-0.2,0-0.3,0-0.5,0l-0.2-1.1c0.2,0,0.5,0,0.7,0c0.2,0,0.3,0,0.4,0s0.2-0.1,0.2-0.1c0.1-0.1,0.1-0.2,0.1-0.3
@@ -93,7 +93,7 @@
           <stop offset="1" style="stop-color:#B3B3B3" />
         </linearGradient>
         <path
-          class="fault-st5"
+          :class="`fault-${info.id}-st5`"
           d="M43,26H3c-1.7,0-3-1.3-3-3V3c0-1.7,1.3-3,3-3h40c1.7,0,3,1.3,3,3v20C46,24.7,44.7,26,43,26z"
         />
         <linearGradient
@@ -108,16 +108,16 @@
           <stop offset="1" style="stop-color:#5DAA00" />
         </linearGradient>
         <path
-          class="fault-st6"
+          :class="`fault-${info.id}-st6`"
           d="M41,24H5c-1.7,0-3-1.3-3-3V5c0-1.7,1.3-3,3-3h36c1.7,0,3,1.3,3,3v16C44,22.7,42.7,24,41,24z"
         />
         <g>
           <path
-            class="fault-st4"
+            :class="`fault-${info.id}-st4`"
             d="M21.2,6.9v1.3h-4.7v3.3h4.2v1.3h-4.2v4.1h5.2v1.3H8.9v-1.3h2.2v-7h1.2v7h3V8.1H9.6V6.9H21.2z"
           />
           <path
-            class="fault-st4"
+            :class="`fault-${info.id}-st4`"
             d="M25.7,5.9c0.3,0.3,0.5,0.6,0.8,0.9s0.5,0.6,0.8,1L26.9,8h1.8V5.8h1.2V8h1.8l-0.5-0.4c0.3-0.2,0.6-0.5,0.9-0.8
 			s0.6-0.6,0.9-1l0.9,0.7c-0.2,0.2-0.4,0.5-0.7,0.8c-0.3,0.3-0.5,0.5-0.8,0.7H35v2.8h-1.1V9.1h-9.2v1.8h-1.1V8H26
 			c-0.2-0.3-0.4-0.6-0.6-0.8C25.2,7,25,6.7,24.8,6.5L25.7,5.9z M33.4,10.1v3h-3.5v1h4.5v2.1c0,0.4,0,0.7-0.1,0.9

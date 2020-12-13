@@ -13,24 +13,24 @@
         v-html="
           `
         <style type='text/css'>     
-	.wkq-st0{fill:#D8D9D9;}
-	.wkq-st1{fill:url(#wkq_${info.id}_SVGID_1_);}
-	.wkq-st2{fill:#FFFFFF;}
-	.wkq-st3{fill:url(#wkq_${info.id}_SVGID_2_);}
-	.wkq-st4{fill:#E8E8E8;}
-	.wkq-st5{fill:url(#wkq_${info.id}_SVGID_3_);}
-	.wkq-st6{fill:url(#wkq_${info.id}_SVGID_4_);}
-	.wkq-st7{font-family:'OPPOSans-M';}
-	.wkq-st8{font-size:10px;}
-	.wkq-st9{font-family:'OPPOSans-H';}
-	.wkq-st10{font-size:19px;}
+	.wkq-${info.id}-st0{fill:#D8D9D9;}
+	.wkq-${info.id}-st1{fill:url(#wkq_${info.id}_SVGID_1_);}
+	.wkq-${info.id}-st2{fill:#FFFFFF;}
+	.wkq-${info.id}-st3{fill:url(#wkq_${info.id}_SVGID_2_);}
+	.wkq-${info.id}-st4{fill:#E8E8E8;}
+	.wkq-${info.id}-st5{fill:url(#wkq_${info.id}_SVGID_3_);}
+	.wkq-${info.id}-st6{fill:url(#wkq_${info.id}_SVGID_4_);}
+	.wkq-${info.id}-st7{font-family:'OPPOSans-M';}
+	.wkq-${info.id}-st8{font-size:10px;}
+	.wkq-${info.id}-st9{font-family:'OPPOSans-H';}
+	.wkq-${info.id}-st10{font-size:19px;}
       </style>
       `
         "
       ></defs>
       <g id="图层_1" v-if="info.content">
         <path
-          class="wkq-st0"
+          :class="`wkq-${info.id}-st0`"
           d="M73,60H0V3c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3V60z"
         />
         <linearGradient
@@ -45,11 +45,11 @@
           <stop offset="1" style="stop-color:#B1B1B2" />
         </linearGradient>
         <path
-          class="wkq-st5"
+          :class="`wkq-${info.id}-st5`"
           d="M70,65H3c-1.7,0-3-1.3-3-3V8c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3v54C73,63.7,71.7,65,70,65z"
         />
         <path
-          class="wkq-st2"
+          :class="`wkq-${info.id}-st2`"
           d="M66,54H7c-1.7,0-3-1.3-3-3V12c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,52.7,67.7,54,66,54z"
         />
         <linearGradient
@@ -64,29 +64,77 @@
           <stop offset="1" style="stop-color:#0052AA" />
         </linearGradient>
         <path
-          class="wkq-st6"
+          :class="`wkq-${info.id}-st6`"
           d="M66,52H7c-1.7,0-3-1.3-3-3V10c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,50.7,67.7,52,66,52z"
         />
         <g>
-          <rect x="8" y="57" class="wkq-st2" width="9" height="4" />
-          <rect x="8" y="58" class="wkq-st4" width="9" height="4" />
+          <rect
+            x="8"
+            y="57"
+            :class="`wkq-${info.id}-st2`"
+            width="9"
+            height="4"
+          />
+          <rect
+            x="8"
+            y="58"
+            :class="`wkq-${info.id}-st4`"
+            width="9"
+            height="4"
+          />
         </g>
         <g>
-          <rect x="24" y="57" class="wkq-st2" width="9" height="4" />
-          <rect x="24" y="58" class="wkq-st4" width="9" height="4" />
+          <rect
+            x="24"
+            y="57"
+            :class="`wkq-${info.id}-st2`"
+            width="9"
+            height="4"
+          />
+          <rect
+            x="24"
+            y="58"
+            :class="`wkq-${info.id}-st4`"
+            width="9"
+            height="4"
+          />
         </g>
         <g>
-          <rect x="40" y="57" class="wkq-st2" width="9" height="4" />
-          <rect x="40" y="58" class="wkq-st4" width="9" height="4" />
+          <rect
+            x="40"
+            y="57"
+            :class="`wkq-${info.id}-st2`"
+            width="9"
+            height="4"
+          />
+          <rect
+            x="40"
+            y="58"
+            :class="`wkq-${info.id}-st4`"
+            width="9"
+            height="4"
+          />
         </g>
         <g>
-          <rect x="56" y="57" class="wkq-st2" width="9" height="4" />
-          <rect x="56" y="58" class="wkq-st4" width="9" height="4" />
+          <rect
+            x="56"
+            y="57"
+            :class="`wkq-${info.id}-st2`"
+            width="9"
+            height="4"
+          />
+          <rect
+            x="56"
+            y="58"
+            :class="`wkq-${info.id}-st4`"
+            width="9"
+            height="4"
+          />
         </g>
       </g>
       <g id="图层_3" v-else>
         <path
-          class="wkq-st0"
+          :class="`wkq-${info.id}-st0`"
           d="M73,60H0V3c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3V60z"
         />
         <linearGradient
@@ -101,11 +149,11 @@
           <stop offset="1" style="stop-color:#B1B1B2" />
         </linearGradient>
         <path
-          class="wkq-st1"
+          :class="`wkq-${info.id}-st1`"
           d="M70,65H3c-1.7,0-3-1.3-3-3V8c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3v54C73,63.7,71.7,65,70,65z"
         />
         <path
-          class="wkq-st2"
+          :class="`wkq-${info.id}-st2`"
           d="M66,54H7c-1.7,0-3-1.3-3-3V12c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,52.7,67.7,54,66,54z"
         />
         <linearGradient
@@ -120,31 +168,79 @@
           <stop offset="1" style="stop-color:#697284" />
         </linearGradient>
         <path
-          class="wkq-st3"
+          :class="`wkq-${info.id}-st3`"
           d="M66,52H7c-1.7,0-3-1.3-3-3V10c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,50.7,67.7,52,66,52z"
         />
         <g>
-          <rect x="8" y="57" class="wkq-st2" width="9" height="4" />
-          <rect x="8" y="58" class="wkq-st4" width="9" height="4" />
+          <rect
+            x="8"
+            y="57"
+            :class="`wkq-${info.id}-st2`"
+            width="9"
+            height="4"
+          />
+          <rect
+            x="8"
+            y="58"
+            :class="`wkq-${info.id}-st4`"
+            width="9"
+            height="4"
+          />
         </g>
         <g>
-          <rect x="24" y="57" class="wkq-st2" width="9" height="4" />
-          <rect x="24" y="58" class="wkq-st4" width="9" height="4" />
+          <rect
+            x="24"
+            y="57"
+            :class="`wkq-${info.id}-st2`"
+            width="9"
+            height="4"
+          />
+          <rect
+            x="24"
+            y="58"
+            :class="`wkq-${info.id}-st4`"
+            width="9"
+            height="4"
+          />
         </g>
         <g>
-          <rect x="40" y="57" class="wkq-st2" width="9" height="4" />
-          <rect x="40" y="58" class="wkq-st4" width="9" height="4" />
+          <rect
+            x="40"
+            y="57"
+            :class="`wkq-${info.id}-st2`"
+            width="9"
+            height="4"
+          />
+          <rect
+            x="40"
+            y="58"
+            :class="`wkq-${info.id}-st4`"
+            width="9"
+            height="4"
+          />
         </g>
         <g>
-          <rect x="56" y="57" class="wkq-st2" width="9" height="4" />
-          <rect x="56" y="58" class="wkq-st4" width="9" height="4" />
+          <rect
+            x="56"
+            y="57"
+            :class="`wkq-${info.id}-st2`"
+            width="9"
+            height="4"
+          />
+          <rect
+            x="56"
+            y="58"
+            :class="`wkq-${info.id}-st4`"
+            width="9"
+            height="4"
+          />
         </g>
       </g>
       <g id="图层_2">
         <text
           transform="matrix(1 0 0 1 10 22)"
           :style="descrStyle"
-          class="wkq-st2 wkq-st7 wkq-st8"
+          :class="`wkq-${info.id}-st2 wkq-${info.id}-st7 wkq-${info.id}-st8`"
         >
           {{
             info.descrStyle.showCode
@@ -161,7 +257,7 @@
         </text>
         <text
           transform="matrix(1 0 0 1 15 44)"
-          class="wkq-st2 wkq-st9 wkq-st10"
+          :class="`wkq-${info.id}-st2 wkq-${info.id}-st9 wkq-${info.id}-st10`"
           :style="valueStyle"
         >
           {{
@@ -176,7 +272,7 @@
         <text
           transform="matrix(1 0 0 1 54 22)"
           :style="unitStyle"
-          class="wkq-st2 wkq-st7 wkq-st8"
+          :class="`wkq-${info.id}-st2 wkq-${info.id}-st7 wkq-${info.id}-st8`"
         >
           {{ devicePoint ? point.unit : "℃" }}
         </text>

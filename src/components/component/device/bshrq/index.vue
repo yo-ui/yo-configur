@@ -14,110 +14,110 @@
         v-html="
           `
         <style type='text/css'>
-              .bshrq-st0{fill:url(#SVGID_1_);}
-              .bshrq-st1{fill:url(#SVGID_2_);}
-              .bshrq-st2{fill:url(#SVGID_3_);}
-              .bshrq-st3{fill:#204C8B;}
-              .bshrq-st4{fill:#7AACE2;}
-              .bshrq-st5{opacity:0.6;fill:#BBDFFF;}
-              .bshrq-st6{opacity:0.8;fill:#BBDFFF;}
-              .bshrq-st7{fill:url(#SVGID_4_);}
-              .bshrq-st8{fill:url(#SVGID_5_);}
-              .bshrq-st9{fill:url(#SVGID_6_);}
-              .bshrq-st10{fill:url(#SVGID_7_);}
-              .bshrq-st11{fill:url(#SVGID_8_);}
-              .bshrq-st12{fill:url(#SVGID_9_);}
-              .bshrq-st13{fill:url(#SVGID_10_);}
-              .bshrq-st14{fill:url(#SVGID_11_);}
-              .bshrq-st15{fill:url(#SVGID_12_);}
-              .bshrq-st16{fill:url(#SVGID_13_);}
-              .bshrq-st17{fill:url(#SVGID_14_);}
-              .bshrq-st18{fill:url(#SVGID_15_);}
-              .bshrq-st19{fill:url(#SVGID_16_);}
-              .bshrq-st20{fill:url(#SVGID_17_);}
-              .bshrq-st21{fill:url(#SVGID_18_);}
-              .bshrq-st22{fill:url(#SVGID_19_);}
-              .bshrq-st23{fill:url(#SVGID_20_);}
-              .bshrq-st24{fill:url(#SVGID_21_);}
-              .bshrq-st25{fill:url(#SVGID_22_);}
-              .bshrq-st26{fill:url(#SVGID_23_);}
-              .bshrq-st27{fill:url(#SVGID_24_);}
-              .bshrq-st28{fill:url(#SVGID_25_);}
-              .bshrq-st29{fill:url(#SVGID_26_);}
-              .bshrq-st30{fill:url(#SVGID_27_);}
-              .bshrq-st31{fill:url(#SVGID_28_);}
-              .bshrq-st32{fill:url(#SVGID_29_);}
-              .bshrq-st33{fill:url(#SVGID_30_);}
-              .bshrq-st34{fill:url(#SVGID_31_);}
-              .bshrq-st35{fill:url(#SVGID_32_);}
-              .bshrq-st36{fill:url(#SVGID_33_);}
-              .bshrq-st37{fill:url(#SVGID_34_);}
-              .bshrq-st38{fill:url(#SVGID_35_);}
-              .bshrq-st39{fill:url(#SVGID_36_);}
-              .bshrq-st40{fill:url(#SVGID_37_);}
-              .bshrq-st41{fill:url(#SVGID_38_);}
-              .bshrq-st42{fill:url(#SVGID_39_);}
-              .bshrq-st43{fill:url(#SVGID_40_);}
-              .bshrq-st44{fill:url(#SVGID_41_);}
-              .bshrq-st45{fill:url(#SVGID_42_);}
-              .bshrq-st46{fill:url(#SVGID_43_);}
-              .bshrq-st47{fill:url(#SVGID_44_);}
-              .bshrq-st48{fill:url(#SVGID_45_);}
-              .bshrq-st49{fill:url(#SVGID_46_);}
-              .bshrq-st50{fill:url(#SVGID_47_);}
-              .bshrq-st51{fill:url(#SVGID_48_);}
-              .bshrq-st52{fill:url(#SVGID_49_);}
-              .bshrq-st53{fill:url(#SVGID_50_);}
-              .bshrq-st54{fill:url(#SVGID_51_);}
-              .bshrq-st55{fill:url(#SVGID_52_);}
-              .bshrq-st56{fill:url(#SVGID_53_);}
-              .bshrq-st57{fill:url(#SVGID_54_);}
-              .bshrq-st58{fill:url(#SVGID_55_);}
-              .bshrq-st59{fill:url(#SVGID_56_);}
-              .bshrq-st60{fill:url(#SVGID_57_);}
-              .bshrq-st61{fill:url(#SVGID_58_);}
-              .bshrq-st62{fill:url(#SVGID_59_);}
-              .bshrq-st63{fill:url(#SVGID_60_);}
-              .bshrq-st64{fill:url(#SVGID_61_);}
-              .bshrq-st65{fill:url(#SVGID_62_);}
-              .bshrq-st66{fill:url(#SVGID_63_);}
-              .bshrq-st67{fill:url(#SVGID_64_);}
-              .bshrq-st68{fill:url(#SVGID_65_);}
-              .bshrq-st69{opacity:0.7;fill:#353535;}
-              .bshrq-st70{fill:url(#SVGID_66_);}
-              .bshrq-st71{fill:url(#SVGID_67_);}
-              .bshrq-st72{fill:url(#SVGID_68_);}
-              .bshrq-st73{fill:url(#SVGID_69_);}
-              .bshrq-st74{fill:#CECECE;}
-              .bshrq-st75{fill:url(#SVGID_70_);}
-              .bshrq-st76{fill:url(#SVGID_71_);}
-              .bshrq-st77{fill:url(#SVGID_72_);}
-              .bshrq-st78{fill:url(#SVGID_73_);}
-              .bshrq-st79{fill:url(#SVGID_74_);}
-              .bshrq-st80{fill:url(#SVGID_75_);}
-              .bshrq-st81{fill:url(#SVGID_76_);}
-              .bshrq-st82{fill:url(#SVGID_77_);}
-              .bshrq-st83{fill:url(#SVGID_78_);}
-              .bshrq-st84{fill:url(#SVGID_79_);}
-              .bshrq-st85{fill:url(#SVGID_80_);}
-              .bshrq-st86{fill:url(#SVGID_81_);}
-              .bshrq-st87{fill:url(#SVGID_82_);}
-              .bshrq-st88{fill:url(#SVGID_83_);}
-              .bshrq-st89{fill:url(#SVGID_84_);}
-              .bshrq-st90{fill:url(#SVGID_85_);}
-              .bshrq-st91{fill:url(#SVGID_86_);}
-              .bshrq-st92{fill:url(#SVGID_87_);}
-              .bshrq-st93{fill:url(#SVGID_88_);}
-              .bshrq-st94{fill:url(#SVGID_89_);}
-              .bshrq-st95{fill:url(#SVGID_90_);}
-              .bshrq-st96{fill:url(#SVGID_91_);}
-              .bshrq-st97{fill:url(#SVGID_92_);}
+              .bshrq-${info.id}-st0{fill:url(#bshrq_${info.id}_SVGID_1_);}
+              .bshrq-${info.id}-st1{fill:url(#bshrq_${info.id}_SVGID_2_);}
+              .bshrq-${info.id}-st2{fill:url(#bshrq_${info.id}_SVGID_3_);}
+              .bshrq-${info.id}-st3{fill:#204C8B;}
+              .bshrq-${info.id}-st4{fill:#7AACE2;}
+              .bshrq-${info.id}-st5{opacity:0.6;fill:#BBDFFF;}
+              .bshrq-${info.id}-st6{opacity:0.8;fill:#BBDFFF;}
+              .bshrq-${info.id}-st7{fill:url(#bshrq_${info.id}_SVGID_4_);}
+              .bshrq-${info.id}-st8{fill:url(#bshrq_${info.id}_SVGID_5_);}
+              .bshrq-${info.id}-st9{fill:url(#bshrq_${info.id}_SVGID_6_);}
+              .bshrq-${info.id}-st10{fill:url(#bshrq_${info.id}_SVGID_7_);}
+              .bshrq-${info.id}-st11{fill:url(#bshrq_${info.id}_SVGID_8_);}
+              .bshrq-${info.id}-st12{fill:url(#bshrq_${info.id}_SVGID_9_);}
+              .bshrq-${info.id}-st13{fill:url(#bshrq_${info.id}_SVGID_10_);}
+              .bshrq-${info.id}-st14{fill:url(#bshrq_${info.id}_SVGID_11_);}
+              .bshrq-${info.id}-st15{fill:url(#bshrq_${info.id}_SVGID_12_);}
+              .bshrq-${info.id}-st16{fill:url(#bshrq_${info.id}_SVGID_13_);}
+              .bshrq-${info.id}-st17{fill:url(#bshrq_${info.id}_SVGID_14_);}
+              .bshrq-${info.id}-st18{fill:url(#bshrq_${info.id}_SVGID_15_);}
+              .bshrq-${info.id}-st19{fill:url(#bshrq_${info.id}_SVGID_16_);}
+              .bshrq-${info.id}-st20{fill:url(#bshrq_${info.id}_SVGID_17_);}
+              .bshrq-${info.id}-st21{fill:url(#bshrq_${info.id}_SVGID_18_);}
+              .bshrq-${info.id}-st22{fill:url(#bshrq_${info.id}_SVGID_19_);}
+              .bshrq-${info.id}-st23{fill:url(#bshrq_${info.id}_SVGID_20_);}
+              .bshrq-${info.id}-st24{fill:url(#bshrq_${info.id}_SVGID_21_);}
+              .bshrq-${info.id}-st25{fill:url(#bshrq_${info.id}_SVGID_22_);}
+              .bshrq-${info.id}-st26{fill:url(#bshrq_${info.id}_SVGID_23_);}
+              .bshrq-${info.id}-st27{fill:url(#bshrq_${info.id}_SVGID_24_);}
+              .bshrq-${info.id}-st28{fill:url(#bshrq_${info.id}_SVGID_25_);}
+              .bshrq-${info.id}-st29{fill:url(#bshrq_${info.id}_SVGID_26_);}
+              .bshrq-${info.id}-st30{fill:url(#bshrq_${info.id}_SVGID_27_);}
+              .bshrq-${info.id}-st31{fill:url(#bshrq_${info.id}_SVGID_28_);}
+              .bshrq-${info.id}-st32{fill:url(#bshrq_${info.id}_SVGID_29_);}
+              .bshrq-${info.id}-st33{fill:url(#bshrq_${info.id}_SVGID_30_);}
+              .bshrq-${info.id}-st34{fill:url(#bshrq_${info.id}_SVGID_31_);}
+              .bshrq-${info.id}-st35{fill:url(#bshrq_${info.id}_SVGID_32_);}
+              .bshrq-${info.id}-st36{fill:url(#bshrq_${info.id}_SVGID_33_);}
+              .bshrq-${info.id}-st37{fill:url(#bshrq_${info.id}_SVGID_34_);}
+              .bshrq-${info.id}-st38{fill:url(#bshrq_${info.id}_SVGID_35_);}
+              .bshrq-${info.id}-st39{fill:url(#bshrq_${info.id}_SVGID_36_);}
+              .bshrq-${info.id}-st40{fill:url(#bshrq_${info.id}_SVGID_37_);}
+              .bshrq-${info.id}-st41{fill:url(#bshrq_${info.id}_SVGID_38_);}
+              .bshrq-${info.id}-st42{fill:url(#bshrq_${info.id}_SVGID_39_);}
+              .bshrq-${info.id}-st43{fill:url(#bshrq_${info.id}_SVGID_40_);}
+              .bshrq-${info.id}-st44{fill:url(#bshrq_${info.id}_SVGID_41_);}
+              .bshrq-${info.id}-st45{fill:url(#bshrq_${info.id}_SVGID_42_);}
+              .bshrq-${info.id}-st46{fill:url(#bshrq_${info.id}_SVGID_43_);}
+              .bshrq-${info.id}-st47{fill:url(#bshrq_${info.id}_SVGID_44_);}
+              .bshrq-${info.id}-st48{fill:url(#bshrq_${info.id}_SVGID_45_);}
+              .bshrq-${info.id}-st49{fill:url(#bshrq_${info.id}_SVGID_46_);}
+              .bshrq-${info.id}-st50{fill:url(#bshrq_${info.id}_SVGID_47_);}
+              .bshrq-${info.id}-st51{fill:url(#bshrq_${info.id}_SVGID_48_);}
+              .bshrq-${info.id}-st52{fill:url(#bshrq_${info.id}_SVGID_49_);}
+              .bshrq-${info.id}-st53{fill:url(#bshrq_${info.id}_SVGID_50_);}
+              .bshrq-${info.id}-st54{fill:url(#bshrq_${info.id}_SVGID_51_);}
+              .bshrq-${info.id}-st55{fill:url(#bshrq_${info.id}_SVGID_52_);}
+              .bshrq-${info.id}-st56{fill:url(#bshrq_${info.id}_SVGID_53_);}
+              .bshrq-${info.id}-st57{fill:url(#bshrq_${info.id}_SVGID_54_);}
+              .bshrq-${info.id}-st58{fill:url(#bshrq_${info.id}_SVGID_55_);}
+              .bshrq-${info.id}-st59{fill:url(#bshrq_${info.id}_SVGID_56_);}
+              .bshrq-${info.id}-st60{fill:url(#bshrq_${info.id}_SVGID_57_);}
+              .bshrq-${info.id}-st61{fill:url(#bshrq_${info.id}_SVGID_58_);}
+              .bshrq-${info.id}-st62{fill:url(#bshrq_${info.id}_SVGID_59_);}
+              .bshrq-${info.id}-st63{fill:url(#bshrq_${info.id}_SVGID_60_);}
+              .bshrq-${info.id}-st64{fill:url(#bshrq_${info.id}_SVGID_61_);}
+              .bshrq-${info.id}-st65{fill:url(#bshrq_${info.id}_SVGID_62_);}
+              .bshrq-${info.id}-st66{fill:url(#bshrq_${info.id}_SVGID_63_);}
+              .bshrq-${info.id}-st67{fill:url(#bshrq_${info.id}_SVGID_64_);}
+              .bshrq-${info.id}-st68{fill:url(#bshrq_${info.id}_SVGID_65_);}
+              .bshrq-${info.id}-st69{opacity:0.7;fill:#353535;}
+              .bshrq-${info.id}-st70{fill:url(#bshrq_${info.id}_SVGID_66_);}
+              .bshrq-${info.id}-st71{fill:url(#bshrq_${info.id}_SVGID_67_);}
+              .bshrq-${info.id}-st72{fill:url(#bshrq_${info.id}_SVGID_68_);}
+              .bshrq-${info.id}-st73{fill:url(#bshrq_${info.id}_SVGID_69_);}
+              .bshrq-${info.id}-st74{fill:#CECECE;}
+              .bshrq-${info.id}-st75{fill:url(#bshrq_${info.id}_SVGID_70_);}
+              .bshrq-${info.id}-st76{fill:url(#bshrq_${info.id}_SVGID_71_);}
+              .bshrq-${info.id}-st77{fill:url(#bshrq_${info.id}_SVGID_72_);}
+              .bshrq-${info.id}-st78{fill:url(#bshrq_${info.id}_SVGID_73_);}
+              .bshrq-${info.id}-st79{fill:url(#bshrq_${info.id}_SVGID_74_);}
+              .bshrq-${info.id}-st80{fill:url(#bshrq_${info.id}_SVGID_75_);}
+              .bshrq-${info.id}-st81{fill:url(#bshrq_${info.id}_SVGID_76_);}
+              .bshrq-${info.id}-st82{fill:url(#bshrq_${info.id}_SVGID_77_);}
+              .bshrq-${info.id}-st83{fill:url(#bshrq_${info.id}_SVGID_78_);}
+              .bshrq-${info.id}-st84{fill:url(#bshrq_${info.id}_SVGID_79_);}
+              .bshrq-${info.id}-st85{fill:url(#bshrq_${info.id}_SVGID_80_);}
+              .bshrq-${info.id}-st86{fill:url(#bshrq_${info.id}_SVGID_81_);}
+              .bshrq-${info.id}-st87{fill:url(#bshrq_${info.id}_SVGID_82_);}
+              .bshrq-${info.id}-st88{fill:url(#bshrq_${info.id}_SVGID_83_);}
+              .bshrq-${info.id}-st89{fill:url(#bshrq_${info.id}_SVGID_84_);}
+              .bshrq-${info.id}-st90{fill:url(#bshrq_${info.id}_SVGID_85_);}
+              .bshrq-${info.id}-st91{fill:url(#bshrq_${info.id}_SVGID_86_);}
+              .bshrq-${info.id}-st92{fill:url(#bshrq_${info.id}_SVGID_87_);}
+              .bshrq-${info.id}-st93{fill:url(#bshrq_${info.id}_SVGID_88_);}
+              .bshrq-${info.id}-st94{fill:url(#bshrq_${info.id}_SVGID_89_);}
+              .bshrq-${info.id}-st95{fill:url(#bshrq_${info.id}_SVGID_90_);}
+              .bshrq-${info.id}-st96{fill:url(#bshrq_${info.id}_SVGID_91_);}
+              .bshrq-${info.id}-st97{fill:url(#bshrq_${info.id}_SVGID_92_);}
       </style>
       `
         "
       ></defs>
       <linearGradient
-        id="SVGID_1_"
+        :id="`bshrq_${info.id}_SVGID_1_`"
         gradientUnits="userSpaceOnUse"
         x1="755.3279"
         y1="86.6934"
@@ -145,11 +145,11 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="bshrq-st0"
+        :class="`bshrq-${info.id}-st0`"
         d="M7.78,100.1V86.69h-5.6c0,0-2.18,2.01-2.18,6.71c0,5.56,2.18,6.71,2.18,6.71H7.78z"
       />
       <linearGradient
-        id="SVGID_2_"
+        :id="`bshrq_${info.id}_SVGID_2_`"
         gradientUnits="userSpaceOnUse"
         x1="755.3279"
         y1="183.8239"
@@ -177,12 +177,12 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="bshrq-st1"
+        :class="`bshrq-${info.id}-st1`"
         d="M7.78,197.23v-13.41h-5.6c0,0-2.18,2.01-2.18,6.71c0,5.56,2.18,6.71,2.18,6.71H7.78z"
       />
       <g>
         <linearGradient
-          id="SVGID_3_"
+          :id="`bshrq_${info.id}_SVGID_3_`"
           gradientUnits="userSpaceOnUse"
           x1="75.5999"
           y1="148.1615"
@@ -193,7 +193,7 @@
           <stop offset="1" style="stop-color:#2B68AB" />
         </linearGradient>
         <polygon
-          class="bshrq-st2"
+          :class="`bshrq-${info.id}-st2`"
           points="71.97,219.15 9.34,260 9.34,41.23 71.97,0.38 	"
         />
       </g>
@@ -201,32 +201,32 @@
         <rect
           x="2.98"
           y="41.23"
-          class="bshrq-st3"
+          :class="`bshrq-${info.id}-st3`"
           width="6.35"
           height="218.77"
         />
       </g>
       <g>
         <polygon
-          class="bshrq-st4"
+          :class="`bshrq-${info.id}-st4`"
           points="65.62,0.38 71.97,0.38 9.34,41.23 2.98,41.23 	"
         />
       </g>
       <polygon
-        class="bshrq-st5"
+        :class="`bshrq-${info.id}-st5`"
         points="9.79,260 8.88,260 8.88,41.68 2.98,41.68 2.98,40.78 9.79,40.78 "
       />
       <rect
         x="3.27"
         y="20.35"
         transform="matrix(0.8374 -0.5466 0.5466 0.8374 -4.7613 25.6035)"
-        class="bshrq-st6"
+        :class="`bshrq-${info.id}-st6`"
         width="74.78"
         height="0.91"
       />
       <g>
         <linearGradient
-          id="SVGID_4_"
+          :id="`bshrq_${info.id}_SVGID_4_`"
           gradientUnits="userSpaceOnUse"
           x1="44.1839"
           y1="242.9681"
@@ -239,12 +239,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st7"
+          :class="`bshrq-${info.id}-st7`"
           d="M27.91,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L26.55,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C21.26,240.86,25.05,242.91,27.91,241.05z"
         />
         <linearGradient
-          id="SVGID_5_"
+          :id="`bshrq_${info.id}_SVGID_5_`"
           gradientUnits="userSpaceOnUse"
           x1="45.9994"
           y1="241.7527"
@@ -255,14 +255,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st8"
+          :class="`bshrq-${info.id}-st8`"
           d="M29.72,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L28.37,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C23.08,240.86,26.86,242.91,29.72,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_6_"
+          :id="`bshrq_${info.id}_SVGID_6_`"
           gradientUnits="userSpaceOnUse"
           x1="49.6304"
           y1="242.9681"
@@ -275,12 +275,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st9"
+          :class="`bshrq-${info.id}-st9`"
           d="M33.35,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L32,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C26.71,240.86,30.49,242.91,33.35,241.05z"
         />
         <linearGradient
-          id="SVGID_7_"
+          :id="`bshrq_${info.id}_SVGID_7_`"
           gradientUnits="userSpaceOnUse"
           x1="51.446"
           y1="241.7527"
@@ -291,14 +291,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st10"
+          :class="`bshrq-${info.id}-st10`"
           d="M35.17,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L33.82,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C28.52,240.86,32.31,242.91,35.17,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_8_"
+          :id="`bshrq_${info.id}_SVGID_8_`"
           gradientUnits="userSpaceOnUse"
           x1="55.077"
           y1="242.9681"
@@ -311,12 +311,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st11"
+          :class="`bshrq-${info.id}-st11`"
           d="M38.8,241.05L78,215.48V18.41c0-3.41-3.78-5.46-6.64-3.6L37.45,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C32.16,240.86,35.94,242.91,38.8,241.05z"
         />
         <linearGradient
-          id="SVGID_9_"
+          :id="`bshrq_${info.id}_SVGID_9_`"
           gradientUnits="userSpaceOnUse"
           x1="56.8925"
           y1="241.7527"
@@ -327,14 +327,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st12"
+          :class="`bshrq-${info.id}-st12`"
           d="M40.61,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L39.26,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C33.97,240.86,37.76,242.91,40.61,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_10_"
+          :id="`bshrq_${info.id}_SVGID_10_`"
           gradientUnits="userSpaceOnUse"
           x1="60.5236"
           y1="242.9681"
@@ -347,12 +347,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st13"
+          :class="`bshrq-${info.id}-st13`"
           d="M44.24,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L42.89,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C37.6,240.86,41.39,242.91,44.24,241.05z"
         />
         <linearGradient
-          id="SVGID_11_"
+          :id="`bshrq_${info.id}_SVGID_11_`"
           gradientUnits="userSpaceOnUse"
           x1="62.3391"
           y1="241.7527"
@@ -363,14 +363,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st14"
+          :class="`bshrq-${info.id}-st14`"
           d="M46.06,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L44.71,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C39.42,240.86,43.2,242.91,46.06,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_12_"
+          :id="`bshrq_${info.id}_SVGID_12_`"
           gradientUnits="userSpaceOnUse"
           x1="65.9701"
           y1="242.9681"
@@ -383,12 +383,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st15"
+          :class="`bshrq-${info.id}-st15`"
           d="M49.69,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L48.34,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C43.05,240.86,46.83,242.91,49.69,241.05z"
         />
         <linearGradient
-          id="SVGID_13_"
+          :id="`bshrq_${info.id}_SVGID_13_`"
           gradientUnits="userSpaceOnUse"
           x1="67.7857"
           y1="241.7527"
@@ -399,14 +399,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st16"
+          :class="`bshrq-${info.id}-st16`"
           d="M51.51,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L50.16,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C44.86,240.86,48.65,242.91,51.51,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_14_"
+          :id="`bshrq_${info.id}_SVGID_14_`"
           gradientUnits="userSpaceOnUse"
           x1="71.4167"
           y1="242.9681"
@@ -419,12 +419,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st17"
+          :class="`bshrq-${info.id}-st17`"
           d="M55.14,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L53.79,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C48.5,240.86,52.28,242.91,55.14,241.05z"
         />
         <linearGradient
-          id="SVGID_15_"
+          :id="`bshrq_${info.id}_SVGID_15_`"
           gradientUnits="userSpaceOnUse"
           x1="73.2322"
           y1="241.7527"
@@ -435,14 +435,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st18"
+          :class="`bshrq-${info.id}-st18`"
           d="M56.95,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L55.6,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C50.31,240.86,54.1,242.91,56.95,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_16_"
+          :id="`bshrq_${info.id}_SVGID_16_`"
           gradientUnits="userSpaceOnUse"
           x1="76.8633"
           y1="242.9681"
@@ -455,12 +455,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st19"
+          :class="`bshrq-${info.id}-st19`"
           d="M60.58,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L59.23,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C53.94,240.86,57.73,242.91,60.58,241.05z"
         />
         <linearGradient
-          id="SVGID_17_"
+          :id="`bshrq_${info.id}_SVGID_17_`"
           gradientUnits="userSpaceOnUse"
           x1="78.6788"
           y1="241.7527"
@@ -471,14 +471,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st20"
+          :class="`bshrq-${info.id}-st20`"
           d="M62.4,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L61.05,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C55.76,240.86,59.54,242.91,62.4,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_18_"
+          :id="`bshrq_${info.id}_SVGID_18_`"
           gradientUnits="userSpaceOnUse"
           x1="82.3098"
           y1="242.9681"
@@ -491,12 +491,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st21"
+          :class="`bshrq-${info.id}-st21`"
           d="M66.03,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L64.68,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C59.39,240.86,63.17,242.91,66.03,241.05z"
         />
         <linearGradient
-          id="SVGID_19_"
+          :id="`bshrq_${info.id}_SVGID_19_`"
           gradientUnits="userSpaceOnUse"
           x1="84.1254"
           y1="241.7527"
@@ -507,14 +507,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st22"
+          :class="`bshrq-${info.id}-st22`"
           d="M67.85,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L66.5,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C61.2,240.86,64.99,242.91,67.85,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_20_"
+          :id="`bshrq_${info.id}_SVGID_20_`"
           gradientUnits="userSpaceOnUse"
           x1="87.7564"
           y1="242.9681"
@@ -527,12 +527,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st23"
+          :class="`bshrq-${info.id}-st23`"
           d="M71.48,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L70.13,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C64.84,240.86,68.62,242.91,71.48,241.05z"
         />
         <linearGradient
-          id="SVGID_21_"
+          :id="`bshrq_${info.id}_SVGID_21_`"
           gradientUnits="userSpaceOnUse"
           x1="89.5719"
           y1="241.7527"
@@ -543,14 +543,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st24"
+          :class="`bshrq-${info.id}-st24`"
           d="M73.29,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L71.94,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C66.65,240.86,70.44,242.91,73.29,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_22_"
+          :id="`bshrq_${info.id}_SVGID_22_`"
           gradientUnits="userSpaceOnUse"
           x1="93.203"
           y1="242.9681"
@@ -563,12 +563,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st25"
+          :class="`bshrq-${info.id}-st25`"
           d="M76.92,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L75.57,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C70.28,240.86,74.07,242.91,76.92,241.05z"
         />
         <linearGradient
-          id="SVGID_23_"
+          :id="`bshrq_${info.id}_SVGID_23_`"
           gradientUnits="userSpaceOnUse"
           x1="95.0185"
           y1="241.7527"
@@ -579,14 +579,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st26"
+          :class="`bshrq-${info.id}-st26`"
           d="M78.74,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L77.39,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C72.1,240.86,75.88,242.91,78.74,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_24_"
+          :id="`bshrq_${info.id}_SVGID_24_`"
           gradientUnits="userSpaceOnUse"
           x1="98.6495"
           y1="242.9681"
@@ -599,12 +599,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st27"
+          :class="`bshrq-${info.id}-st27`"
           d="M82.37,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L81.02,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C75.73,240.86,79.51,242.91,82.37,241.05z"
         />
         <linearGradient
-          id="SVGID_25_"
+          :id="`bshrq_${info.id}_SVGID_25_`"
           gradientUnits="userSpaceOnUse"
           x1="100.4651"
           y1="241.7527"
@@ -615,14 +615,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st28"
+          :class="`bshrq-${info.id}-st28`"
           d="M84.19,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L82.84,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C77.54,240.86,81.33,242.91,84.19,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_26_"
+          :id="`bshrq_${info.id}_SVGID_26_`"
           gradientUnits="userSpaceOnUse"
           x1="104.0961"
           y1="242.9681"
@@ -635,12 +635,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st29"
+          :class="`bshrq-${info.id}-st29`"
           d="M87.82,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L86.47,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C81.18,240.86,84.96,242.91,87.82,241.05z"
         />
         <linearGradient
-          id="SVGID_27_"
+          :id="`bshrq_${info.id}_SVGID_27_`"
           gradientUnits="userSpaceOnUse"
           x1="105.9116"
           y1="241.7527"
@@ -651,14 +651,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st30"
+          :class="`bshrq-${info.id}-st30`"
           d="M89.63,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L88.28,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C82.99,240.86,86.78,242.91,89.63,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_28_"
+          :id="`bshrq_${info.id}_SVGID_28_`"
           gradientUnits="userSpaceOnUse"
           x1="109.5427"
           y1="242.9681"
@@ -671,12 +671,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st31"
+          :class="`bshrq-${info.id}-st31`"
           d="M93.26,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L91.91,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C86.62,240.86,90.41,242.91,93.26,241.05z"
         />
         <linearGradient
-          id="SVGID_29_"
+          :id="`bshrq_${info.id}_SVGID_29_`"
           gradientUnits="userSpaceOnUse"
           x1="111.3582"
           y1="241.7527"
@@ -687,14 +687,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st32"
+          :class="`bshrq-${info.id}-st32`"
           d="M95.08,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L93.73,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C88.44,240.86,92.22,242.91,95.08,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_30_"
+          :id="`bshrq_${info.id}_SVGID_30_`"
           gradientUnits="userSpaceOnUse"
           x1="114.9892"
           y1="242.9681"
@@ -707,12 +707,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st33"
+          :class="`bshrq-${info.id}-st33`"
           d="M98.71,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L97.36,36.93c-3.3,2.15-5.29,5.83-5.29,9.77v190.75
                 C92.07,240.86,95.85,242.91,98.71,241.05z"
         />
         <linearGradient
-          id="SVGID_31_"
+          :id="`bshrq_${info.id}_SVGID_31_`"
           gradientUnits="userSpaceOnUse"
           x1="116.8048"
           y1="241.7527"
@@ -723,14 +723,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st34"
+          :class="`bshrq-${info.id}-st34`"
           d="M100.53,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L99.17,36.93c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C93.88,240.86,97.67,242.91,100.53,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_32_"
+          :id="`bshrq_${info.id}_SVGID_32_`"
           gradientUnits="userSpaceOnUse"
           x1="120.4358"
           y1="242.9681"
@@ -743,12 +743,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st35"
+          :class="`bshrq-${info.id}-st35`"
           d="M104.16,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C97.51,240.86,101.3,242.91,104.16,241.05z"
         />
         <linearGradient
-          id="SVGID_33_"
+          :id="`bshrq_${info.id}_SVGID_33_`"
           gradientUnits="userSpaceOnUse"
           x1="122.2513"
           y1="241.7527"
@@ -759,14 +759,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st36"
+          :class="`bshrq-${info.id}-st36`"
           d="M105.97,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C99.33,240.86,103.12,242.91,105.97,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_34_"
+          :id="`bshrq_${info.id}_SVGID_34_`"
           gradientUnits="userSpaceOnUse"
           x1="125.8824"
           y1="242.9681"
@@ -779,12 +779,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st37"
+          :class="`bshrq-${info.id}-st37`"
           d="M109.6,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C102.96,240.86,106.75,242.91,109.6,241.05z"
         />
         <linearGradient
-          id="SVGID_35_"
+          :id="`bshrq_${info.id}_SVGID_35_`"
           gradientUnits="userSpaceOnUse"
           x1="127.6979"
           y1="241.7527"
@@ -795,14 +795,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st38"
+          :class="`bshrq-${info.id}-st38`"
           d="M111.42,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C104.78,240.86,108.56,242.91,111.42,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_36_"
+          :id="`bshrq_${info.id}_SVGID_36_`"
           gradientUnits="userSpaceOnUse"
           x1="131.3289"
           y1="242.9681"
@@ -815,12 +815,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st39"
+          :class="`bshrq-${info.id}-st39`"
           d="M115.05,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L113.7,36.93c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C108.41,240.86,112.19,242.91,115.05,241.05z"
         />
         <linearGradient
-          id="SVGID_37_"
+          :id="`bshrq_${info.id}_SVGID_37_`"
           gradientUnits="userSpaceOnUse"
           x1="133.1445"
           y1="241.7527"
@@ -831,14 +831,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st40"
+          :class="`bshrq-${info.id}-st40`"
           d="M116.87,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C110.22,240.86,114.01,242.91,116.87,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_38_"
+          :id="`bshrq_${info.id}_SVGID_38_`"
           gradientUnits="userSpaceOnUse"
           x1="136.7755"
           y1="242.9681"
@@ -851,12 +851,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st41"
+          :class="`bshrq-${info.id}-st41`"
           d="M120.5,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C113.85,240.86,117.64,242.91,120.5,241.05z"
         />
         <linearGradient
-          id="SVGID_39_"
+          :id="`bshrq_${info.id}_SVGID_39_`"
           gradientUnits="userSpaceOnUse"
           x1="138.591"
           y1="241.7527"
@@ -867,14 +867,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st42"
+          :class="`bshrq-${info.id}-st42`"
           d="M122.31,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C115.67,240.86,119.45,242.91,122.31,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_40_"
+          :id="`bshrq_${info.id}_SVGID_40_`"
           gradientUnits="userSpaceOnUse"
           x1="142.2221"
           y1="242.9681"
@@ -887,12 +887,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st43"
+          :class="`bshrq-${info.id}-st43`"
           d="M125.94,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C119.3,240.86,123.09,242.91,125.94,241.05z"
         />
         <linearGradient
-          id="SVGID_41_"
+          :id="`bshrq_${info.id}_SVGID_41_`"
           gradientUnits="userSpaceOnUse"
           x1="144.0376"
           y1="241.7527"
@@ -903,14 +903,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st44"
+          :class="`bshrq-${info.id}-st44`"
           d="M127.76,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C121.12,240.86,124.9,242.91,127.76,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_42_"
+          :id="`bshrq_${info.id}_SVGID_42_`"
           gradientUnits="userSpaceOnUse"
           x1="147.6686"
           y1="242.9681"
@@ -923,12 +923,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st45"
+          :class="`bshrq-${info.id}-st45`"
           d="M131.39,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C124.75,240.86,128.53,242.91,131.39,241.05z"
         />
         <linearGradient
-          id="SVGID_43_"
+          :id="`bshrq_${info.id}_SVGID_43_`"
           gradientUnits="userSpaceOnUse"
           x1="149.4842"
           y1="241.7527"
@@ -939,14 +939,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st46"
+          :class="`bshrq-${info.id}-st46`"
           d="M133.21,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C126.56,240.86,130.35,242.91,133.21,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_44_"
+          :id="`bshrq_${info.id}_SVGID_44_`"
           gradientUnits="userSpaceOnUse"
           x1="153.1152"
           y1="242.9681"
@@ -959,12 +959,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st47"
+          :class="`bshrq-${info.id}-st47`"
           d="M136.84,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C130.19,240.86,133.98,242.91,136.84,241.05z"
         />
         <linearGradient
-          id="SVGID_45_"
+          :id="`bshrq_${info.id}_SVGID_45_`"
           gradientUnits="userSpaceOnUse"
           x1="154.9307"
           y1="241.7527"
@@ -975,14 +975,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st48"
+          :class="`bshrq-${info.id}-st48`"
           d="M138.65,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L137.3,36.93c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C132.01,240.86,135.79,242.91,138.65,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_46_"
+          :id="`bshrq_${info.id}_SVGID_46_`"
           gradientUnits="userSpaceOnUse"
           x1="158.5618"
           y1="242.9681"
@@ -995,12 +995,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st49"
+          :class="`bshrq-${info.id}-st49`"
           d="M142.28,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C135.64,240.86,139.43,242.91,142.28,241.05z"
         />
         <linearGradient
-          id="SVGID_47_"
+          :id="`bshrq_${info.id}_SVGID_47_`"
           gradientUnits="userSpaceOnUse"
           x1="160.3773"
           y1="241.7527"
@@ -1011,14 +1011,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st50"
+          :class="`bshrq-${info.id}-st50`"
           d="M144.1,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C137.46,240.86,141.24,242.91,144.1,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_48_"
+          :id="`bshrq_${info.id}_SVGID_48_`"
           gradientUnits="userSpaceOnUse"
           x1="164.0083"
           y1="242.9681"
@@ -1031,12 +1031,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st51"
+          :class="`bshrq-${info.id}-st51`"
           d="M147.73,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C141.09,240.86,144.87,242.91,147.73,241.05z"
         />
         <linearGradient
-          id="SVGID_49_"
+          :id="`bshrq_${info.id}_SVGID_49_`"
           gradientUnits="userSpaceOnUse"
           x1="165.8239"
           y1="241.7527"
@@ -1047,14 +1047,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st52"
+          :class="`bshrq-${info.id}-st52`"
           d="M149.55,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C142.9,240.86,146.69,242.91,149.55,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_50_"
+          :id="`bshrq_${info.id}_SVGID_50_`"
           gradientUnits="userSpaceOnUse"
           x1="169.4549"
           y1="242.9681"
@@ -1067,12 +1067,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st53"
+          :class="`bshrq-${info.id}-st53`"
           d="M153.18,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C146.53,240.86,150.32,242.91,153.18,241.05z"
         />
         <linearGradient
-          id="SVGID_51_"
+          :id="`bshrq_${info.id}_SVGID_51_`"
           gradientUnits="userSpaceOnUse"
           x1="171.2704"
           y1="241.7527"
@@ -1083,14 +1083,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st54"
+          :class="`bshrq-${info.id}-st54`"
           d="M154.99,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C148.35,240.86,152.13,242.91,154.99,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_52_"
+          :id="`bshrq_${info.id}_SVGID_52_`"
           gradientUnits="userSpaceOnUse"
           x1="174.9015"
           y1="242.9681"
@@ -1103,12 +1103,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st55"
+          :class="`bshrq-${info.id}-st55`"
           d="M158.62,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C151.98,240.86,155.77,242.91,158.62,241.05z"
         />
         <linearGradient
-          id="SVGID_53_"
+          :id="`bshrq_${info.id}_SVGID_53_`"
           gradientUnits="userSpaceOnUse"
           x1="176.717"
           y1="241.7527"
@@ -1119,14 +1119,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st56"
+          :class="`bshrq-${info.id}-st56`"
           d="M160.44,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C153.8,240.86,157.58,242.91,160.44,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_54_"
+          :id="`bshrq_${info.id}_SVGID_54_`"
           gradientUnits="userSpaceOnUse"
           x1="180.348"
           y1="242.9681"
@@ -1139,12 +1139,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st57"
+          :class="`bshrq-${info.id}-st57`"
           d="M164.07,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C157.43,240.86,161.21,242.91,164.07,241.05z"
         />
         <linearGradient
-          id="SVGID_55_"
+          :id="`bshrq_${info.id}_SVGID_55_`"
           gradientUnits="userSpaceOnUse"
           x1="182.1636"
           y1="241.7527"
@@ -1155,14 +1155,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st58"
+          :class="`bshrq-${info.id}-st58`"
           d="M165.88,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C159.24,240.86,163.03,242.91,165.88,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_56_"
+          :id="`bshrq_${info.id}_SVGID_56_`"
           gradientUnits="userSpaceOnUse"
           x1="185.7946"
           y1="242.9681"
@@ -1175,12 +1175,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st59"
+          :class="`bshrq-${info.id}-st59`"
           d="M169.52,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C162.87,240.86,166.66,242.91,169.52,241.05z"
         />
         <linearGradient
-          id="SVGID_57_"
+          :id="`bshrq_${info.id}_SVGID_57_`"
           gradientUnits="userSpaceOnUse"
           x1="187.6101"
           y1="241.7527"
@@ -1191,14 +1191,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st60"
+          :class="`bshrq-${info.id}-st60`"
           d="M171.33,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C164.69,240.86,168.47,242.91,171.33,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_58_"
+          :id="`bshrq_${info.id}_SVGID_58_`"
           gradientUnits="userSpaceOnUse"
           x1="191.2412"
           y1="242.9681"
@@ -1211,12 +1211,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st61"
+          :class="`bshrq-${info.id}-st61`"
           d="M174.96,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C168.32,240.86,172.11,242.91,174.96,241.05z"
         />
         <linearGradient
-          id="SVGID_59_"
+          :id="`bshrq_${info.id}_SVGID_59_`"
           gradientUnits="userSpaceOnUse"
           x1="193.0567"
           y1="241.7527"
@@ -1227,14 +1227,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st62"
+          :class="`bshrq-${info.id}-st62`"
           d="M176.78,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C170.14,240.86,173.92,242.91,176.78,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_60_"
+          :id="`bshrq_${info.id}_SVGID_60_`"
           gradientUnits="userSpaceOnUse"
           x1="196.6877"
           y1="242.9681"
@@ -1247,12 +1247,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st63"
+          :class="`bshrq-${info.id}-st63`"
           d="M180.41,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C173.77,240.86,177.55,242.91,180.41,241.05z"
         />
         <linearGradient
-          id="SVGID_61_"
+          :id="`bshrq_${info.id}_SVGID_61_`"
           gradientUnits="userSpaceOnUse"
           x1="198.5033"
           y1="241.7527"
@@ -1263,14 +1263,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st64"
+          :class="`bshrq-${info.id}-st64`"
           d="M182.22,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C175.58,240.86,179.37,242.91,182.22,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_62_"
+          :id="`bshrq_${info.id}_SVGID_62_`"
           gradientUnits="userSpaceOnUse"
           x1="202.1343"
           y1="242.9681"
@@ -1283,12 +1283,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st65"
+          :class="`bshrq-${info.id}-st65`"
           d="M185.86,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6L184.5,36.93c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C179.21,240.86,183,242.91,185.86,241.05z"
         />
         <linearGradient
-          id="SVGID_63_"
+          :id="`bshrq_${info.id}_SVGID_63_`"
           gradientUnits="userSpaceOnUse"
           x1="203.9498"
           y1="241.7527"
@@ -1299,14 +1299,14 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st66"
+          :class="`bshrq-${info.id}-st66`"
           d="M187.67,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C181.03,240.86,184.81,242.91,187.67,241.05z"
         />
       </g>
       <g>
         <linearGradient
-          id="SVGID_64_"
+          :id="`bshrq_${info.id}_SVGID_64_`"
           gradientUnits="userSpaceOnUse"
           x1="207.5809"
           y1="242.9681"
@@ -1319,12 +1319,12 @@
           <stop offset="0.9106" style="stop-color:#FFFFFF" />
         </linearGradient>
         <path
-          class="bshrq-st67"
+          :class="`bshrq-${info.id}-st67`"
           d="M191.3,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C184.66,240.86,188.44,242.91,191.3,241.05z"
         />
         <linearGradient
-          id="SVGID_65_"
+          :id="`bshrq_${info.id}_SVGID_65_`"
           gradientUnits="userSpaceOnUse"
           x1="209.3964"
           y1="241.7527"
@@ -1335,14 +1335,20 @@
           <stop offset="1" style="stop-color:#3A454C" />
         </linearGradient>
         <path
-          class="bshrq-st68"
+          :class="`bshrq-${info.id}-st68`"
           d="M193.12,241.05l39.2-25.57V18.41c0-3.41-3.78-5.46-6.64-3.6l-33.91,22.11c-3.3,2.15-5.29,5.83-5.29,9.77
                 v190.75C186.48,240.86,190.26,242.91,193.12,241.05z"
         />
       </g>
-      <ellipse class="bshrq-st69" cx="16.41" cy="93.27" rx="3.42" ry="6.43" />
+      <ellipse
+        :class="`bshrq-${info.id}-st69`"
+        cx="16.41"
+        cy="93.27"
+        rx="3.42"
+        ry="6.43"
+      />
       <linearGradient
-        id="SVGID_66_"
+        :id="`bshrq_${info.id}_SVGID_66_`"
         gradientUnits="userSpaceOnUse"
         x1="661.6511"
         y1="88.2583"
@@ -1370,12 +1376,18 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="bshrq-st70"
+        :class="`bshrq-${info.id}-st70`"
         d="M181.13,98.39V88.26H15.65c0,0-1.65,1.52-1.65,5.07c0,4.2,1.65,5.07,1.65,5.07H181.13z"
       />
-      <ellipse class="bshrq-st69" cx="16.41" cy="190.4" rx="3.42" ry="6.43" />
+      <ellipse
+        :class="`bshrq-${info.id}-st69`"
+        cx="16.41"
+        cy="190.4"
+        rx="3.42"
+        ry="6.43"
+      />
       <linearGradient
-        id="SVGID_67_"
+        :id="`bshrq_${info.id}_SVGID_67_`"
         gradientUnits="userSpaceOnUse"
         x1="661.6511"
         y1="185.3888"
@@ -1403,12 +1415,12 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="bshrq-st71"
+        :class="`bshrq-${info.id}-st71`"
         d="M181.13,195.52v-10.14H15.65c0,0-1.65,1.52-1.65,5.07c0,4.2,1.65,5.07,1.65,5.07H181.13z"
       />
       <g>
         <linearGradient
-          id="SVGID_68_"
+          :id="`bshrq_${info.id}_SVGID_68_`"
           gradientUnits="userSpaceOnUse"
           x1="214.302"
           y1="260"
@@ -1419,7 +1431,7 @@
           <stop offset="1" style="stop-color:#2B68AB" />
         </linearGradient>
         <polygon
-          class="bshrq-st72"
+          :class="`bshrq-${info.id}-st72`"
           points="245.62,219.15 182.98,260 182.98,41.23 245.62,0.38 	"
         />
       </g>
@@ -1427,32 +1439,38 @@
         <rect
           x="176.63"
           y="41.23"
-          class="bshrq-st3"
+          :class="`bshrq-${info.id}-st3`"
           width="6.35"
           height="218.77"
         />
       </g>
       <g>
         <polygon
-          class="bshrq-st4"
+          :class="`bshrq-${info.id}-st4`"
           points="239.27,0.38 245.62,0.38 182.98,41.23 176.63,41.23 	"
         />
       </g>
       <polygon
-        class="bshrq-st5"
+        :class="`bshrq-${info.id}-st5`"
         points="183.44,260 182.53,260 182.53,41.68 176.63,41.68 176.63,40.78 183.44,40.78 "
       />
       <rect
         x="176.91"
         y="20.35"
         transform="matrix(0.8374 -0.5466 0.5466 0.8374 23.4707 120.5126)"
-        class="bshrq-st6"
+        :class="`bshrq-${info.id}-st6`"
         width="74.78"
         height="0.91"
       />
-      <ellipse class="bshrq-st69" cx="189.59" cy="93.33" rx="4.52" ry="8.51" />
+      <ellipse
+        :class="`bshrq-${info.id}-st69`"
+        cx="189.59"
+        cy="93.33"
+        rx="4.52"
+        ry="8.51"
+      />
       <linearGradient
-        id="SVGID_69_"
+        :id="`bshrq_${info.id}_SVGID_69_`"
         gradientUnits="userSpaceOnUse"
         x1="568.9191"
         y1="86.6934"
@@ -1480,13 +1498,25 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="bshrq-st73"
+        :class="`bshrq-${info.id}-st73`"
         d="M194.19,100.1V86.69h-5.6c0,0-2.18,2.01-2.18,6.71c0,5.56,2.18,6.71,2.18,6.71H194.19z"
       />
-      <ellipse class="bshrq-st74" cx="194.19" cy="93.4" rx="2.85" ry="6.71" />
-      <ellipse class="bshrq-st69" cx="189.59" cy="190.46" rx="4.52" ry="8.51" />
+      <ellipse
+        :class="`bshrq-${info.id}-st74`"
+        cx="194.19"
+        cy="93.4"
+        rx="2.85"
+        ry="6.71"
+      />
+      <ellipse
+        :class="`bshrq-${info.id}-st69`"
+        cx="189.59"
+        cy="190.46"
+        rx="4.52"
+        ry="8.51"
+      />
       <linearGradient
-        id="SVGID_70_"
+        :id="`bshrq_${info.id}_SVGID_70_`"
         gradientUnits="userSpaceOnUse"
         x1="568.9191"
         y1="183.8239"
@@ -1514,13 +1544,25 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="bshrq-st75"
+        :class="`bshrq-${info.id}-st75`"
         d="M194.19,197.23v-13.41h-5.6c0,0-2.18,2.01-2.18,6.71c0,5.56,2.18,6.71,2.18,6.71H194.19z"
       />
-      <ellipse class="bshrq-st74" cx="194.19" cy="190.53" rx="2.85" ry="6.71" />
-      <ellipse class="bshrq-st69" cx="240.42" cy="67.91" rx="4.52" ry="8.51" />
+      <ellipse
+        :class="`bshrq-${info.id}-st74`"
+        cx="194.19"
+        cy="190.53"
+        rx="2.85"
+        ry="6.71"
+      />
+      <ellipse
+        :class="`bshrq-${info.id}-st69`"
+        cx="240.42"
+        cy="67.91"
+        rx="4.52"
+        ry="8.51"
+      />
       <linearGradient
-        id="SVGID_71_"
+        :id="`bshrq_${info.id}_SVGID_71_`"
         gradientUnits="userSpaceOnUse"
         x1="518.0845"
         y1="61.2761"
@@ -1548,13 +1590,25 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="bshrq-st76"
+        :class="`bshrq-${info.id}-st76`"
         d="M245.03,74.69V61.28h-5.6c0,0-2.18,2.01-2.18,6.71c0,5.56,2.18,6.71,2.18,6.71H245.03z"
       />
-      <ellipse class="bshrq-st74" cx="245.03" cy="67.98" rx="2.85" ry="6.71" />
-      <ellipse class="bshrq-st69" cx="240.42" cy="165.04" rx="4.52" ry="8.51" />
+      <ellipse
+        :class="`bshrq-${info.id}-st74`"
+        cx="245.03"
+        cy="67.98"
+        rx="2.85"
+        ry="6.71"
+      />
+      <ellipse
+        :class="`bshrq-${info.id}-st69`"
+        cx="240.42"
+        cy="165.04"
+        rx="4.52"
+        ry="8.51"
+      />
       <linearGradient
-        id="SVGID_72_"
+        :id="`bshrq_${info.id}_SVGID_72_`"
         gradientUnits="userSpaceOnUse"
         x1="518.0845"
         y1="158.4066"
@@ -1582,15 +1636,27 @@
         <stop offset="1" style="stop-color:#242321" />
       </linearGradient>
       <path
-        class="bshrq-st77"
+        :class="`bshrq-${info.id}-st77`"
         d="M245.03,171.82v-13.41h-5.6c0,0-2.18,2.01-2.18,6.71c0,5.56,2.18,6.71,2.18,6.71H245.03z"
       />
-      <ellipse class="bshrq-st74" cx="245.03" cy="165.11" rx="2.85" ry="6.71" />
+      <ellipse
+        :class="`bshrq-${info.id}-st74`"
+        cx="245.03"
+        cy="165.11"
+        rx="2.85"
+        ry="6.71"
+      />
       <g>
-        <ellipse class="bshrq-st69" cx="233" cy="33.33" rx="7.69" ry="14.48" />
+        <ellipse
+          :class="`bshrq-${info.id}-st69`"
+          cx="233"
+          cy="33.33"
+          rx="7.69"
+          ry="14.48"
+        />
 
         <linearGradient
-          id="SVGID_73_"
+          :id="`bshrq_${info.id}_SVGID_73_`"
           gradientUnits="userSpaceOnUse"
           x1="508.0271"
           y1="22.0482"
@@ -1618,12 +1684,12 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="bshrq-st78"
+          :class="`bshrq-${info.id}-st78`"
           d="M274.8,44.86V22.05h-43.5c0,0-3.71,3.42-3.71,11.41c0,9.45,3.71,11.41,3.71,11.41H274.8z"
         />
 
         <linearGradient
-          id="SVGID_74_"
+          :id="`bshrq_${info.id}_SVGID_74_`"
           gradientUnits="userSpaceOnUse"
           x1="693.524"
           y1="169.6229"
@@ -1651,12 +1717,12 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="bshrq-st79"
+          :class="`bshrq-${info.id}-st79`"
           d="M270.9,14.16c2.31,4.68,3.79,11.87,3.79,19.94s-1.48,15.26-3.79,19.94v5.61h-6.32
                 c-5.59,0-10.12-11.44-10.12-25.56s4.53-25.56,10.12-25.56h6.32V14.16z"
         />
         <linearGradient
-          id="SVGID_75_"
+          :id="`bshrq_${info.id}_SVGID_75_`"
           gradientUnits="userSpaceOnUse"
           x1="285.4163"
           y1="38.6012"
@@ -1667,7 +1733,7 @@
           <stop offset="1" style="stop-color:#ABAEAD" />
         </linearGradient>
         <ellipse
-          class="bshrq-st80"
+          :class="`bshrq-${info.id}-st80`"
           cx="270.9"
           cy="34.11"
           rx="10.12"
@@ -1675,7 +1741,7 @@
         />
 
         <linearGradient
-          id="SVGID_76_"
+          :id="`bshrq_${info.id}_SVGID_76_`"
           gradientUnits="userSpaceOnUse"
           x1="678.002"
           y1="162.0331"
@@ -1688,14 +1754,14 @@
           <stop offset="1" style="stop-color:#262623" />
         </linearGradient>
         <ellipse
-          class="bshrq-st81"
+          :class="`bshrq-${info.id}-st81`"
           cx="272.17"
           cy="34.11"
           rx="4.09"
           ry="10.34"
         />
         <linearGradient
-          id="SVGID_77_"
+          :id="`bshrq_${info.id}_SVGID_77_`"
           gradientUnits="userSpaceOnUse"
           x1="266.3343"
           y1="8.5502"
@@ -1718,16 +1784,22 @@
           <stop offset="1" style="stop-color:#6F6F6A" />
         </linearGradient>
         <path
-          class="bshrq-st82"
+          :class="`bshrq-${info.id}-st82`"
           d="M262.75,34.11c0,13.28,4.01,24.19,9.14,25.43c-0.32,0.08-0.65,0.12-0.98,0.12
                 c-5.59,0-10.12-11.44-10.12-25.56s4.53-25.56,10.12-25.56c0.33,0,0.66,0.04,0.98,0.12C266.76,9.92,262.75,20.83,262.75,34.11z"
         />
       </g>
       <g>
-        <ellipse class="bshrq-st69" cx="233" cy="194.91" rx="7.69" ry="14.48" />
+        <ellipse
+          :class="`bshrq-${info.id}-st69`"
+          cx="233"
+          cy="194.91"
+          rx="7.69"
+          ry="14.48"
+        />
 
         <linearGradient
-          id="SVGID_78_"
+          :id="`bshrq_${info.id}_SVGID_78_`"
           gradientUnits="userSpaceOnUse"
           x1="508.0271"
           y1="183.6297"
@@ -1755,12 +1827,12 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="bshrq-st83"
+          :class="`bshrq-${info.id}-st83`"
           d="M274.8,206.44v-22.81h-43.5c0,0-3.71,3.42-3.71,11.41c0,9.45,3.71,11.41,3.71,11.41H274.8z"
         />
 
         <linearGradient
-          id="SVGID_79_"
+          :id="`bshrq_${info.id}_SVGID_79_`"
           gradientUnits="userSpaceOnUse"
           x1="531.9425"
           y1="169.6229"
@@ -1788,12 +1860,12 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="bshrq-st84"
+          :class="`bshrq-${info.id}-st84`"
           d="M270.9,175.74c2.31,4.68,3.79,11.87,3.79,19.94c0,8.07-1.48,15.26-3.79,19.94v5.61h-6.32
                 c-5.59,0-10.12-11.44-10.12-25.56c0-14.11,4.53-25.56,10.12-25.56h6.32V175.74z"
         />
         <linearGradient
-          id="SVGID_80_"
+          :id="`bshrq_${info.id}_SVGID_80_`"
           gradientUnits="userSpaceOnUse"
           x1="285.4163"
           y1="200.1827"
@@ -1804,7 +1876,7 @@
           <stop offset="1" style="stop-color:#ABAEAD" />
         </linearGradient>
         <ellipse
-          class="bshrq-st85"
+          :class="`bshrq-${info.id}-st85`"
           cx="270.9"
           cy="195.69"
           rx="10.12"
@@ -1812,7 +1884,7 @@
         />
 
         <linearGradient
-          id="SVGID_81_"
+          :id="`bshrq_${info.id}_SVGID_81_`"
           gradientUnits="userSpaceOnUse"
           x1="516.4205"
           y1="162.0331"
@@ -1825,14 +1897,14 @@
           <stop offset="1" style="stop-color:#262623" />
         </linearGradient>
         <ellipse
-          class="bshrq-st86"
+          :class="`bshrq-${info.id}-st86`"
           cx="272.17"
           cy="195.69"
           rx="4.09"
           ry="10.34"
         />
         <linearGradient
-          id="SVGID_82_"
+          :id="`bshrq_${info.id}_SVGID_82_`"
           gradientUnits="userSpaceOnUse"
           x1="266.3343"
           y1="170.1317"
@@ -1855,7 +1927,7 @@
           <stop offset="1" style="stop-color:#6F6F6A" />
         </linearGradient>
         <path
-          class="bshrq-st87"
+          :class="`bshrq-${info.id}-st87`"
           d="M262.75,195.69c0,13.28,4.01,24.19,9.14,25.43c-0.32,0.08-0.65,0.12-0.98,0.12
                 c-5.59,0-10.12-11.44-10.12-25.56c0-14.11,4.53-25.56,10.12-25.56c0.33,0,0.66,0.04,0.98,0.12
                 C266.76,171.5,262.75,182.41,262.75,195.69z"
@@ -1863,7 +1935,7 @@
       </g>
       <g>
         <ellipse
-          class="bshrq-st69"
+          :class="`bshrq-${info.id}-st69`"
           cx="196.69"
           cy="57.84"
           rx="7.69"
@@ -1871,7 +1943,7 @@
         />
 
         <linearGradient
-          id="SVGID_83_"
+          :id="`bshrq_${info.id}_SVGID_83_`"
           gradientUnits="userSpaceOnUse"
           x1="544.3376"
           y1="46.5577"
@@ -1899,12 +1971,12 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="bshrq-st88"
+          :class="`bshrq-${info.id}-st88`"
           d="M238.49,69.37V46.56h-43.5c0,0-3.71,3.42-3.71,11.41c0,9.45,3.71,11.41,3.71,11.41H238.49z"
         />
 
         <linearGradient
-          id="SVGID_84_"
+          :id="`bshrq_${info.id}_SVGID_84_`"
           gradientUnits="userSpaceOnUse"
           x1="669.0145"
           y1="205.9334"
@@ -1932,12 +2004,12 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="bshrq-st89"
+          :class="`bshrq-${info.id}-st89`"
           d="M234.59,38.67c2.31,4.68,3.79,11.87,3.79,19.94s-1.48,15.26-3.79,19.94v5.61h-6.32
                 c-5.59,0-10.12-11.44-10.12-25.56s4.53-25.56,10.12-25.56h6.32V38.67z"
         />
         <linearGradient
-          id="SVGID_85_"
+          :id="`bshrq_${info.id}_SVGID_85_`"
           gradientUnits="userSpaceOnUse"
           x1="249.1058"
           y1="63.1107"
@@ -1948,7 +2020,7 @@
           <stop offset="1" style="stop-color:#ABAEAD" />
         </linearGradient>
         <ellipse
-          class="bshrq-st90"
+          :class="`bshrq-${info.id}-st90`"
           cx="234.59"
           cy="58.62"
           rx="10.12"
@@ -1956,7 +2028,7 @@
         />
 
         <linearGradient
-          id="SVGID_86_"
+          :id="`bshrq_${info.id}_SVGID_86_`"
           gradientUnits="userSpaceOnUse"
           x1="653.4924"
           y1="198.3436"
@@ -1969,14 +2041,14 @@
           <stop offset="1" style="stop-color:#262623" />
         </linearGradient>
         <ellipse
-          class="bshrq-st91"
+          :class="`bshrq-${info.id}-st91`"
           cx="235.86"
           cy="58.62"
           rx="4.09"
           ry="10.34"
         />
         <linearGradient
-          id="SVGID_87_"
+          :id="`bshrq_${info.id}_SVGID_87_`"
           gradientUnits="userSpaceOnUse"
           x1="230.0238"
           y1="33.0597"
@@ -1999,14 +2071,14 @@
           <stop offset="1" style="stop-color:#6F6F6A" />
         </linearGradient>
         <path
-          class="bshrq-st92"
+          :class="`bshrq-${info.id}-st92`"
           d="M226.44,58.62c0,13.28,4.01,24.19,9.14,25.43c-0.32,0.08-0.65,0.12-0.98,0.12
                 c-5.59,0-10.12-11.44-10.12-25.56s4.53-25.56,10.12-25.56c0.33,0,0.66,0.04,0.98,0.12C230.45,34.43,226.44,45.34,226.44,58.62z"
         />
       </g>
       <g>
         <ellipse
-          class="bshrq-st69"
+          :class="`bshrq-${info.id}-st69`"
           cx="196.69"
           cy="219.42"
           rx="7.69"
@@ -2014,7 +2086,7 @@
         />
 
         <linearGradient
-          id="SVGID_88_"
+          :id="`bshrq_${info.id}_SVGID_88_`"
           gradientUnits="userSpaceOnUse"
           x1="544.3376"
           y1="208.1392"
@@ -2042,12 +2114,12 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="bshrq-st93"
+          :class="`bshrq-${info.id}-st93`"
           d="M238.49,230.95v-22.81h-43.5c0,0-3.71,3.42-3.71,11.41c0,9.45,3.71,11.41,3.71,11.41H238.49z"
         />
 
         <linearGradient
-          id="SVGID_89_"
+          :id="`bshrq_${info.id}_SVGID_89_`"
           gradientUnits="userSpaceOnUse"
           x1="507.433"
           y1="205.9334"
@@ -2075,12 +2147,12 @@
           <stop offset="1" style="stop-color:#242321" />
         </linearGradient>
         <path
-          class="bshrq-st94"
+          :class="`bshrq-${info.id}-st94`"
           d="M234.59,200.25c2.31,4.68,3.79,11.87,3.79,19.94c0,8.07-1.48,15.26-3.79,19.94v5.61h-6.32
                 c-5.59,0-10.12-11.44-10.12-25.56c0-14.11,4.53-25.56,10.12-25.56h6.32V200.25z"
         />
         <linearGradient
-          id="SVGID_90_"
+          :id="`bshrq_${info.id}_SVGID_90_`"
           gradientUnits="userSpaceOnUse"
           x1="249.1058"
           y1="224.6922"
@@ -2091,7 +2163,7 @@
           <stop offset="1" style="stop-color:#ABAEAD" />
         </linearGradient>
         <ellipse
-          class="bshrq-st95"
+          :class="`bshrq-${info.id}-st95`"
           cx="234.59"
           cy="220.2"
           rx="10.12"
@@ -2099,7 +2171,7 @@
         />
 
         <linearGradient
-          id="SVGID_91_"
+          :id="`bshrq_${info.id}_SVGID_91_`"
           gradientUnits="userSpaceOnUse"
           x1="491.9109"
           y1="198.3436"
@@ -2112,14 +2184,14 @@
           <stop offset="1" style="stop-color:#262623" />
         </linearGradient>
         <ellipse
-          class="bshrq-st96"
+          :class="`bshrq-${info.id}-st96`"
           cx="235.86"
           cy="220.2"
           rx="4.09"
           ry="10.34"
         />
         <linearGradient
-          id="SVGID_92_"
+          :id="`bshrq_${info.id}_SVGID_92_`"
           gradientUnits="userSpaceOnUse"
           x1="230.0238"
           y1="194.6412"
@@ -2142,7 +2214,7 @@
           <stop offset="1" style="stop-color:#6F6F6A" />
         </linearGradient>
         <path
-          class="bshrq-st97"
+          :class="`bshrq-${info.id}-st97`"
           d="M226.44,220.2c0,13.28,4.01,24.19,9.14,25.43c-0.32,0.08-0.65,0.12-0.98,0.12
                 c-5.59,0-10.12-11.44-10.12-25.56c0-14.11,4.53-25.56,10.12-25.56c0.33,0,0.66,0.04,0.98,0.12
                 C230.45,196.01,226.44,206.92,226.44,220.2z"

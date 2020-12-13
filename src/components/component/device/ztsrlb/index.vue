@@ -14,16 +14,16 @@
         v-html="
           `
         <style type='text/css'>
-       	.ztsrlb-st0{fill:url(#ztsrlb_2_);}
-					.ztsrlb-st1{opacity:0.15;}
-					.ztsrlb-st2{fill:url(#ztsrlb_3_);}
-					.ztsrlb-st3{fill:url(#ztsrlb_4_);}
-					.ztsrlb-st4{fill:#21302F;}
-					.ztsrlb-st5{fill:#415B5A;}
-					.ztsrlb-st6{fill:#77A09F;}
-					.ztsrlb-st7{fill:#848776;}
-					.ztsrlb-st8{fill:#25282B;}
-					.ztsrlb-st9{fill:#B60000;}
+       	.ztsrlb-${info.id}-st0{fill:url(#ztsrlb_2_);}
+					.ztsrlb-${info.id}-st1{opacity:0.15;}
+					.ztsrlb-${info.id}-st2{fill:url(#ztsrlb_3_);}
+					.ztsrlb-${info.id}-st3{fill:url(#ztsrlb_4_);}
+					.ztsrlb-${info.id}-st4{fill:#21302F;}
+					.ztsrlb-${info.id}-st5{fill:#415B5A;}
+					.ztsrlb-${info.id}-st6{fill:#77A09F;}
+					.ztsrlb-${info.id}-st7{fill:#848776;}
+					.ztsrlb-${info.id}-st8{fill:#25282B;}
+					.ztsrlb-${info.id}-st9{fill:#B60000;}
       </style>
       `
         "
@@ -47,7 +47,7 @@
         id="ztsrlb_953_"
         x="7.4"
         y="20.5"
-        class="ztsrlb-st0"
+        :class="`ztsrlb-${info.id}-st0`"
         width="44.5"
         height="12.9"
       />
@@ -55,7 +55,7 @@
         id="ztsrlb_956_"
         x="49.8"
         y="20.5"
-        class="ztsrlb-st1"
+        :class="`ztsrlb-${info.id}-st1`"
         width="2.2"
         height="12.9"
       />
@@ -63,7 +63,7 @@
         id="ztsrlb_957_"
         x="7"
         y="20.5"
-        class="ztsrlb-st1"
+        :class="`ztsrlb-${info.id}-st1`"
         width="2.2"
         height="12.9"
       />
@@ -85,7 +85,7 @@
       <rect
         id="ztsrlb_951_"
         y="17.9"
-        class="ztsrlb-st2"
+        :class="`ztsrlb-${info.id}-st2`"
         width="8.2"
         height="18.1"
       />
@@ -108,7 +108,7 @@
         id="ztsrlb_952_"
         x="51"
         y="17.9"
-        class="ztsrlb-st3"
+        :class="`ztsrlb-${info.id}-st3`"
         width="8.2"
         height="18.1"
       />
@@ -116,7 +116,7 @@
         id="ztsrlb_958_"
         x="18.8"
         y="24.7"
-        class="ztsrlb-st4"
+        :class="`ztsrlb-${info.id}-st4`"
         width="3.4"
         height="3.2"
       />
@@ -124,19 +124,19 @@
         id="ztsrlb_959_"
         x="37.2"
         y="24.7"
-        class="ztsrlb-st4"
+        :class="`ztsrlb-${info.id}-st4`"
         width="3.4"
         height="3.2"
       />
       <path
         id="ztsrlb_955_"
-        class="ztsrlb-st5"
+        :class="`ztsrlb-${info.id}-st5`"
         d="M42.3,26H17c-1.6,0-2.8-1.3-2.8-2.8V7.8C14.1,6.3,15.4,5,17,5h25.3c1.6,0,2.8,1.3,2.8,2.8v15.3
 					C45.1,24.7,43.8,26,42.3,26z"
       />
       <path
         id="ztsrlb_954_"
-        class="ztsrlb-st6"
+        :class="`ztsrlb-${info.id}-st6`"
         d="M42.3,21H17c-1.6,0-2.8-1.3-2.8-2.8V2.8C14.1,1.3,15.4,0,17,0h25.3c1.6,0,2.8,1.3,2.8,2.8v15.3
 					C45.1,19.7,43.8,21,42.3,21z"
       />
@@ -145,19 +145,19 @@
           id="ztsrlb_964_"
           x="18.2"
           y="4"
-          class="ztsrlb-st7"
+          :class="`ztsrlb-${info.id}-st7`"
           width="22.9"
           height="8.7"
         />
         <path
           id="ztsrlb_961_"
-          class="ztsrlb-st8"
+          :class="`ztsrlb-${info.id}-st8`"
           d="M42.1,13.7H17.2V3h24.9V13.7z M19.2,11.7h20.9V5H19.2V11.7z"
         />
       </g>
       <ellipse
         id="ztsrlb_965_"
-        class="ztsrlb-st4"
+        :class="`ztsrlb-${info.id}-st4`"
         cx="29.3"
         cy="17.3"
         rx="2.8"
@@ -165,7 +165,7 @@
       />
       <ellipse
         id="ztsrlb_966_"
-        class="ztsrlb-st9"
+        :class="`ztsrlb-${info.id}-st9`"
         cx="29.3"
         cy="17.3"
         rx="1.9"

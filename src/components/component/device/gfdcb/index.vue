@@ -14,13 +14,13 @@
         v-html="
           `
         <style type='text/css'>
-					.gfdcb-st0{fill-rule:evenodd;clip-rule:evenodd;fill:#AFB6BC;}
-					.gfdcb-st1{fill-rule:evenodd;clip-rule:evenodd;fill:#5C656D;}
-					.gfdcb-st2{fill-rule:evenodd;clip-rule:evenodd;fill:url(#gfdcb_2_);}
-					.gfdcb-st3{fill-rule:evenodd;clip-rule:evenodd;fill:#C2C8CE;}
-					.gfdcb-st4{fill-rule:evenodd;clip-rule:evenodd;fill:#DFE3E8;}
-					.gfdcb-st5{fill-rule:evenodd;clip-rule:evenodd;fill:url(#gfdcb_3_);}
-					.gfdcb-st6{fill:#DFE3E8;}
+					.gfdcb-${info.id}-st0{fill-rule:evenodd;clip-rule:evenodd;fill:#AFB6BC;}
+					.gfdcb-${info.id}-st1{fill-rule:evenodd;clip-rule:evenodd;fill:#5C656D;}
+					.gfdcb-${info.id}-st2{fill-rule:evenodd;clip-rule:evenodd;fill:url(#gfdcb_2_);}
+					.gfdcb-${info.id}-st3{fill-rule:evenodd;clip-rule:evenodd;fill:#C2C8CE;}
+					.gfdcb-${info.id}-st4{fill-rule:evenodd;clip-rule:evenodd;fill:#DFE3E8;}
+					.gfdcb-${info.id}-st5{fill-rule:evenodd;clip-rule:evenodd;fill:url(#gfdcb_3_);}
+					.gfdcb-${info.id}-st6{fill:#DFE3E8;}
       </style>
       `
         "
@@ -35,12 +35,12 @@
       />
       <polygon
         id="gfdcb_1283_"
-        class="gfdcb-st1"
+        :class="`gfdcb-${info.id}-st1`"
         points="17.7,131 32.7,108.8 32.7,104.3 17.7,125.5 "
       />
       <polygon
         id="gfdcb_1284_"
-        class="gfdcb-st1"
+        :class="`gfdcb-${info.id}-st1`"
         points="161.7,130 148.7,108.8 148.7,104.3 161.7,125.5 "
       />
       <linearGradient
@@ -56,18 +56,18 @@
       </linearGradient>
       <path
         id="gfdcb_1287_"
-        class="gfdcb-st2"
+        :class="`gfdcb-${info.id}-st2`"
         d="M150.7,100.3h-121l-21,30.2h162L150.7,100.3z M32.7,104.3h116l13,21.2h-144L32.7,104.3z"
       />
       <g id="gfdcb_1260_">
         <path
           id="gfdcb_1185_"
-          class="gfdcb-st3"
+          :class="`gfdcb-${info.id}-st3`"
           d="M178.3,116H3.4c-1.9,0-3.4-1.5-3.4-3.4v-3.8h181.7v3.8C181.7,114.5,180.2,116,178.3,116z"
         />
         <path
           id="gfdcb_1257_"
-          class="gfdcb-st4"
+          :class="`gfdcb-${info.id}-st4`"
           d="M28.8,0h123.9c1.1,0,2.3,0.9,2.6,2.1l26,105c0.6,2.3-0.3,4.2-1.9,4.2H2.1
 						c-1.6,0-2.5-1.9-1.9-4.2l26-105C26.5,0.9,27.6,0,28.8,0z"
         />
@@ -88,7 +88,7 @@
             </linearGradient>
             <path
               id="gfdcb_166_"
-              class="gfdcb-st5"
+              :class="`gfdcb-${info.id}-st5`"
               d="M30.4,17.6h18.4c1.6,0,3.1-1.4,3.4-3.1l1.2-8.2c0.2-1.6-0.8-2.9-2.4-2.9H33.5
 								c-1.5,0-3.1,1.3-3.4,2.9l-1.9,8.2C27.8,16.2,28.8,17.6,30.4,17.6z M56.2,17.6h18.4c1.6,0,3-1.4,3.1-3.1L78,6.3
 								c0.1-1.6-1.1-2.9-2.7-2.9H57.9c-1.5,0-3,1.3-3.2,2.9l-1.1,8.2C53.4,16.2,54.5,17.6,56.2,17.6z M81.9,17.6h18.4
@@ -128,7 +128,7 @@
             id="gfdcb_1262_"
             x="29"
             y="5.7"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="125.5"
             height="0.3"
           />
@@ -136,7 +136,7 @@
             id="gfdcb_1263_"
             x="29"
             y="8.7"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="125.5"
             height="0.3"
           />
@@ -144,7 +144,7 @@
             id="gfdcb_1264_"
             x="27.2"
             y="11.7"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="127.3"
             height="0.3"
           />
@@ -152,7 +152,7 @@
             id="gfdcb_1267_"
             x="26.2"
             y="14.7"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="129.5"
             height="0.3"
           />
@@ -160,7 +160,7 @@
             id="gfdcb_1266_"
             x="25.2"
             y="21.8"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="132.9"
             height="0.3"
           />
@@ -168,7 +168,7 @@
             id="gfdcb_1265_"
             x="24.4"
             y="25.1"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="133.4"
             height="0.3"
           />
@@ -176,7 +176,7 @@
             id="gfdcb_1268_"
             x="23.8"
             y="28.4"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="135.2"
             height="0.3"
           />
@@ -184,7 +184,7 @@
             id="gfdcb_1271_"
             x="21.9"
             y="31.7"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="137.9"
             height="0.3"
           />
@@ -192,7 +192,7 @@
             id="gfdcb_1270_"
             x="19.4"
             y="40.2"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="142.6"
             height="0.3"
           />
@@ -200,7 +200,7 @@
             id="gfdcb_1269_"
             x="18.5"
             y="43.8"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="143.2"
             height="0.3"
           />
@@ -208,7 +208,7 @@
             id="gfdcb_1272_"
             x="17.9"
             y="47.5"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="145.1"
             height="0.3"
           />
@@ -216,7 +216,7 @@
             id="gfdcb_1275_"
             x="16.2"
             y="51.1"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="148"
             height="0.3"
           />
@@ -224,7 +224,7 @@
             id="gfdcb_1274_"
             x="15.5"
             y="60.7"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="151.8"
             height="0.3"
           />
@@ -232,7 +232,7 @@
             id="gfdcb_1273_"
             x="14.4"
             y="64.9"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="152.3"
             height="0.3"
           />
@@ -240,7 +240,7 @@
             id="gfdcb_1276_"
             x="13.7"
             y="69.1"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="154.4"
             height="0.3"
           />
@@ -248,7 +248,7 @@
             id="gfdcb_1279_"
             x="11.8"
             y="73.3"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="157.4"
             height="0.3"
           />
@@ -256,7 +256,7 @@
             id="gfdcb_1278_"
             x="11"
             y="84.3"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="161.5"
             height="0.3"
           />
@@ -264,7 +264,7 @@
             id="gfdcb_1277_"
             x="10.3"
             y="89.2"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="162.1"
             height="0.3"
           />
@@ -272,7 +272,7 @@
             id="gfdcb_1280_"
             x="9.6"
             y="94.2"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="164.3"
             height="0.3"
           />
@@ -280,7 +280,7 @@
             id="gfdcb_1281_"
             x="7.5"
             y="99.1"
-            class="gfdcb-st6"
+            :class="`gfdcb-${info.id}-st6`"
             width="167.6"
             height="0.3"
           />

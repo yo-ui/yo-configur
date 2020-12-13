@@ -14,19 +14,19 @@
         v-html="
           `
         <style type='text/css'>
-      .lyssb-st0{fill:url(#lyssb_2_);}
-					.lyssb-st1{fill:#034081;}
-					.lyssb-st2{fill:url(#lyssb_3_);}
-					.lyssb-st3{fill:url(#lyssb_4_);}
-					.lyssb-st4{fill:url(#lyssb_5_);}
-					.lyssb-st5{fill:url(#lyssb_6_);}
-					.lyssb-st6{fill:url(#lyssb_7_);}
-					.lyssb-st7{fill:#F6C060;}
-					.lyssb-st8{fill:#FFFFFF;}
-					.lyssb-st9{fill:#E04520;}
-					.lyssb-st10{fill:#5D5F65;}
-					.lyssb-st11{fill:#1D1E1E;}
-					.lyssb-st12{fill:#C57C15;}
+      .lyssb-${info.id}-st0{fill:url(#lyssb_2_);}
+					.lyssb-${info.id}-st1{fill:#034081;}
+					.lyssb-${info.id}-st2{fill:url(#lyssb_3_);}
+					.lyssb-${info.id}-st3{fill:url(#lyssb_4_);}
+					.lyssb-${info.id}-st4{fill:url(#lyssb_5_);}
+					.lyssb-${info.id}-st5{fill:url(#lyssb_6_);}
+					.lyssb-${info.id}-st6{fill:url(#lyssb_7_);}
+					.lyssb-${info.id}-st7{fill:#F6C060;}
+					.lyssb-${info.id}-st8{fill:#FFFFFF;}
+					.lyssb-${info.id}-st9{fill:#E04520;}
+					.lyssb-${info.id}-st10{fill:#5D5F65;}
+					.lyssb-${info.id}-st11{fill:#1D1E1E;}
+					.lyssb-${info.id}-st12{fill:#C57C15;}
       </style>
       `
         "
@@ -46,12 +46,12 @@
       </linearGradient>
       <path
         id="lyssb_892_"
-        class="lyssb-st0"
+        :class="`lyssb-${info.id}-st0`"
         d="M62.8,14.4H68c2.2,0,4,12,4,26.8s-1.8,26.8-4,26.8h-5.2V14.4z"
       />
       <ellipse
         id="lyssb_873_"
-        class="lyssb-st1"
+        :class="`lyssb-${info.id}-st1`"
         cx="62.8"
         cy="41.2"
         rx="4"
@@ -71,12 +71,12 @@
       </linearGradient>
       <path
         id="lyssb_886_"
-        class="lyssb-st2"
+        :class="`lyssb-${info.id}-st2`"
         d="M9.2,14.4H4c-2.2,0-4,12-4,26.8C0,56,1.8,68.1,4,68.1h5.2V14.4z"
       />
       <ellipse
         id="lyssb_880_"
-        class="lyssb-st1"
+        :class="`lyssb-${info.id}-st1`"
         cx="9.2"
         cy="41.2"
         rx="4"
@@ -96,7 +96,7 @@
       </linearGradient>
       <path
         id="lyssb_876_"
-        class="lyssb-st3"
+        :class="`lyssb-${info.id}-st3`"
         d="M63,25.2H9.8c-0.9,0-2.2,6.9-2.2,15.5s1.3,15.5,2.2,15.5H63c0,0,1.6-4.5,1.6-15.5
 					S63,25.2,63,25.2z"
       />
@@ -117,7 +117,7 @@
       </linearGradient>
       <path
         id="lyssb_917_"
-        class="lyssb-st4"
+        :class="`lyssb-${info.id}-st4`"
         d="M18.1,17.1v11.5c0,7.8,8,22.1,17.8,22.1c9.8,0,17.8-14.3,17.8-22.1V17.1H18.1z"
       />
       <linearGradient
@@ -133,12 +133,12 @@
       </linearGradient>
       <path
         id="lyssb_933_"
-        class="lyssb-st5"
+        :class="`lyssb-${info.id}-st5`"
         d="M18.1,17.1v11.5c0,7.8,8,22.1,17.8,22.1c9.8,0,17.8-14.3,17.8-22.1V17.1H18.1z"
       />
       <ellipse
         id="lyssb_916_"
-        class="lyssb-st1"
+        :class="`lyssb-${info.id}-st1`"
         cx="35.8"
         cy="17.1"
         rx="17.8"
@@ -158,12 +158,12 @@
       </linearGradient>
       <path
         id="lyssb_915_"
-        class="lyssb-st6"
+        :class="`lyssb-${info.id}-st6`"
         d="M19.7,12.8v3.7c0,7.1,7.2,12.8,16.1,12.8c8.9,0,16.1-5.7,16.1-12.8v-3.7H19.7z"
       />
       <ellipse
         id="lyssb_914_"
-        class="lyssb-st7"
+        :class="`lyssb-${info.id}-st7`"
         cx="35.8"
         cy="12.8"
         rx="16.1"
@@ -171,7 +171,7 @@
       />
       <ellipse
         id="lyssb_913_"
-        class="lyssb-st8"
+        :class="`lyssb-${info.id}-st8`"
         cx="35.8"
         cy="12.5"
         rx="13.2"
@@ -179,7 +179,7 @@
       />
       <ellipse
         id="lyssb_912_"
-        class="lyssb-st9"
+        :class="`lyssb-${info.id}-st9`"
         cx="32.1"
         cy="6.3"
         rx="1.3"
@@ -187,7 +187,7 @@
       />
       <ellipse
         id="lyssb_911_"
-        class="lyssb-st9"
+        :class="`lyssb-${info.id}-st9`"
         cx="32.1"
         cy="18.8"
         rx="1.3"
@@ -195,7 +195,7 @@
       />
       <ellipse
         id="lyssb_910_"
-        class="lyssb-st9"
+        :class="`lyssb-${info.id}-st9`"
         cx="27.7"
         cy="10.4"
         rx="1.3"
@@ -203,7 +203,7 @@
       />
       <ellipse
         id="lyssb_909_"
-        class="lyssb-st9"
+        :class="`lyssb-${info.id}-st9`"
         cx="27.7"
         cy="15.5"
         rx="1.3"
@@ -213,7 +213,7 @@
         id="lyssb_908_"
         x="42.6"
         y="9.2"
-        class="lyssb-st10"
+        :class="`lyssb-${info.id}-st10`"
         width="3.2"
         height="1.3"
       />
@@ -221,7 +221,7 @@
         id="lyssb_907_"
         x="42.6"
         y="11.9"
-        class="lyssb-st10"
+        :class="`lyssb-${info.id}-st10`"
         width="3.2"
         height="1.3"
       />
@@ -229,13 +229,13 @@
         id="lyssb_906_"
         x="42.6"
         y="14.5"
-        class="lyssb-st10"
+        :class="`lyssb-${info.id}-st10`"
         width="3.2"
         height="1.3"
       />
       <ellipse
         id="lyssb_905_"
-        class="lyssb-st11"
+        :class="`lyssb-${info.id}-st11`"
         cx="36"
         cy="12.5"
         rx="2.3"
@@ -243,7 +243,7 @@
       />
       <path
         id="lyssb_895_"
-        class="lyssb-st12"
+        :class="`lyssb-${info.id}-st12`"
         d="M35.8,2.9c7.1,0,13,4.5,13.2,10c0-0.1,0-0.2,0-0.4c0-5.7-5.9-10.3-13.2-10.3
 					S22.6,6.9,22.6,12.5c0,0.1,0,0.2,0,0.4C22.9,7.4,28.7,2.9,35.8,2.9z"
       />
@@ -390,40 +390,40 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import (reference) "./../../../../assets/less/common.less";
-// .db-st0 {
+// .db-${info.id}-st0 {
 //   fill: url(#db_1_);
 // }
-// .db-st1 {
+// .db-${info.id}-st1 {
 //   fill: #dfe3e8;
 // }
-// .db-st2 {
+// .db-${info.id}-st2 {
 //   fill: url(#db_11_);
 // }
-// .db-st3 {
+// .db-${info.id}-st3 {
 //   fill: #ffffff;
 // }
-// .db-st4 {
+// .db-${info.id}-st4 {
 //   fill: #c2c8ce;
 // }
-// .db-st5 {
+// .db-${info.id}-st5 {
 //   fill: #848776;
 // }
-// .db-st6 {
+// .db-${info.id}-st6 {
 //   fill: #25282b;
 // }
-// .db-st7 {
+// .db-${info.id}-st7 {
 //   fill: #8f9499;
 // }
-// .db-st8 {
+// .db-${info.id}-st8 {
 //   fill: #5b280e;
 // }
-// .db-st9 {
+// .db-${info.id}-st9 {
 //   fill: #f95d06;
 // }
-// .db-st10 {
+// .db-${info.id}-st10 {
 //   fill: url(#db_12_);
 // }
-// .db-st11 {
+// .db-${info.id}-st11 {
 //   opacity: 0.4;
 //   fill: #ff0000;
 // }

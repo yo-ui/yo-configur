@@ -466,6 +466,7 @@ export default {
       canvasGetAction: "canvasGet",
       createHistoryAction: "canvas/createHistory",
       commonGetDeviceAction: "commonGetDevice",
+      commonDeviceListAction: "commonDeviceList",
       commonDevicePointHstDataAction: "commonDevicePointHstData"
     }),
     init() {
@@ -1398,6 +1399,24 @@ export default {
           // this.dataLoadingStatus = false;
           callback && callback(value || {});
           bmCommon.error("获取数据失败=>commonDevicePointHstData", err);
+        });
+    },
+    // 设备点位参数
+    commonDeviceListFunc(ids = [], callback) {
+      let value = [];
+      this.commonDeviceListAction({ ids: JSON.stringify(ids) })
+        .then(({ data }) => {
+          let { code = "", result = [], message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || [];
+          } else {
+            bmCommon.error(message);
+          }
+          callback && callback(value || []);
+        })
+        .catch(err => {
+          callback && callback(value || []);
+          bmCommon.error("获取数据失败=>commonDeviceList", err);
         });
     }
   },

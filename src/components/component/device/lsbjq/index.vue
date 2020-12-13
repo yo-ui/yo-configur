@@ -14,12 +14,12 @@
         v-html="
           `
         <style type='text/css'>
-					.lsbjq-st0{fill:url(#lsbjq_2_);}
-					.lsbjq-st1{fill:#AEB4BA;}
-					.lsbjq-st2{opacity:0.5;}
-					.lsbjq-st3{fill:#3E8CCC;}
-					.lsbjq-st4{fill:#14527C;}
-					.lsbjq-st5{fill:#F2F5F9;}
+					.lsbjq-${info.id}-st0{fill:url(#lsbjq_2_);}
+					.lsbjq-${info.id}-st1{fill:#AEB4BA;}
+					.lsbjq-${info.id}-st2{opacity:0.5;}
+					.lsbjq-${info.id}-st3{fill:#3E8CCC;}
+					.lsbjq-${info.id}-st4{fill:#14527C;}
+					.lsbjq-${info.id}-st5{fill:#F2F5F9;}
       </style>
       `
         "
@@ -43,12 +43,12 @@
       </linearGradient>
       <path
         id="lsbjq_1517_"
-        class="lsbjq-st0"
+        :class="`lsbjq-${info.id}-st0`"
         d="M0,6.4v35.6C0,43.1,7.6,44,17,44c9.4,0,17-0.9,17-2.1V6.4H0z"
       />
       <path
         id="lsbjq_1516_"
-        class="lsbjq-st1"
+        :class="`lsbjq-${info.id}-st1`"
         d="M1.2,0.8L0,6.4c0,1.1,7.6,2.1,17,2.1c9.4,0,17-0.9,17-2.1l-1.2-5.6c-0.1-0.5-0.5-0.8-1-0.8
 					H2.2C1.7,0,1.3,0.3,1.2,0.8z"
       />
@@ -94,7 +94,7 @@
           />
         </g>
       </g>
-      <g id="lsbjq_1531_" class="lsbjq-st2">
+      <g id="lsbjq_1531_" :class="`lsbjq-${info.id}-st2`">
         <g id="lsbjq_1566_">
           <path
             id="lsbjq_1568_"
@@ -138,13 +138,13 @@
       </g>
       <path
         id="lsbjq_1571_"
-        class="lsbjq-st3"
+        :class="`lsbjq-${info.id}-st3`"
         d="M21.7,41.1h-9.4c-0.8,0-1.5-0.7-1.5-1.5v-26c0-0.8,0.7-1.5,1.5-1.5h9.4c0.8,0,1.5,0.7,1.5,1.5
 					v26C23.2,40.5,22.5,41.1,21.7,41.1z"
       />
       <ellipse
         id="lsbjq_1570_"
-        class="lsbjq-st4"
+        :class="`lsbjq-${info.id}-st4`"
         cx="17"
         cy="20.2"
         rx="4.4"
@@ -152,7 +152,7 @@
       />
       <ellipse
         id="lsbjq_1569_"
-        class="lsbjq-st5"
+        :class="`lsbjq-${info.id}-st5`"
         cx="17"
         cy="20.7"
         rx="3.9"

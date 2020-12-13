@@ -14,88 +14,88 @@
         v-html="
           `<style type='text/css'>
       
-                .lqt-st0{fill:url(#lqt_1_);}
-                .lqt-st1{fill:url(#lqt_2_);}
-                .lqt-st2{fill:#3D3D3D;}
-                .lqt-st3{fill:#BCBCBC;}
-                .lqt-st4{fill:#7C7C7C;}
-                .lqt-st5{fill:url(#lqt_3_);}
-                .lqt-st6{fill:url(#lqt_4_);}
-                .lqt-st7{fill:url(#lqt_5_);}
-                .lqt-st8{fill:url(#lqt_6_);}
-                .lqt-st9{fill:url(#lqt_7_);}
-                .lqt-st10{opacity:0.4;fill:#FFFFFF;}
-                .lqt-st11{fill:url(#lqt_8_);}
-                .lqt-st12{fill:url(#lqt_9_);}
-                .lqt-st13{opacity:0.2;}
-                .lqt-st14{opacity:0.3;}
-                .lqt-st15{fill:#D8D9D4;}
-                .lqt-st16{fill:#4C4C4C;}
-                .lqt-st17{opacity:0.8;}
-                .lqt-st18{fill:#333333;}
-                .lqt-st19{fill:url(#lqt_10_);}
-                .lqt-st20{fill:url(#lqt_11_);}
-                .lqt-st21{fill:url(#lqt_12_);}
-                .lqt-st22{fill:url(#lqt_13_);}
-                .lqt-st23{fill:url(#lqt_14_);}
-                .lqt-st24{fill:url(#lqt_15_);}
-                .lqt-st25{fill:url(#lqt_16_);}
-                .lqt-st26{fill:url(#lqt_17_);}
-                .lqt-st27{fill:url(#lqt_18_);}
-                .lqt-st28{fill:url(#lqt_19_);}
-                .lqt-st29{fill:url(#lqt_20_);}
-                .lqt-st30{fill:url(#lqt_21_);}
-                .lqt-st31{fill:url(#lqt_22_);}
-                .lqt-st32{fill:url(#lqt_23_);}
-                .lqt-st33{fill:url(#lqt_24_);}
-                .lqt-st34{fill:url(#lqt_25_);}
-                .lqt-st35{fill:url(#lqt_26_);}
-                .lqt-st36{fill:url(#lqt_27_);}
-                .lqt-st37{fill:url(#lqt_28_);}
-                .lqt-st38{fill:url(#lqt_29_);}
-                .lqt-st39{fill:url(#lqt_30_);}
-                .lqt-st40{fill:url(#lqt_31_);}
-                .lqt-st41{fill:url(#lqt_32_);}
-                .lqt-st42{fill:url(#lqt_33_);}
-                .lqt-st43{fill:url(#lqt_34_);}
-                .lqt-st44{fill:url(#lqt_35_);}
-                .lqt-st45{fill:url(#lqt_36_);}
-                .lqt-st46{fill:url(#lqt_37_);}
-                .lqt-st47{fill:url(#lqt_38_);}
-                .lqt-st48{fill:url(#lqt_39_);}
-                .lqt-st49{fill:url(#lqt_40_);}
-                .lqt-st50{fill:url(#lqt_41_);}
-                .lqt-st51{fill:url(#lqt_42_);}
-                .lqt-st52{fill:url(#lqt_43_);}
-                .lqt-st53{fill:url(#lqt_44_);}
-                .lqt-st54{fill:url(#lqt_45_);}
-                .lqt-st55{fill:url(#lqt_46_);}
-                .lqt-st56{fill:url(#lqt_47_);}
-                .lqt-st57{fill:url(#lqt_48_);}
-                .lqt-st58{fill:url(#lqt_49_);}
-                .lqt-st59{fill:url(#lqt_50_);}
-                .lqt-st60{fill:url(#lqt_51_);}
-                .lqt-st61{fill:url(#lqt_52_);}
-                .lqt-st62{fill:url(#lqt_53_);}
-                .lqt-st63{fill:url(#lqt_54_);}
-                .lqt-st64{fill:url(#lqt_55_);}
-                .lqt-st65{fill:url(#lqt_56_);}
-                .lqt-st66{fill:url(#lqt_57_);}
-                .lqt-st67{fill:#D6D6D6;}
-                .lqt-st68{fill:#93958A;}
-                .lqt-st69{fill:#3F3F3F;}
-                .lqt-st70{fill:url(#lqt_58_);}
-                .lqt-st71{fill:url(#lqt_59_);}
-                .lqt-st72{fill:url(#lqt_60_);}
-                .lqt-st73{fill:url(#lqt_61_);}
-                .lqt-st74{fill:url(#lqt_62_);}
-                .lqt-st75{fill:url(#lqt_63_);}
-                .lqt-st76{fill:url(#lqt_64_);}
-                .lqt-st77{fill:url(#lqt_65_);}
-                .lqt-st78{fill:#E5E5E5;}
-                .lqt-st79{fill:url(#lqt_66_);}
-                .lqt-st80{fill:url(#lqt_67_);}
-                .lqt-st81{opacity:0.4;fill:#FF0000;}
+                .lqt-${info.id}-st0{fill:url(#lqt_1_);}
+                .lqt-${info.id}-st1{fill:url(#lqt_2_);}
+                .lqt-${info.id}-st2{fill:#3D3D3D;}
+                .lqt-${info.id}-st3{fill:#BCBCBC;}
+                .lqt-${info.id}-st4{fill:#7C7C7C;}
+                .lqt-${info.id}-st5{fill:url(#lqt_3_);}
+                .lqt-${info.id}-st6{fill:url(#lqt_4_);}
+                .lqt-${info.id}-st7{fill:url(#lqt_5_);}
+                .lqt-${info.id}-st8{fill:url(#lqt_6_);}
+                .lqt-${info.id}-st9{fill:url(#lqt_7_);}
+                .lqt-${info.id}-st10{opacity:0.4;fill:#FFFFFF;}
+                .lqt-${info.id}-st11{fill:url(#lqt_8_);}
+                .lqt-${info.id}-st12{fill:url(#lqt_9_);}
+                .lqt-${info.id}-st13{opacity:0.2;}
+                .lqt-${info.id}-st14{opacity:0.3;}
+                .lqt-${info.id}-st15{fill:#D8D9D4;}
+                .lqt-${info.id}-st16{fill:#4C4C4C;}
+                .lqt-${info.id}-st17{opacity:0.8;}
+                .lqt-${info.id}-st18{fill:#333333;}
+                .lqt-${info.id}-st19{fill:url(#lqt_10_);}
+                .lqt-${info.id}-st20{fill:url(#lqt_11_);}
+                .lqt-${info.id}-st21{fill:url(#lqt_12_);}
+                .lqt-${info.id}-st22{fill:url(#lqt_13_);}
+                .lqt-${info.id}-st23{fill:url(#lqt_14_);}
+                .lqt-${info.id}-st24{fill:url(#lqt_15_);}
+                .lqt-${info.id}-st25{fill:url(#lqt_16_);}
+                .lqt-${info.id}-st26{fill:url(#lqt_17_);}
+                .lqt-${info.id}-st27{fill:url(#lqt_18_);}
+                .lqt-${info.id}-st28{fill:url(#lqt_19_);}
+                .lqt-${info.id}-st29{fill:url(#lqt_20_);}
+                .lqt-${info.id}-st30{fill:url(#lqt_21_);}
+                .lqt-${info.id}-st31{fill:url(#lqt_22_);}
+                .lqt-${info.id}-st32{fill:url(#lqt_23_);}
+                .lqt-${info.id}-st33{fill:url(#lqt_24_);}
+                .lqt-${info.id}-st34{fill:url(#lqt_25_);}
+                .lqt-${info.id}-st35{fill:url(#lqt_26_);}
+                .lqt-${info.id}-st36{fill:url(#lqt_27_);}
+                .lqt-${info.id}-st37{fill:url(#lqt_28_);}
+                .lqt-${info.id}-st38{fill:url(#lqt_29_);}
+                .lqt-${info.id}-st39{fill:url(#lqt_30_);}
+                .lqt-${info.id}-st40{fill:url(#lqt_31_);}
+                .lqt-${info.id}-st41{fill:url(#lqt_32_);}
+                .lqt-${info.id}-st42{fill:url(#lqt_33_);}
+                .lqt-${info.id}-st43{fill:url(#lqt_34_);}
+                .lqt-${info.id}-st44{fill:url(#lqt_35_);}
+                .lqt-${info.id}-st45{fill:url(#lqt_36_);}
+                .lqt-${info.id}-st46{fill:url(#lqt_37_);}
+                .lqt-${info.id}-st47{fill:url(#lqt_38_);}
+                .lqt-${info.id}-st48{fill:url(#lqt_39_);}
+                .lqt-${info.id}-st49{fill:url(#lqt_40_);}
+                .lqt-${info.id}-st50{fill:url(#lqt_41_);}
+                .lqt-${info.id}-st51{fill:url(#lqt_42_);}
+                .lqt-${info.id}-st52{fill:url(#lqt_43_);}
+                .lqt-${info.id}-st53{fill:url(#lqt_44_);}
+                .lqt-${info.id}-st54{fill:url(#lqt_45_);}
+                .lqt-${info.id}-st55{fill:url(#lqt_46_);}
+                .lqt-${info.id}-st56{fill:url(#lqt_47_);}
+                .lqt-${info.id}-st57{fill:url(#lqt_48_);}
+                .lqt-${info.id}-st58{fill:url(#lqt_49_);}
+                .lqt-${info.id}-st59{fill:url(#lqt_50_);}
+                .lqt-${info.id}-st60{fill:url(#lqt_51_);}
+                .lqt-${info.id}-st61{fill:url(#lqt_52_);}
+                .lqt-${info.id}-st62{fill:url(#lqt_53_);}
+                .lqt-${info.id}-st63{fill:url(#lqt_54_);}
+                .lqt-${info.id}-st64{fill:url(#lqt_55_);}
+                .lqt-${info.id}-st65{fill:url(#lqt_56_);}
+                .lqt-${info.id}-st66{fill:url(#lqt_57_);}
+                .lqt-${info.id}-st67{fill:#D6D6D6;}
+                .lqt-${info.id}-st68{fill:#93958A;}
+                .lqt-${info.id}-st69{fill:#3F3F3F;}
+                .lqt-${info.id}-st70{fill:url(#lqt_58_);}
+                .lqt-${info.id}-st71{fill:url(#lqt_59_);}
+                .lqt-${info.id}-st72{fill:url(#lqt_60_);}
+                .lqt-${info.id}-st73{fill:url(#lqt_61_);}
+                .lqt-${info.id}-st74{fill:url(#lqt_62_);}
+                .lqt-${info.id}-st75{fill:url(#lqt_63_);}
+                .lqt-${info.id}-st76{fill:url(#lqt_64_);}
+                .lqt-${info.id}-st77{fill:url(#lqt_65_);}
+                .lqt-${info.id}-st78{fill:#E5E5E5;}
+                .lqt-${info.id}-st79{fill:url(#lqt_66_);}
+                .lqt-${info.id}-st80{fill:url(#lqt_67_);}
+                .lqt-${info.id}-st81{opacity:0.4;fill:#FF0000;}
       </style>`
         "
       ></defs>
@@ -114,7 +114,7 @@
           <stop offset="1" style="stop-color:#9C9D98" />
         </linearGradient>
         <path
-          class="lqt-st0"
+          :class="`lqt-${info.id}-st0`"
           d="M148.58,255.66l31.9,31.9c0.59,0.59,1.54,0.59,2.12,0c0.59-0.59,0.59-1.54,0-2.12l-31.9-31.9
                   c-0.59-0.59-1.54-0.59-2.12,0C147.99,254.13,147.99,255.08,148.58,255.66z"
         />
@@ -131,35 +131,47 @@
           <stop offset="1" style="stop-color:#9C9D98" />
         </linearGradient>
         <path
-          class="lqt-st1"
+          :class="`lqt-${info.id}-st1`"
           d="M220.07,241.73l-10.63,41.95c-0.2,0.77-0.75,1.15-1.25,0.84c-0.49-0.3-0.74-1.18-0.54-1.95l10.63-41.95
                   c0.2-0.77,0.75-1.15,1.25-0.84C220.02,240.09,220.26,240.96,220.07,241.73z"
         />
         <rect
           x="254.8"
           y="196.41"
-          class="lqt-st2"
+          :class="`lqt-${info.id}-st2`"
           width="17.52"
           height="50.59"
         />
-        <rect x="0.05" y="266" class="lqt-st3" width="17" height="49" />
+        <rect
+          x="0.05"
+          y="266"
+          :class="`lqt-${info.id}-st3`"
+          width="17"
+          height="49"
+        />
         <polygon
-          class="lqt-st4"
+          :class="`lqt-${info.id}-st4`"
           points="20.05,313 17.05,315 17.05,266 20.05,266 	"
         />
-        <rect x="181.05" y="266" class="lqt-st3" width="17" height="49" />
+        <rect
+          x="181.05"
+          y="266"
+          :class="`lqt-${info.id}-st3`"
+          width="17"
+          height="49"
+        />
         <polygon
-          class="lqt-st4"
+          :class="`lqt-${info.id}-st4`"
           points="209.05,305 198.05,315 198.05,265 209.05,256 	"
         />
         <polygon
-          class="lqt-st4"
+          :class="`lqt-${info.id}-st4`"
           points="274.55,248.15 263.55,258.15 263.55,208.15 274.55,199.15 	"
         />
         <rect
           x="261.42"
           y="200.98"
-          class="lqt-st3"
+          :class="`lqt-${info.id}-st3`"
           width="2.13"
           height="57.17"
         />
@@ -178,7 +190,7 @@
           <stop offset="1" style="stop-color:#9C9D98" />
         </linearGradient>
         <path
-          class="lqt-st5"
+          :class="`lqt-${info.id}-st5`"
           d="M52.67,255.66l-31.9,31.9c-0.59,0.59-1.54,0.59-2.12,0c-0.59-0.59-0.59-1.54,0-2.12l31.9-31.9
                   c0.59-0.59,1.54-0.59,2.12,0C53.26,254.13,53.26,255.08,52.67,255.66z"
         />
@@ -195,7 +207,7 @@
           <stop offset="1" style="stop-color:#9C9D98" />
         </linearGradient>
         <path
-          class="lqt-st6"
+          :class="`lqt-${info.id}-st6`"
           d="M238.6,204.03l23.03,31.9c0.42,0.59,1.11,0.59,1.53,0c0.42-0.59,0.42-1.54,0-2.12l-23.03-31.9
                   c-0.42-0.59-1.11-0.59-1.53,0C238.18,202.49,238.18,203.44,238.6,204.03z"
         />
@@ -213,7 +225,7 @@
         <rect
           x="0.08"
           y="106.01"
-          class="lqt-st7"
+          :class="`lqt-${info.id}-st7`"
           width="197.54"
           height="159.99"
         />
@@ -229,7 +241,7 @@
           <stop offset="1" style="stop-color:#B8B9B4" />
         </linearGradient>
         <polygon
-          class="lqt-st8"
+          :class="`lqt-${info.id}-st8`"
           points="274.55,43.2 197.63,106.01 197.63,266 274.55,199.15 	"
         />
         <linearGradient
@@ -244,15 +256,15 @@
           <stop offset="1" style="stop-color:#747474" />
         </linearGradient>
         <polygon
-          class="lqt-st9"
+          :class="`lqt-${info.id}-st9`"
           points="274.55,43.2 77,43.2 0.08,106.01 197.63,106.01 	"
         />
         <polygon
-          class="lqt-st10"
+          :class="`lqt-${info.id}-st10`"
           points="197.63,264.96 195.55,264.96 195.55,106.01 1.05,106.01 3.05,103.94 197.63,103.94 	"
         />
         <polygon
-          class="lqt-st10"
+          :class="`lqt-${info.id}-st10`"
           points="197.23,105.79 195.95,104.16 273.55,41.35 274.83,42.98 	"
         />
         <linearGradient
@@ -269,7 +281,7 @@
           <stop offset="1" style="stop-color:#7E7E7E" />
         </linearGradient>
         <polygon
-          class="lqt-st11"
+          :class="`lqt-${info.id}-st11`"
           points="55.66,57.96 62.39,45.15 111.59,30.33 176.29,30.33 218.07,51.89 218.07,68.74 158.09,86.26 
                   104.18,86.26 	"
         />
@@ -294,19 +306,19 @@
           <stop offset="1" style="stop-color:#3F403B" />
         </linearGradient>
         <path
-          class="lqt-st12"
+          :class="`lqt-${info.id}-st12`"
           d="M218.06,30.33c-0.28-6.46-8.45-13.07-22.54-18.18c-15.62-5.66-36.45-8.78-58.66-8.78s-43.04,3.12-58.66,8.78
                   c-14.09,5.11-22.26,11.71-22.54,18.18h-0.01v33.7h0.01c0.28-6.46,8.45-13.07,22.54-18.18c15.62-5.66,36.45-8.78,58.66-8.78
                   s43.04,3.12,58.66,8.78c14.09,5.11,22.26,11.71,22.54,18.18h0.01v-33.7H218.06z"
         />
         <path
-          class="lqt-st13"
+          :class="`lqt-${info.id}-st13`"
           d="M218.06,30.33c-0.28-6.46-8.45-13.07-22.54-18.18c-15.62-5.66-36.45-8.78-58.66-8.78
                   c-22.21,0-43.04,3.12-58.66,8.78c-14.09,5.11-22.26,11.71-22.54,18.18h-0.01v6h0.01c0.28-6.46,8.45-13.07,22.54-18.18
                   c15.62-5.66,36.45-8.78,58.66-8.78c22.21,0,43.04,3.12,58.66,8.78c14.09,5.11,22.26,11.71,22.54,18.18h0.01v-6H218.06z"
         />
         <path
-          class="lqt-st14"
+          :class="`lqt-${info.id}-st14`"
           d="M136.86,58.13c-22.23,0-43.08-3.12-58.71-8.79c-14.4-5.22-22.66-12.03-22.66-18.67s8.26-13.45,22.66-18.67
                   c15.63-5.67,36.49-8.79,58.71-8.79s43.08,3.12,58.71,8.79c14.4,5.22,22.66,12.03,22.66,18.67s-8.26,13.45-22.66,18.67
                   C179.94,55,159.09,58.13,136.86,58.13z M136.86,3.54c-22.19,0-43,3.11-58.6,8.77C64,17.48,55.82,24.17,55.82,30.66
@@ -314,12 +326,12 @@
                   s-8.18-13.19-22.44-18.36C179.86,6.65,159.05,3.54,136.86,3.54z"
         />
         <path
-          class="lqt-st13"
+          :class="`lqt-${info.id}-st13`"
           d="M136.86,79.19c-46.82,0-84.91-13.91-84.91-31h0.67c0,16.72,37.79,30.33,84.24,30.33
                   c46.45,0,84.24-13.6,84.24-30.33h0.67C221.78,65.28,183.68,79.19,136.86,79.19z"
         />
         <path
-          class="lqt-st15"
+          :class="`lqt-${info.id}-st15`"
           d="M136.86,77.84c-46.82,0-84.91-13.91-84.91-31h0.67c0,16.72,37.79,30.33,84.24,30.33
                   c46.45,0,84.24-13.6,84.24-30.33h0.67C221.78,63.93,183.68,77.84,136.86,77.84z"
         />
@@ -327,337 +339,337 @@
           <rect
             x="5.11"
             y="225.09"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="5.11"
             y="231.83"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="5.11"
             y="238.57"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="5.11"
             y="245.31"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="5.11"
             y="252.05"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="5.11"
             y="258.79"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="43.63"
             y="225.09"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="43.63"
             y="231.83"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="43.63"
             y="238.57"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="43.63"
             y="245.31"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="43.63"
             y="252.05"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="43.63"
             y="258.79"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="82.14"
             y="225.09"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="82.14"
             y="231.83"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="82.14"
             y="238.57"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="82.14"
             y="245.31"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="82.14"
             y="252.05"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="82.14"
             y="258.79"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="120.65"
             y="225.09"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="120.65"
             y="231.83"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="120.65"
             y="238.57"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="120.65"
             y="245.31"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="120.65"
             y="252.05"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="120.65"
             y="258.79"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="159.17"
             y="225.09"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="159.17"
             y="231.83"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="159.17"
             y="238.57"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="159.17"
             y="245.31"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="159.17"
             y="252.05"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
           <rect
             x="159.17"
             y="258.79"
-            class="lqt-st16"
+            :class="`lqt-${info.id}-st16`"
             width="33.29"
             height="3.37"
           />
         </g>
-        <g class="lqt-st17">
+        <g :class="`lqt-${info.id}-st17`">
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="214.11,212.58 201.9,223.14 201.9,219.77 214.11,209.21 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="214.11,219.32 201.9,229.88 201.9,226.51 214.11,215.95 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="214.11,226.06 201.9,236.62 201.9,233.25 214.11,222.69 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="214.11,232.8 201.9,243.36 201.9,239.99 214.11,229.43 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="214.11,239.54 201.9,250.1 201.9,246.73 214.11,236.17 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="214.11,246.27 201.9,256.84 201.9,253.47 214.11,242.91 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="228.24,200.36 216.03,210.92 216.03,207.55 228.24,196.99 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="228.24,207.09 216.03,217.66 216.03,214.29 228.24,203.73 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="228.24,213.83 216.03,224.4 216.03,221.03 228.24,210.46 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="228.24,220.57 216.03,231.14 216.03,227.77 228.24,217.2 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="228.24,227.31 216.03,237.88 216.03,234.51 228.24,223.94 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="228.24,234.05 216.03,244.62 216.03,241.25 228.24,230.68 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="242.37,188.13 230.16,198.7 230.16,195.33 242.37,184.76 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="242.37,194.87 230.16,205.44 230.16,202.07 242.37,191.5 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="242.37,201.61 230.16,212.18 230.16,208.81 242.37,198.24 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="242.37,208.35 230.16,218.92 230.16,215.55 242.37,204.98 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="242.37,215.09 230.16,225.66 230.16,222.29 242.37,211.72 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="242.37,221.83 230.16,232.39 230.16,229.02 242.37,218.46 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="256.5,175.91 244.29,186.48 244.29,183.11 256.5,172.54 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="256.5,182.65 244.29,193.21 244.29,189.84 256.5,179.28 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="256.5,189.39 244.29,199.95 244.29,196.58 256.5,186.02 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="256.5,196.13 244.29,206.69 244.29,203.32 256.5,192.76 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="256.5,202.87 244.29,213.43 244.29,210.06 256.5,199.5 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="256.5,209.61 244.29,220.17 244.29,216.8 256.5,206.24 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="270.64,163.69 258.42,174.25 258.42,170.88 270.64,160.32 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="270.64,170.43 258.42,180.99 258.42,177.62 270.64,167.06 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="270.64,177.16 258.42,187.73 258.42,184.36 270.64,173.8 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="270.64,183.9 258.42,194.47 258.42,191.1 270.64,180.53 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="270.64,190.64 258.42,201.21 258.42,197.84 270.64,187.27 		"
           />
           <polygon
-            class="lqt-st18"
+            :class="`lqt-${info.id}-st18`"
             points="270.64,197.38 258.42,207.95 258.42,204.58 270.64,194.01 		"
           />
         </g>
-        <g class="lqt-st14">
+        <g :class="`lqt-${info.id}-st14`">
           <g>
             <linearGradient
               id="lqt_10_"
@@ -672,7 +684,7 @@
               <stop offset="1" style="stop-color:#E2E2E2" />
             </linearGradient>
             <path
-              class="lqt-st19"
+              :class="`lqt-${info.id}-st19`"
               d="M206.25,107.91c-1.52,1.29-2.76,5.65-2.76,9.75v83.47c0,4.09,1.24,6.37,2.76,5.08
                       c1.52-1.29,2.76-5.65,2.76-9.75v-83.47C209.01,108.89,207.78,106.62,206.25,107.91z"
             />
@@ -693,7 +705,7 @@
               <stop offset="1" style="stop-color:#E5E6E1" />
             </linearGradient>
             <path
-              class="lqt-st20"
+              :class="`lqt-${info.id}-st20`"
               d="M206.25,206.88c-1.66,1.4-3.01-1.08-3.01-5.54v-83.47c0-4.46,1.35-9.23,3.01-10.63
                       c1.66-1.4,3.01,1.08,3.01,5.54v83.47C209.26,200.7,207.91,205.47,206.25,206.88z M206.25,108.58c-1.38,1.17-2.51,5.15-2.51,8.86
                       v83.47c0,3.72,1.13,5.79,2.51,4.62c1.38-1.17,2.51-5.15,2.51-8.86V113.2C208.76,109.48,207.64,107.41,206.25,108.58z"
@@ -713,7 +725,7 @@
               <stop offset="1" style="stop-color:#E2E2E2" />
             </linearGradient>
             <path
-              class="lqt-st21"
+              :class="`lqt-${info.id}-st21`"
               d="M216.37,99.35c-1.52,1.29-2.76,5.65-2.76,9.75v83.47c0,4.09,1.24,6.37,2.76,5.08
                       c1.52-1.29,2.76-5.65,2.76-9.75v-83.47C219.13,100.33,217.89,98.06,216.37,99.35z"
             />
@@ -734,7 +746,7 @@
               <stop offset="1" style="stop-color:#E5E6E1" />
             </linearGradient>
             <path
-              class="lqt-st22"
+              :class="`lqt-${info.id}-st22`"
               d="M216.37,198.32c-1.66,1.4-3.01-1.08-3.01-5.54v-83.47c0-4.46,1.35-9.23,3.01-10.63
                       c1.66-1.4,3.01,1.08,3.01,5.54v83.47C219.38,192.14,218.03,196.91,216.37,198.32z M216.37,100.02c-1.38,1.17-2.51,5.15-2.51,8.86
                       v83.47c0,3.72,1.13,5.79,2.51,4.62c1.38-1.17,2.51-5.15,2.51-8.86v-83.47C218.88,100.92,217.75,98.85,216.37,100.02z"
@@ -754,7 +766,7 @@
               <stop offset="1" style="stop-color:#E2E2E2" />
             </linearGradient>
             <path
-              class="lqt-st23"
+              :class="`lqt-${info.id}-st23`"
               d="M226.49,90.78c-1.52,1.29-2.76,5.65-2.76,9.75V184c0,4.09,1.24,6.37,2.76,5.08
                       c1.52-1.29,2.76-5.65,2.76-9.75V95.86C229.25,91.77,228.01,89.49,226.49,90.78z"
             />
@@ -775,7 +787,7 @@
               <stop offset="1" style="stop-color:#E5E6E1" />
             </linearGradient>
             <path
-              class="lqt-st24"
+              :class="`lqt-${info.id}-st24`"
               d="M226.49,189.75c-1.66,1.4-3.01-1.08-3.01-5.54v-83.47c0-4.46,1.35-9.23,3.01-10.63
                       c1.66-1.4,3.01,1.08,3.01,5.54v83.47C229.5,183.58,228.15,188.35,226.49,189.75z M226.49,91.46c-1.38,1.17-2.51,5.15-2.51,8.86
                       v83.47c0,3.72,1.13,5.79,2.51,4.62c1.38-1.17,2.51-5.15,2.51-8.86V96.07C228.99,92.36,227.87,90.29,226.49,91.46z"
@@ -795,7 +807,7 @@
               <stop offset="1" style="stop-color:#E2E2E2" />
             </linearGradient>
             <path
-              class="lqt-st25"
+              :class="`lqt-${info.id}-st25`"
               d="M236.6,82.22c-1.52,1.29-2.76,5.65-2.76,9.75v83.47c0,4.09,1.24,6.37,2.76,5.08
                       c1.52-1.29,2.76-5.65,2.76-9.75V87.3C239.36,83.2,238.13,80.93,236.6,82.22z"
             />
@@ -816,7 +828,7 @@
               <stop offset="1" style="stop-color:#E5E6E1" />
             </linearGradient>
             <path
-              class="lqt-st26"
+              :class="`lqt-${info.id}-st26`"
               d="M236.6,181.19c-1.66,1.4-3.01-1.08-3.01-5.54V92.18c0-4.46,1.35-9.23,3.01-10.63
                       c1.66-1.4,3.01,1.08,3.01,5.54v83.47C239.61,175.01,238.26,179.78,236.6,181.19z M236.6,82.89c-1.38,1.17-2.51,5.15-2.51,8.86
                       v83.47c0,3.72,1.13,5.79,2.51,4.62c1.38-1.17,2.51-5.15,2.51-8.86V87.51C239.11,83.79,237.99,81.72,236.6,82.89z"
@@ -836,7 +848,7 @@
               <stop offset="1" style="stop-color:#E2E2E2" />
             </linearGradient>
             <path
-              class="lqt-st27"
+              :class="`lqt-${info.id}-st27`"
               d="M246.72,73.65c-1.52,1.29-2.76,5.65-2.76,9.75v83.47c0,4.09,1.24,6.37,2.76,5.08
                       c1.52-1.29,2.76-5.65,2.76-9.75V78.73C249.48,74.64,248.24,72.37,246.72,73.65z"
             />
@@ -857,7 +869,7 @@
               <stop offset="1" style="stop-color:#E5E6E1" />
             </linearGradient>
             <path
-              class="lqt-st28"
+              :class="`lqt-${info.id}-st28`"
               d="M246.72,172.63c-1.66,1.4-3.01-1.08-3.01-5.54V83.62c0-4.46,1.35-9.23,3.01-10.63s3.01,1.08,3.01,5.54
                       v83.47C249.73,166.45,248.38,171.22,246.72,172.63z M246.72,74.33c-1.38,1.17-2.51,5.15-2.51,8.86v83.47
                       c0,3.72,1.13,5.79,2.51,4.62c1.38-1.17,2.51-5.15,2.51-8.86V78.94C249.23,75.23,248.1,73.16,246.72,74.33z"
@@ -877,7 +889,7 @@
               <stop offset="1" style="stop-color:#E2E2E2" />
             </linearGradient>
             <path
-              class="lqt-st29"
+              :class="`lqt-${info.id}-st29`"
               d="M256.84,65.09c-1.52,1.29-2.76,5.65-2.76,9.75v83.47c0,4.09,1.24,6.37,2.76,5.08
                       c1.52-1.29,2.76-5.65,2.76-9.75V70.17C259.59,66.07,258.36,63.8,256.84,65.09z"
             />
@@ -898,7 +910,7 @@
               <stop offset="1" style="stop-color:#E5E6E1" />
             </linearGradient>
             <path
-              class="lqt-st30"
+              :class="`lqt-${info.id}-st30`"
               d="M256.84,164.06c-1.66,1.4-3.01-1.08-3.01-5.54V75.05c0-4.46,1.35-9.23,3.01-10.63s3.01,1.08,3.01,5.54
                       v83.47C259.85,157.89,258.5,162.66,256.84,164.06z M256.84,65.77c-1.38,1.17-2.51,5.15-2.51,8.86v83.47
                       c0,3.72,1.13,5.79,2.51,4.62c1.38-1.17,2.51-5.15,2.51-8.86V70.38C259.34,66.67,258.22,64.59,256.84,65.77z"
@@ -918,7 +930,7 @@
               <stop offset="1" style="stop-color:#E2E2E2" />
             </linearGradient>
             <path
-              class="lqt-st31"
+              :class="`lqt-${info.id}-st31`"
               d="M266.95,56.53c-1.52,1.29-2.76,5.65-2.76,9.75v83.47c0,4.09,1.24,6.37,2.76,5.08s2.76-5.65,2.76-9.75V61.61
                       C269.71,57.51,268.48,55.24,266.95,56.53z"
             />
@@ -939,7 +951,7 @@
               <stop offset="1" style="stop-color:#E5E6E1" />
             </linearGradient>
             <path
-              class="lqt-st32"
+              :class="`lqt-${info.id}-st32`"
               d="M266.95,155.5c-1.66,1.4-3.01-1.08-3.01-5.54V66.49c0-4.46,1.35-9.23,3.01-10.63s3.01,1.08,3.01,5.54v83.47
                       C269.96,149.32,268.61,154.09,266.95,155.5z M266.95,57.2c-1.38,1.17-2.51,5.15-2.51,8.86v83.47c0,3.72,1.13,5.79,2.51,4.62
                       s2.51-5.15,2.51-8.86V61.82C269.46,58.1,268.34,56.03,266.95,57.2z"
@@ -959,7 +971,7 @@
             <stop offset="1" style="stop-color:#E2E2E2" />
           </linearGradient>
           <path
-            class="lqt-st33"
+            :class="`lqt-${info.id}-st33`"
             d="M16.57,116.59c-4.09,0-7.41,3.32-7.41,7.41v86.17c0,4.09,3.32,7.41,7.41,7.41s7.41-3.32,7.41-7.41V124
                     C23.98,119.91,20.66,116.59,16.57,116.59z"
           />
@@ -978,7 +990,7 @@
             <stop offset="1" style="stop-color:#E5E6E1" />
           </linearGradient>
           <path
-            class="lqt-st34"
+            :class="`lqt-${info.id}-st34`"
             d="M16.57,218.25c-4.46,0-8.09-3.63-8.09-8.09V124c0-4.46,3.63-8.09,8.09-8.09s8.09,3.63,8.09,8.09v86.17
                     C24.65,214.63,21.03,218.25,16.57,218.25z M16.57,117.26c-3.72,0-6.74,3.02-6.74,6.74v86.17c0,3.72,3.02,6.74,6.74,6.74
                     s6.74-3.02,6.74-6.74V124C23.31,120.29,20.28,117.26,16.57,117.26z"
@@ -997,7 +1009,7 @@
             <stop offset="1" style="stop-color:#E2E2E2" />
           </linearGradient>
           <path
-            class="lqt-st35"
+            :class="`lqt-${info.id}-st35`"
             d="M43.75,116.59c-4.09,0-7.41,3.32-7.41,7.41v86.17c0,4.09,3.32,7.41,7.41,7.41s7.41-3.32,7.41-7.41V124
                     C51.16,119.91,47.84,116.59,43.75,116.59z"
           />
@@ -1016,7 +1028,7 @@
             <stop offset="1" style="stop-color:#E5E6E1" />
           </linearGradient>
           <path
-            class="lqt-st36"
+            :class="`lqt-${info.id}-st36`"
             d="M43.75,218.25c-4.46,0-8.09-3.63-8.09-8.09V124c0-4.46,3.63-8.09,8.09-8.09s8.09,3.63,8.09,8.09v86.17
                     C51.84,214.63,48.21,218.25,43.75,218.25z M43.75,117.26c-3.72,0-6.74,3.02-6.74,6.74v86.17c0,3.72,3.02,6.74,6.74,6.74
                     s6.74-3.02,6.74-6.74V124C50.49,120.29,47.47,117.26,43.75,117.26z"
@@ -1035,7 +1047,7 @@
             <stop offset="1" style="stop-color:#E2E2E2" />
           </linearGradient>
           <path
-            class="lqt-st37"
+            :class="`lqt-${info.id}-st37`"
             d="M70.93,116.59c-4.09,0-7.41,3.32-7.41,7.41v86.17c0,4.09,3.32,7.41,7.41,7.41s7.41-3.32,7.41-7.41V124
                     C78.34,119.91,75.02,116.59,70.93,116.59z"
           />
@@ -1054,7 +1066,7 @@
             <stop offset="1" style="stop-color:#E5E6E1" />
           </linearGradient>
           <path
-            class="lqt-st38"
+            :class="`lqt-${info.id}-st38`"
             d="M70.93,218.25c-4.46,0-8.09-3.63-8.09-8.09V124c0-4.46,3.63-8.09,8.09-8.09s8.09,3.63,8.09,8.09v86.17
                     C79.02,214.63,75.39,218.25,70.93,218.25z M70.93,117.26c-3.72,0-6.74,3.02-6.74,6.74v86.17c0,3.72,3.02,6.74,6.74,6.74
                     s6.74-3.02,6.74-6.74V124C77.67,120.29,74.65,117.26,70.93,117.26z"
@@ -1073,7 +1085,7 @@
             <stop offset="1" style="stop-color:#E2E2E2" />
           </linearGradient>
           <path
-            class="lqt-st39"
+            :class="`lqt-${info.id}-st39`"
             d="M98.11,116.59c-4.09,0-7.41,3.32-7.41,7.41v86.17c0,4.09,3.32,7.41,7.41,7.41c4.09,0,7.41-3.32,7.41-7.41
                     V124C105.53,119.91,102.21,116.59,98.11,116.59z"
           />
@@ -1092,7 +1104,7 @@
             <stop offset="1" style="stop-color:#E5E6E1" />
           </linearGradient>
           <path
-            class="lqt-st40"
+            :class="`lqt-${info.id}-st40`"
             d="M98.11,218.25c-4.46,0-8.09-3.63-8.09-8.09V124c0-4.46,3.63-8.09,8.09-8.09c4.46,0,8.09,3.63,8.09,8.09
                     v86.17C106.2,214.63,102.57,218.25,98.11,218.25z M98.11,117.26c-3.72,0-6.74,3.02-6.74,6.74v86.17c0,3.72,3.02,6.74,6.74,6.74
                     c3.72,0,6.74-3.02,6.74-6.74V124C104.85,120.29,101.83,117.26,98.11,117.26z"
@@ -1111,7 +1123,7 @@
             <stop offset="1" style="stop-color:#E2E2E2" />
           </linearGradient>
           <path
-            class="lqt-st41"
+            :class="`lqt-${info.id}-st41`"
             d="M125.29,116.59c-4.09,0-7.41,3.32-7.41,7.41v86.17c0,4.09,3.32,7.41,7.41,7.41c4.09,0,7.41-3.32,7.41-7.41
                     V124C132.71,119.91,129.39,116.59,125.29,116.59z"
           />
@@ -1130,7 +1142,7 @@
             <stop offset="1" style="stop-color:#E5E6E1" />
           </linearGradient>
           <path
-            class="lqt-st42"
+            :class="`lqt-${info.id}-st42`"
             d="M125.29,218.25c-4.46,0-8.09-3.63-8.09-8.09V124c0-4.46,3.63-8.09,8.09-8.09s8.09,3.63,8.09,8.09v86.17
                     C133.38,214.63,129.75,218.25,125.29,218.25z M125.29,117.26c-3.72,0-6.74,3.02-6.74,6.74v86.17c0,3.72,3.02,6.74,6.74,6.74
                     s6.74-3.02,6.74-6.74V124C132.03,120.29,129.01,117.26,125.29,117.26z"
@@ -1149,7 +1161,7 @@
             <stop offset="1" style="stop-color:#E2E2E2" />
           </linearGradient>
           <path
-            class="lqt-st43"
+            :class="`lqt-${info.id}-st43`"
             d="M152.48,116.59c-4.09,0-7.41,3.32-7.41,7.41v86.17c0,4.09,3.32,7.41,7.41,7.41c4.09,0,7.41-3.32,7.41-7.41
                     V124C159.89,119.91,156.57,116.59,152.48,116.59z"
           />
@@ -1168,7 +1180,7 @@
             <stop offset="1" style="stop-color:#E5E6E1" />
           </linearGradient>
           <path
-            class="lqt-st44"
+            :class="`lqt-${info.id}-st44`"
             d="M152.48,218.25c-4.46,0-8.09-3.63-8.09-8.09V124c0-4.46,3.63-8.09,8.09-8.09s8.09,3.63,8.09,8.09v86.17
                     C160.56,214.63,156.93,218.25,152.48,218.25z M152.48,117.26c-3.72,0-6.74,3.02-6.74,6.74v86.17c0,3.72,3.02,6.74,6.74,6.74
                     s6.74-3.02,6.74-6.74V124C159.21,120.29,156.19,117.26,152.48,117.26z"
@@ -1187,7 +1199,7 @@
             <stop offset="1" style="stop-color:#E2E2E2" />
           </linearGradient>
           <path
-            class="lqt-st45"
+            :class="`lqt-${info.id}-st45`"
             d="M179.66,116.59c-4.09,0-7.41,3.32-7.41,7.41v86.17c0,4.09,3.32,7.41,7.41,7.41c4.09,0,7.41-3.32,7.41-7.41
                     V124C187.07,119.91,183.75,116.59,179.66,116.59z"
           />
@@ -1206,7 +1218,7 @@
             <stop offset="1" style="stop-color:#E5E6E1" />
           </linearGradient>
           <path
-            class="lqt-st46"
+            :class="`lqt-${info.id}-st46`"
             d="M179.66,218.25c-4.46,0-8.09-3.63-8.09-8.09V124c0-4.46,3.63-8.09,8.09-8.09s8.09,3.63,8.09,8.09v86.17
                     C187.74,214.63,184.12,218.25,179.66,218.25z M179.66,117.26c-3.72,0-6.74,3.02-6.74,6.74v86.17c0,3.72,3.02,6.74,6.74,6.74
                     s6.74-3.02,6.74-6.74V124C186.4,120.29,183.37,117.26,179.66,117.26z"
@@ -1224,7 +1236,7 @@
           <stop offset="0.3296" style="stop-color:#000000;stop-opacity:0.2" />
         </linearGradient>
         <polygon
-          class="lqt-st47"
+          :class="`lqt-${info.id}-st47`"
           points="222.11,82.22 222.11,245.31 254.46,217 254.46,55.26 	"
         />
         <linearGradient
@@ -1243,7 +1255,13 @@
           <stop offset="0.6816" style="stop-color:#E2E3DF" />
           <stop offset="1" style="stop-color:#E5E6E1" />
         </linearGradient>
-        <rect x="249.07" y="66.72" class="lqt-st48" width="5.39" height="2.7" />
+        <rect
+          x="249.07"
+          y="66.72"
+          :class="`lqt-${info.id}-st48`"
+          width="5.39"
+          height="2.7"
+        />
         <linearGradient
           id="lqt_40_"
           gradientUnits="userSpaceOnUse"
@@ -1260,7 +1278,13 @@
           <stop offset="0.6816" style="stop-color:#E2E3DF" />
           <stop offset="1" style="stop-color:#E5E6E1" />
         </linearGradient>
-        <rect x="232.22" y="80.87" class="lqt-st49" width="5.39" height="2.7" />
+        <rect
+          x="232.22"
+          y="80.87"
+          :class="`lqt-${info.id}-st49`"
+          width="5.39"
+          height="2.7"
+        />
         <linearGradient
           id="lqt_41_"
           gradientUnits="userSpaceOnUse"
@@ -1280,7 +1304,7 @@
         <rect
           x="249.07"
           y="103.78"
-          class="lqt-st50"
+          :class="`lqt-${info.id}-st50`"
           width="5.39"
           height="2.7"
         />
@@ -1303,7 +1327,7 @@
         <rect
           x="232.22"
           y="117.94"
-          class="lqt-st51"
+          :class="`lqt-${info.id}-st51`"
           width="5.39"
           height="2.7"
         />
@@ -1326,7 +1350,7 @@
         <rect
           x="249.07"
           y="140.18"
-          class="lqt-st52"
+          :class="`lqt-${info.id}-st52`"
           width="5.39"
           height="2.7"
         />
@@ -1349,7 +1373,7 @@
         <rect
           x="232.22"
           y="154.33"
-          class="lqt-st53"
+          :class="`lqt-${info.id}-st53`"
           width="5.39"
           height="2.7"
         />
@@ -1372,7 +1396,7 @@
         <rect
           x="249.07"
           y="175.22"
-          class="lqt-st54"
+          :class="`lqt-${info.id}-st54`"
           width="5.39"
           height="2.7"
         />
@@ -1395,7 +1419,7 @@
         <rect
           x="232.22"
           y="189.37"
-          class="lqt-st55"
+          :class="`lqt-${info.id}-st55`"
           width="5.39"
           height="2.7"
         />
@@ -1416,7 +1440,7 @@
           <stop offset="1" style="stop-color:#E5E6E1" />
         </linearGradient>
         <path
-          class="lqt-st56"
+          :class="`lqt-${info.id}-st56`"
           d="M254.12,228.12c-0.74,0-1.35-0.6-1.35-1.35V56.89l0.01-0.06c0-0.05,0.43-5.82-3.29-9.71
                   c-2.51-2.62-6.38-3.85-11.49-3.66c-0.77,0.04-1.37-0.55-1.4-1.3c-0.03-0.74,0.55-1.37,1.3-1.4c5.94-0.22,10.5,1.29,13.57,4.51
                   c4.37,4.59,4.06,10.96,4.01,11.72v169.78C255.47,227.52,254.87,228.12,254.12,228.12z"
@@ -1438,7 +1462,7 @@
           <stop offset="1" style="stop-color:#E5E6E1" />
         </linearGradient>
         <path
-          class="lqt-st57"
+          :class="`lqt-${info.id}-st57`"
           d="M238.29,230.48c-0.38,0-0.75-0.16-1.02-0.46c-0.49-0.56-0.43-1.41,0.13-1.9l15.5-13.48
                   c0.56-0.49,1.41-0.43,1.9,0.13c0.49,0.56,0.43,1.41-0.13,1.9l-15.5,13.48C238.92,230.37,238.6,230.48,238.29,230.48z"
         />
@@ -1459,7 +1483,7 @@
           <stop offset="1" style="stop-color:#E5E6E1" />
         </linearGradient>
         <path
-          class="lqt-st58"
+          :class="`lqt-${info.id}-st58`"
           d="M238.29,212.12c-0.38,0-0.75-0.16-1.02-0.46c-0.49-0.56-0.43-1.41,0.13-1.9l15.5-13.48
                   c0.56-0.49,1.41-0.43,1.9,0.13c0.49,0.56,0.43,1.41-0.13,1.9l-15.5,13.48C238.92,212.01,238.6,212.12,238.29,212.12z"
         />
@@ -1480,7 +1504,7 @@
           <stop offset="1" style="stop-color:#E5E6E1" />
         </linearGradient>
         <path
-          class="lqt-st59"
+          :class="`lqt-${info.id}-st59`"
           d="M238.29,193.75c-0.38,0-0.75-0.16-1.02-0.46c-0.49-0.56-0.43-1.41,0.13-1.9l15.5-13.48
                   c0.56-0.49,1.41-0.43,1.9,0.13c0.49,0.56,0.43,1.41-0.13,1.9l-15.5,13.48C238.92,193.64,238.6,193.75,238.29,193.75z"
         />
@@ -1501,7 +1525,7 @@
           <stop offset="1" style="stop-color:#E5E6E1" />
         </linearGradient>
         <path
-          class="lqt-st60"
+          :class="`lqt-${info.id}-st60`"
           d="M238.29,175.39c-0.38,0-0.75-0.16-1.02-0.46c-0.49-0.56-0.43-1.41,0.13-1.9l15.5-13.48
                   c0.56-0.49,1.41-0.43,1.9,0.13c0.49,0.56,0.43,1.41-0.13,1.9l-15.5,13.48C238.92,175.28,238.6,175.39,238.29,175.39z"
         />
@@ -1522,7 +1546,7 @@
           <stop offset="1" style="stop-color:#E5E6E1" />
         </linearGradient>
         <path
-          class="lqt-st61"
+          :class="`lqt-${info.id}-st61`"
           d="M238.29,157.02c-0.38,0-0.75-0.16-1.02-0.46c-0.49-0.56-0.43-1.41,0.13-1.9l15.5-13.48
                   c0.56-0.49,1.41-0.43,1.9,0.13c0.49,0.56,0.43,1.41-0.13,1.9l-15.5,13.48C238.92,156.92,238.6,157.02,238.29,157.02z"
         />
@@ -1543,7 +1567,7 @@
           <stop offset="1" style="stop-color:#E5E6E1" />
         </linearGradient>
         <path
-          class="lqt-st62"
+          :class="`lqt-${info.id}-st62`"
           d="M238.29,138.66c-0.38,0-0.75-0.16-1.02-0.46c-0.49-0.56-0.43-1.41,0.13-1.9l15.5-13.48
                   c0.56-0.49,1.41-0.43,1.9,0.13c0.49,0.56,0.43,1.41-0.13,1.9l-15.5,13.48C238.92,138.55,238.6,138.66,238.29,138.66z"
         />
@@ -1564,7 +1588,7 @@
           <stop offset="1" style="stop-color:#E5E6E1" />
         </linearGradient>
         <path
-          class="lqt-st63"
+          :class="`lqt-${info.id}-st63`"
           d="M238.29,120.29c-0.38,0-0.75-0.16-1.02-0.46c-0.49-0.56-0.43-1.41,0.13-1.9l15.5-13.48
                   c0.56-0.49,1.41-0.43,1.9,0.13c0.49,0.56,0.43,1.41-0.13,1.9l-15.5,13.48C238.92,120.19,238.6,120.29,238.29,120.29z"
         />
@@ -1585,7 +1609,7 @@
           <stop offset="1" style="stop-color:#E5E6E1" />
         </linearGradient>
         <path
-          class="lqt-st64"
+          :class="`lqt-${info.id}-st64`"
           d="M238.29,101.93c-0.38,0-0.75-0.16-1.02-0.46c-0.49-0.56-0.43-1.41,0.13-1.9l15.5-13.48
                   c0.56-0.49,1.41-0.43,1.9,0.13c0.49,0.56,0.43,1.41-0.13,1.9l-15.5,13.48C238.92,101.82,238.6,101.93,238.29,101.93z"
         />
@@ -1606,7 +1630,7 @@
           <stop offset="1" style="stop-color:#E5E6E1" />
         </linearGradient>
         <path
-          class="lqt-st65"
+          :class="`lqt-${info.id}-st65`"
           d="M238.29,83.57c-0.38,0-0.75-0.16-1.02-0.46c-0.49-0.56-0.43-1.41,0.13-1.9l15.5-13.48
                   c0.56-0.49,1.41-0.43,1.9,0.13c0.49,0.56,0.43,1.41-0.13,1.9l-15.5,13.48C238.92,83.46,238.6,83.57,238.29,83.57z"
         />
@@ -1627,25 +1651,25 @@
           <stop offset="1" style="stop-color:#E5E6E1" />
         </linearGradient>
         <path
-          class="lqt-st66"
+          :class="`lqt-${info.id}-st66`"
           d="M237.95,241.6c-0.74,0-1.35-0.6-1.35-1.35V70.37l0.01-0.06c0-0.05,0.43-5.82-3.29-9.71
                   c-2.51-2.62-6.38-3.85-11.49-3.66c-0.77,0.04-1.37-0.55-1.4-1.3c-0.03-0.74,0.55-1.37,1.3-1.4c5.94-0.22,10.5,1.29,13.57,4.51
                   c4.37,4.59,4.06,10.96,4.01,11.72v169.78C239.3,241,238.7,241.6,237.95,241.6z"
         />
         <polygon
-          class="lqt-st13"
+          :class="`lqt-${info.id}-st13`"
           points="1.8,107.75 1.01,105.89 60.37,80.54 60.37,44.14 62.39,44.14 62.39,81.88 	"
         />
         <polygon
-          class="lqt-st13"
+          :class="`lqt-${info.id}-st13`"
           points="198.06,105.41 187.07,90.98 187.07,56.95 189.09,56.95 189.09,90.3 199.67,104.18 	"
         />
         <polygon
-          class="lqt-st67"
+          :class="`lqt-${info.id}-st67`"
           points="0.45,107.07 2.66,104.21 59.02,79.87 59.02,43.47 61.05,43.47 61.05,81.2 	"
         />
         <polygon
-          class="lqt-st67"
+          :class="`lqt-${info.id}-st67`"
           points="196.71,104.73 185.72,90.31 185.72,56.27 187.74,56.27 187.74,89.63 198.32,103.51 	"
         />
 
@@ -1653,7 +1677,7 @@
           x="220.15"
           y="46.16"
           transform="matrix(0.9891 -0.1471 0.1471 0.9891 -4.2704 36.61)"
-          class="lqt-st68"
+          :class="`lqt-${info.id}-st68`"
           width="50.42"
           height="2.02"
         />
@@ -1668,7 +1692,7 @@
             repeatCount="indefinite"
           />
           <path
-            class="lqt-st69"
+            :class="`lqt-${info.id}-st69`"
             d="M207.92,49.12l-64.45-10.18c0-0.01,0-0.02,0-0.02c0-0.6-0.95-1.13-2.41-1.47l15.76-21.52
                   c-6.21-0.48-12.73-0.74-19.44-0.74c-2.09,0-4.15,0.03-6.2,0.08l3.23,22.04c-1.65,0.28-2.81,0.79-3.06,1.38L62.15,45.3
                   c2.35,2.56,6.06,4.95,10.91,7.08l61.21-11.87c0.91,0.16,1.97,0.26,3.11,0.26c0.84,0,1.63-0.05,2.36-0.14l53.43,14.9
@@ -1686,7 +1710,7 @@
             <stop offset="1" style="stop-color:#E6E6E6" />
           </linearGradient>
           <path
-            class="lqt-st70"
+            :class="`lqt-${info.id}-st70`"
             d="M207.92,48.12l-64.45-10.18c0-0.01,0-0.02,0-0.02c0-0.6-0.95-1.13-2.41-1.47l15.76-21.52
                   c-6.21-0.48-12.73-0.74-19.44-0.74c-2.09,0-4.15,0.03-6.2,0.08l3.23,22.04c-1.65,0.28-2.81,0.79-3.06,1.38L62.15,44.3
                   c2.35,2.56,6.06,4.95,10.91,7.08l61.21-11.87c0.91,0.16,1.97,0.26,3.11,0.26c0.84,0,1.63-0.05,2.36-0.14l53.43,14.9
@@ -1701,7 +1725,7 @@
             repeatCount="indefinite"
           />
           <path
-            class="lqt-st69"
+            :class="`lqt-${info.id}-st69`"
             d="M215.25,37.04l-72.56,0.98c-0.01-0.01-0.02-0.01-0.04-0.02c-0.99-0.52-2.68-0.84-4.5-0.91l-21.76-21.03
                   c-6.18,0.53-12.24,1.29-18.05,2.31c-1.81,0.32-3.54,0.66-5.24,1.01l39.06,18.6c-0.96,0.49-1.14,1.11-0.38,1.66L82.73,55.87
                   c6.25,1.86,13.39,3.36,21.1,4.48l33.48-19.58c1.06,0,2.14-0.07,3.12-0.25c0.72-0.13,1.33-0.29,1.8-0.48l70.78,4.79
@@ -1719,7 +1743,7 @@
             <stop offset="1" style="stop-color:#E6E6E6" />
           </linearGradient>
           <path
-            class="lqt-st71"
+            :class="`lqt-${info.id}-st71`"
             d="M215.25,36.04l-72.56,0.98c-0.01-0.01-0.02-0.01-0.04-0.02c-0.99-0.52-2.68-0.84-4.5-0.91l-21.76-21.03
                   c-6.18,0.53-12.24,1.29-18.05,2.31c-1.81,0.32-3.54,0.66-5.24,1.01l39.06,18.6c-0.96,0.49-1.14,1.11-0.38,1.66L82.73,54.87
                   c6.25,1.86,13.39,3.36,21.1,4.48l33.48-19.58c1.06,0,2.14-0.07,3.12-0.25c0.72-0.13,1.33-0.29,1.8-0.48l70.78,4.79
@@ -1734,7 +1758,7 @@
             repeatCount="indefinite"
           />
           <path
-            class="lqt-st69"
+            :class="`lqt-${info.id}-st69`"
             d="M201.72,25.46l-61.23,11.87c-0.02,0-0.04-0.01-0.07-0.01c-1.71-0.3-3.7-0.32-5.39-0.1L81.57,22.31
                   c-4.49,1.39-8.48,2.98-11.83,4.74c-1.04,0.55-1.98,1.11-2.87,1.67L131.3,38.9c-0.02,0.57,0.83,1.13,2.4,1.5l-15.75,21.52
                   c8.47,0.66,17.13,0.88,25.63,0.67l-3.23-22.05c0.93-0.16,1.73-0.39,2.3-0.69c0.42-0.22,0.67-0.46,0.77-0.69l69.18-6.61
@@ -1752,7 +1776,7 @@
             <stop offset="1" style="stop-color:#E6E6E6" />
           </linearGradient>
           <path
-            class="lqt-st72"
+            :class="`lqt-${info.id}-st72`"
             d="M201.72,24.46l-61.23,11.87c-0.02,0-0.04-0.01-0.07-0.01c-1.71-0.3-3.7-0.32-5.39-0.1L81.57,21.31
                   c-4.49,1.39-8.48,2.98-11.83,4.74c-1.04,0.55-1.98,1.11-2.87,1.67L131.3,37.9c-0.02,0.57,0.83,1.13,2.4,1.5l-15.75,21.52
                   c8.47,0.66,17.13,0.88,25.63,0.67l-3.23-22.05c0.93-0.16,1.73-0.39,2.3-0.69c0.42-0.22,0.67-0.46,0.77-0.69l69.18-6.61
@@ -1767,7 +1791,7 @@
             repeatCount="indefinite"
           />
           <path
-            class="lqt-st69"
+            :class="`lqt-${info.id}-st69`"
             d="M170.94,17.48l-33.48,19.59c-0.03,0-0.05,0-0.08,0c-1.98,0-3.73,0.29-4.84,0.73l-70.82-4.79
                   c-1.59,1.89-2.44,3.87-2.44,5.91c0,0.63,0.11,1.26,0.27,1.88l72.53-0.98c0.92,0.5,2.59,0.86,4.54,0.93l21.76,21.03
                   c8.43-0.71,16.28-1.84,23.3-3.31l-39.07-18.6c0.54-0.28,0.86-0.6,0.86-0.94c0-0.25-0.17-0.5-0.47-0.72l49.03-16.24
@@ -1785,7 +1809,7 @@
             <stop offset="1" style="stop-color:#E6E6E6" />
           </linearGradient>
           <path
-            class="lqt-st73"
+            :class="`lqt-${info.id}-st73`"
             d="M170.94,16.48l-33.48,19.59c-0.03,0-0.05,0-0.08,0c-1.98,0-3.73,0.29-4.84,0.73l-70.82-4.79
                   c-1.59,1.89-2.44,3.87-2.44,5.91c0,0.63,0.11,1.26,0.27,1.88l72.53-0.98c0.92,0.5,2.59,0.86,4.54,0.93l21.76,21.03
                   c8.43-0.71,16.28-1.84,23.3-3.31l-39.07-18.6c0.54-0.28,0.86-0.6,0.86-0.94c0-0.25-0.17-0.5-0.47-0.72l49.03-16.24
@@ -1796,7 +1820,7 @@
 
       <g class="SVG_sta" v-if="pointValue === 0">
         <path
-          class="lqt-st69"
+          :class="`lqt-${info.id}-st69`"
           d="M170.94,17.48l-33.48,19.59c-0.03,0-0.05,0-0.08,0c-1.98,0-3.73,0.29-4.84,0.73l-70.82-4.79
                   c-1.59,1.89-2.44,3.87-2.44,5.91c0,0.63,0.11,1.26,0.27,1.88l72.53-0.98c0.92,0.5,2.59,0.86,4.54,0.93l21.76,21.03
                   c8.43-0.71,16.28-1.84,23.3-3.31l-39.07-18.6c0.54-0.28,0.86-0.6,0.86-0.94c0-0.25-0.17-0.5-0.47-0.72l49.03-16.24
@@ -1814,7 +1838,7 @@
           <stop offset="1" style="stop-color:#E6E6E6" />
         </linearGradient>
         <path
-          class="lqt-st73"
+          :class="`lqt-${info.id}-st73`"
           d="M170.94,16.48l-33.48,19.59c-0.03,0-0.05,0-0.08,0c-1.98,0-3.73,0.29-4.84,0.73l-70.82-4.79
                   c-1.59,1.89-2.44,3.87-2.44,5.91c0,0.63,0.11,1.26,0.27,1.88l72.53-0.98c0.92,0.5,2.59,0.86,4.54,0.93l21.76,21.03
                   c8.43-0.71,16.28-1.84,23.3-3.31l-39.07-18.6c0.54-0.28,0.86-0.6,0.86-0.94c0-0.25-0.17-0.5-0.47-0.72l49.03-16.24
@@ -1836,7 +1860,7 @@
           <stop offset="1" style="stop-color:#9C9D98" />
         </linearGradient>
         <path
-          class="lqt-st74"
+          :class="`lqt-${info.id}-st74`"
           d="M219.42,34.71L207.96,46.5l-31,9.43l-39.76,4.72l-50.54-6.74L59.27,41.55l-5.63-10.88l0.04-0.34h-1.38v33.7
                   h0.01c0,0.11-0.01,0.22-0.01,0.34c0,16.93,37.87,30.66,84.58,30.66s84.58-13.73,84.58-30.66c0-0.11-0.01-0.22-0.01-0.34h0.01v-33.7
                   h-1.38L219.42,34.71z"
@@ -1844,7 +1868,7 @@
         <g>
           <g>
             <path
-              class="lqt-st15"
+              :class="`lqt-${info.id}-st15`"
               d="M136.86,3.37c22.21,0,43.04,3.12,58.66,8.78c14.33,5.2,22.55,11.94,22.55,18.51s-8.22,13.32-22.55,18.51
                       c-15.62,5.66-36.45,8.78-58.66,8.78s-43.04-3.12-58.66-8.78c-14.33-5.2-22.55-11.94-22.55-18.51s8.22-13.32,22.55-18.51
                       C93.82,6.49,114.65,3.37,136.86,3.37 M136.86,0C90.15,0,52.29,13.73,52.29,30.66s37.87,30.66,84.58,30.66
@@ -1865,7 +1889,7 @@
           <stop offset="1" style="stop-color:#9C9D98" />
         </linearGradient>
         <path
-          class="lqt-st75"
+          :class="`lqt-${info.id}-st75`"
           d="M166.67,7.69c-0.34-0.41-0.79-0.6-1.01-0.42l-32.96,26.94l2.59,0.38l31.59-25.83
                   C167.1,8.59,167.01,8.11,166.67,7.69z"
         />
@@ -1882,7 +1906,7 @@
           <stop offset="1" style="stop-color:#9C9D98" />
         </linearGradient>
         <path
-          class="lqt-st76"
+          :class="`lqt-${info.id}-st76`"
           d="M136.82,33.66H57.96c-0.55,0-1-0.45-1-1s0.45-1,1-1h78.86c0.55,0,1,0.45,1,1S137.37,33.66,136.82,33.66z"
         />
         <linearGradient
@@ -1898,10 +1922,16 @@
           <stop offset="1" style="stop-color:#9C9D98" />
         </linearGradient>
         <path
-          class="lqt-st77"
+          :class="`lqt-${info.id}-st77`"
           d="M128.38,27.04v13c0,1.81,3.58,3.29,8.01,3.29s8.01-1.47,8.01-3.29v-13H128.38z"
         />
-        <ellipse class="lqt-st78" cx="136.38" cy="27.04" rx="8.01" ry="3.29" />
+        <ellipse
+          :class="`lqt-${info.id}-st78`"
+          cx="136.38"
+          cy="27.04"
+          rx="8.01"
+          ry="3.29"
+        />
         <linearGradient
           id="lqt_66_"
           gradientUnits="userSpaceOnUse"
@@ -1915,7 +1945,7 @@
           <stop offset="1" style="stop-color:#9C9D98" />
         </linearGradient>
         <path
-          class="lqt-st79"
+          :class="`lqt-${info.id}-st79`"
           d="M133.05,34.89c-0.34-0.41-0.79-0.6-1.01-0.42l-26.16,21.34l2.59,0.38l24.78-20.22
                   C133.47,35.79,133.38,35.31,133.05,34.89z"
         />
@@ -1932,13 +1962,13 @@
           <stop offset="1" style="stop-color:#9C9D98" />
         </linearGradient>
         <path
-          class="lqt-st80"
+          :class="`lqt-${info.id}-st80`"
           d="M216.37,33.66h-73.3c-0.55,0-1-0.45-1-1s0.45-1,1-1h73.3c0.55,0,1,0.45,1,1S216.92,33.66,216.37,33.66z"
         />
       </g>
       <g class="SVG_alert" v-if="pointValue == 2">
         <path
-          class="lqt-st81"
+          :class="`lqt-${info.id}-st81`"
           d="M274.83,42.98l-1.28-1.63l-2.29,1.85h-1l-0.11-0.73l-4.92,0.73H248.9c-2.86-1.78-6.54-2.59-11-2.43
                   c-0.74,0.03-1.32,0.65-1.3,1.4c0.02,0.42,0.22,0.79,0.54,1.03h-15.7V30.33h-0.02C220.92,13.55,183.26,0,136.86,0
                   c-46.4,0-84.05,13.55-84.55,30.33h-0.02v16.51h-0.34c0,0.45,0.04,0.9,0.09,1.35h-0.09c0,0.9,0.13,1.79,0.34,2.68v12.52L2.62,103.94

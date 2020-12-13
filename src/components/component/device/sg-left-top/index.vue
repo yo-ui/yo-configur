@@ -14,7 +14,7 @@
         v-html="
           `
         <style type='text/css'>
-      .luw-st0{fill:url(#LUWater_2_);}
+      .luw-${info.id}-st0{fill:url(#LUWater_2_);}
       </style>
       `
         "
@@ -34,7 +34,7 @@
         </radialGradient>
         <path
           id="sg_left_top_536_"
-          class="luw-st0"
+          :class="`luw-${info.id}-st0`"
           d="M2,10l6.2,0c0-1.1,0.8-1.8,1.8-1.8V2C5.6,2,2,5.6,2,10z"
         />
       </g>

@@ -14,125 +14,125 @@
         v-html="
           `
         <style type='text/css'>
-      .sx-st0{fill:#332324;}
-              .sx-st1{fill:url(#sx_1_);}
-              .sx-st2{fill:#BC5862;}
-              .sx-st3{fill:#662B30;}
-              .sx-st4{fill:#72373B;}
-              .sx-st5{fill:url(#sx_2_);}
-              .sx-st6{fill:url(#sx_3_);}
-              .sx-st7{fill:url(#sx_4_);}
-              .sx-st8{fill:url(#sx_5_);}
-              .sx-st9{fill:url(#sx_6_);}
-              .sx-st10{fill:url(#sx_7_);}
-              .sx-st11{fill:url(#sx_8_);}
-              .sx-st12{fill:url(#sx_9_);}
-              .sx-st13{fill:url(#sx_10_);}
-              .sx-st14{fill:url(#sx_11_);}
-              .sx-st15{fill:url(#sx_12_);}
-              .sx-st16{fill:url(#sx_13_);}
-              .sx-st17{fill:url(#sx_14_);}
-              .sx-st18{fill:url(#sx_15_);}
-              .sx-st19{fill:url(#sx_16_);}
-              .sx-st20{fill:url(#sx_17_);}
-              .sx-st21{fill:url(#sx_18_);}
-              .sx-st22{fill:url(#sx_19_);}
-              .sx-st23{fill:url(#sx_20_);}
-              .sx-st24{fill:url(#sx_21_);}
-              .sx-st25{fill:url(#sx_22_);}
-              .sx-st26{fill:url(#sx_23_);}
-              .sx-st27{fill:url(#sx_24_);}
-              .sx-st28{fill:url(#sx_25_);}
-              .sx-st29{fill:url(#sx_26_);}
-              .sx-st30{fill:url(#sx_27_);}
-              .sx-st31{fill:url(#sx_28_);}
-              .sx-st32{fill:url(#sx_29_);}
-              .sx-st33{fill:url(#sx_30_);}
-              .sx-st34{fill:url(#sx_31_);}
-              .sx-st35{fill:url(#sx_32_);}
-              .sx-st36{fill:url(#sx_33_);}
-              .sx-st37{fill:url(#sx_34_);}
-              .sx-st38{fill:url(#sx_35_);}
-              .sx-st39{fill:url(#sx_36_);}
-              .sx-st40{fill:url(#sx_37_);}
-              .sx-st41{fill:url(#sx_38_);}
-              .sx-st42{fill:url(#sx_39_);}
-              .sx-st43{fill:url(#sx_40_);}
-              .sx-st44{fill:url(#sx_41_);}
-              .sx-st45{fill:url(#sx_42_);}
-              .sx-st46{fill:url(#sx_43_);}
-              .sx-st47{fill:url(#sx_44_);}
-              .sx-st48{fill:url(#sx_45_);}
-              .sx-st49{fill:url(#sx_46_);}
-              .sx-st50{fill:url(#sx_47_);}
-              .sx-st51{fill:url(#sx_48_);}
-              .sx-st52{fill:url(#sx_49_);}
-              .sx-st53{fill:url(#sx_50_);}
-              .sx-st54{fill:url(#sx_51_);}
-              .sx-st55{fill:url(#sx_52_);}
-              .sx-st56{fill:url(#sx_53_);}
-              .sx-st57{fill:url(#sx_54_);}
-              .sx-st58{fill:url(#sx_55_);}
-              .sx-st59{fill:url(#sx_56_);}
-              .sx-st60{fill:url(#sx_57_);}
-              .sx-st61{fill:url(#sx_58_);}
-              .sx-st62{fill:url(#sx_59_);}
-              .sx-st63{fill:url(#sx_60_);}
-              .sx-st64{fill:url(#sx_61_);}
-              .sx-st65{fill:url(#sx_62_);}
-              .sx-st66{fill:url(#sx_63_);}
-              .sx-st67{fill:url(#sx_64_);}
-              .sx-st68{fill:url(#sx_65_);}
-              .sx-st69{fill:url(#sx_66_);}
-              .sx-st70{fill:url(#sx_67_);}
-              .sx-st71{fill:url(#sx_68_);}
-              .sx-st72{fill:url(#sx_69_);}
-              .sx-st73{fill:url(#sx_70_);}
-              .sx-st74{fill:url(#sx_71_);}
-              .sx-st75{fill:url(#sx_72_);}
-              .sx-st76{fill:url(#sx_73_);}
-              .sx-st77{fill:url(#sx_74_);}
-              .sx-st78{fill:url(#sx_75_);}
-              .sx-st79{fill:url(#sx_76_);}
-              .sx-st80{fill:#FAFAFA;}
-              .sx-st81{fill:#999999;}
-              .sx-st82{fill:#EBEBEB;}
-              .sx-st83{fill:url(#sx_77_);}
-              .sx-st84{fill:url(#sx_78_);}
-              .sx-st85{fill:url(#sx_79_);}
-              .sx-st86{fill:url(#sx_80_);}
-              .sx-st87{fill:url(#sx_81_);}
-              .sx-st88{fill:url(#sx_82_);}
-              .sx-st89{fill:url(#sx_83_);}
-              .sx-st90{fill:url(#sx_84_);}
-              .sx-st91{fill:url(#sx_85_);}
-              .sx-st92{fill:url(#sx_86_);}
-              .sx-st93{fill:url(#sx_87_);}
-              .sx-st94{fill:url(#sx_88_);}
-              .sx-st95{fill:url(#sx_89_);}
-              .sx-st96{fill:url(#sx_90_);}
-              .sx-st97{fill:url(#sx_91_);}
-              .sx-st98{fill:url(#sx_92_);}
-              .sx-st99{fill:url(#sx_93_);}
-              .sx-st100{fill:url(#sx_94_);}
-              .sx-st101{fill:url(#sx_95_);}
-              .sx-st102{fill:url(#sx_96_);}
-              .sx-st103{fill:url(#sx_97_);}
-              .sx-st104{fill:url(#sx_98_);}
-              .sx-st105{fill:url(#sx_99_);}
-              .sx-st106{fill:url(#sx_100_);}
-              .sx-st107{fill:url(#sx_101_);}
-              .sx-st108{fill:url(#sx_102_);}
-              .sx-st109{fill:url(#sx_103_);}
-              .sx-st110{fill:url(#sx_104_);}
-              .sx-st111{fill:url(#sx_105_);}
-              .sx-st112{fill:url(#sx_106_);}
-              .sx-st113{fill:url(#sx_107_);}
-              .sx-st114{fill:url(#sx_108_);}
-              .sx-st115{fill:url(#sx_109_);}
-              .sx-st116{fill:url(#sx_110_);}
-              .sx-st117{fill:url(#sx_111_);}
-              .sx-st118{fill:url(#sx_112_);}
+      .sx-${info.id}-st0{fill:#332324;}
+              .sx-${info.id}-st1{fill:url(#sx_1_);}
+              .sx-${info.id}-st2{fill:#BC5862;}
+              .sx-${info.id}-st3{fill:#662B30;}
+              .sx-${info.id}-st4{fill:#72373B;}
+              .sx-${info.id}-st5{fill:url(#sx_2_);}
+              .sx-${info.id}-st6{fill:url(#sx_3_);}
+              .sx-${info.id}-st7{fill:url(#sx_4_);}
+              .sx-${info.id}-st8{fill:url(#sx_5_);}
+              .sx-${info.id}-st9{fill:url(#sx_6_);}
+              .sx-${info.id}-st10{fill:url(#sx_7_);}
+              .sx-${info.id}-st11{fill:url(#sx_8_);}
+              .sx-${info.id}-st12{fill:url(#sx_9_);}
+              .sx-${info.id}-st13{fill:url(#sx_10_);}
+              .sx-${info.id}-st14{fill:url(#sx_11_);}
+              .sx-${info.id}-st15{fill:url(#sx_12_);}
+              .sx-${info.id}-st16{fill:url(#sx_13_);}
+              .sx-${info.id}-st17{fill:url(#sx_14_);}
+              .sx-${info.id}-st18{fill:url(#sx_15_);}
+              .sx-${info.id}-st19{fill:url(#sx_16_);}
+              .sx-${info.id}-st20{fill:url(#sx_17_);}
+              .sx-${info.id}-st21{fill:url(#sx_18_);}
+              .sx-${info.id}-st22{fill:url(#sx_19_);}
+              .sx-${info.id}-st23{fill:url(#sx_20_);}
+              .sx-${info.id}-st24{fill:url(#sx_21_);}
+              .sx-${info.id}-st25{fill:url(#sx_22_);}
+              .sx-${info.id}-st26{fill:url(#sx_23_);}
+              .sx-${info.id}-st27{fill:url(#sx_24_);}
+              .sx-${info.id}-st28{fill:url(#sx_25_);}
+              .sx-${info.id}-st29{fill:url(#sx_26_);}
+              .sx-${info.id}-st30{fill:url(#sx_27_);}
+              .sx-${info.id}-st31{fill:url(#sx_28_);}
+              .sx-${info.id}-st32{fill:url(#sx_29_);}
+              .sx-${info.id}-st33{fill:url(#sx_30_);}
+              .sx-${info.id}-st34{fill:url(#sx_31_);}
+              .sx-${info.id}-st35{fill:url(#sx_32_);}
+              .sx-${info.id}-st36{fill:url(#sx_33_);}
+              .sx-${info.id}-st37{fill:url(#sx_34_);}
+              .sx-${info.id}-st38{fill:url(#sx_35_);}
+              .sx-${info.id}-st39{fill:url(#sx_36_);}
+              .sx-${info.id}-st40{fill:url(#sx_37_);}
+              .sx-${info.id}-st41{fill:url(#sx_38_);}
+              .sx-${info.id}-st42{fill:url(#sx_39_);}
+              .sx-${info.id}-st43{fill:url(#sx_40_);}
+              .sx-${info.id}-st44{fill:url(#sx_41_);}
+              .sx-${info.id}-st45{fill:url(#sx_42_);}
+              .sx-${info.id}-st46{fill:url(#sx_43_);}
+              .sx-${info.id}-st47{fill:url(#sx_44_);}
+              .sx-${info.id}-st48{fill:url(#sx_45_);}
+              .sx-${info.id}-st49{fill:url(#sx_46_);}
+              .sx-${info.id}-st50{fill:url(#sx_47_);}
+              .sx-${info.id}-st51{fill:url(#sx_48_);}
+              .sx-${info.id}-st52{fill:url(#sx_49_);}
+              .sx-${info.id}-st53{fill:url(#sx_50_);}
+              .sx-${info.id}-st54{fill:url(#sx_51_);}
+              .sx-${info.id}-st55{fill:url(#sx_52_);}
+              .sx-${info.id}-st56{fill:url(#sx_53_);}
+              .sx-${info.id}-st57{fill:url(#sx_54_);}
+              .sx-${info.id}-st58{fill:url(#sx_55_);}
+              .sx-${info.id}-st59{fill:url(#sx_56_);}
+              .sx-${info.id}-st60{fill:url(#sx_57_);}
+              .sx-${info.id}-st61{fill:url(#sx_58_);}
+              .sx-${info.id}-st62{fill:url(#sx_59_);}
+              .sx-${info.id}-st63{fill:url(#sx_60_);}
+              .sx-${info.id}-st64{fill:url(#sx_61_);}
+              .sx-${info.id}-st65{fill:url(#sx_62_);}
+              .sx-${info.id}-st66{fill:url(#sx_63_);}
+              .sx-${info.id}-st67{fill:url(#sx_64_);}
+              .sx-${info.id}-st68{fill:url(#sx_65_);}
+              .sx-${info.id}-st69{fill:url(#sx_66_);}
+              .sx-${info.id}-st70{fill:url(#sx_67_);}
+              .sx-${info.id}-st71{fill:url(#sx_68_);}
+              .sx-${info.id}-st72{fill:url(#sx_69_);}
+              .sx-${info.id}-st73{fill:url(#sx_70_);}
+              .sx-${info.id}-st74{fill:url(#sx_71_);}
+              .sx-${info.id}-st75{fill:url(#sx_72_);}
+              .sx-${info.id}-st76{fill:url(#sx_73_);}
+              .sx-${info.id}-st77{fill:url(#sx_74_);}
+              .sx-${info.id}-st78{fill:url(#sx_75_);}
+              .sx-${info.id}-st79{fill:url(#sx_76_);}
+              .sx-${info.id}-st80{fill:#FAFAFA;}
+              .sx-${info.id}-st81{fill:#999999;}
+              .sx-${info.id}-st82{fill:#EBEBEB;}
+              .sx-${info.id}-st83{fill:url(#sx_77_);}
+              .sx-${info.id}-st84{fill:url(#sx_78_);}
+              .sx-${info.id}-st85{fill:url(#sx_79_);}
+              .sx-${info.id}-st86{fill:url(#sx_80_);}
+              .sx-${info.id}-st87{fill:url(#sx_81_);}
+              .sx-${info.id}-st88{fill:url(#sx_82_);}
+              .sx-${info.id}-st89{fill:url(#sx_83_);}
+              .sx-${info.id}-st90{fill:url(#sx_84_);}
+              .sx-${info.id}-st91{fill:url(#sx_85_);}
+              .sx-${info.id}-st92{fill:url(#sx_86_);}
+              .sx-${info.id}-st93{fill:url(#sx_87_);}
+              .sx-${info.id}-st94{fill:url(#sx_88_);}
+              .sx-${info.id}-st95{fill:url(#sx_89_);}
+              .sx-${info.id}-st96{fill:url(#sx_90_);}
+              .sx-${info.id}-st97{fill:url(#sx_91_);}
+              .sx-${info.id}-st98{fill:url(#sx_92_);}
+              .sx-${info.id}-st99{fill:url(#sx_93_);}
+              .sx-${info.id}-st100{fill:url(#sx_94_);}
+              .sx-${info.id}-st101{fill:url(#sx_95_);}
+              .sx-${info.id}-st102{fill:url(#sx_96_);}
+              .sx-${info.id}-st103{fill:url(#sx_97_);}
+              .sx-${info.id}-st104{fill:url(#sx_98_);}
+              .sx-${info.id}-st105{fill:url(#sx_99_);}
+              .sx-${info.id}-st106{fill:url(#sx_100_);}
+              .sx-${info.id}-st107{fill:url(#sx_101_);}
+              .sx-${info.id}-st108{fill:url(#sx_102_);}
+              .sx-${info.id}-st109{fill:url(#sx_103_);}
+              .sx-${info.id}-st110{fill:url(#sx_104_);}
+              .sx-${info.id}-st111{fill:url(#sx_105_);}
+              .sx-${info.id}-st112{fill:url(#sx_106_);}
+              .sx-${info.id}-st113{fill:url(#sx_107_);}
+              .sx-${info.id}-st114{fill:url(#sx_108_);}
+              .sx-${info.id}-st115{fill:url(#sx_109_);}
+              .sx-${info.id}-st116{fill:url(#sx_110_);}
+              .sx-${info.id}-st117{fill:url(#sx_111_);}
+              .sx-${info.id}-st118{fill:url(#sx_112_);}
       </style>
       `
         "
@@ -141,7 +141,7 @@
         <rect
           x="283.96"
           y="166.2"
-          class="sx-st0"
+          :class="`sx-${info.id}-st0`"
           width="13.69"
           height="39.51"
         />
@@ -157,33 +157,39 @@
           <stop offset="1" style="stop-color:#321613" />
         </linearGradient>
         <polygon
-          class="sx-st1"
+          :class="`sx-${info.id}-st1`"
           points="293.64,194.17 291.41,195.73 277.66,183.96 279.89,182.39 	"
         />
-        <rect x="2.7" y="236.76" class="sx-st2" width="13.28" height="38.27" />
+        <rect
+          x="2.7"
+          y="236.76"
+          :class="`sx-${info.id}-st2`"
+          width="13.28"
+          height="38.27"
+        />
         <polygon
-          class="sx-st3"
+          :class="`sx-${info.id}-st3`"
           points="18.32,273.46 15.98,275.03 15.98,236.76 18.32,236.76 	"
         />
         <rect
           x="214.24"
           y="236.76"
-          class="sx-st2"
+          :class="`sx-${info.id}-st2`"
           width="13.28"
           height="38.27"
         />
         <polygon
-          class="sx-st4"
+          :class="`sx-${info.id}-st4`"
           points="236.11,267.22 227.52,275.03 227.52,235.97 236.11,228.16 	"
         />
         <polygon
-          class="sx-st4"
+          :class="`sx-${info.id}-st4`"
           points="299.38,206.61 290.78,214.42 290.78,175.37 299.38,168.34 	"
         />
         <rect
           x="289.12"
           y="169.78"
-          class="sx-st2"
+          :class="`sx-${info.id}-st2`"
           width="1.67"
           height="44.65"
         />
@@ -199,7 +205,7 @@
           <stop offset="1" style="stop-color:#321613" />
         </linearGradient>
         <polygon
-          class="sx-st5"
+          :class="`sx-${info.id}-st5`"
           points="248.51,216.5 235.19,250.61 235.19,242.71 248.51,208.61 	"
         />
         <linearGradient
@@ -214,7 +220,7 @@
           <stop offset="1" style="stop-color:#482A2A" />
         </linearGradient>
         <polygon
-          class="sx-st6"
+          :class="`sx-${info.id}-st6`"
           points="51.18,236.37 17.15,255.89 17.15,249.06 51.18,229.54 	"
         />
 
@@ -231,7 +237,7 @@
           <stop offset="1" style="stop-color:#482A2A" />
         </linearGradient>
         <polygon
-          class="sx-st7"
+          :class="`sx-${info.id}-st7`"
           points="183.07,236.37 217.1,255.89 217.1,249.06 183.07,229.54 	"
         />
         <linearGradient
@@ -245,7 +251,13 @@
           <stop offset="0" style="stop-color:#BC5862" />
           <stop offset="1" style="stop-color:#482A2A" />
         </linearGradient>
-        <rect x="2.7" y="222.54" class="sx-st8" width="224.82" height="14.21" />
+        <rect
+          x="2.7"
+          y="222.54"
+          :class="`sx-${info.id}-st8`"
+          width="224.82"
+          height="14.21"
+        />
         <linearGradient
           id="sx_6_"
           gradientUnits="userSpaceOnUse"
@@ -258,7 +270,7 @@
           <stop offset="1" style="stop-color:#321613" />
         </linearGradient>
         <polygon
-          class="sx-st9"
+          :class="`sx-${info.id}-st9`"
           points="299.38,168.34 227.52,236.76 227.52,222.54 299.38,154.13 	"
         />
         <g>
@@ -277,7 +289,7 @@
             <rect
               x="0"
               y="70.69"
-              class="sx-st10"
+              :class="`sx-${info.id}-st10`"
               width="76.16"
               height="76.16"
             />
@@ -297,7 +309,7 @@
             <rect
               x="1.1"
               y="71.79"
-              class="sx-st11"
+              :class="`sx-${info.id}-st11`"
               width="73.95"
               height="73.95"
             />
@@ -314,7 +326,7 @@
             <stop offset="1" style="stop-color:#FFFFFF" />
           </linearGradient>
           <path
-            class="sx-st12"
+            :class="`sx-${info.id}-st12`"
             d="M66.09,75.1c3.12,0,5.66,2.53,5.66,5.66v56.02c0,3.12-2.53,5.66-5.66,5.66H10.07
                   c-3.12,0-5.66-2.53-5.66-5.66V80.76c0-3.12,2.53-5.66,5.66-5.66H66.09 M66.09,74H10.07c-3.73,0-6.76,3.03-6.76,6.76v56.02
                   c0,3.73,3.03,6.76,6.76,6.76h56.02c3.73,0,6.76-3.03,6.76-6.76V80.76C72.85,77.03,69.82,74,66.09,74L66.09,74z"
@@ -332,7 +344,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st13"
+              :class="`sx-${info.id}-st13`"
               d="M66.09,76.21c2.51,0,4.55,2.04,4.55,4.55v56.02c0,2.51-2.04,4.55-4.55,4.55H10.07
                     c-2.51,0-4.55-2.04-4.55-4.55V80.76c0-2.51,2.04-4.55,4.55-4.55H66.09 M66.09,75.1H10.07c-3.12,0-5.66,2.53-5.66,5.66v56.02
                     c0,3.12,2.53,5.66,5.66,5.66h56.02c3.12,0,5.66-2.53,5.66-5.66V80.76C71.75,77.64,69.21,75.1,66.09,75.1L66.09,75.1z"
@@ -351,7 +363,12 @@
                 <stop offset="0" style="stop-color:#666666" />
                 <stop offset="1" style="stop-color:#FFFFFF" />
               </linearGradient>
-              <circle class="sx-st14" cx="38.08" cy="108.77" r="31.18" />
+              <circle
+                :class="`sx-${info.id}-st14`"
+                cx="38.08"
+                cy="108.77"
+                r="31.18"
+              />
             </g>
             <g>
               <linearGradient
@@ -370,7 +387,12 @@
                 <stop offset="0.5223" style="stop-color:#F4F4F4" />
                 <stop offset="0.55" style="stop-color:#FFFFFF" />
               </linearGradient>
-              <circle class="sx-st15" cx="38.08" cy="108.77" r="29.53" />
+              <circle
+                :class="`sx-${info.id}-st15`"
+                cx="38.08"
+                cy="108.77"
+                r="29.53"
+              />
             </g>
             <g>
               <radialGradient
@@ -386,7 +408,12 @@
                 />
                 <stop offset="1" style="stop-color:#525451;stop-opacity:0.6" />
               </radialGradient>
-              <circle class="sx-st16" cx="38.08" cy="108.77" r="29.53" />
+              <circle
+                :class="`sx-${info.id}-st16`"
+                cx="38.08"
+                cy="108.77"
+                r="29.53"
+              />
             </g>
           </g>
         </g>
@@ -406,7 +433,7 @@
             <rect
               x="76.16"
               y="70.69"
-              class="sx-st17"
+              :class="`sx-${info.id}-st17`"
               width="76.16"
               height="76.16"
             />
@@ -426,7 +453,7 @@
             <rect
               x="77.27"
               y="71.79"
-              class="sx-st18"
+              :class="`sx-${info.id}-st18`"
               width="73.95"
               height="73.95"
             />
@@ -443,7 +470,7 @@
             <stop offset="1" style="stop-color:#FFFFFF" />
           </linearGradient>
           <path
-            class="sx-st19"
+            :class="`sx-${info.id}-st19`"
             d="M142.25,75.1c3.12,0,5.66,2.53,5.66,5.66v56.02c0,3.12-2.53,5.66-5.66,5.66H86.23
                   c-3.12,0-5.66-2.53-5.66-5.66V80.76c0-3.12,2.53-5.66,5.66-5.66H142.25 M142.25,74H86.23c-3.73,0-6.76,3.03-6.76,6.76v56.02
                   c0,3.73,3.03,6.76,6.76,6.76h56.02c3.73,0,6.76-3.03,6.76-6.76V80.76C149.01,77.03,145.98,74,142.25,74L142.25,74z"
@@ -461,7 +488,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st20"
+              :class="`sx-${info.id}-st20`"
               d="M142.25,76.21c2.51,0,4.55,2.04,4.55,4.55v56.02c0,2.51-2.04,4.55-4.55,4.55H86.23
                     c-2.51,0-4.55-2.04-4.55-4.55V80.76c0-2.51,2.04-4.55,4.55-4.55H142.25 M142.25,75.1H86.23c-3.12,0-5.66,2.53-5.66,5.66v56.02
                     c0,3.12,2.53,5.66,5.66,5.66h56.02c3.12,0,5.66-2.53,5.66-5.66V80.76C147.91,77.64,145.38,75.1,142.25,75.1L142.25,75.1z"
@@ -480,7 +507,12 @@
                 <stop offset="0" style="stop-color:#666666" />
                 <stop offset="1" style="stop-color:#FFFFFF" />
               </linearGradient>
-              <circle class="sx-st21" cx="114.24" cy="108.77" r="31.18" />
+              <circle
+                :class="`sx-${info.id}-st21`"
+                cx="114.24"
+                cy="108.77"
+                r="31.18"
+              />
             </g>
             <g>
               <linearGradient
@@ -499,7 +531,12 @@
                 <stop offset="0.5223" style="stop-color:#F4F4F4" />
                 <stop offset="0.55" style="stop-color:#FFFFFF" />
               </linearGradient>
-              <circle class="sx-st22" cx="114.24" cy="108.77" r="29.53" />
+              <circle
+                :class="`sx-${info.id}-st22`"
+                cx="114.24"
+                cy="108.77"
+                r="29.53"
+              />
             </g>
             <g>
               <radialGradient
@@ -515,7 +552,12 @@
                 />
                 <stop offset="1" style="stop-color:#525451;stop-opacity:0.6" />
               </radialGradient>
-              <circle class="sx-st23" cx="114.24" cy="108.77" r="29.53" />
+              <circle
+                :class="`sx-${info.id}-st23`"
+                cx="114.24"
+                cy="108.77"
+                r="29.53"
+              />
             </g>
           </g>
         </g>
@@ -535,7 +577,7 @@
             <rect
               x="152.32"
               y="70.69"
-              class="sx-st24"
+              :class="`sx-${info.id}-st24`"
               width="76.16"
               height="76.16"
             />
@@ -555,7 +597,7 @@
             <rect
               x="153.43"
               y="71.79"
-              class="sx-st25"
+              :class="`sx-${info.id}-st25`"
               width="73.95"
               height="73.95"
             />
@@ -572,7 +614,7 @@
             <stop offset="1" style="stop-color:#FFFFFF" />
           </linearGradient>
           <path
-            class="sx-st26"
+            :class="`sx-${info.id}-st26`"
             d="M218.41,75.1c3.12,0,5.66,2.53,5.66,5.66v56.02c0,3.12-2.53,5.66-5.66,5.66H162.4
                   c-3.12,0-5.66-2.53-5.66-5.66V80.76c0-3.12,2.53-5.66,5.66-5.66H218.41 M218.41,74H162.4c-3.73,0-6.76,3.03-6.76,6.76v56.02
                   c0,3.73,3.03,6.76,6.76,6.76h56.02c3.73,0,6.76-3.03,6.76-6.76V80.76C225.17,77.03,222.14,74,218.41,74L218.41,74z"
@@ -590,7 +632,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st27"
+              :class="`sx-${info.id}-st27`"
               d="M218.41,76.21c2.51,0,4.55,2.04,4.55,4.55v56.02c0,2.51-2.04,4.55-4.55,4.55H162.4
                     c-2.51,0-4.55-2.04-4.55-4.55V80.76c0-2.51,2.04-4.55,4.55-4.55H218.41 M218.41,75.1H162.4c-3.12,0-5.66,2.53-5.66,5.66v56.02
                     c0,3.12,2.53,5.66,5.66,5.66h56.02c3.12,0,5.66-2.53,5.66-5.66V80.76C224.07,77.64,221.54,75.1,218.41,75.1L218.41,75.1z"
@@ -609,7 +651,12 @@
                 <stop offset="0" style="stop-color:#666666" />
                 <stop offset="1" style="stop-color:#FFFFFF" />
               </linearGradient>
-              <circle class="sx-st28" cx="190.4" cy="108.77" r="31.18" />
+              <circle
+                :class="`sx-${info.id}-st28`"
+                cx="190.4"
+                cy="108.77"
+                r="31.18"
+              />
             </g>
             <g>
               <linearGradient
@@ -628,7 +675,12 @@
                 <stop offset="0.5223" style="stop-color:#F4F4F4" />
                 <stop offset="0.55" style="stop-color:#FFFFFF" />
               </linearGradient>
-              <circle class="sx-st29" cx="190.4" cy="108.77" r="29.53" />
+              <circle
+                :class="`sx-${info.id}-st29`"
+                cx="190.4"
+                cy="108.77"
+                r="29.53"
+              />
             </g>
             <g>
               <radialGradient
@@ -644,7 +696,12 @@
                 />
                 <stop offset="1" style="stop-color:#525451;stop-opacity:0.6" />
               </radialGradient>
-              <circle class="sx-st30" cx="190.4" cy="108.77" r="29.53" />
+              <circle
+                :class="`sx-${info.id}-st30`"
+                cx="190.4"
+                cy="108.77"
+                r="29.53"
+              />
             </g>
           </g>
         </g>
@@ -664,7 +721,7 @@
             <rect
               x="0"
               y="146.85"
-              class="sx-st31"
+              :class="`sx-${info.id}-st31`"
               width="76.16"
               height="76.16"
             />
@@ -684,7 +741,7 @@
             <rect
               x="1.1"
               y="147.95"
-              class="sx-st32"
+              :class="`sx-${info.id}-st32`"
               width="73.95"
               height="73.95"
             />
@@ -701,7 +758,7 @@
             <stop offset="1" style="stop-color:#FFFFFF" />
           </linearGradient>
           <path
-            class="sx-st33"
+            :class="`sx-${info.id}-st33`"
             d="M66.09,151.27c3.12,0,5.66,2.53,5.66,5.66v56.02c0,3.12-2.53,5.66-5.66,5.66H10.07
                   c-3.12,0-5.66-2.53-5.66-5.66v-56.02c0-3.12,2.53-5.66,5.66-5.66H66.09 M66.09,150.16H10.07c-3.73,0-6.76,3.03-6.76,6.76v56.02
                   c0,3.73,3.03,6.76,6.76,6.76h56.02c3.73,0,6.76-3.03,6.76-6.76v-56.02C72.85,153.19,69.82,150.16,66.09,150.16L66.09,150.16z"
@@ -719,7 +776,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st34"
+              :class="`sx-${info.id}-st34`"
               d="M66.09,152.37c2.51,0,4.55,2.04,4.55,4.55v56.02c0,2.51-2.04,4.55-4.55,4.55H10.07
                     c-2.51,0-4.55-2.04-4.55-4.55v-56.02c0-2.51,2.04-4.55,4.55-4.55H66.09 M66.09,151.27H10.07c-3.12,0-5.66,2.53-5.66,5.66v56.02
                     c0,3.12,2.53,5.66,5.66,5.66h56.02c3.12,0,5.66-2.53,5.66-5.66v-56.02C71.75,153.8,69.21,151.27,66.09,151.27L66.09,151.27z"
@@ -738,7 +795,12 @@
                 <stop offset="0" style="stop-color:#666666" />
                 <stop offset="1" style="stop-color:#FFFFFF" />
               </linearGradient>
-              <circle class="sx-st35" cx="38.08" cy="184.93" r="31.18" />
+              <circle
+                :class="`sx-${info.id}-st35`"
+                cx="38.08"
+                cy="184.93"
+                r="31.18"
+              />
             </g>
             <g>
               <linearGradient
@@ -757,7 +819,12 @@
                 <stop offset="0.5223" style="stop-color:#F4F4F4" />
                 <stop offset="0.55" style="stop-color:#FFFFFF" />
               </linearGradient>
-              <circle class="sx-st36" cx="38.08" cy="184.93" r="29.53" />
+              <circle
+                :class="`sx-${info.id}-st36`"
+                cx="38.08"
+                cy="184.93"
+                r="29.53"
+              />
             </g>
             <g>
               <radialGradient
@@ -773,7 +840,12 @@
                 />
                 <stop offset="1" style="stop-color:#525451;stop-opacity:0.6" />
               </radialGradient>
-              <circle class="sx-st37" cx="38.08" cy="184.93" r="29.53" />
+              <circle
+                :class="`sx-${info.id}-st37`"
+                cx="38.08"
+                cy="184.93"
+                r="29.53"
+              />
             </g>
           </g>
         </g>
@@ -793,7 +865,7 @@
             <rect
               x="76.16"
               y="146.85"
-              class="sx-st38"
+              :class="`sx-${info.id}-st38`"
               width="76.16"
               height="76.16"
             />
@@ -813,7 +885,7 @@
             <rect
               x="77.27"
               y="147.95"
-              class="sx-st39"
+              :class="`sx-${info.id}-st39`"
               width="73.95"
               height="73.95"
             />
@@ -830,7 +902,7 @@
             <stop offset="1" style="stop-color:#FFFFFF" />
           </linearGradient>
           <path
-            class="sx-st40"
+            :class="`sx-${info.id}-st40`"
             d="M142.25,151.27c3.12,0,5.66,2.53,5.66,5.66v56.02c0,3.12-2.53,5.66-5.66,5.66H86.23
                   c-3.12,0-5.66-2.53-5.66-5.66v-56.02c0-3.12,2.53-5.66,5.66-5.66H142.25 M142.25,150.16H86.23c-3.73,0-6.76,3.03-6.76,6.76v56.02
                   c0,3.73,3.03,6.76,6.76,6.76h56.02c3.73,0,6.76-3.03,6.76-6.76v-56.02C149.01,153.19,145.98,150.16,142.25,150.16L142.25,150.16z"
@@ -848,7 +920,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st41"
+              :class="`sx-${info.id}-st41`"
               d="M142.25,152.37c2.51,0,4.55,2.04,4.55,4.55v56.02c0,2.51-2.04,4.55-4.55,4.55H86.23
                     c-2.51,0-4.55-2.04-4.55-4.55v-56.02c0-2.51,2.04-4.55,4.55-4.55H142.25 M142.25,151.27H86.23c-3.12,0-5.66,2.53-5.66,5.66v56.02
                     c0,3.12,2.53,5.66,5.66,5.66h56.02c3.12,0,5.66-2.53,5.66-5.66v-56.02C147.91,153.8,145.38,151.27,142.25,151.27L142.25,151.27z"
@@ -867,7 +939,12 @@
                 <stop offset="0" style="stop-color:#666666" />
                 <stop offset="1" style="stop-color:#FFFFFF" />
               </linearGradient>
-              <circle class="sx-st42" cx="114.24" cy="184.93" r="31.18" />
+              <circle
+                :class="`sx-${info.id}-st42`"
+                cx="114.24"
+                cy="184.93"
+                r="31.18"
+              />
             </g>
             <g>
               <linearGradient
@@ -886,7 +963,12 @@
                 <stop offset="0.5223" style="stop-color:#F4F4F4" />
                 <stop offset="0.55" style="stop-color:#FFFFFF" />
               </linearGradient>
-              <circle class="sx-st43" cx="114.24" cy="184.93" r="29.53" />
+              <circle
+                :class="`sx-${info.id}-st43`"
+                cx="114.24"
+                cy="184.93"
+                r="29.53"
+              />
             </g>
             <g>
               <radialGradient
@@ -902,7 +984,12 @@
                 />
                 <stop offset="1" style="stop-color:#525451;stop-opacity:0.6" />
               </radialGradient>
-              <circle class="sx-st44" cx="114.24" cy="184.93" r="29.53" />
+              <circle
+                :class="`sx-${info.id}-st44`"
+                cx="114.24"
+                cy="184.93"
+                r="29.53"
+              />
             </g>
           </g>
         </g>
@@ -922,7 +1009,7 @@
             <rect
               x="152.32"
               y="146.85"
-              class="sx-st45"
+              :class="`sx-${info.id}-st45`"
               width="76.16"
               height="76.16"
             />
@@ -942,7 +1029,7 @@
             <rect
               x="153.43"
               y="147.95"
-              class="sx-st46"
+              :class="`sx-${info.id}-st46`"
               width="73.95"
               height="73.95"
             />
@@ -959,7 +1046,7 @@
             <stop offset="1" style="stop-color:#FFFFFF" />
           </linearGradient>
           <path
-            class="sx-st47"
+            :class="`sx-${info.id}-st47`"
             d="M218.41,151.27c3.12,0,5.66,2.53,5.66,5.66v56.02c0,3.12-2.53,5.66-5.66,5.66H162.4
                   c-3.12,0-5.66-2.53-5.66-5.66v-56.02c0-3.12,2.53-5.66,5.66-5.66H218.41 M218.41,150.16H162.4c-3.73,0-6.76,3.03-6.76,6.76v56.02
                   c0,3.73,3.03,6.76,6.76,6.76h56.02c3.73,0,6.76-3.03,6.76-6.76v-56.02C225.17,153.19,222.14,150.16,218.41,150.16L218.41,150.16z"
@@ -977,7 +1064,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st48"
+              :class="`sx-${info.id}-st48`"
               d="M218.41,152.37c2.51,0,4.55,2.04,4.55,4.55v56.02c0,2.51-2.04,4.55-4.55,4.55H162.4
                     c-2.51,0-4.55-2.04-4.55-4.55v-56.02c0-2.51,2.04-4.55,4.55-4.55H218.41 M218.41,151.27H162.4c-3.12,0-5.66,2.53-5.66,5.66v56.02
                     c0,3.12,2.53,5.66,5.66,5.66h56.02c3.12,0,5.66-2.53,5.66-5.66v-56.02C224.07,153.8,221.54,151.27,218.41,151.27L218.41,151.27z"
@@ -996,7 +1083,12 @@
                 <stop offset="0" style="stop-color:#666666" />
                 <stop offset="1" style="stop-color:#FFFFFF" />
               </linearGradient>
-              <circle class="sx-st49" cx="190.4" cy="184.93" r="31.18" />
+              <circle
+                :class="`sx-${info.id}-st49`"
+                cx="190.4"
+                cy="184.93"
+                r="31.18"
+              />
             </g>
             <g>
               <linearGradient
@@ -1015,7 +1107,12 @@
                 <stop offset="0.5223" style="stop-color:#F4F4F4" />
                 <stop offset="0.55" style="stop-color:#FFFFFF" />
               </linearGradient>
-              <circle class="sx-st50" cx="190.4" cy="184.93" r="29.53" />
+              <circle
+                :class="`sx-${info.id}-st50`"
+                cx="190.4"
+                cy="184.93"
+                r="29.53"
+              />
             </g>
             <g>
               <radialGradient
@@ -1031,7 +1128,12 @@
                 />
                 <stop offset="1" style="stop-color:#525451;stop-opacity:0.6" />
               </radialGradient>
-              <circle class="sx-st51" cx="190.4" cy="184.93" r="29.53" />
+              <circle
+                :class="`sx-${info.id}-st51`"
+                cx="190.4"
+                cy="184.93"
+                r="29.53"
+              />
             </g>
           </g>
         </g>
@@ -1050,7 +1152,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <polygon
-              class="sx-st52"
+              :class="`sx-${info.id}-st52`"
               points="299.89,77.93 264.19,112.39 264.19,36.23 299.89,1.77 			"
             />
           </g>
@@ -1067,7 +1169,7 @@
               <stop offset="1" style="stop-color:#848484" />
             </linearGradient>
             <polygon
-              class="sx-st53"
+              :class="`sx-${info.id}-st53`"
               points="299.38,77.33 264.71,110.79 264.71,36.83 299.38,3.37 			"
             />
           </g>
@@ -1085,7 +1187,7 @@
             <stop offset="1" style="stop-color:#FFFFFF" />
           </linearGradient>
           <path
-            class="sx-st54"
+            :class="`sx-${info.id}-st54`"
             d="M295.17,10.74c1.46-1.41,2.65-0.03,2.65,3.1v56.02c0,3.12-1.19,6.8-2.65,8.22l-26.26,25.35
                   c-1.46,1.41-2.65,0.03-2.65-3.1V44.3c0-3.12,1.19-6.8,2.65-8.22L295.17,10.74 M295.17,9.64l-26.26,25.35
                   c-1.75,1.69-3.17,6.09-3.17,9.82v56.02c0,3.73,1.42,5.39,3.17,3.7l26.26-25.35c1.75-1.69,3.17-6.09,3.17-9.82V13.34
@@ -1105,7 +1207,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st55"
+              :class="`sx-${info.id}-st55`"
               d="M295.17,11.84c1.18-1.14,2.13-0.02,2.13,2.49v56.02c0,2.51-0.96,5.48-2.13,6.61l-26.26,25.35
                     c-1.18,1.14-2.13,0.02-2.13-2.49V43.8c0-2.51,0.96-5.48,2.13-6.61L295.17,11.84 M295.17,10.74l-26.26,25.35
                     c-1.46,1.41-2.65,5.09-2.65,8.22v56.02c0,3.12,1.19,4.51,2.65,3.1l26.26-25.35c1.46-1.41,2.65-5.09,2.65-8.22V13.84
@@ -1125,7 +1227,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st56"
+              :class="`sx-${info.id}-st56`"
               d="M298.84,44.19c0.46,16.78-6.19,36.36-14.85,43.73s-16.06-0.25-16.52-17.03
                     c-0.46-16.78,6.19-36.36,14.85-43.73S298.38,27.41,298.84,44.19z"
             />
@@ -1149,7 +1251,7 @@
               <stop offset="0.55" style="stop-color:#B8B8B8" />
             </linearGradient>
             <path
-              class="sx-st57"
+              :class="`sx-${info.id}-st57`"
               d="M299.96,44.56c0.58,16.43-6,35.55-14.7,42.71c-8.7,7.16-16.22-0.35-16.8-16.78s6-35.55,14.7-42.71
                     C291.87,20.62,299.39,28.14,299.96,44.56z"
             />
@@ -1168,7 +1270,7 @@
             <stop offset="1" style="stop-color:#525451;stop-opacity:0.6" />
           </radialGradient>
           <path
-            class="sx-st58"
+            :class="`sx-${info.id}-st58`"
             d="M299.62,44.4c0.58,16.53-6.04,35.77-14.79,42.97c-8.75,7.21-16.32-0.35-16.9-16.88s6.04-35.77,14.79-42.97
                   S299.04,27.88,299.62,44.4z"
           />
@@ -1189,7 +1291,7 @@
                 <stop offset="1" style="stop-color:#FFFFFF" />
               </linearGradient>
               <polygon
-                class="sx-st59"
+                :class="`sx-${info.id}-st59`"
                 points="299.89,154.09 264.19,188.55 264.19,112.39 299.89,77.93 				"
               />
             </g>
@@ -1206,7 +1308,7 @@
                 <stop offset="1" style="stop-color:#848484" />
               </linearGradient>
               <polygon
-                class="sx-st60"
+                :class="`sx-${info.id}-st60`"
                 points="299.38,153.49 264.71,186.95 264.71,112.99 299.38,79.53 				"
               />
             </g>
@@ -1224,7 +1326,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st61"
+              :class="`sx-${info.id}-st61`"
               d="M295.17,86.9c1.46-1.41,2.65-0.03,2.65,3.1v56.02c0,3.12-1.19,6.8-2.65,8.22l-26.26,25.35
                     c-1.46,1.41-2.65,0.03-2.65-3.1v-56.02c0-3.12,1.19-6.8,2.65-8.22L295.17,86.9 M295.17,85.8l-26.26,25.35
                     c-1.75,1.69-3.17,6.09-3.17,9.82v56.02c0,3.73,1.42,5.39,3.17,3.7l26.26-25.35c1.75-1.69,3.17-6.09,3.17-9.82V89.5
@@ -1244,7 +1346,7 @@
                 <stop offset="1" style="stop-color:#FFFFFF" />
               </linearGradient>
               <path
-                class="sx-st62"
+                :class="`sx-${info.id}-st62`"
                 d="M295.17,88.01c1.18-1.14,2.13-0.02,2.13,2.49v56.02c0,2.51-0.96,5.48-2.13,6.61l-26.26,25.35
                       c-1.18,1.14-2.13,0.02-2.13-2.49v-56.02c0-2.51,0.96-5.48,2.13-6.61L295.17,88.01 M295.17,86.9l-26.26,25.35
                       c-1.46,1.41-2.65,5.09-2.65,8.22v56.02c0,3.12,1.19,4.51,2.65,3.1l26.26-25.35c1.46-1.41,2.65-5.09,2.65-8.22V90
@@ -1264,7 +1366,7 @@
                 <stop offset="1" style="stop-color:#FFFFFF" />
               </linearGradient>
               <path
-                class="sx-st63"
+                :class="`sx-${info.id}-st63`"
                 d="M298.84,120.35c0.46,16.78-6.19,36.36-14.85,43.73s-16.06-0.25-16.52-17.03
                       c-0.46-16.78,6.19-36.36,14.85-43.73S298.38,103.57,298.84,120.35z"
               />
@@ -1288,7 +1390,7 @@
                 <stop offset="0.55" style="stop-color:#B8B8B8" />
               </linearGradient>
               <path
-                class="sx-st64"
+                :class="`sx-${info.id}-st64`"
                 d="M299.96,120.72c0.58,16.43-6,35.55-14.7,42.71c-8.7,7.16-16.22-0.35-16.8-16.78s6-35.55,14.7-42.71
                       C291.87,96.79,299.39,104.3,299.96,120.72z"
               />
@@ -1307,7 +1409,7 @@
               <stop offset="1" style="stop-color:#525451;stop-opacity:0.6" />
             </radialGradient>
             <path
-              class="sx-st65"
+              :class="`sx-${info.id}-st65`"
               d="M299.96,120.72c0.58,16.43-6,35.55-14.7,42.71c-8.7,7.16-16.22-0.35-16.8-16.78s6-35.55,14.7-42.71
                     C291.87,96.79,299.39,104.3,299.96,120.72z"
             />
@@ -1328,7 +1430,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <polygon
-              class="sx-st66"
+              :class="`sx-${info.id}-st66`"
               points="264.19,112.39 228.48,146.85 228.48,70.69 264.19,36.23 			"
             />
           </g>
@@ -1345,7 +1447,7 @@
               <stop offset="1" style="stop-color:#848484" />
             </linearGradient>
             <polygon
-              class="sx-st67"
+              :class="`sx-${info.id}-st67`"
               points="263.67,111.79 229,145.25 229,71.29 263.67,37.83 			"
             />
           </g>
@@ -1363,7 +1465,7 @@
             <stop offset="1" style="stop-color:#FFFFFF" />
           </linearGradient>
           <path
-            class="sx-st68"
+            :class="`sx-${info.id}-st68`"
             d="M259.47,45.2c1.46-1.41,2.65-0.03,2.65,3.1v56.02c0,3.12-1.19,6.8-2.65,8.22l-26.26,25.35
                   c-1.46,1.41-2.65,0.03-2.65-3.1V78.76c0-3.12,1.19-6.8,2.65-8.22L259.47,45.2 M259.47,44.1l-26.26,25.35
                   c-1.75,1.69-3.17,6.09-3.17,9.82v56.02c0,3.73,1.42,5.39,3.17,3.7l26.26-25.35c1.75-1.69,3.17-6.09,3.17-9.82V47.8
@@ -1383,7 +1485,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st69"
+              :class="`sx-${info.id}-st69`"
               d="M259.47,46.3c1.18-1.14,2.13-0.02,2.13,2.49v56.02c0,2.51-0.96,5.48-2.13,6.61l-26.26,25.35
                     c-1.18,1.14-2.13,0.02-2.13-2.49V78.26c0-2.51,0.96-5.48,2.13-6.61L259.47,46.3 M259.47,45.2l-26.26,25.35
                     c-1.46,1.41-2.65,5.09-2.65,8.22v56.02c0,3.12,1.19,4.51,2.65,3.1l26.26-25.35c1.46-1.41,2.65-5.09,2.65-8.22V48.3
@@ -1403,7 +1505,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st70"
+              :class="`sx-${info.id}-st70`"
               d="M263.14,78.65c0.46,16.78-6.19,36.36-14.85,43.73s-16.06-0.25-16.52-17.03s6.19-36.36,14.85-43.73
                     C255.28,54.25,262.67,61.87,263.14,78.65z"
             />
@@ -1427,7 +1529,7 @@
               <stop offset="0.55" style="stop-color:#B8B8B8" />
             </linearGradient>
             <path
-              class="sx-st71"
+              :class="`sx-${info.id}-st71`"
               d="M264.26,79.02c0.58,16.43-6,35.55-14.7,42.71s-16.22-0.35-16.8-16.78s6-35.55,14.7-42.71
                     S263.68,62.6,264.26,79.02z"
             />
@@ -1446,7 +1548,7 @@
             <stop offset="1" style="stop-color:#525451;stop-opacity:0.6" />
           </radialGradient>
           <path
-            class="sx-st72"
+            :class="`sx-${info.id}-st72`"
             d="M264.21,79.14c0.58,16.53-6.04,35.77-14.79,42.97c-8.75,7.21-16.32-0.35-16.9-16.88s6.04-35.77,14.79-42.97
                   C256.06,55.06,263.63,62.61,264.21,79.14z"
           />
@@ -1467,7 +1569,7 @@
                 <stop offset="1" style="stop-color:#FFFFFF" />
               </linearGradient>
               <polygon
-                class="sx-st73"
+                :class="`sx-${info.id}-st73`"
                 points="264.19,188.55 228.48,223.01 228.48,146.85 264.19,112.39 				"
               />
             </g>
@@ -1484,7 +1586,7 @@
                 <stop offset="1" style="stop-color:#848484" />
               </linearGradient>
               <polygon
-                class="sx-st74"
+                :class="`sx-${info.id}-st74`"
                 points="263.67,187.95 229,221.41 229,147.45 263.67,113.99 				"
               />
             </g>
@@ -1502,7 +1604,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st75"
+              :class="`sx-${info.id}-st75`"
               d="M259.47,121.36c1.46-1.41,2.65-0.03,2.65,3.1v56.02c0,3.12-1.19,6.8-2.65,8.22l-26.26,25.35
                     c-1.46,1.41-2.65,0.03-2.65-3.1v-56.02c0-3.12,1.19-6.8,2.65-8.22L259.47,121.36 M259.47,120.26l-26.26,25.35
                     c-1.75,1.69-3.17,6.09-3.17,9.82v56.02c0,3.73,1.42,5.39,3.17,3.7l26.26-25.35c1.75-1.69,3.17-6.09,3.17-9.82v-56.02
@@ -1522,7 +1624,7 @@
                 <stop offset="1" style="stop-color:#FFFFFF" />
               </linearGradient>
               <path
-                class="sx-st76"
+                :class="`sx-${info.id}-st76`"
                 d="M259.47,122.47c1.18-1.14,2.13-0.02,2.13,2.49v56.02c0,2.51-0.96,5.48-2.13,6.61l-26.26,25.35
                       c-1.18,1.14-2.13,0.02-2.13-2.49v-56.02c0-2.51,0.96-5.48,2.13-6.61L259.47,122.47 M259.47,121.36l-26.26,25.35
                       c-1.46,1.41-2.65,5.09-2.65,8.22v56.02c0,3.12,1.19,4.51,2.65,3.1l26.26-25.35c1.46-1.41,2.65-5.09,2.65-8.22v-56.02
@@ -1542,7 +1644,7 @@
                 <stop offset="1" style="stop-color:#FFFFFF" />
               </linearGradient>
               <path
-                class="sx-st77"
+                :class="`sx-${info.id}-st77`"
                 d="M263.14,154.81c0.46,16.78-6.19,36.36-14.85,43.73s-16.06-0.25-16.52-17.03s6.19-36.36,14.85-43.73
                       C255.28,130.41,262.67,138.03,263.14,154.81z"
               />
@@ -1566,7 +1668,7 @@
                 <stop offset="0.55" style="stop-color:#B8B8B8" />
               </linearGradient>
               <path
-                class="sx-st78"
+                :class="`sx-${info.id}-st78`"
                 d="M264.26,155.18c0.58,16.43-6,35.55-14.7,42.71c-8.7,7.16-16.22-0.35-16.8-16.78s6-35.55,14.7-42.71
                       C256.16,131.25,263.68,138.76,264.26,155.18z"
               />
@@ -1585,7 +1687,7 @@
               <stop offset="1" style="stop-color:#525451;stop-opacity:0.6" />
             </radialGradient>
             <path
-              class="sx-st79"
+              :class="`sx-${info.id}-st79`"
               d="M264.26,155.18c0.58,16.43-6,35.55-14.7,42.71c-8.7,7.16-16.22-0.35-16.8-16.78s6-35.55,14.7-42.71
                     C256.16,131.25,263.68,138.76,264.26,155.18z"
             />
@@ -1593,15 +1695,15 @@
         </g>
         <g>
           <polygon
-            class="sx-st80"
+            :class="`sx-${info.id}-st80`"
             points="35.7,36.23 36.04,35.57 111.48,35.34 111.87,36.23 		"
           />
           <polygon
-            class="sx-st81"
+            :class="`sx-${info.id}-st81`"
             points="111.48,35.34 111.87,36.23 147.57,1.77 147.19,0.88 		"
           />
           <polygon
-            class="sx-st82"
+            :class="`sx-${info.id}-st82`"
             points="147.19,0.88 71.74,1.11 36.04,35.57 111.48,35.34 		"
           />
           <linearGradient
@@ -1616,7 +1718,7 @@
             <stop offset="1" style="stop-color:#FFFFFF" />
           </linearGradient>
           <path
-            class="sx-st83"
+            :class="`sx-${info.id}-st83`"
             d="M135.68,2.51c2.32,0,3.46,2.82,1.79,4.43l-25.36,24.48c-1.56,1.5-3.64,2.35-5.8,2.35l-57.88,0.17
                   c0,0-0.01,0-0.01,0c-2.32,0-3.46-2.82-1.79-4.43L71.99,5.03c1.56-1.5,3.64-2.35,5.8-2.35L135.68,2.51
                   C135.68,2.51,135.68,2.51,135.68,2.51 M135.68,1.62L135.68,1.62l-0.01,0L77.79,1.79c-2.4,0.01-4.68,0.93-6.41,2.6L46.02,28.87
@@ -1636,7 +1738,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st84"
+              :class="`sx-${info.id}-st84`"
               d="M135.68,2.51v0.88c0.84,0,1.36,0.55,1.57,1.06c0.27,0.66,0.12,1.36-0.39,1.85L111.5,30.78
                     c-1.4,1.35-3.24,2.1-5.19,2.1l-57.89,0.17c-0.84,0-1.36-0.55-1.57-1.06c-0.27-0.66-0.12-1.36,0.39-1.85L72.61,5.67
                     c1.4-1.35,3.24-2.1,5.19-2.1l57.88-0.17L135.68,2.51 M135.68,2.51C135.68,2.51,135.68,2.51,135.68,2.51L77.79,2.68
@@ -1662,7 +1764,7 @@
             <stop offset="1" style="stop-color:#B3B3B3" />
           </radialGradient>
           <path
-            class="sx-st85"
+            :class="`sx-${info.id}-st85`"
             d="M125.82,15.54c-2.92,8.58-18.88,13.35-36.56,13.35S58.88,24.12,61.8,15.54S81.43,0,99.11,0
                   S128.75,6.96,125.82,15.54z"
           />
@@ -1679,7 +1781,7 @@
               <stop offset="1" style="stop-color:#525451;stop-opacity:0.6" />
             </radialGradient>
             <path
-              class="sx-st86"
+              :class="`sx-${info.id}-st86`"
               d="M125.82,15.54c-2.92,8.58-18.88,13.35-36.56,13.35S58.88,24.12,61.8,15.54S81.43,0,99.11,0
                     S128.75,6.96,125.82,15.54z"
             />
@@ -1687,15 +1789,15 @@
         </g>
         <g>
           <polygon
-            class="sx-st80"
+            :class="`sx-${info.id}-st80`"
             points="111.87,36.23 112.2,35.57 187.65,35.34 188.03,36.23 		"
           />
           <polygon
-            class="sx-st81"
+            :class="`sx-${info.id}-st81`"
             points="187.65,35.34 188.03,36.23 223.73,1.77 223.35,0.88 		"
           />
           <polygon
-            class="sx-st82"
+            :class="`sx-${info.id}-st82`"
             points="223.35,0.88 147.9,1.11 112.2,35.57 187.65,35.34 		"
           />
           <linearGradient
@@ -1710,7 +1812,7 @@
             <stop offset="1" style="stop-color:#FFFFFF" />
           </linearGradient>
           <path
-            class="sx-st87"
+            :class="`sx-${info.id}-st87`"
             d="M211.85,2.51c2.32,0,3.46,2.82,1.79,4.43l-25.36,24.48c-1.56,1.5-3.64,2.35-5.8,2.35l-57.88,0.17
                   c0,0-0.01,0-0.01,0c-2.32,0-3.46-2.82-1.79-4.43l25.36-24.48c1.56-1.5,3.64-2.35,5.8-2.35L211.85,2.51
                   C211.84,2.51,211.84,2.51,211.85,2.51 M211.85,1.62L211.85,1.62l-0.01,0l-57.88,0.17c-2.4,0.01-4.68,0.93-6.41,2.6l-25.36,24.48
@@ -1730,7 +1832,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st88"
+              :class="`sx-${info.id}-st88`"
               d="M211.85,2.51v0.88c0.84,0,1.36,0.55,1.57,1.06c0.27,0.66,0.12,1.36-0.39,1.85l-25.36,24.48
                     c-1.4,1.35-3.24,2.1-5.19,2.1l-57.89,0.17c-0.84,0-1.36-0.55-1.57-1.06c-0.27-0.66-0.12-1.36,0.39-1.85l25.36-24.48
                     c1.4-1.35,3.24-2.1,5.19-2.1l57.88-0.17L211.85,2.51 M211.85,2.51C211.84,2.51,211.84,2.51,211.85,2.51l-57.89,0.17
@@ -1756,7 +1858,7 @@
             <stop offset="1" style="stop-color:#B3B3B3" />
           </radialGradient>
           <path
-            class="sx-st89"
+            :class="`sx-${info.id}-st89`"
             d="M201.98,15.54c-2.92,8.58-18.88,13.35-36.56,13.35s-30.39-4.77-27.46-13.35C140.89,6.96,157.59,0,175.27,0
                   S204.91,6.96,201.98,15.54z"
           />
@@ -1773,7 +1875,7 @@
               <stop offset="1" style="stop-color:#525451;stop-opacity:0.6" />
             </radialGradient>
             <path
-              class="sx-st90"
+              :class="`sx-${info.id}-st90`"
               d="M201.98,15.54c-2.92,8.58-18.88,13.35-36.56,13.35s-30.39-4.77-27.46-13.35C140.89,6.96,157.59,0,175.27,0
                     S204.91,6.96,201.98,15.54z"
             />
@@ -1781,15 +1883,15 @@
         </g>
         <g>
           <polygon
-            class="sx-st80"
+            :class="`sx-${info.id}-st80`"
             points="188.03,36.23 188.36,35.57 263.81,35.34 264.19,36.23 		"
           />
           <polygon
-            class="sx-st81"
+            :class="`sx-${info.id}-st81`"
             points="263.81,35.34 264.19,36.23 299.89,1.77 299.51,0.88 		"
           />
           <polygon
-            class="sx-st82"
+            :class="`sx-${info.id}-st82`"
             points="299.51,0.88 224.06,1.11 188.36,35.57 263.81,35.34 		"
           />
           <linearGradient
@@ -1804,7 +1906,7 @@
             <stop offset="1" style="stop-color:#FFFFFF" />
           </linearGradient>
           <path
-            class="sx-st91"
+            :class="`sx-${info.id}-st91`"
             d="M288.01,2.51c2.32,0,3.46,2.82,1.79,4.43l-25.36,24.48c-1.56,1.5-3.64,2.35-5.8,2.35l-57.88,0.17
                   c0,0-0.01,0-0.01,0c-2.32,0-3.46-2.82-1.79-4.43l25.36-24.48c1.56-1.5,3.64-2.35,5.8-2.35L288.01,2.51
                   C288,2.51,288.01,2.51,288.01,2.51 M288.01,1.62L288.01,1.62l-0.01,0l-57.88,0.17c-2.4,0.01-4.68,0.93-6.41,2.6l-25.36,24.48
@@ -1824,7 +1926,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st92"
+              :class="`sx-${info.id}-st92`"
               d="M288.01,2.51v0.88c0.84,0,1.36,0.55,1.57,1.06c0.27,0.66,0.12,1.36-0.39,1.85l-25.36,24.48
                     c-1.4,1.35-3.24,2.1-5.19,2.1l-57.89,0.17c-0.84,0-1.36-0.55-1.57-1.06c-0.27-0.66-0.12-1.36,0.39-1.85l25.36-24.48
                     c1.4-1.35,3.24-2.1,5.19-2.1L288,3.39L288.01,2.51 M288.01,2.51C288.01,2.51,288,2.51,288.01,2.51l-57.89,0.17
@@ -1850,7 +1952,7 @@
             <stop offset="1" style="stop-color:#B3B3B3" />
           </radialGradient>
           <path
-            class="sx-st93"
+            :class="`sx-${info.id}-st93`"
             d="M278.15,15.54c-2.92,8.58-18.88,13.35-36.56,13.35c-17.68,0-30.39-4.77-27.46-13.35S233.75,0,251.43,0
                   S281.07,6.96,278.15,15.54z"
           />
@@ -1867,7 +1969,7 @@
               <stop offset="1" style="stop-color:#525451;stop-opacity:0.6" />
             </radialGradient>
             <path
-              class="sx-st94"
+              :class="`sx-${info.id}-st94`"
               d="M278.15,15.54c-2.92,8.58-18.88,13.35-36.56,13.35c-17.68,0-30.39-4.77-27.46-13.35S233.75,0,251.43,0
                     S281.07,6.96,278.15,15.54z"
             />
@@ -1875,15 +1977,15 @@
         </g>
         <g>
           <polygon
-            class="sx-st80"
+            :class="`sx-${info.id}-st80`"
             points="0,70.69 0.33,70.03 75.78,69.8 76.16,70.69 		"
           />
           <polygon
-            class="sx-st81"
+            :class="`sx-${info.id}-st81`"
             points="75.78,69.8 76.16,70.69 111.87,36.23 111.48,35.34 		"
           />
           <polygon
-            class="sx-st82"
+            :class="`sx-${info.id}-st82`"
             points="111.48,35.34 36.04,35.57 0.33,70.03 75.78,69.8 		"
           />
           <linearGradient
@@ -1898,7 +2000,7 @@
             <stop offset="1" style="stop-color:#FFFFFF" />
           </linearGradient>
           <path
-            class="sx-st95"
+            :class="`sx-${info.id}-st95`"
             d="M99.98,36.97c2.32,0,3.46,2.82,1.79,4.43L76.41,65.88c-1.56,1.5-3.64,2.35-5.8,2.35L12.73,68.4
                   c0,0-0.01,0-0.01,0c-2.32,0-3.46-2.82-1.79-4.43l25.36-24.48c1.56-1.5,3.64-2.35,5.8-2.35L99.98,36.97
                   C99.98,36.97,99.98,36.97,99.98,36.97 M99.98,36.08L99.98,36.08l-0.01,0l-57.88,0.17c-2.4,0.01-4.68,0.93-6.41,2.6L10.31,63.33
@@ -1918,7 +2020,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st96"
+              :class="`sx-${info.id}-st96`"
               d="M99.98,36.97v0.88c0.84,0,1.36,0.55,1.57,1.06c0.27,0.66,0.12,1.36-0.39,1.85L75.8,65.24
                     c-1.4,1.35-3.24,2.1-5.19,2.1l-57.89,0.17c-0.84,0-1.36-0.55-1.57-1.06c-0.27-0.66-0.12-1.36,0.39-1.85L36.9,40.13
                     c1.4-1.35,3.24-2.1,5.19-2.1l57.88-0.17L99.98,36.97 M99.98,36.97C99.98,36.97,99.98,36.97,99.98,36.97l-57.89,0.17
@@ -1944,7 +2046,7 @@
             <stop offset="1" style="stop-color:#B3B3B3" />
           </radialGradient>
           <path
-            class="sx-st97"
+            :class="`sx-${info.id}-st97`"
             d="M90.12,50c-2.92,8.58-18.88,13.35-36.56,13.35S23.17,58.58,26.1,50S45.72,34.46,63.4,34.46
                   S93.04,41.42,90.12,50z"
           />
@@ -1961,7 +2063,7 @@
               <stop offset="1" style="stop-color:#525451;stop-opacity:0.6" />
             </radialGradient>
             <path
-              class="sx-st98"
+              :class="`sx-${info.id}-st98`"
               d="M90.12,50c-2.92,8.58-18.88,13.35-36.56,13.35S23.17,58.58,26.1,50S45.72,34.46,63.4,34.46
                     S93.04,41.42,90.12,50z"
             />
@@ -1969,15 +2071,15 @@
         </g>
         <g>
           <polygon
-            class="sx-st80"
+            :class="`sx-${info.id}-st80`"
             points="76.16,70.69 76.49,70.03 151.94,69.8 152.32,70.69 		"
           />
           <polygon
-            class="sx-st81"
+            :class="`sx-${info.id}-st81`"
             points="151.94,69.8 152.32,70.69 188.03,36.23 187.65,35.34 		"
           />
           <polygon
-            class="sx-st82"
+            :class="`sx-${info.id}-st82`"
             points="187.65,35.34 112.2,35.57 76.49,70.03 151.94,69.8 		"
           />
           <linearGradient
@@ -1992,7 +2094,7 @@
             <stop offset="1" style="stop-color:#FFFFFF" />
           </linearGradient>
           <path
-            class="sx-st99"
+            :class="`sx-${info.id}-st99`"
             d="M176.14,36.97c2.32,0,3.46,2.82,1.79,4.43l-25.36,24.48c-1.56,1.5-3.64,2.35-5.8,2.35L88.89,68.4
                   c0,0-0.01,0-0.01,0c-2.32,0-3.46-2.82-1.79-4.43l25.36-24.48c1.56-1.5,3.64-2.35,5.8-2.35L176.14,36.97
                   C176.14,36.97,176.14,36.97,176.14,36.97 M176.14,36.08L176.14,36.08l-0.01,0l-57.88,0.17c-2.4,0.01-4.68,0.93-6.41,2.6
@@ -2012,7 +2114,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st100"
+              :class="`sx-${info.id}-st100`"
               d="M176.14,36.97v0.88c0.84,0,1.36,0.55,1.57,1.06c0.27,0.66,0.12,1.36-0.39,1.85l-25.36,24.48
                     c-1.4,1.35-3.24,2.1-5.19,2.1l-57.89,0.17c-0.84,0-1.36-0.55-1.57-1.06c-0.27-0.66-0.12-1.36,0.39-1.85l25.36-24.48
                     c1.4-1.35,3.24-2.1,5.19-2.1l57.88-0.17L176.14,36.97 M176.14,36.97C176.14,36.97,176.14,36.97,176.14,36.97l-57.89,0.17
@@ -2038,7 +2140,7 @@
             <stop offset="1" style="stop-color:#B3B3B3" />
           </radialGradient>
           <path
-            class="sx-st101"
+            :class="`sx-${info.id}-st101`"
             d="M166.28,50c-2.92,8.58-18.88,13.35-36.56,13.35S99.33,58.58,102.26,50s19.63-15.54,37.31-15.54
                   S169.21,41.42,166.28,50z"
           />
@@ -2055,7 +2157,7 @@
               <stop offset="1" style="stop-color:#525451;stop-opacity:0.6" />
             </radialGradient>
             <path
-              class="sx-st102"
+              :class="`sx-${info.id}-st102`"
               d="M166.28,50c-2.92,8.58-18.88,13.35-36.56,13.35S99.33,58.58,102.26,50s19.63-15.54,37.31-15.54
                     S169.21,41.42,166.28,50z"
             />
@@ -2063,15 +2165,15 @@
         </g>
         <g>
           <polygon
-            class="sx-st80"
+            :class="`sx-${info.id}-st80`"
             points="152.32,70.69 152.65,70.03 228.1,69.8 228.48,70.69 		"
           />
           <polygon
-            class="sx-st81"
+            :class="`sx-${info.id}-st81`"
             points="228.1,69.8 228.48,70.69 264.19,36.23 263.81,35.34 		"
           />
           <polygon
-            class="sx-st82"
+            :class="`sx-${info.id}-st82`"
             points="263.81,35.34 188.36,35.57 152.65,70.03 228.1,69.8 		"
           />
           <linearGradient
@@ -2086,7 +2188,7 @@
             <stop offset="1" style="stop-color:#FFFFFF" />
           </linearGradient>
           <path
-            class="sx-st103"
+            :class="`sx-${info.id}-st103`"
             d="M252.3,36.97c2.32,0,3.46,2.82,1.79,4.43l-25.36,24.48c-1.56,1.5-3.64,2.35-5.8,2.35l-57.88,0.17
                   c0,0-0.01,0-0.01,0c-2.32,0-3.46-2.82-1.79-4.43l25.36-24.48c1.56-1.5,3.64-2.35,5.8-2.35L252.3,36.97
                   C252.3,36.97,252.3,36.97,252.3,36.97 M252.3,36.08L252.3,36.08l-0.01,0l-57.88,0.17c-2.4,0.01-4.68,0.93-6.41,2.6l-25.36,24.48
@@ -2106,7 +2208,7 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <path
-              class="sx-st104"
+              :class="`sx-${info.id}-st104`"
               d="M252.3,36.97v0.88c0.84,0,1.36,0.55,1.57,1.06c0.27,0.66,0.12,1.36-0.39,1.85l-25.36,24.48
                     c-1.4,1.35-3.24,2.1-5.19,2.1l-57.89,0.17c-0.84,0-1.36-0.55-1.57-1.06c-0.27-0.66-0.12-1.36,0.39-1.85l25.36-24.48
                     c1.4-1.35,3.24-2.1,5.19-2.1l57.88-0.17L252.3,36.97 M252.3,36.97C252.3,36.97,252.3,36.97,252.3,36.97l-57.89,0.17
@@ -2132,7 +2234,7 @@
             <stop offset="1" style="stop-color:#B3B3B3" />
           </radialGradient>
           <path
-            class="sx-st105"
+            :class="`sx-${info.id}-st105`"
             d="M242.44,50c-2.92,8.58-18.88,13.35-36.56,13.35S175.5,58.58,178.42,50c2.92-8.58,19.63-15.54,37.31-15.54
                   S245.37,41.42,242.44,50z"
           />
@@ -2149,7 +2251,7 @@
               <stop offset="1" style="stop-color:#525451;stop-opacity:0.6" />
             </radialGradient>
             <path
-              class="sx-st106"
+              :class="`sx-${info.id}-st106`"
               d="M242.44,50c-2.92,8.58-18.88,13.35-36.56,13.35S175.5,58.58,178.42,50c2.92-8.58,19.63-15.54,37.31-15.54
                     S245.37,41.42,242.44,50z"
             />
@@ -2173,7 +2275,7 @@
             <stop offset="1" style="stop-color:#949494" />
           </linearGradient>
           <path
-            class="sx-st107"
+            :class="`sx-${info.id}-st107`"
             d="M69.78,31.58c0,0-2.62,2.74-7.32,2.74c-4.7,0-7.55-2.74-7.55-2.74V14.07h14.87V31.58z"
           />
 
@@ -2191,7 +2293,7 @@
           <rect
             x="54.91"
             y="13.87"
-            class="sx-st108"
+            :class="`sx-${info.id}-st108`"
             width="14.87"
             height="12.28"
           />
@@ -2212,7 +2314,7 @@
             <stop offset="1" style="stop-color:#949494" />
           </linearGradient>
           <path
-            class="sx-st109"
+            :class="`sx-${info.id}-st109`"
             d="M75.4,11.4c-3.07-1.25-7.78-2.05-13.06-2.05s-9.99,0.8-13.06,2.05h-3.68v3.42c0,3.02,7.49,5.47,16.73,5.47
                   s16.73-2.45,16.73-5.47V11.4H75.4z"
           />
@@ -2227,7 +2329,13 @@
             <stop offset="0" style="stop-color:#BEBEBE" />
             <stop offset="1" style="stop-color:#A2A2A2" />
           </linearGradient>
-          <ellipse class="sx-st110" cx="62.34" cy="11.4" rx="16.73" ry="5.47" />
+          <ellipse
+            :class="`sx-${info.id}-st110`"
+            cx="62.34"
+            cy="11.4"
+            rx="16.73"
+            ry="5.47"
+          />
           <linearGradient
             id="sx_105_"
             gradientUnits="userSpaceOnUse"
@@ -2240,7 +2348,13 @@
             <stop offset="0.3771" style="stop-color:#808080" />
             <stop offset="1" style="stop-color:#292929" />
           </linearGradient>
-          <ellipse class="sx-st111" cx="62.34" cy="10.71" rx="6.77" ry="2.21" />
+          <ellipse
+            :class="`sx-${info.id}-st111`"
+            cx="62.34"
+            cy="10.71"
+            rx="6.77"
+            ry="2.21"
+          />
           <linearGradient
             id="sx_106_"
             gradientUnits="userSpaceOnUse"
@@ -2254,7 +2368,7 @@
             <stop offset="1" style="stop-color:#ABABAB" />
           </linearGradient>
           <path
-            class="sx-st112"
+            :class="`sx-${info.id}-st112`"
             d="M62.34,15.8c-8.69,0-15.84-2.17-16.65-4.94c-0.05,0.17-0.08,0.35-0.08,0.53c0,3.02,7.49,5.47,16.73,5.47
                   s16.73-2.45,16.73-5.47c0-0.18-0.03-0.36-0.08-0.53C78.18,13.64,71.03,15.8,62.34,15.8z"
           />
@@ -2278,7 +2392,7 @@
             <stop offset="1" style="stop-color:#949494" />
           </linearGradient>
           <path
-            class="sx-st113"
+            :class="`sx-${info.id}-st113`"
             d="M269.45,173.1c0,0-2.74-2.62-2.74-7.32c0-4.7,2.74-7.55,2.74-7.55h17.51v14.87H269.45z"
           />
 
@@ -2294,7 +2408,7 @@
             <stop offset="1" style="stop-color:#292A22;stop-opacity:0" />
           </radialGradient>
           <polygon
-            class="sx-st114"
+            :class="`sx-${info.id}-st114`"
             points="287.16,173.1 287.16,158.23 274.88,158.23 274.88,173.1 		"
           />
 
@@ -2316,7 +2430,7 @@
             <stop offset="1" style="stop-color:#949494" />
           </linearGradient>
           <path
-            class="sx-st115"
+            :class="`sx-${info.id}-st115`"
             d="M289.63,178.72c1.25-3.07,2.05-7.78,2.05-13.06s-0.8-9.99-2.05-13.06v-3.68h-3.42
                   c-3.02,0-5.47,7.49-5.47,16.73s2.45,16.73,5.47,16.73h3.42V178.72z"
           />
@@ -2334,7 +2448,7 @@
             <stop offset="1" style="stop-color:#A2A2A2" />
           </linearGradient>
           <ellipse
-            class="sx-st116"
+            :class="`sx-${info.id}-st116`"
             cx="289.63"
             cy="165.66"
             rx="5.47"
@@ -2355,7 +2469,7 @@
             <stop offset="1" style="stop-color:#292929" />
           </linearGradient>
           <ellipse
-            class="sx-st117"
+            :class="`sx-${info.id}-st117`"
             cx="290.31"
             cy="165.66"
             rx="2.21"
@@ -2376,7 +2490,7 @@
             <stop offset="1" style="stop-color:#ABABAB" />
           </linearGradient>
           <path
-            class="sx-st118"
+            :class="`sx-${info.id}-st118`"
             d="M285.22,165.66c0-8.69,2.17-15.84,4.94-16.65c-0.17-0.05-0.35-0.08-0.53-0.08c-3.02,0-5.47,7.49-5.47,16.73
                   s2.45,16.73,5.47,16.73c0.18,0,0.36-0.03,0.53-0.08C287.39,181.5,285.22,174.35,285.22,165.66z"
           />

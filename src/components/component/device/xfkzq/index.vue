@@ -13,18 +13,18 @@
         v-html="
           `
         <style type='text/css'>  
-	.xfkzq-st0{fill:#D8D9D9;}
-	.xfkzq-st1{fill:url(#xfkzq_${info.id}_SVGID_1_);}
-	.xfkzq-st2{fill:#FFFFFF;}
-	.xfkzq-st3{fill:url(#xfkzq_${info.id}_SVGID_2_);}
-	.xfkzq-st4{opacity:0.3;}
-	.xfkzq-st5{fill:#E8E8E8;}
-	.xfkzq-st6{fill:url(#xfkzq_${info.id}_SVGID_3_);}
-	.xfkzq-st7{fill:url(#xfkzq_${info.id}_SVGID_4_);}
-	.xfkzq-st8{font-family:'OPPOSans-M';}
-	.xfkzq-st9{font-size:10px;}
-	.xfkzq-st10{font-family:'OPPOSans-H';}
-	.xfkzq-st11{font-size:19px;}
+	.xfkzq-${info.id}-st0{fill:#D8D9D9;}
+	.xfkzq-${info.id}-st1{fill:url(#xfkzq_${info.id}_SVGID_1_);}
+	.xfkzq-${info.id}-st2{fill:#FFFFFF;}
+	.xfkzq-${info.id}-st3{fill:url(#xfkzq_${info.id}_SVGID_2_);}
+	.xfkzq-${info.id}-st4{opacity:0.3;}
+	.xfkzq-${info.id}-st5{fill:#E8E8E8;}
+	.xfkzq-${info.id}-st6{fill:url(#xfkzq_${info.id}_SVGID_3_);}
+	.xfkzq-${info.id}-st7{fill:url(#xfkzq_${info.id}_SVGID_4_);}
+	.xfkzq-${info.id}-st8{font-family:'OPPOSans-M';}
+	.xfkzq-${info.id}-st9{font-size:10px;}
+	.xfkzq-${info.id}-st10{font-family:'OPPOSans-H';}
+	.xfkzq-${info.id}-st11{font-size:19px;}
       </style>
       `
         "
@@ -32,7 +32,7 @@
 
       <g id="图层_1" v-if="info.content">
         <path
-          class="xfkzq-st0"
+          :class="`xfkzq-${info.id}-st0`"
           d="M85,53H0V3c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3V53z"
         />
         <linearGradient
@@ -47,11 +47,11 @@
           <stop offset="1" style="stop-color:#B1B1B2" />
         </linearGradient>
         <path
-          class="xfkzq-st6"
+          :class="`xfkzq-${info.id}-st6`"
           d="M82,58H3c-1.7,0-3-1.3-3-3V8c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3v47C85,56.7,83.7,58,82,58z"
         />
         <path
-          class="xfkzq-st2"
+          :class="`xfkzq-${info.id}-st2`"
           d="M60,54H7c-1.7,0-3-1.3-3-3V12c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C63,52.7,61.7,54,60,54z"
         />
         <linearGradient
@@ -66,26 +66,104 @@
           <stop offset="1" style="stop-color:#007A7F" />
         </linearGradient>
         <path
-          class="xfkzq-st7"
+          :class="`xfkzq-${info.id}-st7`"
           d="M60,52H7c-1.7,0-3-1.3-3-3V10c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C63,50.7,61.7,52,60,52z"
         />
-        <rect x="68" y="10" class="xfkzq-st4" width="17" height="43" />
-        <rect x="69" y="11" class="xfkzq-st2" width="15" height="5" />
-        <rect x="69" y="12" class="xfkzq-st5" width="15" height="5" />
-        <rect x="69" y="18" class="xfkzq-st2" width="15" height="5" />
-        <rect x="69" y="19" class="xfkzq-st5" width="15" height="5" />
-        <rect x="69" y="25" class="xfkzq-st2" width="15" height="5" />
-        <rect x="69" y="26" class="xfkzq-st5" width="15" height="5" />
-        <rect x="69" y="32" class="xfkzq-st2" width="15" height="5" />
-        <rect x="69" y="33" class="xfkzq-st5" width="15" height="5" />
-        <rect x="69" y="39" class="xfkzq-st2" width="15" height="5" />
-        <rect x="69" y="40" class="xfkzq-st5" width="15" height="5" />
-        <rect x="69" y="46" class="xfkzq-st2" width="15" height="5" />
-        <rect x="69" y="47" class="xfkzq-st5" width="15" height="5" />
+        <rect
+          x="68"
+          y="10"
+          :class="`xfkzq-${info.id}-st4`"
+          width="17"
+          height="43"
+        />
+        <rect
+          x="69"
+          y="11"
+          :class="`xfkzq-${info.id}-st2`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="12"
+          :class="`xfkzq-${info.id}-st5`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="18"
+          :class="`xfkzq-${info.id}-st2`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="19"
+          :class="`xfkzq-${info.id}-st5`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="25"
+          :class="`xfkzq-${info.id}-st2`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="26"
+          :class="`xfkzq-${info.id}-st5`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="32"
+          :class="`xfkzq-${info.id}-st2`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="33"
+          :class="`xfkzq-${info.id}-st5`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="39"
+          :class="`xfkzq-${info.id}-st2`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="40"
+          :class="`xfkzq-${info.id}-st5`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="46"
+          :class="`xfkzq-${info.id}-st2`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="47"
+          :class="`xfkzq-${info.id}-st5`"
+          width="15"
+          height="5"
+        />
       </g>
       <g id="图层_3" v-else>
         <path
-          class="xfkzq-st0"
+          :class="`xfkzq-${info.id}-st0`"
           d="M85,53H0V3c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3V53z"
         />
         <linearGradient
@@ -100,11 +178,11 @@
           <stop offset="1" style="stop-color:#B1B1B2" />
         </linearGradient>
         <path
-          class="xfkzq-st1"
+          :class="`xfkzq-${info.id}-st1`"
           d="M82,58H3c-1.7,0-3-1.3-3-3V8c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3v47C85,56.7,83.7,58,82,58z"
         />
         <path
-          class="xfkzq-st2"
+          :class="`xfkzq-${info.id}-st2`"
           d="M60,54H7c-1.7,0-3-1.3-3-3V12c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C63,52.7,61.7,54,60,54z"
         />
         <linearGradient
@@ -119,27 +197,107 @@
           <stop offset="1" style="stop-color:#697284" />
         </linearGradient>
         <path
-          class="xfkzq-st3"
+          :class="`xfkzq-${info.id}-st3`"
           d="M60,52H7c-1.7,0-3-1.3-3-3V10c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C63,50.7,61.7,52,60,52z"
         />
-        <rect x="68" y="10" class="xfkzq-st4" width="17" height="43" />
-        <rect x="69" y="11" class="xfkzq-st2" width="15" height="5" />
-        <rect x="69" y="12" class="xfkzq-st5" width="15" height="5" />
-        <rect x="69" y="18" class="xfkzq-st2" width="15" height="5" />
-        <rect x="69" y="19" class="xfkzq-st5" width="15" height="5" />
-        <rect x="69" y="25" class="xfkzq-st2" width="15" height="5" />
-        <rect x="69" y="26" class="xfkzq-st5" width="15" height="5" />
-        <rect x="69" y="32" class="xfkzq-st2" width="15" height="5" />
-        <rect x="69" y="33" class="xfkzq-st5" width="15" height="5" />
-        <rect x="69" y="39" class="xfkzq-st2" width="15" height="5" />
-        <rect x="69" y="40" class="xfkzq-st5" width="15" height="5" />
-        <rect x="69" y="46" class="xfkzq-st2" width="15" height="5" />
-        <rect x="69" y="47" class="xfkzq-st5" width="15" height="5" />
+        <rect
+          x="68"
+          y="10"
+          :class="`xfkzq-${info.id}-st4`"
+          width="17"
+          height="43"
+        />
+        <rect
+          x="69"
+          y="11"
+          :class="`xfkzq-${info.id}-st2`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="12"
+          :class="`xfkzq-${info.id}-st5`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="18"
+          :class="`xfkzq-${info.id}-st2`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="19"
+          :class="`xfkzq-${info.id}-st5`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="25"
+          :class="`xfkzq-${info.id}-st2`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="26"
+          :class="`xfkzq-${info.id}-st5`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="32"
+          :class="`xfkzq-${info.id}-st2`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="33"
+          :class="`xfkzq-${info.id}-st5`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="39"
+          :class="`xfkzq-${info.id}-st2`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="40"
+          :class="`xfkzq-${info.id}-st5`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="46"
+          :class="`xfkzq-${info.id}-st2`"
+          width="15"
+          height="5"
+        />
+        <rect
+          x="69"
+          y="47"
+          :class="`xfkzq-${info.id}-st5`"
+          width="15"
+          height="5"
+        />
       </g>
       <g id="图层_2">
         <text
           transform="matrix(1 0 0 1 8 22)"
-          class="xfkzq-st2 xfkzq-st8 xfkzq-st9"
+          :class="
+            `xfkzq-${info.id}-st2 xfkzq-${info.id}-st8 xfkzq-${info.id}-st9`
+          "
           :style="descrStyle"
         >
           {{
@@ -157,7 +315,9 @@
         </text>
         <text
           transform="matrix(1 0 0 1 27 44)"
-          class="xfkzq-st2 xfkzq-st10 xfkzq-st11"
+          :class="
+            `xfkzq-${info.id}-st2 xfkzq-${info.id}-st10 xfkzq-${info.id}-st11`
+          "
           :style="valueStyle"
         >
           {{
@@ -168,7 +328,9 @@
         </text>
         <text
           transform="matrix(1 0 0 1 49 22)"
-          class="xfkzq-st2 xfkzq-st8 xfkzq-st9"
+          :class="
+            `xfkzq-${info.id}-st2 xfkzq-${info.id}-st8 xfkzq-${info.id}-st9`
+          "
           :style="unitStyle"
         >
           {{ devicePoint ? point.unit : "档" }}
