@@ -138,6 +138,7 @@ export default {
             callback && callback(false);
             // this.$emit("fail", message || this.$lang("控制失败！"));
             condition.password = "";
+            this.$refs.bmPayPassword?.clear();
             this.$$msgError("控制失败！");
             bmCommon.error(message);
           }

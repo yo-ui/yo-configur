@@ -110,7 +110,10 @@ export default {
     onInputEvent(event) {
       this.$emit("input", event.target.value);
     },
-    clear() {},
+    clear() {
+      this.onBlurEvent();
+      this.$refs.input?.focus();
+    },
     init() {}
   },
   mounted() {
