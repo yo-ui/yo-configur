@@ -204,7 +204,7 @@ export default {
         //   msg: str
         // };
         // logList.splice(0, 0, log);
-        bmCommon.log("log", str, className);
+        // bmCommon.log("log", str, className);
       });
       this.previewerPlayer = previewerPlayer;
       if (muted) {

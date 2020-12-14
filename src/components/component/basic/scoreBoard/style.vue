@@ -347,9 +347,6 @@
             ></el-input>
           </p>
           <p>
-            <!-- {{gradientStyleMap}} -->
-            <!-- :data="info.gradientStyle.valueList"
-          :dot-options="info.gradientStyle.valueOptions" -->
             <vue-slider
               :height="25"
               ref="slider"

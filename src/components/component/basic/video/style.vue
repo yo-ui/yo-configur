@@ -263,13 +263,13 @@
     <template v-if="info.backgroundType == 'gradient'">
       <p>
         <span class="label">{{ $lang("渐变颜色") }}:</span>
-        <span class="gradient" :style="gradientStyle"></span>
+        <span class="gradient" :style="gradientStyle(info)"></span>
       </p>
       <p>
         <span class="label">{{ $lang("渐变类型") }}:</span>
         <el-radio-group class="gradient-type-group" v-model="info.gradientStyle.type">
           <el-radio-button
-            :style="`background-image:${gradientStyleMap[item.code]}`"
+            :style="`background-image:${gradientStyleMap(info)[item.code]}`"
             :title="item.name"
             v-for="item in gradientTypeList"
             :key="item.code"
@@ -385,7 +385,7 @@
             <span></span>
           </template>
           <template #process>
-            <div class="vue-slider-process" :style="gradientLinearStyle"></div>
+            <div class="vue-slider-process" :style="gradientLinearStyle(info)"></div>
           </template>
           <template #dot="{index}">
             <div class="dot-box">
@@ -485,7 +485,7 @@
         <template v-if="info.backgroundType == 'gradient'">
           <p>
             <span class="label">{{ $lang("渐变颜色") }}:</span>
-            <span class="gradient" :style="gradientStyle"></span>
+            <span class="gradient" :style="gradientStyle(info)"></span>
             <!-- {{ gradientStyle }} -->
           </p>
           <p>
@@ -495,7 +495,7 @@
               v-model="info.gradientStyle.type"
             >
               <el-radio-button
-                :style="`background-image:${gradientStyleMap[item.code]}`"
+                :style="`background-image:${gradientStyleMap(info)[item.code]}`"
                 :title="item.name"
                 v-for="item in gradientTypeList"
                 :key="item.code"
@@ -599,9 +599,6 @@
             ></el-input>
           </p>
           <p>
-            <!-- {{gradientStyleMap}} -->
-            <!-- :data="info.gradientStyle.valueList"
-          :dot-options="info.gradientStyle.valueOptions" -->
             <vue-slider
               :height="25"
               ref="slider"
@@ -624,7 +621,7 @@
               <template #process>
                 <div
                   class="vue-slider-process"
-                  :style="gradientLinearStyle"
+                  :style="gradientLinearStyle(info)"
                 ></div>
               </template>
               <template #dot="{index}">

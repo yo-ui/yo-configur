@@ -258,7 +258,7 @@ module.exports = {
   devServer: {
     open: process.platform === "darwin",
     host: "0.0.0.0",
-    port: 10000,
+    port: 9001,
     https: false,
     hotOnly: false,
     disableHostCheck: true, //  新增该配置项

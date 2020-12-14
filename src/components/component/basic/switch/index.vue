@@ -313,17 +313,12 @@ export default {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
         let { id = "", bindData = {} } = info || {};
-        let { deviceId = "" } = bindData || {};
-        if (!deviceId) {
+        let { devicePoint = "" } = bindData || {};
+        if (!devicePoint) {
           return;
         }
-        $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
-          bmCommon.log("deviceSwitchCom", device);
-          let { pointList = [] } = device || {};
-          let point = pointList.find(item => {
-            let { point: id = "" } = item || {};
-            return id == pointCode; // SwSts  开关状态
-          });
+        $vm.$on(`devicePointEvent_${id}`, ({ point }) => {
+          bmCommon.log("deviceSwitchCom", point);
           if (point) {
             let { value = "" } = point || {};
             info.content = value == 1 ? true : false;
@@ -339,7 +334,6 @@ export default {
       if (!deviceId) {
         return;
       }
-      devicePoint = pointCode;
       $vm.$emit("device", {
         deviceId,
         callback: (device = {}) => {

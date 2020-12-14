@@ -124,7 +124,37 @@ let baseData = {
   locked: false, //是否锁定
   visible: true, //是否可见
   flipV: false, //是否垂直翻转
-  flipH: false //是否水平翻转
+  flipH: false, //是否水平翻转
+  descrStyle: {
+    showCode: false, //是否显示代码
+    formatNum: 2, //显示字符位数
+    fontSize: 10,
+    color: "#fff",
+    left: 8,
+    top: 22,
+    fontFamily: "OPPOSans-M",
+    textShadow,
+    textShadowable: false
+  },
+  unitStyle: {
+    fontSize: 10,
+    color: "#fff",
+    left: 49,
+    top: 22,
+    fontFamily: "OPPOSans-M",
+    textShadow,
+    textShadowable: false
+  },
+  valueStyle: {
+    decimal: 1, //小数位
+    fontSize: 19,
+    color: "#fff",
+    left: 11,
+    top: 44,
+    fontFamily: "OPPOSans-H",
+    textShadow,
+    textShadowable: false
+  }
 };
 let componentLibrary = [
   {
@@ -2063,7 +2093,7 @@ let componentLibrary = [
                 decimal: 1, //小数位
                 fontSize: 19,
                 color: "#fff",
-                left: 27,
+                left: 11,
                 top: 44,
                 fontFamily: "OPPOSans-H",
                 textShadow,

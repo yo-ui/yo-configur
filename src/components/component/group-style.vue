@@ -156,7 +156,7 @@
         <template v-if="info.backgroundType == 'gradient'">
           <p>
             <span class="label">{{ $lang("渐变颜色") }}:</span>
-            <span class="gradient" :style="gradientStyle"></span>
+            <span class="gradient" :style="gradientStyle(info)"></span>
           </p>
           <p>
             <span class="label">{{ $lang("渐变类型") }}:</span>
@@ -166,7 +166,7 @@
               @change="gradientStyleChangeEvent('type')"
             >
               <el-radio-button
-                :style="`background-image:${gradientStyleMap[item.code]}`"
+                :style="`background-image:${gradientStyleMap(info)[item.code]}`"
                 :title="item.name"
                 v-for="item in gradientTypeList"
                 :key="item.code"
@@ -287,7 +287,7 @@
               <template #process>
                 <div
                   class="vue-slider-process"
-                  :style="gradientLinearStyle"
+                  :style="gradientLinearStyle(info)"
                 ></div>
               </template>
               <template #dot="{index}">
@@ -925,7 +925,7 @@ for (let i in Constants.BASEDATA) {
         let { length = 0 } = activeComs || [];
         if (!(moving || _moving || parentId)) {
           if (length > 1) {
-            bmCommon.log("group 属性变更", type);
+            // bmCommon.log("group 属性变更", type);
             activeComs.forEach(item => {
               item[i] = newVal;
             });
@@ -946,9 +946,9 @@ export default {
       // animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
       // borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
       // flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      // backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
+      backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
       // fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
-      // tileModeList: Object.freeze(Constants.TILEMODELIST),
+      tileModeList: Object.freeze(Constants.TILEMODELIST),
       // gridStyleMap,
       // backgroundTypeList: Object.freeze(Constants.BACKGROUNDTYPELIST),
       // centerList: Object.freeze(Constants.CENTERLIST),
@@ -990,46 +990,6 @@ export default {
     //   });
     //   return set.size == 1;
     // },
-    // gradientStyle() {
-    //   let { info = {}, gradientStyleMap = [] } = this;
-    //   let { gradientStyle = {} } = info || {};
-    //   let {
-    //     type = ""
-    //     // angle = "",
-    //     // center = "",
-    //     // radialShape = "",
-    //     // valueList = []
-    //   } = gradientStyle || {};
-    //   let styles = {
-    //     backgroundImage: gradientStyleMap[type]
-    //   };
-    //   // let colors = valueList.map(item => `${item.code} ${item.value}%`);
-    //   // styles.backgroundImage = gradientStyleMap[type]
-    //   // if (type == "linear") {
-    //   //   styles.backgroundImage = gradientStyleMap[type] `linear-gradient(${angle}deg, ${colors.join()})`;
-    //   // } else if (type == "radial") {
-    //   //   styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
-    //   // }
-    //   return styles;
-    // },
-    // gradientStyleMap() {
-    //   let { info = {} } = this;
-    //   let { gradientStyle = {} } = info || {};
-    //   let { angle = "", center = "", radialShape = "", valueList = [] } =
-    //     gradientStyle || {};
-    //   let colors = valueList.map(item => `${item.code} ${item.value}%`);
-    //   return {
-    //     linear: `linear-gradient(${angle}deg, ${colors.join()})`,
-    //     radial: `radial-gradient(${radialShape} at ${center}, ${colors.join()})`
-    //   };
-    // },
-    // gradientLinearStyle() {
-    //   let { info = {} } = this;
-    //   let { gradientStyle = {} } = info || {};
-    //   let { valueList = [] } = gradientStyle || {};
-    //   let colors = valueList.map(item => `${item.code} ${item.value}%`);
-    //   return `background-image:linear-gradient(90deg, ${colors.join()})`;
-    // }
   },
   mounted() {
     // let { canvas = {} } = this;
@@ -1044,10 +1004,10 @@ export default {
     // });
   },
   components: {
-    // bmUpload: () =>
-    //   import(
-    //     /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
-    //   )
+    bmUpload: () =>
+      import(
+        /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
+      )
   },
   beforeDestroy() {
     // $(document).off("mousedown", this.mousedownEvent);

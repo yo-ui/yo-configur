@@ -765,7 +765,7 @@ export default {
       let id = $(target).attr("data-id");
       let width = $(target).outerWidth();
       let height = $(target).outerHeight();
-      bmCommon.log(target);
+      // bmCommon.log(target);
       if (!type) {
         type = $parent.attr("data-type");
         id = $parent.attr("data-id");
@@ -1342,7 +1342,6 @@ export default {
       let { id = "" } = deviceCacheMap(deviceId) || {};
       if (id) {
         callback(deviceCacheMap(deviceId));
-        return;
       }
       this.commonGetDeviceAction({ deviceId })
         .then(({ data }) => {
@@ -1353,11 +1352,15 @@ export default {
             bmCommon.error(message);
           }
           this.setDeviceCacheMap({ key: deviceId, value });
-          callback && callback(value || {});
+          if (!id) {
+            callback && callback(value || {});
+          }
         })
         .catch(err => {
           this.setDeviceCacheMap({ key: deviceId, value });
-          callback && callback(value || {});
+          if (!id) {
+            callback && callback(value || {});
+          }
           bmCommon.error("获取数据失败=>commonGetDevice", err);
         });
     },

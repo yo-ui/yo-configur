@@ -170,7 +170,7 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-let pointCode = "SwSts";
+// let pointCode = "SwSts";
 export default {
   name: "deviceDengpCom",
   data() {
@@ -312,17 +312,12 @@ export default {
       if (showType != "edit") {
         let { id = "", bindData = {} } = info || {};
         let { $vm } = window;
-        let { deviceId = "" } = bindData || {};
-        if (!deviceId) {
+        let { devicePoint = "" } = bindData || {};
+        if (!devicePoint) {
           return;
         }
-        $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
-          bmCommon.log("deviceDengpCom", device);
-          let { pointList = [] } = device || {};
-          let point = pointList.find(item => {
-            let { point: id = "" } = item || {};
-            return id == pointCode; // SwSts  开关状态
-          });
+        $vm.$on(`devicePointEvent_${id}`, ({ point }) => {
+          bmCommon.warn("deviceDengpCom", point);
           if (point) {
             let { value = "" } = point || {};
             info.content = value == 1 ? true : false;
@@ -338,7 +333,6 @@ export default {
       if (!deviceId) {
         return;
       }
-      devicePoint = pointCode;
       $vm.$emit("device", {
         deviceId,
         callback: (device = {}) => {
@@ -357,14 +351,11 @@ export default {
     controlEvent() {
       let { info = {} } = this;
       let { content = false, bindData = {} } = info;
-      let { deviceId = "", devicePoint = "" } = bindData || {};
+      let { deviceId = "", devicePoint: point = "" } = bindData || {};
       if (!deviceId) {
         info.content = !content;
         return;
       }
-      // let { $vm } = window;
-      pointCode = devicePoint;
-      let point = pointCode;
       let value = !content ? 1 : 0;
       $vm.$emit("control", {
         deviceId,

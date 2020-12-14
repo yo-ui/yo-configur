@@ -202,7 +202,7 @@ export default {
     }),
     addEvent(item = {}) {
       // eslint-disable-next-line no-undef
-      bmCommon.log(item);
+      // bmCommon.log(item);
       $vm.$emit("bind-device", item);
     },
     init() {

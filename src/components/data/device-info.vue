@@ -4,6 +4,7 @@
     class="bm-device-info-com"
     ref="form"
     label-width="120px"
+    @mousewheel.native.stop
     v-loading="dataLoadingStatus"
   >
     <h2 class="title">{{ deviceInfo.name }}</h2>

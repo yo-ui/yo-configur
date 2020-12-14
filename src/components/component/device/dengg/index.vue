@@ -351,17 +351,17 @@ export default {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
         let { id = "", bindData = {} } = info || {};
-        let { deviceId = "" } = bindData || {};
-        if (!deviceId) {
+        let { devicePoint = "" } = bindData || {};
+        if (!devicePoint) {
           return;
         }
-        $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
-          bmCommon.log("deviceDenggCom", device);
-          let { pointList = [] } = device || {};
-          let point = pointList.find(item => {
-            let { point: id = "" } = item || {};
-            return id == pointCode; // SwSts  开关状态
-          });
+        $vm.$on(`devicePointEvent_${id}`, ({ point }) => {
+          bmCommon.log("deviceDenggCom", point);
+          // let { pointList = [] } = device || {};
+          // let point = pointList.find(item => {
+          //   let { point: id = "" } = item || {};
+          //   return id == pointCode; // SwSts  开关状态
+          // });
           if (point) {
             let { value = "" } = point || {};
             info.content = value == 1 ? true : false;
@@ -377,7 +377,7 @@ export default {
       if (!deviceId) {
         return;
       }
-      devicePoint = pointCode;
+      // devicePoint = pointCode;
       $vm.$emit("device", {
         deviceId,
         callback: (device = {}) => {
@@ -396,13 +396,11 @@ export default {
     controlEvent() {
       let { info = {} } = this;
       let { bindData = {}, content = false } = info;
-      let { deviceId = "", devicePoint = "" } = bindData || {};
+      let { deviceId = "", devicePoint: point = "" } = bindData || {};
       if (!deviceId) {
         info.content = !content;
         return;
       }
-      pointCode = devicePoint;
-      let point = pointCode;
       let value = !content ? 1 : 0;
       $vm.$emit("control", {
         deviceId,

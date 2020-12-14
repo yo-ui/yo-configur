@@ -216,7 +216,7 @@
         <template v-if="info.backgroundType == 'gradient'">
           <p>
             <span class="label">{{ $lang("渐变颜色") }}:</span>
-            <span class="gradient" :style="gradientStyle"></span>
+            <span class="gradient" :style="gradientStyle(info)"></span>
             <!-- {{ gradientStyle }} -->
           </p>
           <p>
@@ -226,7 +226,7 @@
               v-model="info.gradientStyle.type"
             >
               <el-radio-button
-                :style="`background-image:${gradientStyleMap[item.code]}`"
+                :style="`background-image:${gradientStyleMap(info)[item.code]}`"
                 :title="item.name"
                 v-for="item in gradientTypeList"
                 :key="item.code"
@@ -330,9 +330,6 @@
             ></el-input>
           </p>
           <p>
-            <!-- {{gradientStyleMap}} -->
-            <!-- :data="info.gradientStyle.valueList"
-          :dot-options="info.gradientStyle.valueOptions" -->
             <vue-slider
               :height="25"
               ref="slider"
@@ -355,7 +352,7 @@
               <template #process>
                 <div
                   class="vue-slider-process"
-                  :style="gradientLinearStyle"
+                  :style="gradientLinearStyle(info)"
                 ></div>
               </template>
               <template #dot="{index}">
@@ -1035,44 +1032,37 @@ export default {
   computed: {
     ...mapGetters(),
     gradientStyle() {
-      let { info = {}, gradientStyleMap = [] } = this;
-      let { gradientStyle = {} } = info || {};
-      let {
-        type = ""
-        // angle = "",
-        // center = "",
-        // radialShape = "",
-        // valueList = []
-      } = gradientStyle || {};
-      let styles = {
-        backgroundImage: gradientStyleMap[type]
+      return info => {
+        let { gradientStyleMap } = this;
+        let { gradientStyle = {} } = info || {};
+        let { type = "" } = gradientStyle || {};
+        let styles = {
+          backgroundImage: gradientStyleMap(info)[type]
+        };
+        return styles;
       };
-      // let colors = valueList.map(item => `${item.code} ${item.value}%`);
-      // styles.backgroundImage = gradientStyleMap[type]
-      // if (type == "linear") {
-      //   styles.backgroundImage = gradientStyleMap[type] `linear-gradient(${angle}deg, ${colors.join()})`;
-      // } else if (type == "radial") {
-      //   styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
-      // }
-      return styles;
     },
     gradientStyleMap() {
-      let { info = {} } = this;
-      let { gradientStyle = {} } = info || {};
-      let { angle = "", center = "", radialShape = "", valueList = [] } =
-        gradientStyle || {};
-      let colors = valueList.map(item => `${item.code} ${item.value}%`);
-      return {
-        linear: `linear-gradient(${angle}deg, ${colors.join()})`,
-        radial: `radial-gradient(${radialShape} at ${center}, ${colors.join()})`
+      return info => {
+        // let { info = {} } = this;
+        let { gradientStyle = {} } = info || {};
+        let { angle = "", center = "", radialShape = "", valueList = [] } =
+          gradientStyle || {};
+        let colors = valueList.map(item => `${item.code} ${item.value}%`);
+        return {
+          linear: `linear-gradient(${angle}deg, ${colors.join()})`,
+          radial: `radial-gradient(${radialShape} at ${center}, ${colors.join()})`
+        };
       };
     },
     gradientLinearStyle() {
-      let { info = {} } = this;
-      let { gradientStyle = {} } = info || {};
-      let { valueList = [] } = gradientStyle || {};
-      let colors = valueList.map(item => `${item.code} ${item.value}%`);
-      return `background-image:linear-gradient(90deg, ${colors.join()})`;
+      return info => {
+        // let { info = {} } = this;
+        let { gradientStyle = {} } = info || {};
+        let { valueList = [] } = gradientStyle || {};
+        let colors = valueList.map(item => `${item.code} ${item.value}%`);
+        return `background-image:linear-gradient(90deg, ${colors.join()})`;
+      };
     }
   },
   methods: {

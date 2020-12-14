@@ -161,7 +161,7 @@ for (let i in Constants.BASEDATA) {
         // bmCommon.log("newVal=", newVal, "oldVal=", oldVal, "属性发生变化");
         if (!(moving || _moving || parentId)) {
           if (length > 1) {
-            bmCommon.log("info 属性变更", type, "parentId=", parentId);
+            // bmCommon.log("info 属性变更", type, "parentId=", parentId);
             activeComs.forEach(item => {
               item[i] = newVal;
             });
@@ -303,7 +303,7 @@ export default {
   },
   mounted() {
     this.init();
-    bmCommon.log("style 初始化");
+    // bmCommon.log("style 初始化");
   },
   methods: {
     ...mapMutations({

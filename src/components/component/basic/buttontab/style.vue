@@ -1263,7 +1263,7 @@
         <template v-if="info.backgroundType == 'gradient'">
           <p>
             <span class="label">{{ $lang("渐变颜色") }}:</span>
-            <span class="gradient" :style="gradientStyle"></span>
+            <span class="gradient" :style="gradientStyle(info)"></span>
           </p>
           <p>
             <span class="label">{{ $lang("渐变类型") }}:</span>

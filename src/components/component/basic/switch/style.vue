@@ -416,7 +416,7 @@
         <template v-if="info.backgroundType == 'gradient'">
           <p>
             <span class="label">{{ $lang("渐变颜色") }}:</span>
-            <span class="gradient" :style="gradientStyle"></span>
+            <span class="gradient" :style="gradientStyle(info)"></span>
           </p>
           <p>
             <span class="label">{{ $lang("渐变类型") }}:</span>
@@ -425,7 +425,7 @@
               v-model="info.gradientStyle.type"
             >
               <el-radio-button
-                :style="`background-image:${gradientStyleMap[item.code]}`"
+                :style="`background-image:${gradientStyleMap(info)[item.code]}`"
                 :title="item.name"
                 v-for="item in gradientTypeList"
                 :key="item.code"
@@ -543,7 +543,7 @@
               <template #process>
                 <div
                   class="vue-slider-process"
-                  :style="gradientLinearStyle"
+                  :style="gradientLinearStyle(info)"
                 ></div>
               </template>
               <template #dot="{index}">
@@ -1046,9 +1046,9 @@ export default {
       shadowTypeList: Object.freeze(Constants.SHADOWTYPELIST),
       gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
       // flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      // backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
-      fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST)
-      // tileModeList: Object.freeze(Constants.TILEMODELIST)
+      backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
+      fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
+      tileModeList: Object.freeze(Constants.TILEMODELIST)
     };
   },
   props: {

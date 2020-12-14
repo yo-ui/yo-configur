@@ -1163,9 +1163,9 @@ export default {
       shadowTypeList: Object.freeze(Constants.SHADOWTYPELIST),
       gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
       // flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      // backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
-      fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST)
-      // tileModeList: Object.freeze(Constants.TILEMODELIST)
+      backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
+      fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
+      tileModeList: Object.freeze(Constants.TILEMODELIST)
     };
   },
   props: {
@@ -1177,10 +1177,10 @@ export default {
     }
   },
   components: {
-    // bmUpload: () =>
-    //   import(
-    //     /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
-    //   )
+    bmUpload: () =>
+      import(
+        /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
+      )
   },
   computed: {
     ...mapGetters(),

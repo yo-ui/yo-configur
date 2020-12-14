@@ -556,7 +556,9 @@ export default {
         $vm.$on(`devicePointEvent_${id}`, ({ device, point }) => {
           bmCommon.log("deviceXfkzqCom", device);
           let { pointList = [] } = device || {};
-          this.point = point || {};
+          // this.point = point || {};
+          let { descr = "" } = point || {};
+          this.point = { ...(point || {}), name: descr };
           let _point = pointList.find(item => {
             let { point: id = "" } = item || {};
             return id == pointCode; // SwSts  开关状态

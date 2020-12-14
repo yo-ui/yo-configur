@@ -316,14 +316,8 @@ export default {
         if (!devicePoint) {
           return;
         }
-        pointCode = devicePoint;
-        $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
-          bmCommon.log("deviceFaultCom", device);
-          let { pointList = [] } = device || {};
-          let point = pointList.find(item => {
-            let { point: id = "" } = item || {};
-            return id == pointCode; // SwSts  开关状态
-          });
+        $vm.$on(`devicePointEvent_${id}`, ({ point }) => {
+          bmCommon.log("deviceFaultCom", point);
           if (point) {
             let { value = "" } = point || {};
             info.content = value == 1 ? true : false;
@@ -339,7 +333,6 @@ export default {
       if (!deviceId) {
         return;
       }
-      devicePoint = pointCode;
       $vm.$emit("device", {
         deviceId,
         callback: (device = {}) => {
