@@ -245,7 +245,7 @@
           {{
             info.descrStyle.showCode
               ? devicePoint
-                ? point.id
+                ? point.id || point.point || ""
                 : "Temp"
               : $ellipsis(
                   devicePoint ? point.name || point.descr || "" : "温度",
@@ -525,8 +525,8 @@ export default {
         $vm.$on(`devicePointEvent_${id}`, ({ device, point }) => {
           bmCommon.log("deviceWkqCom", device);
           let { pointList = [] } = device || {};
-          let { descr = "" } = point || {};
-          this.point = { ...(point || {}), name: descr };
+          let { descr = "", point: id = "" } = point || {};
+          this.point = { ...(point || {}), name: descr, point: id };
           let _point = pointList.find(item => {
             let { point: id = "" } = item || {};
             return id == pointCode; // SwSts  开关状态
