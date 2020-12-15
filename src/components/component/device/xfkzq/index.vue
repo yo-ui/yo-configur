@@ -12,7 +12,7 @@
       <defs
         v-html="
           `
-        <style type='text/css'>  
+        <style type='text/css'>
 	.xfkzq-${info.id}-st0{fill:#D8D9D9;}
 	.xfkzq-${info.id}-st1{fill:url(#xfkzq_${info.id}_SVGID_1_);}
 	.xfkzq-${info.id}-st2{fill:#FFFFFF;}
@@ -306,7 +306,7 @@
                 ? point.id
                 : "WS"
               : $ellipsis(
-                  devicePoint ? point.name || "" : "风速",
+                  devicePoint ? point.name || point.descr || "" : "风速",
                   info.descrStyle.formatNum,
                   0,
                   "..."

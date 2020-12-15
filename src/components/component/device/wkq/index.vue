@@ -12,7 +12,7 @@
       <defs
         v-html="
           `
-        <style type='text/css'>     
+        <style type='text/css'>
 	.wkq-${info.id}-st0{fill:#D8D9D9;}
 	.wkq-${info.id}-st1{fill:url(#wkq_${info.id}_SVGID_1_);}
 	.wkq-${info.id}-st2{fill:#FFFFFF;}
@@ -248,7 +248,7 @@
                 ? point.id
                 : "Temp"
               : $ellipsis(
-                  devicePoint ? point.name || "" : "温度",
+                  devicePoint ? point.name || point.descr || "" : "温度",
                   info.descrStyle.formatNum,
                   0,
                   "..."

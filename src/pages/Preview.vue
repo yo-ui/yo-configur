@@ -482,7 +482,7 @@ export default {
           //先找到绑定设备的组件
           let device = deviceList.find(_item => {
             let { deviceId: _deviceId = "" } = _item || {};
-            return _deviceId && _deviceId == deviceId; //如果有绑定id 而且能找到对应的推送消息
+            return _deviceId == deviceId; //如果有绑定id 而且能找到对应的推送消息
           });
           if (device) {
             bmCommon.log(`找到设备${deviceId}的数据`);
