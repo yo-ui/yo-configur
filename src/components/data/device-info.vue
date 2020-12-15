@@ -23,7 +23,7 @@
             :value="_item.value">
           </el-option>
         </el-select>
-        
+
       </template>
       <template v-else> -->
         {{
@@ -52,7 +52,8 @@ export default {
     return {
       dataLoadingStatus: true,
       deviceInfo: {},
-      pointIds: []
+      pointIds: [],
+      devicePoint: ""
     };
   },
   computed: {
@@ -73,9 +74,15 @@ export default {
     ...mapMutations(),
     ...mapActions({}),
     show(info = {}) {
-      let { bindData = {} } = info || {};
-      let { deviceId = "", pointIds = [] } = bindData || {};
+      let { bindData = {}, infoType = "", dataType = "" } = info || {};
+      let { deviceId = "", pointIds = [], devicePoint = "" } = bindData || {};
       this.pointIds = pointIds || [];
+      if (dataType == "point" && infoType == "device") {
+        //为绑定点位数据的时候 显示设备信息处理
+        this.devicePoint = devicePoint;
+      } else {
+        this.devicePoint = "";
+      }
       $vm.$emit("device", {
         deviceId,
         callback: (device = {}) => {

@@ -1,9 +1,24 @@
 <template>
   <div ref="bmCom" :style="comStyle">
-    <span
-      >{{ this.$toBig(info.content, info.decimal)
-      }}<small :style="unitStyle">{{ info.unit || "" }}</small></span
-    >
+    <span>
+      {{
+        info.bindData && info.bindData.devicePoint !== ""
+          ? point.status && point.status.length > 0
+            ? (point.status.find(item => point.value == item.value) || {}).name
+            : $toBig(point.value, info.decimal) || "--"
+          : $toBig(info.content || "", info.decimal)
+      }}
+      <template v-if="info.bindData && info.bindData.devicePoint !== ''">
+        <template v-if="!(point.status && point.status.length > 0)">
+          <small :style="unitStyle" v-if="point.unit">{{
+            point.unit || ""
+          }}</small>
+        </template>
+      </template>
+      <small v-else :style="unitStyle">{{ info.unit || "" }}</small>
+      <!-- {{ $toBig(info.content, info.decimal)
+      }}<small :style="unitStyle">{{ info.unit || "" }}</small> -->
+    </span>
     <!-- ℃ -->
   </div>
 </template>
@@ -15,7 +30,9 @@ const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "dynamicTextCom",
   data() {
-    return {};
+    return {
+      point: {}
+    };
   },
   props: {
     info: {
@@ -258,11 +275,12 @@ export default {
         if (!devicePoint) {
           return;
         }
-        $vm.$on(`devicePointEvent_${id}`, ({ device, point = {} }) => {
-          bmCommon.log("dynamicTextCom", device, point);
-          let { value = "", unit = "" } = point || {};
-          info.content = value;
-          info.unit = unit;
+        $vm.$on(`devicePointEvent_${id}`, ({ point = {} }) => {
+          bmCommon.log("dynamicTextCom", point);
+          this.point = point || {};
+          // let { value = "", unit = "" } = point || {};
+          // info.content = value;
+          // info.unit = unit;
         });
       }
       this.loadDeviceInfo();
@@ -282,11 +300,12 @@ export default {
             let { id = "" } = item || {};
             return id == devicePoint; //
           });
-          if (point) {
-            let { value = "", unit = "" } = point || {};
-            info.content = value;
-            info.unit = unit;
-          }
+          this.point = point || {};
+          // if (point) {
+          //   let { value = "", unit = "" } = point || {};
+          //   info.content = value;
+          //   info.unit = unit;
+          // }
         }
       });
     }

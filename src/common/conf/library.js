@@ -876,7 +876,11 @@ let componentLibrary = [
           sliderBorderStyle: "none",
 
           fontWeight: "bold",
-          fontSize: 24
+          fontSize: 24,
+          borderRadiusTopLeft: 18,
+          borderRadiusTopRight: 18,
+          borderRadiusBottomLeft: 18,
+          borderRadiusBottomRight: 18
           // fontFamily: "lcdD"
           // width: "",
           // height: "",
@@ -1749,7 +1753,7 @@ let componentLibrary = [
               ...baseData,
               backgroundImage: "/static/img/svg/dengg.svg",
               dataType: "point",
-              infoType: "device",
+              // infoType: "device",
               // borderWidth: 0,
               // borderStyle: "none",
               // borderColor: "",
@@ -1777,7 +1781,7 @@ let componentLibrary = [
               ...baseData,
               backgroundImage: "/static/img/svg/dengp.svg",
               dataType: "point",
-              infoType: "device", //显示详情组件前缀名
+              // infoType: "device", //显示详情组件前缀名
               // borderWidth: 0,
               // borderStyle: "none",
               // borderColor: "",

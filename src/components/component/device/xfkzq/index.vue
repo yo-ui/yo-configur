@@ -6,6 +6,7 @@
       :viewBox="`0 0 85 58`"
       :width="info.width"
       :height="info.height"
+      preserveAspectRatio="none"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
     >
