@@ -10,22 +10,22 @@ function resolve(dir) {
 }
 console.log(
   // chalk.rgb(0, 150, 73).bold.bgRgba(0, 0, 0)(`
-  chalk.rgb(0, 150, 73).bold(` 
+  chalk.rgb(0, 150, 73).bold(`
 *        ┏┓   ┏┓+ +
 *       ┏┛┻━━━┛┻┓ + +
-*       ┃      ┃  
+*       ┃      ┃
 *       ┃   ━   ┃ ++ + + +
 *       ████━████  ┃+
 *       ┃       ┃ +
 *       ┃   ┻   ┃
 *       ┃      ┃ + +
 *       ┗━┓   ┏━┛
-*         ┃   ┃           
-*         ┃   ┃ + + + +
-*         ┃   ┃    Code is far away from bug with the animal protecting       
-*         ┃   ┃ +     神兽保佑,代码无bug  
 *         ┃   ┃
-*         ┃   ┃  +         
+*         ┃   ┃ + + + +
+*         ┃   ┃    Code is far away from bug with the animal protecting
+*         ┃   ┃ +     神兽保佑,代码无bug
+*         ┃   ┃
+*         ┃   ┃  +
 *         ┃    ┗━━━┓ + +
 *         ┃        ┣┓
 *         ┃       ┏┛
@@ -59,7 +59,7 @@ module.exports = {
       title: "组态平台",
       // 在这个页面中包含的块，默认情况下会包含
       // 提取出来的通用 chunk 和 vendor chunk。
-      chunks: ["chunk-vendors", "chunk-common", "index", "oper"]
+      chunks: ["chunk-vendors", "chunk-common", "index", "configur"]
     }
     // 当使用只有入口的字符串格式时，
     // 模板会被推导为 `public/subpage.html`
