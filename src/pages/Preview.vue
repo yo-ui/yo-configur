@@ -5,7 +5,7 @@
   >
     <div class="flex-content">
       <div class="content-box">
-        <div class="zoom-box">
+        <div class="zoom-box" v-if="canvas.isScale">
           <el-button-group>
             <el-button @click="zoomEvent(-20)">
               <i class="el-icon-zoom-out"></i>

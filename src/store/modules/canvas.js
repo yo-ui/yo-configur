@@ -64,6 +64,7 @@ export default {
       backgroundSize: "",
       backgroundRepeat: "no-repeat", //背景图片是否平铺
       isGrid: true, //是否显示网格
+      isScale: false, //是否显示缩放
       gridStyle: {
         type: "1",
         width: 20,

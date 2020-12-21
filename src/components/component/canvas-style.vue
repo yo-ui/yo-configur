@@ -368,10 +368,10 @@
           <span class="label"> {{ $lang("显示网格") }}:</span
           ><el-checkbox v-model="info.isGrid"></el-checkbox>
         </p>
-        <!-- <p>
+        <p>
           <span class="label"> {{ $lang("显示缩放") }}:</span
-          ><el-checkbox v-model="info.isGrid"></el-checkbox>
-        </p> -->
+          ><el-checkbox v-model="info.isScale"></el-checkbox>
+        </p>
         <template v-if="info.isGrid">
           <p>
             <span class="label"> {{ $lang("网格样式") }}:</span
@@ -439,7 +439,7 @@
             :label="item.label"
             :value="item.value">
           </el-option>
-        </el-select>        
+        </el-select>
       </el-collapse-item> -->
     </el-collapse>
     <!-- <h2>{{ $lang("功能选择") }}</h2> -->
