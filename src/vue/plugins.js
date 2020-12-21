@@ -310,7 +310,7 @@ export default {
         for (let i in params) {
           arr.push(`${i}=${params[i]}`);
         }
-        url += arr.join("&");
+        url += "&" + arr.join("&");
       } else {
         let arr = [];
         for (let i in params) {
