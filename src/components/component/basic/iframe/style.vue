@@ -50,6 +50,7 @@
             <el-input-number
               controls-position="right"
               clearable
+              :max="4000"
               v-model.number="info.width"
               :placeholder="$lang('请输入宽度')"
             ></el-input-number>
@@ -61,7 +62,7 @@
           <el-slider
             v-if="info.scaleable"
             v-model="info.width"
-            :max="1980"
+            :max="4000"
             :format-tooltip="val => val"
           ></el-slider>
         </p>
@@ -71,6 +72,7 @@
             <el-input-number
               controls-position="right"
               clearable
+              :max="4000"
               v-model.number="info.height"
               :placeholder="$lang('请输入高度')"
             ></el-input-number>
@@ -82,7 +84,7 @@
           <el-slider
             v-if="info.scaleable"
             v-model="info.height"
-            :max="1080"
+            :max="4000"
             :format-tooltip="val => val"
           ></el-slider>
         </p>
@@ -713,7 +715,7 @@
             inactive-color="#ccc"
           ></el-switch>
         </p>
-        
+
         <template v-if="info.textShadowable">
           <p class="shadow-box">
             <span class="c-box">

@@ -90,12 +90,13 @@
               controls-position="right"
               v-model.number="info.width"
               clearable
+              :max="4000"
               :placeholder="$lang('请输入页面宽度')"
             ></el-input-number>
           </el-tooltip>
           <el-slider
             v-model="info.width"
-            :max="3000"
+            :max="4000"
             :format-tooltip="val => val"
           ></el-slider>
         </p>
@@ -110,13 +111,14 @@
             <el-input-number
               controls-position="right"
               clearable
+              :max="4000"
               v-model.number="info.height"
               :placeholder="$lang('请输入页面高度')"
             ></el-input-number
           ></el-tooltip>
           <el-slider
             v-model="info.height"
-            :max="3000"
+            :max="4000"
             :format-tooltip="val => val"
           ></el-slider>
         </p>
