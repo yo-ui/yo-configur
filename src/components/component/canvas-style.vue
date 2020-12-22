@@ -370,7 +370,11 @@
         </p>
         <p>
           <span class="label"> {{ $lang("显示缩放") }}:</span
-          ><el-checkbox v-model="info.isScale"></el-checkbox>
+          ><el-checkbox v-model="info.scaleable"></el-checkbox>
+        </p>
+        <p>
+          <span class="label"> {{ $lang("是否锁定") }}:</span
+          ><el-checkbox v-model="info.locked"></el-checkbox>
         </p>
         <template v-if="info.isGrid">
           <p>
@@ -708,6 +712,7 @@ export default {
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
       let { left, top } = canvas || {};
+      bmCommon.log("canvas-style=>mousedownEvent");
       this.initMove({
         startX: x,
         startY: y,
@@ -737,6 +742,7 @@ export default {
       let { widgetList = [], linkPoint, condition } = this;
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
+      bmCommon.log("canvas-style=>mousedownCanvasPaintEvent");
       if (!linkPoint) {
         this.$$msgError("请先创建连接点");
         return;

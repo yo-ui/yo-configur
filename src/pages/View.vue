@@ -6,7 +6,7 @@
     <div class="flex-content">
       <div class="content-box">
         <div class="zoom-box">
-          <el-button-group v-if="canvas.isScale">
+          <el-button-group v-if="canvas.scaleable">
             <el-button @click="zoomEvent(-20)">
               <i class="el-icon-zoom-out"></i>
             </el-button>
@@ -453,7 +453,11 @@ export default {
       let { canvas = {} } = this;
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
-      let { left, top } = canvas || {};
+      let { left, top, locked = false } = canvas || {};
+      bmCommon.log("view=>mousedownEvent");
+      if (locked) {
+        return;
+      }
       this.initMove({
         startX: x,
         startY: y,
