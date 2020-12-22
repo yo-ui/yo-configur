@@ -542,23 +542,23 @@ export default {
     },
     resizeCanvasSize() {
       let $window = $(window);
-      let w_height = $window.height();
+      // let w_height = $window.height();
       let w_width = $window.width();
       if (w_width < 800) {
         w_width = 800;
       }
       let { canvas = {} } = this;
-      let { width = 0, height = 0 } = canvas || {};
-      let h_ratio = w_height / height;
+      let { width = 0 } = canvas || {};
+      // let h_ratio = w_height / height;
       let w_ratio = w_width / width;
       let scale = w_ratio;
       // let left = (w_width - width) / 2;
       // let top = ((w_height - height) * scale) / 2;
-      if (h_ratio > w_ratio) {
-        scale = h_ratio;
-        // left = ((w_width - width) * scale) / 2;
-        // top = (w_height - height) / 2;
-      }
+      // if (h_ratio > w_ratio) {
+      //   scale = h_ratio;
+      //   // left = ((w_width - width) * scale) / 2;
+      //   // top = (w_height - height) / 2;
+      // }
       // canvas.left = left;
       // canvas.top = top;
       this.setZoom(scale);
