@@ -2,12 +2,7 @@
   <div class="bm-ifram-com" ref="bmCom" :style="comStyle">
     <!-- :src="info.content.replace('https://viz.energyiot.cn','http://localhost:9001')" -->
     <iframe
-      :src="
-        info.content.replace(
-          'https://viz.energyiot.cn',
-          'http://localhost:9001'
-        )
-      "
+      :src="info.content"
       frameborder="0"
       @load="loadEvent"
       :style="iframeStyle"
