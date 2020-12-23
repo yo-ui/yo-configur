@@ -41,7 +41,7 @@ export default {
     if (!imageList) {
       imageList = [];
     }
-    return imageList;
+    return imageList || [];
   },
   getPlatform(state) {
     let platform = state.platform;

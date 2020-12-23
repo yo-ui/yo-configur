@@ -669,11 +669,11 @@ export default {
       if (delta < 0) {
         //向下滚动
         bmCommon.log("向下滚动");
-        this.zoomEvent(-1);
+        this.zoomEvent(-2);
       } else {
         //向上滚动
         bmCommon.log("向上滚动");
-        this.zoomEvent(1);
+        this.zoomEvent(2);
       }
       // return false;
     },
@@ -757,8 +757,11 @@ export default {
     zoomEvent(val = 0) {
       let { getZoom: zoom = 0, canvas = {} } = this;
       if (val) {
+        bmCommon.log("当前放大before", zoom);
         zoom = zoom * 100 + val;
+        bmCommon.log("当前放大", zoom, zoom / 100);
         if (zoom > 10 && zoom < 200) {
+          bmCommon.log("当前放大设置");
           this.setZoom(zoom / 100);
         }
       } else {

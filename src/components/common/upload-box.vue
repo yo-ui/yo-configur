@@ -9,6 +9,9 @@
     width="70vw"
   >
     <el-image
+      ref="imageRef"
+      v-if="imageList && imageList.length > 0"
+      :src="$loadImgUrl(currentImage || imageList[0])"
       :preview-src-list="imageList.map(item => $loadImgUrl(item))"
       fit="fill"
       @click="selectImageEvent"
@@ -31,8 +34,11 @@
           @click="selectImageEvent"
         >
         </el-image> -->
-        <i class="el-icon-close" @click="removeImageEvent(item)"></i>
+        <i class="el-icon-close" @click.stop="removeImageEvent(item)"></i>
         <i class="el-icon-check" v-if="selectImages.indexOf(item) > -1"></i>
+        <i class="preview-btn" @click.stop="previewImageEvent(item)">{{
+          $lang("预览")
+        }}</i>
       </div>
       <el-upload
         :auto-upload="true"
@@ -42,11 +48,12 @@
         :headers="uploadHeaders"
         ref="upload"
         name="files"
-        :limit="5"
+        :limit="limit"
         multiple
         :action="uploadUrl"
         :show-file-list="false"
         :on-success="onSuccessEvent"
+        :on-exceed="onExceedEvent"
         :before-upload="beforeUploadEvent"
       >
         <i class="el-icon-plus"></i>
@@ -65,7 +72,7 @@
 </template>
 
 <script>
-// import bmCommon from "@/common/common";
+import bmCommon from "@/common/common";
 import { URL as _URL } from "@/common/env";
 import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
@@ -75,8 +82,10 @@ export default {
     return {
       // 上传文件地址
       // uploadUrl: _URL.upload2OssUrl,
+      limit: 5, //最大上传个数
       // 预览图片地址
       selectImages: [],
+      currentImage: "",
       showDialogStatus: false,
       uploadData: {
         subDir: Constants.UPLOADDIR.IMG
@@ -92,6 +101,11 @@ export default {
       userInfo: "getUserInfo",
       imageList: "getImageList"
     }),
+    // currentImage() {
+    //   let { imageList = [] } = this;
+    //   let [image = ""] = imageList || [];
+    //   return image;
+    // },
     uploadUrl() {
       let { platform = "" } = this;
       return platform + _URL.upload2OssUrl;
@@ -109,6 +123,10 @@ export default {
       setImageList: "setImageList"
     }),
     ...mapActions(),
+    previewImageEvent(item) {
+      this.currentImage = item;
+      this.$refs.imageRef?.clickHandler();
+    },
     // 删除图片
     removeImageEvent(item) {
       let { condition, selectImages = [], imageList = [] } = this;
@@ -160,6 +178,10 @@ export default {
     // uploadEvent() {
     //   this.$refs.upload?.submit();
     // },
+    onExceedEvent(file, fileList) {
+      let { limit = 0 } = this;
+      this.$$msgError(`图片最多同时上传${limit}张`);
+    },
     onSuccessEvent(res, file, fileList) {
       let { imageList = [], condition, selectImages = [] } = this;
       let { code = "", message = "", result = [] } = res || {};
@@ -173,12 +195,13 @@ export default {
         } else {
           this.selectImages = [fileName];
         }
+        bmCommon.log(imageList, fileName);
         imageList.push(fileName);
         this.setImageList(imageList);
       } else {
         this.$$msgError(message || "图片上传失败");
       }
-      this.$refs.upload?.clearFiles();
+      // this.$refs.upload?.clearFiles();
       // this.$emit("success", this.imageUrl);
     },
     beforeUploadEvent(file) {
@@ -242,19 +265,24 @@ export default {
     flex-direction: column;
     .el-dialog__body {
       .flex(1);
+      .pt(0);
+      .touch-y;
+    }
+    .el-image {
+      // .db(none);
+      .squ(0);
     }
     .img-list {
       .df;
+      flex-wrap: wrap;
       .img-box {
         .posr;
         .mr(15);
+        .mb(15);
         .bg-img;
         .squ(120);
         .bor(1px solid @grayC);
         .pointer;
-        .el-image {
-          .db(none);
-        }
         &:hover {
           .el-icon-close {
             .db;
@@ -267,6 +295,20 @@ export default {
           .c(@green-dark);
           .fz(22);
           .fw(700);
+        }
+        .preview-btn {
+          .posa;
+          left: 5px;
+          bottom: 5px;
+          .fz(12);
+          .p(2px 5px);
+          .c(@themes);
+          .bc(@grayE);
+          .tran;
+          &:hover {
+            .bc(rgba(0, 0, 0, 0.9));
+            .c(@white);
+          }
         }
         .el-icon-close {
           .posa;
