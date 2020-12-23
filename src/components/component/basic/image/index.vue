@@ -99,27 +99,8 @@ export default {
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       if (content) {
         styles["backgroundColor"] = "transparent";
+        styles["backgroundImage"] = "none";
       }
-      // if (backgroundType == "purity") {
-      //   //纯色
-      //   if (backgroundColor) {
-      //     styles["backgroundColor"] = backgroundColor;
-      //   }
-      //   if (backgroundImage) {
-      //     styles["backgroundImage"] = `url(${this.$loadImgUrl(
-      //       backgroundImage
-      //     )})`;
-      //     if (backgroundRepeat) {
-      //       styles["backgroundRepeat"] = backgroundRepeat;
-      //     }
-      //     if (backgroundSize) {
-      //       styles["backgroundSize"] = backgroundSize;
-      //     }
-      //   }
-      // } else if (backgroundType == "gradient") {
-      //   //渐变
-      //   styles = { ...styles, ...gradientStyle };
-      // }
       return styles || {};
     },
     imageStyle() {

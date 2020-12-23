@@ -590,6 +590,9 @@
               {{ $lang(info.content ? "替换图片" : "选择图片") }}</el-button
             >
           </bm-upload>
+          <el-button v-if="info.content" @click="info.content = ''">{{
+            $lang("重置")
+          }}</el-button>
         </p>
         <template v-if="info.content"
           ><p>

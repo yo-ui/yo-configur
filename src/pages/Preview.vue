@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="bm-preview-page"
-    :style="canvas.pageColor ? `background-color:${canvas.pageColor}` : ''"
-  >
+  <div class="bm-preview-page" :style="pageStyle">
     <div class="flex-content">
       <div class="content-box">
         <div class="zoom-box" v-if="canvas.scaleable">
@@ -18,7 +15,7 @@
               <i class="el-icon-zoom-in"></i> </el-button
           ></el-button-group>
         </div>
-        <div class="view-box" ref="viewBox" :style="canvasBoxStyle">
+        <div class="view-box" ref="viewBox" :style="viewBoxStyle">
           <div
             class="canvas-box"
             ref="canvasBox"
@@ -229,21 +226,51 @@ export default {
       }
       return styles;
     },
-    canvasBoxStyle() {
+    pageStyle() {
+      let { canvas = {}, gradientStyle } = this;
+      let { pageColor = "", page = {} } = canvas || {};
+      let {
+        backgroundSize = "",
+        backgroundImage = "",
+        backgroundRepeat = "",
+        backgroundType = ""
+      } = page || {};
+      let styles = {};
+      if (pageColor) {
+        styles["backgroundImage"] = "none";
+        styles["backgroundColor"] = pageColor;
+      }
+      styles["backgroundSize"] = "auto";
+      styles["backgroundPosition"] = "inherit";
+      if (backgroundType == "purity") {
+        //纯色
+        if (pageColor) {
+          styles["backgroundColor"] = pageColor;
+        }
+        if (backgroundImage) {
+          styles["backgroundImage"] = `url(${this.$loadImgUrl(
+            backgroundImage
+          )})`;
+
+          if (backgroundRepeat) {
+            styles["backgroundRepeat"] = backgroundRepeat;
+          }
+          if (backgroundSize) {
+            styles["backgroundSize"] = backgroundSize;
+          }
+        }
+      } else if (backgroundType == "gradient") {
+        //渐变
+        styles = { ...styles, ...gradientStyle(page) };
+      }
+      return styles;
+    },
+    viewBoxStyle() {
       let { boxZoom = 1 } = this;
-      // boxZoom = boxZoom;
       let styles = {
-        // left: `${left}px`,
-        // top: `${top}px`,
-        // backgroundColor: `${backgroundColor}`,
         transform: `scale(${boxZoom})`,
-        // webkitTransform: `scale(${zoom})`,
         transformOrigin: `0 0`
-        // transformOrigin: `center top`
       };
-      // if (backgroundImage) {
-      //   styles["backgroundImage"] = `url(${backgroundImage})`;
-      // }
       return styles || {};
     },
     canvasStyle() {
