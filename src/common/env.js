@@ -83,6 +83,7 @@ const Constants = {
     //存储key
     LANGUAGE: PLATFORM + "_LANGUAGE", //站点语言存储
     PLATFORM: PLATFORM + "_PLATFORM", //平台标识存储
+    IMAGELIST: PLATFORM + "_IMAGELIST", //上传图片列表
     // ACCOUNTMENULIST: PLATFORM + "_ACCOUNTMENULIST", //账户菜单列表
     // ACCOUNTMENUMAP: PLATFORM + "_ACCOUNTMENUMAP", //账户菜单权限
     USERKEY: {

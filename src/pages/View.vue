@@ -604,6 +604,10 @@ export default {
     // 设备点位参数
     commonDeviceListFunc(ids = [], callback) {
       let value = [];
+      if (!(ids.length > 0)) {
+        callback();
+        return;
+      }
       this.commonDeviceListAction({ ids: JSON.stringify(ids) })
         .then(({ data }) => {
           let { code = "", result = [], message = "" } = data || {};

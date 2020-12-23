@@ -5,6 +5,7 @@ export default {
   showMessage: true, //是否显示验证消息
   messageShowClose: true, //消息提示是否显示关闭
   ruleMessage: true, //是否提示弹窗验证消息
+  imageList: [], //图片列表
   lang:
     bmCommon.getItem(Constants.LOCALSTORAGEKEY.LANGUAGE) ||
     bmCommon.variablePool.language ||

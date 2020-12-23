@@ -204,6 +204,7 @@
     <bm-control ref="bmControl"></bm-control>
     <bm-device ref="bmDevice"></bm-device>
     <bm-point ref="bmPoint"></bm-point>
+    <bm-upload-box ref="bmUploadBox"></bm-upload-box>
   </div>
 </template>
 <script>
@@ -273,7 +274,11 @@ export default {
         /* webpackChunkName: "iot-device-com" */ "@/components/data/device"
       ),
     bmPoint: () =>
-      import(/* webpackChunkName: "iot-point-com" */ "@/components/data/point")
+      import(/* webpackChunkName: "iot-point-com" */ "@/components/data/point"),
+    bmUploadBox: () =>
+      import(
+        /* webpackChunkName: "iot-upload-com" */ "@/components/common/upload-box"
+      )
   },
   computed: {
     ...mapGetters({
@@ -340,8 +345,6 @@ export default {
         styles["backgroundImage"] = "none";
         styles["backgroundColor"] = pageColor;
       }
-      styles["backgroundSize"] = "auto";
-      styles["backgroundPosition"] = "inherit";
       if (backgroundType == "purity") {
         //纯色
         if (pageColor) {
@@ -351,6 +354,8 @@ export default {
           styles["backgroundImage"] = `url(${this.$loadImgUrl(
             backgroundImage
           )})`;
+          styles["backgroundSize"] = "auto";
+          styles["backgroundPosition"] = "inherit";
 
           if (backgroundRepeat) {
             styles["backgroundRepeat"] = backgroundRepeat;
@@ -360,6 +365,8 @@ export default {
           }
         }
       } else if (backgroundType == "gradient") {
+        styles["backgroundSize"] = "auto";
+        styles["backgroundPosition"] = "inherit";
         //渐变
         styles = { ...styles, ...gradientStyle(page) };
       }
@@ -610,6 +617,8 @@ export default {
       let viewBox = this.$refs.viewBox;
       // 注册鼠标事件
       $(viewBox).on("mousedown", this.viewBoxMousedownEvent);
+      //滚动事件
+      $(viewBox).on("mousewheel DOMMouseScroll", this.mouseScrollEvent);
       // 注册右键菜单事件
       $(viewBox).on("contextmenu", this.viewBoxContextmenuEvent);
       //注册按键键盘事件
@@ -619,6 +628,10 @@ export default {
       //注册绑定设备事件
       $vm.$on("bind-device", item => {
         this.addDataEvent(item);
+      });
+      //注册上传事件
+      $vm.$on("upload-show", item => {
+        this.$refs.bmUploadBox.show(item);
       });
       //注册显示控制处理事件
       $vm.$on("control", item => {
@@ -645,6 +658,24 @@ export default {
       });
       // 默认选择画布
       this.selectComAction();
+    },
+    mouseScrollEvent(e) {
+      e.preventDefault();
+      // e.stopPropagation();
+      let wheel = e.originalEvent.wheelDelta || -e.originalEvent.detail;
+      let delta = Math.max(-1, Math.min(1, wheel));
+      // let scrollTop=$(".content-box").scrollTop()
+      // bmCommon.log();
+      if (delta < 0) {
+        //向下滚动
+        bmCommon.log("向下滚动");
+        this.zoomEvent(-1);
+      } else {
+        //向上滚动
+        bmCommon.log("向上滚动");
+        this.zoomEvent(1);
+      }
+      // return false;
     },
     loadWebsocketData(widgetList = []) {
       let set = new Set();
@@ -1448,6 +1479,10 @@ export default {
     // 设备点位参数
     commonDeviceListFunc(ids = [], callback) {
       let value = [];
+      if (!(ids.length > 0)) {
+        callback();
+        return;
+      }
       this.commonDeviceListAction({ ids: JSON.stringify(ids) })
         .then(({ data }) => {
           let { code = "", result = [], message = "" } = data || {};

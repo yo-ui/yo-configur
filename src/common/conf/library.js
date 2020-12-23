@@ -61,7 +61,7 @@ let baseData = {
   backgroundRepeat: "repeat",
   borderWidth: 1,
   comName: "", //
-  order: "",
+  order: 0,
   borderStyle: "none",
   borderColor: "#000",
   borderRadius: 0,

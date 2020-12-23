@@ -17,7 +17,19 @@ export default {
     } else {
       bmCommon.removeItem(Constants.LOCALSTORAGEKEY.USERKEY.USERINFO);
     }
-    state.userInfo = item;
+    state.userInfo = item || {};
+  },
+  //设置上传图片列表
+  setImageList(state, item) {
+    if (item) {
+      bmCommon.setItem(
+        Constants.LOCALSTORAGEKEY.IMAGELIST,
+        JSON.stringify(item)
+      );
+    } else {
+      bmCommon.removeItem(Constants.LOCALSTORAGEKEY.IMAGELIST);
+    }
+    state.imageList = item || [];
   },
   //设置缓存对象
   setDataCacheMap(state, item) {

@@ -1,20 +1,9 @@
 <template>
-  <el-upload
-    :auto-upload="true"
-    class="upload-box"
-    drag
-    :data="uploadData"
-    :headers="uploadHeaders"
-    ref="upload"
-    name="files"
-    :limit="1"
-    :action="uploadUrl"
-    :show-file-list="false"
-    :on-success="onSuccessEvent"
-    :before-upload="beforeUploadEvent"
-  >
+  <div class="bm-upload-com">
     <template v-if="$slots.default">
-      <slot></slot>
+      <div class="upload-btn" @click="showEvent">
+        <slot></slot>
+      </div>
     </template>
     <template v-else>
       <template v-if="imageUrl">
@@ -38,7 +27,7 @@
         </div>
       </template>
     </template>
-  </el-upload>
+  </div>
 </template>
 
 <script>
@@ -54,16 +43,23 @@ export default {
       // uploadUrl: _URL.upload2OssUrl,
       // 预览图片地址
       imageUrl: "",
-
+      // showDialogStatus: false,
       uploadData: {
         subDir: Constants.UPLOADDIR.IMG
       }
     };
   },
+  props: {
+    multiple: {
+      type: Boolean,
+      default: false
+    }
+  },
   computed: {
     ...mapGetters({
       platform: "getPlatform",
-      userInfo: "getUserInfo"
+      userInfo: "getUserInfo",
+      imageList: "getImageList"
     }),
     uploadUrl() {
       let { platform = "" } = this;
@@ -78,13 +74,32 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(),
+    ...mapMutations({
+      setImageList: "setImageList"
+    }),
     ...mapActions(),
     // 删除图片
     removeImageEvent() {
       // let { condition } = this;
       // condition.image = "";
       this.imageUrl = "";
+    },
+    // submitEvent() {
+    //   let { imageUrl = "" } = this;
+    //   this.showDialogStatus = false;
+    //   this.$emit("success", imageUrl);
+    // },
+    showEvent() {
+      // this.showDialogStatus = true;
+      let { multiple = false } = this;
+      let callback = imageUrls => {
+        if (multiple) {
+          this.$emit("success", imageUrls);
+        } else {
+          this.$emit("success", imageUrls[0]);
+        }
+      };
+      $vm.$emit("upload-show", { callback });
     },
     //预览图片
     showImagePreviewEvent() {
@@ -159,4 +174,19 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less" scoped>
+@import (reference) "./../../assets/less/common.less";
+.bm-upload-com {
+  .flex(none) !important;
+  .mr(15);
+  .df;
+  .br(0);
+  // }
+  /deep/ .el-upload-dragger {
+    .bor(none);
+    .br(0);
+    width: auto;
+    height: auto;
+  }
+}
+</style>

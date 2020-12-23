@@ -19,7 +19,7 @@ export default {
     };
   },
   getUserInfo(state) {
-    let userInfo = state.userInfo;
+    let { userInfo = {} } = state;
     if (!userInfo) {
       userInfo = bmCommon.getItem(Constants.LOCALSTORAGEKEY.USERKEY.USERINFO);
       userInfo = JSON.parse(userInfo);
@@ -29,6 +29,19 @@ export default {
       userInfo = {};
     }
     return userInfo;
+  },
+  // 获取图片列表
+  getImageList(state) {
+    let { imageList = [] } = state;
+    if (!(imageList && imageList.length > 0)) {
+      imageList = bmCommon.getItem(Constants.LOCALSTORAGEKEY.IMAGELIST);
+      imageList = JSON.parse(imageList);
+    }
+    imageList = JSON.parse(JSON.stringify(imageList));
+    if (!imageList) {
+      imageList = [];
+    }
+    return imageList;
   },
   getPlatform(state) {
     let platform = state.platform;
