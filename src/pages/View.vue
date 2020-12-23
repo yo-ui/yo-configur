@@ -186,6 +186,7 @@ export default {
       let styles = {};
       if (backgroundImage) {
         styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
+        styles["backgroundPosition"] = "0 0";
       }
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;

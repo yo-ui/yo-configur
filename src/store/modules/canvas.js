@@ -3,6 +3,25 @@
 import bmCommon from "@/common/common";
 // import { post, get } from "@/store/axios";
 import { Constants } from "@/common/env";
+const gradientStyle = {
+  type: "linear", //渐变类型  linear 线性  radial 径向
+  angle: 0,
+  center: "50% 50%",
+  values: [0, 100],
+  radialShape: "circle",
+  valueIndex: 0,
+  valueOptions: [
+    //   {
+    //   // disabled: true
+    // }, {
+    //   // disabled: true
+    // }
+  ],
+  valueList: [
+    { code: "#108cee", value: 0 },
+    { code: "#545fc8", value: 100 }
+  ]
+};
 export default {
   namespaced: true, //必须加它不然报错
   strict: process.env.NODE_ENV !== "production",
@@ -40,25 +59,7 @@ export default {
       pageColor: "#fff", //页面背景颜色
       uploadPoster: "", //上传封面图
       backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
-      gradientStyle: {
-        type: "linear", //渐变类型  linear 线性  radial 径向
-        angle: 0,
-        center: "50% 50%",
-        values: [0, 100],
-        radialShape: "circle",
-        valueIndex: 0,
-        valueOptions: [
-          //   {
-          //   // disabled: true
-          // }, {
-          //   // disabled: true
-          // }
-        ],
-        valueList: [
-          { code: "#108cee", value: 0 },
-          { code: "#545fc8", value: 100 }
-        ]
-      },
+      gradientStyle,
       backgroundColor: "#fff", //画布背景颜色
       backgroundImage: "", //画布背景图片
       backgroundSize: "",
@@ -66,6 +67,13 @@ export default {
       isGrid: true, //是否显示网格
       scaleable: false, //是否显示缩放
       locked: false, //是否可拖动 是否锁定
+      page: {
+        gradientStyle,
+        backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
+        backgroundImage: "", //画布背景图片
+        backgroundSize: "",
+        backgroundRepeat: "no-repeat" //背景图片是否平铺
+      },
       gridStyle: {
         type: "1",
         width: 20,

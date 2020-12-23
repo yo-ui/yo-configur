@@ -90,7 +90,7 @@
           <el-slider
             v-if="info.scaleable"
             v-model="info.width"
-            :max="1980"
+            :max="4000"
             :format-tooltip="val => val"
           ></el-slider>
         </p>
@@ -113,7 +113,7 @@
           <el-slider
             v-if="info.scaleable"
             v-model="info.height"
-            :max="1080"
+            :max="4000"
             :format-tooltip="val => val"
           ></el-slider>
         </p>
@@ -1793,7 +1793,7 @@
                 </el-option>
               </el-select>
           </div>
-        </template>            
+        </template>
 
               </el-collapse-item> -->
               <el-collapse-item title="" name="empty" disabled class="unfold">

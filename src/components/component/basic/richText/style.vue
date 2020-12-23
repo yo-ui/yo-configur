@@ -1,20 +1,5 @@
 <template>
   <div class="bm-rich-text-style-com" @keydown.stop>
-    <!-- <h2>{{ $lang("功能选择") }}</h2>
-    <p>
-      <i
-        class="el-icon-rank"
-        :class="{ active: info.action == 'select' }"
-        @click="actionEvent('select')"
-        :title="$lang('选择组件')"
-      ></i>
-      <i
-        class="el-icon-thumb"
-        :class="{ active: info.action == 'move' }"
-        @click="actionEvent('move')"
-        :title="$lang('移动画布')"
-      ></i>
-    </p> -->
     <el-collapse v-model="activeNames">
       <el-collapse-item :title="info.name" name="name" disabled>
         <template slot="title">
@@ -74,7 +59,7 @@
           </template>
           <el-slider
             v-model="info.width"
-            :max="1980"
+            :max="4000"
             :format-tooltip="val => val"
           ></el-slider>
         </p>
@@ -94,7 +79,7 @@
           </template>
           <el-slider
             v-model="info.height"
-            :max="1080"
+            :max="4000"
             :format-tooltip="val => val"
           ></el-slider>
         </p>
@@ -788,7 +773,7 @@
             inactive-color="#ccc"
           ></el-switch>
         </p>
-        
+
         <template v-if="info.textShadowable">
           <p class="shadow-box">
             <span class="c-box">

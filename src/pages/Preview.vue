@@ -199,6 +199,7 @@ export default {
       let styles = {};
       if (backgroundImage) {
         styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
+        styles["backgroundPosition"] = "0 0";
       }
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
@@ -551,7 +552,7 @@ export default {
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
       let { left, top, locked = false } = canvas || {};
-      bmCommon.log("preview=>mousedownEvent",locked);
+      bmCommon.log("preview=>mousedownEvent", locked);
       if (locked) {
         return;
       }

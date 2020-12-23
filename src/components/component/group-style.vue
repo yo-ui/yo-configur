@@ -38,7 +38,7 @@
           <el-slider
             v-if="info.scaleable"
             v-model="info.width"
-            :max="1980"
+            :max="4000"
             :format-tooltip="val => val"
           ></el-slider>
         </p>
@@ -59,7 +59,7 @@
           <el-slider
             v-if="info.scaleable"
             v-model="info.height"
-            :max="1080"
+            :max="4000"
             :format-tooltip="val => val"
           ></el-slider>
         </p>
@@ -901,7 +901,7 @@
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 // import {componentLibrary} from "@/common/conf/library";
 import { Constants } from "@/common/env";
 const { mapActions, mapMutations, mapGetters } = Vuex;
@@ -914,7 +914,7 @@ for (let i in Constants.BASEDATA) {
     watches[key] = {
       handler(newVal, oldVal) {
         let { activeCom = {} } = this;
-        let { type = "" } = activeCom || {};
+        // let { type = "" } = activeCom || {};
         let { parentId = "" } = activeCom || {};
         let { activeComs = [], moving = false, selectBox = {} } = this;
         let { moving: _moving = false } = selectBox || {};
@@ -1004,10 +1004,10 @@ export default {
     // });
   },
   components: {
-    bmUpload: () =>
-      import(
-        /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
-      )
+    // bmUpload: () =>
+    //   import(
+    //     /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
+    //   )
   },
   beforeDestroy() {
     // $(document).off("mousedown", this.mousedownEvent);

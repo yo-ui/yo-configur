@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="bm-index-page"
-    :style="canvas.pageColor ? `background-color:${canvas.pageColor}` : ''"
-  >
+  <div class="bm-index-page" :style="pageStyle">
     <bm-header ref="bmHeader"></bm-header>
     <bm-nav ref="bmNav"></bm-nav>
     <div class="flex-content">
@@ -12,6 +9,19 @@
       ></bm-widget-list>
       <!-- <div v-else></div> -->
       <div class="content-box">
+        <div class="zoom-box">
+          <el-button-group v-if="canvas.scaleable">
+            <el-button @click="zoomEvent(-20)">
+              <i class="el-icon-zoom-out"></i>
+            </el-button>
+            <el-button @click="zoomEvent(0)">
+              <i class="el-icon-search"></i>
+              {{ parseInt(getZoom * 100) }}%
+            </el-button>
+            <el-button @click="zoomEvent(20)">
+              <i class="el-icon-zoom-in"></i> </el-button
+          ></el-button-group>
+        </div>
         <template v-if="canvas.left == 0">
           <div
             class="left-top-rule"
@@ -51,25 +61,14 @@
           </div>
         </template>
         <div class="view-box" ref="viewBox" :style="viewBoxStyle">
-          <!-- {{activeComIds}} -->
-          <!-- :active="activeComIds == item.id" -->
-          <!-- @drop="dropEvent" -->
           <div
             class="canvas-box"
             ref="canvasBox"
             :style="canvasStyle"
             :class="canvas.action"
           >
-            <!-- @mousedown.native.stop.prevent="mousedownEvent(item)" -->
             <div class="bg" :style="bgStyle">
-              <div class="grid" :style="gridStyle">
-                <!-- {{gradientStyle}}
-                {{canvasStyle}} -->
-                <!-- {{bgStyle}} -->
-                <!-- {{canvas}} -->
-                <!-- {{ activeCom }} -->
-                <!-- {{ copyCom }} -->
-              </div>
+              <div class="grid" :style="gridStyle"></div>
             </div>
             <bm-com
               class="edit"
@@ -327,6 +326,46 @@ export default {
       let order = Math.max(...orders);
       return order;
     },
+    pageStyle() {
+      let { canvas = {}, gradientStyle } = this;
+      let { pageColor = "", page = {} } = canvas || {};
+
+      let {
+        backgroundSize = "",
+        backgroundImage = "",
+        backgroundRepeat = "",
+        backgroundType = ""
+      } = page || {};
+      let styles = {};
+      if (pageColor) {
+        styles["backgroundImage"] = "none";
+        styles["backgroundColor"] = pageColor;
+      }
+
+      if (backgroundRepeat) {
+        styles["backgroundRepeat"] = backgroundRepeat;
+      }
+      if (backgroundSize) {
+        styles["backgroundSize"] = backgroundSize;
+      }
+      if (backgroundType == "purity") {
+        //纯色
+        if (pageColor) {
+          styles["backgroundColor"] = pageColor;
+        }
+        if (backgroundImage) {
+          styles["backgroundImage"] = `url(${this.$loadImgUrl(
+            backgroundImage
+          )})`;
+        }
+      } else if (backgroundType == "gradient") {
+        styles["backgroundSize"] = "none";
+        styles["backgroundPosition"] = "inherit";
+        //渐变
+        styles = { ...styles, ...gradientStyle(page) };
+      }
+      return styles;
+    },
     viewBoxStyle() {
       let { leftMenuStatus = false, rightMenuStatus = false } = this;
       let styles = {};
@@ -365,6 +404,7 @@ export default {
       let styles = {};
       if (backgroundImage) {
         styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
+        styles["backgroundPosition"] = "0 0";
       }
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
@@ -376,29 +416,31 @@ export default {
     },
     //渐变颜色样式
     gradientStyle() {
-      let { canvas = {} } = this;
-      let { gradientStyle = {} } = canvas || {};
-      let {
-        type = "",
-        angle = "",
-        center = "",
-        radialShape = "",
-        valueList = []
-      } = gradientStyle || {};
-      let styles = {};
-      let colors = valueList.map(item => `${item.code} ${item.value}%`);
-      if (type == "linear") {
-        styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
-      } else if (type == "radial") {
-        styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
-      }
-      return styles;
+      return (info = {}) => {
+        // let { info = {} } = this;
+        let { gradientStyle = {} } = info || {};
+        let {
+          type = "",
+          angle = "",
+          center = "",
+          radialShape = "",
+          valueList = []
+        } = gradientStyle || {};
+        let styles = {};
+        let colors = valueList.map(item => `${item.code} ${item.value}%`);
+        if (type == "linear") {
+          styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
+        } else if (type == "radial") {
+          styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
+        }
+        return styles;
+      };
     },
     canvasStyle() {
       let {
         zoom = 0,
         canvas = {},
-        gradientStyle = {},
+        gradientStyle,
         leftMenuStatus = true
       } = this;
       let {
@@ -430,7 +472,7 @@ export default {
         styles["backgroundColor"] = backgroundColor;
       } else if (backgroundType == "gradient") {
         //渐变
-        styles = { ...styles, ...gradientStyle };
+        styles = { ...styles, ...gradientStyle(canvas) };
       }
       if (height) {
         styles["height"] = `${height}px`;

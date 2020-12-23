@@ -68,7 +68,7 @@
           </template>
           <el-slider
             v-model="info.width"
-            :max="1980"
+            :max="4000"
             :format-tooltip="val => val"
           ></el-slider>
         </p>
@@ -88,7 +88,7 @@
           </template>
           <el-slider
             v-model="info.height"
-            :max="1080"
+            :max="4000"
             :format-tooltip="val => val"
           ></el-slider>
         </p>

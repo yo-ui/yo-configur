@@ -31,10 +31,10 @@ export default {
     }
   },
   components: {
-    bmUpload: () =>
-      import(
-        /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
-      )
+    // bmUpload: () =>
+    //   import(
+    //     /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
+    //   )
   },
   computed: {
     ...mapGetters(),
@@ -62,7 +62,7 @@ export default {
       };
     },
     comStyle() {
-      let { info = {}, gradientStyle = {} } = this;
+      let { info = {} } = this;
       let {
         width = "",
         height = "",
@@ -74,11 +74,11 @@ export default {
         borderRadiusBottomLeft = 0,
         borderRadiusBottomRight = 0,
         // scale = "",
-        backgroundColor = "",
-        backgroundType = "",
-        backgroundImage = "",
-        backgroundRepeat = "",
-        backgroundSize = ""
+        // backgroundColor = "",
+        // backgroundType = "",
+        content = ""
+        // backgroundRepeat = "",
+        // backgroundSize = ""
       } = info || {};
       let styles = {};
       if (width) {
@@ -97,26 +97,29 @@ export default {
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
-      if (backgroundType == "purity") {
-        //纯色
-        if (backgroundColor) {
-          styles["backgroundColor"] = backgroundColor;
-        }
-        if (backgroundImage) {
-          styles["backgroundImage"] = `url(${this.$loadImgUrl(
-            backgroundImage
-          )})`;
-          if (backgroundRepeat) {
-            styles["backgroundRepeat"] = backgroundRepeat;
-          }
-          if (backgroundSize) {
-            styles["backgroundSize"] = backgroundSize;
-          }
-        }
-      } else if (backgroundType == "gradient") {
-        //渐变
-        styles = { ...styles, ...gradientStyle };
+      if (content) {
+        styles["backgroundColor"] = "transparent";
       }
+      // if (backgroundType == "purity") {
+      //   //纯色
+      //   if (backgroundColor) {
+      //     styles["backgroundColor"] = backgroundColor;
+      //   }
+      //   if (backgroundImage) {
+      //     styles["backgroundImage"] = `url(${this.$loadImgUrl(
+      //       backgroundImage
+      //     )})`;
+      //     if (backgroundRepeat) {
+      //       styles["backgroundRepeat"] = backgroundRepeat;
+      //     }
+      //     if (backgroundSize) {
+      //       styles["backgroundSize"] = backgroundSize;
+      //     }
+      //   }
+      // } else if (backgroundType == "gradient") {
+      //   //渐变
+      //   styles = { ...styles, ...gradientStyle };
+      // }
       return styles || {};
     },
     imageStyle() {
