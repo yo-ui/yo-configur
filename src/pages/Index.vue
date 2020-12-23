@@ -329,7 +329,6 @@ export default {
     pageStyle() {
       let { canvas = {}, gradientStyle } = this;
       let { pageColor = "", page = {} } = canvas || {};
-
       let {
         backgroundSize = "",
         backgroundImage = "",
@@ -341,13 +340,8 @@ export default {
         styles["backgroundImage"] = "none";
         styles["backgroundColor"] = pageColor;
       }
-
-      if (backgroundRepeat) {
-        styles["backgroundRepeat"] = backgroundRepeat;
-      }
-      if (backgroundSize) {
-        styles["backgroundSize"] = backgroundSize;
-      }
+      styles["backgroundSize"] = "auto";
+      styles["backgroundPosition"] = "inherit";
       if (backgroundType == "purity") {
         //纯色
         if (pageColor) {
@@ -357,10 +351,15 @@ export default {
           styles["backgroundImage"] = `url(${this.$loadImgUrl(
             backgroundImage
           )})`;
+
+          if (backgroundRepeat) {
+            styles["backgroundRepeat"] = backgroundRepeat;
+          }
+          if (backgroundSize) {
+            styles["backgroundSize"] = backgroundSize;
+          }
         }
       } else if (backgroundType == "gradient") {
-        styles["backgroundSize"] = "none";
-        styles["backgroundPosition"] = "inherit";
         //渐变
         styles = { ...styles, ...gradientStyle(page) };
       }

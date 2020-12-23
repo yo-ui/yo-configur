@@ -97,6 +97,7 @@ const Constants = {
   COMPONENTPANEL,
   BASEDATA,
   BACKGROUNDSIZELIST: [
+    { code: "", name: "默认" },
     { code: "100% 100%", name: "拉伸以充满画布" },
     { code: "cover", name: "充满画布" },
     { code: "contain", name: "适合于画布" }
