@@ -148,20 +148,12 @@ for (let i in Constants.BASEDATA) {
     watches[key] = {
       handler(newVal, oldVal) {
         let { activeCom = {} } = this;
-        let { type = "", parentId = "" } = activeCom || {};
-        // let { parentId = "" } = newVal || {};
+        let { parentId = "" } = activeCom || {};
         let { activeComs = [], moving = false, selectBox = {} } = this;
         let { moving: _moving = false } = selectBox || {};
         let { length = 0 } = activeComs || [];
-        // let { com = {} } = activeComs || [];
-        // let { parentId = "" } = com || {};
-        // if (newVal != oldVal) {
-        //   this.createHistoryAction();
-        // }
-        // bmCommon.log("newVal=", newVal, "oldVal=", oldVal, "属性发生变化");
         if (!(moving || _moving || parentId)) {
           if (length > 1) {
-            // bmCommon.log("info 属性变更", type, "parentId=", parentId);
             activeComs.forEach(item => {
               item[i] = newVal;
             });
@@ -312,7 +304,6 @@ export default {
     }),
     ...mapActions({
       selectComAction: "canvas/selectCom",
-      createHistoryAction: "canvas/createHistory",
       selectComsAction: "canvas/selectComs"
     }),
     selectComEvent(item) {

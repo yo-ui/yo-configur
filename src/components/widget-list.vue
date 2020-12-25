@@ -97,15 +97,12 @@ export default {
   },
   methods: {
     ...mapMutations({
-      // setWidgetList: "canvas/setWidgetList", //设置组件列表
       setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
       setDraging: "canvas/setDraging" //设置连接点信息
     }),
     ...mapActions({
       selectComAction: "canvas/selectCom",
-      // upload2OssAction: "upload2Oss",
       createHistoryAction: "canvas/createHistory"
-      // createRecordAction: "canvas/createRecord"
     }),
     initEvent() {
       $(document).on("dragstart", this.dragstartEvent);
@@ -116,7 +113,6 @@ export default {
       this.dragleaveEvent(e);
     },
     dragstartEvent(e) {
-      //dataTransfer.setData()方法设置数据类型和拖动的数据
       e.stopPropagation();
       // e.preventDefault();
       let { originalEvent = {} } = e;
@@ -227,9 +223,6 @@ export default {
         this.$nextTick(() => {
           this.selectComAction(id);
         });
-        // this.createRecordAction();
-        // this.uploadImg();
-        // this.setWidgetList(widgetList);
       }
       this.dragleaveEvent(e);
     },

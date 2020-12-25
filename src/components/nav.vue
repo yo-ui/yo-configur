@@ -701,8 +701,6 @@ export default {
     },
     //组合  打散操作
     groupCommandEvent(cmd) {
-      // let { condition } = this;
-      // condition.groupType = cmd;
       if (!cmd) {
         return;
       }
@@ -715,7 +713,6 @@ export default {
           break;
       }
       this.showGroupPopoverStatus = false;
-      // this.createHistoryAction();
     },
     // 组合
     composeEvent() {
@@ -905,33 +902,40 @@ export default {
       switch (cmd) {
         case "top":
           this.alignTopEvent();
+          this.createHistoryAction();
           break;
         case "bottom":
           this.alignBottomEvent();
+          this.createHistoryAction();
           break;
         case "left":
           this.alignLeftEvent();
+          this.createHistoryAction();
           break;
         case "right":
           this.alignRightEvent();
+          this.createHistoryAction();
           break;
         case "left-right":
           this.alignLeftRightEvent();
+          this.createHistoryAction();
           break;
         case "top-bottom":
           this.alignTopBottomEvent();
+          this.createHistoryAction();
           break;
         case "v-center":
           this.alignVCenterEvent();
+          this.createHistoryAction();
           break;
         case "h-center":
           this.alignHCenterEvent();
+          this.createHistoryAction();
           break;
         default:
           break;
       }
       this.showAlignPopoverStatus = false;
-      this.createHistoryAction();
     },
     // 左右对齐
     alignLeftRightEvent() {
@@ -1061,21 +1065,24 @@ export default {
       switch (cmd) {
         case "up":
           this.moveUpEvent();
+          this.createHistoryAction();
           break;
         case "down":
           this.moveDownEvent();
+          this.createHistoryAction();
           break;
         case "top":
           this.moveTopEvent();
+          this.createHistoryAction();
           break;
         case "bottom":
           this.moveBottomEvent();
+          this.createHistoryAction();
           break;
         default:
           break;
       }
       this.showArrangePopoverStatus = false;
-      this.createHistoryAction();
     },
     // 上移一层
     moveUpEvent() {

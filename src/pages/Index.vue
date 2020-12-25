@@ -1246,32 +1246,8 @@ export default {
       this.createHistoryAction();
       this.showContextMenuStatus = false;
     },
-    // deleteItem(item = {}) {
-    //   let { widgetList = [] } = this;
-    //   let { id = "" } = item || {};
-    //   let index = widgetList.findIndex(item => id == item.id);
-    //   widgetList.splice(index, 1);
-    //   this.selectComAction();
-    //   // this.showContextMenuStatus = false;
-    // },
     // 删除
     deleteEvent() {
-      // let { activeCom = {}, activeComs = [] } = this;
-      // let { length = 0 } = activeComs || [];
-      // if (length > 1) {
-      //   activeComs.forEach(item => {
-      //     this.deleteItem(item);
-      //   });
-      // } else {
-      //   this.deleteItem(activeCom);
-      //   // let { id = "" } = activeCom;
-      //   // let index = widgetList.findIndex(item => id == item.id);
-      //   // widgetList.splice(index, 1);
-      //   // this.selectComAction();
-      //   // this.showContextMenuStatus = false;
-      // }
-      // this.selectComAction();
-      // this.createHistoryAction();
       $vm.$emit("delete-command");
       this.showContextMenuStatus = false;
     },
@@ -1287,85 +1263,25 @@ export default {
       //排序
       $vm.$emit("order-command", "up");
       this.showContextMenuStatus = false;
-      // let { activeCom = {}, widgetList = [] } = this;
-      // let { order = "" } = activeCom;
-      // let orders = widgetList.map(item => item.order).sort((a, b) => a - b);
-      // let _order = orders.find(item => item > order);
-      // let obj = widgetList.find(item => _order == item.order);
-      // // let obj = widgetList.find(item => order < item.order);
-      // // let { order: _order = "" } = obj || {};
-      // activeCom.order = _order;
-      // obj.order = order;
-      // this.createHistoryAction();
     },
     // 下移一层
     moveDownEvent() {
       //排序
       $vm.$emit("order-command", "down");
       this.showContextMenuStatus = false;
-      // let { activeCom = {}, widgetList = [] } = this;
-      // let { order = "" } = activeCom;
-      // let orders = widgetList.map(item => item.order).sort((a, b) => b - a);
-      // // bmCommon.log("orders=>", orders, order);
-      // let _order = orders.find(item => item < order);
-      // let obj = widgetList.find(item => _order == item.order);
-      // // bmCommon.log("obj=>", _order, obj.order);
-      // // let { order: _order = "" } = obj || {};
-      // activeCom.order = _order;
-      // obj.order = order;
-      // this.createHistoryAction();
     },
     // 置底
     moveBottomEvent() {
       //排序
       $vm.$emit("order-command", "bottom");
       this.showContextMenuStatus = false;
-      // let { activeCom = {}, widgetList = [] } = this;
-      // let orders = widgetList.map(item => item.order);
-      // let order = Math.min(...orders);
-      // let { order: _order = 1 } = activeCom || {};
-      // if (order == _order) {
-      //   return;
-      // }
-      // widgetList.forEach(item => {
-      //   item.order++;
-      // });
-      // activeCom.order = 0;
-      // this.createHistoryAction();
     },
     // 置顶
     moveTopEvent() {
       //排序
       $vm.$emit("order-command", "top");
       this.showContextMenuStatus = false;
-      // let { activeCom = {}, widgetList = [] } = this;
-      // let orders = widgetList.map(item => item.order);
-      // let order = Math.max(...orders);
-      // let { order: _order = 1 } = activeCom || {};
-      // if (order == _order) {
-      //   return;
-      // }
-      // activeCom.order = order + 1;
-      // this.createHistoryAction();
     },
-    // // 获取登录信息
-    // commonVerifyInfoFunc(callback) {
-    //   let value = {};
-    //   this.commonVerifyInfoAction()
-    //     .then(({ data }) => {
-    //       let { code = "", result = {}, message = "" } = data || {};
-    //       if (code == Constants.CODES.SUCCESS) {
-    //         value = result || {};
-    //       } else {
-    //         bmCommon.error(message);
-    //       }
-    //       callback && callback(value || {});
-    //     })
-    //     .catch(err => {
-    //       callback && callback(value || {});
-    //       bmCommon.error("获取数据失败=>commonVerifyInfo", err);
-    //     });
-    // },
     // 获取画布信息
     canvasGetFunc(callback) {
       let value = {};

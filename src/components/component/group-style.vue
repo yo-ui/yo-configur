@@ -914,18 +914,12 @@ for (let i in Constants.BASEDATA) {
     watches[key] = {
       handler(newVal, oldVal) {
         let { activeCom = {} } = this;
-        // let { type = "" } = activeCom || {};
         let { parentId = "" } = activeCom || {};
         let { activeComs = [], moving = false, selectBox = {} } = this;
         let { moving: _moving = false } = selectBox || {};
-        // if (newVal != oldVal) {
-        //   this.createHistoryAction();
-        // }
-        // bmCommon.log("newVal=", newVal, "oldVal=", oldVal, "属性发生变化");
         let { length = 0 } = activeComs || [];
         if (!(moving || _moving || parentId)) {
           if (length > 1) {
-            // bmCommon.log("group 属性变更", type);
             activeComs.forEach(item => {
               item[i] = newVal;
             });
@@ -1025,9 +1019,7 @@ export default {
       // canvasMoving: "canvas/canvasMoving",
       // initMove: "canvas/initMove"
     }),
-    ...mapActions({
-      createHistoryAction: "canvas/createHistory"
-    }),
+    ...mapActions({}),
     // successCallback(url) {
     //   let { info = {} } = this;
     //   info.backgroundImage = url;
