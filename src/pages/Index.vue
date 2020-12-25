@@ -385,7 +385,7 @@ export default {
     },
     zoom: {
       get() {
-        return parseInt(this.getZoom * 100);
+        return this.getZoom * 100;
       },
       set(val) {
         this.setZoom(val / 100);

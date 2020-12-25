@@ -10,9 +10,9 @@
   >
     <el-image
       ref="imageRef"
-      v-if="imageList && imageList.length > 0"
-      :src="$loadImgUrl(currentImage || imageList[0])"
-      :preview-src-list="imageList.map(item => $loadImgUrl(item))"
+      v-if="pageDataList && pageDataList.length > 0"
+      :src="$loadImgUrl(currentImage || pageDataList[0])"
+      :preview-src-list="pageDataList.map(item => $loadImgUrl(item))"
       fit="fill"
       @click="selectImageEvent"
     >
@@ -20,7 +20,7 @@
     <div class="img-list">
       <div
         class="img-box"
-        v-for="(item, index) in imageList"
+        v-for="(item, index) in pageDataList"
         :key="index"
         @click="selectImageEvent(item)"
         :style="`background-image:url(${$loadImgUrl(item)})`"
@@ -59,6 +59,18 @@
         <i class="el-icon-plus"></i>
       </el-upload>
     </div>
+
+    <el-pagination
+      background
+      @size-change="handleSizeChangeEvent"
+      @current-change="handleCurrentChangeEvent"
+      :current-page="condition.pageNo"
+      :page-sizes="[5, 10, 20, 50, 100]"
+      :page-size="condition.pageSize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="pageDataList.length"
+    >
+    </el-pagination>
     <template #footer>
       <el-button @click="cancelEvent">{{ $lang("取消") }}</el-button>
       <el-button
@@ -77,6 +89,7 @@ import { URL as _URL } from "@/common/env";
 import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
+const PAGESIZE = 10;
 export default {
   data() {
     return {
@@ -91,7 +104,11 @@ export default {
         subDir: Constants.UPLOADDIR.IMG
       },
       condition: {
-        multipe: false
+        multipe: false,
+
+        pageNo: 1,
+        pageSize: PAGESIZE
+        // totalRecord: 0
       }
     };
   },
@@ -101,6 +118,11 @@ export default {
       userInfo: "getUserInfo",
       imageList: "getImageList"
     }),
+    pageDataList() {
+      let { condition, imageList = [] } = this;
+      let { pageNo = 1, pageSize = PAGESIZE } = condition;
+      return imageList.slice(pageSize * (pageNo - 1), pageSize * pageNo);
+    },
     // currentImage() {
     //   let { imageList = [] } = this;
     //   let [image = ""] = imageList || [];
@@ -126,6 +148,17 @@ export default {
     previewImageEvent(item) {
       this.currentImage = item;
       this.$refs.imageRef?.clickHandler();
+    },
+    // 切换每页数据
+    handleSizeChangeEvent(val) {
+      // console.log(`每页 ${val} 条`);
+      this.condition.pageNo = 1;
+      this.condition.pageSize = val;
+    },
+    // 切换页号
+    handleCurrentChangeEvent(val) {
+      // console.log(`当前页: ${val}`);
+      this.condition.pageNo = val;
     },
     // 删除图片
     removeImageEvent(item) {
@@ -265,18 +298,27 @@ export default {
     flex-direction: column;
     .el-dialog__body {
       .flex(1);
-      .pt(0);
-      .touch-y;
+      // .pt(0);
+      .p(0 15px);
+      .df;
+      flex-direction: column;
     }
     .el-image {
       // .db(none);
       .squ(0);
     }
     .img-list {
-      .df;
-      flex-wrap: wrap;
+      // .df;
+      .m(15px 0);
+      max-height: 50vh;
+      .flex(1);
+      // justify-content: flex-start;
+      // align-items: flex-start;
+      // flex-wrap: wrap;
+      .touch-y;
       .img-box {
         .posr;
+        .fl;
         .mr(15);
         .mb(15);
         .bg-img;
@@ -323,6 +365,7 @@ export default {
         }
       }
       .upload-btn {
+        .fl;
         .bor(1px solid @grayC);
         .squ(120);
         .fz(25);
