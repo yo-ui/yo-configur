@@ -611,7 +611,13 @@ export default {
       let { condition } = this;
       let { canvasId = "" } = condition;
       let subject = `/user/queue/canvas/${canvasId}`;
-      this.initConfigWebsocketAction({ subject, callback }).catch(err => {
+      this.initConfigWebsocketAction({
+        subject,
+        callback,
+        reConnection: () => {
+          this.initConfigWebsocketFunc(callback);
+        }
+      }).catch(err => {
         callback && callback(value || {});
         bmCommon.error("获取数据失败=>initConfigWebsocket", err);
       });
