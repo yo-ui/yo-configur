@@ -34,14 +34,14 @@ console.log(
 *          ┗┻┛ ┗┻┛+ + + + `)
 );
 module.exports = {
-  //应用子路径，项目部署的基础路径
+  // 应用子路径，项目部署的基础路径
   // publicPath: process.env.NODE_ENV === "production" ? "/" : "/",
   publicPath: "/",
-  //生产环境构建文件的目录
+  // 生产环境构建文件的目录
   outputDir: process.env.VUE_APP_API_HOST === "prod" ? "dist_prod" : "dist",
   // 放置静态资源的地方 (js/css/img/font/...)
   assetsDir: "static",
-  //指定生成的 index.html 的输出路径 (相对于 outputDir)。也可以是一个绝对路径
+  // 指定生成的 index.html 的输出路径 (相对于 outputDir)。也可以是一个绝对路径
   indexPath: "index.html",
   // 生成的静态资源在它们的文件名中包含了 hash 以便更好的控制缓存
   filenameHashing: true,
@@ -59,8 +59,8 @@ module.exports = {
       title: "组态平台",
       // 在这个页面中包含的块，默认情况下会包含
       // 提取出来的通用 chunk 和 vendor chunk。
-      chunks: ["chunk-vendors", "chunk-common", "index", "configur"]
-    }
+      chunks: ["chunk-vendors", "chunk-common", "index", "configur"],
+    },
     // 当使用只有入口的字符串格式时，
     // 模板会被推导为 `public/subpage.html`
     // 并且如果找不到的话，就回退到 `public/index.html`。
@@ -83,14 +83,14 @@ module.exports = {
   ],
 
   // 是否为生产环境构建生成 source map？
-  productionSourceMap: process.env.NODE_ENV === "production" ? false : true,
+  productionSourceMap: process.env.NODE_ENV !== "production",
   // 设置生成的 HTML 中 <link rel="stylesheet"> 和 <script> 标签的 crossorigin 属性。
   crossorigin: undefined,
   // 在生成的 HTML 中的 <link rel="stylesheet"> 和 <script> 标签上启用 Subresource Integrity (SRI)。如果你构建后的文件是部署在 CDN 上的，启用该选项可以提供额外的安全性。
   integrity: false,
   // // 调整内部的 webpack 配置。
   // // 查阅 https://github.com/vuejs/vue-docs-zh-cn/blob/master/vue-cli/webpack.md
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     // config.plugins.delete("html");
     // config.plugins.delete("preload");
     /**
@@ -110,7 +110,7 @@ module.exports = {
     //   return options;
     // });
   },
-  configureWebpack: config => {
+  configureWebpack: (config) => {
     config.devtool =
       process.env.NODE_ENV === "production" ? undefined : "source-map";
     config.externals = {
@@ -123,17 +123,17 @@ module.exports = {
       moment: "moment",
       accounting: "accounting",
       "big.js": "Big",
-      qs: "Qs"
+      qs: "Qs",
     };
     config.resolve = {
       extensions: [".js", ".vue", ".json", ".less"],
       alias: {
         vue$: "vue/dist/vue.esm.js",
-        "@": resolve("src")
+        "@": resolve("src"),
         // vendor: resolve("src/vendor")
-      }
+      },
     };
-    let pluginsPro = [
+    const pluginsPro = [
       // new UglifyJsPlugin({
       //   uglifyOptions: {
       //     compress: {
@@ -166,9 +166,9 @@ module.exports = {
       // Webpack包文件分析器(https://github.com/webpack-contrib/webpack-bundle-analyzer)
       // new BundleAnalyzerPlugin(),
     ];
-    //开发环境
-    let pluginsDev = [
-      //移动端模拟开发者工具(https://github.com/diamont1001/vconsole-webpack-plugin  https://github.com/Tencent/vConsole)
+    // 开发环境
+    const pluginsDev = [
+      // 移动端模拟开发者工具(https://github.com/diamont1001/vconsole-webpack-plugin  https://github.com/Tencent/vConsole)
       // new vConsolePlugin({
       //   filter: [], // 需要过滤的入口文件
       //   enable: true // 发布代码前记得改回 false
@@ -212,8 +212,8 @@ module.exports = {
 
       new webpack.ProvidePlugin({
         jQuery: "jquery",
-        $: "jquery"
-      })
+        $: "jquery",
+      }),
     ];
     if (process.env.NODE_ENV === "production") {
       // 为生产环境修改配置...process.env.NODE_ENV !== 'development'
@@ -235,10 +235,10 @@ module.exports = {
   css: {
     // 将组件内的 CSS 提取到一个单独的 CSS 文件 (只用在生产环境中)
     // 也可以是一个传递给 `extract-text-webpack-plugin` 的选项对象
-    extract: process.env.NODE_ENV === "production" ? true : false,
+    extract: process.env.NODE_ENV === "production",
 
     // 是否开启 CSS source map？
-    sourceMap: process.env.NODE_ENV === "production" ? false : true,
+    sourceMap: process.env.NODE_ENV !== "production",
 
     // 为预处理器的 loader 传递自定义选项。比如传递给
     // sass-loader 时，使用 `{ sass: { ... } }`。
@@ -251,7 +251,7 @@ module.exports = {
     },
 
     // 默认情况下，只有 *.module.[ext] 结尾的文件才会被视作 CSS Modules 模块。设置为 false 后你就可以去掉文件名中的 .module 并将所有的 *.(css|scss|sass|less|styl(us)?) 文件视为 CSS Modules 模块。
-    requireModuleExtension: true
+    requireModuleExtension: true,
   },
 
   // 配置 webpack-dev-server 行为。
@@ -266,28 +266,28 @@ module.exports = {
       "/service": {
         // target: "http://localhost:8080",
         // target: "http://192.168.0.129:8089",
-        // target: "http://test-api-eiot.energyiot.cn",
-        target: "https://viz.energyiot.cn/service",
+        target: "http://test-api-eiot.energyiot.cn",
+        // target: "https://viz.energyiot.cn/service",
         ws: false,
         changeOrigin: true,
-        pathRewrite: { "/service": "/" }
+        pathRewrite: { "/service": "/" },
       },
       "/manage": {
         // target: "http://localhost:8080",
         // target: "http://192.168.0.129:8089",
-        // target: "http://test-api-manage.energyiot.cn",
-        target: "https://viz.energyiot.cn/manage",
+        target: "http://test-api-manage.energyiot.cn",
+        // target: "https://viz.energyiot.cn/manage",
         ws: false,
         changeOrigin: true,
-        pathRewrite: { "/manage": "/" }
-      }
+        pathRewrite: { "/manage": "/" },
+      },
     }, // string | Object
     allowedHosts: [
       // 'host.com',
       // 'subdomain.host.com',
       // 'subdomain2.host.com',
       // 'host2.com'
-    ]
+    ],
     // // color: true,
     // // compress: true,
     // before: (app, server) => {
@@ -309,5 +309,5 @@ module.exports = {
   // 三方插件的选项
   pluginOptions: {
     // ...
-  }
+  },
 };
