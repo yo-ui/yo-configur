@@ -90,6 +90,7 @@ export default {
               }, 1000 * 60 * count++);
               clearInterval($vm.setIntervalId);
             }
+            heartbeatTime = currentTime;
           },
         });
         bmCommon.log("立即发起心跳");
