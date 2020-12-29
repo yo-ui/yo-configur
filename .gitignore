@@ -13,3 +13,4 @@ yarn-error.log*
 *.njsproj
 *.sln
 dist_prod
+yarn.lock
