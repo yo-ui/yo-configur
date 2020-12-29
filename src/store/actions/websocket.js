@@ -75,7 +75,7 @@ export default {
         bmCommon.log("连接成功！", url);
         $vm.stompClient = stompClient;
         context.dispatch("websocketSubscribe", { subject, callback });
-        const heartbeatTime = Date.now();
+        let heartbeatTime = Date.now();
         context.dispatch("websocketSubscribe", {
           subject: "/user/queue/pong",
           callback: () => {
