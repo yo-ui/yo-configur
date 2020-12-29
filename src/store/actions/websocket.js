@@ -67,6 +67,7 @@ export default {
     const socket = new SockJS(`${url}?x-access-token=${token}`);
     const stompClient = Stomp.over(socket);
     const headers = {};
+    let count = 0;
     headers[Constants.AUTHORIZATION] = token;
     stompClient.connect(
       headers,
@@ -83,7 +84,10 @@ export default {
             const interval = currentTime - heartbeatTime;
             if (interval > 90 * 1000) {
               // 若大于90秒还未有心跳返回，则进行业务重连
-              reConnection && reConnection();
+              $vm.setTimeoutId = setTimeout(() => {
+                clearTimeout($vm.setTimeoutId);
+                reConnection && reConnection();
+              }, 1000 * 60 * count++);
               clearInterval($vm.setIntervalId);
             }
           },
@@ -103,7 +107,10 @@ export default {
       },
       (err) => {
         clearInterval($vm.setIntervalId);
-        reConnection && reConnection();
+        $vm.setTimeoutId = setTimeout(() => {
+          clearTimeout($vm.setTimeoutId);
+          reConnection && reConnection();
+        }, 1000 * 60 * count++);
         bmCommon.error("连接失败=>error: ", err);
       }
     );
