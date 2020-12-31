@@ -32,32 +32,52 @@
           <div
             class="left-rule"
             :style="{
-              transform: `scaleY(${getZoom})`,
-              height: `${canvas.height}px`,
+              // transform: `scaleY(${getZoom})`,
+              //height: `${canvas.height}px`,
+              backgroundSize: `30px ${100 * getZoom}px`,
               left: `${!leftMenuStatus ? '0' : ''}`
             }"
           >
-            <i
-              v-for="item in parseInt(canvas.height / 100) + 1"
-              :key="item"
-              :style="{ top: `${(item - 1) * 100 + 10}px` }"
-              >{{ (item - 1) * 100 }}</i
+            <template
+              v-for="(item, index) in parseInt(
+                windowInnerHeight / getZoom / 100
+              ) + 1"
             >
+              <i
+                :key="item"
+                v-if="
+                  (1 / getZoom > 1 && index % parseInt(1 / getZoom) == 0) ||
+                    1 / getZoom < 1
+                "
+                :style="{ top: `${(item - 1) * 100 * getZoom + 10}px` }"
+                >{{ (item - 1) * 100 }}</i
+              >
+            </template>
           </div>
           <div
             class="top-rule"
             :style="{
-              transform: `scaleX(${getZoom})`,
-              width: `${canvas.width}px`,
+              //transform: `scaleX(${getZoom})`,
+              //width: `${canvas.width}px`,
+              backgroundSize: `${100 * getZoom}px 30px`,
               left: `${!leftMenuStatus ? '30px' : ''}`
             }"
           >
-            <i
-              v-for="item in parseInt(canvas.width / 100) + 1"
-              :key="item"
-              :style="{ left: `${(item - 1) * 100 + 10}px` }"
-              >{{ (item - 1) * 100 }}</i
+            <template
+              v-for="(item, index) in parseInt(
+                windowInnerWidth / getZoom / 100
+              ) + 1"
             >
+              <i
+                :key="item"
+                :style="{ left: `${(item - 1) * 100 * getZoom + 10}px` }"
+                v-if="
+                  (1 / getZoom > 1 && index % parseInt(1 / getZoom) == 0) ||
+                    1 / getZoom < 1
+                "
+                >{{ (item - 1) * 100 }}</i
+              >
+            </template>
           </div>
         </template>
         <div class="view-box" ref="viewBox" :style="viewBoxStyle">
@@ -228,6 +248,8 @@ export default {
       condition: {
         canvasId: ""
       },
+      windowInnerWidth: window.innerWidth,
+      windowInnerHeight: window.innerHeight,
       showContextMenuStatus: false,
       showContextMenuType: 1, //1 组件右键菜单   2是画布右键菜单
       copyCom: "",

@@ -4,7 +4,7 @@
     :style="comStyle"
     :contenteditable="info.editable"
     @blur.stop="blurEvent"
-    @click="clickEvent"
+    @click="controlEvent"
   >
     {{ info.content }}
   </button>
@@ -12,6 +12,7 @@
 
 <script>
 const { mapActions, mapMutations, mapGetters } = Vuex;
+import bmCommon from "@/common/common";
 export default {
   name: "buttonCom",
   data() {
@@ -184,18 +185,86 @@ export default {
         .trim();
       info.name = name;
     },
-    clickEvent() {
-      let { info = {}, userInfo = {} } = this;
-      let { bindData = {} } = info || {};
-      let { comId = "", content = "" } = bindData || {};
-      if (comId) {
-        let com = document.getElementById(`box_${comId}`);
-        let vm = com.__vue__;
-        let { info: _info = {} } = vm || {};
-        let { token = "" } = userInfo || {};
-        _info.content = this.$linkUrl(content, { "x-access-token": token });
+    init() {
+      const { info = {}, showType = "" } = this;
+      if (showType !== "edit") {
+        const { id = "", bindData = {} } = info || {};
+        const { devicePoint = "" } = bindData || {};
+        if (!devicePoint) {
+          return;
+        }
+        $vm.$on(`devicePointEvent_${id}`, ({ point }) => {
+          bmCommon.log("basicBttonCom", point);
+          // let { pointList = [] } = device || {};
+          // let point = pointList.find(item => {
+          //   let { point: id = "" } = item || {};
+          //   return id === pointCode; // SwSts  开关状态
+          // });
+          if (point) {
+            const { value = "" } = point || {};
+            info.pointValue = value;
+          }
+        });
       }
+      this.loadDeviceInfo();
+    },
+    loadDeviceInfo() {
+      const { info = {} } = this;
+      const { bindData = {} } = info || {};
+      const { deviceId = "", devicePoint = "" } = bindData || {};
+      if (!deviceId) {
+        return;
+      }
+      // devicePoint = pointCode;
+      $vm.$emit("device", {
+        deviceId,
+        callback: (device = {}) => {
+          const { points: pointList = [] } = device || {};
+          const point = pointList.find(item => {
+            const { id = "" } = item || {};
+            return id === devicePoint; //
+          });
+          if (point) {
+            const { value = "" } = point || {};
+            info.pointValue = value;
+          }
+        }
+      });
+    },
+
+    controlEvent() {
+      const { info = {} } = this;
+      const { bindData = {}, pointValue: value = "" } = info || {};
+      const { deviceId = "", devicePoint = "" } = bindData || {};
+      if (!deviceId) {
+        return;
+      }
+      const point = devicePoint;
+      $vm.$emit("control", {
+        deviceId,
+        point,
+        value,
+        callback: flag => {
+          // if (flag) {
+          //   this.$$msgSuccess("指令发送成功");
+          // } else {
+          //   this.$$msgError("指令发送失败");
+          // }
+        }
+      });
     }
+    // clickEvent() {
+    //   let { info = {}, userInfo = {} } = this;
+    //   let { bindData = {} } = info || {};
+    //   let { comId = "", content = "" } = bindData || {};
+    //   if (comId) {
+    //     let com = document.getElementById(`box_${comId}`);
+    //     let vm = com.__vue__;
+    //     let { info: _info = {} } = vm || {};
+    //     let { token = "" } = userInfo || {};
+    //     _info.content = this.$linkUrl(content, { "x-access-token": token });
+    //   }
+    // }
   }
 };
 </script>
