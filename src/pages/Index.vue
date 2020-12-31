@@ -47,7 +47,7 @@
                 :key="item"
                 v-if="
                   (1 / getZoom > 1 && index % parseInt(1 / getZoom) == 0) ||
-                    1 / getZoom < 1
+                    1 / getZoom <= 1
                 "
                 :style="{ top: `${(item - 1) * 100 * getZoom + 10}px` }"
                 >{{ (item - 1) * 100 }}</i
@@ -73,7 +73,7 @@
                 :style="{ left: `${(item - 1) * 100 * getZoom + 10}px` }"
                 v-if="
                   (1 / getZoom > 1 && index % parseInt(1 / getZoom) == 0) ||
-                    1 / getZoom < 1
+                    1 / getZoom <= 1
                 "
                 >{{ (item - 1) * 100 }}</i
               >
