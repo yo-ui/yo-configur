@@ -19,8 +19,7 @@ export default {
   canvasTokenUrl: `/configur/canvas/token`,
   canvasStartUrl: `/configur/canvas/start`,
   canvasStopUrl: `/configur/canvas/stop`,
-  //应用平台
-  // proxyDeviceMonitoringDeviceControlledPointsUrl: `${host}/proxy/deviceMonitoring/device/controlled/points`, //获取设备可控制点位列表
+  deviceControlledPointsUrl: `/configur/device/controlled/points/{deviceId}`, //获取设备可控制点位列表
 
   // 管理平台
   deviceGetUrl: `/device/get/{deviceId}`, //查询单个【网关设备】

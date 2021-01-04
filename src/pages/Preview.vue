@@ -25,7 +25,7 @@
             <div class="bg" :style="bgStyle"></div>
             <template v-for="(item, index) in widgetList">
               <!-- {{ item.infoType }}{{ item.bindData }}<br /> -->
-              <el-popover
+              <!-- <el-popover
                 v-if="
                   item.bindData &&
                     item.bindData.deviceId &&
@@ -39,60 +39,59 @@
                 width="400"
                 :ref="`popover_${item.id}`"
                 trigger="hover"
+              > -->
+              <!-- @show="showInfoEvent(item.bindData)" -->
+              <!-- {{ `${item.infoType}InfoCom` }} -->
+              <!-- <bm-device-info :pointList="deviceInfo.points"></bm-device-info> -->
+              <!-- <component
+                :ref="`bmInfoCom_${item.id}`"
+                @load="loadEvent"
+                :is="`${item.infoType}InfoCom`"
+              /> -->
+              <bm-com
+                slot="reference"
+                class="preview"
+                :data-type="item.type"
+                :data-id="item.id"
+                :info="item"
+                :key="index"
               >
-                <!-- @show="showInfoEvent(item.bindData)" -->
-                <!-- {{ `${item.infoType}InfoCom` }} -->
-                <!-- <bm-device-info :pointList="deviceInfo.points"></bm-device-info> -->
-                <component
-                  :ref="`bmInfoCom_${item.id}`"
-                  @load="loadEvent"
-                  :is="`${item.infoType}InfoCom`"
-                />
-                <bm-com
-                  slot="reference"
-                  class="preview"
-                  :data-type="item.type"
-                  :data-id="item.id"
-                  :info="item"
-                  :key="index"
-                >
-                  <template v-if="item.children && item.children.length > 0">
-                    <template v-for="(_item, _index) in item.children">
-                      <el-popover
-                        v-if="
-                          _item.bindData &&
-                            _item.bindData.deviceId &&
-                            _item.infoType == 'device'
-                        "
-                        @mousedowe.native.stop
-                        popper-class="device-info-popover"
-                        placement="right"
-                        :key="_index"
-                        @show="showInfoEvent(_item)"
-                        width="400"
-                        :ref="`popover_${_item.id}`"
-                        trigger="hover"
-                      >
-                        <!-- v-for="(_item, _index) in item.children" -->
-                        <component
-                          :ref="`bmInfoCom_${_item.id}`"
-                          @load="loadEvent"
-                          :is="`${_item.infoType}InfoCom`"
-                        />
-                        <bm-com
-                          slot="reference"
-                          class="preview"
-                          :data-type="_item.type"
-                          :data-id="_item.id"
-                          :info="_item"
-                          :key="_index"
-                        >
-                        </bm-com>
-                      </el-popover>
-                    </template>
+                <template v-if="item.children && item.children.length > 0">
+                  <template v-for="(_item, _index) in item.children">
+                    <!-- <el-popover
+                      v-if="
+                        _item.bindData &&
+                          _item.bindData.deviceId &&
+                          _item.infoType == 'device'
+                      "
+                      @mousedowe.native.stop
+                      popper-class="device-info-popover"
+                      placement="right"
+                      :key="_index"
+                      @show="showInfoEvent(_item)"
+                      width="400"
+                      :ref="`popover_${_item.id}`"
+                      trigger="hover"
+                    >
+                      <component
+                        :ref="`bmInfoCom_${_item.id}`"
+                        @load="loadEvent"
+                        :is="`${_item.infoType}InfoCom`"
+                      /> -->
+                    <bm-com
+                      slot="reference"
+                      class="preview"
+                      :data-type="_item.type"
+                      :data-id="_item.id"
+                      :info="_item"
+                      :key="_index"
+                    >
+                    </bm-com>
+                    <!-- </el-popover> -->
                   </template>
-                </bm-com>
-              </el-popover>
+                </template>
+              </bm-com>
+              <!-- </el-popover>
               <bm-com
                 v-else
                 class="preview"
@@ -112,13 +111,14 @@
                   >
                   </bm-com>
                 </template>
-              </bm-com>
+              </bm-com> -->
             </template>
           </div>
         </div>
       </div>
     </div>
     <bm-control ref="bmControl"></bm-control>
+    <bm-device-info ref="bmDeviceInfo"></bm-device-info>
     <bm-camera-previewer ref="bmCameraPreviewer"></bm-camera-previewer>
   </div>
 </template>
@@ -154,11 +154,11 @@ export default {
     bmCameraPreviewer: () =>
       import(
         /* webpackChunkName: "iot-camera-previewer-com" */ "@/components/camera-previewer"
+      ),
+    bmDeviceInfo: () =>
+      import(
+        /* webpackChunkName: "bm-device-info" */ "@/components/data/device-info.vue"
       )
-    // bmDeviceInfo: () =>
-    //   import(
-    //     /* webpackChunkName: "bm-device-info" */ "@/components/data/device-info.vue"
-    //   )
   },
   computed: {
     ...mapGetters({
@@ -402,12 +402,16 @@ export default {
     initEvent() {
       $(window).on("resize", this.resizeCanvasSize);
       //滚动事件
-      $(document).on("mousewheel DOMMouseScroll", this.mouseScrollEvent);
+      $(".view-box").on("mousewheel DOMMouseScroll", this.mouseScrollEvent);
       //注册画布移动事件
-      $(document).on("mousedown", this.mousedownEvent);
+      $(".view-box").on("mousedown", this.mousedownEvent);
       //注册显示控制处理事件
       $vm.$on("control", item => {
         this.$refs.bmControl.show(item);
+      });
+      //注册显示设备控制弹窗事件
+      $vm.$on("show-device-info", item => {
+        this.$refs.bmDeviceInfo.show(item);
       });
       //注册设备点位参数事件
       $vm.$on("deviceList", item => {
@@ -590,8 +594,8 @@ export default {
         originY: top
       });
 
-      $(document).on("mousemove", this.mousemoveEvent);
-      $(document).on("mouseup", this.mouseupEvent);
+      $(".view-box").on("mousemove", this.mousemoveEvent);
+      $(".view-box").on("mouseup", this.mouseupEvent);
     },
     mousemoveEvent(e) {
       e.stopPropagation();
@@ -601,8 +605,8 @@ export default {
       this.canvasMoving({ x, y });
     },
     mouseupEvent(e) {
-      $(document).off("mousemove", this.mousemoveEvent);
-      $(document).off("mouseup", this.mouseupEvent);
+      $(".view-box").off("mousemove", this.mousemoveEvent);
+      $(".view-box").off("mouseup", this.mouseupEvent);
       this.stopMove();
     },
     // 初始化websocket
@@ -771,9 +775,9 @@ export default {
   beforeDestroy() {
     $(window).off("resize", this.resizeCanvasSize);
     //滚动事件
-    $(document).off("mousewheel DOMMouseScroll", this.mouseScrollEvent);
+    $(".view-box").off("mousewheel DOMMouseScroll", this.mouseScrollEvent);
     //移动事件
-    $(document).off("mousedown", this.mousedownEvent);
+    $(".view-box").off("mousedown", this.mousedownEvent);
   }
 };
 </script>

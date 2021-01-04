@@ -26,6 +26,15 @@ export default {
   //   });
   //   return data;
   // },
+  //获取设备可控制点位列表
+  async deviceControlledPoints(context, options) {
+    const data = await get({
+      url: bmCommon.substitute(URL.deviceControlledPointsUrl, options),
+      params: {},
+      store: context
+    });
+    return data;
+  },
   // `${host}/device/get/{deviceId}`, //查询单个【网关设备】
   async deviceGet(context, options) {
     const data = await get({

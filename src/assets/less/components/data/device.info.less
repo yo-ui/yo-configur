@@ -1,33 +1,187 @@
 @import (reference) "./../../common.less";
-.bm-device-info-com{
-  .touch-y;
-  max-height: 400px;
+.bm-device-info-com {
+  // .touch-y;
+  // max-height: 400px;
   min-height: 100px;
-  .title{
+  .title {
     .fz(16);
     .lh(30);
     .mb(10);
     .pl(15);
     .borl(5px solid @themes);
   }
-  .el-form-item{
-    .mb(0);
-    .borb(1px solid @grayC);
-    &:last-child{
-      .borb(none);
+  .el-dialog {
+    min-width: 500px;
+    .el-dialog__header {
+      .db(none);
+      // .bc(transparent);
+      // .el-dialog__title {
+      //   .db(none);
+      // }
     }
-    .el-form-item__label{
-      // .bc(@grayE);
-      .pb(0);
+    .el-dialog__body {
+      .pt(15);
+      .el-icon-close {
+        .posa;
+        right: 10px;
+        .fz(18);
+        .pointer;
+      }
     }
-    .el-form-item__content{
-      .pl(10);
-      .fz(14);
-      .fw(700);
-      .c(@gray6);
-      small{
-        .c(@grayC);
-        .fz(10);
+  }
+  .el-radio-group {
+    .m(0 auto);
+    .db;
+    .tc;
+    .el-radio-button__inner {
+      .borc(@themes);
+    }
+  }
+  .el-form {
+    .mt(15);
+    max-height: 500px;
+    .touch-y;
+    .bort(1px solid @grayC);
+    .empty {
+      min-height: 400px;
+      .bg-img;
+      .bi("/static/img/common/un-data.png");
+      .bz(100px);
+    }
+    .el-form-item {
+      .mb(0);
+      .borb(1px solid @grayC);
+      &:last-child {
+        .borb(none);
+      }
+      .el-form-item__label {
+        // .bc(@grayE);
+        .pb(0);
+      }
+      .el-form-item__content {
+        .p(10px);
+        .fz(14);
+        .fw(700);
+        // .h(70);
+        min-height: 70px;
+        .c(@gray6);
+        .df;
+        align-items: center;
+        .img {
+          .squ(50);
+          object-fit: contain;
+        }
+        .txt-box {
+          .flex(1);
+          .ml(15);
+          .df;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+          h2 {
+            .fz(14);
+            .c(@dark);
+          }
+          p {
+            .h(20);
+          }
+        }
+        .value {
+          .mr(15);
+          .fz(20);
+          .c(@dark);
+          .fw(700);
+          small {
+            // .c(@grayC);
+            .fw(400);
+            .fz(10);
+          }
+        }
+
+        .box {
+          .flex(3);
+          .df;
+          align-items: center;
+          justify-content: flex-end;
+          flex-wrap: wrap;
+          .m(0 15px);
+          .switch {
+            .bc(@grayE);
+            .h(30);
+            .br(15px);
+            .df;
+            align-items: center;
+            justify-content: center;
+            .posr;
+            .w(120);
+            .click;
+            &.on {
+              .bc(@success);
+              .c(@success);
+              span {
+                &:last-child {
+                  .c(@white);
+                  // .ml(15);
+                  // .flex(0);
+                  .w(50);
+                }
+              }
+              &::before {
+                right: auto;
+                left: 3px;
+              }
+            }
+            &::before {
+              .posa;
+              z-index: 0;
+              .w(65);
+              .br(13px);
+              .bc(@white);
+              content: "";
+              .h(24);
+              .tranf(translate(0, -50%));
+              // left: 48px;
+              right: 3px;
+              top: 50%;
+            }
+            span {
+              // .m(0 15px);
+              // .mr(10);
+              // .flex(1);
+              .w(50%);
+              .tc;
+              .posr;
+              z-index: 1;
+            }
+          }
+          .el-select {
+            .w(100);
+            .mr(10);
+          }
+          .el-button-group {
+            .el-button {
+              .mt(10);
+            }
+          }
+          .el-radio-group {
+            .mt(10);
+            .tr;
+            .el-radio-button {
+              .ml(10);
+              .mb(10);
+              &.is-active {
+                .el-radio-button__inner {
+                  .box-s(none);
+                }
+              }
+              .el-radio-button__inner {
+                .ml(0);
+                .br(0);
+                .borl(1px solid #dcdfe6);
+              }
+            }
+          }
+        }
       }
     }
   }

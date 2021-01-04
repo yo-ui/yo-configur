@@ -24,7 +24,7 @@
           >
             <div class="bg" :style="bgStyle"></div>
             <template v-for="(item, index) in widgetList">
-              <el-popover
+              <!-- <el-popover
                 v-if="
                   item.bindData &&
                     item.bindData.deviceId &&
@@ -43,17 +43,18 @@
                   @load="loadEvent"
                   :ref="`bmInfoCom_${item.id}`"
                   :is="`${item.infoType}InfoCom`"
-                />
-                <bm-com
-                  slot="reference"
-                  class="view"
-                  :data-type="item.type"
-                  :data-id="item.id"
-                  :info="item"
-                >
-                  <template v-if="item.children && item.children.length > 0">
-                    <template v-for="(_item, _index) in item.children">
-                      <el-popover
+                /> -->
+              <bm-com
+                slot="reference"
+                class="view"
+                :data-type="item.type"
+                :data-id="item.id"
+                :info="item"
+                :key="index"
+              >
+                <template v-if="item.children && item.children.length > 0">
+                  <template v-for="(_item, _index) in item.children">
+                    <!-- <el-popover
                         v-if="
                           _item.bindData &&
                             _item.bindData.deviceId &&
@@ -68,26 +69,25 @@
                         :ref="`popover_${_item.id}`"
                         trigger="hover"
                       >
-                        <!-- v-for="(_item, _index) in item.children" -->
                         <component
                           :ref="`bmInfoCom_${_item.id}`"
                           @load="loadEvent"
                           :is="`${_item.infoType}InfoCom`"
-                        />
-                        <bm-com
-                          slot="reference"
-                          class="view"
-                          :data-type="_item.type"
-                          :data-id="_item.id"
-                          :info="_item"
-                          :key="_index"
-                        >
-                        </bm-com>
-                      </el-popover>
-                    </template>
+                        /> -->
+                    <bm-com
+                      slot="reference"
+                      class="view"
+                      :data-type="_item.type"
+                      :data-id="_item.id"
+                      :info="_item"
+                      :key="_index"
+                    >
+                    </bm-com>
+                    <!-- </el-popover> -->
                   </template>
-                </bm-com>
-              </el-popover>
+                </template>
+              </bm-com>
+              <!-- </el-popover>
               <bm-com
                 v-else
                 class="view"
@@ -107,7 +107,7 @@
                   >
                   </bm-com>
                 </template>
-              </bm-com>
+              </bm-com> -->
             </template>
           </div>
         </div>

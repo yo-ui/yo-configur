@@ -3,6 +3,7 @@
     class="bm-component-com"
     @keydown.stop
     @mousedown="onComMousedownEvent"
+    @click="clickEvent"
     :id="`box_${info.id}`"
     ref="bmComBox"
     :style="boxStyle"
@@ -449,6 +450,14 @@ export default {
           info.height = Number(height);
         }
       });
+    },
+    clickEvent() {
+      let { info = {} } = this;
+      let { bindData = {}, infoType = "" } = info || {};
+      // let { deviceId = "", devicePoint = "" } = bindData || {};
+      if (infoType == "device") {
+        $vm.$emit("show-device-info", { ...bindData, infoType });
+      }
     },
     onComMousedownEvent(e) {
       let { info = {} } = this;
