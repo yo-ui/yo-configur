@@ -38,9 +38,9 @@
                       .name
                   : item.value || "--"
               }}
-              <template v-if="!(item.status && item.status.length > 0)">
-                <small v-if="item.unit">{{ item.unit }}</small>
-              </template>
+              <!-- <template v-if="!(item.status && item.status.length > 0)"> -->
+              <small>{{ item.unit || "" }}</small>
+              <!-- </template> -->
             </div>
           </el-form-item>
         </template>
