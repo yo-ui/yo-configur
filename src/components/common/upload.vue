@@ -6,26 +6,44 @@
       </div>
     </template>
     <template v-else>
-      <template v-if="imageUrl">
-        <div
-          class="img-box"
-          :style="`background-image:url(${$loadImgUrl(imageUrl)})`"
-        >
-          <div class="icon-box">
-            <i class="el-icon-delete" @click.stop="removeImageEvent"></i>
-            <i class="el-icon-zoom-in" @click.stop="showImagePreviewEvent"></i>
+      <el-upload
+        :auto-upload="true"
+        class="upload-box"
+        drag
+        :data="uploadData"
+        :headers="uploadHeaders"
+        ref="upload"
+        name="files"
+        :limit="1"
+        :action="uploadUrl"
+        :show-file-list="false"
+        :on-success="onSuccessEvent"
+        :before-upload="beforeUploadEvent"
+      >
+        <template v-if="imageUrl">
+          <div
+            class="img-box"
+            :style="`background-image:url(${$loadImgUrl(imageUrl)})`"
+          >
+            <div class="icon-box">
+              <i class="el-icon-delete" @click.stop="removeImageEvent"></i>
+              <i
+                class="el-icon-zoom-in"
+                @click.stop="showImagePreviewEvent"
+              ></i>
+            </div>
           </div>
-        </div>
-      </template>
-      <template v-else>
-        <i class="el-icon-upload"></i>
-        <div class="el-upload__text">
-          {{ $lang("将文件拖到此处，或") }}<em>{{ $lang("点击上传") }}</em>
-        </div>
-        <div class="el-upload__tip" slot="tip">
-          {{ $lang("只能上传jpg/png/jpeg/gif文件，且不超过500kb") }}
-        </div>
-      </template>
+        </template>
+        <template v-else>
+          <i class="el-icon-upload"></i>
+          <div class="el-upload__text">
+            {{ $lang("将文件拖到此处，或") }}<em>{{ $lang("点击上传") }}</em>
+          </div>
+          <div class="el-upload__tip" slot="tip">
+            {{ $lang("只能上传jpg/png/jpeg/gif文件，且不超过500kb") }}
+          </div>
+        </template>
+      </el-upload>
     </template>
   </div>
 </template>

@@ -782,7 +782,7 @@ export default {
         bmCommon.log("当前放大before", zoom);
         zoom = zoom * 100 + val;
         bmCommon.log("当前放大", zoom, zoom / 100);
-        if (zoom > 10 && zoom < 200) {
+        if (zoom > 10 && zoom < 1000) {
           bmCommon.log("当前放大设置");
           this.setZoom(zoom / 100);
         }

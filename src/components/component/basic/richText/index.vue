@@ -1,10 +1,13 @@
 <template>
-  <!-- @blur.stop="blurEvent" -->
   <div
-    class="bm-basic-rich-text-com ql-editor"
+    class="bm-basic-rich-text-com quill-editor"
     :style="comStyle"
-    v-html="info.content"
-  ></div>
+    @mousewheel.stop
+  >
+    <div class="ql-container ql-snow">
+      <div class="ql-editor" v-html="info.content"></div>
+    </div>
+  </div>
 </template>
 
 <script>
