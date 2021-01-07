@@ -27,10 +27,10 @@
           fill: #cbcbc9;
         }
         .kydt-${info.id}-st4 {
-          fill: url(#kydt_1_);
+          fill: url(#kydt_${info.id}_1_);
         }
         .kydt-${info.id}-st5 {
-          fill: url(#kydt_2_);
+          fill: url(#kydt_${info.id}_2_);
         }
         .kydt-${info.id}-st6 {
           opacity: 0.6;
@@ -42,7 +42,7 @@
           fill: #c3c3c1;
         }
         .kydt-${info.id}-st9 {
-          fill: url(#kydt_3_);
+          fill: url(#kydt_${info.id}_3_);
         }
         .kydt-${info.id}-st10 {
           fill: #ffffff;
@@ -51,23 +51,23 @@
           fill: #7a7e89;
         }
         .kydt-${info.id}-st12 {
-          fill: url(#kydt_4_);
+          fill: url(#kydt_${info.id}_4_);
         }
         .kydt-${info.id}-st13 {
-          fill: url(#kydt_5_);
+          fill: url(#kydt_${info.id}_5_);
         }
         .kydt-${info.id}-st14 {
           fill: #ff0000;
         }
         .kydt-${info.id}-st15 {
-          fill: url(#kydt_6_);
+          fill: url(#kydt_${info.id}_6_);
         }
         .kydt-${info.id}-st16 {
           opacity: 0.4;
           fill: #ff0000;
         }
         .kydt-${info.id}-st17 {
-          fill: url(#kydt_7_);
+          fill: url(#kydt_${info.id}_7_);
         }
         .kydt-${info.id}-st18 {
           opacity: 0.4;
@@ -88,133 +88,7 @@
       </style>
       `
         "
-      >
-        <!-- <template v-if="info.backgroundType == 'gradient'">
-          <linearGradient
-            :id="info.gradientStyle.gradientId"
-            :x1="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '0%',
-                  135: '0%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y1="
-              `${
-                {
-                  0: '100%',
-                  45: '100%',
-                  90: '100%',
-                  135: '0%',
-                  180: '0%',
-                  225: '0%',
-                  270: '100%',
-                  315: '100%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :x2="
-              `${
-                {
-                  0: '0%',
-                  45: '100%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '0%',
-                  270: '0%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            :y2="
-              `${
-                {
-                  0: '0%',
-                  45: '0%',
-                  90: '100%',
-                  135: '100%',
-                  180: '100%',
-                  225: '100%',
-                  270: '100%',
-                  315: '0%'
-                }[info.gradientStyle.angle]
-              }`
-            "
-            v-if="info.gradientStyle.type == 'linear'"
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </linearGradient>
-          <radialGradient
-            :id="info.gradientStyle.gradientId"
-            v-else-if="info.gradientStyle.type == 'radial'"
-            :cx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :cy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :r="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '160%',
-                '100% 0%': '150%',
-                '0% 100%': '150%',
-                '100% 100%': '140%'
-              }[info.gradientStyle.center]
-            "
-            :fx="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '100%',
-                '0% 100%': '0%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-            :fy="
-              {
-                '50% 50%': '50%',
-                '0% 0%': '0%',
-                '100% 0%': '0%',
-                '0% 100%': '100%',
-                '100% 100%': '100%'
-              }[info.gradientStyle.center]
-            "
-          >
-            <stop
-              v-for="(item, index) in info.gradientStyle.valueList"
-              :key="index"
-              :offset="`${item.value}%`"
-              :style="`stop-color:${item.code};stop-opacity:1`"
-            />
-          </radialGradient>
-        </template> -->
-      </defs>
+      ></defs>
 
       <g>
         <rect
@@ -284,7 +158,7 @@
         />
         <g>
           <linearGradient
-            id="kydt_1_"
+            :id="`kydt_${info.id}_1_`"
             gradientUnits="userSpaceOnUse"
             x1="88.5355"
             y1="287"
@@ -308,7 +182,7 @@
         </g>
         <g>
           <linearGradient
-            id="kydt_2_"
+            :id="`kydt_${info.id}_2_`"
             gradientUnits="userSpaceOnUse"
             x1="154.5355"
             y1="143.5"
@@ -348,7 +222,7 @@
         </g>
         <g>
           <linearGradient
-            id="kydt_3_"
+            :id="`kydt_${info.id}_3_`"
             gradientUnits="userSpaceOnUse"
             x1="85.2956"
             y1="289"
@@ -396,7 +270,7 @@
         </g>
         <g>
           <linearGradient
-            id="kydt_4_"
+            :id="`kydt_${info.id}_4_`"
             gradientUnits="userSpaceOnUse"
             x1="158.9103"
             y1="162.0714"
@@ -418,7 +292,7 @@
         </g>
         <g>
           <linearGradient
-            id="kydt_5_"
+            :id="`kydt_${info.id}_5_`"
             gradientUnits="userSpaceOnUse"
             x1="158.9103"
             y1="176.0714"
@@ -436,7 +310,7 @@
           />
         </g>
       </g>
-      <g class="SVG_ani" v-if="pointValue == 1">
+      <g class="SVG_ani" v-if="info.content == 1">
         <g class="f1">
           <animate
             values="show;hide"
@@ -450,7 +324,7 @@
           />
 
           <radialGradient
-            id="kydt_6_"
+            :id="`kydt_${info.id}_6_`"
             cx="474.2651"
             cy="408.2188"
             r="6.7812"
@@ -483,7 +357,7 @@
             points="73.81,41.16 77.27,35.27 80.72,41.16 	"
           />
           <radialGradient
-            id="kydt_7_"
+            :id="`kydt_${info.id}_7_`"
             cx="77.2651"
             cy="38.2188"
             r="6.7812"
@@ -505,7 +379,7 @@
         </g>
       </g>
 
-      <g class="SVG_sta" v-if="pointValue === 0">
+      <g class="SVG_sta" v-if="info.content === 0">
         <polygon
           :class="`kydt-${info.id}-st16`"
           points="73.81,41.16 77.27,35.27 80.72,41.16 	"
@@ -515,11 +389,11 @@
           points="97.72,35.27 94.27,41.16 90.81,35.27 	"
         />
       </g>
-      <g class="SVG_alert" v-if="pointValue == 2">
+      <g class="SVG_alert" v-if="info.content == 2">
         <g :class="`kydt-${info.id}-st18`">
           <polygon
             :class="`kydt-${info.id}-st14`"
-            points="220.54,0 88.54,0 56.73,23.13 4.34,23.13 0,26.44 0,289 19,289 22.54,287 86.28,287 87.48,287 
+            points="220.54,0 88.54,0 56.73,23.13 4.34,23.13 0,26.44 0,289 19,289 22.54,287 86.28,287 87.48,287
                     151,287 151,289 170.59,289 174.93,285.69 174.93,272.17 220.54,239 		"
           />
         </g>
@@ -538,7 +412,7 @@ export default {
   name: "deviceKydtCom",
   data() {
     return {
-      pointValue: "1" // expr:'SwSts',stop:0,start:1,alarm:2
+      // info.content: "1" // expr:'SwSts',stop:0,start:1,alarm:2
     };
   },
   props: {
@@ -659,12 +533,13 @@ export default {
     }
   },
   mounted() {
+    let { info = {} } = this;
+    info.content = 0;
     this.init();
   },
   methods: {
     ...mapMutations({}),
     ...mapActions({}),
-
     init() {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
@@ -682,7 +557,7 @@ export default {
           });
           if (point) {
             let { value = "" } = point || {};
-            this.pointValue = value;
+            info.content = value;
           }
         });
       }
@@ -705,8 +580,8 @@ export default {
             return id == devicePoint; //
           });
           if (point) {
-            let { value = "" } = point || {};
-            this.pointValue = value;
+            let { value = 0 } = point || {};
+            info.content = value;
           }
         }
       });
@@ -724,5 +599,4 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import (reference) "./../../../../assets/less/common.less";
-// @import (less) "../../../../assets/less/components/component/device/common.less";
 </style>

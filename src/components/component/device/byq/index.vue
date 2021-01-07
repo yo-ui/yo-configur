@@ -19,63 +19,63 @@
 					.byq-${info.id}-st2{fill:#71151A;}
 					.byq-${info.id}-st3{fill:#9E2A27;}
 					.byq-${info.id}-st4{fill:#B83D3C;}
-					.byq-${info.id}-st5{fill:url(#byq_2_);}
+					.byq-${info.id}-st5{fill:url(#byq_${info.id}_2_);}
 					.byq-${info.id}-st6{fill:#992623;}
-					.byq-${info.id}-st7{fill:url(#byq_3_);}
-					.byq-${info.id}-st8{fill:url(#byq_4_);}
-					.byq-${info.id}-st9{fill:url(#byq_5_);}
-					.byq-${info.id}-st10{fill:url(#byq_6_);}
-					.byq-${info.id}-st11{fill:url(#byq_7_);}
-					.byq-${info.id}-st12{fill:url(#byq_8_);}
-					.byq-${info.id}-st13{fill:url(#byq_9_);}
-					.byq-${info.id}-st14{fill:url(#byq_10_);}
-					.byq-${info.id}-st15{fill:url(#byq_11_);}
-					.byq-${info.id}-st16{fill:url(#byq_12_);}
-					.byq-${info.id}-st17{fill:url(#byq_13_);}
-					.byq-${info.id}-st18{fill:url(#byq_14_);}
-					.byq-${info.id}-st19{fill:url(#byq_15_);}
-					.byq-${info.id}-st20{fill:url(#byq_16_);}
-					.byq-${info.id}-st21{fill:url(#byq_17_);}
-					.byq-${info.id}-st22{fill:url(#byq_18_);}
-					.byq-${info.id}-st23{fill:url(#byq_19_);}
-					.byq-${info.id}-st24{fill:url(#byq_20_);}
+					.byq-${info.id}-st7{fill:url(#byq_${info.id}_3_);}
+					.byq-${info.id}-st8{fill:url(#byq_${info.id}_4_);}
+					.byq-${info.id}-st9{fill:url(#byq_${info.id}_5_);}
+					.byq-${info.id}-st10{fill:url(#byq_${info.id}_6_);}
+					.byq-${info.id}-st11{fill:url(#byq_${info.id}_7_);}
+					.byq-${info.id}-st12{fill:url(#byq_${info.id}_8_);}
+					.byq-${info.id}-st13{fill:url(#byq_${info.id}_9_);}
+					.byq-${info.id}-st14{fill:url(#byq_${info.id}_10_);}
+					.byq-${info.id}-st15{fill:url(#byq_${info.id}_11_);}
+					.byq-${info.id}-st16{fill:url(#byq_${info.id}_12_);}
+					.byq-${info.id}-st17{fill:url(#byq_${info.id}_13_);}
+					.byq-${info.id}-st18{fill:url(#byq_${info.id}_14_);}
+					.byq-${info.id}-st19{fill:url(#byq_${info.id}_15_);}
+					.byq-${info.id}-st20{fill:url(#byq_${info.id}_16_);}
+					.byq-${info.id}-st21{fill:url(#byq_${info.id}_17_);}
+					.byq-${info.id}-st22{fill:url(#byq_${info.id}_18_);}
+					.byq-${info.id}-st23{fill:url(#byq_${info.id}_19_);}
+					.byq-${info.id}-st24{fill:url(#byq_${info.id}_20_);}
 					.byq-${info.id}-st25{opacity:0.3;fill:#040000;}
-					.byq-${info.id}-st26{fill:url(#byq_21_);}
-					.byq-${info.id}-st27{fill:url(#byq_22_);}
-					.byq-${info.id}-st28{fill:url(#byq_23_);}
-					.byq-${info.id}-st29{fill:url(#byq_24_);}
-					.byq-${info.id}-st30{fill:url(#byq_25_);}
-					.byq-${info.id}-st31{fill:url(#byq_26_);}
-					.byq-${info.id}-st32{fill:url(#byq_27_);}
-					.byq-${info.id}-st33{fill:url(#byq_28_);}
-					.byq-${info.id}-st34{fill:url(#byq_29_);}
-					.byq-${info.id}-st35{fill:url(#byq_30_);}
-					.byq-${info.id}-st36{fill:url(#byq_31_);}
-					.byq-${info.id}-st37{fill:url(#byq_32_);}
-					.byq-${info.id}-st38{fill:url(#byq_33_);}
-					.byq-${info.id}-st39{fill:url(#byq_34_);}
-					.byq-${info.id}-st40{fill:url(#byq_35_);}
-					.byq-${info.id}-st41{fill:url(#byq_36_);}
-					.byq-${info.id}-st42{fill:url(#byq_37_);}
-					.byq-${info.id}-st43{fill:url(#byq_38_);}
-					.byq-${info.id}-st44{fill:url(#byq_39_);}
-					.byq-${info.id}-st45{fill:url(#byq_40_);}
-					.byq-${info.id}-st46{fill:url(#byq_41_);}
-					.byq-${info.id}-st47{fill:url(#byq_42_);}
-					.byq-${info.id}-st48{fill:url(#byq_43_);}
+					.byq-${info.id}-st26{fill:url(#byq_${info.id}_21_);}
+					.byq-${info.id}-st27{fill:url(#byq_${info.id}_22_);}
+					.byq-${info.id}-st28{fill:url(#byq_${info.id}_23_);}
+					.byq-${info.id}-st29{fill:url(#byq_${info.id}_24_);}
+					.byq-${info.id}-st30{fill:url(#byq_${info.id}_25_);}
+					.byq-${info.id}-st31{fill:url(#byq_${info.id}_26_);}
+					.byq-${info.id}-st32{fill:url(#byq_${info.id}_27_);}
+					.byq-${info.id}-st33{fill:url(#byq_${info.id}_28_);}
+					.byq-${info.id}-st34{fill:url(#byq_${info.id}_29_);}
+					.byq-${info.id}-st35{fill:url(#byq_${info.id}_30_);}
+					.byq-${info.id}-st36{fill:url(#byq_${info.id}_31_);}
+					.byq-${info.id}-st37{fill:url(#byq_${info.id}_32_);}
+					.byq-${info.id}-st38{fill:url(#byq_${info.id}_33_);}
+					.byq-${info.id}-st39{fill:url(#byq_${info.id}_34_);}
+					.byq-${info.id}-st40{fill:url(#byq_${info.id}_35_);}
+					.byq-${info.id}-st41{fill:url(#byq_${info.id}_36_);}
+					.byq-${info.id}-st42{fill:url(#byq_${info.id}_37_);}
+					.byq-${info.id}-st43{fill:url(#byq_${info.id}_38_);}
+					.byq-${info.id}-st44{fill:url(#byq_${info.id}_39_);}
+					.byq-${info.id}-st45{fill:url(#byq_${info.id}_40_);}
+					.byq-${info.id}-st46{fill:url(#byq_${info.id}_41_);}
+					.byq-${info.id}-st47{fill:url(#byq_${info.id}_42_);}
+					.byq-${info.id}-st48{fill:url(#byq_${info.id}_43_);}
 					.byq-${info.id}-st49{fill:#841B1F;}
 					.byq-${info.id}-st50{opacity:0.3;fill:#300303;}
-					.byq-${info.id}-st51{fill:url(#byq_44_);}
-					.byq-${info.id}-st52{fill:url(#byq_45_);}
-					.byq-${info.id}-st53{fill:url(#byq_46_);}
+					.byq-${info.id}-st51{fill:url(#byq_${info.id}_44_);}
+					.byq-${info.id}-st52{fill:url(#byq_${info.id}_45_);}
+					.byq-${info.id}-st53{fill:url(#byq_${info.id}_46_);}
       </style>
       `
         "
       ></defs>
-      <g id="byq_279_">
-        <g id="byq_278_">
+      <g :id="`byq_${info.id}_279_`">
+        <g :id="`byq_${info.id}_278_`">
           <rect
-            id="byq_277_"
+            :id="`byq_${info.id}_277_`"
             x="0.2"
             y="95.1"
             :class="`byq-${info.id}-st0`"
@@ -83,29 +83,29 @@
             height="1.5"
           />
           <path
-            id="byq_276_"
+            :id="`byq_${info.id}_276_`"
             :class="`byq-${info.id}-st1`"
             d="M83.3,74.3H6.1c-0.9,0-1.6,0.6-1.8,1.5L0.2,95.1h89l-4.1-19.2C85,75,84.2,74.3,83.3,74.3z"
           />
         </g>
-        <g id="byq_271_">
+        <g :id="`byq_${info.id}_271_`">
           <polygon
-            id="byq_275_"
+            :id="`byq_${info.id}_275_`"
             :class="`byq-${info.id}-st2`"
             points="7.1,78 7.1,82.9 16.7,91.6 72.7,91.6 82.3,82.9 82.3,78 		"
           />
           <polygon
-            id="byq_274_"
+            :id="`byq_${info.id}_274_`"
             :class="`byq-${info.id}-st3`"
             points="7.1,84.5 16.7,93.1 16.7,91.6 7.1,82.9 		"
           />
           <polygon
-            id="byq_273_"
+            :id="`byq_${info.id}_273_`"
             :class="`byq-${info.id}-st3`"
             points="82.3,84.5 72.7,93.1 72.7,91.6 82.3,82.9 		"
           />
           <rect
-            id="byq_272_"
+            :id="`byq_${info.id}_272_`"
             x="16.7"
             y="91.6"
             :class="`byq-${info.id}-st4`"
@@ -113,24 +113,24 @@
             height="1.6"
           />
         </g>
-        <g id="byq_266_">
+        <g :id="`byq_${info.id}_266_`">
           <polygon
-            id="byq_270_"
+            :id="`byq_${info.id}_270_`"
             :class="`byq-${info.id}-st2`"
             points="7.1,74.5 7.1,79.4 16.7,88.1 72.7,88.1 82.3,79.4 82.3,74.5 		"
           />
           <polygon
-            id="byq_269_"
+            :id="`byq_${info.id}_269_`"
             :class="`byq-${info.id}-st3`"
             points="7.1,81 16.7,89.6 16.7,88.1 7.1,79.4 		"
           />
           <polygon
-            id="byq_268_"
+            :id="`byq_${info.id}_268_`"
             :class="`byq-${info.id}-st3`"
             points="82.3,81 72.7,89.6 72.7,88.1 82.3,79.4 		"
           />
           <rect
-            id="byq_267_"
+            :id="`byq_${info.id}_267_`"
             x="16.7"
             y="88.1"
             class="st4"
@@ -138,24 +138,24 @@
             height="1.6"
           />
         </g>
-        <g id="byq_261_">
+        <g :id="`byq_${info.id}_261_`">
           <polygon
-            id="byq_265_"
+            :id="`byq_${info.id}_265_`"
             :class="`byq-${info.id}-st2`"
             points="7.1,71 7.1,75.9 16.7,84.6 72.7,84.6 82.3,75.9 82.3,71 		"
           />
           <polygon
-            id="byq_264_"
+            :id="`byq_${info.id}_264_`"
             :class="`byq-${info.id}-st3`"
             points="7.1,77.5 16.7,86.1 16.7,84.6 7.1,75.9 		"
           />
           <polygon
-            id="byq_263_"
+            :id="`byq_${info.id}_263_`"
             :class="`byq-${info.id}-st3`"
             points="82.3,77.5 72.7,86.1 72.7,84.6 82.3,75.9 		"
           />
           <rect
-            id="byq_262_"
+            :id="`byq_${info.id}_262_`"
             x="16.7"
             y="84.6"
             :class="`byq-${info.id}-st4`"
@@ -163,24 +163,24 @@
             height="1.6"
           />
         </g>
-        <g id="byq_252_">
+        <g :id="`byq_${info.id}_252_`">
           <polygon
-            id="byq_260_"
+            :id="`byq_${info.id}_260_`"
             :class="`byq-${info.id}-st2`"
             points="7.1,67.5 7.1,72.4 16.7,81.1 72.7,81.1 82.3,72.4 82.3,67.5 		"
           />
           <polygon
-            id="byq_259_"
+            :id="`byq_${info.id}_259_`"
             :class="`byq-${info.id}-st3`"
             points="7.1,74 16.7,82.6 16.7,81.1 7.1,72.4 		"
           />
           <polygon
-            id="byq_256_"
+            :id="`byq_${info.id}_256_`"
             :class="`byq-${info.id}-st3`"
             points="82.3,74 72.7,82.6 72.7,81.1 82.3,72.4 		"
           />
           <rect
-            id="byq_253_"
+            :id="`byq_${info.id}_253_`"
             x="16.7"
             y="81.1"
             :class="`byq-${info.id}-st4`"
@@ -188,24 +188,24 @@
             height="1.6"
           />
         </g>
-        <g id="byq_235_">
+        <g :id="`byq_${info.id}_235_`">
           <polygon
-            id="byq_250_"
+            :id="`byq_${info.id}_250_`"
             :class="`byq-${info.id}-st2`"
             points="7.1,64 7.1,68.9 16.7,77.6 72.7,77.6 82.3,68.9 82.3,64 		"
           />
           <polygon
-            id="byq_244_"
+            :id="`byq_${info.id}_244_`"
             :class="`byq-${info.id}-st3`"
             points="7.1,70.5 16.7,79.1 16.7,77.6 7.1,68.9 		"
           />
           <polygon
-            id="byq_241_"
+            :id="`byq_${info.id}_241_`"
             :class="`byq-${info.id}-st3`"
             points="82.3,70.5 72.7,79.1 72.7,77.6 82.3,68.9 		"
           />
           <rect
-            id="byq_238_"
+            :id="`byq_${info.id}_238_`"
             x="16.7"
             y="77.6"
             :class="`byq-${info.id}-st4`"
@@ -213,24 +213,24 @@
             height="1.6"
           />
         </g>
-        <g id="byq_220_">
+        <g :id="`byq_${info.id}_220_`">
           <polygon
-            id="byq_232_"
+            :id="`byq_${info.id}_232_`"
             :class="`byq-${info.id}-st2`"
             points="7.1,60.5 7.1,65.4 16.7,74.1 72.7,74.1 82.3,65.4 82.3,60.5 		"
           />
           <polygon
-            id="byq_229_"
+            :id="`byq_${info.id}_229_`"
             :class="`byq-${info.id}-st3`"
             points="7.1,67 16.7,75.6 16.7,74.1 7.1,65.4 		"
           />
           <polygon
-            id="byq_226_"
+            :id="`byq_${info.id}_226_`"
             :class="`byq-${info.id}-st3`"
             points="82.3,67 72.7,75.6 72.7,74.1 82.3,65.4 		"
           />
           <rect
-            id="byq_223_"
+            :id="`byq_${info.id}_223_`"
             x="16.7"
             y="74.1"
             class="st4"
@@ -238,24 +238,24 @@
             height="1.6"
           />
         </g>
-        <g id="byq_215_">
+        <g :id="`byq_${info.id}_215_`">
           <polygon
-            id="byq_214_"
+            :id="`byq_${info.id}_214_`"
             :class="`byq-${info.id}-st2`"
             points="7.1,57 7.1,61.9 16.7,70.6 72.7,70.6 82.3,61.9 82.3,57 		"
           />
           <polygon
-            id="byq_205_"
+            :id="`byq_${info.id}_205_`"
             :class="`byq-${info.id}-st3`"
             points="7.1,63.5 16.7,72.1 16.7,70.6 7.1,61.9 		"
           />
           <polygon
-            id="byq_208_"
+            :id="`byq_${info.id}_208_`"
             :class="`byq-${info.id}-st3`"
             points="82.3,63.5 72.7,72.1 72.7,70.6 82.3,61.9 		"
           />
           <rect
-            id="byq_211_"
+            :id="`byq_${info.id}_211_`"
             x="16.7"
             y="70.6"
             :class="`byq-${info.id}-st4`"
@@ -264,7 +264,7 @@
           />
         </g>
         <rect
-          id="byq_280_"
+          :id="`byq_${info.id}_280_`"
           x="30.2"
           y="82.1"
           :class="`byq-${info.id}-st4`"
@@ -272,7 +272,7 @@
           height="10.5"
         />
         <linearGradient
-          id="byq_2_"
+          :id="`byq_${info.id}_2_`"
           gradientUnits="userSpaceOnUse"
           x1="44.3638"
           y1="85.0757"
@@ -283,23 +283,23 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_281_"
+          :id="`byq_${info.id}_281_`"
           :class="`byq-${info.id}-st5`"
           d="M50.8,84.8H37.9c-1.7,0-3.1,1.2-3.1,2.7s1.4,2.7,3.1,2.7h12.8c1.7,0,3.1-1.2,3.1-2.7
 						S52.5,84.8,50.8,84.8z"
         />
         <polygon
-          id="byq_247_"
+          :id="`byq_${info.id}_247_`"
           :class="`byq-${info.id}-st6`"
           points="11.8,64 7.9,60.7 7.9,49.1 13.5,49.5 	"
         />
         <polygon
-          id="byq_248_"
+          :id="`byq_${info.id}_248_`"
           :class="`byq-${info.id}-st6`"
           points="77.4,64 81.3,60.7 81.3,49.1 75.7,49.5 	"
         />
         <linearGradient
-          id="byq_3_"
+          :id="`byq_${info.id}_3_`"
           gradientUnits="userSpaceOnUse"
           x1="7.8171"
           y1="50.4568"
@@ -311,12 +311,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_213_"
+          :id="`byq_${info.id}_213_`"
           :class="`byq-${info.id}-st7`"
           d="M7.8,47.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H7.8z"
         />
         <linearGradient
-          id="byq_4_"
+          :id="`byq_${info.id}_4_`"
           gradientUnits="userSpaceOnUse"
           x1="17.6989"
           y1="42.951"
@@ -327,7 +327,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_212_"
+          :id="`byq_${info.id}_212_`"
           :class="`byq-${info.id}-st8`"
           cx="17.7"
           cy="47.3"
@@ -335,7 +335,7 @@
           ry="4.7"
         />
         <linearGradient
-          id="byq_5_"
+          :id="`byq_${info.id}_5_`"
           gradientUnits="userSpaceOnUse"
           x1="7.8171"
           y1="45.4565"
@@ -347,12 +347,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_210_"
+          :id="`byq_${info.id}_210_`"
           :class="`byq-${info.id}-st9`"
           d="M7.8,42.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H7.8z"
         />
         <linearGradient
-          id="byq_6_"
+          :id="`byq_${info.id}_6_`"
           gradientUnits="userSpaceOnUse"
           x1="17.6989"
           y1="37.9506"
@@ -363,7 +363,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_209_"
+          :id="`byq_${info.id}_209_`"
           :class="`byq-${info.id}-st10`"
           cx="17.7"
           cy="42.3"
@@ -371,7 +371,7 @@
           ry="4.7"
         />
         <linearGradient
-          id="byq_7_"
+          :id="`byq_${info.id}_7_`"
           gradientUnits="userSpaceOnUse"
           x1="7.8171"
           y1="40.4562"
@@ -383,12 +383,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_207_"
+          :id="`byq_${info.id}_207_`"
           :class="`byq-${info.id}-st11`"
           d="M7.8,37.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H7.8z"
         />
         <linearGradient
-          id="byq_8_"
+          :id="`byq_${info.id}_8_`"
           gradientUnits="userSpaceOnUse"
           x1="17.6989"
           y1="32.9503"
@@ -399,7 +399,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_206_"
+          :id="`byq_${info.id}_206_`"
           :class="`byq-${info.id}-st12`"
           cx="17.7"
           cy="37.3"
@@ -407,7 +407,7 @@
           ry="4.7"
         />
         <linearGradient
-          id="byq_9_"
+          :id="`byq_${info.id}_9_`"
           gradientUnits="userSpaceOnUse"
           x1="7.8171"
           y1="35.4559"
@@ -419,12 +419,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_204_"
+          :id="`byq_${info.id}_204_`"
           :class="`byq-${info.id}-st13`"
           d="M7.8,32.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H7.8z"
         />
         <linearGradient
-          id="byq_10_"
+          :id="`byq_${info.id}_10_`"
           gradientUnits="userSpaceOnUse"
           x1="17.6989"
           y1="27.95"
@@ -435,7 +435,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_203_"
+          :id="`byq_${info.id}_203_`"
           :class="`byq-${info.id}-st14`"
           cx="17.7"
           cy="32.3"
@@ -443,7 +443,7 @@
           ry="4.7"
         />
         <linearGradient
-          id="byq_11_"
+          :id="`byq_${info.id}_11_`"
           gradientUnits="userSpaceOnUse"
           x1="7.8171"
           y1="30.4556"
@@ -455,12 +455,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_201_"
+          :id="`byq_${info.id}_201_`"
           :class="`byq-${info.id}-st15`"
           d="M7.8,27.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H7.8z"
         />
         <linearGradient
-          id="byq_12_"
+          :id="`byq_${info.id}_12_`"
           gradientUnits="userSpaceOnUse"
           x1="17.6989"
           y1="22.9497"
@@ -471,7 +471,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_200_"
+          :id="`byq_${info.id}_200_`"
           :class="`byq-${info.id}-st16`"
           cx="17.7"
           cy="27.3"
@@ -479,7 +479,7 @@
           ry="4.7"
         />
         <linearGradient
-          id="byq_13_"
+          :id="`byq_${info.id}_13_`"
           gradientUnits="userSpaceOnUse"
           x1="7.8171"
           y1="25.4553"
@@ -491,12 +491,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_198_"
+          :id="`byq_${info.id}_198_`"
           :class="`byq-${info.id}-st17`"
           d="M7.8,22.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H7.8z"
         />
         <linearGradient
-          id="byq_14_"
+          :id="`byq_${info.id}_14_`"
           gradientUnits="userSpaceOnUse"
           x1="17.6989"
           y1="17.9494"
@@ -507,7 +507,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_197_"
+          :id="`byq_${info.id}_197_`"
           :class="`byq-${info.id}-st18`"
           cx="17.7"
           cy="22.3"
@@ -515,7 +515,7 @@
           ry="4.7"
         />
         <linearGradient
-          id="byq_15_"
+          :id="`byq_${info.id}_15_`"
           gradientUnits="userSpaceOnUse"
           x1="7.8171"
           y1="20.4549"
@@ -527,12 +527,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_195_"
+          :id="`byq_${info.id}_195_`"
           :class="`byq-${info.id}-st19`"
           d="M7.8,17.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H7.8z"
         />
         <linearGradient
-          id="byq_16_"
+          :id="`byq_${info.id}_16_`"
           gradientUnits="userSpaceOnUse"
           x1="17.6989"
           y1="12.9491"
@@ -543,7 +543,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_194_"
+          :id="`byq_${info.id}_194_`"
           :class="`byq-${info.id}-st20`"
           cx="17.7"
           cy="17.3"
@@ -551,7 +551,7 @@
           ry="4.7"
         />
         <linearGradient
-          id="byq_17_"
+          :id="`byq_${info.id}_17_`"
           gradientUnits="userSpaceOnUse"
           x1="7.8171"
           y1="15.4546"
@@ -563,12 +563,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_192_"
+          :id="`byq_${info.id}_192_`"
           :class="`byq-${info.id}-st21`"
           d="M7.8,12.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H7.8z"
         />
         <linearGradient
-          id="byq_18_"
+          :id="`byq_${info.id}_18_`"
           gradientUnits="userSpaceOnUse"
           x1="17.6989"
           y1="7.9487"
@@ -579,7 +579,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_191_"
+          :id="`byq_${info.id}_191_`"
           :class="`byq-${info.id}-st22`"
           cx="17.7"
           cy="12.3"
@@ -587,7 +587,7 @@
           ry="4.7"
         />
         <linearGradient
-          id="byq_19_"
+          :id="`byq_${info.id}_19_`"
           gradientUnits="userSpaceOnUse"
           x1="7.8171"
           y1="10.4543"
@@ -599,12 +599,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_189_"
+          :id="`byq_${info.id}_189_`"
           :class="`byq-${info.id}-st23`"
           d="M7.8,7.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7V7.3H7.8z"
         />
         <linearGradient
-          id="byq_20_"
+          :id="`byq_${info.id}_20_`"
           gradientUnits="userSpaceOnUse"
           x1="17.6989"
           y1="2.9484"
@@ -615,7 +615,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_188_"
+          :id="`byq_${info.id}_188_`"
           :class="`byq-${info.id}-st24`"
           cx="17.7"
           cy="7.3"
@@ -623,12 +623,12 @@
           ry="4.7"
         />
         <path
-          id="byq_186_"
+          :id="`byq_${info.id}_186_`"
           :class="`byq-${info.id}-st25`"
           d="M17.7,9.1c-2.6,0-4.5-1.1-4.5-2.7s1.9-2.7,4.5-2.7s4.5,1.1,4.5,2.7S20.3,9.1,17.7,9.1z"
         />
         <linearGradient
-          id="byq_21_"
+          :id="`byq_${info.id}_21_`"
           gradientUnits="userSpaceOnUse"
           x1="14.2753"
           y1="4.7474"
@@ -640,12 +640,12 @@
           <stop offset="1" style="stop-color:#A9ADB6" />
         </linearGradient>
         <path
-          id="byq_184_"
+          :id="`byq_${info.id}_184_`"
           :class="`byq-${info.id}-st26`"
           d="M14.3,1.6v4.6c0,0.9,1.5,1.6,3.4,1.6c1.9,0,3.4-0.7,3.4-1.6V1.6H14.3z"
         />
         <linearGradient
-          id="byq_22_"
+          :id="`byq_${info.id}_22_`"
           gradientUnits="userSpaceOnUse"
           x1="17.6989"
           y1="0.3144"
@@ -656,7 +656,7 @@
           <stop offset="1" style="stop-color:#DADEE5" />
         </linearGradient>
         <ellipse
-          id="byq_183_"
+          :id="`byq_${info.id}_183_`"
           :class="`byq-${info.id}-st27`"
           cx="17.7"
           cy="1.6"
@@ -664,7 +664,7 @@
           ry="1.6"
         />
         <linearGradient
-          id="byq_23_"
+          :id="`byq_${info.id}_23_`"
           gradientUnits="userSpaceOnUse"
           x1="61.8205"
           y1="50.4568"
@@ -676,12 +676,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_246_"
+          :id="`byq_${info.id}_246_`"
           :class="`byq-${info.id}-st28`"
           d="M61.8,47.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H61.8z"
         />
         <linearGradient
-          id="byq_24_"
+          :id="`byq_${info.id}_24_`"
           gradientUnits="userSpaceOnUse"
           x1="71.7023"
           y1="42.951"
@@ -692,7 +692,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_245_"
+          :id="`byq_${info.id}_245_`"
           :class="`byq-${info.id}-st29`"
           cx="71.7"
           cy="47.3"
@@ -700,7 +700,7 @@
           ry="4.7"
         />
         <linearGradient
-          id="byq_25_"
+          :id="`byq_${info.id}_25_`"
           gradientUnits="userSpaceOnUse"
           x1="61.8205"
           y1="45.4565"
@@ -712,12 +712,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_243_"
+          :id="`byq_${info.id}_243_`"
           :class="`byq-${info.id}-st30`"
           d="M61.8,42.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H61.8z"
         />
         <linearGradient
-          id="byq_26_"
+          :id="`byq_${info.id}_26_`"
           gradientUnits="userSpaceOnUse"
           x1="71.7023"
           y1="37.9506"
@@ -728,7 +728,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_242_"
+          :id="`byq_${info.id}_242_`"
           :class="`byq-${info.id}-st31`"
           cx="71.7"
           cy="42.3"
@@ -736,7 +736,7 @@
           ry="4.7"
         />
         <linearGradient
-          id="byq_27_"
+          :id="`byq_${info.id}_27_`"
           gradientUnits="userSpaceOnUse"
           x1="61.8205"
           y1="40.4562"
@@ -748,12 +748,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_240_"
+          :id="`byq_${info.id}_240_`"
           :class="`byq-${info.id}-st32`"
           d="M61.8,37.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H61.8z"
         />
         <linearGradient
-          id="byq_28_"
+          :id="`byq_${info.id}_28_`"
           gradientUnits="userSpaceOnUse"
           x1="71.7023"
           y1="32.9503"
@@ -764,7 +764,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_239_"
+          :id="`byq_${info.id}_239_`"
           :class="`byq-${info.id}-st33`"
           cx="71.7"
           cy="37.3"
@@ -772,7 +772,7 @@
           ry="4.7"
         />
         <linearGradient
-          id="byq_29_"
+          :id="`byq_${info.id}_29_`"
           gradientUnits="userSpaceOnUse"
           x1="61.8205"
           y1="35.4559"
@@ -784,12 +784,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_237_"
+          :id="`byq_${info.id}_237_`"
           :class="`byq-${info.id}-st34`"
           d="M61.8,32.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H61.8z"
         />
         <linearGradient
-          id="byq_30_"
+          :id="`byq_${info.id}_30_`"
           gradientUnits="userSpaceOnUse"
           x1="71.7023"
           y1="27.95"
@@ -800,7 +800,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_236_"
+          :id="`byq_${info.id}_236_`"
           :class="`byq-${info.id}-st35`"
           cx="71.7"
           cy="32.3"
@@ -808,7 +808,7 @@
           ry="4.7"
         />
         <linearGradient
-          id="byq_31_"
+          :id="`byq_${info.id}_31_`"
           gradientUnits="userSpaceOnUse"
           x1="61.8205"
           y1="30.4556"
@@ -820,12 +820,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_234_"
+          :id="`byq_${info.id}_234_`"
           :class="`byq-${info.id}-st36`"
           d="M61.8,27.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H61.8z"
         />
         <linearGradient
-          id="byq_32_"
+          :id="`byq_${info.id}_32_`"
           gradientUnits="userSpaceOnUse"
           x1="71.7023"
           y1="22.9497"
@@ -836,7 +836,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_233_"
+          :id="`byq_${info.id}_233_`"
           :class="`byq-${info.id}-st37`"
           cx="71.7"
           cy="27.3"
@@ -844,7 +844,7 @@
           ry="4.7"
         />
         <linearGradient
-          id="byq_33_"
+          :id="`byq_${info.id}_33_`"
           gradientUnits="userSpaceOnUse"
           x1="61.8205"
           y1="25.4553"
@@ -856,12 +856,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_231_"
+          :id="`byq_${info.id}_231_`"
           :class="`byq-${info.id}-st38`"
           d="M61.8,22.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H61.8z"
         />
         <linearGradient
-          id="byq_34_"
+          :id="`byq_${info.id}_34_`"
           gradientUnits="userSpaceOnUse"
           x1="71.7023"
           y1="17.9494"
@@ -872,7 +872,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_230_"
+          :id="`byq_${info.id}_230_`"
           :class="`byq-${info.id}-st39`"
           cx="71.7"
           cy="22.3"
@@ -880,7 +880,7 @@
           ry="4.7"
         />
         <linearGradient
-          id="byq_35_"
+          :id="`byq_${info.id}_35_`"
           gradientUnits="userSpaceOnUse"
           x1="61.8205"
           y1="20.4549"
@@ -892,12 +892,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_228_"
+          :id="`byq_${info.id}_228_`"
           :class="`byq-${info.id}-st40`"
           d="M61.8,17.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H61.8z"
         />
         <linearGradient
-          id="byq_36_"
+          :id="`byq_${info.id}_36_`"
           gradientUnits="userSpaceOnUse"
           x1="71.7023"
           y1="12.9491"
@@ -908,7 +908,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_227_"
+          :id="`byq_${info.id}_227_`"
           :class="`byq-${info.id}-st41`"
           cx="71.7"
           cy="17.3"
@@ -916,7 +916,7 @@
           ry="4.7"
         />
         <linearGradient
-          id="byq_37_"
+          :id="`byq_${info.id}_37_`"
           gradientUnits="userSpaceOnUse"
           x1="61.8205"
           y1="15.4546"
@@ -928,12 +928,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_225_"
+          :id="`byq_${info.id}_225_`"
           :class="`byq-${info.id}-st42`"
           d="M61.8,12.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7v-1.5H61.8z"
         />
         <linearGradient
-          id="byq_38_"
+          :id="`byq_${info.id}_38_`"
           gradientUnits="userSpaceOnUse"
           x1="71.7023"
           y1="7.9487"
@@ -944,7 +944,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_224_"
+          :id="`byq_${info.id}_224_`"
           :class="`byq-${info.id}-st43`"
           cx="71.7"
           cy="12.3"
@@ -952,7 +952,7 @@
           ry="4.7"
         />
         <linearGradient
-          id="byq_39_"
+          :id="`byq_${info.id}_39_`"
           gradientUnits="userSpaceOnUse"
           x1="61.8205"
           y1="10.4543"
@@ -964,12 +964,12 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <path
-          id="byq_222_"
+          :id="`byq_${info.id}_222_`"
           :class="`byq-${info.id}-st44`"
           d="M61.8,7.3v1.5c0,2.6,4.4,4.7,9.9,4.7c5.5,0,9.9-2.1,9.9-4.7V7.3H61.8z"
         />
         <linearGradient
-          id="byq_40_"
+          :id="`byq_${info.id}_40_`"
           gradientUnits="userSpaceOnUse"
           x1="71.7023"
           y1="2.9484"
@@ -980,7 +980,7 @@
           <stop offset="1" style="stop-color:#942B2B" />
         </linearGradient>
         <ellipse
-          id="byq_221_"
+          :id="`byq_${info.id}_221_`"
           :class="`byq-${info.id}-st45`"
           cx="71.7"
           cy="7.3"
@@ -988,12 +988,12 @@
           ry="4.7"
         />
         <path
-          id="byq_218_"
+          :id="`byq_${info.id}_218_`"
           class="st25"
           d="M71.7,9.1c-2.6,0-4.5-1.1-4.5-2.7s1.9-2.7,4.5-2.7s4.5,1.1,4.5,2.7S74.3,9.1,71.7,9.1z"
         />
         <linearGradient
-          id="byq_41_"
+          :id="`byq_${info.id}_41_`"
           gradientUnits="userSpaceOnUse"
           x1="68.2787"
           y1="4.7474"
@@ -1005,12 +1005,12 @@
           <stop offset="1" style="stop-color:#A9ADB6" />
         </linearGradient>
         <path
-          id="byq_217_"
+          :id="`byq_${info.id}_217_`"
           :class="`byq-${info.id}-st46`"
           d="M68.3,1.6v4.6c0,0.9,1.5,1.6,3.4,1.6c1.9,0,3.4-0.7,3.4-1.6V1.6H68.3z"
         />
         <linearGradient
-          id="byq_42_"
+          :id="`byq_${info.id}_42_`"
           gradientUnits="userSpaceOnUse"
           x1="71.7023"
           y1="0.3144"
@@ -1021,7 +1021,7 @@
           <stop offset="1" style="stop-color:#DADEE5" />
         </linearGradient>
         <ellipse
-          id="byq_216_"
+          :id="`byq_${info.id}_216_`"
           :class="`byq-${info.id}-st47`"
           cx="71.7"
           cy="1.6"
@@ -1029,7 +1029,7 @@
           ry="1.6"
         />
         <linearGradient
-          id="byq_43_"
+          :id="`byq_${info.id}_43_`"
           gradientUnits="userSpaceOnUse"
           x1="44.7819"
           y1="27.2485"
@@ -1042,29 +1042,29 @@
           <stop offset="1" style="stop-color:#A83324" />
         </linearGradient>
         <path
-          id="byq_190_"
+          :id="`byq_${info.id}_190_`"
           :class="`byq-${info.id}-st48`"
           d="M77.6,52.7c0,0-0.5,0.2-3.3-2.1c-2.8-2.2-3.7-3.7-6.3-14.6c-2-8.3-6.1-9.1-6.1-9.1H27.7
 						c0,0-4.2,0.8-6.1,9.1c-2.6,10.9-3.5,12.3-6.3,14.6c-2.8,2.2-3.3,2.1-3.3,2.1V64h10l1.8,5.1H66l1.8-5.1h9.8V52.7z"
         />
         <polygon
-          id="byq_202_"
+          :id="`byq_${info.id}_202_`"
           :class="`byq-${info.id}-st49`"
           points="21.8,64 23.6,44 23.6,69.1 	"
         />
         <polygon
-          id="byq_199_"
+          :id="`byq_${info.id}_199_`"
           :class="`byq-${info.id}-st49`"
           points="67.8,64 66,44 66,69.1 	"
         />
-        <g id="byq_169_">
+        <g :id="`byq_${info.id}_169_`">
           <polygon
-            id="byq_251_"
+            :id="`byq_${info.id}_251_`"
             :class="`byq-${info.id}-st50`"
             points="34,56.1 32.1,56.1 30.1,26.9 36,26.9 		"
           />
           <linearGradient
-            id="byq_44_"
+            :id="`byq_${info.id}_44_`"
             gradientUnits="userSpaceOnUse"
             x1="33.0171"
             y1="25.3805"
@@ -1077,7 +1077,7 @@
             <stop offset="1" style="stop-color:#A83324" />
           </linearGradient>
           <rect
-            id="byq_249_"
+            :id="`byq_${info.id}_249_`"
             x="31.9"
             y="25.9"
             :class="`byq-${info.id}-st51`"
@@ -1085,14 +1085,14 @@
             height="31.2"
           />
         </g>
-        <g id="byq_193_">
+        <g :id="`byq_${info.id}_193_`">
           <polygon
-            id="byq_255_"
+            :id="`byq_${info.id}_255_`"
             :class="`byq-${info.id}-st50`"
             points="46,56.1 44.1,56.1 42.1,26.9 48,26.9 		"
           />
           <linearGradient
-            id="byq_45_"
+            :id="`byq_${info.id}_45_`"
             gradientUnits="userSpaceOnUse"
             x1="45.0179"
             y1="25.3805"
@@ -1105,7 +1105,7 @@
             <stop offset="1" style="stop-color:#A83324" />
           </linearGradient>
           <rect
-            id="byq_254_"
+            :id="`byq_${info.id}_254_`"
             x="43.9"
             y="25.9"
             :class="`byq-${info.id}-st52`"
@@ -1113,14 +1113,14 @@
             height="31.2"
           />
         </g>
-        <g id="byq_196_">
+        <g :id="`byq_${info.id}_196_`">
           <polygon
-            id="byq_258_"
+            :id="`byq_${info.id}_258_`"
             :class="`byq-${info.id}-st50`"
             points="58,56.1 56.1,56.1 54.1,26.9 60,26.9 		"
           />
           <linearGradient
-            id="byq_46_"
+            :id="`byq_${info.id}_46_`"
             gradientUnits="userSpaceOnUse"
             x1="57.0187"
             y1="25.3805"
@@ -1133,7 +1133,7 @@
             <stop offset="1" style="stop-color:#A83324" />
           </linearGradient>
           <rect
-            id="byq_257_"
+            :id="`byq_${info.id}_257_`"
             x="55.9"
             y="25.9"
             :class="`byq-${info.id}-st53`"

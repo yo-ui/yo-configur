@@ -142,6 +142,12 @@ const Constants = {
     { code: "purity", name: "纯色" },
     { code: "gradient", name: "渐变色" }
   ],
+  STATUSLIST: [
+    //设备状态
+    { code: 0, name: "关闭" },
+    { code: 1, name: "启动" },
+    { code: 2, name: "报警" }
+  ],
   GRADIENTTYPELIST: [
     //渐变类型
     { code: "linear", name: "线性" },

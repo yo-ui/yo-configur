@@ -386,20 +386,6 @@
         .h(30);
         .w(100);
       }
-      .gradient-type-group {
-        flex-direction: row !important;
-        .el-radio-button {
-          .br(0 4px 4px 0);
-          &:first-child {
-            .br(4px 0 0 4px);
-          }
-          &.is-active {
-            .el-radio-button__inner {
-              .bc(transparent);
-            }
-          }
-        }
-      }
       // .el-color-picker{
       //   // .ml(10);
       // }
@@ -410,6 +396,23 @@
         justify-content: center;
         .el-radio {
           .mb(10);
+        }
+        &.gradient-type-group {
+          flex-direction: row !important;
+          .el-radio-button {
+            .br(0 4px 4px 0);
+            &:first-child {
+              .br(4px 0 0 4px);
+            }
+            &.is-active {
+              .el-radio-button__inner {
+                .bc(transparent);
+              }
+            }
+          }
+        }
+        &.flex {
+          flex-direction: row !important;
         }
       }
       .el-slider {

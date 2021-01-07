@@ -13,7 +13,7 @@
       <defs
         v-html="
           `
-        <style type='text/css'>        
+        <style type='text/css'>
 	.dengp-${info.id}-st0{fill:url(#dengp_2_);}
 	.dengp-${info.id}-st1{fill:url(#dengp_3_);}
 	.dengp-${info.id}-st2{fill:url(#dengp_4_);}
@@ -296,11 +296,7 @@ export default {
   },
   mounted() {
     let { info = {} } = this;
-    // bmCommon.log("dengp mounted=", info.content);
-    let { content = "" } = info || {};
-    if (content === "") {
-      info.content = false;
-    }
+    info.content = false;
     this.init();
   },
   methods: {

@@ -1105,7 +1105,7 @@ let componentLibrary = [
             icon: "/static/img/configur/db.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/db.svg",
+              // backgroundImage: "/static/img/svg/db.svg",
               width: 70,
               height: 69,
               dataType: "device",
@@ -1120,25 +1120,12 @@ let componentLibrary = [
             icon: "/static/img/configur/dxdgdb.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/dxdgdb.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/dxdgdb.svg",
               width: 64,
               height: 60,
               dataType: "device",
               infoType: "device",
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1148,25 +1135,12 @@ let componentLibrary = [
             icon: "/static/img/configur/iokzmk.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/iokzmk.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/iokzmk.svg",
               width: 53,
               height: 48,
               dataType: "device", // 数据绑定类型
               infoType: "device", // 信息展示处理
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1177,24 +1151,11 @@ let componentLibrary = [
             data: {
               ...baseData,
               backgroundImage: "/static/img/svg/duanluqi.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
               width: 45,
               height: 45,
               dataType: "device",
               infoType: "device",
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1204,25 +1165,12 @@ let componentLibrary = [
             icon: "/static/img/configur/bgsdb.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/bgsdb.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/bgsdb.svg",
               width: 58,
               height: 75,
               dataType: "device",
               infoType: "device",
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1232,25 +1180,12 @@ let componentLibrary = [
             icon: "/static/img/configur/jddz.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/jddz.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/jddz.svg",
               width: 70,
               height: 60,
               dataType: "device",
               infoType: "device",
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1260,25 +1195,12 @@ let componentLibrary = [
             icon: "/static/img/configur/dldrq.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/dldrq.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/dldrq.svg",
               width: 71,
               height: 64,
               dataType: "device",
               infoType: "device",
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1288,25 +1210,12 @@ let componentLibrary = [
             icon: "/static/img/configur/byq.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/byq.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/byq.svg",
               width: 90,
               height: 97,
               dataType: "device",
               infoType: "device",
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           }
         ]
@@ -1322,23 +1231,10 @@ let componentLibrary = [
             icon: "/static/img/configur/lyssb.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/lyssb.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/lyssb.svg",
               width: 72,
               height: 68,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1349,25 +1245,12 @@ let componentLibrary = [
             icon: "/static/img/configur/fksb.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/fksb.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/fksb.svg",
               width: 97,
               height: 56,
               dataType: "device",
               infoType: "device",
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1377,23 +1260,10 @@ let componentLibrary = [
             icon: "/static/img/configur/xyssb.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/xyssb.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/xyssb.svg",
               width: 80,
               height: 55,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1403,23 +1273,10 @@ let componentLibrary = [
             icon: "/static/img/configur/csbllj.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/csbllj.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/csbllj.svg",
               width: 52,
               height: 78,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1429,23 +1286,10 @@ let componentLibrary = [
             icon: "/static/img/configur/ckssb.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/ckssb.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/ckssb.svg",
               width: 88,
               height: 50,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1455,25 +1299,12 @@ let componentLibrary = [
             icon: "/static/img/configur/shsb.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/shsb.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/shsb.svg",
               dataType: "device",
               infoType: "device",
               width: 235,
               height: 171,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1483,23 +1314,10 @@ let componentLibrary = [
             icon: "/static/img/configur/jsj.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/jsj.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/jsj.svg",
               width: 324,
               height: 238,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1509,23 +1327,10 @@ let componentLibrary = [
             icon: "/static/img/configur/sx.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/sx.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/sx.svg",
               width: 300,
               height: 275,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1535,25 +1340,12 @@ let componentLibrary = [
             icon: "/static/img/configur/xfsb.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/xfsb.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/xfsb.svg",
               dataType: "device",
               infoType: "device",
               width: 152,
               height: 200,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1563,23 +1355,10 @@ let componentLibrary = [
             icon: "/static/img/configur/cyfj.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/cyfj.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/cyfj.svg",
               width: 346,
               height: 317,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1589,25 +1368,12 @@ let componentLibrary = [
             icon: "/static/img/configur/zysfj.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/zysfj.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/zysfj.svg",
               dataType: "device",
               infoType: "device",
               width: 346,
               height: 317,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1617,23 +1383,10 @@ let componentLibrary = [
             icon: "/static/img/configur/xszz.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/xszz.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/xszz.svg",
               width: 144,
               height: 300,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1643,23 +1396,10 @@ let componentLibrary = [
             icon: "/static/img/configur/sdsf.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/sdsf.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/sdsf.svg",
               width: 94,
               height: 97,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1669,25 +1409,12 @@ let componentLibrary = [
             icon: "/static/img/configur/jsq.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/jsq.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/jsq.svg",
               width: 206,
               height: 104,
               dataType: "device",
               infoType: "device",
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1697,25 +1424,12 @@ let componentLibrary = [
             icon: "/static/img/configur/fsq.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/fsq.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/fsq.svg",
               width: 206,
               height: 104,
               dataType: "device",
               infoType: "device",
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           }
         ]
@@ -1731,17 +1445,13 @@ let componentLibrary = [
             icon: "/static/img/configur/kg.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/kg.svg",
-              backgroundImageOn: "/static/img/svg/kg-on.svg",
+              // backgroundImage: "/static/img/svg/kg.svg",
+              // backgroundImageOn: "/static/img/svg/kg-on.svg",
               dataType: "device",
               infoType: "device",
               width: 43,
               height: 40,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1751,25 +1461,12 @@ let componentLibrary = [
             icon: "/static/img/configur/dengg.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/dengg.svg",
+              // backgroundImage: "/static/img/svg/dengg.svg",
               dataType: "point",
               // infoType: "device",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
               width: 164,
               height: 30,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1779,25 +1476,12 @@ let componentLibrary = [
             icon: "/static/img/configur/dengp.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/dengp.svg",
+              // backgroundImage: "/static/img/svg/dengp.svg",
               dataType: "point",
               // infoType: "device", //显示详情组件前缀名
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
               width: 32,
               height: 50,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           }
         ]
@@ -1813,23 +1497,10 @@ let componentLibrary = [
             icon: "/static/img/configur/ztsrlb.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/ztsrlb.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/ztsrlb.svg",
               width: 60,
               height: 36,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1839,23 +1510,10 @@ let componentLibrary = [
             icon: "/static/img/configur/zhsrlb.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/zhsrlb.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/zhsrlb.svg",
               width: 82,
               height: 68,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1865,23 +1523,10 @@ let componentLibrary = [
             icon: "/static/img/configur/gskt.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/gskt.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/gskt.svg",
               width: 163,
               height: 64,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1891,23 +1536,10 @@ let componentLibrary = [
             icon: "/static/img/configur/lskt.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/lskt.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/lskt.svg",
               width: 96,
               height: 228,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1917,25 +1549,12 @@ let componentLibrary = [
             icon: "/static/img/configur/flrq.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/flrq.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/flrq.svg",
               dataType: "device",
               infoType: "device", //显示详情组件前缀名
               width: 400,
               height: 320,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1945,23 +1564,10 @@ let componentLibrary = [
             icon: "/static/img/configur/bshrq.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/bshrq.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/bshrq.svg",
               width: 281,
               height: 260,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1971,25 +1577,12 @@ let componentLibrary = [
             icon: "/static/img/configur/lqt.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/lqt.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/lqt.svg",
               dataType: "device",
               infoType: "device", //显示详情组件前缀名
               width: 275,
               height: 315,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -1999,25 +1592,12 @@ let componentLibrary = [
             icon: "/static/img/configur/pfj.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/pfj.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/pfj.svg",
               dataType: "device",
               infoType: "device", //显示详情组件前缀名
               width: 200,
               height: 165,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -2027,25 +1607,12 @@ let componentLibrary = [
             icon: "/static/img/configur/rqgl.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/rqgl.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/rqgl.svg",
               dataType: "device",
               infoType: "device", //显示详情组件前缀名
               width: 606,
               height: 417,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -2157,25 +1724,12 @@ let componentLibrary = [
             icon: "/static/img/configur/ssbjf.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/ssbjf.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/ssbjf.svg",
               dataType: "device",
               infoType: "device", //显示详情组件前缀名
               width: 240,
               height: 210,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -2185,23 +1739,10 @@ let componentLibrary = [
             icon: "/static/img/configur/ywbjcgq.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/ywbjcgq.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/ywbjcgq.svg",
               width: 42,
               height: 35,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -2211,23 +1752,10 @@ let componentLibrary = [
             icon: "/static/img/configur/hwrtgyq.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/hwrtgyq.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/hwrtgyq.svg",
               width: 43,
               height: 41,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -2237,25 +1765,12 @@ let componentLibrary = [
             icon: "/static/img/configur/sxt.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/sxt.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/sxt.svg",
               dataType: "device",
               // infoType: "device", //显示详情组件前缀名
               width: 74,
               height: 58,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -2265,23 +1780,10 @@ let componentLibrary = [
             icon: "/static/img/configur/mcbjq.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/mcbjq.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/mcbjq.svg",
               width: 48,
               height: 44,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -2291,23 +1793,10 @@ let componentLibrary = [
             icon: "/static/img/configur/lsbjq.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/lsbjq.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/lsbjq.svg",
               width: 34,
               height: 44,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           }
         ]
@@ -2323,23 +1812,10 @@ let componentLibrary = [
             icon: "/static/img/configur/gfdcb.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/gfdcb.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/gfdcb.svg",
               width: 182,
               height: 136,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -2349,23 +1825,10 @@ let componentLibrary = [
             icon: "/static/img/configur/gfnbq.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/gfnbq.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/gfnbq.svg",
               width: 140,
               height: 154,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           }
         ]
@@ -2381,23 +1844,10 @@ let componentLibrary = [
             icon: "/static/img/configur/lsscj.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/lsscj.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/lsscj.svg",
               width: 51,
               height: 49,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -2407,23 +1857,10 @@ let componentLibrary = [
             icon: "/static/img/configur/csbcj.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/csbcj.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/csbcj.svg",
               width: 56,
               height: 33,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -2433,23 +1870,10 @@ let componentLibrary = [
             icon: "/static/img/configur/yjpcgq.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/yjpcgq.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/yjpcgq.svg",
               width: 50,
               height: 80,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -2459,23 +1883,10 @@ let componentLibrary = [
             icon: "/static/img/configur/cgq.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/cgq.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/cgq.svg",
               width: 52,
               height: 58,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           },
           {
@@ -2485,23 +1896,10 @@ let componentLibrary = [
             icon: "/static/img/configur/xxqxz.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/xxqxz.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/xxqxz.svg",
               width: 135,
               height: 178,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
             }
           }
         ]
@@ -2517,25 +1915,27 @@ let componentLibrary = [
             icon: "/static/img/configur/kydt.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/kydt.svg",
-              // borderWidth: 0,
-              // borderStyle: "none",
-              // borderColor: "",
-              // borderRadius: 0,
-              // scale: "scale(1,1)",
-              // opacity: 100,
-              // left: 0,
+              // backgroundImage: "/static/img/svg/kydt.svg",
               dataType: "device",
               infoType: "device", //显示详情组件前缀名
               width: 230,
               height: 290,
-              // rotate: 0,
-              // top: 0,
               equalScaleable: true //是否等比例缩放
-              // scaleable: true, //是否可缩放操作
-              // rotateable: true, //是否可旋转操作
-              // editable: false, //内容是否可编辑
-              // locked: true //是否可拖动
+            }
+          },
+          {
+            name: "风力发电",
+            code: "deviceFlfdj",
+            alias: "flfdj",
+            icon: "/static/img/svg/flfdj.svg",
+            data: {
+              ...baseData,
+              // backgroundImage: "/static/img/svg/flfdj.svg",
+              dataType: "device",
+              infoType: "device", //显示详情组件前缀名
+              width: 292,
+              height: 307,
+              equalScaleable: true //是否等比例缩放
             }
           }
         ]

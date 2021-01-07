@@ -14,16 +14,16 @@
         v-html="
           `
         <style type='text/css'>
-	.flfdj-st0{fill:url(#flfdj_${info.id}_1_);}
-	.flfdj-st1{fill:url(#flfdj_${info.id}_2_);}
-	.flfdj-st2{opacity:0;fill:#FFFFFF;}
-	.flfdj-st3{fill:url(#flfdj_${info.id}_3_);}
-	.flfdj-st4{fill:#DDDDDD;}
-	.flfdj-st5{fill:url(#flfdj_${info.id}_4_);}
-	.flfdj-st6{fill:url(#flfdj_${info.id}_5_);}
-	.flfdj-st7{opacity:0.2;}
-	.flfdj-st8{fill:url(#flfdj_${info.id}_6_);}
-	.flfdj-st9{opacity:0.4;fill:#FF0000;}
+	.flfdj-${info.id}-st0{fill:url(#flfdj_${info.id}_1_);}
+	.flfdj-${info.id}-st1{fill:url(#flfdj_${info.id}_2_);}
+	.flfdj-${info.id}-st2{opacity:0;fill:#FFFFFF;}
+	.flfdj-${info.id}-st3{fill:url(#flfdj_${info.id}_3_);}
+	.flfdj-${info.id}-st4{fill:#DDDDDD;}
+	.flfdj-${info.id}-st5{fill:url(#flfdj_${info.id}_4_);}
+	.flfdj-${info.id}-st6{fill:url(#flfdj_${info.id}_5_);}
+	.flfdj-${info.id}-st7{opacity:0.2;}
+	.flfdj-${info.id}-st8{fill:url(#flfdj_${info.id}_6_);}
+	.flfdj-${info.id}-st9{opacity:0.4;fill:#FF0000;}
       </style>
       `
         "
@@ -50,7 +50,7 @@
             <stop offset="1" style="stop-color:#697377" />
           </linearGradient>
           <polygon
-            class="flfdj-st0"
+            :class="`flfdj-${info.id}-st0`"
             points="136.5,307 155.5,307 151.5,162 140.5,162 		"
           />
         </g>
@@ -67,13 +67,18 @@
           <stop offset="1" style="stop-color:#FFFFFF" />
         </linearGradient>
         <polygon
-          class="flfdj-st1"
+          :class="`flfdj-${info.id}-st1`"
           points="136.1,133 132,137.1 132,157.9 136.1,162 155.9,162 160,157.9 160,137.1 155.9,133 	"
         />
       </g>
-      <g id="SVG_ani">
+      <g id="SVG_ani" v-if="info.content === 1">
         <g>
-          <circle class="flfdj-st2" cx="146" cy="145.9" r="148.9" />
+          <circle
+            :class="`flfdj-${info.id}-st2`"
+            cx="146"
+            cy="145.9"
+            r="148.9"
+          />
           <g>
             <linearGradient
               :id="`flfdj_${info.id}_3_`"
@@ -88,11 +93,11 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <polygon
-              class="flfdj-st3"
+              :class="`flfdj-${info.id}-st3`"
               points="150,0 150,145 144,145 131,109 145,3 			"
             />
             <polygon
-              class="flfdj-st4"
+              :class="`flfdj-${info.id}-st4`"
               points="148,145 150,145 150,0 148,1.2 			"
             />
           </g>
@@ -111,11 +116,11 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <polygon
-              class="flfdj-st5"
+              :class="`flfdj-${info.id}-st5`"
               points="18.7,215.2 144.3,142.7 147.3,147.9 122.6,177.2 23.8,218 			"
             />
             <polygon
-              class="flfdj-st4"
+              :class="`flfdj-${info.id}-st4`"
               points="145.3,144.5 144.3,142.7 18.7,215.2 20.8,216.4 			"
             />
           </g>
@@ -134,11 +139,11 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <polygon
-              class="flfdj-st6"
+              :class="`flfdj-${info.id}-st6`"
               points="270.8,221.3 145.2,148.8 148.2,143.6 185.9,150.3 270.7,215.5 			"
             />
             <polygon
-              class="flfdj-st4"
+              :class="`flfdj-${info.id}-st4`"
               points="146.2,147 145.2,148.8 270.8,221.3 270.7,218.9 			"
             />
           </g>
@@ -154,9 +159,14 @@
           ></animateTransform>
         </g>
       </g>
-      <g id="SVG_sta">
+      <g id="SVG_sta" v-if="info.content === 0">
         <g>
-          <circle class="flfdj-st2" cx="146" cy="145.9" r="148.9" />
+          <circle
+            :class="`flfdj-${info.id}-st2`"
+            cx="146"
+            cy="145.9"
+            r="148.9"
+          />
           <g>
             <linearGradient
               :id="`flfdj_${info.id}_3_`"
@@ -171,11 +181,11 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <polygon
-              class="flfdj-st3"
+              :class="`flfdj-${info.id}-st3`"
               points="150,0 150,145 144,145 131,109 145,3 			"
             />
             <polygon
-              class="flfdj-st4"
+              :class="`flfdj-${info.id}-st4`"
               points="148,145 150,145 150,0 148,1.2 			"
             />
           </g>
@@ -194,11 +204,11 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <polygon
-              class="flfdj-st5"
+              :class="`flfdj-${info.id}-st5`"
               points="18.7,215.2 144.3,142.7 147.3,147.9 122.6,177.2 23.8,218 			"
             />
             <polygon
-              class="flfdj-st4"
+              :class="`flfdj-${info.id}-st4`"
               points="145.3,144.5 144.3,142.7 18.7,215.2 20.8,216.4 			"
             />
           </g>
@@ -217,18 +227,18 @@
               <stop offset="1" style="stop-color:#FFFFFF" />
             </linearGradient>
             <polygon
-              class="flfdj-st6"
+              :class="`flfdj-${info.id}-st6`"
               points="270.8,221.3 145.2,148.8 148.2,143.6 185.9,150.3 270.7,215.5 			"
             />
             <polygon
-              class="flfdj-st4"
+              :class="`flfdj-${info.id}-st4`"
               points="146.2,147 145.2,148.8 270.8,221.3 270.7,218.9 			"
             />
           </g>
         </g>
       </g>
       <g id="SVG_base2">
-        <circle class="flfdj-st7" cx="146" cy="145.9" r="10" />
+        <circle :class="`flfdj-${info.id}-st7`" cx="146" cy="145.9" r="10" />
         <radialGradient
           :id="`flfdj_${info.id}_6_`"
           cx="144.3989"
@@ -239,11 +249,11 @@
           <stop offset="0.3209" style="stop-color:#FFFFFF" />
           <stop offset="1" style="stop-color:#C8CCCD" />
         </radialGradient>
-        <circle class="flfdj-st8" cx="146" cy="145.9" r="8.6" />
+        <circle :class="`flfdj-${info.id}-st8`" cx="146" cy="145.9" r="8.6" />
       </g>
-      <g id="SVG_alert">
+      <g id="SVG_alert" v-if="info.content === 2">
         <polygon
-          class="flfdj-st9"
+          :class="`flfdj-${info.id}-st9`"
           points="270.8,221.3 270.7,215.5 185.9,150.3 160,145.7 160,137.1 155.9,133 150,133 150,0 145,3 131,109
 		139.7,133 136.1,133 132,137.1 132,149.8 18.7,215.2 20.8,216.4 20.8,216.4 23.8,218 122.6,177.2 135.7,161.7 136.1,162 140.5,162
 		136.5,307 155.5,307 151.5,162 155.9,162 160,157.9 160,157.3 	"
@@ -254,11 +264,12 @@
 </template>
 
 <script>
-// import bmCommon from "@/common/common";
+import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
+const pointCode = "SwSts";
 export default {
-  name: "deviceCsblljCom",
+  name: "deviceFlfdjCom",
   data() {
     return {};
   },
@@ -359,12 +370,60 @@ export default {
     }
   },
   mounted() {
+    let { info = {} } = this;
+    info.content = 0;
     this.init();
   },
   methods: {
     ...mapMutations({}),
     ...mapActions({}),
-    init() {}
+
+    init() {
+      let { info = {}, showType = "" } = this;
+      if (showType != "edit") {
+        let { id = "", bindData = {} } = info || {};
+        let { deviceId = "" } = bindData || {};
+        if (!deviceId) {
+          return;
+        }
+        $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
+          bmCommon.log("deviceFlfdjCom", device);
+          let { pointList = [] } = device || {};
+          let point = pointList.find(item => {
+            let { point: id = "" } = item || {};
+            return id == pointCode; // SwSts  开关状态
+          });
+          if (point) {
+            let { value = "" } = point || {};
+            info.content = value;
+          }
+        });
+      }
+      this.loadDeviceInfo();
+    },
+    loadDeviceInfo() {
+      let { info = {} } = this;
+      let { bindData = {} } = info || {};
+      let { deviceId = "", devicePoint = "" } = bindData || {};
+      if (!deviceId) {
+        return;
+      }
+      devicePoint = pointCode;
+      $vm.$emit("device", {
+        deviceId,
+        callback: (device = {}) => {
+          let { points: pointList = [] } = device || {};
+          let point = pointList.find(item => {
+            let { id = "" } = item || {};
+            return id == devicePoint; //
+          });
+          if (point) {
+            let { value = 0 } = point || {};
+            info.content = value;
+          }
+        }
+      });
+    }
   }
 };
 </script>

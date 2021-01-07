@@ -13,7 +13,7 @@
       <defs
         v-html="
           `
-        <style type='text/css'>                       
+        <style type='text/css'>
                 .dengg-${info.id}-st0{fill:#98A1A8;}
                 .dengg-${info.id}-st1{fill:#C2C8CE;}
                 .dengg-${info.id}-st2{fill:#DFE3E8;}
@@ -210,7 +210,7 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-let pointCode = "SwSts";
+// let pointCode = "SwSts";
 export default {
   name: "deviceDenggCom",
   data() {
@@ -336,17 +336,12 @@ export default {
   },
   mounted() {
     let { info = {} } = this;
-    // bmCommon.log("dengg mounted=", info.content);
-    let { content = "" } = info || {};
-    if (content === "") {
-      info.content = false;
-    }
+    info.content = false;
     this.init();
   },
   methods: {
     ...mapMutations({}),
     ...mapActions({}),
-
     init() {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
@@ -357,11 +352,6 @@ export default {
         }
         $vm.$on(`devicePointEvent_${id}`, ({ point }) => {
           bmCommon.log("deviceDenggCom", point);
-          // let { pointList = [] } = device || {};
-          // let point = pointList.find(item => {
-          //   let { point: id = "" } = item || {};
-          //   return id == pointCode; // SwSts  开关状态
-          // });
           if (point) {
             let { value = "" } = point || {};
             info.content = value == 1 ? true : false;

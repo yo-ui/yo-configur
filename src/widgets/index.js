@@ -530,6 +530,11 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-device-kydt" */ "@/components/component/device/kydt/index.vue"
     ),
+  // 风力发电机
+  deviceFlfdjCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-flfdj" */ "@/components/component/device/flfdj/index.vue"
+    ),
 
   materialCommonCom: () =>
     import(
@@ -1089,6 +1094,11 @@ let styles = {
   deviceKydtStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-kydt-style" */ "@/components/component/device/kydt/style.vue"
+    ),
+  // 风力发电机
+  deviceFlfdjStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-flfdj-style" */ "@/components/component/device/flfdj/style.vue"
     ),
 
   materialCommonStyleCom: () =>

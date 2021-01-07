@@ -14,7 +14,7 @@
         v-html="
           `
         <style type='text/css'>
-					.lsbjq-${info.id}-st0{fill:url(#lsbjq_2_);}
+					.lsbjq-${info.id}-st0{fill:url(#lsbjq_${info.id}_2_);}
 					.lsbjq-${info.id}-st1{fill:#AEB4BA;}
 					.lsbjq-${info.id}-st2{opacity:0.5;}
 					.lsbjq-${info.id}-st3{fill:#3E8CCC;}
@@ -25,7 +25,7 @@
         "
       ></defs>
       <linearGradient
-        id="lsbjq_2_"
+        :id="`lsbjq_${info.id}_2_`"
         gradientUnits="userSpaceOnUse"
         x1="-6.943264e-007"
         y1="25.1947"
@@ -42,108 +42,108 @@
         <stop offset="1" style="stop-color:#A8B2B7" />
       </linearGradient>
       <path
-        id="lsbjq_1517_"
+        :id="`lsbjq_${info.id}_1517_`"
         :class="`lsbjq-${info.id}-st0`"
         d="M0,6.4v35.6C0,43.1,7.6,44,17,44c9.4,0,17-0.9,17-2.1V6.4H0z"
       />
       <path
-        id="lsbjq_1516_"
+        :id="`lsbjq_${info.id}_1516_`"
         :class="`lsbjq-${info.id}-st1`"
         d="M1.2,0.8L0,6.4c0,1.1,7.6,2.1,17,2.1c9.4,0,17-0.9,17-2.1l-1.2-5.6c-0.1-0.5-0.5-0.8-1-0.8
 					H2.2C1.7,0,1.3,0.3,1.2,0.8z"
       />
-      <g id="lsbjq_1530_" class="st2">
-        <g id="lsbjq_1519_">
+      <g :id="`lsbjq_${info.id}_1530_`" class="st2">
+        <g :id="`lsbjq_${info.id}_1519_`">
           <path
-            id="lsbjq_1520_"
+            :id="`lsbjq_${info.id}_1520_`"
             d="M25.1,39.6v1.2c5.3-0.3,8.9-1,8.9-1.8v-1.2C34,38.5,30.4,39.2,25.1,39.6z"
           />
           <path
-            id="lsbjq_1522_"
+            :id="`lsbjq_${info.id}_1522_`"
             d="M8.9,39.6c-5.3-0.3-8.9-1-8.9-1.8v1.2c0,0.8,3.6,1.5,8.9,1.8V39.6z"
           />
         </g>
-        <g id="lsbjq_1518_">
+        <g :id="`lsbjq_${info.id}_1518_`">
           <path
-            id="lsbjq_1523_"
+            :id="`lsbjq_${info.id}_1523_`"
             d="M25.1,36.6v1.2c5.3-0.3,8.9-1,8.9-1.8v-1.2C34,35.5,30.4,36.2,25.1,36.6z"
           />
           <path
-            id="lsbjq_1521_"
+            :id="`lsbjq_${info.id}_1521_`"
             d="M8.9,36.6c-5.3-0.3-8.9-1-8.9-1.8v1.2c0,0.8,3.6,1.5,8.9,1.8V36.6z"
           />
         </g>
-        <g id="lsbjq_1524_">
+        <g :id="`lsbjq_${info.id}_1524_`">
           <path
-            id="lsbjq_1526_"
+            :id="`lsbjq_${info.id}_1526_`"
             d="M25.1,33.6v1.2c5.3-0.3,8.9-1,8.9-1.8v-1.2C34,32.5,30.4,33.2,25.1,33.6z"
           />
           <path
-            id="lsbjq_1525_"
+            :id="`lsbjq_${info.id}_1525_`"
             d="M8.9,33.6c-5.3-0.3-8.9-1-8.9-1.8v1.2c0,0.8,3.6,1.5,8.9,1.8V33.6z"
           />
         </g>
-        <g id="lsbjq_1527_">
+        <g :id="`lsbjq_${info.id}_1527_`">
           <path
-            id="lsbjq_1529_"
+            :id="`lsbjq_${info.id}_1529_`"
             d="M25.1,30.6v1.2c5.3-0.3,8.9-1,8.9-1.8v-1.2C34,29.5,30.4,30.2,25.1,30.6z"
           />
           <path
-            id="lsbjq_1528_"
+            :id="`lsbjq_${info.id}_1528_`"
             d="M8.9,30.6c-5.3-0.3-8.9-1-8.9-1.8v1.2c0,0.8,3.6,1.5,8.9,1.8V30.6z"
           />
         </g>
       </g>
-      <g id="lsbjq_1531_" :class="`lsbjq-${info.id}-st2`">
-        <g id="lsbjq_1566_">
+      <g :id="`lsbjq_${info.id}_1531_`" :class="`lsbjq-${info.id}-st2`">
+        <g :id="`lsbjq_${info.id}_1566_`">
           <path
-            id="lsbjq_1568_"
+            :id="`lsbjq_${info.id}_1568_`"
             d="M25.1,20.6v1.2c5.3-0.3,8.9-1,8.9-1.8v-1.2C34,19.5,30.4,20.2,25.1,20.6z"
           />
           <path
-            id="lsbjq_1567_"
+            :id="`lsbjq_${info.id}_1567_`"
             d="M8.9,20.6c-5.3-0.3-8.9-1-8.9-1.8v1.2c0,0.8,3.6,1.5,8.9,1.8V20.6z"
           />
         </g>
-        <g id="lsbjq_1538_">
+        <g :id="`lsbjq_${info.id}_1538_`">
           <path
-            id="lsbjq_1565_"
+            :id="`lsbjq_${info.id}_1565_`"
             d="M25.1,17.6v1.2c5.3-0.3,8.9-1,8.9-1.8v-1.2C34,16.5,30.4,17.2,25.1,17.6z"
           />
           <path
-            id="lsbjq_1539_"
+            :id="`lsbjq_${info.id}_1539_`"
             d="M8.9,17.6c-5.3-0.3-8.9-1-8.9-1.8v1.2c0,0.8,3.6,1.5,8.9,1.8V17.6z"
           />
         </g>
-        <g id="lsbjq_1535_">
+        <g :id="`lsbjq_${info.id}_1535_`">
           <path
-            id="lsbjq_1537_"
+            :id="`lsbjq_${info.id}_1537_`"
             d="M25.1,14.6v1.2c5.3-0.3,8.9-1,8.9-1.8v-1.2C34,13.5,30.4,14.2,25.1,14.6z"
           />
           <path
-            id="lsbjq_1536_"
+            :id="`lsbjq_${info.id}_1536_`"
             d="M8.9,14.6c-5.3-0.3-8.9-1-8.9-1.8v1.2c0,0.8,3.6,1.5,8.9,1.8V14.6z"
           />
         </g>
-        <g id="lsbjq_1532_">
+        <g :id="`lsbjq_${info.id}_1532_`">
           <path
-            id="lsbjq_1534_"
+            :id="`lsbjq_${info.id}_1534_`"
             d="M25.1,11.6v1.2c5.3-0.3,8.9-1,8.9-1.8V9.8C34,10.5,30.4,11.2,25.1,11.6z"
           />
           <path
-            id="lsbjq_1533_"
+            :id="`lsbjq_${info.id}_1533_`"
             d="M8.9,11.6C3.6,11.2,0,10.5,0,9.8v1.2c0,0.8,3.6,1.5,8.9,1.8V11.6z"
           />
         </g>
       </g>
       <path
-        id="lsbjq_1571_"
+        :id="`lsbjq_${info.id}_1571_`"
         :class="`lsbjq-${info.id}-st3`"
         d="M21.7,41.1h-9.4c-0.8,0-1.5-0.7-1.5-1.5v-26c0-0.8,0.7-1.5,1.5-1.5h9.4c0.8,0,1.5,0.7,1.5,1.5
 					v26C23.2,40.5,22.5,41.1,21.7,41.1z"
       />
       <ellipse
-        id="lsbjq_1570_"
+        :id="`lsbjq_${info.id}_1570_`"
         :class="`lsbjq-${info.id}-st4`"
         cx="17"
         cy="20.2"
@@ -151,7 +151,7 @@
         ry="3.9"
       />
       <ellipse
-        id="lsbjq_1569_"
+        :id="`lsbjq_${info.id}_1569_`"
         :class="`lsbjq-${info.id}-st5`"
         cx="17"
         cy="20.7"

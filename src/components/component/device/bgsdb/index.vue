@@ -15,54 +15,54 @@
           `
         <style type='text/css'>
       .jddz-${info.id}-st0{fill:#ABACAF;}
-					.jddz-${info.id}-st1{fill:url(#jddz_2_);}
+					.jddz-${info.id}-st1{fill:url(#jddz_${info.id}_2_);}
 					.jddz-${info.id}-st2{fill:#DCDBDB;}
-					.jddz-${info.id}-st3{fill:url(#jddz_3_);}
-					.jddz-${info.id}-st4{fill:url(#jddz_4_);}
-					.jddz-${info.id}-st5{fill:url(#jddz_5_);}
-					.jddz-${info.id}-st6{fill:url(#jddz_6_);}
-					.jddz-${info.id}-st7{fill:url(#jddz_7_);}
-					.jddz-${info.id}-st8{fill:url(#jddz_8_);}
-					.jddz-${info.id}-st9{fill:url(#jddz_9_);}
-					.jddz-${info.id}-st10{fill:url(#jddz_10_);}
-					.jddz-${info.id}-st11{fill:url(#jddz_11_);}
-					.jddz-${info.id}-st12{fill:url(#jddz_12_);}
+					.jddz-${info.id}-st3{fill:url(#jddz_${info.id}_3_);}
+					.jddz-${info.id}-st4{fill:url(#jddz_${info.id}_4_);}
+					.jddz-${info.id}-st5{fill:url(#jddz_${info.id}_5_);}
+					.jddz-${info.id}-st6{fill:url(#jddz_${info.id}_6_);}
+					.jddz-${info.id}-st7{fill:url(#jddz_${info.id}_7_);}
+					.jddz-${info.id}-st8{fill:url(#jddz_${info.id}_8_);}
+					.jddz-${info.id}-st9{fill:url(#jddz_${info.id}_9_);}
+					.jddz-${info.id}-st10{fill:url(#jddz_${info.id}_10_);}
+					.jddz-${info.id}-st11{fill:url(#jddz_${info.id}_11_);}
+					.jddz-${info.id}-st12{fill:url(#jddz_${info.id}_12_);}
 					.jddz-${info.id}-st13{opacity:0.3;fill:#040000;}
-					.jddz-${info.id}-st14{fill:url(#jddz_13_);}
-					.jddz-${info.id}-st15{fill:url(#jddz_14_);}
-					.jddz-${info.id}-st16{fill:url(#jddz_15_);}
-					.jddz-${info.id}-st17{fill:url(#jddz_16_);}
-					.jddz-${info.id}-st18{fill:url(#jddz_17_);}
-					.jddz-${info.id}-st19{fill:url(#jddz_18_);}
-					.jddz-${info.id}-st20{fill:url(#jddz_19_);}
-					.jddz-${info.id}-st21{fill:url(#jddz_20_);}
-					.jddz-${info.id}-st22{fill:url(#jddz_21_);}
-					.jddz-${info.id}-st23{fill:url(#jddz_22_);}
-					.jddz-${info.id}-st24{fill:url(#jddz_23_);}
-					.jddz-${info.id}-st25{fill:url(#jddz_24_);}
-					.jddz-${info.id}-st26{fill:url(#jddz_25_);}
-					.jddz-${info.id}-st27{fill:url(#jddz_26_);}
-					.jddz-${info.id}-st28{fill:url(#jddz_27_);}
-					.jddz-${info.id}-st29{fill:url(#jddz_28_);}
-					.jddz-${info.id}-st30{fill:url(#jddz_30_);}
-					.jddz-${info.id}-st31{fill:url(#jddz_31_);}
-					.jddz-${info.id}-st32{fill:url(#jddz_32_);}
-					.jddz-${info.id}-st33{fill:url(#jddz_33_);}
-					.jddz-${info.id}-st34{fill:url(#jddz_35_);}
-					.jddz-${info.id}-st35{fill:url(#jddz_36_);}
-					.jddz-${info.id}-st36{fill:url(#jddz_37_);}
-					.jddz-${info.id}-st37{fill:url(#jddz_92_);}
-					.jddz-${info.id}-st38{fill:url(#jddz_93_);}
-					.jddz-${info.id}-st39{fill:url(#jddz_94_);}
+					.jddz-${info.id}-st14{fill:url(#jddz_${info.id}_13_);}
+					.jddz-${info.id}-st15{fill:url(#jddz_${info.id}_14_);}
+					.jddz-${info.id}-st16{fill:url(#jddz_${info.id}_15_);}
+					.jddz-${info.id}-st17{fill:url(#jddz_${info.id}_16_);}
+					.jddz-${info.id}-st18{fill:url(#jddz_${info.id}_17_);}
+					.jddz-${info.id}-st19{fill:url(#jddz_${info.id}_18_);}
+					.jddz-${info.id}-st20{fill:url(#jddz_${info.id}_19_);}
+					.jddz-${info.id}-st21{fill:url(#jddz_${info.id}_20_);}
+					.jddz-${info.id}-st22{fill:url(#jddz_${info.id}_21_);}
+					.jddz-${info.id}-st23{fill:url(#jddz_${info.id}_22_);}
+					.jddz-${info.id}-st24{fill:url(#jddz_${info.id}_23_);}
+					.jddz-${info.id}-st25{fill:url(#jddz_${info.id}_24_);}
+					.jddz-${info.id}-st26{fill:url(#jddz_${info.id}_25_);}
+					.jddz-${info.id}-st27{fill:url(#jddz_${info.id}_26_);}
+					.jddz-${info.id}-st28{fill:url(#jddz_${info.id}_27_);}
+					.jddz-${info.id}-st29{fill:url(#jddz_${info.id}_28_);}
+					.jddz-${info.id}-st30{fill:url(#jddz_${info.id}_30_);}
+					.jddz-${info.id}-st31{fill:url(#jddz_${info.id}_31_);}
+					.jddz-${info.id}-st32{fill:url(#jddz_${info.id}_32_);}
+					.jddz-${info.id}-st33{fill:url(#jddz_${info.id}_33_);}
+					.jddz-${info.id}-st34{fill:url(#jddz_${info.id}_35_);}
+					.jddz-${info.id}-st35{fill:url(#jddz_${info.id}_36_);}
+					.jddz-${info.id}-st36{fill:url(#jddz_${info.id}_37_);}
+					.jddz-${info.id}-st37{fill:url(#jddz_${info.id}_92_);}
+					.jddz-${info.id}-st38{fill:url(#jddz_${info.id}_93_);}
+					.jddz-${info.id}-st39{fill:url(#jddz_${info.id}_94_);}
 					.jddz-${info.id}-st40{fill:#E6E7E8;}
 					.jddz-${info.id}-st41{fill:#3E3F44;}
       </style>
       `
         "
       ></defs>
-      <g id="jddz_147_">
+      <g :id="`jddz_${info.id}_147_`">
         <rect
-          id="jddz_146_"
+          :id="`jddz_${info.id}_146_`"
           x="9.4"
           y="43.1"
           :class="`jddz-${info.id}-st0`"
@@ -70,7 +70,7 @@
           height="4.8"
         />
         <linearGradient
-          id="jddz_2_"
+          :id="`jddz_${info.id}_2_`"
           gradientUnits="userSpaceOnUse"
           x1="9.2353"
           y1="55.8063"
@@ -81,12 +81,12 @@
           <stop offset="0.9412" style="stop-color:#959AA2" />
         </linearGradient>
         <polygon
-          id="jddz_70_"
+          :id="`jddz_${info.id}_70_`"
           :class="`jddz-${info.id}-st1`"
           points="11.7,57.6 2.6,57.6 7.8,32.4 15.9,32.4 	"
         />
         <rect
-          id="jddz_41_"
+          :id="`jddz_${info.id}_41_`"
           x="2.6"
           y="57.6"
           :class="`jddz-${info.id}-st2`"
@@ -95,7 +95,7 @@
         />
 
         <linearGradient
-          id="jddz_3_"
+          :id="`jddz_${info.id}_3_`"
           gradientUnits="userSpaceOnUse"
           x1="-1247.0084"
           y1="55.8063"
@@ -107,12 +107,12 @@
           <stop offset="0.9412" style="stop-color:#959AA2" />
         </linearGradient>
         <polygon
-          id="jddz_145_"
+          :id="`jddz_${info.id}_145_`"
           :class="`jddz-${info.id}-st3`"
           points="59.2,57.6 68.2,57.6 63,32.4 55,32.4 	"
         />
         <rect
-          id="jddz_144_"
+          :id="`jddz_${info.id}_144_`"
           x="59.2"
           y="57.6"
           :class="`jddz-${info.id}-st2`"
@@ -120,7 +120,7 @@
           height="2"
         />
         <linearGradient
-          id="jddz_4_"
+          :id="`jddz_${info.id}_4_`"
           gradientUnits="userSpaceOnUse"
           x1="35.1669"
           y1="37.1609"
@@ -132,16 +132,16 @@
           <stop offset="0.9412" style="stop-color:#959AA2" />
         </linearGradient>
         <rect
-          id="jddz_84_"
+          :id="`jddz_${info.id}_84_`"
           x="3.8"
           y="37"
           :class="`jddz-${info.id}-st4`"
           width="62.8"
           height="4.3"
         />
-        <g id="jddz_49_">
+        <g :id="`jddz_${info.id}_49_`">
           <linearGradient
-            id="jddz_5_"
+            :id="`jddz_${info.id}_5_`"
             gradientUnits="userSpaceOnUse"
             x1="0.5"
             y1="26.458"
@@ -153,12 +153,12 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <path
-            id="jddz_48_"
+            :id="`jddz_${info.id}_48_`"
             :class="`jddz-${info.id}-st5`"
             d="M0.5,23.3v1.6c0,2.6,4.5,4.8,9.9,4.8c5.5,0,9.9-2.1,9.9-4.8v-1.6H0.5z"
           />
           <linearGradient
-            id="jddz_6_"
+            :id="`jddz_${info.id}_6_`"
             gradientUnits="userSpaceOnUse"
             x1="10.4476"
             y1="18.9021"
@@ -169,7 +169,7 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <ellipse
-            id="jddz_42_"
+            :id="`jddz_${info.id}_42_`"
             :class="`jddz-${info.id}-st6`"
             cx="10.4"
             cy="23.3"
@@ -177,7 +177,7 @@
             ry="4.8"
           />
           <linearGradient
-            id="jddz_7_"
+            :id="`jddz_${info.id}_7_`"
             gradientUnits="userSpaceOnUse"
             x1="0.5"
             y1="21.2201"
@@ -189,12 +189,12 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <path
-            id="jddz_39_"
+            :id="`jddz_${info.id}_39_`"
             :class="`jddz-${info.id}-st7`"
             d="M0.5,18.1v1.6c0,2.6,4.5,4.8,9.9,4.8c5.5,0,9.9-2.1,9.9-4.8v-1.6H0.5z"
           />
           <linearGradient
-            id="jddz_8_"
+            :id="`jddz_${info.id}_8_`"
             gradientUnits="userSpaceOnUse"
             x1="10.4476"
             y1="13.6642"
@@ -205,7 +205,7 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <ellipse
-            id="jddz_38_"
+            :id="`jddz_${info.id}_38_`"
             :class="`jddz-${info.id}-st8`"
             cx="10.4"
             cy="18.1"
@@ -213,7 +213,7 @@
             ry="4.8"
           />
           <linearGradient
-            id="jddz_9_"
+            :id="`jddz_${info.id}_9_`"
             gradientUnits="userSpaceOnUse"
             x1="0.5"
             y1="15.9823"
@@ -225,12 +225,12 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <path
-            id="jddz_34_"
+            :id="`jddz_${info.id}_34_`"
             :class="`jddz-${info.id}-st9`"
             d="M0.5,12.8v1.6c0,2.6,4.5,4.8,9.9,4.8c5.5,0,9.9-2.1,9.9-4.8v-1.6H0.5z"
           />
           <linearGradient
-            id="jddz_10_"
+            :id="`jddz_${info.id}_10_`"
             gradientUnits="userSpaceOnUse"
             x1="10.4476"
             y1="8.4264"
@@ -241,7 +241,7 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <ellipse
-            id="jddz_29_"
+            :id="`jddz_${info.id}_29_`"
             :class="`jddz-${info.id}-st10`"
             cx="10.4"
             cy="12.8"
@@ -249,7 +249,7 @@
             ry="4.8"
           />
           <linearGradient
-            id="jddz_11_"
+            :id="`jddz_${info.id}_11_`"
             gradientUnits="userSpaceOnUse"
             x1="0.5"
             y1="10.7444"
@@ -261,12 +261,12 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <path
-            id="jddz_44_"
+            :id="`jddz_${info.id}_44_`"
             :class="`jddz-${info.id}-st11`"
             d="M0.5,7.6v1.6c0,2.6,4.5,4.8,9.9,4.8c5.5,0,9.9-2.1,9.9-4.8V7.6H0.5z"
           />
           <linearGradient
-            id="jddz_12_"
+            :id="`jddz_${info.id}_12_`"
             gradientUnits="userSpaceOnUse"
             x1="10.4476"
             y1="3.1885"
@@ -277,21 +277,21 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <ellipse
-            id="jddz_43_"
+            :id="`jddz_${info.id}_43_`"
             :class="`jddz-${info.id}-st12`"
             cx="10.4"
             cy="7.6"
             rx="9.9"
             ry="4.8"
           />
-          <g id="jddz_45_">
+          <g :id="`jddz_${info.id}_45_`">
             <path
-              id="jddz_50_"
+              :id="`jddz_${info.id}_50_`"
               :class="`jddz-${info.id}-st13`"
               d="M10.4,9.4C7.8,9.4,6,8.3,6,6.7S7.8,4,10.4,4s4.5,1.1,4.5,2.7S13.1,9.4,10.4,9.4z"
             />
             <linearGradient
-              id="jddz_13_"
+              :id="`jddz_${info.id}_13_`"
               gradientUnits="userSpaceOnUse"
               x1="7.0012"
               y1="4.9995"
@@ -303,12 +303,12 @@
               <stop offset="1" style="stop-color:#A9ADB6" />
             </linearGradient>
             <path
-              id="jddz_47_"
+              :id="`jddz_${info.id}_47_`"
               :class="`jddz-${info.id}-st14`"
               d="M7,1.9v4.6c0,0.9,1.5,1.6,3.4,1.6c1.9,0,3.4-0.7,3.4-1.6V1.9H7z"
             />
             <linearGradient
-              id="jddz_14_"
+              :id="`jddz_${info.id}_14_`"
               gradientUnits="userSpaceOnUse"
               x1="10.4476"
               y1="0.537"
@@ -319,7 +319,7 @@
               <stop offset="1" style="stop-color:#DADEE5" />
             </linearGradient>
             <ellipse
-              id="jddz_46_"
+              :id="`jddz_${info.id}_46_`"
               :class="`jddz-${info.id}-st15`"
               cx="10.4"
               cy="1.9"
@@ -328,7 +328,7 @@
             />
           </g>
           <linearGradient
-            id="jddz_15_"
+            :id="`jddz_${info.id}_15_`"
             gradientUnits="userSpaceOnUse"
             x1="10.4628"
             y1="8.0125"
@@ -339,7 +339,7 @@
             <stop offset="1" style="stop-color:#DADEE5" />
           </linearGradient>
           <rect
-            id="jddz_40_"
+            :id="`jddz_${info.id}_40_`"
             x="9.2"
             y="6.6"
             :class="`jddz-${info.id}-st16`"
@@ -347,9 +347,9 @@
             height="38.4"
           />
         </g>
-        <g id="jddz_52_">
+        <g :id="`jddz_${info.id}_52_`">
           <linearGradient
-            id="jddz_16_"
+            :id="`jddz_${info.id}_16_`"
             gradientUnits="userSpaceOnUse"
             x1="24.5941"
             y1="26.458"
@@ -361,12 +361,12 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <path
-            id="jddz_67_"
+            :id="`jddz_${info.id}_67_`"
             :class="`jddz-${info.id}-st17`"
             d="M24.6,23.3v1.6c0,2.6,4.5,4.8,9.9,4.8c5.5,0,9.9-2.1,9.9-4.8v-1.6H24.6z"
           />
           <linearGradient
-            id="jddz_17_"
+            :id="`jddz_${info.id}_17_`"
             gradientUnits="userSpaceOnUse"
             x1="34.5417"
             y1="18.9021"
@@ -377,7 +377,7 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <ellipse
-            id="jddz_66_"
+            :id="`jddz_${info.id}_66_`"
             :class="`jddz-${info.id}-st18`"
             cx="34.5"
             cy="23.3"
@@ -385,7 +385,7 @@
             ry="4.8"
           />
           <linearGradient
-            id="jddz_18_"
+            :id="`jddz_${info.id}_18_`"
             gradientUnits="userSpaceOnUse"
             x1="24.5941"
             y1="21.2201"
@@ -397,12 +397,12 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <path
-            id="jddz_65_"
+            :id="`jddz_${info.id}_65_`"
             :class="`jddz-${info.id}-st19`"
             d="M24.6,18.1v1.6c0,2.6,4.5,4.8,9.9,4.8c5.5,0,9.9-2.1,9.9-4.8v-1.6H24.6z"
           />
           <linearGradient
-            id="jddz_19_"
+            :id="`jddz_${info.id}_19_`"
             gradientUnits="userSpaceOnUse"
             x1="34.5417"
             y1="13.6642"
@@ -413,7 +413,7 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <ellipse
-            id="jddz_64_"
+            :id="`jddz_${info.id}_64_`"
             :class="`jddz-${info.id}-st20`"
             cx="34.5"
             cy="18.1"
@@ -421,7 +421,7 @@
             ry="4.8"
           />
           <linearGradient
-            id="jddz_20_"
+            :id="`jddz_${info.id}_20_`"
             gradientUnits="userSpaceOnUse"
             x1="24.5941"
             y1="15.9823"
@@ -433,12 +433,12 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <path
-            id="jddz_63_"
+            :id="`jddz_${info.id}_63_`"
             :class="`jddz-${info.id}-st21`"
             d="M24.6,12.8v1.6c0,2.6,4.5,4.8,9.9,4.8c5.5,0,9.9-2.1,9.9-4.8v-1.6H24.6z"
           />
           <linearGradient
-            id="jddz_21_"
+            :id="`jddz_${info.id}_21_`"
             gradientUnits="userSpaceOnUse"
             x1="34.5417"
             y1="8.4264"
@@ -449,7 +449,7 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <ellipse
-            id="jddz_62_"
+            :id="`jddz_${info.id}_62_`"
             :class="`jddz-${info.id}-st22`"
             cx="34.5"
             cy="12.8"
@@ -457,7 +457,7 @@
             ry="4.8"
           />
           <linearGradient
-            id="jddz_22_"
+            :id="`jddz_${info.id}_22_`"
             gradientUnits="userSpaceOnUse"
             x1="24.5941"
             y1="10.7444"
@@ -469,12 +469,12 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <path
-            id="jddz_61_"
+            :id="`jddz_${info.id}_61_`"
             :class="`jddz-${info.id}-st23`"
             d="M24.6,7.6v1.6c0,2.6,4.5,4.8,9.9,4.8c5.5,0,9.9-2.1,9.9-4.8V7.6H24.6z"
           />
           <linearGradient
-            id="jddz_23_"
+            :id="`jddz_${info.id}_23_`"
             gradientUnits="userSpaceOnUse"
             x1="34.5417"
             y1="3.1885"
@@ -485,21 +485,21 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <ellipse
-            id="jddz_60_"
+            :id="`jddz_${info.id}_60_`"
             :class="`jddz-${info.id}-st24`"
             cx="34.5"
             cy="7.6"
             rx="9.9"
             ry="4.8"
           />
-          <g id="jddz_55_">
+          <g :id="`jddz_${info.id}_55_`">
             <path
-              id="jddz_58_"
+              :id="`jddz_${info.id}_58_`"
               :class="`jddz-${info.id}-st13`"
               d="M34.5,9.4c-2.6,0-4.5-1.1-4.5-2.7S31.9,4,34.5,4C37.1,4,39,5.1,39,6.7S37.1,9.4,34.5,9.4z"
             />
             <linearGradient
-              id="jddz_24_"
+              :id="`jddz_${info.id}_24_`"
               gradientUnits="userSpaceOnUse"
               x1="31.0953"
               y1="4.9995"
@@ -511,12 +511,12 @@
               <stop offset="1" style="stop-color:#A9ADB6" />
             </linearGradient>
             <path
-              id="jddz_57_"
+              :id="`jddz_${info.id}_57_`"
               :class="`jddz-${info.id}-st25`"
               d="M31.1,1.9v4.6c0,0.9,1.5,1.6,3.4,1.6c1.9,0,3.4-0.7,3.4-1.6V1.9H31.1z"
             />
             <linearGradient
-              id="jddz_25_"
+              :id="`jddz_${info.id}_25_`"
               gradientUnits="userSpaceOnUse"
               x1="34.5417"
               y1="0.537"
@@ -527,7 +527,7 @@
               <stop offset="1" style="stop-color:#DADEE5" />
             </linearGradient>
             <ellipse
-              id="jddz_56_"
+              :id="`jddz_${info.id}_56_`"
               :class="`jddz-${info.id}-st26`"
               cx="34.5"
               cy="1.9"
@@ -536,7 +536,7 @@
             />
           </g>
           <linearGradient
-            id="jddz_26_"
+            :id="`jddz_${info.id}_26_`"
             gradientUnits="userSpaceOnUse"
             x1="34.5181"
             y1="35.7227"
@@ -548,7 +548,7 @@
             <stop offset="0.9412" style="stop-color:#959AA2" />
           </linearGradient>
           <rect
-            id="jddz_54_"
+            :id="`jddz_${info.id}_54_`"
             x="31.7"
             y="35.4"
             :class="`jddz-${info.id}-st27`"
@@ -556,7 +556,7 @@
             height="8.1"
           />
           <linearGradient
-            id="jddz_27_"
+            :id="`jddz_${info.id}_27_`"
             gradientUnits="userSpaceOnUse"
             x1="34.5568"
             y1="8.0125"
@@ -567,7 +567,7 @@
             <stop offset="1" style="stop-color:#DADEE5" />
           </linearGradient>
           <rect
-            id="jddz_53_"
+            :id="`jddz_${info.id}_53_`"
             x="33.3"
             y="6.6"
             :class="`jddz-${info.id}-st28`"
@@ -575,9 +575,9 @@
             height="38.4"
           />
         </g>
-        <g id="jddz_68_">
+        <g :id="`jddz_${info.id}_68_`">
           <linearGradient
-            id="jddz_28_"
+            :id="`jddz_${info.id}_28_`"
             gradientUnits="userSpaceOnUse"
             x1="49.7357"
             y1="26.458"
@@ -589,12 +589,12 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <path
-            id="jddz_83_"
+            :id="`jddz_${info.id}_83_`"
             :class="`jddz-${info.id}-st29`"
             d="M49.7,23.3v1.6c0,2.6,4.5,4.8,9.9,4.8c5.5,0,9.9-2.1,9.9-4.8v-1.6H49.7z"
           />
           <linearGradient
-            id="jddz_30_"
+            :id="`jddz_${info.id}_30_`"
             gradientUnits="userSpaceOnUse"
             x1="59.6833"
             y1="18.9021"
@@ -605,7 +605,7 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <ellipse
-            id="jddz_82_"
+            :id="`jddz_${info.id}_82_`"
             :class="`jddz-${info.id}-st30`"
             cx="59.7"
             cy="23.3"
@@ -613,7 +613,7 @@
             ry="4.8"
           />
           <linearGradient
-            id="jddz_31_"
+            :id="`jddz_${info.id}_31_`"
             gradientUnits="userSpaceOnUse"
             x1="49.7357"
             y1="21.2201"
@@ -625,12 +625,12 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <path
-            id="jddz_81_"
+            :id="`jddz_${info.id}_81_`"
             :class="`jddz-${info.id}-st31`"
             d="M49.7,18.1v1.6c0,2.6,4.5,4.8,9.9,4.8c5.5,0,9.9-2.1,9.9-4.8v-1.6H49.7z"
           />
           <linearGradient
-            id="jddz_32_"
+            :id="`jddz_${info.id}_32_`"
             gradientUnits="userSpaceOnUse"
             x1="59.6833"
             y1="13.6642"
@@ -641,7 +641,7 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <ellipse
-            id="jddz_80_"
+            :id="`jddz_${info.id}_80_`"
             :class="`jddz-${info.id}-st32`"
             cx="59.7"
             cy="18.1"
@@ -649,7 +649,7 @@
             ry="4.8"
           />
           <linearGradient
-            id="jddz_33_"
+            :id="`jddz_${info.id}_33_`"
             gradientUnits="userSpaceOnUse"
             x1="49.7357"
             y1="15.9823"
@@ -661,12 +661,12 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <path
-            id="jddz_79_"
+            :id="`jddz_${info.id}_79_`"
             :class="`jddz-${info.id}-st33`"
             d="M49.7,12.8v1.6c0,2.6,4.5,4.8,9.9,4.8c5.5,0,9.9-2.1,9.9-4.8v-1.6H49.7z"
           />
           <linearGradient
-            id="jddz_35_"
+            :id="`jddz_${info.id}_35_`"
             gradientUnits="userSpaceOnUse"
             x1="59.6833"
             y1="8.4264"
@@ -677,7 +677,7 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <ellipse
-            id="jddz_78_"
+            :id="`jddz_${info.id}_78_`"
             :class="`jddz-${info.id}-st34`"
             cx="59.7"
             cy="12.8"
@@ -685,7 +685,7 @@
             ry="4.8"
           />
           <linearGradient
-            id="jddz_36_"
+            :id="`jddz_${info.id}_36_`"
             gradientUnits="userSpaceOnUse"
             x1="49.7357"
             y1="10.7444"
@@ -697,12 +697,12 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <path
-            id="jddz_77_"
+            :id="`jddz_${info.id}_77_`"
             :class="`jddz-${info.id}-st35`"
             d="M49.7,7.6v1.6c0,2.6,4.5,4.8,9.9,4.8c5.5,0,9.9-2.1,9.9-4.8V7.6H49.7z"
           />
           <linearGradient
-            id="jddz_37_"
+            :id="`jddz_${info.id}_37_`"
             gradientUnits="userSpaceOnUse"
             x1="59.6833"
             y1="3.1885"
@@ -713,21 +713,21 @@
             <stop offset="1" style="stop-color:#942B2B" />
           </linearGradient>
           <ellipse
-            id="jddz_76_"
+            :id="`jddz_${info.id}_76_`"
             :class="`jddz-${info.id}-st36`"
             cx="59.7"
             cy="7.6"
             rx="9.9"
             ry="4.8"
           />
-          <g id="jddz_71_">
+          <g :id="`jddz_${info.id}_71_`">
             <path
-              id="jddz_74_"
+              :id="`jddz_${info.id}_74_`"
               :class="`jddz-${info.id}-st13`"
               d="M59.7,9.4c-2.6,0-4.5-1.1-4.5-2.7S57.1,4,59.7,4c2.6,0,4.5,1.1,4.5,2.7S62.3,9.4,59.7,9.4z"
             />
             <linearGradient
-              id="jddz_92_"
+              :id="`jddz_${info.id}_92_`"
               gradientUnits="userSpaceOnUse"
               x1="56.2369"
               y1="4.9995"
@@ -739,12 +739,12 @@
               <stop offset="1" style="stop-color:#A9ADB6" />
             </linearGradient>
             <path
-              id="jddz_73_"
+              :id="`jddz_${info.id}_73_`"
               :class="`jddz-${info.id}-st37`"
               d="M56.2,1.9v4.6c0,0.9,1.5,1.6,3.4,1.6c1.9,0,3.4-0.7,3.4-1.6V1.9H56.2z"
             />
             <linearGradient
-              id="jddz_93_"
+              :id="`jddz_${info.id}_93_`"
               gradientUnits="userSpaceOnUse"
               x1="59.6833"
               y1="0.537"
@@ -755,7 +755,7 @@
               <stop offset="1" style="stop-color:#DADEE5" />
             </linearGradient>
             <ellipse
-              id="jddz_72_"
+              :id="`jddz_${info.id}_72_`"
               :class="`jddz-${info.id}-st38`"
               cx="59.7"
               cy="1.9"
@@ -764,7 +764,7 @@
             />
           </g>
           <linearGradient
-            id="jddz_94_"
+            :id="`jddz_${info.id}_94_`"
             gradientUnits="userSpaceOnUse"
             x1="59.6985"
             y1="8.0125"
@@ -775,7 +775,7 @@
             <stop offset="1" style="stop-color:#DADEE5" />
           </linearGradient>
           <rect
-            id="jddz_69_"
+            :id="`jddz_${info.id}_69_`"
             x="58.5"
             y="6.6"
             :class="`jddz-${info.id}-st39`"
@@ -783,98 +783,98 @@
             height="38.4"
           />
         </g>
-        <g id="jddz_135_">
+        <g :id="`jddz_${info.id}_135_`">
           <path
-            id="jddz_85_"
+            :id="`jddz_${info.id}_85_`"
             :class="`jddz-${info.id}-st40`"
             d="M9.3,57l-3.9-0.6L9.2,32c0,0,0.5-0.6,2-0.3c1.4,0.2,2,1,2,1L9.3,57z"
           />
           <path
-            id="jddz_90_"
+            :id="`jddz_${info.id}_90_`"
             :class="`jddz-${info.id}-st41`"
             d="M10.6,35.5c-2.3-0.4-4.3,0.4-4.5,1.7C6,38.1,6.7,39,8,39.5L8.2,38c-0.4-0.2-0.5-0.5-0.5-0.6
 							c0-0.3,1.1-0.7,2.7-0.5c1.6,0.2,2.5,1,2.4,1.3c0,0.1-0.3,0.3-0.7,0.4l-0.2,1.5c1.4-0.2,2.3-0.8,2.5-1.7
 							C14.6,37.1,13,35.9,10.6,35.5z"
           />
           <path
-            id="jddz_86_"
+            :id="`jddz_${info.id}_86_`"
             :class="`jddz-${info.id}-st41`"
             d="M10.1,38.6c-2.3-0.4-4.3,0.4-4.5,1.7c-0.1,0.9,0.6,1.8,1.8,2.4l0.2-1.5
 							c-0.4-0.2-0.5-0.5-0.5-0.6c0-0.3,1.1-0.7,2.7-0.5c1.6,0.2,2.5,1,2.4,1.3c0,0.1-0.3,0.3-0.7,0.4l-0.2,1.5c1.4-0.2,2.3-0.8,2.5-1.7
 							C14.1,40.2,12.5,39,10.1,38.6z"
           />
           <path
-            id="jddz_87_"
+            :id="`jddz_${info.id}_87_`"
             :class="`jddz-${info.id}-st41`"
             d="M9.7,41.7c-2.3-0.4-4.3,0.4-4.5,1.7C5,44.3,5.8,45.2,7,45.8l0.2-1.5
 							c-0.4-0.2-0.5-0.5-0.5-0.6c0-0.3,1.1-0.7,2.7-0.5c1.6,0.2,2.5,1,2.4,1.3c0,0.1-0.3,0.3-0.7,0.4l-0.2,1.5c1.4-0.2,2.3-0.8,2.5-1.7
 							C13.6,43.3,12,42.1,9.7,41.7z"
           />
           <path
-            id="jddz_91_"
+            :id="`jddz_${info.id}_91_`"
             :class="`jddz-${info.id}-st41`"
             d="M9.2,44.8c-2.3-0.4-4.3,0.4-4.5,1.7c-0.1,0.9,0.6,1.8,1.8,2.4l0.2-1.5
 							c-0.4-0.2-0.5-0.5-0.5-0.6c0-0.3,1.1-0.7,2.7-0.5c1.6,0.2,2.5,1,2.4,1.3c0,0.1-0.3,0.3-0.7,0.4l-0.2,1.5c1.4-0.2,2.3-0.8,2.5-1.7
 							C13.1,46.5,11.5,45.2,9.2,44.8z"
           />
           <path
-            id="jddz_89_"
+            :id="`jddz_${info.id}_89_`"
             :class="`jddz-${info.id}-st41`"
             d="M8.7,47.9c-2.3-0.4-4.3,0.4-4.5,1.7C4.1,50.5,4.8,51.4,6,52l0.2-1.5
 							c-0.4-0.2-0.5-0.5-0.5-0.6c0-0.3,1.1-0.7,2.7-0.5c1.6,0.2,2.5,1,2.4,1.3c0,0.1-0.3,0.3-0.7,0.4L10,52.6c1.4-0.2,2.3-0.8,2.5-1.7
 							C12.6,49.6,11,48.3,8.7,47.9z"
           />
           <path
-            id="jddz_88_"
+            :id="`jddz_${info.id}_88_`"
             :class="`jddz-${info.id}-st41`"
             d="M8.2,51c-2.3-0.4-4.3,0.4-4.5,1.7c-0.1,0.9,0.6,1.8,1.8,2.4l0.2-1.5
 							c-0.4-0.2-0.5-0.5-0.5-0.6c0-0.3,1.1-0.7,2.7-0.5c1.6,0.2,2.5,1,2.4,1.3c0,0.1-0.3,0.3-0.7,0.4l-0.2,1.5c1.4-0.2,2.3-0.8,2.5-1.7
 							C12.2,52.7,10.6,51.4,8.2,51z"
           />
         </g>
-        <g id="jddz_136_">
+        <g :id="`jddz_${info.id}_136_`">
           <path
-            id="jddz_143_"
+            :id="`jddz_${info.id}_143_`"
             :class="`jddz-${info.id}-st40`"
             d="M61.6,57l3.9-0.6L61.7,32c0,0-0.5-0.6-2-0.3c-1.4,0.2-2,1-2,1L61.6,57z"
           />
           <path
-            id="jddz_142_"
+            :id="`jddz_${info.id}_142_`"
             :class="`jddz-${info.id}-st41`"
             d="M60.2,35.5c2.3-0.4,4.3,0.4,4.5,1.7c0.1,0.9-0.6,1.8-1.8,2.4L62.6,38
 							c0.4-0.2,0.5-0.5,0.5-0.6c0-0.3-1.1-0.7-2.7-0.5c-1.6,0.2-2.5,1-2.4,1.3c0,0.1,0.3,0.3,0.7,0.4l0.2,1.5c-1.4-0.2-2.3-0.8-2.5-1.7
 							C56.3,37.1,57.9,35.9,60.2,35.5z"
           />
           <path
-            id="jddz_141_"
+            :id="`jddz_${info.id}_141_`"
             :class="`jddz-${info.id}-st41`"
             d="M60.7,38.6c2.3-0.4,4.3,0.4,4.5,1.7c0.1,0.9-0.6,1.8-1.8,2.4l-0.2-1.5
 							c0.4-0.2,0.5-0.5,0.5-0.6c0-0.3-1.1-0.7-2.7-0.5c-1.6,0.2-2.5,1-2.4,1.3c0,0.1,0.3,0.3,0.7,0.4l0.2,1.5c-1.4-0.2-2.3-0.8-2.5-1.7
 							C56.8,40.2,58.4,39,60.7,38.6z"
           />
           <path
-            id="jddz_140_"
+            :id="`jddz_${info.id}_140_`"
             :class="`jddz-${info.id}-st41`"
             d="M61.2,41.7c2.3-0.4,4.3,0.4,4.5,1.7c0.1,0.9-0.6,1.8-1.8,2.4l-0.2-1.5
 							c0.4-0.2,0.5-0.5,0.5-0.6c0-0.3-1.1-0.7-2.7-0.5c-1.6,0.2-2.5,1-2.4,1.3c0,0.1,0.3,0.3,0.7,0.4l0.2,1.5c-1.4-0.2-2.3-0.8-2.5-1.7
 							C57.2,43.3,58.8,42.1,61.2,41.7z"
           />
           <path
-            id="jddz_139_"
+            :id="`jddz_${info.id}_139_`"
             :class="`jddz-${info.id}-st41`"
             d="M61.7,44.8c2.3-0.4,4.3,0.4,4.5,1.7c0.1,0.9-0.6,1.8-1.8,2.4l-0.2-1.5
 							c0.4-0.2,0.5-0.5,0.5-0.6c0-0.3-1.1-0.7-2.7-0.5c-1.6,0.2-2.5,1-2.4,1.3c0,0.1,0.3,0.3,0.7,0.4l0.2,1.5c-1.4-0.2-2.3-0.8-2.5-1.7
 							C57.7,46.5,59.3,45.2,61.7,44.8z"
           />
           <path
-            id="jddz_138_"
+            :id="`jddz_${info.id}_138_`"
             :class="`jddz-${info.id}-st41`"
             d="M62.2,47.9c2.3-0.4,4.3,0.4,4.5,1.7c0.1,0.9-0.6,1.8-1.8,2.4l-0.2-1.5
 							c0.4-0.2,0.5-0.5,0.5-0.6c0-0.3-1.1-0.7-2.7-0.5c-1.6,0.2-2.5,1-2.4,1.3c0,0.1,0.3,0.3,0.7,0.4l0.2,1.5c-1.4-0.2-2.3-0.8-2.5-1.7
 							C58.2,49.6,59.8,48.3,62.2,47.9z"
           />
           <path
-            id="jddz_137_"
+            :id="`jddz_${info.id}_137_`"
             :class="`jddz-${info.id}-st41`"
             d="M62.6,51c2.3-0.4,4.3,0.4,4.5,1.7c0.1,0.9-0.6,1.8-1.8,2.4L65,53.6c0.4-0.2,0.5-0.5,0.5-0.6
 							c0-0.3-1.1-0.7-2.7-0.5c-1.6,0.2-2.5,1-2.4,1.3c0,0.1,0.3,0.3,0.7,0.4l0.2,1.5C60,55.5,59,54.9,58.9,54

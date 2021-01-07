@@ -86,8 +86,14 @@
           ></el-slider>
         </p>
         <p>
-          <span class="label"> {{ $lang("横坐标") }}:</span
-          >{{ $toBig(info.left, 0) }} px
+          <span class="label"> {{ $lang("横坐标") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            v-model.number="info.left"
+            :placeholder="$lang('请输入横坐标')"
+          ></el-input-number>
+          px
           <el-slider
             v-model="info.left"
             :max="3500"
@@ -96,8 +102,14 @@
           ></el-slider>
         </p>
         <p>
-          <span class="label"> {{ $lang("纵坐标") }}:</span
-          >{{ $toBig(info.top, 0) }} px
+          <span class="label"> {{ $lang("纵坐标") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            v-model.number="info.top"
+            :placeholder="$lang('请输入纵坐标')"
+          ></el-input-number>
+          px
           <el-slider
             v-model="info.top"
             :max="3500"
@@ -444,6 +456,20 @@
         >
       </span>
     </p> -->
+      </el-collapse-item>
+      <el-collapse-item :title="$lang('开关')" name="on-off">
+        <p>
+          <span class="label"> {{ $lang("开关") }}:</span>
+          <el-radio-group class="flex" v-model="info.content" size="mini">
+            <el-radio-button
+              v-for="item in statusList"
+              :key="item.code"
+              :label="item.code"
+            >
+              {{ $lang(item.name) }}
+            </el-radio-button>
+          </el-radio-group>
+        </p>
       </el-collapse-item>
       <el-collapse-item :title="$lang('外观')" name="outward">
         <p>
@@ -918,6 +944,7 @@ export default {
   data() {
     return {
       activeNames: ["name"],
+      statusList: Object.freeze(Constants.STATUSLIST),
       animationDirectionList: Object.freeze(Constants.ANIMATIONDIRECTIONLIST),
       animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
       borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
@@ -1057,7 +1084,7 @@ export default {
       }
     },
     openAll() {
-      this.activeNames = ["name", "outward", "margin", "animation"];
+      this.activeNames = ["name", "outward", "on-off", "margin", "animation"];
     },
     closeAll() {
       this.activeNames = ["name"];

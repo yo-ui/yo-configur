@@ -135,7 +135,6 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-let pointCode = "SwSts";
 export default {
   name: "bmBasicFaultCom",
   data() {

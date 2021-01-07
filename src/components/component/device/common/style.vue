@@ -95,8 +95,14 @@
           ></el-slider>
         </p>
         <p>
-          <span class="label"> {{ $lang("横坐标") }}:</span
-          >{{ $toBig(info.left, 0) }} px
+          <span class="label"> {{ $lang("横坐标") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            v-model.number="info.left"
+            :placeholder="$lang('请输入横坐标')"
+          ></el-input-number>
+          px
           <el-slider
             v-model="info.left"
             :max="3500"
@@ -105,8 +111,14 @@
           ></el-slider>
         </p>
         <p>
-          <span class="label"> {{ $lang("纵坐标") }}:</span
-          >{{ $toBig(info.top, 0) }} px
+          <span class="label"> {{ $lang("纵坐标") }}:</span>
+          <el-input-number
+            controls-position="right"
+            clearable
+            v-model.number="info.top"
+            :placeholder="$lang('请输入纵坐标')"
+          ></el-input-number>
+          px
           <el-slider
             v-model="info.top"
             :max="3500"

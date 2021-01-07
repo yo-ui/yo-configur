@@ -255,11 +255,7 @@ export default {
   },
   mounted() {
     let { info = {} } = this;
-    // bmCommon.log("kg mounted=", info.content);
-    let { content = "" } = info || {};
-    if (content === "") {
-      info.content = false;
-    }
+    info.content = false;
     this.init();
   },
   methods: {

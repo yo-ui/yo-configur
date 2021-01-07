@@ -15,13 +15,13 @@
           `
         <style type='text/css'>
       .db-${info.id}-st0 {
-          fill: url(#db_1_);
+          fill: url(#db_${info.id}_1_);
         }
         .db-${info.id}-st1 {
           fill: #dfe3e8;
         }
         .db-${info.id}-st2 {
-          fill: url(#db_11_);
+          fill: url(#db_${info.id}_11_);
         }
         .db-${info.id}-st3 {
           fill: #ffffff;
@@ -45,7 +45,7 @@
           fill: #f95d06;
         }
         .db-${info.id}-st10 {
-          fill: url(#db_12_);
+          fill: url(#db_${info.id}_12_);
         }
         .db-${info.id}-st11 {
           opacity: 0.4;
@@ -57,7 +57,7 @@
       ></defs>
       <g>
         <linearGradient
-          id="db_1_"
+          :id="`db_${info.id}_1_`"
           gradientUnits="userSpaceOnUse"
           x1="60.525"
           y1="62.945"
@@ -73,12 +73,12 @@
                   l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73V41z"
         />
         <path
-          id="db_657_"
+          :id="`db_${info.id}_657_`"
           :class="`db-${info.id}-st1`"
           d="M56.5,55.08H2v10.34c0,1.9,1.54,3.44,3.44,3.44h47.62c1.9,0,3.44-1.54,3.44-3.44V55.08z"
         />
         <linearGradient
-          id="db_11_"
+          :id="`db_${info.id}_11_`"
           gradientUnits="userSpaceOnUse"
           x1="29.2499"
           y1="58.6952"
@@ -89,7 +89,7 @@
           <stop offset="1" style="stop-color:#000000" />
         </linearGradient>
         <rect
-          id="db_658_"
+          :id="`db_${info.id}_658_`"
           x="2"
           y="54.06"
           :class="`db-${info.id}-st2`"
@@ -97,7 +97,7 @@
           height="8.88"
         />
         <rect
-          id="db_656_"
+          :id="`db_${info.id}_656_`"
           x="1"
           y="15.08"
           :class="`db-${info.id}-st3`"
@@ -105,18 +105,18 @@
           height="39"
         />
         <path
-          id="db_653_"
+          :id="`db_${info.id}_653_`"
           :class="`db-${info.id}-st1`"
           d="M58.5,55.08H0v-41h58.5V55.08z M2,53.08h54.5v-37H2V53.08z"
         />
         <polygon
-          id="db_652_"
+          :id="`db_${info.id}_652_`"
           :class="`db-${info.id}-st4`"
           points="58.5,14.08 0,14.08 12.23,0 69.73,0 	"
         />
-        <g id="db_647_">
+        <g :id="`db_${info.id}_647_`">
           <rect
-            id="db_651_"
+            :id="`db_${info.id}_651_`"
             x="9.5"
             y="21.5"
             :class="`db-${info.id}-st5`"
@@ -124,34 +124,34 @@
             height="12"
           />
           <path
-            id="db_648_"
+            :id="`db_${info.id}_648_`"
             :class="`db-${info.id}-st6`"
             d="M50.5,34.5h-42v-14h42V34.5z M10.5,32.5h38v-10h-38V32.5z"
           />
         </g>
         <circle
-          id="db_646_"
+          :id="`db_${info.id}_646_`"
           :class="`db-${info.id}-st7`"
           cx="11.97"
           cy="63.16"
           r="2.03"
         />
         <circle
-          id="db_645_"
+          :id="`db_${info.id}_645_`"
           :class="`db-${info.id}-st7`"
           cx="29.22"
           cy="63.16"
           r="2.03"
         />
         <circle
-          id="db_659_"
+          :id="`db_${info.id}_659_`"
           :class="`db-${info.id}-st7`"
           cx="46.22"
           cy="63.16"
           r="2.03"
         />
         <rect
-          id="db_644_"
+          :id="`db_${info.id}_644_`"
           x="9.74"
           y="36.5"
           :class="`db-${info.id}-st6`"
@@ -159,7 +159,7 @@
           height="2.5"
         />
         <rect
-          id="db_643_"
+          :id="`db_${info.id}_643_`"
           x="19.74"
           y="36.5"
           :class="`db-${info.id}-st6`"
@@ -167,7 +167,7 @@
           height="2.5"
         />
         <rect
-          id="db_635_"
+          :id="`db_${info.id}_635_`"
           x="29.74"
           y="36.5"
           :class="`db-${info.id}-st6`"
@@ -175,7 +175,7 @@
           height="2.5"
         />
         <rect
-          id="db_634_"
+          :id="`db_${info.id}_634_`"
           x="39.74"
           y="36.5"
           :class="`db-${info.id}-st6`"
@@ -183,7 +183,7 @@
           height="2.5"
         />
         <rect
-          id="db_6_"
+          :id="`db_${info.id}_6_`"
           x="8.74"
           y="37.5"
           :class="`db-${info.id}-st7`"
@@ -191,7 +191,7 @@
           height="2.5"
         />
         <rect
-          id="db_5_"
+          :id="`db_${info.id}_5_`"
           x="18.74"
           y="37.5"
           :class="`db-${info.id}-st7`"
@@ -199,7 +199,7 @@
           height="2.5"
         />
         <rect
-          id="db_4_"
+          :id="`db_${info.id}_4_`"
           x="28.74"
           y="37.5"
           :class="`db-${info.id}-st7`"
@@ -207,7 +207,7 @@
           height="2.5"
         />
         <rect
-          id="db_2_"
+          :id="`db_${info.id}_2_`"
           x="38.74"
           y="37.5"
           :class="`db-${info.id}-st7`"
@@ -215,7 +215,7 @@
           height="2.5"
         />
         <rect
-          id="db_632_"
+          :id="`db_${info.id}_632_`"
           x="9.61"
           y="44.98"
           :class="`db-${info.id}-st8`"
@@ -223,7 +223,7 @@
           height="3.69"
         />
         <rect
-          id="db_552_"
+          :id="`db_${info.id}_552_`"
           x="19.61"
           y="44.98"
           :class="`db-${info.id}-st8`"
@@ -231,7 +231,7 @@
           height="3.69"
         />
         <rect
-          id="db_551_"
+          :id="`db_${info.id}_551_`"
           x="29.61"
           y="44.98"
           :class="`db-${info.id}-st8`"
@@ -239,7 +239,7 @@
           height="3.69"
         />
         <rect
-          id="db_9_"
+          :id="`db_${info.id}_9_`"
           x="8.61"
           y="45.98"
           :class="`db-${info.id}-st9`"
@@ -247,7 +247,7 @@
           height="3.69"
         />
         <rect
-          id="db_8_"
+          :id="`db_${info.id}_8_`"
           x="18.61"
           y="45.98"
           :class="`db-${info.id}-st9`"
@@ -255,7 +255,7 @@
           height="3.69"
         />
         <rect
-          id="db_7_"
+          :id="`db_${info.id}_7_`"
           x="28.61"
           y="45.98"
           :class="`db-${info.id}-st9`"
@@ -263,7 +263,7 @@
           height="3.69"
         />
         <rect
-          id="db_550_"
+          :id="`db_${info.id}_550_`"
           x="8.48"
           y="42.05"
           :class="`db-${info.id}-st4`"
@@ -271,7 +271,7 @@
           height="1"
         />
         <linearGradient
-          id="db_12_"
+          :id="`db_${info.id}_12_`"
           gradientUnits="userSpaceOnUse"
           x1="64.1155"
           y1="55.0819"
@@ -282,7 +282,7 @@
           <stop offset="1" style="stop-color:#848689" />
         </linearGradient>
         <path
-          id="db_1_"
+          :id="`db_${info.id}_1_`"
           :class="`db-${info.id}-st10`"
           d="M69.73,41L58.5,55.08v-41L69.73,0V41z"
         />
@@ -434,7 +434,6 @@ export default {
   methods: {
     ...mapMutations({}),
     ...mapActions({}),
-
     init() {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
@@ -494,44 +493,5 @@ export default {
 </script>
 <style lang="less" scoped>
 // @import (reference) "./../../../../assets/less/common.less";
-// .db-${info.id}-st0 {
-//   fill: url(#db_1_);
-// }
-// .db-${info.id}-st1 {
-//   fill: #dfe3e8;
-// }
-// .db-${info.id}-st2 {
-//   fill: url(#db_11_);
-// }
-// .db-${info.id}-st3 {
-//   fill: #ffffff;
-// }
-// .db-${info.id}-st4 {
-//   fill: #c2c8ce;
-// }
-// .db-${info.id}-st5 {
-//   fill: #848776;
-// }
-// .db-${info.id}-st6 {
-//   fill: #25282b;
-// }
-// .db-${info.id}-st7 {
-//   fill: #8f9499;
-// }
-// .db-${info.id}-st8 {
-//   fill: #5b280e;
-// }
-// .db-${info.id}-st9 {
-//   fill: #f95d06;
-// }
-// .db-${info.id}-st10 {
-//   fill: url(#db_12_);
-// }
-// .db-${info.id}-st11 {
-//   opacity: 0.4;
-//   fill: #ff0000;
-// }
-</style>
-<style lang="less">
 @import (less) "../../../../assets/less/components/component/device/common.less";
 </style>
