@@ -1,15 +1,15 @@
 <template>
   <div class="bm-header-com">
-    <div class="left" @click.stop="$replacePage(configurUrl)">
+    <div class="left" @click.stop="changeEvent('back')">
       <i class="bm-icon icon-back"></i>{{ $lang("返回") }}
     </div>
     <div class="title">
       {{ canvas.name }}
     </div>
-    <div class="right" @click.stop="prevPageEvent">
+    <div class="right" @click.stop="changeEvent('prev')">
       <i class="bm-icon icon-next icon-prev"></i>{{ $lang("上一画面") }}
     </div>
-    <div class="right" @click.stop="nextPageEvent">
+    <div class="right" @click.stop="changeEvent('next')">
       {{ $lang("下一画面") }}<i class="bm-icon icon-next"></i>
     </div>
   </div>
@@ -25,7 +25,6 @@ const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {
     return {
-      configurUrl: manageConfigur,
       canvasList: []
     };
   },
@@ -45,6 +44,52 @@ export default {
       $vm.$on("canvas-list", ({ canvasList = [] }) => {
         this.canvasList = canvasList || [];
       });
+    },
+    // backEvent() {
+    //   this.$confirm(
+    //     this.$lang("该切换操作将不会保存当前数据，请确认是否已经保存?"),
+    //     this.$lang("提示"),
+    //     {
+    //       confirmButtonText: this.$lang("确定"),
+    //       cancelButtonText: this.$lang("取消"),
+    //       type: "warning"
+    //     }
+    //   )
+    //     .then(() => {
+    //       this.$replacePage(manageConfigur);
+    //     })
+    //     .catch(() => {
+    //       this.$message({
+    //         type: "info",
+    //         message: this.$lang("已取消返回")
+    //       });
+    //     });
+    // },
+    changeEvent(type) {
+      this.$confirm(
+        this.$lang("该切换操作将不会保存当前数据，请确认是否已经保存?"),
+        this.$lang("提示"),
+        {
+          confirmButtonText: this.$lang("确定"),
+          cancelButtonText: this.$lang("取消"),
+          type: "warning"
+        }
+      )
+        .then(() => {
+          if (type == "back") {
+            this.$replacePage(manageConfigur);
+          } else if (type == "prev") {
+            this.prevPageEvent();
+          } else if (type == "next") {
+            this.nextPageEvent();
+          }
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: this.$lang("已取消返回")
+          });
+        });
     },
     nextPageEvent() {
       let { canvasList = [], canvas = {}, $route } = this;
