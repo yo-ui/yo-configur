@@ -394,7 +394,9 @@ export default {
       if (process.env.VUE_APP_API_HOST !== "prod") {
         query.t = Date.now();
       }
-      if (url.indexOf("/") > -1) {
+      if (url.indexOf("http://") > -1 || url.indexOf("https://") > -1) {
+        window.location.replace(url);
+      } else if (url.indexOf("/") > -1) {
         this.$router.replace(url);
         // this.$loadingShow();
       } else {

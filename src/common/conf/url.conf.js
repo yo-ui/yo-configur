@@ -20,6 +20,7 @@ export default {
   canvasStartUrl: `/configur/canvas/start`,
   canvasStopUrl: `/configur/canvas/stop`,
   deviceControlledPointsUrl: `/configur/device/controlled/points/{deviceId}`, //获取设备可控制点位列表
+  canvasSelectUrl: `/canvas/select`, //画布列表
 
   // 管理平台
   deviceGetUrl: `/device/get/{deviceId}`, //查询单个【网关设备】

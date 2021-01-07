@@ -1,17 +1,42 @@
 @import (reference) "./../common.less";
-.bm-header-com{
-  .bc(@dark);
+.bm-header-com {
+  .bc(@white);
   .h(60);
   .posr;
   z-index: 2;
-  .c(@white);
+  .c(@dark);
   .df;
   justify-content: space-between;
   align-items: center;
-  .title{
+  .borb(1px solid @grayD);
+  .title {
     .flex(1);
-    .fz(25);
+    .fz(20);
     .tc;
+    .c(#515861);
+    .fw(700);
+    // font-family: ;
+  }
+  .left {
+    .click;
+    .ml(20);
+    .icon-back {
+      .bi("/static/img/common/riLine-logout-box-line.svg");
+      .squ(24);
+      .mr(5);
+    }
+  }
+  .right {
+    .click;
+    .mr(20);
+    .icon-next {
+      .bi("/static/img/common/riLine-skip-forward-line.svg");
+      .squ(24);
+      .ml(5);
+      &.icon-prev {
+        .tranf(scale(-1, 1));
+      }
+    }
   }
   // i{
   //   .click;
@@ -68,7 +93,8 @@
   //     .mb(0);
   //   }
   // }
-  .left,.right{
+  .left,
+  .right {
     .df;
     align-items: center;
     // i{

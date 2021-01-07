@@ -14,6 +14,17 @@ export default {
     });
     return data;
   },
+  // 查询画布
+  async canvasSelect(context, options) {
+    let url = URL.canvasSelectUrl;
+    const data = await get({
+      url: url,
+      params: options,
+      store: context
+      // needToken:true,
+    });
+    return data;
+  },
   // canvasSaveUrl: `${host}/configur/canvas/save`,
   async canvasSave(context, options) {
     let url = URL.canvasSaveUrl;

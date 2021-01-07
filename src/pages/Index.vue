@@ -536,6 +536,7 @@ export default {
       canvasGetAction: "canvasGet",
       createHistoryAction: "canvas/createHistory",
       commonGetDeviceAction: "commonGetDevice",
+      canvasSelectAction: "canvasSelect",
       commonDeviceListAction: "commonDeviceList",
       commonDevicePointHstDataAction: "commonDevicePointHstData"
     }),
@@ -556,8 +557,13 @@ export default {
           width = "",
           height = "",
           id: canvasId = "",
+          folderId = "",
           data = {}
         } = detail || {};
+        this.canvasSelectFunc(folderId, (canvasList = []) => {
+          //头部监听画布列表
+          $vm.$emit("canvas-list", { canvasList });
+        });
         if (canvasId) {
           data = typeof data === "string" ? JSON.parse(data) : data;
           let { canvasData = {} } = data || {};
@@ -719,7 +725,6 @@ export default {
         this.setAllDeviceCacheMap(map);
       });
     },
-
     resizeCanvasSize() {
       this.$nextTick(() => {
         let $window = $(window);
@@ -1438,6 +1443,28 @@ export default {
           callback && callback(value || []);
           bmCommon.error("获取数据失败=>commonDeviceList", err);
         });
+    },
+    //获取画布
+    canvasSelectFunc(folderId = "", callback) {
+      let value = [];
+      if (!folderId) {
+        callback();
+        return;
+      }
+      this.canvasSelectAction({ folderId })
+        .then(({ data }) => {
+          let { code = "", result = [], message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || [];
+          } else {
+            bmCommon.error(message);
+          }
+          callback && callback(value || []);
+        })
+        .catch(err => {
+          callback && callback(value || []);
+          bmCommon.error("获取数据失败=>canvasSelect", err);
+        });
     }
   },
   mounted() {
@@ -1464,6 +1491,11 @@ export default {
     leftMenuStatus(newVal, oldVal) {
       if (newVal != oldVal) {
         this.resizeCanvasSize();
+      }
+    },
+    "$route.query.canvasId"(newVal, oldVal) {
+      if (newVal != oldVal) {
+        this.init();
       }
     }
   }

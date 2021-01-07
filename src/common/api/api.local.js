@@ -22,5 +22,6 @@ module.exports = {
   manageHost: "/manage", // 后端接口地址
   serviceLogin: "http://localhost:8086/login",
   manageLogin: "http://localhost:8084/login",
+  manageConfigur: "http://localhost:8084/nav/configur",
   debug: false
 };
