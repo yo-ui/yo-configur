@@ -151,6 +151,25 @@
             :format-tooltip="val => val + ' deg'"
           ></el-slider>
         </p>
+        <p>
+          <span class="label"> {{ $lang("透明度") }}:</span
+          ><el-tooltip content="请输入透明度" placement="top" effect="dark">
+            <el-input-number
+              controls-position="right"
+              clearable
+              :min="0"
+              :max="100"
+              v-model.number="info.opacity"
+              :placeholder="$lang('请输入透明度')"
+            ></el-input-number>
+          </el-tooltip>
+          <el-slider
+            v-model="info.opacity"
+            :min="0"
+            :max="100"
+            :format-tooltip="val => val"
+          ></el-slider>
+        </p>
         <p class="btn-box">
           <el-tooltip content="隐藏" placement="top" effect="dark">
             <i

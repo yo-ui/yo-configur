@@ -19,6 +19,11 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-button" */ "@/components/component/basic/button/index.vue"
     ),
+  // 热点
+  hotPointCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-hotPoint" */ "@/components/component/basic/hotPoint/index.vue"
+    ),
   // 图片
   imageCom: () =>
     import(
@@ -611,6 +616,11 @@ let styles = {
   buttonStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-button-style" */ "@/components/component/basic/button/style.vue"
+    ),
+  // 热点
+  hotPointStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-hotPoint-style" */ "@/components/component/basic/hotPoint/style.vue"
     ),
   // 图片
   imageStyleCom: () =>

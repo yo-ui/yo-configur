@@ -2,6 +2,9 @@ const webpack = require("webpack");
 // const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 // const glob = require("glob-all");
 // const PurgecssPlugin = require("purgecss-webpack-plugin");
+const CompressionWebpackPlugin = require("compression-webpack-plugin");
+// 定义压缩文件类型
+const productionGzipExtensions = ["js", "css"];
 // const vConsolePlugin = require("vconsole-webpack-plugin"); // 引入 移动端模拟开发者工具 插件 （另：https://github.com/liriliri/eruda）
 const chalk = require("chalk");
 const path = require("path");
@@ -59,8 +62,8 @@ module.exports = {
       title: "组态平台",
       // 在这个页面中包含的块，默认情况下会包含
       // 提取出来的通用 chunk 和 vendor chunk。
-      chunks: ["chunk-vendors", "chunk-common", "index", "configur"],
-    },
+      chunks: ["chunk-vendors", "chunk-common", "index", "configur"]
+    }
     // 当使用只有入口的字符串格式时，
     // 模板会被推导为 `public/subpage.html`
     // 并且如果找不到的话，就回退到 `public/index.html`。
@@ -90,7 +93,7 @@ module.exports = {
   integrity: false,
   // // 调整内部的 webpack 配置。
   // // 查阅 https://github.com/vuejs/vue-docs-zh-cn/blob/master/vue-cli/webpack.md
-  chainWebpack: (config) => {
+  chainWebpack: config => {
     // config.plugins.delete("html");
     // config.plugins.delete("preload");
     /**
@@ -110,7 +113,7 @@ module.exports = {
     //   return options;
     // });
   },
-  configureWebpack: (config) => {
+  configureWebpack: config => {
     config.devtool =
       process.env.NODE_ENV === "production" ? undefined : "source-map";
     config.externals = {
@@ -123,15 +126,15 @@ module.exports = {
       moment: "moment",
       accounting: "accounting",
       "big.js": "Big",
-      qs: "Qs",
+      qs: "Qs"
     };
     config.resolve = {
       extensions: [".js", ".vue", ".json", ".less"],
       alias: {
         vue$: "vue/dist/vue.esm.js",
-        "@": resolve("src"),
+        "@": resolve("src")
         // vendor: resolve("src/vendor")
-      },
+      }
     };
     const pluginsPro = [
       // new UglifyJsPlugin({
@@ -142,13 +145,16 @@ module.exports = {
       //     }
       //   }
       // })
-      // 			new CompressionPlugin({ //文件开启Gzip，也可以通过服务端(如：nginx)(https://github.com/webpack-contrib/compression-webpack-plugin)
-      // 				filename: '[path].gz[query]',
-      // 				algorithm: 'gzip',
-      // 				test: productionGzipExtensions,
-      // 				threshold: 8192,
-      // 				minRatio: 0.8,
-      // 			}),
+
+      new CompressionWebpackPlugin({
+        //文件开启Gzip，也可以通过服务端(如：nginx)(https://github.com/webpack-contrib/compression-webpack-plugin)
+        filename: "[path].gz[query]",
+        algorithm: "gzip",
+        test: new RegExp("\\.(" + productionGzipExtensions.join("|") + ")$"), //匹配文件名
+        threshold: 10240, //对10K以上的数据进行压缩
+        minRatio: 0.8,
+        deleteOriginalAssets: false //是否删除源文件
+      })
       // new CompressionPlugin({
       //   algorithm(input, compressionOptions, callback) {
       //     return zopfli.gzip(input, compressionOptions, callback);
@@ -212,8 +218,8 @@ module.exports = {
 
       new webpack.ProvidePlugin({
         jQuery: "jquery",
-        $: "jquery",
-      }),
+        $: "jquery"
+      })
     ];
     if (process.env.NODE_ENV === "production") {
       // 为生产环境修改配置...process.env.NODE_ENV !== 'development'
@@ -251,7 +257,7 @@ module.exports = {
     },
 
     // 默认情况下，只有 *.module.[ext] 结尾的文件才会被视作 CSS Modules 模块。设置为 false 后你就可以去掉文件名中的 .module 并将所有的 *.(css|scss|sass|less|styl(us)?) 文件视为 CSS Modules 模块。
-    requireModuleExtension: true,
+    requireModuleExtension: true
   },
 
   // 配置 webpack-dev-server 行为。
@@ -270,7 +276,7 @@ module.exports = {
         // target: "https://viz.energyiot.cn/service",
         ws: false,
         changeOrigin: true,
-        pathRewrite: { "/service": "/" },
+        pathRewrite: { "/service": "/" }
       },
       "/manage": {
         // target: "http://localhost:8080",
@@ -279,15 +285,15 @@ module.exports = {
         // target: "https://viz.energyiot.cn/manage",
         ws: false,
         changeOrigin: true,
-        pathRewrite: { "/manage": "/" },
-      },
+        pathRewrite: { "/manage": "/" }
+      }
     }, // string | Object
     allowedHosts: [
       // 'host.com',
       // 'subdomain.host.com',
       // 'subdomain2.host.com',
       // 'host2.com'
-    ],
+    ]
     // // color: true,
     // // compress: true,
     // before: (app, server) => {
@@ -309,5 +315,5 @@ module.exports = {
   // 三方插件的选项
   pluginOptions: {
     // ...
-  },
+  }
 };

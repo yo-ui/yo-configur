@@ -625,58 +625,12 @@ let componentLibrary = [
             fontSize: 16,
             color: "#333"
           },
-          // input: {
-          //   // height: 40, //按钮高度
-          //   // width: 80, //按钮宽度
-          //   color: "#333",
-          //   fontFamily: "",
-          //   fontSize: 14,
-          //   fontWeight: "",
-          //   fontStyle: "",
-          //   textDecoration: "",
-          //   textAlign: "center",
-          //   textShadowable: false,
-          //   textShadow,
-          //   marginTop: 0,
-          //   marginBottom: 0,
-          //   marginLeft: 0,
-          //   marginRight: 0,
-          //   paddingTop: 0,
-          //   paddingBottom: 0,
-          //   paddingLeft: 0,
-          //   paddingRight: 0,
-          //   backgroundColor: "#fff",
-          //   backgroundImage: "",
-          //   backgroundRepeat: "",
-          //   backgroundSize: "",
-          //   backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
-          //   gradientStyle,
-          //   borderRadiusTopLeft: 0,
-          //   borderRadiusTopRight: 0,
-          //   borderRadiusBottomLeft: 0,
-          //   borderRadiusBottomRight: 0,
-          //   borderWidth: 1,
-          //   borderStyle: "solid",
-          //   borderColor: "#ccc",
-          //
-          // },
           select: {
-            // color: "#fff",
-            // backgroundColor: "#4195ea",
-            // textShadowable: false,
-            // textShadow,
             showable: false, //默认显示
             shadowable: false,
             shadow,
             arrowStatus: true,
             arrowColor: "#fff",
-            // fontFamily: "",
-            // fontSize: 14,
-            // fontWeight: "",
-            // fontStyle: "",
-            // textDecoration: "",
-            // backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
-            // gradientStyle,
             marginTop: 0,
             marginBottom: 0,
             marginLeft: 0,
@@ -933,6 +887,17 @@ let componentLibrary = [
           // content: false,
           width: 46,
           height: 26
+        }
+      },
+      {
+        name: "热点",
+        code: "hotPoint",
+        icon: "/static/img/configur/button.png",
+        data: {
+          ...baseData,
+          // content: false,
+          width: 100,
+          height: 100
         }
       }
     ]

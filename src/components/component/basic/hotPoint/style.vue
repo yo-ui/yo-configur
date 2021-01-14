@@ -22,14 +22,6 @@
           </div>
         </template>
         <p>
-          <span class="label"> {{ $lang("按钮名称") }}: </span>
-          <el-input
-            v-model="info.content"
-            clearable
-            :placeholder="$lang('请输入按钮名称')"
-          ></el-input>
-        </p>
-        <p>
           <span class="label">{{ $lang("组件名称") }}:</span>
           <el-input
             v-model="info.comName"
@@ -641,7 +633,15 @@
           </p>
         </template>
       </el-collapse-item>
-      <el-collapse-item :title="$lang('文字设置')" name="fontSet">
+      <el-collapse-item :title="$lang('链接设置')" name="fontSet">
+        <p>
+          <span class="label"> {{ $lang("链接地址") }}: </span>
+          <el-input
+            v-model="info.content"
+            clearable
+            :placeholder="$lang('请输入链接地址')"
+          ></el-input>
+        </p>
         <p>
           <span class="label">{{ $lang("字体颜色") }}:</span>
           <el-color-picker v-model="info.color" show-alpha></el-color-picker>
