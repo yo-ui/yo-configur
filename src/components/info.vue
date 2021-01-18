@@ -141,29 +141,30 @@ const Props = {
     "text" //静态文本
   ]
 };
-const watches = {};
-for (let i in Constants.BASEDATA) {
-  if (i != "id") {
-    let key = `activeCom.${i}`;
-    watches[key] = {
-      handler(newVal, oldVal) {
-        let { activeCom = {} } = this;
-        let { parentId = "" } = activeCom || {};
-        let { activeComs = [], moving = false, selectBox = {} } = this;
-        let { moving: _moving = false } = selectBox || {};
-        let { length = 0 } = activeComs || [];
-        if (!(moving || _moving || parentId)) {
-          if (length > 1) {
-            activeComs.forEach(item => {
-              item[i] = newVal;
-            });
-          }
-        }
-      },
-      deep: true
-    };
-  }
-}
+
+// const watches = {};
+// for (let i in Constants.BASEDATA) {
+//   if (i != "id") {
+//     let key = `activeCom.${i}`;
+//     watches[key] = {
+//       handler(newVal, oldVal) {
+//         let { activeCom = {} } = this;
+//         let { parentId = "" } = activeCom || {};
+//         let { activeComs = [], moving = false, selectBox = {} } = this;
+//         let { moving: _moving = false } = selectBox || {};
+//         let { length = 0 } = activeComs || [];
+//         if (!(moving || _moving || parentId)) {
+//           if (length > 1) {
+//             activeComs.forEach(item => {
+//               item[i] = newVal;
+//             });
+//           }
+//         }
+//       },
+//       deep: true
+//     };
+//   }
+// }
 export default {
   data() {
     let tabList = Object.freeze([
@@ -295,7 +296,14 @@ export default {
   },
   mounted() {
     this.init();
-    // bmCommon.log("style 初始化");
+    bmCommon.log("info style 初始化");
+  },
+  updated() {
+    bmCommon.log("info style update");
+    // vm.$watch("someObject", callback, {
+    //   deep: true
+    // });
+    this.initWatches();
   },
   methods: {
     ...mapMutations({
@@ -306,6 +314,36 @@ export default {
       selectComAction: "canvas/selectCom",
       selectComsAction: "canvas/selectComs"
     }),
+    initWatches() {
+      let { activeCom = {} } = this;
+      // for (let i in Constants.BASEDATA) {
+      for (let i in activeCom) {
+        if (i != "id") {
+          let key = `activeCom.${i}`;
+          bmCommon.log(key, this);
+          this.$watch(
+            key,
+            (newVal, oldVal) => {
+              let { activeCom = {} } = this;
+              let { parentId = "" } = activeCom || {};
+              let { activeComs = [], moving = false, selectBox = {} } = this;
+              let { moving: _moving = false } = selectBox || {};
+              let { length = 0 } = activeComs || [];
+              if (!(moving || _moving || parentId)) {
+                if (length > 1) {
+                  activeComs.forEach(item => {
+                    item[i] = newVal;
+                  });
+                }
+              }
+            },
+            {
+              deep: true
+            }
+          );
+        }
+      }
+    },
     selectComEvent(item) {
       // this.setActiveCom(item);
       this.selectComsAction();
@@ -328,6 +366,7 @@ export default {
     },
     init() {
       // this.loadComList();
+      this.initWatches();
     },
     showChildEvent(item) {
       // bmCommon.log()
@@ -354,8 +393,8 @@ export default {
           this.activeIndex = tabList[0].code;
         }
       }
-    },
-    ...watches
+    }
+    // ...watches
   }
 };
 </script>

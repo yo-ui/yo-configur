@@ -452,6 +452,10 @@ export default {
         activeComs = [],
         activeCom = {}
       } = state;
+      let fIndex = activeComs.findIndex(item => item.locked);
+      if (fIndex > -1) {
+        activeComs.splice(fIndex, 1);
+      }
       if (!id) {
         let { length = 0 } = activeComs || [];
         activeComs.splice(0, length);
@@ -481,8 +485,8 @@ export default {
         activeCom = canvas;
       }
       context.commit("setActiveCom", activeCom);
-      // context.commit("setActiveCom", activeCom);
       // context.commit("setActiveComs", activeComs);
+      // context.commit("setActiveCom", activeCom);
     },
     createRecord(context, item) {
       let { img = "" } = item || {};
