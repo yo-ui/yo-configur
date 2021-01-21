@@ -13,7 +13,7 @@
       <defs
         v-html="
           `<style type='text/css'>
-      
+
                 .lqt-${info.id}-st0{fill:url(#lqt_1_);}
                 .lqt-${info.id}-st1{fill:url(#lqt_2_);}
                 .lqt-${info.id}-st2{fill:#3D3D3D;}
@@ -282,7 +282,7 @@
         </linearGradient>
         <polygon
           :class="`lqt-${info.id}-st11`"
-          points="55.66,57.96 62.39,45.15 111.59,30.33 176.29,30.33 218.07,51.89 218.07,68.74 158.09,86.26 
+          points="55.66,57.96 62.39,45.15 111.59,30.33 176.29,30.33 218.07,51.89 218.07,68.74 158.09,86.26
                   104.18,86.26 	"
         />
         <linearGradient
@@ -2050,6 +2050,10 @@ export default {
         marginBottom = 0,
         marginLeft = 0,
         marginRight = 0,
+        borderTop = 0,
+        borderBottom = 0,
+        borderLeft = 0,
+        borderRight = 0,
         paddingTop = 0,
         paddingBottom = 0,
         paddingLeft = 0,
@@ -2085,13 +2089,50 @@ export default {
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
       }
-      if (borderColor) {
-        styles["borderColor"] = borderColor;
+      if (borderTop) {
+        if (borderStyle) {
+          styles["borderTopStyle"] = borderStyle;
+        }
+        styles["borderTopWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderTopColor"] = borderColor;
+        }
+      } else {
+        styles["borderTop"] = "none";
       }
-      if (borderStyle) {
-        styles["borderStyle"] = borderStyle;
+      if (borderBottom) {
+        if (borderStyle) {
+          styles["borderBottomStyle"] = borderStyle;
+        }
+        styles["borderBottomWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderBottomColor"] = borderColor;
+        }
+      } else {
+        styles["borderBottom"] = "none";
       }
-      styles["borderWidth"] = `${borderWidth}px`;
+      if (borderLeft) {
+        if (borderStyle) {
+          styles["borderLeftStyle"] = borderStyle;
+        }
+        styles["borderLeftWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderLeftColor"] = borderColor;
+        }
+      } else {
+        styles["borderLeft"] = "none";
+      }
+      if (borderRight) {
+        if (borderStyle) {
+          styles["borderRightStyle"] = borderStyle;
+        }
+        styles["borderRightWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderRightColor"] = borderColor;
+        }
+      } else {
+        styles["borderRight"] = "none";
+      }
 
       styles[
         "borderRadius"

@@ -69,7 +69,7 @@
               .zysfj-${info.id}-st53{fill:url(#zysfj_43_);}
               .zysfj-${info.id}-st54{fill:url(#zysfj_44_);}
               .zysfj-${info.id}-st55{fill:url(#zysfj_45_);}
-              .zysfj-${info.id}-st56{opacity:0.4;fill:#FF0000;} 
+              .zysfj-${info.id}-st56{opacity:0.4;fill:#FF0000;}
       </style>
       `
         "
@@ -1264,12 +1264,12 @@
         />
         <polygon
           :class="`zysfj-${info.id}-st19`"
-          points="68.47,107.64 56.22,119.89 56.22,158.1 68.47,170.35 99.91,170.35 112.16,158.1 112.16,119.89 
+          points="68.47,107.64 56.22,119.89 56.22,158.1 68.47,170.35 99.91,170.35 112.16,158.1 112.16,119.89
                 99.91,107.64 	"
         />
         <polygon
           :class="`zysfj-${info.id}-st48`"
-          points="99.91,107.64 68.47,107.64 66.54,109.57 97.23,109.57 109.48,121.82 109.48,160.78 112.16,158.1 
+          points="99.91,107.64 68.47,107.64 66.54,109.57 97.23,109.57 109.48,121.82 109.48,160.78 112.16,158.1
                 112.16,119.89 	"
         />
         <ellipse
@@ -1463,6 +1463,10 @@ export default {
         marginBottom = 0,
         marginLeft = 0,
         marginRight = 0,
+        borderTop = 0,
+        borderBottom = 0,
+        borderLeft = 0,
+        borderRight = 0,
         paddingTop = 0,
         paddingBottom = 0,
         paddingLeft = 0,
@@ -1498,13 +1502,50 @@ export default {
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
       }
-      if (borderColor) {
-        styles["borderColor"] = borderColor;
+      if (borderTop) {
+        if (borderStyle) {
+          styles["borderTopStyle"] = borderStyle;
+        }
+        styles["borderTopWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderTopColor"] = borderColor;
+        }
+      } else {
+        styles["borderTop"] = "none";
       }
-      if (borderStyle) {
-        styles["borderStyle"] = borderStyle;
+      if (borderBottom) {
+        if (borderStyle) {
+          styles["borderBottomStyle"] = borderStyle;
+        }
+        styles["borderBottomWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderBottomColor"] = borderColor;
+        }
+      } else {
+        styles["borderBottom"] = "none";
       }
-      styles["borderWidth"] = `${borderWidth}px`;
+      if (borderLeft) {
+        if (borderStyle) {
+          styles["borderLeftStyle"] = borderStyle;
+        }
+        styles["borderLeftWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderLeftColor"] = borderColor;
+        }
+      } else {
+        styles["borderLeft"] = "none";
+      }
+      if (borderRight) {
+        if (borderStyle) {
+          styles["borderRightStyle"] = borderStyle;
+        }
+        styles["borderRightWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderRightColor"] = borderColor;
+        }
+      } else {
+        styles["borderRight"] = "none";
+      }
 
       styles[
         "borderRadius"

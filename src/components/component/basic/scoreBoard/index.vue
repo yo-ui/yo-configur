@@ -35,10 +35,10 @@ export default {
     }
   },
   components: {
-    bmUpload: () =>
-      import(
-        /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
-      )
+    // bmUpload: () =>
+    //   import(
+    //     /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
+    //   )
   },
   computed: {
     decimal() {
@@ -112,6 +112,10 @@ export default {
         marginBottom = 0,
         marginLeft = 0,
         marginRight = 0,
+        borderTop = 0,
+        borderBottom = 0,
+        borderLeft = 0,
+        borderRight = 0,
         paddingTop = 0,
         paddingBottom = 0,
         paddingLeft = 0,
@@ -139,13 +143,50 @@ export default {
         let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
         styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
       }
-      if (borderColor) {
-        styles["borderColor"] = borderColor;
+      if (borderTop) {
+        if (borderStyle) {
+          styles["borderTopStyle"] = borderStyle;
+        }
+        styles["borderTopWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderTopColor"] = borderColor;
+        }
+      } else {
+        styles["borderTop"] = "none";
       }
-      if (borderStyle) {
-        styles["borderStyle"] = borderStyle;
+      if (borderBottom) {
+        if (borderStyle) {
+          styles["borderBottomStyle"] = borderStyle;
+        }
+        styles["borderBottomWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderBottomColor"] = borderColor;
+        }
+      } else {
+        styles["borderBottom"] = "none";
       }
-      styles["borderWidth"] = `${borderWidth}px`;
+      if (borderLeft) {
+        if (borderStyle) {
+          styles["borderLeftStyle"] = borderStyle;
+        }
+        styles["borderLeftWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderLeftColor"] = borderColor;
+        }
+      } else {
+        styles["borderLeft"] = "none";
+      }
+      if (borderRight) {
+        if (borderStyle) {
+          styles["borderRightStyle"] = borderStyle;
+        }
+        styles["borderRightWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderRightColor"] = borderColor;
+        }
+      } else {
+        styles["borderRight"] = "none";
+      }
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
@@ -221,6 +262,10 @@ export default {
         marginBottom = 0,
         marginLeft = 0,
         marginRight = 0,
+        borderTop = 0,
+        borderBottom = 0,
+        borderLeft = 0,
+        borderRight = 0,
         paddingTop = 0,
         paddingBottom = 0,
         paddingLeft = 0,
@@ -256,13 +301,50 @@ export default {
           styles["text-align-last"] = textAlign;
         }
       }
-      if (borderColor) {
-        styles["borderColor"] = borderColor;
+      if (borderTop) {
+        if (borderStyle) {
+          styles["borderTopStyle"] = borderStyle;
+        }
+        styles["borderTopWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderTopColor"] = borderColor;
+        }
+      } else {
+        styles["borderTop"] = "none";
       }
-      if (borderStyle) {
-        styles["borderStyle"] = borderStyle;
+      if (borderBottom) {
+        if (borderStyle) {
+          styles["borderBottomStyle"] = borderStyle;
+        }
+        styles["borderBottomWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderBottomColor"] = borderColor;
+        }
+      } else {
+        styles["borderBottom"] = "none";
       }
-      styles["borderWidth"] = `${borderWidth}px`;
+      if (borderLeft) {
+        if (borderStyle) {
+          styles["borderLeftStyle"] = borderStyle;
+        }
+        styles["borderLeftWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderLeftColor"] = borderColor;
+        }
+      } else {
+        styles["borderLeft"] = "none";
+      }
+      if (borderRight) {
+        if (borderStyle) {
+          styles["borderRightStyle"] = borderStyle;
+        }
+        styles["borderRightWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderRightColor"] = borderColor;
+        }
+      } else {
+        styles["borderRight"] = "none";
+      }
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;

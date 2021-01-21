@@ -528,6 +528,10 @@ export default {
         marginBottom = 0,
         marginLeft = 0,
         marginRight = 0,
+        borderTop = 0,
+        borderBottom = 0,
+        borderLeft = 0,
+        borderRight = 0,
         paddingTop = 0,
         paddingBottom = 0,
         paddingLeft = 0,
@@ -557,32 +561,54 @@ export default {
       if (zoom && boxZoom) {
         styles["transform"] = `scale(${zoom * boxZoom})`;
       }
-      // if (width) {
-      //   styles["width"] = `${width}px`;
-      // }
       if (maxHeight) {
         styles["maxHeight"] = `${maxHeight}px`;
       }
-      // if (textAlign) {
-      //   styles["textAlign"] = textAlign;
-      //   if (textAlign == "justify") {
-      //     styles["text-align-last"] = textAlign;
-      //   }
-      // }
-      // if (backgroundRepeat) {
-      //   styles["backgroundRepeat"] = backgroundRepeat;
-      // }
-      // if (backgroundSize) {
-      //   styles["backgroundSize"] = backgroundSize;
-      // }
       styles["--background-color"] = arrowColor;
-      if (borderColor) {
-        styles["borderColor"] = borderColor;
+      if (borderTop) {
+        if (borderStyle) {
+          styles["borderTopStyle"] = borderStyle;
+        }
+        styles["borderTopWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderTopColor"] = borderColor;
+        }
+      } else {
+        styles["borderTop"] = "none";
       }
-      if (borderStyle) {
-        styles["borderStyle"] = borderStyle;
+      if (borderBottom) {
+        if (borderStyle) {
+          styles["borderBottomStyle"] = borderStyle;
+        }
+        styles["borderBottomWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderBottomColor"] = borderColor;
+        }
+      } else {
+        styles["borderBottom"] = "none";
       }
-      styles["borderWidth"] = `${borderWidth}px`;
+      if (borderLeft) {
+        if (borderStyle) {
+          styles["borderLeftStyle"] = borderStyle;
+        }
+        styles["borderLeftWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderLeftColor"] = borderColor;
+        }
+      } else {
+        styles["borderLeft"] = "none";
+      }
+      if (borderRight) {
+        if (borderStyle) {
+          styles["borderRightStyle"] = borderStyle;
+        }
+        styles["borderRightWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderRightColor"] = borderColor;
+        }
+      } else {
+        styles["borderRight"] = "none";
+      }
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
@@ -593,42 +619,6 @@ export default {
           "boxShadow"
         ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
       }
-      // if (textShadowable) {
-      //   let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
-      //   styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
-      // }
-      // if (color) {
-      //   styles["color"] = color;
-      // }
-      // if (fontSize) {
-      //   styles["fontSize"] = `${fontSize}px`;
-      // }
-      // if (fontFamily) {
-      //   styles["fontFamily"] = `${fontFamily}`;
-      // }
-      // if (fontWeight) {
-      //   styles["fontWeight"] = fontWeight;
-      // }
-      // if (fontStyle) {
-      //   styles["fontStyle"] = fontStyle;
-      // }
-      // if (textDecoration) {
-      //   styles["textDecoration"] = textDecoration;
-      // }
-      // if (backgroundType == "purity") {
-      //   //纯色
-      //   if (backgroundColor) {
-      //     styles["backgroundColor"] = backgroundColor;
-      //   }
-      //   if (backgroundImage) {
-      //     styles["backgroundImage"] = `url(${this.$loadImgUrl(
-      //       backgroundImage
-      //     )})`;
-      //   }
-      // } else if (backgroundType == "gradient") {
-      //   //渐变
-      //   styles = { ...styles, ...gradientStyle(info) };
-      // }
       return styles || {};
     },
     arrowStyle() {
@@ -639,38 +629,10 @@ export default {
         fontSize = "",
         marginRight = 0,
         fontWeight = "",
-        // color = "",
-        // borderColor = "",
-        // borderStyle = "",
-        // borderWidth = "",
         borderRadiusTopLeft = 0,
         borderRadiusTopRight = 0,
         borderRadiusBottomLeft = 0,
         borderRadiusBottomRight = 0
-        // // scale = "",
-        // marginTop = 0,
-        // marginBottom = 0,
-        // marginLeft = 0,
-        // marginRight = 0,
-        // paddingTop = 0,
-        // paddingBottom = 0,
-        // paddingLeft = 0,
-        // paddingRight = 0,
-        // shadow = {},
-        // shadowable = false,
-        // textShadow = {},
-        // textShadowable = false,
-        // textAlign = "",
-        // fontFamily = "",
-        // backgroundType = "",
-        // fontSize = "",
-        // fontWeight = "",
-        // fontStyle = "",
-        // textDecoration = "",
-        // backgroundColor = "",
-        // backgroundImage = "",
-        // backgroundRepeat = "",
-        // backgroundSize = ""
       } = arrow || {};
       let styles = {
         marginRight: `${marginRight}px `
@@ -685,71 +647,9 @@ export default {
       if (fontWeight) {
         styles["fontWeight"] = "bold";
       }
-      // if (textAlign) {
-      //   styles["textAlign"] = textAlign;
-      //   if (textAlign == "justify") {
-      //     styles["text-align-last"] = textAlign;
-      //   }
-      // }
-      // if (backgroundRepeat) {
-      //   styles["backgroundRepeat"] = backgroundRepeat;
-      // }
-      // if (backgroundSize) {
-      //   styles["backgroundSize"] = backgroundSize;
-      // }
-      // if (borderColor) {
-      //   styles["borderColor"] = borderColor;
-      // }
-      // if (borderStyle) {
-      //   styles["borderStyle"] = borderStyle;
-      // }
-      // styles["borderWidth"] = `${borderWidth}px`;
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
-      // if (shadowable) {
-      //   let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
-      //     shadow || {};
-      //   styles[
-      //     "boxShadow"
-      //   ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
-      // }
-      // if (textShadowable) {
-      //   let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
-      //   styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
-      // }
-      // if (color) {
-      //   styles["color"] = color;
-      // }
-      // if (fontSize) {
-      //   styles["fontSize"] = `${fontSize}px`;
-      // }
-      // if (fontFamily) {
-      //   styles["fontFamily"] = `${fontFamily}`;
-      // }
-      // if (fontWeight) {
-      //   styles["fontWeight"] = fontWeight;
-      // }
-      // if (fontStyle) {
-      //   styles["fontStyle"] = fontStyle;
-      // }
-      // if (textDecoration) {
-      //   styles["textDecoration"] = textDecoration;
-      // }
-      // if (backgroundType == "purity") {
-      //   //纯色
-      //   if (backgroundColor) {
-      //     styles["backgroundColor"] = backgroundColor;
-      //   }
-      //   if (backgroundImage) {
-      //     styles["backgroundImage"] = `url(${this.$loadImgUrl(
-      //       backgroundImage
-      //     )})`;
-      //   }
-      // } else if (backgroundType == "gradient") {
-      //   //渐变
-      //   styles = { ...styles, ...gradientStyle(info) };
-      // }
       return styles || {};
     }
   },

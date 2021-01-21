@@ -494,6 +494,24 @@
             :format-tooltip="val => val + ' px'"
           ></el-slider>
         </p>
+        <p>
+          <span class="label"> {{ $lang("线样式") }}:</span>
+          <el-select
+            v-model="info.borderStyle"
+            :placeholder="$lang('请选择边框样式')"
+          >
+            <el-option
+              v-for="item in borderStyleList"
+              :key="item.code"
+              :label="$lang(item.name)"
+              :value="item.code"
+            >
+              <span :style="`border:3px ${item.code} #333;padding:2px 15px;`">
+                {{ $lang(item.name) }}
+              </span>
+            </el-option>
+          </el-select>
+        </p>
         <!-- <p>
           <span class="label"> {{ $lang("边框圆角") }}:</span>
           <el-input-number

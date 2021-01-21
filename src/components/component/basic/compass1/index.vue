@@ -74,7 +74,7 @@
         <polygon
           id="compass1_439_"
           :class="`compass1-${info.id}-st2`"
-          points="96.1,17 96.2,17 103.6,29 107.6,29 107.6,11.1 103.9,11.1 103.9,23.1 103.8,23.1 
+          points="96.1,17 96.2,17 103.6,29 107.6,29 107.6,11.1 103.9,11.1 103.9,23.1 103.8,23.1
 		96.4,11.1 92.4,11.1 92.4,29 96.1,29 	"
         />
         <path
@@ -94,13 +94,13 @@
         <polygon
           id="compass1_441_"
           :class="`compass1-${info.id}-st2`"
-          points="24,103 23.9,103 20.9,90.7 17.2,90.7 14.1,102.9 14,102.9 11.2,90.7 7.3,90.7 
+          points="24,103 23.9,103 20.9,90.7 17.2,90.7 14.1,102.9 14,102.9 11.2,90.7 7.3,90.7
 		12,108.6 16,108.6 19,96.4 19,96.4 22.1,108.6 26,108.6 30.8,90.7 26.9,90.7 	"
         />
         <polygon
           id="compass1_442_"
           :class="`compass1-${info.id}-st2`"
-          points="177.4,105.3 177.4,100.9 186.1,100.9 186.1,97.8 177.4,97.8 177.4,94 186.9,94 
+          points="177.4,105.3 177.4,100.9 186.1,100.9 186.1,97.8 177.4,97.8 177.4,94 186.9,94
 		186.9,90.7 173.5,90.7 173.5,108.6 187.1,108.6 187.1,105.3 	"
         />
       </g>
@@ -169,6 +169,10 @@ export default {
         marginBottom = 0,
         marginLeft = 0,
         marginRight = 0,
+        borderTop = 0,
+        borderBottom = 0,
+        borderLeft = 0,
+        borderRight = 0,
         paddingTop = 0,
         paddingBottom = 0,
         paddingLeft = 0,
@@ -211,13 +215,50 @@ export default {
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
       }
-      if (borderColor) {
-        styles["borderColor"] = borderColor;
+      if (borderTop) {
+        if (borderStyle) {
+          styles["borderTopStyle"] = borderStyle;
+        }
+        styles["borderTopWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderTopColor"] = borderColor;
+        }
+      } else {
+        styles["borderTop"] = "none";
       }
-      if (borderStyle) {
-        styles["borderStyle"] = borderStyle;
+      if (borderBottom) {
+        if (borderStyle) {
+          styles["borderBottomStyle"] = borderStyle;
+        }
+        styles["borderBottomWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderBottomColor"] = borderColor;
+        }
+      } else {
+        styles["borderBottom"] = "none";
       }
-      styles["borderWidth"] = `${borderWidth}px`;
+      if (borderLeft) {
+        if (borderStyle) {
+          styles["borderLeftStyle"] = borderStyle;
+        }
+        styles["borderLeftWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderLeftColor"] = borderColor;
+        }
+      } else {
+        styles["borderLeft"] = "none";
+      }
+      if (borderRight) {
+        if (borderStyle) {
+          styles["borderRightStyle"] = borderStyle;
+        }
+        styles["borderRightWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderRightColor"] = borderColor;
+        }
+      } else {
+        styles["borderRight"] = "none";
+      }
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;

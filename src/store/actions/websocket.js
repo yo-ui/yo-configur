@@ -37,7 +37,7 @@ export default {
       subject,
       {},
       JSON.stringify({
-        token,
+        token
       })
     );
   },
@@ -48,7 +48,7 @@ export default {
     const {
       subject = "",
       callback = () => {},
-      reConnection = () => {},
+      reConnection = () => {}
     } = options;
     const { getters = {} } = context;
     const { getUserInfo: userInfo = {}, getPlatform: platform = "" } =
@@ -91,22 +91,22 @@ export default {
               clearInterval($vm.setIntervalId);
             }
             heartbeatTime = currentTime;
-          },
+          }
         });
         bmCommon.log("立即发起心跳");
         context.dispatch("websocketSend", {
           subject: "/ws/ping",
-          token,
+          token
         });
         $vm.setIntervalId = setInterval(() => {
           bmCommon.log("发起心跳");
           context.dispatch("websocketSend", {
             subject: "/ws/ping",
-            token,
+            token
           });
         }, 1000 * 60); // 1分钟心跳
       },
-      (err) => {
+      err => {
         clearInterval($vm.setIntervalId);
         $vm.setTimeoutId = setTimeout(() => {
           clearTimeout($vm.setTimeoutId);
@@ -115,5 +115,5 @@ export default {
         bmCommon.error("连接失败=>error: ", err);
       }
     );
-  },
+  }
 };

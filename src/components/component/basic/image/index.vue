@@ -69,6 +69,10 @@ export default {
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
+        borderTop = 0,
+        borderBottom = 0,
+        borderLeft = 0,
+        borderRight = 0,
         borderRadiusTopLeft = 0,
         borderRadiusTopRight = 0,
         borderRadiusBottomLeft = 0,
@@ -87,13 +91,50 @@ export default {
       if (height) {
         styles["height"] = `${height}px`;
       }
-      if (borderColor) {
-        styles["borderColor"] = borderColor;
+      if (borderTop) {
+        if (borderStyle) {
+          styles["borderTopStyle"] = borderStyle;
+        }
+        styles["borderTopWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderTopColor"] = borderColor;
+        }
+      } else {
+        styles["borderTop"] = "none";
       }
-      if (borderStyle) {
-        styles["borderStyle"] = borderStyle;
+      if (borderBottom) {
+        if (borderStyle) {
+          styles["borderBottomStyle"] = borderStyle;
+        }
+        styles["borderBottomWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderBottomColor"] = borderColor;
+        }
+      } else {
+        styles["borderBottom"] = "none";
       }
-      styles["borderWidth"] = `${borderWidth}px`;
+      if (borderLeft) {
+        if (borderStyle) {
+          styles["borderLeftStyle"] = borderStyle;
+        }
+        styles["borderLeftWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderLeftColor"] = borderColor;
+        }
+      } else {
+        styles["borderLeft"] = "none";
+      }
+      if (borderRight) {
+        if (borderStyle) {
+          styles["borderRightStyle"] = borderStyle;
+        }
+        styles["borderRightWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderRightColor"] = borderColor;
+        }
+      } else {
+        styles["borderRight"] = "none";
+      }
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
@@ -139,39 +180,9 @@ export default {
       if (height) {
         styles["height"] = `${height}px`;
       }
-      // if (borderColor) {
-      //   styles["borderColor"] = borderColor;
-      // }
-      // if (borderStyle) {
-      //   styles["borderStyle"] = borderStyle;
-      // }
-      // styles["borderWidth"] = `${borderWidth}px`;
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
-      // if (color) {
-      //   styles["color"] = color;
-      // }
-      // if (backgroundType == "purity") {
-      //   //纯色
-      //   if (backgroundColor) {
-      //     styles["backgroundColor"] = backgroundColor;
-      //   }
-      //   if (content) {
-      //     styles["content"] = `url(${this.$loadImgUrl(
-      //       content
-      //     )})`;
-      //     if (backgroundRepeat) {
-      //       styles["backgroundRepeat"] = backgroundRepeat;
-      //     }
-      //     if (backgroundSize) {
-      //       styles["backgroundSize"] = backgroundSize;
-      //     }
-      //   }
-      // } else if (backgroundType == "gradient") {
-      //   //渐变
-      //   styles = { ...styles, ...gradientStyle };
-      // }
       return styles || {};
     }
   },

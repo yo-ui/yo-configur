@@ -1,6 +1,6 @@
 import { URL } from "@/common/env";
 import bmCommon from "@/common/common";
-import { post, get } from "@/store/axios";
+import { get } from "@/store/axios";
 export default {
   // //获取网关设备
   // async modelGateways(context, options) {

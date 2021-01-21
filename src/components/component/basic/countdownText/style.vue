@@ -409,7 +409,31 @@
             </p> -->
           </template>
         </template>
-
+        <p class="padding-box">
+          <span class="label"> {{ $lang("边框") }}:</span>
+          <span class="c-box">
+            <span>
+              <el-checkbox v-model="info.borderTop">
+                {{ $lang("上边框") }}
+              </el-checkbox></span
+            >
+            <span>
+              <el-checkbox v-model="info.borderRight">
+                {{ $lang("右边框") }}
+              </el-checkbox></span
+            >
+            <span>
+              <el-checkbox v-model="info.borderBottom">
+                {{ $lang("下边框") }}
+              </el-checkbox></span
+            >
+            <span>
+              <el-checkbox v-model="info.borderLeft">
+                {{ $lang("左边框") }}
+              </el-checkbox>
+            </span>
+          </span>
+        </p>
         <p>
           <span class="label"> {{ $lang("边框样式") }}:</span
           ><el-select

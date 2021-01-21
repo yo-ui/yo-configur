@@ -249,9 +249,8 @@ export default {
         // width = "",
         // height = "",
         // color = "",
-        // borderColor = "",
         gradientStyle = {},
-        // borderStyle = "",
+        borderStyle = "",
         lineWidth = "",
         // borderRadiusTopLeft = 0,
         // borderRadiusTopRight = 0,
@@ -273,7 +272,35 @@ export default {
         // backgroundSize = ""
       } = info || {};
       let styles = {};
-      styles["stroke-width"] = lineWidth;
+      if (borderStyle) {
+        switch (borderStyle) {
+          case "none":
+            lineWidth = 0;
+            borderStyle = "";
+            break;
+          case "solid":
+            borderStyle = "";
+            break;
+          case "dotted":
+            // styles["stroke-linecap"] = "round";
+            borderStyle = `${lineWidth},${lineWidth}`;
+            break;
+          case "dashed":
+            borderStyle = `${lineWidth * 2},${lineWidth}`;
+            break;
+          // case "space-dashed":
+          //   borderStyle = `${borderWidth * 2},${borderWidth},${borderWidth /
+          //     2} ,${borderWidth / 2},${borderWidth}`;
+          //   break;
+
+          default:
+            break;
+        }
+        styles["stroke-width"] = lineWidth;
+        if (borderStyle) {
+          styles["stroke-dasharray"] = borderStyle;
+        }
+      }
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {

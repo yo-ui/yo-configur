@@ -48,7 +48,7 @@
               .pfj-${info.id}-st32{fill:#88B9FE;}
               .pfj-${info.id}-st33{fill:#3C6DD6;}
               .pfj-${info.id}-st34{opacity:0.6;fill:#FF1C1C;}
-            
+
               .show {display:default;}
               .hide {display:none;}
               .f1 {display:default;}
@@ -689,7 +689,7 @@
         </linearGradient>
         <polygon
           :class="`pfj-${info.id}-st7`"
-          points="119.84,47.73 104.37,46.89 86.91,55.71 76.36,76.96 84.82,119.43 128.02,146.32 162.92,114.57 
+          points="119.84,47.73 104.37,46.89 86.91,55.71 76.36,76.96 84.82,119.43 128.02,146.32 162.92,114.57
                 162.16,72.89 131.62,49.31 	"
         />
         <linearGradient
@@ -1156,6 +1156,10 @@ export default {
         marginBottom = 0,
         marginLeft = 0,
         marginRight = 0,
+        borderTop = 0,
+        borderBottom = 0,
+        borderLeft = 0,
+        borderRight = 0,
         paddingTop = 0,
         paddingBottom = 0,
         paddingLeft = 0,
@@ -1191,13 +1195,50 @@ export default {
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
       }
-      if (borderColor) {
-        styles["borderColor"] = borderColor;
+      if (borderTop) {
+        if (borderStyle) {
+          styles["borderTopStyle"] = borderStyle;
+        }
+        styles["borderTopWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderTopColor"] = borderColor;
+        }
+      } else {
+        styles["borderTop"] = "none";
       }
-      if (borderStyle) {
-        styles["borderStyle"] = borderStyle;
+      if (borderBottom) {
+        if (borderStyle) {
+          styles["borderBottomStyle"] = borderStyle;
+        }
+        styles["borderBottomWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderBottomColor"] = borderColor;
+        }
+      } else {
+        styles["borderBottom"] = "none";
       }
-      styles["borderWidth"] = `${borderWidth}px`;
+      if (borderLeft) {
+        if (borderStyle) {
+          styles["borderLeftStyle"] = borderStyle;
+        }
+        styles["borderLeftWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderLeftColor"] = borderColor;
+        }
+      } else {
+        styles["borderLeft"] = "none";
+      }
+      if (borderRight) {
+        if (borderStyle) {
+          styles["borderRightStyle"] = borderStyle;
+        }
+        styles["borderRightWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderRightColor"] = borderColor;
+        }
+      } else {
+        styles["borderRight"] = "none";
+      }
 
       styles[
         "borderRadius"

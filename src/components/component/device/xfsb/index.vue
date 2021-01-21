@@ -54,7 +54,7 @@
         .st37{fill:url(#xfsb_${info.id}_SVGID_26_);}
         .st38{fill:url(#xfsb_${info.id}_SVGID_27_);}
         .st39{opacity:0.7;fill:#CC7979;}
-      
+
         .show {display:default;}
         .hide {display:none;}
         .f1 {display:default;}
@@ -505,12 +505,12 @@
         </linearGradient>
         <polygon
           :class="`xfsb-${info.id}-st22`"
-          points="92.84,108.64 85.67,115.81 63.3,115.81 56.13,108.64 56.13,90.24 63.3,83.07 85.67,83.07 
+          points="92.84,108.64 85.67,115.81 63.3,115.81 56.13,108.64 56.13,90.24 63.3,83.07 85.67,83.07
           92.84,90.24 	"
         />
         <polygon
           class="st3"
-          points="92.84,90.24 92.84,108.64 91.71,109.77 91.71,91.81 84.54,84.64 61.73,84.64 63.3,83.07 85.67,83.07 	
+          points="92.84,90.24 92.84,108.64 91.71,109.77 91.71,91.81 84.54,84.64 61.73,84.64 63.3,83.07 85.67,83.07
           "
         />
 
@@ -991,6 +991,10 @@ export default {
         marginBottom = 0,
         marginLeft = 0,
         marginRight = 0,
+        borderTop = 0,
+        borderBottom = 0,
+        borderLeft = 0,
+        borderRight = 0,
         paddingTop = 0,
         paddingBottom = 0,
         paddingLeft = 0,
@@ -1026,13 +1030,50 @@ export default {
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
       }
-      if (borderColor) {
-        styles["borderColor"] = borderColor;
+      if (borderTop) {
+        if (borderStyle) {
+          styles["borderTopStyle"] = borderStyle;
+        }
+        styles["borderTopWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderTopColor"] = borderColor;
+        }
+      } else {
+        styles["borderTop"] = "none";
       }
-      if (borderStyle) {
-        styles["borderStyle"] = borderStyle;
+      if (borderBottom) {
+        if (borderStyle) {
+          styles["borderBottomStyle"] = borderStyle;
+        }
+        styles["borderBottomWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderBottomColor"] = borderColor;
+        }
+      } else {
+        styles["borderBottom"] = "none";
       }
-      styles["borderWidth"] = `${borderWidth}px`;
+      if (borderLeft) {
+        if (borderStyle) {
+          styles["borderLeftStyle"] = borderStyle;
+        }
+        styles["borderLeftWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderLeftColor"] = borderColor;
+        }
+      } else {
+        styles["borderLeft"] = "none";
+      }
+      if (borderRight) {
+        if (borderStyle) {
+          styles["borderRightStyle"] = borderStyle;
+        }
+        styles["borderRightWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderRightColor"] = borderColor;
+        }
+      } else {
+        styles["borderRight"] = "none";
+      }
 
       styles[
         "borderRadius"
