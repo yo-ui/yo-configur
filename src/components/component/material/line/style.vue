@@ -500,16 +500,18 @@
             v-model="info.borderStyle"
             :placeholder="$lang('请选择边框样式')"
           >
-            <el-option
-              v-for="item in borderStyleList"
-              :key="item.code"
-              :label="$lang(item.name)"
-              :value="item.code"
-            >
-              <span :style="`border:3px ${item.code} #333;padding:2px 15px;`">
-                {{ $lang(item.name) }}
-              </span>
-            </el-option>
+            <template v-for="item in borderStyleList">
+              <el-option
+                :key="item.code"
+                v-if="item.code != 'none'"
+                :label="$lang(item.name)"
+                :value="item.code"
+              >
+                <span :style="`border:3px ${item.code} #333;padding:2px 15px;`">
+                  {{ $lang(item.name) }}
+                </span>
+              </el-option>
+            </template>
           </el-select>
         </p>
         <!-- <p>

@@ -229,18 +229,16 @@ export default {
       //   let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
       //   styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
       // }
-      if (width) {
-        styles["width"] = `${width}px`;
-      }
-      if (height) {
-        styles["height"] = `${height}px`;
-      }
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
       if (backgroundRepeat) {
         styles["backgroundRepeat"] = backgroundRepeat;
       }
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
       }
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
       if (borderTop) {
         if (borderStyle) {
           styles["borderTopStyle"] = borderStyle;

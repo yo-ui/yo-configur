@@ -103,12 +103,10 @@ export default {
       // left = minLeft;
       // top = minTop;
       let styles = {};
-      if (width) {
-        styles["width"] = `${width}px`;
-      }
-      if (height) {
-        styles["height"] = `${height}px`;
-      }
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
       if (borderTop) {
         if (borderStyle) {
           styles["borderTopStyle"] = borderStyle;
@@ -213,12 +211,10 @@ export default {
           styles["backgroundSize"] = contentSize;
         }
       }
-      if (width) {
-        styles["width"] = `${width}px`;
-      }
-      if (height) {
-        styles["height"] = `${height}px`;
-      }
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
       if (borderTop) {
         if (borderStyle) {
           styles["borderTopStyle"] = borderStyle;

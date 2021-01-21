@@ -237,10 +237,6 @@ export default {
         //
         //
         //
-        // fontFamily = "",
-        // fontSize = "",
-        // fontWeight = "",
-        // fontStyle = ""
         backgroundColor = ""
         // backgroundImage = "",
         // backgroundRepeat = "",

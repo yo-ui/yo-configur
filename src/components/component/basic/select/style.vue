@@ -627,6 +627,11 @@
                   :label="$lang(item.name)"
                   :value="item.code"
                 >
+                  <span
+                    :style="`border:3px ${item.code} #333;padding:2px 15px;`"
+                  >
+                    {{ $lang(item.name) }}
+                  </span>
                 </el-option>
               </el-select>
             </p>
@@ -1164,6 +1169,11 @@
                   :label="$lang(item.name)"
                   :value="item.code"
                 >
+                  <span
+                    :style="`border:3px ${item.code} #333;padding:2px 15px;`"
+                  >
+                    {{ $lang(item.name) }}
+                  </span>
                 </el-option>
               </el-select>
             </p>
@@ -2259,7 +2269,11 @@
                   :key="item.code"
                   :label="$lang(item.name)"
                   :value="item.code"
-                >
+                  ><span
+                    :style="`border:3px ${item.code} #333;padding:2px 15px;`"
+                  >
+                    {{ $lang(item.name) }}
+                  </span>
                 </el-option>
               </el-select>
             </p>
@@ -2507,10 +2521,10 @@ export default {
     };
   },
   components: {
-    bmUpload: () =>
-      import(
-        /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
-      )
+    // bmUpload: () =>
+    //   import(
+    //     /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
+    //   )
   },
   props: {
     info: {

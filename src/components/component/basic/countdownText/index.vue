@@ -82,7 +82,6 @@ export default {
         textShadow = {},
         textShadowable = false,
         textAlign = "",
-        scale = "",
         fontFamily = "",
         fontWeight = "",
         fontStyle = "",
@@ -127,23 +126,57 @@ export default {
       if (borderStyle) {
         styles["borderStyle"] = borderStyle;
       }
+      if (borderTop) {
+        if (borderStyle) {
+          styles["borderTopStyle"] = borderStyle;
+        }
+        styles["borderTopWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderTopColor"] = borderColor;
+        }
+      } else {
+        styles["borderTop"] = "none";
+      }
+      if (borderBottom) {
+        if (borderStyle) {
+          styles["borderBottomStyle"] = borderStyle;
+        }
+        styles["borderBottomWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderBottomColor"] = borderColor;
+        }
+      } else {
+        styles["borderBottom"] = "none";
+      }
+      if (borderLeft) {
+        if (borderStyle) {
+          styles["borderLeftStyle"] = borderStyle;
+        }
+        styles["borderLeftWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderLeftColor"] = borderColor;
+        }
+      } else {
+        styles["borderLeft"] = "none";
+      }
+      if (borderRight) {
+        if (borderStyle) {
+          styles["borderRightStyle"] = borderStyle;
+        }
+        styles["borderRightWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderRightColor"] = borderColor;
+        }
+      } else {
+        styles["borderRight"] = "none";
+      }
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       styles["borderWidth"] = `${borderWidth}px`;
-      if (width) {
-        styles["width"] = `${width}px`;
-      }
-      if (height) {
-        styles["height"] = `${height}px`;
-      }
-      if (scale) {
-        (styles["transform"] = `${scale}`),
-          (styles["-webkit-transform"] = `${scale}`),
-          (styles["-ms-transform"] = `${scale}`),
-          (styles["-o-transform"] = `${scale}`),
-          (styles["-moz-transform"] = `${scale}`);
-      }
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
+
       if (color) {
         styles["color"] = color;
       }

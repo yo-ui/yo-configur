@@ -2653,6 +2653,7 @@ let componentLibrary = [
           // styleCode: "material",
           backgroundColor: "#0075E7",
           borderColor: "#0075E7",
+          borderStyle: "solid",
           lineWidth: 1,
           x1: 0,
           y1: 0,

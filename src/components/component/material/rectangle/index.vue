@@ -104,6 +104,9 @@ export default {
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
       }
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
+
       if (borderTop) {
         if (borderStyle) {
           styles["borderTopStyle"] = borderStyle;
@@ -148,7 +151,6 @@ export default {
       } else {
         styles["borderRight"] = "none";
       }
-
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;

@@ -396,6 +396,10 @@ export default {
         color = "",
         borderColor = "",
         borderHoverColor = "",
+        borderTop = 0,
+        borderBottom = 0,
+        borderLeft = 0,
+        borderRight = 0,
         borderStyle = "",
         borderWidth = "",
         borderRadiusTopLeft = 0,
@@ -432,12 +436,8 @@ export default {
         margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
         padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
       };
-      if (width) {
-        styles["width"] = `${width}px`;
-      }
-      if (height) {
-        styles["height"] = `${height}px`;
-      }
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
       if (textAlign) {
         styles["textAlign"] = textAlign;
         if (textAlign == "justify") {
@@ -460,6 +460,50 @@ export default {
         styles["borderStyle"] = borderStyle;
       }
       styles["borderWidth"] = `${borderWidth}px`;
+      if (borderTop) {
+        if (borderStyle) {
+          styles["borderTopStyle"] = borderStyle;
+        }
+        styles["borderTopWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderTopColor"] = borderColor;
+        }
+      } else {
+        styles["borderTop"] = "none";
+      }
+      if (borderBottom) {
+        if (borderStyle) {
+          styles["borderBottomStyle"] = borderStyle;
+        }
+        styles["borderBottomWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderBottomColor"] = borderColor;
+        }
+      } else {
+        styles["borderBottom"] = "none";
+      }
+      if (borderLeft) {
+        if (borderStyle) {
+          styles["borderLeftStyle"] = borderStyle;
+        }
+        styles["borderLeftWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderLeftColor"] = borderColor;
+        }
+      } else {
+        styles["borderLeft"] = "none";
+      }
+      if (borderRight) {
+        if (borderStyle) {
+          styles["borderRightStyle"] = borderStyle;
+        }
+        styles["borderRightWidth"] = `${borderWidth}px`;
+        if (borderColor) {
+          styles["borderRightColor"] = borderColor;
+        }
+      } else {
+        styles["borderRight"] = "none";
+      }
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
@@ -539,19 +583,6 @@ export default {
         shadow = {},
         shadowable = false,
         arrowColor = ""
-        // textShadow = {},
-        // textShadowable = false,
-        // textAlign = "",
-        // fontFamily = "",
-        // backgroundType = "",
-        // fontSize = "",
-        // fontWeight = "",
-        // fontStyle = "",
-        // textDecoration = "",
-        // backgroundColor = "",
-        // backgroundImage = "",
-        // backgroundRepeat = "",
-        // backgroundSize = "",
       } = select || {};
       let styles = {
         transformOrigin: "top",
@@ -647,6 +678,50 @@ export default {
       if (fontWeight) {
         styles["fontWeight"] = "bold";
       }
+      // if (borderTop) {
+      //   if (borderStyle) {
+      //     styles["borderTopStyle"] = borderStyle;
+      //   }
+      //   styles["borderTopWidth"] = `${borderWidth}px`;
+      //   if (borderColor) {
+      //     styles["borderTopColor"] = borderColor;
+      //   }
+      // } else {
+      //   styles["borderTop"] = "none";
+      // }
+      // if (borderBottom) {
+      //   if (borderStyle) {
+      //     styles["borderBottomStyle"] = borderStyle;
+      //   }
+      //   styles["borderBottomWidth"] = `${borderWidth}px`;
+      //   if (borderColor) {
+      //     styles["borderBottomColor"] = borderColor;
+      //   }
+      // } else {
+      //   styles["borderBottom"] = "none";
+      // }
+      // if (borderLeft) {
+      //   if (borderStyle) {
+      //     styles["borderLeftStyle"] = borderStyle;
+      //   }
+      //   styles["borderLeftWidth"] = `${borderWidth}px`;
+      //   if (borderColor) {
+      //     styles["borderLeftColor"] = borderColor;
+      //   }
+      // } else {
+      //   styles["borderLeft"] = "none";
+      // }
+      // if (borderRight) {
+      //   if (borderStyle) {
+      //     styles["borderRightStyle"] = borderStyle;
+      //   }
+      //   styles["borderRightWidth"] = `${borderWidth}px`;
+      //   if (borderColor) {
+      //     styles["borderRightColor"] = borderColor;
+      //   }
+      // } else {
+      //   styles["borderRight"] = "none";
+      // }
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;

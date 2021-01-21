@@ -345,32 +345,26 @@ export default {
       return styles;
     },
     comStyle() {
-      let { info = {} } = this;
-      let {
-        width = "",
-        height = ""
-        // color = "",
-        // borderColor = "",
-        // borderStyle = "",
-        // borderWidth = "",
-        // borderRadiusTopLeft = 0,
-        // borderRadiusTopRight = 0,
-        // borderRadiusBottomLeft = 0,
-        // borderRadiusBottomRight = 0,
-        // backgroundType = "",
-        // backgroundColor = "",
-        // backgroundImage = "",
-        // backgroundRepeat = "",
-        // backgroundSize = ""
-      } = info || {};
+      // let { info = {} } = this;
+      // let {
+      //   // width = "",
+      //   // height = ""
+      //   // color = "",
+      //   // borderColor = "",
+      //   // borderStyle = "",
+      //   // borderWidth = "",
+      //   // borderRadiusTopLeft = 0,
+      //   // borderRadiusTopRight = 0,
+      //   // borderRadiusBottomLeft = 0,
+      //   // borderRadiusBottomRight = 0,
+      //   // backgroundType = "",
+      //   // backgroundColor = "",
+      //   // backgroundImage = "",
+      //   // backgroundRepeat = "",
+      //   // backgroundSize = ""
+      // } = info || {};
       let styles = {};
 
-      // if (width) {
-      styles["width"] = `${width}px`;
-      // }
-      // if (height) {
-      styles["height"] = `${height}px`;
-      // }
       // if (backgroundRepeat) {
       //   styles["backgroundRepeat"] = backgroundRepeat;
       // }

@@ -65,7 +65,6 @@ export default {
         borderRadiusBottomLeft = 0,
         borderRadiusBottomRight = 0,
         backgroundType = "",
-        scale = "",
         marginTop = 0,
         marginBottom = 0,
         marginLeft = 0,
@@ -78,16 +77,6 @@ export default {
         paddingBottom = 0,
         paddingLeft = 0,
         paddingRight = 0,
-        // shadow = {},
-        // shadowable = false,
-        // textShadow = {},
-        // textShadowable = false,
-        // textAlign = "",
-        // fontFamily = "",
-        // fontSize = "",
-        // fontWeight = "",
-        // fontStyle = "",
-        // textDecoration = "",
         backgroundColor = "",
         backgroundImage = "",
         backgroundRepeat = "",
@@ -114,18 +103,16 @@ export default {
       //   let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
       //   styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
       // }
-      if (width) {
-        styles["width"] = `${width}px`;
-      }
-      if (height) {
-        styles["height"] = `${height}px`;
-      }
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
       if (backgroundRepeat) {
         styles["backgroundRepeat"] = backgroundRepeat;
       }
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
       }
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
       if (borderTop) {
         if (borderStyle) {
           styles["borderTopStyle"] = borderStyle;
@@ -173,13 +160,7 @@ export default {
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
-      if (scale) {
-        (styles["transform"] = `${scale}`),
-          (styles["-webkit-transform"] = `${scale}`),
-          (styles["-ms-transform"] = `${scale}`),
-          (styles["-o-transform"] = `${scale}`),
-          (styles["-moz-transform"] = `${scale}`);
-      }
+
       // if (color) {
       //   styles["color"] = color;
       // }

@@ -134,6 +134,8 @@ export default {
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
       }
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
       if (borderTop) {
         if (borderStyle) {
           styles["borderTopStyle"] = borderStyle;

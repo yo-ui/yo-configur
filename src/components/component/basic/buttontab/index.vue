@@ -320,12 +320,8 @@ export default {
         margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
         padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
       };
-      if (width) {
-        styles["width"] = `${width}px`;
-      }
-      if (height) {
-        styles["height"] = `${height}px`;
-      }
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
       if (textAlign) {
         styles["textAlign"] = textAlign;
         if (textAlign == "justify") {
@@ -338,6 +334,8 @@ export default {
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
       }
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
       if (borderTop) {
         if (borderStyle) {
           styles["borderTopStyle"] = borderStyle;

@@ -332,18 +332,15 @@ export default {
       } = info || {};
       let styles = {};
 
-      // if (width) {
-      styles["width"] = `${width}px`;
-      // }
-      // if (height) {
-      styles["height"] = `${height}px`;
-      // }
       if (backgroundRepeat) {
         styles["backgroundRepeat"] = backgroundRepeat;
       }
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
       }
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
+
       if (borderTop) {
         if (borderStyle) {
           styles["borderTopStyle"] = borderStyle;
@@ -388,7 +385,6 @@ export default {
       } else {
         styles["borderRight"] = "none";
       }
-
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;

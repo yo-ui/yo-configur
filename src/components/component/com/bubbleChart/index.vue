@@ -94,13 +94,12 @@ export default {
         borderRadiusTopRight = 0,
         borderRadiusBottomLeft = 0,
         borderRadiusBottomRight = 0,
+        borderTop = 0,
+        borderBottom = 0,
+        borderLeft = 0,
+        borderRight = 0,
 
-        scale = "",
         backgroundType = "",
-        // fontFamily = "",
-        // fontSize = "",
-        // fontWeight = "",
-        // fontStyle = ""
         backgroundColor = "",
         backgroundImage = "",
         backgroundRepeat = "",
@@ -108,18 +107,17 @@ export default {
       } = info || {};
       let styles = {};
 
-      if (width) {
-        styles["width"] = `${width}px`;
-      }
-      if (height) {
-        styles["height"] = `${height}px`;
-      }
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
       if (backgroundRepeat) {
         styles["backgroundRepeat"] = backgroundRepeat;
       }
       if (backgroundSize) {
         styles["backgroundSize"] = backgroundSize;
       }
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
+
       if (borderTop) {
         if (borderStyle) {
           styles["borderTopStyle"] = borderStyle;
@@ -164,17 +162,10 @@ export default {
       } else {
         styles["borderRight"] = "none";
       }
-
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
-      if (scale) {
-        (styles["transform"] = `${scale}`),
-          (styles["-webkit-transform"] = `${scale}`),
-          (styles["-ms-transform"] = `${scale}`),
-          (styles["-o-transform"] = `${scale}`),
-          (styles["-moz-transform"] = `${scale}`);
-      }
+
       // if (color) {
       //   styles["color"] = color;
       // }
