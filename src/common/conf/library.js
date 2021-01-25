@@ -940,7 +940,7 @@ let componentLibrary = [
             icon: "/static/img/configur/h-top.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/shuiguan-top.svg",
+              content: "/static/img/svg/shuiguan-top.svg",
               width: 40,
               height: 40
             }
@@ -953,7 +953,7 @@ let componentLibrary = [
             icon: "/static/img/configur/h-bottom.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/shuiguan-bottom.svg",
+              content: "/static/img/svg/shuiguan-bottom.svg",
               width: 40,
               height: 40
             }
@@ -966,7 +966,7 @@ let componentLibrary = [
             icon: "/static/img/configur/v-left.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/shuiguan-left.svg",
+              content: "/static/img/svg/shuiguan-left.svg",
               width: 40,
               height: 40
             }
@@ -979,7 +979,7 @@ let componentLibrary = [
             icon: "/static/img/configur/v-right.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/shuiguan-right.svg",
+              content: "/static/img/svg/shuiguan-right.svg",
               width: 40,
               height: 40
             }
@@ -992,7 +992,7 @@ let componentLibrary = [
             icon: "/static/img/configur/t-1.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/shuiguan-topleft.svg",
+              content: "/static/img/svg/shuiguan-topleft.svg",
               width: 40,
               height: 40
             }
@@ -1005,7 +1005,7 @@ let componentLibrary = [
             icon: "/static/img/configur/t-4.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/shuiguan-bottomleft.svg",
+              content: "/static/img/svg/shuiguan-bottomleft.svg",
               width: 40,
               height: 40
             }
@@ -1018,7 +1018,7 @@ let componentLibrary = [
             icon: "/static/img/configur/t-2.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/shuiguan-topright.svg",
+              content: "/static/img/svg/shuiguan-topright.svg",
               width: 40,
               height: 40
             }
@@ -1031,7 +1031,7 @@ let componentLibrary = [
             icon: "/static/img/configur/t-3.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/shuiguan-bottomright.svg",
+              content: "/static/img/svg/shuiguan-bottomright.svg",
               width: 40,
               height: 40
             }
@@ -1044,7 +1044,7 @@ let componentLibrary = [
             icon: "/static/img/configur/h.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/shuiguan-h.svg",
+              content: "/static/img/svg/shuiguan-h.svg",
               width: 75,
               height: 40
             }
@@ -1056,7 +1056,7 @@ let componentLibrary = [
             icon: "/static/img/configur/v.png",
             data: {
               ...baseData,
-              backgroundImage: "/static/img/svg/shuiguan-v.svg",
+              content: "/static/img/svg/shuiguan-v.svg",
               width: 40,
               height: 75
             }
@@ -1189,12 +1189,13 @@ let componentLibrary = [
           },
           {
             name: "配电柜",
-            code: "devicePdg",
+            code: "deviceCommon",
             alias: "pdg",
-            icon: "/static/img/configur/pdg.png",
+            icon: "/static/img/configur/pdg.svg",
             data: {
               ...baseData,
               width: 90,
+              content: "/static/img/configur/pdg.svg",
               height: 97,
               equalScaleable: true //是否等比例缩放
             }
@@ -1215,7 +1216,7 @@ let componentLibrary = [
             name: "电容器",
             code: "deviceDrq",
             alias: "drq",
-            icon: "/static/img/configur/drq.png",
+            icon: "/static/img/configur/drq.svg",
             data: {
               ...baseData,
               width: 90,
@@ -1275,7 +1276,7 @@ let componentLibrary = [
             name: "接地",
             code: "deviceJd",
             alias: "jd",
-            icon: "/static/img/configur/jd.png",
+            icon: "/static/img/configur/jd.svg",
             data: {
               ...baseData,
               width: 90,
@@ -1287,7 +1288,7 @@ let componentLibrary = [
             name: "接地指示",
             code: "deviceJdzs",
             alias: "jdzs",
-            icon: "/static/img/configur/jdzs.png",
+            icon: "/static/img/configur/jdzs.svg",
             data: {
               ...baseData,
               width: 90,
@@ -1299,7 +1300,7 @@ let componentLibrary = [
             name: "电抗器",
             code: "deviceDkq",
             alias: "dkq",
-            icon: "/static/img/configur/dkq.png",
+            icon: "/static/img/configur/dkq.svg",
             data: {
               ...baseData,
               width: 90,
@@ -1311,7 +1312,19 @@ let componentLibrary = [
             name: "断路器",
             code: "deviceDlq1",
             alias: "dlq1",
-            icon: "/static/img/configur/dlq1.png",
+            icon: "/static/img/configur/dlq1.svg",
+            data: {
+              ...baseData,
+              width: 90,
+              height: 97,
+              equalScaleable: true //是否等比例缩放
+            }
+          },
+          {
+            name: "手车",
+            code: "deviceSc",
+            alias: "sc",
+            icon: "/static/img/configur/sc.svg",
             data: {
               ...baseData,
               width: 90,

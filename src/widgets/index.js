@@ -315,6 +315,53 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-device-byq" */ "@/components/component/device/byq/index.vue"
     ),
+  // 变压器
+  deviceByq1Com: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-byq1" */ "@/components/component/device/byq1/index.vue"
+    ), // 电容器
+  deviceDrqCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-drq" */ "@/components/component/device/drq/index.vue"
+    ), // 电流互感器1
+  deviceDlhgq1Com: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dlhgq1" */ "@/components/component/device/dlhgq1/index.vue"
+    ), // 电流互感器2
+  deviceDlhgq2Com: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dlhgq2" */ "@/components/component/device/dlhgq2/index.vue"
+    ), // 电流互感器3
+  deviceDlhgq3Com: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dlhgq3" */ "@/components/component/device/dlhgq3/index.vue"
+    ), // 电流互感器4
+  deviceDlhgq4Com: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dlhgq4" */ "@/components/component/device/dlhgq4/index.vue"
+    ), // 接地
+  deviceJdCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-jd" */ "@/components/component/device/jd/index.vue"
+    ), // 接地指示
+  deviceJdzsCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-jdzs" */ "@/components/component/device/jdzs/index.vue"
+    ), // 电抗器
+  deviceDkqCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dkq" */ "@/components/component/device/dkq/index.vue"
+    ),
+  // 断路器1
+  deviceDlq1Com: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dlq1" */ "@/components/component/device/dlq1/index.vue"
+    ), // 手车
+  deviceScCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sc" */ "@/components/component/device/sc/index.vue"
+    ),
+
   // 螺翼式水表
   deviceLyssbCom: () =>
     import(
