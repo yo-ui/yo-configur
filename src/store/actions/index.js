@@ -11,7 +11,13 @@ import orgStrucActions from "@/store/actions/orgStruc"; //组织结构相关
 import websocketActions from "@/store/actions/websocket"; //websocket相关
 import deviceActions from "@/store/actions/device"; //设备相关
 import modelActions from "@/store/actions/model"; //基础建模
+import widgetCustomActions from "@/store/actions/widgetCustom"; //自定义组件
+import widgetMaterialActions from "@/store/actions/widgetMaterial"; //素材组件
+import entPicActions from "@/store/actions/entPic"; //图片库
 export default {
+  ...widgetCustomActions,
+  ...widgetMaterialActions,
+  ...entPicActions,
   ...uploadActions,
   ...canvasActions,
   ...orgStrucActions,

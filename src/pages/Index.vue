@@ -141,10 +141,10 @@
       :style="contextMenuStyle"
     >
       <li
-        @click="cutEvent"
+        @click="addDiyEvent"
         v-if="showContextMenuType == 1 && !activeCom.locked"
       >
-        {{ $lang("添加到自定义") }} <small>Ctrl+X</small>
+        {{ $lang("添加到自定义") }}
       </li>
       <li
         @click="composeEvent"
@@ -653,6 +653,11 @@ export default {
       $(document).on("keydown", this.keydownEvent);
       $(document).on("keyup", this.keyupEvent);
       $(window).on("resize", this.resizeCanvasSize);
+      if (process.env.NODE_ENV === "production") {
+        $(window).on("contextmenu", e => {
+          e.preventDefault();
+        });
+      }
       //注册绑定设备事件
       $vm.$on("bind-device", item => {
         this.addDataEvent(item);
@@ -1141,6 +1146,10 @@ export default {
       $vm.$emit("group-command", "group");
       this.showContextMenuStatus = false;
     },
+    addDiyEvent() {
+      $vm.$emit("diy-command");
+      this.showContextMenuStatus = false;
+    },
     //剪切
     cutEvent() {
       let { activeCom = {}, widgetList = [], activeComs = [] } = this;
@@ -1314,6 +1323,10 @@ export default {
       let value = {};
       let { condition } = this;
       let { canvasId: id = "" } = condition;
+      if (!id) {
+        bmCommon.warn("请输入画布id");
+        return;
+      }
       this.canvasGetAction({ id })
         .then(({ data }) => {
           let { code = "", result = {}, message = "" } = data || {};

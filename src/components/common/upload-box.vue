@@ -10,9 +10,9 @@
   >
     <el-image
       ref="imageRef"
-      v-if="pageDataList && pageDataList.length > 0"
-      :src="$loadImgUrl(currentImage || pageDataList[0])"
-      :preview-src-list="pageDataList.map(item => $loadImgUrl(item))"
+      v-if="imageList && imageList.length > 0"
+      :src="$loadImgUrl(currentImage || imageList[0].picUrl)"
+      :preview-src-list="imageList.map(item => $loadImgUrl(item.picUrl))"
       fit="fill"
       @click="selectImageEvent"
     >
@@ -20,10 +20,10 @@
     <div class="img-list">
       <div
         class="img-box"
-        v-for="(item, index) in pageDataList"
+        v-for="(item, index) in imageList"
         :key="index"
         @click="selectImageEvent(item)"
-        :style="`background-image:url(${$loadImgUrl(item)})`"
+        :style="`background-image:url(${$loadImgUrl(item.picUrl)})`"
       >
         <!-- <el-image
           :src=""
@@ -35,7 +35,10 @@
         >
         </el-image> -->
         <i class="el-icon-close" @click.stop="removeImageEvent(item)"></i>
-        <i class="el-icon-check" v-if="selectImages.indexOf(item) > -1"></i>
+        <i
+          class="el-icon-check"
+          v-if="selectImages.indexOf(item.picUrl) > -1"
+        ></i>
         <i class="preview-btn" @click.stop="previewImageEvent(item)">{{
           $lang("预览")
         }}</i>
@@ -68,7 +71,7 @@
       :page-sizes="[5, 10, 20, 50, 100]"
       :page-size="condition.pageSize"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="pageDataList.length"
+      :total="condition.totalRecord"
     >
     </el-pagination>
     <template #footer>
@@ -103,26 +106,27 @@ export default {
       uploadData: {
         subDir: Constants.UPLOADDIR.IMG
       },
+      imageList: [],
       condition: {
         multipe: false,
 
         pageNo: 1,
-        pageSize: PAGESIZE
-        // totalRecord: 0
+        pageSize: PAGESIZE,
+        totalRecord: 0
       }
     };
   },
   computed: {
     ...mapGetters({
       platform: "getPlatform",
-      userInfo: "getUserInfo",
-      imageList: "getImageList"
+      userInfo: "getUserInfo"
+      // imageList: "getImageList"
     }),
-    pageDataList() {
-      let { condition, imageList = [] } = this;
-      let { pageNo = 1, pageSize = PAGESIZE } = condition;
-      return imageList.slice(pageSize * (pageNo - 1), pageSize * pageNo);
-    },
+    // imageList() {
+    //   let { condition, imageList = [] } = this;
+    //   let { pageNo = 1, pageSize = PAGESIZE } = condition;
+    //   return imageList.slice(pageSize * (pageNo - 1), pageSize * pageNo);
+    // },
     // currentImage() {
     //   let { imageList = [] } = this;
     //   let [image = ""] = imageList || [];
@@ -144,9 +148,15 @@ export default {
     ...mapMutations({
       setImageList: "setImageList"
     }),
-    ...mapActions(),
+    ...mapActions({
+      entPicListAction: "entPicList",
+      entPicDelAction: "entPicDel",
+      entPicAddAction: "entPicAdd"
+      // entPicUpdateAction: "entPicUpdate"
+    }),
     previewImageEvent(item) {
-      this.currentImage = item;
+      let { picUrl = "" } = item || {};
+      this.currentImage = picUrl;
       this.$refs.imageRef?.clickHandler();
     },
     // 切换每页数据
@@ -162,19 +172,23 @@ export default {
     },
     // 删除图片
     removeImageEvent(item) {
-      let { condition, selectImages = [], imageList = [] } = this;
+      let { condition, selectImages = [] } = this;
       let { multipe = false } = condition;
       // condition.image = "";
       // this.imageUrl = "";
+      let { picUrl = "", id = "" } = item || {};
       if (multipe) {
-        let index = selectImages.findIndex(_item => _item == item);
+        let index = selectImages.findIndex(_item => _item == picUrl);
         selectImages.splice(index, 1);
       } else {
         this.selectImages = [];
       }
-      let index = imageList.findIndex(_item => _item == item);
-      imageList.splice(index, 1);
-      this.setImageList(imageList);
+      // let index = imageList.findIndex(_item => _item.id == item.id);
+      // imageList.splice(index, 1);
+      // this.setImageList(imageList);
+      this.entPicDelFunc({ id }, () => {
+        this.loadImageList();
+      });
     },
     cancelEvent() {
       this.showDialogStatus = false;
@@ -189,15 +203,16 @@ export default {
     selectImageEvent(item) {
       let { selectImages = [], condition } = this;
       let { multipe = false } = condition;
+      let { picUrl = "" } = item || {};
       if (multipe) {
-        let index = selectImages.findIndex(_item => _item == item);
+        let index = selectImages.findIndex(_item => _item == picUrl);
         if (index > -1) {
           selectImages.splice(index, 1);
         } else {
-          selectImages.push(item);
+          selectImages.push(picUrl);
         }
       } else {
-        this.selectImages = [item];
+        this.selectImages = [item.picUrl];
       }
     },
     show(item = {}) {
@@ -205,7 +220,13 @@ export default {
       let { callback = () => {}, multipe = false } = item || {};
       condition.callback = callback;
       condition.multipe = multipe;
+      this.loadImageList();
       this.showDialogStatus = true;
+    },
+    loadImageList() {
+      this.entPicListFunc((list = []) => {
+        this.imageList = list || [];
+      });
     },
     // //上传文件到服务器
     // uploadEvent() {
@@ -229,8 +250,11 @@ export default {
           this.selectImages = [fileName];
         }
         bmCommon.log(imageList, fileName);
-        imageList.push(fileName);
-        this.setImageList(imageList);
+        // imageList.push(fileName);
+        // this.setImageList(imageList);
+        this.entPicAddFunc({ picUrl: fileName }, () => {
+          this.loadImageList();
+        });
       } else {
         this.$$msgError(message || "图片上传失败");
       }
@@ -283,6 +307,121 @@ export default {
       } else {
         return false;
       }
+    },
+    //获取项目图片列表
+    entPicListFunc(callback) {
+      let value = [];
+      let { condition } = this;
+      let { pageSize = Constants.PAGESIZE, pageNo = 1 } = condition;
+      this.entPicListAction({
+        pageNo,
+        pageSize
+      })
+        .then(({ data }) => {
+          let { code = "", result = [], message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            let {
+              list = [],
+              pageSize = Constants.PAGESIZE,
+              totalNum = 0,
+              pageNo = 1
+            } = result || {};
+            value = list || [];
+            condition.pageSize = pageSize;
+            condition.totalRecord = totalNum;
+            condition.pageNo = pageNo;
+          } else {
+            // this.$$msgError(message || "添附件失败");
+            bmCommon.error(message || "获取项目图片列表失败");
+          }
+          callback && callback(value);
+        })
+        .catch(err => {
+          callback && callback(value);
+          // this.$$msgError("添附件失败");
+          bmCommon.error("获取项目图片列表失败", err);
+        });
+    },
+    //删除项目图片
+    entPicDelFunc(options, success, error) {
+      let value = [];
+      // let { condition } = this;
+      this.entPicDelAction(options)
+        .then(({ data }) => {
+          let { code = "", message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            this.$$msgSuccess("项目图片删除成功！");
+            success && success(value);
+          } else {
+            this.$$msgError(message || "项目图片删除失败！");
+            error && error(value);
+            // bmCommon.error(message || "项目图片删除失败");
+          }
+          // callback && callback(value);
+        })
+        .catch(err => {
+          error && error(value);
+          this.$$msgError("项目图片删除失败！");
+          bmCommon.error("项目图片删除失败", err);
+        });
+    },
+    // //更新项目图片
+    // entPicUpdateFunc(options, success, error) {
+    //   let value = [];
+    //   // let { condition } = this;
+    //   if (this._entPicUpdateStatus) {
+    //     return;
+    //   }
+    //   this._entPicUpdateStatus = true;
+
+    //   this.entPicUpdateAction(options)
+    //     .then(({ data }) => {
+    //       let { code = "", message = "" } = data || {};
+    //       if (code == Constants.CODES.SUCCESS) {
+    //         this.$$msgSuccess("项目图片更新成功！");
+    //         success && success(value);
+    //       } else {
+    //         this.$$msgError(message || "项目图片更新失败！");
+    //         // bmCommon.error(message || "项目图片更新失败");
+    //         error && error(value);
+    //       }
+    //       this._entPicUpdateStatus = false;
+    //     })
+    //     .catch(err => {
+    //       this._entPicUpdateStatus = false;
+    //       error && error(value);
+    //       this.$$msgError("项目图片更新失败！");
+    //       bmCommon.error("项目图片更新失败", err);
+    //     });
+    // },
+    //添加项目图片
+    entPicAddFunc(options, success, error) {
+      let value = [];
+      // let { condition } = this;
+      if (this._entPicAddStatus) {
+        return;
+      }
+      this._entPicAddStatus = true;
+
+      this.entPicAddAction(options)
+        .then(({ data }) => {
+          let { code = "", message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            this.$$msgSuccess("项目图片更新成功！");
+            success && success(value);
+          } else {
+            this.$$msgError(message || "项目图片更新失败！");
+            // bmCommon.error(message || "项目图片更新失败");
+            error && error(value);
+          }
+          this._entPicAddStatus = false;
+        })
+        .catch(err => {
+          this._entPicAddStatus = false;
+          error && error(value);
+          this.$$msgError("项目图片更新失败！");
+          bmCommon.error("项目图片更新失败", err);
+        });
     }
   }
 };

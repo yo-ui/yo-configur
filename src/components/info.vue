@@ -320,7 +320,7 @@ export default {
       for (let i in activeCom) {
         if (i != "id") {
           let key = `activeCom.${i}`;
-          bmCommon.log(key, this);
+          // bmCommon.log(key, this);
           this.$watch(
             key,
             (newVal, oldVal) => {

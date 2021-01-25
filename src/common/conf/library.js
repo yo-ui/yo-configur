@@ -1186,6 +1186,138 @@ let componentLibrary = [
               infoType: "device",
               equalScaleable: true //是否等比例缩放
             }
+          },
+          {
+            name: "配电柜",
+            code: "devicePdg",
+            alias: "pdg",
+            icon: "/static/img/configur/pdg.png",
+            data: {
+              ...baseData,
+              width: 90,
+              height: 97,
+              equalScaleable: true //是否等比例缩放
+            }
+          },
+          {
+            name: "变压器",
+            code: "deviceByq2",
+            alias: "byq2",
+            icon: "/static/img/configur/byq2.svg",
+            data: {
+              ...baseData,
+              width: 90,
+              height: 97,
+              equalScaleable: true //是否等比例缩放
+            }
+          },
+          {
+            name: "电容器",
+            code: "deviceDrq",
+            alias: "drq",
+            icon: "/static/img/configur/drq.png",
+            data: {
+              ...baseData,
+              width: 90,
+              height: 97,
+              equalScaleable: true //是否等比例缩放
+            }
+          },
+          {
+            name: "电流互感器",
+            code: "deviceDlhgq1",
+            alias: "dlhgq1",
+            icon: "/static/img/configur/dlhgq1.svg",
+            data: {
+              ...baseData,
+              width: 90,
+              height: 97,
+              equalScaleable: true //是否等比例缩放
+            }
+          },
+          {
+            name: "电流互感器",
+            code: "deviceDlhgq2",
+            alias: "dlhgq2",
+            icon: "/static/img/configur/dlhgq2.svg",
+            data: {
+              ...baseData,
+              width: 90,
+              height: 97,
+              equalScaleable: true //是否等比例缩放
+            }
+          },
+          {
+            name: "电流互感器",
+            code: "deviceDlhgq3",
+            alias: "dlhgq3",
+            icon: "/static/img/configur/dlhgq3.svg",
+            data: {
+              ...baseData,
+              width: 90,
+              height: 97,
+              equalScaleable: true //是否等比例缩放
+            }
+          },
+          {
+            name: "电流互感器",
+            code: "deviceDlhgq4",
+            alias: "dlhgq4",
+            icon: "/static/img/configur/dlhgq4.svg",
+            data: {
+              ...baseData,
+              width: 90,
+              height: 97,
+              equalScaleable: true //是否等比例缩放
+            }
+          },
+          {
+            name: "接地",
+            code: "deviceJd",
+            alias: "jd",
+            icon: "/static/img/configur/jd.png",
+            data: {
+              ...baseData,
+              width: 90,
+              height: 97,
+              equalScaleable: true //是否等比例缩放
+            }
+          },
+          {
+            name: "接地指示",
+            code: "deviceJdzs",
+            alias: "jdzs",
+            icon: "/static/img/configur/jdzs.png",
+            data: {
+              ...baseData,
+              width: 90,
+              height: 97,
+              equalScaleable: true //是否等比例缩放
+            }
+          },
+          {
+            name: "电抗器",
+            code: "deviceDkq",
+            alias: "dkq",
+            icon: "/static/img/configur/dkq.png",
+            data: {
+              ...baseData,
+              width: 90,
+              height: 97,
+              equalScaleable: true //是否等比例缩放
+            }
+          },
+          {
+            name: "断路器",
+            code: "deviceDlq1",
+            alias: "dlq1",
+            icon: "/static/img/configur/dlq1.png",
+            data: {
+              ...baseData,
+              width: 90,
+              height: 97,
+              equalScaleable: true //是否等比例缩放
+            }
           }
         ]
       },
@@ -2817,8 +2949,19 @@ let componentLibrary = [
         groupName: "图标",
         groupCode: "material-icon",
         comList: []
+      },
+      {
+        groupName: "素材库",
+        groupCode: "material-house",
+        comList: []
       }
     ]
+  },
+  {
+    code: "diy",
+    icon: "el-icon-fork-spoon",
+    name: "自定义",
+    comList: []
   }
 ];
 let componentPanel = {

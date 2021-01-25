@@ -244,20 +244,22 @@
     }
   }
   .context-menu {
-    .posa;
+    .posf;
     left: 400px;
     top: 500px;
-    z-index: 3;
+    // z-index: 3;
     .box-s(0 0 10px 1px rgba(0, 0, 0, 0.09));
     .br(5px);
     .bc(@white);
     .oh;
     // .p(5px 0);
+    z-index: 999;
     li {
       .lh(30);
       .df;
       .p(3px 15px);
       justify-content: space-between;
+      align-items: center;
       .w(150);
       small {
         .c(@grayB);

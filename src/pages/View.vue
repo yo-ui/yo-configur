@@ -663,6 +663,10 @@ export default {
       let value = {};
       let { condition } = this;
       let { canvasId: id = "" } = condition;
+      if (!id) {
+        bmCommon.warn("请输入画布id");
+        return;
+      }
       this.canvasGetAction({ id })
         .then(({ data }) => {
           let { code = "", result = {}, message = "" } = data || {};

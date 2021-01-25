@@ -92,10 +92,10 @@
             ></el-button>
             <ul class="dropdown-list">
               <li @click="spreadCommandEvent('h-center')">
-                <i class="bomi bomi-h-center"></i>水平分布
+                <i class="bomi bomi-h-center"></i>{{ $lang("水平分布") }}
               </li>
               <li @click="spreadCommandEvent('v-center')">
-                <i class="bomi bomi-v-center"></i>垂直分布
+                <i class="bomi bomi-v-center"></i>{{ $lang("垂直分布") }}
               </li>
             </ul>
           </el-popover>
@@ -120,28 +120,30 @@
             </el-button>
             <ul class="dropdown-list">
               <li @click="alignCommandEvent('left')">
-                <i class="bomi bomi-align-left"></i>左对齐
+                <i class="bomi bomi-align-left"></i>{{ $lang("左对齐") }}
               </li>
               <li @click="alignCommandEvent('h-center')">
-                <i class="bomi bomi-align-h-center"></i>水平居中
+                <i class="bomi bomi-align-h-center"></i>{{ $lang("水平居中") }}
               </li>
               <li @click="alignCommandEvent('right')">
-                <i class="bomi bomi-align-right"></i>右对齐
+                <i class="bomi bomi-align-right"></i>{{ $lang("右对齐") }}
               </li>
               <li @click="alignCommandEvent('left-right')">
-                <i class="bomi bomi-align-left-right"></i>左右对齐
+                <i class="bomi bomi-align-left-right"></i
+                >{{ $lang("左右对齐") }}
               </li>
               <li @click="alignCommandEvent('top')">
-                <i class="bomi bomi-align-top"></i>上对齐
+                <i class="bomi bomi-align-top"></i>{{ $lang("上对齐") }}
               </li>
               <li @click="alignCommandEvent('v-center')">
-                <i class="bomi bomi-align-v-center"></i>垂直居中
+                <i class="bomi bomi-align-v-center"></i>{{ $lang("垂直居中") }}
               </li>
               <li @click="alignCommandEvent('bottom')">
-                <i class="bomi bomi-align-bottom"></i>下对齐
+                <i class="bomi bomi-align-bottom"></i>{{ $lang("下对齐") }}
               </li>
               <li @click="alignCommandEvent('top-bottom')">
-                <i class="bomi bomi-align-top-bottom"></i>上下对齐
+                <i class="bomi bomi-align-top-bottom"></i
+                >{{ $lang("上下对齐") }}
               </li>
             </ul>
           </el-popover>
@@ -167,29 +169,36 @@
                 @click="orderCommandEvent('top')"
                 :class="{ disabled: topOrder == activeCom.order }"
               >
-                <i class="bomi bomi-move-top"></i>置顶
+                <i class="bomi bomi-move-top"></i>{{ $lang("置顶") }}
               </li>
               <li
                 @click="orderCommandEvent('bottom')"
                 :class="{ disabled: bottomOrder == activeCom.order }"
               >
-                <i class="bomi bomi-move-bottom"></i>置底
+                <i class="bomi bomi-move-bottom"></i>{{ $lang("置底") }}
               </li>
               <li
                 @click="orderCommandEvent('up')"
                 :class="{ disabled: topOrder == activeCom.order }"
               >
-                <i class="bomi bomi-move-up"></i>前移
+                <i class="bomi bomi-move-up"></i>{{ $lang("前移") }}
               </li>
               <li
                 @click="orderCommandEvent('down')"
                 :class="{ disabled: bottomOrder == activeCom.order }"
               >
-                <i class="bomi bomi-move-down"></i>后移
+                <i class="bomi bomi-move-down"></i>{{ $lang("后移") }}
               </li>
             </ul>
           </el-popover>
         </el-button-group>
+        <el-button
+          @click="fallbackEvent"
+          :disabled="!(activeComs.length > 0 || activeCom.type != 'canvas')"
+        >
+          <i class="el-icon-fork-spoon" :title="$lang('添加到自定义')"></i>
+          {{ $lang("添加到自定义") }}
+        </el-button>
         <el-button-group>
           <el-popover
             popper-class="popover-list"
@@ -207,13 +216,13 @@
             ></el-button>
             <ul class="dropdown-list">
               <li @click="setThemesEvent('white')">
-                <i class="skin skin-white"></i>简洁白
+                <i class="skin skin-white"></i>{{ $lang("简洁白") }}
               </li>
               <li @click="setThemesEvent('black')">
-                <i class="skin skin-black"></i>酷炫黑
+                <i class="skin skin-black"></i>{{ $lang("酷炫黑") }}
               </li>
               <li @click="setThemesEvent('blue')">
-                <i class="skin skin-blue"></i>荧光蓝
+                <i class="skin skin-blue"></i>{{ $lang("荧光蓝") }}
               </li>
             </ul>
           </el-popover>
@@ -234,27 +243,27 @@
         </el-button> -->
         <el-button @click="clearEvent">
           <i class="el-icon-toilet-paper"></i>
-          清缓存
+          {{ $lang("清缓存") }}
         </el-button>
         <el-button @click="saveEvent">
           <i class="bomi bomi-save"></i>
-          保存
+          {{ $lang("保存") }}
         </el-button>
         <el-button @click="copyEvent">
           <i class="el-icon-copy-document"></i>
-          复制
+          {{ $lang("复制") }}
         </el-button>
         <el-button @click="deleteEvent">
           <i class="el-icon-delete"></i>
-          删除
+          {{ $lang("删除") }}
         </el-button>
         <el-button @click="fullScreenEvent">
           <i class="el-icon-full-screen"></i>
-          全屏
+          {{ $lang("全屏") }}
         </el-button>
         <el-button @click="runEvent">
           <i class="bomi bomi-run"></i>
-          运行
+          {{ $lang("运行") }}
         </el-button>
       </div>
     </div>
@@ -348,6 +357,7 @@ export default {
       createRecordAction: "canvas/createRecord",
       createHistoryAction: "canvas/createHistory",
       canvasSaveAction: "canvasSave",
+      widgetCustomAddAction: "widgetCustomAdd",
       upload2OssAction: "upload2Oss"
     }),
     // 初始化
@@ -360,6 +370,10 @@ export default {
       //组合
       $vm.$on("group-command", cmd => {
         this.groupCommandEvent(cmd);
+      });
+      //添加到自定义
+      $vm.$on("diy-command", () => {
+        this.diyCommandEvent();
       });
       // //打散
       // $vm.$on("un-compose", () => {
@@ -577,36 +591,45 @@ export default {
       this.selectComAction(); //选中组件
       this.timeoutId = setTimeout(() => {
         clearTimeout(this.timeoutId);
-        this.uploadImg();
+        this.uploadImg((img = "") => {
+          canvas.poster = img;
+          this.createRecordAction({ img });
+        });
       });
     },
-    uploadImg() {
-      let { canvas = {} } = this;
-      // 转化成canvas
-      let targetDom = $(".canvas-box");
-      // 将当前页面DOM克隆
-      let copyDom = targetDom.clone();
-      copyDom.find("svg").each(function(index, node) {
-        let parentNode = node.parentNode;
-        let svg = node.outerHTML.trim();
-        let canvas = document.createElement("canvas");
-        let ctx = canvas.getContext("2d");
-        let v = Canvg.fromString(ctx, svg, {
-          ignoreAnimation: false,
-          log: true
+    uploadImg(callback, item) {
+      // let { canvas = {} } = this;
+      let $copyDom = "";
+      if (item) {
+        $copyDom = item;
+      } else {
+        // 转化成canvas
+        let targetDom = $(".canvas-box");
+        // 将当前页面DOM克隆
+        $copyDom = targetDom.clone();
+        $copyDom.find("svg").each(function(index, node) {
+          let parentNode = node.parentNode;
+          let svg = node.outerHTML.trim();
+          let canvas = document.createElement("canvas");
+          let ctx = canvas.getContext("2d");
+          let v = Canvg.fromString(ctx, svg, {
+            ignoreAnimation: false,
+            log: true
+          });
+          v.start();
+          // if (node.style.position) {
+          //   canvas.style.position += node.style.position;
+          //   canvas.style.left += node.style.left;
+          //   canvas.style.top += node.style.top;
+          // }
+          parentNode.removeChild(node);
+          $(parentNode).prepend($(canvas));
         });
-        v.start();
-        // if (node.style.position) {
-        //   canvas.style.position += node.style.position;
-        //   canvas.style.left += node.style.left;
-        //   canvas.style.top += node.style.top;
-        // }
-        parentNode.removeChild(node);
-        $(parentNode).prepend($(canvas));
-      });
-      $(".view-box").prepend(copyDom);
-      targetDom.hide();
-      html2canvas(copyDom[0], {
+        $copyDom.css({ position: "fixed", left: 0, top: 0, zIndex: -1 });
+        $(".view-box").prepend($copyDom);
+        // targetDom.hide();
+      }
+      html2canvas($copyDom[0], {
         useCORS: true,
         allowTaint: true,
         // taintTest: false,
@@ -614,8 +637,8 @@ export default {
       }).then(_canvas => {
         // html2canvas($(".canvas-box")[0], {}).then(_canvas => {
         // 将clone页面删除
-        copyDom.remove();
-        targetDom.show();
+        $copyDom.remove();
+        // targetDom.show();
         let blob = bmCommon.convertBase64ToBlob(_canvas.toDataURL());
         let formData = new FormData();
         formData.append("files", blob, `${Date.now()}.png`);
@@ -627,9 +650,10 @@ export default {
           img => {
             // let { poster = "" } = canvas || {};
             // if (!poster) {
-            canvas.poster = img;
-            // }
-            this.createRecordAction({ img });
+            // canvas.poster = img;
+            // // }
+            // this.createRecordAction({ img });
+            callback && callback(img);
           }
         );
       });
@@ -698,6 +722,148 @@ export default {
         }
       });
       this.showThemesPopoverStatus = false;
+    },
+    //添加到自定义
+    diyCommandEvent() {
+      let { activeComs = [] } = this;
+      let {
+        data = {},
+        name = "",
+        code: type = "",
+        left = 0,
+        top = 0,
+        comDisabled = false,
+        alias = ""
+      } = Constants.COMPONENTPANEL || {};
+      let { length = 0 } = activeComs || [];
+      if (length < 1) {
+        return;
+      }
+      let children = bmCommon.clone(activeComs);
+      // activeComs.forEach(item => {
+      //   children.push(item);
+      //   // let index = widgetList.findIndex(_item => item.id == _item.id);
+      //   // while (index > -1) {
+      //   //   widgetList.splice(index, 1);
+      //   //   index = widgetList.findIndex(_item => item.id == _item.id);
+      //   // }
+      // });
+      // let orders = widgetList.map(item => item.order);
+      // let order = 1;
+      // if (orders && orders.length > 0) {
+      //   order = Math.max(...orders);
+      //   order += 1;
+      // }
+      let [item = {}] = activeComs || [];
+      bmCommon.log("diyCommandEvent");
+      let maxHeight = item.height;
+      let maxWidth = item.width;
+      if (length > 1) {
+        // let id = bmCommon.uuid();
+        let group1 = bmCommon.clone(children || []);
+        let group2 = bmCommon.clone(children || []);
+        group1.sort((a, b) => a.left - b.left);
+        group2.sort((a, b) => a.top - b.top);
+        let { left: minLeft = 0 } = group1[0] || {};
+        let { top: minTop = 0 } = group2[0] || {};
+        left = minLeft;
+        top = minTop;
+        group1.sort((a, b) => b.left + b.width - (a.left + a.width));
+        group2.sort((a, b) => b.top + b.height - (a.top + a.height));
+        let { top: maxTop = 0, height: _maxHeight = 0 } = group2[0] || {};
+        let { left: maxLeft = 0, width: _maxWidth = 0 } = group1[0] || {};
+        maxHeight = maxTop + _maxHeight - minTop;
+        maxWidth = maxLeft + _maxWidth - minLeft;
+        children.forEach((item, index) => {
+          item.left -= left;
+          // item.parentId = id;
+          //需要重新指定parentId
+          item.top -= top;
+          item.order = index;
+        });
+        item = {
+          ...data,
+          type,
+          name,
+          // order,
+          comDisabled,
+          // id,
+          alias,
+          left,
+          top,
+          children
+        };
+      }
+      // 转化成canvas
+      let targetDom = $(".canvas-box");
+      // 将当前页面DOM克隆
+      let $copyDom = targetDom.clone();
+      $copyDom.find("svg").each(function(index, node) {
+        let parentNode = node.parentNode;
+        let svg = node.outerHTML.trim();
+        let canvas = document.createElement("canvas");
+        let ctx = canvas.getContext("2d");
+        let v = Canvg.fromString(ctx, svg, {
+          ignoreAnimation: false,
+          log: true
+        });
+        v.start();
+        // if (node.style.position) {
+        //   canvas.style.position += node.style.position;
+        //   canvas.style.left += node.style.left;
+        //   canvas.style.top += node.style.top;
+        // }
+        parentNode.removeChild(node);
+        $(parentNode).prepend($(canvas));
+      });
+      let ids = children.map(item => `box_${item.id}`);
+      $copyDom.children().each((index, node) => {
+        let $item = $(node);
+        let id = $item.attr("id");
+        if (ids.indexOf(id) > -1) {
+          $item.removeClass("active");
+          let left = $item.css("left");
+          let top = $item.css("top");
+          $item
+            .css({
+              left: parseFloat(left) - parseFloat(item.left),
+              top: parseFloat(top) - parseFloat(item.top)
+            })
+            .show();
+          bmCommon.log(
+            "----显示left=",
+            parseFloat(left),
+            item.left,
+            parseFloat(left) - parseFloat(item.left),
+            "top=",
+            parseFloat(top),
+            item.top,
+            parseFloat(top) - parseFloat(item.top)
+          );
+        } else {
+          $item.hide();
+        }
+      });
+
+      $copyDom.css({
+        position: "fixed",
+        left: 0,
+        top: 0,
+        zIndex: -1,
+        width: maxWidth,
+        height: maxHeight
+      });
+      $(".view-box").prepend($copyDom);
+      this.uploadImg((img = "") => {
+        window.open(this.$loadImgUrl(img));
+        this.widgetCustomAddFunc(
+          { content: JSON.stringify(item), name: "自定义", picUrl: img },
+          () => {
+            //刷新自定义组件列表
+            $vm.$emit("widget-list-diy");
+          }
+        );
+      }, $copyDom);
     },
     //组合  打散操作
     groupCommandEvent(cmd) {
@@ -1187,6 +1353,32 @@ export default {
           this._canvasSaveStatus = false;
           this.$$msgError("保存失败");
           bmCommon.error("保存失败", err);
+        });
+    },
+    //添加自定义组件
+    widgetCustomAddFunc(options, callback) {
+      let value = {};
+      if (this._widgetCustomAddStatus) {
+        return;
+      }
+      this._widgetCustomAddStatus = true;
+      this.widgetCustomAddAction(options)
+        .then(({ data }) => {
+          let { code = "", result = {}, message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            value = result || {};
+            this.$$msgError("添加自定义组件成功");
+            callback && callback(value);
+          } else {
+            this.$$msgError(message || "添加自定义组件失败");
+            // bmCommon.error(message || "添加自定义组件失败");
+          }
+          this._widgetCustomAddStatus = false;
+        })
+        .catch(err => {
+          this._widgetCustomAddStatus = false;
+          this.$$msgError("添加自定义组件失败");
+          bmCommon.error("添加自定义组件失败", err);
         });
     },
     //上传图片

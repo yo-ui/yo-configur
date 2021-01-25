@@ -1,7 +1,16 @@
 <template>
   <div class="bm-widget-list-com">
-    <el-tabs v-model="activeIndex" tab-position="left" type="card">
-      <el-tab-pane v-for="item in tabList" :key="item.code" :name="item.code">
+    <el-tabs
+      v-model="activeIndex"
+      tab-position="left"
+      type="card"
+      @tab-click="tabClickEvent"
+    >
+      <el-tab-pane
+        v-for="(item, index) in tabList"
+        :key="item.code"
+        :name="item.code"
+      >
         <template #label>
           <i :class="item.icon"></i>
           <p>{{ item.name }}</p>
@@ -13,7 +22,7 @@
           <el-collapse-item
             :title="_item.groupName"
             :name="_item.groupCode"
-            v-for="_item in item.groupList"
+            v-for="(_item, _index) in item.groupList"
             :key="_item.groupCode"
           >
             <ul class="com-box">
@@ -21,10 +30,12 @@
                 v-for="(__item, __index) in _item.comList"
                 draggable
                 @mousedown.stop
-                :key="`${_item.code}_${__item.groupCode}_${__index}`"
+                class="click"
+                :key="`${_item.groupCode}_${__item.code}_${__index}`"
                 @click.stop="clickEvent(__item)"
-                :data-item="JSON.stringify(__item)"
+                :data-item="`${index}-groupList-${_index}-comList-${__index}`"
               >
+                <!-- :data-item="JSON.stringify(__item)" -->
                 <div class="cover" v-if="__item.comDisabled"></div>
                 <i
                   class="bm-icon"
@@ -40,20 +51,57 @@
             v-for="(_item, _index) in item.comList"
             :draggable="!_item.comDisabled"
             @mousedown.stop
-            :key="`${item.code}_${_index}`"
+            :class="
+              !(showEditId == _item.id && activeIndex == 'diy') ? 'click' : ''
+            "
+            @contextmenu.prevent="contextMenuEvent($event, _item)"
+            :key="`${item.code}_${_item.code}_${_index}`"
             @click.stop="clickEvent(_item)"
-            :data-item="!_item.comDisabled ? JSON.stringify(_item) : ''"
+            :data-item="!_item.comDisabled ? `${index}-comList-${_index}` : ''"
           >
+            <!-- :data-item="!_item.comDisabled ? JSON.stringify(_item) : ''" -->
             <div class="cover" v-if="_item.comDisabled"></div>
             <i
               class="bm-icon"
-              :style="`background-image:url(${_item.icon})`"
+              :style="
+                `background-image:url(${_item.icon ||
+                  $loadImgUrl(_item.picUrl)})`
+              "
             ></i>
-            {{ _item.name }}
+            <el-input
+              v-model="_item.name"
+              :placeholder="$lang('请输入组件名称')"
+              size="mini"
+              clearable
+              @click.stop.native
+              @mousedown.stop.native
+              @keydown.stop.native
+              @keyup.enter.native="keyupEditEvent"
+              @blur="blurEditEvent"
+              v-if="showEditId == _item.id && activeIndex == 'diy'"
+            ></el-input>
+            <template v-else>
+              {{ _item.name }}
+            </template>
           </li>
         </ul>
       </el-tab-pane>
     </el-tabs>
+    <ul
+      class="context-menu"
+      ref="contextMenuBox"
+      v-show="showContextMenuStatus"
+      @mouseenter="showContenxtMenuEvent"
+      @mouseleave="hideContextMenuEvent"
+      :style="contextMenuStyle"
+    >
+      <li @click="deleteEvent">
+        <span><i class="el-icon-delete"></i> {{ $lang("删除") }}</span>
+      </li>
+      <li @click="renameEvent">
+        <span><i class="el-icon-edit"></i> {{ $lang("重命名") }}</span>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -69,11 +117,18 @@ const Props = {
 };
 export default {
   data() {
-    let tabList = Object.freeze(Constants.COMPONENTLIBRARY);
+    // let tabList = Object.freeze(Constants.COMPONENTLIBRARY);
+    let tabList = Constants.COMPONENTLIBRARY;
     return {
       activeNames: [],
       tabList,
-      activeIndex: tabList[0].code
+      activeIndex: tabList[0].code,
+      condition: {},
+      showEditId: "",
+      operateCom: null,
+      showContextMenuStatus: false,
+      // shiftCtrlKeyDownStatus: false, //shit ctrl键被按下
+      contextMenuStyle: {}
     };
   },
   props: {
@@ -102,24 +157,128 @@ export default {
     }),
     ...mapActions({
       selectComAction: "canvas/selectCom",
+      widgetCustomListAction: "widgetCustomList",
+      widgetCustomDelAction: "widgetCustomDel",
+      widgetCustomUpdateAction: "widgetCustomUpdate",
       createHistoryAction: "canvas/createHistory"
     }),
     initEvent() {
       $(document).on("dragstart", this.dragstartEvent);
       $(document).on("dragend", this.dragendEvent);
+      //增加自定义组件监听
+      $vm.$on("widget-list-diy", () => {
+        let { activeIndex = "" } = this;
+        if (activeIndex == "diy") {
+          this.tabClickEvent({ name: activeIndex });
+        }
+      });
+    },
+    contextMenuEvent(e, item) {
+      e.stopPropagation();
+      e.preventDefault();
+      let { ctrlKey = false } = e;
+      let { activeIndex = "" } = this;
+      if (ctrlKey) {
+        return;
+      }
+      if (activeIndex != "diy") {
+        return;
+      }
+      this.closeContenxtMenuEvent();
+      this.$nextTick(() => {
+        let pos = bmCommon.getMousePosition(e);
+        let { x = "", y = "" } = pos || {};
+        let contextMenuBox = this.$refs.contextMenuBox;
+        let { offsetHeight = 0 } = contextMenuBox || {};
+        let $widgetListBox = $(".bm-widget-list-com");
+        // let { top = 0, left = 0 } = $widgetListBox.offset();
+        // let width = $widgetListBox.width();
+        let height = $widgetListBox.height();
+        y = y > height - offsetHeight + 5 ? height - offsetHeight : y;
+        // x = x > width - offsetWidth + 5 ? width - offsetWidth : x;
+        item.oldName = item.name;
+        this.operateCom = item;
+        this.contextMenuStyle = {
+          left: x - 5 + "px",
+          top: y - 5 + "px"
+        };
+      });
+    },
+    closeContenxtMenuEvent() {
+      this.showContextMenuStatus = true;
+      this._showContextMenuTimeoutId = setTimeout(() => {
+        clearTimeout(this._showContextMenuTimeoutId);
+        this.showContextMenuStatus = false;
+      }, 1000);
+    },
+    showContenxtMenuEvent() {
+      clearTimeout(this._showContextMenuTimeoutId);
+    },
+    hideContextMenuEvent() {
+      clearTimeout(this._showContextMenuTimeoutId);
+      this.showContextMenuStatus = false;
     },
     dragendEvent(e) {
       e.stopPropagation();
       this.dragleaveEvent(e);
     },
+    blurEditEvent() {
+      let { operateCom = {} } = this;
+      let { oldName = "" } = operateCom || {};
+      operateCom.name = oldName;
+    },
+    keyupEditEvent() {
+      let { operateCom = {} } = this;
+      let { id = "", name = "", oldName = "" } = operateCom || {};
+      this.widgetCustomUpdateFunc(
+        { id, name },
+        () => {
+          this.showEditId = "";
+        },
+        () => {
+          operateCom.name = oldName;
+        }
+      );
+    },
+    deleteEvent() {
+      let { operateCom = {} } = this;
+      let { id = "" } = operateCom || {};
+      this.showContextMenuStatus = false;
+      this.widgetCustomDelFunc({ id }, () => {});
+    },
+    renameEvent() {
+      let { operateCom = {} } = this;
+      let { id = "" } = operateCom || {};
+      this.showContextMenuStatus = false;
+      this.showEditId = id;
+    },
     dragstartEvent(e) {
       e.stopPropagation();
       // e.preventDefault();
+      let { tabList = [], activeIndex = "" } = this;
       let { originalEvent = {} } = e;
       let { target, dataTransfer = {} } = originalEvent;
       let item = $(target).attr("data-item");
-      if (item) {
-        item = JSON.parse(item);
+      if (!item) {
+        this.$$msgWarn("当前组件不可用");
+        return;
+      }
+      // item = JSON.parse(item);
+      bmCommon.log(item);
+      let indexes = item.split("-");
+      let { length = 0 } = indexes || [];
+      let index = 0;
+      item = tabList;
+      while (index < length) {
+        item = item[indexes[index]];
+        // bmCommon.log(index, "--------", item);
+        index++;
+      }
+      // bmCommon.log(item);
+      //如果是自定义组件则另外处理
+      if (activeIndex == "diy") {
+        let { content = "" } = item || {};
+        item = typeof content === "string" ? JSON.parse(content) : {};
       }
       let {
         data = {},
@@ -174,15 +333,7 @@ export default {
       let offset = $(".view-box").offset();
       let { dataTransfer = {} } = originalEvent;
       let data = dataTransfer.getData("data");
-      // let target = originalEvent.target;
-      if (
-        data
-        // &&
-        // ($(target).hasClass("canvas-box") ||
-        //   $(target)
-        //     .parent()
-        //     .hasClass("canvas-box"))
-      ) {
+      if (data) {
         data = typeof data === "string" ? JSON.parse(data) : {};
         let id = bmCommon.uuid();
         let pos = bmCommon.getMousePosition(e);
@@ -226,6 +377,16 @@ export default {
       }
       this.dragleaveEvent(e);
     },
+    tabClickEvent(item) {
+      bmCommon.log("tabclick", item);
+      let { tabList = [] } = this;
+      let { name = "", index = 0 } = item || {};
+      if (name == "diy") {
+        this.widgetCustomListFunc({}, (list = []) => {
+          tabList[index].comList = list || [];
+        });
+      }
+    },
     clickEvent(item) {
       let { widgetList = [], canvas = {} } = this;
       let {
@@ -268,35 +429,89 @@ export default {
       this.selectComAction(id);
       // this.createRecordAction();
       // this.uploadImg();
+    },
+    //获取自定义组件列表
+    widgetCustomListFunc(options, callback) {
+      let value = [];
+      let { condition } = this;
+      this.widgetCustomListAction(options)
+        .then(({ data }) => {
+          let { code = "", result = [], message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            let {
+              list = [],
+              pageSize = Constants.PAGESIZE,
+              totalNum = 0,
+              pageNo = 1
+            } = result || {};
+            value = list || [];
+            condition.pageSize = pageSize;
+            condition.totalNum = totalNum;
+            condition.pageNo = pageNo;
+          } else {
+            // this.$$msgError(message || "添附件失败");
+            bmCommon.error(message || "获取自定义组件列表失败");
+          }
+          callback && callback(value);
+        })
+        .catch(err => {
+          callback && callback(value);
+          // this.$$msgError("添附件失败");
+          bmCommon.error("获取自定义组件列表失败", err);
+        });
+    },
+    //删除自定义组件
+    widgetCustomDelFunc(options, success, error) {
+      let value = [];
+      // let { condition } = this;
+      this.widgetCustomDelAction(options)
+        .then(({ data }) => {
+          let { code = "", message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            this.$$msgSuccess("自定义组件删除成功！");
+            success && success(value);
+          } else {
+            this.$$msgError(message || "自定义组件删除失败！");
+            error && error(value);
+            // bmCommon.error(message || "自定义组件删除失败");
+          }
+          // callback && callback(value);
+        })
+        .catch(err => {
+          error && error(value);
+          this.$$msgError("自定义组件删除失败！");
+          bmCommon.error("自定义组件删除失败", err);
+        });
+    },
+    //更新自定义组件
+    widgetCustomUpdateFunc(options, success, error) {
+      let value = [];
+      // let { condition } = this;
+      if (this._widgetCustomUpdateStatus) {
+        return;
+      }
+      this._widgetCustomUpdateStatus = true;
+
+      this.widgetCustomUpdateAction(options)
+        .then(({ data }) => {
+          let { code = "", message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            this.$$msgSuccess("自定义组件更新成功！");
+            success && success(value);
+          } else {
+            this.$$msgError(message || "自定义组件更新失败！");
+            // bmCommon.error(message || "自定义组件更新失败");
+            error && error(value);
+          }
+          this._widgetCustomUpdateStatus = false;
+        })
+        .catch(err => {
+          this._widgetCustomUpdateStatus = false;
+          error && error(value);
+          this.$$msgError("自定义组件更新失败！");
+          bmCommon.error("自定义组件更新失败", err);
+        });
     }
-    // //上传图片
-    // upload2OssFunc(options, callback) {
-    //   let value = "";
-    //   if (this._upload2OssStatus) {
-    //     return;
-    //   }
-    //   this._upload2OssStatus = true;
-    //   this.upload2OssAction(options)
-    //     .then(({ data }) => {
-    //       let { code = "", result = [], message = "" } = data || {};
-    //       if (code == Constants.CODES.SUCCESS) {
-    //         let [fileName = ""] = result || [];
-    //         // this.$$msgSuccess("添附件成功");
-    //         value = fileName;
-    //       } else {
-    //         // this.$$msgError(message || "添附件失败");
-    //         bmCommon.error(message || "图片上传失败");
-    //       }
-    //       callback && callback(value);
-    //       this._upload2OssStatus = false;
-    //     })
-    //     .catch(err => {
-    //       callback && callback(value);
-    //       // this.$$msgError("添附件失败");
-    //       this._upload2OssStatus = false;
-    //       bmCommon.error("图片上传失败", err);
-    //     });
-    // }
   },
   beforeDestroy() {
     $(document).off("dragstart", this.dragstartEvent);
