@@ -32,8 +32,6 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-
-const pointCode = "SwSts";
 export default {
   name: "deviceDbCom",
   data() {
@@ -204,59 +202,59 @@ export default {
     ...mapMutations({}),
     ...mapActions({}),
     init() {
-      let { info = {}, showType = "" } = this;
-      if (showType != "edit") {
-        let { id = "", bindData = {} } = info || {};
-        let { deviceId = "" } = bindData || {};
-        if (!deviceId) {
-          return;
-        }
-        $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
-          bmCommon.log("deviceDbCom", device);
-          let { pointList = [] } = device || {};
-          let point = pointList.find(item => {
-            let { point: id = "" } = item || {};
-            return id == pointCode; // SwSts  开关状态
-          });
-          if (point) {
-            let { value = "" } = point || {};
-            this.pointValue = value;
-          }
-        });
-      }
-      this.loadDeviceInfo();
-    },
-    loadDeviceInfo() {
-      let { info = {} } = this;
-      let { bindData = {} } = info || {};
-      let { deviceId = "", devicePoint = "" } = bindData || {};
-      if (!deviceId) {
-        return;
-      }
-      devicePoint = pointCode;
-      $vm.$emit("device", {
-        deviceId,
-        callback: (device = {}) => {
-          let { points: pointList = [] } = device || {};
-          let point = pointList.find(item => {
-            let { id = "" } = item || {};
-            return id == devicePoint; //
-          });
-          if (point) {
-            let { value = "" } = point || {};
-            this.pointValue = value;
-          }
-        }
-      });
+      // let { info = {}, showType = "" } = this;
+      // if (showType != "edit") {
+      //   let { id = "", bindData = {} } = info || {};
+      //   let { deviceId = "" } = bindData || {};
+      //   if (!deviceId) {
+      //     return;
+      //   }
+      //   $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
+      //     bmCommon.log("deviceDbCom", device);
+      //     let { pointList = [] } = device || {};
+      //     let point = pointList.find(item => {
+      //       let { point: id = "" } = item || {};
+      //       return id == pointCode; // SwSts  开关状态
+      //     });
+      //     if (point) {
+      //       let { value = "" } = point || {};
+      //       this.pointValue = value;
+      //     }
+      //   });
+      // }
+      // this.loadDeviceInfo();
     }
+    // loadDeviceInfo() {
+    //   let { info = {} } = this;
+    //   let { bindData = {} } = info || {};
+    //   let { deviceId = "", devicePoint = "" } = bindData || {};
+    //   if (!deviceId) {
+    //     return;
+    //   }
+    //   devicePoint = pointCode;
+    //   $vm.$emit("device", {
+    //     deviceId,
+    //     callback: (device = {}) => {
+    //       let { points: pointList = [] } = device || {};
+    //       let point = pointList.find(item => {
+    //         let { id = "" } = item || {};
+    //         return id == devicePoint; //
+    //       });
+    //       if (point) {
+    //         let { value = "" } = point || {};
+    //         this.pointValue = value;
+    //       }
+    //     }
+    //   });
+    // }
   },
   watch: {
-    "info.bindData.devicePoint": {
-      handler(newVal, oldVal) {
-        this.loadDeviceInfo();
-      },
-      deep: true
-    }
+    // "info.bindData.devicePoint": {
+    //   handler(newVal, oldVal) {
+    //     this.loadDeviceInfo();
+    //   },
+    //   deep: true
+    // }
   }
 };
 </script>
