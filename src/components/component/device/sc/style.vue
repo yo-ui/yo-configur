@@ -474,7 +474,11 @@
           <el-collapse-item title="" name="empty" disabled class="unfold">
             <p>
               <span class="label">{{ $lang("状态显示") }}:</span>
-              <el-radio-group v-model="info.content" size="mini">
+              <el-radio-group
+                v-model="info.content"
+                size="mini"
+                @change="radioGroupEvent"
+              >
                 <el-radio
                   v-for="item in info.contentList"
                   :key="item.key"
@@ -1312,6 +1316,14 @@ export default {
         code: "",
         value: ""
       });
+    },
+    radioGroupEvent() {
+      let { info = {} } = this;
+      let { contentList = [], content = "" } = info || {};
+      let index = contentList.findIndex(item => item.color == content);
+      if (index > -1) {
+        this.tabActive = index + "";
+      }
     }
     // setFontWeight() {
     //   let { info = {} } = this;
