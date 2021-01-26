@@ -823,6 +823,7 @@ export default {
       angelList: Object.freeze(Constants.ANGELLIST),
       gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
       flipModeList: Object.freeze(Constants.FLIPMODELIST),
+      shadowTypeList: Object.freeze(Constants.SHADOWTYPELIST),
       backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
       // fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
       tileModeList: Object.freeze(Constants.TILEMODELIST)

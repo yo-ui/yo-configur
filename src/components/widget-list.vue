@@ -39,7 +39,10 @@
                 <div class="cover" v-if="__item.comDisabled"></div>
                 <i
                   class="bm-icon"
-                  :style="`background-image:url(${__item.icon})`"
+                  :style="
+                    `background-image:url(${__item.icon ||
+                      $loadImgUrl(_item.picUrl)})`
+                  "
                 ></i>
                 {{ __item.name }}
               </li>
@@ -158,6 +161,7 @@ export default {
     ...mapActions({
       selectComAction: "canvas/selectCom",
       widgetCustomListAction: "widgetCustomList",
+      widgetMaterialListAction: "widgetMaterialList",
       widgetCustomDelAction: "widgetCustomDel",
       widgetCustomUpdateAction: "widgetCustomUpdate",
       createHistoryAction: "canvas/createHistory"
@@ -225,15 +229,21 @@ export default {
     blurEditEvent() {
       let { operateCom = {} } = this;
       let { oldName = "" } = operateCom || {};
-      operateCom.name = oldName;
+      bmCommon.log("blurEditEvent");
+      if (oldName) {
+        operateCom.name = oldName;
+      }
     },
     keyupEditEvent() {
       let { operateCom = {} } = this;
       let { id = "", name = "", oldName = "" } = operateCom || {};
+      bmCommon.log("keyupEditEvent");
+      operateCom.oldName = "";
       this.widgetCustomUpdateFunc(
         { id, name },
         () => {
           this.showEditId = "";
+          operateCom.name = name;
         },
         () => {
           operateCom.name = oldName;
@@ -241,10 +251,12 @@ export default {
       );
     },
     deleteEvent() {
-      let { operateCom = {} } = this;
+      let { operateCom = {}, activeIndex = "" } = this;
       let { id = "" } = operateCom || {};
       this.showContextMenuStatus = false;
-      this.widgetCustomDelFunc({ id }, () => {});
+      this.widgetCustomDelFunc({ id }, () => {
+        this.tabClickEvent({ name: activeIndex });
+      });
     },
     renameEvent() {
       let { operateCom = {} } = this;
@@ -274,11 +286,20 @@ export default {
         // bmCommon.log(index, "--------", item);
         index++;
       }
-      // bmCommon.log(item);
       //如果是自定义组件则另外处理
       if (activeIndex == "diy") {
         let { content = "" } = item || {};
-        item = typeof content === "string" ? JSON.parse(content) : {};
+        let data = typeof content === "string" ? JSON.parse(content) : {};
+        let { type = "" } = data || {};
+        item.code = type;
+        item.data = data;
+      } else if (activeIndex == "material") {
+        let { code = "", picUrl = "" } = item || {};
+        if (code == "material-house") {
+          //素材库
+          item = Constants.COMPONENTLIBRARYMAP["image"];
+          item.data.content = picUrl;
+        }
       }
       let {
         data = {},
@@ -385,6 +406,11 @@ export default {
         this.widgetCustomListFunc({}, (list = []) => {
           tabList[index].comList = list || [];
         });
+      } else if (name == "material") {
+        this.widgetMaterialListFunc({}, (list = []) => {
+          (list || []).forEach(item => (item.code = "material-house"));
+          tabList[index]["groupList"][2].comList = list || [];
+        });
       }
     },
     clickEvent(item) {
@@ -429,6 +455,36 @@ export default {
       this.selectComAction(id);
       // this.createRecordAction();
       // this.uploadImg();
+    },
+    //获取素材列表
+    widgetMaterialListFunc(options, callback) {
+      let value = [];
+      let { condition } = this;
+      this.widgetMaterialListAction(options)
+        .then(({ data }) => {
+          let { code = "", result = [], message = "" } = data || {};
+          if (code == Constants.CODES.SUCCESS) {
+            let {
+              list = [],
+              pageSize = Constants.PAGESIZE,
+              totalNum = 0,
+              pageNo = 1
+            } = result || {};
+            value = list || [];
+            condition.pageSize = pageSize;
+            condition.totalNum = totalNum;
+            condition.pageNo = pageNo;
+          } else {
+            // this.$$msgError(message || "添附件失败");
+            bmCommon.error(message || "获取自定义组件列表失败");
+          }
+          callback && callback(value);
+        })
+        .catch(err => {
+          callback && callback(value);
+          // this.$$msgError("添附件失败");
+          bmCommon.error("获取自定义组件列表失败", err);
+        });
     },
     //获取自定义组件列表
     widgetCustomListFunc(options, callback) {

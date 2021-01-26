@@ -319,35 +319,43 @@ let widgets = {
   deviceByq1Com: () =>
     import(
       /* webpackChunkName: "bm-component-device-byq1" */ "@/components/component/device/byq1/index.vue"
-    ), // 电容器
+    ),
+  // 电容器
   deviceDrqCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-drq" */ "@/components/component/device/drq/index.vue"
-    ), // 电流互感器1
+    ),
+  // 电流互感器1
   deviceDlhgq1Com: () =>
     import(
       /* webpackChunkName: "bm-component-device-dlhgq1" */ "@/components/component/device/dlhgq1/index.vue"
-    ), // 电流互感器2
+    ),
+  // 电流互感器2
   deviceDlhgq2Com: () =>
     import(
       /* webpackChunkName: "bm-component-device-dlhgq2" */ "@/components/component/device/dlhgq2/index.vue"
-    ), // 电流互感器3
+    ),
+  // 电流互感器3
   deviceDlhgq3Com: () =>
     import(
       /* webpackChunkName: "bm-component-device-dlhgq3" */ "@/components/component/device/dlhgq3/index.vue"
-    ), // 电流互感器4
+    ),
+  // 电流互感器4
   deviceDlhgq4Com: () =>
     import(
       /* webpackChunkName: "bm-component-device-dlhgq4" */ "@/components/component/device/dlhgq4/index.vue"
-    ), // 接地
+    ),
+  // 接地
   deviceJdCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-jd" */ "@/components/component/device/jd/index.vue"
-    ), // 接地指示
+    ),
+  // 接地指示
   deviceJdzsCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-jdzs" */ "@/components/component/device/jdzs/index.vue"
-    ), // 电抗器
+    ),
+  // 电抗器
   deviceDkqCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-dkq" */ "@/components/component/device/dkq/index.vue"
@@ -356,7 +364,8 @@ let widgets = {
   deviceDlq1Com: () =>
     import(
       /* webpackChunkName: "bm-component-device-dlq1" */ "@/components/component/device/dlq1/index.vue"
-    ), // 手车
+    ),
+  // 手车
   deviceScCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-sc" */ "@/components/component/device/sc/index.vue"
@@ -949,6 +958,63 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-device-byq-style" */ "@/components/component/device/byq/style.vue"
     ),
+
+  // 变压器
+  deviceByq1StyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-byq1-style" */ "@/components/component/device/byq1/style.vue"
+    ),
+  // 电容器
+  deviceDrqStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-drq-style" */ "@/components/component/device/drq/style.vue"
+    ),
+  // 电流互感器1
+  deviceDlhgq1StyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dlhgq1-style" */ "@/components/component/device/dlhgq1/style.vue"
+    ),
+  // 电流互感器2
+  deviceDlhgq2StyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dlhgq2-style" */ "@/components/component/device/dlhgq2/style.vue"
+    ),
+  // 电流互感器3
+  deviceDlhgq3StyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dlhgq3-style" */ "@/components/component/device/dlhgq3/style.vue"
+    ),
+  // 电流互感器4
+  deviceDlhgq4StyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dlhgq4-style" */ "@/components/component/device/dlhgq4/style.vue"
+    ),
+  // 接地
+  deviceJdStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-jd-style" */ "@/components/component/device/jd/style.vue"
+    ),
+  // 接地指示
+  deviceJdzsStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-jdzs-style" */ "@/components/component/device/jdzs/style.vue"
+    ),
+  // 电抗器
+  deviceDkqStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dkq-style" */ "@/components/component/device/dkq/style.vue"
+    ),
+  // 断路器1
+  deviceDlq1StyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dlq1-style" */ "@/components/component/device/dlq1/style.vue"
+    ),
+  // 手车
+  deviceScStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-sc-style" */ "@/components/component/device/sc/style.vue"
+    ),
+
   deviceShsbStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-shsb-style" */ "@/components/component/device/shsb/style.vue"

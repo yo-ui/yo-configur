@@ -1202,13 +1202,14 @@ let componentLibrary = [
           },
           {
             name: "变压器",
-            code: "deviceByq2",
-            alias: "byq2",
-            icon: "/static/img/configur/byq2.svg",
+            code: "deviceByq1",
+            alias: "byq1",
+            icon: "/static/img/configur/byq1.svg",
             data: {
               ...baseData,
-              width: 90,
-              height: 97,
+              color: "#FF3E3E",
+              width: 25,
+              height: 44,
               equalScaleable: true //是否等比例缩放
             }
           },
@@ -1219,8 +1220,9 @@ let componentLibrary = [
             icon: "/static/img/configur/drq.svg",
             data: {
               ...baseData,
-              width: 90,
-              height: 97,
+              color: "#FF3E3E",
+              width: 28,
+              height: 27,
               equalScaleable: true //是否等比例缩放
             }
           },
@@ -1231,8 +1233,13 @@ let componentLibrary = [
             icon: "/static/img/configur/dlhgq1.svg",
             data: {
               ...baseData,
-              width: 90,
-              height: 97,
+              color: "#FF3E3E",
+              paddingTop: 10,
+              paddingBottom: 10,
+              paddingLeft: 10,
+              paddingRight: 10,
+              width: 13,
+              height: 17,
               equalScaleable: true //是否等比例缩放
             }
           },
@@ -1243,8 +1250,13 @@ let componentLibrary = [
             icon: "/static/img/configur/dlhgq2.svg",
             data: {
               ...baseData,
-              width: 90,
-              height: 97,
+              color: "#FF3E3E",
+              paddingTop: 10,
+              paddingBottom: 10,
+              paddingLeft: 10,
+              paddingRight: 10,
+              width: 13,
+              height: 9,
               equalScaleable: true //是否等比例缩放
             }
           },
@@ -1255,8 +1267,13 @@ let componentLibrary = [
             icon: "/static/img/configur/dlhgq3.svg",
             data: {
               ...baseData,
-              width: 90,
-              height: 97,
+              color: "#FF3E3E",
+              paddingTop: 10,
+              paddingBottom: 10,
+              paddingLeft: 10,
+              paddingRight: 10,
+              width: 9,
+              height: 17,
               equalScaleable: true //是否等比例缩放
             }
           },
@@ -1267,8 +1284,13 @@ let componentLibrary = [
             icon: "/static/img/configur/dlhgq4.svg",
             data: {
               ...baseData,
-              width: 90,
-              height: 97,
+              color: "#FF3E3E",
+              paddingTop: 10,
+              paddingBottom: 10,
+              paddingLeft: 10,
+              paddingRight: 10,
+              width: 9,
+              height: 9,
               equalScaleable: true //是否等比例缩放
             }
           },
@@ -1279,8 +1301,13 @@ let componentLibrary = [
             icon: "/static/img/configur/jd.svg",
             data: {
               ...baseData,
-              width: 90,
-              height: 97,
+              paddingTop: 10,
+              paddingBottom: 10,
+              paddingLeft: 10,
+              paddingRight: 10,
+              color: "#FF3E3E",
+              width: 18,
+              height: 10,
               equalScaleable: true //是否等比例缩放
             }
           },
@@ -1291,8 +1318,13 @@ let componentLibrary = [
             icon: "/static/img/configur/jdzs.svg",
             data: {
               ...baseData,
-              width: 90,
-              height: 97,
+              paddingTop: 10,
+              paddingBottom: 10,
+              paddingLeft: 10,
+              paddingRight: 10,
+              color: "#FF3E3E",
+              width: 16,
+              height: 31,
               equalScaleable: true //是否等比例缩放
             }
           },
@@ -1303,8 +1335,9 @@ let componentLibrary = [
             icon: "/static/img/configur/dkq.svg",
             data: {
               ...baseData,
-              width: 90,
-              height: 97,
+              color: "#FF3E3E",
+              width: 25,
+              height: 25,
               equalScaleable: true //是否等比例缩放
             }
           },
@@ -1315,8 +1348,13 @@ let componentLibrary = [
             icon: "/static/img/configur/dlq1.svg",
             data: {
               ...baseData,
-              width: 90,
-              height: 97,
+              color: "#FF3E3E",
+              paddingTop: 10,
+              paddingBottom: 10,
+              paddingLeft: 10,
+              paddingRight: 10,
+              width: 8,
+              height: 17,
               equalScaleable: true //是否等比例缩放
             }
           },
@@ -1327,8 +1365,27 @@ let componentLibrary = [
             icon: "/static/img/configur/sc.svg",
             data: {
               ...baseData,
-              width: 90,
-              height: 97,
+              content: "#FF3E3E",
+              paddingTop: 10,
+              paddingBottom: 10,
+              paddingLeft: 10,
+              paddingRight: 10,
+              width: 16,
+              height: 16,
+              dataType: "point",
+              // infoType: "device",
+              contentList: [
+                {
+                  text: "开",
+                  value: "1",
+                  color: "#FF3E3E"
+                },
+                {
+                  text: "关",
+                  value: "0",
+                  color: "#2FFF25"
+                }
+              ],
               equalScaleable: true //是否等比例缩放
             }
           }
@@ -2402,7 +2459,6 @@ let componentLibrary = [
       }
     ]
   },
-
   {
     code: "component",
     icon: "el-icon-map-location",

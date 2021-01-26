@@ -737,69 +737,71 @@
             </el-option>
           </el-select>
         </p>
-        <p>
-          <span class="label"> {{ $lang("边框大小") }}:</span>
-          <el-input-number
-            controls-position="right"
-            clearable
-            :min="0"
-            :max="20"
-            v-model.number="info.borderWidth"
-            :placeholder="$lang('请输入边框大小')"
-          ></el-input-number>
-          px
-          <el-slider
-            v-model="info.borderWidth"
-            :min="0"
-            :max="20"
-            :format-tooltip="val => val + ' px'"
-          ></el-slider>
-        </p>
-        <p class="padding-box">
-          <span class="label">{{ $lang("边框圆角") }}:</span>
-          <span class="c-box">
-            <span>
-              左上<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.borderRadiusTopLeft"
-                :placeholder="$lang('左上角')"
-              ></el-input-number>
+        <template v-if="info.borderStyle != 'none'">
+          <p>
+            <span class="label"> {{ $lang("边框大小") }}:</span>
+            <el-input-number
+              controls-position="right"
+              clearable
+              :min="0"
+              :max="20"
+              v-model.number="info.borderWidth"
+              :placeholder="$lang('请输入边框大小')"
+            ></el-input-number>
+            px
+            <el-slider
+              v-model="info.borderWidth"
+              :min="0"
+              :max="20"
+              :format-tooltip="val => val + ' px'"
+            ></el-slider>
+          </p>
+          <p class="padding-box">
+            <span class="label">{{ $lang("边框圆角") }}:</span>
+            <span class="c-box">
+              <span>
+                左上<el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.borderRadiusTopLeft"
+                  :placeholder="$lang('左上角')"
+                ></el-input-number>
+              </span>
+              <span>
+                右上<el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.borderRadiusTopRight"
+                  :placeholder="$lang('右上角')"
+                ></el-input-number>
+              </span>
+              <span>
+                右下<el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.borderRadiusBottomRight"
+                  :placeholder="$lang('右下角')"
+                ></el-input-number>
+              </span>
+              <span>
+                左下<el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.borderRadiusBottomLeft"
+                  :placeholder="$lang('左下角')"
+                ></el-input-number>
+              </span>
             </span>
-            <span>
-              右上<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.borderRadiusTopRight"
-                :placeholder="$lang('右上角')"
-              ></el-input-number>
-            </span>
-            <span>
-              右下<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.borderRadiusBottomRight"
-                :placeholder="$lang('右下角')"
-              ></el-input-number>
-            </span>
-            <span>
-              左下<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.borderRadiusBottomLeft"
-                :placeholder="$lang('左下角')"
-              ></el-input-number>
-            </span>
-          </span>
-        </p>
+          </p>
 
-        <p>
-          <span class="label">{{ $lang("边框颜色") }}:</span>
-          <el-color-picker
-            v-model="info.borderColor"
-            show-alpha
-          ></el-color-picker>
-        </p>
+          <p>
+            <span class="label">{{ $lang("边框颜色") }}:</span>
+            <el-color-picker
+              v-model="info.borderColor"
+              show-alpha
+            ></el-color-picker>
+          </p>
+        </template>
       </el-collapse-item>
       <el-collapse-item :title="$lang('边距')" name="margin">
         <p class="margin-box">

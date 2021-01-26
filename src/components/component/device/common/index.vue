@@ -1,6 +1,6 @@
 <template>
-  <div class="img-box">
-    <img :src="info.content" :style="comStyle" />
+  <div class="img-box" :style="comStyle">
+    <img :src="info.content" :width="info.width" :height="info.height" />
   </div>
 </template>
 

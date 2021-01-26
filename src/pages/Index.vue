@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-index-page" :style="pageStyle">
+  <div class="bm-index-page" :class="canvas.themes" :style="pageStyle">
     <bm-header ref="bmHeader"></bm-header>
     <bm-nav ref="bmNav"></bm-nav>
     <div class="flex-content">
@@ -873,6 +873,7 @@ export default {
       let width = $(target).outerWidth();
       let height = $(target).outerHeight();
       // bmCommon.log(target);
+      $(this.$refs.viewBox).focus();
       if (!type) {
         type = $parent.attr("data-type");
         id = $parent.attr("data-id");

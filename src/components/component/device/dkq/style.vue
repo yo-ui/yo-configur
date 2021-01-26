@@ -1062,6 +1062,7 @@ export default {
       flipModeList: Object.freeze(Constants.FLIPMODELIST),
       backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
       fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
+      shadowTypeList: Object.freeze(Constants.SHADOWTYPELIST),
       tileModeList: Object.freeze(Constants.TILEMODELIST)
     };
   },

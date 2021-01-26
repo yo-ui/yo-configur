@@ -459,6 +459,10 @@
       </el-collapse-item>
       <el-collapse-item :title="$lang('外观')" name="outward">
         <p>
+          <span class="label">{{ $lang("组件颜色") }}:</span>
+          <el-color-picker v-model="info.color" show-alpha></el-color-picker>
+        </p>
+        <p>
           <span class="label">{{ $lang("填充颜色") }}:</span>
           <el-select
             v-model="info.backgroundType"
@@ -1062,6 +1066,7 @@ export default {
       flipModeList: Object.freeze(Constants.FLIPMODELIST),
       backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
       fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
+      shadowTypeList: Object.freeze(Constants.SHADOWTYPELIST),
       tileModeList: Object.freeze(Constants.TILEMODELIST)
     };
   },

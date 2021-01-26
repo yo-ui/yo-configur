@@ -16,21 +16,25 @@
     </el-tabs>
     <template v-if="activeIndex == 'basicStyle'">
       <!-- {{activeCom}} -->
-      <component
-        class="com-style"
-        v-if="activeCom.type"
-        :info="activeCom"
-        :is="styleCom"
-      ></component>
+      <keep-alive>
+        <component
+          class="com-style"
+          v-if="activeCom.type"
+          :info="activeCom"
+          :is="styleCom"
+        ></component>
+      </keep-alive>
     </template>
     <template v-if="activeIndex == 'dataBind'">
       <!-- {{activeCom}} -->
-      <component
-        class="com-style com-data"
-        v-if="activeCom.type"
-        :info="activeCom"
-        :is="`${activeCom.dataCode || 'common'}DataCom`"
-      ></component>
+      <keep-alive>
+        <component
+          class="com-style com-data"
+          v-if="activeCom.type"
+          :info="activeCom"
+          :is="`${activeCom.dataCode || 'common'}DataCom`"
+        ></component>
+      </keep-alive>
     </template>
     <template v-if="activeIndex == 'element'">
       <!-- <ul class="com-box"> -->

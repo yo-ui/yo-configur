@@ -285,4 +285,66 @@
       }
     }
   }
+
+  &.blue {
+  }
+  &.black {
+    .bm-header-com {
+      .bc(@dark);
+      .c(@white);
+      .borbc(@gray1);
+      .left {
+        .icon-back {
+          .bc(@white);
+        }
+      }
+      .title {
+        .c(@white);
+      }
+      .right {
+        .icon-next {
+          .bc(@white);
+        }
+      }
+    }
+    .bm-nav-com {
+      .bc(@dark);
+      .c(@white);
+      .nav-box {
+        .el-button {
+          .c(@grayC);
+        }
+        i {
+          .c(@grayC);
+        }
+      }
+    }
+    .flex-content {
+      .mt(0);
+    }
+    .bm-widget-list-com {
+      .bc(@gray3);
+      .el-tabs {
+        .el-tabs__header {
+          .bc(@dark);
+          .el-tabs__nav {
+            .br(0);
+            .borc(@gray3);
+            .el-tabs__item {
+              .borrc(@gray3);
+              .bortc(@gray3);
+              .c(@grayE);
+              &.is-active {
+                .bc(@white);
+                .c(@gray3);
+              }
+            }
+          }
+        }
+      }
+    }
+    .bm-info-com {
+      .bc(@gray1);
+    }
+  }
 }
