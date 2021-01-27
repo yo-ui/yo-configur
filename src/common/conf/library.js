@@ -247,8 +247,37 @@ let componentLibrary = [
           height: 160,
           isAssignUrl: false,
           content: "",
-          contentRepeat: "",
-          contentSize: ""
+          contentRepeat: "no-repeat",
+          contentSize: "contain"
+        }
+      },
+      {
+        code: "imageStatus",
+        name: "图片状态",
+        icon: "/static/img/configur/img.png",
+        data: {
+          ...baseData,
+          dataType: "point",
+          width: 160,
+          height: 160,
+          isAssignUrl: false,
+          content: "1",
+          contentRepeat: "no-repeat",
+          contentSize: "contain",
+          contentList: [
+            {
+              text: "开",
+              value: "1",
+              color: "",
+              url: ""
+            },
+            {
+              text: "关",
+              value: "0",
+              color: "",
+              url: ""
+            }
+          ]
         }
       },
       {
@@ -1348,13 +1377,57 @@ let componentLibrary = [
             icon: "/static/img/configur/dlq1.svg",
             data: {
               ...baseData,
-              color: "#FF3E3E",
+              content: "1",
               paddingTop: 10,
               paddingBottom: 10,
               paddingLeft: 10,
               paddingRight: 10,
               width: 8,
               height: 17,
+              dataType: "point",
+              // infoType: "device",
+              contentList: [
+                {
+                  text: "开",
+                  value: "1",
+                  color: "#FF3E3E"
+                },
+                {
+                  text: "关",
+                  value: "0",
+                  color: "#2FFF25"
+                }
+              ],
+              equalScaleable: true //是否等比例缩放
+            }
+          },
+          {
+            name: "断路器",
+            code: "deviceDlq2",
+            alias: "dlq2",
+            icon: "/static/img/configur/dlq2.svg",
+            data: {
+              ...baseData,
+              content: "1",
+              color: "#FF3E3E",
+              width: 25,
+              height: 40,
+              dataType: "point",
+              equalScaleable: true //是否等比例缩放
+            }
+          },
+          {
+            name: "开关",
+            code: "deviceKg1",
+            alias: "kg1",
+            icon: "/static/img/configur/kg1.svg",
+            data: {
+              ...baseData,
+              content: "1",
+              color: "#FF3E3E",
+              width: 25,
+              height: 40,
+              dataType: "point",
               equalScaleable: true //是否等比例缩放
             }
           },
@@ -1365,7 +1438,7 @@ let componentLibrary = [
             icon: "/static/img/configur/sc.svg",
             data: {
               ...baseData,
-              content: "#FF3E3E",
+              content: "1",
               paddingTop: 10,
               paddingBottom: 10,
               paddingLeft: 10,
@@ -1373,7 +1446,6 @@ let componentLibrary = [
               width: 16,
               height: 16,
               dataType: "point",
-              // infoType: "device",
               contentList: [
                 {
                   text: "开",
@@ -1495,12 +1567,14 @@ let componentLibrary = [
             name: "水箱",
             code: "deviceSx",
             alias: "sx",
-            icon: "/static/img/configur/sx.png",
+            icon: "/static/img/svg/sx.svg",
             data: {
               ...baseData,
-              // backgroundImage: "/static/img/svg/sx.svg",
-              width: 300,
-              height: 275,
+              width: 188,
+              height: 150,
+              maxContent: 100,
+              content: 90,
+              dataType: "point",
               equalScaleable: true //是否等比例缩放
             }
           },
@@ -2860,12 +2934,26 @@ let componentLibrary = [
           y1: 0,
           x2: 200,
           y2: 0,
-          // backgroundImage: "/static/img/svg/material/arrow.svg",
-          // originWidth: 100,
-          // originHeight: 10,
-          // dataType: "device",
-          // infoType:"device",
-          // equalScaleable: true //是否等比例缩放,
+          scaleable: false, //是否可缩放
+          rotateable: false //是否可旋转
+        }
+      },
+      {
+        name: "曲线",
+        code: "materialCurveLine",
+        icon: "/static/img/configur/material/arrow.png",
+        data: {
+          ...baseData,
+          backgroundColor: "#0075E7",
+          borderColor: "#0075E7",
+          borderStyle: "solid",
+          lineWidth: 1,
+          x1: 0,
+          y1: 0,
+          qx: 50,
+          qy: 60,
+          x2: 200,
+          y2: 0,
           scaleable: false, //是否可缩放
           rotateable: false //是否可旋转
         }
@@ -2944,7 +3032,6 @@ let componentLibrary = [
           ...baseData,
           // styleCode: "material",
           backgroundColor: "#0075E7",
-          // backgroundImage: "/static/img/svg/material/quadrangle.svg",
           width: 100,
           height: 100
           // dataType: "device",
@@ -2958,9 +3045,9 @@ let componentLibrary = [
         icon: "/static/img/configur/material/polygon.png",
         data: {
           ...baseData,
-          styleCode: "material",
+          // styleCode: "material",
           backgroundColor: "#0075E7",
-          // backgroundImage: "/static/img/svg/material/polygon.svg",
+          cornerCount: 3,
           width: 100,
           height: 100
           // dataType: "device",

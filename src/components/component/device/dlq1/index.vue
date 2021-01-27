@@ -14,7 +14,7 @@
         v-html="
           `
         <style type='text/css'>
-	.dlq1-${info.id}-st0{fill:${info.color};}
+	.dlq1-${info.id}-st0{fill:${contentColor};}
       </style>
       `
         "
@@ -189,6 +189,13 @@ export default {
         styles = { ...styles, ...gradientStyle(info) };
       }
       return styles || {};
+    },
+    contentColor() {
+      let { info = {} } = this;
+      let { contentList = [], content = "" } = info || {};
+      let obj = contentList.find(item => item.value == content);
+      let { color = "" } = obj || {};
+      return color;
     }
   },
   mounted() {
@@ -198,59 +205,59 @@ export default {
     ...mapMutations({}),
     ...mapActions({}),
     init() {
-      // let { info = {}, showType = "" } = this;
-      // if (showType != "edit") {
-      //   let { id = "", bindData = {} } = info || {};
-      //   let { deviceId = "" } = bindData || {};
-      //   if (!deviceId) {
-      //     return;
-      //   }
-      //   $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
-      //     bmCommon.log("deviceDbCom", device);
-      //     let { pointList = [] } = device || {};
-      //     let point = pointList.find(item => {
-      //       let { point: id = "" } = item || {};
-      //       return id == pointCode; // SwSts  开关状态
-      //     });
-      //     if (point) {
-      //       let { value = "" } = point || {};
-      //       this.pointValue = value;
-      //     }
-      //   });
-      // }
-      // this.loadDeviceInfo();
+      let { info = {}, showType = "" } = this;
+      if (showType != "edit") {
+        let { id = "", bindData = {}, contentList = [] } = info || {};
+        let { devicePoint = "" } = bindData || {};
+        if (!devicePoint) {
+          return;
+        }
+        $vm.$on(`devicePointEvent_${id}`, ({ point }) => {
+          bmCommon.log("deviceDlq1Com", point);
+          if (point) {
+            let { value = "" } = point || {};
+            let item = contentList.find(item => item.value == value);
+            if (item) {
+              info.content = item.value;
+            }
+          }
+        });
+      }
+      this.loadDeviceInfo();
+    },
+    loadDeviceInfo() {
+      let { info = {} } = this;
+      let { bindData = {}, contentList = [] } = info || {};
+      let { deviceId = "", devicePoint = "" } = bindData || {};
+      if (!deviceId) {
+        return;
+      }
+      $vm.$emit("device", {
+        deviceId,
+        callback: (device = {}) => {
+          let { points: pointList = [] } = device || {};
+          let point = pointList.find(item => {
+            let { id = "" } = item || {};
+            return id == devicePoint; //
+          });
+          if (point) {
+            let { value = "" } = point || {};
+            let item = contentList.find(item => item.value == value);
+            if (item) {
+              info.content = item.value;
+            }
+          }
+        }
+      });
     }
-    // loadDeviceInfo() {
-    //   let { info = {} } = this;
-    //   let { bindData = {} } = info || {};
-    //   let { deviceId = "", devicePoint = "" } = bindData || {};
-    //   if (!deviceId) {
-    //     return;
-    //   }
-    //   devicePoint = pointCode;
-    //   $vm.$emit("device", {
-    //     deviceId,
-    //     callback: (device = {}) => {
-    //       let { points: pointList = [] } = device || {};
-    //       let point = pointList.find(item => {
-    //         let { id = "" } = item || {};
-    //         return id == devicePoint; //
-    //       });
-    //       if (point) {
-    //         let { value = "" } = point || {};
-    //         this.pointValue = value;
-    //       }
-    //     }
-    //   });
-    // }
   },
   watch: {
-    // "info.bindData.devicePoint": {
-    //   handler(newVal, oldVal) {
-    //     this.loadDeviceInfo();
-    //   },
-    //   deep: true
-    // }
+    "info.bindData.devicePoint": {
+      handler(newVal, oldVal) {
+        this.loadDeviceInfo();
+      },
+      deep: true
+    }
   }
 };
 </script>

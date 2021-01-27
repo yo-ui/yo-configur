@@ -16,35 +16,35 @@
         <style type='text/css'>
 					.gfdcb-${info.id}-st0{fill-rule:evenodd;clip-rule:evenodd;fill:#AFB6BC;}
 					.gfdcb-${info.id}-st1{fill-rule:evenodd;clip-rule:evenodd;fill:#5C656D;}
-					.gfdcb-${info.id}-st2{fill-rule:evenodd;clip-rule:evenodd;fill:url(#gfdcb_2_);}
+					.gfdcb-${info.id}-st2{fill-rule:evenodd;clip-rule:evenodd;fill:url(#gfdcb_${info.id}_2_);}
 					.gfdcb-${info.id}-st3{fill-rule:evenodd;clip-rule:evenodd;fill:#C2C8CE;}
 					.gfdcb-${info.id}-st4{fill-rule:evenodd;clip-rule:evenodd;fill:#DFE3E8;}
-					.gfdcb-${info.id}-st5{fill-rule:evenodd;clip-rule:evenodd;fill:url(#gfdcb_3_);}
+					.gfdcb-${info.id}-st5{fill-rule:evenodd;clip-rule:evenodd;fill:url(#gfdcb_${info.id}_3_);}
 					.gfdcb-${info.id}-st6{fill:#DFE3E8;}
       </style>
       `
         "
       ></defs>
       <rect
-        id="gfdcb_1282_"
+        :id="`gfdcb_${info.id}_1282_`"
         x="8.7"
         y="130.5"
-        class="st0"
+        :class="`gfdcb-${info.id}-st0`"
         width="162"
         height="4.8"
       />
       <polygon
-        id="gfdcb_1283_"
+        :id="`gfdcb_${info.id}_1283_`"
         :class="`gfdcb-${info.id}-st1`"
         points="17.7,131 32.7,108.8 32.7,104.3 17.7,125.5 "
       />
       <polygon
-        id="gfdcb_1284_"
+        :id="`gfdcb_${info.id}_1284_`"
         :class="`gfdcb-${info.id}-st1`"
         points="161.7,130 148.7,108.8 148.7,104.3 161.7,125.5 "
       />
       <linearGradient
-        id="gfdcb_2_"
+        :id="`gfdcb_${info.id}_2_`"
         gradientUnits="userSpaceOnUse"
         x1="89.7212"
         y1="113.1659"
@@ -55,26 +55,26 @@
         <stop offset="0.9894" style="stop-color:#91959B" />
       </linearGradient>
       <path
-        id="gfdcb_1287_"
+        :id="`gfdcb_${info.id}_1287_`"
         :class="`gfdcb-${info.id}-st2`"
         d="M150.7,100.3h-121l-21,30.2h162L150.7,100.3z M32.7,104.3h116l13,21.2h-144L32.7,104.3z"
       />
-      <g id="gfdcb_1260_">
+      <g :id="`gfdcb_${info.id}_1260_`">
         <path
-          id="gfdcb_1185_"
+          :id="`gfdcb_${info.id}_1185_`"
           :class="`gfdcb-${info.id}-st3`"
           d="M178.3,116H3.4c-1.9,0-3.4-1.5-3.4-3.4v-3.8h181.7v3.8C181.7,114.5,180.2,116,178.3,116z"
         />
         <path
-          id="gfdcb_1257_"
+          :id="`gfdcb_${info.id}_1257_`"
           :class="`gfdcb-${info.id}-st4`"
           d="M28.8,0h123.9c1.1,0,2.3,0.9,2.6,2.1l26,105c0.6,2.3-0.3,4.2-1.9,4.2H2.1
 						c-1.6,0-2.5-1.9-1.9-4.2l26-105C26.5,0.9,27.6,0,28.8,0z"
         />
-        <g id="gfdcb_1186_">
-          <g id="gfdcb_165_">
+        <g :id="`gfdcb_${info.id}_1186_`">
+          <g :id="`gfdcb_${info.id}_165_`">
             <linearGradient
-              id="gfdcb_3_"
+              :id="`gfdcb_${info.id}_3_`"
               gradientUnits="userSpaceOnUse"
               x1="36.3998"
               y1="-3.7911"
@@ -87,7 +87,7 @@
               <stop offset="0.9894" style="stop-color:#345DAC" />
             </linearGradient>
             <path
-              id="gfdcb_166_"
+              :id="`gfdcb_${info.id}_166_`"
               :class="`gfdcb-${info.id}-st5`"
               d="M30.4,17.6h18.4c1.6,0,3.1-1.4,3.4-3.1l1.2-8.2c0.2-1.6-0.8-2.9-2.4-2.9H33.5
 								c-1.5,0-3.1,1.3-3.4,2.9l-1.9,8.2C27.8,16.2,28.8,17.6,30.4,17.6z M56.2,17.6h18.4c1.6,0,3-1.4,3.1-3.1L78,6.3
@@ -123,9 +123,9 @@
             />
           </g>
         </g>
-        <g id="gfdcb_1259_">
+        <g :id="`gfdcb_${info.id}_1259_`">
           <rect
-            id="gfdcb_1262_"
+            :id="`gfdcb_${info.id}_1262_`"
             x="29"
             y="5.7"
             :class="`gfdcb-${info.id}-st6`"
@@ -133,7 +133,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1263_"
+            :id="`gfdcb_${info.id}_1263_`"
             x="29"
             y="8.7"
             :class="`gfdcb-${info.id}-st6`"
@@ -141,7 +141,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1264_"
+            :id="`gfdcb_${info.id}_1264_`"
             x="27.2"
             y="11.7"
             :class="`gfdcb-${info.id}-st6`"
@@ -149,7 +149,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1267_"
+            :id="`gfdcb_${info.id}_1267_`"
             x="26.2"
             y="14.7"
             :class="`gfdcb-${info.id}-st6`"
@@ -157,7 +157,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1266_"
+            :id="`gfdcb_${info.id}_1266_`"
             x="25.2"
             y="21.8"
             :class="`gfdcb-${info.id}-st6`"
@@ -165,7 +165,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1265_"
+            :id="`gfdcb_${info.id}_1265_`"
             x="24.4"
             y="25.1"
             :class="`gfdcb-${info.id}-st6`"
@@ -173,7 +173,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1268_"
+            :id="`gfdcb_${info.id}_1268_`"
             x="23.8"
             y="28.4"
             :class="`gfdcb-${info.id}-st6`"
@@ -181,7 +181,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1271_"
+            :id="`gfdcb_${info.id}_1271_`"
             x="21.9"
             y="31.7"
             :class="`gfdcb-${info.id}-st6`"
@@ -189,7 +189,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1270_"
+            :id="`gfdcb_${info.id}_1270_`"
             x="19.4"
             y="40.2"
             :class="`gfdcb-${info.id}-st6`"
@@ -197,7 +197,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1269_"
+            :id="`gfdcb_${info.id}_1269_`"
             x="18.5"
             y="43.8"
             :class="`gfdcb-${info.id}-st6`"
@@ -205,7 +205,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1272_"
+            :id="`gfdcb_${info.id}_1272_`"
             x="17.9"
             y="47.5"
             :class="`gfdcb-${info.id}-st6`"
@@ -213,7 +213,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1275_"
+            :id="`gfdcb_${info.id}_1275_`"
             x="16.2"
             y="51.1"
             :class="`gfdcb-${info.id}-st6`"
@@ -221,7 +221,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1274_"
+            :id="`gfdcb_${info.id}_1274_`"
             x="15.5"
             y="60.7"
             :class="`gfdcb-${info.id}-st6`"
@@ -229,7 +229,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1273_"
+            :id="`gfdcb_${info.id}_1273_`"
             x="14.4"
             y="64.9"
             :class="`gfdcb-${info.id}-st6`"
@@ -237,7 +237,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1276_"
+            :id="`gfdcb_${info.id}_1276_`"
             x="13.7"
             y="69.1"
             :class="`gfdcb-${info.id}-st6`"
@@ -245,7 +245,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1279_"
+            :id="`gfdcb_${info.id}_1279_`"
             x="11.8"
             y="73.3"
             :class="`gfdcb-${info.id}-st6`"
@@ -253,7 +253,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1278_"
+            :id="`gfdcb_${info.id}_1278_`"
             x="11"
             y="84.3"
             :class="`gfdcb-${info.id}-st6`"
@@ -261,7 +261,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1277_"
+            :id="`gfdcb_${info.id}_1277_`"
             x="10.3"
             y="89.2"
             :class="`gfdcb-${info.id}-st6`"
@@ -269,7 +269,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1280_"
+            :id="`gfdcb_${info.id}_1280_`"
             x="9.6"
             y="94.2"
             :class="`gfdcb-${info.id}-st6`"
@@ -277,7 +277,7 @@
             height="0.3"
           />
           <rect
-            id="gfdcb_1281_"
+            :id="`gfdcb_${info.id}_1281_`"
             x="7.5"
             y="99.1"
             :class="`gfdcb-${info.id}-st6`"

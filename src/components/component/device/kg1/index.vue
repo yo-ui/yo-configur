@@ -1,10 +1,10 @@
-// 手车
+// 断路器1
 <template>
-  <div class="bm-device-sc-com" :style="comStyle">
+  <div class="bm-device-kg1-com" :style="comStyle">
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      :viewBox="`0 0 16 16`"
+      :viewBox="`0 0 25 40`"
       :width="info.width"
       :height="info.height"
       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -14,19 +14,68 @@
         v-html="
           `
         <style type='text/css'>
-	.sc-${info.id}-st0{fill:${contentColor};}
+	.kg1-${info.id}-st1{display:inline;fill:${info.color};}
+	.kg1-${info.id}-st2{fill:${info.color};}
       </style>
       `
         "
       ></defs>
-      <polygon
-        :class="`sc-${info.id}-st0`"
-        points="14.2,9.7 8,3.2 1.7,9.7 0.3,8.3 8,0.3 15.6,8.3 "
-      />
-      <polygon
-        :class="`sc-${info.id}-st0`"
-        points="14.2,15.7 8,9.2 1.7,15.7 0.3,14.3 8,6.3 15.6,14.3 "
-      />
+      <g id="图层_1" :class="`kg1-${info.id}-st0`" v-if="info.content == 1">
+        <path
+          :class="`kg1-${info.id}-st1`"
+          d="M11.5,11.5c-1.8,0-3.3-1.5-3.3-3.3S9.7,5,11.5,5s3.3,1.5,3.3,3.3S13.3,11.5,11.5,11.5z M11.5,6.5
+		c-1,0-1.8,0.8-1.8,1.8s0.8,1.8,1.8,1.8s1.8-0.8,1.8-1.8S12.5,6.5,11.5,6.5z"
+        />
+        <path
+          :class="`kg1-${info.id}-st1`"
+          d="M11.5,34.5c-1.8,0-3.3-1.5-3.3-3.3S9.7,28,11.5,28s3.3,1.5,3.3,3.3S13.3,34.5,11.5,34.5z M11.5,29.5
+		c-1,0-1.8,0.8-1.8,1.8s0.8,1.8,1.8,1.8s1.8-0.8,1.8-1.8S12.5,29.5,11.5,29.5z"
+        />
+        <rect
+          x="8.5"
+          y="20.1"
+          transform="matrix(0.5524 -0.8335 0.8335 0.5524 -9.24 24.935)"
+          :class="`kg1-${info.id}-st1`"
+          width="20.3"
+          height="2"
+        />
+        <rect x="10.5" :class="`kg1-${info.id}-st1`" width="2" height="5.8" />
+        <rect
+          x="10.5"
+          y="33.8"
+          :class="`kg1-${info.id}-st1`"
+          width="2"
+          height="6.2"
+        />
+      </g>
+      <g id="图层_1_x5F_复制" v-if="info.content == 0">
+        >
+        <path
+          :class="`kg1-${info.id}-st2`"
+          d="M11.5,11.5c-1.8,0-3.3-1.5-3.3-3.3S9.7,5,11.5,5s3.3,1.5,3.3,3.3S13.3,11.5,11.5,11.5z M11.5,6.5
+		c-1,0-1.8,0.8-1.8,1.8s0.8,1.8,1.8,1.8s1.8-0.8,1.8-1.8S12.5,6.5,11.5,6.5z"
+        />
+        <path
+          :class="`kg1-${info.id}-st2`"
+          d="M11.5,34.5c-1.8,0-3.3-1.5-3.3-3.3S9.7,28,11.5,28s3.3,1.5,3.3,3.3S13.3,34.5,11.5,34.5z M11.5,29.5
+		c-1,0-1.8,0.8-1.8,1.8s0.8,1.8,1.8,1.8s1.8-0.8,1.8-1.8S12.5,29.5,11.5,29.5z"
+        />
+        <rect x="10.5" :class="`kg1-${info.id}-st2`" width="2" height="5.8" />
+        <rect
+          x="10.5"
+          y="11"
+          :class="`kg1-${info.id}-st2`"
+          width="2"
+          height="18"
+        />
+        <rect
+          x="10.5"
+          y="33.8"
+          :class="`kg1-${info.id}-st2`"
+          width="2"
+          height="6.2"
+        />
+      </g>
     </svg>
   </div>
 </template>
@@ -36,7 +85,7 @@ import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "deviceScCom",
+  name: "deviceKg1Com",
   data() {
     return {
       pointValue: "" // expr:'SwSts',stop:0,start:1,alarm:2
@@ -196,14 +245,14 @@ export default {
         styles = { ...styles, ...gradientStyle(info) };
       }
       return styles || {};
-    },
-    contentColor() {
-      let { info = {} } = this;
-      let { contentList = [], content = "" } = info || {};
-      let obj = contentList.find(item => item.value == content);
-      let { color = "" } = obj || {};
-      return color;
     }
+    // contentColor() {
+    //   let { info = {} } = this;
+    //   let { contentList = [], content = "" } = info || {};
+    //   let obj = contentList.find(item => item.value == content);
+    //   let { color = "" } = obj || {};
+    //   return color;
+    // }
   },
   mounted() {
     this.init();
@@ -211,22 +260,24 @@ export default {
   methods: {
     ...mapMutations({}),
     ...mapActions({}),
+
     init() {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
-        let { id = "", bindData = {}, contentList = [] } = info || {};
+        let { id = "", bindData = {} } = info || {};
         let { devicePoint = "" } = bindData || {};
         if (!devicePoint) {
           return;
         }
         $vm.$on(`devicePointEvent_${id}`, ({ point }) => {
-          bmCommon.log("deviceScCom", point);
+          bmCommon.log("deviceKg1Com", point);
           if (point) {
             let { value = "" } = point || {};
-            let item = contentList.find(item => item.value == value);
-            if (item) {
-              info.content = item.value;
-            }
+            // let item = contentList.find(item => item.value == value);
+            // if (item) {
+            //   info.content = item.value;
+            // }
+            info.content = value;
           }
         });
       }
@@ -234,7 +285,7 @@ export default {
     },
     loadDeviceInfo() {
       let { info = {} } = this;
-      let { bindData = {}, contentList = [] } = info || {};
+      let { bindData = {} } = info || {};
       let { deviceId = "", devicePoint = "" } = bindData || {};
       if (!deviceId) {
         return;
@@ -249,10 +300,11 @@ export default {
           });
           if (point) {
             let { value = "" } = point || {};
-            let item = contentList.find(item => item.value == value);
-            if (item) {
-              info.content = item.value;
-            }
+            // let item = contentList.find(item => item.value == value);
+            // if (item) {
+            //   info.content = item.value;
+            // }
+            info.content = value;
           }
         }
       });

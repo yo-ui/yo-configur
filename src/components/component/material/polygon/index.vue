@@ -1,10 +1,11 @@
+// 多边形
 <template>
-  <div class="bm-material-circle-com" :style="comStyle">
+  <div class="bm-material-polygon-com" :style="comStyle">
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       :viewBox="
-        `${6.8 - info.borderWidth} ${9.3 - info.borderWidth} ${info.width} ${
+        `${0 - info.borderWidth} ${0 - info.borderWidth} ${info.width} ${
           info.height
         }`
       "
@@ -149,7 +150,8 @@
           </radialGradient>
         </template>
       </defs>
-      <path :d="info.points" :style="svgStyle" />
+      <polygon :points="info.points" :style="svgStyle" />
+      <!-- <path :d="info.points" :style="svgStyle" /> -->
     </svg>
   </div>
 </template>
@@ -169,7 +171,7 @@ const points = [
   ["Z"]
 ];
 export default {
-  name: "materialCircleCom",
+  name: "materialPolygonCom",
   data() {
     return {};
   },
@@ -191,6 +193,8 @@ export default {
         borderColor = "",
         gradientStyle = {},
         borderStyle = "",
+        cornerCount = 3, //角数
+        // outerRadius = 50, //外切圆半径
         borderWidth = "",
         backgroundType = "",
         backgroundColor = ""
@@ -228,10 +232,36 @@ export default {
         }
       }
       styles["stroke-width"] = borderWidth;
-      info.points = new SVG.PathArray(points).size(
-        width - borderWidth * 2,
-        height - borderWidth * 2
-      );
+      let point = [width / 2, 0]; //第一个点
+      // let innerPoint = new SVG.Point([
+      //   width / 2,
+      //   height / 2
+      // ]).transform({
+      //   rotate: 360 / (cornerCount * 2),
+      //   origin: {
+      //     x: width / 2,
+      //     y: height / 2
+      //   }
+      // }); //内切圆初始点
+      let points = [];
+      for (let i = 0; i < cornerCount; i++) {
+        let _point = new SVG.Point(point).transform({
+          rotate: (360 / cornerCount) * i,
+          origin: { x: width / 2, y: height / 2 }
+        });
+        points.push(_point.toArray());
+        // points2.push(_point.toArray());
+
+        // _point = new SVG.Point(innerPoint).transform({
+        //   rotate: (360 / cornerCount) * i,
+        //   origin: { x: width / 2, y: height / 2 }
+        // });
+        // points.push(_point.toArray());
+      }
+      info.points = new SVG.PointArray(points)
+        .size(width - borderWidth * 2, height - borderWidth * 2)
+        .move(0, 0);
+      bmCommon.log(info.points);
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {

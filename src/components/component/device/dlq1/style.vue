@@ -457,7 +457,108 @@
       </span>
     </p> -->
       </el-collapse-item>
-      <el-collapse-item :title="$lang('外观')" name="outward">
+      <el-collapse-item
+        :title="$lang('外观')"
+        name="outward"
+        class="no-right no-border"
+      >
+        <!-- <p>
+          <span class="label">{{ $lang("组件颜色") }}:</span>
+          <el-color-picker v-model="info.color" show-alpha></el-color-picker>
+        </p>
+        <p>
+          <span class="label">{{ $lang("组件颜色") }}:</span>
+          <el-color-picker v-model="info.color" show-alpha></el-color-picker>
+        </p> -->
+        <el-collapse class="tab-collapse" v-model="selectTabActiveNames">
+          <el-collapse-item title="" name="empty" disabled class="unfold">
+            <p>
+              <span class="label">{{ $lang("状态显示") }}:</span>
+              <el-radio-group
+                v-model="info.content"
+                size="mini"
+                @change="radioGroupEvent"
+              >
+                <el-radio
+                  v-for="item in info.contentList"
+                  :key="item.key"
+                  :label="item.value"
+                >
+                  {{ item.text }}
+                </el-radio>
+              </el-radio-group>
+
+              <el-tooltip
+                :content="$lang('默认显示展示方便样式处理')"
+                placement="top"
+                effect="dark"
+              >
+                <i class="el-icon-warning-outline"></i>
+              </el-tooltip>
+            </p>
+          </el-collapse-item>
+          <el-collapse-item class="tab-collapse-item" name="tab">
+            <template slot="title">
+              {{ $lang("状态选项") }}
+              <div class="right">
+                <el-tooltip
+                  :content="$lang('删除')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <i
+                    class="el-icon-delete-solid"
+                    @click.stop="removeContentEvent"
+                  ></i>
+                </el-tooltip>
+                <el-tooltip
+                  :content="$lang('添加')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <i class="el-icon-plus" @click.stop="addContentEvent"></i>
+                </el-tooltip>
+              </div>
+            </template>
+            <el-tabs
+              v-model="tabActive"
+              class="collapse-item-tab"
+              type="card"
+              tab-position="top"
+            >
+              <el-tab-pane
+                v-for="(item, index) in info.contentList"
+                :key="index"
+                :label="$lang('选项')"
+                :name="index + ''"
+              >
+              </el-tab-pane>
+            </el-tabs>
+            <p>
+              <span class="label">{{ $lang("状态名称") }}:</span>
+              <el-input
+                clearable
+                :placeholder="$lang('请输入状态名称')"
+                v-model="info.contentList[tabActive].text"
+              ></el-input>
+            </p>
+            <p>
+              <span class="label">{{ $lang("状态值") }}:</span>
+              <el-input
+                clearable
+                :placeholder="$lang('请输入状态值')"
+                v-model="info.contentList[tabActive].value"
+              ></el-input>
+            </p>
+            <p>
+              <span class="label">{{ $lang("组件颜色") }}:</span>
+              <el-color-picker
+                v-model="info.contentList[tabActive].color"
+                show-alpha
+              ></el-color-picker>
+            </p>
+          </el-collapse-item>
+        </el-collapse>
         <p>
           <span class="label">{{ $lang("组件颜色") }}:</span>
           <el-color-picker v-model="info.color" show-alpha></el-color-picker>
@@ -1054,7 +1155,9 @@ export default {
   name: "deviceCommonStyleCom",
   data() {
     return {
+      tabActive: "0",
       activeNames: ["name"],
+      selectTabActiveNames: ["empty", "tab"],
       animationDirectionList: Object.freeze(Constants.ANIMATIONDIRECTIONLIST),
       animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
       borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
@@ -1199,6 +1302,32 @@ export default {
     },
     closeAll() {
       this.activeNames = ["name"];
+    },
+    removeContentEvent() {
+      let { info = {}, tabActive = 0 } = this;
+      let { contentList = [] } = info || {};
+      let { length = 0 } = contentList || [];
+      if (length > 1) {
+        contentList.splice(tabActive, 1);
+        this.tabActive = "0";
+      }
+    },
+    addContentEvent() {
+      let { info = {} } = this;
+      let { contentList = [] } = info || {};
+      contentList.push({
+        text: "",
+        code: "",
+        value: ""
+      });
+    },
+    radioGroupEvent() {
+      let { info = {} } = this;
+      let { contentList = [], content = "" } = info || {};
+      let index = contentList.findIndex(item => item.value == content);
+      if (index > -1) {
+        this.tabActive = index + "";
+      }
     }
     // setFontWeight() {
     //   let { info = {} } = this;

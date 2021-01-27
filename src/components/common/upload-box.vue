@@ -265,12 +265,16 @@ export default {
       let that = this;
       let { type = "", name = "" } = file || {};
       type = type.toLowerCase();
+      bmCommon.log("扩展名为", type);
       const isImage =
-        type === "image/jpeg" || type === "image/gif" || type === "image/png";
+        type === "image/jpeg" ||
+        type === "image/gif" ||
+        type === "image/png" ||
+        type === "image/svg+xml";
       if (!isImage) {
         that.$$msgError(
           that.$lang(
-            '不正确的文件扩展名{name}. 只支持 "jpg, gif, png" 的文件扩展名.',
+            '不正确的文件扩展名{name}. 只支持 "jpg, gif, png, svg" 的文件扩展名.',
             { name }
           )
         );

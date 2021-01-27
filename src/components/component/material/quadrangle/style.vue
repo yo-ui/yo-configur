@@ -1,3 +1,4 @@
+// 四边形
 <template>
   <div class="bm-material-quadrangle-style-com">
     <el-collapse v-model="activeNames">

@@ -1,6 +1,6 @@
-// 直线
+// 曲线
 <template>
-  <div class="bm-material-line-com" :style="comStyle">
+  <div class="bm-material-curve-line-com" :style="comStyle">
     <svg
       version="1.1"
       :viewBox="
@@ -154,13 +154,23 @@
       </defs>
       <!-- style="fill-rule:evenodd;clip-rule:evenodd;fill:${this.config.background.color};" -->
       <!-- <polygon :points="info.points" :style="svgStyle" /> -->
-      <line
+      <path
         ref="line"
-        :x1="info.x1"
-        :y1="info.y1"
-        :x2="info.x2"
-        :y2="info.y2"
+        :d="
+          `M ${info.x1} ${info.y1} Q ${info.qx} ${info.qy},${info.x2} ${info.y2}`
+        "
+        fill="transparent"
         :style="svgStyle"
+      />
+      <circle
+        class="circle"
+        :cx="info.qx"
+        :cy="info.qy"
+        :r="5"
+        stroke="#0075e7"
+        fill="#7dd646"
+        stroke-width="1"
+        @mousedown.stop="centerClickEvent"
       />
       <rect
         class="rect"
@@ -203,7 +213,7 @@ const { mapActions, mapMutations, mapGetters } = Vuex;
 //   [73, 48.3]
 // ];
 export default {
-  name: "materialLineCom",
+  name: "materialCurveLineCom",
   data() {
     return {};
   },
@@ -421,6 +431,11 @@ export default {
       e.stopPropagation();
       this.mousedownEvent(e, "left");
     },
+    centerClickEvent(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.mousedownEvent(e, "center");
+    },
     rightClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
@@ -516,6 +531,15 @@ export default {
         this.reloadSize();
         return;
       }
+      if (direction === "center") {
+        dx = Math.floor((dx * 1) / zoom);
+        dy = Math.floor((dy * 1) / zoom);
+        info.qx += dx;
+        info.qy += dy;
+        // }
+        // this.reloadSize();
+        return;
+      }
     }
     // blurEvent(e) {
     //   let { target } = e;
@@ -530,5 +554,36 @@ export default {
 </script>
 
 <style lang="less">
-@import (less) "../../../../assets/less/components/component/material/line.less";
+@import (reference) "./../../../../assets/less/common.less";
+.active {
+  .bm-material-curve-line-com {
+    .rect {
+      .db;
+      &:hover {
+        opacity: 1;
+      }
+    }
+    .circle {
+      .db;
+    }
+  }
+}
+.bm-material-curve-line-com {
+  .posr;
+  pointer-events: none;
+  z-index: 1000;
+  .rect {
+    .db(none);
+    opacity: 0.1;
+  }
+  svg {
+    overflow: inherit;
+    path,
+    rect,
+    circle {
+      cursor: move;
+      pointer-events: auto;
+    }
+  }
+}
 </style>

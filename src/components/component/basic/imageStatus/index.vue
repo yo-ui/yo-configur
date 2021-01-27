@@ -1,33 +1,7 @@
-// 手车
+// 图片状态组件
 <template>
-  <div class="bm-device-sc-com" :style="comStyle">
-    <svg
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-      :viewBox="`0 0 16 16`"
-      :width="info.width"
-      :height="info.height"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      xml:space="preserve"
-    >
-      <defs
-        v-html="
-          `
-        <style type='text/css'>
-	.sc-${info.id}-st0{fill:${contentColor};}
-      </style>
-      `
-        "
-      ></defs>
-      <polygon
-        :class="`sc-${info.id}-st0`"
-        points="14.2,9.7 8,3.2 1.7,9.7 0.3,8.3 8,0.3 15.6,8.3 "
-      />
-      <polygon
-        :class="`sc-${info.id}-st0`"
-        points="14.2,15.7 8,9.2 1.7,15.7 0.3,14.3 8,6.3 15.6,14.3 "
-      />
-    </svg>
+  <div class="bm-basic-image-status-com" :style="comStyle">
+    <div class="image" :style="imageStyle"></div>
   </div>
 </template>
 
@@ -36,11 +10,9 @@ import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "deviceScCom",
+  name: "imageStatusCom",
   data() {
-    return {
-      pointValue: "" // expr:'SwSts',stop:0,start:1,alarm:2
-    };
+    return {};
   },
   props: {
     info: {
@@ -50,10 +22,14 @@ export default {
       }
     }
   },
+  components: {
+    // bmUpload: () =>
+    //   import(
+    //     /* webpackChunkName: "bm-component-upload" */ "@/components/common/upload.vue"
+    //   )
+  },
   computed: {
-    ...mapGetters({
-      showType: "canvas/getShowType" //当前显示类型
-    }),
+    ...mapGetters(),
 
     //渐变颜色样式
     gradientStyle() {
@@ -77,63 +53,34 @@ export default {
         return styles;
       };
     },
-
     comStyle() {
-      let { info = {}, gradientStyle } = this;
+      let { info = {} } = this;
       let {
         width = "",
         height = "",
-        // color = "",
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
-        borderRadiusTopLeft = 0,
-        borderRadiusTopRight = 0,
-        borderRadiusBottomLeft = 0,
-        borderRadiusBottomRight = 0,
-
-        marginTop = 0,
-        marginBottom = 0,
-        marginLeft = 0,
-        marginRight = 0,
         borderTop = 0,
         borderBottom = 0,
         borderLeft = 0,
         borderRight = 0,
-        paddingTop = 0,
-        paddingBottom = 0,
-        paddingLeft = 0,
-        paddingRight = 0,
-        shadow = {},
-        shadowable = false,
-        backgroundType = "",
-        backgroundColor = "",
-        backgroundImage = "",
-        backgroundRepeat = "",
-        backgroundSize = ""
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
+        // scale = "",
+        // backgroundColor = "",
+        // backgroundType = "",
+        content = ""
+        // backgroundRepeat = "",
+        // backgroundSize = ""
       } = info || {};
-      let styles = {
-        margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
-        padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
-      };
-      if (shadowable) {
-        let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
-          shadow || {};
-        styles[
-          "boxShadow"
-        ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
-      }
+      let styles = {};
       styles["width"] = `${width}px`;
       styles["height"] = `${height}px`;
-      if (backgroundRepeat) {
-        styles["backgroundRepeat"] = backgroundRepeat;
-      }
-      if (backgroundSize) {
-        styles["backgroundSize"] = backgroundSize;
-      }
       styles["width"] = `${width}px`;
       styles["height"] = `${height}px`;
-
       if (borderTop) {
         if (borderStyle) {
           styles["borderTopStyle"] = borderStyle;
@@ -181,36 +128,64 @@ export default {
       styles[
         "borderRadius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
-      if (backgroundType == "purity") {
-        //纯色
-        if (backgroundColor) {
-          styles["backgroundColor"] = backgroundColor;
-        }
-        if (backgroundImage) {
-          styles["backgroundImage"] = `url(${this.$loadImgUrl(
-            backgroundImage
-          )})`;
-        }
-      } else if (backgroundType == "gradient") {
-        //渐变
-        styles = { ...styles, ...gradientStyle(info) };
+      if (content) {
+        styles["backgroundColor"] = "transparent";
+        styles["backgroundImage"] = "none";
       }
       return styles || {};
     },
-    contentColor() {
+    imageStyle() {
       let { info = {} } = this;
-      let { contentList = [], content = "" } = info || {};
+      let {
+        width = "",
+        height = "",
+        contentList = [],
+        // background = "",
+        // borderStyle = "",
+        // borderWidth = "",
+        borderRadiusTopLeft = 0,
+        borderRadiusTopRight = 0,
+        borderRadiusBottomLeft = 0,
+        borderRadiusBottomRight = 0,
+        // scale = "",
+        content = "",
+        contentRepeat = "",
+        // backgroundType = "",
+        // backgroundImage = "",
+        // backgroundRepeat = "",
+        contentSize = ""
+      } = info || {};
+      let styles = {};
       let obj = contentList.find(item => item.value == content);
-      let { color = "" } = obj || {};
-      return color;
+      if (obj) {
+        let { url = "", color = "" } = obj || {};
+        //   -webkit-mask-image: url(/static/img/common/riLine-logout-box-line.svg);
+        // mask-image: url(/static/img/common/riLine-logout-box-line.svg);
+        // styles["-webkit-mask-image"] = `url(${this.$loadImgUrl(url)})`;
+        styles["backgroundImage"] = `url(${this.$loadImgUrl(url)})`;
+        styles["backgroundColor"] = color;
+        if (contentRepeat) {
+          styles["backgroundRepeat"] = contentRepeat;
+        }
+        if (contentSize) {
+          styles["backgroundSize"] = contentSize;
+        }
+      }
+      styles["width"] = `${width}px`;
+      styles["height"] = `${height}px`;
+      styles[
+        "borderRadius"
+      ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
+      return styles || {};
     }
   },
   mounted() {
     this.init();
   },
   methods: {
-    ...mapMutations({}),
-    ...mapActions({}),
+    ...mapMutations(),
+    ...mapActions(),
+
     init() {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
@@ -220,7 +195,7 @@ export default {
           return;
         }
         $vm.$on(`devicePointEvent_${id}`, ({ point }) => {
-          bmCommon.log("deviceScCom", point);
+          bmCommon.log("deviceImageStatusCom", point);
           if (point) {
             let { value = "" } = point || {};
             let item = contentList.find(item => item.value == value);
@@ -268,7 +243,8 @@ export default {
   }
 };
 </script>
-<style lang="less" scoped>
-// @import (reference) "./../../../../assets/less/common.less";
-@import (less) "../../../../assets/less/components/component/device/common.less";
+<style lang="less">
+@import (reference) "./../../../../assets/less/common.less";
+.bm-basic-image-status-com {
+}
 </style>

@@ -40,7 +40,7 @@
             {{ $lang("将文件拖到此处，或") }}<em>{{ $lang("点击上传") }}</em>
           </div>
           <div class="el-upload__tip" slot="tip">
-            {{ $lang("只能上传jpg/png/jpeg/gif文件，且不超过500kb") }}
+            {{ $lang("只能上传jpg/png/jpeg/gif/svg文件，且不超过500kb") }}
           </div>
         </template>
       </el-upload>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-// import bmCommon from "@/common/common";
+import bmCommon from "@/common/common";
 import { URL as _URL } from "@/common/env";
 import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
@@ -145,12 +145,16 @@ export default {
       let that = this;
       let { type = "", name = "" } = file || {};
       type = type.toLowerCase();
+      bmCommon.log("扩展名为", type);
       const isImage =
-        type === "image/jpeg" || type === "image/gif" || type === "image/png";
+        type === "image/jpeg" ||
+        type === "image/gif" ||
+        type === "image/png" ||
+        type === "image/svg+xml";
       if (!isImage) {
         that.$$msgError(
           that.$lang(
-            '不正确的文件扩展名{name}. 只支持 "jpg, gif, png" 的文件扩展名.',
+            '不正确的文件扩展名{name}. 只支持 "jpg, gif, png, svg" 的文件扩展名.',
             { name }
           )
         );

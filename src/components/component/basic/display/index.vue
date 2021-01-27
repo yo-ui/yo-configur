@@ -94,7 +94,7 @@
           />
           <path
             id="display_648_"
-            class="st6"
+            :class="`display-${info.id}-st6`"
             d="M76.5,28.5h-71v-21h71V28.5z M7.5,26.5h67v-17h-67V26.5z"
           />
         </g>

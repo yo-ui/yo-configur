@@ -360,13 +360,22 @@ export default {
         let pos = bmCommon.getMousePosition(e);
         let { left = 0, top = 0 } = offset || {};
         let { x = 0, y = 0 } = pos || {};
-        let { width = 0, height = 0, alias = "", comDisabled = false } =
-          data || {};
+        let {
+          width = 0,
+          height = 0,
+          alias = "",
+          comDisabled = false,
+          children = []
+        } = data || {};
         let { left: _left = 0, top: _top = 0 } = canvas || {};
         if (comDisabled) {
           this.$$msgWarn("当前组件不可用");
           return;
         }
+        (children || []).forEach(item => {
+          item.id = bmCommon.uuid();
+          item.parentId = id;
+        });
         // bmCommon.log("释放当前元素", width, height, left, top, x, y);
         // left = x - left - _left - width / 2;
         // top = y - top - _top - height / 2;

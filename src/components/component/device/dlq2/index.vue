@@ -1,10 +1,10 @@
-// 手车
+// 断路器1
 <template>
-  <div class="bm-device-sc-com" :style="comStyle">
+  <div class="bm-device-dlq2-com" :style="comStyle">
     <svg
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      :viewBox="`0 0 16 16`"
+      :viewBox="`0 0 25 40`"
       :width="info.width"
       :height="info.height"
       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -14,19 +14,72 @@
         v-html="
           `
         <style type='text/css'>
-	.sc-${info.id}-st0{fill:${contentColor};}
+	.dlq2-${info.id}-st1{display:inline;fill:${info.color};}
+	.dlq2-${info.id}-st2{fill:${info.color};}
       </style>
       `
         "
       ></defs>
-      <polygon
-        :class="`sc-${info.id}-st0`"
-        points="14.2,9.7 8,3.2 1.7,9.7 0.3,8.3 8,0.3 15.6,8.3 "
-      />
-      <polygon
-        :class="`sc-${info.id}-st0`"
-        points="14.2,15.7 8,9.2 1.7,15.7 0.3,14.3 8,6.3 15.6,14.3 "
-      />
+      <g id="图层_1" :class="`dlq2-${info.id}-st0`" v-if="info.content == 1">
+        <rect
+          x="5.7"
+          y="21.6"
+          transform="matrix(0.5524 -0.8335 0.8335 0.5524 -10.9379 24.7727)"
+          :class="`dlq2-${info.id}-st1`"
+          width="23.9"
+          height="2"
+        />
+        <rect x="10.5" :class="`dlq2-${info.id}-st1`" width="2" height="7" />
+        <rect
+          x="10.5"
+          y="30.8"
+          :class="`dlq2-${info.id}-st1`"
+          width="2"
+          height="9.2"
+        />
+        <rect
+          x="10.7"
+          y="3.9"
+          transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.0551 10.7303)"
+          :class="`dlq2-${info.id}-st1`"
+          width="1.5"
+          height="10.2"
+        />
+        <rect
+          x="6.3"
+          y="8.3"
+          transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.0551 10.7303)"
+          :class="`dlq2-${info.id}-st1`"
+          width="10.2"
+          height="1.5"
+        />
+      </g>
+      <g id="图层_1_x5F_复制" v-if="info.content == 0">
+        <rect x="10.5" :class="`dlq2-${info.id}-st2`" width="2" height="7" />
+        <rect
+          x="10.5"
+          y="11"
+          :class="`dlq2-${info.id}-st2`"
+          width="2"
+          height="29"
+        />
+        <rect
+          x="10.7"
+          y="3.9"
+          transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.0551 10.7303)"
+          :class="`dlq2-${info.id}-st2`"
+          width="1.5"
+          height="10.2"
+        />
+        <rect
+          x="6.3"
+          y="8.3"
+          transform="matrix(0.7071 -0.7071 0.7071 0.7071 -3.0551 10.7303)"
+          :class="`dlq2-${info.id}-st2`"
+          width="10.2"
+          height="1.5"
+        />
+      </g>
     </svg>
   </div>
 </template>
@@ -36,7 +89,7 @@ import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "deviceScCom",
+  name: "deviceDlq2Com",
   data() {
     return {
       pointValue: "" // expr:'SwSts',stop:0,start:1,alarm:2
@@ -196,14 +249,14 @@ export default {
         styles = { ...styles, ...gradientStyle(info) };
       }
       return styles || {};
-    },
-    contentColor() {
-      let { info = {} } = this;
-      let { contentList = [], content = "" } = info || {};
-      let obj = contentList.find(item => item.value == content);
-      let { color = "" } = obj || {};
-      return color;
     }
+    // contentColor() {
+    //   let { info = {} } = this;
+    //   let { contentList = [], content = "" } = info || {};
+    //   let obj = contentList.find(item => item.value == content);
+    //   let { color = "" } = obj || {};
+    //   return color;
+    // }
   },
   mounted() {
     this.init();
@@ -211,22 +264,24 @@ export default {
   methods: {
     ...mapMutations({}),
     ...mapActions({}),
+
     init() {
       let { info = {}, showType = "" } = this;
       if (showType != "edit") {
-        let { id = "", bindData = {}, contentList = [] } = info || {};
+        let { id = "", bindData = {} } = info || {};
         let { devicePoint = "" } = bindData || {};
         if (!devicePoint) {
           return;
         }
         $vm.$on(`devicePointEvent_${id}`, ({ point }) => {
-          bmCommon.log("deviceScCom", point);
+          bmCommon.log("deviceDlq2Com", point);
           if (point) {
             let { value = "" } = point || {};
-            let item = contentList.find(item => item.value == value);
-            if (item) {
-              info.content = item.value;
-            }
+            // let item = contentList.find(item => item.value == value);
+            // if (item) {
+            //   info.content = item.value;
+            // }
+            info.content = value;
           }
         });
       }
@@ -234,7 +289,7 @@ export default {
     },
     loadDeviceInfo() {
       let { info = {} } = this;
-      let { bindData = {}, contentList = [] } = info || {};
+      let { bindData = {} } = info || {};
       let { deviceId = "", devicePoint = "" } = bindData || {};
       if (!deviceId) {
         return;
@@ -249,10 +304,11 @@ export default {
           });
           if (point) {
             let { value = "" } = point || {};
-            let item = contentList.find(item => item.value == value);
-            if (item) {
-              info.content = item.value;
-            }
+            // let item = contentList.find(item => item.value == value);
+            // if (item) {
+            //   info.content = item.value;
+            // }
+            info.content = value;
           }
         }
       });

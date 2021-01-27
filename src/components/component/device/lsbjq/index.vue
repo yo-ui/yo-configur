@@ -52,7 +52,7 @@
         d="M1.2,0.8L0,6.4c0,1.1,7.6,2.1,17,2.1c9.4,0,17-0.9,17-2.1l-1.2-5.6c-0.1-0.5-0.5-0.8-1-0.8
 					H2.2C1.7,0,1.3,0.3,1.2,0.8z"
       />
-      <g :id="`lsbjq_${info.id}_1530_`" class="st2">
+      <g :id="`lsbjq_${info.id}_1530_`" :class="`lsbjq-${info.id}-st2`">
         <g :id="`lsbjq_${info.id}_1519_`">
           <path
             :id="`lsbjq_${info.id}_1520_`"

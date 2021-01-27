@@ -22,64 +22,64 @@
               <i class="el-icon-zoom-in"></i> </el-button
           ></el-button-group>
         </div>
-        <template v-if="canvas.left == 0">
-          <div
-            class="left-top-rule"
-            :style="{
-              left: `${!leftMenuStatus ? '0' : ''}`
-            }"
-          ></div>
-          <div
-            class="left-rule"
-            :style="{
-              // transform: `scaleY(${getZoom})`,
-              //height: `${canvas.height}px`,
-              backgroundSize: `30px ${100 * getZoom}px`,
-              left: `${!leftMenuStatus ? '0' : ''}`
-            }"
+        <div
+          class="left-top-rule"
+          :style="{
+            left: `${!leftMenuStatus ? '0' : ''}`
+          }"
+          v-show="canvas.left == 0"
+        ></div>
+        <div
+          class="left-rule"
+          v-show="canvas.left == 0"
+          :style="{
+            // transform: `scaleY(${getZoom})`,
+            //height: `${canvas.height}px`,
+            backgroundSize: `30px ${100 * getZoom}px`,
+            left: `${!leftMenuStatus ? '0' : ''}`
+          }"
+        >
+          <template
+            v-for="(item, index) in parseInt(
+              windowInnerHeight / getZoom / 100
+            ) + 1"
           >
-            <template
-              v-for="(item, index) in parseInt(
-                windowInnerHeight / getZoom / 100
-              ) + 1"
+            <i
+              :key="item"
+              v-if="
+                (1 / getZoom > 1 && index % parseInt(1 / getZoom) == 0) ||
+                  1 / getZoom <= 1
+              "
+              :style="{ top: `${(item - 1) * 100 * getZoom + 10}px` }"
+              >{{ (item - 1) * 100 }}</i
             >
-              <i
-                :key="item"
-                v-if="
-                  (1 / getZoom > 1 && index % parseInt(1 / getZoom) == 0) ||
-                    1 / getZoom <= 1
-                "
-                :style="{ top: `${(item - 1) * 100 * getZoom + 10}px` }"
-                >{{ (item - 1) * 100 }}</i
-              >
-            </template>
-          </div>
-          <div
-            class="top-rule"
-            :style="{
-              //transform: `scaleX(${getZoom})`,
-              //width: `${canvas.width}px`,
-              backgroundSize: `${100 * getZoom}px 30px`,
-              left: `${!leftMenuStatus ? '30px' : ''}`
-            }"
+          </template>
+        </div>
+        <div
+          class="top-rule"
+          v-show="canvas.left == 0"
+          :style="{
+            //transform: `scaleX(${getZoom})`,
+            //width: `${canvas.width}px`,
+            backgroundSize: `${100 * getZoom}px 30px`,
+            left: `${!leftMenuStatus ? '30px' : ''}`
+          }"
+        >
+          <template
+            v-for="(item, index) in parseInt(windowInnerWidth / getZoom / 100) +
+              1"
           >
-            <template
-              v-for="(item, index) in parseInt(
-                windowInnerWidth / getZoom / 100
-              ) + 1"
+            <i
+              :key="item"
+              :style="{ left: `${(item - 1) * 100 * getZoom + 10}px` }"
+              v-if="
+                (1 / getZoom > 1 && index % parseInt(1 / getZoom) == 0) ||
+                  1 / getZoom <= 1
+              "
+              >{{ (item - 1) * 100 }}</i
             >
-              <i
-                :key="item"
-                :style="{ left: `${(item - 1) * 100 * getZoom + 10}px` }"
-                v-if="
-                  (1 / getZoom > 1 && index % parseInt(1 / getZoom) == 0) ||
-                    1 / getZoom <= 1
-                "
-                >{{ (item - 1) * 100 }}</i
-              >
-            </template>
-          </div>
-        </template>
+          </template>
+        </div>
         <div class="view-box" ref="viewBox" :style="viewBoxStyle">
           <div
             class="canvas-box"

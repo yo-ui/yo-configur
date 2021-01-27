@@ -133,7 +133,7 @@
             :id="`byq_${info.id}_267_`"
             x="16.7"
             y="88.1"
-            class="st4"
+            :class="`byq-${info.id}-st4`"
             width="56"
             height="1.6"
           />
@@ -233,7 +233,7 @@
             :id="`byq_${info.id}_223_`"
             x="16.7"
             y="74.1"
-            class="st4"
+            :class="`byq-${info.id}-st4`"
             width="56"
             height="1.6"
           />
@@ -989,7 +989,7 @@
         />
         <path
           :id="`byq_${info.id}_218_`"
-          class="st25"
+          :class="`byq-${info.id}-st25`"
           d="M71.7,9.1c-2.6,0-4.5-1.1-4.5-2.7s1.9-2.7,4.5-2.7s4.5,1.1,4.5,2.7S74.3,9.1,71.7,9.1z"
         />
         <linearGradient

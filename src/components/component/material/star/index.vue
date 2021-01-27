@@ -1,3 +1,4 @@
+// 星形
 <template>
   <div class="bm-material-star-com" :style="comStyle">
     <svg

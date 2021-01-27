@@ -855,7 +855,7 @@ export default {
       });
       $(".view-box").prepend($copyDom);
       this.uploadImg((img = "") => {
-        window.open(this.$loadImgUrl(img));
+        // window.open(this.$loadImgUrl(img));
         this.widgetCustomAddFunc(
           { content: JSON.stringify(item), name: "自定义", picUrl: img },
           () => {

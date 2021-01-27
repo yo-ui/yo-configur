@@ -3,6 +3,10 @@
   .bm-material-line-com {
     .rect {
       .db;
+      opacity: 0.1;
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }
@@ -13,11 +17,22 @@
   .rect {
     .db(none);
   }
+  &:hover {
+    .rect {
+      opacity: 1;
+    }
+  }
   svg {
     overflow: inherit;
     line,
     rect {
+      cursor: move;
       pointer-events: auto;
+    }
+    &:hover {
+      .rect {
+        opacity: 1;
+      }
     }
   }
   // svg{

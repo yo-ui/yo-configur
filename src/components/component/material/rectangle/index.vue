@@ -1,3 +1,4 @@
+// 矩形
 <template>
   <div class="bm-material-rectangle-com" :style="comStyle">
     <svg

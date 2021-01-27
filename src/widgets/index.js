@@ -29,6 +29,11 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-image" */ "@/components/component/basic/image/index.vue"
     ),
+  // 图片
+  imageStatusCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-image-status" */ "@/components/component/basic/imageStatus/index.vue"
+    ),
   // 显示
   displayCom: () =>
     import(
@@ -365,6 +370,16 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-device-dlq1" */ "@/components/component/device/dlq1/index.vue"
     ),
+  // 断路器2
+  deviceDlq2Com: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dlq2" */ "@/components/component/device/dlq2/index.vue"
+    ),
+  // 开关1
+  deviceKg1Com: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-kg1" */ "@/components/component/device/kg1/index.vue"
+    ),
   // 手车
   deviceScCom: () =>
     import(
@@ -605,6 +620,10 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-material-line" */ "@/components/component/material/line/index.vue"
     ),
+  materialCurveLineCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-curve-line" */ "@/components/component/material/curveLine/index.vue"
+    ),
   materialRectangleCom: () =>
     import(
       /* webpackChunkName: "bm-component-material-rectangle" */ "@/components/component/material/rectangle/index.vue"
@@ -682,6 +701,11 @@ let styles = {
   imageStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-image-style" */ "@/components/component/basic/image/style.vue"
+    ),
+  // 图片
+  imageStatusStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-image-status-style" */ "@/components/component/basic/imageStatus/style.vue"
     ),
   displayStyleCom: () =>
     import(
@@ -1009,6 +1033,16 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-device-dlq1-style" */ "@/components/component/device/dlq1/style.vue"
     ),
+  // 断路器2
+  deviceDlq2StyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-dlq2-style" */ "@/components/component/device/dlq2/style.vue"
+    ),
+  // 开关1
+  deviceKg1StyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-kg1-style" */ "@/components/component/device/kg1/style.vue"
+    ),
   // 手车
   deviceScStyleCom: () =>
     import(
@@ -1236,6 +1270,10 @@ let styles = {
     import(
       /* webpackChunkName: "bm-component-material-line-style" */ "@/components/component/material/line/style.vue"
     ),
+  materialCurveLineStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-curve-line-style" */ "@/components/component/material/curveLine/style.vue"
+    ),
   materialRectangleStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-material-rectangle-style" */ "@/components/component/material/rectangle/style.vue"
@@ -1247,6 +1285,10 @@ let styles = {
   materialStarStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-material-star-style" */ "@/components/component/material/star/style.vue"
+    ),
+  materialPolygonStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-polygon-style" */ "@/components/component/material/polygon/style.vue"
     ),
   assistCommonStyleCom: () =>
     import(
