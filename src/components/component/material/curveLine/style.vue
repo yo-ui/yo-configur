@@ -769,7 +769,8 @@ export default {
       this.activeNames = [
         "name",
         "backgroundStyle",
-        "fontStyle",
+        "content",
+        "style",
         "sliderStyle",
         "animation"
       ];

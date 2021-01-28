@@ -264,12 +264,12 @@ export default {
     // }
   },
   watch: {
-    "info.bindData.devicePoint": {
-      handler(newVal, oldVal) {
-        this.loadDeviceInfo();
-      },
-      deep: true
-    }
+    // "info.bindData.devicePoint": {
+    //   handler(newVal, oldVal) {
+    //     this.loadDeviceInfo();
+    //   },
+    //   deep: true
+    // }
   }
 };
 </script>

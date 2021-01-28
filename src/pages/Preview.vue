@@ -49,7 +49,6 @@
                 :is="`${item.infoType}InfoCom`"
               /> -->
               <bm-com
-                slot="reference"
                 class="preview"
                 :data-type="item.type"
                 :data-id="item.id"
@@ -79,7 +78,6 @@
                         :is="`${_item.infoType}InfoCom`"
                       /> -->
                     <bm-com
-                      slot="reference"
                       class="preview"
                       :data-type="_item.type"
                       :data-id="_item.id"
@@ -631,9 +629,9 @@ export default {
       let value = {};
       let { condition } = this;
       let { canvasId: id = "" } = condition;
-      if(!id){
-        bmCommon.warn("请输入画布id")
-        return
+      if (!id) {
+        bmCommon.warn("请输入画布id");
+        return;
       }
       this.canvasGetAction({ id })
         .then(({ data }) => {

@@ -45,7 +45,6 @@
                   :is="`${item.infoType}InfoCom`"
                 /> -->
               <bm-com
-                slot="reference"
                 class="view"
                 :data-type="item.type"
                 :data-id="item.id"
@@ -75,7 +74,6 @@
                           :is="`${_item.infoType}InfoCom`"
                         /> -->
                     <bm-com
-                      slot="reference"
                       class="view"
                       :data-type="_item.type"
                       :data-id="_item.id"

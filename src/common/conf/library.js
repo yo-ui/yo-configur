@@ -61,6 +61,7 @@ let baseData = {
   backgroundRepeat: "repeat",
   borderWidth: 1,
   comName: "", //
+  points: [],
   order: 0,
   borderStyle: "none",
   borderColor: "#000",
@@ -2947,6 +2948,7 @@ let componentLibrary = [
           borderColor: "#0075E7",
           borderStyle: "solid",
           lineWidth: 1,
+          content: 0,
           x1: 0,
           y1: 0,
           x2: 200,

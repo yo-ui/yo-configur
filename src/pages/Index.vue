@@ -110,7 +110,7 @@
                 </bm-com>
               </template>
             </bm-com>
-            <bm-lines ref="bmLines"></bm-lines>
+            <!-- <bm-lines ref="bmLines"></bm-lines> -->
             <bm-rule-lines ref="bmRuleLines"></bm-rule-lines>
             <!-- <bm-group ref="bmGroup" v-if="isSameGroup">{{
               isSameGroup
@@ -263,8 +263,8 @@ export default {
     bmNav,
     // : () =>
     //   import(/* webpackChunkName: "iot-header-com" */ "@/components/header"),
-    bmLines: () =>
-      import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
+    // bmLines: () =>
+    //   import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
     bmRuleLines: () =>
       import(
         /* webpackChunkName: "iot-rule-lines-com" */ "@/components/rule-lines"
@@ -645,6 +645,10 @@ export default {
       let viewBox = this.$refs.viewBox;
       // 注册鼠标事件
       $(viewBox).on("mousedown", this.viewBoxMousedownEvent);
+      // 注册颜色框事件
+      $(document).on("mousedown", ".el-color-picker__panel", e => {
+        e.stopPropagation();
+      });
       //滚动事件
       $(viewBox).on("mousewheel DOMMouseScroll", this.mouseScrollEvent);
       // 注册右键菜单事件

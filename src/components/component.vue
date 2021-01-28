@@ -165,8 +165,8 @@ export default {
     // this.loadSuccess();
     let { info = {} } = this;
     let { animation = {} } = info || {};
-    let that = this;
-    that.loadAnimation(animation);
+    this.loadAnimation(animation);
+    this.loadComPoints();
     // $vm.$on(`comAnimationEvent_${id}`, (animation = {}) => {
     // });
   },
@@ -451,10 +451,49 @@ export default {
         }
       });
     },
+    loadComPoints() {
+      let { info = {} } = this;
+      let points = [];
+      this.$nextTick(() => {
+        let bmComBox = this.$refs.bmComBox;
+        let pos = bmComBox
+          .querySelector(".el-icon-top-left")
+          ?.getBoundingClientRect();
+        pos ? points.push([pos.left, pos.top]) : "";
+        pos = bmComBox.querySelector(".el-icon-top")?.getBoundingClientRect();
+        pos ? points.push([pos.left, pos.top]) : "";
+        pos = bmComBox
+          .querySelector(".el-icon-top-right")
+          ?.getBoundingClientRect();
+        pos ? points.push([pos.left, pos.top]) : "";
+        pos =
+          bmComBox.querySelector(".el-icon-back")?.getBoundingClientRect() ||
+          {};
+        pos ? points.push([pos.left, pos.top]) : "";
+        pos =
+          bmComBox.querySelector(".el-icon-right")?.getBoundingClientRect() ||
+          {};
+        pos ? points.push([pos.left, pos.top]) : "";
+        pos = bmComBox
+          .querySelector(".el-icon-bottom-left")
+          ?.getBoundingClientRect();
+        pos ? points.push([pos.left, pos.top]) : "";
+        pos =
+          bmComBox.querySelector(".el-icon-bottom")?.getBoundingClientRect() ||
+          {};
+        pos ? points.push([pos.left, pos.top]) : "";
+        pos = bmComBox
+          .querySelector(".el-icon-bottom-right")
+          ?.getBoundingClientRect();
+        pos ? points.push([pos.left, pos.top]) : "";
+        info.points = points || [];
+        bmCommon.log("loadComPoints ", points);
+      });
+    },
     clickEvent() {
       let { info = {} } = this;
       let { bindData = {}, infoType = "" } = info || {};
-      // let { deviceId = "", devicePoint = "" } = bindData || {};
+      // let { deviceId = "", devicePoint = "" } = bindData;
       if (infoType == "device") {
         $vm.$emit("show-device-info", { ...bindData, infoType });
       }
@@ -548,7 +587,6 @@ export default {
             activeCom.height = (originHeight * value) / originWidth;
           }
         }
-        return;
       } else if (direction === "top") {
         height = originHeight - Math.floor((dy * 1) / zoom);
         if (height > 10) {
@@ -566,7 +604,6 @@ export default {
             activeCom.width = (originWidth * value) / originHeight;
           }
         }
-        return;
       } else if (direction === "left") {
         width = originWidth - Math.floor((dx * 1) / zoom);
         if (width > 10) {
@@ -576,7 +613,6 @@ export default {
             activeCom.height = (originHeight * width) / originWidth;
           }
         }
-        return;
       } else if (direction === "topleft") {
         width = originWidth - Math.floor((dx * 1) / zoom);
         height = originHeight - Math.floor((dy * 1) / zoom);
@@ -593,7 +629,6 @@ export default {
           activeCom.height = height > 10 ? height : 10;
           activeCom.width = width > 10 ? width : 10;
         }
-        return;
       } else if (direction === "topright") {
         width = originWidth + Math.floor((dx * 1) / zoom);
         height = originHeight - Math.floor((dy * 1) / zoom);
@@ -610,7 +645,6 @@ export default {
           activeCom.height = height > 10 ? height : 10;
           activeCom.width = width > 10 ? width : 10;
         }
-        return;
       } else if (direction === "bottomleft") {
         height = originHeight + Math.floor((dy * 1) / zoom);
         width = originWidth - Math.floor((dx * 1) / zoom);
@@ -627,7 +661,6 @@ export default {
           activeCom.height = height > 10 ? height : 10;
           activeCom.width = width > 10 ? width : 10;
         }
-        return;
       } else if (direction === "bottomright") {
         height = originHeight + Math.floor((dy * 1) / zoom);
         width = originWidth + Math.floor((dx * 1) / zoom);
@@ -644,7 +677,6 @@ export default {
           activeCom.height = height > 10 ? height : 10;
           activeCom.width = width > 10 ? width : 10;
         }
-        return;
       } else if (direction === "rotate") {
         let rect = bmComBox?.getBoundingClientRect() || {};
         let { left = 0, top = 0, width = 0, height = 0 } = rect || {};
@@ -661,7 +693,6 @@ export default {
         state.startY = pos.y;
         state.originRotate = rotate;
         activeCom.rotate = rotate;
-        return;
       }
     },
     coverEvent() {
@@ -672,6 +703,7 @@ export default {
     mouseupEvent(e) {
       $(document).off("mousemove", this.mousemoveEvent);
       $(document).off("mouseup", this.mouseupEvent);
+      this.loadComPoints();
       this.stopMove();
       this.rotating = false;
       this.resizing = false;

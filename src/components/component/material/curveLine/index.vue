@@ -1,13 +1,11 @@
 // 曲线
 <template>
   <div class="bm-material-curve-line-com" :style="comStyle">
+    <!-- :transform="`translate(${info.vboxX - 10} ${info.vboxY - 5})`" -->
     <svg
       version="1.1"
-      :viewBox="
-        `${info.vboxX - 10} ${info.vboxY - 5} ${info.width + 20} ${info.height}`
-      "
-      :transform="`translate(${info.vboxX - 10} ${info.vboxY - 5})`"
-      :width="`${info.width + 20}`"
+      :viewBox="`0 0 ${info.width} ${info.height}`"
+      :width="`${info.width}`"
       :height="`${info.height}`"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -325,71 +323,19 @@ export default {
       return styles;
     },
     comStyle() {
-      let { info = {} } = this;
-      let {
-        // width = "",
-        height = ""
-        // color = "",
-        // borderColor = "",
-        // borderStyle = "",
-        // borderWidth = "",
-        // borderRadiusTopLeft = 0,
-        // borderRadiusTopRight = 0,
-        // borderRadiusBottomLeft = 0,
-        // borderRadiusBottomRight = 0,
-        // backgroundType = "",
-        // backgroundColor = "",
-        // backgroundImage = "",
-        // backgroundRepeat = "",
-        // backgroundSize = ""
-      } = info || {};
+      // let { info = {} } = this;
+      // let {
+      //   // width = "",
+      //   height = ""
+      // } = info || {};
       let styles = {};
 
       // if (width) {
       // styles["width"] = `${width}px`;
 
       // }
-      if (height) {
-        styles["height"] = `${height}px`;
-      }
-      // let line = SVG(this.$refs.line);
-      // let rbox = line.bbox();
-      // let { w = 0, h = 0 } = rbox || {};
-      // bmCommon.warn("rbox=", rbox);
-      // info.width = w;
-      // info.height = h + 10 + borderWidth;
-      // this.reloadSize();
-      // if (backgroundRepeat) {
-      //   styles["backgroundRepeat"] = backgroundRepeat;
-      // }
-      // if (backgroundSize) {
-      //   styles["backgroundSize"] = backgroundSize;
-      // }
-      // if (borderColor) {
-      //   styles["borderColor"] = borderColor;
-      // }
-      // if (borderStyle) {
-      //   styles["borderStyle"] = borderStyle;
-      // }
-      // styles["borderWidth"] = `${borderWidth}px`;
-
-      // styles[
-      //   "borderRadius"
-      // ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
-
-      // if (backgroundType == "purity") {
-      //   //纯色
-      //   if (backgroundColor) {
-      //     styles["backgroundColor"] = backgroundColor;
-      //   }
-      //   if (backgroundImage) {
-      //     styles["backgroundImage"] = `url(${this.$loadImgUrl(
-      //       backgroundImage
-      //     )})`;
-      //   }
-      // } else if (backgroundType == "gradient") {
-      //   //渐变
-      //   styles = { ...styles, ...gradientStyle(info) };
+      // if (height) {
+      //   styles["height"] = `${height}px`;
       // }
       return styles || {};
     }
@@ -412,17 +358,17 @@ export default {
     ...mapMutations({}),
     ...mapActions({}),
     reloadSize() {
-      let { info = {} } = this;
-      let { x1, y1, x2, y2 } = info || {};
-      let line = SVG(this.$refs.line);
-      let rbox = line.rbox();
-      // let bbox = line.bbox();
-      let { w = 0, h = 0 } = rbox || {};
-      info.vboxX = Math.min(x1, x2);
-      info.vboxY = Math.min(y1, y2);
-      // bmCommon.warn("rbox=", info.vboxX,info.vboxY);
-      info.width = w;
-      info.height = h + 10;
+      // let { info = {} } = this;
+      // let { x1, y1, x2, y2 } = info || {};
+      // let line = SVG(this.$refs.line);
+      // let rbox = line.rbox();
+      // // let bbox = line.bbox();
+      // let { w = 0, h = 0 } = rbox || {};
+      // info.vboxX = Math.min(x1, x2);
+      // info.vboxY = Math.min(y1, y2);
+      // // bmCommon.warn("rbox=", info.vboxX,info.vboxY);
+      // info.width = w;
+      // info.height = h + 10;
     },
     leftClickEvent(e) {
       e.preventDefault();

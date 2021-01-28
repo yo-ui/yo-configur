@@ -314,6 +314,9 @@ const Constants = {
   ],
   FONTFAMILYLIST: [
     { code: "", name: "默认" },
+    { code: "黑体", name: "黑体" },
+    { code: "宋体", name: "宋体" },
+    { code: "新宋体", name: "新宋体" },
     { code: "lcdD", name: "LCD屏字体" },
     { code: "Acens", name: "Acens" },
     { code: "Arial", name: "Arial" },

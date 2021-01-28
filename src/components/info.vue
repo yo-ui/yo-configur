@@ -356,7 +356,8 @@ export default {
               }
             },
             {
-              deep: true
+              deep: true,
+              immediate: false
             }
           );
         }

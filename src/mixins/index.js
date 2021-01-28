@@ -61,7 +61,7 @@ export default {
 
     mouseupEvent() {
       let { activeCom = {} } = this;
-      let { alias = "", left = 0, top = 0 } = activeCom || {};
+      let { alias = "", left = 0, top = 0, id = "" } = activeCom || {};
       let { originX = 0, originY = 0 } = position || {};
       // document.removeEventListener('mousemove', this.mousemoveEvent, true)
       $(document).off("mousemove", this.mousemoveEvent);
@@ -73,6 +73,10 @@ export default {
       }
       // bmCommon.log("组件停止移动");
       this.stopMove();
+      let box = document.getElementById(`box_${id}`)?.__vue__;
+      if (box) {
+        box.loadComPoints();
+      }
       if (Math.abs(originX - left) > 5 || Math.abs(originY - top) > 5) {
         this.createHistoryAction();
       }

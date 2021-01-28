@@ -1,14 +1,12 @@
 // 直线
 <template>
   <div class="bm-material-line-com" :style="comStyle">
+    <!-- :transform="`translate(${info.vboxX - 10} ${info.vboxY - 5})`" -->
     <svg
       version="1.1"
-      :viewBox="
-        `${info.vboxX - 10} ${info.vboxY - 5} ${info.width + 20} ${info.height}`
-      "
-      :transform="`translate(${info.vboxX - 10} ${info.vboxY - 5})`"
-      :width="`${info.width + 20}`"
-      :height="`${info.height}`"
+      :viewBox="`0 0 1 1`"
+      :width="1"
+      :height="1"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
@@ -166,6 +164,7 @@
         class="rect"
         width="10"
         height="10"
+        ref="rect1"
         :x="info.x1 - 5"
         :y="info.y1 - 5"
         stroke="#0075e7"
@@ -177,6 +176,7 @@
         class="rect"
         width="10"
         height="10"
+        ref="rect2"
         :x="info.x2 - 5"
         fill="#fff"
         :y="info.y2 - 5"
@@ -218,6 +218,7 @@ export default {
   computed: {
     ...mapGetters({
       showType: "canvas/getShowType", //当前显示类型
+      widgetList: "canvas/getWidgetList", //组件列表
       // moving: "canvas/getMoving",
       zoom: "canvas/getZoom" //放大缩小
     }),
@@ -315,71 +316,11 @@ export default {
       return styles;
     },
     comStyle() {
-      let { info = {} } = this;
-      let {
-        // width = "",
-        height = ""
-        // color = "",
-        // borderColor = "",
-        // borderStyle = "",
-        // borderWidth = "",
-        // borderRadiusTopLeft = 0,
-        // borderRadiusTopRight = 0,
-        // borderRadiusBottomLeft = 0,
-        // borderRadiusBottomRight = 0,
-        // backgroundType = "",
-        // backgroundColor = "",
-        // backgroundImage = "",
-        // backgroundRepeat = "",
-        // backgroundSize = ""
-      } = info || {};
+      // let { info = {} } = this;
+      // let { height = "" } = info || {};
       let styles = {};
-
-      // if (width) {
-      // styles["width"] = `${width}px`;
-
-      // }
-      if (height) {
-        styles["height"] = `${height}px`;
-      }
-      // let line = SVG(this.$refs.line);
-      // let rbox = line.bbox();
-      // let { w = 0, h = 0 } = rbox || {};
-      // bmCommon.warn("rbox=", rbox);
-      // info.width = w;
-      // info.height = h + 10 + borderWidth;
-      // this.reloadSize();
-      // if (backgroundRepeat) {
-      //   styles["backgroundRepeat"] = backgroundRepeat;
-      // }
-      // if (backgroundSize) {
-      //   styles["backgroundSize"] = backgroundSize;
-      // }
-      // if (borderColor) {
-      //   styles["borderColor"] = borderColor;
-      // }
-      // if (borderStyle) {
-      //   styles["borderStyle"] = borderStyle;
-      // }
-      // styles["borderWidth"] = `${borderWidth}px`;
-
-      // styles[
-      //   "borderRadius"
-      // ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
-
-      // if (backgroundType == "purity") {
-      //   //纯色
-      //   if (backgroundColor) {
-      //     styles["backgroundColor"] = backgroundColor;
-      //   }
-      //   if (backgroundImage) {
-      //     styles["backgroundImage"] = `url(${this.$loadImgUrl(
-      //       backgroundImage
-      //     )})`;
-      //   }
-      // } else if (backgroundType == "gradient") {
-      //   //渐变
-      //   styles = { ...styles, ...gradientStyle(info) };
+      // if (height) {
+      //   styles["height"] = `${height}px`;
       // }
       return styles || {};
     }
@@ -402,17 +343,17 @@ export default {
     ...mapMutations({}),
     ...mapActions({}),
     reloadSize() {
-      let { info = {} } = this;
-      let { x1, y1, x2, y2 } = info || {};
-      let line = SVG(this.$refs.line);
-      let rbox = line.rbox();
-      // let bbox = line.bbox();
-      let { w = 0, h = 0 } = rbox || {};
-      info.vboxX = Math.min(x1, x2);
-      info.vboxY = Math.min(y1, y2);
-      // bmCommon.warn("rbox=", info.vboxX,info.vboxY);
-      info.width = w;
-      info.height = h + 10;
+      // let { info = {} } = this;
+      // let { x1, y1, x2, y2 } = info || {};
+      // let line = SVG(this.$refs.line);
+      // let rbox = line.rbox();
+      // // let bbox = line.bbox();
+      // let { w = 0, h = 0 } = rbox || {};
+      // info.vboxX = Math.min(x1, x2);
+      // info.vboxY = Math.min(y1, y2);
+      // // bmCommon.warn("rbox=", info.vboxX,info.vboxY);
+      // info.width = w;
+      // info.height = h + 10;
     },
     leftClickEvent(e) {
       e.preventDefault();
@@ -480,49 +421,112 @@ export default {
         startY,
         // originX,
         // originY,
+        // widgetList = [],
         zoom,
         info
         // originWidth,
         // originHeight,
         // originRotate
       } = this;
-      var dx = x - startX;
-      var dy = y - startY;
+      zoom = 1;
+      let dx = x - startX;
+      let dy = y - startY;
+      // const distance = 10;
       // let value, width, height, rotate;
-      // let { equalScaleable = false } = info || {};
+      let { x1 = 0, x2 = 0, y1 = 0, y2 = 0, left = 0, top = 0 } = info || {};
       // bmCommon.warn("dx,dy=", direction, dx, dy, zoom, x, y);
-
+      // let offset =
+      //   document.querySelector(".canvas-box")?.getBoundingClientRect() || {};
+      // let { x: boxX = 0, y: boxY = 0 } = offset || {};
+      dx = Math.floor(dx / zoom);
+      dy = Math.floor(dy / zoom);
+      if (direction === "right") {
+        // let rect2 = this.$refs.rect2;
+        // let _offset = rect2?.getBoundingClientRect() || {};
+        // let { x: _x2 = 0, y: _y2 = 0 } = _offset || {};
+        // if (value > 10) {
+        // x2 += dx;
+        // y2 += dy;
+        let __x2 = x2 + dx;
+        let __y2 = y2 + dy;
+        // if (Math.abs(x2 - __x2) > distance || Math.abs(y2 - __y2) > distance) {
+        //   this.movingStatus = true; //大于判断距离则进行判断
+        // }
+        // // bmCommon.log("x=", _x2, x2, ",y=", _y2, y2);
+        // if (this.movingStatus) {
+        //   try {
+        //     widgetList.forEach(item => {
+        //       let { points = [] } = item || {};
+        //       if (points && points.length > 0) {
+        //         // bmCommon.log("比较---x=", points.toString());
+        //         points.forEach(_item => {
+        //           let [x = 0, y = 0] = _item || {};
+        //           if (
+        //             _x2 < x + distance &&
+        //             _x2 > x - distance &&
+        //             _y2 < y + distance &&
+        //             _y2 > y - distance
+        //           ) {
+        //             __x2 = x - left - boxX;
+        //             __y2 = y - top - boxY;
+        //             this.movingStatus = false;
+        //             throw new Error(`找到符合条件的点的坐标x=${x},y=${y}`);
+        //           }
+        //         });
+        //       }
+        //     });
+        //   } catch (error) {
+        //     bmCommon.error(error);
+        //   }
+        // }
+        bmCommon.log("x2====x=", __x2, ",y=", __y2);
+        info.x2 = __x2;
+        info.y2 = __y2;
+        // }
+        this.reloadSize();
+      } else if (direction === "left") {
+        // let rect1 = this.$refs.rect1;
+        // let _offset = rect1?.getBoundingClientRect() || {};
+        // let { x: _x1 = 0, y: _y1 = 0 } = _offset || {};
+        let __x1 = x1 + dx;
+        let __y1 = y1 + dy;
+        // if (Math.abs(x1 - __x1) > distance || Math.abs(y1 - __y1) > distance) {
+        //   this.movingStatus = true; //大于判断距离则进行判断
+        // }
+        bmCommon.log("x1====x=", __x1, ",y=", __y1);
+        // if (this.movingStatus) {
+        //   try {
+        //     widgetList.forEach(item => {
+        //       let { points = [] } = item || {};
+        //       // bmCommon.log("比较---x=", points.toString());
+        //       if (points && points.length > 0) {
+        //         points.forEach(_item => {
+        //           let [x = 0, y = 0] = _item || {};
+        //           if (
+        //             _x1 < x + distance &&
+        //             _x1 > x - distance &&
+        //             _y1 < y + distance &&
+        //             _y1 > y - distance
+        //           ) {
+        //             __x1 = x - left - boxX;
+        //             __y1 = y - top - boxY;
+        //             this.movingStatus = false;
+        //             throw new Error(`找到符合条件的点的坐标x=${x},y=${y}`);
+        //           }
+        //         });
+        //       }
+        //     });
+        //   } catch (error) {
+        //     bmCommon.error(error);
+        //   }
+        // }
+        info.x1 = __x1;
+        info.y1 = __y1;
+        this.reloadSize();
+      }
       this.startX = x;
       this.startY = y;
-      if (direction === "right") {
-        dx = Math.floor((dx * 1) / zoom);
-        dy = Math.floor((dy * 1) / zoom);
-        // if (value > 10) {
-        info.x2 += dx;
-        info.y2 += dy;
-        // }
-        this.reloadSize();
-        return;
-      }
-
-      if (direction === "left") {
-        dx = Math.floor((dx * 1) / zoom);
-        dy = Math.floor((dy * 1) / zoom);
-        info.x1 += dx;
-        info.y1 += dy;
-        // }
-        this.reloadSize();
-        return;
-      }
     }
-    // blurEvent(e) {
-    //   let { target } = e;
-    //   let { info = {} } = this;
-    //   let name = $(target)
-    //     .text()
-    //     .trim();
-    //   info.name = name;
-    // }
   }
 };
 </script>
