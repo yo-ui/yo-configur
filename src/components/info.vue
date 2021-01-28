@@ -201,26 +201,26 @@ export default {
       getWidgetList: "canvas/getWidgetList",
       getActiveCom: "canvas/getActiveCom", //选中对象
       selectBox: "canvas/getSelectBox", //选取框
-      // activeCom: "canvas/getActiveCom", //选中对象
+      activeCom: "canvas/getActiveCom", //选中对象
       moving: "canvas/getMoving", //组件是否移动
       activeComs: "canvas/getActiveComs" //选中多选对象
     }),
-    activeCom() {
-      let { activeComs = [], getActiveCom = {} } = this;
-      let { length = 0 } = activeComs || [];
-      let { children = [] } = getActiveCom || {};
-      if (length > 1) {
-        let [activeCom = {}] = activeComs || [];
-        return activeCom || {};
-      } else {
-        let { length = 0 } = children || [];
-        if (length > 1) {
-          let [activeCom = {}] = children || [];
-          return activeCom || {};
-        }
-      }
-      return getActiveCom || {};
-    },
+    // activeCom() {
+    //   let { activeComs = [], getActiveCom = {} } = this;
+    //   let { length = 0 } = activeComs || [];
+    //   let { children = [] } = getActiveCom || {};
+    //   if (length > 1) {
+    //     let [activeCom = {}] = activeComs || [];
+    //     return activeCom || {};
+    //   } else {
+    //     let { length = 0 } = children || [];
+    //     if (length > 1) {
+    //       let [activeCom = {}] = children || [];
+    //       return activeCom || {};
+    //     }
+    //   }
+    //   return getActiveCom || {};
+    // },
     styleCom() {
       let { activeComs = [], activeCom = {} } = this;
       let { type = "", children = [], styleCode = "" } = activeCom || {};
@@ -243,23 +243,24 @@ export default {
             type = "group";
           }
         }
-      } else {
-        let set = new Set();
-        children.forEach(item => {
-          let { type = "", styleCode = "" } = item || {};
-          type = styleCode || type;
-          set.add(type);
-        });
-        let { size = 0 } = set || {};
-        if (size > 0) {
-          if (size == 1 && !set.has("")) {
-            [type = ""] = Array.from(set);
-            // com = `${type}StyleCom`;
-          } else {
-            type = "group";
-          }
-        }
       }
+      // else {
+      //   let set = new Set();
+      //   children.forEach(item => {
+      //     let { type = "", styleCode = "" } = item || {};
+      //     type = styleCode || type;
+      //     set.add(type);
+      //   });
+      //   let { size = 0 } = set || {};
+      //   if (size > 0) {
+      //     if (size == 1 && !set.has("")) {
+      //       [type = ""] = Array.from(set);
+      //       // com = `${type}StyleCom`;
+      //     } else {
+      //       type = "group";
+      //     }
+      //   }
+      // }
       com = `${type}StyleCom`;
       // bmCommon.log("panel==>", com);
       return com;
@@ -335,8 +336,8 @@ export default {
           this.$watch(
             key,
             (newVal, oldVal) => {
-              let { activeCom = {}, getActiveCom = {} } = this;
-              let { children = [] } = getActiveCom || {};
+              let { activeCom = {} } = this;
+              // let { children = [] } = getActiveCom || {};
               let { parentId = "" } = activeCom || {};
               let { activeComs = [], moving = false, selectBox = {} } = this;
               let { moving: _moving = false } = selectBox || {};
@@ -347,13 +348,14 @@ export default {
                     item[i] = newVal;
                   });
                 }
-              } else {
-                if (newVal !== oldVal) {
-                  children.forEach(item => {
-                    item[i] = newVal;
-                  });
-                }
               }
+              //  else {
+              //   if (newVal !== oldVal) {
+              //     children.forEach(item => {
+              //       item[i] = newVal;
+              //     });
+              //   }
+              // }
             },
             {
               deep: true,
