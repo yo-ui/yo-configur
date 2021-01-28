@@ -1341,6 +1341,23 @@ let componentLibrary = [
             }
           },
           {
+            name: "接地",
+            code: "deviceJd1",
+            alias: "jd1",
+            icon: "/static/img/configur/jd1.svg",
+            data: {
+              ...baseData,
+              paddingTop: 10,
+              paddingBottom: 10,
+              paddingLeft: 10,
+              paddingRight: 10,
+              color: "#FF3E3E",
+              width: 19,
+              height: 19,
+              equalScaleable: true //是否等比例缩放
+            }
+          },
+          {
             name: "接地指示",
             code: "deviceJdzs",
             alias: "jdzs",

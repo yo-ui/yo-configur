@@ -158,9 +158,7 @@ export default {
 
       if (backgroundType == "purity") {
         //纯色
-        if (backgroundColor) {
-          styles["backgroundColor"] = backgroundColor;
-        }
+        styles["backgroundColor"] = backgroundColor;
         if (backgroundImage) {
           styles["backgroundImage"] = `url(${this.$loadImgUrl(
             backgroundImage

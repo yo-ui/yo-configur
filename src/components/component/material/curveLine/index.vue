@@ -310,9 +310,7 @@ export default {
       }
       if (backgroundType == "purity") {
         //纯色
-        if (backgroundColor) {
-          styles["stroke"] = backgroundColor;
-        }
+        styles["stroke"] = backgroundColor;
         // if (backgroundImage) {
         //   styles["backgroundImage"] = `url(${this.$loadImgUrl(
         //     backgroundImage

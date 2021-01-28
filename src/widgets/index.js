@@ -355,6 +355,11 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-device-jd" */ "@/components/component/device/jd/index.vue"
     ),
+  // 接地
+  deviceJd1Com: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-jd1" */ "@/components/component/device/jd1/index.vue"
+    ),
   // 接地指示
   deviceJdzsCom: () =>
     import(
@@ -1017,6 +1022,11 @@ let styles = {
   deviceJdStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-device-jd-style" */ "@/components/component/device/jd/style.vue"
+    ),
+  // 接地1
+  deviceJd1StyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-device-jd1-style" */ "@/components/component/device/jd1/style.vue"
     ),
   // 接地指示
   deviceJdzsStyleCom: () =>

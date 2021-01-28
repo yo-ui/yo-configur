@@ -243,9 +243,7 @@ export default {
         // backgroundSize = ""
       } = info || {};
       let styles = {};
-      if (borderColor) {
-        styles["stroke"] = borderColor;
-      }
+      styles["stroke"] = borderColor;
       if (borderStyle) {
         switch (borderStyle) {
           case "none":
@@ -281,9 +279,7 @@ export default {
       );
       if (backgroundType == "purity") {
         //纯色
-        if (backgroundColor) {
-          styles["fill"] = backgroundColor;
-        }
+        styles["fill"] = backgroundColor;
         // if (backgroundImage) {
         //   styles["backgroundImage"] = `url(${this.$loadImgUrl(
         //     backgroundImage

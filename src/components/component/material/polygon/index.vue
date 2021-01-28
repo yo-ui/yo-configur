@@ -200,9 +200,7 @@ export default {
         backgroundColor = ""
       } = info || {};
       let styles = {};
-      if (borderColor) {
-        styles["stroke"] = borderColor;
-      }
+      styles["stroke"] = borderColor;
       if (borderStyle) {
         switch (borderStyle) {
           case "none":
@@ -261,12 +259,10 @@ export default {
       info.points = new SVG.PointArray(points)
         .size(width - borderWidth * 2, height - borderWidth * 2)
         .move(0, 0);
-      bmCommon.log(info.points);
+      // bmCommon.log(info.points);
       if (backgroundType == "purity") {
         //纯色
-        if (backgroundColor) {
-          styles["fill"] = backgroundColor;
-        }
+        styles["fill"] = backgroundColor || "transparent";
       } else if (backgroundType == "gradient") {
         //渐变
         // styles = { ...styles, ...gradientStyle };

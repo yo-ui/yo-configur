@@ -1,14 +1,54 @@
+// 接地1
 <template>
-  <img :src="info.backgroundImage" :style="comStyle" />
+  <div class="bm-device-jd1-com" :style="comStyle">
+    <svg
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      :viewBox="`0 0 19 19`"
+      :width="info.width"
+      :height="info.height"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xml:space="preserve"
+    >
+      <defs
+        v-html="
+          `
+        <style type='text/css'>
+	.jd1-${info.id}-st0{fill:${info.color};}
+      </style>
+      `
+        "
+      ></defs>
+      <path
+        :class="`jd1-${info.id}-st0`"
+        d="M18,11H2c-0.6,0-1-0.4-1-1s0.4-1,1-1h16c0.6,0,1,0.4,1,1S18.6,11,18,11z"
+      />
+      <path
+        :class="`jd1-${info.id}-st0`"
+        d="M15,15H5c-0.6,0-1-0.4-1-1s0.4-1,1-1h10c0.6,0,1,0.4,1,1S15.6,15,15,15z"
+      />
+      <path
+        :class="`jd1-${info.id}-st0`"
+        d="M12,19H8c-0.6,0-1-0.4-1-1s0.4-1,1-1h4c0.6,0,1,0.4,1,1S12.6,19,12,19z"
+      />
+      <path
+        :class="`jd1-${info.id}-st0`"
+        d="M10,10c-0.6,0-1-0.4-1-1V2H0V0h11v9C11,9.6,10.6,10,10,10z"
+      />
+    </svg>
+  </div>
 </template>
 
 <script>
+// import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
-  name: "materialCommonCom",
+  name: "deviceJd1Com",
   data() {
-    return {};
+    return {
+      pointValue: "" // expr:'SwSts',stop:0,start:1,alarm:2
+    };
   },
   props: {
     info: {
@@ -19,7 +59,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(),
+    ...mapGetters({
+      showType: "canvas/getShowType" //当前显示类型
+    }),
 
     //渐变颜色样式
     gradientStyle() {
@@ -149,7 +191,9 @@ export default {
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       if (backgroundType == "purity") {
         //纯色
-        styles["backgroundColor"] = backgroundColor;
+        if (backgroundColor) {
+          styles["backgroundColor"] = backgroundColor;
+        }
         if (backgroundImage) {
           styles["backgroundImage"] = `url(${this.$loadImgUrl(
             backgroundImage
@@ -160,97 +204,72 @@ export default {
         styles = { ...styles, ...gradientStyle(info) };
       }
       return styles || {};
-    },
-    textStyle() {
-      let { info = {} } = this;
-      let {
-        // width = "",
-        // height = "",
-        color = "",
-        // borderColor = "",
-        // borderStyle = "",
-        // borderWidth = "",
-        // scale = "",
-        fontFamily = "",
-        fontSize = "",
-        fontWeight = "",
-        fontStyle = ""
-        // backgroundColor = "",
-        // backgroundImage = "",
-        // backgroundRepeat = "",
-        // backgroundSize = ""
-      } = info || {};
-      let styles = {};
-
-      // if (width) {
-      //   styles["width"] = `${width}px`;
-      // }
-      // if (height) {
-      //   styles["height"] = `${height}px`;
-      // }
-      // if (backgroundRepeat) {
-      //   styles["backgroundRepeat"] = backgroundRepeat;
-      // }
-      // if (backgroundSize) {
-      //   styles["backgroundSize"] = backgroundSize;
-      // }
-      // if (borderColor) {
-      //   styles["borderColor"] = borderColor;
-      // }
-      // if (borderStyle) {
-      //   styles["borderStyle"] = borderStyle;
-      // }
-      // // if (borderWidth) {
-      // styles["borderWidth"] = `${borderWidth}px`;
-      // }
-      // if (scale) {
-      //   (styles["transform"] = `${scale}`),
-      //     (styles["-webkit-transform"] = `${scale}`),
-      //     (styles["-ms-transform"] = `${scale}`),
-      //     (styles["-o-transform"] = `${scale}`),
-      //     (styles["-moz-transform"] = `${scale}`);
-      // }
-      if (color) {
-        styles["color"] = color;
-      }
-      if (fontSize) {
-        styles["fontSize"] = `${fontSize}px`;
-      }
-      if (fontFamily) {
-        styles["fontFamily"] = `${fontFamily}`;
-      }
-      if (fontWeight) {
-        styles["fontWeight"] = fontWeight;
-      }
-      if (fontStyle) {
-        styles["fontStyle"] = fontStyle;
-      }
-      // if (backgroundColor) {
-      //   styles["backgroundColor"] = backgroundColor;
-      // }
-      // if (backgroundImage) {
-      //   styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
-      // }
-      return styles || {};
     }
   },
-  mounted() {},
+  mounted() {
+    this.init();
+  },
   methods: {
     ...mapMutations({}),
-    ...mapActions({})
-    // blurEvent(e) {
-    //   let { target } = e;
+    ...mapActions({}),
+    init() {
+      // let { info = {}, showType = "" } = this;
+      // if (showType != "edit") {
+      //   let { id = "", bindData = {} } = info || {};
+      //   let { deviceId = "" } = bindData || {};
+      //   if (!deviceId) {
+      //     return;
+      //   }
+      //   $vm.$on(`devicePointEvent_${id}`, ({ device }) => {
+      //     bmCommon.log("deviceDbCom", device);
+      //     let { pointList = [] } = device || {};
+      //     let point = pointList.find(item => {
+      //       let { point: id = "" } = item || {};
+      //       return id == pointCode; // SwSts  开关状态
+      //     });
+      //     if (point) {
+      //       let { value = "" } = point || {};
+      //       this.pointValue = value;
+      //     }
+      //   });
+      // }
+      // this.loadDeviceInfo();
+    }
+    // loadDeviceInfo() {
     //   let { info = {} } = this;
-    //   let name = $(target)
-    //     .text()
-    //     .trim();
-    //   info.name = name;
+    //   let { bindData = {} } = info || {};
+    //   let { deviceId = "", devicePoint = "" } = bindData || {};
+    //   if (!deviceId) {
+    //     return;
+    //   }
+    //   devicePoint = pointCode;
+    //   $vm.$emit("device", {
+    //     deviceId,
+    //     callback: (device = {}) => {
+    //       let { points: pointList = [] } = device || {};
+    //       let point = pointList.find(item => {
+    //         let { id = "" } = item || {};
+    //         return id == devicePoint; //
+    //       });
+    //       if (point) {
+    //         let { value = "" } = point || {};
+    //         this.pointValue = value;
+    //       }
+    //     }
+    //   });
+    // }
+  },
+  watch: {
+    // "info.bindData.devicePoint": {
+    //   handler(newVal, oldVal) {
+    //     this.loadDeviceInfo();
+    //   },
+    //   deep: true
     // }
   }
 };
 </script>
-
-<style lang="less">
-@import (less)
-  "../../../../assets/less/components/component/material/common.less";
+<style lang="less" scoped>
+// @import (reference) "./../../../../assets/less/common.less";
+@import (less) "../../../../assets/less/components/component/device/common.less";
 </style>
