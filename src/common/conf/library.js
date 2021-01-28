@@ -2939,7 +2939,7 @@ let componentLibrary = [
       {
         name: "直线",
         code: "materialLine",
-        icon: "/static/img/configur/svg/line.svg",
+        icon: "/static/img/svg/line.svg",
         data: {
           ...baseData,
           // styleCode: "material",
@@ -2958,7 +2958,7 @@ let componentLibrary = [
       {
         name: "曲线",
         code: "materialCurveLine",
-        icon: "/static/img/configur/svg/curveLine.svg",
+        icon: "/static/img/svg/curveLine.svg",
         data: {
           ...baseData,
           backgroundColor: "#0075E7",
@@ -3075,7 +3075,7 @@ let componentLibrary = [
       {
         name: "三角形",
         code: "materialTriangle",
-        icon: "/static/img/configur/svg/triangle.svg",
+        icon: "/static/img/svg/triangle.svg",
         data: {
           ...baseData,
           // styleCode: "material",
