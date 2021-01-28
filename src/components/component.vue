@@ -452,43 +452,43 @@ export default {
       });
     },
     loadComPoints() {
-      let { info = {} } = this;
-      let points = [];
-      this.$nextTick(() => {
-        let bmComBox = this.$refs.bmComBox;
-        let pos = bmComBox
-          .querySelector(".el-icon-top-left")
-          ?.getBoundingClientRect();
-        pos ? points.push([pos.left, pos.top]) : "";
-        pos = bmComBox.querySelector(".el-icon-top")?.getBoundingClientRect();
-        pos ? points.push([pos.left, pos.top]) : "";
-        pos = bmComBox
-          .querySelector(".el-icon-top-right")
-          ?.getBoundingClientRect();
-        pos ? points.push([pos.left, pos.top]) : "";
-        pos =
-          bmComBox.querySelector(".el-icon-back")?.getBoundingClientRect() ||
-          {};
-        pos ? points.push([pos.left, pos.top]) : "";
-        pos =
-          bmComBox.querySelector(".el-icon-right")?.getBoundingClientRect() ||
-          {};
-        pos ? points.push([pos.left, pos.top]) : "";
-        pos = bmComBox
-          .querySelector(".el-icon-bottom-left")
-          ?.getBoundingClientRect();
-        pos ? points.push([pos.left, pos.top]) : "";
-        pos =
-          bmComBox.querySelector(".el-icon-bottom")?.getBoundingClientRect() ||
-          {};
-        pos ? points.push([pos.left, pos.top]) : "";
-        pos = bmComBox
-          .querySelector(".el-icon-bottom-right")
-          ?.getBoundingClientRect();
-        pos ? points.push([pos.left, pos.top]) : "";
-        info.points = points || [];
-        bmCommon.log("loadComPoints ", points);
-      });
+      // let { info = {} } = this;
+      // let points = [];
+      // this.$nextTick(() => {
+      //   let bmComBox = this.$refs.bmComBox;
+      //   let pos = bmComBox
+      //     .querySelector(".el-icon-top-left")
+      //     ?.getBoundingClientRect();
+      //   pos ? points.push([pos.left, pos.top]) : "";
+      //   pos = bmComBox.querySelector(".el-icon-top")?.getBoundingClientRect();
+      //   pos ? points.push([pos.left, pos.top]) : "";
+      //   pos = bmComBox
+      //     .querySelector(".el-icon-top-right")
+      //     ?.getBoundingClientRect();
+      //   pos ? points.push([pos.left, pos.top]) : "";
+      //   pos =
+      //     bmComBox.querySelector(".el-icon-back")?.getBoundingClientRect() ||
+      //     {};
+      //   pos ? points.push([pos.left, pos.top]) : "";
+      //   pos =
+      //     bmComBox.querySelector(".el-icon-right")?.getBoundingClientRect() ||
+      //     {};
+      //   pos ? points.push([pos.left, pos.top]) : "";
+      //   pos = bmComBox
+      //     .querySelector(".el-icon-bottom-left")
+      //     ?.getBoundingClientRect();
+      //   pos ? points.push([pos.left, pos.top]) : "";
+      //   pos =
+      //     bmComBox.querySelector(".el-icon-bottom")?.getBoundingClientRect() ||
+      //     {};
+      //   pos ? points.push([pos.left, pos.top]) : "";
+      //   pos = bmComBox
+      //     .querySelector(".el-icon-bottom-right")
+      //     ?.getBoundingClientRect();
+      //   pos ? points.push([pos.left, pos.top]) : "";
+      //   info.points = points || [];
+      //   bmCommon.log("loadComPoints ", points);
+      // });
     },
     clickEvent() {
       let { info = {} } = this;

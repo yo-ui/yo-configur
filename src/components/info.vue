@@ -223,7 +223,7 @@ export default {
     // },
     styleCom() {
       let { activeComs = [], activeCom = {} } = this;
-      let { type = "", children = [], styleCode = "" } = activeCom || {};
+      let { type = "", styleCode = "" } = activeCom || {};
       let { length = 0 } = activeComs || [];
       let com = ""; //`${type}StyleCom`;
       type = styleCode || type;
