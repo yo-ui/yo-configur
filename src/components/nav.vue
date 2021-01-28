@@ -317,6 +317,7 @@ export default {
       userInfo: "getUserInfo",
       historyList: "canvas/getHistoryList",
       historyIndex: "canvas/getHistoryIndex",
+      selectBox: "canvas/getSelectBox", //选取框
       canvas: "canvas/getCanvas",
       zoom: "canvas/getZoom", //放大缩小
       leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
@@ -438,7 +439,13 @@ export default {
       );
     },
     copyEvent() {
-      let { activeCom = {}, widgetList = [], activeComs = [] } = this;
+      let {
+        activeCom = {},
+        widgetList = [],
+        activeComs = [],
+        selectBox = {}
+      } = this;
+      selectBox.moving = true;
       let { type = "" } = activeCom || {};
       let { length = 0 } = activeComs || [];
       if (length < 2) {

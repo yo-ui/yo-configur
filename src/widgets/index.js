@@ -649,6 +649,10 @@ let widgets = {
     import(
       /* webpackChunkName: "bm-component-material-polygon" */ "@/components/component/material/polygon/index.vue"
     ),
+  materialTriangleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-triangle" */ "@/components/component/material/triangle/index.vue"
+    ),
   materialEmbellish1Com: () =>
     import(
       /* webpackChunkName: "bm-component-material-embellish1" */ "@/components/component/material/embellish1/index.vue"
@@ -1299,6 +1303,10 @@ let styles = {
   materialPolygonStyleCom: () =>
     import(
       /* webpackChunkName: "bm-component-material-polygon-style" */ "@/components/component/material/polygon/style.vue"
+    ),
+  materialTriangleStyleCom: () =>
+    import(
+      /* webpackChunkName: "bm-component-material-triangle-style" */ "@/components/component/material/triangle/style.vue"
     ),
   assistCommonStyleCom: () =>
     import(

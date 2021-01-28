@@ -872,8 +872,10 @@ export default {
       let id = $(target).attr("data-id");
       let width = $(target).outerWidth();
       let height = $(target).outerHeight();
-      // bmCommon.log(target);
+      document.activeElement?.blur();
+      target?.focus();
       $(this.$refs.viewBox).focus();
+      // bmCommon.log(document.activeElement);
       if (!type) {
         type = $parent.attr("data-type");
         id = $parent.attr("data-id");
@@ -1175,8 +1177,9 @@ export default {
     },
     // 复制
     copyEvent() {
-      let { activeCom = {}, activeComs = [] } = this;
+      let { activeCom = {}, activeComs = [], selectBox = {} } = this;
       // this.copyCom = bmCommon.clone(activeCom || {});
+      selectBox.moving = true;
       let { length = 0 } = activeComs || [];
       let copyCom = null;
       if (length > 1) {
@@ -1199,10 +1202,17 @@ export default {
     },
     // 粘贴
     pasteEvent(e) {
-      let { copyCom, widgetList = [], getZoom: zoom = 1, canvas = {} } = this;
+      let {
+        copyCom,
+        widgetList = [],
+        getZoom: zoom = 1,
+        canvas = {},
+        selectBox = {}
+      } = this;
       if (!copyCom) {
         return;
       }
+      selectBox.moving = true;
       let { length = 0 } = copyCom || {};
       let _activeComs = [];
       let _activeCom = {};

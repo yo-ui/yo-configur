@@ -1,24 +1,23 @@
-// 曲线
+// 三角形
 <template>
-  <div class="bm-material-curve-line-com" :style="comStyle">
+  <div class="bm-material-triangle-com" :style="comStyle">
     <svg
       version="1.1"
-      :viewBox="
-        `${info.vboxX - 10} ${info.vboxY - 5} ${info.width + 20} ${info.height}`
-      "
-      :transform="`translate(${info.vboxX - 10} ${info.vboxY - 5})`"
-      :width="`${info.width + 20}`"
-      :height="`${info.height}`"
       xmlns="http://www.w3.org/2000/svg"
+      :viewBox="
+        `${0 - info.borderWidth} ${0 - info.borderWidth} ${info.width} ${
+          info.height
+        }`
+      "
+      :width="`${info.width}`"
+      :height="`${info.height}`"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
-      ref="svg"
     >
       <defs>
         <template v-if="info.backgroundType == 'gradient'">
           <!-- {{info.gradientStyle.angle}} -->
           <linearGradient
-            gradientUnits="userSpaceOnUse"
             :id="info.gradientStyle.gradientId"
             :x1="
               `${
@@ -90,7 +89,6 @@
             /> -->
           </linearGradient>
           <radialGradient
-            gradientUnits="userSpaceOnUse"
             :id="info.gradientStyle.gradientId"
             v-else-if="info.gradientStyle.type == 'radial'"
             :cx="
@@ -152,16 +150,7 @@
           </radialGradient>
         </template>
       </defs>
-      <!-- style="fill-rule:evenodd;clip-rule:evenodd;fill:${this.config.background.color};" -->
-      <!-- <polygon :points="info.points" :style="svgStyle" /> -->
-      <path
-        ref="line"
-        :d="
-          `M ${info.x1} ${info.y1} Q ${info.qx} ${info.qy},${info.x2} ${info.y2}`
-        "
-        fill="transparent"
-        :style="svgStyle"
-      />
+      <polygon :points="info.points" :style="svgStyle" />
       <circle
         class="circle"
         :cx="info.qx"
@@ -172,28 +161,7 @@
         stroke-width="1"
         @mousedown.stop="centerClickEvent"
       />
-      <rect
-        class="rect"
-        width="10"
-        height="10"
-        :x="info.x1 - 5"
-        :y="info.y1 - 5"
-        stroke="#0075e7"
-        @mousedown.stop="leftClickEvent"
-        fill="#fff"
-        stroke-width="1"
-      ></rect>
-      <rect
-        class="rect"
-        width="10"
-        height="10"
-        :x="info.x2 - 5"
-        fill="#fff"
-        :y="info.y2 - 5"
-        stroke="#0075e7"
-        stroke-width="1"
-        @mousedown.stop="rightClickEvent"
-      ></rect>
+      <!-- <path :d="info.points" :style="svgStyle" /> -->
     </svg>
   </div>
 </template>
@@ -202,18 +170,18 @@
 import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-//84,17.5,53.3,28.5,59.6,34.8,17.5,76.9,24.6,84,66.7,41.9,73,48.3
-// const points = [
-//   [84, 17.5],
-//   [53.3, 28.5],
-//   [59.6, 34.8],
-//   [17.5, 76.9],
-//   [24.6, 84],
-//   [66.7, 41.9],
-//   [73, 48.3]
-// ];
+// M50.5 9.3L94.2 41.1L77.5 92.5H23.5L6.8 41.1L50.5 9.3Z
+const points = [
+  ["M", 50.5, 9.3],
+  ["L", 94.2, 41.1],
+  ["L", 77.5, 92.5],
+  ["H", 23.5],
+  ["L", 6.8, 41.1],
+  ["L", 50.5, 9.3],
+  ["Z"]
+];
 export default {
-  name: "materialCurveLineCom",
+  name: "materialTriangleCom",
   data() {
     return {};
   },
@@ -227,62 +195,30 @@ export default {
   },
   computed: {
     ...mapGetters({
-      // showType: "canvas/getShowType", //当前显示类型
-      // moving: "canvas/getMoving",
       zoom: "canvas/getZoom" //放大缩小
     }),
-
-    //渐变颜色样式
-    gradientStyle() {
-      return (info = {}) => {
-        // let { info = {} } = this;
-        let { gradientStyle = {} } = info || {};
-        let {
-          type = "",
-          angle = "",
-          center = "",
-          radialShape = "",
-          valueList = []
-        } = gradientStyle || {};
-        let styles = {};
-        let colors = valueList.map(item => `${item.code} ${item.value}%`);
-        if (type == "linear") {
-          styles.backgroundImage = `linear-gradient(${angle}deg, ${colors.join()})`;
-        } else if (type == "radial") {
-          styles.backgroundImage = `radial-gradient(${radialShape} at ${center}, ${colors.join()})`;
-        }
-        return styles;
-      };
-    },
     svgStyle() {
       let { info = {} } = this;
       let {
-        // width = "",
-        // height = "",
-        // color = "",
+        width = "",
+        height = "",
+        borderColor = "",
         gradientStyle = {},
         borderStyle = "",
-        lineWidth = "",
-        // borderRadiusTopLeft = 0,
-        // borderRadiusTopRight = 0,
-        // borderRadiusBottomLeft = 0,
-        // borderRadiusBottomRight = 0,
+        qx = 0,
+        qy = 0,
+        cornerCount = 3, //角数
+        // outerRadius = 50, //外切圆半径
+        borderWidth = "",
         backgroundType = "",
-        //
-        // scale = "",
-        //
-        //
-        //
         backgroundColor = ""
-        // backgroundImage = "",
-        // backgroundRepeat = "",
-        // backgroundSize = ""
       } = info || {};
       let styles = {};
+      styles["stroke"] = borderColor;
       if (borderStyle) {
         switch (borderStyle) {
           case "none":
-            lineWidth = 0;
+            borderWidth = 0;
             borderStyle = "";
             break;
           case "solid":
@@ -290,10 +226,10 @@ export default {
             break;
           case "dotted":
             // styles["stroke-linecap"] = "round";
-            borderStyle = `${lineWidth},${lineWidth}`;
+            borderStyle = `${borderWidth},${borderWidth}`;
             break;
           case "dashed":
-            borderStyle = `${lineWidth * 2},${lineWidth}`;
+            borderStyle = `${borderWidth * 2},${borderWidth}`;
             break;
           // case "space-dashed":
           //   borderStyle = `${borderWidth * 2},${borderWidth},${borderWidth /
@@ -303,141 +239,86 @@ export default {
           default:
             break;
         }
-        styles["stroke-width"] = lineWidth;
         if (borderStyle) {
           styles["stroke-dasharray"] = borderStyle;
         }
       }
+      styles["stroke-width"] = borderWidth;
+      let point = [width / 2, 0]; //第一个点
+      // let innerPoint = new SVG.Point([
+      //   width / 2,
+      //   height / 2
+      // ]).transform({
+      //   rotate: 360 / (cornerCount * 2),
+      //   origin: {
+      //     x: width / 2,
+      //     y: height / 2
+      //   }
+      // }); //内切圆初始点
+      let points = [];
+      // points.push([qx, qy]);
+      for (let i = 0; i < cornerCount; i++) {
+        let _point = new SVG.Point(point).transform({
+          rotate: (360 / cornerCount) * i,
+          origin: { x: width / 2, y: height / 2 }
+        });
+        // if (i > 0) {
+        points.push(_point.toArray());
+        // }
+        // points2.push(_point.toArray());
+
+        // _point = new SVG.Point(innerPoint).transform({
+        //   rotate: (360 / cornerCount) * i,
+        //   origin: { x: width / 2, y: height / 2 }
+        // });
+        // points.push(_point.toArray());
+      }
+      let __points = new SVG.PointArray(points)
+        .size(width - borderWidth * 2, height - borderWidth * 2)
+        .move(0, 0);
+
+      info.points = [[qx, qy], ...__points];
+      bmCommon.log(info.points);
       if (backgroundType == "purity") {
         //纯色
-        styles["stroke"] = backgroundColor;
-        // if (backgroundImage) {
-        //   styles["backgroundImage"] = `url(${this.$loadImgUrl(
-        //     backgroundImage
-        //   )})`;
-        // }
+        styles["fill"] = backgroundColor || "transparent";
       } else if (backgroundType == "gradient") {
         //渐变
         // styles = { ...styles, ...gradientStyle };
         let { gradientId = "" } = gradientStyle || {};
-        styles["stroke"] = `url(#${gradientId})`;
+        styles["fill"] = `url(#${gradientId})`;
       }
       return styles;
     },
     comStyle() {
       let { info = {} } = this;
-      let {
-        // width = "",
-        height = ""
-        // color = "",
-        // borderColor = "",
-        // borderStyle = "",
-        // borderWidth = "",
-        // borderRadiusTopLeft = 0,
-        // borderRadiusTopRight = 0,
-        // borderRadiusBottomLeft = 0,
-        // borderRadiusBottomRight = 0,
-        // backgroundType = "",
-        // backgroundColor = "",
-        // backgroundImage = "",
-        // backgroundRepeat = "",
-        // backgroundSize = ""
-      } = info || {};
+      let { width = "", height = "" } = info || {};
       let styles = {};
 
       // if (width) {
-      // styles["width"] = `${width}px`;
+      styles["width"] = `${width}px`;
 
       // }
-      if (height) {
-        styles["height"] = `${height}px`;
-      }
-      // let line = SVG(this.$refs.line);
-      // let rbox = line.bbox();
-      // let { w = 0, h = 0 } = rbox || {};
-      // bmCommon.warn("rbox=", rbox);
-      // info.width = w;
-      // info.height = h + 10 + borderWidth;
-      // this.reloadSize();
-      // if (backgroundRepeat) {
-      //   styles["backgroundRepeat"] = backgroundRepeat;
-      // }
-      // if (backgroundSize) {
-      //   styles["backgroundSize"] = backgroundSize;
-      // }
-      // if (borderColor) {
-      //   styles["borderColor"] = borderColor;
-      // }
-      // if (borderStyle) {
-      //   styles["borderStyle"] = borderStyle;
-      // }
-      // styles["borderWidth"] = `${borderWidth}px`;
+      // if (height) {
+      styles["height"] = `${height}px`;
 
-      // styles[
-      //   "borderRadius"
-      // ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
-
-      // if (backgroundType == "purity") {
-      //   //纯色
-      //   if (backgroundColor) {
-      //     styles["backgroundColor"] = backgroundColor;
-      //   }
-      //   if (backgroundImage) {
-      //     styles["backgroundImage"] = `url(${this.$loadImgUrl(
-      //       backgroundImage
-      //     )})`;
-      //   }
-      // } else if (backgroundType == "gradient") {
-      //   //渐变
-      //   styles = { ...styles, ...gradientStyle(info) };
-      // }
       return styles || {};
     }
-  },
-  created() {
-    let { info = {} } = this;
-    let { x1 = 0, y1 = 0 } = info || {};
-    info.vboxX = x1;
-    info.vboxY = y1;
   },
   mounted() {
     let { info = {} } = this;
     let { gradientStyle = {} } = info || {};
-    this.$nextTick(() => {
-      this.reloadSize();
-    });
+    info.point = new SVG.PathArray(points);
     gradientStyle.gradientId = bmCommon.uuid();
+    //
   },
   methods: {
     ...mapMutations({}),
     ...mapActions({}),
-    reloadSize() {
-      let { info = {} } = this;
-      let { x1, y1, x2, y2 } = info || {};
-      let line = SVG(this.$refs.line);
-      let rbox = line.rbox();
-      // let bbox = line.bbox();
-      let { w = 0, h = 0 } = rbox || {};
-      info.vboxX = Math.min(x1, x2);
-      info.vboxY = Math.min(y1, y2);
-      // bmCommon.warn("rbox=", info.vboxX,info.vboxY);
-      info.width = w;
-      info.height = h + 10;
-    },
-    leftClickEvent(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      this.mousedownEvent(e, "left");
-    },
     centerClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
       this.mousedownEvent(e, "center");
-    },
-    rightClickEvent(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      this.mousedownEvent(e, "right");
     },
     mousedownEvent(e, direction) {
       e.stopPropagation();
@@ -489,64 +370,28 @@ export default {
 
     // 调整元件尺寸
     resize(item) {
-      let { x, y, direction = "" } = item || {};
-      let {
-        startX,
-        startY,
-        // originX,
-        // originY,
-        zoom,
-        info
-        // originWidth,
-        // originHeight,
-        // originRotate
-      } = this;
+      let { x, direction = "" } = item || {};
+      let { startX, zoom, info } = this;
+      let { width = 0, qx = 0 } = info || {};
       var dx = x - startX;
-      var dy = y - startY;
-      // let value, width, height, rotate;
-      // let { equalScaleable = false } = info || {};
-      // bmCommon.warn("dx,dy=", direction, dx, dy, zoom, x, y);
-
+      // var dy = y - startY;
       this.startX = x;
-      this.startY = y;
-      if (direction === "right") {
-        dx = Math.floor((dx * 1) / zoom);
-        dy = Math.floor((dy * 1) / zoom);
-        // if (value > 10) {
-        info.x2 += dx;
-        info.y2 += dy;
-        // }
-        this.reloadSize();
-        return;
-      }
-
-      if (direction === "left") {
-        dx = Math.floor((dx * 1) / zoom);
-        dy = Math.floor((dy * 1) / zoom);
-        info.x1 += dx;
-        info.y1 += dy;
-        // }
-        this.reloadSize();
-        return;
-      }
+      // this.startY = y;
       if (direction === "center") {
         dx = Math.floor((dx * 1) / zoom);
-        dy = Math.floor((dy * 1) / zoom);
-        info.qx += dx;
-        info.qy += dy;
-        // }
-        // this.reloadSize();
+        // dy = Math.floor((dy * 1) / zoom);
+        qx += dx;
+        if (qx > width) {
+          qx = width;
+        } else if (qx < 0) {
+          qx = 0;
+        }
+        info.qx = qx;
+        // info.qy += dy;
+        bmCommon.log("info.qx=", info.qx);
         return;
       }
     }
-    // blurEvent(e) {
-    //   let { target } = e;
-    //   let { info = {} } = this;
-    //   let name = $(target)
-    //     .text()
-    //     .trim();
-    //   info.name = name;
-    // }
   }
 };
 </script>
@@ -554,24 +399,17 @@ export default {
 <style lang="less">
 @import (reference) "./../../../../assets/less/common.less";
 .active {
-  .bm-material-curve-line-com {
-    .rect {
-      .db;
-      &:hover {
-        opacity: 1;
-      }
-    }
+  .bm-material-triangle-com {
     .circle {
       .db;
       opacity: 1;
     }
   }
 }
-.bm-material-curve-line-com {
+.bm-material-triangle-com {
   .posr;
   pointer-events: none;
   z-index: 1000;
-  .rect,
   .circle {
     .db(none);
     opacity: 0.1;

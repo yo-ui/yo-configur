@@ -2939,7 +2939,7 @@ let componentLibrary = [
       {
         name: "直线",
         code: "materialLine",
-        icon: "/static/img/configur/material/arrow.png",
+        icon: "/static/img/configur/svg/line.svg",
         data: {
           ...baseData,
           // styleCode: "material",
@@ -2958,7 +2958,7 @@ let componentLibrary = [
       {
         name: "曲线",
         code: "materialCurveLine",
-        icon: "/static/img/configur/material/arrow.png",
+        icon: "/static/img/configur/svg/curveLine.svg",
         data: {
           ...baseData,
           backgroundColor: "#0075E7",
@@ -3067,6 +3067,23 @@ let componentLibrary = [
           cornerCount: 3,
           width: 100,
           height: 100
+          // dataType: "device",
+          // infoType:"device",
+          // equalScaleable: true //是否等比例缩放
+        }
+      },
+      {
+        name: "三角形",
+        code: "materialTriangle",
+        icon: "/static/img/configur/svg/triangle.svg",
+        data: {
+          ...baseData,
+          // styleCode: "material",
+          backgroundColor: "#0075E7",
+          width: 100,
+          height: 100,
+          qx: 50,
+          qy: 0
           // dataType: "device",
           // infoType:"device",
           // equalScaleable: true //是否等比例缩放

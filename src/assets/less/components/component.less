@@ -17,10 +17,18 @@
   // .pointer;
   white-space: nowrap;
   &.materialLine,
-  &.materialCurveLine {
+  &.materialCurveLine,
+  &.materialTriangle {
     .bor(none);
     .box-s(none) !important;
     .info {
+      .db(none) !important;
+    }
+  }
+  &.materialTriangle {
+    .el-icon-top-left,
+    .el-icon-top,
+    .el-icon-top-right {
       .db(none) !important;
     }
   }
@@ -34,10 +42,10 @@
   &.edit {
     &:hover {
       // .bc(@grayE);
-      .box-s(1px 1px 10px 5px #f9e38c);
-      & > .info {
-        .db;
-      }
+      // .box-s(1px 1px 10px 5px #f9e38c);
+      // & > .info {
+      //   .db;
+      // }
       i {
         opacity: 1;
       }
