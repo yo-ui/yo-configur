@@ -493,14 +493,7 @@ export default {
         }
       });
       deviceIdList = Array.from(set);
-      this.commonDeviceListFunc(deviceIdList, (list = []) => {
-        let map = {};
-        list.forEach(item => {
-          let { id = "" } = item || {};
-          map[id] = item || {};
-        });
-        this.setAllDeviceCacheMap(map);
-      });
+      this.commonDeviceListFunc(deviceIdList, (list = []) => {});
       this.pushFunc(deviceIdList, result => {
         bmCommon.log("postFunc", result);
       });
@@ -659,7 +652,7 @@ export default {
       let { id = "" } = deviceCacheMap(deviceId) || {};
       if (id) {
         callback(deviceCacheMap(deviceId));
-        // return;
+        return;
       }
       this.commonGetDeviceAction({ deviceId })
         .then(({ data }) => {
@@ -760,6 +753,12 @@ export default {
           let { code = "", result = [], message = "" } = data || {};
           if (code == Constants.CODES.SUCCESS) {
             value = result || [];
+            let map = {};
+            value.forEach(item => {
+              let { id = "" } = item || {};
+              map[id] = item || {};
+            });
+            this.setAllDeviceCacheMap(map);
           } else {
             bmCommon.error(message);
           }

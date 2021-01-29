@@ -352,6 +352,15 @@
             </el-select>
           </p>
         </template>-->
+        <p>
+          <span class="label"> {{ $lang("宽高等比") }}:</span
+          ><el-switch
+            v-model="info.equalScaleable"
+            :active-value="true"
+            :inactive-value="false"
+          >
+          </el-switch>
+        </p>
         <p class="btn-box">
           <el-tooltip content="隐藏" placement="top" effect="dark">
             <i

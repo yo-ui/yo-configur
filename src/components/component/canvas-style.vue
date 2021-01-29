@@ -383,7 +383,7 @@
           ><el-checkbox v-model="info.locked"></el-checkbox>
         </p>
         <p>
-          <el-tooltip content="开启自由调整" placement="top" effect="dark">
+          <el-tooltip content="显示对齐线" placement="top" effect="dark">
             <span class="label"> {{ $lang("显示对齐线") }}:</span></el-tooltip
           >
           <el-checkbox v-model="info.alignLineable"></el-checkbox>

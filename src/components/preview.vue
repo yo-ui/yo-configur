@@ -3,6 +3,7 @@
   <!-- :close-on-click-modal="false"
     :close-on-press-escape="false" -->
   <el-dialog
+    :destroy-on-close="true"
     class="bm-dialog-preview-com"
     v-dialogDrag="true"
     :title="$lang('预览')"

@@ -348,7 +348,7 @@ export default {
       // var left = state.originX + Math.floor((dx * 100) / state.zoom);
       // var top = state.originY + Math.floor((dy * 100) / state.zoom);
       let { length = 0 } = activeComs || [];
-      bmCommon.log("移动处理");
+      // bmCommon.log("移动处理");
       if (length > 1) {
         activeComs.forEach(item => {
           let { left = 0, top = 0 } = item || {};

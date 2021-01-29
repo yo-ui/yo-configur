@@ -716,6 +716,7 @@ export default {
       let { id = "" } = deviceCacheMap(deviceId) || {};
       if (id) {
         callback(deviceCacheMap(deviceId));
+        return;
       }
       this.commonGetDeviceAction({ deviceId })
         .then(({ data }) => {

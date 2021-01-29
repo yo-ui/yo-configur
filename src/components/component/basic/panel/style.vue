@@ -180,6 +180,15 @@
             :format-tooltip="val => val"
           ></el-slider>
         </p>
+        <p>
+          <span class="label"> {{ $lang("宽高等比") }}:</span
+          ><el-switch
+            v-model="info.equalScaleable"
+            :active-value="true"
+            :inactive-value="false"
+          >
+          </el-switch>
+        </p>
         <p class="btn-box">
           <el-tooltip content="隐藏" placement="top" effect="dark">
             <i
@@ -808,7 +817,7 @@
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
@@ -850,43 +859,43 @@ export default {
       activeComs: "canvas/getActiveComs" //选中多选对象
     }),
     infoName() {
-      let { activeComs = [], activeCom = {} } = this;
-      let { children = [], name = "" } = activeCom || {};
-      let { length = 0 } = activeComs || [];
-      // let com = ""; //`${type}StyleCom`;
-      // type = styleCode || type;
-      if (length > 1) {
-        let set = new Set();
-        activeComs.forEach(item => {
-          let { name = "" } = item || {};
-          set.add(name);
-        });
-        let { size = 0 } = set || {};
-        if (size > 0) {
-          if (size == 1 && !set.has("")) {
-            [name = ""] = Array.from(set);
-          } else {
-            name = "组合";
-          }
-        }
-      } else {
-        let set = new Set();
-        children.forEach(item => {
-          let { name = "" } = item || {};
-          set.add(name);
-        });
-        let { size = 0 } = set || {};
-        if (size > 0) {
-          if (size == 1 && !set.has("")) {
-            [name = ""] = Array.from(set);
-          } else {
-            name = "组合";
-          }
-        }
-      }
-      bmCommon.log(name);
+      let { activeCom = {} } = this;
+      let { name = "" } = activeCom || {};
+      // let { length = 0 } = activeComs || [];
+      // // let com = ""; //`${type}StyleCom`;
+      // // type = styleCode || type;
+      // if (length > 1) {
+      //   let set = new Set();
+      //   activeComs.forEach(item => {
+      //     let { name = "" } = item || {};
+      //     set.add(name);
+      //   });
+      //   let { size = 0 } = set || {};
+      //   if (size > 0) {
+      //     if (size == 1 && !set.has("")) {
+      //       [name = ""] = Array.from(set);
+      //     } else {
+      //       name = "组合";
+      //     }
+      //   }
+      // } else {
+      //   let set = new Set();
+      //   children.forEach(item => {
+      //     let { name = "" } = item || {};
+      //     set.add(name);
+      //   });
+      //   let { size = 0 } = set || {};
+      //   if (size > 0) {
+      //     if (size == 1 && !set.has("")) {
+      //       [name = ""] = Array.from(set);
+      //     } else {
+      //       name = "组合";
+      //     }
+      //   }
+      // }
+      // bmCommon.log(name);
       // com = `${type}StyleCom`;
-      return name;
+      return name || "组合";
     },
     gradientStyle() {
       return info => {

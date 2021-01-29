@@ -354,7 +354,10 @@ export default {
   },
   methods: {
     ...mapMutations({}),
-    ...mapActions({}),
+    ...mapActions({
+      selectComAction: "canvas/selectCom",
+      createHistoryAction: "canvas/createHistory"
+    }),
     reloadSize() {
       let { info = {} } = this;
       let { x1 = 0, y1 = 0, x2 = 0, y2 = 0 } = info || {};
@@ -373,13 +376,19 @@ export default {
       info.height = h > 20 ? h : 20;
     },
     leftClickEvent(e) {
-      e.preventDefault();
       e.stopPropagation();
+      e.preventDefault();
+      let { info = {} } = this;
+      let { id = "" } = info || {};
+      this.selectComAction(id); //选中组件
       this.mousedownEvent(e, "left");
     },
     rightClickEvent(e) {
       e.preventDefault();
       e.stopPropagation();
+      let { info = {} } = this;
+      let { id = "" } = info || {};
+      this.selectComAction(id); //选中组件
       this.mousedownEvent(e, "right");
     },
     mousedownEvent(e, direction) {
@@ -427,6 +436,7 @@ export default {
       $(document).off("mousemove", this.mousemoveEvent);
       $(document).off("mouseup", this.mouseupEvent);
       // this.stopMove();
+      this.createHistoryAction();
       this.rotating = false;
     },
 

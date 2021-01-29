@@ -154,6 +154,15 @@
             :format-tooltip="val => val"
           ></el-slider>
         </p>
+        <p>
+          <span class="label"> {{ $lang("宽高等比") }}:</span
+          ><el-switch
+            v-model="info.equalScaleable"
+            :active-value="true"
+            :inactive-value="false"
+          >
+          </el-switch>
+        </p>
         <p class="btn-box">
           <el-tooltip content="隐藏" placement="top" effect="dark">
             <i
@@ -459,23 +468,23 @@
       </el-collapse-item>
       <el-collapse-item :title="$lang('内容')" name="content">
         <p>
-        <span class="label"> {{ $lang("最高水位") }}:</span>
+          <span class="label"> {{ $lang("最高水位") }}:</span>
           <el-input-number
             controls-position="right"
             clearable
             v-model.number="info.maxContent"
             :placeholder="$lang('请输入最高水位')"
           ></el-input-number>
-      </p>
+        </p>
         <p>
-        <span class="label"> {{ $lang("当前水位") }}:</span>
+          <span class="label"> {{ $lang("当前水位") }}:</span>
           <el-input-number
             controls-position="right"
             clearable
             v-model.number="info.content"
             :placeholder="$lang('请输入当前水位')"
           ></el-input-number>
-      </p>
+        </p>
       </el-collapse-item>
       <el-collapse-item :title="$lang('外观')" name="outward">
         <p>
@@ -1114,10 +1123,10 @@ export default {
       }
     },
     openAll() {
-      this.activeNames = ["name", "outward","content", "margin", "animation"];
+      this.activeNames = ["name", "outward", "content", "margin", "animation"];
     },
     closeAll() {
-      this.activeNames = ["name","content"];
+      this.activeNames = ["name", "content"];
     }
     // setFontWeight() {
     //   let { info = {} } = this;

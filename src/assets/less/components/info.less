@@ -45,9 +45,13 @@
     }
   }
   .com-data {
+    .el-icon-delete,
     .el-icon-link {
       .fz(22);
       .click;
+      &:hover {
+        .tranf(scale(1.2));
+      }
       &.active {
         .c(@themes);
       }

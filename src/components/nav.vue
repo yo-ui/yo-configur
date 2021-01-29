@@ -480,43 +480,47 @@ export default {
       let { activeCom = {}, activeComs = [] } = this;
       let { type = "" } = activeCom;
       let { length = 0 } = activeComs || [];
+      let callback = () => {
+        this.selectComAction();
+        // this.showContextMenuStatus = false;
+        this.createHistoryAction();
+      };
       if (length > 1) {
         activeComs.forEach(item => {
-          this.deleteItem(item);
+          this.deleteItem(item, callback);
         });
       } else {
         if (!type || type == "canvas") {
           this.$$msgError(this.$lang("请选择要删除的组件"));
           return;
         }
-        this.deleteItem(activeCom);
+        this.deleteItem(activeCom, callback);
       }
-      this.selectComAction();
-      // this.showContextMenuStatus = false;
-      this.createHistoryAction();
     },
-    deleteItem(item = {}) {
+    deleteItem(item = {}, callback) {
       let { widgetList = [] } = this;
-      let { id = "", type = "" } = item || {};
+      let { id = "", type = "", parentId = "" } = item || {};
       if (type == "canvas") {
         return;
       }
-      let index = widgetList.findIndex(_item => id == _item.id);
-      // bmCommon.log(
-      //   "widgetList=",
-      //   widgetList.length,
-      //   index,
-      //   id,
-      //   widgetList.map(item => item.id),
-      //   index < 0
-      // );
-      if (index < 0) {
-        this.$$msgError(this.$lang("请选择要删除的组件"));
-        return;
+      if (parentId) {
+        let widget = widgetList.find(_item => parentId == _item.id);
+        let { children = [] } = widget || {};
+        let index = children.findIndex(_item => id == _item.id);
+        if (index < 0) {
+          this.$$msgError(this.$lang("请选择要删除的组件"));
+          return;
+        }
+        children.splice(index, 1);
+      } else {
+        let index = widgetList.findIndex(_item => id == _item.id);
+        if (index < 0) {
+          this.$$msgError(this.$lang("请选择要删除的组件"));
+          return;
+        }
+        widgetList.splice(index, 1);
       }
-      widgetList.splice(index, 1);
-      // this.selectComAction();
-      // this.showContextMenuStatus = false;
+      callback && callback();
     },
     resumeEvent() {
       let { historyList = [], historyIndex = 0 } = this;

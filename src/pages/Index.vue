@@ -81,6 +81,7 @@
           </template>
         </div>
         <div class="view-box" ref="viewBox" :style="viewBoxStyle">
+          <!-- <bm-preview-nav ref="bmPreviewNav" /> -->
           <div
             class="canvas-box"
             ref="canvasBox"
@@ -264,6 +265,10 @@ export default {
     bmNav,
     // : () =>
     //   import(/* webpackChunkName: "iot-header-com" */ "@/components/header"),
+    bmPreviewNav: () =>
+      import(
+        /* webpackChunkName: "iot-preview-nav-com" */ "@/components/preview-nav"
+      ),
     bmLines: () =>
       import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
     bmRuleLines: () =>
@@ -1135,7 +1140,7 @@ export default {
           this.lockEvent(!locked);
         }
       } else if (keyCode == 32) {
-        // 空格
+        // 空格 space
         e.preventDefault();
         $vm.$emit("canvas-action", "move");
       } else if (keyCode == 46) {

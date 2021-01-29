@@ -53,35 +53,43 @@
             class="item"
           >
             <div class="title" :class="{ active: activeComId == item.id }">
-              {{ item.comName }}
+              {{ item.comName || "组合" }}
               <!-- --{{ item.zIndex }}--{{ item.order }} -->
-              <template v-if="item.children && item.children.length > 0">
-                <i
-                  :class="
-                    `
+              <span class="right">
+                <el-tooltip
+                  :content="$lang('删除')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <i class="el-icon-delete" @click.stop="deleteEvent(item)"></i>
+                </el-tooltip>
+                <template v-if="item.children && item.children.length > 0">
+                  <i
+                    :class="
+                      `
                     ${
                       { true: 'el-icon-plus', false: 'el-icon-minus' }[
                         !widgetMap[item.id]
                       ]
                     }
                   `
-                  "
-                  @click.stop="showChildEvent(item)"
-                ></i>
-              </template>
-              <el-tooltip
-                v-else
-                :content="$lang('添加绑定')"
-                placement="top"
-                effect="dark"
-              >
-                <i
-                  v-if="item.dataType"
-                  class="el-icon-link"
-                  @click.stop="addEvent(item)"
-                  :class="{ active: item.bindData && item.bindData.orgId }"
-                ></i>
-              </el-tooltip>
+                    "
+                    @click.stop="showChildEvent(item)"
+                  ></i>
+                </template>
+                <el-tooltip
+                  v-else
+                  :content="$lang('添加绑定')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <i
+                    v-if="item.dataType"
+                    class="el-icon-link"
+                    @click.stop="addEvent(item)"
+                    :class="{ active: item.bindData && item.bindData.orgId }"
+                  ></i> </el-tooltip
+              ></span>
             </div>
             <ul
               v-if="item.children && item.children.length > 0"
@@ -97,20 +105,32 @@
                 <div class="title" :class="{ active: activeComId == _item.id }">
                   {{ _item.name }}
                   <!-- --{{ item.zIndex }}--{{ item.order }} -->
-                  <el-tooltip
-                    :content="$lang('添加绑定')"
-                    placement="top"
-                    effect="dark"
-                  >
-                    <i
-                      v-if="_item.dataType"
-                      class="el-icon-link"
-                      @click.stop="addEvent(_item)"
-                      :class="{
-                        active: _item.bindData && _item.bindData.orgId
-                      }"
-                    ></i>
-                  </el-tooltip>
+                  <span class="right">
+                    <el-tooltip
+                      :content="$lang('删除')"
+                      placement="top"
+                      effect="dark"
+                    >
+                      <i
+                        class="el-icon-delete"
+                        @click.stop="deleteEvent(item)"
+                      ></i>
+                    </el-tooltip>
+                    <el-tooltip
+                      :content="$lang('添加绑定')"
+                      placement="top"
+                      effect="dark"
+                    >
+                      <i
+                        v-if="_item.dataType"
+                        class="el-icon-link"
+                        @click.stop="addEvent(_item)"
+                        :class="{
+                          active: _item.bindData && _item.bindData.orgId
+                        }"
+                      ></i>
+                    </el-tooltip>
+                  </span>
                 </div>
               </li>
             </ul>
@@ -199,7 +219,7 @@ export default {
   computed: {
     ...mapGetters({
       getWidgetList: "canvas/getWidgetList",
-      getActiveCom: "canvas/getActiveCom", //选中对象
+      // getActiveCom: "canvas/getActiveCom", //选中对象
       selectBox: "canvas/getSelectBox", //选取框
       activeCom: "canvas/getActiveCom", //选中对象
       moving: "canvas/getMoving", //组件是否移动
@@ -239,9 +259,10 @@ export default {
           if (size == 1 && !set.has("")) {
             [type = ""] = Array.from(set);
             // com = `${type}StyleCom`;
-          } else {
-            type = "group";
           }
+          //  else {
+          //   type = "group";
+          // }
         }
       }
       // else {
@@ -262,7 +283,7 @@ export default {
       //   }
       // }
       com = `${type}StyleCom`;
-      // bmCommon.log("panel==>", com);
+      bmCommon.log("panel==>", com);
       return com;
       // return `${
       //   activeComs && length > 1
@@ -370,6 +391,10 @@ export default {
       this.selectComsAction();
       let { id = "" } = item || {};
       this.selectComAction(id);
+    },
+    deleteEvent(item) {
+      this.selectComEvent(item);
+      $vm.$emit("delete-command");
     },
     changeEvent(item) {
       // bmCommon.log(item);
