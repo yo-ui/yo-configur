@@ -2976,6 +2976,7 @@ let componentLibrary = [
           borderColor: "#0075E7",
           borderStyle: "solid",
           lineWidth: 1,
+          lineLong: 200,
           content: 0,
           x1: 0,
           y1: 0,
@@ -3112,6 +3113,7 @@ let componentLibrary = [
           backgroundColor: "#0075E7",
           width: 100,
           height: 100,
+          changeable: false,
           qx: 50,
           qy: 0
           // dataType: "device",

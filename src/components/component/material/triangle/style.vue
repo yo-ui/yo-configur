@@ -206,6 +206,15 @@
       </el-collapse-item>
       <el-collapse-item :title="$lang('样式')" name="style">
         <p>
+          <span class="label">{{ $lang("开启自由调整") }}:</span>
+          <el-switch
+            v-model="info.changeable"
+            :active-value="true"
+            :inactive-value="false"
+          >
+          </el-switch>
+        </p>
+        <p>
           <span class="label">{{ $lang("填充颜色") }}:</span>
           <el-select
             v-model="info.backgroundType"

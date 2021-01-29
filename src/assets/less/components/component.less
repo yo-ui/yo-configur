@@ -1,10 +1,10 @@
 @import (reference) "./../common.less";
-@left: -3px;
-@right: -3px;
-@bottom: -3px;
-@top: -3px;
-@square-width: 4;
-@circle-width: 5;
+@left: -5px;
+@right: -5px;
+@bottom: -5px;
+@top: -5px;
+@square-width: 8;
+@circle-width: 10;
 @border: #383e41;
 @editColor: #1d5bbf;
 @editBorderColor: #cecece;
@@ -123,10 +123,10 @@
     }
     &::after {
       .posa;
-      .h(20);
+      .h(21);
       .w(1);
       top: 100%;
-      left: (@circle-width / 2)-0px;
+      left: (@circle-width / 2)+1px;
       .ml(-1);
       .mt(1);
       content: "";

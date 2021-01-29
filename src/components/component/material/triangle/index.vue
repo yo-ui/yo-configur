@@ -153,6 +153,7 @@
       <polygon :points="info.points" :style="svgStyle" />
       <circle
         class="circle"
+        v-if="info.changeable"
         :cx="info.qx"
         :cy="info.qy"
         :r="5"
@@ -205,6 +206,7 @@ export default {
         borderColor = "",
         gradientStyle = {},
         borderStyle = "",
+        changeable = false,
         qx = 0,
         qy = 0,
         cornerCount = 3, //角数
@@ -255,6 +257,9 @@ export default {
       //     y: height / 2
       //   }
       // }); //内切圆初始点
+      if (!changeable) {
+        [qx, qy] = point || [];
+      }
       let points = [];
       // points.push([qx, qy]);
       for (let i = 0; i < cornerCount; i++) {

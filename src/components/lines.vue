@@ -5,13 +5,14 @@
       :style="{ top: item.val + 'px' }"
       :data-name="item.name" -->
     <div
-      :class="{ active: attachHoriz(item.val, item.id) }"
+      :class="{ active: attachHoriz(item) }"
       v-for="(item, index) in horiz"
       :key="`horiz_${index}`"
       :style="{
-        top: `${item.val}px`
+        top: `${item.val}px`,
+        width: `${(1 / zoom) * 100}%`,
+        transform: `scaleY(${1 / zoom})`
         //left: `${item.left}px`,
-        //width: `${item.width}px`
       }"
       class="horiz"
     ></div>
@@ -20,11 +21,13 @@
     <!-- :data-id="item.id"
       :data-name="item.name" -->
     <div
-      :class="{ active: attachVerti(item.val, item.id) }"
+      :class="{ active: attachVerti(item) }"
       v-for="(item, index) in verti"
       :key="`verti_${index}`"
       :style="{
-        left: `${item.val}px`
+        left: `${item.val}px`,
+        height: `${(1 / zoom) * 100}%`,
+        transform: `scaleX(${1 / zoom})`
         //height: `${item.height}px`,
         //top: `${item.top}px`
       }"
@@ -34,7 +37,7 @@
 </template>
 
 <script>
-// import bmCommon from "@/common/common";
+import bmCommon from "@/common/common";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters, mapState } = Vuex;
 let padding = 0;
@@ -47,6 +50,7 @@ export default {
     }),
     ...mapGetters({
       widgetList: "canvas/getWidgetList", //组件列表
+      zoom: "canvas/getZoom", //放大缩小
       activeCom: "canvas/getActiveCom", //选中组件
       activeComs: "canvas/getActiveComs", //选中组件
       moving: "canvas/getMoving", //获取鼠标移动状态
@@ -200,6 +204,7 @@ export default {
         if (cor.indexOf(right) < 0 && width && canvasWidth > right) {
           cor.push({
             id: `verti-${id}-${Number(right).toFixed(0)}`,
+
             name,
             val: right,
             top,
@@ -239,7 +244,6 @@ export default {
     // 移动元素左中右坐标
     vertical() {
       let { activeCom = {}, activeComs = [] } = this;
-
       let pos = []; //位置信息数组
       let { length = 0 } = activeComs || [];
       let widgets = [];
@@ -264,13 +268,17 @@ export default {
   methods: {
     ...mapMutations(),
     ...mapActions(),
-    attachHoriz(value, id) {
+    attachHoriz({ val: value }) {
       let { horizontal = [] } = this;
       // return horizontal.some(val => Math.abs(val - value) <= 5);
       try {
         horizontal.forEach(item => {
-          let flag = item.some(val => Math.abs(val - value) <= 3);
-          if (flag) {
+          let obj = item.find(val => Math.abs(val - value) <= 3);
+          if (obj) {
+            // let { id = "" } = activeCom || {};
+            // let vue = document.querySelector(`#box_${id}`)?.__vue__;
+            // let info = vue?.info || {};
+            // info.top = obj;
             throw new Error("找到对应位置");
           }
         });
@@ -279,13 +287,17 @@ export default {
       }
       return false;
     },
-    attachVerti(value, id) {
+    attachVerti({ val: value }) {
       let { vertical = [] } = this;
       // return vertical.some(val => Math.abs(val - value) <= 5);
       try {
         vertical.forEach(item => {
-          let flag = item.some(val => Math.abs(val - value) <= 3);
-          if (flag) {
+          let obj = item.some(val => Math.abs(val - value) <= 3);
+          if (obj) {
+            // let { id = "" } = activeCom || {};
+            // let vue = document.querySelector(`#box_${id}`)?.__vue__;
+            // let info = vue?.info || {};
+            // info.left = obj;
             throw new Error("找到对应位置");
           }
         });
@@ -301,12 +313,14 @@ export default {
 <style lang="less" scoped>
 @import (reference) "./../assets/less/common.less";
 .bm-lines-com {
-  .squ(100%);
+  // .squ(100%);
   .posa;
   pointer-events: none;
   z-index: 999;
   top: 0;
   left: 0;
+  right: -80px;
+  bottom: -80px;
   // .db !important;
   .verti {
     .w(1);

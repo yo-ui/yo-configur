@@ -4,7 +4,7 @@
     <!-- :transform="`translate(${info.vboxX - 10} ${info.vboxY - 5})`" -->
     <svg
       version="1.1"
-      :viewBox="`${info.x1} ${info.y1} ${info.width} ${info.height}`"
+      :viewBox="`0 0 ${info.width} ${info.height}`"
       :width="`${info.width}`"
       :height="`${info.height}`"
       xmlns="http://www.w3.org/2000/svg"
@@ -338,6 +338,7 @@ export default {
   created() {
     let { info = {} } = this;
     let { x1 = 0, y1 = 0, height = 0, width = 0 } = info || {};
+    info.lineLong = width;
     info.boxX = x1;
     info.boxY = y1;
     info.boxW = width;
@@ -356,17 +357,20 @@ export default {
     ...mapActions({}),
     reloadSize() {
       let { info = {} } = this;
+      let { x1 = 0, y1 = 0, x2 = 0, y2 = 0 } = info || {};
+      let lineLong = Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
       let line = SVG(this.$refs.line);
       let bbox = line.bbox();
       // let bbox = line.bbox();
       let { w = 0, h = 0, x = 0, y = 0 } = bbox || {};
       info.boxX = x;
       info.boxY = y;
+      info.lineLong = lineLong;
       // bmCommon.warn("rbox=", info.vboxX,info.vboxY);
       info.boxW = w;
       info.width = w;
       info.boxH = h;
-      info.height = h;
+      info.height = h > 20 ? h : 20;
     },
     leftClickEvent(e) {
       e.preventDefault();
@@ -446,7 +450,7 @@ export default {
       let dy = y - startY;
       // const distance = 10;
       // let value, width, height, rotate;
-      let { x1 = 0, x2 = 0, y1 = 0, y2 = 0, left = 0, top = 0 } = info || {};
+      let { x1 = 0, x2 = 0, y1 = 0, y2 = 0 } = info || {};
       // bmCommon.warn("dx,dy=", direction, dx, dy, zoom, x, y);
       // let offset =
       //   document.querySelector(".canvas-box")?.getBoundingClientRect() || {};
@@ -492,7 +496,7 @@ export default {
         //     bmCommon.error(error);
         //   }
         // }
-        bmCommon.log("x2====x=", __x2, ",y=", __y2);
+        // bmCommon.log("x2====x=", __x2, ",y=", __y2);
         info.x2 = __x2;
         info.y2 = __y2;
         // }
@@ -506,7 +510,7 @@ export default {
         // if (Math.abs(x1 - __x1) > distance || Math.abs(y1 - __y1) > distance) {
         //   this.movingStatus = true; //大于判断距离则进行判断
         // }
-        bmCommon.log("x1====x=", __x1, ",y=", __y1);
+        // bmCommon.log("x1====x=", __x1, ",y=", __y1);
         // if (this.movingStatus) {
         //   try {
         //     widgetList.forEach(item => {

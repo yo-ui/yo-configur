@@ -362,12 +362,14 @@ export default {
 <style lang="less" scoped>
 @import (reference) "./../assets/less/common.less";
 .bm-rule-lines-com {
-  .squ(100%);
+  // .squ(100%);
   .posa;
   pointer-events: none;
   z-index: 999;
   top: 0;
   left: 0;
+  bottom: -80px;
+  right: -80px;
   // .db !important;
   .v-line {
     .w(1);

@@ -110,12 +110,14 @@
                 </bm-com>
               </template>
             </bm-com>
-            <!-- <bm-lines ref="bmLines"></bm-lines> -->
-            <bm-rule-lines ref="bmRuleLines"></bm-rule-lines>
             <!-- <bm-group ref="bmGroup" v-if="isSameGroup">{{
               isSameGroup
             }}</bm-group> -->
+
+            <bm-lines ref="bmLines"></bm-lines>
           </div>
+
+          <bm-rule-lines ref="bmRuleLines"></bm-rule-lines>
           <div class="slider-box" @mousedown.stop>
             {{ $toBig(zoom, 0) + "%" }}
             <!-- @input="changeZoomEvent" -->
@@ -263,8 +265,8 @@ export default {
     bmNav,
     // : () =>
     //   import(/* webpackChunkName: "iot-header-com" */ "@/components/header"),
-    // bmLines: () =>
-    //   import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
+    bmLines: () =>
+      import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
     bmRuleLines: () =>
       import(
         /* webpackChunkName: "iot-rule-lines-com" */ "@/components/rule-lines"
