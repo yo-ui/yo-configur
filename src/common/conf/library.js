@@ -1973,6 +1973,34 @@ let componentLibrary = [
               }
               // equalScaleable: true //是否等比例缩放
             }
+          },
+          {
+            name: "太阳能热水器",
+            code: "deviceTynrsq",
+            alias: "tynrsq",
+            icon: "/static/img/configur/tynrsq.svg",
+            data: {
+              ...baseData,
+              dataType: "device",
+              infoType: "device", //显示详情组件前缀名
+              width: 135,
+              height: 128,
+              equalScaleable: true //是否等比例缩放
+            }
+          },
+          {
+            name: "储液储气罐",
+            code: "deviceCycqg",
+            alias: "cycqg",
+            icon: "/static/img/configur/cycqg.svg",
+            data: {
+              ...baseData,
+              dataType: "device",
+              infoType: "device", //显示详情组件前缀名
+              width: 73,
+              height: 141,
+              equalScaleable: true //是否等比例缩放
+            }
           }
         ]
       },

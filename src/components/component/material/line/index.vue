@@ -4,9 +4,9 @@
     <!-- :transform="`translate(${info.vboxX - 10} ${info.vboxY - 5})`" -->
     <svg
       version="1.1"
-      :viewBox="`0 0 1 1`"
-      :width="1"
-      :height="1"
+      :viewBox="`${info.x1} ${info.y1} ${info.width} ${info.height}`"
+      :width="`${info.width}`"
+      :height="`${info.height}`"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
@@ -161,12 +161,22 @@
         :style="svgStyle"
       />
       <rect
+        class="rect-box"
+        :width="info.boxW"
+        :height="info.boxH"
+        :x="info.boxX"
+        :y="info.boxY"
+        stroke="#0075e7"
+        fill="transparent"
+        stroke-width="1"
+      ></rect>
+      <rect
         class="rect"
-        width="10"
-        height="10"
+        width="14"
+        height="14"
         ref="rect1"
-        :x="info.x1 - 5"
-        :y="info.y1 - 5"
+        :x="info.x1 - 7"
+        :y="info.y1 - 7"
         stroke="#0075e7"
         @mousedown.stop="leftClickEvent"
         fill="#fff"
@@ -174,12 +184,12 @@
       ></rect>
       <rect
         class="rect"
-        width="10"
-        height="10"
+        width="14"
+        height="14"
         ref="rect2"
-        :x="info.x2 - 5"
+        :x="info.x2 - 7"
         fill="#fff"
-        :y="info.y2 - 5"
+        :y="info.y2 - 7"
         stroke="#0075e7"
         stroke-width="1"
         @mousedown.stop="rightClickEvent"
@@ -327,9 +337,11 @@ export default {
   },
   created() {
     let { info = {} } = this;
-    let { x1 = 0, y1 = 0 } = info || {};
-    info.vboxX = x1;
-    info.vboxY = y1;
+    let { x1 = 0, y1 = 0, height = 0, width = 0 } = info || {};
+    info.boxX = x1;
+    info.boxY = y1;
+    info.boxW = width;
+    info.boxH = height;
   },
   mounted() {
     let { info = {} } = this;
@@ -343,17 +355,18 @@ export default {
     ...mapMutations({}),
     ...mapActions({}),
     reloadSize() {
-      // let { info = {} } = this;
-      // let { x1, y1, x2, y2 } = info || {};
-      // let line = SVG(this.$refs.line);
-      // let rbox = line.rbox();
-      // // let bbox = line.bbox();
-      // let { w = 0, h = 0 } = rbox || {};
-      // info.vboxX = Math.min(x1, x2);
-      // info.vboxY = Math.min(y1, y2);
-      // // bmCommon.warn("rbox=", info.vboxX,info.vboxY);
-      // info.width = w;
-      // info.height = h + 10;
+      let { info = {} } = this;
+      let line = SVG(this.$refs.line);
+      let bbox = line.bbox();
+      // let bbox = line.bbox();
+      let { w = 0, h = 0, x = 0, y = 0 } = bbox || {};
+      info.boxX = x;
+      info.boxY = y;
+      // bmCommon.warn("rbox=", info.vboxX,info.vboxY);
+      info.boxW = w;
+      info.width = w;
+      info.boxH = h;
+      info.height = h;
     },
     leftClickEvent(e) {
       e.preventDefault();

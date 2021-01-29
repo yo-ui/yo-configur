@@ -1,5 +1,12 @@
 <template>
   <div class="bm-widget-list-com">
+    <el-input
+      v-model="condition.keywords"
+      :placeholder="$lang('请输入搜索关键字')"
+      size="mini"
+      clearable
+    ></el-input>
+
     <el-tabs
       v-model="activeIndex"
       tab-position="left"
@@ -7,7 +14,7 @@
       @tab-click="tabClickEvent"
     >
       <el-tab-pane
-        v-for="(item, index) in tabList"
+        v-for="(item, index) in tabWidgetList"
         :key="item.code"
         :name="item.code"
       >
@@ -126,12 +133,14 @@ export default {
       activeNames: [],
       tabList,
       activeIndex: tabList[0].code,
-      condition: {},
       showEditId: "",
       operateCom: null,
       showContextMenuStatus: false,
       // shiftCtrlKeyDownStatus: false, //shit ctrl键被按下
-      contextMenuStyle: {}
+      contextMenuStyle: {},
+      condition: {
+        keywords: ""
+      }
     };
   },
   props: {
@@ -148,7 +157,29 @@ export default {
       zoom: "canvas/getZoom", //放大缩小
       draging: "canvas/getDraging", //组件拖动状态
       canvas: "canvas/getCanvas" //画布属性
-    })
+    }),
+    tabWidgetList() {
+      let { tabList = [], condition } = this;
+      let { keywords = "" } = condition;
+      tabList = bmCommon.clone(tabList);
+      tabList.forEach(item => {
+        let { groupList = [], comList = [] } = item || {};
+        let { length = 0 } = groupList || [];
+        if (length > 0) {
+          groupList.forEach(_item => {
+            let { comList = [] } = _item || {};
+            _item.comList = comList.filter(__item => {
+              return __item.name.indexOf(keywords) > -1;
+            });
+          });
+        } else {
+          item.comList = comList.filter(_item => {
+            return _item.name.indexOf(keywords) > -1;
+          });
+        }
+      });
+      return tabList || [];
+    }
   },
   mounted() {
     this.initEvent();
