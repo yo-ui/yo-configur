@@ -67,6 +67,7 @@ export default {
       isGrid: true, //是否显示网格
       scaleable: false, //是否显示缩放
       locked: false, //是否可拖动 是否锁定
+      alignLineable: true, //是否显示对齐线
       page: {
         gradientStyle,
         backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色

@@ -206,7 +206,9 @@
       </el-collapse-item>
       <el-collapse-item :title="$lang('样式')" name="style">
         <p>
-          <span class="label">{{ $lang("开启自由调整") }}:</span>
+          <el-tooltip content="开启自由调整" placement="top" effect="dark">
+            <span class="label">{{ $lang("开启自由调整") }}:</span>
+          </el-tooltip>
           <el-switch
             v-model="info.changeable"
             :active-value="true"

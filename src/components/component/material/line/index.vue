@@ -368,7 +368,7 @@ export default {
       info.lineLong = lineLong;
       // bmCommon.warn("rbox=", info.vboxX,info.vboxY);
       info.boxW = w;
-      info.width = w;
+      info.width = w > 20 ? w : 20;
       info.boxH = h;
       info.height = h > 20 ? h : 20;
     },

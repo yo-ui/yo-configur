@@ -114,10 +114,9 @@
               isSameGroup
             }}</bm-group> -->
 
-            <bm-lines ref="bmLines"></bm-lines>
+            <bm-lines ref="bmLines" v-if="canvas.alignLineable"></bm-lines>
+            <bm-rule-lines ref="bmRuleLines"></bm-rule-lines>
           </div>
-
-          <bm-rule-lines ref="bmRuleLines"></bm-rule-lines>
           <div class="slider-box" @mousedown.stop>
             {{ $toBig(zoom, 0) + "%" }}
             <!-- @input="changeZoomEvent" -->
@@ -1390,6 +1389,7 @@ export default {
       let { id = "" } = deviceCacheMap(deviceId) || {};
       if (id) {
         callback(deviceCacheMap(deviceId));
+        return;
       }
       this.commonGetDeviceAction({ deviceId })
         .then(({ data }) => {

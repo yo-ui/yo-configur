@@ -3,7 +3,11 @@
     <!-- 竖 -->
     <div
       class="v-line"
-      :style="{ left: `${item.left}px` }"
+      :style="{
+        left: `${item.left}px`,
+        height: `${(1 / zoom) * 100}%`,
+        transform: `scaleX(${1 / zoom})`
+      }"
       @mousedown.stop="moveVEvent($event, item)"
       v-for="(item, index) in vLines"
       :key="`v_${index}`"
@@ -13,7 +17,11 @@
     <!-- 横 -->
     <div
       class="h-line"
-      :style="{ top: `${item.top}px` }"
+      :style="{
+        top: `${item.top}px`,
+        width: `${(1 / zoom) * 100}%`,
+        transform: `scaleY(${1 / zoom})`
+      }"
       @mousedown.stop="moveHEvent($event, item)"
       v-for="(item, index) in hLines"
       :key="`h_${index}`"

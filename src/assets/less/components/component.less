@@ -57,12 +57,15 @@
     &.active {
       // .borc(@themes);
       .borc(@editBorderColor);
-      // &:hover{
       & > .operate-btn {
-        // opacity: 1;
+        opacity: 0.5;
         visibility: visible;
       }
-      // }
+      &:hover {
+        & > .operate-btn {
+          opacity: 1;
+        }
+      }
     }
   }
   .operate-btn {

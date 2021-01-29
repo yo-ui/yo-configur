@@ -382,6 +382,12 @@
           <span class="label"> {{ $lang("是否锁定") }}:</span
           ><el-checkbox v-model="info.locked"></el-checkbox>
         </p>
+        <p>
+          <el-tooltip content="开启自由调整" placement="top" effect="dark">
+            <span class="label"> {{ $lang("显示对齐线") }}:</span></el-tooltip
+          >
+          <el-checkbox v-model="info.alignLineable"></el-checkbox>
+        </p>
         <template v-if="info.isGrid">
           <p>
             <span class="label"> {{ $lang("网格样式") }}:</span
