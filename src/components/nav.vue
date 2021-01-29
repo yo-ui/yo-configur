@@ -1378,7 +1378,7 @@ export default {
           let { code = "", result = {}, message = "" } = data || {};
           if (code == Constants.CODES.SUCCESS) {
             value = result || {};
-            this.$$msgError("添加自定义组件成功");
+            this.$$msgSuccess("添加自定义组件成功");
             callback && callback(value);
           } else {
             this.$$msgError(message || "添加自定义组件失败");
