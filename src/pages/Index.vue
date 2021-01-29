@@ -265,10 +265,10 @@ export default {
     bmNav,
     // : () =>
     //   import(/* webpackChunkName: "iot-header-com" */ "@/components/header"),
-    bmPreviewNav: () =>
-      import(
-        /* webpackChunkName: "iot-preview-nav-com" */ "@/components/preview-nav"
-      ),
+    // bmPreviewNav: () =>
+    //   import(
+    //     /* webpackChunkName: "iot-preview-nav-com" */ "@/components/preview-nav"
+    //   ),
     bmLines: () =>
       import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
     bmRuleLines: () =>
@@ -732,12 +732,12 @@ export default {
       });
       deviceIdList = Array.from(set);
       this.commonDeviceListFunc(deviceIdList, (list = []) => {
-        let map = {};
-        list.forEach(item => {
-          let { id = "" } = item || {};
-          map[id] = item || {};
-        });
-        this.setAllDeviceCacheMap(map);
+        // let map = {};
+        // list.forEach(item => {
+        //   let { id = "" } = item || {};
+        //   map[id] = item || {};
+        // });
+        // this.setAllDeviceCacheMap(map);
       });
     },
     resizeCanvasSize() {
@@ -1391,7 +1391,7 @@ export default {
         return;
       }
       let { deviceCacheMap = {} } = this;
-      let { id = "" } = deviceCacheMap(deviceId) || {};
+      let { deviceId:id = "" } = deviceCacheMap(deviceId) || {};
       if (id) {
         callback(deviceCacheMap(deviceId));
         return;
@@ -1464,11 +1464,33 @@ export default {
         callback();
         return;
       }
-      this.commonDeviceListAction({ ids: JSON.stringify(ids) })
+      // this.commonDeviceListAction({ ids: JSON.stringify(ids) })
+      this.commonDeviceListAction({ ids: ids.join() })
         .then(({ data }) => {
           let { code = "", result = [], message = "" } = data || {};
           if (code == Constants.CODES.SUCCESS) {
             value = result || [];
+            let map = {};
+            value.forEach(item => {
+              let { deviceId: id = "", configurDevicePointVoList = [] } =
+                item || {};
+              let points = [];
+              configurDevicePointVoList.forEach(_item => {
+                let {
+                  point: id = "",
+                  acqTime: time = "",
+                  descr: name = "",
+                  name: deviceName = "",
+                  unit = "",
+                  value = ""
+                } = _item || {};
+                points.push({ name, time, deviceName, id, unit, value });
+              });
+              delete item.configurDevicePointVoList;
+              item.points = points || [];
+              map[id] = item || {};
+            });
+            this.setAllDeviceCacheMap(map);
           } else {
             bmCommon.error(message);
           }

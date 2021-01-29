@@ -11,7 +11,8 @@ export default {
   orgStrucListByLevelUrl: `/orgStruc/listByLevel`, //加载用户的组织结构
   commonDevicePointsUrl: `/configur/common/devicePoints`,
   commonDevicePointHstDataUrl: `/configur/common/devicePointHstData`,
-  commonDeviceListUrl: `/configur/common/deviceList`,
+  // commonDeviceListUrl: `/configur/common/deviceList`,
+  commonDeviceListUrl: `/configur/common/deviceList3`,
   commonGetDeviceUrl: `/configur/common/getDevice`,
   canvasGetUrl: `/configur/canvas/get`,
   canvasSaveUrl: `/configur/canvas/save`,

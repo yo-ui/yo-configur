@@ -283,7 +283,7 @@ export default {
         .move(0, 0);
 
       info.points = [[qx, qy], ...__points.slice(1)];
-      bmCommon.log(info.points);
+      // bmCommon.log(info.points);
       if (backgroundType == "purity") {
         //纯色
         styles["fill"] = backgroundColor || "transparent";

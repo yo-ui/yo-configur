@@ -519,12 +519,12 @@ export default {
       });
       deviceIdList = Array.from(set);
       this.commonDeviceListFunc(deviceIdList, (list = []) => {
-        let map = {};
-        list.forEach(item => {
-          let { id = "" } = item || {};
-          map[id] = item || {};
-        });
-        this.setAllDeviceCacheMap(map);
+        // let map = {};
+        // list.forEach(item => {
+        //   let { id = "" } = item || {};
+        //   map[id] = item || {};
+        // });
+        // this.setAllDeviceCacheMap(map);
       });
       this.pushFunc(deviceIdList, result => {
         bmCommon.log("postFunc", result);
@@ -606,11 +606,30 @@ export default {
         callback();
         return;
       }
-      this.commonDeviceListAction({ ids: JSON.stringify(ids) })
+      // this.commonDeviceListAction({ ids: JSON.stringify(ids) })
+      this.commonDeviceListAction({ ids: ids.join() })
         .then(({ data }) => {
           let { code = "", result = [], message = "" } = data || {};
           if (code == Constants.CODES.SUCCESS) {
             value = result || [];
+            let map = {};
+            value.forEach(item => {
+              let { id = "", configurDevicePointVoList = [] } = item || {};
+              let points = [];
+              configurDevicePointVoList.forEach(_item => {
+                let {
+                  point: id = "",
+                  acqTime: time = "",
+                  descr: name = "",
+                  name: deviceName = ""
+                } = _item || {};
+                points.push({ name, time, deviceName, id });
+              });
+              delete item.configurDevicePointVoList;
+              item.points = points || [];
+              map[id] = item || {};
+            });
+            this.setAllDeviceCacheMap(map);
           } else {
             bmCommon.error(message);
           }
@@ -713,7 +732,7 @@ export default {
         return;
       }
       let { deviceCacheMap = {} } = this;
-      let { id = "" } = deviceCacheMap(deviceId) || {};
+      let { deviceId: id = "" } = deviceCacheMap(deviceId) || {};
       if (id) {
         callback(deviceCacheMap(deviceId));
         return;
