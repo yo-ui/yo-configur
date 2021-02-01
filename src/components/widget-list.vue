@@ -202,9 +202,12 @@ export default {
       $(document).on("dragend", this.dragendEvent);
       //增加自定义组件监听
       $vm.$on("widget-list-diy", () => {
-        let { activeIndex = "" } = this;
+        let { activeIndex = "", tabList = [] } = this;
         if (activeIndex == "diy") {
-          this.tabClickEvent({ name: activeIndex });
+          this.tabClickEvent({
+            name: activeIndex,
+            index: tabList.findIndex(item => item.code == "diy")
+          });
         }
       });
     },
@@ -282,11 +285,14 @@ export default {
       );
     },
     deleteEvent() {
-      let { operateCom = {}, activeIndex = "" } = this;
+      let { operateCom = {}, activeIndex = "", tabList = [] } = this;
       let { id = "" } = operateCom || {};
       this.showContextMenuStatus = false;
       this.widgetCustomDelFunc({ id }, () => {
-        this.tabClickEvent({ name: activeIndex });
+        this.tabClickEvent({
+          name: activeIndex,
+          index: tabList.findIndex(item => item.code == "diy")
+        });
       });
     },
     renameEvent() {
@@ -323,7 +329,10 @@ export default {
         let data = typeof content === "string" ? JSON.parse(content) : {};
         let { type = "" } = data || {};
         item.code = type;
-        item.data = data;
+        item.data = {
+          ...(Constants.COMPONENTPANEL || {}).data,
+          ...data
+        };
       } else if (activeIndex == "material") {
         let { code = "", picUrl = "" } = item || {};
         if (code == "material-house") {
@@ -406,6 +415,7 @@ export default {
         (children || []).forEach(item => {
           item.id = bmCommon.uuid();
           item.parentId = id;
+          item.showStatus = false;
         });
         // bmCommon.log("释放当前元素", width, height, left, top, x, y);
         // left = x - left - _left - width / 2;
@@ -454,7 +464,25 @@ export default {
       }
     },
     clickEvent(item) {
-      let { widgetList = [], canvas = {} } = this;
+      let { widgetList = [], canvas = {}, activeIndex = "" } = this;
+      //如果是自定义组件则另外处理
+      if (activeIndex == "diy") {
+        let { content = "" } = item || {};
+        let data = typeof content === "string" ? JSON.parse(content) : {};
+        let { type = "" } = data || {};
+        item.code = type;
+        item.data = {
+          ...(Constants.COMPONENTPANEL || {}).data,
+          ...data
+        };
+      } else if (activeIndex == "material") {
+        let { code = "", picUrl = "" } = item || {};
+        if (code == "material-house") {
+          //素材库
+          item = Constants.COMPONENTLIBRARYMAP["image"];
+          item.data.content = picUrl;
+        }
+      }
       let {
         data = {},
         name = "",
@@ -468,6 +496,12 @@ export default {
         this.$$msgWarn("当前组件不可用");
         return;
       }
+      let { children = [] } = data || {};
+      (children || []).forEach(item => {
+        item.id = bmCommon.uuid();
+        item.parentId = id;
+        item.showStatus = false;
+      });
       let id = bmCommon.uuid();
       let orders = widgetList.map(item => item.order);
       let order = 1;

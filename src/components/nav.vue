@@ -799,6 +799,8 @@ export default {
           // order,
           comDisabled,
           // id,
+          width: maxWidth,
+          height: maxHeight,
           alias,
           left,
           top,

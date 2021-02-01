@@ -3192,6 +3192,7 @@ let componentPanel = {
   code: "panel",
   data: {
     ...baseData,
+    showStatus: false,
     width: 600,
     height: 400
   }
