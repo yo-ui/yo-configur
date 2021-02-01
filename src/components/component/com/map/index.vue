@@ -150,7 +150,10 @@ export default {
         borderColor = "",
         borderStyle = "",
         borderWidth = "",
-
+        borderTop = 0,
+        borderBottom = 0,
+        borderLeft = 0,
+        borderRight = 0,
         borderRadiusTopLeft = 0,
         borderRadiusTopRight = 0,
         borderRadiusBottomLeft = 0,

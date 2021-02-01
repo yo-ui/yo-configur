@@ -398,7 +398,7 @@ export default {
     selectCom(context, id) {
       let { state = {} } = context;
       let {
-        widgetList = [],
+        // widgetList = [],
         canvas = {},
         activeCom = {},
         activeComs = []
