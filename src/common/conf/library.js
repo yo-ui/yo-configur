@@ -58,6 +58,7 @@ let baseData = {
   backgroundSize: "100% 100%",
   backgroundColor: "",
   backgroundPosition: "center",
+  showStatus: false,
   backgroundRepeat: "repeat",
   borderWidth: 1,
   comName: "", //
@@ -439,8 +440,8 @@ let componentLibrary = [
           ...baseData,
           originWidth: "", //原宽
           originHeight: "", //原高
-          width: "",
-          height: "",
+          width: 300,
+          height: 30,
           fontSize: 28,
           color: "#000",
           fontFamily: "Impact",

@@ -13,7 +13,8 @@
   // pointer-events: auto;
   // .fz(22);
   // .p(10px);
-  .bor(1px dashed transparent);
+  .bor(1px dashed #fff);
+  // .bor(1px dashed transparent);
   // .pointer;
   white-space: nowrap;
   &.materialLine,
@@ -24,6 +25,9 @@
     .info {
       .db(none) !important;
     }
+  }
+  svg{
+    .db;
   }
   &.materialTriangle {
     .el-icon-top-left,
@@ -41,7 +45,8 @@
     // pointer-events: none;
   }
   &.edit {
-    // &:hover {
+    &:hover {
+      .bor(1px dashed @gray6);
     //   // .bc(@grayE);
     //   // .box-s(1px 1px 10px 5px #f9e38c);
     //   // & > .info {
@@ -53,7 +58,7 @@
     //   // .operate-btn{
     //   //   .db;
     //   // }
-    // }
+    }
     &.active {
       // .borc(@themes);
       .borc(@editBorderColor);
@@ -111,12 +116,13 @@
   }
   .el-icon-refresh-right {
     left: 50%;
-    top: -39px;
+    top: -25px;
+    // .ml(-)
     .fz(22);
-    // .ml(-@circle-width/2);
+    .ml(-@circle-width/4);
     .tranf(translate(-50%, 0));
     .squ(@circle-width);
-    .bc(@white);
+    .bc(@up-color);
     .br(50%);
     border-width: 2px;
     cursor: url(/static/img/configur/rotate.png), pointer;
@@ -124,17 +130,17 @@
       .tranf(translate(-50%, 0) scale(1.5));
       .c(@themes);
     }
-    &::after {
-      .posa;
-      .h(21);
-      .w(1);
-      top: 100%;
-      left: (@circle-width / 2)+1px;
-      .ml(-1);
-      .mt(1);
-      content: "";
-      .bc(@editColor);
-    }
+    // &::after {
+    //   .posa;
+    //   .h(21);
+    //   .w(1);
+    //   top: 100%;
+    //   left: (@circle-width / 2)+1px;
+    //   .ml(-1);
+    //   .mt(1);
+    //   content: "";
+    //   .bc(@editColor);
+    // }
     // &::before{
     //   .db(none);
     // }
@@ -174,7 +180,10 @@
     top: @top;
     .tranf(translate(-50%, 0));
     .squ(@square-width);
-    .bc(@white);
+    // .bc(@white);
+    // .squ(@circle-width);
+    .bc(@up-color);
+    .br(50%);
     cursor: n-resize;
     // opacity: 0.1;
     // .bor(1px solid @border);
@@ -212,7 +221,9 @@
     top: 50%;
     .tranf(translate(0, -50%));
     .squ(@square-width);
-    .bc(@white);
+    // .bc(@white);
+    .bc(@up-color);
+    .br(50%);
     // opacity: 0.1;
     cursor: w-resize;
     // .bor(1px solid @border);
@@ -232,7 +243,9 @@
     top: 50%;
     .tranf(translate(0, -50%));
     .squ(@square-width);
-    .bc(@white);
+    // .bc(@white);
+    .bc(@up-color);
+    .br(50%);
     cursor: e-resize;
     // .bor(1px solid @border);
     &::before {
@@ -270,7 +283,9 @@
     bottom: @bottom;
     .tranf(translate(-50%, 0));
     .squ(@square-width);
-    .bc(@white);
+    // .bc(@white);
+    .bc(@up-color);
+    .br(50%);
     cursor: s-resize;
     // .bor(1px solid @border);
     &::before {

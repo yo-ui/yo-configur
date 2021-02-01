@@ -8,6 +8,18 @@
         v-show="leftMenuStatus"
       ></bm-widget-list>
       <!-- <div v-else></div> -->
+      <el-alert
+        :closable="false"
+        :title="
+          $lang(
+            '本文件的图形数量已足够绘制一艘航空母舰，为了好的作图体验，建议您不要制作过大过多的文件哦'
+          )
+        "
+        type="warning"
+        effect="light"
+        show-icon
+        v-if="widgetList.length > 200"
+      ></el-alert>
       <div class="content-box">
         <div class="zoom-box">
           <el-button-group v-if="canvas.scaleable">
@@ -22,6 +34,7 @@
               <i class="el-icon-zoom-in"></i> </el-button
           ></el-button-group>
         </div>
+
         <div
           class="left-top-rule"
           :style="{
@@ -46,7 +59,7 @@
           >
             <i
               :key="item"
-              v-if="
+              v-show="
                 (1 / getZoom > 1 && index % parseInt(1 / getZoom) == 0) ||
                   1 / getZoom <= 1
               "
@@ -72,7 +85,7 @@
             <i
               :key="item"
               :style="{ left: `${(item - 1) * 100 * getZoom + 10}px` }"
-              v-if="
+              v-show="
                 (1 / getZoom > 1 && index % parseInt(1 / getZoom) == 0) ||
                   1 / getZoom <= 1
               "
@@ -80,7 +93,12 @@
             >
           </template>
         </div>
-        <div class="view-box" ref="viewBox" :style="viewBoxStyle">
+        <div
+          class="view-box"
+          ref="viewBox"
+          :style="viewBoxStyle"
+          v-loading="dataLoadingStatus"
+        >
           <!-- <bm-preview-nav ref="bmPreviewNav" /> -->
           <div
             class="canvas-box"
@@ -93,27 +111,24 @@
             </div>
             <bm-com
               class="edit"
-              v-for="(item, index) in widgetList"
+              v-for="item in widgetList"
               :data-type="item.type"
               :data-id="item.id"
               :info="item"
-              :key="index"
+              :key="item.id"
             >
               <template v-if="item.children && item.children.length > 0">
                 <bm-com
                   class="edit"
-                  v-for="(_item, _index) in item.children"
+                  v-for="_item in item.children"
                   :data-type="_item.type"
                   :data-id="_item.id"
                   :info="_item"
-                  :key="_index"
+                  :key="_item.id"
                 >
                 </bm-com>
               </template>
             </bm-com>
-            <!-- <bm-group ref="bmGroup" v-if="isSameGroup">{{
-              isSameGroup
-            }}</bm-group> -->
 
             <bm-lines ref="bmLines" v-if="canvas.alignLineable"></bm-lines>
             <bm-rule-lines ref="bmRuleLines"></bm-rule-lines>
@@ -144,40 +159,40 @@
     >
       <li
         @click="addDiyEvent"
-        v-if="showContextMenuType == 1 && !activeCom.locked"
+        v-show="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("添加到自定义") }}
       </li>
       <li
         @click="composeEvent"
-        v-if="showContextMenuType == 1 && activeComs && activeComs.length > 1"
+        v-show="showContextMenuType == 1 && activeComs && activeComs.length > 1"
       >
         {{ $lang("组合") }} <small>Ctrl+G</small>
       </li>
       <li
         @click="unComposeEvent"
-        v-if="showContextMenuType == 1 && activeCom.type == 'panel'"
+        v-show="showContextMenuType == 1 && activeCom.type == 'panel'"
       >
         {{ $lang("打散") }} <small>Ctrl+Shift+G</small>
       </li>
       <li
         @click="cutEvent"
-        v-if="showContextMenuType == 1 && !activeCom.locked"
+        v-show="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("剪切") }} <small>Ctrl+X</small>
       </li>
       <li
         @click="copyEvent"
-        v-if="showContextMenuType == 1 && !activeCom.locked"
+        v-show="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("复制") }}<small>Ctrl+C</small>
       </li>
-      <li @click="pasteEvent" v-if="!!copyCom">
+      <li @click="pasteEvent" v-show="!!copyCom">
         {{ $lang("粘贴") }}<small>Ctrl+V</small>
       </li>
       <li
         @click="moveUpEvent"
-        v-if="showContextMenuType == 1 && !activeCom.locked"
+        v-show="showContextMenuType == 1 && !activeCom.locked"
         class="line"
         :class="{ disabled: topOrder == activeCom.order }"
       >
@@ -186,38 +201,38 @@
       <li
         @click="moveDownEvent"
         :class="{ disabled: bottomOrder == activeCom.order }"
-        v-if="showContextMenuType == 1 && !activeCom.locked"
+        v-show="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("下移一层") }}<small>Ctrl+]</small>
       </li>
       <li
         @click="moveTopEvent"
         :class="{ disabled: topOrder == activeCom.order }"
-        v-if="showContextMenuType == 1 && !activeCom.locked"
+        v-show="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("置于顶层") }}<small>Ctrl+Shift+[</small>
       </li>
       <li
         @click="moveBottomEvent"
         :class="{ disabled: bottomOrder == activeCom.order }"
-        v-if="showContextMenuType == 1 && !activeCom.locked"
+        v-show="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("置于底层") }}<small>Ctrl+Shift+]</small>
       </li>
       <li
         class="line"
         @click="lockEvent(true)"
-        v-if="showContextMenuType == 1 && !activeCom.locked"
+        v-show="showContextMenuType == 1 && !activeCom.locked"
       >
         {{ $lang("锁定") }}<small>Ctrl+Shift+L</small>
       </li>
       <li
         @click="lockEvent(false)"
-        v-if="showContextMenuType == 1 && activeCom.locked"
+        v-show="showContextMenuType == 1 && activeCom.locked"
       >
         {{ $lang("解锁") }}<small>Ctrl+Shift+L</small>
       </li>
-      <li @click="deleteEvent" v-if="showContextMenuType == 1">
+      <li @click="deleteEvent" v-show="showContextMenuType == 1">
         {{ $lang("删除") }}<small>Delete</small>
       </li>
     </ul>
@@ -232,7 +247,7 @@
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
-import bmCom from "@/components/component";
+// import bmCom from "@/components/component";
 import bmHeader from "@/components/header";
 import bmNav from "@/components/nav";
 import bmWidgetList from "@/components/widget-list";
@@ -247,6 +262,7 @@ export default {
     return {
       // comList: [],
       // activeComIds: "",
+      dataLoadingStatus: true,
       condition: {
         canvasId: ""
       },
@@ -286,13 +302,12 @@ export default {
     //   import(/* webpackChunkName: "iot-footer-com" */ "@/components/footer"),
     // bmInfo: () =>
     //   import(/* webpackChunkName: "iot-info-com" */ "@/components/info"),
-    bmCom,
     bmInfo,
     bmWidgetList,
-    // : () =>
-    //   import(
-    //     /* webpackChunkName: "iot-component-com" */ "@/components/component"
-    //   ),
+    bmCom: () =>
+      import(
+        /* webpackChunkName: "iot-component-com" */ "@/components/component"
+      ),
     // bmWidgetList: () =>
     //   import(
     //     /* webpackChunkName: "iot-widget-list-com" */ "@/components/widget-list"
@@ -609,6 +624,7 @@ export default {
             item.infoType = infoType;
             item.dataType = dataType;
             item.styleCode = styleCode;
+            item.showStatus = false;
             item.dataCode = dataCode;
             item.alias = alias;
             if (type && type != "canvas") {
@@ -630,6 +646,7 @@ export default {
             canvas.height = height;
             this.resizeCanvasSize();
             this.selectComAction();
+            this.dataLoadingStatus = false;
           });
         }
         this.createHistoryAction();
@@ -738,6 +755,10 @@ export default {
         //   map[id] = item || {};
         // });
         // this.setAllDeviceCacheMap(map);
+        bmCommon.log("设备列表加载完成");
+        // widgetList.forEach(item => {
+        //   item.showStatus = true;
+        // });
       });
     },
     resizeCanvasSize() {
@@ -1391,7 +1412,7 @@ export default {
         return;
       }
       let { deviceCacheMap = {} } = this;
-      let { deviceId:id = "" } = deviceCacheMap(deviceId) || {};
+      let { deviceId: id = "" } = deviceCacheMap(deviceId) || {};
       if (id) {
         callback(deviceCacheMap(deviceId));
         return;
@@ -1462,9 +1483,11 @@ export default {
       let value = [];
       if (!(ids.length > 0)) {
         callback();
+        this.dataLoadingStatus = false;
         return;
       }
       // this.commonDeviceListAction({ ids: JSON.stringify(ids) })
+      this.dataLoadingStatus = true;
       this.commonDeviceListAction({ ids: ids.join() })
         .then(({ data }) => {
           let { code = "", result = [], message = "" } = data || {};
@@ -1495,9 +1518,11 @@ export default {
             bmCommon.error(message);
           }
           callback && callback(value || []);
+          this.dataLoadingStatus = false;
         })
         .catch(err => {
           callback && callback(value || []);
+          this.dataLoadingStatus = false;
           bmCommon.error("获取数据失败=>commonDeviceList", err);
         });
     },

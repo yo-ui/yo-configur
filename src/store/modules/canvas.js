@@ -415,27 +415,33 @@ export default {
           activeComs = [activeCom];
           // context.commit("setActiveComs", activeComs);
         }
-        try {
-          widgetList.forEach(item => {
-            let { children = [], id: _id = "" } = item || {};
-            if (_id == id) {
-              activeCom = item;
-              throw new Error("找到对应的组件");
-            } else {
-              if (children && children.length > 0) {
-                let _activeCom = children.find(_item => {
-                  return _item.id == id;
-                });
-                if (_activeCom) {
-                  activeCom = _activeCom;
-                  throw new Error("找到对应的组件");
-                }
-              }
-            }
-          });
-        } catch (error) {
-          bmCommon.warn(error);
+        let comId = `box_${id}`;
+        let com = document.getElementById(comId);
+        if (com) {
+          let _vue = com.__vue__;
+          activeCom = _vue.info;
         }
+        // try {
+        //   widgetList.forEach(item => {
+        //     let { children = [], id: _id = "" } = item || {};
+        //     if (_id == id) {
+        //       activeCom = item;
+        //       throw new Error("找到对应的组件");
+        //     } else {
+        //       if (children && children.length > 0) {
+        //         let _activeCom = children.find(_item => {
+        //           return _item.id == id;
+        //         });
+        //         if (_activeCom) {
+        //           activeCom = _activeCom;
+        //           throw new Error("找到对应的组件");
+        //         }
+        //       }
+        //     }
+        //   });
+        // } catch (error) {
+        //   bmCommon.warn(error);
+        // }
         let { length = 0 } = activeComs || [];
         let { type = "" } = activeCom || {};
         if ((length < 2 && activeCom) || type == "panel") {

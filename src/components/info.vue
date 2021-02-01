@@ -38,6 +38,12 @@
     </template>
     <template v-if="activeIndex == 'element'">
       <!-- <ul class="com-box"> -->
+      <h3 class="com-count">
+        {{ $lang("当前组件数量") }}
+        <span class="count" :class="{ red: widgetList.length > 200 }">{{
+          widgetList.length
+        }}</span>
+      </h3>
       <draggable
         v-model="widgetList"
         class="com-list-box"

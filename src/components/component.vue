@@ -9,13 +9,14 @@
     :style="boxStyle"
     :class="boxClasses"
   >
-    <div class="info" v-show="showType == 'edit' && !moving">
+    <!-- <div class="info" v-show="showType == 'edit' && !moving">
       <p class="txt">
         {{ info.name }}
       </p>
-    </div>
+    </div> -->
     <div
       class="cover"
+      v-if="showType == 'edit'"
       v-show="
         (info.type != 'panel' && info.showCoverStatus && showType == 'edit') ||
           (info.type == 'panel' &&
@@ -35,12 +36,15 @@
     </div>
     <i
       class="operate-btn el-icon-refresh-right"
-      v-if="showRotateStatus"
+      v-if="showType == 'edit'"
+      :style="{ transform: `scale(${1 / zoom})`, top: `${-30 / zoom}px` }"
+      v-show="showRotateStatus"
       @mousedown.stop="rotateClickEvent"
       title="旋转"
     ></i>
     <i
       class="operate-btn el-icon-axis"
+      v-if="showType == 'edit'"
       :style="
         `${
           {
@@ -54,57 +58,73 @@
             'left bottom': ' left: 0; top: 100% ',
             left: ' left: 0; top: 50%'
           }[info.transformOrigin]
-        }`
+        },transform: scale(${1 / zoom})`
       "
       v-show="showRotateOriginStatus"
       title="旋转轴"
     ></i>
     <i
       class="operate-btn el-icon-top-left"
-      v-if="scaleBoxStatus"
+      v-if="showType == 'edit'"
+      :style="{ transform: `scale(${1 / zoom})` }"
+      v-show="scaleBoxStatus"
       @mousedown.stop="leftTopClickEvent"
       title="左上角"
     ></i>
     <!-- !moving && info.scaleable && !info.locked && !rotating -->
     <i
       class="operate-btn el-icon-top"
-      v-if="scaleBoxStatus"
+      v-if="showType == 'edit'"
+      :style="{ transform: `scale(${1 / zoom})` }"
+      v-show="scaleBoxStatus"
       @mousedown.stop="topClickEvent"
       title="上"
     ></i>
     <i
       class="operate-btn el-icon-top-right"
-      v-if="scaleBoxStatus"
+      v-if="showType == 'edit'"
+      :style="{ transform: `scale(${1 / zoom})` }"
+      v-show="scaleBoxStatus"
       @mousedown.stop="rightTopClickEvent"
       title="右上角"
     ></i>
     <i
       class="operate-btn el-icon-back"
-      v-if="scaleBoxStatus"
+      v-if="showType == 'edit'"
+      :style="{ transform: `scale(${1 / zoom})` }"
+      v-show="scaleBoxStatus"
       @mousedown.stop="leftClickEvent"
       title="左"
     ></i>
     <i
       class="operate-btn el-icon-right"
-      v-if="scaleBoxStatus"
+      v-if="showType == 'edit'"
+      :style="{ transform: `scale(${1 / zoom})` }"
+      v-show="scaleBoxStatus"
       @mousedown.stop="rightClickEvent"
       title="右"
     ></i>
     <i
       class="operate-btn el-icon-bottom-left"
-      v-if="scaleBoxStatus"
+      v-if="showType == 'edit'"
+      :style="{ transform: `scale(${1 / zoom})` }"
+      v-show="scaleBoxStatus"
       @mousedown.stop="leftBottomClickEvent"
       title="左下角"
     ></i>
     <i
       class="operate-btn el-icon-bottom"
-      v-if="scaleBoxStatus"
+      v-if="showType == 'edit'"
+      :style="{ transform: `scale(${1 / zoom})` }"
+      v-show="scaleBoxStatus"
       @mousedown.stop="bottomClickEvent"
       title="下"
     ></i>
     <i
       class="operate-btn el-icon-bottom-right"
-      v-if="scaleBoxStatus"
+      v-if="showType == 'edit'"
+      :style="{ transform: `scale(${1 / zoom})` }"
+      v-show="scaleBoxStatus"
       @mousedown.stop="rightBottomClickEvent"
       title="右下角"
     ></i>
@@ -114,6 +134,7 @@
       :info="info"
       :style="comStyle(info)"
       :is="`${info.type}Com`"
+      v-if="info.showStatus"
       @success="loadSuccess"
     >
       <slot></slot>
@@ -160,6 +181,13 @@ export default {
     // this.selectComAction(id);
     // this.setActiveCom(info);
     // bmCommon.log("变换处理");
+    // this.setTimeoutId = setTimeout(() => {
+    //   clearTimeout(this.setTimeoutId);
+    //   this.$nextTick(() => {
+    //     bmCommon.log("渲染组件");
+    //     info.showStatus = true;
+    //   });
+    // }, 100);
   },
   mounted() {
     // this.loadSuccess();
@@ -169,6 +197,16 @@ export default {
     this.loadComPoints();
     // $vm.$on(`comAnimationEvent_${id}`, (animation = {}) => {
     // });
+    window.requestAnimationFrame(() => {
+      info.showStatus = true;
+    });
+    // this._comSetTimeoutId = setTimeout(() => {
+    // clearTimeout(this._comSetTimeoutId);
+    // this.$nextTick(() => {
+    // bmCommon.log("渲染组件", info.id);
+    // info.showStatus = true;
+    // });
+    // }, 0);
   },
   components: {
     ...widgets

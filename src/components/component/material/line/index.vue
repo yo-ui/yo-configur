@@ -4,9 +4,9 @@
     <!-- :transform="`translate(${info.vboxX - 10} ${info.vboxY - 5})`" -->
     <svg
       version="1.1"
-      :viewBox="`0 0 ${info.width} ${info.height}`"
-      :width="`${info.width}`"
-      :height="`${info.height}`"
+      :viewBox="`0 0 ${info.boxW} ${info.boxH}`"
+      :width="`${info.boxW}`"
+      :height="`${info.boxH}`"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       xml:space="preserve"
@@ -370,10 +370,10 @@ export default {
       info.boxY = y;
       info.lineLong = lineLong;
       // bmCommon.warn("rbox=", info.vboxX,info.vboxY);
-      info.boxW = w;
-      info.width = w > 20 ? w : 20;
-      info.boxH = h;
-      info.height = h > 20 ? h : 20;
+      info.boxW = w > 20 ? w : 20;
+      info.width = 0;
+      info.boxH = h > 20 ? h : 20;
+      info.height = 0;
     },
     leftClickEvent(e) {
       e.stopPropagation();
