@@ -755,17 +755,21 @@ export default {
           if (code == Constants.CODES.SUCCESS) {
             value = result || [];
             let map = {};
+
             value.forEach(item => {
-              let { id = "", configurDevicePointVoList = [] } = item || {};
+              let { deviceId: id = "", configurDevicePointVoList = [] } =
+                item || {};
               let points = [];
               configurDevicePointVoList.forEach(_item => {
                 let {
                   point: id = "",
                   acqTime: time = "",
                   descr: name = "",
-                  name: deviceName = ""
+                  name: deviceName = "",
+                  unit = "",
+                  value = ""
                 } = _item || {};
-                points.push({ name, time, deviceName, id });
+                points.push({ name, time, deviceName, id, unit, value });
               });
               delete item.configurDevicePointVoList;
               item.points = points || [];
