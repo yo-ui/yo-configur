@@ -20,7 +20,7 @@
       ></el-input-number>
       <el-slider
         v-model="info.order"
-        :max="200"
+        :max="3000"
         :format-tooltip="val => val"
       ></el-slider>
     </p>

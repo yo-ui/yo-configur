@@ -395,7 +395,7 @@ export default {
     }
   },
   actions: {
-    selectCom(context, id) {
+    async selectCom(context, id) {
       let { state = {} } = context;
       let {
         // widgetList = [],
@@ -451,7 +451,7 @@ export default {
         }
       }
     },
-    selectComs(context, id) {
+    async selectComs(context, id) {
       let { state = {} } = context;
       let {
         widgetList = [],
@@ -495,7 +495,7 @@ export default {
       // context.commit("setActiveComs", activeComs);
       // context.commit("setActiveCom", activeCom);
     },
-    createRecord(context, item) {
+    async createRecord(context, item) {
       let { img = "" } = item || {};
       let { getters = {} } = context;
       let { getRecordList: recordList = [], getWidgetList: widgetList = [] } =
@@ -513,7 +513,7 @@ export default {
       });
       context.commit("setRecordList", recordList);
     },
-    createHistory(context) {
+    async createHistory(context) {
       let { getters = {} } = context;
       let {
         getWidgetList: widgetList = [],

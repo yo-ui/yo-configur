@@ -9,7 +9,6 @@
       ></bm-widget-list>
       <!-- <div v-else></div> -->
       <el-alert
-        :closable="false"
         :title="
           $lang(
             '本文件的图形数量已足够绘制一艘航空母舰，为了好的作图体验，建议您不要制作过大过多的文件哦'
@@ -1319,7 +1318,10 @@ export default {
           return;
         }
         callback(copyCom || {}, 0);
-        this.setActiveCom(_activeCom);
+        this.$nextTick(() => {
+          // this.setActiveCom(_activeCom);
+          this.selectComAction((_activeCom || {}).id); //选中组件
+        });
       }
       this.createHistoryAction();
       this.showContextMenuStatus = false;
@@ -1367,6 +1369,7 @@ export default {
       let { canvasId: id = "" } = condition;
       if (!id) {
         bmCommon.warn("请输入画布id");
+        callback && callback(value || {});
         return;
       }
       this.canvasGetAction({ id })

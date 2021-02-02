@@ -37,7 +37,10 @@
     <i
       class="operate-btn el-icon-refresh-right"
       v-if="showType == 'edit'"
-      :style="{ transform: `scale(${1 / zoom})`, top: `${-30 / zoom}px` }"
+      :style="{
+        transform: `scale(${1 / zoom}) translate(-${zoom * 50}%, 0)`,
+        top: `${-50 / zoom}px`
+      }"
       v-show="showRotateStatus"
       @mousedown.stop="rotateClickEvent"
       title="旋转"
@@ -58,7 +61,8 @@
             'left bottom': ' left: 0; top: 100% ',
             left: ' left: 0; top: 50%'
           }[info.transformOrigin]
-        },transform: scale(${1 / zoom})`
+        },transform: scale(${1 / zoom}) translate(-${zoom * 50}%, -${zoom *
+          50}%)`
       "
       v-show="showRotateOriginStatus"
       title="旋转轴"
@@ -75,7 +79,9 @@
     <i
       class="operate-btn el-icon-top"
       v-if="showType == 'edit'"
-      :style="{ transform: `scale(${1 / zoom})` }"
+      :style="{
+        transform: `scale(${1 / zoom}) translate(-${zoom * 50}%, 0)`
+      }"
       v-show="scaleBoxStatus"
       @mousedown.stop="topClickEvent"
       title="上"
@@ -91,7 +97,7 @@
     <i
       class="operate-btn el-icon-back"
       v-if="showType == 'edit'"
-      :style="{ transform: `scale(${1 / zoom})` }"
+      :style="{ transform: `scale(${1 / zoom}) translate(0, -${zoom * 50}%)` }"
       v-show="scaleBoxStatus"
       @mousedown.stop="leftClickEvent"
       title="左"
@@ -99,7 +105,7 @@
     <i
       class="operate-btn el-icon-right"
       v-if="showType == 'edit'"
-      :style="{ transform: `scale(${1 / zoom})` }"
+      :style="{ transform: `scale(${1 / zoom}) translate(0, -${zoom * 50}%)` }"
       v-show="scaleBoxStatus"
       @mousedown.stop="rightClickEvent"
       title="右"
@@ -115,7 +121,7 @@
     <i
       class="operate-btn el-icon-bottom"
       v-if="showType == 'edit'"
-      :style="{ transform: `scale(${1 / zoom})` }"
+      :style="{ transform: `scale(${1 / zoom}) translate(-${zoom * 50}%, 0)` }"
       v-show="scaleBoxStatus"
       @mousedown.stop="bottomClickEvent"
       title="下"
@@ -128,17 +134,18 @@
       @mousedown.stop="rightBottomClickEvent"
       title="右下角"
     ></i>
-    <component
-      ref="bmCom"
-      :type="showType"
-      :info="info"
-      :style="comStyle(info)"
-      :is="`${info.type}Com`"
-      v-if="info.showStatus"
-      @success="loadSuccess"
-    >
-      <slot></slot>
-    </component>
+    <keep-alive>
+      <component
+        ref="bmCom"
+        :type="showType"
+        :info="info"
+        :style="comStyle(info)"
+        :is="`${info.type}Com`"
+        @success="loadSuccess"
+      >
+        <slot></slot>
+      </component>
+    </keep-alive>
   </div>
 </template>
 
@@ -197,10 +204,10 @@ export default {
     this.loadComPoints();
     // $vm.$on(`comAnimationEvent_${id}`, (animation = {}) => {
     // });
-    window.requestAnimationFrame(() => {
-      bmCommon.log("info.type", info.type);
-      info.showStatus = true;
-    });
+    // window.requestAnimationFrame(() => {
+    //   // bmCommon.log("info.type", info.type);
+    //   info.showStatus = true;
+    // });
     // this._comSetTimeoutId = setTimeout(() => {
     // clearTimeout(this._comSetTimeoutId);
     // this.$nextTick(() => {

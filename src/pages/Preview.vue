@@ -15,7 +15,12 @@
               <i class="el-icon-zoom-in"></i> </el-button
           ></el-button-group>
         </div>
-        <div class="view-box" ref="viewBox" :style="viewBoxStyle">
+        <div
+          class="view-box"
+          ref="viewBox"
+          :style="viewBoxStyle"
+          v-loading="dataLoadingStatus"
+        >
           <div
             class="canvas-box"
             ref="canvasBox"
@@ -131,6 +136,7 @@ export default {
   name: "bm-preview-page",
   data() {
     return {
+      dataLoadingStatus: true,
       condition: {
         canvasId: ""
       }
@@ -618,29 +624,30 @@ export default {
       });
     },
     // 获取画布信息
-    canvasGetFunc(callback) {
-      let value = {};
-      let { condition } = this;
-      let { canvasId: id = "" } = condition;
-      if (!id) {
-        bmCommon.warn("请输入画布id");
-        return;
-      }
-      this.canvasGetAction({ id })
-        .then(({ data }) => {
-          let { code = "", result = {}, message = "" } = data || {};
-          if (code == Constants.CODES.SUCCESS) {
-            value = result || {};
-          } else {
-            bmCommon.error(message);
-          }
-          callback && callback(value || {});
-        })
-        .catch(err => {
-          callback && callback(value || {});
-          bmCommon.error("获取数据失败=>canvasGet", err);
-        });
-    },
+    // canvasGetFunc(callback) {
+    //   let value = {};
+    //   let { condition } = this;
+    //   let { canvasId: id = "" } = condition;
+    //   if (!id) {
+    //     bmCommon.warn("请输入画布id");
+    //     callback && callback(value || {});
+    //     return;
+    //   }
+    //   this.canvasGetAction({ id })
+    //     .then(({ data }) => {
+    //       let { code = "", result = {}, message = "" } = data || {};
+    //       if (code == Constants.CODES.SUCCESS) {
+    //         value = result || {};
+    //       } else {
+    //         bmCommon.error(message);
+    //       }
+    //       callback && callback(value || {});
+    //     })
+    //     .catch(err => {
+    //       callback && callback(value || {});
+    //       bmCommon.error("获取数据失败=>canvasGet", err);
+    //     });
+    // },
     // 获取设备信息
     commonGetDeviceFunc({ deviceId = "" }, callback) {
       let value = {};
@@ -746,9 +753,11 @@ export default {
       let value = [];
       if (!(ids.length > 0)) {
         callback();
+        this.dataLoadingStatus = false;
         return;
       }
       // this.commonDeviceListAction({ ids: JSON.stringify(ids) })
+      this.dataLoadingStatus = true;
       this.commonDeviceListAction({ ids: ids.join() })
         .then(({ data }) => {
           let { code = "", result = [], message = "" } = data || {};
@@ -780,9 +789,11 @@ export default {
             bmCommon.error(message);
           }
           callback && callback(value || []);
+          this.dataLoadingStatus = false;
         })
         .catch(err => {
           callback && callback(value || []);
+          this.dataLoadingStatus = false;
           bmCommon.error("获取数据失败=>commonDeviceList", err);
         });
     }
