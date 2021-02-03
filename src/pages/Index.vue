@@ -1018,7 +1018,14 @@ export default {
         // ctrl+a 全选
         if (ctrlKey) {
           e.preventDefault();
-          this.setActiveComs(bmCommon.clone(widgetList));
+          let [com = {}] = widgetList || [];
+          let { length = 0 } = widgetList || [];
+          if (length > 0) {
+            this.setActiveCom(com);
+            this.$nextTick(() => {
+              this.setActiveComs(widgetList);
+            });
+          }
         }
         return;
       } else if (keyCode == 189) {

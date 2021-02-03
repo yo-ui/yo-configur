@@ -225,7 +225,7 @@ export default {
   computed: {
     ...mapGetters({
       getWidgetList: "canvas/getWidgetList",
-      // getActiveCom: "canvas/getActiveCom", //选中对象
+      getActiveCom: "canvas/getActiveCom", //选中对象
       selectBox: "canvas/getSelectBox", //选取框
       activeCom: "canvas/getActiveCom", //选中对象
       moving: "canvas/getMoving", //组件是否移动
@@ -234,16 +234,9 @@ export default {
     // activeCom() {
     //   let { activeComs = [], getActiveCom = {} } = this;
     //   let { length = 0 } = activeComs || [];
-    //   let { children = [] } = getActiveCom || {};
     //   if (length > 1) {
     //     let [activeCom = {}] = activeComs || [];
     //     return activeCom || {};
-    //   } else {
-    //     let { length = 0 } = children || [];
-    //     if (length > 1) {
-    //       let [activeCom = {}] = children || [];
-    //       return activeCom || {};
-    //     }
     //   }
     //   return getActiveCom || {};
     // },
@@ -356,6 +349,7 @@ export default {
     initWatches() {
       let { activeCom = {} } = this;
       // for (let i in Constants.BASEDATA) {
+      let { id = "" } = activeCom || {};
       for (let i in activeCom) {
         if (i != "id") {
           let key = `activeCom.${i}`;
@@ -363,7 +357,7 @@ export default {
           this.$watch(
             key,
             (newVal, oldVal) => {
-              let { activeCom = {} } = this;
+              // let { activeCom = {} } = this;
               // let { children = [] } = getActiveCom || {};
               let { parentId = "" } = activeCom || {};
               let { activeComs = [], moving = false, selectBox = {} } = this;
@@ -371,9 +365,11 @@ export default {
               let { length = 0 } = activeComs || [];
               if (!(moving || _moving || parentId)) {
                 if (length > 1) {
-                  activeComs.forEach(item => {
-                    item[i] = newVal;
-                  });
+                  activeComs
+                    .filter(item => item.id != id)
+                    .forEach(item => {
+                      item[i] = newVal;
+                    });
                 }
               }
               //  else {
