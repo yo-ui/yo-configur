@@ -374,7 +374,10 @@ export default {
       });
       //添加到自定义
       $vm.$on("diy-command", () => {
-        this.diyCommandEvent();
+        this._navTimeoutId = setTimeout(() => {
+          clearTimeout(this._navTimeoutId);
+          this.diyCommandEvent();
+        }, 0);
       });
       // //打散
       // $vm.$on("un-compose", () => {
@@ -403,99 +406,117 @@ export default {
     },
     //清空缓存
     clearEvent() {
-      let { userInfo = {} } = this;
-      localStorage.clear();
-      sessionStorage.clear();
-      this.setUserInfo(userInfo);
-      this.$$msgSuccess("缓存清除成功");
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        let { userInfo = {} } = this;
+        localStorage.clear();
+        sessionStorage.clear();
+        this.setUserInfo(userInfo);
+        this.$$msgSuccess("缓存清除成功");
+      }, 0);
     },
     saveEvent() {
-      let { canvas = {}, canvasData: data = {}, widgetList = [] } = this;
-      let { width = "", height = "", canvasId: id = "", name = "" } =
-        canvas || {};
-      this.setCanvasData(data);
-      if (!id) {
-        return;
-      }
-      data.canvasData = {
-        widgetList: widgetList.filter(item => item.type != "canvas"),
-        canvas
-      };
-      if (!data.background) {
-        data.background = { url: "", color: "#fff" };
-        data.capacity = [];
-      }
-      this.canvasSaveFunc(
-        {
-          data: JSON.stringify(data),
-          width,
-          height,
-          name,
-          id
-        },
-        () => {
-          this.$$msgSuccess("保存成功");
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        let { canvas = {}, canvasData: data = {}, widgetList = [] } = this;
+        let { width = "", height = "", canvasId: id = "", name = "" } =
+          canvas || {};
+        this.setCanvasData(data);
+        if (!id) {
+          return;
         }
-      );
+        data.canvasData = {
+          widgetList: widgetList.filter(item => item.type != "canvas"),
+          canvas
+        };
+        if (!data.background) {
+          data.background = { url: "", color: "#fff" };
+          data.capacity = [];
+        }
+        this.canvasSaveFunc(
+          {
+            data: JSON.stringify(data),
+            width,
+            height,
+            name,
+            id
+          },
+          () => {
+            this.$$msgSuccess("保存成功");
+          }
+        );
+      }, 0);
     },
     copyEvent() {
-      let {
-        activeCom = {},
-        widgetList = [],
-        activeComs = [],
-        selectBox = {}
-      } = this;
-      selectBox.moving = true;
-      let { type = "" } = activeCom || {};
-      let { length = 0 } = activeComs || [];
-      if (length < 2) {
-        if (!type || type == "canvas") {
-          this.$$msgError(this.$lang("请选择要复制的组件"));
-          return;
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        let {
+          activeCom = {},
+          widgetList = [],
+          activeComs = [],
+          selectBox = {}
+        } = this;
+        selectBox.moving = true;
+        let { type = "" } = activeCom || {};
+        let { length = 0 } = activeComs || [];
+        if (length < 2) {
+          if (!type || type == "canvas") {
+            this.$$msgError(this.$lang("请选择要复制的组件"));
+            return;
+          }
         }
-      }
-      let _activeComs = [];
-      let callback = item => {
-        let id = bmCommon.uuid();
-        let orders = widgetList.map(item => item.order);
-        let order = Math.max(...orders);
-        order += 1;
-        let _item = { ...item, id, order };
-        widgetList.push(_item);
+        let _activeComs = [];
+        let callback = item => {
+          let id = bmCommon.uuid();
+          let orders = widgetList.map(item => item.order);
+          let order = Math.max(...orders);
+          order += 1;
+          let _item = { ...item, id, order };
+          let { children = [] } = _item || {};
+          children &&
+            children.forEach(item => {
+              item.id = bmCommon.uuid();
+              item.parentId = id;
+            });
+          widgetList.push(_item);
+          if (length > 1) {
+            _activeComs.push(_item);
+          }
+        };
         if (length > 1) {
-          _activeComs.push(_item);
+          activeComs.forEach(item => {
+            callback(item);
+          });
+          this.setActiveComs(_activeComs);
+        } else {
+          callback(activeCom || {});
+          this.setActiveCom(activeCom);
         }
-      };
-      if (length > 1) {
-        activeComs.forEach(item => {
-          callback(item);
-        });
-        this.setActiveComs(_activeComs);
-      } else {
-        callback(activeCom || {});
-        this.setActiveCom(activeCom);
-      }
+      }, 0);
     },
     deleteEvent() {
-      let { activeCom = {}, activeComs = [] } = this;
-      let { type = "" } = activeCom;
-      let { length = 0 } = activeComs || [];
-      let callback = () => {
-        this.selectComAction();
-        // this.showContextMenuStatus = false;
-        this.createHistoryAction();
-      };
-      if (length > 1) {
-        activeComs.forEach(item => {
-          this.deleteItem(item, callback);
-        });
-      } else {
-        if (!type || type == "canvas") {
-          this.$$msgError(this.$lang("请选择要删除的组件"));
-          return;
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        let { activeCom = {}, activeComs = [] } = this;
+        let { type = "" } = activeCom;
+        let { length = 0 } = activeComs || [];
+        let callback = () => {
+          this.selectComAction();
+          // this.showContextMenuStatus = false;
+          this.createHistoryAction();
+        };
+        if (length > 1) {
+          activeComs.forEach(item => {
+            this.deleteItem(item, callback);
+          });
+        } else {
+          if (!type || type == "canvas") {
+            this.$$msgError(this.$lang("请选择要删除的组件"));
+            return;
+          }
+          this.deleteItem(activeCom, callback);
         }
-        this.deleteItem(activeCom, callback);
-      }
+      }, 0);
     },
     deleteItem(item = {}, callback) {
       let { widgetList = [] } = this;
@@ -540,22 +561,25 @@ export default {
       this.setHistoryIndex(historyIndex);
     },
     cancelEvent() {
-      let { historyList = [], historyIndex = 0 } = this;
-      let { length = 0 } = historyList || [];
-      if (historyIndex > length - 2) {
-        return;
-      }
-      // let {  } = condition;
-      if (historyIndex > length - 1) {
-        // condition.historyIndex = length - 1;
-        this.setHistoryIndex(length - 1);
-        return;
-      }
-      let widgetList = historyList[++historyIndex];
-      this.setWidgetList(widgetList || []);
-      this.selectComAction();
-      // condition.historyIndex = ++historyIndex;
-      this.setHistoryIndex(historyIndex);
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        let { historyList = [], historyIndex = 0 } = this;
+        let { length = 0 } = historyList || [];
+        if (historyIndex > length - 2) {
+          return;
+        }
+        // let {  } = condition;
+        if (historyIndex > length - 1) {
+          // condition.historyIndex = length - 1;
+          this.setHistoryIndex(length - 1);
+          return;
+        }
+        let widgetList = historyList[++historyIndex];
+        this.setWidgetList(widgetList || []);
+        this.selectComAction();
+        // condition.historyIndex = ++historyIndex;
+        this.setHistoryIndex(historyIndex);
+      }, 0);
     },
     fallbackEvent() {
       this.$refs.bmFallback?.show();
@@ -572,41 +596,47 @@ export default {
       this.setRightMenuStatus(!rightMenuStatus);
     },
     zoomEvent(val = 0) {
-      let { zoom = 0, canvas = {} } = this;
-      if (val) {
-        zoom = zoom * 100 + val;
-        // if (zoom > 10 && zoom <= 1000) {
-        //   this.setZoom(zoom / 100);
-        // }
-        if (zoom < 10) {
-          zoom = 10;
-        } else if (zoom > 1000) {
-          zoom = 1000;
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        let { zoom = 0, canvas = {} } = this;
+        if (val) {
+          zoom = zoom * 100 + val;
+          // if (zoom > 10 && zoom <= 1000) {
+          //   this.setZoom(zoom / 100);
+          // }
+          if (zoom < 10) {
+            zoom = 10;
+          } else if (zoom > 1000) {
+            zoom = 1000;
+          }
+          this.setZoom(zoom / 100);
+        } else {
+          this.setZoom(1);
+          canvas.left = 0;
+          canvas.top = 0;
         }
-        this.setZoom(zoom / 100);
-      } else {
-        this.setZoom(1);
-        canvas.left = 0;
-        canvas.top = 0;
-      }
+      }, 0);
     },
     //运行
     runEvent() {
-      // this.$jumpPage(this.$RouterURL.preview.name);
-      let { widgetList = [], canvas = {} } = this;
-      this.setPreviewData({
-        widgetList,
-        canvas
-      });
-      this.$refs.bmPreview?.show();
-      this.selectComAction(); //选中组件
-      this.timeoutId = setTimeout(() => {
-        clearTimeout(this.timeoutId);
-        this.uploadImg((img = "") => {
-          canvas.poster = img;
-          this.createRecordAction({ img });
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        // this.$jumpPage(this.$RouterURL.preview.name);
+        let { widgetList = [], canvas = {} } = this;
+        this.setPreviewData({
+          widgetList,
+          canvas
         });
-      });
+        this.$refs.bmPreview?.show();
+        this.selectComAction(); //选中组件
+        this.timeoutId = setTimeout(() => {
+          clearTimeout(this.timeoutId);
+          this.uploadImg((img = "") => {
+            canvas.poster = img;
+            this.createRecordAction({ img });
+          });
+        });
+      }, 0);
     },
     uploadImg(callback, item) {
       // let { canvas = {} } = this;
@@ -671,68 +701,80 @@ export default {
     },
     // 全屏事件
     fullScreenEvent() {
-      let { fullScreenStatus } = this;
-      if (fullScreenStatus) {
-        this.exitFullscreen();
-      } else {
-        this.showFullScreen();
-      }
-      this.fullScreenStatus = !fullScreenStatus;
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        let { fullScreenStatus } = this;
+        if (fullScreenStatus) {
+          this.exitFullscreen();
+        } else {
+          this.showFullScreen();
+        }
+        this.fullScreenStatus = !fullScreenStatus;
+      }, 0);
     },
     showFullScreen() {
-      var element = document.documentElement;
-      if (element.requestFullscreen) {
-        element.requestFullscreen();
-      } else if (element.msRequestFullscreen) {
-        element.msRequestFullscreen();
-      } else if (element.mozRequestFullScreen) {
-        element.mozRequestFullScreen();
-      } else if (element.webkitRequestFullscreen) {
-        element.webkitRequestFullscreen();
-      }
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        var element = document.documentElement;
+        if (element.requestFullscreen) {
+          element.requestFullscreen();
+        } else if (element.msRequestFullscreen) {
+          element.msRequestFullscreen();
+        } else if (element.mozRequestFullScreen) {
+          element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullscreen) {
+          element.webkitRequestFullscreen();
+        }
+      }, 0);
     },
     // 退出全屏
     exitFullscreen() {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
-      } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      }
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }, 0);
     },
     setThemesEvent(cmd) {
-      let { canvas = {}, widgetList = [] } = this;
-      canvas.themes = cmd;
-      switch (cmd) {
-        case "white":
-          canvas.backgroundColor = "#fff";
-          break;
-        case "black":
-          canvas.backgroundColor = "#1f2b48";
-          break;
-        case "blue":
-          canvas.backgroundColor = "#121b43";
-          break;
-        default:
-          break;
-      }
-      widgetList.forEach(item => {
-        item.themes = cmd;
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        let { canvas = {}, widgetList = [] } = this;
+        canvas.themes = cmd;
         switch (cmd) {
           case "white":
+            canvas.backgroundColor = "#fff";
             break;
           case "black":
+            canvas.backgroundColor = "#1f2b48";
             break;
           case "blue":
+            canvas.backgroundColor = "#121b43";
             break;
           default:
             break;
         }
-      });
-      this.showThemesPopoverStatus = false;
+        widgetList.forEach(item => {
+          item.themes = cmd;
+          switch (cmd) {
+            case "white":
+              break;
+            case "black":
+              break;
+            case "blue":
+              break;
+            default:
+              break;
+          }
+        });
+        this.showThemesPopoverStatus = false;
+      }, 0);
     },
     //添加到自定义
     diyCommandEvent() {
@@ -880,18 +922,21 @@ export default {
     },
     //组合  打散操作
     groupCommandEvent(cmd) {
-      if (!cmd) {
-        return;
-      }
-      switch (cmd) {
-        case "group":
-          this.composeEvent();
-          break;
-        case "ungroup":
-          this.unComposeEvent();
-          break;
-      }
-      this.showGroupPopoverStatus = false;
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        if (!cmd) {
+          return;
+        }
+        switch (cmd) {
+          case "group":
+            this.composeEvent();
+            break;
+          case "ungroup":
+            this.unComposeEvent();
+            break;
+        }
+        this.showGroupPopoverStatus = false;
+      }, 0);
     },
     // 组合
     composeEvent() {
@@ -1005,20 +1050,23 @@ export default {
     },
     // 分布操作
     spreadCommandEvent(cmd) {
-      if (!cmd) {
-        return;
-      }
-      let { condition } = this;
-      condition.spreadType = cmd;
-      switch (cmd) {
-        case "v-center":
-          this.spreadVCenterEvent();
-          break;
-        case "h-center":
-          this.spreadHCenterEvent();
-          break;
-      }
-      this.showSpreadPopoverStatus = false;
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        if (!cmd) {
+          return;
+        }
+        let { condition } = this;
+        condition.spreadType = cmd;
+        switch (cmd) {
+          case "v-center":
+            this.spreadVCenterEvent();
+            break;
+          case "h-center":
+            this.spreadHCenterEvent();
+            break;
+        }
+        this.showSpreadPopoverStatus = false;
+      }, 0);
     },
     // 垂直分布
     spreadVCenterEvent() {
@@ -1073,48 +1121,51 @@ export default {
       this.createHistoryAction();
     },
     alignCommandEvent(cmd) {
-      if (!cmd) {
-        return;
-      }
-      let { condition } = this;
-      condition.alignType = cmd;
-      switch (cmd) {
-        case "top":
-          this.alignTopEvent();
-          this.createHistoryAction();
-          break;
-        case "bottom":
-          this.alignBottomEvent();
-          this.createHistoryAction();
-          break;
-        case "left":
-          this.alignLeftEvent();
-          this.createHistoryAction();
-          break;
-        case "right":
-          this.alignRightEvent();
-          this.createHistoryAction();
-          break;
-        case "left-right":
-          this.alignLeftRightEvent();
-          this.createHistoryAction();
-          break;
-        case "top-bottom":
-          this.alignTopBottomEvent();
-          this.createHistoryAction();
-          break;
-        case "v-center":
-          this.alignVCenterEvent();
-          this.createHistoryAction();
-          break;
-        case "h-center":
-          this.alignHCenterEvent();
-          this.createHistoryAction();
-          break;
-        default:
-          break;
-      }
-      this.showAlignPopoverStatus = false;
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        if (!cmd) {
+          return;
+        }
+        let { condition } = this;
+        condition.alignType = cmd;
+        switch (cmd) {
+          case "top":
+            this.alignTopEvent();
+            this.createHistoryAction();
+            break;
+          case "bottom":
+            this.alignBottomEvent();
+            this.createHistoryAction();
+            break;
+          case "left":
+            this.alignLeftEvent();
+            this.createHistoryAction();
+            break;
+          case "right":
+            this.alignRightEvent();
+            this.createHistoryAction();
+            break;
+          case "left-right":
+            this.alignLeftRightEvent();
+            this.createHistoryAction();
+            break;
+          case "top-bottom":
+            this.alignTopBottomEvent();
+            this.createHistoryAction();
+            break;
+          case "v-center":
+            this.alignVCenterEvent();
+            this.createHistoryAction();
+            break;
+          case "h-center":
+            this.alignHCenterEvent();
+            this.createHistoryAction();
+            break;
+          default:
+            break;
+        }
+        this.showAlignPopoverStatus = false;
+      }, 0);
     },
     // 左右对齐
     alignLeftRightEvent() {
@@ -1238,30 +1289,33 @@ export default {
       });
     },
     orderCommandEvent(cmd) {
-      if (!cmd) {
-        return;
-      }
-      switch (cmd) {
-        case "up":
-          this.moveUpEvent();
-          this.createHistoryAction();
-          break;
-        case "down":
-          this.moveDownEvent();
-          this.createHistoryAction();
-          break;
-        case "top":
-          this.moveTopEvent();
-          this.createHistoryAction();
-          break;
-        case "bottom":
-          this.moveBottomEvent();
-          this.createHistoryAction();
-          break;
-        default:
-          break;
-      }
-      this.showArrangePopoverStatus = false;
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        if (!cmd) {
+          return;
+        }
+        switch (cmd) {
+          case "up":
+            this.moveUpEvent();
+            this.createHistoryAction();
+            break;
+          case "down":
+            this.moveDownEvent();
+            this.createHistoryAction();
+            break;
+          case "top":
+            this.moveTopEvent();
+            this.createHistoryAction();
+            break;
+          case "bottom":
+            this.moveBottomEvent();
+            this.createHistoryAction();
+            break;
+          default:
+            break;
+        }
+        this.showArrangePopoverStatus = false;
+      }, 0);
     },
     // 上移一层
     moveUpEvent() {

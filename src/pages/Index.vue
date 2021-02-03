@@ -1185,146 +1185,161 @@ export default {
     },
     //剪切
     cutEvent() {
-      let { activeCom = {}, widgetList = [], activeComs = [] } = this;
-      let { length = 0 } = activeComs || [];
-      let copyCom = null;
-      if (length > 1) {
-        copyCom = bmCommon.clone(activeComs || []);
-        activeComs.forEach(item => {
-          let { id = "" } = item || {};
-          let index = widgetList.findIndex(_item => id == _item.id);
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        let { activeCom = {}, widgetList = [], activeComs = [] } = this;
+        let { length = 0 } = activeComs || [];
+        let copyCom = null;
+        if (length > 1) {
+          copyCom = bmCommon.clone(activeComs || []);
+          activeComs.forEach(item => {
+            let { id = "" } = item || {};
+            let index = widgetList.findIndex(_item => id == _item.id);
+            widgetList.splice(index, 1);
+          });
+        } else {
+          let { id = "" } = activeCom;
+          copyCom = bmCommon.clone(activeCom || {});
+          let index = widgetList.findIndex(item => id == item.id);
           widgetList.splice(index, 1);
-        });
-      } else {
-        let { id = "" } = activeCom;
-        copyCom = bmCommon.clone(activeCom || {});
-        let index = widgetList.findIndex(item => id == item.id);
-        widgetList.splice(index, 1);
-      }
-      this.copyCom = copyCom;
-      this.selectComAction();
-      this.showContextMenuStatus = false;
+        }
+        this.copyCom = copyCom;
+        this.selectComAction();
+        this.showContextMenuStatus = false;
+      }, 0);
     },
     // 复制
     copyEvent() {
-      let { activeCom = {}, activeComs = [], selectBox = {} } = this;
-      // this.copyCom = bmCommon.clone(activeCom || {});
-      selectBox.moving = true;
-      let { length = 0 } = activeComs || [];
-      let copyCom = null;
-      if (length > 1) {
-        copyCom = bmCommon.clone(activeComs || []);
-        copyCom.forEach(item => {
-          item.left = item.left + 10;
-          item.top = item.top + 10;
-        });
-      } else {
-        let { type = "" } = activeCom || {};
-        if (type == "canvas") {
-          return;
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        let { activeCom = {}, activeComs = [], selectBox = {} } = this;
+        // this.copyCom = bmCommon.clone(activeCom || {});
+        selectBox.moving = true;
+        let { length = 0 } = activeComs || [];
+        let copyCom = null;
+        if (length > 1) {
+          copyCom = bmCommon.clone(activeComs || []);
+          copyCom.forEach(item => {
+            item.left = item.left + 10;
+            item.top = item.top + 10;
+          });
+        } else {
+          let { type = "" } = activeCom || {};
+          if (type == "canvas") {
+            return;
+          }
+          copyCom = bmCommon.clone(activeCom || {});
+          copyCom.left = copyCom.left + 10;
+          copyCom.top = copyCom.top + 10;
         }
-        copyCom = bmCommon.clone(activeCom || {});
-        copyCom.left = copyCom.left + 10;
-        copyCom.top = copyCom.top + 10;
-      }
-      this.copyCom = copyCom;
-      this.showContextMenuStatus = false;
+        this.copyCom = copyCom;
+        this.showContextMenuStatus = false;
+      }, 0);
     },
     // 粘贴
     pasteEvent(e) {
-      let {
-        copyCom,
-        widgetList = [],
-        getZoom: zoom = 1,
-        canvas = {},
-        selectBox = {}
-      } = this;
-      if (!copyCom) {
-        return;
-      }
-      selectBox.moving = true;
-      let { length = 0 } = copyCom || {};
-      let _activeComs = [];
-      let _activeCom = {};
-      // let obj = widgetList[widgetList.length - 1] || {};
-      let pos = {};
-      if (e) {
-        // pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
-        pos = bmCommon.getMousePosition(e);
-      }
-      let { x = "", y = "" } = pos || {};
-      let offset = $(".view-box").offset();
-      let { left: _left = 0, top: _top = 0 } = canvas || {};
-      let pasteLeft = 0,
-        pasteTop = 0;
-      let callback = (item, index) => {
-        let orders = widgetList.map(item => item.order);
-        let order = Math.max(...orders);
-        let { width = 0, height = 0, left = 0, top = 0 } = item || {};
-        if (e) {
-          let { left: __left = 0, top: __top = 0 } = offset || {};
-          let temp_left = x / zoom - width / 2 - _left / zoom - __left / zoom;
-          let temp_top = y / zoom - height / 2 - _top / zoom - __top / zoom;
-          if (index == 0) {
-            pasteLeft = temp_left - left;
-            pasteTop = temp_top - top;
-            left = temp_left;
-            top = temp_top;
-          } else {
-            left = left + pasteLeft;
-            top = top + pasteTop;
-          }
-        }
-        order += 1;
-        let id = bmCommon.uuid();
-        let _item = {
-          ...item,
-          id,
-          order,
-          left,
-          top
-        };
-        widgetList.push(_item);
-        if (length > 1) {
-          _activeComs.push(_item);
-        } else {
-          _activeCom = _item;
-        }
-      };
-      if (length > 1) {
-        copyCom.sort((a, b) => {
-          return a.order - b.order;
-        });
-        // let minLeft = Math.min.call(
-        //   Math,
-        //   ...copyCom.map(item => item.left || 0)
-        // );
-        // let minTop = Math.min.call(
-        //   Math,
-        //   ...copyCom.map(item => item.left || 0)
-        // );
-        // let [first = {}] = copyCom || [];
-        // let { left = 0, top = 0 } = first || {};
-        copyCom.forEach((item, index) => {
-          // //设置粘贴初始位置
-          // item.pasteLeft = item.left - minLeft;
-          // item.pasteTop = item.top - minTop;
-          callback(item, index);
-        });
-        this.setActiveComs(_activeComs);
-      } else {
-        let { type = "" } = copyCom || {};
-        if (type == "canvas" || !type) {
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        let {
+          copyCom,
+          widgetList = [],
+          getZoom: zoom = 1,
+          canvas = {},
+          selectBox = {}
+        } = this;
+        if (!copyCom) {
           return;
         }
-        callback(copyCom || {}, 0);
-        this.$nextTick(() => {
-          // this.setActiveCom(_activeCom);
-          this.selectComAction((_activeCom || {}).id); //选中组件
-        });
-      }
-      this.createHistoryAction();
-      this.showContextMenuStatus = false;
+        selectBox.moving = true;
+        let { length = 0 } = copyCom || {};
+        let _activeComs = [];
+        let _activeCom = {};
+        // let obj = widgetList[widgetList.length - 1] || {};
+        let pos = {};
+        if (e) {
+          // pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
+          pos = bmCommon.getMousePosition(e);
+        }
+        let { x = "", y = "" } = pos || {};
+        let offset = $(".view-box").offset();
+        let { left: _left = 0, top: _top = 0 } = canvas || {};
+        let pasteLeft = 0,
+          pasteTop = 0;
+        let callback = (item, index) => {
+          let orders = widgetList.map(item => item.order);
+          let order = Math.max(...orders);
+          let { width = 0, height = 0, left = 0, top = 0 } = item || {};
+          if (e) {
+            let { left: __left = 0, top: __top = 0 } = offset || {};
+            let temp_left = x / zoom - width / 2 - _left / zoom - __left / zoom;
+            let temp_top = y / zoom - height / 2 - _top / zoom - __top / zoom;
+            if (index == 0) {
+              pasteLeft = temp_left - left;
+              pasteTop = temp_top - top;
+              left = temp_left;
+              top = temp_top;
+            } else {
+              left = left + pasteLeft;
+              top = top + pasteTop;
+            }
+          }
+          order += 1;
+          let id = bmCommon.uuid();
+          let _item = {
+            ...item,
+            id,
+            order,
+            left,
+            top
+          };
+          let { children = [] } = _item || {};
+          children &&
+            children.forEach(item => {
+              item.id = bmCommon.uuid();
+              item.parentId = id;
+            });
+          widgetList.push(_item);
+          if (length > 1) {
+            _activeComs.push(_item);
+          } else {
+            _activeCom = _item;
+          }
+        };
+        if (length > 1) {
+          copyCom.sort((a, b) => {
+            return a.order - b.order;
+          });
+          // let minLeft = Math.min.call(
+          //   Math,
+          //   ...copyCom.map(item => item.left || 0)
+          // );
+          // let minTop = Math.min.call(
+          //   Math,
+          //   ...copyCom.map(item => item.left || 0)
+          // );
+          // let [first = {}] = copyCom || [];
+          // let { left = 0, top = 0 } = first || {};
+          copyCom.forEach((item, index) => {
+            // //设置粘贴初始位置
+            // item.pasteLeft = item.left - minLeft;
+            // item.pasteTop = item.top - minTop;
+            callback(item, index);
+          });
+          this.setActiveComs(_activeComs);
+        } else {
+          let { type = "" } = copyCom || {};
+          if (type == "canvas" || !type) {
+            return;
+          }
+          callback(copyCom || {}, 0);
+          this.$nextTick(() => {
+            // this.setActiveCom(_activeCom);
+            this.selectComAction((_activeCom || {}).id); //选中组件
+          });
+        }
+        this.createHistoryAction();
+        this.showContextMenuStatus = false;
+      }, 0);
     },
     // 删除
     deleteEvent() {
@@ -1333,10 +1348,13 @@ export default {
     },
     // 锁定/解锁
     lockEvent(locked) {
-      let { activeCom = {} } = this;
-      activeCom.locked = locked;
-      this.showContextMenuStatus = false;
-      this.createHistoryAction();
+      this._navTimeoutId = setTimeout(() => {
+        clearTimeout(this._navTimeoutId);
+        let { activeCom = {} } = this;
+        activeCom.locked = locked;
+        this.showContextMenuStatus = false;
+        this.createHistoryAction();
+      }, 0);
     },
     // 上移一层
     moveUpEvent() {
