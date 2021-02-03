@@ -60,6 +60,11 @@
           >
             <div class="title" :class="{ active: activeComId == item.id }">
               {{ item.comName || "组合" }}
+              {{
+                item.type == "panel"
+                  ? item.children && item.children.length
+                  : ""
+              }}
               <!-- --{{ item.zIndex }}--{{ item.order }} -->
               <span class="right">
                 <el-tooltip
@@ -128,13 +133,6 @@
                         class="el-icon-delete"
                         @click.stop="deleteEvent(item)"
                       ></i>
-                    </el-tooltip>
-                    <el-tooltip
-                      :content="$lang('隐藏/显示')"
-                      placement="top"
-                      effect="dark"
-                    >
-                      <i class="el-icon-view" @click.stop="showEvent(item)"></i>
                     </el-tooltip>
                     <el-tooltip
                       :content="$lang('添加绑定')"

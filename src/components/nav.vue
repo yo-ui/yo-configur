@@ -969,11 +969,11 @@ export default {
         //若已经是组合则先打散
         if (type === "panel") {
           _children.forEach(_item => {
-            let item = bmCommon.clone(_item);
-            item.left += left;
-            item.top += top;
-            delete item.parentId;
-            children.push(item);
+            let obj = bmCommon.clone(_item);
+            obj.left += left;
+            obj.top += top;
+            delete obj.parentId;
+            children.push(obj);
           });
         } else {
           children.push(item);
