@@ -1051,6 +1051,11 @@ export default {
       //   e.preventDefault();
       // }
       if (keyCode === 37) {
+        if (type == "canvas" || !id) {
+          e.preventDefault();
+          //如果选中的是画布或未选中组件则直接返回
+          return;
+        }
         // 左
         // dis = 1;
         e.preventDefault();
@@ -1066,6 +1071,11 @@ export default {
         }
         // bmCommon.log("左", activeCom);
       } else if (keyCode === 38) {
+        if (type == "canvas" || !id) {
+          e.preventDefault();
+          //如果选中的是画布或未选中组件则直接返回
+          return;
+        }
         // 上
         // let dis = 1;
         e.preventDefault();
@@ -1081,6 +1091,11 @@ export default {
         }
         // bmCommon.log("上", activeCom);
       } else if (keyCode === 39) {
+        if (type == "canvas" || !id) {
+          e.preventDefault();
+          //如果选中的是画布或未选中组件则直接返回
+          return;
+        }
         // 右
         // let dis = 1;
         e.preventDefault();
@@ -1097,6 +1112,11 @@ export default {
         }
         // bmCommon.log("右", activeCom);
       } else if (keyCode === 40) {
+        if (type == "canvas" || !id) {
+          e.preventDefault();
+          //如果选中的是画布或未选中组件则直接返回
+          return;
+        }
         // 下
         // let dis = 1;
         e.preventDefault();
