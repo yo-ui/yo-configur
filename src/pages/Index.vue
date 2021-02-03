@@ -755,10 +755,20 @@ export default {
       let set = new Set();
       let deviceIdList = [];
       widgetList.forEach(item => {
-        let { bindData = {} } = item || {};
+        let { bindData = {}, children = [], type = "" } = item || {};
         let { deviceId = "" } = bindData || {};
-        if (deviceId) {
-          set.add(deviceId);
+        if (type === "panel") {
+          children.forEach(_item => {
+            let { bindData = {} } = _item || {};
+            let { deviceId = "" } = bindData || {};
+            if (deviceId) {
+              set.add(deviceId);
+            }
+          });
+        } else {
+          if (deviceId) {
+            set.add(deviceId);
+          }
         }
       });
       deviceIdList = Array.from(set);
