@@ -129,6 +129,7 @@ let baseData = {
   editable: false, //内容是否可编辑
   locked: false, //是否锁定
   visible: true, //是否可见
+  show: true, //是否显示  节约资源
   flipV: false, //是否垂直翻转
   flipH: false, //是否水平翻转
   descrStyle: {

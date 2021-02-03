@@ -5,6 +5,7 @@
     @mousedown="onComMousedownEvent"
     @click="clickEvent"
     :id="`box_${info.id}`"
+    v-if="info.show"
     ref="bmComBox"
     :style="boxStyle"
     :class="boxClasses"

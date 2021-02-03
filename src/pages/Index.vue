@@ -606,7 +606,7 @@ export default {
               alias = type;
             }
             let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
-            let { data = {} } = _item || {};
+            let { data = {}, children = [] } = _item || {};
             let {
               infoType = "",
               dataType = "",
@@ -620,12 +620,27 @@ export default {
               }
             }
             item.bindData = { ..._bindData, ...bindData };
+
             item.infoType = infoType;
             item.dataType = dataType;
             item.styleCode = styleCode;
-            item.showStatus = false;
+            item.show = true;
             item.dataCode = dataCode;
             item.alias = alias;
+            children &&
+              children.forEach(item => {
+                let { alias = "", type = "", bindData = {} } = item || {};
+                if (!alias) {
+                  alias = type;
+                }
+                item.bindData = { ..._bindData, ...bindData };
+                item.infoType = infoType;
+                item.dataType = dataType;
+                item.styleCode = styleCode;
+                item.show = true;
+                item.dataCode = dataCode;
+                item.alias = alias;
+              });
             if (type && type != "canvas") {
               widgets.push(item);
             }
@@ -1265,6 +1280,7 @@ export default {
     },
     // 粘贴
     pasteEvent(e) {
+      this.selectComAction();
       this._navTimeoutId = setTimeout(() => {
         clearTimeout(this._navTimeoutId);
         let {
@@ -1279,8 +1295,8 @@ export default {
         }
         selectBox.moving = true;
         let { length = 0 } = copyCom || {};
-        let _activeComs = [];
-        let _activeCom = {};
+        // let _activeComs = [];
+        // let _activeCom = {};
         // let obj = widgetList[widgetList.length - 1] || {};
         let pos = {};
         if (e) {
@@ -1327,9 +1343,11 @@ export default {
             });
           widgetList.push(_item);
           if (length > 1) {
-            _activeComs.push(_item);
+            // _activeComs.push(_item);
+            this.selectComsAction(id);
           } else {
-            _activeCom = _item;
+            // _activeCom = _item;
+            this.selectComAction(id);
           }
         };
         if (length > 1) {
@@ -1352,17 +1370,22 @@ export default {
             // item.pasteTop = item.top - minTop;
             callback(item, index);
           });
-          this.setActiveComs(_activeComs);
+          // this.setActiveComs(_activeComs);
+          // this.$nextTick(() => {
+          //   let [obj = {}] = _activeComs || [];
+          //   this.selectComAction((obj || {}).id); //选中组件
+          //   // this.setActiveCom(_activeCom);
+          // });
         } else {
           let { type = "" } = copyCom || {};
           if (type == "canvas" || !type) {
             return;
           }
           callback(copyCom || {}, 0);
-          this.$nextTick(() => {
-            // this.setActiveCom(_activeCom);
-            this.selectComAction((_activeCom || {}).id); //选中组件
-          });
+          // this.$nextTick(() => {
+          //   // this.setActiveCom(_activeCom);
+          //   this.selectComAction((_activeCom || {}).id); //选中组件
+          // });
         }
         this.createHistoryAction();
         this.showContextMenuStatus = false;

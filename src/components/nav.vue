@@ -347,6 +347,7 @@ export default {
       setActiveComs: "canvas/setActiveComs",
       setCanvasData: "canvas/setCanvasData",
       setZoom: "canvas/setZoom",
+      setMoving: "canvas/setMoving",
       setHistoryIndex: "canvas/setHistoryIndex",
       setWidgetList: "canvas/setWidgetList",
       setLeftMenuStatus: "canvas/setLeftMenuStatus",
@@ -935,8 +936,8 @@ export default {
             this.unComposeEvent();
             break;
         }
-        this.showGroupPopoverStatus = false;
       }, 0);
+      this.showGroupPopoverStatus = false;
     },
     // 组合
     composeEvent() {
@@ -955,6 +956,8 @@ export default {
       if (length < 2) {
         return;
       }
+      widgetList = bmCommon.clone(widgetList);
+      // let count = 0;
       activeComs.forEach(item => {
         let {
           id = "",
@@ -966,24 +969,26 @@ export default {
         //若已经是组合则先打散
         if (type === "panel") {
           _children.forEach(_item => {
-            _item = bmCommon.clone(_item);
-            _item.left += left;
-            _item.top += top;
-            delete _item.parentId;
-            children.push(_item);
+            let item = bmCommon.clone(_item);
+            item.left += left;
+            item.top += top;
+            delete item.parentId;
+            children.push(item);
           });
         } else {
           children.push(item);
         }
         let index = widgetList.findIndex(_item => id == _item.id);
-        // while (index > -1) {
-        //   widgetList.splice(index, 1);
-        //   index = widgetList.findIndex(_item => id == _item.id);
-        // }
-        if (index > -1) {
+        while (index > -1) {
           widgetList.splice(index, 1);
+          index = widgetList.findIndex(_item => id == _item.id);
         }
+        // if (index > -1) {
+        //   widgetList.splice(index, 1);
+        //   // count++;
+        // }
       });
+      // bmCommon.error("count=", count);
       let orders = widgetList.map(item => item.order);
       let order = 1;
       if (orders && orders.length > 0) {
@@ -991,30 +996,27 @@ export default {
         order += 1;
       }
       let id = bmCommon.uuid();
-      let group1 = bmCommon.clone(children || []);
-      let group2 = bmCommon.clone(children || []);
-      group1.sort((a, b) => a.left - b.left);
-      // let max_left = Math.max(...group1.map(item => item.left + item.width));
-      group2.sort((a, b) => a.top - b.top);
-      // let max_top = Math.max(...group2.map(item => item.top + item.height));
-      let { left: minLeft = 0 } = group1[0] || {};
-      // let { width: maxWidth = 0, left: maxLeft = 0 } = group1[length - 1] || {};
-      // let minLeft = minLeft;
-      // maxLeft = maxLeft + maxWidth - minLeft;
-      // max_left = max_left - minLeft;
-      // if (maxLeft < max_left) {
-      //   maxLeft = max_left;
-      // }
-      let { top: minTop = 0 } = group2[0] || {};
-      // let { height: maxHeight = 0, top: maxTop = 0 } = group2[length - 1] || {};
-      // let minTop = minTop;
-      // maxTop = maxTop + maxHeight - minTop;
-      // max_top = max_top - minTop;
-      // if (maxTop < max_top) {
-      //   maxTop = max_top;
-      // }
-      // width = maxLeft;
-      // height = maxTop;
+      // let group1 = bmCommon.clone(children || []);
+      // let group2 = bmCommon.clone(children || []);
+      // group1.sort((a, b) => a.left - b.left);
+      // // let max_left = Math.max(...group1.map(item => item.left + item.width));
+      // group2.sort((a, b) => a.top - b.top);
+      //left 最大值 4
+      let minLeft = Math.min.apply(
+        Math,
+        children.map(item => {
+          return item.left;
+        })
+      );
+      // top 最小值 1
+      let minTop = Math.min.apply(
+        Math,
+        children.map(item => {
+          return item.top;
+        })
+      );
+      // let { left: minLeft = 0 } = group1[0] || {};
+      // let { top: minTop = 0 } = group2[0] || {};
       left = minLeft;
       top = minTop;
       children.forEach((item, index) => {
@@ -1023,6 +1025,7 @@ export default {
         item.top -= top;
         item.order = index;
       });
+
       let item = {
         ...data,
         type,
@@ -1035,11 +1038,21 @@ export default {
         top,
         children
       };
+      // bmCommon.log(
+      //   JSON.stringify(
+      //     children.map(item => {
+      //       return { left: item.left, top: item.top };
+      //     })
+      //   )
+      // );
       widgetList.push(item);
       // canvas.action = "select";
+      this.setWidgetList(widgetList);
       this.createHistoryAction();
+      this.setMoving(true);
       this.$nextTick(() => {
         this.selectComAction(id);
+        this.setMoving(false);
       });
       // this.showContextMenuStatus = false;
     },
@@ -1086,8 +1099,8 @@ export default {
             this.spreadHCenterEvent();
             break;
         }
-        this.showSpreadPopoverStatus = false;
       }, 0);
+      this.showSpreadPopoverStatus = false;
     },
     // 垂直分布
     spreadVCenterEvent() {

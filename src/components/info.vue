@@ -69,6 +69,13 @@
                 >
                   <i class="el-icon-delete" @click.stop="deleteEvent(item)"></i>
                 </el-tooltip>
+                <el-tooltip
+                  :content="$lang('隐藏/显示')"
+                  placement="top"
+                  effect="dark"
+                >
+                  <i class="el-icon-view" @click.stop="showEvent(item)"></i>
+                </el-tooltip>
                 <template v-if="item.children && item.children.length > 0">
                   <i
                     :class="
@@ -121,6 +128,13 @@
                         class="el-icon-delete"
                         @click.stop="deleteEvent(item)"
                       ></i>
+                    </el-tooltip>
+                    <el-tooltip
+                      :content="$lang('隐藏/显示')"
+                      placement="top"
+                      effect="dark"
+                    >
+                      <i class="el-icon-view" @click.stop="showEvent(item)"></i>
                     </el-tooltip>
                     <el-tooltip
                       :content="$lang('添加绑定')"
@@ -397,6 +411,11 @@ export default {
     deleteEvent(item) {
       this.selectComEvent(item);
       $vm.$emit("delete-command");
+    },
+    showEvent(obj) {
+      let { getWidgetList = [] } = this;
+      let item = getWidgetList.find(item => item.id == obj.id);
+      item.show = !item.show;
     },
     changeEvent(item) {
       // bmCommon.log(item);
