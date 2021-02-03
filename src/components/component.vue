@@ -301,14 +301,19 @@ export default {
         info = {},
         showType = ""
       } = this;
-      let { rotateable = true, locked = false, showCoverStatus = true } =
-        info || {};
+      let {
+        rotateable = true,
+        locked = false,
+        showCoverStatus = true,
+        type = ""
+      } = info || {};
       return (
         (!moving || rotating) &&
         rotateable &&
         !locked &&
         !resizing &&
         showCoverStatus &&
+        type !== "panel" &&
         showType == "edit"
       );
     },

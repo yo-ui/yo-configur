@@ -956,11 +956,32 @@ export default {
         return;
       }
       activeComs.forEach(item => {
-        children.push(item);
-        let index = widgetList.findIndex(_item => item.id == _item.id);
-        while (index > -1) {
+        let {
+          id = "",
+          type = "",
+          children: _children = [],
+          left = 0,
+          top = 0
+        } = item || {};
+        //若已经是组合则先打散
+        if (type === "panel") {
+          _children.forEach(_item => {
+            _item = bmCommon.clone(_item);
+            _item.left += left;
+            _item.top += top;
+            delete _item.parentId;
+            children.push(_item);
+          });
+        } else {
+          children.push(item);
+        }
+        let index = widgetList.findIndex(_item => id == _item.id);
+        // while (index > -1) {
+        //   widgetList.splice(index, 1);
+        //   index = widgetList.findIndex(_item => id == _item.id);
+        // }
+        if (index > -1) {
           widgetList.splice(index, 1);
-          index = widgetList.findIndex(_item => item.id == _item.id);
         }
       });
       let orders = widgetList.map(item => item.order);
