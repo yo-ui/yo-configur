@@ -341,8 +341,8 @@ export default {
     info.lineLong = width;
     info.boxX = x1;
     info.boxY = y1;
-    info.boxW = width;
-    info.boxH = height;
+    info.boxW = width > 20 ? width : 20;
+    info.boxH = height > 20 ? height : 20;
   },
   mounted() {
     let { info = {} } = this;
@@ -392,6 +392,10 @@ export default {
       this.mousedownEvent(e, "right");
     },
     mousedownEvent(e, direction) {
+      let { showType = "" } = this;
+      if (showType != "edit") {
+        return;
+      }
       e.stopPropagation();
       e.preventDefault();
       // let { info = {} } = this;
