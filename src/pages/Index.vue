@@ -110,20 +110,20 @@
             </div>
             <bm-com
               class="edit"
-              v-for="item in widgetList"
+              v-for="(item, index) in widgetList"
               :data-type="item.type"
               :data-id="item.id"
               :info="item"
-              :key="item.id"
+              :key="item.id + index"
             >
               <template v-if="item.children && item.children.length > 0">
                 <bm-com
                   class="edit"
-                  v-for="_item in item.children"
+                  v-for="(_item, _index) in item.children"
                   :data-type="_item.type"
                   :data-id="_item.id"
                   :info="_item"
-                  :key="_item.id"
+                  :key="_item.id + _index"
                 >
                 </bm-com>
               </template>

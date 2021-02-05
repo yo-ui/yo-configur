@@ -29,92 +29,26 @@
           >
             <div class="bg" :style="bgStyle"></div>
             <template v-for="(item, index) in widgetList">
-              <!-- {{ item.infoType }}{{ item.bindData }}<br /> -->
-              <!-- <el-popover
-                v-if="
-                  item.bindData &&
-                    item.bindData.deviceId &&
-                    item.infoType == 'device'
-                "
-                popper-class="device-info-popover"
-                placement="right"
-                :key="index"
-                @mousedowe.native.stop
-                @show="showInfoEvent(item)"
-                width="400"
-                :ref="`popover_${item.id}`"
-                trigger="hover"
-              > -->
-              <!-- @show="showInfoEvent(item.bindData)" -->
-              <!-- {{ `${item.infoType}InfoCom` }} -->
-              <!-- <bm-device-info :pointList="deviceInfo.points"></bm-device-info> -->
-              <!-- <component
-                :ref="`bmInfoCom_${item.id}`"
-                @load="loadEvent"
-                :is="`${item.infoType}InfoCom`"
-              /> -->
               <bm-com
                 class="preview"
                 :data-type="item.type"
                 :data-id="item.id"
                 :info="item"
-                :key="index"
+                :key="item.id + index"
               >
                 <template v-if="item.children && item.children.length > 0">
                   <template v-for="(_item, _index) in item.children">
-                    <!-- <el-popover
-                      v-if="
-                        _item.bindData &&
-                          _item.bindData.deviceId &&
-                          _item.infoType == 'device'
-                      "
-                      @mousedowe.native.stop
-                      popper-class="device-info-popover"
-                      placement="right"
-                      :key="_index"
-                      @show="showInfoEvent(_item)"
-                      width="400"
-                      :ref="`popover_${_item.id}`"
-                      trigger="hover"
-                    >
-                      <component
-                        :ref="`bmInfoCom_${_item.id}`"
-                        @load="loadEvent"
-                        :is="`${_item.infoType}InfoCom`"
-                      /> -->
                     <bm-com
                       class="preview"
                       :data-type="_item.type"
                       :data-id="_item.id"
                       :info="_item"
-                      :key="_index"
+                      :key="_item.id + _index"
                     >
                     </bm-com>
-                    <!-- </el-popover> -->
                   </template>
                 </template>
               </bm-com>
-              <!-- </el-popover>
-              <bm-com
-                v-else
-                class="preview"
-                :data-type="item.type"
-                :data-id="item.id"
-                :info="item"
-                :key="index"
-              >
-                <template v-if="item.children && item.children.length > 0">
-                  <bm-com
-                    class="preview"
-                    v-for="(_item, _index) in item.children"
-                    :data-type="_item.type"
-                    :data-id="_item.id"
-                    :info="_item"
-                    :key="_index"
-                  >
-                  </bm-com>
-                </template>
-              </bm-com> -->
             </template>
           </div>
         </div>

@@ -29,88 +29,26 @@
           >
             <div class="bg" :style="bgStyle"></div>
             <template v-for="(item, index) in widgetList">
-              <!-- <el-popover
-                v-if="
-                  item.bindData &&
-                    item.bindData.deviceId &&
-                    item.infoType == 'device'
-                "
-                @mousedowe.native.stop
-                popper-class="device-info-popover"
-                placement="right"
-                :key="index"
-                @show="showInfoEvent(item)"
-                :ref="`popover_${item.id}`"
-                width="400"
-                trigger="hover"
-              >
-                <component
-                  @load="loadEvent"
-                  :ref="`bmInfoCom_${item.id}`"
-                  :is="`${item.infoType}InfoCom`"
-                /> -->
               <bm-com
                 class="view"
                 :data-type="item.type"
                 :data-id="item.id"
                 :info="item"
-                :key="index"
+                :key="item.id + index"
               >
                 <template v-if="item.children && item.children.length > 0">
                   <template v-for="(_item, _index) in item.children">
-                    <!-- <el-popover
-                        v-if="
-                          _item.bindData &&
-                            _item.bindData.deviceId &&
-                            _item.infoType == 'device'
-                        "
-                        @mousedowe.native.stop
-                        popper-class="device-info-popover"
-                        placement="right"
-                        :key="_index"
-                        @show="showInfoEvent(_item)"
-                        width="400"
-                        :ref="`popover_${_item.id}`"
-                        trigger="hover"
-                      >
-                        <component
-                          :ref="`bmInfoCom_${_item.id}`"
-                          @load="loadEvent"
-                          :is="`${_item.infoType}InfoCom`"
-                        /> -->
                     <bm-com
                       class="view"
                       :data-type="_item.type"
                       :data-id="_item.id"
                       :info="_item"
-                      :key="_index"
+                      :key="_item.id + _index"
                     >
                     </bm-com>
-                    <!-- </el-popover> -->
                   </template>
                 </template>
               </bm-com>
-              <!-- </el-popover>
-              <bm-com
-                v-else
-                class="view"
-                :data-type="item.type"
-                :data-id="item.id"
-                :info="item"
-                :key="index"
-              >
-                <template v-if="item.children && item.children.length > 0">
-                  <bm-com
-                    class="view"
-                    v-for="(_item, _index) in item.children"
-                    :data-type="_item.type"
-                    :data-id="_item.id"
-                    :info="_item"
-                    :key="_index"
-                  >
-                  </bm-com>
-                </template>
-              </bm-com> -->
             </template>
           </div>
         </div>
