@@ -44,118 +44,118 @@
           widgetList.length
         }}</span>
       </h3>
-      <draggable
+      <!-- <draggable
         v-model="widgetList"
         class="com-list-box"
         v-bind="dragOptions"
         @change="changeEvent"
         tag="ul"
-      >
-        <transition-group type="transition" name="flip-list">
-          <li
-            v-for="item in widgetList"
-            @click.stop="selectComEvent(item)"
-            :key="item.id"
-            class="item"
-          >
-            <div class="title" :class="{ active: activeComId == item.id }">
-              {{ item.comName || "组合" }}
-              {{
-                item.type == "panel"
-                  ? item.children && item.children.length
-                  : ""
-              }}
-              <!-- --{{ item.zIndex }}--{{ item.order }} -->
-              <span class="right">
-                <el-tooltip
-                  :content="$lang('删除')"
-                  placement="top"
-                  effect="dark"
-                >
-                  <i class="el-icon-delete" @click.stop="deleteEvent(item)"></i>
-                </el-tooltip>
-                <el-tooltip
-                  :content="$lang('隐藏/显示')"
-                  placement="top"
-                  effect="dark"
-                >
-                  <i class="el-icon-view" @click.stop="showEvent(item)"></i>
-                </el-tooltip>
-                <template v-if="item.children && item.children.length > 0">
-                  <i
-                    :class="
-                      `
+      > -->
+      <ul class="com-list-box">
+        <!-- <ul type="transition" name="flip-list"> -->
+        <li
+          v-for="item in widgetList"
+          @click.stop="selectComEvent(item)"
+          :key="item.id"
+          class="item"
+        >
+          <div class="title" :class="{ active: activeComId == item.id }">
+            {{ item.comName || "组合" }}
+            <span class="red">{{ item.show ? "已显示" : "已隐藏" }}</span>
+            <span class="count" v-if="item.type == 'panel'">
+              子组件数: {{ item.children.length }}
+            </span>
+            <span class="right">
+              <el-tooltip
+                :content="$lang('删除')"
+                placement="top"
+                effect="dark"
+              >
+                <i class="el-icon-delete" @click.stop="deleteEvent(item)"></i>
+              </el-tooltip>
+              <el-tooltip
+                :content="$lang('隐藏/显示')"
+                placement="top"
+                effect="dark"
+              >
+                <i class="el-icon-view" @click.stop="showEvent(item)"></i>
+              </el-tooltip>
+              <template v-if="item.children && item.children.length > 0">
+                <i
+                  :class="
+                    `
                     ${
                       { true: 'el-icon-plus', false: 'el-icon-minus' }[
                         !widgetMap[item.id]
                       ]
                     }
                   `
-                    "
-                    @click.stop="showChildEvent(item)"
-                  ></i>
-                </template>
-                <el-tooltip
-                  v-else
-                  :content="$lang('添加绑定')"
-                  placement="top"
-                  effect="dark"
-                >
-                  <i
-                    v-if="item.dataType"
-                    class="el-icon-link"
-                    @click.stop="addEvent(item)"
-                    :class="{ active: item.bindData && item.bindData.orgId }"
-                  ></i> </el-tooltip
-              ></span>
-            </div>
-            <ul
-              v-if="item.children && item.children.length > 0"
-              v-show="!!widgetMap[item.id]"
-            >
-              <li
-                :class="{ active: activeComId == _item.id }"
-                v-for="_item in item.children"
-                @click.stop="selectComEvent(_item)"
-                :key="_item.id"
-                class="item"
+                  "
+                  @click.stop="showChildEvent(item)"
+                ></i>
+              </template>
+              <el-tooltip
+                v-else
+                :content="$lang('添加绑定')"
+                placement="top"
+                effect="dark"
               >
-                <div class="title" :class="{ active: activeComId == _item.id }">
-                  {{ _item.name }}
-                  <!-- --{{ item.zIndex }}--{{ item.order }} -->
-                  <span class="right">
-                    <el-tooltip
-                      :content="$lang('删除')"
-                      placement="top"
-                      effect="dark"
-                    >
-                      <i
-                        class="el-icon-delete"
-                        @click.stop="deleteEvent(item)"
-                      ></i>
-                    </el-tooltip>
-                    <el-tooltip
-                      :content="$lang('添加绑定')"
-                      placement="top"
-                      effect="dark"
-                    >
-                      <i
-                        v-if="_item.dataType"
-                        class="el-icon-link"
-                        @click.stop="addEvent(_item)"
-                        :class="{
-                          active: _item.bindData && _item.bindData.orgId
-                        }"
-                      ></i>
-                    </el-tooltip>
-                  </span>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </transition-group>
-        <!-- <button slot="footer" @click="addPeople">Add</button> -->
-      </draggable>
+                <i
+                  v-if="item.dataType"
+                  class="el-icon-link"
+                  @click.stop="addEvent(item)"
+                  :class="{ active: item.bindData && item.bindData.orgId }"
+                ></i> </el-tooltip
+            ></span>
+          </div>
+          <ul
+            v-if="item.children && item.children.length > 0"
+            v-show="!!widgetMap[item.id]"
+          >
+            <li
+              :class="{ active: activeComId == _item.id }"
+              v-for="_item in item.children"
+              @click.stop="selectComEvent(_item)"
+              :key="_item.id"
+              class="item"
+            >
+              <div class="title" :class="{ active: activeComId == _item.id }">
+                {{ _item.name }}
+                <!-- --{{ item.zIndex }}--{{ item.order }} -->
+                <span class="right">
+                  <el-tooltip
+                    :content="$lang('删除')"
+                    placement="top"
+                    effect="dark"
+                  >
+                    <i
+                      class="el-icon-delete"
+                      @click.stop="deleteEvent(item)"
+                    ></i>
+                  </el-tooltip>
+                  <el-tooltip
+                    :content="$lang('添加绑定')"
+                    placement="top"
+                    effect="dark"
+                  >
+                    <i
+                      v-if="_item.dataType"
+                      class="el-icon-link"
+                      @click.stop="addEvent(_item)"
+                      :class="{
+                        active: _item.bindData && _item.bindData.orgId
+                      }"
+                    ></i>
+                  </el-tooltip>
+                </span>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <!-- </transition-group> -->
+      <!-- <button slot="footer" @click="addPeople">Add</button> -->
+      <!-- </draggable> -->
       <!-- </ul> -->
       <!-- <ul class="com-box">
         <li
@@ -175,7 +175,7 @@
 import bmCommon from "@/common/common";
 // import { Constants } from "@/common/env";
 import { styles, datas } from "@/widgets/index";
-import draggable from "vuedraggable";
+// import draggable from "vuedraggable";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 const Props = {
@@ -230,7 +230,7 @@ export default {
     }
   },
   components: {
-    draggable,
+    // draggable,
     ...styles,
     ...datas
   },
