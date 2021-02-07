@@ -98,7 +98,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      widgetList: "canvas/getWidgetList", //组件列表
+      //widgetList: "canvas/getWidgetList"
+      widgetList: [], //组件列表
       viewData: "canvas/getPreviewData", //组件列表
       getZoom: "canvas/getZoom", //放大缩小
       boxZoom: "canvas/getBoxZoom", //放大缩小

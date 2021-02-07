@@ -66,7 +66,8 @@ export default {
       // activeCom: "canvas/getActiveCom",
       // activeComs: "canvas/getActiveComs",
       recordList: "canvas/getRecordList",
-      widgetList: "canvas/getWidgetList"
+      //widgetList: "canvas/getWidgetList"
+      widgetList: []
     })
   },
   methods: {

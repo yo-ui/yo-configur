@@ -53,8 +53,9 @@ export default {
       // moving: state => state.canvas.moving
     }),
     ...mapGetters({
-      zoom: "canvas/getZoom" //放大缩小
-      // widgetList: "canvas/getWidgetList", //组件列表
+      zoom: "canvas/getZoom", //放大缩小
+      // //widgetList: "canvas/getWidgetList"
+      widgetList: [] //组件列表
       // activeCom: "canvas/getActiveCom", //选中组件
       // activeComs: "canvas/getActiveComs", //选中组件
       // moving: "canvas/getMoving", //获取鼠标移动状态

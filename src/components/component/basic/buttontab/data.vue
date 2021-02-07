@@ -87,7 +87,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      widgetList: "canvas/getWidgetList"
+      //widgetList: "canvas/getWidgetList"
+      widgetList: []
     })
   },
   methods: {

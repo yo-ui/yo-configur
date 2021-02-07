@@ -153,7 +153,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      widgetList: "canvas/getWidgetList", //组件列表
+      //widgetList: "canvas/getWidgetList"
+      widgetList: [], //组件列表
       zoom: "canvas/getZoom", //放大缩小
       draging: "canvas/getDraging", //组件拖动状态
       canvas: "canvas/getCanvas" //画布属性

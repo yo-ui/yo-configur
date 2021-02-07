@@ -100,7 +100,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      widgetList: "canvas/getWidgetList", //组件列表
+      //widgetList: "canvas/getWidgetList"
+      widgetList: [], //组件列表
       previewData: "canvas/getPreviewData", //组件列表
       getZoom: "canvas/getZoom", //放大缩小
       deviceCacheMap: "device/getDeviceCacheMap", //设备缓存

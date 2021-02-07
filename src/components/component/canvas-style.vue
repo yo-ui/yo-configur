@@ -753,7 +753,8 @@ export default {
   computed: {
     ...mapGetters({
       zoom: "canvas/getZoom", //放大缩小
-      widgetList: "canvas/getWidgetList", //组件列表
+      //widgetList: "canvas/getWidgetList"
+      widgetList: [], //组件列表
       canvas: "canvas/getCanvas", //画布
       linkPoint: "canvas/getLinkPoint" //画布
     }),

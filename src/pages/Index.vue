@@ -108,7 +108,7 @@
             <div class="bg" :style="bgStyle">
               <div class="grid" :style="gridStyle"></div>
             </div>
-            <bm-com
+            <!-- <bm-com
               class="edit"
               v-for="(item, index) in widgetList"
               :data-type="item.type"
@@ -127,7 +127,8 @@
                 >
                 </bm-com>
               </template>
-            </bm-com>
+            </bm-com> -->
+            <div id="canvas_content" class="canvas-content"></div>
 
             <bm-lines ref="bmLines" v-if="canvas.alignLineable"></bm-lines>
             <bm-rule-lines ref="bmRuleLines"></bm-rule-lines>
@@ -265,6 +266,7 @@ export default {
       condition: {
         canvasId: ""
       },
+      widgetList: [], //组件列表
       windowInnerWidth: window.innerWidth,
       windowInnerHeight: window.innerHeight,
       showContextMenuStatus: false,
@@ -324,7 +326,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      widgetList: "canvas/getWidgetList", //组件列表
+      //widgetList: "canvas/getWidgetList"
       getZoom: "canvas/getZoom", //放大缩小
       leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
       rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
@@ -571,6 +573,8 @@ export default {
       let platform = type == 2 ? "service" : "manage";
       this.setPlatform(platform); //type： 2 为应用平台过来  1为管理平台过来
       this.setShowType(Constants.SHOWTYPEMAP.EDIT);
+
+      this.createComponents();
       this.canvasGetFunc((detail = {}) => {
         let {
           name = "",
@@ -663,6 +667,8 @@ export default {
             this.dataLoadingStatus = false;
           });
         }
+        //加载 info 数据初始化
+        $vm.$emit("info-data-init");
         this.createHistoryAction();
       });
       // });
@@ -681,7 +687,11 @@ export default {
     initEvent() {
       let viewBox = this.$refs.viewBox;
       // 注册鼠标事件
-      $(viewBox).on("mousedown", this.viewBoxMousedownEvent);
+      $(viewBox).on(
+        "mousedown",
+        ".bm-component-com",
+        this.viewBoxMousedownEvent
+      );
       // 注册颜色框事件
       $(document).on("mousedown", ".el-color-picker__panel", e => {
         e.stopPropagation();
@@ -923,8 +933,8 @@ export default {
       let { target, shiftKey = false, ctrlKey = false, metaKey = false } = e;
       ctrlKey = ctrlKey || metaKey; //(ctrl(cmd))
       let $parent = $(target).parents(".bm-component-com");
-      let type = $(target).attr("data-type");
-      let id = $(target).attr("data-id");
+      let type = $(target).attr("type");
+      let id = $(target).attr("id");
       let width = $(target).outerWidth();
       let height = $(target).outerHeight();
       document.activeElement?.blur();
@@ -932,8 +942,8 @@ export default {
       $(this.$refs.viewBox).focus();
       // bmCommon.log(document.activeElement);
       if (!type) {
-        type = $parent.attr("data-type");
-        id = $parent.attr("data-id");
+        type = $parent.attr("type");
+        id = $parent.attr("id");
         width = $parent.outerWidth();
         height = $parent.outerHeight();
       }
@@ -970,9 +980,9 @@ export default {
         if (length > 1) {
           locked = false;
         }
-        if (!locked) {
-          this.initMoveEvent(e); // 参见 mixins
-        }
+        // if (!locked) {
+        this.initMoveEvent(e, id); // 参见 mixins
+        // }
       } else {
         this.showContextMenuType = 2;
         let { activeCom = {}, activeComs = [] } = this;
@@ -1415,6 +1425,38 @@ export default {
         this.showContextMenuStatus = false;
         this.createHistoryAction();
       }, 0);
+    },
+    //创建组件
+    createComponents() {
+      let canvas_content = document.getElementById("canvas_content");
+      let fregment = document.createDocumentFragment("div");
+      for (let index = 0; index < 1000; index++) {
+        let _div = $(document.createElement("div"));
+        _div.addClass("bm-component-com edit");
+        _div.attr({ id: Math.round(Math.random() * Date.now()), type: "text" });
+        _div.css({
+          left: `${Math.round(1980 * Math.random())}px`,
+          top: `${Math.round(1080 * Math.random())}px`,
+          width: "200px",
+          height: "30px",
+          position: "absolute"
+        });
+        _div.html(`
+        <div class="cover"></div><i title="旋转" class="operate-btn el-icon-refresh-right"></i>
+        <i title="旋转轴" class="operate-btn el-icon-axis"></i><i title="左上角" class="operate-btn el-icon-top-left" style="transform: scale(2.49675);"></i>
+        <i title="上" class="operate-btn el-icon-top" style="transform: scale(2.49675) translate(-20.026%, 0px);"></i>
+        <i title="右上角" class="operate-btn el-icon-top-right" style="transform: scale(2.49675);"></i>
+        <i title="左" class="operate-btn el-icon-back" style="transform: scale(2.49675) translate(0px, -20.026%);"></i>
+        <i title="右" class="operate-btn el-icon-right" style="transform: scale(2.49675) translate(0px, -20.026%);"></i>
+        <i title="左下角" class="operate-btn el-icon-bottom-left" style="transform: scale(2.49675);"></i>
+        <i title="下" class="operate-btn el-icon-bottom" style="transform: scale(2.49675) translate(-20.026%, 0px);"></i>
+        <i title="右下角" class="operate-btn el-icon-bottom-right" style="transform: scale(2.49675);"></i>
+        <div class="bm-basic-wkq-com" type="edit" style="width:200px;height:30px;">
+        测试${index}
+        </div>`);
+        fregment.appendChild(_div[0]);
+      }
+      canvas_content.appendChild(fregment);
     },
     // 上移一层
     moveUpEvent() {

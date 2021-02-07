@@ -413,7 +413,8 @@ export default {
       // activeCom: "canvas/getActiveCom",
       // activeComs: "canvas/getActiveComs",
       // treeData: "common/getOrganizeList",
-      widgetList: "canvas/getWidgetList"
+      //widgetList: "canvas/getWidgetList"
+      widgetList: []
     })
     // deviceMap() {
     //   let { deviceList = [] } = this;

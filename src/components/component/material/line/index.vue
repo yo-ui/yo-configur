@@ -228,7 +228,8 @@ export default {
   computed: {
     ...mapGetters({
       showType: "canvas/getShowType", //当前显示类型
-      widgetList: "canvas/getWidgetList", //组件列表
+      //widgetList: "canvas/getWidgetList"
+      widgetList: [], //组件列表
       // moving: "canvas/getMoving",
       zoom: "canvas/getZoom" //放大缩小
     }),

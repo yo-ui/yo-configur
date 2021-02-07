@@ -309,12 +309,14 @@ export default {
         originY,
         originWidth,
         originHeight,
+        id,
         originRotate
       } = item || {};
       state.startX = startX;
       state.startY = startY;
       state.originX = originX;
       state.originY = originY;
+      state.id = id;
       state.originWidth = originWidth;
       state.originRotate = originRotate;
       state.originHeight = originHeight;
@@ -334,6 +336,7 @@ export default {
         startY,
         activeComs = [],
         activeCom = {},
+        id = "",
         zoom
         // originX,
         // originY
@@ -345,6 +348,7 @@ export default {
       if (!(Math.abs(dx) > 1 || Math.abs(dy) > 1)) {
         return;
       }
+      let _com = $(`#${id}`);
       // var left = state.originX + Math.floor((dx * 100) / state.zoom);
       // var top = state.originY + Math.floor((dy * 100) / state.zoom);
       let { length = 0 } = activeComs || [];
@@ -359,13 +363,17 @@ export default {
           // $(`#box_${id}`).css({ left, top });
         });
       } else {
-        let { left = 0, top = 0 } = activeCom || {};
-        // left = originX + Math.floor((dx * 1) / zoom);
-        // var top = originY + Math.floor((dy * 1) / zoom);
-        // bmCommon.log(left , Math.floor(dx  / zoom),dx,dy)
-        activeCom.left = left + Math.floor(dx / zoom);
-        activeCom.top = top + Math.floor(dy / zoom);
-        // $(`#box_${id}`).css({ left, top });
+        // let { left = 0, top = 0 } = activeCom || {};
+        let left = parseFloat(_com.css("left"));
+        let top = parseFloat(_com.css("top"));
+        // // left = originX + Math.floor((dx * 1) / zoom);
+        // // var top = originY + Math.floor((dy * 1) / zoom);
+        // // bmCommon.log(left , Math.floor(dx  / zoom),dx,dy)
+        // activeCom.left = left + Math.floor(dx / zoom);
+        // activeCom.top = top + Math.floor(dy / zoom);
+        left = left + Math.floor(dx / zoom);
+        top = top + Math.floor(dy / zoom);
+        _com.css({ left, top });
       }
       state.startX = x;
       state.startY = y;
@@ -409,46 +417,49 @@ export default {
         context.commit("setActiveCom", activeCom);
         context.commit("setActiveComs", []);
       } else {
-        let index = activeComs.findIndex(item => item.id == id);
-        if (index < 0) {
-          //如果未找到当前组件 在已选组件中 说明选择新组件  清除多选组件
-          activeComs = [activeCom];
-          // context.commit("setActiveComs", activeComs);
-        }
-        let comId = `box_${id}`;
-        let com = document.getElementById(comId);
-        if (com) {
-          let _vue = com.__vue__;
-          activeCom = _vue.info;
-        }
-        // try {
-        //   widgetList.forEach(item => {
-        //     let { children = [], id: _id = "" } = item || {};
-        //     if (_id == id) {
-        //       activeCom = item;
-        //       throw new Error("找到对应的组件");
-        //     } else {
-        //       if (children && children.length > 0) {
-        //         let _activeCom = children.find(_item => {
-        //           return _item.id == id;
-        //         });
-        //         if (_activeCom) {
-        //           activeCom = _activeCom;
-        //           throw new Error("找到对应的组件");
-        //         }
-        //       }
-        //     }
-        //   });
-        // } catch (error) {
-        //   bmCommon.warn(error);
+        let _com = $(`#${id}`);
+        _com.addClass("active");
+
+        // let index = activeComs.findIndex(item => item.id == id);
+        // if (index < 0) {
+        //   //如果未找到当前组件 在已选组件中 说明选择新组件  清除多选组件
+        //   activeComs = [activeCom];
+        //   // context.commit("setActiveComs", activeComs);
         // }
-        let { length = 0 } = activeComs || [];
-        let { type = "" } = activeCom || {};
-        if ((length < 2 && activeCom) || type == "panel") {
-          activeCom.showCoverStatus = true;
-          context.commit("setActiveCom", activeCom);
-          context.commit("setActiveComs", [activeCom]);
-        }
+        // let comId = `box_${id}`;
+        // let com = document.getElementById(comId);
+        // if (com) {
+        //   let _vue = com.__vue__;
+        //   activeCom = _vue.info;
+        // }
+        // // try {
+        // //   widgetList.forEach(item => {
+        // //     let { children = [], id: _id = "" } = item || {};
+        // //     if (_id == id) {
+        // //       activeCom = item;
+        // //       throw new Error("找到对应的组件");
+        // //     } else {
+        // //       if (children && children.length > 0) {
+        // //         let _activeCom = children.find(_item => {
+        // //           return _item.id == id;
+        // //         });
+        // //         if (_activeCom) {
+        // //           activeCom = _activeCom;
+        // //           throw new Error("找到对应的组件");
+        // //         }
+        // //       }
+        // //     }
+        // //   });
+        // // } catch (error) {
+        // //   bmCommon.warn(error);
+        // // }
+        // let { length = 0 } = activeComs || [];
+        // let { type = "" } = activeCom || {};
+        // if ((length < 2 && activeCom) || type == "panel") {
+        //   activeCom.showCoverStatus = true;
+        //   context.commit("setActiveCom", activeCom);
+        //   context.commit("setActiveComs", [activeCom]);
+        // }
       }
     },
     async selectComs(context, id) {

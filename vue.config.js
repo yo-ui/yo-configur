@@ -129,12 +129,21 @@ module.exports = {
       qs: "Qs"
     };
     config.resolve = {
-      extensions: [".js", ".vue", ".json", ".less"],
+      extensions: [".ts", ".tsx", ".js", ".vue", ".json", ".less"],
       alias: {
         vue$: "vue/dist/vue.esm.js",
         "@": resolve("src")
         // vendor: resolve("src/vendor")
       }
+    };
+    config.modules = {
+      rules: [
+        {
+          test: /\.tsx?$/,
+          loader: "ts-loader",
+          exclude: /node_modules/
+        }
+      ]
     };
     const pluginsPro = [
       // new UglifyJsPlugin({
