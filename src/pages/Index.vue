@@ -130,8 +130,8 @@
             </bm-com> -->
             <div id="canvas_content" class="canvas-content"></div>
 
-            <bm-lines ref="bmLines" v-if="canvas.alignLineable"></bm-lines>
-            <bm-rule-lines ref="bmRuleLines"></bm-rule-lines>
+            <!-- <bm-lines ref="bmLines" v-if="canvas.alignLineable"></bm-lines>
+            <bm-rule-lines ref="bmRuleLines"></bm-rule-lines> -->
           </div>
           <div class="slider-box" @mousedown.stop>
             {{ $toBig(zoom, 0) + "%" }}
@@ -238,16 +238,17 @@
     </ul>
     <bm-footer ref="bmFooter"></bm-footer>
     <bm-select ref="bmSelect"></bm-select>
-    <bm-control ref="bmControl"></bm-control>
+    <!-- <bm-control ref="bmControl"></bm-control>
     <bm-device ref="bmDevice"></bm-device>
     <bm-point ref="bmPoint"></bm-point>
-    <bm-upload-box ref="bmUploadBox"></bm-upload-box>
+    <bm-upload-box ref="bmUploadBox"></bm-upload-box> -->
   </div>
 </template>
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 // import bmCom from "@/components/component";
+import ComponentLibrary from "@/core/ComponentLibrary.js";
 import bmHeader from "@/components/header";
 import bmNav from "@/components/nav";
 import bmWidgetList from "@/components/widget-list";
@@ -573,8 +574,6 @@ export default {
       let platform = type == 2 ? "service" : "manage";
       this.setPlatform(platform); //type： 2 为应用平台过来  1为管理平台过来
       this.setShowType(Constants.SHOWTYPEMAP.EDIT);
-
-      this.createComponents();
       this.canvasGetFunc((detail = {}) => {
         let {
           name = "",
@@ -649,7 +648,36 @@ export default {
               widgets.push(item);
             }
           });
-          this.setWidgetList(widgets || []);
+          // this.setWidgetList(widgets || []);
+
+          //创建组件列表
+          this.createComponents(widgets);
+          //加载 info 数据初始化
+          $vm.$emit("info-data-init", {
+            count: widgets.length,
+            widgets: widgets.map(item => {
+              let {
+                children = [],
+                id = "",
+                comName = "",
+                type = "",
+                name = "",
+                dataType = "",
+                bindData = {}
+              } = item || {};
+              children = children.map(_item => {
+                return {
+                  id: _item.id,
+                  name: _item.name,
+                  comName: _item.comName,
+                  type: _item.type,
+                  bindData: _item.bindData,
+                  dataType: _item.dataType
+                };
+              });
+              return { id, comName, type, children, name, dataType, bindData };
+            })
+          });
           this.setCanvasData(data);
           this.resizeCanvasSize();
           this.selectComAction();
@@ -667,11 +695,9 @@ export default {
             this.dataLoadingStatus = false;
           });
         }
-        //加载 info 数据初始化
-        $vm.$emit("info-data-init");
         this.createHistoryAction();
+        // });
       });
-      // });
       this.orgStrucListByLevelFunc((list = []) => {
         // let [org = {}] = list || [];
         // let { id = "" } = org || {};
@@ -1427,33 +1453,13 @@ export default {
       }, 0);
     },
     //创建组件
-    createComponents() {
+    createComponents(widgets) {
       let canvas_content = document.getElementById("canvas_content");
       let fregment = document.createDocumentFragment("div");
-      for (let index = 0; index < 1000; index++) {
-        let _div = $(document.createElement("div"));
-        _div.addClass("bm-component-com edit");
-        _div.attr({ id: Math.round(Math.random() * Date.now()), type: "text" });
-        _div.css({
-          left: `${Math.round(1980 * Math.random())}px`,
-          top: `${Math.round(1080 * Math.random())}px`,
-          width: "200px",
-          height: "30px",
-          position: "absolute"
-        });
-        _div.html(`
-        <div class="cover"></div><i title="旋转" class="operate-btn el-icon-refresh-right"></i>
-        <i title="旋转轴" class="operate-btn el-icon-axis"></i><i title="左上角" class="operate-btn el-icon-top-left" style="transform: scale(2.49675);"></i>
-        <i title="上" class="operate-btn el-icon-top" style="transform: scale(2.49675) translate(-20.026%, 0px);"></i>
-        <i title="右上角" class="operate-btn el-icon-top-right" style="transform: scale(2.49675);"></i>
-        <i title="左" class="operate-btn el-icon-back" style="transform: scale(2.49675) translate(0px, -20.026%);"></i>
-        <i title="右" class="operate-btn el-icon-right" style="transform: scale(2.49675) translate(0px, -20.026%);"></i>
-        <i title="左下角" class="operate-btn el-icon-bottom-left" style="transform: scale(2.49675);"></i>
-        <i title="下" class="operate-btn el-icon-bottom" style="transform: scale(2.49675) translate(-20.026%, 0px);"></i>
-        <i title="右下角" class="operate-btn el-icon-bottom-right" style="transform: scale(2.49675);"></i>
-        <div class="bm-basic-wkq-com" type="edit" style="width:200px;height:30px;">
-        测试${index}
-        </div>`);
+
+      for (let i = 0, len = widgets.length; i < len; i++) {
+        let item = widgets[i];
+        let _div = $(ComponentLibrary.getInstance(item).template());
         fregment.appendChild(_div[0]);
       }
       canvas_content.appendChild(fregment);

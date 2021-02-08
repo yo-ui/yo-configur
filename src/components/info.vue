@@ -30,12 +30,14 @@
         :is="`${activeCom.dataCode || 'common'}DataCom`"
       ></component>
     </keep-alive>
-    <h3 class="com-count" v-show="activeIndex == 'element'">
+    <h3 class="com-count" id="info_com_count" v-show="activeIndex == 'element'">
       <!-- {{ $lang("当前组件数量") }}
       <span class="count" :class="{ red: widgetList.length > 200 }">{{
         widgetList.length
       }}</span> -->
     </h3>
+    <ul id="info_com_list_box" class="com-list-box" v-show="activeIndex == 'element'">
+    </ul>
     <!-- <ul class="com-list-box" v-show="activeIndex == 'element'">
       <li
         v-for="(item, index) in widgetList"
@@ -134,7 +136,7 @@
 
 <script>
 import bmCommon from "@/common/common";
-import Count from "@/components/info/count";
+import WidgetList from "@/components/info/widget-list";
 // import { Constants } from "@/common/env";
 import { styles, datas } from "@/widgets/index";
 // import draggable from "vuedraggable";
@@ -395,14 +397,12 @@ export default {
     init() {
       // this.loadComList();
       this.initWatches();
-      $vm.$on("info-data-init", () => {
-        this.dataInit();
+      $vm.$on("info-data-init", (item={}) => {
+        this.dataInit(item);
       });
     },
-    dataInit() {
-      let { widgetList = [] } = this;
-      let { length = 0 } = widgetList || [];
-      new Count(".com-count", { count: length });
+    dataInit(item) {
+      new WidgetList("#info_com_list_box",item)
     },
     showChildEvent(item) {
       // bmCommon.log()

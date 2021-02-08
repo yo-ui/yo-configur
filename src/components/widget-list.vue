@@ -118,6 +118,7 @@
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
+import ComponentLibrary from "@/core/ComponentLibrary.js";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 const Props = {
@@ -440,7 +441,10 @@ export default {
         if (alias == "linkPoint") {
           this.setLinkPoint(item);
         }
-        widgetList.push(item);
+        // widgetList.push(item);
+
+        let _canvas_content = $("#canvas_content");
+        _canvas_content.append(ComponentLibrary.getInstance(item).template());
         canvas.action = "select";
         this.createHistoryAction();
         this.$nextTick(() => {

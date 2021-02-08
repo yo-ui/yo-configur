@@ -417,8 +417,15 @@ export default {
         context.commit("setActiveCom", activeCom);
         context.commit("setActiveComs", []);
       } else {
+        let _oldCom = $("#canvas_content .bm-component-com.active");
+        _oldCom.removeClass("active");
         let _com = $(`#${id}`);
         _com.addClass("active");
+        let _infoOldCom = $(`#info_com_list_box li.active`);
+        _infoOldCom.removeClass("active");
+        let _infoCom = $(`#info_com_${id}`);
+        _infoCom.addClass("active");
+        _infoCom.length > 0 && _infoCom[0].scrollIntoView();
 
         // let index = activeComs.findIndex(item => item.id == id);
         // if (index < 0) {
