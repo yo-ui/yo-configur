@@ -374,6 +374,9 @@ export default {
         left = left + Math.floor(dx / zoom);
         top = top + Math.floor(dy / zoom);
         _com.css({ left, top });
+        activeCom.left = left;
+        activeCom.top = top;
+        window.bm_widgetMap[id] = activeCom;
       }
       state.startX = x;
       state.startY = y;

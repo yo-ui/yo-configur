@@ -248,7 +248,9 @@
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 // import bmCom from "@/components/component";
-import ComponentLibrary from "@/core/ComponentLibrary.js";
+import Core from "@/core/index";
+// import ComponentLibrary from "@/core/ComponentLibrary.js";
+// import Event from "@/core/Event.js";
 import bmHeader from "@/components/header";
 import bmNav from "@/components/nav";
 import bmWidgetList from "@/components/widget-list";
@@ -1454,15 +1456,18 @@ export default {
     },
     //创建组件
     createComponents(widgets) {
-      let canvas_content = document.getElementById("canvas_content");
-      let fregment = document.createDocumentFragment("div");
+      Core.init(widgets);
+      // let canvas_content = document.getElementById("canvas_content");
+      // let fregment = document.createDocumentFragment("div");
 
-      for (let i = 0, len = widgets.length; i < len; i++) {
-        let item = widgets[i];
-        let _div = $(ComponentLibrary.getInstance(item).template());
-        fregment.appendChild(_div[0]);
-      }
-      canvas_content.appendChild(fregment);
+      // for (let i = 0, len = widgets.length; i < len; i++) {
+      //   let item = widgets[i];
+      //   let _div = $(ComponentLibrary.getInstance(item).template());
+      //   fregment.appendChild(_div[0]);
+      // }
+      // canvas_content.appendChild(fregment);
+      // //初始化事件
+      // Event.init();
     },
     // 上移一层
     moveUpEvent() {
