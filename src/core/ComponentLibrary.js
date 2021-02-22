@@ -1,16 +1,20 @@
 // 静态文本
-import textCom from "@/core/components/basic/text/index.js";
-import dynamicTextCom from "@/core/components/basic/dynamicText/index.js";
+import text from "@/core/components/basic/text/index.js";
+import dynamicText from "@/core/components/basic/dynamicText/index.js";
 
 const Library = {
-  textCom,
-  dynamicTextCom
+  text,
+  dynamicText
 };
 class ComponentLibrary {
   static getInstance(info) {
-    let { type = "" } = info || {};
-    let key = `${type}Com`;
-    return new Library[key](info);
+    let item = { ...info };
+    let { type = "" } = item || {};
+    if (type === "text" || type === "dynamicText") {
+      return new Library[type](item);
+    } else {
+      return "";
+    }
   }
 }
 export default ComponentLibrary;

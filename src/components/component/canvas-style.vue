@@ -820,11 +820,11 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setZoom: "canvas/setZoom",
-      setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
-      stopMove: "canvas/stopMove",
-      canvasMoving: "canvas/canvasMoving",
-      initMove: "canvas/initMove"
+      setZoom: "canvas/setZoom"
+      // setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
+      // stopMove: "canvas/stopMove",
+      // canvasMoving: "canvas/canvasMoving",
+      // initMove: "canvas/initMove"
     }),
     ...mapActions(),
     successCallback(url) {
@@ -992,12 +992,12 @@ export default {
       e.preventDefault();
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
-      this.canvasMoving({ x, y });
+      // this.canvasMoving({ x, y });
     },
     mouseupEvent(e) {
       $(document).off("mousemove", this.mousemoveEvent);
       $(document).off("mouseup", this.mouseupEvent);
-      this.stopMove();
+      // this.stopMove();
     },
 
     mousedownCanvasPaintEvent(e) {
@@ -1196,7 +1196,7 @@ export default {
       //   top
       // };
       widgetList.push(item);
-      this.setLinkPoint(item);
+      // this.setLinkPoint(item);
       // bmCommon.log(dis, "paint");
       // let assist = "water_vertical"; //垂直
       // if (dis.x > dis.y) {
@@ -1273,7 +1273,7 @@ export default {
     mouseupCanvasPaintEvent(e) {
       $(document).off("mousemove", this.mousemoveCanvasPaintEvent);
       $(document).off("mouseup", this.mouseupCanvasPaintEvent);
-      this.stopMove();
+      // this.stopMove();
     }
   }
 };

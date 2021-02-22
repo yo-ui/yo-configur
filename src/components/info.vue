@@ -36,8 +36,11 @@
         widgetList.length
       }}</span> -->
     </h3>
-    <ul id="info_com_list_box" class="com-list-box" v-show="activeIndex == 'element'">
-    </ul>
+    <ul
+      id="info_com_list_box"
+      class="com-list-box"
+      v-show="activeIndex == 'element'"
+    ></ul>
     <!-- <ul class="com-list-box" v-show="activeIndex == 'element'">
       <li
         v-for="(item, index) in widgetList"
@@ -180,6 +183,9 @@ export default {
     ]);
     return {
       tabList,
+      activeCom: {
+        type: "canvas"
+      },
       widgetMap: {},
       // widgetList: [],
       activeIndex: tabList[0].code
@@ -202,9 +208,10 @@ export default {
     ...mapGetters({
       //widgetList: "canvas/getWidgetList"
       widgetList: [],
+      canvas: "canvas/getCanvas", //画布属性
       getActiveCom: "canvas/getActiveCom", //选中对象
       selectBox: "canvas/getSelectBox", //选取框
-      activeCom: "canvas/getActiveCom", //选中对象
+      // activeCom: "canvas/getActiveCom", //选中对象
       moving: "canvas/getMoving", //组件是否移动
       activeComs: "canvas/getActiveComs" //选中多选对象
     }),
@@ -307,12 +314,15 @@ export default {
     this.init();
     bmCommon.log("info style 初始化");
   },
+  created() {
+    this.activeCom = this.canvas;
+  },
   updated() {
     bmCommon.log("info style update");
     // vm.$watch("someObject", callback, {
     //   deep: true
     // });
-    this.initWatches();
+    // this.initWatches();
   },
   methods: {
     ...mapMutations({
@@ -323,10 +333,13 @@ export default {
       selectComAction: "canvas/selectCom",
       selectComsAction: "canvas/selectComs"
     }),
-    initWatches() {
-      let { activeCom = {} } = this;
+    initWatches(activeCom) {
+      // let { activeCom } = this;
       // for (let i in Constants.BASEDATA) {
-      let { id = "" } = activeCom || {};
+      if (!activeCom) {
+        return;
+      }
+      let { parentId = "", id = "" } = activeCom || {};
       for (let i in activeCom) {
         if (i != "id") {
           let key = `activeCom.${i}`;
@@ -336,19 +349,25 @@ export default {
             (newVal, oldVal) => {
               // let { activeCom = {} } = this;
               // let { children = [] } = getActiveCom || {};
-              let { parentId = "" } = activeCom || {};
-              let { activeComs = [], moving = false, selectBox = {} } = this;
-              let { moving: _moving = false } = selectBox || {};
-              let { length = 0 } = activeComs || [];
-              if (!(moving || _moving || parentId)) {
-                if (length > 1) {
-                  activeComs
-                    .filter(item => item.id != id)
-                    .forEach(item => {
-                      item[i] = newVal;
-                    });
-                }
+              // let { parentId = "", id = "" } = activeCom || {};
+              let obj = window.bm_widgetMap[id];
+              if (obj) {
+                obj?.setInfo({ ...activeCom });
+                obj?.refresh();
               }
+              // let { activeComs = [], moving = false, selectBox = {} } = this;
+              // let { moving: _moving = false } = selectBox || {};
+              // let { length = 0 } = activeComs || [];
+
+              // if (!(moving || _moving || parentId)) {
+              //   if (length > 1) {
+              //     activeComs
+              //       .filter(item => item.id != id)
+              //       .forEach(item => {
+              //         item[i] = newVal;
+              //       });
+              //   }
+              // }
               //  else {
               //   if (newVal !== oldVal) {
               //     children.forEach(item => {
@@ -396,13 +415,22 @@ export default {
     },
     init() {
       // this.loadComList();
-      this.initWatches();
-      $vm.$on("info-data-init", (item={}) => {
+      $vm.$on("info-data-init", (item = {}) => {
         this.dataInit(item);
+      });
+      $vm.$on("info-data-active", (item = {}) => {
+        this.activeCom = { ...item };
+        this.$nextTick(() => {
+          let { type = "" } = item || {};
+          // if (type == "canvas") {
+          //   return;
+          // }
+          this.initWatches(item);
+        });
       });
     },
     dataInit(item) {
-      new WidgetList("#info_com_list_box",item)
+      new WidgetList("#info_com_list_box", item);
     },
     showChildEvent(item) {
       // bmCommon.log()

@@ -2,7 +2,6 @@ import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 
 class Text extends Component {
-
   constructor(props) {
     super(props);
   }
@@ -202,7 +201,7 @@ class Text extends Component {
       //渐变
       styles = { ...styles, ...gradientStyle(info) };
     }
-    return this.composeStyles(styles || {});
+    return styles || {};
   }
 
   template() {
@@ -215,9 +214,9 @@ class Text extends Component {
       { info, showType },
       `
       <div
-      class="bm-basic-text-com"
+      class="bm-basic-text-com component"
       @blur.stop="blurEvent"
-      style="${this.comStyle()}"
+      style="${this.composeStyles(this.comStyle())}"
     >
       ${content}
     </div>
@@ -225,8 +224,11 @@ class Text extends Component {
     );
   }
 
-  refresh(){
-    this.template()
+  refresh() {
+    super.refresh();
+    let { info = {} } = this;
+    let { id = "", content = "" } = info || {};
+    $(`#${id}>.component`).html(content);
   }
 
   event() {}

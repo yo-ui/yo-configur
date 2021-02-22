@@ -1,5 +1,6 @@
-import ComponentLibrary from "@/core/ComponentLibrary.js";
-import Event from "@/core/Event.js";
+import ComponentLibrary from "@/core/ComponentLibrary";
+import bmCommon from "@/common/common";
+import Event from "@/core/Event";
 class Core {
   constructor() {}
 
@@ -13,8 +14,12 @@ class Core {
       let item = widgets[i];
       let { id = "" } = item || {};
       let obj = ComponentLibrary.getInstance(item);
-      let _div = $(obj.template());
-      fregment.appendChild(_div[0]);
+      let dom = obj.template();
+      if (dom) {
+        let _div = $(obj.template());
+        fregment.appendChild(_div[0]);
+      }
+      bmCommon.log("-----", obj);
       widgetMap[id] = obj;
     }
     //全局 组件对象

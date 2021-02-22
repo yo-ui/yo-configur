@@ -10,8 +10,12 @@ class Component {
     this.info = props;
   }
 
+  setInfo(info) {
+    this.info = info;
+  }
+
   boxStyle() {
-    let { info = {}, draging = false } = this;
+    let { info = {} } = this;
     let {
       left = "",
       top = "",
@@ -54,7 +58,7 @@ class Component {
     styles["animation-iteration-count"] = iterationCount;
     styles["animation-duration"] = duration;
     styles["animation-direction"] = direction;
-    return this.composeStyles(styles);
+    return styles;
   }
 
   boxClasses() {
@@ -145,25 +149,23 @@ class Component {
     let styles = {};
     styles["opacity"] = opacity / 100;
     styles["visibility"] = `${visible ? "visible" : "hidden"}`;
-    if (flipV || flipH) {
-      let scale = `scale(${flipH ? -1 : 1},${flipV ? -1 : 1})`;
-      (styles["transform"] = `${scale}`),
-        (styles["-webkit-transform"] = `${scale}`),
-        (styles["-ms-transform"] = `${scale}`),
-        (styles["-o-transform"] = `${scale}`),
-        (styles["-moz-transform"] = `${scale}`);
-    }
+    let scale = `scale(${flipH ? -1 : 1},${flipV ? -1 : 1})`;
+    (styles["transform"] = `${scale}`),
+      (styles["-webkit-transform"] = `${scale}`),
+      (styles["-ms-transform"] = `${scale}`),
+      (styles["-o-transform"] = `${scale}`),
+      (styles["-moz-transform"] = `${scale}`);
     return styles;
   }
 
   //组件包裹
   wrap({ info, showType }, content = "") {
-    let { type = "" } = info || {};
+    let { type = "", id = "" } = info || {};
 
     return `
-    <div id="${info.id}" type="${
-      info.type
-    }" class="bm-component-com ${showType} ${this.boxClasses()}" style="${this.boxStyle()}">
+    <div id="${id}" type="${type}" class="bm-component-com ${showType} ${this.boxClasses()}" style="${this.composeStyles(
+      this.boxStyle()
+    )}">
       ${
         showType == "edit"
           ? `
@@ -184,6 +186,26 @@ class Component {
       ${content}
       </div>
     `;
+  }
+  // 刷新数据
+  refresh() {
+    let { info = {} } = this;
+    let { id = "" } = info || {};
+    $(`#${id}>.component`).css(this.comStyle());
+    $(`#${id}`).css(this.boxStyle());
+  }
+  // // 刷新数据
+  // resize(options) {
+  //   let { info = {} } = this;
+  //   let { id = "" } = info || {};
+  //   $(`#${id}>.component`).css(options);
+  // }
+  // 移除组件
+  remove() {
+    let { info = {} } = this;
+    let { id = "" } = info || {};
+    delete window.bm_widgetMap[id];
+    $(`#${id}`).remove();
   }
 }
 

@@ -94,8 +94,7 @@ export default {
     originY: 0, // 选中元件的纵向初始值
     startX: 0, // 鼠标摁下时的横坐标
     startY: 0, // 鼠标摁下时的纵坐标
-    moving: false, // 是否正在移动元件（参考线仅在移动元件时显示）
-    draging: false // 创建组件正在拖动
+    moving: false // 是否正在移动元件（参考线仅在移动元件时显示）
     // financeEnterpriserProvincesCacheMap: null
   },
   getters: {
@@ -226,10 +225,10 @@ export default {
     setBoxZoom(state, item) {
       state.boxZoom = item;
     },
-    //设置组件初始拖动状态
-    setDraging(state, item) {
-      state.draging = item;
-    },
+    // //设置组件初始拖动状态
+    // setDraging(state, item) {
+    //   state.draging = item;
+    // },
     //设置选中对象
     setActiveCom(state, item) {
       state.activeCom = {};
@@ -335,7 +334,7 @@ export default {
         startX,
         startY,
         activeComs = [],
-        activeCom = {},
+        // activeCom = {},
         id = "",
         zoom
         // originX,
@@ -349,6 +348,9 @@ export default {
         return;
       }
       let _com = $(`#${id}`);
+
+      let obj = window.bm_widgetMap[id];
+      let { info: activeCom = {} } = obj || {};
       // var left = state.originX + Math.floor((dx * 100) / state.zoom);
       // var top = state.originY + Math.floor((dy * 100) / state.zoom);
       let { length = 0 } = activeComs || [];
@@ -376,7 +378,7 @@ export default {
         _com.css({ left, top });
         activeCom.left = left;
         activeCom.top = top;
-        window.bm_widgetMap[id] = activeCom;
+        window.bm_widgetMap[id] = obj;
       }
       state.startX = x;
       state.startY = y;
@@ -417,9 +419,13 @@ export default {
       // activeCom.showCoverStatus = true;
       if (!id) {
         activeCom = canvas;
-        context.commit("setActiveCom", activeCom);
-        context.commit("setActiveComs", []);
+        // context.commit("setActiveCom", activeCom);
+        // context.commit("setActiveComs", []);
+
+        $vm.$emit("info-data-active", canvas);
       } else {
+        let obj = window.bm_widgetMap[id];
+        let { info: activeCom = {} } = obj || {};
         let _oldCom = $("#canvas_content .bm-component-com.active");
         _oldCom.removeClass("active");
         let _com = $(`#${id}`);
@@ -429,6 +435,8 @@ export default {
         let _infoCom = $(`#info_com_${id}`);
         _infoCom.addClass("active");
         _infoCom.length > 0 && _infoCom[0].scrollIntoView();
+
+        $vm.$emit("info-data-active", activeCom);
 
         // let index = activeComs.findIndex(item => item.id == id);
         // if (index < 0) {

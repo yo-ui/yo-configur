@@ -157,7 +157,7 @@ export default {
       //widgetList: "canvas/getWidgetList"
       widgetList: [], //组件列表
       zoom: "canvas/getZoom", //放大缩小
-      draging: "canvas/getDraging", //组件拖动状态
+      // draging: "canvas/getDraging", //组件拖动状态
       canvas: "canvas/getCanvas" //画布属性
     }),
     tabWidgetList() {
@@ -359,7 +359,7 @@ export default {
         "data",
         JSON.stringify({ ...data, type, name, alias, comDisabled })
       );
-      this.setDraging(true);
+      // this.setDraging(true);
       this.dragenterEvent(e);
     },
     dragenterEvent(e) {
@@ -396,8 +396,10 @@ export default {
       let offset = $(".view-box").offset();
       let { dataTransfer = {} } = originalEvent;
       let data = dataTransfer.getData("data");
+
+      bmCommon.log("data=", data);
       if (data) {
-        data = typeof data === "string" ? JSON.parse(data) : {};
+        data = Object.freeze(typeof data === "string" ? JSON.parse(data) : {});
         let id = bmCommon.uuid();
         let pos = bmCommon.getMousePosition(e);
         let { left = 0, top = 0 } = offset || {};
@@ -438,13 +440,20 @@ export default {
           left,
           top
         };
-        if (alias == "linkPoint") {
-          this.setLinkPoint(item);
-        }
+        // if (alias == "linkPoint") {
+        //   this.setLinkPoint(item);
+        // }
         // widgetList.push(item);
+        bmCommon.log(item);
 
         let _canvas_content = $("#canvas_content");
-        _canvas_content.append(ComponentLibrary.getInstance(item).template());
+        let obj = ComponentLibrary.getInstance(item);
+        let dom = obj.template();
+        if (dom) {
+          let _div = $(obj.template());
+          _canvas_content.append(_div[0]);
+        }
+        window.bm_widgetMap[id] = obj;
         canvas.action = "select";
         this.createHistoryAction();
         this.$nextTick(() => {

@@ -120,7 +120,8 @@ class Event {
       originRotate,
       id = ""
     } = state;
-    let activeCom = window.bm_widgetMap[id];
+    let obj = window.bm_widgetMap[id];
+    let { info: activeCom = {} } = obj || {};
     let { zoom } = $vm.$store.state.canvas;
     let _com = $(`#${id}`);
     let bmComBox = _com[0];
@@ -128,7 +129,7 @@ class Event {
     var dx = x - startX;
     var dy = y - startY;
     let value, width, height, rotate;
-    let { equalScaleable = false, top = 0 } = activeCom || {};
+    let { equalScaleable = false } = activeCom || {};
 
     if (direction === "right") {
       value = originWidth + Math.floor((dx * 1) / zoom);
@@ -136,22 +137,30 @@ class Event {
         activeCom.width = value;
         if (equalScaleable) {
           activeCom.height = (originHeight * value) / originWidth;
+          obj.refresh({ height: activeCom.height, width: activeCom.width });
+        } else {
+          obj.refresh({
+            width: activeCom.width
+          });
         }
       }
     } else if (direction === "top") {
       height = originHeight - Math.floor((dy * 1) / zoom);
       if (height > 10) {
-        top -= height - activeCom.height;
-        height = height > 10 ? height : 10;
-        // activeCom.top -= height - activeCom.height;
-        // activeCom.height = height > 10 ? height : 10;
+        activeCom.top -= height - activeCom.height;
+        activeCom.height = height > 10 ? height : 10;
         if (equalScaleable) {
-          // activeCom.width = (originWidth * height) / originHeight;
-          width = (originWidth * height) / originHeight;
-
-          _com.css({ top, height, width });
+          activeCom.width = (originWidth * value) / originHeight;
+          obj.refresh({
+            height: activeCom.height,
+            width: activeCom.width,
+            top: activeCom.top
+          });
         } else {
-          _com.css({ top, height });
+          obj.refresh({
+            height: activeCom.height,
+            top: activeCom.top
+          });
         }
       }
     } else if (direction === "bottom") {
@@ -160,6 +169,9 @@ class Event {
         activeCom.height = value > 10 ? value : 10;
         if (equalScaleable) {
           activeCom.width = (originWidth * value) / originHeight;
+          obj.refresh({ height: activeCom.height, width: activeCom.width });
+        } else {
+          obj.refresh({ height: activeCom.height });
         }
       }
     } else if (direction === "left") {
@@ -169,6 +181,16 @@ class Event {
         activeCom.width = width > 10 ? width : 10;
         if (equalScaleable) {
           activeCom.height = (originHeight * width) / originWidth;
+          obj.refresh({
+            height: activeCom.height,
+            left: activeCom.left,
+            width: activeCom.width
+          });
+        } else {
+          obj.refresh({
+            left: activeCom.left,
+            width: activeCom.width
+          });
         }
       }
     } else if (direction === "topleft") {
@@ -186,6 +208,12 @@ class Event {
         activeCom.top -= (height - activeCom.height) / 2;
         activeCom.height = height > 10 ? height : 10;
         activeCom.width = width > 10 ? width : 10;
+        obj.refresh({
+          top: activeCom.top,
+          left: activeCom.left,
+          height: activeCom.height,
+          width: activeCom.width
+        });
       }
     } else if (direction === "topright") {
       width = originWidth + Math.floor((dx * 1) / zoom);
@@ -202,6 +230,12 @@ class Event {
         activeCom.top -= (height - activeCom.height) / 2;
         activeCom.height = height > 10 ? height : 10;
         activeCom.width = width > 10 ? width : 10;
+        obj.refresh({
+          height: activeCom.height,
+          top: activeCom.top,
+          left: activeCom.left,
+          width: activeCom.width
+        });
       }
     } else if (direction === "bottomleft") {
       height = originHeight + Math.floor((dy * 1) / zoom);
@@ -218,6 +252,12 @@ class Event {
         activeCom.top -= Math.floor((height - activeCom.height) / 2);
         activeCom.height = height > 10 ? height : 10;
         activeCom.width = width > 10 ? width : 10;
+        obj.refresh({
+          height: activeCom.height,
+          top: activeCom.top,
+          left: activeCom.left,
+          width: activeCom.width
+        });
       }
     } else if (direction === "bottomright") {
       height = originHeight + Math.floor((dy * 1) / zoom);
@@ -234,6 +274,12 @@ class Event {
         activeCom.top -= Math.floor((height - activeCom.height) / 2);
         activeCom.height = height > 10 ? height : 10;
         activeCom.width = width > 10 ? width : 10;
+        obj.refresh({
+          height: activeCom.height,
+          top: activeCom.top,
+          left: activeCom.left,
+          width: activeCom.width
+        });
       }
     } else if (direction === "rotate") {
       let rect = bmComBox?.getBoundingClientRect() || {};
@@ -251,8 +297,9 @@ class Event {
       state.startY = pos.y;
       state.originRotate = rotate;
       activeCom.rotate = rotate;
+      obj.refresh({ transform: `rotate(${rotate})` });
     }
-    window.bm_widgetMap[id] = activeCom;
+    window.bm_widgetMap[id] = obj;
   }
   static coverEvent() {
     let { info = {} } = this;

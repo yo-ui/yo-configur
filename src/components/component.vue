@@ -224,7 +224,7 @@ export default {
     ...mapGetters({
       showType: "canvas/getShowType", //当前显示类型
       zoom: "canvas/getZoom", //放大缩小
-      draging: "canvas/getDraging", //组件拖动状态
+      // draging: "canvas/getDraging", //组件拖动状态
       activeCom: "canvas/getActiveCom", //选中对象
       activeComs: "canvas/getActiveComs", //选中对象
       moving: "canvas/getMoving"
@@ -449,7 +449,7 @@ export default {
         iterationCount = "infinite";
       }
       // styles["pointer-events"] = !showCoverStatus ? "auto" : "none";
-      styles["pointer-events"] = !draging ? "auto" : "none";
+      // styles["pointer-events"] = !draging ? "auto" : "none";
       // bmCommon.log("draging",draging)
       // bmCommon.log("pointer-events=",showCoverStatus)
       styles["animation-iteration-count"] = iterationCount;
@@ -480,10 +480,10 @@ export default {
   methods: {
     ...mapMutations({
       // initMove: "canvas/initMove",
-      setActiveCom: "canvas/setActiveCom", //设置当前选中组件
+      // setActiveCom: "canvas/setActiveCom", //设置当前选中组件
       // resize: "canvas/resize",
       // rotate: "canvas/rotate",
-      stopMove: "canvas/stopMove"
+      // stopMove: "canvas/stopMove"
     }),
     ...mapActions({
       selectComAction: "canvas/selectCom"
@@ -575,7 +575,7 @@ export default {
         rotate: originRotate = ""
       } = info || {};
       this.direction = direction;
-      this.setActiveCom(info);
+      // this.setActiveCom(info);
       this.initMove({
         startX: x,
         startY: y,
@@ -760,7 +760,7 @@ export default {
       $(document).off("mousemove", this.mousemoveEvent);
       $(document).off("mouseup", this.mouseupEvent);
       this.loadComPoints();
-      this.stopMove();
+      // this.stopMove();
       this.rotating = false;
       this.resizing = false;
     },
