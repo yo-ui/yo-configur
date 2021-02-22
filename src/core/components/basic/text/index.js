@@ -2,6 +2,7 @@ import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 
 class Text extends Component {
+
   constructor(props) {
     super(props);
   }
@@ -201,7 +202,7 @@ class Text extends Component {
       //渐变
       styles = { ...styles, ...gradientStyle(info) };
     }
-    return styles || {};
+    return this.composeStyles(styles || {});
   }
 
   template() {
@@ -222,6 +223,10 @@ class Text extends Component {
     </div>
     `
     );
+  }
+
+  refresh(){
+    this.template()
   }
 
   event() {}

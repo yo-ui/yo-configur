@@ -904,7 +904,7 @@ export default {
     closeContenxtMenuEvent() {
       // bmCommon.log("closeContenxtMenuEvent");
       this.showContextMenuStatus = true;
-      this._showContextMenuTimeoutId = setTimeout(() => {
+      this._showContextMenuTimeoutId = window.requestAnimationFrame(() => {
         clearTimeout(this._showContextMenuTimeoutId);
         this.showContextMenuStatus = false;
       }, 1000);
@@ -1275,7 +1275,7 @@ export default {
     },
     //剪切
     cutEvent() {
-      this._navTimeoutId = setTimeout(() => {
+      this._navTimeoutId = window.requestAnimationFrame(() => {
         clearTimeout(this._navTimeoutId);
         let { activeCom = {}, widgetList = [], activeComs = [] } = this;
         let { length = 0 } = activeComs || [];
@@ -1300,8 +1300,8 @@ export default {
     },
     // 复制
     copyEvent() {
-      this._navTimeoutId = setTimeout(() => {
-        clearTimeout(this._navTimeoutId);
+      this._navTimeoutId = window.requestAnimationFrame(() => {
+        // clearTimeout(this._navTimeoutId);
         let { activeCom = {}, activeComs = [], selectBox = {} } = this;
         // this.copyCom = bmCommon.clone(activeCom || {});
         selectBox.moving = true;
@@ -1329,7 +1329,7 @@ export default {
     // 粘贴
     pasteEvent(e) {
       this.selectComAction();
-      this._navTimeoutId = setTimeout(() => {
+      this._navTimeoutId = window.requestAnimationFrame(() => {
         clearTimeout(this._navTimeoutId);
         let {
           copyCom,
@@ -1446,7 +1446,7 @@ export default {
     },
     // 锁定/解锁
     lockEvent(locked) {
-      this._navTimeoutId = setTimeout(() => {
+      this._navTimeoutId = window.requestAnimationFrame(() => {
         clearTimeout(this._navTimeoutId);
         let { activeCom = {} } = this;
         activeCom.locked = locked;

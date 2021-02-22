@@ -1,5 +1,5 @@
 // 静态文本
-import textCom from "@/core/components/basic/text/Text.js";
+import textCom from "@/core/components/basic/text/index.js";
 import dynamicTextCom from "@/core/components/basic/dynamicText/index.js";
 
 const Library = {

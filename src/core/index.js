@@ -12,9 +12,10 @@ class Core {
     for (; i < len; i++) {
       let item = widgets[i];
       let { id = "" } = item || {};
-      let _div = $(ComponentLibrary.getInstance(item).template());
+      let obj = ComponentLibrary.getInstance(item);
+      let _div = $(obj.template());
       fregment.appendChild(_div[0]);
-      widgetMap[id] = item;
+      widgetMap[id] = obj;
     }
     //全局 组件对象
     window.bm_widgetMap = widgetMap;
