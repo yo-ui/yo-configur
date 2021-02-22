@@ -1,5 +1,5 @@
 import bmCommon from "@/common/common";
-import Component from "@/core/components/basic/text/index";
+import Component from "@/core/Component";
 
 class Text extends Component {
   container;
@@ -19,15 +19,7 @@ class Text extends Component {
     let { content = "" } = info || {};
     // bmCommon.log(container);
     // contenteditable="showType == 'edit' && info.editable"
-    return container.html(`
-      <div
-      class="bm-basic-text-com"
-      @blur.stop="blurEvent"
-      style="${this.comStyle()}"
-    >
-      ${content}
-    </div>
-    `);
+    return "<div></div>";
   }
 
   event() {}

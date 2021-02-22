@@ -32,6 +32,16 @@ const Routers = [
     component: () => import(/* webpackChunkName: "bm-index" */ "@/pages/Index")
   },
   {
+    path: RouterURL.homeIndex.path,
+    name: RouterURL.homeIndex.name,
+    meta: {
+      title: RouterURL.homeIndex.title
+      // requireAuth: routerAuth //是否需要登录
+    },
+    component: () =>
+      import(/* webpackChunkName: "bm-homeIndex" */ "@/pages/Home")
+  },
+  {
     path: RouterURL.preview.path,
     name: RouterURL.preview.name,
     meta: {

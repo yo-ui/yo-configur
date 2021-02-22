@@ -232,7 +232,7 @@ export default {
     },
     //设置选中对象
     setActiveCom(state, item) {
-      state.activeCom = item;
+      state.activeCom = {};
     },
     //设置选中对象
     setActiveComs(state, item) {

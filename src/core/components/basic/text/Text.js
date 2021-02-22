@@ -195,9 +195,7 @@ class Text extends Component {
         styles["background-Color"] = backgroundColor;
       }
       if (backgroundImage) {
-        styles["background-Image"] = `url(${this.$loadImgUrl(
-          backgroundImage
-        )})`;
+        styles["background-Image"] = `url(${$vm.$loadImgUrl(backgroundImage)})`;
       }
     } else if (backgroundType == "gradient") {
       //渐变
