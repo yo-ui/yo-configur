@@ -79,9 +79,8 @@ export default {
       // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
       // activeCom: "canvas/getActiveCom",
       // activeComs: "canvas/getActiveComs",
-      recordList: "canvas/getRecordList",
-      // //widgetList: "canvas/getWidgetList"
-      widgetList: []
+      recordList: "canvas/getRecordList"
+      // widgetList: "canvas/getWidgetList"
     }),
     dataList() {
       let { condition, recordList = [] } = this;

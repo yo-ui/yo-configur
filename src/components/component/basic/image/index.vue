@@ -138,7 +138,7 @@ export default {
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       if (content) {
         styles["backgroundColor"] = "transparent";
-        styles["backgroundImage"] = "none";
+        styles["background-image"] = "none";
       }
       return styles || {};
     },
@@ -164,7 +164,7 @@ export default {
       } = info || {};
       let styles = {};
       if (content) {
-        styles["backgroundImage"] = `url(${this.$loadImgUrl(content)})`;
+        styles["background-image"] = `url(${this.$loadImgUrl(content)})`;
         if (contentRepeat) {
           styles["background-repeat"] = contentRepeat;
         }

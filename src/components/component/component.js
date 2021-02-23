@@ -335,7 +335,9 @@ class Component {
         styles["backgroundColor"] = backgroundColor;
       }
       if (backgroundImage) {
-        styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
+        styles["background-image"] = `url(${this.$loadImgUrl(
+          backgroundImage
+        )})`;
       }
     } else if (backgroundType == "gradient") {
       //渐变

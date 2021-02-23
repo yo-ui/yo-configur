@@ -180,10 +180,6 @@ export default {
     };
   },
   props: {
-    // id: {
-    //   type: String,
-    //   default: ""
-    // }
     info: {
       type: Object,
       default: () => {
@@ -194,13 +190,8 @@ export default {
   components: {},
   computed: {
     ...mapGetters({
-      //widgetList: "canvas/getWidgetList"
-      widgetList: []
+      widgetList: "canvas/getWidgetList"
     })
-  },
-  created() {
-    // let { id = "" } = this;
-    // this.info = window.bm_widgetMap[id];
   },
   mounted() {
     this.init();

@@ -2526,7 +2526,7 @@ export default {
           styles["backgroundColor"] = backgroundColor;
         }
         if (backgroundImage) {
-          styles["backgroundImage"] = `url(${this.$loadImgUrl(
+          styles["background-image"] = `url(${this.$loadImgUrl(
             backgroundImage
           )})`;
         }

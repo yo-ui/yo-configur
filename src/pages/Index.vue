@@ -108,7 +108,7 @@
             <div class="bg" :style="bgStyle">
               <div class="grid" :style="gridStyle"></div>
             </div>
-            <!-- <bm-com
+            <bm-com
               class="edit"
               v-for="(item, index) in widgetList"
               :data-type="item.type"
@@ -127,11 +127,10 @@
                 >
                 </bm-com>
               </template>
-            </bm-com> -->
-            <div id="canvas_content" class="canvas-content"></div>
+            </bm-com>
 
-            <!-- <bm-lines ref="bmLines" v-if="canvas.alignLineable"></bm-lines>
-            <bm-rule-lines ref="bmRuleLines"></bm-rule-lines> -->
+            <bm-lines ref="bmLines" v-if="canvas.alignLineable"></bm-lines>
+            <bm-rule-lines ref="bmRuleLines"></bm-rule-lines>
           </div>
           <div class="slider-box" @mousedown.stop>
             {{ $toBig(zoom, 0) + "%" }}
@@ -238,19 +237,16 @@
     </ul>
     <bm-footer ref="bmFooter"></bm-footer>
     <bm-select ref="bmSelect"></bm-select>
-    <!-- <bm-control ref="bmControl"></bm-control>
+    <bm-control ref="bmControl"></bm-control>
     <bm-device ref="bmDevice"></bm-device>
     <bm-point ref="bmPoint"></bm-point>
-    <bm-upload-box ref="bmUploadBox"></bm-upload-box> -->
+    <bm-upload-box ref="bmUploadBox"></bm-upload-box>
   </div>
 </template>
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 // import bmCom from "@/components/component";
-import Core from "@/core/index";
-// import ComponentLibrary from "@/core/ComponentLibrary.js";
-// import Event from "@/core/Event.js";
 import bmHeader from "@/components/header";
 import bmNav from "@/components/nav";
 import bmWidgetList from "@/components/widget-list";
@@ -269,7 +265,6 @@ export default {
       condition: {
         canvasId: ""
       },
-      widgetList: [], //组件列表
       windowInnerWidth: window.innerWidth,
       windowInnerHeight: window.innerHeight,
       showContextMenuStatus: false,
@@ -329,7 +324,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      //widgetList: "canvas/getWidgetList"
+      widgetList: "canvas/getWidgetList", //组件列表
       getZoom: "canvas/getZoom", //放大缩小
       leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
       rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
@@ -389,7 +384,7 @@ export default {
       } = page || {};
       let styles = {};
       if (pageColor) {
-        styles["backgroundImage"] = "none";
+        styles["background-image"] = "none";
         styles["backgroundColor"] = pageColor;
       }
       if (backgroundType == "purity") {
@@ -398,11 +393,11 @@ export default {
           styles["backgroundColor"] = pageColor;
         }
         if (backgroundImage) {
-          styles["backgroundImage"] = `url(${this.$loadImgUrl(
+          styles["background-image"] = `url(${this.$loadImgUrl(
             backgroundImage
           )})`;
           styles["background-size"] = "auto";
-          styles["backgroundPosition"] = "inherit";
+          styles["background-position"] = "inherit";
 
           if (backgroundRepeat) {
             styles["background-repeat"] = backgroundRepeat;
@@ -413,7 +408,7 @@ export default {
         }
       } else if (backgroundType == "gradient") {
         styles["background-size"] = "auto";
-        styles["backgroundPosition"] = "inherit";
+        styles["background-position"] = "inherit";
         //渐变
         styles = { ...styles, ...gradientStyle(page) };
       }
@@ -456,8 +451,10 @@ export default {
         canvas || {};
       let styles = {};
       if (backgroundImage) {
-        styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
-        styles["backgroundPosition"] = "0 0";
+        styles["background-image"] = `url(${this.$loadImgUrl(
+          backgroundImage
+        )})`;
+        styles["background-position"] = "0 0";
       }
       if (backgroundSize) {
         styles["background-size"] = backgroundSize;
@@ -531,7 +528,7 @@ export default {
         styles["height"] = `${height}px`;
       }
       // if (backgroundImage) {
-      //   styles["backgroundImage"] = `url(${backgroundImage})`;
+      //   styles["background-image"] = `url(${backgroundImage})`;
       // }
       return styles || {};
     }
@@ -650,36 +647,7 @@ export default {
               widgets.push(item);
             }
           });
-          // this.setWidgetList(widgets || []);
-
-          //创建组件列表
-          this.createComponents(widgets);
-          //加载 info 数据初始化
-          $vm.$emit("info-data-init", {
-            count: widgets.length,
-            widgets: widgets.map(item => {
-              let {
-                children = [],
-                id = "",
-                comName = "",
-                type = "",
-                name = "",
-                dataType = "",
-                bindData = {}
-              } = item || {};
-              children = children.map(_item => {
-                return {
-                  id: _item.id,
-                  name: _item.name,
-                  comName: _item.comName,
-                  type: _item.type,
-                  bindData: _item.bindData,
-                  dataType: _item.dataType
-                };
-              });
-              return { id, comName, type, children, name, dataType, bindData };
-            })
-          });
+          this.setWidgetList(widgets || []);
           this.setCanvasData(data);
           this.resizeCanvasSize();
           this.selectComAction();
@@ -698,8 +666,8 @@ export default {
           });
         }
         this.createHistoryAction();
-        // });
       });
+      // });
       this.orgStrucListByLevelFunc((list = []) => {
         // let [org = {}] = list || [];
         // let { id = "" } = org || {};
@@ -715,11 +683,7 @@ export default {
     initEvent() {
       let viewBox = this.$refs.viewBox;
       // 注册鼠标事件
-      $(viewBox).on(
-        "mousedown",
-        ".bm-component-com",
-        this.viewBoxMousedownEvent
-      );
+      $(viewBox).on("mousedown", this.viewBoxMousedownEvent);
       // 注册颜色框事件
       $(document).on("mousedown", ".el-color-picker__panel", e => {
         e.stopPropagation();
@@ -961,8 +925,8 @@ export default {
       let { target, shiftKey = false, ctrlKey = false, metaKey = false } = e;
       ctrlKey = ctrlKey || metaKey; //(ctrl(cmd))
       let $parent = $(target).parents(".bm-component-com");
-      let type = $(target).attr("type");
-      let id = $(target).attr("id");
+      let type = $(target).attr("data-type");
+      let id = $(target).attr("data-id");
       let width = $(target).outerWidth();
       let height = $(target).outerHeight();
       document.activeElement?.blur();
@@ -970,8 +934,8 @@ export default {
       $(this.$refs.viewBox).focus();
       // bmCommon.log(document.activeElement);
       if (!type) {
-        type = $parent.attr("type");
-        id = $parent.attr("id");
+        type = $parent.attr("data-type");
+        id = $parent.attr("data-id");
         width = $parent.outerWidth();
         height = $parent.outerHeight();
       }
@@ -1008,9 +972,9 @@ export default {
         if (length > 1) {
           locked = false;
         }
-        // if (!locked) {
-        this.initMoveEvent(e, id); // 参见 mixins
-        // }
+        if (!locked) {
+          this.initMoveEvent(e); // 参见 mixins
+        }
       } else {
         this.showContextMenuType = 2;
         let { activeCom = {}, activeComs = [] } = this;
@@ -1453,21 +1417,6 @@ export default {
         this.showContextMenuStatus = false;
         this.createHistoryAction();
       }, 0);
-    },
-    //创建组件
-    createComponents(widgets) {
-      Core.init(widgets);
-      // let canvas_content = document.getElementById("canvas_content");
-      // let fregment = document.createDocumentFragment("div");
-
-      // for (let i = 0, len = widgets.length; i < len; i++) {
-      //   let item = widgets[i];
-      //   let _div = $(ComponentLibrary.getInstance(item).template());
-      //   fregment.appendChild(_div[0]);
-      // }
-      // canvas_content.appendChild(fregment);
-      // //初始化事件
-      // Event.init();
     },
     // 上移一层
     moveUpEvent() {

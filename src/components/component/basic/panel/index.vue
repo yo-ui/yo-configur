@@ -160,7 +160,7 @@ export default {
           styles["backgroundColor"] = backgroundColor;
         }
         if (backgroundImage) {
-          styles["backgroundImage"] = `url(${this.$loadImgUrl(
+          styles["background-image"] = `url(${this.$loadImgUrl(
             backgroundImage
           )})`;
           if (backgroundRepeat) {
@@ -203,7 +203,7 @@ export default {
       } = info || {};
       let styles = {};
       if (content) {
-        styles["backgroundImage"] = `url(${this.$loadImgUrl(content)})`;
+        styles["background-image"] = `url(${this.$loadImgUrl(content)})`;
         if (contentRepeat) {
           styles["background-repeat"] = contentRepeat;
         }
@@ -278,7 +278,7 @@ export default {
           styles["backgroundColor"] = backgroundColor;
         }
         if (backgroundImage) {
-          styles["backgroundImage"] = `url(${this.$loadImgUrl(
+          styles["background-image"] = `url(${this.$loadImgUrl(
             backgroundImage
           )})`;
         }

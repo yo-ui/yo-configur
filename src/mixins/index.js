@@ -5,8 +5,9 @@ let position = {
 };
 export default {
   methods: {
-    initMoveEvent(e, id) {
-      e.stopPropagation();
+    initMoveEvent(e) {
+      // e.stopPropagation();
+      e.preventDefault();
       let { activeCom = {} } = this;
       // var activeCom = this.$vpd.state.activeElement
       let pos = bmCommon.getMousePosition(e);
@@ -28,8 +29,7 @@ export default {
         originX: left,
         originY: top,
         originWidth: width,
-        originHeight: height,
-        id
+        originHeight: height
       });
       position.originX = left;
       position.originY = top;

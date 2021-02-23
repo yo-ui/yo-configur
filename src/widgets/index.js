@@ -2,7 +2,7 @@ let widgets = {
   // 静态文本
   textCom: () =>
     import(
-      /* webpackChunkName: "bm-component-text" */ "@/components/component/basic/text/index.js"
+      /* webpackChunkName: "bm-component-text" */ "@/components/component/basic/text/index.vue"
     ),
   // 容器 组合
   panelCom: () =>

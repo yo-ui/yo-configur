@@ -24,8 +24,7 @@ export default {
   components: {},
   computed: {
     ...mapGetters({
-      //widgetList: "canvas/getWidgetList"
-      widgetList: []
+      widgetList: "canvas/getWidgetList"
     })
   },
   methods: {

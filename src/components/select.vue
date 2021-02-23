@@ -30,8 +30,7 @@ export default {
       // moving: state => state.canvas.moving
     }),
     ...mapGetters({
-      //widgetList: "canvas/getWidgetList"
-      widgetList: [], //组件列表
+      widgetList: "canvas/getWidgetList", //组件列表
       activeCom: "canvas/getActiveCom", //选中组件
       activeComs: "canvas/getActiveComs", //选中组件
       selectBox: "canvas/getSelectBox", //选取框

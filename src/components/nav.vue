@@ -324,8 +324,7 @@ export default {
       rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
       activeCom: "canvas/getActiveCom",
       activeComs: "canvas/getActiveComs",
-      //widgetList: "canvas/getWidgetList"
-      widgetList: []
+      widgetList: "canvas/getWidgetList"
     }),
 
     bottomOrder() {

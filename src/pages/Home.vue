@@ -391,7 +391,7 @@ export default {
       } = page || {};
       let styles = {};
       if (pageColor) {
-        styles["backgroundImage"] = "none";
+        styles["background-image"] = "none";
         styles["backgroundColor"] = pageColor;
       }
       if (backgroundType == "purity") {
@@ -400,11 +400,11 @@ export default {
           styles["backgroundColor"] = pageColor;
         }
         if (backgroundImage) {
-          styles["backgroundImage"] = `url(${this.$loadImgUrl(
+          styles["background-image"] = `url(${this.$loadImgUrl(
             backgroundImage
           )})`;
           styles["background-size"] = "auto";
-          styles["backgroundPosition"] = "inherit";
+          styles["background-position"] = "inherit";
 
           if (backgroundRepeat) {
             styles["background-repeat"] = backgroundRepeat;
@@ -415,7 +415,7 @@ export default {
         }
       } else if (backgroundType == "gradient") {
         styles["background-size"] = "auto";
-        styles["backgroundPosition"] = "inherit";
+        styles["background-position"] = "inherit";
         //渐变
         styles = { ...styles, ...gradientStyle(page) };
       }
@@ -458,8 +458,10 @@ export default {
         canvas || {};
       let styles = {};
       if (backgroundImage) {
-        styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
-        styles["backgroundPosition"] = "0 0";
+        styles["background-image"] = `url(${this.$loadImgUrl(
+          backgroundImage
+        )})`;
+        styles["background-position"] = "0 0";
       }
       if (backgroundSize) {
         styles["background-size"] = backgroundSize;
@@ -533,7 +535,7 @@ export default {
         styles["height"] = `${height}px`;
       }
       // if (backgroundImage) {
-      //   styles["backgroundImage"] = `url(${backgroundImage})`;
+      //   styles["background-image"] = `url(${backgroundImage})`;
       // }
       return styles || {};
     }

@@ -1033,7 +1033,7 @@ export default {
     // successCallback(url) {
     //   let { info = {} } = this;
     //   info.backgroundImage = url;
-    //   this.changeStatusEvent("backgroundImage");
+    //   this.changeStatusEvent("background-image");
     // },
     // actionEvent(item) {
     //   let { canvas = {} } = this;

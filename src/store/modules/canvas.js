@@ -94,7 +94,8 @@ export default {
     originY: 0, // 选中元件的纵向初始值
     startX: 0, // 鼠标摁下时的横坐标
     startY: 0, // 鼠标摁下时的纵坐标
-    moving: false // 是否正在移动元件（参考线仅在移动元件时显示）
+    moving: false, // 是否正在移动元件（参考线仅在移动元件时显示）
+    draging: false // 创建组件正在拖动
     // financeEnterpriserProvincesCacheMap: null
   },
   getters: {
@@ -225,13 +226,13 @@ export default {
     setBoxZoom(state, item) {
       state.boxZoom = item;
     },
-    // //设置组件初始拖动状态
-    // setDraging(state, item) {
-    //   state.draging = item;
-    // },
+    //设置组件初始拖动状态
+    setDraging(state, item) {
+      state.draging = item;
+    },
     //设置选中对象
     setActiveCom(state, item) {
-      state.activeCom = {};
+      state.activeCom = item;
     },
     //设置选中对象
     setActiveComs(state, item) {
@@ -308,14 +309,12 @@ export default {
         originY,
         originWidth,
         originHeight,
-        id,
         originRotate
       } = item || {};
       state.startX = startX;
       state.startY = startY;
       state.originX = originX;
       state.originY = originY;
-      state.id = id;
       state.originWidth = originWidth;
       state.originRotate = originRotate;
       state.originHeight = originHeight;
@@ -334,8 +333,7 @@ export default {
         startX,
         startY,
         activeComs = [],
-        // activeCom = {},
-        id = "",
+        activeCom = {},
         zoom
         // originX,
         // originY
@@ -347,10 +345,6 @@ export default {
       if (!(Math.abs(dx) > 1 || Math.abs(dy) > 1)) {
         return;
       }
-      let _com = $(`#${id}`);
-
-      let obj = window.bm_widgetMap[id];
-      let { info: activeCom = {} } = obj || {};
       // var left = state.originX + Math.floor((dx * 100) / state.zoom);
       // var top = state.originY + Math.floor((dy * 100) / state.zoom);
       let { length = 0 } = activeComs || [];
@@ -365,20 +359,13 @@ export default {
           // $(`#box_${id}`).css({ left, top });
         });
       } else {
-        // let { left = 0, top = 0 } = activeCom || {};
-        let left = parseFloat(_com.css("left"));
-        let top = parseFloat(_com.css("top"));
-        // // left = originX + Math.floor((dx * 1) / zoom);
-        // // var top = originY + Math.floor((dy * 1) / zoom);
-        // // bmCommon.log(left , Math.floor(dx  / zoom),dx,dy)
-        // activeCom.left = left + Math.floor(dx / zoom);
-        // activeCom.top = top + Math.floor(dy / zoom);
-        left = left + Math.floor(dx / zoom);
-        top = top + Math.floor(dy / zoom);
-        _com.css({ left, top });
-        activeCom.left = left;
-        activeCom.top = top;
-        window.bm_widgetMap[id] = obj;
+        let { left = 0, top = 0 } = activeCom || {};
+        // left = originX + Math.floor((dx * 1) / zoom);
+        // var top = originY + Math.floor((dy * 1) / zoom);
+        // bmCommon.log(left , Math.floor(dx  / zoom),dx,dy)
+        activeCom.left = left + Math.floor(dx / zoom);
+        activeCom.top = top + Math.floor(dy / zoom);
+        // $(`#box_${id}`).css({ left, top });
       }
       state.startX = x;
       state.startY = y;
@@ -419,65 +406,49 @@ export default {
       // activeCom.showCoverStatus = true;
       if (!id) {
         activeCom = canvas;
-        // context.commit("setActiveCom", activeCom);
-        // context.commit("setActiveComs", []);
-
-        $vm.$emit("info-data-active", canvas);
+        context.commit("setActiveCom", activeCom);
+        context.commit("setActiveComs", []);
       } else {
-        let obj = window.bm_widgetMap[id];
-        let { info: activeCom = {} } = obj || {};
-        let _oldCom = $("#canvas_content .bm-component-com.active");
-        _oldCom.removeClass("active");
-        let _com = $(`#${id}`);
-        _com.addClass("active");
-        let _infoOldCom = $(`#info_com_list_box li.active`);
-        _infoOldCom.removeClass("active");
-        let _infoCom = $(`#info_com_${id}`);
-        _infoCom.addClass("active");
-        _infoCom.length > 0 && _infoCom[0].scrollIntoView();
-
-        $vm.$emit("info-data-active", activeCom);
-
-        // let index = activeComs.findIndex(item => item.id == id);
-        // if (index < 0) {
-        //   //如果未找到当前组件 在已选组件中 说明选择新组件  清除多选组件
-        //   activeComs = [activeCom];
-        //   // context.commit("setActiveComs", activeComs);
+        let index = activeComs.findIndex(item => item.id == id);
+        if (index < 0) {
+          //如果未找到当前组件 在已选组件中 说明选择新组件  清除多选组件
+          activeComs = [activeCom];
+          // context.commit("setActiveComs", activeComs);
+        }
+        let comId = `box_${id}`;
+        let com = document.getElementById(comId);
+        if (com) {
+          let _vue = com.__vue__;
+          activeCom = _vue.info;
+        }
+        // try {
+        //   widgetList.forEach(item => {
+        //     let { children = [], id: _id = "" } = item || {};
+        //     if (_id == id) {
+        //       activeCom = item;
+        //       throw new Error("找到对应的组件");
+        //     } else {
+        //       if (children && children.length > 0) {
+        //         let _activeCom = children.find(_item => {
+        //           return _item.id == id;
+        //         });
+        //         if (_activeCom) {
+        //           activeCom = _activeCom;
+        //           throw new Error("找到对应的组件");
+        //         }
+        //       }
+        //     }
+        //   });
+        // } catch (error) {
+        //   bmCommon.warn(error);
         // }
-        // let comId = `box_${id}`;
-        // let com = document.getElementById(comId);
-        // if (com) {
-        //   let _vue = com.__vue__;
-        //   activeCom = _vue.info;
-        // }
-        // // try {
-        // //   widgetList.forEach(item => {
-        // //     let { children = [], id: _id = "" } = item || {};
-        // //     if (_id == id) {
-        // //       activeCom = item;
-        // //       throw new Error("找到对应的组件");
-        // //     } else {
-        // //       if (children && children.length > 0) {
-        // //         let _activeCom = children.find(_item => {
-        // //           return _item.id == id;
-        // //         });
-        // //         if (_activeCom) {
-        // //           activeCom = _activeCom;
-        // //           throw new Error("找到对应的组件");
-        // //         }
-        // //       }
-        // //     }
-        // //   });
-        // // } catch (error) {
-        // //   bmCommon.warn(error);
-        // // }
-        // let { length = 0 } = activeComs || [];
-        // let { type = "" } = activeCom || {};
-        // if ((length < 2 && activeCom) || type == "panel") {
-        //   activeCom.showCoverStatus = true;
-        //   context.commit("setActiveCom", activeCom);
-        //   context.commit("setActiveComs", [activeCom]);
-        // }
+        let { length = 0 } = activeComs || [];
+        let { type = "" } = activeCom || {};
+        if ((length < 2 && activeCom) || type == "panel") {
+          activeCom.showCoverStatus = true;
+          context.commit("setActiveCom", activeCom);
+          context.commit("setActiveComs", [activeCom]);
+        }
       }
     },
     async selectComs(context, id) {

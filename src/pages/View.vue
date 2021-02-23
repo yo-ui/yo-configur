@@ -98,8 +98,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      //widgetList: "canvas/getWidgetList"
-      widgetList: [], //组件列表
+      widgetList: "canvas/getWidgetList", //组件列表
       viewData: "canvas/getPreviewData", //组件列表
       getZoom: "canvas/getZoom", //放大缩小
       boxZoom: "canvas/getBoxZoom", //放大缩小
@@ -125,8 +124,10 @@ export default {
         canvas || {};
       let styles = {};
       if (backgroundImage) {
-        styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
-        styles["backgroundPosition"] = "0 0";
+        styles["background-image"] = `url(${this.$loadImgUrl(
+          backgroundImage
+        )})`;
+        styles["background-position"] = "0 0";
       }
       if (backgroundSize) {
         styles["background-size"] = backgroundSize;
@@ -168,18 +169,18 @@ export default {
       } = page || {};
       let styles = {};
       if (pageColor) {
-        styles["backgroundImage"] = "none";
+        styles["background-image"] = "none";
         styles["backgroundColor"] = pageColor;
       }
       styles["background-size"] = "auto";
-      styles["backgroundPosition"] = "inherit";
+      styles["background-position"] = "inherit";
       if (backgroundType == "purity") {
         //纯色
         if (pageColor) {
           styles["backgroundColor"] = pageColor;
         }
         if (backgroundImage) {
-          styles["backgroundImage"] = `url(${this.$loadImgUrl(
+          styles["background-image"] = `url(${this.$loadImgUrl(
             backgroundImage
           )})`;
 
@@ -242,7 +243,7 @@ export default {
         styles["height"] = `${height}px`;
       }
       // if (backgroundImage) {
-      //   styles["backgroundImage"] = `url(${backgroundImage})`;
+      //   styles["background-image"] = `url(${backgroundImage})`;
       // }
       return styles || {};
     }

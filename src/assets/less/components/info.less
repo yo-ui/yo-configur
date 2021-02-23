@@ -553,11 +553,6 @@
     li {
       .bor(1px solid @grayE);
       .mb(15);
-      .df;
-        .p(10px);
-        .pointer;
-        justify-content: space-between;
-        align-items: center;
       // .click;
       & > ul {
         .m(10px);
@@ -568,6 +563,12 @@
           }
         }
       }
+      .title {
+        .df;
+        .p(10px);
+        .pointer;
+        justify-content: space-between;
+        align-items: center;
         i {
           .fz(16);
           .fw(700);
@@ -576,17 +577,18 @@
         &:hover {
           .bc(@grayE);
         }
-        &.active {
-          // .bc(@themes);
-          .bc(#9cd1fb9c);
-          // .c(@white);
-        }
         .red{
           .c(@red);
         }
         .count{
           .fw(700);
         }
+        &.active {
+          // .bc(@themes);
+          .bc(#9cd1fb9c);
+          // .c(@white);
+        }
+      }
       .el-icon-link {
         .fz(24);
         &.active {

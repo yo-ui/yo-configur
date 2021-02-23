@@ -73,7 +73,9 @@ export default {
       dataLoadingStatus: true,
       condition: {
         canvasId: ""
-      }
+      },
+      widgetList: []
+      // canvas: {}
       // boxZoom: 100
       // deviceInfo: {},
       // showContextMenuStatus: false,
@@ -100,14 +102,21 @@ export default {
   },
   computed: {
     ...mapGetters({
-      //widgetList: "canvas/getWidgetList"
-      widgetList: [], //组件列表
-      previewData: "canvas/getPreviewData", //组件列表
+      // getWidgetList: "canvas/getWidgetList", //组件列表
+      // getPreviewData: "canvas/getPreviewData", //组件列表
       getZoom: "canvas/getZoom", //放大缩小
       deviceCacheMap: "device/getDeviceCacheMap", //设备缓存
       boxZoom: "canvas/getBoxZoom", //放大缩小
       canvas: "canvas/getCanvas" //画布属性
     }),
+    // widgetList() {
+    //   let { getWidgetList = {} } = this;
+    //   return Object.freeze(getWidgetList);
+    // },
+    // previewData() {
+    //   let { getPreviewData = {} } = this;
+    //   return Object.freeze(getPreviewData);
+    // },
     zoom: {
       get() {
         return parseInt(this.getZoom * 100);
@@ -134,8 +143,10 @@ export default {
         canvas || {};
       let styles = {};
       if (backgroundImage) {
-        styles["backgroundImage"] = `url(${this.$loadImgUrl(backgroundImage)})`;
-        styles["backgroundPosition"] = "0 0";
+        styles["background-image"] = `url(${this.$loadImgUrl(
+          backgroundImage
+        )})`;
+        styles["background-position"] = "0 0";
       }
       if (backgroundSize) {
         styles["background-size"] = backgroundSize;
@@ -176,18 +187,18 @@ export default {
       } = page || {};
       let styles = {};
       if (pageColor) {
-        styles["backgroundImage"] = "none";
+        styles["background-image"] = "none";
         styles["backgroundColor"] = pageColor;
       }
       styles["background-size"] = "auto";
-      styles["backgroundPosition"] = "inherit";
+      styles["background-position"] = "inherit";
       if (backgroundType == "purity") {
         //纯色
         if (pageColor) {
           styles["backgroundColor"] = pageColor;
         }
         if (backgroundImage) {
-          styles["backgroundImage"] = `url(${this.$loadImgUrl(
+          styles["background-image"] = `url(${this.$loadImgUrl(
             backgroundImage
           )})`;
 
@@ -247,7 +258,7 @@ export default {
         styles["height"] = `${height}px`;
       }
       // if (backgroundImage) {
-      //   styles["backgroundImage"] = `url(${backgroundImage})`;
+      //   styles["background-image"] = `url(${backgroundImage})`;
       // }
       return styles || {};
     }
@@ -256,7 +267,7 @@ export default {
     ...mapMutations({
       setZoom: "canvas/setZoom",
       setBoxZoom: "canvas/setBoxZoom",
-      setWidgetList: "canvas/setWidgetList", //设置组件列表
+      // setWidgetList: "canvas/setWidgetList", //设置组件列表
       setCanvas: "canvas/setCanvas",
       setPlatform: "setPlatform",
       setShowType: "canvas/setShowType",
@@ -286,9 +297,12 @@ export default {
       condition.canvasId = canvasId;
       this.initEvent();
       this.setShowType(Constants.SHOWTYPEMAP.PREVIEW);
-      let { previewData = {} } = this;
+      let previewData = JSON.parse(
+        bmCommon.getItem(Constants.LOCALSTORAGEKEY.USERKEY.PREVIEWDATA)
+      );
       let { widgetList = [], canvas = {} } = previewData || {};
       let widgets = [];
+      // widgetList = Object.freeze(widgetList);
       widgetList.forEach(item => {
         let { alias = "", type = "", bindData = {} } = item || {};
         if (!alias) {
@@ -318,10 +332,13 @@ export default {
           widgets.push(item);
         }
       });
-      this.setWidgetList(widgets || []);
+      // this.setWidgetList(widgets || []);
+      this.widgetList = Object.freeze(widgets);
       canvas.left = 0;
       canvas.top = 0;
       this.setCanvas(canvas || {});
+      // this.canvas = Object.freeze(canvas);
+      // this.canvas = canvas;
       this.resizeCanvasSize();
       this.loadWebsocketData(widgetList);
       // this.$nextTick(() => {

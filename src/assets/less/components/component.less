@@ -17,7 +17,18 @@
   .bor(1px dashed transparent);
   // .pointer;
   white-space: nowrap;
-
+  //显示线框用
+  &.border{
+    .bor(1px solid red);
+    *{
+      .db(none);
+      // visibility: hidden;
+      &:last-child{     
+        .db;   
+        visibility: hidden!important;
+      }
+    }      
+  }
   &.materialLine{
     .squ(0);
   }
