@@ -238,10 +238,10 @@
     </ul> -->
     <bm-footer ref="bmFooter"></bm-footer>
     <bm-select ref="bmSelect"></bm-select>
-    <!-- <bm-control ref="bmControl"></bm-control>
+    <bm-control ref="bmControl"></bm-control>
     <bm-device ref="bmDevice"></bm-device>
     <bm-point ref="bmPoint"></bm-point>
-    <bm-upload-box ref="bmUploadBox"></bm-upload-box> -->
+    <bm-upload-box ref="bmUploadBox"></bm-upload-box>
   </div>
 </template>
 <script>
@@ -291,12 +291,12 @@ export default {
     //   import(
     //     /* webpackChunkName: "iot-preview-nav-com" */ "@/components/preview-nav"
     //   ),
-    bmLines: () =>
-      import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
-    bmRuleLines: () =>
-      import(
-        /* webpackChunkName: "iot-rule-lines-com" */ "@/components/rule-lines"
-      ),
+    // bmLines: () =>
+    //   import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
+    // bmRuleLines: () =>
+    //   import(
+    //     /* webpackChunkName: "iot-rule-lines-com" */ "@/components/rule-lines"
+    //   ),
     // bmGroup: () =>
     //   import(/* webpackChunkName: "iot-group-com" */ "@/components/group"),
     bmSelect: () =>
@@ -310,10 +310,10 @@ export default {
     //   import(/* webpackChunkName: "iot-info-com" */ "@/components/info"),
     bmInfo,
     bmWidgetList,
-    bmCom: () =>
-      import(
-        /* webpackChunkName: "iot-component-com" */ "@/components/component"
-      ),
+    // bmCom: () =>
+    //   import(
+    //     /* webpackChunkName: "iot-component-com" */ "@/components/component"
+    //   ),
     // bmWidgetList: () =>
     //   import(
     //     /* webpackChunkName: "iot-widget-list-com" */ "@/components/widget-list"

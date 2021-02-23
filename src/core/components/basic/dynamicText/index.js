@@ -205,7 +205,7 @@ class Text extends Component {
     let { info = {} } = this;
     let { id = "", content = "", decimal = "", unit = "" } = info || {};
     $(`#${id}>span`).text($vm.$toBig(content || "", decimal));
-    $(`#${id}>small`)
+    $(`#${id} small`)
       .css(this.unitStyle())
       .text(unit);
   }

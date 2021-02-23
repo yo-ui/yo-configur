@@ -341,7 +341,7 @@ export default {
       if (!activeCom) {
         return;
       }
-      let { id = "", type = "" } = activeCom || {};
+      let { type = "" } = activeCom || {};
       for (let i in activeCom) {
         if (i != "id" && i !== "type") {
           let key = `activeCom.${i}`;
@@ -350,25 +350,26 @@ export default {
           watches[key] = this.$watch(
             key,
             (newVal, oldVal) => {
-              // let { activeCom = {} } = this;
               // let { children = [] } = getActiveCom || {};
               // let { parentId = "", id = "" } = activeCom || {};
+              let { activeCom = {}, _lastWatchType = "" } = this;
               bmCommon.log(
                 "刷新 处理",
                 newVal === oldVal,
                 key,
-                this._lastWatchType,
+                _lastWatchType,
                 type,
                 newVal,
                 oldVal
               );
               if (
                 JSON.stringify(newVal) !== JSON.stringify(oldVal) &&
-                this._lastWatchType == type
+                _lastWatchType == type
               ) {
+                let { id = "" } = activeCom || {};
                 let obj = window.bm_widgetMap[id];
                 if (obj) {
-                  obj?.setInfo({ ...this.activeCom, id });
+                  obj?.setInfo({ ...activeCom });
                   obj?.refresh();
                 }
               }
@@ -427,17 +428,13 @@ export default {
         }
         // activeCom.type = type;
         // activeCom.id = id;
-        this.$nextTick(() => {
-          //   //   let { type = "" } = item || {};
-          //   //   // if (type == "canvas") {
-          //   //   //   return;
-          //   //   // }
-          if (watched && this._lastWatchType !== type) {
+        this.setTimeoutId = setTimeout(() => {
+          if (watched) {
             this.initWatches(info);
           }
           this._lastWatchType = type;
           this.activeCom = info;
-        });
+        }, 10);
       });
     },
     dataInit(item) {

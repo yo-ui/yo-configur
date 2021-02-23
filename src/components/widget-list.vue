@@ -118,7 +118,6 @@
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
-import ComponentLibrary from "@/core/ComponentLibrary.js";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 const Props = {
@@ -157,7 +156,7 @@ export default {
       //widgetList: "canvas/getWidgetList"
       widgetList: [], //组件列表
       zoom: "canvas/getZoom", //放大缩小
-      // draging: "canvas/getDraging", //组件拖动状态
+      draging: "canvas/getDraging", //组件拖动状态
       canvas: "canvas/getCanvas" //画布属性
     }),
     tabWidgetList() {
@@ -359,7 +358,7 @@ export default {
         "data",
         JSON.stringify({ ...data, type, name, alias, comDisabled })
       );
-      // this.setDraging(true);
+      this.setDraging(true);
       this.dragenterEvent(e);
     },
     dragenterEvent(e) {
@@ -396,10 +395,8 @@ export default {
       let offset = $(".view-box").offset();
       let { dataTransfer = {} } = originalEvent;
       let data = dataTransfer.getData("data");
-
-      bmCommon.log("data=", data);
       if (data) {
-        data = Object.freeze(typeof data === "string" ? JSON.parse(data) : {});
+        data = typeof data === "string" ? JSON.parse(data) : {};
         let id = bmCommon.uuid();
         let pos = bmCommon.getMousePosition(e);
         let { left = 0, top = 0 } = offset || {};
@@ -440,20 +437,10 @@ export default {
           left,
           top
         };
-        // if (alias == "linkPoint") {
-        //   this.setLinkPoint(item);
-        // }
-        // widgetList.push(item);
-        bmCommon.log(item);
-
-        let _canvas_content = $("#canvas_content");
-        let obj = ComponentLibrary.getInstance(item);
-        let dom = obj.template();
-        if (dom) {
-          let _div = $(obj.template());
-          _canvas_content.append(_div[0]);
+        if (alias == "linkPoint") {
+          this.setLinkPoint(item);
         }
-        window.bm_widgetMap[id] = obj;
+        widgetList.push(item);
         canvas.action = "select";
         this.createHistoryAction();
         this.$nextTick(() => {

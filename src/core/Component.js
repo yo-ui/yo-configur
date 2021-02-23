@@ -1,5 +1,5 @@
 import bmCommon from "@/common/common"; // 静态文本
-import "../assets/less/components/component.less";
+import "../assets/less/components/home/component.less";
 
 // const Library = {
 //   textCom

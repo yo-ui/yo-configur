@@ -86,7 +86,6 @@ class CanvasEvent {
 
   static initMoveEvent(e, id) {
     e.stopPropagation();
-
     let obj = window.bm_widgetMap[id];
     let { info: activeCom = {} } = obj || {};
     // var activeCom = this.$vpd.state.activeElement
@@ -111,16 +110,16 @@ class CanvasEvent {
     // document.addEventListener('mousemove', this.mousemoveEvent, true)
     $(document).on("mousemove", CanvasEvent.mousemoveEvent);
     $(document).on("mouseup", CanvasEvent.mouseupEvent);
-
-    CanvasEvent.loadRefreshScreen();
     // 取消鼠标移动事件
     // document.addEventListener('mouseup', this.mouseupEvent, true)
+    CanvasEvent.loadRefreshScreen();
   }
 
   static loadRefreshScreen() {
-    window.requestAnimationFrame(() => {
-      CanvasEvent.loadRefreshScreen();
-    });
+    CanvasEvent.setIntervalId = setInterval(() => {
+      state.moving = true;
+      bmCommon.log("loadRefreshScreen 定时器正在处理");
+    }, 30);
   }
 
   static mousemoveEvent(e) {
@@ -145,7 +144,10 @@ class CanvasEvent {
     if (!moving) {
       return;
     }
-    state.moving = true;
+    $(".bm-component-com:not(.active)")
+      .removeClass("hide")
+      .addClass("border");
+    state.moving = false;
     let pos = bmCommon.getMousePosition(e);
     let { x = "", y = "" } = pos || {};
     bmCommon.log("mousemoveEvent组件移动", x, y);
@@ -204,7 +206,9 @@ class CanvasEvent {
     let obj = window.bm_widgetMap[id];
     let { info: activeCom = {} } = obj || {};
     let { left = 0, top = 0 } = activeCom || {};
-
+    $(".bm-component-com:not(.active)")
+      .removeClass("border")
+      .addClass("hide");
     bmCommon.log("mouseupEvent组件移动", top, left);
     // document.removeEventListener('mousemove', this.mousemoveEvent, true)
     $(document).off("mousemove", CanvasEvent.mousemoveEvent);
@@ -215,6 +219,7 @@ class CanvasEvent {
     }
     window.bm_widgetMap[id] = obj;
     obj.info = { ...activeCom };
+    clearInterval(CanvasEvent.setIntervalId);
     window.requestAnimationFrame(() => {
       $vm.$emit("info-data-active", { id, watched: false });
     });
@@ -242,6 +247,7 @@ class CanvasEvent {
       height = $parent.outerHeight();
     }
     if (type) {
+      e.stopPropagation();
       CanvasEvent.showContextMenuType = 1;
       // 绑定移动事件：只有从属于 page 的，除背景图以外的元件才能移动
       // let [item = {}] = activeComs || [];
@@ -288,7 +294,6 @@ class CanvasEvent {
       // 取消选中组件
       CanvasEvent.selectComAction(id);
       CanvasEvent.selectComsAction(id);
-      // this.initMoveEvent(e); // 参见 mixins
     }
     CanvasEvent.showContextMenuStatus = false;
   }
@@ -869,6 +874,7 @@ class CanvasEvent {
       this.setTimeoutId = setTimeout(() => {
         clearTimeout(this.setTimeoutId);
         $vm.$emit("info-data-active");
+        $(".bm-component-com:not(.active)").removeClass("hide");
       }, 10);
     } else {
       // let obj = window.bm_widgetMap[id];
@@ -884,6 +890,7 @@ class CanvasEvent {
       this.setTimeoutId = setTimeout(() => {
         clearTimeout(this.setTimeoutId);
         $vm.$emit("info-data-active", { id });
+        $(".bm-component-com:not(.active)").addClass("hide");
       }, 10);
     }
     window.bm_active_com_id = id;
