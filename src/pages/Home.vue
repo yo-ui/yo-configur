@@ -254,8 +254,8 @@ import CanvasEvent from "@/core/CanvasEvent";
 // import Event from "@/core/Event.js";
 import bmHeader from "@/components/header";
 import bmNav from "@/components/nav";
-import bmWidgetList from "@/components/widget-list";
-import bmInfo from "@/components/info";
+import bmWidgetList from "@/components/home/widget-list";
+import bmInfo from "@/components/home/info";
 import bmFooter from "@/components/footer";
 import mixins from "@/mixins";
 // eslint-disable-next-line no-undef
@@ -270,6 +270,7 @@ export default {
       condition: {
         canvasId: ""
       },
+      zoom: 100,
       widgetList: [], //组件列表
       windowInnerWidth: window.innerWidth,
       windowInnerHeight: window.innerHeight,
@@ -402,18 +403,18 @@ export default {
           styles["backgroundImage"] = `url(${this.$loadImgUrl(
             backgroundImage
           )})`;
-          styles["backgroundSize"] = "auto";
+          styles["background-size"] = "auto";
           styles["backgroundPosition"] = "inherit";
 
           if (backgroundRepeat) {
-            styles["backgroundRepeat"] = backgroundRepeat;
+            styles["background-repeat"] = backgroundRepeat;
           }
           if (backgroundSize) {
-            styles["backgroundSize"] = backgroundSize;
+            styles["background-size"] = backgroundSize;
           }
         }
       } else if (backgroundType == "gradient") {
-        styles["backgroundSize"] = "auto";
+        styles["background-size"] = "auto";
         styles["backgroundPosition"] = "inherit";
         //渐变
         styles = { ...styles, ...gradientStyle(page) };
@@ -431,14 +432,14 @@ export default {
       }
       return styles;
     },
-    zoom: {
-      get() {
-        return this.getZoom * 100;
-      },
-      set(val) {
-        this.setZoom(val / 100);
-      }
-    },
+    // zoom: {
+    //   get() {
+    //     return this.getZoom * 100;
+    //   },
+    //   set(val) {
+    //     this.setZoom(val / 100);
+    //   }
+    // },
     gridStyle() {
       let { canvas = {} } = this;
       let { isGrid = false, gridStyle = {} } = canvas || {};
@@ -461,10 +462,10 @@ export default {
         styles["backgroundPosition"] = "0 0";
       }
       if (backgroundSize) {
-        styles["backgroundSize"] = backgroundSize;
+        styles["background-size"] = backgroundSize;
       }
       if (backgroundRepeat) {
-        styles["backgroundRepeat"] = backgroundRepeat;
+        styles["background-repeat"] = backgroundRepeat;
       }
       return styles || {};
     },
@@ -539,25 +540,25 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setOrganizeList: "common/setOrganizeList",
-      setZoom: "canvas/setZoom",
-      setWidgetList: "canvas/setWidgetList", //设置组件列表
-      setActiveCom: "canvas/setActiveCom", //设置当前选中组件
-      setCanvas: "canvas/setCanvas",
-      setCanvasData: "canvas/setCanvasData",
-      setActiveComs: "canvas/setActiveComs",
-      initMove: "canvas/initMove",
-      setPlatform: "setPlatform",
-      setShowType: "canvas/setShowType",
-      setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
-      // moving: "canvas/moving",
-      setDeviceCacheMap: "device/setDeviceCacheMap", //设备缓存
-      setAllDeviceCacheMap: "device/setAllDeviceCacheMap" //设备缓存
+      // setOrganizeList: "common/setOrganizeList",
+      // setZoom: "canvas/setZoom",
+      // // setWidgetList: "canvas/setWidgetList", //设置组件列表
+      // setActiveCom: "canvas/setActiveCom", //设置当前选中组件
+      // setCanvas: "canvas/setCanvas",
+      // setCanvasData: "canvas/setCanvasData",
+      // setActiveComs: "canvas/setActiveComs",
+      // initMove: "canvas/initMove",
+      // setPlatform: "setPlatform",
+      // setShowType: "canvas/setShowType",
+      // setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
+      // // moving: "canvas/moving",
+      // setDeviceCacheMap: "device/setDeviceCacheMap", //设备缓存
+      // setAllDeviceCacheMap: "device/setAllDeviceCacheMap" //设备缓存
       // stopMove: "canvas/stopMove"
     }),
     ...mapActions({
-      selectComAction: "canvas/selectCom",
-      selectComsAction: "canvas/selectComs",
+      // selectComAction: "canvas/selectCom",
+      // selectComsAction: "canvas/selectComs",
       orgStrucListByLevelAction: "orgStrucListByLevel",
       canvasGetAction: "canvasGet",
       createHistoryAction: "canvas/createHistory",
@@ -575,8 +576,10 @@ export default {
       let { canvasId = "", type = "" } = query || {};
       condition.canvasId = canvasId;
       let platform = type == 2 ? "service" : "manage";
-      this.setPlatform(platform); //type： 2 为应用平台过来  1为管理平台过来
-      this.setShowType(Constants.SHOWTYPEMAP.EDIT);
+      // this.setPlatform(platform); //type： 2 为应用平台过来  1为管理平台过来
+      window.bm_platform = platform;
+      window.bm_show_type = Constants.SHOWTYPEMAP.EDIT;
+      // this.setShowType(Constants.SHOWTYPEMAP.EDIT);
       this.canvasGetFunc((detail = {}) => {
         let {
           name = "",
@@ -606,7 +609,7 @@ export default {
           canvas.canvasType = type; //1为编辑   2为预览
           canvas.left = 0;
           canvas.top = 0;
-          this.setCanvas(canvas);
+          // this.setCanvas(canvas);
           let widgets = [];
           widgetList.forEach(item => {
             let { alias = "", type = "", bindData = {} } = item || {};
@@ -683,11 +686,13 @@ export default {
               return { id, comName, type, children, name, dataType, bindData };
             })
           });
-          this.setCanvasData(data);
+          // this.setCanvasData(data);
           CanvasEvent.resizeCanvasSize();
           // this.selectComAction();
           this.loadWebsocketData(widgetList);
         } else {
+          //创建组件列表
+          this.createComponents();
           this.$nextTick(() => {
             let $canvasBox = $(this.$refs.canvasBox);
             let { canvas = {} } = this;
@@ -715,6 +720,9 @@ export default {
         // // this.loadReportDeviceList();
       });
     },
+    setZoom(zoom) {
+      this.zoom = zoom;
+    },
     initEvent() {
       // let viewBox = this.$refs.viewBox;
       // // 注册鼠标事件
@@ -740,7 +748,7 @@ export default {
       //     e.preventDefault();
       //   });
       // }
-      CanvasEvent.init();
+      // CanvasEvent.init();
       //注册绑定设备事件
       $vm.$on("bind-device", item => {
         this.addDataEvent(item);
@@ -876,11 +884,11 @@ export default {
           } else {
             bmCommon.error(message);
           }
-          this.setOrganizeList(value || []);
+          // this.setOrganizeList(value || []);
           callback && callback(value || []);
         })
         .catch(err => {
-          this.setOrganizeList(value || []);
+          // this.setOrganizeList(value || []);
           callback && callback(value || []);
           bmCommon.error("获取数据失败=>orgStrucListByLevel", err);
         });

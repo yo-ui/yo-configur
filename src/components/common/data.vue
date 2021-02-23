@@ -180,6 +180,10 @@ export default {
     };
   },
   props: {
+    // id: {
+    //   type: String,
+    //   default: ""
+    // }
     info: {
       type: Object,
       default: () => {
@@ -193,6 +197,10 @@ export default {
       //widgetList: "canvas/getWidgetList"
       widgetList: []
     })
+  },
+  created() {
+    // let { id = "" } = this;
+    // this.info = window.bm_widgetMap[id];
   },
   mounted() {
     this.init();

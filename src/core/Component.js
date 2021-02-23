@@ -11,7 +11,7 @@ class Component {
   }
 
   setInfo(info) {
-    this.info = info;
+    this.info = { ...info };
   }
 
   boxStyle() {
@@ -160,7 +160,21 @@ class Component {
 
   //组件包裹
   wrap({ info, showType }, content = "") {
-    let { type = "", id = "" } = info || {};
+    let { type = "", id = "", locked = false } = info || {};
+    showType = window.bm_show_type;
+    let operate = locked
+      ? ""
+      : `
+    <i title="旋转" class="operate-btn el-icon-refresh-right"></i>
+      <i title="旋转轴" class="operate-btn el-icon-axis"></i>
+      <i title="左上角" class="operate-btn el-icon-top-left"></i>
+      <i title="上" class="operate-btn el-icon-top"></i>
+      <i title="右上角" class="operate-btn el-icon-top-right"></i>
+      <i title="左" class="operate-btn el-icon-back"></i>
+      <i title="右" class="operate-btn el-icon-right"></i>
+      <i title="左下角" class="operate-btn el-icon-bottom-left"></i>
+      <i title="下" class="operate-btn el-icon-bottom"></i>
+      <i title="右下角" class="operate-btn el-icon-bottom-right"></i>`;
 
     return `
     <div id="${id}" type="${type}" class="bm-component-com ${showType} ${this.boxClasses()}" style="${this.composeStyles(
@@ -168,20 +182,9 @@ class Component {
     )}">
       ${
         showType == "edit"
-          ? `
-      <div class="cover"></div><i title="旋转" class="operate-btn el-icon-refresh-right"></i>
-        <i title="旋转轴" class="operate-btn el-icon-axis"></i>
-        <i title="左上角" class="operate-btn el-icon-top-left"></i>
-        <i title="上" class="operate-btn el-icon-top"></i>
-        <i title="右上角" class="operate-btn el-icon-top-right"></i>
-        <i title="左" class="operate-btn el-icon-back"></i>
-        <i title="右" class="operate-btn el-icon-right"></i>
-        <i title="左下角" class="operate-btn el-icon-bottom-left"></i>
-        <i title="下" class="operate-btn el-icon-bottom"></i>
-        <i title="右下角" class="operate-btn el-icon-bottom-right"></i>
+          ? `<div class="cover"></div>${operate}
       `
-          : `
-      `
+          : ""
       }
       ${content}
       </div>
@@ -190,9 +193,14 @@ class Component {
   // 刷新数据
   refresh() {
     let { info = {} } = this;
-    let { id = "" } = info || {};
+    let { id = "", locked = false } = info || {};
     $(`#${id}>.component`).css(this.comStyle());
     $(`#${id}`).css(this.boxStyle());
+    if (locked) {
+      $(`#${id}>.operate-btn`).hide();
+    } else {
+      $(`#${id}>.operate-btn`).show();
+    }
   }
   // // 刷新数据
   // resize(options) {
@@ -206,6 +214,53 @@ class Component {
     let { id = "" } = info || {};
     delete window.bm_widgetMap[id];
     $(`#${id}`).remove();
+  }
+
+  initEvent() {
+    let { info = {} } = this;
+    let showType = window.bm_show_type;
+    if (showType != "edit") {
+      let { id = "", bindData = {} } = info || {};
+      let { devicePoint = "" } = bindData || {};
+      if (!devicePoint) {
+        return;
+      }
+      $vm.$on(`devicePointEvent_${id}`, ({ point = {} }) => {
+        bmCommon.log("dynamicTextCom", point);
+        // this.point = point || {};
+        this.refreshContent(point);
+        // let { value = "", unit = "" } = point || {};
+        // info.content = value;
+        // info.unit = unit;
+      });
+    }
+    this.loadDeviceInfo();
+  }
+
+  loadDeviceInfo() {
+    let { info = {} } = this;
+    let { bindData = {} } = info || {};
+    let { deviceId = "", devicePoint = "" } = bindData || {};
+    if (!deviceId) {
+      return;
+    }
+    $vm.$emit("device", {
+      deviceId,
+      callback: (device = {}) => {
+        let { points: pointList = [] } = device || {};
+        let point = pointList.find(item => {
+          let { id = "" } = item || {};
+          return id == devicePoint; //
+        });
+        // this.point = point || {};
+        this.refreshContent(point);
+        // if (point) {
+        //   let { value = "", unit = "" } = point || {};
+        //   info.content = value;
+        //   info.unit = unit;
+        // }
+      }
+    });
   }
 }
 

@@ -1066,6 +1066,7 @@ export default {
   data() {
     return {
       activeNames: ["name"],
+      // info: window.bm_widgetMap[this.id].info,
       animationDirectionList: Object.freeze(Constants.ANIMATIONDIRECTIONLIST),
       animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
       borderStyleList: Object.freeze(Constants.BORDERSTYLELIST),
@@ -1082,6 +1083,10 @@ export default {
     };
   },
   props: {
+    // id: {
+    //   type: String,
+    //   default: ""
+    // }
     info: {
       type: Object,
       default: () => {
@@ -1130,6 +1135,13 @@ export default {
         return `background-image:linear-gradient(90deg, ${colors.join()})`;
       };
     }
+  },
+  created() {
+    // let { id = "" } = this;
+    // let obj = window.bm_widgetMap[id];
+    // let { info = {} } = obj || {};
+    // // Vue.set(this, info, info);
+    // this.info = Object.assign({}, this.info, info);
   },
   methods: {
     ...mapMutations({}),
@@ -1209,7 +1221,7 @@ export default {
       let { info = {} } = this;
       let { fontWeight = "" } = info || {};
       if (fontWeight == "bold") {
-        fontWeight = "";
+        fontWeight = "initial";
       } else {
         fontWeight = "bold";
       }
@@ -1219,7 +1231,7 @@ export default {
       let { info = {} } = this;
       let { textDecoration = "" } = info || {};
       if (textDecoration == "underline") {
-        textDecoration = "";
+        textDecoration = "initial";
       } else {
         textDecoration = "underline";
       }
@@ -1229,7 +1241,7 @@ export default {
       let { info = {} } = this;
       let { fontStyle = "" } = info || {};
       if (fontStyle == "italic") {
-        fontStyle = "";
+        fontStyle = "initial";
       } else {
         fontStyle = "italic";
       }

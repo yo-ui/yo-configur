@@ -1127,7 +1127,7 @@ export default {
     //   let { info = {} } = this;
     //   let { fontWeight = "" } = info || {};
     //   if (fontWeight == "bold") {
-    //     fontWeight = "";
+    //     fontWeight = "initial"
     //   } else {
     //     fontWeight = "bold";
     //   }
@@ -1137,7 +1137,7 @@ export default {
     //   let { info = {} } = this;
     //   let { textDecoration = "" } = info || {};
     //   if (textDecoration == "underline") {
-    //     textDecoration = "";
+    //     textDecoration = "initial"
     //   } else {
     //     textDecoration = "underline";
     //   }
@@ -1147,7 +1147,7 @@ export default {
     //   let { info = {} } = this;
     //   let { fontStyle = "" } = info || {};
     //   if (fontStyle == "italic") {
-    //     fontStyle = "";
+    //     fontStyle = "initial"
     //   } else {
     //     fontStyle = "italic";
     //   }

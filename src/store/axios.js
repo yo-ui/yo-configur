@@ -64,8 +64,8 @@ async function request(type, options, callback) {
   let platform = "";
   if ($store) {
     let { getters = {} } = $store;
-    let { getUserInfo: userInfo = {}, getPlatform = "" } = getters || {};
-    platform = getPlatform;
+    let { getUserInfo: userInfo = {} } = getters || {};
+    platform = window.bm_platform;
     // let userInfo = $store.getters.getUserInfo;
     let { token = "" } = userInfo || {};
     headers[Constants.AUTHORIZATION] = token;

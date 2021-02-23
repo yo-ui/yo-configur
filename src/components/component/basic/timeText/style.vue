@@ -697,7 +697,7 @@
           </span>
         </p>
       </el-collapse-item>
-      <el-collapse-item :title="$lang('文字样式')" name="fontStyle">
+      <el-collapse-item :title="$lang('文字样式')" name="font-style">
         <p>
           <span class="label">{{ $lang("显示格式") }}:</span>
           <el-select
@@ -1128,7 +1128,7 @@ export default {
       let { info = {} } = this;
       let { fontWeight = "" } = info || {};
       if (fontWeight == "bold") {
-        fontWeight = "";
+        fontWeight = "initial";
       } else {
         fontWeight = "bold";
       }
@@ -1138,7 +1138,7 @@ export default {
       let { info = {} } = this;
       let { textDecoration = "" } = info || {};
       if (textDecoration == "underline") {
-        textDecoration = "";
+        textDecoration = "initial";
       } else {
         textDecoration = "underline";
       }
@@ -1148,7 +1148,7 @@ export default {
       let { info = {} } = this;
       let { fontStyle = "" } = info || {};
       if (fontStyle == "italic") {
-        fontStyle = "";
+        fontStyle = "initial";
       } else {
         fontStyle = "italic";
       }
@@ -1163,7 +1163,7 @@ export default {
         "name",
         "outward",
         "margin",
-        "fontStyle",
+        "font-style",
         "animation"
       ];
     },

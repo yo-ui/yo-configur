@@ -75,7 +75,8 @@ router.beforeEach((to, from, next) => {
   let { name: fromName = "" } = from || {};
   let { accountId = "" } = userInfo || {};
   let platform = type == 2 ? "service" : "manage";
-  $store.commit("setPlatform", platform); //type： 2 为应用平台过来  1为管理平台过来
+  // $store.commit("setPlatform", platform); //type： 2 为应用平台过来  1为管理平台过来
+  window.bm_platform = platform;
   console.log("从平台", platform, type, "过来");
   if (token) {
     $store.commit("setUserInfo", { ...userInfo, token });
@@ -127,4 +128,6 @@ window.$vm = new Vue({
 });
 window.$vm.$httpRequestList = [];
 window.$vm.$mount("#app");
-window.bm_widgetMap = {};
+window.bm_widgetMap = {
+  canvas: Constants.COMPONENTCANVAS
+};

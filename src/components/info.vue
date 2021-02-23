@@ -14,18 +14,21 @@
         </el-tab-pane>
       </template>
     </el-tabs>
-    <component
-      v-show="activeIndex == 'basicStyle'"
-      class="com-style"
-      v-if="activeCom.type"
-      :info="activeCom"
-      :is="styleCom"
-    ></component>
+    <!-- {{ activeCom.type }}--{{ activeIndex }}--{{ styleCom }} -->
+    <keep-alive>
+      <component
+        v-show="activeIndex == 'basicStyle'"
+        class="com-style"
+        v-if="activeCom.type"
+        :info="activeCom"
+        :is="styleCom"
+      ></component>
+    </keep-alive>
     <keep-alive>
       <component
         v-show="activeIndex == 'dataBind'"
-        class="com-style com-data"
         v-if="activeCom.type && activeCom.type != 'canvas'"
+        class="com-style com-data"
         :info="activeCom"
         :is="`${activeCom.dataCode || 'common'}DataCom`"
       ></component>
@@ -140,7 +143,7 @@
 <script>
 import bmCommon from "@/common/common";
 import WidgetList from "@/components/info/widget-list";
-// import { Constants } from "@/common/env";
+import { Constants } from "@/common/env";
 import { styles, datas } from "@/widgets/index";
 // import draggable from "vuedraggable";
 // eslint-disable-next-line no-undef
@@ -151,7 +154,7 @@ const Props = {
   ]
 };
 
-// const watches = {};
+const watches = {};
 // for (let i in Constants.BASEDATA) {
 //   if (i != "id") {
 //     let key = `activeCom.${i}`;
@@ -184,7 +187,8 @@ export default {
     return {
       tabList,
       activeCom: {
-        type: "canvas"
+        type: "canvas",
+        id: ""
       },
       widgetMap: {},
       // widgetList: [],
@@ -209,7 +213,7 @@ export default {
       //widgetList: "canvas/getWidgetList"
       widgetList: [],
       canvas: "canvas/getCanvas", //画布属性
-      getActiveCom: "canvas/getActiveCom", //选中对象
+      // getActiveCom: "canvas/getActiveCom", //选中对象
       selectBox: "canvas/getSelectBox", //选取框
       // activeCom: "canvas/getActiveCom", //选中对象
       moving: "canvas/getMoving", //组件是否移动
@@ -273,15 +277,15 @@ export default {
       //     ? "group"
       //     : activeCom.styleCode || activeCom.type
       // }StyleCom`;
-    },
-    dragOptions() {
-      return {
-        animation: 0,
-        group: "description",
-        disabled: false,
-        ghostClass: "ghost"
-      };
-    },
+    }
+    // dragOptions() {
+    //   return {
+    //     animation: 0,
+    //     group: "description",
+    //     disabled: false,
+    //     ghostClass: "ghost"
+    //   };
+    // },
     // comList: {
     //   get(){
     //     let { getWidgetList = [] } = this;
@@ -304,11 +308,11 @@ export default {
     //     this.setWidgetList(value);
     //   }
     // },
-    activeComId() {
-      let { activeCom = {} } = this;
-      let { id = "" } = activeCom || {};
-      return id;
-    }
+    // activeComId() {
+    //   let { activeCom = {} } = this;
+    //   let { id = "" } = activeCom || {};
+    //   return id;
+    // }
   },
   mounted() {
     this.init();
@@ -322,7 +326,7 @@ export default {
     // vm.$watch("someObject", callback, {
     //   deep: true
     // });
-    // this.initWatches();
+    // this.initWatches(this.activeCom);
   },
   methods: {
     ...mapMutations({
@@ -330,55 +334,47 @@ export default {
       // setActiveCom: "canvas/setActiveCom",
     }),
     ...mapActions({
-      selectComAction: "canvas/selectCom",
-      selectComsAction: "canvas/selectComs"
+      // selectComAction: "canvas/selectCom",
+      // selectComsAction: "canvas/selectComs"
     }),
     initWatches(activeCom) {
-      // let { activeCom } = this;
-      // for (let i in Constants.BASEDATA) {
       if (!activeCom) {
         return;
       }
-      let { parentId = "", id = "" } = activeCom || {};
+      let { id = "", type = "" } = activeCom || {};
       for (let i in activeCom) {
-        if (i != "id") {
+        if (i != "id" && i !== "type") {
           let key = `activeCom.${i}`;
-          // bmCommon.log(key, this);
-          this.$watch(
+          // bmCommon.log("initWatches", key);
+          watches[key] && watches[key]();
+          watches[key] = this.$watch(
             key,
             (newVal, oldVal) => {
               // let { activeCom = {} } = this;
               // let { children = [] } = getActiveCom || {};
               // let { parentId = "", id = "" } = activeCom || {};
-              let obj = window.bm_widgetMap[id];
-              if (obj) {
-                obj?.setInfo({ ...activeCom });
-                obj?.refresh();
+              bmCommon.log(
+                "刷新 处理",
+                newVal === oldVal,
+                key,
+                this._lastWatchType,
+                type,
+                newVal,
+                oldVal
+              );
+              if (
+                JSON.stringify(newVal) !== JSON.stringify(oldVal) &&
+                this._lastWatchType == type
+              ) {
+                let obj = window.bm_widgetMap[id];
+                if (obj) {
+                  obj?.setInfo({ ...this.activeCom, id });
+                  obj?.refresh();
+                }
               }
-              // let { activeComs = [], moving = false, selectBox = {} } = this;
-              // let { moving: _moving = false } = selectBox || {};
-              // let { length = 0 } = activeComs || [];
-
-              // if (!(moving || _moving || parentId)) {
-              //   if (length > 1) {
-              //     activeComs
-              //       .filter(item => item.id != id)
-              //       .forEach(item => {
-              //         item[i] = newVal;
-              //       });
-              //   }
-              // }
-              //  else {
-              //   if (newVal !== oldVal) {
-              //     children.forEach(item => {
-              //       item[i] = newVal;
-              //     });
-              //   }
-              // }
             },
             {
-              deep: true,
-              immediate: false
+              deep: true
             }
           );
         }
@@ -394,38 +390,53 @@ export default {
       this.selectComEvent(item);
       $vm.$emit("delete-command");
     },
-    showEvent(obj) {
-      let { getWidgetList = [] } = this;
-      let item = getWidgetList.find(item => item.id == obj.id);
-      item.show = !item.show;
-    },
-    changeEvent(item) {
-      // bmCommon.log(item);
-      let { moved } = item || {};
-      if (moved) {
-        let { widgetList = [] } = this;
-        let { newIndex = 0, oldIndex = 0 } = moved || {};
-        let newItem = widgetList[newIndex] || {};
-        let oldItem = widgetList[oldIndex] || {};
-        let { order: oldOrder } = oldItem || {};
-        let { order: newOrder } = newItem || {};
-        newItem.order = oldOrder;
-        oldItem.order = newOrder;
-      }
-    },
+    // showEvent(obj) {
+    //   let { getWidgetList = [] } = this;
+    //   let item = getWidgetList.find(item => item.id == obj.id);
+    //   item.show = !item.show;
+    // },
+    // changeEvent(item) {
+    //   // bmCommon.log(item);
+    //   let { moved } = item || {};
+    //   if (moved) {
+    //     let { widgetList = [] } = this;
+    //     let { newIndex = 0, oldIndex = 0 } = moved || {};
+    //     let newItem = widgetList[newIndex] || {};
+    //     let oldItem = widgetList[oldIndex] || {};
+    //     let { order: oldOrder } = oldItem || {};
+    //     let { order: newOrder } = newItem || {};
+    //     newItem.order = oldOrder;
+    //     oldItem.order = newOrder;
+    //   }
+    // },
     init() {
       // this.loadComList();
       $vm.$on("info-data-init", (item = {}) => {
         this.dataInit(item);
       });
+      //watched 是否添加监听器
       $vm.$on("info-data-active", (item = {}) => {
-        this.activeCom = { ...item };
+        let { id = "", watched = true } = item || {};
+        let obj = window.bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        // let { activeCom = {} } = this;
+        let { type = "" } = info || {};
+        if (!id) {
+          info = Constants.COMPONENTCANVAS;
+          // type = "canvas";
+        }
+        // activeCom.type = type;
+        // activeCom.id = id;
         this.$nextTick(() => {
-          let { type = "" } = item || {};
-          // if (type == "canvas") {
-          //   return;
-          // }
-          this.initWatches(item);
+          //   //   let { type = "" } = item || {};
+          //   //   // if (type == "canvas") {
+          //   //   //   return;
+          //   //   // }
+          if (watched && this._lastWatchType !== type) {
+            this.initWatches(info);
+          }
+          this._lastWatchType = type;
+          this.activeCom = info;
         });
       });
     },
@@ -458,6 +469,12 @@ export default {
         }
       }
     }
+    // activeCom: {
+    //   handler: () => {
+    //     bmCommon.log("变化");
+    //   },
+    //   deep: true
+    // }
     // ...watches
   }
 };

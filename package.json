@@ -18,6 +18,7 @@
   "dependencies": {
     "@svgdotjs/svg.js": "^3.0.16",
     "canvg": "^3.0.7",
+    "decamelize": "^5.0.0",
     "echarts": "^4.9.0",
     "echarts-liquidfill": "^2.0.6",
     "hls.js": "^0.14.15",

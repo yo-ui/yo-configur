@@ -297,7 +297,7 @@ export default {
       //   let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
       //     shadow || {};
       //   styles[
-      //     "boxShadow"
+      //     "box-shadow"
       //   ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
       // }
       // }
@@ -305,10 +305,10 @@ export default {
       styles["height"] = `${height}px`;
       // }
       // if (backgroundRepeat) {
-      //   styles["backgroundRepeat"] = backgroundRepeat;
+      //   styles["background-repeat"] = backgroundRepeat;
       // }
       // if (backgroundSize) {
-      //   styles["backgroundSize"] = backgroundSize;
+      //   styles["background-size"] = backgroundSize;
       // }
       // if (borderColor) {
       //   styles["borderColor"] = borderColor;
@@ -319,7 +319,7 @@ export default {
       // styles["borderWidth"] = `${borderWidth}px`;
 
       // styles[
-      //   "borderRadius"
+      //   "border-radius"
       // ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
 
       // if (backgroundType == "purity") {

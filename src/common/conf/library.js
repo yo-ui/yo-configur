@@ -3198,6 +3198,41 @@ let componentPanel = {
     height: 400
   }
 };
+
+let componentCanvas = {
+  type: "canvas", //画布
+  name: "组态",
+  left: 0,
+  top: 0,
+  action: "select", //操作方式
+  width: 0, //画布宽
+  height: 0, //画布高
+  poster: "", //封面图
+  pageColor: "", //页面背景颜色
+  uploadPoster: "", //上传封面图
+  backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
+  gradientStyle,
+  backgroundColor: "#fff", //画布背景颜色
+  backgroundImage: "", //画布背景图片
+  backgroundSize: "",
+  backgroundRepeat: "no-repeat", //背景图片是否平铺
+  isGrid: true, //是否显示网格
+  scaleable: false, //是否显示缩放
+  locked: false, //是否可拖动 是否锁定
+  alignLineable: true, //是否显示对齐线
+  page: {
+    gradientStyle,
+    backgroundType: "purity", //纯色和渐变色 purity  纯色  gradients 渐变色
+    backgroundImage: "", //画布背景图片
+    backgroundSize: "",
+    backgroundRepeat: "no-repeat" //背景图片是否平铺
+  },
+  gridStyle: {
+    type: "1",
+    width: 20,
+    height: 20
+  }
+};
 let componentLibraryMap = {};
 componentLibrary.forEach(item => {
   let { comList = [], groupList = [] } = item || {};
@@ -3225,6 +3260,7 @@ componentLibrary.forEach(item => {
 });
 export default {
   baseData,
+  componentCanvas,
   componentPanel,
   componentLibrary,
   componentLibraryMap

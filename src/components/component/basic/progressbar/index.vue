@@ -77,7 +77,7 @@ export default {
         // let border = height * 0.2;
         styles["height"] = `${lineWidth}px`;
         // styles["width"] = `${height - border - sliderBorderWidth}px`;
-        styles["borderRadius"] = `${lineWidth / 2}px`;
+        styles["border-radius"] = `${lineWidth / 2}px`;
       }
       styles["width"] = `${this.$toBig(
         ((content - start) / (end - start)) * 100,
@@ -113,7 +113,7 @@ export default {
       if (lineWidth) {
         styles["height"] = `${lineWidth}px`;
         // styles["width"] = `${height - border - sliderBorderWidth}px`;
-        styles["borderRadius"] = `${lineWidth / 2}px`;
+        styles["border-radius"] = `${lineWidth / 2}px`;
       }
       if (progressBackgroundColor) {
         styles["backgroundColor"] = progressBackgroundColor;
@@ -133,7 +133,7 @@ export default {
       let styles = {};
       if (progressForegroundColor) {
         styles["color"] = progressForegroundColor;
-        styles["fontSize"] = `${lineWidth}px`;
+        styles["font-size"] = `${lineWidth}px`;
       }
       let margin = lineWidth * 0.2;
       styles["right"] = `${margin}px`;
@@ -153,7 +153,7 @@ export default {
         styles["height"] = `${lineWidth - margin}px`;
         styles["right"] = `${margin}px`;
         styles[
-          "boxShadow"
+          "box-shadow"
         ] = `0px 0px ${lineWidth}px 5px ${sliderBackgroundColor}`;
       }
       return styles;
@@ -219,7 +219,7 @@ export default {
         padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
       };
       // if (textAlign) {
-      //   styles["textAlign"] = textAlign;
+      //   styles["text-align"] = textAlign;
       //   if (textAlign == "justify") {
       //     styles["text-align-last"] = textAlign;
       //   }
@@ -228,87 +228,87 @@ export default {
         let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
           shadow || {};
         styles[
-          "boxShadow"
+          "box-shadow"
         ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
       }
       if (textShadowable) {
         let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
-        styles["textShadow"] = `${x}px ${y}px ${blur}px ${color}`;
+        styles["text-shadow"] = `${x}px ${y}px ${blur}px ${color}`;
       }
       styles["width"] = `${width}px`;
       styles["height"] = `${height}px`;
       if (backgroundRepeat) {
-        styles["backgroundRepeat"] = backgroundRepeat;
+        styles["background-repeat"] = backgroundRepeat;
       }
       if (backgroundSize) {
-        styles["backgroundSize"] = backgroundSize;
+        styles["background-size"] = backgroundSize;
       }
       styles["width"] = `${width}px`;
       styles["height"] = `${height}px`;
       if (borderTop) {
         if (borderStyle) {
-          styles["borderTopStyle"] = borderStyle;
+          styles["border-top-style"] = borderStyle;
         }
-        styles["borderTopWidth"] = `${borderWidth}px`;
+        styles["border-top-width"] = `${borderWidth}px`;
         if (borderColor) {
-          styles["borderTopColor"] = borderColor;
+          styles["border-top-color"] = borderColor;
         }
       } else {
-        styles["borderTop"] = "none";
+        styles["border-top"] = "none";
       }
       if (borderBottom) {
         if (borderStyle) {
-          styles["borderBottomStyle"] = borderStyle;
+          styles["border-bottom-style"] = borderStyle;
         }
-        styles["borderBottomWidth"] = `${borderWidth}px`;
+        styles["border-bottom-width"] = `${borderWidth}px`;
         if (borderColor) {
-          styles["borderBottomColor"] = borderColor;
+          styles["border-bottom-color"] = borderColor;
         }
       } else {
-        styles["borderBottom"] = "none";
+        styles["border-bottom"] = "none";
       }
       if (borderLeft) {
         if (borderStyle) {
-          styles["borderLeftStyle"] = borderStyle;
+          styles["border-left-style"] = borderStyle;
         }
-        styles["borderLeftWidth"] = `${borderWidth}px`;
+        styles["border-left-width"] = `${borderWidth}px`;
         if (borderColor) {
-          styles["borderLeftColor"] = borderColor;
+          styles["border-left-color"] = borderColor;
         }
       } else {
-        styles["borderLeft"] = "none";
+        styles["border-left"] = "none";
       }
       if (borderRight) {
         if (borderStyle) {
-          styles["borderRightStyle"] = borderStyle;
+          styles["border-right-style"] = borderStyle;
         }
-        styles["borderRightWidth"] = `${borderWidth}px`;
+        styles["border-right-width"] = `${borderWidth}px`;
         if (borderColor) {
-          styles["borderRightColor"] = borderColor;
+          styles["border-right-color"] = borderColor;
         }
       } else {
-        styles["borderRight"] = "none";
+        styles["border-right"] = "none";
       }
       styles[
-        "borderRadius"
+        "border-radius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       if (color) {
         styles["color"] = color;
       }
       if (fontSize) {
-        styles["fontSize"] = `${fontSize}px`;
+        styles["font-size"] = `${fontSize}px`;
       }
       if (fontFamily) {
-        styles["fontFamily"] = `${fontFamily}`;
+        styles["font-family"] = `${fontFamily}`;
       }
       if (fontWeight) {
-        styles["fontWeight"] = fontWeight;
+        styles["font-weight"] = fontWeight;
       }
       if (fontStyle) {
-        styles["fontStyle"] = fontStyle;
+        styles["font-style"] = fontStyle;
       }
       if (textDecoration) {
-        styles["textDecoration"] = textDecoration;
+        styles["text-decoration"] = textDecoration;
       }
       styles["backgroundColor"] = content ? activeColor : inactiveColor;
       if (backgroundType == "purity") {

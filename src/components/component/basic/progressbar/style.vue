@@ -941,7 +941,7 @@
           ></el-color-picker>
         </p> -->
       </el-collapse-item>
-      <!-- <el-collapse-item :title="$lang('文字样式')" name="fontStyle"> -->
+      <!-- <el-collapse-item :title="$lang('文字样式')" name="font-style"> -->
       <!-- <p class="align">
           <span class="label">{{ $lang("对齐") }}:</span>
           <i
@@ -1350,7 +1350,7 @@ export default {
       let { info = {} } = this;
       let { fontWeight = "" } = info || {};
       if (fontWeight == "bold") {
-        fontWeight = "";
+        fontWeight = "initial";
       } else {
         fontWeight = "bold";
       }
@@ -1360,7 +1360,7 @@ export default {
       let { info = {} } = this;
       let { textDecoration = "" } = info || {};
       if (textDecoration == "underline") {
-        textDecoration = "";
+        textDecoration = "initial";
       } else {
         textDecoration = "underline";
       }
@@ -1370,7 +1370,7 @@ export default {
       let { info = {} } = this;
       let { fontStyle = "" } = info || {};
       if (fontStyle == "italic") {
-        fontStyle = "";
+        fontStyle = "initial";
       } else {
         fontStyle = "italic";
       }

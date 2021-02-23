@@ -93,109 +93,109 @@ class Text extends Component {
     }
     if (borderBottom) {
       if (borderStyle) {
-        styles["border-Bottom-Style"] = borderStyle;
+        styles["border-bottom-style"] = borderStyle;
       }
-      styles["border-Bottom-Width"] = `${borderWidth}px`;
+      styles["border-bottom-width"] = `${borderWidth}px`;
       if (borderColor) {
-        styles["border-Bottom-Color"] = borderColor;
+        styles["border-bottom-color"] = borderColor;
       }
     } else {
-      styles["border-Bottom"] = "none";
+      styles["border-bottom"] = "none";
     }
     if (borderLeft) {
       if (borderStyle) {
-        styles["border-Left-Style"] = borderStyle;
+        styles["border-left-style"] = borderStyle;
       }
-      styles["border-Left-Width"] = `${borderWidth}px`;
+      styles["border-left-width"] = `${borderWidth}px`;
       if (borderColor) {
-        styles["border-Left-Color"] = borderColor;
+        styles["border-left-color"] = borderColor;
       }
     } else {
       styles["border-Left"] = "none";
     }
     if (borderRight) {
       if (borderStyle) {
-        styles["border-Right-Style"] = borderStyle;
+        styles["border-right-Style"] = borderStyle;
       }
-      styles["border-Right-Width"] = `${borderWidth}px`;
+      styles["border-right-Width"] = `${borderWidth}px`;
       if (borderColor) {
-        styles["border-Right-Color"] = borderColor;
+        styles["border-right-Color"] = borderColor;
       }
     } else {
-      styles["border-Right"] = "none";
+      styles["border-right"] = "none";
     }
     if (borderTop) {
       if (borderStyle) {
-        styles["border-Top-Style"] = borderStyle;
+        styles["border-top-style"] = borderStyle;
       }
-      styles["border-Top-Width"] = `${borderWidth}px`;
+      styles["border-top-width"] = `${borderWidth}px`;
       if (borderColor) {
-        styles["border-Top-Color"] = borderColor;
+        styles["border-Top-color"] = borderColor;
       }
     } else {
       styles["border-Top"] = "none";
     }
     if (borderBottom) {
       if (borderStyle) {
-        styles["border-Bottom-Style"] = borderStyle;
+        styles["border-bottom-style"] = borderStyle;
       }
-      styles["border-Bottom-Width"] = `${borderWidth}px`;
+      styles["border-bottom-width"] = `${borderWidth}px`;
       if (borderColor) {
-        styles["border-Bottom-Color"] = borderColor;
+        styles["border-bottom-color"] = borderColor;
       }
     } else {
-      styles["border-Bottom"] = "none";
+      styles["border-bottom"] = "none";
     }
     if (borderLeft) {
       if (borderStyle) {
-        styles["border-Left-Style"] = borderStyle;
+        styles["border-left-style"] = borderStyle;
       }
-      styles["border-Left-Width"] = `${borderWidth}px`;
+      styles["border-left-width"] = `${borderWidth}px`;
       if (borderColor) {
         styles["border-Left-Color"] = borderColor;
       }
     } else {
-      styles["border-Left"] = "none";
+      styles["border-left"] = "none";
     }
     if (borderRight) {
       if (borderStyle) {
-        styles["border-Right-Style"] = borderStyle;
+        styles["border-right-style"] = borderStyle;
       }
-      styles["border-Right-Width"] = `${borderWidth}px`;
+      styles["border-right-width"] = `${borderWidth}px`;
       if (borderColor) {
-        styles["border-Right-Color"] = borderColor;
+        styles["border-right-color"] = borderColor;
       }
     } else {
-      styles["border-Right"] = "none";
+      styles["border-right"] = "none";
     }
     styles[
-      "border-Radius"
+      "border-radius"
     ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
     if (color) {
       styles["color"] = color;
     }
     if (fontSize) {
-      styles["font-Size"] = `${fontSize}px`;
+      styles["font-size"] = `${fontSize}px`;
     }
     if (fontFamily) {
-      styles["font-Family"] = `${fontFamily}`;
+      styles["font-family"] = `${fontFamily}`;
     }
     if (fontWeight) {
-      styles["font-Weight"] = fontWeight;
+      styles["font-weight"] = fontWeight;
     }
     if (fontStyle) {
-      styles["font-Style"] = fontStyle;
+      styles["font-style"] = fontStyle;
     }
     if (textDecoration) {
-      styles["text-Decoration"] = textDecoration;
+      styles["text-decoration"] = textDecoration;
     }
     if (backgroundType == "purity") {
       //纯色
       if (backgroundColor) {
-        styles["background-Color"] = backgroundColor;
+        styles["background-color"] = backgroundColor;
       }
       if (backgroundImage) {
-        styles["background-Image"] = `url(${$vm.$loadImgUrl(backgroundImage)})`;
+        styles["background-image"] = `url(${$vm.$loadImgUrl(backgroundImage)})`;
       }
     } else if (backgroundType == "gradient") {
       //渐变
@@ -215,7 +215,6 @@ class Text extends Component {
       `
       <div
       class="bm-basic-text-com component"
-      @blur.stop="blurEvent"
       style="${this.composeStyles(this.comStyle())}"
     >
       ${content}
@@ -227,6 +226,7 @@ class Text extends Component {
   refresh() {
     super.refresh();
     let { info = {} } = this;
+    bmCommon.log(`${info.type}刷新 `);
     let { id = "", content = "" } = info || {};
     $(`#${id}>.component`).html(content);
   }

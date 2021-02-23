@@ -1198,39 +1198,39 @@ export default {
     //   let { info = {} } = this;
     //   let { fontWeight = "" } = info || {};
     //   if (fontWeight == "bold") {
-    //     fontWeight = "";
+    //     fontWeight = "initial"
     //   } else {
     //     fontWeight = "bold";
     //   }
     //   info.fontWeight = fontWeight;
-    //   this.changeStatusEvent("fontWeight");
+    //   this.changeStatusEvent("font-weight");
     // },
     // setTextDecoration() {
     //   let { info = {} } = this;
     //   let { textDecoration = "" } = info || {};
     //   if (textDecoration == "underline") {
-    //     textDecoration = "";
+    //     textDecoration = "initial"
     //   } else {
     //     textDecoration = "underline";
     //   }
     //   info.textDecoration = textDecoration;
-    //   this.changeStatusEvent("textDecoration");
+    //   this.changeStatusEvent("text-decoration");
     // },
     // setFontStyle() {
     //   let { info = {} } = this;
     //   let { fontStyle = "" } = info || {};
     //   if (fontStyle == "italic") {
-    //     fontStyle = "";
+    //     fontStyle = "initial"
     //   } else {
     //     fontStyle = "italic";
     //   }
     //   info.fontStyle = fontStyle;
-    //   this.changeStatusEvent("fontStyle");
+    //   this.changeStatusEvent("font-style");
     // },
     // textAlignEvent(item) {
     //   let { info = {} } = this;
     //   info.textAlign = item;
-    //   this.changeStatusEvent("textAlign");
+    //   this.changeStatusEvent("text-align");
     // },
     openAll() {
       this.activeNames = ["name", "outward", "margin", "image", "animation"];

@@ -1,4 +1,5 @@
 import bmCommon from "@/common/common";
+import { Constants } from "@/common/env";
 const state = {};
 class CanvasEvent {
   constructor() {}
@@ -6,15 +7,11 @@ class CanvasEvent {
   static init() {
     let _viewBox = $(".view-box");
     // 注册鼠标事件
-    _viewBox.on(
-      "mousedown",
-      ".bm-component-com",
-      CanvasEvent.viewBoxMousedownEvent
-    );
-    // 注册颜色框事件
-    $(document).on("mousedown", ".el-color-picker__panel", e => {
-      e.stopPropagation();
-    });
+    _viewBox.on("mousedown", CanvasEvent.viewBoxMousedownEvent);
+    // // 注册颜色框事件
+    // $(document).on("mousedown", ".el-color-picker__panel", e => {
+    //   e.stopPropagation();
+    // });
     //滚动事件
     _viewBox.on("mousewheel DOMMouseScroll", CanvasEvent.mouseScrollEvent);
     // 注册右键菜单事件
@@ -72,42 +69,19 @@ class CanvasEvent {
       // 取消选中组件
       CanvasEvent.selectComAction(id);
     }
-    this.$nextTick(() => {
-      let pos = bmCommon.getMousePosition(e);
-      let { x = "", y = "" } = pos || {};
-      let contextMenuBox = this.$refs.contextMenuBox;
-      let { offsetHeight = 0, offsetWidth = 0 } = contextMenuBox || {};
-      let { innerHeight = 0 } = window;
-      y = y > innerHeight - offsetHeight + 5 ? innerHeight - offsetHeight : y;
-      x = x > innerWidth - offsetWidth + 5 ? innerWidth - offsetWidth : x;
-      this.contextMenuStyle = {
-        left: x - 5 + "px",
-        top: y - 5 + "px"
-      };
-    });
-  }
-
-  // 设置 mousemove 操作的初始值
-  static initMove(item = {}) {
-    let {
-      startX,
-      startY,
-      originX,
-      originY,
-      originWidth,
-      originHeight,
-      id,
-      originRotate
-    } = item || {};
-    state.startX = startX;
-    state.startY = startY;
-    state.originX = originX;
-    state.originY = originY;
-    state.id = id;
-    state.originWidth = originWidth;
-    state.originRotate = originRotate;
-    state.originHeight = originHeight;
-    state.moving = true;
+    // this.$nextTick(() => {
+    let pos = bmCommon.getMousePosition(e);
+    let { x = "", y = "" } = pos || {};
+    let contextMenuBox = this.$refs.contextMenuBox;
+    let { offsetHeight = 0, offsetWidth = 0 } = contextMenuBox || {};
+    let { innerHeight = 0 } = window;
+    y = y > innerHeight - offsetHeight + 5 ? innerHeight - offsetHeight : y;
+    x = x > innerWidth - offsetWidth + 5 ? innerWidth - offsetWidth : x;
+    this.contextMenuStyle = {
+      left: x - 5 + "px",
+      top: y - 5 + "px"
+    };
+    // });
   }
 
   static initMoveEvent(e, id) {
@@ -118,36 +92,35 @@ class CanvasEvent {
     // var activeCom = this.$vpd.state.activeElement
     let pos = bmCommon.getMousePosition(e);
     let { x = "", y = "" } = pos || {};
+    bmCommon.log("initMoveEvent==", x, y);
     // 设置移动状态初始值
-    // this.$vpd.commit('initmove', {
-    //   startX: e.pageX,
-    //   startY: e.pageY,
-    //   originX: activeCom.left,
-    //   originY: activeCom.top
-    // })
     let { left, top, width, height, editable = false } = activeCom || {};
     if (!editable) {
       e.preventDefault();
     }
-    CanvasEvent.initMove({
-      startX: x,
-      startY: y,
-      originX: left,
-      originY: top,
-      originWidth: width,
-      originHeight: height,
-      id
-    });
+    state.startX = x;
+    state.startY = y;
     state.originX = left;
     state.originY = top;
+    state.id = id;
+    state.originWidth = width;
+    state.originHeight = height;
+    state.moving = true;
 
     // 绑定鼠标移动事件
     // document.addEventListener('mousemove', this.mousemoveEvent, true)
-    $(document).on("mousemove", this.mousemoveEvent);
-    $(document).on("mouseup", this.mouseupEvent);
+    $(document).on("mousemove", CanvasEvent.mousemoveEvent);
+    $(document).on("mouseup", CanvasEvent.mouseupEvent);
 
+    CanvasEvent.loadRefreshScreen();
     // 取消鼠标移动事件
     // document.addEventListener('mouseup', this.mouseupEvent, true)
+  }
+
+  static loadRefreshScreen() {
+    window.requestAnimationFrame(() => {
+      CanvasEvent.loadRefreshScreen();
+    });
   }
 
   static mousemoveEvent(e) {
@@ -157,33 +130,25 @@ class CanvasEvent {
     //   x: e.pageX,
     //   y: e.pageY
     // })
-    // bmCommon.log("组件移动");
-    let pos = bmCommon.getMousePosition(e);
-    let { x = "", y = "" } = pos || {};
-    CanvasEvent.moving({
-      x,
-      y
-    });
-  }
 
-  // 元件移动结束
-  static stopMove() {
-    state.moving = false;
-  }
-
-  // 移动元件
-  static moving(item) {
-    let { x, y } = item || {};
     let {
       startX,
       startY,
       activeComs = [],
       // activeCom = {},
       id = "",
-      zoom = 1
+      zoom = 1,
+      moving = false
       // originX,
       // originY
     } = state;
+    if (!moving) {
+      return;
+    }
+    state.moving = true;
+    let pos = bmCommon.getMousePosition(e);
+    let { x = "", y = "" } = pos || {};
+    bmCommon.log("mousemoveEvent组件移动", x, y);
     // var target = state.activeCom;
     var dx = x - startX;
     var dy = y - startY;
@@ -226,6 +191,7 @@ class CanvasEvent {
         left: activeCom.left,
         top: activeCom.top
       });
+      obj.setInfo(activeCom);
       window.bm_widgetMap[id] = obj;
     }
     state.startX = x;
@@ -234,29 +200,24 @@ class CanvasEvent {
   }
 
   static mouseupEvent() {
+    let { originX = 0, originY = 0, id = "" } = state || {};
     let obj = window.bm_widgetMap[id];
     let { info: activeCom = {} } = obj || {};
-    let { originX = 0, originY = 0, id = "" } = state || {};
-    let { alias = "", left = 0, top = 0 } = activeCom || {};
+    let { left = 0, top = 0 } = activeCom || {};
+
+    bmCommon.log("mouseupEvent组件移动", top, left);
     // document.removeEventListener('mousemove', this.mousemoveEvent, true)
-    $(document).off("mousemove", this.mousemoveEvent);
-    $(document).off("mouseup", this.mouseupEvent);
-    // document.removeEventListener('mouseup', this.mouseupEvent, true)
-    // this.$vpd.commit('stopmove')
-    // if (alias == "linkPoint") {
-    //   this.setLinkPoint(activeCom);
-    // }
-    // bmCommon.log("组件停止移动");
-    CanvasEvent.stopMove();
-    // let box = document.getElementById(`box_${id}`)?.__vue__;
-    // if (box) {
-    //   box.loadComPoints();
-    // }
+    $(document).off("mousemove", CanvasEvent.mousemoveEvent);
+    $(document).off("mouseup", CanvasEvent.mouseupEvent);
+    state.moving = false;
     if (Math.abs(originX - left) > 5 || Math.abs(originY - top) > 5) {
       CanvasEvent.createHistoryAction();
     }
-    // window.bm_widgetMap[id]=obj
+    window.bm_widgetMap[id] = obj;
     obj.info = { ...activeCom };
+    window.requestAnimationFrame(() => {
+      $vm.$emit("info-data-active", { id, watched: false });
+    });
   }
 
   static viewBoxMousedownEvent(e) {
@@ -284,7 +245,8 @@ class CanvasEvent {
       CanvasEvent.showContextMenuType = 1;
       // 绑定移动事件：只有从属于 page 的，除背景图以外的元件才能移动
       // let [item = {}] = activeComs || [];
-      let { activeCom: _activeCom = {} } = this;
+      let obj = window.bm_widgetMap[id] || {};
+      let { info: _activeCom = {} } = obj;
       // let { id: _id = "" } = _activeCom || {};
       _activeCom.showCoverStatus = true;
       //如果 shift ctrl 被按住则进行 多选和取消选择
@@ -303,7 +265,7 @@ class CanvasEvent {
         activeCom = {}
       } = this;
       let { length = 0 } = activeComs || [];
-      let { locked = false, rotateable = false } = activeCom || {};
+      let { locked = false, rotateable = false } = _activeCom || {};
       if (!rotateable) {
         let padding = 0;
         activeCom.originWidth = width - padding; //减去 padding
@@ -313,9 +275,9 @@ class CanvasEvent {
       if (length > 1) {
         locked = false;
       }
-      // if (!locked) {
-      CanvasEvent.initMoveEvent(e, id); // 参见 mixins
-      // }
+      if (!locked) {
+        CanvasEvent.initMoveEvent(e, id);
+      }
     } else {
       CanvasEvent.showContextMenuType = 2;
       let { activeCom = {}, activeComs = [] } = this;
@@ -885,76 +847,46 @@ class CanvasEvent {
     CanvasEvent.showContextMenuStatus = false;
   }
 
-  static selectComAction(id) {
-    let {
-      // widgetList = [],
-      canvas = {},
-      activeCom = {},
-      activeComs = []
-    } = state;
-    // activeCom.showCoverStatus = true;
-    if (!id) {
-      activeCom = canvas;
-      // context.commit("setActiveCom", activeCom);
-      // context.commit("setActiveComs", []);
+  static selectComsAction() {}
 
-      $vm.$emit("info-data-active", canvas);
+  static selectComAction(id) {
+    // let {
+    //   // widgetList = [],
+    //   // canvas = {},
+    //   activeCom = {},
+    //   activeComs = []
+    // } = state;
+    // activeCom.showCoverStatus = true;
+    bmCommon.log("selectComAction", id);
+    let _oldCom = $("#canvas_content .bm-component-com.active");
+
+    let _infoOldCom = $(`#info_com_list_box li.active`);
+    _infoOldCom.removeClass("active");
+    _oldCom.removeClass("active");
+    if (!id) {
+      // activeCom = Constants.COMPONENTCANVAS;
+
+      this.setTimeoutId = setTimeout(() => {
+        clearTimeout(this.setTimeoutId);
+        $vm.$emit("info-data-active");
+      }, 10);
     } else {
-      let obj = window.bm_widgetMap[id];
-      let { info: activeCom = {} } = obj || {};
-      let _oldCom = $("#canvas_content .bm-component-com.active");
-      _oldCom.removeClass("active");
+      // let obj = window.bm_widgetMap[id];
+      // let { info: activeCom = {} } = obj || {};
+
       let _com = $(`#${id}`);
       _com.addClass("active");
-      let _infoOldCom = $(`#info_com_list_box li.active`);
-      _infoOldCom.removeClass("active");
       let _infoCom = $(`#info_com_${id}`);
       _infoCom.addClass("active");
       _infoCom.length > 0 && _infoCom[0].scrollIntoView();
 
-      $vm.$emit("info-data-active", activeCom);
-
-      // let index = activeComs.findIndex(item => item.id == id);
-      // if (index < 0) {
-      //   //如果未找到当前组件 在已选组件中 说明选择新组件  清除多选组件
-      //   activeComs = [activeCom];
-      //   // context.commit("setActiveComs", activeComs);
-      // }
-      // let comId = `box_${id}`;
-      // let com = document.getElementById(comId);
-      // if (com) {
-      //   let _vue = com.__vue__;
-      //   activeCom = _vue.info;
-      // }
-      // // try {
-      // //   widgetList.forEach(item => {
-      // //     let { children = [], id: _id = "" } = item || {};
-      // //     if (_id == id) {
-      // //       activeCom = item;
-      // //       throw new Error("找到对应的组件");
-      // //     } else {
-      // //       if (children && children.length > 0) {
-      // //         let _activeCom = children.find(_item => {
-      // //           return _item.id == id;
-      // //         });
-      // //         if (_activeCom) {
-      // //           activeCom = _activeCom;
-      // //           throw new Error("找到对应的组件");
-      // //         }
-      // //       }
-      // //     }
-      // //   });
-      // // } catch (error) {
-      // //   bmCommon.warn(error);
-      // // }
-      // let { length = 0 } = activeComs || [];
-      // let { type = "" } = activeCom || {};
-      // if ((length < 2 && activeCom) || type == "panel") {
-      //   activeCom.showCoverStatus = true;
-      //   context.commit("setActiveCom", activeCom);
-      //   context.commit("setActiveComs", [activeCom]);
-      // }
+      // window.requestAnimationFrame(() => {
+      this.setTimeoutId = setTimeout(() => {
+        clearTimeout(this.setTimeoutId);
+        $vm.$emit("info-data-active", { id });
+      }, 10);
     }
+    window.bm_active_com_id = id;
   }
 }
 

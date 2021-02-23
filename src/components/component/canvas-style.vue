@@ -726,9 +726,8 @@ export default {
     return {
       activeNames: ["function", "page", "name"],
       gridStyleList,
-      flipModeList: Object.freeze(Constants.FLIPMODELIST),
+      // info: window.bm_widgetMap["canvas"],
       backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
-      // fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
       tileModeList: Object.freeze(Constants.TILEMODELIST),
       gridStyleMap,
       backgroundTypeList: Object.freeze(Constants.BACKGROUNDTYPELIST),

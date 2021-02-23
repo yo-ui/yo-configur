@@ -401,18 +401,18 @@ export default {
           styles["backgroundImage"] = `url(${this.$loadImgUrl(
             backgroundImage
           )})`;
-          styles["backgroundSize"] = "auto";
+          styles["background-size"] = "auto";
           styles["backgroundPosition"] = "inherit";
 
           if (backgroundRepeat) {
-            styles["backgroundRepeat"] = backgroundRepeat;
+            styles["background-repeat"] = backgroundRepeat;
           }
           if (backgroundSize) {
-            styles["backgroundSize"] = backgroundSize;
+            styles["background-size"] = backgroundSize;
           }
         }
       } else if (backgroundType == "gradient") {
-        styles["backgroundSize"] = "auto";
+        styles["background-size"] = "auto";
         styles["backgroundPosition"] = "inherit";
         //渐变
         styles = { ...styles, ...gradientStyle(page) };
@@ -460,10 +460,10 @@ export default {
         styles["backgroundPosition"] = "0 0";
       }
       if (backgroundSize) {
-        styles["backgroundSize"] = backgroundSize;
+        styles["background-size"] = backgroundSize;
       }
       if (backgroundRepeat) {
-        styles["backgroundRepeat"] = backgroundRepeat;
+        styles["background-repeat"] = backgroundRepeat;
       }
       return styles || {};
     },

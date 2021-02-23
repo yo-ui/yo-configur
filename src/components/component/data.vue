@@ -153,9 +153,14 @@ export default {
   data() {
     return {
       activeNames: ["name"]
+      // info: window.bm_widgetMap[this.id].info
     };
   },
   props: {
+    // id: {
+    //   type: String,
+    //   default: ""
+    // }
     info: {
       type: Object,
       default: () => {
@@ -174,6 +179,13 @@ export default {
       //widgetList: "canvas/getWidgetList"
       widgetList: []
     })
+  },
+  created() {
+    // let { id = "" } = this;
+    // let obj = window.bm_widgetMap[id];
+    // let { info = {} } = obj || {};
+    // // this.info = info || {};
+    // Vue.set(this, info, info);
   },
   methods: {
     ...mapMutations({}),

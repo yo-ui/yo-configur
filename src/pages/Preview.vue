@@ -138,10 +138,10 @@ export default {
         styles["backgroundPosition"] = "0 0";
       }
       if (backgroundSize) {
-        styles["backgroundSize"] = backgroundSize;
+        styles["background-size"] = backgroundSize;
       }
       if (backgroundRepeat) {
-        styles["backgroundRepeat"] = backgroundRepeat;
+        styles["background-repeat"] = backgroundRepeat;
       }
       return styles || {};
     },
@@ -179,7 +179,7 @@ export default {
         styles["backgroundImage"] = "none";
         styles["backgroundColor"] = pageColor;
       }
-      styles["backgroundSize"] = "auto";
+      styles["background-size"] = "auto";
       styles["backgroundPosition"] = "inherit";
       if (backgroundType == "purity") {
         //纯色
@@ -192,10 +192,10 @@ export default {
           )})`;
 
           if (backgroundRepeat) {
-            styles["backgroundRepeat"] = backgroundRepeat;
+            styles["background-repeat"] = backgroundRepeat;
           }
           if (backgroundSize) {
-            styles["backgroundSize"] = backgroundSize;
+            styles["background-size"] = backgroundSize;
           }
         }
       } else if (backgroundType == "gradient") {

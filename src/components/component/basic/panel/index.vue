@@ -109,50 +109,50 @@ export default {
       styles["height"] = `${height}px`;
       if (borderTop) {
         if (borderStyle) {
-          styles["borderTopStyle"] = borderStyle;
+          styles["border-top-style"] = borderStyle;
         }
-        styles["borderTopWidth"] = `${borderWidth}px`;
+        styles["border-top-width"] = `${borderWidth}px`;
         if (borderColor) {
-          styles["borderTopColor"] = borderColor;
+          styles["border-top-color"] = borderColor;
         }
       } else {
-        styles["borderTop"] = "none";
+        styles["border-top"] = "none";
       }
       if (borderBottom) {
         if (borderStyle) {
-          styles["borderBottomStyle"] = borderStyle;
+          styles["border-bottom-style"] = borderStyle;
         }
-        styles["borderBottomWidth"] = `${borderWidth}px`;
+        styles["border-bottom-width"] = `${borderWidth}px`;
         if (borderColor) {
-          styles["borderBottomColor"] = borderColor;
+          styles["border-bottom-color"] = borderColor;
         }
       } else {
-        styles["borderBottom"] = "none";
+        styles["border-bottom"] = "none";
       }
       if (borderLeft) {
         if (borderStyle) {
-          styles["borderLeftStyle"] = borderStyle;
+          styles["border-left-style"] = borderStyle;
         }
-        styles["borderLeftWidth"] = `${borderWidth}px`;
+        styles["border-left-width"] = `${borderWidth}px`;
         if (borderColor) {
-          styles["borderLeftColor"] = borderColor;
+          styles["border-left-color"] = borderColor;
         }
       } else {
-        styles["borderLeft"] = "none";
+        styles["border-left"] = "none";
       }
       if (borderRight) {
         if (borderStyle) {
-          styles["borderRightStyle"] = borderStyle;
+          styles["border-right-style"] = borderStyle;
         }
-        styles["borderRightWidth"] = `${borderWidth}px`;
+        styles["border-right-width"] = `${borderWidth}px`;
         if (borderColor) {
-          styles["borderRightColor"] = borderColor;
+          styles["border-right-color"] = borderColor;
         }
       } else {
-        styles["borderRight"] = "none";
+        styles["border-right"] = "none";
       }
       styles[
-        "borderRadius"
+        "border-radius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       if (backgroundType == "purity") {
         //纯色
@@ -164,10 +164,10 @@ export default {
             backgroundImage
           )})`;
           if (backgroundRepeat) {
-            styles["backgroundRepeat"] = backgroundRepeat;
+            styles["background-repeat"] = backgroundRepeat;
           }
           if (backgroundSize) {
-            styles["backgroundSize"] = backgroundSize;
+            styles["background-size"] = backgroundSize;
           }
         }
       } else if (backgroundType == "gradient") {
@@ -205,10 +205,10 @@ export default {
       if (content) {
         styles["backgroundImage"] = `url(${this.$loadImgUrl(content)})`;
         if (contentRepeat) {
-          styles["backgroundRepeat"] = contentRepeat;
+          styles["background-repeat"] = contentRepeat;
         }
         if (contentSize) {
-          styles["backgroundSize"] = contentSize;
+          styles["background-size"] = contentSize;
         }
       }
       styles["width"] = `${width}px`;
@@ -217,60 +217,60 @@ export default {
       styles["height"] = `${height}px`;
       if (borderTop) {
         if (borderStyle) {
-          styles["borderTopStyle"] = borderStyle;
+          styles["border-top-style"] = borderStyle;
         }
-        styles["borderTopWidth"] = `${borderWidth}px`;
+        styles["border-top-width"] = `${borderWidth}px`;
         if (borderColor) {
-          styles["borderTopColor"] = borderColor;
+          styles["border-top-color"] = borderColor;
         }
       } else {
-        styles["borderTop"] = "none";
+        styles["border-top"] = "none";
       }
       if (borderBottom) {
         if (borderStyle) {
-          styles["borderBottomStyle"] = borderStyle;
+          styles["border-bottom-style"] = borderStyle;
         }
-        styles["borderBottomWidth"] = `${borderWidth}px`;
+        styles["border-bottom-width"] = `${borderWidth}px`;
         if (borderColor) {
-          styles["borderBottomColor"] = borderColor;
+          styles["border-bottom-color"] = borderColor;
         }
       } else {
-        styles["borderBottom"] = "none";
+        styles["border-bottom"] = "none";
       }
       if (borderLeft) {
         if (borderStyle) {
-          styles["borderLeftStyle"] = borderStyle;
+          styles["border-left-style"] = borderStyle;
         }
-        styles["borderLeftWidth"] = `${borderWidth}px`;
+        styles["border-left-width"] = `${borderWidth}px`;
         if (borderColor) {
-          styles["borderLeftColor"] = borderColor;
+          styles["border-left-color"] = borderColor;
         }
       } else {
-        styles["borderLeft"] = "none";
+        styles["border-left"] = "none";
       }
       if (borderRight) {
         if (borderStyle) {
-          styles["borderRightStyle"] = borderStyle;
+          styles["border-right-style"] = borderStyle;
         }
-        styles["borderRightWidth"] = `${borderWidth}px`;
+        styles["border-right-width"] = `${borderWidth}px`;
         if (borderColor) {
-          styles["borderRightColor"] = borderColor;
+          styles["border-right-color"] = borderColor;
         }
       } else {
-        styles["borderRight"] = "none";
+        styles["border-right"] = "none";
       }
       styles[
-        "borderRadius"
+        "border-radius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       // if (color) {
       //   styles["color"] = color;
       // }
 
       if (backgroundRepeat) {
-        styles["backgroundRepeat"] = backgroundRepeat;
+        styles["background-repeat"] = backgroundRepeat;
       }
       if (backgroundSize) {
-        styles["backgroundSize"] = backgroundSize;
+        styles["background-size"] = backgroundSize;
       }
       if (backgroundType == "purity") {
         //纯色

@@ -11,6 +11,7 @@ import apiConfig from "./conf";
 import lib from "./conf/library";
 const {
   componentLibrary: COMPONENTLIBRARY,
+  componentCanvas: COMPONENTCANVAS,
   baseData: BASEDATA,
   componentLibraryMap: COMPONENTLIBRARYMAP,
   componentPanel: COMPONENTPANEL
@@ -95,6 +96,7 @@ const Constants = {
   // 组件map
   COMPONENTLIBRARY,
   COMPONENTLIBRARYMAP,
+  COMPONENTCANVAS,
   COMPONENTPANEL,
   BASEDATA,
   BACKGROUNDSIZELIST: [

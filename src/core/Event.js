@@ -307,12 +307,17 @@ class Event {
     info.showCoverStatus = false;
   }
   static mouseupEvent(e) {
+    let { id = "" } = state;
     $(document).off("mousemove", this.mousemoveEvent);
     $(document).off("mouseup", this.mouseupEvent);
     // this.loadComPoints();
     Event.stopMove();
     this.rotating = false;
     this.resizing = false;
+
+    window.requestAnimationFrame(() => {
+      $vm.$emit("info-data-active", { id, watched: false });
+    });
   }
   static rotateClickEvent(e) {
     e.preventDefault();
