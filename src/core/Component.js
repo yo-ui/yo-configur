@@ -62,13 +62,9 @@ class Component {
   }
 
   boxClasses() {
-    let {
-      info = {},
-      animate = "",
-      locked = false,
-      activeComIds = "",
-      showType = "edit"
-    } = this;
+    let { info = {}, animate = "", locked = false, activeComIds = "" } = this;
+
+    let showType = window.bm_show_type;
     let { type = "" } = info || {};
     let classes = [];
     if (animate) {
@@ -346,7 +342,7 @@ class Component {
       }
     } else if (backgroundType == "gradient") {
       //渐变
-      styles = { ...styles, ...gradientStyle(info) };
+      styles = { ...styles, ...this.gradientStyle(info) };
     }
     return styles;
   }
@@ -369,6 +365,14 @@ class Component {
       <i title="下" class="operate-btn el-icon-bottom"></i>
       <i title="右下角" class="operate-btn el-icon-bottom-right"></i>`;
 
+    if (type === "panel") {
+      operate = locked
+        ? ""
+        : `
+    <i title="旋转" class="operate-btn el-icon-refresh-right"></i>
+      <i title="旋转轴" class="operate-btn el-icon-axis"></i>`;
+    }
+
     return `
     <div id="${id}" type="${type}" class="bm-component-com ${showType} ${this.boxClasses()}" style="${this.composeStyles(
       this.boxStyle()
@@ -386,7 +390,7 @@ class Component {
   // 刷新数据
   refresh() {
     let { info = {} } = this;
-    let { id = "", locked = false } = info || {};
+    let { id = "", locked = false, type = "" } = info || {};
     $(`#${id}>.component`).css(this.comStyle());
     $(`#${id}`).css(this.boxStyle());
     if (locked) {
@@ -394,6 +398,9 @@ class Component {
     } else {
       $(`#${id}>.operate-btn`).show();
     }
+    // if (type === "panel") {
+    //   $(`#${id}>.operate-btn:not(.el-icon-refresh-right,.el-icon-axis)`).hide();
+    // }
   }
   // // 刷新数据
   // resize(options) {

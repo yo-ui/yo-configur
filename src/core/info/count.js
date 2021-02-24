@@ -1,4 +1,5 @@
 import bmCommon from "@/common/common";
+import Canvas from "../Canvas";
 
 class Count {
   // container;
@@ -17,8 +18,11 @@ class Count {
     // bmCommon.log(container);
     Count.count = count;
     return `
+    <span class="left">
       ${$vm.$lang("当前组件数量")}
     <span class="count" class="${count > 200 ? "red" : ""}">${count}</span>
+    </span>
+    <i class="el-icon-view" title="显示/隐藏"></i>
     `;
   }
 
@@ -41,7 +45,17 @@ class Count {
     Count.count = count;
   }
 
-  static event() {}
+  static event() {
+    let $container = $("#info_com_count");
+
+    //增加显示隐藏事件
+    $container.on("click", ".el-icon-view", function(e) {
+      e.stopPropagation();
+      window.requestAnimationFrame(() => {
+        Canvas.toggle();
+      });
+    });
+  }
 }
 
 export default Count;

@@ -9,7 +9,7 @@ class Panel extends Component {
 
   //组件样式
   comStyle() {
-    let { info = {}, gradientStyle = {} } = this;
+    let { info = {} } = this;
     let {
       width = "",
       height = "",
@@ -213,8 +213,8 @@ class Panel extends Component {
     super.refresh();
     let { info = {} } = this;
     bmCommon.log(`${info.type}刷新 `);
-    // let { id = "", content = "" } = info || {};
-    // $(`#${id}>.component`).html(content);
+    let { id = "" } = info || {};
+    $(`#${id}>.component`).css(this.comStyle());
   }
 
   event() {}

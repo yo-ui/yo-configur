@@ -3,8 +3,9 @@
   */
 
 import Count from "@/core/info/count.js";
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import Canvas from "../Canvas";
+import CanvasEvent from "../CanvasEvent";
 
 class WidgetList {
   // container;
@@ -62,6 +63,12 @@ class WidgetList {
   static remove(id) {
     $(`#info_com_${id}`).remove();
   }
+  // static show(id) {
+  //   $(`#info_com_${id}`).show();
+  // }
+  // static hide(id) {
+  //   $(`#info_com_${id}`).hide();
+  // }
 
   static titleTemplate(item) {
     let htmlArr = [];
@@ -161,14 +168,16 @@ class WidgetList {
       e.stopPropagation();
       let $this = $(this);
       let id = $this.data("id");
-      WidgetList.unactive();
-      $this.addClass("active");
-      Canvas.active(id);
+      // WidgetList.unactive();
+      // Canvas.unactive();
+      // $this.addClass("active");
+      // Canvas.active(id);
+      CanvasEvent.selectComAction(id);
     });
     //增加删除事件
     $container.on("click", ".el-icon-delete", function(e) {
       e.stopPropagation();
-      let $this = $(this);
+      let $this = $(this).parents(".title");
       let id = $this.data("id");
       WidgetList.remove();
       Canvas.remove(id);
@@ -177,17 +186,15 @@ class WidgetList {
     //增加显示隐藏事件
     $container.on("click", ".el-icon-view", function(e) {
       e.stopPropagation();
-      let $this = $(this);
+      let $this = $(this).parents(".title");
       let id = $this.data("id");
       let obj = window.bm_widgetMap[id];
       let { info = {} } = obj || {};
       let { show = true } = info || {};
       if (show) {
-        WidgetList.hide(id);
         Canvas.hide(id);
       } else {
         Canvas.show(id);
-        WidgetList.show(id);
       }
       $this.find(".red").html(!show ? "已显示" : "已隐藏");
       info.show = !show;
@@ -196,11 +203,27 @@ class WidgetList {
     //增加数据绑定事件
     $container.on("click", ".el-icon-link", function(e) {
       e.stopPropagation();
-      let $this = $(this);
+      let $this = $(this).parents(".title");
       let id = $this.data("id");
       let obj = window.bm_widgetMap[id];
       let { info = {} } = obj || {};
       $vm.$emit("bind-device", info);
+    });
+    //增加数据绑定事件
+    $container.on("click", ".el-icon-plus,.el-icon-minus", function(e) {
+      e.stopPropagation();
+      let $this = $(this);
+      let $parent = $this.parents(".title");
+      let id = $parent.data("id");
+      let $li = $(`#info_com_${id}`);
+      let $ul = $li.find("ul");
+      if ($this.hasClass("el-icon-plus")) {
+        $this.removeClass("el-icon-plus").addClass("el-icon-minus");
+        $ul.slideDown();
+      } else {
+        $this.removeClass("el-icon-minus").addClass("el-icon-plus");
+        $ul.slideUp();
+      }
     });
   }
 }

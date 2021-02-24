@@ -142,17 +142,17 @@
 
 <script>
 import bmCommon from "@/common/common";
-import WidgetList from "@/core/info/widget-list.js";
-import { Constants } from "@/common/env";
+// import WidgetList from "@/core/info/widget-list.js";
+// import { Constants } from "@/common/env";
 import { styles, datas } from "@/widgets/index";
 // import draggable from "vuedraggable";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
-const Props = {
-  type: [
-    "text" //静态文本
-  ]
-};
+// const Props = {
+//   type: [
+//     "text" //静态文本
+//   ]
+// };
 
 const watches = {};
 // for (let i in Constants.BASEDATA) {
@@ -186,18 +186,18 @@ export default {
     ]);
     return {
       tabList,
-      activeCom: { ...Constants.COMPONENTCANVAS },
-      widgetMap: {},
+      // activeCom: { ...Constants.COMPONENTCANVAS },
+      // widgetMap: {},
       // widgetList: [],
       activeIndex: tabList[0].code
     };
   },
   props: {
     type: {
-      type: String,
-      validator(value) {
-        return Props.type.indexOf(value) != -1;
-      }
+      type: String
+      // validator(value) {
+      //   return Props.type.indexOf(value) != -1;
+      // }
     }
   },
   components: {
@@ -209,12 +209,12 @@ export default {
     ...mapGetters({
       //widgetList: "canvas/getWidgetList"
       // widgetList: [],
-      canvas: "canvas/getCanvas", //画布属性
+      // canvas: "canvas/getCanvas", //画布属性
       // getActiveCom: "canvas/getActiveCom", //选中对象
-      selectBox: "canvas/getSelectBox", //选取框
-      // activeCom: "canvas/getActiveCom", //选中对象
-      moving: "canvas/getMoving", //组件是否移动
-      activeComs: "canvas/getActiveComs" //选中多选对象
+      // selectBox: "canvas/getSelectBox", //选取框
+      activeCom: "canvas/getActiveCom" //选中对象
+      // moving: "canvas/getMoving", //组件是否移动
+      // activeComs: "canvas/getActiveComs" //选中多选对象
     }),
     // activeCom() {
     //   let { activeComs = [], getActiveCom = {} } = this;
@@ -322,7 +322,7 @@ export default {
     // vm.$watch("someObject", callback, {
     //   deep: true
     // });
-    // this.initWatches(this.activeCom);
+    this.initWatches(this.activeCom);
   },
   methods: {
     ...mapMutations({
@@ -333,11 +333,10 @@ export default {
       // selectComAction: "canvas/selectCom",
       // selectComsAction: "canvas/selectComs"
     }),
-    initWatches(activeCom) {
-      if (!activeCom) {
-        return;
-      }
+    initWatches() {
+      let { activeCom = {} } = this;
       let { type = "" } = activeCom || {};
+      this._lastWatchType = type;
       for (let i in activeCom) {
         if (i != "id" && i !== "type") {
           let key = `activeCom.${i}`;
@@ -368,7 +367,8 @@ export default {
                 let { id = "" } = activeCom || {};
                 let obj = window.bm_widgetMap[id];
                 if (obj) {
-                  obj?.setInfo({ ...activeCom });
+                  // obj?.setInfo({ ...activeCom });
+                  obj?.setInfo(Object.freeze({ ...activeCom }));
                   obj?.refresh();
                 }
               }
@@ -380,16 +380,16 @@ export default {
         }
       }
     },
-    selectComEvent(item) {
-      // this.setActiveCom(item);
-      this.selectComsAction();
-      let { id = "" } = item || {};
-      this.selectComAction(id);
-    },
-    deleteEvent(item) {
-      this.selectComEvent(item);
-      $vm.$emit("delete-command");
-    },
+    // selectComEvent(item) {
+    //   // this.setActiveCom(item);
+    //   this.selectComsAction();
+    //   let { id = "" } = item || {};
+    //   this.selectComAction(id);
+    // },
+    // deleteEvent(item) {
+    //   this.selectComEvent(item);
+    //   $vm.$emit("delete-command");
+    // },
     // showEvent(obj) {
     //   let { getWidgetList = [] } = this;
     //   let item = getWidgetList.find(item => item.id == obj.id);
@@ -415,47 +415,50 @@ export default {
       //   this.dataInit(item);
       // });
       //watched 是否添加监听器
-      $vm.$on("info-data-active", (item = {}) => {
-        let { id = "", watched = true } = item || {};
-        let obj = window.bm_widgetMap[id];
-        let { info = {} } = obj || {};
-        let { canvas = {} } = this;
-        let { type = "" } = info || {};
-        if (!id) {
-          // info = Constants.COMPONENTCANVAS;
-          info = canvas;
-          // type = "canvas";
-        }
-        // activeCom.type = type;
-        // activeCom.id = id;
-        this.setTimeoutId = setTimeout(() => {
-          if (watched) {
-            this.initWatches(info);
-          }
-          this._lastWatchType = type;
-          this.activeCom = info;
-        }, 10);
-      });
-    },
+      // $vm.$on("info-data-active", (item = {}) => {
+      //   let { id = "", watched = true } = item || {};
+      //   let obj = window.bm_widgetMap[id];
+      //   let { info = {} } = obj || {};
+      //   let { canvas = {} } = this;
+      //   let { type = "" } = info || {};
+      //   if (!id) {
+      //     // info = Constants.COMPONENTCANVAS;
+      //     info = canvas;
+      //     // type = "canvas";
+      //   }
+      //   // activeCom.type = type;
+      //   // activeCom.id = id;
+      //   this.setTimeoutId = setTimeout(() => {
+      //     if (watched) {
+      //       this.initWatches(info);
+      //     }
+      //     this._lastWatchType = type;
+      //     this.activeCom = info;
+      //   }, 10);
+      // });
+      this.setTimeoutId = setTimeout(() => {
+        this.initWatches();
+      }, 10);
+    }
     // dataInit(item) {
     //   new WidgetList("#info_com_list_box", item);
     // },
-    showChildEvent(item) {
-      // bmCommon.log()
-      let { id = "" } = item || {};
-      let { widgetMap = {} } = this;
-      this.$set(widgetMap, id, !widgetMap[id]);
-      // bmCommon.log(widgetMap);
-    },
+    // showChildEvent(item) {
+    //   // bmCommon.log()
+    //   let { id = "" } = item || {};
+    //   let { widgetMap = {} } = this;
+    //   this.$set(widgetMap, id, !widgetMap[id]);
+    //   // bmCommon.log(widgetMap);
+    // },
     // loadComList() {
     //   let { widgetList = [] } = this;
     //   this.comList = bmCommon.clone(widgetList).sort((a, b) => {
     //     return b.order - a.order;
     //   });
     // },
-    addEvent(item = {}) {
-      $vm.$emit("bind-device", item);
-    }
+    // addEvent(item = {}) {
+    //   $vm.$emit("bind-device", item);
+    // }
   },
   watch: {
     "activeCom.type"(newVal, oldVal) {

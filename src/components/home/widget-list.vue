@@ -118,9 +118,9 @@
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
-import ComponentLibrary from "@/core/ComponentLibrary.js";
+// import ComponentLibrary from "@/core/ComponentLibrary.js";
 import Canvas from "@/core/Canvas.js";
-import WidgetList from "@/core/info/widget-list.js";
+// import WidgetList from "@/core/info/widget-list.js";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 const Props = {
@@ -317,7 +317,7 @@ export default {
         return;
       }
       // item = JSON.parse(item);
-      bmCommon.log(item);
+      // bmCommon.log(item);
       let indexes = item.split("-");
       let { length = 0 } = indexes || [];
       let index = 0;
@@ -399,7 +399,7 @@ export default {
       let { dataTransfer = {} } = originalEvent;
       let data = dataTransfer.getData("data");
 
-      bmCommon.log("data=", data);
+      // bmCommon.log("data=", data);
       if (data) {
         data = Object.freeze(typeof data === "string" ? JSON.parse(data) : {});
         let id = bmCommon.uuid();
@@ -543,6 +543,7 @@ export default {
       // }
       // widgetList.push(_item);
       canvas.action = "select";
+      Canvas.append(_item);
       // let _canvas_content = $("#canvas_content");
       // let obj = ComponentLibrary.getInstance(item);
       // let dom = obj.template();
@@ -551,7 +552,6 @@ export default {
       //   _canvas_content.append(_div[0]);
       //   WidgetList.append(item);
       // }
-      Canvas.append(item);
       // window.bm_widgetMap[id] = obj;
       this.createHistoryAction();
       this.selectComAction(id);

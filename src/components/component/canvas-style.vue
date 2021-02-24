@@ -388,6 +388,15 @@
           >
           <el-checkbox v-model="info.alignLineable"></el-checkbox>
         </p>
+        <p>
+          <el-tooltip content="只操作画布" placement="top" effect="dark">
+            <span class="label"> {{ $lang("只操作画布") }}:</span></el-tooltip
+          >
+          <el-checkbox
+            v-model="info.canvasOnly"
+            @change="canvasOnlyEvent"
+          ></el-checkbox>
+        </p>
         <template v-if="info.isGrid">
           <p>
             <span class="label"> {{ $lang("网格样式") }}:</span
@@ -839,13 +848,22 @@ export default {
       let { info = {} } = this;
       info.uploadPoster = url;
     },
+    canvasOnlyEvent() {
+      let { info = {} } = this;
+      let { canvasOnly = "" } = info || {};
+      if (canvasOnly) {
+        $("#canvas_content").hide();
+      } else {
+        $("#canvas_content").show();
+      }
+    },
     actionEvent(item) {
-      let { canvas = {} } = this;
-      let { action = "" } = canvas || {};
+      let { info = {} } = this;
+      let { action = "" } = info || {};
       if (action == item) {
         return;
       }
-      canvas.action = item;
+      info.action = item;
       if (item == "move") {
         this.unCanvasPaintEvent();
         this.canvasMoveEvent();

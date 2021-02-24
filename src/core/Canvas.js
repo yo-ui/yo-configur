@@ -1,4 +1,4 @@
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import ComponentLibrary from "@/core/ComponentLibrary";
 import { Constants } from "@/common/env";
 import WidgetList from "@/core/info/widget-list.js";
@@ -29,6 +29,27 @@ class Canvas {
   //删除
   static remove(id) {
     $(`#${id}`).remove();
+  }
+
+  static show(id) {
+    $(`#${id}`).show();
+  }
+  static hide(id) {
+    $(`#${id}`).hide();
+  }
+  //显示所有组件
+  static showAll() {
+    let $container = $("#canvas_content");
+    $container.show();
+  }
+  // 隐藏所有组件
+  static hideAll() {
+    let $container = $("#canvas_content");
+    $container.hide();
+  }
+  static toggle() {
+    let $container = $("#canvas_content");
+    $container.toggle();
   }
   // 初始化
   static init(widgetList) {
@@ -229,12 +250,34 @@ class Canvas {
       $(".bm-component-com:not(.active)").addClass("hide");
     }
   }
+
   //不优化显示
   static unoptimize() {
     //当组件数量大于200的时候 才进行显隐处理
     if (Count.count > Constants.widgetMaxCount) {
       $(".bm-component-com:not(.active)").removeClass("hide");
     }
+  }
+
+  static border() {
+    //当组件数量大于200的时候 才进行显隐处理
+    if (Count.count > Constants.widgetMaxCount) {
+      $(".bm-component-com:not(.active)")
+        .removeClass("hide")
+        .addClass("border");
+    }
+  }
+  static unborder() {
+    //当组件数量大于200的时候 才进行显隐处理
+    if (Count.count > Constants.widgetMaxCount) {
+      $(".bm-component-com:not(.active)")
+        .removeClass("border")
+        .addClass("hide");
+    }
+  }
+  //设置活动组件
+  static setActiveCom(item) {
+    $vm.$store.commit("canvas/setActiveCom", item);
   }
 
   // static refresh(item) {

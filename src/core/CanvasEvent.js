@@ -1,5 +1,5 @@
 import bmCommon from "@/common/common";
-import { Constants } from "@/common/env";
+// import { Constants } from "@/common/env";
 import Count from "@/core/info/count.js";
 import Canvas from "@/core/Canvas";
 import WidgetList from "@/core/info/widget-list";
@@ -39,16 +39,23 @@ class CanvasEvent {
     let delta = Math.max(-1, Math.min(1, wheel));
     // let scrollTop=$(".content-box").scrollTop()
     // bmCommon.log();
-    if (delta < 0) {
-      //向下滚动
-      bmCommon.log("向下滚动");
-      CanvasEvent.zoomEvent(-2);
-    } else {
-      //向上滚动
-      bmCommon.log("向上滚动");
-      CanvasEvent.zoomEvent(2);
+    if (state.scrolling) {
+      return;
     }
-    // return false;
+    state.scrolling = true;
+    CanvasEvent.scrollSetTimeoutId = setTimeout(() => {
+      clearTimeout(CanvasEvent.scrollSetTimeoutId);
+      if (delta < 0) {
+        //向下滚动
+        bmCommon.log("向下滚动", Date.now());
+        CanvasEvent.zoomEvent(-10);
+      } else {
+        //向上滚动
+        bmCommon.log("向上滚动", Date.now());
+        CanvasEvent.zoomEvent(10);
+      }
+      state.scrolling = false;
+    }, 30);
   }
 
   static viewBoxContextmenuEvent(e) {
@@ -109,32 +116,20 @@ class CanvasEvent {
     state.id = id;
     state.originWidth = width;
     state.originHeight = height;
-    state.moving = true;
-
+    state.moving = false;
     // 绑定鼠标移动事件
-    // document.addEventListener('mousemove', this.mousemoveEvent, true)
     $(document).on("mousemove", CanvasEvent.mousemoveEvent);
-    $(document).on("mouseup", CanvasEvent.mouseupEvent);
     // 取消鼠标移动事件
-    // document.addEventListener('mouseup', this.mouseupEvent, true)
-    CanvasEvent.loadRefreshScreen();
+    $(document).on("mouseup", CanvasEvent.mouseupEvent);
   }
 
-  static loadRefreshScreen() {
-    CanvasEvent.setIntervalId = setInterval(() => {
-      state.moving = true;
-      bmCommon.log("loadRefreshScreen 定时器正在处理");
-    }, 30);
-  }
+  // static loadRefreshScreen() {
+
+  // }
 
   static mousemoveEvent(e) {
     e.stopPropagation();
     // e.preventDefault();
-    // this.$vpd.commit('move', {
-    //   x: e.pageX,
-    //   y: e.pageY
-    // })
-
     let {
       startX,
       startY,
@@ -147,68 +142,50 @@ class CanvasEvent {
       // originY
     } = state;
     let zoom = Canvas.getZoom();
-    if (!moving) {
+    if (moving) {
       return;
     }
 
-    //当组件数量大于200的时候 才进行显隐处理
-    if (Count.count > Constants.widgetMaxCount) {
-      $(".bm-component-com:not(.active)")
-        .removeClass("hide")
-        .addClass("border");
-    }
-    state.moving = false;
-    let pos = bmCommon.getMousePosition(e);
-    let { x = "", y = "" } = pos || {};
-    bmCommon.log("mousemoveEvent组件移动", x, y);
-    // var target = state.activeCom;
-    var dx = x - startX;
-    var dy = y - startY;
-    // bmCommon.error(dx, dy);
-    if (!(Math.abs(dx) > 1 || Math.abs(dy) > 1)) {
-      return;
-    }
-    // let _com = $(`#${id}`);
-
-    let obj = window.bm_widgetMap[id];
-    let { info: activeCom = {} } = obj || {};
-    // var left = state.originX + Math.floor((dx * 100) / state.zoom);
-    // var top = state.originY + Math.floor((dy * 100) / state.zoom);
-    let { length = 0 } = activeComs || [];
-    // bmCommon.log("移动处理");
-    if (length > 1) {
-      activeComs.forEach(item => {
-        let { left = 0, top = 0 } = item || {};
-        // item.left = left > 0 ? left : 0;
-        // item.top = top > 0 ? top : 0;
-        item.left = left + Math.floor(dx / zoom);
-        item.top = top + Math.floor(dy / zoom);
-        // $(`#box_${id}`).css({ left, top });
-      });
-    } else {
-      let { left = 0, top = 0 } = activeCom || {};
-      // let left = parseFloat(_com.css("left"));
-      // let top = parseFloat(_com.css("top"));
-      // // left = originX + Math.floor((dx * 1) / zoom);
-      // // var top = originY + Math.floor((dy * 1) / zoom);
-      // // bmCommon.log(left , Math.floor(dx  / zoom),dx,dy)
-      // activeCom.left = left + Math.floor(dx / zoom);
-      // activeCom.top = top + Math.floor(dy / zoom);
-      left = left + Math.floor(dx / zoom);
-      top = top + Math.floor(dy / zoom);
-      // _com.css({ left, top });
-      activeCom.left = left;
-      activeCom.top = top;
-      obj.refresh({
-        left: activeCom.left,
-        top: activeCom.top
-      });
-      obj.setInfo(activeCom);
-      window.bm_widgetMap[id] = obj;
-    }
-    state.startX = x;
-    state.startY = y;
-    // bmCommon.log(left, top, activeCom);
+    state.moving = true;
+    Canvas.border();
+    CanvasEvent.comMovingSetTimeoutId = setTimeout(() => {
+      clearTimeout(CanvasEvent.comMovingSetTimeoutId);
+      let pos = bmCommon.getMousePosition(e);
+      let { x = "", y = "" } = pos || {};
+      bmCommon.log("mousemoveEvent组件移动", x, y, zoom);
+      var dx = x - startX;
+      var dy = y - startY;
+      if (!(Math.abs(dx) > 1 || Math.abs(dy) > 1)) {
+        state.moving = false;
+        return;
+      }
+      let obj = window.bm_widgetMap[id];
+      let { info: activeCom = {} } = obj || {};
+      let { length = 0 } = activeComs || [];
+      if (length > 1) {
+        activeComs.forEach(item => {
+          let { left = 0, top = 0 } = item || {};
+          item.left = left + dx / zoom;
+          item.top = top + dy / zoom;
+        });
+      } else {
+        let { left = 0, top = 0 } = activeCom || {};
+        left = left + dx / zoom;
+        top = top + dy / zoom;
+        activeCom.left = left;
+        activeCom.top = top;
+        obj.refresh({
+          left: activeCom.left,
+          top: activeCom.top
+        });
+        obj.setInfo(activeCom);
+        window.bm_widgetMap[id] = obj;
+      }
+      state.startX = x;
+      state.startY = y;
+      bmCommon.log("comMovingSetTimeoutId 定时器正在处理");
+      state.moving = false;
+    }, 30);
   }
 
   static mouseupEvent() {
@@ -217,12 +194,7 @@ class CanvasEvent {
     let { info: activeCom = {} } = obj || {};
     let { left = 0, top = 0 } = activeCom || {};
 
-    //当组件数量大于200的时候 才进行显隐处理
-    if (Count.count > Constants.widgetMaxCount) {
-      $(".bm-component-com:not(.active)")
-        .removeClass("border")
-        .addClass("hide");
-    }
+    Canvas.unborder();
     bmCommon.log("mouseupEvent组件移动", top, left);
     // document.removeEventListener('mousemove', this.mousemoveEvent, true)
     $(document).off("mousemove", CanvasEvent.mousemoveEvent);
@@ -872,7 +844,8 @@ class CanvasEvent {
 
       this.setTimeoutId = setTimeout(() => {
         clearTimeout(this.setTimeoutId);
-        $vm.$emit("info-data-active");
+        // $vm.$emit("info-data-active");
+        $vm.$store.commit("canvas/setActiveCom", Canvas.getCanvas());
         Canvas.unoptimize();
       }, 10);
     } else {
@@ -890,7 +863,11 @@ class CanvasEvent {
       // window.requestAnimationFrame(() => {
       this.setTimeoutId = setTimeout(() => {
         clearTimeout(this.setTimeoutId);
-        $vm.$emit("info-data-active", { id });
+
+        let obj = window.bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        // $vm.$emit("info-data-active", { id });
+        $vm.$store.commit("canvas/setActiveCom", info);
         Canvas.optimize();
       }, 10);
     }

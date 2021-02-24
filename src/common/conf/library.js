@@ -3217,6 +3217,7 @@ let componentCanvas = {
   backgroundSize: "",
   backgroundRepeat: "no-repeat", //背景图片是否平铺
   isGrid: true, //是否显示网格
+  canvasOnly: false, //是否只操作画布
   scaleable: false, //是否显示缩放
   locked: false, //是否可拖动 是否锁定
   alignLineable: true, //是否显示对齐线
