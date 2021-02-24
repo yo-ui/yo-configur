@@ -257,7 +257,6 @@ import bmNav from "@/components/nav";
 import bmWidgetList from "@/components/home/widget-list";
 import bmInfo from "@/components/home/info";
 import bmFooter from "@/components/footer";
-import mixins from "@/mixins";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -270,7 +269,7 @@ export default {
       condition: {
         canvasId: ""
       },
-      zoom: 100,
+      // zoom: 100,
       widgetList: [], //组件列表
       windowInnerWidth: window.innerWidth,
       windowInnerHeight: window.innerHeight,
@@ -432,14 +431,14 @@ export default {
       }
       return styles;
     },
-    // zoom: {
-    //   get() {
-    //     return this.getZoom * 100;
-    //   },
-    //   set(val) {
-    //     this.setZoom(val / 100);
-    //   }
-    // },
+    zoom: {
+      get() {
+        return this.getZoom * 100;
+      },
+      set(val) {
+        this.setZoom(val / 100);
+      }
+    },
     gridStyle() {
       let { canvas = {} } = this;
       let { isGrid = false, gridStyle = {} } = canvas || {};
@@ -543,10 +542,10 @@ export default {
   methods: {
     ...mapMutations({
       // setOrganizeList: "common/setOrganizeList",
-      // setZoom: "canvas/setZoom",
+      setZoom: "canvas/setZoom",
       // // setWidgetList: "canvas/setWidgetList", //设置组件列表
       // setActiveCom: "canvas/setActiveCom", //设置当前选中组件
-      // setCanvas: "canvas/setCanvas",
+      setCanvas: "canvas/setCanvas"
       // setCanvasData: "canvas/setCanvasData",
       // setActiveComs: "canvas/setActiveComs",
       // initMove: "canvas/initMove",
@@ -569,6 +568,22 @@ export default {
       commonDeviceListAction: "commonDeviceList",
       commonDevicePointHstDataAction: "commonDevicePointHstData"
     }),
+    zoomEvent(val) {
+      let { getZoom: zoom = 0, canvas = {} } = this;
+      if (val) {
+        bmCommon.log("当前放大before", zoom, val);
+        zoom = zoom * 100 + val;
+        bmCommon.log("当前放大", zoom, zoom / 100);
+        if (zoom > 10 && zoom < 1000) {
+          bmCommon.log("当前放大设置");
+          this.setZoom(zoom / 100);
+        }
+      } else {
+        this.setZoom(1);
+        canvas.left = 0;
+        canvas.top = 0;
+      }
+    },
     init() {
       this.initEvent();
       let { condition, canvas = {}, $route } = this;
@@ -611,100 +626,63 @@ export default {
           canvas.canvasType = type; //1为编辑   2为预览
           canvas.left = 0;
           canvas.top = 0;
-          // this.setCanvas(canvas);
-          let widgets = [];
-          widgetList.forEach(item => {
-            let { alias = "", type = "", bindData = {} } = item || {};
-            if (!alias) {
-              alias = type;
-            }
-            let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
-            let { data = {}, children = [] } = _item || {};
-            let {
-              infoType = "",
-              dataType = "",
-              bindData: _bindData = {},
-              styleCode = "",
-              dataCode = ""
-            } = data || {};
-            for (let i in data) {
-              if (!item[i]) {
-                item[i] = data[i];
-              }
-            }
-            item.bindData = { ..._bindData, ...bindData };
-
-            item.infoType = infoType;
-            item.dataType = dataType;
-            item.styleCode = styleCode;
-            item.show = true;
-            item.dataCode = dataCode;
-            item.alias = alias;
-            children &&
-              children.forEach(item => {
-                let { alias = "", type = "", bindData = {} } = item || {};
-                if (!alias) {
-                  alias = type;
-                }
-                item.bindData = { ..._bindData, ...bindData };
-                item.infoType = infoType;
-                item.dataType = dataType;
-                item.styleCode = styleCode;
-                item.show = true;
-                item.dataCode = dataCode;
-                item.alias = alias;
-              });
-            if (type && type != "canvas") {
-              widgets.push(item);
-            }
-          });
+          this.setCanvas(canvas);
           // this.setWidgetList(widgets || []);
 
           //创建组件列表
-          this.createComponents(widgets);
-          //加载 info 数据初始化
-          $vm.$emit("info-data-init", {
-            count: widgets.length,
-            widgets: widgets.map(item => {
-              let {
-                children = [],
-                id = "",
-                comName = "",
-                type = "",
-                name = "",
-                dataType = "",
-                bindData = {}
-              } = item || {};
-              children = children.map(_item => {
-                return {
-                  id: _item.id,
-                  name: _item.name,
-                  comName: _item.comName,
-                  type: _item.type,
-                  bindData: _item.bindData,
-                  dataType: _item.dataType
-                };
-              });
-              return { id, comName, type, children, name, dataType, bindData };
-            })
+          Core.init(widgetList, widgets => {
+            $vm.$emit("info-data-init", {
+              count: widgets.length,
+              widgets
+            });
+            CanvasEvent.resizeCanvasSize();
+            this.loadWebsocketData(widgets);
           });
+          // //加载 info 数据初始化
+          // $vm.$emit("info-data-init", {
+          //   count: widgets.length,
+          //   widgets: infoWidgets
+          //   // widgets.map(item => {
+          //   //   let {
+          //   //     children = [],
+          //   //     id = "",
+          //   //     comName = "",
+          //   //     type = "",
+          //   //     name = "",
+          //   //     dataType = "",
+          //   //     bindData = {}
+          //   //   } = item || {};
+          //   //   children = children.map(_item => {
+          //   //     return {
+          //   //       id: _item.id,
+          //   //       name: _item.name,
+          //   //       comName: _item.comName,
+          //   //       type: _item.type,
+          //   //       bindData: _item.bindData,
+          //   //       dataType: _item.dataType
+          //   //     };
+          //   //   });
+          //   //   return { id, comName, type, children, name, dataType, bindData };
+          //   // })
+          // });
           // this.setCanvasData(data);
-          CanvasEvent.resizeCanvasSize();
-          // this.selectComAction();
-          this.loadWebsocketData(widgetList);
+          // CanvasEvent.resizeCanvasSize();
+          // // this.selectComAction();
+          // this.loadWebsocketData(widgetList);
         } else {
           //创建组件列表
-          this.createComponents();
-          this.$nextTick(() => {
-            let $canvasBox = $(this.$refs.canvasBox);
-            let { canvas = {} } = this;
-            let width = $canvasBox.innerWidth();
-            let height = $canvasBox.innerHeight();
-            canvas.width = width;
-            canvas.height = height;
-            CanvasEvent.resizeCanvasSize();
-            // this.selectComAction();
-            this.dataLoadingStatus = false;
+          Core.init([], () => {
+            this.$nextTick(() => {
+              let $canvasBox = $(this.$refs.canvasBox);
+              let { canvas = {} } = this;
+              let width = $canvasBox.innerWidth();
+              let height = $canvasBox.innerHeight();
+              canvas.width = width;
+              canvas.height = height;
+              CanvasEvent.resizeCanvasSize();
+              // this.selectComAction();
+              this.dataLoadingStatus = false;
+            });
           });
         }
         this.createHistoryAction();
@@ -722,9 +700,9 @@ export default {
         // // this.loadReportDeviceList();
       });
     },
-    setZoom(zoom) {
-      this.zoom = zoom;
-    },
+    // setZoom(zoom) {
+    //   this.zoom = zoom;
+    // },
     initEvent() {
       // let viewBox = this.$refs.viewBox;
       // // 注册鼠标事件
@@ -760,6 +738,10 @@ export default {
         this.$refs.bmUploadBox.show(item);
       });
       //注册显示控制处理事件
+      $vm.$on("zoom", item => {
+        this.zoomEvent(item);
+      });
+      //注册缩放处理事件
       $vm.$on("control", item => {
         this.$refs.bmControl.show(item);
       });
@@ -836,20 +818,20 @@ export default {
       }
     },
     //创建组件
-    createComponents(widgets) {
-      Core.init(widgets);
-      // let canvas_content = document.getElementById("canvas_content");
-      // let fregment = document.createDocumentFragment("div");
+    // createComponents(widgets) {
+    //   Core.init(widgets);
+    //   // let canvas_content = document.getElementById("canvas_content");
+    //   // let fregment = document.createDocumentFragment("div");
 
-      // for (let i = 0, len = widgets.length; i < len; i++) {
-      //   let item = widgets[i];
-      //   let _div = $(ComponentLibrary.getInstance(item).template());
-      //   fregment.appendChild(_div[0]);
-      // }
-      // canvas_content.appendChild(fregment);
-      // //初始化事件
-      // Event.init();
-    },
+    //   // for (let i = 0, len = widgets.length; i < len; i++) {
+    //   //   let item = widgets[i];
+    //   //   let _div = $(ComponentLibrary.getInstance(item).template());
+    //   //   fregment.appendChild(_div[0]);
+    //   // }
+    //   // canvas_content.appendChild(fregment);
+    //   // //初始化事件
+    //   // Event.init();
+    // },
     // 获取画布信息
     canvasGetFunc(callback) {
       let value = {};

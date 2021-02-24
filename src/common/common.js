@@ -402,9 +402,9 @@ let common = {
           localStorage.removeItem(key);
         }
       }
-    } catch (oException) {
-      if (oException.name == "QuotaExceededError") {
-        common.log("超出本地存储限额！");
+    } catch (err) {
+      if (err.name == "QuotaExceededError") {
+        common.log("超出本地存储限额！", err);
         //如果历史信息不重要了，可清空后再设置
         let userInfo = $vm.$store.getters.getUserInfo;
         localStorage.clear();

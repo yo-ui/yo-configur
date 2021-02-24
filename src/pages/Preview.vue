@@ -302,9 +302,18 @@ export default {
       );
       let { widgetList = [], canvas = {} } = previewData || {};
       let widgets = [];
+      let infoWidgets = [];
       // widgetList = Object.freeze(widgetList);
       widgetList.forEach(item => {
-        let { alias = "", type = "", bindData = {} } = item || {};
+        let {
+          alias = "",
+          type = "",
+          bindData = {},
+          children = [],
+          id = "",
+          comName = "",
+          name = ""
+        } = item || {};
         if (!alias) {
           alias = type;
         }
@@ -328,8 +337,57 @@ export default {
         item.styleCode = styleCode;
         item.dataCode = dataCode;
         item.alias = alias;
+        let infoChildern = [];
+        let { length = 0 } = children || [];
+        if (length > 0) {
+          children.forEach(item => {
+            let { alias = "", type = "", bindData = {} } = item || {};
+            if (!alias) {
+              alias = type;
+            }
+            let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
+            let { data = {} } = _item || {};
+            let {
+              infoType = "",
+              dataType = "",
+              bindData: _bindData = {},
+              styleCode = "",
+              dataCode = ""
+            } = data || {};
+            for (let i in data) {
+              if (!item[i]) {
+                item[i] = data[i];
+              }
+            }
+            item.bindData = { ..._bindData, ...bindData };
+            item.infoType = infoType;
+            item.dataType = dataType;
+            item.styleCode = styleCode;
+            item.show = true;
+            item.dataCode = dataCode;
+            item.alias = alias;
+            infoChildern.push({
+              id,
+              comName,
+              type,
+              children: [],
+              name,
+              dataType,
+              bindData: item.bindData
+            });
+          });
+        }
         if (type && type != "canvas") {
           widgets.push(item);
+          infoWidgets.push({
+            id,
+            comName,
+            type,
+            children: infoChildern,
+            name,
+            dataType,
+            bindData: item.bindData
+          });
         }
       });
       // this.setWidgetList(widgets || []);

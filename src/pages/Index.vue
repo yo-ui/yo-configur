@@ -110,6 +110,7 @@
             </div>
             <bm-com
               class="edit"
+              :count="widgetList.length"
               v-for="(item, index) in widgetList"
               :data-type="item.type"
               :data-id="item.id"
@@ -119,6 +120,7 @@
               <template v-if="item.children && item.children.length > 0">
                 <bm-com
                   class="edit"
+                  :count="widgetList.length"
                   v-for="(_item, _index) in item.children"
                   :data-type="_item.type"
                   :data-id="_item.id"
@@ -602,13 +604,22 @@ export default {
           canvas.top = 0;
           this.setCanvas(canvas);
           let widgets = [];
+          let infoWidgets = [];
           widgetList.forEach(item => {
-            let { alias = "", type = "", bindData = {} } = item || {};
+            let {
+              alias = "",
+              type = "",
+              bindData = {},
+              children = [],
+              id = "",
+              comName = "",
+              name = ""
+            } = item || {};
             if (!alias) {
               alias = type;
             }
             let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
-            let { data = {}, children = [] } = _item || {};
+            let { data = {} } = _item || {};
             let {
               infoType = "",
               dataType = "",
@@ -629,11 +640,34 @@ export default {
             item.show = true;
             item.dataCode = dataCode;
             item.alias = alias;
-            children &&
+            let infoChildern = [];
+            let { length = 0 } = children || [];
+            if (length > 0) {
               children.forEach(item => {
-                let { alias = "", type = "", bindData = {} } = item || {};
+                let {
+                  alias = "",
+                  type = "",
+                  bindData = {},
+                  id = "",
+                  comName = "",
+                  name = ""
+                } = item || {};
                 if (!alias) {
                   alias = type;
+                }
+                let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
+                let { data = {} } = _item || {};
+                let {
+                  infoType = "",
+                  dataType = "",
+                  bindData: _bindData = {},
+                  styleCode = "",
+                  dataCode = ""
+                } = data || {};
+                for (let i in data) {
+                  if (!item[i]) {
+                    item[i] = data[i];
+                  }
                 }
                 item.bindData = { ..._bindData, ...bindData };
                 item.infoType = infoType;
@@ -642,9 +676,28 @@ export default {
                 item.show = true;
                 item.dataCode = dataCode;
                 item.alias = alias;
+                infoChildern.push({
+                  id,
+                  comName,
+                  type,
+                  children: [],
+                  name,
+                  dataType,
+                  bindData: item.bindData
+                });
               });
+            }
             if (type && type != "canvas") {
               widgets.push(item);
+              infoWidgets.push({
+                id,
+                comName,
+                type,
+                children: infoChildern,
+                name,
+                dataType,
+                bindData: item.bindData
+              });
             }
           });
           this.setWidgetList(widgets || []);
@@ -1273,18 +1326,18 @@ export default {
         let copyCom = null;
         if (length > 1) {
           copyCom = bmCommon.clone(activeComs || []);
-          copyCom.forEach(item => {
-            item.left = item.left + 10;
-            item.top = item.top + 10;
-          });
+          // copyCom.forEach(item => {
+          //   item.left = item.left + 10;
+          //   item.top = item.top + 10;
+          // });
         } else {
           let { type = "" } = activeCom || {};
           if (type == "canvas") {
             return;
           }
           copyCom = bmCommon.clone(activeCom || {});
-          copyCom.left = copyCom.left + 10;
-          copyCom.top = copyCom.top + 10;
+          // copyCom.left = copyCom.left + 10;
+          // copyCom.top = copyCom.top + 10;
         }
         this.copyCom = copyCom;
         this.showContextMenuStatus = false;
@@ -1344,8 +1397,8 @@ export default {
             ...item,
             id,
             order,
-            left,
-            top
+            left: left + 10,
+            top: top + 10
           };
           let { children = [] } = _item || {};
           children &&
@@ -1361,6 +1414,7 @@ export default {
             // _activeCom = _item;
             this.selectComAction(id);
           }
+          return _item;
         };
         if (length > 1) {
           copyCom.sort((a, b) => {
@@ -1376,12 +1430,14 @@ export default {
           // );
           // let [first = {}] = copyCom || [];
           // let { left = 0, top = 0 } = first || {};
+          let copyArr = [];
           copyCom.forEach((item, index) => {
             // //设置粘贴初始位置
             // item.pasteLeft = item.left - minLeft;
             // item.pasteTop = item.top - minTop;
-            callback(item, index);
+            copyArr.push(callback(item, index));
           });
+          this.copyCom = copyArr || [];
           // this.setActiveComs(_activeComs);
           // this.$nextTick(() => {
           //   let [obj = {}] = _activeComs || [];
@@ -1393,7 +1449,7 @@ export default {
           if (type == "canvas" || !type) {
             return;
           }
-          callback(copyCom || {}, 0);
+          this.copyCom = callback(copyCom || {}, 0);
           // this.$nextTick(() => {
           //   // this.setActiveCom(_activeCom);
           //   this.selectComAction((_activeCom || {}).id); //选中组件

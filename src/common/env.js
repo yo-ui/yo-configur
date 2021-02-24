@@ -90,9 +90,11 @@ const Constants = {
     USERKEY: {
       USERINFO: PLATFORM + "_USER_INFO", //用户信息key
       PREVIEWDATA: PLATFORM + "_PREVIEW_DATA", //用户操作组件列表
+      CANVASDATA: PLATFORM + "_CANVAS_DATA", //用户操作组件列表
       RECORDLIST: PLATFORM + "_RECORD_LIST" //用户记录
     }
   },
+  widgetMaxCount: 200,
   // 组件map
   COMPONENTLIBRARY,
   COMPONENTLIBRARYMAP,

@@ -119,6 +119,7 @@
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 import ComponentLibrary from "@/core/ComponentLibrary.js";
+import Canvas from "@/core/Canvas.js";
 import WidgetList from "@/core/info/widget-list.js";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
@@ -189,8 +190,8 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
-      setDraging: "canvas/setDraging" //设置连接点信息
+      // setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
+      // setDraging: "canvas/setDraging" //设置连接点信息
     }),
     ...mapActions({
       selectComAction: "canvas/selectCom",
@@ -386,7 +387,7 @@ export default {
       $(document).off("dragover", this.dragoverEvent);
       // $(document).off("drop", this.dropEvent);
       $(".content-box").off("drop", this.dropEvent);
-      this.setDraging(false);
+      // this.setDraging(false);
     },
     dropEvent(e) {
       e.preventDefault();
@@ -447,14 +448,16 @@ export default {
         // widgetList.push(item);
         bmCommon.log(item);
 
-        let _canvas_content = $("#canvas_content");
-        let obj = ComponentLibrary.getInstance(item);
-        let dom = obj.template();
-        if (dom) {
-          let _div = $(obj.template());
-          _canvas_content.append(_div[0]);
-        }
-        window.bm_widgetMap[id] = obj;
+        // let _canvas_content = $("#canvas_content");
+        // let obj = ComponentLibrary.getInstance(item);
+        // let dom = obj.template();
+        // if (dom) {
+        //   let _div = $(obj.template());
+        //   _canvas_content.append(_div[0]);
+        //   WidgetList.append(item)
+        // }
+        // window.bm_widgetMap[id] = obj;
+        Canvas.append(item);
         canvas.action = "select";
         this.createHistoryAction();
         this.$nextTick(() => {
@@ -540,15 +543,16 @@ export default {
       // }
       // widgetList.push(_item);
       canvas.action = "select";
-      let _canvas_content = $("#canvas_content");
-      let obj = ComponentLibrary.getInstance(item);
-      let dom = obj.template();
-      if (dom) {
-        let _div = $(obj.template());
-        _canvas_content.append(_div[0]);
-        WidgetList.append(item);
-      }
-      window.bm_widgetMap[id] = obj;
+      // let _canvas_content = $("#canvas_content");
+      // let obj = ComponentLibrary.getInstance(item);
+      // let dom = obj.template();
+      // if (dom) {
+      //   let _div = $(obj.template());
+      //   _canvas_content.append(_div[0]);
+      //   WidgetList.append(item);
+      // }
+      Canvas.append(item);
+      // window.bm_widgetMap[id] = obj;
       this.createHistoryAction();
       this.selectComAction(id);
       // this.createRecordAction();

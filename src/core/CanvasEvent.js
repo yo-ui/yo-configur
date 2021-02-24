@@ -1,5 +1,8 @@
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
+import Count from "@/core/info/count.js";
+import Canvas from "@/core/Canvas";
+import WidgetList from "@/core/info/widget-list";
 const state = {};
 class CanvasEvent {
   constructor() {}
@@ -25,6 +28,8 @@ class CanvasEvent {
         e.preventDefault();
       });
     }
+
+    CanvasEvent.selectComAction();
   }
 
   static mouseScrollEvent(e) {
@@ -136,17 +141,22 @@ class CanvasEvent {
       activeComs = [],
       // activeCom = {},
       id = "",
-      zoom = 1,
+      // zoom = 1,
       moving = false
       // originX,
       // originY
     } = state;
+    let zoom = Canvas.getZoom();
     if (!moving) {
       return;
     }
-    $(".bm-component-com:not(.active)")
-      .removeClass("hide")
-      .addClass("border");
+
+    //当组件数量大于200的时候 才进行显隐处理
+    if (Count.count > Constants.widgetMaxCount) {
+      $(".bm-component-com:not(.active)")
+        .removeClass("hide")
+        .addClass("border");
+    }
     state.moving = false;
     let pos = bmCommon.getMousePosition(e);
     let { x = "", y = "" } = pos || {};
@@ -206,9 +216,13 @@ class CanvasEvent {
     let obj = window.bm_widgetMap[id];
     let { info: activeCom = {} } = obj || {};
     let { left = 0, top = 0 } = activeCom || {};
-    $(".bm-component-com:not(.active)")
-      .removeClass("border")
-      .addClass("hide");
+
+    //当组件数量大于200的时候 才进行显隐处理
+    if (Count.count > Constants.widgetMaxCount) {
+      $(".bm-component-com:not(.active)")
+        .removeClass("border")
+        .addClass("hide");
+    }
     bmCommon.log("mouseupEvent组件移动", top, left);
     // document.removeEventListener('mousemove', this.mousemoveEvent, true)
     $(document).off("mousemove", CanvasEvent.mousemoveEvent);
@@ -570,7 +584,7 @@ class CanvasEvent {
       w_width = 1280;
     }
     w_width = w_width - rightWidth - leftWidth;
-    let { canvas = {} } = this;
+    let canvas = Canvas.getCanvas();
     let { width = 0 } = canvas || {};
     // let h_ratio = w_height / height;
     let w_ratio = w_width / width;
@@ -584,27 +598,14 @@ class CanvasEvent {
     // }
     // canvas.left = left;
     // canvas.top = top;
-    CanvasEvent.setZoom(scale);
+    Canvas.setZoom(scale);
     // });
   }
 
-  static setZoom() {}
+  // static setZoom() {}
 
   static zoomEvent(val = 0) {
-    let { getZoom: zoom = 0, canvas = {} } = this;
-    if (val) {
-      bmCommon.log("当前放大before", zoom);
-      zoom = zoom * 100 + val;
-      bmCommon.log("当前放大", zoom, zoom / 100);
-      if (zoom > 10 && zoom < 1000) {
-        bmCommon.log("当前放大设置");
-        CanvasEvent.setZoom(zoom / 100);
-      }
-    } else {
-      CanvasEvent.setZoom(1);
-      canvas.left = 0;
-      canvas.top = 0;
-    }
+    $vm.$emit("zoom", val);
   }
   // resizeEvent(){
   //   let {canvas={}}=this
@@ -701,16 +702,11 @@ class CanvasEvent {
     this.selectComAction();
     this._navTimeoutId = window.requestAnimationFrame(() => {
       clearTimeout(this._navTimeoutId);
-      let {
-        copyCom,
-        widgetList = [],
-        getZoom: zoom = 1,
-        canvas = {},
-        selectBox = {}
-      } = this;
+      let { copyCom, widgetList = [], canvas = {}, selectBox = {} } = this;
       if (!copyCom) {
         return;
       }
+      let zoom = Canvas.getZoom();
       selectBox.moving = true;
       let { length = 0 } = copyCom || {};
       // let _activeComs = [];
@@ -863,34 +859,39 @@ class CanvasEvent {
     // } = state;
     // activeCom.showCoverStatus = true;
     bmCommon.log("selectComAction", id);
-    let _oldCom = $("#canvas_content .bm-component-com.active");
+    // let _oldCom = $("#canvas_content .bm-component-com.active");
+    // _oldCom.removeClass("active");
 
-    let _infoOldCom = $(`#info_com_list_box li.active`);
-    _infoOldCom.removeClass("active");
-    _oldCom.removeClass("active");
+    // let _infoOldCom = $(`#info_com_list_box li.active`);
+    // _infoOldCom.removeClass("active");
+    Canvas.unactive();
+    WidgetList.unactive();
+    bmCommon.log("当前组件数量为", Count.count);
     if (!id) {
       // activeCom = Constants.COMPONENTCANVAS;
 
       this.setTimeoutId = setTimeout(() => {
         clearTimeout(this.setTimeoutId);
         $vm.$emit("info-data-active");
-        $(".bm-component-com:not(.active)").removeClass("hide");
+        Canvas.unoptimize();
       }, 10);
     } else {
       // let obj = window.bm_widgetMap[id];
       // let { info: activeCom = {} } = obj || {};
 
-      let _com = $(`#${id}`);
-      _com.addClass("active");
-      let _infoCom = $(`#info_com_${id}`);
-      _infoCom.addClass("active");
-      _infoCom.length > 0 && _infoCom[0].scrollIntoView();
+      // let _com = $(`#${id}`);
+      // _com.addClass("active");
+      // let _infoCom = $(`#info_com_${id}`);
+      // _infoCom.addClass("active");
+      // _infoCom.length > 0 && _infoCom[0].scrollIntoView();
+      Canvas.active(id);
+      WidgetList.active(id);
 
       // window.requestAnimationFrame(() => {
       this.setTimeoutId = setTimeout(() => {
         clearTimeout(this.setTimeoutId);
         $vm.$emit("info-data-active", { id });
-        $(".bm-component-com:not(.active)").addClass("hide");
+        Canvas.optimize();
       }, 10);
     }
     window.bm_active_com_id = id;

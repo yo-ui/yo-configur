@@ -61,7 +61,7 @@ class Event {
 
     state.direction = direction;
     // this.setActiveCom(info);
-    $vm.$store.commit("canvas/setActiveCom", info);
+    // $vm.$store.commit("canvas/setActiveCom", info);
     Event.initMove({
       startX: x,
       startY: y,

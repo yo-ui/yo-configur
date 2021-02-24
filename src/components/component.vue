@@ -153,7 +153,7 @@
 <script>
 import bmCommon from "@/common/common";
 import { widgets } from "@/widgets/index";
-// import { Constants } from "@/common/env";
+import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 const state = {};
@@ -172,6 +172,10 @@ export default {
       default: () => {
         return {};
       }
+    },
+    count: {
+      type: Number,
+      default: 0
     }
     // type: {
     //   type: String,
@@ -264,7 +268,9 @@ export default {
         animate = "",
         locked = false,
         activeComIds = "",
-        showType = ""
+        activeCom = {},
+        showType = "",
+        count = 0
       } = this;
       let { type = "" } = info || {};
       let classes = [];
@@ -279,7 +285,12 @@ export default {
         if (activeComIds.indexOf(info.id) > -1) {
           classes.push("active");
         } else {
-          if (type !== "canvas") {
+          //选中的不为画布，并且总组件数大于200 才不显示其它
+          if (
+            activeCom.type !== "canvas" &&
+            activeComIds.length < 2 &&
+            count > Constants.widgetMaxCount
+          ) {
             classes.push("hide");
           }
         }

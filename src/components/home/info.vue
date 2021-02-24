@@ -186,10 +186,7 @@ export default {
     ]);
     return {
       tabList,
-      activeCom: {
-        type: "canvas",
-        id: ""
-      },
+      activeCom: { ...Constants.COMPONENTCANVAS },
       widgetMap: {},
       // widgetList: [],
       activeIndex: tabList[0].code
@@ -211,7 +208,7 @@ export default {
   computed: {
     ...mapGetters({
       //widgetList: "canvas/getWidgetList"
-      widgetList: [],
+      // widgetList: [],
       canvas: "canvas/getCanvas", //画布属性
       // getActiveCom: "canvas/getActiveCom", //选中对象
       selectBox: "canvas/getSelectBox", //选取框
@@ -316,11 +313,10 @@ export default {
   },
   mounted() {
     this.init();
+    // this.activeCom = this.canvas;
     bmCommon.log("info style 初始化");
   },
-  created() {
-    this.activeCom = this.canvas;
-  },
+  created() {},
   updated() {
     bmCommon.log("info style update");
     // vm.$watch("someObject", callback, {
@@ -347,6 +343,9 @@ export default {
           let key = `activeCom.${i}`;
           // bmCommon.log("initWatches", key);
           watches[key] && watches[key]();
+          if (type === "canvas") {
+            continue;
+          }
           watches[key] = this.$watch(
             key,
             (newVal, oldVal) => {
@@ -412,18 +411,19 @@ export default {
     // },
     init() {
       // this.loadComList();
-      $vm.$on("info-data-init", (item = {}) => {
-        this.dataInit(item);
-      });
+      // $vm.$on("info-data-init", (item = {}) => {
+      //   this.dataInit(item);
+      // });
       //watched 是否添加监听器
       $vm.$on("info-data-active", (item = {}) => {
         let { id = "", watched = true } = item || {};
         let obj = window.bm_widgetMap[id];
         let { info = {} } = obj || {};
-        // let { activeCom = {} } = this;
+        let { canvas = {} } = this;
         let { type = "" } = info || {};
         if (!id) {
-          info = Constants.COMPONENTCANVAS;
+          // info = Constants.COMPONENTCANVAS;
+          info = canvas;
           // type = "canvas";
         }
         // activeCom.type = type;
@@ -437,9 +437,9 @@ export default {
         }, 10);
       });
     },
-    dataInit(item) {
-      new WidgetList("#info_com_list_box", item);
-    },
+    // dataInit(item) {
+    //   new WidgetList("#info_com_list_box", item);
+    // },
     showChildEvent(item) {
       // bmCommon.log()
       let { id = "" } = item || {};
