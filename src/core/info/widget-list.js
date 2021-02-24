@@ -54,10 +54,12 @@ class WidgetList {
     _infoOldCom.removeClass("active");
   }
   // 激活
-  static active(id) {
+  static active(id, flag = true) {
     let _infoCom = $(`#info_com_${id}>.title`);
     _infoCom.addClass("active");
-    _infoCom.length > 0 && _infoCom[0].scrollIntoView();
+    if (flag) {
+      _infoCom.length > 0 && _infoCom[0].scrollIntoView();
+    }
   }
   //删除
   static remove(id) {
@@ -137,6 +139,12 @@ class WidgetList {
       htmlArr.push(`</ul>`);
     }
     htmlArr.push(`</li>`);
+
+    // 加载组件绑定数据
+    let obj = window.bm_widgetMap[id];
+    if (obj && obj.loadData) {
+      obj?.loadData();
+    }
     return htmlArr.join("");
   }
   // 获取模板
@@ -172,7 +180,7 @@ class WidgetList {
       // Canvas.unactive();
       // $this.addClass("active");
       // Canvas.active(id);
-      CanvasEvent.selectComAction(id);
+      CanvasEvent.selectComAction(id, false);
     });
     //增加删除事件
     $container.on("click", ".el-icon-delete", function(e) {

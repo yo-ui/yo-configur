@@ -207,7 +207,8 @@ class CanvasEvent {
     obj.info = { ...activeCom };
     clearInterval(CanvasEvent.setIntervalId);
     window.requestAnimationFrame(() => {
-      $vm.$emit("info-data-active", { id, watched: false });
+      // $vm.$emit("info-data-active", { id, watched: false });
+      Canvas.setActiveCom(id);
     });
   }
 
@@ -822,7 +823,7 @@ class CanvasEvent {
 
   static selectComsAction() {}
 
-  static selectComAction(id) {
+  static selectComAction(id, flag = true) {
     // let {
     //   // widgetList = [],
     //   // canvas = {},
@@ -845,7 +846,8 @@ class CanvasEvent {
       this.setTimeoutId = setTimeout(() => {
         clearTimeout(this.setTimeoutId);
         // $vm.$emit("info-data-active");
-        $vm.$store.commit("canvas/setActiveCom", Canvas.getCanvas());
+        // $vm.$store.commit("canvas/setActiveCom", Canvas.getCanvas());
+        Canvas.setActiveCom();
         Canvas.unoptimize();
       }, 10);
     } else {
@@ -858,16 +860,17 @@ class CanvasEvent {
       // _infoCom.addClass("active");
       // _infoCom.length > 0 && _infoCom[0].scrollIntoView();
       Canvas.active(id);
-      WidgetList.active(id);
+      WidgetList.active(id, flag);
 
       // window.requestAnimationFrame(() => {
       this.setTimeoutId = setTimeout(() => {
         clearTimeout(this.setTimeoutId);
 
-        let obj = window.bm_widgetMap[id];
-        let { info = {} } = obj || {};
+        // let obj = window.bm_widgetMap[id];
+        // let { info = {} } = obj || {};
         // $vm.$emit("info-data-active", { id });
-        $vm.$store.commit("canvas/setActiveCom", info);
+        // $vm.$store.commit("canvas/setActiveCom", info);
+        Canvas.setActiveCom(id);
         Canvas.optimize();
       }, 10);
     }

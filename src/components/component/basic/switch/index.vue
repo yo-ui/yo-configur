@@ -90,7 +90,7 @@ export default {
         styles["border-radius"] = `${height / 2}px`;
       }
       if (openSliderColor) {
-        styles["backgroundColor"] = openSliderColor;
+        styles["background-color"] = openSliderColor;
       }
       if (sliderBorderColor) {
         styles["borderColor"] = sliderBorderColor;
@@ -118,7 +118,7 @@ export default {
         styles["border-radius"] = `${height / 2}px`;
       }
       if (closeSliderColor) {
-        styles["backgroundColor"] = closeSliderColor;
+        styles["background-color"] = closeSliderColor;
       }
       if (sliderBorderColor) {
         styles["borderColor"] = sliderBorderColor;
@@ -288,11 +288,11 @@ export default {
       styles[
         "border-radius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
-      styles["backgroundColor"] = content ? activeColor : inactiveColor;
+      styles["background-color"] = content ? activeColor : inactiveColor;
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {
-          styles["backgroundColor"] = backgroundColor;
+          styles["background-color"] = backgroundColor;
         }
         if (backgroundImage) {
           styles["background-image"] = `url(${this.$loadImgUrl(

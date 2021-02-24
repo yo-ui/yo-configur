@@ -84,7 +84,7 @@ export default {
         0
       )}%`;
       if (progressForegroundColor) {
-        styles["backgroundColor"] = progressForegroundColor;
+        styles["background-color"] = progressForegroundColor;
         let colors = [
           `${progressForegroundColor} 0%`,
           `${sliderBackgroundColor} ${(100 - gradientValue) * 10}%`
@@ -116,7 +116,7 @@ export default {
         styles["border-radius"] = `${lineWidth / 2}px`;
       }
       if (progressBackgroundColor) {
-        styles["backgroundColor"] = progressBackgroundColor;
+        styles["background-color"] = progressBackgroundColor;
       }
       // if (sliderBorderColor) {
       //   styles["borderColor"] = sliderBorderColor;
@@ -145,7 +145,7 @@ export default {
       let { sliderBackgroundColor = "", lineWidth = "" } = info || {};
       let styles = {};
       if (sliderBackgroundColor) {
-        styles["backgroundColor"] = sliderBackgroundColor;
+        styles["background-color"] = sliderBackgroundColor;
       }
       if (lineWidth) {
         let margin = lineWidth * 0.2;
@@ -310,11 +310,11 @@ export default {
       if (textDecoration) {
         styles["text-decoration"] = textDecoration;
       }
-      styles["backgroundColor"] = content ? activeColor : inactiveColor;
+      styles["background-color"] = content ? activeColor : inactiveColor;
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {
-          styles["backgroundColor"] = backgroundColor;
+          styles["background-color"] = backgroundColor;
         }
         if (backgroundImage) {
           styles["background-image"] = `url(${this.$loadImgUrl(

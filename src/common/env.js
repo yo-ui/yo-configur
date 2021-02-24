@@ -94,7 +94,7 @@ const Constants = {
       RECORDLIST: PLATFORM + "_RECORD_LIST" //用户记录
     }
   },
-  widgetMaxCount: 200,
+  widgetMaxCount: 1000,
   // 组件map
   COMPONENTLIBRARY,
   COMPONENTLIBRARYMAP,

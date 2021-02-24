@@ -426,15 +426,14 @@ class Component {
         return;
       }
       $vm.$on(`devicePointEvent_${id}`, ({ point = {} }) => {
-        bmCommon.log("dynamicTextCom", point);
+        bmCommon.log(`devicePointEvent_${id}`, info.type, point);
         // this.point = point || {};
-        this.refreshContent(point);
+        this.refreshContent({ point });
         // let { value = "", unit = "" } = point || {};
         // info.content = value;
         // info.unit = unit;
       });
     }
-    this.loadDeviceInfo();
   }
 
   loadDeviceInfo() {
@@ -453,7 +452,7 @@ class Component {
           return id == devicePoint; //
         });
         // this.point = point || {};
-        this.refreshContent(point);
+        this.refreshContent({ point, device });
         // if (point) {
         //   let { value = "", unit = "" } = point || {};
         //   info.content = value;

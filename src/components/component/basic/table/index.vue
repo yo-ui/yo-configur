@@ -199,7 +199,7 @@ export default {
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {
-          styles["backgroundColor"] = backgroundColor;
+          styles["background-color"] = backgroundColor;
         }
       } else if (backgroundType == "gradient") {
         //渐变
@@ -344,7 +344,7 @@ export default {
       if (backgroundType == "purity") {
         //纯色
         if (backgroundColor) {
-          styles["backgroundColor"] = backgroundColor;
+          styles["background-color"] = backgroundColor;
         }
         if (backgroundImage) {
           styles["background-image"] = `url(${this.$loadImgUrl(

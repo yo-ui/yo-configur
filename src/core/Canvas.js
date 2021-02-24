@@ -3,6 +3,7 @@ import ComponentLibrary from "@/core/ComponentLibrary";
 import { Constants } from "@/common/env";
 import WidgetList from "@/core/info/widget-list.js";
 import Count from "@/core/info/count.js";
+import CanvasEvent from "./CanvasEvent";
 
 class Canvas {
   // container;
@@ -80,8 +81,13 @@ class Canvas {
     //   _div.find(".bm-basic-panel-com").html(fregment.innerHTML);
     // }
     let dom = Canvas.singleTemplate(item);
-    WidgetList.append(item);
     $container.append(dom);
+    WidgetList.append(item);
+    let { id = "" } = item || {};
+    // let obj = window.bm_widgetMap[id];
+    // let { loadData } = obj || {};
+    // loadData && loadData();
+    CanvasEvent.selectComAction(id);
   }
 
   static singleTemplate(item) {
@@ -276,7 +282,15 @@ class Canvas {
     }
   }
   //设置活动组件
-  static setActiveCom(item) {
+  static setActiveCom(id) {
+    let item = {};
+    if (id) {
+      let obj = window.bm_widgetMap[id];
+      let { info = {} } = obj || {};
+      item = info;
+    } else {
+      item = Canvas.getCanvas();
+    }
     $vm.$store.commit("canvas/setActiveCom", item);
   }
 

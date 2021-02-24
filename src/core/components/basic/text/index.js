@@ -207,11 +207,10 @@ class Text extends Component {
   template() {
     let { info = {} } = this;
     let { content = "" } = info || {};
-    let showType = "edit";
     // bmCommon.log(container);
     // contenteditable="showType == 'edit' && info.editable"
     return super.wrap(
-      { info, showType },
+      { info },
       `
       <div
       class="bm-basic-text-com component"

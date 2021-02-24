@@ -170,14 +170,14 @@ export default {
       let styles = {};
       if (pageColor) {
         styles["background-image"] = "none";
-        styles["backgroundColor"] = pageColor;
+        styles["background-color"] = pageColor;
       }
       styles["background-size"] = "auto";
       styles["background-position"] = "inherit";
       if (backgroundType == "purity") {
         //纯色
         if (pageColor) {
-          styles["backgroundColor"] = pageColor;
+          styles["background-color"] = pageColor;
         }
         if (backgroundImage) {
           styles["background-image"] = `url(${this.$loadImgUrl(
@@ -234,7 +234,7 @@ export default {
       }
       if (backgroundType == "purity") {
         //纯色
-        styles["backgroundColor"] = backgroundColor;
+        styles["background-color"] = backgroundColor;
       } else if (backgroundType == "gradient") {
         //渐变
         styles = { ...styles, ...gradientStyle };

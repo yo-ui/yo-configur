@@ -1,11 +1,13 @@
 import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 
-class Image extends Component {
+class ImageStatus extends Component {
   constructor(props) {
     super(props);
   }
-  init() {}
+  init() {
+    super.initEvent();
+  }
 
   //组件样式
   // comStyle() {
@@ -46,7 +48,7 @@ class Image extends Component {
   //     fontStyle = "",
   //     textDecoration = "",
   //     backgroundColor = "",
-  //     backgroundImage = "",
+  //     backgroundStatus = "",
   //     backgroundRepeat = "",
   //     backgroundSize = ""
   //   } = info || {};
@@ -194,8 +196,8 @@ class Image extends Component {
   //     if (backgroundColor) {
   //       styles["background-color"] = backgroundColor;
   //     }
-  //     if (backgroundImage) {
-  //       styles["background-image"] = `url(${$vm.$loadImgUrl(backgroundImage)})`;
+  //     if (backgroundStatus) {
+  //       styles["background-image"] = `url(${$vm.$loadImgUrl(backgroundStatus)})`;
   //     }
   //   } else if (backgroundType == "gradient") {
   //     //渐变
@@ -203,22 +205,64 @@ class Image extends Component {
   //   }
   //   return styles || {};
   // }
+  imageStyle() {
+    let { info = {} } = this;
+    let {
+      width = "",
+      height = "",
+      contentList = [],
+      // background = "",
+      // borderStyle = "",
+      // borderWidth = "",
+      borderRadiusTopLeft = 0,
+      borderRadiusTopRight = 0,
+      borderRadiusBottomLeft = 0,
+      borderRadiusBottomRight = 0,
+      // scale = "",
+      content = "",
+      contentRepeat = "",
+      // backgroundType = "",
+      // backgroundImage = "",
+      // backgroundRepeat = "",
+      contentSize = ""
+    } = info || {};
+    let styles = {};
+    let obj = contentList.find(item => item.value == content);
+    if (obj) {
+      let { url = "", color = "" } = obj || {};
+      //   -webkit-mask-image: url(/static/img/common/riLine-logout-box-line.svg);
+      // mask-image: url(/static/img/common/riLine-logout-box-line.svg);
+      // styles["-webkit-mask-image"] = `url(${this.$loadImgUrl(url)})`;
+      styles["background-image"] = `url(${$vm.$loadImgUrl(url)})`;
+      styles["background-color"] = color;
+      if (contentRepeat) {
+        styles["background-repeat"] = contentRepeat;
+      }
+      if (contentSize) {
+        styles["background-size"] = contentSize;
+      }
+    }
+    styles["width"] = `${width}px`;
+    styles["height"] = `${height}px`;
+    styles[
+      "border-radius"
+    ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
+    return styles || {};
+  }
 
   template() {
     let { info = {} } = this;
-    let { content = "" } = info || {};
-    let showType = "edit";
     // bmCommon.log(container);
     // contenteditable="showType == 'edit' && info.editable"
+    this.init();
     return super.wrap(
-      { info, showType },
+      { info },
       `
-      <div
-      class="bm-basic-text-com component"
-      style="${this.composeStyles(this.comStyle())}"
-    >
-      ${content}
-    </div>
+    <div class="bm-basic-image-status-com component" style="${this.composeStyles(
+      this.comStyle()
+    )}">
+    <div class="image" style="${this.composeStyles(this.imageStyle())}"></div>
+  </div>
     `
     );
   }
@@ -227,11 +271,29 @@ class Image extends Component {
     super.refresh();
     let { info = {} } = this;
     bmCommon.log(`${info.type}刷新 `);
-    let { id = "", content = "" } = info || {};
-    $(`#${id}>.component`).html(content);
+    let { id = "" } = info || {};
+    $(`#${id} .image`).css(this.imageStyle());
+  }
+
+  //加载数据
+  loadData() {
+    this.loadDeviceInfo();
+  }
+
+  //刷新内容
+  refreshContent(data) {
+    let { point } = data || {};
+    let { info = {} } = this;
+    let { contentList = [] } = info || {};
+    let { value = "" } = point || {};
+    let item = contentList.find(item => item.value == value);
+    if (item) {
+      info.content = item.value;
+      this.refresh();
+    }
   }
 
   event() {}
 }
 
-export default Image;
+export default ImageStatus;

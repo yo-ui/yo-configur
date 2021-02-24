@@ -1,4 +1,5 @@
 import bmCommon from "@/common/common";
+import Canvas from "./Canvas";
 const state = {};
 class Event {
   constructor() {}
@@ -312,65 +313,66 @@ class Event {
     $(document).off("mouseup", this.mouseupEvent);
     // this.loadComPoints();
     Event.stopMove();
-    this.rotating = false;
-    this.resizing = false;
+    // this.rotating = false;
+    // this.resizing = false;
 
     window.requestAnimationFrame(() => {
-      $vm.$emit("info-data-active", { id, watched: false });
+      // $vm.$emit("info-data-active", { id, watched: false });
+      Canvas.setActiveCom(id);
     });
   }
   static rotateClickEvent(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.rotating = true;
+    // this.rotating = true;
     Event.mousedownEvent(e, "rotate");
   }
   static leftTopClickEvent(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.resizing = true;
+    // this.resizing = true;
     Event.mousedownEvent(e, "topleft");
   }
   static topClickEvent(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.resizing = true;
+    // this.resizing = true;
     Event.mousedownEvent(e, "top");
   }
   static rightTopClickEvent(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.resizing = true;
+    // this.resizing = true;
     Event.mousedownEvent(e, "topright");
   }
   static leftClickEvent(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.resizing = true;
+    // this.resizing = true;
     Event.mousedownEvent(e, "left");
   }
   static rightClickEvent(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.resizing = true;
+    // this.resizing = true;
     Event.mousedownEvent(e, "right");
   }
   static leftBottomClickEvent(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.resizing = true;
+    // this.resizing = true;
     Event.mousedownEvent(e, "bottomleft");
   }
   static bottomClickEvent(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.resizing = true;
+    // this.resizing = true;
     Event.mousedownEvent(e, "bottom");
   }
   static rightBottomClickEvent(e) {
     e.preventDefault();
     e.stopPropagation();
-    this.resizing = true;
+    // this.resizing = true;
     Event.mousedownEvent(e, "bottomright");
   }
 

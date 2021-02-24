@@ -79,8 +79,6 @@ export default {
       let styles = {};
       styles["width"] = `${width}px`;
       styles["height"] = `${height}px`;
-      styles["width"] = `${width}px`;
-      styles["height"] = `${height}px`;
       if (borderTop) {
         if (borderStyle) {
           styles["border-top-style"] = borderStyle;
@@ -129,7 +127,7 @@ export default {
         "border-radius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       if (content) {
-        styles["backgroundColor"] = "transparent";
+        styles["background-color"] = "transparent";
         styles["background-image"] = "none";
       }
       return styles || {};
@@ -163,7 +161,7 @@ export default {
         // mask-image: url(/static/img/common/riLine-logout-box-line.svg);
         // styles["-webkit-mask-image"] = `url(${this.$loadImgUrl(url)})`;
         styles["background-image"] = `url(${this.$loadImgUrl(url)})`;
-        styles["backgroundColor"] = color;
+        styles["background-color"] = color;
         if (contentRepeat) {
           styles["background-repeat"] = contentRepeat;
         }

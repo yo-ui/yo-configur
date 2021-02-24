@@ -149,7 +149,7 @@ export default {
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
       if (backgroundType == "purity") {
         //纯色
-        styles["backgroundColor"] = backgroundColor;
+        styles["background-color"] = backgroundColor;
         if (backgroundImage) {
           styles["background-image"] = `url(${this.$loadImgUrl(
             backgroundImage
@@ -226,7 +226,7 @@ export default {
         styles["font-style"] = fontStyle;
       }
       // if (backgroundColor) {
-      //   styles["backgroundColor"] = backgroundColor;
+      //   styles["background-color"] = backgroundColor;
       // }
       // if (backgroundImage) {
       //   styles["background-image"] = `url(${this.$loadImgUrl(backgroundImage)})`;
