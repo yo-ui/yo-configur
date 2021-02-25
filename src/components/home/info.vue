@@ -1,6 +1,6 @@
 <template>
   <div class="bm-info-com" @mousedown.stop @keydown.stop>
-    <el-tabs v-model="activeIndex" type="card">
+    <el-tabs v-model="activeIndex" type="card" @tab-click="tabClickEvent">
       <template v-for="item in tabList">
         <el-tab-pane
           v-if="
@@ -142,10 +142,9 @@
 
 <script>
 import bmCommon from "@/common/common";
-// import WidgetList from "@/core/info/widget-list.js";
 // import { Constants } from "@/common/env";
 import { styles, datas } from "@/widgets/index";
-// import draggable from "vuedraggable";
+import WidgetList from "@/core/info/widget-list";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 // const Props = {
@@ -333,6 +332,20 @@ export default {
       // selectComAction: "canvas/selectCom",
       // selectComsAction: "canvas/selectComs"
     }),
+    // addWatches(item){
+    //   for (let i in item) {
+    //     let obj=
+    //   }
+    // },
+    tabClickEvent() {
+      let { activeIndex } = this;
+      if (activeIndex === "element") {
+        let id = window.bm_active_com_id;
+        if (id) {
+          WidgetList.active(id);
+        }
+      }
+    },
     initWatches() {
       let { activeCom = {} } = this;
       let { type = "" } = activeCom || {};
@@ -340,8 +353,10 @@ export default {
       for (let i in activeCom) {
         if (i != "id" && i !== "type") {
           let key = `activeCom.${i}`;
-          // bmCommon.log("initWatches", key);
-          watches[key] && watches[key]();
+          if (watches[key]) {
+            watches[key]();
+            bmCommon.log("unWatches", key);
+          }
           if (type === "canvas") {
             continue;
           }
@@ -354,24 +369,25 @@ export default {
               bmCommon.log(
                 "刷新 处理",
                 newVal === oldVal,
+                JSON.stringify(newVal) === JSON.stringify(oldVal),
                 key,
                 _lastWatchType,
                 type,
                 newVal,
                 oldVal
               );
-              if (
-                JSON.stringify(newVal) !== JSON.stringify(oldVal) &&
-                _lastWatchType == type
-              ) {
-                let { id = "" } = activeCom || {};
-                let obj = window.bm_widgetMap[id];
-                if (obj) {
-                  // obj?.setInfo({ ...activeCom });
-                  obj?.setInfo(Object.freeze({ ...activeCom }));
-                  obj?.refresh();
-                }
+              // if (
+              //   JSON.stringify(newVal) !== JSON.stringify(oldVal) &&
+              //   _lastWatchType == type
+              // ) {
+              let { id = "" } = activeCom || {};
+              let obj = window.bm_widgetMap[id];
+              if (obj) {
+                // obj?.setInfo({ ...activeCom });
+                obj?.setInfo(Object.freeze({ ...activeCom }));
+                obj?.refresh();
               }
+              // }
             },
             {
               deep: true

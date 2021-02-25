@@ -106,6 +106,7 @@ export default {
         let formData = new FormData();
         formData.append("files", blob, `${Date.now()}.png`);
         formData.append("subDir", Constants.UPLOADDIR.FILE);
+        recordList = [...recordList];
         this.upload2OssFunc(
           {
             formData

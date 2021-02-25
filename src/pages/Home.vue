@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-index-page" :class="canvas.themes" :style="pageStyle">
+  <div class="bm-home-page" :class="canvas.themes" :style="pageStyle">
     <bm-header ref="bmHeader"></bm-header>
     <bm-nav ref="bmNav"></bm-nav>
     <div class="flex-content">
@@ -129,6 +129,7 @@
               </template>
             </bm-com> -->
             <div id="canvas_content" class="canvas-content"></div>
+            <!-- <div id="control_box" class="control-box"></div> -->
 
             <!-- <bm-lines ref="bmLines" v-if="canvas.alignLineable"></bm-lines>
             <bm-rule-lines ref="bmRuleLines"></bm-rule-lines> -->
@@ -149,6 +150,7 @@
       <bm-info ref="bmInfo" v-show="rightMenuStatus"></bm-info>
     </div>
     <!-- showContextMenuStatus&&(activeCom.type != 'canvas' || activeComs.length > 1) -->
+    <ul id="context_menu" class="context-menu"></ul>
     <!-- <ul
       class="context-menu"
       ref="contextMenuBox"
@@ -541,11 +543,11 @@ export default {
   },
   methods: {
     ...mapMutations({
-      // setOrganizeList: "common/setOrganizeList",
+      setOrganizeList: "common/setOrganizeList",
       setZoom: "canvas/setZoom",
       // // setWidgetList: "canvas/setWidgetList", //设置组件列表
       // setActiveCom: "canvas/setActiveCom", //设置当前选中组件
-      setCanvas: "canvas/setCanvas"
+      setCanvas: "canvas/setCanvas",
       // setCanvasData: "canvas/setCanvasData",
       // setActiveComs: "canvas/setActiveComs",
       // initMove: "canvas/initMove",
@@ -553,8 +555,8 @@ export default {
       // setShowType: "canvas/setShowType",
       // setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
       // // moving: "canvas/moving",
-      // setDeviceCacheMap: "device/setDeviceCacheMap", //设备缓存
-      // setAllDeviceCacheMap: "device/setAllDeviceCacheMap" //设备缓存
+      setDeviceCacheMap: "device/setDeviceCacheMap", //设备缓存
+      setAllDeviceCacheMap: "device/setAllDeviceCacheMap" //设备缓存
       // stopMove: "canvas/stopMove"
     }),
     ...mapActions({
@@ -611,9 +613,7 @@ export default {
           $vm.$emit("canvas-list", { canvasList });
         });
         if (canvasId) {
-          data = Object.freeze(
-            typeof data === "string" ? JSON.parse(data) : data
-          );
+          data = typeof data === "string" ? JSON.parse(data) : data;
           let { canvasData = {} } = data || {};
           let { widgetList = [], canvas: _canvas } = canvasData || {};
           if (_canvas) {
@@ -864,15 +864,19 @@ export default {
         .then(({ data }) => {
           let { code = "", result = [], message = "" } = data || {};
           if (code == Constants.CODES.SUCCESS) {
+            result = result.map(item => {
+              let { name = "", id = "", pid = "", type = "" } = item || {};
+              return { name, id, pid, type };
+            });
             value = bmCommon.recursiveTree(result || [], "pid");
           } else {
             bmCommon.error(message);
           }
-          // this.setOrganizeList(value || []);
+          this.setOrganizeList(value || []);
           callback && callback(value || []);
         })
         .catch(err => {
-          // this.setOrganizeList(value || []);
+          this.setOrganizeList(value || []);
           callback && callback(value || []);
           bmCommon.error("获取数据失败=>orgStrucListByLevel", err);
         });
@@ -995,6 +999,7 @@ export default {
         })
         .catch(err => {
           callback && callback(value || []);
+          this.setAllDeviceCacheMap({});
           this.dataLoadingStatus = false;
           bmCommon.error("获取数据失败=>commonDeviceList", err);
         });
@@ -1057,5 +1062,5 @@ export default {
 };
 </script>
 <style lang="less">
-@import (less) "../assets/less/pages/index.less";
+@import (less) "../assets/less/pages/home.less";
 </style>

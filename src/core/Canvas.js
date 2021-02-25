@@ -1,7 +1,7 @@
-// import bmCommon from "@/common/common";
+import bmCommon from "@/common/common";
 import ComponentLibrary from "@/core/ComponentLibrary";
 import { Constants } from "@/common/env";
-import WidgetList from "@/core/info/widget-list.js";
+import WidgetList from "@/core/info/widget-list";
 import Count from "@/core/info/count.js";
 import CanvasEvent from "./CanvasEvent";
 
@@ -30,6 +30,7 @@ class Canvas {
   //删除
   static remove(id) {
     $(`#${id}`).remove();
+    WidgetList.remove(id);
   }
 
   static show(id) {
@@ -59,42 +60,27 @@ class Canvas {
     WidgetList.init({ widgets });
     // Canvas.render(Canvas.template(item));
     Canvas.event();
+    //设置选择组件
+    Canvas.setWidgetListTimeoutId = setTimeout(() => {
+      Canvas.setWidgetList(widgets);
+      clearTimeout(Canvas.setWidgetListTimeoutId);
+    }, 10);
     return widgets;
   }
 
   static append(item) {
     let $container = $("#canvas_content");
-    // let { children = [] } = item || {};
-    // let fregment = document.createDocumentFragment("div");
-    // let obj = ComponentLibrary.getInstance(item);
-    // let dom = obj.template();
-    // if (dom) {
-    //   let _div = $(obj.template());
-    //   children &&
-    //     children.forEach(item => {
-    //       let obj = ComponentLibrary.getInstance(item);
-    //       let dom = obj.template();
-    //       if (dom) {
-    //         fregment.appendChild(_div[0]);
-    //       }
-    //     });
-    //   _div.find(".bm-basic-panel-com").html(fregment.innerHTML);
-    // }
     let dom = Canvas.singleTemplate(item);
     $container.append(dom);
     WidgetList.append(item);
     let { id = "" } = item || {};
-    // let obj = window.bm_widgetMap[id];
-    // let { loadData } = obj || {};
-    // loadData && loadData();
     CanvasEvent.selectComAction(id);
   }
 
   static singleTemplate(item) {
-    let { children = [] } = item || {};
     let fregment = document.createDocumentFragment("div");
+    let { children = [], id = "" } = item || {};
     let obj = ComponentLibrary.getInstance(item);
-    let { id = "" } = item || {};
     window.bm_widgetMap[id] = obj;
     let dom = obj.template();
     if (dom) {
@@ -118,7 +104,7 @@ class Canvas {
   static render(widgetList) {
     // let canvas_content = document.getElementById("canvas_content");
     let fregment = document.createDocumentFragment("div");
-    let widgets = [];
+    // let widgets = [];
     let infoWidgets = [];
     let i = 0,
       len = widgetList.length;
@@ -128,7 +114,7 @@ class Canvas {
         alias = "",
         type = "",
         bindData = {},
-        id = "",
+        id: parentId = "",
         comName = "",
         name = "",
         children = []
@@ -158,10 +144,18 @@ class Canvas {
       item.show = true;
       item.dataCode = dataCode;
       item.alias = alias;
+
+      let old = window.bm_widgetMap[parentId];
+      if (old) {
+        parentId = bmCommon.uuid();
+        item.id = parentId;
+      }
       let infoChildern = [];
       let { length = 0 } = children || [];
       if (length > 0) {
         children.forEach(item => {
+          item.parentId = parentId;
+          item.id = bmCommon.uuid();
           let {
             alias = "",
             type = "",
@@ -206,9 +200,9 @@ class Canvas {
         });
       }
       if (type && type != "canvas") {
-        widgets.push(item);
+        // widgets.push(item);
         infoWidgets.push({
-          id,
+          id: parentId,
           comName,
           type,
           children: infoChildern,
@@ -292,6 +286,16 @@ class Canvas {
       item = Canvas.getCanvas();
     }
     $vm.$store.commit("canvas/setActiveCom", item);
+  }
+
+  //设置组件列表
+  static setWidgetList(list) {
+    $vm.$store.commit("canvas/setWidgetList", list);
+  }
+
+  //获取组件列表
+  static getWidgetList() {
+    return $vm.$store.getters["canvas/getWidgetList"] || [];
   }
 
   // static refresh(item) {

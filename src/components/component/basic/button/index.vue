@@ -1,6 +1,6 @@
 <template>
   <button
-    class="btn-com"
+    class="bm-basic-btn-com"
     :style="comStyle"
     :contenteditable="info.editable"
     @blur.stop="blurEvent"
@@ -309,17 +309,18 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import (reference) "./../../../../assets/less/common.less";
-.btn-com {
-  .bor(1px solid @grayE);
-  // background: linear-gradient(#34a5f8, #088ef0);
-  .p(5px 20px);
-  .br(20px);
-  &:active {
-    text-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.3);
-    opacity: 0.9;
-    .box-s(0 1px 3px rgba(0, 0, 0, 0.2));
-    .c(@grayC) !important;
-  }
-}
+// @import (reference) "./../../../../assets/less/common.less";
+@import (less) "../../../../assets/less/components/component/basic/button.less";
+// .bm-basic-btn-com {
+//   .bor(1px solid @grayE);
+//   // background: linear-gradient(#34a5f8, #088ef0);
+//   .p(5px 20px);
+//   .br(20px);
+//   &:active {
+//     text-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.3);
+//     opacity: 0.9;
+//     .box-s(0 1px 3px rgba(0, 0, 0, 0.2));
+//     .c(@grayC) !important;
+//   }
+// }
 </style>

@@ -26,8 +26,6 @@ export default {
   namespaced: true, //必须加它不然报错
   strict: process.env.NODE_ENV !== "production",
   state: {
-    // deviceCategTree: null,
-    // financePricingStrategiesCacheMap: null,
     // 画布缩放值
     zoom: 1,
     boxZoom: 1,
@@ -97,7 +95,6 @@ export default {
     startY: 0, // 鼠标摁下时的纵坐标
     moving: false, // 是否正在移动元件（参考线仅在移动元件时显示）
     draging: false // 创建组件正在拖动
-    // financeEnterpriserProvincesCacheMap: null
   },
   getters: {
     getCanvas(state) {
@@ -249,14 +246,14 @@ export default {
       } else {
         bmCommon.removeItem(Constants.LOCALSTORAGEKEY.USERKEY.PREVIEWDATA);
       }
-      state.previewData = item;
+      state.previewData = Object.freeze(item);
     },
     setWidgetList(state, item) {
-      state.widgetList = item;
+      state.widgetList = Object.freeze(item);
     },
     setHistoryList(state, item) {
       //先保存在内存  最多保存20条记录
-      state.historyList = item.slice(0, 20);
+      state.historyList = Object.freeze(item.slice(0, 20));
     },
     setHistoryIndex(state, item) {
       state.historyIndex = item;
@@ -288,7 +285,7 @@ export default {
       } else {
         bmCommon.removeItem(Constants.LOCALSTORAGEKEY.USERKEY.RECORDLIST);
       }
-      state.recordList = item;
+      state.recordList = Object.freeze(item);
     },
     setCanvasData(state, item) {
       if (item) {
@@ -299,7 +296,7 @@ export default {
       } else {
         bmCommon.removeItem(Constants.LOCALSTORAGEKEY.USERKEY.CANVASDATA);
       }
-      state.canvasData = item;
+      state.canvasData = Object.freeze(item);
     },
     // 设置 mousemove 操作的初始值
     initMove(state, item = {}) {
@@ -497,37 +494,47 @@ export default {
       // context.commit("setActiveCom", activeCom);
     },
     async createRecord(context, item) {
-      let { img = "" } = item || {};
-      let { getters = {} } = context;
-      let { getRecordList: recordList = [], getWidgetList: widgetList = [] } =
-        getters || {};
-      let date = moment();
-      let time = date.valueOf();
-      let id = bmCommon.uuid();
-      recordList.unshift({
-        id,
-        name: date.format("MM/DD/YYYY HH:mm:ss A"),
-        time,
-        img,
-        type: "auto", //自动记录
-        widgetList: bmCommon.clone(widgetList)
-      });
-      context.commit("setRecordList", recordList);
+      // let { img = "" } = item || {};
+      // let { getters = {} } = context;
+      // let { getRecordList: recordList = [], getWidgetList: widgetList = [] } =
+      //   getters || {};
+      // let date = moment();
+      // let time = date.valueOf();
+      // let id = bmCommon.uuid();
+      // let record = {
+      //   id,
+      //   name: date.format("MM/DD/YYYY HH:mm:ss A"),
+      //   time,
+      //   img,
+      //   type: "auto", //自动记录
+      //   widgetList: Object.freeze([...widgetList])
+      // };
+      // recordList = [record, ...recordList];
+      // // recordList.unshift({
+      // //   id,
+      // //   name: date.format("MM/DD/YYYY HH:mm:ss A"),
+      // //   time,
+      // //   img,
+      // //   type: "auto", //自动记录
+      // //   widgetList: bmCommon.clone(widgetList)
+      // // });
+      // context.commit("setRecordList", recordList);
     },
     async createHistory(context) {
-      let { getters = {} } = context;
-      let {
-        getWidgetList: widgetList = [],
-        getHistoryList: historyList = [],
-        getCanvas: canvas = {}
-      } = getters || {};
-      historyList.unshift(bmCommon.clone(widgetList));
-      context.commit("setHistoryList", historyList);
-      context.commit("setHistoryIndex", 0);
-      context.commit("setPreviewData", {
-        widgetList,
-        canvas
-      });
+      // let { getters = {} } = context;
+      // let {
+      //   getWidgetList: widgetList = [],
+      //   getHistoryList: historyList = [],
+      //   getCanvas: canvas = {}
+      // } = getters || {};
+      // historyList = [Object.freeze([...widgetList]), ...historyList];
+      // // historyList.unshift(bmCommon.clone(widgetList));
+      // context.commit("setHistoryList", historyList);
+      // context.commit("setHistoryIndex", 0);
+      // context.commit("setPreviewData", {
+      //   widgetList: Object.freeze([...widgetList]),
+      //   canvas: Object.freeze(bmCommon.clone(canvas))
+      // });
     }
   }
 };

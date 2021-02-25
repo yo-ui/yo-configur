@@ -39,12 +39,6 @@ class WidgetList {
     window.requestAnimationFrame(() => {
       Count.refresh({ count });
     });
-    // let htmlArr = [];
-    // let i = 0,
-    //   len = widgets.length;
-    // for (; i < len; i++) {
-    //   htmlArr.push(WidgetList.singleTemplate(widgets[i]));
-    // }
     let container = $("#info_com_list_box");
     container.append(WidgetList.template({ widgets }));
   }

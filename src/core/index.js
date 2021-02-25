@@ -5,6 +5,7 @@ import Canvas from "@/core/Canvas";
 // import bmCommon from "@/common/common";
 // import { Constants } from "@/common/env";
 import Event from "@/core/Event";
+import ContextMenu from "./ContextMenu";
 class Core {
   constructor() {}
 
@@ -16,6 +17,8 @@ class Core {
     Event.init();
     //初始化
     CanvasEvent.init();
+    //右键菜单
+    ContextMenu.init();
   }
 }
 

@@ -1530,6 +1530,10 @@ export default {
         .then(({ data }) => {
           let { code = "", result = [], message = "" } = data || {};
           if (code == Constants.CODES.SUCCESS) {
+            result = result.map(item => {
+              let { name = "", id = "", pid = "", type = "" } = item || {};
+              return { name, id, pid, type };
+            });
             value = bmCommon.recursiveTree(result || [], "pid");
           } else {
             bmCommon.error(message);

@@ -176,7 +176,8 @@ export default {
     return {
       // activeNames: ["name"]
       device: {},
-      pointList: []
+      pointList: [],
+      // widgetList:[]
     };
   },
   props: {

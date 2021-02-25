@@ -1,5 +1,6 @@
 import bmCommon from "@/common/common";
 import Component from "@/core/Component";
+import "../../../../assets/less/components/component/basic/button.less";
 
 class Image extends Component {
   constructor(props) {
@@ -206,19 +207,18 @@ class Image extends Component {
 
   template() {
     let { info = {} } = this;
-    let { content = "" } = info || {};
-    let showType = "edit";
     // bmCommon.log(container);
     // contenteditable="showType == 'edit' && info.editable"
     return super.wrap(
-      { info, showType },
+      { info },
       `
-      <div
-      class="bm-basic-text-com component"
-      style="${this.composeStyles(this.comStyle())}"
-    >
-      ${content}
-    </div>
+    <button
+    class="bm-basic-btn-com component"
+    style="${this.composeStyles(this.comStyle())}"
+    contenteditable="${info.editable}"
+  >
+    ${info.content}
+  </button>
     `
     );
   }
@@ -231,7 +231,32 @@ class Image extends Component {
     $(`#${id}>.component`).html(content);
   }
 
-  event() {}
+  // //加载数据
+  // loadData() {
+  //   this.loadDeviceInfo();
+  // }
+
+  //刷新内容
+  // refreshContent(data) {
+  //   let { point } = data || {};
+  //   let { info = {} } = this;
+  //   let { contentList = [] } = info || {};
+  //   if (point) {
+  //     const { value = "" } = point || {};
+  //     info.pointValue = value;
+  //   }
+  // }
+
+  event() {
+    let that = this;
+    let { info = {} } = this;
+    let { id = "" } = info || {};
+    let $container = $(`#${id}`);
+    $container.on("click", ".bm-basic-btn-com", function(e) {
+      e.stopPropagation();
+      that.controlEvent(() => {});
+    });
+  }
 }
 
 export default Image;

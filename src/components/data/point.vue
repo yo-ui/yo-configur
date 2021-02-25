@@ -159,10 +159,10 @@ export default {
       // zoom: "canvas/getZoom", //放大缩小
       // leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
       // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
-      // activeCom: "canvas/getActiveCom",
+      activeCom: "canvas/getActiveCom",
       // activeComs: "canvas/getActiveComs",
-      treeData: "common/getOrganizeList",
-      widgetList: "canvas/getWidgetList"
+      treeData: "common/getOrganizeList"
+      // widgetList: "canvas/getWidgetList"
     }),
     deviceMap() {
       let { deviceList = [] } = this;
@@ -178,7 +178,7 @@ export default {
     ...mapMutations({
       // setActiveCom: "canvas/setActiveCom",
       // setZoom: "canvas/setZoom",
-      setWidgetList: "canvas/setWidgetList"
+      // setWidgetList: "canvas/setWidgetList"
       // setLeftMenuStatus: "canvas/setLeftMenuStatus",
       // setRightMenuStatus: "canvas/setRightMenuStatus"
     }),
@@ -312,18 +312,18 @@ export default {
     submitEvent() {
       let { resetStatus = false } = this;
       let callback = () => {
-        let { widgetList = [], condition } = this;
+        let { activeCom = {}, condition } = this;
         let {
           orgId = "",
           deviceId = "",
           pointId: devicePoint = "",
           comId = ""
         } = condition;
-        let activeCom = widgetList.find(item => item.id == comId) || {};
+        // let activeCom = widgetList.find(item => item.id == comId) || {};
         let value = "",
           unit = "",
           descr = "";
-        activeCom.bindData = {
+        let bindData = {
           orgId,
           deviceId,
           devicePoint,
@@ -331,6 +331,10 @@ export default {
           value,
           descr
         };
+        activeCom.bindData = bindData;
+        let obj = window.bm_widgetMap[comId];
+        let { info = {} } = obj || {};
+        info.bindData = bindData;
         this.showDialogStatus = false;
       };
       if (resetStatus) {

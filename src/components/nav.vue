@@ -970,6 +970,7 @@ export default {
         if (type === "panel") {
           _children.forEach(_item => {
             let obj = bmCommon.clone(_item);
+            obj.id = bmCommon.uuid();
             obj.left += left;
             obj.top += top;
             delete obj.parentId;
@@ -1020,6 +1021,7 @@ export default {
       left = minLeft;
       top = minTop;
       children.forEach((item, index) => {
+        item.id = id + bmCommon.uuid();
         item.left -= left;
         item.parentId = id;
         item.top -= top;
@@ -1072,6 +1074,7 @@ export default {
         return;
       }
       children.forEach((item, index) => {
+        item.id = bmCommon.uuid();
         item.left += left;
         item.top += top;
         // item.rotate -= rotate;

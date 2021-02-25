@@ -17,7 +17,7 @@ export default {
   mutations: {
     //设置缓存对象
     setOrganizeList(state, item = []) {
-      state.organizeList = item || [];
+      state.organizeList = Object.freeze(item || []);
     }
   },
   actions: {}

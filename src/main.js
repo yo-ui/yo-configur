@@ -129,5 +129,5 @@ window.$vm = new Vue({
 window.$vm.$httpRequestList = [];
 window.$vm.$mount("#app");
 window.bm_widgetMap = {
-  canvas: Constants.COMPONENTCANVAS
+  // canvas: Constants.COMPONENTCANVAS
 };

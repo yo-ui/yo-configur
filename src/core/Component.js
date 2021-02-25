@@ -47,9 +47,9 @@ class Component {
     let styles = {
       left: left + "px",
       top: top + "px",
-      "z-Index": zIndex,
+      "z-index": zIndex,
       transform: `${transform}`,
-      "transform-Origin": transformOrigin
+      "transform-origin": transformOrigin
     };
     if (!iterationCount) {
       iterationCount = "infinite";
@@ -348,9 +348,9 @@ class Component {
   }
 
   //组件包裹
-  wrap({ info, showType }, content = "") {
+  wrap({ info }, content = "") {
     let { type = "", id = "", locked = false } = info || {};
-    showType = window.bm_show_type;
+    let showType = window.bm_show_type;
     let operate = locked
       ? ""
       : `
@@ -390,7 +390,7 @@ class Component {
   // 刷新数据
   refresh() {
     let { info = {} } = this;
-    let { id = "", locked = false, type = "" } = info || {};
+    let { id = "", locked = false } = info || {};
     $(`#${id}>.component`).css(this.comStyle());
     $(`#${id}`).css(this.boxStyle());
     if (locked) {
@@ -447,16 +447,42 @@ class Component {
       deviceId,
       callback: (device = {}) => {
         let { points: pointList = [] } = device || {};
-        let point = pointList.find(item => {
-          let { id = "" } = item || {};
-          return id == devicePoint; //
-        });
+        let point = null;
+        if (devicePoint) {
+          point = pointList.find(item => {
+            let { id = "" } = item || {};
+            return id == devicePoint; //
+          });
+        }
         // this.point = point || {};
         this.refreshContent({ point, device });
         // if (point) {
         //   let { value = "", unit = "" } = point || {};
         //   info.content = value;
         //   info.unit = unit;
+        // }
+      }
+    });
+  }
+
+  controlEvent(callback) {
+    const { info = {} } = this;
+    const { bindData = {}, pointValue: value = "" } = info || {};
+    const { deviceId = "", devicePoint = "" } = bindData || {};
+    if (!deviceId) {
+      return;
+    }
+    const point = devicePoint;
+    $vm.$emit("control", {
+      deviceId,
+      point,
+      value,
+      callback: flag => {
+        callback && callback(flag);
+        // if (flag) {
+        //   this.$$msgSuccess("指令发送成功");
+        // } else {
+        //   this.$$msgError("指令发送失败");
         // }
       }
     });
