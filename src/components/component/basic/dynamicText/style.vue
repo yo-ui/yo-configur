@@ -1061,8 +1061,10 @@
 import { Constants } from "@/common/env";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
+// import mixins from "@/mixins/style";
 export default {
   name: "dynamicTextStyleCom",
+  // mixins: [mixins],
   data() {
     return {
       activeNames: ["name"],

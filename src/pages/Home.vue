@@ -747,8 +747,9 @@ export default {
       });
       //注册获取设备信息事件
       $vm.$on("device", item => {
-        let { deviceId = "", callback = () => {} } = item || {};
-        this.commonGetDeviceFunc({ deviceId }, callback);
+        //flag 走不走缓存
+        let { deviceId = "", flag = true, callback = () => {} } = item || {};
+        this.commonGetDeviceFunc({ deviceId, flag }, callback);
       });
       //注册获取设备点位历史数据事件
       $vm.$on("device-point-hst-data", item => {
@@ -882,17 +883,19 @@ export default {
         });
     },
     // 获取设备信息
-    commonGetDeviceFunc({ deviceId = "" }, callback) {
+    commonGetDeviceFunc({ deviceId = "", flag = true }, callback) {
       let value = {};
       if (!deviceId) {
         callback && callback(value || {});
         return;
       }
-      let { deviceCacheMap = {} } = this;
-      let { deviceId: id = "" } = deviceCacheMap(deviceId) || {};
-      if (id) {
-        callback(deviceCacheMap(deviceId));
-        return;
+      if (flag) {
+        let { deviceCacheMap = {} } = this;
+        let { id = "" } = deviceCacheMap(deviceId) || {};
+        if (id) {
+          callback(deviceCacheMap(deviceId));
+          return;
+        }
       }
       this.commonGetDeviceAction({ deviceId })
         .then(({ data }) => {
@@ -903,15 +906,11 @@ export default {
             bmCommon.error(message);
           }
           this.setDeviceCacheMap({ key: deviceId, value });
-          if (!id) {
-            callback && callback(value || {});
-          }
+          callback && callback(value || {});
         })
         .catch(err => {
           this.setDeviceCacheMap({ key: deviceId, value });
-          if (!id) {
-            callback && callback(value || {});
-          }
+          callback && callback(value || {});
           bmCommon.error("获取数据失败=>commonGetDevice", err);
         });
     },

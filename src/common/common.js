@@ -55,7 +55,7 @@ let common = {
     if (process.env.NODE_ENV == "production") {
       flag = false;
     }
-    console.log("current env is ", flag);
+    console.log(`current env is ${process.env.NODE_ENV}`, flag);
     return flag;
   })(),
   //变量池

@@ -25,11 +25,11 @@ export default {
         JSON.stringify(state.deviceCacheMap || {})
       );
       deviceCacheMap[key] = value || {};
-      state.deviceCacheMap = deviceCacheMap;
+      state.deviceCacheMap = Object.freeze(deviceCacheMap);
     },
     //设置缓存对象
     setAllDeviceCacheMap(state, item = {}) {
-      state.deviceCacheMap = item || {};
+      state.deviceCacheMap = Object.freeze(item || {});
     }
   },
   actions: {}

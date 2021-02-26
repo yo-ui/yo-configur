@@ -445,6 +445,7 @@ class Component {
     }
     $vm.$emit("device", {
       deviceId,
+      flag: false,
       callback: (device = {}) => {
         let { points: pointList = [] } = device || {};
         let point = null;

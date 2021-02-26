@@ -121,12 +121,9 @@ async function request(type, options, callback) {
           errorDialog = vm.$$msgWarn("当前登录已经过期，请返回重新进入！");
           let href = decodeURIComponent(location.href);
           while (href.indexOf("x-access-token") > -1) {
-            href = href.replace(
-              /x-access-token(.*)(&|\S)(.*)$/,
-              ($0, $1, $2, $3) => {
-                return $3;
-              }
-            );
+            href.replace(/x-access-token([^&]*)(&?)(.*)$/, ($0, $1, $2, $3) => {
+              return $3;
+            });
           }
           if (platform == "service") {
             //应用平台跳转过来

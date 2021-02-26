@@ -96,6 +96,14 @@ class Display extends Component {
 
   renderSvg() {
     let { info = {} } = this;
+    let {
+      id = "",
+      width = 0,
+      height = 0,
+      content = "",
+      decimal = 1,
+      unit = ""
+    } = info || {};
     return (
       `
     <svg
@@ -103,33 +111,33 @@ class Display extends Component {
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 89 43"
-      :width="info.width"
-      :height="info.height"
+      width="${width}"
+      height="${height}"
       style="enable-background:new 0 0 89 43;"
       xml:space="preserve"
       preserveAspectRatio="none"
     >
       <defs>` +
       `<style type='text/css'>
-        .display-${info.id}-st0 {
+        .display-${id}-st0 {
           fill: #ffffff;
         }
-        .display-${info.id}-st1 {
+        .display-${id}-st1 {
           fill: #dfe3e8;
         }
-        .display-${info.id}-st2 {
+        .display-${id}-st2 {
           fill: #c2c8ce;
         }
-        .display-${info.id}-st3 {
+        .display-${id}-st3 {
           fill: url(#display_4_);
         }
-        .display-${info.id}-st4 {
+        .display-${id}-st4 {
           fill: #9da1a5;
         }
-        .display-${info.id}-st5 {
+        .display-${id}-st5 {
           fill: #848776;
         }
-        .display-${info.id}-st6 {
+        .display-${id}-st6 {
           fill: #25282b;
         }
       </style>` +
@@ -141,7 +149,7 @@ class Display extends Component {
           x="1"
           y="4.1"
           class="` +
-      `display-${info.id}-st0` +
+      `display-${id}-st0` +
       `"
           width="79.5"
           height="38"
@@ -149,14 +157,14 @@ class Display extends Component {
         <path
           id="display_653_"
           class="` +
-      `display-${info.id}-st1` +
+      `display-${id}-st1` +
       `"
           d="M81.5,43.1H0v-40h81.5V43.1z M2,41.1h77.5v-36H2V41.1z"
         />
         <polygon
           id="display_652_"
           class="` +
-      `display-${info.id}-st2` +
+      `display-${id}-st2` +
       `"
           points="81.5,3.1 0,3.1 8.2,0 88.7,0 	"
         />
@@ -174,7 +182,7 @@ class Display extends Component {
         <path
           id="display_1_"
           class="` +
-      `display-${info.id}-st3` +
+      `display-${id}-st3` +
       `"
           d="M88.7,40l-7.2,3.1v-40L88.7,0V40z"
         />
@@ -183,7 +191,7 @@ class Display extends Component {
         <path
           id="display_10_"
           class="` +
-      `display-${info.id}-st4` +
+      `display-${id}-st4` +
       `"
           d="M76.5,37.1H5v-5h71.5V37.1z"
         />
@@ -195,7 +203,7 @@ class Display extends Component {
             x="6.5"
             y="8.5"
             class="` +
-      `display-${info.id}-st5` +
+      `display-${id}-st5` +
       `"
             width="69"
             height="19"
@@ -203,7 +211,7 @@ class Display extends Component {
           <path
             id="display_648_"
             class="` +
-      `display-${info.id}-st6` +
+      `display-${id}-st6` +
       `"
             d="M76.5,28.5h-71v-21h71V28.5z M7.5,26.5h67v-17h-67V26.5z"
           />
@@ -212,11 +220,9 @@ class Display extends Component {
     </svg>
 
     <span class="text"  style="${this.composeStyles(this.textStyle())}"
-      >${$vm.$toBig(
-        info.content,
-        info.decimal
-      )}<small  style="${this.composeStyles(this.unitStyle())}">${info.unit ||
-        "℃"}</small></span
+      >${$vm.$toBig(content, decimal)}<small  style="${this.composeStyles(
+        this.unitStyle()
+      )}">${unit || "℃"}</small></span
     >
     `
     );
@@ -226,8 +232,22 @@ class Display extends Component {
     super.refresh();
     let { info = {} } = this;
     bmCommon.log(`${info.type}刷新 `);
-    let { id = "" } = info || {};
-    $(`#${id}>.component`).html(this.renderSvg());
+    let {
+      id = "",
+      width = 0,
+      height = 0,
+      content = "",
+      decimal = 1,
+      unit = ""
+    } = info || {};
+    $(`#${id} .component svg`).attr({ width, height });
+    $(`#${id} .component .text`)
+      .css(this.textStyle())
+      .html(
+        `${$vm.$toBig(content, decimal)}<small  style="${this.composeStyles(
+          this.unitStyle()
+        )}">${unit || "℃"}</small>`
+      );
   }
 
   //加载数据

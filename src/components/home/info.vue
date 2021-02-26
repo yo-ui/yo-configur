@@ -346,19 +346,22 @@ export default {
         }
       }
     },
-    initWatches() {
-      let { activeCom = {} } = this;
-      let { type = "" } = activeCom || {};
-      this._lastWatchType = type;
-      for (let i in activeCom) {
-        if (i != "id" && i !== "type") {
-          let key = `activeCom.${i}`;
+
+    initWatch(name, item) {
+      let { type = "" } = item || {};
+      for (let i in item) {
+        if (name == "activeCom" && i != "id" && i !== "type") {
+          let key = `${name}.${i}`;
           if (watches[key]) {
             watches[key]();
             bmCommon.log("unWatches", key);
           }
           if (type === "canvas") {
             continue;
+          }
+          let value = item[i];
+          if (typeof value === "object" && !Array.isArray(value)) {
+            this.initWatch(`${name}.${i}`, value);
           }
           watches[key] = this.$watch(
             key,
@@ -368,33 +371,88 @@ export default {
               let { activeCom = {}, _lastWatchType = "" } = this;
               bmCommon.log(
                 "刷新 处理",
-                newVal === oldVal,
                 JSON.stringify(newVal) === JSON.stringify(oldVal),
-                key,
+                i,
+                name,
                 _lastWatchType,
-                type,
-                newVal,
-                oldVal
+                type
               );
-              // if (
-              //   JSON.stringify(newVal) !== JSON.stringify(oldVal) &&
-              //   _lastWatchType == type
-              // ) {
-              let { id = "" } = activeCom || {};
-              let obj = window.bm_widgetMap[id];
-              if (obj) {
-                // obj?.setInfo({ ...activeCom });
-                obj?.setInfo(Object.freeze({ ...activeCom }));
-                obj?.refresh();
+              if (
+                (JSON.stringify(newVal) !== JSON.stringify(oldVal) &&
+                  _lastWatchType == type) ||
+                Array.isArray(value)
+              ) {
+                let { id = "" } = activeCom || {};
+                let obj = window.bm_widgetMap[id];
+                if (obj) {
+                  // obj?.setInfo({ ...activeCom });
+                  obj?.setInfo(Object.freeze({ ...activeCom }));
+                  obj?.refresh();
+                  if (i === "bindData") {
+                    obj?.loadData();
+                  }
+                }
               }
-              // }
             },
             {
-              deep: true
+              deep: true,
+              immediate: false
             }
           );
         }
       }
+    },
+    initWatches() {
+      let { activeCom = {} } = this;
+      let { type = "" } = activeCom || {};
+      this._lastWatchType = type;
+      this.initWatch("activeCom", activeCom);
+      // for (let i in activeCom) {
+      //   if (i != "id" && i !== "type") {
+      //     let key = `activeCom.${i}`;
+      //     if (watches[key]) {
+      //       watches[key]();
+      //       bmCommon.log("unWatches", key);
+      //     }
+      //     if (type === "canvas") {
+      //       continue;
+      //     }
+      //     watches[key] = this.$watch(
+      //       key,
+      //       (newVal, oldVal) => {
+      //         // let { children = [] } = getActiveCom || {};
+      //         // let { parentId = "", id = "" } = activeCom || {};
+      //         let { activeCom = {}, _lastWatchType = "" } = this;
+      //         bmCommon.log(
+      //           "刷新 处理",
+      //           JSON.stringify(newVal) === JSON.stringify(oldVal),
+      //           i,
+      //           _lastWatchType,
+      //           type
+      //         );
+      //         if (
+      //           JSON.stringify(newVal) !== JSON.stringify(oldVal) &&
+      //           _lastWatchType == type
+      //         ) {
+      //           let { id = "" } = activeCom || {};
+      //           let obj = window.bm_widgetMap[id];
+      //           if (obj) {
+      //             // obj?.setInfo({ ...activeCom });
+      //             obj?.setInfo(Object.freeze({ ...activeCom }));
+      //             obj?.refresh();
+      //             if (i === "bindData") {
+      //               obj?.loadData();
+      //             }
+      //           }
+      //         }
+      //       },
+      //       {
+      //         deep: true,
+      //         immediate: false
+      //       }
+      //     );
+      //   }
+      // }
     },
     // selectComEvent(item) {
     //   // this.setActiveCom(item);
