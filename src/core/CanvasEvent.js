@@ -794,7 +794,7 @@ class CanvasEvent {
   // 删除
   static deleteEvent() {
     $vm.$emit("delete-command");
-    CanvasEvent.showContextMenuStatus = false;
+    // CanvasEvent.showContextMenuStatus = false;
   }
   // 锁定/解锁
   static lockEvent(locked) {

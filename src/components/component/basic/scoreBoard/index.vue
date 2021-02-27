@@ -283,11 +283,11 @@ export default {
       };
       if (width) {
         styles["width"] = `${width}px`;
-        styles["minWidth"] = `${width}px`;
+        styles["min-width"] = `${width}px`;
       }
       if (height) {
         styles["height"] = `${height}px`;
-        styles["lineHeight"] = `${height}px`;
+        styles["line-height"] = `${height}px`;
       }
       if (borderTop) {
         if (borderStyle) {

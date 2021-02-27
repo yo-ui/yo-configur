@@ -5,6 +5,10 @@ class Event {
   constructor() {}
 
   static init() {
+    $(".canvas-box").on("dblclick", ".cover", function(e) {
+      e.stopPropagation();
+      bmCommon.log("双击事件");
+    });
     $(".canvas-box").on("mousedown", ".operate-btn", function(e) {
       e.stopPropagation();
       bmCommon.log(e, this);

@@ -136,8 +136,13 @@ class WidgetList {
 
     // 加载组件绑定数据
     let obj = window.bm_widgetMap[id];
-    if (obj && obj.loadData) {
-      obj?.loadData();
+    if (obj) {
+      if (obj.loadData) {
+        obj?.loadData();
+      }
+      if (obj.event) {
+        obj?.event();
+      }
     }
     return htmlArr.join("");
   }
@@ -181,9 +186,7 @@ class WidgetList {
       e.stopPropagation();
       let $this = $(this).parents(".title");
       let id = $this.data("id");
-      WidgetList.remove();
       Canvas.remove(id);
-      delete window.bm_widgetMap[id];
     });
     //增加显示隐藏事件
     $container.on("click", ".el-icon-view", function(e) {

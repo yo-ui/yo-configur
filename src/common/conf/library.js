@@ -391,7 +391,7 @@ let componentLibrary = [
           ...baseData,
           originWidth: "", //原宽
           originHeight: "", //原高
-          content: "多行文本",
+          content: "<p>多行文本</p>",
           fontSize: 14,
           width: 300,
           height: 200

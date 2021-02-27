@@ -103,38 +103,32 @@ class Component {
     return styleArr.join(";");
   }
 
-  gradientStyle() {
-    return info => {
-      let { gradientStyleMap } = this;
-      let { gradientStyle = {} } = info || {};
-      let { type = "" } = gradientStyle || {};
-      let styles = {
-        backgroundImage: gradientStyleMap(info)[type]
-      };
-      return styles;
+  gradientStyle(info) {
+    let { gradientStyleMap } = this;
+    let { gradientStyle = {} } = info || {};
+    let { type = "" } = gradientStyle || {};
+    let styles = {
+      "background-image": gradientStyleMap(info)[type]
+    };
+    return styles;
+  }
+  gradientStyleMap(info) {
+    // let { info = {} } = this;
+    let { gradientStyle = {} } = info || {};
+    let { angle = "", center = "", radialShape = "", valueList = [] } =
+      gradientStyle || {};
+    let colors = valueList.map(item => `${item.code} ${item.value}%`);
+    return {
+      linear: `linear-gradient(${angle}deg, ${colors.join()})`,
+      radial: `radial-gradient(${radialShape} at ${center}, ${colors.join()})`
     };
   }
-  gradientStyleMap() {
-    return info => {
-      // let { info = {} } = this;
-      let { gradientStyle = {} } = info || {};
-      let { angle = "", center = "", radialShape = "", valueList = [] } =
-        gradientStyle || {};
-      let colors = valueList.map(item => `${item.code} ${item.value}%`);
-      return {
-        linear: `linear-gradient(${angle}deg, ${colors.join()})`,
-        radial: `radial-gradient(${radialShape} at ${center}, ${colors.join()})`
-      };
-    };
-  }
-  gradientLinearStyle() {
-    return info => {
-      // let { info = {} } = this;
-      let { gradientStyle = {} } = info || {};
-      let { valueList = [] } = gradientStyle || {};
-      let colors = valueList.map(item => `${item.code} ${item.value}%`);
-      return `background-image:linear-gradient(90deg, ${colors.join()})`;
-    };
+  gradientLinearStyle(info) {
+    // let { info = {} } = this;
+    let { gradientStyle = {} } = info || {};
+    let { valueList = [] } = gradientStyle || {};
+    let colors = valueList.map(item => `${item.code} ${item.value}%`);
+    return `background-image:linear-gradient(90deg, ${colors.join()})`;
   }
 
   //组件样式  继承用组件样式
@@ -388,11 +382,16 @@ class Component {
     `;
   }
   // 刷新数据
-  refresh() {
+  refresh(item) {
     let { info = {} } = this;
     let { id = "", locked = false } = info || {};
+    let $container = $(`#${id}`);
+    if (item) {
+      $container.css(item);
+    } else {
+      $container.css(this.boxStyle());
+    }
     $(`#${id}>.component`).css(this.comStyle());
-    $(`#${id}`).css(this.boxStyle());
     if (locked) {
       $(`#${id}>.operate-btn`).hide();
     } else {

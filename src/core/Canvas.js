@@ -3,7 +3,7 @@ import ComponentLibrary from "@/core/ComponentLibrary";
 import { Constants } from "@/common/env";
 import WidgetList from "@/core/info/widget-list";
 import Count from "@/core/info/count.js";
-import CanvasEvent from "./CanvasEvent";
+import CanvasEvent from "@/core/CanvasEvent";
 
 class Canvas {
   // container;
@@ -29,8 +29,16 @@ class Canvas {
   }
   //删除
   static remove(id) {
+    // 加载组件绑定数据
+    let obj = window.bm_widgetMap[id];
+    if (obj) {
+      if (obj.destory) {
+        obj?.destory();
+      }
+    }
     $(`#${id}`).remove();
     WidgetList.remove(id);
+    delete window.bm_widgetMap[id];
   }
 
   static show(id) {

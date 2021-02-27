@@ -279,6 +279,8 @@ import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 import html2canvas from "html2canvas";
 import Canvg from "canvg";
+import CanvasEvent from "@/core/CanvasEvent";
+import Canvas from "@/core/Canvas";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -496,52 +498,50 @@ export default {
       }, 0);
     },
     deleteEvent() {
-      this._navTimeoutId = setTimeout(() => {
-        clearTimeout(this._navTimeoutId);
+      this._deleteTimeoutId = setTimeout(() => {
+        clearTimeout(this._deleteTimeoutId);
         let { activeCom = {}, activeComs = [] } = this;
-        let { type = "" } = activeCom;
+        let { id = "" } = activeCom;
         let { length = 0 } = activeComs || [];
         let callback = () => {
-          this.selectComAction();
+          CanvasEvent.selectComAction();
           // this.showContextMenuStatus = false;
           this.createHistoryAction();
         };
         if (length > 1) {
           activeComs.forEach(item => {
-            this.deleteItem(item, callback);
+            let { id = "" } = item || {};
+            this.deleteItem(id, callback);
           });
         } else {
-          if (!type || type == "canvas") {
+          if (!id) {
             this.$$msgError(this.$lang("请选择要删除的组件"));
             return;
           }
-          this.deleteItem(activeCom, callback);
+          this.deleteItem(id, callback);
         }
       }, 0);
     },
-    deleteItem(item = {}, callback) {
-      let { widgetList = [] } = this;
-      let { id = "", type = "", parentId = "" } = item || {};
-      if (type == "canvas") {
-        return;
-      }
-      if (parentId) {
-        let widget = widgetList.find(_item => parentId == _item.id);
-        let { children = [] } = widget || {};
-        let index = children.findIndex(_item => id == _item.id);
-        if (index < 0) {
-          this.$$msgError(this.$lang("请选择要删除的组件"));
-          return;
-        }
-        children.splice(index, 1);
-      } else {
-        let index = widgetList.findIndex(_item => id == _item.id);
-        if (index < 0) {
-          this.$$msgError(this.$lang("请选择要删除的组件"));
-          return;
-        }
-        widgetList.splice(index, 1);
-      }
+    deleteItem(id, callback) {
+      // let { widgetList = [] } = this;
+      Canvas.remove(id);
+      // if (parentId) {
+      //   let widget = widgetList.find(_item => parentId == _item.id);
+      //   let { children = [] } = widget || {};
+      //   let index = children.findIndex(_item => id == _item.id);
+      //   if (index < 0) {
+      //     this.$$msgError(this.$lang("请选择要删除的组件"));
+      //     return;
+      //   }
+      //   children.splice(index, 1);
+      // } else {
+      //   let index = widgetList.findIndex(_item => id == _item.id);
+      //   if (index < 0) {
+      //     this.$$msgError(this.$lang("请选择要删除的组件"));
+      //     return;
+      //   }
+      //   widgetList.splice(index, 1);
+      // }
       callback && callback();
     },
     resumeEvent() {

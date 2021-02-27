@@ -8,68 +8,68 @@ import button from "@/core/components/basic/button/index";
 import display from "@/core/components/basic/display/index";
 import block from "@/core/components/basic/block/index";
 
-// // 热点
-// import hotPoint from  "@/core/components/basic/hotPoint/index"
+// 热点
+import hotPoint from "@/core/components/basic/hotPoint/index";
 
-// // 表格
-// import table from  "@/core/components/basic/table/index"
+// 表格
+import table from "@/core/components/basic/table/index";
 
-// // 横向滚动文本
-// import vScrollText from  "@/core/components/basic/vScrollText/index"
+// 横向滚动文本
+import vScrollText from "@/core/components/basic/vScrollText/index";
 
-// // 竖向滚动文本
-// import hScrollText from  "@/core/components/basic/hScrollText/index"
+// 竖向滚动文本
+import hScrollText from "@/core/components/basic/hScrollText/index";
 
-// // 富文本
-// import richText from  "@/core/components/basic/richText/index"
+// 富文本
+import richText from "@/core/components/basic/richText/index";
 
-// // 计分牌
-// import scoreBoard from  "@/core/components/basic/scoreBoard/index"
+// 计分牌
+import scoreBoard from "@/core/components/basic/scoreBoard/index";
 
-// // 计时器
-// import timeText from  "@/core/components/basic/timeText/index"
+// 计时器
+import timeText from "@/core/components/basic/timeText/index";
 
-// // 指南针
-// import compass from  "@/core/components/basic/compass/index"
+// 指南针
+import compass from "@/core/components/basic/compass/index";
 
-// // 指南针1
-// import compass1 from  "@/core/components/basic/compass1/index"
+// 指南针1
+import compass1 from "@/core/components/basic/compass1/index";
 
-// // 倒计时
-// import countdownText from  "@/core/components/basic/countdownText/index"
+// 倒计时
+import countdownText from "@/core/components/basic/countdownText/index";
 
-// // 视频
-// import video from  "@/core/components/basic/video/index"
+// 视频
+import video from "@/core/components/basic/video/index";
 
-// // hls视频流
-// import hlsVideo from  "@/core/components/basic/hlsVideo/index"
+// hls视频流
+import hlsVideo from "@/core/components/basic/hlsVideo/index";
 
-// //按钮标签
-// import buttontab from  "@/core/components/basic/buttontab/index"
+//按钮标签
+import buttontab from "@/core/components/basic/buttontab/index";
 
-// //开关
-// import switch from  "@/core/components/basic/switch/index"
+//开关
+import switchText from "@/core/components/basic/switch/index";
 
-// // 自动手动
-// import amt from  "@/core/components/basic/amt/index"
+// 自动手动
+import amt from "@/core/components/basic/amt/index";
 
-// // 启停
-// import startStop from  "@/core/components/basic/startStop/index"
+// 启停
+import startStop from "@/core/components/basic/startStop/index";
 
-// // 报警
-// import alarm from  "@/core/components/basic/alarm/index"
+// 报警
+import alarm from "@/core/components/basic/alarm/index";
 
-// // 故障
-// import fault from  "@/core/components/basic/fault/index"
+// 故障
+import fault from "@/core/components/basic/fault/index";
 
-// //百分比进度条
-// import progressbar from  "@/core/components/basic/progressbar/index"
+//百分比进度条
+import progressbar from "@/core/components/basic/progressbar/index";
 
-// //iframe
-// import iframe from  "@/core/components/basic/iframe/index"
+//iframe
+import iframe from "@/core/components/basic/iframe/index";
 
-// //下拉框
-// import select from  "@/core/components/basic/select/index"
+//下拉框
+import select from "@/core/components/basic/select/index";
 
 // import lineChart from  "@/core/components/com/lineChart/index"
 
@@ -109,37 +109,37 @@ import block from "@/core/components/basic/block/index";
 
 // import statisticsRadarChart from  "@/core/components/com/statisticsRadarChart/index"
 
-// import deviceCommon from  "@/core/components/device/common/index"
+import deviceCommon from "@/core/components/device/common/index";
 
 // // 水管（水平）
-// import deviceSgH from  "@/core/components/device/sg-h/index"
+// import deviceSgH from "@/core/components/device/sg-h/index";
 
-// // 水管（垂直）
-// import deviceSgV from  "@/core/components/device/sg-v/index"
+// // // 水管（垂直）
+// // import deviceSgV from  "@/core/components/device/sg-v/index"
 
-// // 水管（上）
-// import deviceSgTop from  "@/core/components/device/sg-top/index"
+// // // 水管（上）
+// // import deviceSgTop from  "@/core/components/device/sg-top/index"
 
-// // 水管（下）
-// import deviceSgBottom from  "@/core/components/device/sg-bottom/index"
+// // // 水管（下）
+// // import deviceSgBottom from  "@/core/components/device/sg-bottom/index"
 
-// // 水管（左）
-// import deviceSgLeft from  "@/core/components/device/sg-left/index"
+// // // 水管（左）
+// // import deviceSgLeft from  "@/core/components/device/sg-left/index"
 
-// // 水管（左上）
-// import deviceSgLeftTop from  "@/core/components/device/sg-left-top/index"
+// // // 水管（左上）
+// // import deviceSgLeftTop from  "@/core/components/device/sg-left-top/index"
 
-// // 水管（左下）
-// import deviceSgLeftBottom from  "@/core/components/device/sg-left-bottom/index"
+// // // 水管（左下）
+// // import deviceSgLeftBottom from  "@/core/components/device/sg-left-bottom/index"
 
-// // 水管（右）
-// import deviceSgRight from  "@/core/components/device/sg-right/index"
+// // // 水管（右）
+// // import deviceSgRight from  "@/core/components/device/sg-right/index"
 
-// // 水管（右上）
-// import deviceSgRightTop from  "@/core/components/device/sg-right-top/index"
+// // // 水管（右上）
+// // import deviceSgRightTop from  "@/core/components/device/sg-right-top/index"
 
-// // 水管（右下）
-// import deviceSgRightBottom from  "@/core/components/device/sg-right-bottom/index"
+// // // 水管（右下）
+// // import deviceSgRightBottom from  "@/core/components/device/sg-right-bottom/index"
 
 // // 电表
 // import deviceDb from  "@/core/components/device/db/index"
@@ -372,7 +372,7 @@ import block from "@/core/components/basic/block/index";
 
 // import materialQuadrangle from  "@/core/components/material/quadrangle/index"
 
-// import assistCommon from  "@/core/components/assist/common/index"
+import assistCommon from "@/core/components/assist/common/index";
 const Library = {
   text,
   dynamicText,
@@ -381,70 +381,70 @@ const Library = {
   image,
   imageStatus,
   display,
-  block
+  block,
 
   // 热点
-  // hotPoint,
+  hotPoint,
 
   // 表格
-  // table,
+  table,
 
   // 横向滚动文本
-  // vScrollText,
+  vScrollText,
 
   // 竖向滚动文本
-  // hScrollText,
+  hScrollText,
 
   // 富文本
-  // richText,
+  richText,
 
   // 计分牌
-  // scoreBoard,
+  scoreBoard,
 
   // 计时器
-  // timeText,
+  timeText,
 
   // 指南针
-  // compass,
+  compass,
 
   // 指南针1
-  // compass1,
+  compass1,
 
   // 倒计时
-  // countdownText,
+  countdownText,
 
   // 视频
-  // video,
+  video,
 
   // hls视频流
-  // hlsVideo,
+  hlsVideo,
 
   //按钮标签
-  // buttontab,
+  buttontab,
 
   //开关
-  // switch,
+  switch: switchText,
 
   // 自动手动
-  // amt,
+  amt,
 
   // 启停
-  // startStop,
+  startStop,
 
   // 报警
-  // alarm,
+  alarm,
 
   // 故障
-  // fault,
+  fault,
 
   //百分比进度条
-  // progressbar,
+  progressbar,
 
   //iframe
-  // iframe,
+  iframe,
 
   //下拉框
-  // select,
+  select,
 
   // lineChart,
 
@@ -484,7 +484,7 @@ const Library = {
 
   // statisticsRadarChart,
 
-  // deviceCommon,
+  deviceCommon,
 
   // 水管（水平）
   // deviceSgH,
@@ -747,7 +747,7 @@ const Library = {
 
   // materialQuadrangle,
 
-  // assistCommon,
+  assistCommon
 };
 class ComponentLibrary {
   static getInstance(info) {

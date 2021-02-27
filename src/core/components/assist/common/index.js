@@ -12,16 +12,13 @@ class Text extends Component {
 
   template() {
     let { info = {} } = this;
-    let { content = "" } = info || {};
     return super.wrap(
       { info },
       `
-      <div
-      class="bm-basic-text-com component"
+      <img
+      class="bm-assist-common-com component"
       style="${this.composeStyles(this.comStyle())}"
-    >
-      ${content}
-    </div>
+    />
     `
     );
   }
@@ -30,9 +27,9 @@ class Text extends Component {
     super.refresh();
     let { info = {} } = this;
     bmCommon.log(`${info.type}刷新 `);
-    let { id = "", content = "" } = info || {};
-    let $container = $(`#${id}>.component`);
-    $container.html(content);
+    // let { id = "", content = "" } = info || {};
+    // let $container = $(`#${id}>.component`);
+    // $container.html(content);
   }
 
   event() {}

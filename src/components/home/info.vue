@@ -350,7 +350,10 @@ export default {
     initWatch(name, item) {
       let { type = "" } = item || {};
       for (let i in item) {
-        if (name == "activeCom" && i != "id" && i !== "type") {
+        if (
+          (name == "activeCom" && i !== "type" && i != "id") ||
+          name != "activeCom"
+        ) {
           let key = `${name}.${i}`;
           if (watches[key]) {
             watches[key]();
@@ -363,25 +366,31 @@ export default {
           if (typeof value === "object" && !Array.isArray(value)) {
             this.initWatch(`${name}.${i}`, value);
           }
+
+          bmCommon.log(
+            "watches",
+            key,
+            typeof value,
+            typeof value === "object" && !Array.isArray(value)
+          );
           watches[key] = this.$watch(
             key,
             (newVal, oldVal) => {
               // let { children = [] } = getActiveCom || {};
               // let { parentId = "", id = "" } = activeCom || {};
               let { activeCom = {}, _lastWatchType = "" } = this;
-              bmCommon.log(
-                "刷新 处理",
-                JSON.stringify(newVal) === JSON.stringify(oldVal),
-                i,
-                name,
-                _lastWatchType,
-                type
-              );
               if (
-                (JSON.stringify(newVal) !== JSON.stringify(oldVal) &&
-                  _lastWatchType == type) ||
+                JSON.stringify(newVal) !== JSON.stringify(oldVal) ||
                 Array.isArray(value)
               ) {
+                bmCommon.log(
+                  "刷新 处理",
+                  JSON.stringify(newVal) === JSON.stringify(oldVal),
+                  i,
+                  name,
+                  _lastWatchType,
+                  type
+                );
                 let { id = "" } = activeCom || {};
                 let obj = window.bm_widgetMap[id];
                 if (obj) {
@@ -389,7 +398,9 @@ export default {
                   obj?.setInfo(Object.freeze({ ...activeCom }));
                   obj?.refresh();
                   if (i === "bindData") {
-                    obj?.loadData();
+                    if (obj.loadData) {
+                      obj?.loadData();
+                    }
                   }
                 }
               }
@@ -404,8 +415,8 @@ export default {
     },
     initWatches() {
       let { activeCom = {} } = this;
-      let { type = "" } = activeCom || {};
-      this._lastWatchType = type;
+      // let { type = "" } = activeCom || {};
+      // this._lastWatchType = type;
       this.initWatch("activeCom", activeCom);
       // for (let i in activeCom) {
       //   if (i != "id" && i !== "type") {

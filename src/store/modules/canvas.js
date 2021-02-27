@@ -230,6 +230,10 @@ export default {
     },
     //设置选中对象
     setActiveCom(state, item) {
+      if (item) {
+        let { comName = "", name = "" } = item || {};
+        item.comName = comName || name;
+      }
       state.activeCom = item;
     },
     //设置选中对象

@@ -696,14 +696,20 @@
       <el-collapse-item title="" name="empty" disabled class="unfold">
         <p>
           <span class="label">{{ $lang("滚动持续") }}:</span>
-          <el-input-number
-            controls-position="right"
-            clearable
-            :step="1"
-            :max="200000"
-            v-model.number="info.scrollTime"
-            :placeholder="$lang('滚动持续')"
-          ></el-input-number>
+          <el-tooltip
+            :content="`${info.scrollTime / 1000}s`"
+            placement="top"
+            effect="dark"
+          >
+            <el-input-number
+              controls-position="right"
+              clearable
+              :step="1"
+              :max="200000"
+              v-model.number="info.scrollTime"
+              :placeholder="$lang('滚动持续')"
+            ></el-input-number>
+          </el-tooltip>
           毫秒
           <el-slider
             v-model="info.scrollTime"
@@ -714,14 +720,20 @@
         </p>
         <p>
           <span class="label">{{ $lang("首尾停留") }}:</span>
-          <el-input-number
-            controls-position="right"
-            clearable
-            :step="1"
-            :max="200000"
-            v-model.number="info.stayTime"
-            :placeholder="$lang('首尾停留')"
-          ></el-input-number>
+          <el-tooltip
+            :content="`${info.stayTime / 1000}s`"
+            placement="top"
+            effect="dark"
+          >
+            <el-input-number
+              controls-position="right"
+              clearable
+              :step="1"
+              :max="200000"
+              v-model.number="info.stayTime"
+              :placeholder="$lang('首尾停留')"
+            ></el-input-number>
+          </el-tooltip>
           毫秒
           <el-slider
             v-model="info.stayTime"

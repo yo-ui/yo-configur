@@ -170,7 +170,7 @@ export default {
         // }
         if (height) {
           styles["height"] = `${height}px`;
-          styles["lineHeight"] = `${height}px`;
+          styles["line-height"] = `${height}px`;
         }
         if (textAlign) {
           styles["text-align"] = textAlign;

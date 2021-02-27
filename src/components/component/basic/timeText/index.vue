@@ -170,7 +170,7 @@ export default {
       styles["borderWidth"] = `${borderWidth}px`;
       styles["width"] = `${width}px`;
       styles["height"] = `${height}px`;
-      styles["lineHeight"] = `${height}px`;
+      styles["line-height"] = `${height}px`;
 
       if (color) {
         styles["color"] = color;

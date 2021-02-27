@@ -12,15 +12,15 @@ class Text extends Component {
 
   template() {
     let { info = {} } = this;
-    let { content = "" } = info || {};
+    let { width = 0, height = 0, content = "" } = info || {};
     return super.wrap(
       { info },
       `
       <div
-      class="bm-basic-text-com component"
+      class="bm-assist-common-com component"
       style="${this.composeStyles(this.comStyle())}"
     >
-      ${content}
+    <img src="${content}" width="${width}" height="${height}" />
     </div>
     `
     );
@@ -30,9 +30,9 @@ class Text extends Component {
     super.refresh();
     let { info = {} } = this;
     bmCommon.log(`${info.type}刷新 `);
-    let { id = "", content = "" } = info || {};
+    let { id = "", width = 0, height = 0 } = info || {};
     let $container = $(`#${id}>.component`);
-    $container.html(content);
+    $container.find("img").attr({ width, height });
   }
 
   event() {}
