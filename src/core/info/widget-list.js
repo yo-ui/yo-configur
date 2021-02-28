@@ -137,6 +137,9 @@ class WidgetList {
     // 加载组件绑定数据
     let obj = window.bm_widgetMap[id];
     if (obj) {
+      if (obj.init) {
+        obj?.init();
+      }
       if (obj.loadData) {
         obj?.loadData();
       }

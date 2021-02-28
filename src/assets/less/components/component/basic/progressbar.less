@@ -1,0 +1,35 @@
+@import (reference) "./../../../common.less";
+
+.bm-basic-progressbar-com {
+  // .posr;
+  // .pointer;
+  .background {
+    .posr;
+    top: 50%;
+    .tranf(translate(0, -50%));
+    .foreground {
+      .posa;
+      left: 0;
+      top: 0;
+      .slider {
+        .posa;
+        right: 0;
+        top: 50%;
+        .tranf(translate(0, -50%));
+        .br(50%);
+      }
+      .text {
+        .posa;
+        right: 0;
+        .tranf(translate(25%, 0));
+        bottom: 100%;
+      }
+      .tag {
+        .posa;
+        right: 0;
+        .tranf(translate(25%, 0));
+        top: 80%;
+      }
+    }
+  }
+}

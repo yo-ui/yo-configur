@@ -331,10 +331,9 @@ export default {
           value,
           descr
         };
-        activeCom.bindData = bindData;
         let obj = window.bm_widgetMap[comId];
         let { info = {} } = obj || {};
-        info.bindData = bindData;
+        activeCom.bindData = info.bindData = bindData;
         this.showDialogStatus = false;
       };
       if (resetStatus) {

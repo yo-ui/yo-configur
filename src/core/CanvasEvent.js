@@ -1,5 +1,5 @@
 import bmCommon from "@/common/common";
-// import { Constants } from "@/common/env";
+import { Constants } from "@/common/env";
 import Count from "@/core/info/count.js";
 import Canvas from "@/core/Canvas";
 import WidgetList from "@/core/info/widget-list";
@@ -890,6 +890,67 @@ class CanvasEvent {
       }, 10);
     }
     window.bm_active_com_id = id;
+  }
+
+  // 获取视频token
+  canvasTokenFunc(params, callback) {
+    let { deviceId = "" } = params;
+    let accessToken = "",
+      serial = "";
+    $vm.$store
+      .dispatch("canvasToken", { deviceId })
+      .then(({ data }) => {
+        let { code = "", result } = data;
+        if (code == Constants.CODES.SUCCESS) {
+          let { accessToken: _accessToken = "", serial: _serial = "" } =
+            result || {};
+          accessToken = _accessToken;
+          serial = _serial;
+        }
+        callback && callback({ accessToken, serial });
+      })
+      .catch(err => {
+        callback && callback({ accessToken, serial });
+        bmCommon.error("获取视频token失败=>canvasToken", err);
+      });
+  }
+  // 开始摄像头移动
+  canvasStartFunc(params, callback) {
+    let { deviceId = "", direction = "" } = params;
+    if (CanvasEvent._canvasStartStatus) {
+      return;
+    }
+    CanvasEvent._canvasStartStatus = true;
+    $vm.$store
+      .dispatch("canvasStart", { direction, deviceId })
+      .then(({ data }) => {
+        CanvasEvent._canvasStartStatus = false;
+        callback && callback();
+      })
+      .catch(err => {
+        CanvasEvent._canvasStartStatus = false;
+        callback && callback();
+        bmCommon.error("开始摄像头移动失败=>canvasStart", err);
+      });
+  }
+  // 停止摄像头移动
+  canvasStopFunc(params, callback) {
+    let { deviceId = "", direction = "" } = params;
+    if (CanvasEvent._canvasStopStatus) {
+      return;
+    }
+    CanvasEvent._canvasStopStatus = true;
+    $vm.$store
+      .dispatch("canvasStop", { direction, deviceId })
+      .then(({ data }) => {
+        CanvasEvent._canvasStopStatus = false;
+        callback && callback();
+      })
+      .catch(err => {
+        CanvasEvent._canvasStopStatus = false;
+        callback && callback();
+        bmCommon.error("停止摄像头移动失败=>canvasStop", err);
+      });
   }
 }
 

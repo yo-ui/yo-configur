@@ -164,7 +164,7 @@ export default {
       // zoom: "canvas/getZoom", //放大缩小
       // leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
       // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
-      // activeCom: "canvas/getActiveCom",
+      activeCom: "canvas/getActiveCom",
       // activeComs: "canvas/getActiveComs",
       treeData: "common/getOrganizeList",
       widgetList: "canvas/getWidgetList"
@@ -324,19 +324,22 @@ export default {
     submitEvent() {
       let { resetStatus = false } = this;
       let callback = () => {
-        let { widgetList = [], condition } = this;
+        let { activeCom = {}, condition } = this;
         let {
           orgId = "",
           deviceId = "",
           comId = "",
           pointIds = []
         } = condition;
-        let activeCom = widgetList.find(item => item.id == comId) || {};
-        activeCom.bindData = {
+        // let activeCom = widgetList.find(item => item.id == comId) || {};
+        let bindData = {
           orgId,
           deviceId,
           pointIds
         };
+        let obj = window.bm_widgetMap[comId];
+        let { info = {} } = obj || {};
+        activeCom.bindData = info.bindData = bindData;
         this.showDialogStatus = false;
       };
       if (resetStatus) {

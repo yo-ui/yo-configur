@@ -117,11 +117,11 @@ class Text extends Component {
   //   }
   //   if (borderRight) {
   //     if (borderStyle) {
-  //       styles["border-right-Style"] = borderStyle;
+  //       styles["border-right-style"] = borderStyle;
   //     }
-  //     styles["border-right-Width"] = `${borderWidth}px`;
+  //     styles["border-right-width"] = `${borderWidth}px`;
   //     if (borderColor) {
-  //       styles["border-right-Color"] = borderColor;
+  //       styles["border-right-color"] = borderColor;
   //     }
   //   } else {
   //     styles["border-right"] = "none";
@@ -132,7 +132,7 @@ class Text extends Component {
   //     }
   //     styles["border-top-width"] = `${borderWidth}px`;
   //     if (borderColor) {
-  //       styles["border-Top-color"] = borderColor;
+  //       styles["border-top-color"] = borderColor;
   //     }
   //   } else {
   //     styles["border-Top"] = "none";
@@ -154,7 +154,7 @@ class Text extends Component {
   //     }
   //     styles["border-left-width"] = `${borderWidth}px`;
   //     if (borderColor) {
-  //       styles["border-Left-Color"] = borderColor;
+  //       styles["border-left-color"] = borderColor;
   //     }
   //   } else {
   //     styles["border-left"] = "none";
