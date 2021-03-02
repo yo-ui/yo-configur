@@ -205,7 +205,9 @@ class CanvasEvent {
       CanvasEvent.createHistoryAction();
     }
     window.bm_widgetMap[id] = obj;
-    obj.info = { ...activeCom };
+    if (obj) {
+      obj.info = { ...activeCom };
+    }
     clearInterval(CanvasEvent.setIntervalId);
     window.requestAnimationFrame(() => {
       // $vm.$emit("info-data-active", { id, watched: false });
@@ -222,63 +224,49 @@ class CanvasEvent {
     let $parent = $(target).parents(".bm-component-com");
     let type = $(target).attr("type");
     let id = $(target).attr("id");
-    let width = $(target).outerWidth();
-    let height = $(target).outerHeight();
+    // let width = $(target).outerWidth();
+    // let height = $(target).outerHeight();
     document.activeElement?.blur();
     target?.focus();
-    _viewBox.focus();
+    _viewBox?.focus();
+    let bm_active_com_id = window.bm_active_com_id;
+    let bm_active_com_ids = window.bm_active_com_ids;
     // bmCommon.log(document.activeElement);
     if (!type) {
       type = $parent.attr("type");
       id = $parent.attr("id");
-      width = $parent.outerWidth();
-      height = $parent.outerHeight();
+      // width = $parent.outerWidth();
+      // height = $parent.outerHeight();
     }
     if (type) {
       e.stopPropagation();
-      CanvasEvent.showContextMenuType = 1;
+      // CanvasEvent.showContextMenuType = 1;
       // 绑定移动事件：只有从属于 page 的，除背景图以外的元件才能移动
       // let [item = {}] = activeComs || [];
       let obj = window.bm_widgetMap[id] || {};
       let { info: _activeCom = {} } = obj;
       // let { id: _id = "" } = _activeCom || {};
-      _activeCom.showCoverStatus = true;
+      // _activeCom.showCoverStatus = true;
       //如果 shift ctrl 被按住则进行 多选和取消选择
       if (shiftKey || ctrlKey) {
         // let { locked = false } = activeCom || {};
         CanvasEvent.selectComsAction(id); //选中组件
       } else {
-        // if (id != _id) {
-        // 如果是已经选中了则不做处理
-        CanvasEvent.selectComAction(id); //选中组件
-        // }
-      }
-      let {
-        activeComs = [],
-        // shiftCtrlKeyDownStatus = false,
-        activeCom = {}
-      } = this;
-      let { length = 0 } = activeComs || [];
-      let { locked = false, rotateable = false } = _activeCom || {};
-      if (!rotateable) {
-        let padding = 0;
-        activeCom.originWidth = width - padding; //减去 padding
-        activeCom.originHeight = height - padding; //减去 padding
-      }
-      //选择多个则必定可以移动
-      if (length > 1) {
-        locked = false;
-      }
-      if (!locked) {
-        CanvasEvent.initMoveEvent(e, id);
+        if (id != bm_active_com_id) {
+          // 如果是已经选中了则不做处理
+          CanvasEvent.selectComAction(id); //选中组件
+        }
+        let { length = 0 } = bm_active_com_ids || [];
+        let { locked = false } = _activeCom || {};
+        //选择多个则必定可以移动
+        if (length > 1) {
+          locked = false;
+        }
+        if (!locked) {
+          CanvasEvent.initMoveEvent(e, id);
+        }
       }
     } else {
-      CanvasEvent.showContextMenuType = 2;
-      let { activeCom = {}, activeComs = [] } = this;
-      activeCom.showCoverStatus = true;
-      activeComs.forEach(item => {
-        item.showCoverStatus = true;
-      });
       // 取消选中组件
       CanvasEvent.selectComAction(id);
       CanvasEvent.selectComsAction(id);
@@ -312,11 +300,13 @@ class CanvasEvent {
     ctrlKey = ctrlKey || metaKey; //(ctrl(cmd))
     // e.stopPropagation();
     bmCommon.log("index keydow", e);
-    let { activeComs = [], widgetList = [] } = this;
-    let { length = 0 } = activeComs || [];
+    // let { activeComs = [], widgetList = [] } = this;
     let copyCom = CanvasEvent.copyCom;
-    let id = window.bm_active_com_id;
-    let obj = window.bm_widgetMap[id];
+    let bm_active_com_id = window.bm_active_com_id;
+    let bm_active_com_ids = window.bm_active_com_ids;
+    let { length = 0 } = bm_active_com_ids || [];
+    let bm_widgetMap = window.bm_widgetMap;
+    let obj = bm_widgetMap[bm_active_com_id];
     let { info: activeCom = {} } = obj || {};
     let { type = "", locked = false } = activeCom || {};
     if (keyCode == 83) {
@@ -342,14 +332,28 @@ class CanvasEvent {
       // ctrl+a 全选
       if (ctrlKey) {
         e.preventDefault();
-        let [com = {}] = widgetList || [];
-        let { length = 0 } = widgetList || [];
-        if (length > 0) {
-          this.setActiveCom(com);
-          this.$nextTick(() => {
-            this.setActiveComs(widgetList);
-          });
+        // let [com = {}] = widgetList || [];
+        // let { length = 0 } = widgetList || [];
+        bm_active_com_ids = [];
+        bm_active_com_id = "";
+        for (let i in bm_widgetMap) {
+          let obj = bm_widgetMap[i];
+          let { info = {} } = obj || {};
+          let { id = "" } = info || {};
+          bm_active_com_ids.push(id);
+          if (!bm_active_com_id) {
+            bm_active_com_id = id;
+          }
         }
+        // if (length > 0) {
+        // this.setActiveCom(com);
+        CanvasEvent.selectComAction(bm_active_com_id);
+        CanvasEvent.actives(bm_active_com_ids);
+        window.bm_active_com_ids = bm_active_com_ids;
+        // this.$nextTick(() => {
+        //   this.setActiveComs(widgetList);
+        // });
+        // }
       }
       return;
     } else if (keyCode == 189) {
@@ -368,7 +372,7 @@ class CanvasEvent {
       return;
     }
     if (length < 2 && copyCom == null) {
-      if (type == "canvas" || !id) {
+      if (type == "canvas" || !bm_active_com_id) {
         //如果选中的是画布或未选中组件则直接返回
         return;
       }
@@ -383,7 +387,7 @@ class CanvasEvent {
     // }
     if (keyCode === 37) {
       e.preventDefault();
-      if (type == "canvas" || !id) {
+      if (type == "canvas" || !bm_active_com_id) {
         //如果选中的是画布或未选中组件则直接返回
         return;
       }
@@ -393,17 +397,20 @@ class CanvasEvent {
         dis = shiftDis;
       }
       if (length > 1) {
-        activeComs.forEach(item => {
-          item.left -= dis;
+        bm_active_com_ids.forEach(id => {
+          let obj = bm_widgetMap[id];
+          let { info = {} } = obj || {};
+          info.left -= dis;
+          obj?.refresh();
         });
       } else {
         activeCom.left -= dis;
+        obj?.refresh();
       }
-      obj?.refresh();
       // bmCommon.log("左", activeCom);
     } else if (keyCode === 38) {
       e.preventDefault();
-      if (type == "canvas" || !id) {
+      if (type == "canvas" || !bm_active_com_id) {
         //如果选中的是画布或未选中组件则直接返回
         return;
       }
@@ -413,8 +420,10 @@ class CanvasEvent {
         dis = shiftDis;
       }
       if (length > 1) {
-        activeComs.forEach(item => {
-          item.top -= dis;
+        bm_active_com_ids.forEach(id => {
+          let obj = bm_widgetMap[id];
+          let { info = {} } = obj || {};
+          info.top -= dis;
         });
       } else {
         activeCom.top -= dis;
@@ -423,7 +432,7 @@ class CanvasEvent {
       // bmCommon.log("上", activeCom);
     } else if (keyCode === 39) {
       e.preventDefault();
-      if (type == "canvas" || !id) {
+      if (type == "canvas" || !bm_active_com_id) {
         //如果选中的是画布或未选中组件则直接返回
         return;
       }
@@ -434,8 +443,10 @@ class CanvasEvent {
       }
 
       if (length > 1) {
-        activeComs.forEach(item => {
-          item.left += dis;
+        bm_active_com_ids.forEach(id => {
+          let obj = bm_widgetMap[id];
+          let { info = {} } = obj || {};
+          info.left += dis;
         });
       } else {
         activeCom.left += dis;
@@ -444,7 +455,7 @@ class CanvasEvent {
       // bmCommon.log("右", activeCom);
     } else if (keyCode === 40) {
       e.preventDefault();
-      if (type == "canvas" || !id) {
+      if (type == "canvas" || !bm_active_com_id) {
         //如果选中的是画布或未选中组件则直接返回
         return;
       }
@@ -454,13 +465,16 @@ class CanvasEvent {
         dis = shiftDis;
       }
       if (length > 1) {
-        activeComs.forEach(item => {
-          item.top += dis;
+        bm_active_com_ids.forEach(id => {
+          let obj = bm_widgetMap[id];
+          let { info = {} } = obj || {};
+          info.top += dis;
+          obj?.refresh();
         });
       } else {
         activeCom.top += dis;
+        obj?.refresh();
       }
-      obj?.refresh();
       // bmCommon.log("下", activeCom);
     } else if (keyCode == 67) {
       // C
@@ -834,7 +848,54 @@ class CanvasEvent {
     CanvasEvent.showContextMenuStatus = false;
   }
 
-  static selectComsAction() {}
+  static selectComsAction(id) {
+    // let {
+    //   // widgetList = [],
+    //   // canvas = {},
+    //   // activeComs = [],
+    //   activeCom = {}
+    // } = state;
+    let bm_active_com_ids = window.bm_active_com_ids;
+    // let fIndex = bm_active_com_ids.findIndex(item => item == id);
+    // if (fIndex > -1) {
+    //   bm_active_com_ids.splice(fIndex, 1);
+    // }
+    if (!id) {
+      window.bm_active_com_ids = [];
+      Canvas.unactive();
+      return;
+    }
+    // let { id: _id = "" } = activeCom || {};
+    // let index=activeComs.findIndex(item=>item.id==_id)
+    // if (_id && index<0) {
+    //   activeComs.push(activeCom);
+    // }
+    let index = bm_active_com_ids.findIndex(item => item == id);
+    // bmCommon.log(index, "-------");
+    //如果在已选中组件内找到则移除
+    if (index > -1) {
+      bm_active_com_ids.splice(index, 1);
+      Canvas.unactive(id);
+    } else {
+      //未找到则添加
+      // let activeCom = widgetList.find(item => item.id == id);
+      // if (activeCom) {
+      //   activeComs.push(activeCom);
+      // }
+      bm_active_com_ids.push(id);
+      Canvas.active(id);
+    }
+    let { length = 0 } = bm_active_com_ids || [];
+    if (length > 0) {
+      [id = ""] = bm_active_com_ids || [];
+    } else {
+      // activeCom = canvas;
+      id = "";
+      Canvas.setActiveCom();
+    }
+    // context.commit("setActiveCom", activeCom);
+    // Canvas.setActiveCom(id);
+  }
 
   static selectComAction(id, flag = true) {
     // let {
@@ -890,6 +951,7 @@ class CanvasEvent {
       }, 10);
     }
     window.bm_active_com_id = id;
+    window.bm_active_com_ids = [id];
   }
 
   // 获取视频token

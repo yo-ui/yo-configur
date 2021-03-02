@@ -128,6 +128,8 @@ window.$vm = new Vue({
 });
 window.$vm.$httpRequestList = [];
 window.$vm.$mount("#app");
+window.bm_active_com_id = "";
+window.bm_active_com_ids = [];
 window.bm_widgetMap = {
   // canvas: Constants.COMPONENTCANVAS
 };

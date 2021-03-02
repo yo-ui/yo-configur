@@ -5,6 +5,7 @@ import Canvas from "@/core/Canvas";
 // import bmCommon from "@/common/common";
 // import { Constants } from "@/common/env";
 import Event from "@/core/Event";
+import SelectBox from "@/core/SelectBox";
 import ContextMenu from "./ContextMenu";
 class Core {
   constructor() {}
@@ -19,6 +20,8 @@ class Core {
     CanvasEvent.init();
     //右键菜单
     ContextMenu.init();
+    //选择框
+    SelectBox.init();
   }
 }
 

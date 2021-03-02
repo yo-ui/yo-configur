@@ -1,3 +1,4 @@
+import bmCommon from "@/common/common";
 // 静态文本
 import text from "@/core/components/basic/text/index";
 import dynamicText from "@/core/components/basic/dynamicText/index";
@@ -156,56 +157,56 @@ import deviceCommon from "@/core/components/device/common/index";
 // // 壁挂式电表
 // import deviceBgsdb from  "@/core/components/device/bgsdb/index"
 
-// // 接地刀闸
-// import deviceJddz from  "@/core/components/device/jddz/index"
+// 接地刀闸
+import deviceJddz from "@/core/components/device/jddz/index";
 
-// // 电力电容器
-// import deviceDldrq from  "@/core/components/device/dldrq/index"
+// 电力电容器
+import deviceDldrq from "@/core/components/device/dldrq/index";
 
-// // 变压器
-// import deviceByq from  "@/core/components/device/byq/index"
+// 变压器
+import deviceByq from "@/core/components/device/byq/index";
 
-// // 变压器
-// import deviceByq1 from  "@/core/components/device/byq1/index"
+// 变压器
+import deviceByq1 from "@/core/components/device/byq1/index";
 
 // // 电容器
-// import deviceDrq from  "@/core/components/device/drq/index"
+import deviceDrq from "@/core/components/device/drq/index";
 
-// // 电流互感器1
-// import deviceDlhgq1 from  "@/core/components/device/dlhgq1/index"
+// 电流互感器1
+import deviceDlhgq1 from "@/core/components/device/dlhgq1/index";
 
-// // 电流互感器2
-// import deviceDlhgq2 from  "@/core/components/device/dlhgq2/index"
+// 电流互感器2
+import deviceDlhgq2 from "@/core/components/device/dlhgq2/index";
 
-// // 电流互感器3
-// import deviceDlhgq3 from  "@/core/components/device/dlhgq3/index"
+// 电流互感器3
+import deviceDlhgq3 from "@/core/components/device/dlhgq3/index";
 
-// // 电流互感器4
-// import deviceDlhgq4 from  "@/core/components/device/dlhgq4/index"
+// 电流互感器4
+import deviceDlhgq4 from "@/core/components/device/dlhgq4/index";
 
-// // 接地
-// import deviceJd from  "@/core/components/device/jd/index"
+// 接地
+import deviceJd from "@/core/components/device/jd/index";
 
-// // 接地
-// import deviceJd1 from  "@/core/components/device/jd1/index"
+// 接地
+import deviceJd1 from "@/core/components/device/jd1/index";
 
-// // 接地指示
-// import deviceJdzs from  "@/core/components/device/jdzs/index"
+// 接地指示
+import deviceJdzs from "@/core/components/device/jdzs/index";
 
-// // 电抗器
-// import deviceDkq from  "@/core/components/device/dkq/index"
+// 电抗器
+import deviceDkq from "@/core/components/device/dkq/index";
 
-// // 断路器1
-// import deviceDlq1 from  "@/core/components/device/dlq1/index"
+// 断路器1
+import deviceDlq1 from "@/core/components/device/dlq1/index";
 
-// // 断路器2
-// import deviceDlq2 from  "@/core/components/device/dlq2/index"
+// 断路器2
+import deviceDlq2 from "@/core/components/device/dlq2/index";
 
 // // 开关1
 // import deviceKg1 from  "@/core/components/device/kg1/index"
 
-// // 手车
-// import deviceSc from  "@/core/components/device/sc/index"
+// 手车
+import deviceSc from "@/core/components/device/sc/index";
 
 // // 螺翼式水表
 // import deviceLyssb from  "@/core/components/device/lyssb/index"
@@ -350,7 +351,7 @@ import deviceCommon from "@/core/components/device/common/index";
 
 // import materialCommon from  "@/core/components/material/common/index"
 
-// import materialLine from  "@/core/components/material/line/index"
+import materialLine from "@/core/components/material/line/index";
 
 // import materialCurveLine from  "@/core/components/material/curveLine/index"
 
@@ -362,7 +363,7 @@ import deviceCommon from "@/core/components/device/common/index";
 
 // import materialStar from  "@/core/components/material/star/index"
 
-// import materialPolygon from  "@/core/components/material/polygon/index"
+import materialPolygon from "@/core/components/material/polygon/index";
 
 // import materialTriangle from  "@/core/components/material/triangle/index"
 
@@ -532,55 +533,55 @@ const Library = {
   // deviceBgsdb,
 
   // 接地刀闸
-  // deviceJddz,
+  deviceJddz,
 
   // 电力电容器
-  // deviceDldrq,
+  deviceDldrq,
 
   // 变压器
-  // deviceByq,
+  deviceByq,
 
   // 变压器
-  // deviceByq1,
+  deviceByq1,
 
   // 电容器
-  // deviceDrq,
+  deviceDrq,
 
   // 电流互感器1
-  // deviceDlhgq1,
+  deviceDlhgq1,
 
   // 电流互感器2
-  // deviceDlhgq2,
+  deviceDlhgq2,
 
   // 电流互感器3
-  // deviceDlhgq3,
+  deviceDlhgq3,
 
   // 电流互感器4
-  // deviceDlhgq4,
+  deviceDlhgq4,
 
   // 接地
-  // deviceJd,
+  deviceJd,
 
   // 接地
-  // deviceJd1,
+  deviceJd1,
 
   // 接地指示
-  // deviceJdzs,
+  deviceJdzs,
 
   // 电抗器
-  // deviceDkq,
+  deviceDkq,
 
   // 断路器1
-  // deviceDlq1,
+  deviceDlq1,
 
   // 断路器2
-  // deviceDlq2,
+  deviceDlq2,
 
   // 开关1
   // deviceKg1,
 
   // 手车
-  // deviceSc,
+  deviceSc,
 
   // 螺翼式水表
   // deviceLyssb,
@@ -725,7 +726,7 @@ const Library = {
 
   // materialCommon,
 
-  // materialLine,
+  materialLine,
 
   // materialCurveLine,
 
@@ -737,7 +738,7 @@ const Library = {
 
   // materialStar,
 
-  // materialPolygon,
+  materialPolygon,
 
   // materialTriangle,
 
@@ -753,6 +754,7 @@ class ComponentLibrary {
   static getInstance(info) {
     let item = { ...info };
     let { type = "" } = item || {};
+    bmCommon.log("当前渲染组件为", type);
     return new Library[type](item);
   }
 }

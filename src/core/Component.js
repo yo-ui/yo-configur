@@ -64,7 +64,7 @@ class Component {
     }
     // styles["pointer-events"] = !draging ? "auto" : "none";
     styles["animation-iteration-count"] = iterationCount;
-    styles["animation-duration"] = duration;
+    styles["animation-duration"] = `${duration}s`;
     styles["animation-direction"] = direction;
     return styles;
   }
@@ -373,6 +373,8 @@ class Component {
         : `
     <i title="旋转" class="operate-btn el-icon-refresh-right"></i>
       <i title="旋转轴" class="operate-btn el-icon-axis"></i>`;
+    } else if (type == "materialLine") {
+      operate = "";
     }
 
     return `
@@ -401,9 +403,11 @@ class Component {
     }
     $(`#${id}>.component`).css(this.comStyle());
     if (locked) {
-      $(`#${id}>.operate-btn`).hide();
+      // $(`#${id}>.operate-btn`).hide();
+      $container.addClass("locked");
     } else {
-      $(`#${id}>.operate-btn`).show();
+      // $(`#${id}>.operate-btn`).show();
+      $container.removeClass("locked");
     }
     // if (type === "panel") {
     //   $(`#${id}>.operate-btn:not(.el-icon-refresh-right,.el-icon-axis)`).hide();

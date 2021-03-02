@@ -8,6 +8,7 @@
 <script>
 // import vpd from '../../mixins/vpd'
 import bmCommon from "@/common/common";
+import Canvas from "@/core/Canvas";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters, mapState } = Vuex;
 // let padding = 20;
@@ -30,11 +31,11 @@ export default {
       // moving: state => state.canvas.moving
     }),
     ...mapGetters({
-      widgetList: "canvas/getWidgetList", //组件列表
-      activeCom: "canvas/getActiveCom", //选中组件
-      activeComs: "canvas/getActiveComs", //选中组件
+      // widgetList: "canvas/getWidgetList", //组件列表
+      // activeCom: "canvas/getActiveCom", //选中组件
+      // activeComs: "canvas/getActiveComs", //选中组件
       selectBox: "canvas/getSelectBox", //选取框
-      zoom: "canvas/getZoom", //放大缩小
+      // zoom: "canvas/getZoom", //放大缩小
       canvas: "canvas/getCanvas" //画布组件
     }),
     // moving(){
@@ -70,9 +71,9 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setSelectBox: "canvas/setSelectBox",
-      setActiveComs: "canvas/setActiveComs",
-      setActiveCom: "canvas/setActiveCom"
+      // setSelectBox: "canvas/setSelectBox",
+      // setActiveComs: "canvas/setActiveComs",
+      // setActiveCom: "canvas/setActiveCom"
     }),
     ...mapActions(),
     init() {
@@ -83,9 +84,9 @@ export default {
       let { target } = e;
       let { action = "" } = canvas || {};
       let $parent = $(target).parents(".bm-component-com");
-      let type = $(target).attr("data-type");
+      let type = $(target).attr("type");
       if (!type) {
-        type = $parent.attr("data-type");
+        type = $parent.attr("type");
       }
       // bmCommon.log(e.clientX, e.clientY, x, y, e.target);
       this.showBoxStatus = false;
@@ -100,7 +101,8 @@ export default {
         return;
       }
       // let pos = bmCommon.getMousePosition(e, { x: 310, y: 90 });
-      this.setActiveCom(canvas);
+      e.stopPropagation();
+      // this.setActiveCom(canvas);
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
       selectBox.left = x;
@@ -129,12 +131,20 @@ export default {
       let { x = 0, y = 0 } = pos || {};
       this.canvasSelect({ x, y, originX, originY });
     },
-    mouseupEvent(e) {
+    mouseupEvent() {
       let { selectBox } = this;
-      // bmCommon.log("鼠标松开");
       selectBox.moving = false;
       this.showBoxStatus = false;
-      // this.selectBoxShowStatus = false;
+      let bm_active_com_ids = window.bm_active_com_ids || [];
+      let [bm_active_com_id = ""] = bm_active_com_ids || [];
+      bmCommon.log("select 鼠标松开", bm_active_com_ids, bm_active_com_id);
+      this.mouseupSetTimeoutId = setTimeout(() => {
+        clearTimeout(this.mouseupSetTimeoutId);
+        Canvas.setActiveCom(bm_active_com_id);
+        if (bm_active_com_ids.length < 1) {
+          Canvas.unactive();
+        }
+      }, 10);
       $(document).off("mousemove", this.mousemoveEvent);
       $(document).off("mouseup", this.mouseupEvent);
     },
@@ -172,16 +182,19 @@ export default {
     },
     //计算组件是否被框选
     selectComs(selectBox = {}) {
-      let {
-        widgetList = [],
-        selectBoxShowStatus = false,
-        // selectBox = {},
-        activeComs = [],
-        activeCom = {}
-        // zoom = 1,
-        // canvas = {}
-      } = this;
-      let widgets = [];
+      // let {
+      //   // widgetList = [],
+      //   // selectBoxShowStatus = false
+      //   // selectBox = {},
+      //   // activeComs = [],
+      //   // activeCom = {}
+      //   // zoom = 1,
+      //   // canvas = {}
+      // } = this;
+      let bm_active_com_ids = [];
+      // let bm_active_com_id = window.bm_active_com_id;
+      let bm_widgetMap = window.bm_widgetMap || {};
+      // let widgets = [];
       let {
         // moving = false,
         left: boxX = 0,
@@ -203,72 +216,70 @@ export default {
       points.push([boxX1, boxY]);
       points.push([boxX, boxY1]);
       points.push([boxX1, boxY1]);
+      Canvas.unactive();
       // points = new SVG.PointArray(points).size(
       //   boxWidth * zoom,
       //   boxHeight * zoom
       // );
       // let ids = [];
       if (boxWidth > 1) {
-        widgetList.forEach((item, index) => {
+        // widgetList.forEach((item, index) => {
+        for (let i in bm_widgetMap) {
           // let { left: x = 0, top: y = 0, width = 0, height = 0 } = item || {};
-          let { id = "" } = item || {};
-          let obj = document.getElementById(`box_${id}`);
-          let rect = obj.getBoundingClientRect();
+          let obj = bm_widgetMap[i];
+          let { info = {} } = obj || {};
+          let { id = "", locked = false } = info || {};
+          bmCommon.log("-----select.vue", info);
+          let com = document.getElementById(id);
+          let rect = com.getBoundingClientRect();
           let { left: x = 0, top: y = 0, width = 0, height = 0 } = rect || {};
           // x = x + left;
           // y = y + top;
           let x1 = x + width;
           let y1 = y + height;
+          //四点全在范围内
+          // if (
+          //   !locked &&
+          //   bmCommon.isInPolygon([x, y], points) &&
+          //   bmCommon.isInPolygon([x1, y], points) &&
+          //   bmCommon.isInPolygon([x, y1], points) &&
+          //   bmCommon.isInPolygon([x1, y1], points)
+          // ) {
+          // 只要有一点在范围内
           if (
-            bmCommon.isInPolygon([x, y], points) &&
-            bmCommon.isInPolygon([x1, y], points) &&
-            bmCommon.isInPolygon([x, y1], points) &&
-            bmCommon.isInPolygon([x1, y1], points)
+            !locked &&
+            (bmCommon.isInPolygon([x, y], points) ||
+              bmCommon.isInPolygon([x1, y], points) ||
+              bmCommon.isInPolygon([x, y1], points) ||
+              bmCommon.isInPolygon([x1, y1], points))
           ) {
             // ids.push(id);
             // bmCommon.log(selectBoxShowStatus, "------",index);
-            if (selectBoxShowStatus) {
-              // bmCommon.log(selectBoxShowStatus, "#######");
-              this.selectBoxShowStatus = false;
-              if (activeCom.id != item.id) {
-                this.setActiveCom(item);
-              }
-            }
-            widgets.push(item);
+            // if (selectBoxShowStatus) {
+            //   // bmCommon.log(selectBoxShowStatus, "#######");
+            //   this.selectBoxShowStatus = false;
+            //   if (bm_active_com_id != id) {
+            //     // this.setActiveCom(info);
+            //     window.bm_active_com_id = id;
+            //   }
+            // }
+            // widgets.push(item);
+            bm_active_com_ids.push(id);
+            Canvas.active(id);
           }
-        });
-        // let { length = 0 } = widgets || [];
-        // let activeCom = canvas;
-        // if (length > 0) {
-        //   [activeCom = {}] = widgets || [];
-        // } else {
-        //   activeCom = canvas;
-        // }
-        // this.setActiveCom(activeCom);
-        let oldArr = JSON.stringify(
-          widgets.map(item => item.id).sort((a, b) => a.localeCompare(b))
-        );
-        let newArr = JSON.stringify(
-          activeComs.map(item => item.id).sort((a, b) => a.localeCompare(b))
-        );
-        // bmCommon.log(oldArr,newArr)
-        if (oldArr !== newArr) {
-          this.setActiveComs(widgets);
         }
+        // if (bm_active_com_ids.length < 1) {
+        //   this.setActiveCom(canvas);
+        //   Canvas.unactive();
+        // }
+        window.bm_active_com_ids = bm_active_com_ids;
       }
-      // bmCommon.log("activeComs", activeComs);
-      // else {
-      //   let { length = 0 } = activeComs || [];
-      //   // let { id = "" } = activeCom || {};
-      //   // ids.push(id);
-      //   if (length > 1) {
-      //     ids = activeComs.map(item => item.id);
-      //   } else {
-      //     let { id = "" } = activeCom || {};
-      //     ids.push(id);
-      //   }
-      // }
-      // return ids || [];
+
+      bmCommon.log(
+        "-----鼠标移动select.vue",
+        window.bm_active_com_i,
+        window.bm_active_com_ids
+      );
     }
   }
 };

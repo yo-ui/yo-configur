@@ -26,6 +26,29 @@ class Text extends Component {
     );
   }
 
+  // renderSvg(){
+  //   return ``
+  // }
+  // renderSvgContent(){
+  // return ``
+  // }
+
+  // //加载数据
+  // loadData() {
+  //   this.loadDeviceInfo();
+  // }
+
+  // //刷新内容
+  // refreshContent(data) {
+  //   let { info = {} } = this;
+  //   let { point } = data || {};
+  //   if (point) {
+  //     let { value = "" } = point || {};
+  //     info.content = value;
+  //     this.refresh();
+  //   }
+  // }
+
   refresh() {
     super.refresh();
     let { info = {} } = this;

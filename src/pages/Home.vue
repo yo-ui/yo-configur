@@ -238,8 +238,10 @@
         {{ $lang("删除") }}<small>Delete</small>
       </li>
     </ul> -->
+    <!-- <bm-select ref="bmSelect"></bm-select> -->
+
+    <div id="bm_select_com" class="bm-select-com"></div>
     <bm-footer ref="bmFooter"></bm-footer>
-    <bm-select ref="bmSelect"></bm-select>
     <bm-control ref="bmControl"></bm-control>
     <bm-device ref="bmDevice"></bm-device>
     <bm-point ref="bmPoint"></bm-point>
@@ -257,7 +259,7 @@ import CanvasEvent from "@/core/CanvasEvent";
 import bmHeader from "@/components/header";
 import bmNav from "@/components/nav";
 import bmWidgetList from "@/components/home/widget-list";
-import bmInfo from "@/components/home/info";
+// import bmInfo from "@/components/home/info";
 import bmFooter from "@/components/footer";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
@@ -300,16 +302,16 @@ export default {
     //   ),
     // bmGroup: () =>
     //   import(/* webpackChunkName: "iot-group-com" */ "@/components/group"),
-    bmSelect: () =>
-      import(/* webpackChunkName: "iot-select-com" */ "@/components/select"),
+    // bmSelect: () =>
+    //   import(/* webpackChunkName: "iot-select-com" */ "@/components/select"),
     bmControl: () =>
       import(/* webpackChunkName: "iot-control-com" */ "@/components/control"),
     bmFooter,
     // : () =>
     //   import(/* webpackChunkName: "iot-footer-com" */ "@/components/footer"),
-    // bmInfo: () =>
-    //   import(/* webpackChunkName: "iot-info-com" */ "@/components/info"),
-    bmInfo,
+    bmInfo: () =>
+      import(/* webpackChunkName: "iot-info-com" */ "@/components/info"),
+    // bmInfo,
     bmWidgetList,
     // bmCom: () =>
     //   import(

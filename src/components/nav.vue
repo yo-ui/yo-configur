@@ -880,7 +880,7 @@ export default {
         parentNode.removeChild(node);
         $(parentNode).prepend($(canvas));
       });
-      let ids = children.map(item => `box_${item.id}`);
+      let ids = children.map(item => `${item.id}`);
       $copyDom.children().each((index, node) => {
         let $item = $(node);
         let id = $item.attr("id");

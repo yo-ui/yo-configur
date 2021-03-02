@@ -1,0 +1,14 @@
+@import (reference) "./../../../common.less";
+.bm-basic-hot-point-com{
+    .bor(1px solid @grayE);
+    // background: linear-gradient(#34a5f8, #088ef0);
+    .p(5px 20px);
+    .br(20px);
+    .pointer;
+    &:active {
+      text-shadow: 0 1px 0 hsla(0, 0%, 100%, 0.3);
+      opacity: 0.9;
+      .box-s(0 1px 3px rgba(0, 0, 0, 0.2));
+      .c(@grayC) !important;
+    }
+  }

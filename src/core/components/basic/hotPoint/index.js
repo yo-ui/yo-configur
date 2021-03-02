@@ -1,6 +1,6 @@
 import bmCommon from "@/common/common";
 import Component from "@/core/Component";
-// import "../../../../assets/less/components/component/basic/hScroll.less";
+import "../../../../assets/less/components/component/basic/hot.point.less";
 
 class Text extends Component {
   constructor(props) {
@@ -12,16 +12,13 @@ class Text extends Component {
 
   template() {
     let { info = {} } = this;
-    let { content = "" } = info || {};
     return super.wrap(
       { info },
       `
       <div
-      class="bm-basic-text-com component"
+      class="bm-basic-hot-point-com component"
       style="${this.composeStyles(this.comStyle())}"
-    >
-      ${content}
-    </div>
+    ></div>
     `
     );
   }
@@ -30,12 +27,33 @@ class Text extends Component {
     super.refresh();
     let { info = {} } = this;
     bmCommon.log(`${info.type}刷新 `);
-    let { id = "", content = "" } = info || {};
-    let $container = $(`#${id}>.component`);
-    $container.html(content);
+    // let { id = "", content = "" } = info || {};
+    // let $container = $(`#${id}>.component`);
+    // $container.html(content);
   }
 
-  event() {}
+  clickEvent() {
+    let { info = {}, getUserInfo } = this;
+    let userInfo = getUserInfo();
+    let { content = "" } = info || {};
+    if (content) {
+      let { token = "" } = userInfo || {};
+      window.location.href = $vm.$linkUrl(content, {
+        "x-access-token": token
+      });
+    }
+  }
+
+  event() {
+    let { info = {} } = this;
+    let { id = "" } = info || {};
+    let $container = $(`#${id}>.component`);
+    let that = this;
+    $container.on("click", function(e) {
+      e.stopPropagation();
+      that.clickEvent();
+    });
+  }
 }
 
 export default Text;

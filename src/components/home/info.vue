@@ -357,7 +357,10 @@ export default {
           let key = `${name}.${i}`;
           if (watches[key]) {
             watches[key]();
-            bmCommon.log("unWatches", key);
+            this.setTimeoutId = setTimeout(() => {
+              clearTimeout(this.setTimeoutId);
+              bmCommon.log("unWatches", key);
+            }, 1);
           }
           if (type === "canvas") {
             continue;
@@ -366,13 +369,15 @@ export default {
           if (typeof value === "object" && !Array.isArray(value)) {
             this.initWatch(`${name}.${i}`, value);
           }
-
-          bmCommon.log(
-            "watches",
-            key,
-            typeof value,
-            typeof value === "object" && !Array.isArray(value)
-          );
+          this.setTimeoutId = setTimeout(() => {
+            clearTimeout(this.setTimeoutId);
+            bmCommon.log(
+              "watches",
+              key,
+              typeof value,
+              typeof value === "object" && !Array.isArray(value)
+            );
+          }, 1);
           watches[key] = this.$watch(
             key,
             (newVal, oldVal) => {
@@ -383,14 +388,17 @@ export default {
                 JSON.stringify(newVal) !== JSON.stringify(oldVal) ||
                 Array.isArray(value)
               ) {
-                bmCommon.log(
-                  "刷新 处理",
-                  JSON.stringify(newVal) === JSON.stringify(oldVal),
-                  i,
-                  name,
-                  _lastWatchType,
-                  type
-                );
+                this.setTimeoutId = setTimeout(() => {
+                  clearTimeout(this.setTimeoutId);
+                  bmCommon.log(
+                    "刷新 处理",
+                    JSON.stringify(newVal) === JSON.stringify(oldVal),
+                    i,
+                    name,
+                    _lastWatchType,
+                    type
+                  );
+                }, 1);
                 let { id = "" } = activeCom || {};
                 let obj = window.bm_widgetMap[id];
                 if (obj) {
