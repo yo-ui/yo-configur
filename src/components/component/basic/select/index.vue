@@ -185,17 +185,17 @@ export default {
           styles["background-size"] = backgroundSize;
         }
         if (borderColor) {
-          styles["borderColor"] = borderColor;
+          styles["border-color"] = borderColor;
         }
         if (borderStyle) {
-          styles["borderStyle"] = borderStyle;
+          styles["border-style"] = borderStyle;
         }
-        styles["borderWidth"] = `${borderWidth}px`;
-        styles["textIndent"] = `${textIndent}px`;
+        styles["border-width"] = `${borderWidth}px`;
+        styles["text-indent"] = `${textIndent}px`;
         // if (length > 1) {
         //   if (index == length - 1) {
         //     styles[
-        //       "borderWidth"
+        //       "border-width"
         //     ] = `${borderWidth}px ${borderWidth}px ${borderWidth}px ${borderWidth}px`;
         //   } else {
         //     if (_width < 2 * width) {
@@ -203,24 +203,24 @@ export default {
         //竖向
         if (marginBottom <= 0) {
           styles[
-            "borderWidth"
+            "border-width"
           ] = `${borderWidth}px ${borderWidth}px 0 ${borderWidth}px`;
           if (_borderStyle != "none") {
             if (index == 0) {
-              styles["borderWidth"] = `0 0 0 0`;
+              styles["border-width"] = `0 0 0 0`;
             } else if (index == length - 1) {
-              styles["borderWidth"] = `${borderWidth}px 0 0 0`;
+              styles["border-width"] = `${borderWidth}px 0 0 0`;
             } else {
-              styles["borderWidth"] = `${borderWidth}px 0 0 0`;
+              styles["border-width"] = `${borderWidth}px 0 0 0`;
             }
           } else {
             if (index == 0) {
               styles[
-                "borderWidth"
+                "border-width"
               ] = `${borderWidth}px ${borderWidth}px 0 ${borderWidth}px`;
             } else if (index == length - 1) {
               styles[
-                "borderWidth"
+                "border-width"
               ] = `${borderWidth}px ${borderWidth}px ${borderWidth}px ${borderWidth}px`;
             }
           }
@@ -232,7 +232,7 @@ export default {
         //       //横向
         //       if (marginRight > 0) {
         //         styles[
-        //           "borderWidth"
+        //           "border-width"
         //         ] = `${borderWidth}px 0 ${borderWidth}px ${borderWidth}px`;
         //       }
         //     }
@@ -368,7 +368,7 @@ export default {
             styles["background-size"] = backgroundSize;
           }
           if (borderColor) {
-            styles["borderColor"] = borderColor;
+            styles["border-color"] = borderColor;
           }
           if (backgroundType == "purity") {
             //纯色
@@ -451,15 +451,15 @@ export default {
         styles["background-size"] = backgroundSize;
       }
       if (borderColor) {
-        styles["borderColor"] = borderColor;
+        styles["border-color"] = borderColor;
       }
       if (borderHoverColor) {
         styles["--border-hover-color"] = borderHoverColor;
       }
       if (borderStyle) {
-        styles["borderStyle"] = borderStyle;
+        styles["border-style"] = borderStyle;
       }
-      styles["borderWidth"] = `${borderWidth}px`;
+      styles["border-width"] = `${borderWidth}px`;
       if (borderTop) {
         if (borderStyle) {
           styles["border-top-style"] = borderStyle;
@@ -530,7 +530,7 @@ export default {
       if (fontWeight) {
         styles["font-weight"] = fontWeight;
       }
-      styles["textIndent"] = `${textIndent}px`;
+      styles["text-indent"] = `${textIndent}px`;
       if (fontStyle) {
         styles["font-style"] = fontStyle;
       }
@@ -593,7 +593,7 @@ export default {
         styles["transform"] = `scale(${zoom * boxZoom})`;
       }
       if (maxHeight) {
-        styles["maxHeight"] = `${maxHeight}px`;
+        styles["max-height"] = `${maxHeight}px`;
       }
       styles["--background-color"] = arrowColor;
       if (borderTop) {

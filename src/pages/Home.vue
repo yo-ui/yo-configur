@@ -520,7 +520,7 @@ export default {
         webkitTransform: `scale(${zoom})`
       };
       // if (action == "move") {
-      //   styles["transformOrigin"] = `center`;
+      //   styles["transform-origin"] = `center`;
       // }
       if (width) {
         styles["width"] = `${width}px`;
@@ -1030,31 +1030,30 @@ export default {
     this.init();
   },
   beforeDestroy() {
-    let viewBox = this.$refs.viewBox;
-    // 注册鼠标事件
-    $(viewBox).off("mousedown", this.viewBoxMousedownEvent);
-    // 注册右键菜单事件
-    $(viewBox).off("contextmenu", this.viewBoxContextmenuEvent);
-    //注册按键键盘事件
-    $(document).off("keydown", this.keydownEvent);
-    $(document).off("keyup", this.keyupEvent);
-
-    $(window).off("resize", this.resizeCanvasSize);
+    // let viewBox = this.$refs.viewBox;
+    // // 注册鼠标事件
+    // $(viewBox).off("mousedown", this.viewBoxMousedownEvent);
+    // // 注册右键菜单事件
+    // $(viewBox).off("contextmenu", this.viewBoxContextmenuEvent);
+    // //注册按键键盘事件
+    // $(document).off("keydown", this.keydownEvent);
+    // $(document).off("keyup", this.keyupEvent);
+    // $(window).off("resize", CanvasEvent.resizeCanvasSize);
   },
   watch: {
     rightMenuStatus(newVal, oldVal) {
       if (newVal != oldVal) {
-        this.resizeCanvasSize();
+        CanvasEvent.resizeCanvasSize();
       }
     },
     leftMenuStatus(newVal, oldVal) {
       if (newVal != oldVal) {
-        this.resizeCanvasSize();
+        CanvasEvent.resizeCanvasSize();
       }
     },
     "$route.query.canvasId"(newVal, oldVal) {
       if (newVal != oldVal) {
-        this.init();
+        CanvasEvent.init();
       }
     }
   }

@@ -46,18 +46,24 @@ class WidgetList {
   static unactive() {
     let _infoOldCom = $(`#info_com_list_box .title.active`);
     _infoOldCom.removeClass("active");
+    // let oldId = window.bm_active_com_id;
+    // let $infoCom = $(`#info_com_${oldId}>.title`);
+    // $infoCom.removeClass("active");
   }
   // 激活
   static active(id, flag = true) {
-    let _infoCom = $(`#info_com_${id}>.title`);
-    _infoCom.addClass("active");
+    let $infoCom = $(`#info_com_${id}>.title`);
+    $infoCom.addClass("active");
     if (flag) {
-      _infoCom.length > 0 && _infoCom[0].scrollIntoView();
+      $infoCom.length > 0 && $infoCom[0].scrollIntoView();
     }
   }
   //删除
   static remove(id) {
     $(`#info_com_${id}`).remove();
+    window.requestAnimationFrame(() => {
+      Count.refresh({ count: -1 });
+    });
   }
   // static show(id) {
   //   $(`#info_com_${id}`).show();

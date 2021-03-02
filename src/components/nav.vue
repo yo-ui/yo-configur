@@ -235,6 +235,10 @@
           <i class="el-icon-s-unfold"></i>
           {{ $lang(rightMenuStatus ? "收起右侧" : "展开右侧") }}
         </el-button>
+        <el-button @click="loadJsonEvent">
+          <i class="el-icon-document"></i>
+          {{ $lang("加载外部JSON") }}
+        </el-button>
       </div>
       <div class="right">
         <!-- <el-button @click="dataEvent">
@@ -595,6 +599,10 @@ export default {
     rightMenuEvent() {
       let { rightMenuStatus = false } = this;
       this.setRightMenuStatus(!rightMenuStatus);
+    },
+    loadJsonEvent() {
+      // let { rightMenuStatus = false } = this;
+      // this.setRightMenuStatus(!rightMenuStatus);
     },
     zoomEvent(val = 0) {
       this._navTimeoutId = setTimeout(() => {

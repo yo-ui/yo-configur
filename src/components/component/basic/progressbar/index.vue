@@ -92,12 +92,12 @@ export default {
         styles.backgroundImage = `linear-gradient(90deg, ${colors.join()})`;
       }
       // if (sliderBorderColor) {
-      //   styles["borderColor"] = sliderBorderColor;
+      //   styles["border-color"] = sliderBorderColor;
       // }
       // if (sliderBorderStyle) {
-      //   styles["borderStyle"] = sliderBorderStyle;
+      //   styles["border-style"] = sliderBorderStyle;
       // }
-      // styles["borderWidth"] = `${sliderBorderWidth}px`;
+      // styles["border-width"] = `${sliderBorderWidth}px`;
       return styles;
     },
     backgroundStyle() {
@@ -119,12 +119,12 @@ export default {
         styles["background-color"] = progressBackgroundColor;
       }
       // if (sliderBorderColor) {
-      //   styles["borderColor"] = sliderBorderColor;
+      //   styles["border-color"] = sliderBorderColor;
       // }
       // if (sliderBorderStyle) {
-      //   styles["borderStyle"] = sliderBorderStyle;
+      //   styles["border-style"] = sliderBorderStyle;
       // }
-      // styles["borderWidth"] = `${sliderBorderWidth}px`;
+      // styles["border-width"] = `${sliderBorderWidth}px`;
       return styles;
     },
     tagStyle() {

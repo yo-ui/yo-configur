@@ -514,7 +514,7 @@ export default {
         webkitTransform: `scale(${zoom})`
       };
       // if (action == "move") {
-      //   styles["transformOrigin"] = `center`;
+      //   styles["transform-origin"] = `center`;
       // }
       if (width) {
         styles["width"] = `${width}px`;

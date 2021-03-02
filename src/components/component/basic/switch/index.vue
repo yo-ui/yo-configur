@@ -93,12 +93,12 @@ export default {
         styles["background-color"] = openSliderColor;
       }
       if (sliderBorderColor) {
-        styles["borderColor"] = sliderBorderColor;
+        styles["border-color"] = sliderBorderColor;
       }
       if (sliderBorderStyle) {
-        styles["borderStyle"] = sliderBorderStyle;
+        styles["border-style"] = sliderBorderStyle;
       }
-      styles["borderWidth"] = `${sliderBorderWidth}px`;
+      styles["border-width"] = `${sliderBorderWidth}px`;
       return styles;
     },
     closeSliderStyle() {
@@ -121,12 +121,12 @@ export default {
         styles["background-color"] = closeSliderColor;
       }
       if (sliderBorderColor) {
-        styles["borderColor"] = sliderBorderColor;
+        styles["border-color"] = sliderBorderColor;
       }
       if (sliderBorderStyle) {
-        styles["borderStyle"] = sliderBorderStyle;
+        styles["border-style"] = sliderBorderStyle;
       }
-      styles["borderWidth"] = `${sliderBorderWidth}px`;
+      styles["border-width"] = `${sliderBorderWidth}px`;
       return styles;
     },
     closeTextStyle() {

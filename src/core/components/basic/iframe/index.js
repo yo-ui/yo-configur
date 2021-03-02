@@ -10,32 +10,68 @@ class Text extends Component {
 
   //组件样式
 
+  iframeStyle() {
+    let { info = {} } = this;
+    let { width = "", height = "" } = info || {};
+    let styles = {};
+    styles["width"] = `${width}px`;
+    styles["height"] = `${height}px`;
+    return styles || {};
+  }
+
   template() {
     let { info = {} } = this;
     let { content = "" } = info || {};
     return super.wrap(
       { info },
       `
-      <div
-      class="bm-basic-text-com component"
-      style="${this.composeStyles(this.comStyle())}"
-    >
-      ${content}
-    </div>
+    <div class="bm-ifram-com component"
+    style="${this.composeStyles(this.comStyle())}">
+    <iframe
+      src="${content}"
+      frameborder="0"
+      style="${this.composeStyles(this.iframeStyle())}"
+    ></iframe>
+  </div>
     `
     );
   }
 
   refresh() {
-    super.refresh();
+    let item = arguments[0];
+    super.refresh(item);
     let { info = {} } = this;
     bmCommon.log(`${info.type}刷新 `);
     let { id = "", content = "" } = info || {};
     let $container = $(`#${id}>.component`);
-    $container.html(content);
+    let $iframe = $container.find("iframe");
+    $iframe.css(this.iframeStyle());
+    if (!item) {
+      let oldParams = {
+        content
+      };
+      for (let i in oldParams) {
+        let oldVal = this.params[i];
+        let val = info[i];
+        if (oldVal != val) {
+          if (i === "content") {
+            $iframe.attr("src", content);
+          }
+        }
+        this.params[i] = val;
+      }
+    }
   }
 
-  event() {}
+  event() {
+    // let { info = {} } = this;
+    // let { id = "", content = "" } = info || {};
+    // let $container = $(`#${id}>.component`);
+    // let that=this
+    // $container.find('iframe').load(function(e){
+    //   that.loadEvent()
+    // })
+  }
 }
 
 export default Text;

@@ -19,6 +19,9 @@ class Canvas {
     // );
     return $vm.$store.getters["canvas/getCanvas"] || {};
   }
+  static getUserInfo() {
+    return $vm.$store.getters["getUserInfo"] || {};
+  }
   //获取放大
   static getZoom() {
     return $vm.$store.getters["canvas/getZoom"] || 1;
@@ -245,11 +248,20 @@ class Canvas {
   static unactive() {
     let _oldCom = $("#canvas_content .bm-component-com.active");
     _oldCom.removeClass("active");
+
+    // let oldId = window.bm_active_com_id;
+    // let $container = $(`#${oldId}>.component`);
+    // $container.removeClass("active");
   }
   // 激活选中
   static active(id) {
     let _com = $(`#${id}`);
     _com.addClass("active");
+    let oldId = window.bm_active_com_id;
+    if (oldId != id) {
+      _com.find(".cover").show();
+      `0`;
+    }
   }
   // 优化显示
   static optimize() {

@@ -6,7 +6,6 @@ import CanvasEvent from "../../../CanvasEvent";
 import "../../../../assets/less/components/component/basic/hls.video.less";
 
 class Text extends Component {
-  params = {};
   condition = {
     lineType: 2
   };
@@ -223,10 +222,10 @@ class Text extends Component {
     };
     for (let i in oldParams) {
       let oldVal = this.params[i];
-      if (oldVal != oldParams[i]) {
-        // params[i] = oldParams[i];
+      let val = info[i];
+      if (oldVal != val) {
         if (i === "autoplay") {
-          if (oldParams[i]) {
+          if (val) {
             this.ezuikitVideo();
           } else {
             this.destroy();
@@ -236,12 +235,13 @@ class Text extends Component {
           this.destroy();
         }
         if (i === "muted") {
-          this.mutedPlay(oldParams[i]);
+          this.mutedPlay(val);
         }
         if (i === "deviceId") {
+          val = bindData[i];
           this.init();
         }
-        this.params[i] = oldParams[i];
+        this.params[i] = val;
       }
     }
   }

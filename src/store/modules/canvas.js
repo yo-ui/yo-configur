@@ -230,11 +230,17 @@ export default {
     },
     //设置选中对象
     setActiveCom(state, item) {
+      let { activeCom = {} } = state || {};
+      bmCommon.log("setActiveCom,===", (item || {}).type);
       if (item) {
         let { comName = "", name = "" } = item || {};
         item.comName = comName || name;
+        if (JSON.stringify(activeCom) !== JSON.stringify(item)) {
+          state.activeCom = item;
+        }
+      } else {
+        state.activeCom = item;
       }
-      state.activeCom = item;
     },
     //设置选中对象
     setActiveComs(state, item) {

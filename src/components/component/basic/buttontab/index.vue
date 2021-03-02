@@ -124,30 +124,30 @@ export default {
           styles["background-size"] = backgroundSize;
         }
         if (borderColor) {
-          styles["borderColor"] = borderColor;
+          styles["border-color"] = borderColor;
         }
         if (borderStyle) {
-          styles["borderStyle"] = borderStyle;
+          styles["border-style"] = borderStyle;
         }
-        styles["borderWidth"] = `${borderWidth}px`;
+        styles["border-width"] = `${borderWidth}px`;
         if (length > 1) {
           if (index == length - 1) {
             styles[
-              "borderWidth"
+              "border-width"
             ] = `${borderWidth}px ${borderWidth}px ${borderWidth}px ${borderWidth}px`;
           } else {
             if (_width < 2 * width) {
               //竖向
               if (!(marginBottom > 0 || marginTop > 0)) {
                 styles[
-                  "borderWidth"
+                  "border-width"
                 ] = `${borderWidth}px ${borderWidth}px 0 ${borderWidth}px`;
               }
             } else {
               //横向
               if (!(marginRight > 0 || marginLeft > 0)) {
                 styles[
-                  "borderWidth"
+                  "border-width"
                 ] = `${borderWidth}px 0 ${borderWidth}px ${borderWidth}px`;
               }
             }
@@ -254,7 +254,7 @@ export default {
             styles["background-size"] = backgroundSize;
           }
           if (borderColor) {
-            styles["borderColor"] = borderColor;
+            styles["border-color"] = borderColor;
           }
           if (backgroundType == "purity") {
             //纯色

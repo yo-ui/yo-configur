@@ -8,6 +8,8 @@ class Event {
     $(".canvas-box").on("dblclick", ".cover", function(e) {
       e.stopPropagation();
       bmCommon.log("双击事件");
+      let $this = $(this);
+      $this.hide();
     });
     $(".canvas-box").on("mousedown", ".operate-btn", function(e) {
       e.stopPropagation();

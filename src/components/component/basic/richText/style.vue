@@ -496,36 +496,108 @@
           <span class="label">{{ $lang("边框圆角") }}:</span>
           <span class="c-box">
             <span>
-              左上<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.borderRadiusTopLeft"
-                :placeholder="$lang('左上角')"
-              ></el-input-number>
+              左上
+              <el-tooltip placement="top" effect="dark">
+                <template v-slot:content>
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="
+                      () => {
+                        info.borderRadiusTopLeft = info.borderRadiusTopLeft;
+                        info.borderRadiusTopRight = info.borderRadiusTopLeft;
+                        info.borderRadiusBottomRight = info.borderRadiusTopLeft;
+                        info.borderRadiusBottomLeft = info.borderRadiusTopLeft;
+                      }
+                    "
+                    >{{ $lang("统一设置") }}</el-button
+                  >
+                </template>
+                <el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.borderRadiusTopLeft"
+                  :placeholder="$lang('左上角')"
+                ></el-input-number>
+              </el-tooltip>
             </span>
             <span>
-              右上<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.borderRadiusTopRight"
-                :placeholder="$lang('右上角')"
-              ></el-input-number>
+              右上<el-tooltip placement="top" effect="dark">
+                <template v-slot:content>
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="
+                      () => {
+                        info.borderRadiusTopLeft = info.borderRadiusTopRight;
+                        info.borderRadiusTopRight = info.borderRadiusTopRight;
+                        info.borderRadiusBottomRight =
+                          info.borderRadiusTopRight;
+                        info.borderRadiusBottomLeft = info.borderRadiusTopRight;
+                      }
+                    "
+                    >{{ $lang("统一设置") }}</el-button
+                  > </template
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.borderRadiusTopRight"
+                  :placeholder="$lang('右上角')"
+                ></el-input-number>
+              </el-tooltip>
             </span>
             <span>
-              右下<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.borderRadiusBottomRight"
-                :placeholder="$lang('右下角')"
-              ></el-input-number>
+              右下<el-tooltip placement="top" effect="dark">
+                <template v-slot:content>
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="
+                      () => {
+                        info.borderRadiusTopLeft = info.borderRadiusBottomRight;
+                        info.borderRadiusTopRight =
+                          info.borderRadiusBottomRight;
+                        info.borderRadiusBottomRight =
+                          info.borderRadiusBottomRight;
+                        info.borderRadiusBottomLeft =
+                          info.borderRadiusBottomRight;
+                      }
+                    "
+                    >{{ $lang("统一设置") }}</el-button
+                  > </template
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.borderRadiusBottomRight"
+                  :placeholder="$lang('右下角')"
+                ></el-input-number>
+              </el-tooltip>
             </span>
             <span>
-              左下<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.borderRadiusBottomLeft"
-                :placeholder="$lang('左下角')"
-              ></el-input-number>
+              左下<el-tooltip placement="top" effect="dark">
+                <template v-slot:content>
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="
+                      () => {
+                        info.borderRadiusTopLeft = info.borderRadiusBottomLeft;
+                        info.borderRadiusTopRight = info.borderRadiusBottomLeft;
+                        info.borderRadiusBottomRight =
+                          info.borderRadiusBottomLeft;
+                        info.borderRadiusBottomLeft =
+                          info.borderRadiusBottomLeft;
+                      }
+                    "
+                    >{{ $lang("统一设置") }}</el-button
+                  > </template
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.borderRadiusBottomLeft"
+                  :placeholder="$lang('左下角')"
+                ></el-input-number>
+              </el-tooltip>
             </span>
           </span>
         </p>

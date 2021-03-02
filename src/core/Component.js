@@ -1,4 +1,5 @@
 import bmCommon from "@/common/common"; // 静态文本
+import Canvas from "./Canvas";
 import "../assets/less/components/home/component.less";
 
 // const Library = {
@@ -6,12 +7,19 @@ import "../assets/less/components/home/component.less";
 // };
 class Component {
   info;
+  pointCode = "SwSts";
+
+  params = {};
   constructor(props) {
     this.info = props;
   }
 
   setInfo(info) {
     this.info = { ...info };
+  }
+
+  getUserInfo() {
+    return Canvas.getUserInfo();
   }
 
   boxStyle() {

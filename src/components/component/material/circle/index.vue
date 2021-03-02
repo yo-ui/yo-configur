@@ -305,12 +305,12 @@ export default {
       //   styles["background-size"] = backgroundSize;
       // }
       // if (borderColor) {
-      //   styles["borderColor"] = borderColor;
+      //   styles["border-color"] = borderColor;
       // }
       // if (borderStyle) {
-      //   styles["borderStyle"] = borderStyle;
+      //   styles["border-style"] = borderStyle;
       // }
-      // styles["borderWidth"] = `${borderWidth}px`;
+      // styles["border-width"] = `${borderWidth}px`;
 
       // styles[
       //   "border-radius"

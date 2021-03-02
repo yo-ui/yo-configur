@@ -121,10 +121,10 @@ export default {
         styles["background-size"] = backgroundSize;
       }
       if (borderColor) {
-        styles["borderColor"] = borderColor;
+        styles["border-color"] = borderColor;
       }
       if (borderStyle) {
-        styles["borderStyle"] = borderStyle;
+        styles["border-style"] = borderStyle;
       }
       if (borderTop) {
         if (borderStyle) {
@@ -173,7 +173,7 @@ export default {
       styles[
         "border-radius"
       ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
-      styles["borderWidth"] = `${borderWidth}px`;
+      styles["border-width"] = `${borderWidth}px`;
       styles["width"] = `${width}px`;
       styles["height"] = `${height}px`;
       // if (scale) {
