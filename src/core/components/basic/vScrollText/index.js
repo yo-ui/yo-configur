@@ -98,7 +98,7 @@ class Text extends Component {
       this.transform = `translateX(-${textWidth - width}px)`;
       this.transition = `transform ${scrollTime}ms linear 0s`;
       this.refreshAnimate();
-      bmCommon.log(`scrollAction刷新 `);
+      bmCommon.log(`scrollAction刷新 `, info.id);
       this.scrollTimeoutId = setTimeout(() => {
         clearTimeout(this.scrollTimeoutId);
         this.endTimeoutId = setTimeout(() => {

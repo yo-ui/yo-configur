@@ -200,7 +200,7 @@
 
 <script>
 import bmCommon from "@/common/common";
-// eslint-disable-next-line no-undef
+import CanvasEvent from "@/core/CanvasEvent.js";
 const { mapActions, mapMutations, mapGetters } = Vuex;
 //84,17.5,53.3,28.5,59.6,34.8,17.5,76.9,24.6,84,66.7,41.9,73,48.3
 // const points = [
@@ -356,8 +356,8 @@ export default {
   methods: {
     ...mapMutations({}),
     ...mapActions({
-      selectComAction: "canvas/selectCom",
-      createHistoryAction: "canvas/createHistory"
+      // selectComAction: "canvas/selectCom",
+      // createHistoryAction: "canvas/createHistory"
     }),
     reloadSize() {
       let { info = {} } = this;
@@ -381,7 +381,7 @@ export default {
       e.preventDefault();
       let { info = {} } = this;
       let { id = "" } = info || {};
-      this.selectComAction(id); //选中组件
+      CanvasEvent.selectComAction(id); //选中组件
       this.mousedownEvent(e, "left");
     },
     rightClickEvent(e) {
@@ -389,7 +389,7 @@ export default {
       e.stopPropagation();
       let { info = {} } = this;
       let { id = "" } = info || {};
-      this.selectComAction(id); //选中组件
+      CanvasEvent.selectComAction(id); //选中组件
       this.mousedownEvent(e, "right");
     },
     mousedownEvent(e, direction) {
@@ -441,7 +441,7 @@ export default {
       $(document).off("mousemove", this.mousemoveEvent);
       $(document).off("mouseup", this.mouseupEvent);
       // this.stopMove();
-      this.createHistoryAction();
+      CanvasEvent.createHistoryAction();
       this.rotating = false;
     },
 

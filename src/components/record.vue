@@ -44,8 +44,8 @@
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
+import Canvas from "@/core/Canvas";
 const html2canvas = require("@/common/lib/html2canvas");
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {
@@ -58,46 +58,35 @@ export default {
   },
   components: {},
   computed: {
-    ...mapGetters({
-      // canvas: "canvas/getCanvas",
-      // zoom: "canvas/getZoom", //放大缩小
-      // leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
-      // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
-      // activeCom: "canvas/getActiveCom",
-      // activeComs: "canvas/getActiveComs",
-      recordList: "canvas/getRecordList",
-      widgetList: "canvas/getWidgetList"
-    })
+    ...mapGetters({})
   },
   methods: {
-    ...mapMutations({
-      // setActiveCom: "canvas/setActiveCom",
-      setRecordList: "canvas/setRecordList"
-      // setZoom: "canvas/setZoom",
-      // setLeftMenuStatus: "canvas/setLeftMenuStatus",
-      // setRightMenuStatus: "canvas/setRightMenuStatus"
-    }),
+    ...mapMutations({}),
     ...mapActions({
-      selectComAction: "canvas/selectCom",
       upload2OssAction: "upload2Oss"
     }),
     // 初始化
-    init() {
-      // this.storeProductFunc();
-    },
+    init() {},
     show() {
       this.showDialogStatus = true;
       let { condition } = this;
-      this.selectComAction(); //选中组件
       condition.remark = "";
     },
     closeEvent() {
       this.showDialogStatus = false;
     },
     submitEvent() {
-      let { widgetList = [], condition, recordList = [] } = this;
+      let { condition } = this;
+      let bm_widgetMap = window.bm_widgetMap;
+      let widgetList = [];
+      for (let i in bm_widgetMap) {
+        let obj = bm_widgetMap[i];
+        let { info = {} } = obj || {};
+        widgetList.push(info);
+      }
+
       let { remark: name = "" } = condition;
-      let time = this.$moment().valueOf();
+      let time = moment().valueOf();
       let id = bmCommon.uuid();
       html2canvas($(".canvas-box")[0], {}).then(canvas => {
         // window.open(canvas.toDataURL())
@@ -106,21 +95,22 @@ export default {
         let formData = new FormData();
         formData.append("files", blob, `${Date.now()}.png`);
         formData.append("subDir", Constants.UPLOADDIR.FILE);
-        recordList = [...recordList];
         this.upload2OssFunc(
           {
             formData
           },
           img => {
-            recordList.unshift({
+            let record = {
               id,
               name,
               time,
               img,
               type: "manual", //手动记录
               widgetList
-            });
-            this.setRecordList(recordList);
+            };
+            let recordList = Canvas.getRecordList();
+            recordList.push(record);
+            Canvas.setRecordList(recordList);
             this.showDialogStatus = false;
           }
         );

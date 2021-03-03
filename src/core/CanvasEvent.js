@@ -343,12 +343,14 @@ class CanvasEvent {
         e.preventDefault();
         $vm.$emit("cancel");
       }
+      return;
     } else if (keyCode == 89) {
       // 还原 Ctrl+Y
       if (ctrlKey) {
         e.preventDefault();
         $vm.$emit("resume");
       }
+      return;
     } else if (keyCode == 65) {
       // ctrl+a 全选
       if (ctrlKey) {
@@ -393,111 +395,101 @@ class CanvasEvent {
       }
       return;
     }
-    if (length < 2 && copyCom == null) {
-      if (type == "canvas" || !bm_active_com_id) {
-        //如果选中的是画布或未选中组件则直接返回
-        return;
-      }
-    }
-    //默认移动距离
-    let dis = 1;
-    //按住Shift键移动距离
-    let shiftDis = 10;
-    // if (shiftKey || ctrlKey) {
-    //   this.shiftCtrlKeyDownStatus = true;
-    //   e.preventDefault();
+    // if (length < 2 && copyCom == null) {
+    //   if (type == "canvas" || !bm_active_com_id) {
+    //     //如果选中的是画布或未选中组件则直接返回
+    //     return;
+    //   }
     // }
-    if (keyCode === 37) {
-      e.preventDefault();
-      if (type == "canvas" || !bm_active_com_id) {
-        //如果选中的是画布或未选中组件则直接返回
+    if (keyCode === 37 || keyCode === 38 || keyCode === 39 || keyCode === 40) {
+      if (!(type != "canvas" && (bm_active_com_id || length > 1))) {
         return;
       }
-      // 左
-      // dis = 1;
-      if (shiftKey) {
-        dis = shiftDis;
-      }
-      if (length > 1) {
-        bm_active_com_ids.forEach(id => {
-          let obj = bm_widgetMap[id];
-          let { info = {} } = obj || {};
-          info.left -= dis;
+      //默认移动距离
+      let dis = 1;
+      //按住Shift键移动距离
+      let shiftDis = 10;
+      // if (shiftKey || ctrlKey) {
+      //   this.shiftCtrlKeyDownStatus = true;
+      //   e.preventDefault();
+      // }
+      if (keyCode === 37) {
+        e.preventDefault();
+        // 左
+        // dis = 1;
+        if (shiftKey) {
+          dis = shiftDis;
+        }
+        if (length > 1) {
+          bm_active_com_ids.forEach(id => {
+            let obj = bm_widgetMap[id];
+            let { info = {} } = obj || {};
+            info.left -= dis;
+            obj?.refresh();
+          });
+        } else {
+          activeCom.left -= dis;
           obj?.refresh();
-        });
-      } else {
-        activeCom.left -= dis;
+        }
+        // bmCommon.log("左", activeCom);
+      } else if (keyCode === 38) {
+        e.preventDefault();
+        // 上
+        // let dis = 1;
+        if (shiftKey) {
+          dis = shiftDis;
+        }
+        if (length > 1) {
+          bm_active_com_ids.forEach(id => {
+            let obj = bm_widgetMap[id];
+            let { info = {} } = obj || {};
+            info.top -= dis;
+          });
+        } else {
+          activeCom.top -= dis;
+        }
         obj?.refresh();
-      }
-      // bmCommon.log("左", activeCom);
-    } else if (keyCode === 38) {
-      e.preventDefault();
-      if (type == "canvas" || !bm_active_com_id) {
-        //如果选中的是画布或未选中组件则直接返回
-        return;
-      }
-      // 上
-      // let dis = 1;
-      if (shiftKey) {
-        dis = shiftDis;
-      }
-      if (length > 1) {
-        bm_active_com_ids.forEach(id => {
-          let obj = bm_widgetMap[id];
-          let { info = {} } = obj || {};
-          info.top -= dis;
-        });
-      } else {
-        activeCom.top -= dis;
-      }
-      obj?.refresh();
-      // bmCommon.log("上", activeCom);
-    } else if (keyCode === 39) {
-      e.preventDefault();
-      if (type == "canvas" || !bm_active_com_id) {
-        //如果选中的是画布或未选中组件则直接返回
-        return;
-      }
-      // 右
-      // let dis = 1;
-      if (shiftKey) {
-        dis = shiftDis;
-      }
+        // bmCommon.log("上", activeCom);
+      } else if (keyCode === 39) {
+        e.preventDefault();
+        // 右
+        // let dis = 1;
+        if (shiftKey) {
+          dis = shiftDis;
+        }
 
-      if (length > 1) {
-        bm_active_com_ids.forEach(id => {
-          let obj = bm_widgetMap[id];
-          let { info = {} } = obj || {};
-          info.left += dis;
-        });
-      } else {
-        activeCom.left += dis;
-      }
-      obj?.refresh();
-      // bmCommon.log("右", activeCom);
-    } else if (keyCode === 40) {
-      e.preventDefault();
-      if (type == "canvas" || !bm_active_com_id) {
-        //如果选中的是画布或未选中组件则直接返回
-        return;
-      }
-      // 下
-      // let dis = 1;
-      if (shiftKey) {
-        dis = shiftDis;
-      }
-      if (length > 1) {
-        bm_active_com_ids.forEach(id => {
-          let obj = bm_widgetMap[id];
-          let { info = {} } = obj || {};
-          info.top += dis;
-          obj?.refresh();
-        });
-      } else {
-        activeCom.top += dis;
+        if (length > 1) {
+          bm_active_com_ids.forEach(id => {
+            let obj = bm_widgetMap[id];
+            let { info = {} } = obj || {};
+            info.left += dis;
+          });
+        } else {
+          activeCom.left += dis;
+        }
         obj?.refresh();
+        // bmCommon.log("右", activeCom);
+      } else if (keyCode === 40) {
+        e.preventDefault();
+        // 下
+        // let dis = 1;
+        if (shiftKey) {
+          dis = shiftDis;
+        }
+        if (length > 1) {
+          bm_active_com_ids.forEach(id => {
+            let obj = bm_widgetMap[id];
+            let { info = {} } = obj || {};
+            info.top += dis;
+            obj?.refresh();
+          });
+        } else {
+          activeCom.top += dis;
+          obj?.refresh();
+        }
+        // bmCommon.log("下", activeCom);
       }
-      // bmCommon.log("下", activeCom);
+      return;
     } else if (keyCode == 67) {
       // C
       if (ctrlKey) {
@@ -549,6 +541,8 @@ class CanvasEvent {
     } else if (keyCode == 32) {
       // 空格 space
       e.preventDefault();
+      e.stopPropagation();
+      bmCommon.log("canvas-action", "move");
       $vm.$emit("canvas-action", "move");
     } else if (keyCode == 46) {
       // Delete
@@ -848,18 +842,10 @@ class CanvasEvent {
       time,
       img,
       type: "auto", //自动记录
-      widgetList: Object.freeze([...widgetList])
+      widgetList: [...widgetList]
     };
-    // recordList = [record, ...recordList];
-    // recordList.unshift({
-    //   id,
-    //   name: date.format("MM/DD/YYYY HH:mm:ss A"),
-    //   time,
-    //   img,
-    //   type: "auto", //自动记录
-    //   widgetList: bmCommon.clone(widgetList)
-    // });
-    // context.commit("setRecordList", recordList);
+    let recordList = Canvas.getRecordList();
+    recordList.unshift(record);
     Canvas.setRecordList(record);
   }
 

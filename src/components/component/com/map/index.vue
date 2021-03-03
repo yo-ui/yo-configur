@@ -28,7 +28,6 @@
 // import bmCommon from "@/common/common";
 /* eslint-disable no-undef */
 import { AMapManager, lazyAMapApiLoaderInstance } from "vue-amap";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "mapCom",

@@ -118,7 +118,6 @@
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 const Props = {
   type: [
@@ -441,10 +440,10 @@ export default {
         }
         widgetList.push(item);
         canvas.action = "select";
-        this.createHistoryAction();
-        this.$nextTick(() => {
-          this.selectComAction(id);
-        });
+        CanvasEvent.createHistoryAction();
+        // this.$nextTick(() => {
+        //   this.selectComAction(id);
+        // });
       }
       this.dragleaveEvent(e);
     },

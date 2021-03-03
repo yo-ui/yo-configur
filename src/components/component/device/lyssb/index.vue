@@ -253,7 +253,6 @@
 
 <script>
 // import bmCommon from "@/common/common";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "deviceLyssbCom",

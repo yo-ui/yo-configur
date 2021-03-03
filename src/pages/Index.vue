@@ -255,7 +255,6 @@ import bmWidgetList from "@/components/widget-list";
 import bmInfo from "@/components/info";
 import bmFooter from "@/components/footer";
 import mixins from "@/mixins";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "bm-index-page",

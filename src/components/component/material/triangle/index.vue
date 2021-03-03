@@ -169,7 +169,6 @@
 
 <script>
 import bmCommon from "@/common/common";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 // M50.5 9.3L94.2 41.1L77.5 92.5H23.5L6.8 41.1L50.5 9.3Z
 const points = [

@@ -56,7 +56,8 @@
 <script>
 // import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
-// eslint-disable-next-line no-undef
+import Canvas from "@/core/Canvas";
+import Core from "@/core/index";
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {
@@ -73,16 +74,7 @@ export default {
   },
   components: {},
   computed: {
-    ...mapGetters({
-      // canvas: "canvas/getCanvas",
-      // zoom: "canvas/getZoom", //放大缩小
-      // leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
-      // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
-      // activeCom: "canvas/getActiveCom",
-      // activeComs: "canvas/getActiveComs",
-      // recordList: "canvas/getRecordList"
-      // widgetList: "canvas/getWidgetList"
-    }),
+    ...mapGetters({}),
     dataList() {
       let { condition, recordList = [] } = this;
       let { pageNo = 1, pageSize = Constants.PAGESIZE } = condition;
@@ -90,23 +82,13 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({
-      // setActiveCom: "canvas/setActiveCom",
-      // setZoom: "canvas/setZoom",
-      // setWidgetList: "canvas/setWidgetList",
-      // setRecordList: "canvas/setRecordList"
-      // setLeftMenuStatus: "canvas/setLeftMenuStatus",
-      // setRightMenuStatus: "canvas/setRightMenuStatus"
-    }),
-    ...mapActions({
-      // selectComAction: "canvas/selectCom"
-    }),
+    ...mapMutations({}),
+    ...mapActions({}),
     // 初始化
-    init() {
-      // this.storeProductFunc();
-    },
+    init() {},
     show() {
       this.showDialogStatus = true;
+      this.recordList = Canvas.getRecordList(true);
       this.record = null;
     },
     closeEvent() {
@@ -114,16 +96,20 @@ export default {
     },
     submitEvent() {
       let { record = {} } = this;
+      let { id = "" } = record || {};
+      record = Canvas.getRecord(id);
+      // this.setWidgetList(widgetList);
       let { widgetList = [] } = record || {};
-      this.setWidgetList(widgetList);
+      Core.init(widgetList);
       this.showDialogStatus = false;
     },
     deleteEvent(item) {
       let { id = "" } = item || {};
-      let { recordList = [] } = this;
+      // let { recordList = [] } = this;
+      let recordList = Canvas.getRecordList();
       let index = recordList.findIndex(item => item.id == id);
       recordList.splice(index, 1);
-      this.setRecordList(recordList);
+      Canvas.setRecordList(recordList);
       this.record = null;
     },
     // 切换每页数据

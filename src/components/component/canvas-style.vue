@@ -715,7 +715,7 @@ const ASSISTMAP = Constants.COMPONENTLIBRARYMAP;
 //     });
 //   }
 // });
-// eslint-disable-next-line no-undef
+const state = {};
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "canvasStyleCom",
@@ -875,6 +875,26 @@ export default {
         this.unCanvasPaintEvent();
       }
     },
+
+    initMove(item = {}) {
+      let {
+        startX,
+        startY,
+        originX,
+        originY,
+        originWidth,
+        originHeight,
+        originRotate
+      } = item || {};
+      state.startX = startX;
+      state.startY = startY;
+      state.originX = originX;
+      state.originY = originY;
+      state.originWidth = originWidth;
+      state.originRotate = originRotate;
+      state.originHeight = originHeight;
+      state.moving = true;
+    },
     sliderChangeEvent(values, index) {
       let { info = {} } = this;
       let { gradientStyle = {} } = info || {};
@@ -1009,7 +1029,31 @@ export default {
       e.preventDefault();
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
-      // this.canvasMoving({ x, y });
+      this.canvasMoving({ x, y });
+    },
+
+    // 移动画布
+    canvasMoving(item) {
+      let { canvas = {}, zoom = 1 } = this;
+      let { x, y } = item || {};
+      let { startX, startY, originX, originY } = state;
+      // var target = state.activeCom;
+      var dx = x - startX;
+      var dy = y - startY;
+      // var left = state.originX + Math.floor((dx * 100) / state.zoom);
+      // var top = state.originY + Math.floor((dy * 100) / state.zoom);
+      var left = originX + Math.floor(dx / zoom);
+      var top = originY + Math.floor(dy / zoom);
+      // bmCommon.log(left, top);
+      if (left > 0) {
+        left = 0;
+      }
+      if (top > 0) {
+        top = 0;
+      }
+      canvas.left = left;
+      canvas.top = top;
+      // bmCommon.log(left, top, activeCom);
     },
     mouseupEvent(e) {
       $(document).off("mousemove", this.mousemoveEvent);

@@ -154,7 +154,6 @@
 import bmCommon from "@/common/common";
 import { widgets } from "@/widgets/index";
 import { Constants } from "@/common/env";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 const state = {};
 // const oldInfo = {};

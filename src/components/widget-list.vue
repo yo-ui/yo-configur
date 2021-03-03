@@ -120,8 +120,8 @@ import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 // import ComponentLibrary from "@/core/ComponentLibrary.js";
 import Canvas from "@/core/Canvas.js";
+import CanvasEvent from "@/core/CanvasEvent.js";
 // import WidgetList from "@/core/info/widget-list.js";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 const Props = {
   type: [
@@ -194,12 +194,12 @@ export default {
       // setDraging: "canvas/setDraging" //设置连接点信息
     }),
     ...mapActions({
-      selectComAction: "canvas/selectCom",
+      // selectComAction: "canvas/selectCom",
       widgetCustomListAction: "widgetCustomList",
       widgetMaterialListAction: "widgetMaterialList",
       widgetCustomDelAction: "widgetCustomDel",
-      widgetCustomUpdateAction: "widgetCustomUpdate",
-      createHistoryAction: "canvas/createHistory"
+      widgetCustomUpdateAction: "widgetCustomUpdate"
+      // createHistoryAction: "canvas/createHistory"
     }),
     initEvent() {
       $(document).on("dragstart", this.dragstartEvent);
@@ -425,7 +425,7 @@ export default {
           return;
         }
         (children || []).forEach(item => {
-          item.id = bmCommon.uuid();
+          item.id = id + bmCommon.uuid();
           item.parentId = id;
           item.showStatus = false;
         });
@@ -465,10 +465,10 @@ export default {
         // window.bm_widgetMap[id] = obj;
         Canvas.append(item);
         canvas.action = "select";
-        this.createHistoryAction();
-        this.$nextTick(() => {
-          this.selectComAction(id);
-        });
+        CanvasEvent.createHistoryAction();
+        // this.$nextTick(() => {
+        // this.selectComAction(id);
+        // });
       }
       this.dragleaveEvent(e);
     },
@@ -530,7 +530,7 @@ export default {
       }
       let { children = [] } = data || {};
       (children || []).forEach(item => {
-        item.id = bmCommon.uuid();
+        item.id = id + bmCommon.uuid();
         item.parentId = id;
         item.showStatus = false;
       });
@@ -567,8 +567,8 @@ export default {
       //   WidgetList.append(item);
       // }
       // window.bm_widgetMap[id] = obj;
-      this.createHistoryAction();
-      this.selectComAction(id);
+      CanvasEvent.createHistoryAction();
+      // this.selectComAction(id);
       // this.createRecordAction();
       // this.uploadImg();
     },

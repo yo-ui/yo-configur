@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-nav-com">
+  <div class="bm-nav-com" @mousedown.stop @keydown.stop>
     <div class="nav-box">
       <div class="left">
         <el-button
@@ -282,11 +282,11 @@
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
+import Core from "@/core/index";
 import html2canvas from "html2canvas";
 import Canvg from "canvg";
 import CanvasEvent from "@/core/CanvasEvent";
 import Canvas from "@/core/Canvas";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {
@@ -298,8 +298,8 @@ export default {
       showAlignPopoverStatus: false,
       // activeComs: [],
       widgetList: [],
-      historyList: [],
-      historyIndex: 0,
+      // historyList: [],
+      // historyIndex: 0,
       condition: {
         // historyIndex: 0,
         alignType: "left",
@@ -330,8 +330,8 @@ export default {
   computed: {
     ...mapGetters({
       userInfo: "getUserInfo",
-      // historyList: "canvas/getHistoryList",
-      // historyIndex: "canvas/getHistoryIndex",
+      historyList: "canvas/getHistoryList",
+      historyIndex: "canvas/getHistoryIndex",
       // selectBox: "canvas/getSelectBox", //选取框
       canvas: "canvas/getCanvas",
       zoom: "canvas/getZoom", //放大缩小
@@ -514,7 +514,7 @@ export default {
           let { children = [] } = _item || {};
           children &&
             children.forEach(item => {
-              item.id = bmCommon.uuid();
+              item.id = id + bmCommon.uuid();
               item.parentId = id;
             });
           // widgetList.push(_item);
@@ -587,8 +587,10 @@ export default {
       // }
       callback && callback();
     },
+    //恢复
     resumeEvent() {
-      let { historyList = [], historyIndex = 0 } = this;
+      let { historyIndex = 0 } = this;
+      let historyList = Canvas.getHistoryList();
       if (historyIndex < 1) {
         return;
       }
@@ -596,18 +598,20 @@ export default {
       // let { length = 0 } = historyList || [];
       if (historyIndex < 0) {
         // condition.historyIndex = 0;
-        this.setHistoryIndex(0);
+        Canvas.setHistoryIndex(0);
         return;
       }
       let widgetList = historyList[--historyIndex];
-      this.setWidgetList(widgetList || []);
-      this.selectComAction();
-      this.setHistoryIndex(historyIndex);
+      // this.setWidgetList(widgetList || []);
+      Core.init(widgetList);
+      Canvas.setHistoryIndex(historyIndex);
     },
+    // 撤销
     cancelEvent() {
       this._navTimeoutId = setTimeout(() => {
         clearTimeout(this._navTimeoutId);
-        let { historyList = [], historyIndex = 0 } = this;
+        let { historyIndex = 0 } = this;
+        let historyList = Canvas.getHistoryList();
         let { length = 0 } = historyList || [];
         if (historyIndex > length - 2) {
           return;
@@ -615,14 +619,15 @@ export default {
         // let {  } = condition;
         if (historyIndex > length - 1) {
           // condition.historyIndex = length - 1;
-          this.setHistoryIndex(length - 1);
+          Canvas.setHistoryIndex(length - 1);
           return;
         }
         let widgetList = historyList[++historyIndex];
-        this.setWidgetList(widgetList || []);
-        this.selectComAction();
+        Core.init(widgetList);
+        // this.setWidgetList(widgetList || []);
+        // this.selectComAction();
         // condition.historyIndex = ++historyIndex;
-        this.setHistoryIndex(historyIndex);
+        Canvas.setHistoryIndex(historyIndex);
       }, 0);
     },
     fallbackEvent() {
@@ -1568,7 +1573,7 @@ export default {
       let widgetList = [];
       let { activeCom = {} } = this;
       let bm_widgetMap = window.bm_widgetMap;
-      let { order = "", parentId = "", id = "" } = activeCom || {};
+      let { order = "", parentId = "" } = activeCom || {};
       // let widgetList = _widgetList || [];
       let bm_active_com_ids = window.bm_active_com_ids;
       let { length = 0 } = bm_active_com_ids || [];

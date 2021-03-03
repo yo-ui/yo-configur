@@ -20,7 +20,6 @@
 </template>
 
 <script>
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "materialCommonCom",

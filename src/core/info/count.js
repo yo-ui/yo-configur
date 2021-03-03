@@ -45,6 +45,18 @@ class Count {
     Count.count = count;
   }
 
+  static setCount(count) {
+    let $container = $("#info_com_count");
+    let $count = $container.find(".count");
+    if (count > 200) {
+      $count.addClass("red");
+    } else {
+      $count.removeClass("red");
+    }
+    $count.html(count);
+    Count.count = count;
+  }
+
   static event() {
     let $container = $("#info_com_count");
 

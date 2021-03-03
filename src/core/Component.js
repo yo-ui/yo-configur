@@ -351,28 +351,68 @@ class Component {
 
   //组件包裹
   wrap({ info }, content = "") {
-    let { type = "", id = "", locked = false } = info || {};
+    let { type = "", id = "", locked = false, transformOrigin = "" } =
+      info || {};
+    let zoom = Canvas.getZoom();
     let showType = window.bm_show_type;
     let operate = locked
       ? ""
       : `
-    <i title="旋转" class="operate-btn el-icon-refresh-right"></i>
-      <i title="旋转轴" class="operate-btn el-icon-axis"></i>
-      <i title="左上角" class="operate-btn el-icon-top-left"></i>
-      <i title="上" class="operate-btn el-icon-top"></i>
-      <i title="右上角" class="operate-btn el-icon-top-right"></i>
-      <i title="左" class="operate-btn el-icon-back"></i>
-      <i title="右" class="operate-btn el-icon-right"></i>
-      <i title="左下角" class="operate-btn el-icon-bottom-left"></i>
-      <i title="下" class="operate-btn el-icon-bottom"></i>
-      <i title="右下角" class="operate-btn el-icon-bottom-right"></i>`;
+    <i title="旋转" class="operate-btn el-icon-refresh-right" style="transform: scale(${1 /
+      zoom}) translate(-${zoom * 50}%, 0),
+    top: ${-50 / zoom}px"></i>
+      <i title="旋转轴" class="operate-btn el-icon-axis" style="${
+        {
+          "left top": "left: 0; top: 0; ",
+          top: " left: 50%; top: 0 ",
+          "right top": " left: 100%; top: 0 ",
+          center: " left: 50%; top: 50%;",
+          right: " left: 100%; top: 50% ",
+          "right bottom": " left: 100%; top: 100% ",
+          bottom: " left: 50%; top: 100% ",
+          "left bottom": " left: 0; top: 100% ",
+          left: " left: 0; top: 50%"
+        }[transformOrigin]
+      },transform: scale(${1 / zoom}) translate(-${zoom * 50}%, -${zoom *
+          50}%)"></i>
+      <i title="左上角" class="operate-btn el-icon-top-left" style="transform: scale(${1 /
+        zoom})"></i>
+      <i title="上" class="operate-btn el-icon-top" style="transform: scale(${1 /
+        zoom}) translate(-${zoom * 50}%, 0)"></i>
+      <i title="右上角" class="operate-btn el-icon-top-right" style="transform: scale(${1 /
+        zoom})"></i>
+      <i title="左" class="operate-btn el-icon-back" style=" transform: scale(${1 /
+        zoom}) translate(0, -${zoom * 50}%)"></i>
+      <i title="右" class="operate-btn el-icon-right" style="transform: scale(${1 /
+        zoom}) translate(0, -${zoom * 50}%)"></i>
+      <i title="左下角" class="operate-btn el-icon-bottom-left" style="transform: scale(${1 /
+        zoom})"></i>
+      <i title="下" class="operate-btn el-icon-bottom" style="transform: scale(${1 /
+        zoom}) translate(-${zoom * 50}%, 0) "></i>
+      <i title="右下角" class="operate-btn el-icon-bottom-right" style="transform: scale(${1 /
+        zoom})"></i>`;
 
     if (type === "panel") {
       operate = locked
         ? ""
         : `
-    <i title="旋转" class="operate-btn el-icon-refresh-right"></i>
-      <i title="旋转轴" class="operate-btn el-icon-axis"></i>`;
+    <i title="旋转" class="operate-btn el-icon-refresh-right"  style="transform: scale(${1 /
+      zoom}) translate(-${zoom * 50}%, 0),
+    top: ${-50 / zoom}px"></i>
+      <i title="旋转轴" class="operate-btn el-icon-axis" style="${
+        {
+          "left top": "left: 0; top: 0; ",
+          top: " left: 50%; top: 0 ",
+          "right top": " left: 100%; top: 0 ",
+          center: " left: 50%; top: 50%;",
+          right: " left: 100%; top: 50% ",
+          "right bottom": " left: 100%; top: 100% ",
+          bottom: " left: 50%; top: 100% ",
+          "left bottom": " left: 0; top: 100% ",
+          left: " left: 0; top: 50%"
+        }[info.transformOrigin]
+      },transform: scale(${1 / zoom}) translate(-${zoom * 50}%, -${zoom *
+            50}%)"></i>`;
     } else if (type == "materialLine") {
       operate = "";
     }

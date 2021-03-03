@@ -13,7 +13,6 @@
 <script>
 // import "quill/dist/quill.core.css";
 // import "quill/dist/quill.snow.css";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "richTextCom",

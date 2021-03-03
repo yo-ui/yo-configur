@@ -254,6 +254,7 @@ import { Constants } from "@/common/env";
 // import bmCom from "@/components/component";
 import Core from "@/core/index";
 import CanvasEvent from "@/core/CanvasEvent";
+import Canvas from "@/core/Canvas";
 // import ComponentLibrary from "@/core/ComponentLibrary.js";
 // import Event from "@/core/Event.js";
 import bmHeader from "@/components/header";
@@ -261,7 +262,6 @@ import bmNav from "@/components/nav";
 import bmWidgetList from "@/components/widget-list";
 // import bmInfo from "@/components/info";
 import bmFooter from "@/components/footer";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "bm-index-page",
@@ -549,7 +549,7 @@ export default {
       setZoom: "canvas/setZoom",
       // // setWidgetList: "canvas/setWidgetList", //设置组件列表
       // setActiveCom: "canvas/setActiveCom", //设置当前选中组件
-      setCanvas: "canvas/setCanvas",
+      setCanvas: "canvas/setCanvas"
       // setCanvasData: "canvas/setCanvasData",
       // setActiveComs: "canvas/setActiveComs",
       // initMove: "canvas/initMove",
@@ -557,8 +557,8 @@ export default {
       // setShowType: "canvas/setShowType",
       // setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
       // // moving: "canvas/moving",
-      setDeviceCacheMap: "device/setDeviceCacheMap", //设备缓存
-      setAllDeviceCacheMap: "device/setAllDeviceCacheMap" //设备缓存
+      // setDeviceCacheMap: "device/setDeviceCacheMap", //设备缓存
+      // setAllDeviceCacheMap: "device/setAllDeviceCacheMap" //设备缓存
       // stopMove: "canvas/stopMove"
     }),
     ...mapActions({
@@ -566,7 +566,7 @@ export default {
       // selectComsAction: "canvas/selectComs",
       orgStrucListByLevelAction: "orgStrucListByLevel",
       canvasGetAction: "canvasGet",
-      createHistoryAction: "canvas/createHistory",
+      // createHistoryAction: "canvas/createHistory",
       commonGetDeviceAction: "commonGetDevice",
       canvasSelectAction: "canvasSelect",
       commonDeviceListAction: "commonDeviceList",
@@ -687,7 +687,7 @@ export default {
             });
           });
         }
-        this.createHistoryAction();
+        CanvasEvent.createHistoryAction();
         // });
       });
       this.orgStrucListByLevelFunc((list = []) => {
@@ -907,11 +907,11 @@ export default {
           } else {
             bmCommon.error(message);
           }
-          this.setDeviceCacheMap({ key: deviceId, value });
+          Canvas.setDeviceCacheMap({ key: deviceId, value });
           callback && callback(value || {});
         })
         .catch(err => {
-          this.setDeviceCacheMap({ key: deviceId, value });
+          Canvas.setDeviceCacheMap({ key: deviceId, value });
           callback && callback(value || {});
           bmCommon.error("获取数据失败=>commonGetDevice", err);
         });

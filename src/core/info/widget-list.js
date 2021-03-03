@@ -24,6 +24,11 @@ class WidgetList {
     WidgetList.event();
   }
 
+  //设置组件数量
+  static setCount(count) {
+    Count.setCount(count);
+  }
+
   static append(item) {
     let container = $("#info_com_list_box");
     window.requestAnimationFrame(() => {
@@ -86,6 +91,7 @@ class WidgetList {
     } = item || {};
     let { length = 0 } = children || [];
     let { orgId = "" } = bindData || {};
+    WidgetList.loadComData(id);
     let activeComId = window.bm_active_com_id;
     htmlArr.push(`<div class="title ${
       activeComId === id ? "active" : ""
@@ -139,7 +145,10 @@ class WidgetList {
       htmlArr.push(`</ul>`);
     }
     htmlArr.push(`</li>`);
+    return htmlArr.join("");
+  }
 
+  static loadComData(id) {
     // 加载组件绑定数据
     let obj = window.bm_widgetMap[id];
     if (obj) {
@@ -153,7 +162,6 @@ class WidgetList {
         obj?.event();
       }
     }
-    return htmlArr.join("");
   }
   // 获取模板
   static template(item) {

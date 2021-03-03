@@ -35,7 +35,6 @@
 
 <script>
 import { graphic } from "echarts/lib/export";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "bubbleChartCom",

@@ -12,6 +12,7 @@ class Core {
 
   static init(widgetList = [], callback) {
     // let widgets = Core.loadWidgetList(widgetList);
+    Canvas.clear();
     let widgets = Canvas.init(widgetList);
     callback && callback(widgets);
     //初始化事件

@@ -20,7 +20,6 @@
 import { Constants } from "@/common/env";
 import apiConfig from "@/common/conf/index";
 let { manageConfigur = "" } = apiConfig || {};
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {

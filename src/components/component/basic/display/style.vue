@@ -819,9 +819,9 @@
                   clearable
                   v-model.number="info.borderRadiusTopLeft"
                   :placeholder="$lang('左上角')"
-                ></el-input-number>                
+                ></el-input-number>
               </el-tooltip>
-              
+
             </span>
             <span>
               右上<el-tooltip  placement="top" effect="dark">
@@ -1143,7 +1143,6 @@
 <script>
 // import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "displayStyleCom",

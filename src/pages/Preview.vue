@@ -64,7 +64,6 @@ import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 import bmCom from "@/components/component";
 import { infos } from "@/widgets/index";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "bm-preview-page",

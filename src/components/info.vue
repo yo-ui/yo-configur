@@ -145,7 +145,6 @@ import bmCommon from "@/common/common";
 // import { Constants } from "@/common/env";
 import { styles, datas } from "@/widgets/index";
 import WidgetList from "@/core/info/widget-list";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 // const Props = {
 //   type: [

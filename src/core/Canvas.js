@@ -7,6 +7,9 @@ import CanvasEvent from "@/core/CanvasEvent";
 
 class Canvas {
   static recordList = [];
+  static recordMap = {};
+  static deviceCacheMap = {};
+  static previewData = [];
   static historyList = [];
   // container;
   constructor() {
@@ -24,8 +27,19 @@ class Canvas {
   static getUserInfo() {
     return $vm.$store.getters["getUserInfo"] || {};
   }
-  static createHistoryAction() {
-    return $vm.$store.dispatch("canvas/createHistory");
+  // static createHistoryAction() {
+  //   return $vm.$store.dispatch("canvas/createHistory");
+  // }
+
+  static getDeviceCacheMap(key) {
+    return Canvas.deviceCacheMap[key] || [];
+  }
+  static setDeviceCacheMap({ key = "", value = {} } = {}) {
+    let { deviceCacheMap = {} } = Canvas;
+    deviceCacheMap[key] = value || {};
+  }
+  static setAllDeviceCacheMap(item = {}) {
+    Canvas.deviceCacheMap = item || {};
   }
   //获取放大
   static getZoom() {
@@ -106,7 +120,9 @@ class Canvas {
       let { length = 0 } = children || [];
       if (length > 0) {
         children.forEach(item => {
+          let { id = "" } = item || {};
           let obj = ComponentLibrary.getInstance(item);
+          window.bm_widgetMap[id] = obj;
           let dom = obj.template();
           if (dom) {
             fregment.appendChild($(dom)[0]);
@@ -173,7 +189,7 @@ class Canvas {
       if (length > 0) {
         children.forEach(item => {
           item.parentId = parentId;
-          item.id = bmCommon.uuid();
+          item.id = parentId + bmCommon.uuid();
           let {
             alias = "",
             type = "",
@@ -290,6 +306,38 @@ class Canvas {
     }
   }
 
+  static setHistoryIndex(item) {
+    $vm.$store.commit("canvas/setHistoryIndex", item);
+  }
+
+  static getHistoryList() {
+    return Canvas.historyList || [];
+  }
+
+  static setPreviewData(item) {
+    if (item) {
+      bmCommon.setItem(
+        Constants.LOCALSTORAGEKEY.USERKEY.PREVIEWDATA,
+        JSON.stringify(item)
+      );
+    } else {
+      bmCommon.removeItem(Constants.LOCALSTORAGEKEY.USERKEY.PREVIEWDATA);
+    }
+    Canvas.previewData = Object.freeze(item);
+  }
+  static getPreviewData() {
+    let { previewData = [] } = Canvas;
+    if (!previewData || previewData.length < 1) {
+      previewData = bmCommon.getItem(
+        Constants.LOCALSTORAGEKEY.USERKEY.PREVIEWDATA
+      );
+      previewData = JSON.parse(previewData);
+    }
+    if (!previewData || previewData.length < 1) {
+      previewData = [];
+    }
+    return previewData || [];
+  }
   static setHistoryList(item) {
     let { historyList = [] } = Canvas;
     historyList.unshift(item);
@@ -299,9 +347,13 @@ class Canvas {
       historyList.map((item, index) => index)
     );
   }
-
-  static getRecordList() {
-    let { recordList = [] } = Canvas;
+  //获取记录数
+  static getRecord(id) {
+    let { recordMap = {} } = Canvas;
+    return recordMap[id] || {};
+  }
+  static getRecordList(flag) {
+    let { recordList = [], recordMap = {} } = Canvas;
     if (!recordList || recordList.length < 1) {
       recordList = bmCommon.getItem(
         Constants.LOCALSTORAGEKEY.USERKEY.RECORDLIST
@@ -312,14 +364,46 @@ class Canvas {
     if (!recordList) {
       recordList = [];
     }
+    recordList.forEach(item => {
+      let { id = "" } = item || {};
+      recordMap[id] = item;
+    });
+    if (flag) {
+      return recordList.map(item => {
+        let { id = "", name = "", img = "", time = "", type = "" } = item;
+        return {
+          id,
+          name,
+          time,
+          img,
+          type
+        };
+      });
+    }
     return recordList || [];
   }
 
-  static setRecrodList(item) {
+  static clear() {
+    window.bm_active_com_id = "";
+    window.bm_active_com_ids = [];
+    $("#canvas_content").html("");
+    $("#info_com_list_box").html("");
+    WidgetList.setCount(0);
+    let bm_widgetMap = window.bm_widgetMap;
+    for (let i in bm_widgetMap) {
+      let obj = bm_widgetMap[i];
+      if (obj.destory) {
+        obj.destory();
+      }
+    }
+    window.bm_widgetMap = {};
+  }
+
+  static setRecordList(recordList) {
     //先保存在本地  最多保存20条记录  若已满20条先删除自动保存的记录
-    let recordList = Canvas.getRecordList();
-    if (item) {
-      recordList.push(item);
+    // let recordList = Canvas.getRecordList();
+    if (recordList) {
+      // recordList.push(item);
       let { length = 0 } = recordList || [];
       if (length > 20) {
         let index = length - 1;

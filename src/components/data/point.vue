@@ -128,7 +128,6 @@
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "bm-dialog-point-com",

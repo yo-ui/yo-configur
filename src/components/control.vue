@@ -44,7 +44,6 @@
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 import bmPayPassword from "@/components/common/pay-password";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {

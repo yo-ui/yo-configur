@@ -90,7 +90,6 @@
 import bmCommon from "@/common/common";
 import { URL as _URL } from "@/common/env";
 import { Constants } from "@/common/env";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 const PAGESIZE = 10;
 export default {

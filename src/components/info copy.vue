@@ -176,7 +176,6 @@ import bmCommon from "@/common/common";
 // import { Constants } from "@/common/env";
 import { styles, datas } from "@/widgets/index";
 // import draggable from "vuedraggable";
-// eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 const Props = {
   type: [

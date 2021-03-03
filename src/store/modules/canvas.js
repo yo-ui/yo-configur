@@ -29,8 +29,8 @@ export default {
     // 画布缩放值
     zoom: 1,
     boxZoom: 1,
-    // historyIndex: 0, //撤销恢复记录游标
-    // historyList: [], //撤销恢复记录
+    historyIndex: 0, //撤销恢复记录游标
+    historyList: [], //撤销恢复记录
     // recordList: [], //记录点
     // canvasData: null, //画布数据
     // showType: "edit", //当前显示类型  edit  编辑   preview 预览  view 查看
@@ -121,12 +121,12 @@ export default {
     // getDraging(state) {
     //   return state.draging;
     // },
-    // getHistoryList(state) {
-    //   return state.historyList;
-    // },
-    // getHistoryIndex(state) {
-    //   return state.historyIndex;
-    // },
+    getHistoryList(state) {
+      return state.historyList;
+    },
+    getHistoryIndex(state) {
+      return state.historyIndex;
+    },
     // getRecordList(state) {
     //   let recordList = state.recordList;
     //   if (!recordList || recordList.length < 1) {

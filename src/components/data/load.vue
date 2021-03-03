@@ -24,6 +24,7 @@
         @click="submitEvent"
         >{{ $lang("提交") }}</el-button
       >
+      <el-button @click="closeEvent">{{ $lang("关闭") }}</el-button>
     </template>
   </el-dialog>
 </template>
@@ -31,9 +32,7 @@
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
-import widgetListVue from "../home/widget-list.vue";
-const html2canvas = require("@/common/lib/html2canvas");
-// eslint-disable-next-line no-undef
+// const html2canvas = require("@/common/lib/html2canvas");
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {
@@ -97,32 +96,32 @@ export default {
       let { remark: name = "" } = condition;
       let time = this.$moment().valueOf();
       let id = bmCommon.uuid();
-      html2canvas($(".canvas-box")[0], {}).then(canvas => {
-        // window.open(canvas.toDataURL())
-        // bmCommon.log(canvas.toDataURL());
-        let blob = bmCommon.convertBase64ToBlob(canvas.toDataURL());
-        let formData = new FormData();
-        formData.append("files", blob, `${Date.now()}.png`);
-        formData.append("subDir", Constants.UPLOADDIR.FILE);
-        recordList = [...recordList];
-        this.upload2OssFunc(
-          {
-            formData
-          },
-          img => {
-            recordList.unshift({
-              id,
-              name,
-              time,
-              img,
-              type: "manual", //手动记录
-              widgetList
-            });
-            this.setRecordList(recordList);
-            this.showDialogStatus = false;
-          }
-        );
-      });
+      // html2canvas($(".canvas-box")[0], {}).then(canvas => {
+      //   // window.open(canvas.toDataURL())
+      //   // bmCommon.log(canvas.toDataURL());
+      //   let blob = bmCommon.convertBase64ToBlob(canvas.toDataURL());
+      //   let formData = new FormData();
+      //   formData.append("files", blob, `${Date.now()}.png`);
+      //   formData.append("subDir", Constants.UPLOADDIR.FILE);
+      //   recordList = [...recordList];
+      //   this.upload2OssFunc(
+      //     {
+      //       formData
+      //     },
+      //     img => {
+      //       recordList.unshift({
+      //         id,
+      //         name,
+      //         time,
+      //         img,
+      //         type: "manual", //手动记录
+      //         widgetList
+      //       });
+      //       this.setRecordList(recordList);
+      //       this.showDialogStatus = false;
+      //     }
+      //   );
+      // });
     },
     //上传图片
     upload2OssFunc(options, callback) {

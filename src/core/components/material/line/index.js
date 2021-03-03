@@ -446,7 +446,7 @@ class Text extends Component {
     $(document).off("mousemove", this.mousemoveEvent);
     $(document).off("mouseup", this.mouseupEvent);
     // this.stopMove();
-    // this.createHistoryAction();
+    CanvasEvent.createHistoryAction();
     this.rotating = false;
   }
 
