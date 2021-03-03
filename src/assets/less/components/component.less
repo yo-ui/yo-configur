@@ -17,20 +17,21 @@
   .bor(1px dashed transparent);
   // .pointer;
   white-space: nowrap;
+
+  &.materialLine{
+    .squ(0);
+  }
   //显示线框用
   &.border{
     .bor(1px solid red);
     *{
       .db(none);
       // visibility: hidden;
-      &:last-child{     
-        .db;   
+      &:last-child{
+        .db;
         visibility: hidden!important;
       }
-    }      
-  }
-  &.materialLine{
-    .squ(0);
+    }
   }
   &.materialLine,
   &.materialCurveLine,
@@ -48,7 +49,8 @@
     .el-icon-top-left,
     .el-icon-top,
     .el-icon-top-right {
-      visibility: hidden !important;
+      // visibility: hidden !important;
+      .db;
     }
   }
   &.locked {
@@ -79,7 +81,8 @@
       .borc(@editBorderColor);
       & > .operate-btn {
         opacity: 0.5;
-        visibility: visible;
+        // visibility: visible;
+        .db;
       }
       &:hover {
         & > .operate-btn {
@@ -87,9 +90,15 @@
         }
       }
     }
+    &.locked{
+      & > .operate-btn {
+        .db(none);
+      }
+    }
   }
   .operate-btn {
-    visibility: hidden;
+    // visibility: hidden;
+    .db(none);
     z-index: 2;
     .posa;
     // .borc(@themes);

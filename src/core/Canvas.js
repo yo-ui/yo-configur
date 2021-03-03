@@ -6,6 +6,8 @@ import Count from "@/core/info/count.js";
 import CanvasEvent from "@/core/CanvasEvent";
 
 class Canvas {
+  static recordList = [];
+  static historyList = [];
   // container;
   constructor() {
     // this.container = $(`${id}`);
@@ -41,8 +43,10 @@ class Canvas {
       if (obj.destory) {
         obj?.destory();
       }
+      if (obj.remove) {
+        obj?.remove();
+      }
     }
-    $(`#${id}`).remove();
     WidgetList.remove(id);
     delete window.bm_widgetMap[id];
   }
@@ -286,6 +290,64 @@ class Canvas {
     }
   }
 
+  static setHistoryList(item) {
+    let { historyList = [] } = Canvas;
+    historyList.unshift(item);
+    Canvas.historyList = historyList.slice(0, 20);
+    $vm.$store.commit(
+      "canvas/setHistoryList",
+      historyList.map((item, index) => index)
+    );
+  }
+
+  static getRecordList() {
+    let { recordList = [] } = Canvas;
+    if (!recordList || recordList.length < 1) {
+      recordList = bmCommon.getItem(
+        Constants.LOCALSTORAGEKEY.USERKEY.RECORDLIST
+      );
+      recordList = JSON.parse(recordList);
+    }
+    recordList = JSON.parse(JSON.stringify(recordList));
+    if (!recordList) {
+      recordList = [];
+    }
+    return recordList || [];
+  }
+
+  static setRecrodList(item) {
+    //先保存在本地  最多保存20条记录  若已满20条先删除自动保存的记录
+    let recordList = Canvas.getRecordList();
+    if (item) {
+      recordList.push(item);
+      let { length = 0 } = recordList || [];
+      if (length > 20) {
+        let index = length - 1;
+        let obj = recordList[index] || {};
+        let { type = "" } = obj || {};
+        while (type != "auto") {
+          index--;
+          if (index < 0) {
+            break;
+          }
+          obj = recordList[index] || {};
+          type = obj.type;
+          bmCommon.log("不存在自动保存记录则继续查找");
+        }
+        if (type == "auto") {
+          recordList.splice(index, 1);
+        }
+      }
+      bmCommon.setItem(
+        Constants.LOCALSTORAGEKEY.USERKEY.RECORDLIST,
+        JSON.stringify(recordList)
+      );
+    } else {
+      bmCommon.removeItem(Constants.LOCALSTORAGEKEY.USERKEY.RECORDLIST);
+    }
+    Canvas.recordList = Object.freeze(recordList);
+  }
+
   //不优化显示
   static unoptimize() {
     //当组件数量大于200的时候 才进行显隐处理
@@ -309,6 +371,11 @@ class Canvas {
         .removeClass("border")
         .addClass("hide");
     }
+  }
+  //设置选中组件
+  static setActiveComs(ids) {
+    window.bm_active_com_ids = ids;
+    $vm.$store.commit("canvas/setActiveComs", ids);
   }
   //设置活动组件
   static setActiveCom(id) {

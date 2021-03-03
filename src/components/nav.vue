@@ -193,7 +193,7 @@
           </el-popover>
         </el-button-group>
         <el-button
-          @click="fallbackEvent"
+          @click="diyCommandEvent"
           :disabled="!(activeComs.length > 0 || activeCom.type != 'canvas')"
         >
           <i class="el-icon-fork-spoon" :title="$lang('添加到自定义')"></i>
@@ -272,6 +272,7 @@
       </div>
     </div>
     <bm-record ref="bmRecord"></bm-record>
+    <bm-load ref="bmLoad"></bm-load>
     <bm-fallback ref="bmFallback"></bm-fallback>
     <bm-preview ref="bmPreview"></bm-preview>
     <bm-data-table ref="bmDataTable"></bm-data-table>
@@ -295,6 +296,10 @@ export default {
       showSpreadPopoverStatus: false,
       showThemesPopoverStatus: false,
       showAlignPopoverStatus: false,
+      // activeComs: [],
+      widgetList: [],
+      historyList: [],
+      historyIndex: 0,
       condition: {
         // historyIndex: 0,
         alignType: "left",
@@ -313,6 +318,10 @@ export default {
       import(
         /* webpackChunkName: "bm-component-data-table-com" */ "@/components/data/data-table"
       ),
+    bmLoad: () =>
+      import(
+        /* webpackChunkName: "bm-component-data-load-com" */ "@/components/data/load"
+      ),
     bmFallback: () =>
       import(
         /* webpackChunkName: "bm-com-fallback-com" */ "@/components/fallback"
@@ -321,16 +330,16 @@ export default {
   computed: {
     ...mapGetters({
       userInfo: "getUserInfo",
-      historyList: "canvas/getHistoryList",
-      historyIndex: "canvas/getHistoryIndex",
-      selectBox: "canvas/getSelectBox", //选取框
+      // historyList: "canvas/getHistoryList",
+      // historyIndex: "canvas/getHistoryIndex",
+      // selectBox: "canvas/getSelectBox", //选取框
       canvas: "canvas/getCanvas",
       zoom: "canvas/getZoom", //放大缩小
       leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
       rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
       activeCom: "canvas/getActiveCom",
-      activeComs: "canvas/getActiveComs",
-      widgetList: "canvas/getWidgetList"
+      activeComs: "canvas/getActiveComs"
+      // widgetList: "canvas/getWidgetList"
     }),
 
     bottomOrder() {
@@ -349,21 +358,21 @@ export default {
   methods: {
     ...mapMutations({
       setUserInfo: "setUserInfo",
-      setActiveCom: "canvas/setActiveCom",
-      setActiveComs: "canvas/setActiveComs",
-      setCanvasData: "canvas/setCanvasData",
-      setZoom: "canvas/setZoom",
-      setMoving: "canvas/setMoving",
-      setHistoryIndex: "canvas/setHistoryIndex",
-      setWidgetList: "canvas/setWidgetList",
-      setLeftMenuStatus: "canvas/setLeftMenuStatus",
-      setPreviewData: "canvas/setPreviewData",
-      setRightMenuStatus: "canvas/setRightMenuStatus"
+      // setActiveCom: "canvas/setActiveCom",
+      // setActiveComs: "canvas/setActiveComs",
+      // setCanvasData: "canvas/setCanvasData",
+      setZoom: "canvas/setZoom"
+      // setMoving: "canvas/setMoving",
+      // setHistoryIndex: "canvas/setHistoryIndex",
+      // setWidgetList: "canvas/setWidgetList",
+      // setLeftMenuStatus: "canvas/setLeftMenuStatus",
+      // setPreviewData: "canvas/setPreviewData",
+      // setRightMenuStatus: "canvas/setRightMenuStatus"
     }),
     ...mapActions({
-      selectComAction: "canvas/selectCom",
-      createRecordAction: "canvas/createRecord",
-      createHistoryAction: "canvas/createHistory",
+      // selectComAction: "canvas/selectCom",
+      // createRecordAction: "canvas/createRecord",
+      // createHistoryAction: "canvas/createHistory",
       canvasSaveAction: "canvasSave",
       widgetCustomAddAction: "widgetCustomAdd",
       upload2OssAction: "upload2Oss"
@@ -374,6 +383,10 @@ export default {
       //保存
       $vm.$on("save", () => {
         this.saveEvent();
+      });
+      //保存
+      $vm.$on("widgets-actives", () => {
+        this.widgetsActiveComsEvent();
       });
       //组合
       $vm.$on("group-command", cmd => {
@@ -423,17 +436,26 @@ export default {
       }, 0);
     },
     saveEvent() {
-      this._navTimeoutId = setTimeout(() => {
-        clearTimeout(this._navTimeoutId);
-        let { canvas = {}, canvasData: data = {}, widgetList = [] } = this;
+      this._saveTimeoutId = setTimeout(() => {
+        clearTimeout(this._saveTimeoutId);
+        let { canvas = {} } = this;
+        let bm_widgetMap = window.bm_widgetMap;
         let { width = "", height = "", canvasId: id = "", name = "" } =
           canvas || {};
-        this.setCanvasData(data);
+        // this.setCanvasData(data);
         if (!id) {
+          this.$$msgError("未找到画布信息");
           return;
         }
+        let data = {};
+        let widgetList = [];
+        for (let i in bm_widgetMap) {
+          let obj = bm_widgetMap[i];
+          let { info = {} } = obj || {};
+          widgetList.push(info);
+        }
         data.canvasData = {
-          widgetList: widgetList.filter(item => item.type != "canvas"),
+          widgetList,
           canvas
         };
         if (!data.background) {
@@ -457,25 +479,35 @@ export default {
     copyEvent() {
       this._navTimeoutId = setTimeout(() => {
         clearTimeout(this._navTimeoutId);
-        let {
-          activeCom = {},
-          widgetList = [],
-          activeComs = [],
-          selectBox = {}
-        } = this;
-        selectBox.moving = true;
-        let { type = "" } = activeCom || {};
-        let { length = 0 } = activeComs || [];
+        // let {
+        //   activeCom = {},
+        //   // widgetList = [],
+        //   // activeComs = [],
+        //   // selectBox = {}
+        // } = this;
+        // selectBox.moving = true;
+        let bm_active_com_ids = window.bm_active_com_ids;
+        let bm_active_com_id = window.bm_active_com_id;
+        let bm_widgetMap = window.bm_widgetMap;
+        // let { type = "" } = activeCom || {};
+        let { length = 0 } = bm_active_com_ids || [];
         if (length < 2) {
-          if (!type || type == "canvas") {
+          if (!bm_active_com_id) {
             this.$$msgError(this.$lang("请选择要复制的组件"));
             return;
           }
         }
-        let _activeComs = [];
+        let orders = [];
+        for (let i in bm_widgetMap) {
+          let obj = bm_widgetMap[i];
+          let { info = {} } = obj || {};
+          let { order = 1 } = info || {};
+          orders.push(order);
+        }
+        // let _activeComs = [];
         let callback = item => {
           let id = bmCommon.uuid();
-          let orders = widgetList.map(item => item.order);
+          // let orders = widgetList.map(item => item.order);
           let order = Math.max(...orders);
           order += 1;
           let _item = { ...item, id, order };
@@ -485,44 +517,51 @@ export default {
               item.id = bmCommon.uuid();
               item.parentId = id;
             });
-          widgetList.push(_item);
-          if (length > 1) {
-            _activeComs.push(_item);
-          }
+          // widgetList.push(_item);
+          // if (length > 1) {
+          //   _activeComs.push(_item);
+          // }
+          Canvas.append(item);
         };
         if (length > 1) {
-          activeComs.forEach(item => {
-            callback(item);
+          bm_active_com_ids.forEach(id => {
+            let obj = bm_widgetMap[id];
+            let { info = {} } = obj || {};
+            callback(info);
           });
-          this.setActiveComs(_activeComs);
+          // this.setActiveComs(_activeComs);
         } else {
-          callback(activeCom || {});
-          this.setActiveCom(activeCom);
+          let obj = bm_widgetMap[bm_active_com_id];
+          let { info = {} } = obj || {};
+          callback(info || {});
+          // this.setActiveCom(activeCom);
+          window.bm_active_com_id = bm_active_com_id;
         }
       }, 0);
     },
     deleteEvent() {
       this._deleteTimeoutId = setTimeout(() => {
         clearTimeout(this._deleteTimeoutId);
-        let { activeCom = {}, activeComs = [] } = this;
-        let { id = "" } = activeCom;
-        let { length = 0 } = activeComs || [];
+        let bm_active_com_ids = window.bm_active_com_ids;
+        let bm_active_com_id = window.bm_active_com_id;
+        // let { activeCom = {}, activeComs = [] } = this;
+        // let { id = "" } = activeCom;
+        let { length = 0 } = bm_active_com_ids || [];
         let callback = () => {
           CanvasEvent.selectComAction();
           // this.showContextMenuStatus = false;
-          this.createHistoryAction();
+          CanvasEvent.createHistoryAction();
         };
         if (length > 1) {
-          activeComs.forEach(item => {
-            let { id = "" } = item || {};
+          bm_active_com_ids.forEach(id => {
             this.deleteItem(id, callback);
           });
         } else {
-          if (!id) {
+          if (!bm_active_com_id) {
             this.$$msgError(this.$lang("请选择要删除的组件"));
             return;
           }
-          this.deleteItem(id, callback);
+          this.deleteItem(bm_active_com_id, callback);
         }
       }, 0);
     },
@@ -589,6 +628,19 @@ export default {
     fallbackEvent() {
       this.$refs.bmFallback?.show();
     },
+    widgetsActiveComsEvent() {
+      let bm_active_com_ids = window.bm_active_com_ids;
+      let bm_widgetMap = window.bm_widgetMap;
+      let widgetList = [];
+      for (let i in bm_widgetMap) {
+        let obj = bm_widgetMap[i];
+        let { info = {} } = obj || {};
+        let { id = "" } = info || {};
+        widgetList.push(id);
+      }
+      this.widgetList = widgetList;
+      this.activeComs = bm_active_com_ids;
+    },
     recordEvent() {
       this.$refs.bmRecord?.show();
     },
@@ -603,6 +655,7 @@ export default {
     loadJsonEvent() {
       // let { rightMenuStatus = false } = this;
       // this.setRightMenuStatus(!rightMenuStatus);
+      this.$refs.bmLoad?.show();
     },
     zoomEvent(val = 0) {
       this._navTimeoutId = setTimeout(() => {
@@ -752,8 +805,8 @@ export default {
       }, 0);
     },
     setThemesEvent(cmd) {
-      this._navTimeoutId = setTimeout(() => {
-        clearTimeout(this._navTimeoutId);
+      this._setThemesTimeoutId = setTimeout(() => {
+        clearTimeout(this._setThemesTimeoutId);
         let { canvas = {}, widgetList = [] } = this;
         canvas.themes = cmd;
         switch (cmd) {
@@ -787,7 +840,9 @@ export default {
     },
     //添加到自定义
     diyCommandEvent() {
-      let { activeComs = [] } = this;
+      // let { activeComs = [] } = this;
+      let bm_active_com_ids = window.bm_active_com_ids;
+      let bm_widgetMap = window.bm_widgetMap;
       let {
         data = {},
         name = "",
@@ -796,27 +851,29 @@ export default {
         top = 0,
         comDisabled = false,
         alias = ""
-      } = Constants.COMPONENTPANEL || {};
-      let { length = 0 } = activeComs || [];
+      } = { ...(Constants.COMPONENTPANEL || {}) };
+      let { length = 0 } = bm_active_com_ids || [];
       if (length < 1) {
         return;
       }
-      let children = bmCommon.clone(activeComs);
-      // activeComs.forEach(item => {
-      //   children.push(item);
-      //   // let index = widgetList.findIndex(_item => item.id == _item.id);
-      //   // while (index > -1) {
-      //   //   widgetList.splice(index, 1);
-      //   //   index = widgetList.findIndex(_item => item.id == _item.id);
-      //   // }
-      // });
+      let children = [];
+      bm_active_com_ids.forEach(id => {
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        children.push(info);
+        // let index = widgetList.findIndex(_item => item.id == _item.id);
+        // while (index > -1) {
+        //   widgetList.splice(index, 1);
+        //   index = widgetList.findIndex(_item => item.id == _item.id);
+        // }
+      });
       // let orders = widgetList.map(item => item.order);
       // let order = 1;
       // if (orders && orders.length > 0) {
       //   order = Math.max(...orders);
       //   order += 1;
       // }
-      let [item = {}] = activeComs || [];
+      let [item = {}] = children || [];
       bmCommon.log("diyCommandEvent");
       let maxHeight = item.height;
       let maxWidth = item.width;
@@ -880,11 +937,11 @@ export default {
         parentNode.removeChild(node);
         $(parentNode).prepend($(canvas));
       });
-      let ids = children.map(item => `${item.id}`);
+      // let ids = children.map(item => `${item.id}`);
       $copyDom.children().each((index, node) => {
         let $item = $(node);
         let id = $item.attr("id");
-        if (ids.indexOf(id) > -1) {
+        if (bm_active_com_ids.indexOf(id) > -1) {
           $item.removeClass("active");
           let left = $item.css("left");
           let top = $item.css("top");
@@ -931,8 +988,8 @@ export default {
     },
     //组合  打散操作
     groupCommandEvent(cmd) {
-      this._navTimeoutId = setTimeout(() => {
-        clearTimeout(this._navTimeoutId);
+      this._groupCommandTimeoutId = setTimeout(() => {
+        clearTimeout(this._groupCommandTimeoutId);
         if (!cmd) {
           return;
         }
@@ -944,12 +1001,13 @@ export default {
             this.unComposeEvent();
             break;
         }
-      }, 0);
+      }, 1);
       this.showGroupPopoverStatus = false;
     },
     // 组合
     composeEvent() {
-      let { widgetList = [], activeComs = [] } = this;
+      // let { widgetList = [], activeComs = [] } = this;
+      // let widgetList = [];
       let {
         data = {},
         name = "",
@@ -958,47 +1016,51 @@ export default {
         top = 0,
         comDisabled = false,
         alias = ""
-      } = Constants.COMPONENTPANEL || {};
+      } = { ...(Constants.COMPONENTPANEL || {}) };
+      let bm_active_com_ids = window.bm_active_com_ids;
+      let bm_widgetMap = window.bm_widgetMap;
       let children = [];
-      let { length = 0 } = activeComs || [];
+      let { length = 0 } = bm_active_com_ids || [];
       if (length < 2) {
         return;
       }
-      widgetList = bmCommon.clone(widgetList);
-      // let count = 0;
-      activeComs.forEach(item => {
+      let orders = [];
+      for (let i in bm_widgetMap) {
+        let obj = bm_widgetMap[i];
+        let { info = {} } = obj || {};
         let {
-          id = "",
+          order = 1,
           type = "",
           children: _children = [],
           left = 0,
           top = 0
-        } = item || {};
-        //若已经是组合则先打散
-        if (type === "panel") {
-          _children.forEach(_item => {
-            let obj = bmCommon.clone(_item);
-            obj.id = bmCommon.uuid();
-            obj.left += left;
-            obj.top += top;
-            delete obj.parentId;
-            children.push(obj);
-          });
-        } else {
-          children.push(item);
+        } = info || {};
+        orders.push(order);
+        if (bm_active_com_ids.indexOf(i) > -1) {
+          //若已经是组合则先打散
+          if (type === "panel") {
+            _children.forEach(_item => {
+              let obj = bmCommon.clone(_item);
+              obj.id = bmCommon.uuid();
+              obj.left += left;
+              obj.top += top;
+              delete obj.parentId;
+              children.push(obj);
+            });
+          } else {
+            children.push(bmCommon.clone(info));
+          }
+
+          bmCommon.error("count=", info, children, JSON.stringify(info));
+          // if (index > -1) {
+          //   widgetList.splice(index, 1);
+          //   // count++;
+          // }
         }
-        let index = widgetList.findIndex(_item => id == _item.id);
-        while (index > -1) {
-          widgetList.splice(index, 1);
-          index = widgetList.findIndex(_item => id == _item.id);
-        }
-        // if (index > -1) {
-        //   widgetList.splice(index, 1);
-        //   // count++;
-        // }
-      });
+      }
+
       // bmCommon.error("count=", count);
-      let orders = widgetList.map(item => item.order);
+      // let orders = widgetList.map(item => item.order);
       let order = 1;
       if (orders && orders.length > 0) {
         order = Math.max(...orders);
@@ -1011,20 +1073,19 @@ export default {
       // // let max_left = Math.max(...group1.map(item => item.left + item.width));
       // group2.sort((a, b) => a.top - b.top);
       //left 最大值 4
-      let minLeft = Math.min.apply(
-        Math,
-        children.map(item => {
+      let minLeft = Math.min(
+        ...children.map(item => {
           return item.left;
         })
       );
       // top 最小值 1
-      let minTop = Math.min.apply(
-        Math,
-        children.map(item => {
+      let minTop = Math.min(
+        ...children.map(item => {
           return item.top;
         })
       );
       // let { left: minLeft = 0 } = group1[0] || {};
+      bmCommon.log("composeEvent=", children, minLeft, minTop);
       // let { top: minTop = 0 } = group2[0] || {};
       left = minLeft;
       top = minTop;
@@ -1048,30 +1109,47 @@ export default {
         top,
         children
       };
-      // bmCommon.log(
-      //   JSON.stringify(
-      //     children.map(item => {
-      //       return { left: item.left, top: item.top };
-      //     })
-      //   )
-      // );
-      widgetList.push(item);
-      // canvas.action = "select";
-      this.setWidgetList(widgetList);
-      this.createHistoryAction();
-      this.setMoving(true);
-      this.$nextTick(() => {
-        this.selectComAction(id);
-        this.setMoving(false);
+
+      bmCommon.error("composeEvent=", JSON.stringify(item));
+      // widgetList.push(item);
+      Canvas.append(item);
+
+      bm_active_com_ids.forEach(id => {
+        Canvas.remove(id);
       });
+      // window.bm_active_com_ids = [];
+      // this.activeComs=[]
+      Canvas.setActiveComs([]);
+      // canvas.action = "select";
+      // this.setWidgetList(widgetList);
+      CanvasEvent.createHistoryAction();
+      // this.setMoving(true);
+      // this.$nextTick(() => {
+      CanvasEvent.selectComAction(id);
+      // this.setMoving(false);
+      // });
       // this.showContextMenuStatus = false;
     },
     // 打散
     unComposeEvent() {
-      let { activeCom = {}, widgetList = [] } = this;
-      let widgets = [];
+      // let { activeCom = {}, widgetList = [] } = this;
+      // let bm_active_com_ids = window.bm_active_com_ids;
+      let bm_active_com_id = window.bm_active_com_id;
+      let bm_widgetMap = window.bm_widgetMap;
+      // let widgetList = [];
+
+      let orders = [];
+      for (let i in bm_widgetMap) {
+        let obj = bm_widgetMap[i];
+        let { info = {} } = obj || {};
+        let { order = 1 } = info || {};
+        orders.push(order);
+      }
+      let obj = bm_widgetMap[bm_active_com_id];
+      let { info: activeCom = {} } = obj || {};
+      // let widgets = [];
       let { children = [], left = 0, top = 0, id = "" } = activeCom || {};
-      let orders = widgetList.map(item => item.order);
+      // let orders = widgetList.map(item => item.order);
       let order = 1;
       if (orders && orders.length > 0) {
         order = Math.max(...orders);
@@ -1081,6 +1159,7 @@ export default {
       if (length < 1) {
         return;
       }
+      Canvas.remove(id);
       children.forEach((item, index) => {
         item.id = bmCommon.uuid();
         item.left += left;
@@ -1088,15 +1167,16 @@ export default {
         // item.rotate -= rotate;
         item.order = index + order;
         delete item.parentId;
-        widgets.push(item);
+        // widgets.push(item);
+        Canvas.append(item);
       });
-      let index = widgetList.findIndex(item => id == item.id);
-      widgetList.splice(index, 1, ...widgets);
+      // let index = widgetList.findIndex(item => id == item.id);
+      // widgetList.splice(index, 1, ...widgets);
     },
     // 分布操作
     spreadCommandEvent(cmd) {
-      this._navTimeoutId = setTimeout(() => {
-        clearTimeout(this._navTimeoutId);
+      this._spreadCommandTimeoutId = setTimeout(() => {
+        clearTimeout(this._spreadCommandTimeoutId);
         if (!cmd) {
           return;
         }
@@ -1110,60 +1190,88 @@ export default {
             this.spreadHCenterEvent();
             break;
         }
-      }, 0);
+      }, 1);
       this.showSpreadPopoverStatus = false;
     },
     // 垂直分布
     spreadVCenterEvent() {
-      let { activeComs = [] } = this;
-      let { length = 0 } = activeComs || [];
+      // let { activeComs = [] } = this;
+      // let { length = 0 } = activeComs || [];
+      let bm_active_com_ids = window.bm_active_com_ids;
+      let bm_widgetMap = window.bm_widgetMap;
+      let { length = 0 } = bm_active_com_ids || [];
       if (length < 3) {
         return;
       }
-      let min = Math.min(...activeComs.map(item => Number(item.top)));
-      let max = Math.max(...activeComs.map(item => Number(item.top)));
+      let tops = [];
+      let activeComs = [];
+      bm_active_com_ids.forEach(id => {
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        let { top = 0 } = info || {};
+        tops.push(Number(top));
+        activeComs.push(info);
+      });
+      let min = Math.min(...tops);
+      let max = Math.max(...tops);
       let range = (max - min) / (length - 1);
       let index = 1;
-      let _activeComs = (bmCommon.clone(activeComs) || []).sort(
-        (a, b) => a.top - b.top
-      );
-      _activeComs.forEach(item => {
+      activeComs.sort((a, b) => a.top - b.top);
+      activeComs.forEach(item => {
         let { height = "", top = "", originHeight = "", id = "" } = item || {};
         let _max = (Number(height) || Number(originHeight)) + Number(top);
         let _min = Number(top);
-        let _obj = activeComs.find(_item => _item.id == id);
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
         if (min != _min && _max != max) {
-          _obj.top = min + range * index;
+          info.top = min + range * index;
+          obj?.refresh({
+            top: info.top
+          });
           index++;
         }
       });
-      this.createHistoryAction();
+      CanvasEvent.createHistoryAction();
     },
     //水平分布
     spreadHCenterEvent() {
-      let { activeComs = [] } = this;
-      let { length = 0 } = activeComs || [];
+      // let { activeComs = [] } = this;
+      let bm_active_com_ids = window.bm_active_com_ids;
+      let bm_widgetMap = window.bm_widgetMap;
+      let { length = 0 } = bm_active_com_ids || [];
       if (length < 3) {
         return;
       }
-      let min = Math.min(...activeComs.map(item => Number(item.left)));
-      let max = Math.max(...activeComs.map(item => Number(item.left)));
+      let lefts = [];
+      let activeComs = [];
+      bm_active_com_ids.forEach(id => {
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        let { left = 0 } = info || {};
+        lefts.push(Number(left));
+        activeComs.push(info);
+      });
+      let min = Math.min(...lefts);
+      let max = Math.max(...lefts);
       let range = (max - min) / (length - 1);
       let index = 1;
-      let _activeComs = (bmCommon.clone(activeComs) || []).sort(
-        (a, b) => a.left - b.left
-      );
-      _activeComs.forEach(item => {
+      activeComs.sort((a, b) => a.left - b.left);
+      activeComs.forEach(item => {
         let { width = "", left = "", originWidth = "", id = "" } = item || {};
         let _max = (Number(width) || Number(originWidth)) + Number(left);
         let _min = Number(left);
-        let _obj = activeComs.find(_item => _item.id == id);
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        // let _obj = activeComs.find(_item => _item.id == id);
         if (min != _min && _max != max) {
-          _obj.left = min + range * index;
+          info.left = min + range * index;
+          obj?.refresh({
+            left: info.left
+          });
           index++;
         }
       });
-      this.createHistoryAction();
+      CanvasEvent.createHistoryAction();
     },
     alignCommandEvent(cmd) {
       this._navTimeoutId = setTimeout(() => {
@@ -1176,35 +1284,35 @@ export default {
         switch (cmd) {
           case "top":
             this.alignTopEvent();
-            this.createHistoryAction();
+            CanvasEvent.createHistoryAction();
             break;
           case "bottom":
             this.alignBottomEvent();
-            this.createHistoryAction();
+            CanvasEvent.createHistoryAction();
             break;
           case "left":
             this.alignLeftEvent();
-            this.createHistoryAction();
+            CanvasEvent.createHistoryAction();
             break;
           case "right":
             this.alignRightEvent();
-            this.createHistoryAction();
+            CanvasEvent.createHistoryAction();
             break;
           case "left-right":
             this.alignLeftRightEvent();
-            this.createHistoryAction();
+            CanvasEvent.createHistoryAction();
             break;
           case "top-bottom":
             this.alignTopBottomEvent();
-            this.createHistoryAction();
+            CanvasEvent.createHistoryAction();
             break;
           case "v-center":
             this.alignVCenterEvent();
-            this.createHistoryAction();
+            CanvasEvent.createHistoryAction();
             break;
           case "h-center":
             this.alignHCenterEvent();
-            this.createHistoryAction();
+            CanvasEvent.createHistoryAction();
             break;
           default:
             break;
@@ -1214,147 +1322,239 @@ export default {
     },
     // 左右对齐
     alignLeftRightEvent() {
-      let { activeComs = [] } = this;
-      let { length = 0 } = activeComs || [];
+      // let { activeComs = [] } = this;
+      // let { length = 0 } = activeComs || [];
+      let bm_active_com_ids = window.bm_active_com_ids;
+      let bm_widgetMap = window.bm_widgetMap;
+      let { length = 0 } = bm_active_com_ids || [];
       if (length < 2) {
         return;
       }
-      let [item = {}] = activeComs || [];
+      let [id = ""] = bm_active_com_ids || [];
+      let obj = bm_widgetMap[id];
+      let { info = {} } = obj || {};
       let left =
-        item.left + (Number(item.width) || Number(item.originWidth)) / 2;
-      let width = Number(item.width) || Number(item.originWidth);
-      activeComs.forEach(item => {
-        if (item.scaleable) {
+        info.left + (Number(info.width) || Number(info.originWidth)) / 2;
+      let width = Number(info.width) || Number(info.originWidth);
+      bm_active_com_ids.forEach(id => {
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        if (info.scaleable) {
           //若组件本身不可变，则不做拉伸处理
-          item.width = width;
+          info.width = width;
         }
-        item.left = left - (Number(item.width) || Number(item.originWidth)) / 2;
+        info.left = left - (Number(info.width) || Number(info.originWidth)) / 2;
+        obj.refresh({ left: info.left, width: info.width });
       });
     },
     //上下对齐
     alignTopBottomEvent() {
-      let { activeComs = [] } = this;
-      let { length = 0 } = activeComs || [];
+      // let { activeComs = [] } = this;
+      // let { length = 0 } = activeComs || [];
+      let bm_active_com_ids = window.bm_active_com_ids;
+      let bm_widgetMap = window.bm_widgetMap;
+      let { length = 0 } = bm_active_com_ids || [];
       if (length < 2) {
         return;
       }
-      let [item = {}] = activeComs || [];
+      let [id = ""] = bm_active_com_ids || [];
+      let obj = bm_widgetMap[id];
+      let { info = {} } = obj || {};
       let top =
-        item.top + (Number(item.height) || Number(item.originHeight)) / 2;
-      let height = Number(item.height) || Number(item.originHeight);
-      activeComs.forEach(item => {
-        if (item.scaleable) {
-          item.height = height;
+        info.top + (Number(info.height) || Number(info.originHeight)) / 2;
+      let height = Number(info.height) || Number(info.originHeight);
+      bm_active_com_ids.forEach(id => {
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        if (info.scaleable) {
+          info.height = height;
         }
-        item.top = top - (Number(item.height) || Number(item.originHeight)) / 2;
+        info.top = top - (Number(info.height) || Number(info.originHeight)) / 2;
+        obj.refresh({ top: info.top, height: info.height });
       });
     },
     // 垂直居中
     alignVCenterEvent() {
-      let { activeComs = [] } = this;
-      let { length = 0 } = activeComs || [];
+      let bm_active_com_ids = window.bm_active_com_ids;
+      let bm_widgetMap = window.bm_widgetMap;
+      let { length = 0 } = bm_active_com_ids || [];
       if (length < 2) {
         return;
       }
-      let [item = {}] = activeComs || [];
+      let [id = ""] = bm_active_com_ids || [];
+      let obj = bm_widgetMap[id];
+      let { info = {} } = obj || {};
       let top =
-        item.top + (Number(item.height) || Number(item.originHeight)) / 2;
-      activeComs.forEach(item => {
-        item.top = top - (Number(item.height) || Number(item.originHeight)) / 2;
+        info.top + (Number(info.height) || Number(info.originHeight)) / 2;
+      bm_active_com_ids.forEach(id => {
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        let { type = "", height = 0, originHeight = 0 } = info || {};
+        if (type == "panel") {
+          let _obj = document.getElementById(id);
+          let { height: _height = 0 } = _obj.getBoundingClientRect() || {};
+          height = _height;
+          info.height = height;
+        }
+        info.top = top - (Number(height) || Number(originHeight)) / 2;
+        obj.refresh({ top: info.top });
       });
     },
     // 水平居中
     alignHCenterEvent() {
-      let { activeComs = [] } = this;
-      let { length = 0 } = activeComs || [];
+      let bm_active_com_ids = window.bm_active_com_ids;
+      let bm_widgetMap = window.bm_widgetMap;
+      let { length = 0 } = bm_active_com_ids || [];
       if (length < 2) {
         return;
       }
-      let [item = {}] = activeComs || [];
+      let [id = ""] = bm_active_com_ids || [];
+      let obj = bm_widgetMap[id];
+      let { info = {} } = obj || {};
       let left =
-        item.left + (Number(item.width) || Number(item.originWidth)) / 2;
-      activeComs.forEach(item => {
-        item.left = left - (Number(item.width) || Number(item.originWidth)) / 2;
+        info.left + (Number(info.width) || Number(info.originWidth)) / 2;
+      bm_active_com_ids.forEach(id => {
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        let { type = "", width = 0, originWidth = 0 } = info || {};
+        if (type == "panel") {
+          let _obj = document.getElementById(id);
+          let { width: _width = 0 } = _obj.getBoundingClientRect() || {};
+          width = _width;
+          info.width = width;
+        }
+        info.left = left - (Number(width) || Number(originWidth)) / 2;
+        obj.refresh({ left: info.left });
       });
     },
     // 左对齐
     alignLeftEvent() {
-      let { activeComs = [] } = this;
-      let { length = 0 } = activeComs || [];
+      let bm_active_com_ids = window.bm_active_com_ids;
+      let bm_widgetMap = window.bm_widgetMap;
+      let { length = 0 } = bm_active_com_ids || [];
       if (length < 2) {
         return;
       }
-      let min = Math.min(...activeComs.map(item => item.left));
-      activeComs.forEach(item => {
-        item.left = min;
+      let lefts = [];
+      bm_active_com_ids.forEach(id => {
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        let { left = 0 } = info || {};
+        lefts.push(Number(left));
+      });
+      let min = Math.min(...lefts);
+      bm_active_com_ids.forEach(id => {
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        info.left = min;
+        obj.refresh({ left: info.left });
       });
     },
     // 右对齐
     alignRightEvent() {
-      let { activeComs = [] } = this;
-      let { length = 0 } = activeComs || [];
+      let bm_active_com_ids = window.bm_active_com_ids;
+      let bm_widgetMap = window.bm_widgetMap;
+      let { length = 0 } = bm_active_com_ids || [];
       if (length < 2) {
         return;
       }
-      let max = Math.max(
-        ...activeComs.map(
-          item => item.left + (Number(item.width) || Number(item.originWidth))
-        )
-      );
-      activeComs.forEach(item => {
-        item.left = max - (Number(item.width) || Number(item.originWidth));
+      let lefts = [];
+      bm_active_com_ids.forEach(id => {
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        let { left = 0, type = "", width = 0, originWidth = 0 } = info || {};
+        if (type == "panel") {
+          let _obj = document.getElementById(id);
+          let { width: _width = 0 } = _obj.getBoundingClientRect() || {};
+          width = _width;
+          info.width = width;
+        }
+        lefts.push(Number(left) + (Number(width) || Number(originWidth)));
+      });
+      let max = Math.max(...lefts);
+      bm_active_com_ids.forEach(id => {
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        info.left = max - (Number(info.width) || Number(info.originWidth));
+        obj.refresh({ left: info.left });
       });
     },
     // 上对齐
     alignTopEvent() {
-      let { activeComs = [] } = this;
-      let { length = 0 } = activeComs || [];
+      let bm_active_com_ids = window.bm_active_com_ids;
+      let bm_widgetMap = window.bm_widgetMap;
+      let { length = 0 } = bm_active_com_ids || [];
       if (length < 2) {
         return;
       }
-      let min = Math.min(...activeComs.map(item => item.top));
-      activeComs.forEach(item => {
-        item.top = min;
+      let tops = [];
+      bm_active_com_ids.forEach(id => {
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        let { top = 0 } = info || {};
+        tops.push(Number(top));
+      });
+      let min = Math.min(...tops);
+      bm_active_com_ids.forEach(id => {
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        info.top = min;
+        obj.refresh({ top: info.top });
       });
     },
     // 下对齐
     alignBottomEvent() {
-      let { activeComs = [] } = this;
-      let { length = 0 } = activeComs || [];
+      let bm_active_com_ids = window.bm_active_com_ids;
+      let bm_widgetMap = window.bm_widgetMap;
+      let { length = 0 } = bm_active_com_ids || [];
       if (length < 2) {
         return;
       }
-      let max = Math.max(
-        ...activeComs.map(
-          item => item.top + (Number(item.height) || Number(item.originHeight))
-        )
-      );
-      activeComs.forEach(item => {
-        item.top = max - (Number(item.height) || Number(item.originHeight));
+      let tops = [];
+      bm_active_com_ids.forEach(id => {
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        let { top = 0, height = 0, originHeight = 0, type = "" } = info || {};
+        if (type == "panel") {
+          let _obj = document.getElementById(id);
+          let { height: _height = 0 } = _obj.getBoundingClientRect() || {};
+          height = _height;
+          info.height = height;
+        }
+        tops.push(Number(top) + (Number(height) || Number(originHeight)));
+      });
+      let max = Math.max(...tops);
+      bm_active_com_ids.forEach(id => {
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        let { height = 0, originHeight = 0 } = info || {};
+        info.top = max - (Number(height) || Number(originHeight));
+        bmCommon.log("alignBottomEvent=", info.id, max, info.top, info.height);
+        obj.refresh({ top: info.top });
       });
     },
     orderCommandEvent(cmd) {
-      this._navTimeoutId = setTimeout(() => {
-        clearTimeout(this._navTimeoutId);
+      this._orderCommandTimeoutId = setTimeout(() => {
+        clearTimeout(this._orderCommandTimeoutId);
         if (!cmd) {
           return;
         }
         switch (cmd) {
           case "up":
             this.moveUpEvent();
-            this.createHistoryAction();
+            CanvasEvent.createHistoryAction();
             break;
           case "down":
             this.moveDownEvent();
-            this.createHistoryAction();
+            CanvasEvent.createHistoryAction();
             break;
           case "top":
             this.moveTopEvent();
-            this.createHistoryAction();
+            CanvasEvent.createHistoryAction();
             break;
           case "bottom":
             this.moveBottomEvent();
-            this.createHistoryAction();
+            CanvasEvent.createHistoryAction();
             break;
           default:
             break;
@@ -1365,52 +1565,132 @@ export default {
     // 上移一层
     moveUpEvent() {
       // this.showContextMenuStatus = false;
-      let { activeCom = {}, widgetList: _widgetList = [] } = this;
-      let { order = "", parentId = "" } = activeCom || {};
-      let widgetList = _widgetList || [];
-      if (parentId) {
-        let parent = _widgetList.find(item => item.id == parentId);
-        let { children = [] } = parent || {};
-        widgetList = children || [];
+      let widgetList = [];
+      let { activeCom = {} } = this;
+      let bm_widgetMap = window.bm_widgetMap;
+      let { order = "", parentId = "", id = "" } = activeCom || {};
+      // let widgetList = _widgetList || [];
+      let bm_active_com_ids = window.bm_active_com_ids;
+      let { length = 0 } = bm_active_com_ids || [];
+      if (length < 2) {
+        if (parentId) {
+          let parent = bm_widgetMap[parentId];
+          let { children = [] } = parent || {};
+          widgetList = children || [];
+        } else {
+          for (let i in bm_widgetMap) {
+            let obj = bm_widgetMap[i];
+            let { info = {} } = obj || {};
+            widgetList.push(info);
+          }
+        }
+        let orders = widgetList.map(item => item.order).sort((a, b) => a - b);
+        let _order = orders.find(item => item > order);
+        let item = widgetList.find(item => _order == item.order);
+        let { id = "" } = item;
+        activeCom.order = _order;
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        info.order = order;
+        obj?.refresh();
+      } else {
+        // let activeComs = [];
+        for (let i in bm_widgetMap) {
+          let obj = bm_widgetMap[i];
+          let { info = {} } = obj || {};
+          widgetList.push(info);
+          // let { id = "" } = info || {};
+          // if (bm_active_com_ids.indexOf(id) > -1) {
+          //   activeComs.push(info);
+          // }
+        }
+        // order = Math.min(...activeComs.map(item => item.order));
+        let orders = widgetList.map(item => item.order).sort((a, b) => a - b);
+        let _order = orders.find(item => item > order);
+        activeCom.order = _order;
+        bm_active_com_ids.forEach(id => {
+          let obj = bm_widgetMap[id];
+          let { info = {} } = obj || {};
+          info.order = order;
+          obj?.refresh();
+        });
       }
-      let orders = widgetList.map(item => item.order).sort((a, b) => a - b);
-      let _order = orders.find(item => item > order);
-      let obj = widgetList.find(item => _order == item.order);
-      // let obj = widgetList.find(item => order < item.order);
-      // let { order: _order = "" } = obj || {};
-      activeCom.order = _order;
-      obj.order = order;
     },
     // 下移一层
     moveDownEvent() {
       // this.showContextMenuStatus = false;
-      let { activeCom = {}, widgetList: _widgetList = [] } = this;
+      let widgetList = [];
+      let { activeCom = {} } = this;
+      let bm_widgetMap = window.bm_widgetMap;
       let { order = "", parentId = "" } = activeCom || {};
-      let widgetList = _widgetList || [];
-      if (parentId) {
-        let parent = _widgetList.find(item => item.id == parentId);
-        let { children = [] } = parent || {};
-        widgetList = children || [];
+      let bm_active_com_ids = window.bm_active_com_ids;
+      let { length = 0 } = bm_active_com_ids || [];
+      // let widgetList = _widgetList || [];
+      if (length < 2) {
+        if (parentId) {
+          let parent = bm_widgetMap[parentId];
+          let { children = [] } = parent || {};
+          widgetList = children || [];
+        } else {
+          for (let i in bm_widgetMap) {
+            let obj = bm_widgetMap[i];
+            let { info = {} } = obj || {};
+            widgetList.push(info);
+          }
+        }
+        // let obj = widgetList.find(item => order > item.order);
+        // let { order: _order = "" } = obj || {};
+        let orders = widgetList.map(item => item.order).sort((a, b) => b - a);
+        // bmCommon.log("orders=>", orders, order);
+        let _order = orders.find(item => item < order);
+        let item = widgetList.find(item => _order == item.order);
+        let { id = "" } = item;
+        activeCom.order = _order;
+        let obj = bm_widgetMap[id];
+        let { info = {} } = obj || {};
+        info.order = order;
+        obj?.refresh();
+      } else {
+        // let activeComs = [];
+        for (let i in bm_widgetMap) {
+          let obj = bm_widgetMap[i];
+          let { info = {} } = obj || {};
+          widgetList.push(info);
+          // let { id = "" } = info || {};
+          // if (bm_active_com_ids.indexOf(id) > -1) {
+          //   activeComs.push(info);
+          // }
+        }
+        // order = Math.max(...activeComs.map(item => item.order));
+        let orders = widgetList.map(item => item.order).sort((a, b) => b - a);
+        let _order = orders.find(item => item < order);
+        activeCom.order = _order;
+        bm_active_com_ids.forEach(id => {
+          let obj = bm_widgetMap[id];
+          let { info = {} } = obj || {};
+          info.order = order;
+          obj?.refresh();
+        });
       }
-      // let obj = widgetList.find(item => order > item.order);
-      // let { order: _order = "" } = obj || {};
-      let orders = widgetList.map(item => item.order).sort((a, b) => b - a);
-      // bmCommon.log("orders=>", orders, order);
-      let _order = orders.find(item => item < order);
-      let obj = widgetList.find(item => _order == item.order);
-      activeCom.order = _order;
-      obj.order = order;
     },
     // 置底
     moveBottomEvent() {
       // this.showContextMenuStatus = false;
-      let { activeCom = {}, widgetList: _widgetList = [] } = this;
+      let widgetList = [];
+      let { activeCom = {} } = this;
+      let bm_widgetMap = window.bm_widgetMap;
       let { parentId = "" } = activeCom || {};
-      let widgetList = _widgetList || [];
+      // let widgetList = _widgetList || [];
       if (parentId) {
-        let parent = _widgetList.find(item => item.id == parentId);
+        let parent = bm_widgetMap[parentId];
         let { children = [] } = parent || {};
         widgetList = children || [];
+      } else {
+        for (let i in bm_widgetMap) {
+          let obj = bm_widgetMap[i];
+          let { info = {} } = obj || {};
+          widgetList.push(info);
+        }
       }
       let orders = widgetList.map(item => item.order);
       let order = Math.min(...orders);
@@ -1425,14 +1705,21 @@ export default {
     },
     // 置顶
     moveTopEvent() {
-      // this.showContextMenuStatus = false;
-      let { activeCom = {}, widgetList: _widgetList = [] } = this;
+      let widgetList = [];
+      let { activeCom = {} } = this;
+      let bm_widgetMap = window.bm_widgetMap;
       let { parentId = "" } = activeCom || {};
-      let widgetList = _widgetList || [];
+      // let widgetList = _widgetList || [];
       if (parentId) {
-        let parent = _widgetList.find(item => item.id == parentId);
+        let parent = bm_widgetMap[parentId];
         let { children = [] } = parent || {};
         widgetList = children || [];
+      } else {
+        for (let i in bm_widgetMap) {
+          let obj = bm_widgetMap[i];
+          let { info = {} } = obj || {};
+          widgetList.push(info);
+        }
       }
       let orders = widgetList.map(item => item.order);
       let order = Math.max(...orders);

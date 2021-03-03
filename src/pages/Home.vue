@@ -4,8 +4,8 @@
     <bm-nav ref="bmNav"></bm-nav>
     <div class="flex-content">
       <bm-widget-list
-        ref="bmWidgetList"
         v-show="leftMenuStatus"
+        ref="bmWidgetList"
       ></bm-widget-list>
       <!-- <div v-else></div> -->
       <el-alert
@@ -258,8 +258,8 @@ import CanvasEvent from "@/core/CanvasEvent";
 // import Event from "@/core/Event.js";
 import bmHeader from "@/components/header";
 import bmNav from "@/components/nav";
-import bmWidgetList from "@/components/home/widget-list";
-// import bmInfo from "@/components/home/info";
+import bmWidgetList from "@/components/widget-list";
+// import bmInfo from "@/components/info";
 import bmFooter from "@/components/footer";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;

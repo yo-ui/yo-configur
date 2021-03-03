@@ -50,6 +50,8 @@ class SelectBox {
     if (type) {
       return;
     }
+    // window.bm_active_com_ids = [];
+    Canvas.setActiveComs([]);
     e.stopPropagation();
     let pos = bmCommon.getMousePosition(e);
     let { x = "", y = "" } = pos || {};
@@ -88,7 +90,9 @@ class SelectBox {
       if (bm_active_com_ids.length < 1) {
         Canvas.unactive();
       }
-    }, 10);
+    }, 1);
+
+    Canvas.setActiveComs(bm_active_com_ids);
     $(document).off("mousemove", SelectBox.mousemoveEvent);
     $(document).off("mouseup", SelectBox.mouseupEvent);
   }
@@ -114,7 +118,7 @@ class SelectBox {
   }
   //计算组件是否被框选
   static selectComs(box = {}) {
-    let bm_active_com_ids = [];
+    let bm_active_com_ids = window.bm_active_com_ids;
     let bm_widgetMap = window.bm_widgetMap || {};
     let {
       left: boxX = 0,
@@ -157,11 +161,13 @@ class SelectBox {
             bmCommon.isInPolygon([x, y1], points) ||
             bmCommon.isInPolygon([x1, y1], points))
         ) {
-          bm_active_com_ids.push(id);
+          if (bm_active_com_ids.indexOf(id) < 0) {
+            bm_active_com_ids.push(id);
+          }
           Canvas.active(id);
         }
       }
-      window.bm_active_com_ids = bm_active_com_ids;
+      // window.bm_active_com_ids = bm_active_com_ids;
     }
 
     bmCommon.log(

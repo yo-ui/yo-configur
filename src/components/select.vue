@@ -191,7 +191,7 @@ export default {
       //   // zoom = 1,
       //   // canvas = {}
       // } = this;
-      let bm_active_com_ids = [];
+      let bm_active_com_ids = window.bm_active_com_ids;
       // let bm_active_com_id = window.bm_active_com_id;
       let bm_widgetMap = window.bm_widgetMap || {};
       // let widgets = [];
@@ -272,7 +272,7 @@ export default {
         //   this.setActiveCom(canvas);
         //   Canvas.unactive();
         // }
-        window.bm_active_com_ids = bm_active_com_ids;
+        // window.bm_active_com_ids = bm_active_com_ids;
       }
 
       bmCommon.log(

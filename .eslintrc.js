@@ -12,6 +12,7 @@ module.exports = {
     "window": true,
     "Vuex":true,
     "Vue":true,
+    "moment":true,
     "SVG":true
   },
   extends: ["plugin:vue/essential", "eslint:recommended", "@vue/prettier"],
@@ -23,11 +24,11 @@ module.exports = {
     "no-console": "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
 
-    "no-unused-vars": [2, { 
+    "no-unused-vars": [2, {
       // 允许声明未使用变量
       "vars": "local",
       // 参数不检查
-      "args": "none" 
+      "args": "none"
     }],
   },
   overrides: [

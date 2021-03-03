@@ -86,7 +86,7 @@ class ContextMenu {
     if (showType === "edit") {
       let $container = $("#context_menu");
       let id = window.bm_active_com_id;
-      let activeIds = window.bm_active_ids || [];
+      let activeIds = window.bm_active_com_ids || [];
       let obj = window.bm_widgetMap[id];
       let { info = {} } = obj || {};
       let { locked = false, type = "" } = info || {};
@@ -110,7 +110,7 @@ class ContextMenu {
       } else {
         $container.find(".unlock").hide();
       }
-      if (id && !locked) {
+      if ((id || length > 1) && !locked) {
         $container.find(".add-diy").show();
         $container.find(".cut").show();
         $container.find(".copy").show();
@@ -129,7 +129,7 @@ class ContextMenu {
         $container.find(".move-bottom").hide();
         $container.find(".lock").hide();
       }
-      if (id && length > 1) {
+      if (length > 1) {
         $container.find(".compose").show();
       } else {
         $container.find(".compose").hide();
@@ -155,19 +155,24 @@ class ContextMenu {
     // let $parent = $(target).parents(".bm-component-com");
     // let type = $(target).attr("data-type");
     let id = window.bm_active_com_id;
+    let bm_active_com_ids = window.bm_active_com_ids;
+    let { length = 0 } = bm_active_com_ids || [];
     // if (!type) {
     //   type = $parent.attr("data-type");
     //   id = $parent.attr("data-id");
     // }
     // let obj = window.bm_widgetMap[id];
     // let { info = {} } = obj || {};
-    if (id) {
-      // ContextMenu.showContextMenuType = 1;
-      CanvasEvent.selectComAction(id); //选中组件
-    } else {
-      // ContextMenu.showContextMenuType = 2;
-      // 取消选中组件
-      CanvasEvent.selectComAction();
+    bmCommon.log("context_menu,bm_active_com_ids=", length);
+    if (length < 2) {
+      if (id) {
+        // ContextMenu.showContextMenuType = 1;
+        CanvasEvent.selectComAction(id); //选中组件
+      } else {
+        // ContextMenu.showContextMenuType = 2;
+        // 取消选中组件
+        CanvasEvent.selectComAction();
+      }
     }
     ContextMenu.refresh();
     // this.$nextTick(() => {
@@ -178,10 +183,12 @@ class ContextMenu {
     let { innerHeight = 0 } = window;
     y = y > innerHeight - height + 5 ? innerHeight - height : y;
     x = x > innerWidth - width + 5 ? innerWidth - width : x;
-    $container.css({
-      left: x - 5 + "px",
-      top: y - 5 + "px"
-    });
+    $container
+      .css({
+        left: x - 5 + "px",
+        top: y - 5 + "px"
+      })
+      .show();
     // });
   }
 

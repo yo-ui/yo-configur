@@ -118,6 +118,9 @@
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
+// import ComponentLibrary from "@/core/ComponentLibrary.js";
+import Canvas from "@/core/Canvas.js";
+// import WidgetList from "@/core/info/widget-list.js";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 const Props = {
@@ -153,9 +156,10 @@ export default {
   },
   computed: {
     ...mapGetters({
-      widgetList: "canvas/getWidgetList", //组件列表
+      //widgetList: "canvas/getWidgetList"
+      widgetList: [], //组件列表
       zoom: "canvas/getZoom", //放大缩小
-      draging: "canvas/getDraging", //组件拖动状态
+      // draging: "canvas/getDraging", //组件拖动状态
       canvas: "canvas/getCanvas" //画布属性
     }),
     tabWidgetList() {
@@ -186,8 +190,8 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
-      setDraging: "canvas/setDraging" //设置连接点信息
+      // setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
+      // setDraging: "canvas/setDraging" //设置连接点信息
     }),
     ...mapActions({
       selectComAction: "canvas/selectCom",
@@ -313,7 +317,7 @@ export default {
         return;
       }
       // item = JSON.parse(item);
-      bmCommon.log(item);
+      // bmCommon.log(item);
       let indexes = item.split("-");
       let { length = 0 } = indexes || [];
       let index = 0;
@@ -357,7 +361,7 @@ export default {
         "data",
         JSON.stringify({ ...data, type, name, alias, comDisabled })
       );
-      this.setDraging(true);
+      // this.setDraging(true);
       this.dragenterEvent(e);
     },
     dragenterEvent(e) {
@@ -383,19 +387,27 @@ export default {
       $(document).off("dragover", this.dragoverEvent);
       // $(document).off("drop", this.dropEvent);
       $(".content-box").off("drop", this.dropEvent);
-      this.setDraging(false);
+      // this.setDraging(false);
     },
     dropEvent(e) {
       e.preventDefault();
       // bmCommon.log("拖到目标元素", e.target);
       e.stopPropagation();
-      let { widgetList = [], zoom = 1, canvas = {} } = this;
+      let { zoom = 1, canvas = {} } = this;
       let { originalEvent = {} } = e;
       let offset = $(".view-box").offset();
       let { dataTransfer = {} } = originalEvent;
       let data = dataTransfer.getData("data");
+      let widgetList = [];
+      let bm_widgetMap = window.bm_widgetMap;
+      for (let i in bm_widgetMap) {
+        let obj = bm_widgetMap[i];
+        let { info = {} } = obj || {};
+        widgetList.push(info);
+      }
+      // bmCommon.log("data=", data);
       if (data) {
-        data = typeof data === "string" ? JSON.parse(data) : {};
+        data = Object.freeze(typeof data === "string" ? JSON.parse(data) : {});
         let id = bmCommon.uuid();
         let pos = bmCommon.getMousePosition(e);
         let { left = 0, top = 0 } = offset || {};
@@ -436,10 +448,22 @@ export default {
           left,
           top
         };
-        if (alias == "linkPoint") {
-          this.setLinkPoint(item);
-        }
-        widgetList.push(item);
+        // if (alias == "linkPoint") {
+        //   this.setLinkPoint(item);
+        // }
+        // widgetList.push(item);
+        bmCommon.log(item);
+
+        // let _canvas_content = $("#canvas_content");
+        // let obj = ComponentLibrary.getInstance(item);
+        // let dom = obj.template();
+        // if (dom) {
+        //   let _div = $(obj.template());
+        //   _canvas_content.append(_div[0]);
+        //   WidgetList.append(item)
+        // }
+        // window.bm_widgetMap[id] = obj;
+        Canvas.append(item);
         canvas.action = "select";
         this.createHistoryAction();
         this.$nextTick(() => {
@@ -464,7 +488,15 @@ export default {
       }
     },
     clickEvent(item) {
-      let { widgetList = [], canvas = {}, activeIndex = "" } = this;
+      let { canvas = {}, activeIndex = "" } = this;
+
+      let widgetList = [];
+      let bm_widgetMap = window.bm_widgetMap;
+      for (let i in bm_widgetMap) {
+        let obj = bm_widgetMap[i];
+        let { info = {} } = obj || {};
+        widgetList.push(info);
+      }
       //如果是自定义组件则另外处理
       if (activeIndex == "diy") {
         let { content = "" } = item || {};
@@ -520,11 +552,21 @@ export default {
         left,
         top
       };
-      if (alias == "linkPoint") {
-        this.setLinkPoint(item);
-      }
-      widgetList.push(_item);
+      // if (alias == "linkPoint") {
+      //   this.setLinkPoint(item);
+      // }
+      // widgetList.push(_item);
       canvas.action = "select";
+      Canvas.append(_item);
+      // let _canvas_content = $("#canvas_content");
+      // let obj = ComponentLibrary.getInstance(item);
+      // let dom = obj.template();
+      // if (dom) {
+      //   let _div = $(obj.template());
+      //   _canvas_content.append(_div[0]);
+      //   WidgetList.append(item);
+      // }
+      // window.bm_widgetMap[id] = obj;
       this.createHistoryAction();
       this.selectComAction(id);
       // this.createRecordAction();

@@ -63,6 +63,7 @@ export default {
     return {
       showDialogStatus: false,
       record: null,
+      recordList: [],
       condition: {
         pageNo: 1,
         pageSize: 10,
@@ -79,7 +80,7 @@ export default {
       // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
       // activeCom: "canvas/getActiveCom",
       // activeComs: "canvas/getActiveComs",
-      recordList: "canvas/getRecordList"
+      // recordList: "canvas/getRecordList"
       // widgetList: "canvas/getWidgetList"
     }),
     dataList() {
@@ -92,8 +93,8 @@ export default {
     ...mapMutations({
       // setActiveCom: "canvas/setActiveCom",
       // setZoom: "canvas/setZoom",
-      setWidgetList: "canvas/setWidgetList",
-      setRecordList: "canvas/setRecordList"
+      // setWidgetList: "canvas/setWidgetList",
+      // setRecordList: "canvas/setRecordList"
       // setLeftMenuStatus: "canvas/setLeftMenuStatus",
       // setRightMenuStatus: "canvas/setRightMenuStatus"
     }),

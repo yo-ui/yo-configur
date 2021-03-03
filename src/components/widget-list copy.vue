@@ -118,9 +118,6 @@
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
-// import ComponentLibrary from "@/core/ComponentLibrary.js";
-import Canvas from "@/core/Canvas.js";
-// import WidgetList from "@/core/info/widget-list.js";
 // eslint-disable-next-line no-undef
 const { mapActions, mapMutations, mapGetters } = Vuex;
 const Props = {
@@ -156,10 +153,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      //widgetList: "canvas/getWidgetList"
-      widgetList: [], //组件列表
+      widgetList: "canvas/getWidgetList", //组件列表
       zoom: "canvas/getZoom", //放大缩小
-      // draging: "canvas/getDraging", //组件拖动状态
+      draging: "canvas/getDraging", //组件拖动状态
       canvas: "canvas/getCanvas" //画布属性
     }),
     tabWidgetList() {
@@ -190,8 +186,8 @@ export default {
   },
   methods: {
     ...mapMutations({
-      // setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
-      // setDraging: "canvas/setDraging" //设置连接点信息
+      setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
+      setDraging: "canvas/setDraging" //设置连接点信息
     }),
     ...mapActions({
       selectComAction: "canvas/selectCom",
@@ -317,7 +313,7 @@ export default {
         return;
       }
       // item = JSON.parse(item);
-      // bmCommon.log(item);
+      bmCommon.log(item);
       let indexes = item.split("-");
       let { length = 0 } = indexes || [];
       let index = 0;
@@ -361,7 +357,7 @@ export default {
         "data",
         JSON.stringify({ ...data, type, name, alias, comDisabled })
       );
-      // this.setDraging(true);
+      this.setDraging(true);
       this.dragenterEvent(e);
     },
     dragenterEvent(e) {
@@ -387,7 +383,7 @@ export default {
       $(document).off("dragover", this.dragoverEvent);
       // $(document).off("drop", this.dropEvent);
       $(".content-box").off("drop", this.dropEvent);
-      // this.setDraging(false);
+      this.setDraging(false);
     },
     dropEvent(e) {
       e.preventDefault();
@@ -398,10 +394,8 @@ export default {
       let offset = $(".view-box").offset();
       let { dataTransfer = {} } = originalEvent;
       let data = dataTransfer.getData("data");
-
-      // bmCommon.log("data=", data);
       if (data) {
-        data = Object.freeze(typeof data === "string" ? JSON.parse(data) : {});
+        data = typeof data === "string" ? JSON.parse(data) : {};
         let id = bmCommon.uuid();
         let pos = bmCommon.getMousePosition(e);
         let { left = 0, top = 0 } = offset || {};
@@ -442,22 +436,10 @@ export default {
           left,
           top
         };
-        // if (alias == "linkPoint") {
-        //   this.setLinkPoint(item);
-        // }
-        // widgetList.push(item);
-        bmCommon.log(item);
-
-        // let _canvas_content = $("#canvas_content");
-        // let obj = ComponentLibrary.getInstance(item);
-        // let dom = obj.template();
-        // if (dom) {
-        //   let _div = $(obj.template());
-        //   _canvas_content.append(_div[0]);
-        //   WidgetList.append(item)
-        // }
-        // window.bm_widgetMap[id] = obj;
-        Canvas.append(item);
+        if (alias == "linkPoint") {
+          this.setLinkPoint(item);
+        }
+        widgetList.push(item);
         canvas.action = "select";
         this.createHistoryAction();
         this.$nextTick(() => {
@@ -538,21 +520,11 @@ export default {
         left,
         top
       };
-      // if (alias == "linkPoint") {
-      //   this.setLinkPoint(item);
-      // }
-      // widgetList.push(_item);
+      if (alias == "linkPoint") {
+        this.setLinkPoint(item);
+      }
+      widgetList.push(_item);
       canvas.action = "select";
-      Canvas.append(_item);
-      // let _canvas_content = $("#canvas_content");
-      // let obj = ComponentLibrary.getInstance(item);
-      // let dom = obj.template();
-      // if (dom) {
-      //   let _div = $(obj.template());
-      //   _canvas_content.append(_div[0]);
-      //   WidgetList.append(item);
-      // }
-      // window.bm_widgetMap[id] = obj;
       this.createHistoryAction();
       this.selectComAction(id);
       // this.createRecordAction();
@@ -680,5 +652,5 @@ export default {
 </script>
 
 <style lang="less">
-@import (less) "../../assets/less/components/home/widget.list.less";
+@import (less) "../assets/less/components/widget.list.less";
 </style>

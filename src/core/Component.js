@@ -1,6 +1,6 @@
 import bmCommon from "@/common/common"; // 静态文本
 import Canvas from "./Canvas";
-import "../assets/less/components/home/component.less";
+import "../assets/less/components/component.less";
 
 // const Library = {
 //   textCom
@@ -390,6 +390,19 @@ class Component {
       ${content}
       </div>
     `;
+  }
+
+  lock(locked) {
+    let { info = {} } = this;
+    let { id = "" } = info || {};
+    let $container = $(`#${id}`);
+    if (locked) {
+      // $(`#${id}>.operate-btn`).hide();
+      $container.addClass("locked");
+    } else {
+      // $(`#${id}>.operate-btn`).show();
+      $container.removeClass("locked");
+    }
   }
   // 刷新数据
   refresh(item) {
