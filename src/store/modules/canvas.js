@@ -112,9 +112,9 @@ export default {
     // getLinkPoint(state) {
     //   return state.linkPoint;
     // },
-    // getSelectBox(state) {
-    //   return state.selectBox;
-    // },
+    getSelectBox(state) {
+      return state.selectBox;
+    },
     // getMoving(state) {
     //   return state.moving;
     // },

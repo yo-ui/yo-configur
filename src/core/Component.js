@@ -447,7 +447,7 @@ class Component {
   // 刷新数据
   refresh(item) {
     let { info = {} } = this;
-    let { id = "", locked = false } = info || {};
+    let { id = "", locked = false, type = "" } = info || {};
     let $container = $(`#${id}`);
     if (item) {
       $container.css(item);
@@ -462,6 +462,7 @@ class Component {
       // $(`#${id}>.operate-btn`).show();
       $container.removeClass("locked");
     }
+    bmCommon.log(`${type}刷新 `);
     // if (type === "panel") {
     //   $(`#${id}>.operate-btn:not(.el-icon-refresh-right,.el-icon-axis)`).hide();
     // }
@@ -490,8 +491,11 @@ class Component {
         return;
       }
       $vm.$on(`devicePointEvent_${id}`, ({ point = {} }) => {
-        bmCommon.log(`devicePointEvent_${id}`, info.type, point);
-        // this.point = point || {};
+        bmCommon.log(
+          `websock 接收设备信息devicePointEvent_${id}`,
+          info.type,
+          point
+        );
         this.refreshContent({ point });
         // let { value = "", unit = "" } = point || {};
         // info.content = value;
@@ -520,6 +524,7 @@ class Component {
           });
         }
         // this.point = point || {};
+        bmCommon.log("初始化获取设置信息", info.type);
         this.refreshContent({ point, device });
         // if (point) {
         //   let { value = "", unit = "" } = point || {};

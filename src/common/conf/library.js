@@ -401,6 +401,7 @@ let componentLibrary = [
         name: "表格",
         code: "table",
         icon: "/static/img/configur/visualtable.png",
+        comDisabled: true, // 组件是否可用
         data: {
           ...baseData,
           width: 800,

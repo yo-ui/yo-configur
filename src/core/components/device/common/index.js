@@ -1,6 +1,6 @@
 import bmCommon from "@/common/common";
 import Component from "@/core/Component";
-// import "../../../../assets/less/components/component/basic/hScroll.less";
+import "../../../../assets/less/components/component/device/common.less";
 
 class Text extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class Text extends Component {
       { info },
       `
       <div
-      class="bm-assist-common-com component"
+      class="bm-device-common-com component"
       style="${this.composeStyles(this.comStyle())}"
     >
     <img src="${content}" width="${width}" height="${height}" />
@@ -30,9 +30,9 @@ class Text extends Component {
     super.refresh();
     let { info = {} } = this;
     bmCommon.log(`${info.type}刷新 `);
-    let { id = "", width = 0, height = 0 } = info || {};
+    let { id = "", width = 0, height = 0, content: src = "" } = info || {};
     let $container = $(`#${id}>.component`);
-    $container.find("img").attr({ width, height });
+    $container.find("img").attr({ width, height, src });
   }
 
   event() {}

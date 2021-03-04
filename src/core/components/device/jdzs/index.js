@@ -12,7 +12,6 @@ class Text extends Component {
 
   template() {
     let { info = {} } = this;
-    let { id = "", width = 0, height = 0 } = info || {};
     return super.wrap(
       { info },
       `

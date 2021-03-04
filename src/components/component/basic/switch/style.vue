@@ -722,36 +722,100 @@
           <span class="label">{{ $lang("外边距") }}:</span>
           <span class="c-box">
             <span>
-              上<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.marginTop"
-                :placeholder="$lang('上外边距')"
-              ></el-input-number>
+              上<el-tooltip placement="top" effect="dark">
+                <template v-slot:content>
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="
+                      () => {
+                        info.marginTop = info.marginTop;
+                        info.marginBottom = info.marginTop;
+                        info.marginRight = info.marginTop;
+                        info.marginLeft = info.marginTop;
+                      }
+                    "
+                    >{{ $lang("统一设置") }}</el-button
+                  > </template
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.marginTop"
+                  :placeholder="$lang('上外边距')"
+                ></el-input-number>
+              </el-tooltip>
             </span>
             <span>
-              下<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.marginBottom"
-                :placeholder="$lang('下外边距')"
-              ></el-input-number>
+              下<el-tooltip placement="top" effect="dark">
+                <template v-slot:content>
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="
+                      () => {
+                        info.marginTop = info.marginBottom;
+                        info.marginBottom = info.marginBottom;
+                        info.marginRight = info.marginBottom;
+                        info.marginLeft = info.marginBottom;
+                      }
+                    "
+                    >{{ $lang("统一设置") }}</el-button
+                  > </template
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.marginBottom"
+                  :placeholder="$lang('下外边距')"
+                ></el-input-number>
+              </el-tooltip>
             </span>
             <span>
-              左<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.marginLeft"
-                :placeholder="$lang('左外边距')"
-              ></el-input-number>
+              左<el-tooltip placement="top" effect="dark">
+                <template v-slot:content>
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="
+                      () => {
+                        info.marginTop = info.marginLeft;
+                        info.marginBottom = info.marginLeft;
+                        info.marginRight = info.marginLeft;
+                        info.marginLeft = info.marginLeft;
+                      }
+                    "
+                    >{{ $lang("统一设置") }}</el-button
+                  > </template
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.marginLeft"
+                  :placeholder="$lang('左外边距')"
+                ></el-input-number>
+              </el-tooltip>
             </span>
             <span>
-              右<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.marginRight"
-                :placeholder="$lang('右外边距')"
-              ></el-input-number>
+              右<el-tooltip placement="top" effect="dark">
+                <template v-slot:content>
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="
+                      () => {
+                        info.marginTop = info.marginRight;
+                        info.marginBottom = info.marginRight;
+                        info.marginRight = info.marginRight;
+                        info.marginLeft = info.marginRight;
+                      }
+                    "
+                    >{{ $lang("统一设置") }}</el-button
+                  > </template
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.marginRight"
+                  :placeholder="$lang('右外边距')"
+                ></el-input-number>
+              </el-tooltip>
             </span>
           </span>
         </p>
@@ -759,36 +823,100 @@
           <span class="label">{{ $lang("内边距") }}:</span>
           <span class="c-box">
             <span>
-              上<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.paddingTop"
-                :placeholder="$lang('上内边距')"
-              ></el-input-number>
+              上<el-tooltip placement="top" effect="dark">
+                <template v-slot:content>
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="
+                      () => {
+                        info.paddingTop = info.paddingTop;
+                        info.paddingBottom = info.paddingTop;
+                        info.paddingRight = info.paddingTop;
+                        info.paddingLeft = info.paddingTop;
+                      }
+                    "
+                    >{{ $lang("统一设置") }}</el-button
+                  > </template
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.paddingTop"
+                  :placeholder="$lang('上内边距')"
+                ></el-input-number>
+              </el-tooltip>
             </span>
             <span>
-              下<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.paddingBottom"
-                :placeholder="$lang('下内边距')"
-              ></el-input-number>
+              下<el-tooltip placement="top" effect="dark">
+                <template v-slot:content>
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="
+                      () => {
+                        info.paddingBottom = info.paddingBottom;
+                        info.paddingBottom = info.paddingBottom;
+                        info.paddingRight = info.paddingBottom;
+                        info.paddingLeft = info.paddingBottom;
+                      }
+                    "
+                    >{{ $lang("统一设置") }}</el-button
+                  > </template
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.paddingBottom"
+                  :placeholder="$lang('下内边距')"
+                ></el-input-number>
+              </el-tooltip>
             </span>
             <span>
-              左<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.paddingLeft"
-                :placeholder="$lang('左内边距')"
-              ></el-input-number>
+              左<el-tooltip placement="top" effect="dark">
+                <template v-slot:content>
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="
+                      () => {
+                        info.paddingLeft = info.paddingLeft;
+                        info.paddingBottom = info.paddingLeft;
+                        info.paddingRight = info.paddingLeft;
+                        info.paddingLeft = info.paddingLeft;
+                      }
+                    "
+                    >{{ $lang("统一设置") }}</el-button
+                  > </template
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.paddingLeft"
+                  :placeholder="$lang('左内边距')"
+                ></el-input-number>
+              </el-tooltip>
             </span>
             <span>
-              右<el-input-number
-                controls-position="right"
-                clearable
-                v-model.number="info.paddingRight"
-                :placeholder="$lang('右内边距')"
-              ></el-input-number>
+              右<el-tooltip placement="top" effect="dark">
+                <template v-slot:content>
+                  <el-button
+                    type="primary"
+                    size="default"
+                    @click="
+                      () => {
+                        info.paddingTop = info.paddingRight;
+                        info.paddingBottom = info.paddingRight;
+                        info.paddingRight = info.paddingRight;
+                        info.paddingLeft = info.paddingRight;
+                      }
+                    "
+                    >{{ $lang("统一设置") }}</el-button
+                  > </template
+                ><el-input-number
+                  controls-position="right"
+                  clearable
+                  v-model.number="info.paddingRight"
+                  :placeholder="$lang('右内边距')"
+                ></el-input-number>
+              </el-tooltip>
             </span>
           </span>
         </p> -->

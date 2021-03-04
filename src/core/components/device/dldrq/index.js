@@ -1,7 +1,7 @@
 import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
-
+// 电力电容器
 class Text extends Component {
   constructor(props) {
     super(props);
@@ -36,21 +36,21 @@ ${this.renderSvg()}
     xml:space="preserve"
   >
     <defs><style type='text/css'>
-      .dldrq-${id}-st0{fill:#A3A3AE;}
-        .dldrq-${id}-st1{fill:#8E8E98;}
-        .dldrq-${id}-st2{fill:url(#dldrq_2_);}
-        .dldrq-${id}-st3{fill:#ABACAF;}
-        .dldrq-${id}-st4{fill:url(#dldrq_3_);}
-        .dldrq-${id}-st5{fill:#4F4E51;}
-        .dldrq-${id}-st6{fill:#E0E0E0;}
-        .dldrq-${id}-st7{fill:#353535;}
-        .dldrq-${id}-st8{fill:#040000;}
-        .dldrq-${id}-st9{fill:url(#dldrq_4_);}
-        .dldrq-${id}-st10{fill:url(#dldrq_5_);}
-        .dldrq-${id}-st11{fill:url(#dldrq_6_);}
-        .dldrq-${id}-st12{fill:url(#dldrq_7_);}
-        .dldrq-${id}-st13{fill:url(#dldrq_8_);}
-        .dldrq-${id}-st14{fill:url(#dldrq_9_);}
+    .dldrq-${info.id}-st0{fill:#A3A3AE;}
+      .dldrq-${info.id}-st1{fill:#8E8E98;}
+      .dldrq-${info.id}-st2{fill:url(#dldrq_2_);}
+      .dldrq-${info.id}-st3{fill:#ABACAF;}
+      .dldrq-${info.id}-st4{fill:url(#dldrq_3_);}
+      .dldrq-${info.id}-st5{fill:#4F4E51;}
+      .dldrq-${info.id}-st6{fill:#E0E0E0;}
+      .dldrq-${info.id}-st7{fill:#353535;}
+      .dldrq-${info.id}-st8{fill:#040000;}
+      .dldrq-${info.id}-st9{fill:url(#dldrq_4_);}
+      .dldrq-${info.id}-st10{fill:url(#dldrq_5_);}
+      .dldrq-${info.id}-st11{fill:url(#dldrq_6_);}
+      .dldrq-${info.id}-st12{fill:url(#dldrq_7_);}
+      .dldrq-${info.id}-st13{fill:url(#dldrq_8_);}
+      .dldrq-${info.id}-st14{fill:url(#dldrq_9_);}
     </style></defs>
     ${this.renderSvgContent()}
 

@@ -72,90 +72,90 @@ import iframe from "@/core/components/basic/iframe/index";
 //下拉框
 import select from "@/core/components/basic/select/index";
 
-// import lineChart from  "@/core/components/com/lineChart/index"
+import lineChart from "@/core/components/com/lineChart/index";
 
-// import barChart from  "@/core/components/com/barChart/index"
+import barChart from "@/core/components/com/barChart/index";
 
-// import sequenceBarChart from  "@/core/components/com/sequenceBarChart/index"
+import sequenceBarChart from "@/core/components/com/sequenceBarChart/index";
 
-// import lineBarChart from  "@/core/components/com/lineBarChart/index"
+import lineBarChart from "@/core/components/com/lineBarChart/index";
 
-// import statisticsAreaLineChart from  "@/core/components/com/statisticsAreaLineChart/index"
+import statisticsAreaLineChart from "@/core/components/com/statisticsAreaLineChart/index";
 
-// import sequenceLineChart from  "@/core/components/com/sequenceLineChart/index"
+import sequenceLineChart from "@/core/components/com/sequenceLineChart/index";
 
-// import sequenceAreaLineChart from  "@/core/components/com/sequenceAreaLineChart/index"
+import sequenceAreaLineChart from "@/core/components/com/sequenceAreaLineChart/index";
 
-// import scatterChart from  "@/core/components/com/scatterChart/index"
+import scatterChart from "@/core/components/com/scatterChart/index";
 
-// import bubbleChart from  "@/core/components/com/bubbleChart/index"
+import bubbleChart from "@/core/components/com/bubbleChart/index";
 
-// import pileBarChart from  "@/core/components/com/pileBarChart/index"
+import pileBarChart from "@/core/components/com/pileBarChart/index";
 
-// import pieChart from  "@/core/components/com/pieChart/index"
+import pieChart from "@/core/components/com/pieChart/index";
 
-// import ringChart from  "@/core/components/com/ringChart/index"
+import ringChart from "@/core/components/com/ringChart/index";
 
-// import nightingalePieChart from  "@/core/components/com/nightingalePieChart/index"
+import nightingalePieChart from "@/core/components/com/nightingalePieChart/index";
 
-// import nightingaleRingChart from  "@/core/components/com/nightingaleRingChart/index"
+import nightingaleRingChart from "@/core/components/com/nightingaleRingChart/index";
 
-// import map from  "@/core/components/com/map/index"
+import map from "@/core/components/com/map/index";
 
-// import gaugeChart from  "@/core/components/com/gaugeChart/index"
+import gaugeChart from "@/core/components/com/gaugeChart/index";
 
-// import liquidfillChart from  "@/core/components/com/liquidfillChart/index"
+import liquidfillChart from "@/core/components/com/liquidfillChart/index";
 
-// import areaRadarChart from  "@/core/components/com/areaRadarChart/index"
+import areaRadarChart from "@/core/components/com/areaRadarChart/index";
 
-// import statisticsRadarChart from  "@/core/components/com/statisticsRadarChart/index"
+import statisticsRadarChart from "@/core/components/com/statisticsRadarChart/index";
 
 import deviceCommon from "@/core/components/device/common/index";
 
-// // 水管（水平）
-// import deviceSgH from "@/core/components/device/sg-h/index";
+// 水管（水平）
+import deviceSgH from "@/core/components/device/sg-h/index";
 
-// // // 水管（垂直）
-// // import deviceSgV from  "@/core/components/device/sg-v/index"
+// 水管（垂直）
+import deviceSgV from "@/core/components/device/sg-v/index";
 
-// // // 水管（上）
-// // import deviceSgTop from  "@/core/components/device/sg-top/index"
+// 水管（上）
+import deviceSgTop from "@/core/components/device/sg-top/index";
 
-// // // 水管（下）
-// // import deviceSgBottom from  "@/core/components/device/sg-bottom/index"
+// 水管（下）
+import deviceSgBottom from "@/core/components/device/sg-bottom/index";
 
-// // // 水管（左）
-// // import deviceSgLeft from  "@/core/components/device/sg-left/index"
+// 水管（左）
+import deviceSgLeft from "@/core/components/device/sg-left/index";
 
-// // // 水管（左上）
-// // import deviceSgLeftTop from  "@/core/components/device/sg-left-top/index"
+// 水管（左上）
+import deviceSgLeftTop from "@/core/components/device/sg-left-top/index";
 
-// // // 水管（左下）
-// // import deviceSgLeftBottom from  "@/core/components/device/sg-left-bottom/index"
+// 水管（左下）
+import deviceSgLeftBottom from "@/core/components/device/sg-left-bottom/index";
 
-// // // 水管（右）
-// // import deviceSgRight from  "@/core/components/device/sg-right/index"
+// 水管（右）
+import deviceSgRight from "@/core/components/device/sg-right/index";
 
-// // // 水管（右上）
-// // import deviceSgRightTop from  "@/core/components/device/sg-right-top/index"
+// 水管（右上）
+import deviceSgRightTop from "@/core/components/device/sg-right-top/index";
 
-// // // 水管（右下）
-// // import deviceSgRightBottom from  "@/core/components/device/sg-right-bottom/index"
+// 水管（右下）
+import deviceSgRightBottom from "@/core/components/device/sg-right-bottom/index";
 
 // // 电表
-// import deviceDb from  "@/core/components/device/db/index"
+import deviceDb from "@/core/components/device/db/index";
 
-// // 单项导轨电表
-// import deviceDxdgdb from  "@/core/components/device/dxdgdb/index"
+// 单项导轨电表
+import deviceDxdgdb from "@/core/components/device/dxdgdb/index";
 
-// // io控制模块
-// import deviceIokzmk from  "@/core/components/device/iokzmk/index"
+// io控制模块
+import deviceIokzmk from "@/core/components/device/iokzmk/index";
 
-// // 断路器
-// import deviceDuanluqi from  "@/core/components/device/duanluqi/index"
+// 断路器
+import deviceDuanluqi from "@/core/components/device/duanluqi/index";
 
-// // 壁挂式电表
-// import deviceBgsdb from  "@/core/components/device/bgsdb/index"
+// 壁挂式电表
+import deviceBgsdb from "@/core/components/device/bgsdb/index";
 
 // 接地刀闸
 import deviceJddz from "@/core/components/device/jddz/index";
@@ -202,176 +202,176 @@ import deviceDlq1 from "@/core/components/device/dlq1/index";
 // 断路器2
 import deviceDlq2 from "@/core/components/device/dlq2/index";
 
-// // 开关1
-// import deviceKg1 from  "@/core/components/device/kg1/index"
+// 开关1
+import deviceKg1 from "@/core/components/device/kg1/index";
 
 // 手车
 import deviceSc from "@/core/components/device/sc/index";
 
-// // 螺翼式水表
-// import deviceLyssb from  "@/core/components/device/lyssb/index"
+// 螺翼式水表
+import deviceLyssb from "@/core/components/device/lyssb/index";
 
-// // 阀控水表
-// import deviceFksb from  "@/core/components/device/fksb/index"
+// 阀控水表
+import deviceFksb from "@/core/components/device/fksb/index";
 
-// // 旋翼式水表
-// import deviceXyssb from  "@/core/components/device/xyssb/index"
+// 旋翼式水表
+import deviceXyssb from "@/core/components/device/xyssb/index";
 
-// // 超时波流量计
-// import deviceCsbllj from  "@/core/components/device/csbllj/index"
+// 超时波流量计
+import deviceCsbllj from "@/core/components/device/csbllj/index";
 
-// // 插卡式水表
-// import deviceCkssb from  "@/core/components/device/ckssb/index"
+// 插卡式水表
+import deviceCkssb from "@/core/components/device/ckssb/index";
 
-// // 生活水泵
-// import deviceShsb from  "@/core/components/device/shsb/index"
+// 生活水泵
+import deviceShsb from "@/core/components/device/shsb/index";
 
-// // 集水井
-// import deviceJsj from  "@/core/components/device/jsj/index"
+// 集水井
+import deviceJsj from "@/core/components/device/jsj/index";
 
-// // 水箱
-// import deviceSx from  "@/core/components/device/sx/index"
+// 水箱
+import deviceSx from "@/core/components/device/sx/index";
 
-// // 消防水泵
-// import deviceXfsb from  "@/core/components/device/xfsb/index"
+// 消防水泵
+import deviceXfsb from "@/core/components/device/xfsb/index";
 
-// // 抽烟风机
-// import deviceCyfj from  "@/core/components/device/cyfj/index"
+// 抽烟风机
+import deviceCyfj from "@/core/components/device/cyfj/index";
 
-// // 正压送风机
-// import deviceZysfj from  "@/core/components/device/zysfj/index"
+// 正压送风机
+import deviceZysfj from "@/core/components/device/zysfj/index";
 
-// // 蓄水装置
-// import deviceXszz from  "@/core/components/device/xszz/index"
+// 蓄水装置
+import deviceXszz from "@/core/components/device/xszz/index";
 
-// // 手动水阀
-// import deviceSdsf from  "@/core/components/device/sdsf/index"
+// 手动水阀
+import deviceSdsf from "@/core/components/device/sdsf/index";
 
-// // 集水器
-// import deviceJsq from  "@/core/components/device/jsq/index"
+// 集水器
+import deviceJsq from "@/core/components/device/jsq/index";
 
-// // 分水器
-// import deviceFsq from  "@/core/components/device/fsq/index"
+// 分水器
+import deviceFsq from "@/core/components/device/fsq/index";
 
-// // 开关
-// import deviceKg from  "@/core/components/device/kg/index"
+// 开关
+import deviceKg from "@/core/components/device/kg/index";
 
-// // 灯管
-// import deviceDengg from  "@/core/components/device/dengg/index"
+// 灯管
+import deviceDengg from "@/core/components/device/dengg/index";
 
-// // 灯泡
-// import deviceDengp from  "@/core/components/device/dengp/index"
+// 灯泡
+import deviceDengp from "@/core/components/device/dengp/index";
 
-// //整体式热量表
-// import deviceZtsrlb from  "@/core/components/device/ztsrlb/index"
+//整体式热量表
+import deviceZtsrlb from "@/core/components/device/ztsrlb/index";
 
-// //组合式热量表
-// import deviceZhsrlb from  "@/core/components/device/zhsrlb/index"
+//组合式热量表
+import deviceZhsrlb from "@/core/components/device/zhsrlb/index";
 
-// //挂式空调
-// import deviceGskt from  "@/core/components/device/gskt/index"
+//挂式空调
+import deviceGskt from "@/core/components/device/gskt/index";
 
-// //立式空调
-// import deviceLskt from  "@/core/components/device/lskt/index"
+//立式空调
+import deviceLskt from "@/core/components/device/lskt/index";
 
-// // 风冷热器
-// import deviceFlrq from  "@/core/components/device/flrq/index"
+// 风冷热器
+import deviceFlrq from "@/core/components/device/flrq/index";
 
-// // 板式换热器
-// import deviceBshrq from  "@/core/components/device/bshrq/index"
+// 板式换热器
+import deviceBshrq from "@/core/components/device/bshrq/index";
 
-// // 冷却塔
-// import deviceLqt from  "@/core/components/device/lqt/index"
+// 冷却塔
+import deviceLqt from "@/core/components/device/lqt/index";
 
-// // 排风机
-// import devicePfj from  "@/core/components/device/pfj/index"
+// 排风机
+import devicePfj from "@/core/components/device/pfj/index";
 
-// // 燃气锅炉
-// import deviceRqgl from  "@/core/components/device/rqgl/index"
+// 燃气锅炉
+import deviceRqgl from "@/core/components/device/rqgl/index";
 
-// // 立式电锅炉
-// import deviceLsdgl from  "@/core/components/device/lsdgl/index"
+// 立式电锅炉
+import deviceLsdgl from "@/core/components/device/lsdgl/index";
 
-// // 新风控制器
-// import deviceXfkzq from  "@/core/components/device/xfkzq/index"
+// 新风控制器
+import deviceXfkzq from "@/core/components/device/xfkzq/index";
 
-// // 温控器
-// import deviceWkq from  "@/core/components/device/wkq/index"
+// 温控器
+import deviceWkq from "@/core/components/device/wkq/index";
 
-// // 太阳能热水器
-// import deviceTynrsq from  "@/core/components/device/tynrsq/index"
+// 太阳能热水器
+import deviceTynrsq from "@/core/components/device/tynrsq/index";
 
-// // 储液储气罐
-// import deviceCycqg from  "@/core/components/device/cycqg/index"
+// 储液储气罐
+import deviceCycqg from "@/core/components/device/cycqg/index";
 
-// // 湿式报警阀
-// import deviceSsbjf from  "@/core/components/device/ssbjf/index"
+// 湿式报警阀
+import deviceSsbjf from "@/core/components/device/ssbjf/index";
 
-// // 烟雾报警传感器
-// import deviceYwbjcgq from  "@/core/components/device/ywbjcgq/index"
+// 烟雾报警传感器
+import deviceYwbjcgq from "@/core/components/device/ywbjcgq/index";
 
-// // 红外人体感应器
-// import deviceHwrtgyq from  "@/core/components/device/hwrtgyq/index"
+// 红外人体感应器
+import deviceHwrtgyq from "@/core/components/device/hwrtgyq/index";
 
-// // 摄像头
-// import deviceSxt from  "@/core/components/device/sxt/index"
+// 摄像头
+import deviceSxt from "@/core/components/device/sxt/index";
 
-// // 门磁报警器
-// import deviceMcbjq from  "@/core/components/device/mcbjq/index"
+// 门磁报警器
+import deviceMcbjq from "@/core/components/device/mcbjq/index";
 
-// // 漏水报警器
-// import deviceLsbjq from  "@/core/components/device/lsbjq/index"
+// 漏水报警器
+import deviceLsbjq from "@/core/components/device/lsbjq/index";
 
-// // 光伏电池板
-// import deviceGfdcb from  "@/core/components/device/gfdcb/index"
+// 光伏电池板
+import deviceGfdcb from "@/core/components/device/gfdcb/index";
 
-// // 光伏逆变器
-// import deviceGfnbq from  "@/core/components/device/gfnbq/index"
+// 光伏逆变器
+import deviceGfnbq from "@/core/components/device/gfnbq/index";
 
-// // 拉绳式测距
-// import deviceLsscj from  "@/core/components/device/lsscj/index"
+// 拉绳式测距
+import deviceLsscj from "@/core/components/device/lsscj/index";
 
-// // 超声波测距
-// import deviceCsbcj from  "@/core/components/device/csbcj/index"
+// 超声波测距
+import deviceCsbcj from "@/core/components/device/csbcj/index";
 
-// // 液晶屏传感器
-// import deviceYjpcgq from  "@/core/components/device/yjpcgq/index"
+// 液晶屏传感器
+import deviceYjpcgq from "@/core/components/device/yjpcgq/index";
 
-// // 传感器
-// import deviceCgq from  "@/core/components/device/cgq/index"
+// 传感器
+import deviceCgq from "@/core/components/device/cgq/index";
 
-// // 小型气象站
-// import deviceXxqxz from  "@/core/components/device/xxqxz/index"
+// 小型气象站
+import deviceXxqxz from "@/core/components/device/xxqxz/index";
 
-// // 客用电梯
-// import deviceKydt from  "@/core/components/device/kydt/index"
+// 客用电梯
+import deviceKydt from "@/core/components/device/kydt/index";
 
-// // 风力发电机
-// import deviceFlfdj from  "@/core/components/device/flfdj/index"
+// 风力发电机
+import deviceFlfdj from "@/core/components/device/flfdj/index";
 
-// import materialCommon from  "@/core/components/material/common/index"
+import materialCommon from "@/core/components/material/common/index";
 
 import materialLine from "@/core/components/material/line/index";
 
-// import materialCurveLine from  "@/core/components/material/curveLine/index"
+import materialCurveLine from "@/core/components/material/curveLine/index";
 
-// import materialRectangle from  "@/core/components/material/rectangle/index"
+import materialRectangle from "@/core/components/material/rectangle/index";
 
-// import materialCircle from  "@/core/components/material/circle/index"
+import materialCircle from "@/core/components/material/circle/index";
 
-// import materialArrow from  "@/core/components/material/arrow/index"
+import materialArrow from "@/core/components/material/arrow/index";
 
-// import materialStar from  "@/core/components/material/star/index"
+import materialStar from "@/core/components/material/star/index";
 
 import materialPolygon from "@/core/components/material/polygon/index";
 
-// import materialTriangle from  "@/core/components/material/triangle/index"
+import materialTriangle from "@/core/components/material/triangle/index";
 
-// import materialEmbellish1 from  "@/core/components/material/embellish1/index"
+import materialEmbellish1 from "@/core/components/material/embellish1/index";
 
-// import materialEmbellish2 from  "@/core/components/material/embellish2/index"
+import materialEmbellish2 from "@/core/components/material/embellish2/index";
 
-// import materialQuadrangle from  "@/core/components/material/quadrangle/index"
+import materialQuadrangle from "@/core/components/material/quadrangle/index";
 
 import assistCommon from "@/core/components/assist/common/index";
 const Library = {
@@ -447,90 +447,90 @@ const Library = {
   //下拉框
   select,
 
-  // lineChart,
+  lineChart,
 
-  // barChart,
+  barChart,
 
-  // sequenceBarChart,
+  sequenceBarChart,
 
-  // lineBarChart,
+  lineBarChart,
 
-  // statisticsAreaLineChart,
+  statisticsAreaLineChart,
 
-  // sequenceLineChart,
+  sequenceLineChart,
 
-  // sequenceAreaLineChart,
+  sequenceAreaLineChart,
 
-  // scatterChart,
+  scatterChart,
 
-  // bubbleChart,
+  bubbleChart,
 
-  // pileBarChart,
+  pileBarChart,
 
-  // pieChart,
+  pieChart,
 
-  // ringChart,
+  ringChart,
 
-  // nightingalePieChart,
+  nightingalePieChart,
 
-  // nightingaleRingChart,
+  nightingaleRingChart,
 
-  // map,
+  map,
 
-  // gaugeChart,
+  gaugeChart,
 
-  // liquidfillChart,
+  liquidfillChart,
 
-  // areaRadarChart,
+  areaRadarChart,
 
-  // statisticsRadarChart,
+  statisticsRadarChart,
 
   deviceCommon,
 
   // 水管（水平）
-  // deviceSgH,
+  deviceSgH,
 
   // 水管（垂直）
-  // deviceSgV,
+  deviceSgV,
 
   // 水管（上）
-  // deviceSgTop,
+  deviceSgTop,
 
   // 水管（下）
-  // deviceSgBottom,
+  deviceSgBottom,
 
   // 水管（左）
-  // deviceSgLeft,
+  deviceSgLeft,
 
   // 水管（左上）
-  // deviceSgLeftTop,
+  deviceSgLeftTop,
 
   // 水管（左下）
-  // deviceSgLeftBottom,
+  deviceSgLeftBottom,
 
   // 水管（右）
-  // deviceSgRight,
+  deviceSgRight,
 
   // 水管（右上）
-  // deviceSgRightTop,
+  deviceSgRightTop,
 
   // 水管（右下）
-  // deviceSgRightBottom,
+  deviceSgRightBottom,
 
   // 电表
-  // deviceDb,
+  deviceDb,
 
   // 单项导轨电表
-  // deviceDxdgdb,
+  deviceDxdgdb,
 
   // io控制模块
-  // deviceIokzmk,
+  deviceIokzmk,
 
   // 断路器
-  // deviceDuanluqi,
+  deviceDuanluqi,
 
   // 壁挂式电表
-  // deviceBgsdb,
+  deviceBgsdb,
 
   // 接地刀闸
   deviceJddz,
@@ -578,175 +578,175 @@ const Library = {
   deviceDlq2,
 
   // 开关1
-  // deviceKg1,
+  deviceKg1,
 
   // 手车
   deviceSc,
 
   // 螺翼式水表
-  // deviceLyssb,
+  deviceLyssb,
 
   // 阀控水表
-  // deviceFksb,
+  deviceFksb,
 
   // 旋翼式水表
-  // deviceXyssb,
+  deviceXyssb,
 
   // 超时波流量计
-  // deviceCsbllj,
+  deviceCsbllj,
 
   // 插卡式水表
-  // deviceCkssb,
+  deviceCkssb,
 
   // 生活水泵
-  // deviceShsb,
+  deviceShsb,
 
   // 集水井
-  // deviceJsj,
+  deviceJsj,
 
   // 水箱
-  // deviceSx,
+  deviceSx,
 
   // 消防水泵
-  // deviceXfsb,
+  deviceXfsb,
 
   // 抽烟风机
-  // deviceCyfj,
+  deviceCyfj,
 
   // 正压送风机
-  // deviceZysfj,
+  deviceZysfj,
 
   // 蓄水装置
-  // deviceXszz,
+  deviceXszz,
 
   // 手动水阀
-  // deviceSdsf,
+  deviceSdsf,
 
   // 集水器
-  // deviceJsq,
+  deviceJsq,
 
   // 分水器
-  // deviceFsq,
+  deviceFsq,
 
   // 开关
-  // deviceKg,
+  deviceKg,
 
   // 灯管
-  // deviceDengg,
+  deviceDengg,
 
   // 灯泡
-  // deviceDengp,
+  deviceDengp,
 
   //整体式热量表
-  // deviceZtsrlb,
+  deviceZtsrlb,
 
   //组合式热量表
-  // deviceZhsrlb,
+  deviceZhsrlb,
 
   //挂式空调
-  // deviceGskt,
+  deviceGskt,
 
   //立式空调
-  // deviceLskt,
+  deviceLskt,
 
   // 风冷热器
-  // deviceFlrq,
+  deviceFlrq,
 
   // 板式换热器
-  // deviceBshrq,
+  deviceBshrq,
 
   // 冷却塔
-  // deviceLqt,
+  deviceLqt,
 
   // 排风机
-  // devicePfj,
+  devicePfj,
 
   // 燃气锅炉
-  // deviceRqgl,
+  deviceRqgl,
 
   // 立式电锅炉
-  // deviceLsdgl,
+  deviceLsdgl,
 
   // 新风控制器
-  // deviceXfkzq,
+  deviceXfkzq,
 
   // 温控器
-  // deviceWkq,
+  deviceWkq,
 
   // 太阳能热水器
-  // deviceTynrsq,
+  deviceTynrsq,
 
   // 储液储气罐
-  // deviceCycqg,
+  deviceCycqg,
 
   // 湿式报警阀
-  // deviceSsbjf,
+  deviceSsbjf,
 
   // 烟雾报警传感器
-  // deviceYwbjcgq,
+  deviceYwbjcgq,
 
   // 红外人体感应器
-  // deviceHwrtgyq,
+  deviceHwrtgyq,
 
   // 摄像头
-  // deviceSxt,
+  deviceSxt,
 
   // 门磁报警器
-  // deviceMcbjq,
+  deviceMcbjq,
 
   // 漏水报警器
-  // deviceLsbjq,
+  deviceLsbjq,
 
   // 光伏电池板
-  // deviceGfdcb,
+  deviceGfdcb,
 
   // 光伏逆变器
-  // deviceGfnbq,
+  deviceGfnbq,
 
   // 拉绳式测距
-  // deviceLsscj,
+  deviceLsscj,
 
   // 超声波测距
-  // deviceCsbcj,
+  deviceCsbcj,
 
   // 液晶屏传感器
-  // deviceYjpcgq,
+  deviceYjpcgq,
 
   // 传感器
-  // deviceCgq,
+  deviceCgq,
 
   // 小型气象站
-  // deviceXxqxz,
+  deviceXxqxz,
 
   // 客用电梯
-  // deviceKydt,
+  deviceKydt,
 
   // 风力发电机
-  // deviceFlfdj,
+  deviceFlfdj,
 
-  // materialCommon,
+  materialCommon,
 
   materialLine,
 
-  // materialCurveLine,
+  materialCurveLine,
 
-  // materialRectangle,
+  materialRectangle,
 
-  // materialCircle,
+  materialCircle,
 
-  // materialArrow,
+  materialArrow,
 
-  // materialStar,
+  materialStar,
 
   materialPolygon,
 
-  // materialTriangle,
+  materialTriangle,
 
-  // materialEmbellish1,
+  materialEmbellish1,
 
-  // materialEmbellish2,
+  materialEmbellish2,
 
-  // materialQuadrangle,
+  materialQuadrangle,
 
   assistCommon
 };

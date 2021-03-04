@@ -31,12 +31,12 @@ class Text extends Component {
     return color;
   }
 
-  renderSvg() {
+  renderSvgContent() {
     let { info = {} } = this;
     let { id = "" } = info || {};
     return `<rect class="dlq1-${id}-st0" width="8" height="17" />`;
   }
-  renderSvgContent() {
+  renderSvg() {
     let { info = {} } = this;
     let { id = "", width = 0, height = 0 } = info || {};
     return ` <svg

@@ -1,4 +1,4 @@
-// 断路器1
+// 开关1
 <template>
   <div class="bm-device-kg1-com" :style="comStyle">
     <svg
