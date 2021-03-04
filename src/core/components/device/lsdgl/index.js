@@ -1,12 +1,15 @@
 import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
-// 电表
+// 立式电锅炉
 class Text extends Component {
+  pointValue = 1;
   constructor(props) {
     super(props);
   }
-  init() {}
+  init() {
+    this.refresh();
+  }
 
   //组件样式
 
@@ -15,7 +18,7 @@ class Text extends Component {
     return super.wrap(
       { info },
       `
-    <div class="bm-device-db-com component"
+    <div class="bm-device-lsdgl-com component"
     style="${this.composeStyles(this.comStyle())}">
     ${this.renderSvg()}
 
@@ -30,50 +33,80 @@ class Text extends Component {
     return `<svg
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 70 69"
+    viewBox="0 0 100 194"
     width="${width}"
     height="${height}"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xml:space="preserve"
   >
     <defs><style type='text/css'>
-    .db-${id}-st0 {
-        fill: url(#db_${id}_1_);
-      }
-      .db-${id}-st1 {
-        fill: #dfe3e8;
-      }
-      .db-${id}-st2 {
-        fill: url(#db_${id}_11_);
-      }
-      .db-${id}-st3 {
-        fill: #ffffff;
-      }
-      .db-${id}-st4 {
-        fill: #c2c8ce;
-      }
-      .db-${id}-st5 {
-        fill: #848776;
-      }
-      .db-${id}-st6 {
-        fill: #25282b;
-      }
-      .db-${id}-st7 {
-        fill: #8f9499;
-      }
-      .db-${id}-st8 {
-        fill: #5b280e;
-      }
-      .db-${id}-st9 {
-        fill: #f95d06;
-      }
-      .db-${id}-st10 {
-        fill: url(#db_${id}_12_);
-      }
-      .db-${id}-st11 {
-        opacity: 0.4;
-        fill: #ff0000;
-      }
+    .lsdgl-${info.id}-st0 {
+      fill: #d0d4d8;
+    }
+    .lsdgl-${info.id}-st1 {
+      fill: url(#lsdgl_2_);
+    }
+    .lsdgl-${info.id}-st2 {
+      fill: none;
+      stroke: #d0d4d8;
+      stroke-width: 0.75;
+      stroke-miterlimit: 10;
+    }
+    .lsdgl-${info.id}-st3 {
+      fill: #333333;
+    }
+    .lsdgl-${info.id}-st4 {
+      fill: url(#lsdgl_${info.id}_SVGID_1_);
+    }
+    .lsdgl-${info.id}-st5 {
+      fill: url(#lsdgl_${info.id}_SVGID_2_);
+    }
+    .lsdgl-${info.id}-st6 {
+      fill: url(#lsdgl_${info.id}_SVGID_3_);
+    }
+    .lsdgl-${info.id}-st7 {
+      fill: #3b3b3b;
+    }
+    .lsdgl-${info.id}-st8 {
+      fill: #ffffff;
+    }
+    .lsdgl-${info.id}-st9 {
+      fill: url(#lsdgl_${info.id}_SVGID_4_);
+    }
+    .lsdgl-${info.id}-st10 {
+      fill: url(#lsdgl_${info.id}_SVGID_5_);
+    }
+    .lsdgl-${info.id}-st11 {
+      fill: url(#lsdgl_${info.id}_SVGID_6_);
+    }
+    .lsdgl-${info.id}-st12 {
+      fill: #848776;
+    }
+    .lsdgl-${info.id}-st13 {
+      fill: #25282b;
+    }
+    .lsdgl-${info.id}-st14 {
+      fill: #444444;
+    }
+    .lsdgl-${info.id}-st15 {
+      fill: #666666;
+    }
+    .lsdgl-${info.id}-st16 {
+      fill: #7d7d7d;
+    }
+    .lsdgl-${info.id}-st17 {
+      fill: url(#lsdgl_${info.id}_SVGID_7_);
+    }
+    .lsdgl-${info.id}-st18 {
+      fill: #2f3133;
+    }
+    .lsdgl-${info.id}-st19 {
+      fill: #fffa63;
+    }
+    .lsdgl-${info.id}-st20 {
+      opacity: 0.38;
+      fill: #ff0000;
+    }
     </style></defs>
     ${this.renderSvgContent()}
   </svg>`;
@@ -82,251 +115,410 @@ class Text extends Component {
     let { info = {}, pointValue } = this;
     let { id = "" } = info || {};
     let text = `
-  <g>
-    <linearGradient
-      id="db_${id}_1_"
-      gradientUnits="userSpaceOnUse"
-      x1="60.525"
-      y1="62.945"
-      x2="54.1179"
-      y2="57.8484"
-    >
-      <stop offset="0" style="stop-color:#C2C8CE" />
-      <stop offset="1" style="stop-color:#848689" />
-    </linearGradient>
+    <g id="图层_2">
     <path
-      class="db-${id}-st0"
-      d="M67.73,41h-54.5v10.34c0,1.9,1.54,3.44,3.44,3.44h33.57l5.49,12.81l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69
-              l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73V41z"
-    />
-    <path
-      id="db_${id}_657_"
-      class="db-${id}-st1"
-      d="M56.5,55.08H2v10.34c0,1.9,1.54,3.44,3.44,3.44h47.62c1.9,0,3.44-1.54,3.44-3.44V55.08z"
+      id="lsdgl_1032_"
+      class="lsdgl-${info.id}-st0"
+      d="M96.1,195H5.7c-2.5,0-4.5-2-4.5-4.5V14.4l2.9-8.9C5,3.1,6.8,1,9.3,1h83.2
+c2.5,0,4.4,2.2,5.2,4.5l2.9,8.9v176.1C100.6,193,98.6,195,96.1,195z"
     />
     <linearGradient
-      id="db_${id}_11_"
+      id="lsdgl_2_"
       gradientUnits="userSpaceOnUse"
-      x1="29.2499"
-      y1="58.6952"
-      x2="29.2499"
-      y2="49.8142"
+      x1="1.7594"
+      y1="103.3102"
+      x2="100.0523"
+      y2="103.3102"
     >
-      <stop offset="0" style="stop-color:#000000;stop-opacity:0" />
-      <stop offset="1" style="stop-color:#000000" />
+      <stop offset="0" style="stop-color:#CDCFD1" />
+      <stop offset="6.000000e-02" style="stop-color:#FFFFFF" />
+      <stop offset="0.94" style="stop-color:#FFFFFF" />
+      <stop offset="1" style="stop-color:#CDCFD1" />
     </linearGradient>
-    <rect
-      id="db_${id}_658_"
-      x="2"
-      y="54.06"
-      class="db-${id}-st2"
-      width="54.5"
-      height="8.88"
-    />
-    <rect
-      id="db_${id}_656_"
-      x="1"
-      y="15.08"
-      class="db-${id}-st3"
-      width="56.5"
-      height="39"
+    <path
+      id="lsdgl_1031_"
+      class="lsdgl-${info.id}-st1"
+      d="M94.5,194.4H7.3c-3.1,0-5.6-2.5-5.6-5.6v-171c0-3.1,2.5-5.6,5.6-5.6h87.2
+c3.1,0,5.6,2.5,5.6,5.6v171C100.1,191.9,97.6,194.4,94.5,194.4z"
     />
     <path
-      id="db_${id}_653_"
-      class="db-${id}-st1"
-      d="M58.5,55.08H0v-41h58.5V55.08z M2,53.08h54.5v-37H2V53.08z"
+      id="lsdgl_1017_"
+      class="lsdgl-${info.id}-st2"
+      d="M100.4,72.3c0,1.2-1.7,2.2-3.9,2.2H5.2c-2.1,0-3.9-1-3.9-2.2"
     />
-    <polygon
-      id="db_${id}_652_"
-      class="db-${id}-st4"
-      points="58.5,14.08 0,14.08 12.23,0 69.73,0 	"
-    />
-    <g id="db_${id}_647_">
+    <g>
+      <polygon points="35.2,24.7 24,25 13.9,24.7 13.9,23.7 35.2,23.7 		" />
       <rect
-        id="db_${id}_651_"
-        x="9.5"
-        y="21.5"
-        class="db-${id}-st5"
-        width="40"
-        height="12"
+        x="13.9"
+        y="24.7"
+        class="lsdgl-${info.id}-st3"
+        width="21.4"
+        height="15.5"
+      />
+      <linearGradient
+        id="lsdgl_${info.id}_SVGID_1_"
+        gradientUnits="userSpaceOnUse"
+        x1="30.5343"
+        y1="36.5012"
+        x2="19.7833"
+        y2="27.7571"
+      >
+        <stop offset="0" style="stop-color:#FFFFFF" />
+        <stop offset="1" style="stop-color:#B5BABD" />
+      </linearGradient>
+      <polygon
+        class="lsdgl-${info.id}-st4"
+        points="33.3,34.4 30.5,37.3 16.7,37.3 16.7,26.7 33.3,26.7 		"
+      />
+      <polygon points="15.8,37.3 15.8,38.3 29.5,38.3 30.5,37.3 		" />
+    </g>
+    <g>
+      <polygon points="62.2,24.7 51,25 40.9,24.7 40.9,23.7 62.2,23.7 		" />
+      <rect
+        x="40.9"
+        y="24.7"
+        class="lsdgl-${info.id}-st3"
+        width="21.4"
+        height="15.5"
+      />
+      <linearGradient
+        id="lsdgl_${info.id}_SVGID_2_"
+        gradientUnits="userSpaceOnUse"
+        x1="57.5343"
+        y1="36.5012"
+        x2="46.7833"
+        y2="27.7571"
+      >
+        <stop offset="0" style="stop-color:#FFFFFF" />
+        <stop offset="1" style="stop-color:#B5BABD" />
+      </linearGradient>
+      <polygon
+        class="lsdgl-${info.id}-st5"
+        points="60.3,34.4 57.5,37.3 43.7,37.3 43.7,26.7 60.3,26.7 		"
+      />
+      <polygon points="42.8,37.3 42.8,38.3 56.5,38.3 57.5,37.3 		" />
+    </g>
+    <g>
+      <polygon points="89.2,24.7 78,25 67.9,24.7 67.9,23.7 89.2,23.7 		" />
+      <rect
+        x="67.9"
+        y="24.7"
+        class="lsdgl-${info.id}-st3"
+        width="21.4"
+        height="15.5"
+      />
+      <linearGradient
+        id="lsdgl_${info.id}_SVGID_3_"
+        gradientUnits="userSpaceOnUse"
+        x1="84.5343"
+        y1="36.5012"
+        x2="73.7833"
+        y2="27.7571"
+      >
+        <stop offset="0" style="stop-color:#FFFFFF" />
+        <stop offset="1" style="stop-color:#B5BABD" />
+      </linearGradient>
+      <polygon
+        class="lsdgl-${info.id}-st6"
+        points="87.3,34.4 84.5,37.3 70.7,37.3 70.7,26.7 87.3,26.7 		"
+      />
+      <polygon points="69.8,37.3 69.8,38.3 83.5,38.3 84.5,37.3 		" />
+    </g>
+    <g>
+      <circle class="lsdgl-${info.id}-st7" cx="29" cy="58" r="4.9" />
+      <circle class="lsdgl-${info.id}-st8" cx="29" cy="59" r="4.6" />
+      <linearGradient
+        id="lsdgl_${info.id}_SVGID_4_"
+        gradientUnits="userSpaceOnUse"
+        x1="29"
+        y1="62.5285"
+        x2="29"
+        y2="55.4715"
+      >
+        <stop offset="0" style="stop-color:#8CD400" />
+        <stop offset="1" style="stop-color:#4D7F00" />
+      </linearGradient>
+      <circle class="lsdgl-${info.id}-st9" cx="29" cy="59" r="3.5" />
+    </g>
+    <g>
+      <circle class="lsdgl-${info.id}-st7" cx="51.3" cy="58" r="4.9" />
+      <circle class="lsdgl-${info.id}-st8" cx="51.3" cy="59" r="4.6" />
+      <linearGradient
+        id="lsdgl_${info.id}_SVGID_5_"
+        gradientUnits="userSpaceOnUse"
+        x1="51.326"
+        y1="62.5285"
+        x2="51.326"
+        y2="55.4715"
+      >
+        <stop offset="0" style="stop-color:#FF8955" />
+        <stop offset="1" style="stop-color:#970000" />
+      </linearGradient>
+      <circle class="lsdgl-${info.id}-st10" cx="51.3" cy="59" r="3.5" />
+    </g>
+    <g>
+      <circle class="lsdgl-${info.id}-st7" cx="74.3" cy="58" r="4.9" />
+      <circle class="lsdgl-${info.id}-st8" cx="74.3" cy="59" r="4.6" />
+      <linearGradient
+        id="lsdgl_${info.id}_SVGID_6_"
+        gradientUnits="userSpaceOnUse"
+        x1="74.326"
+        y1="62.5285"
+        x2="74.326"
+        y2="55.4715"
+      >
+        <stop offset="0" style="stop-color:#FF8955" />
+        <stop offset="1" style="stop-color:#970000" />
+      </linearGradient>
+      <circle class="lsdgl-${info.id}-st11" cx="74.3" cy="59" r="3.5" />
+    </g>
+    <g id="lsdgl_620_">
+      <rect
+        id="lsdgl_624_"
+        x="36.7"
+        y="85.9"
+        class="lsdgl-${info.id}-st12"
+        width="30"
+        height="16.9"
       />
       <path
-        id="db_${id}_648_"
-        class="db-${id}-st6"
-        d="M50.5,34.5h-42v-14h42V34.5z M10.5,32.5h38v-10h-38V32.5z"
+        id="lsdgl_621_"
+        class="lsdgl-${info.id}-st13"
+        d="M67.7,103.9h-32V84.9h32V103.9z M37.7,101.9h28V86.9h-28V101.9z"
       />
     </g>
-    <circle
-      id="db_${id}_646_"
-      class="db-${id}-st7"
-      cx="11.97"
-      cy="63.16"
-      r="2.03"
-    />
-    <circle
-      id="db_${id}_645_"
-      class="db-${id}-st7"
-      cx="29.22"
-      cy="63.16"
-      r="2.03"
-    />
-    <circle
-      id="db_${id}_659_"
-      class="db-${id}-st7"
-      cx="46.22"
-      cy="63.16"
-      r="2.03"
-    />
-    <rect
-      id="db_${id}_644_"
-      x="9.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_643_"
-      x="19.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_635_"
-      x="29.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_634_"
-      x="39.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_6_"
-      x="8.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_5_"
-      x="18.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_4_"
-      x="28.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_2_"
-      x="38.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_632_"
-      x="9.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_552_"
-      x="19.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_551_"
-      x="29.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_9_"
-      x="8.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_8_"
-      x="18.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_7_"
-      x="28.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_550_"
-      x="8.48"
-      y="42.05"
-      class="db-${id}-st4"
-      width="36.74"
-      height="1"
-    />
+    <g id="lsdgl_543_">
+      <path
+        id="lsdgl_546_"
+        class="lsdgl-${info.id}-st14"
+        d="M19.2,99.5c-1.5,0-2.6,1.2-2.6,2.6v15.4c0,1.5,1.2,2.6,2.6,2.6c1.5,0,2.6-1.2,2.6-2.6v-15.4
+  C21.8,100.7,20.7,99.5,19.2,99.5z"
+      />
+      <path
+        id="lsdgl_354_"
+        class="lsdgl-${info.id}-st15"
+        d="M19.2,101c-0.8,0-1.4,0.6-1.4,1.4v14.9c0,0.8,0.6,1.4,1.4,1.4c0.8,0,1.4-0.6,1.4-1.4v-14.9
+  C20.6,101.6,20,101,19.2,101z"
+      />
+    </g>
+    <g>
+      <rect
+        x="14"
+        y="183.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -126.1876 64.9021)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+
+      <rect
+        x="22"
+        y="183.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -123.8444 70.559)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+
+      <rect
+        x="30"
+        y="183.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -121.5013 76.2158)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+
+      <rect
+        x="38"
+        y="183.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -119.1581 81.8727)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+
+      <rect
+        x="46"
+        y="183.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -116.815 87.5295)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+
+      <rect
+        x="54"
+        y="183.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -114.4718 93.1864)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+
+      <rect
+        x="62"
+        y="183.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -112.1287 98.8433)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+
+      <rect
+        x="70"
+        y="183.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -109.7856 104.5001)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+
+      <rect
+        x="78"
+        y="183.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -107.4424 110.157)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+
+      <rect
+        x="86"
+        y="183.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -105.0993 115.8138)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+    </g>
+    <g>
+      <rect
+        x="18"
+        y="176.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -120.0663 65.6803)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+
+      <rect
+        x="26"
+        y="176.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -117.7231 71.3372)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+      <rect
+        x="34"
+        y="176.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -115.38 76.994)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+
+      <rect
+        x="42"
+        y="176.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -113.0368 82.6509)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+
+      <rect
+        x="50"
+        y="176.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -110.6937 88.3077)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+
+      <rect
+        x="58"
+        y="176.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -108.3505 93.9646)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+
+      <rect
+        x="66"
+        y="176.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -106.0074 99.6214)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+
+      <rect
+        x="74"
+        y="176.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -103.6642 105.2783)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+
+      <rect
+        x="82"
+        y="176.5"
+        transform="matrix(0.7071 -0.7071 0.7071 0.7071 -101.3211 110.9351)"
+        class="lsdgl-${info.id}-st16"
+        width="2.5"
+        height="2.5"
+      />
+    </g>
+  </g>
+  <g class="SVG_ani">
     <linearGradient
-      id="db_${id}_12_"
+      id="lsdgl_${info.id}_SVGID_7_"
       gradientUnits="userSpaceOnUse"
-      x1="64.1155"
-      y1="55.0819"
-      x2="64.1155"
-      y2="0"
+      x1="1.7594"
+      y1="134.6873"
+      x2="100.0523"
+      y2="134.6873"
     >
-      <stop offset="0" style="stop-color:#C2C8CE" />
-      <stop offset="1" style="stop-color:#848689" />
+      <stop offset="6.149733e-02" style="stop-color:#394147" />
+      <stop offset="8.673798e-02" style="stop-color:#616668" />
+      <stop offset="0.9118" style="stop-color:#616668" />
+      <stop offset="0.9186" style="stop-color:#616668" />
+      <stop offset="0.9465" style="stop-color:#394147" />
     </linearGradient>
     <path
-      id="db_${id}_1_"
-      class="db-${id}-st10"
-      d="M69.73,41L58.5,55.08v-41L69.73,0V41z"
+      class="lsdgl-${info.id}-st17"
+      d="M1.8,75v113.8c0,3.1,2.5,5.6,5.6,5.6h87.2c3.1,0,5.6-2.5,5.6-5.6V75H1.8z"
     />
-  </g>`;
-    if (pointValue == 2) {
-      text += `
-  <g class="SVG_alert" >
     <path
-      class="db-${id}-st11"
-      d="M69.73,0h-57.5L0,14.08v41h2v7.86v2.48c0,1.9,1.54,3.44,3.44,3.44h47.62c1.08,0,2.04-0.51,2.67-1.29
-              l0.01,0.01l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73v-7.84l2-2.51V0z"
+      class="lsdgl-${info.id}-st18"
+      d="M100,189.4l-1.9-6c-0.8-2.3-2.8-4.5-5.2-4.5H9c-2.5,0-4.3,2.1-5.2,4.5l-1.9,6c0.3,2.8,2.7,4.9,5.5,4.9h87.2
+C97.3,194.4,99.7,192.2,100,189.4z"
+    />
+    <g>
+      <path
+        class="lsdgl-${info.id}-st19"
+        d="M78.8,171h-2.7c-4,0-7.2-3.2-7.2-7.2V89c0-1.8-1.4-3.2-3.2-3.2h-2.7c-1.8,0-3.2,1.4-3.2,3.2v74.8
+  c0,4-3.2,7.2-7.2,7.2h-2.7c-4,0-7.2-3.2-7.2-7.2V89c0-1.8-1.4-3.2-3.2-3.2H37c-1.8,0-3.2,1.4-3.2,3.2v74.8c0,4-3.2,7.2-7.2,7.2H24
+  c-4,0-7.2-3.2-7.2-7.2v-80h4v80c0,1.8,1.4,3.2,3.2,3.2h2.7c1.8,0,3.2-1.4,3.2-3.2V89c0-4,3.2-7.2,7.2-7.2h2.7c4,0,7.2,3.2,7.2,7.2
+  v74.8c0,1.8,1.4,3.2,3.2,3.2h2.7c1.8,0,3.2-1.4,3.2-3.2V89c0-4,3.2-7.2,7.2-7.2h2.7c4,0,7.2,3.2,7.2,7.2v74.8
+  c0,1.8,1.4,3.2,3.2,3.2h2.7c1.8,0,3.2-1.4,3.2-3.2v-80h4v80C86,167.8,82.8,171,78.8,171z"
+      />
+    </g>
+  </g>
+
+  <g class="SVG_alert">
+    <path
+      class="lsdgl-${info.id}-st20"
+      d="M97.7,5.5C96.9,3.2,95,1,92.5,1H9.3C6.8,1,5,3.1,4.1,5.5l-2.9,8.9v176.1c0,2.5,2,4.5,4.5,4.5h90.4
+c2.5,0,4.5-2,4.5-4.5V14.4L97.7,5.5z"
     />
   </g>`;
-    }
     return text;
   }
-
   //加载数据
   loadData() {
     this.loadDeviceInfo();
@@ -334,7 +526,14 @@ class Text extends Component {
 
   //刷新内容
   refreshContent(data) {
-    let { point } = data || {};
+    let { point = {} } = data || {};
+    // let { pointCode = "" } = this;
+    // let { device = {} } = data || {};
+    // let { pointList = [] } = device || {};
+    // let point = pointList.find(item => {
+    //   let { point: id = "" } = item || {};
+    //   return id == pointCode; // SwSts  开关状态
+    // });
     if (point) {
       let { value = "" } = point || {};
       this.pointValue = value;
@@ -344,13 +543,27 @@ class Text extends Component {
 
   refresh() {
     super.refresh();
-    let { info = {} } = this;
+    let { info = {}, pointValue } = this;
     bmCommon.log(`${info.type}刷新 `);
-    let { id = "" } = info || {};
+    let { id = "", height = 0, width = 0 } = info || {};
     let $container = $(`#${id}>.component`);
-    $container.html(this.renderSvg());
+    let $svg = $container.find("svg");
+    $svg.attr({ width, height });
+    // if (pointValue == 0) {
+    //   $svg.find(".SVG_ani").hide();
+    //   $svg.find(".SVG_sta").show();
+    //   $svg.find(".SVG_alert").hide();
+    // } else
+    if (pointValue == 1) {
+      $svg.find(".SVG_ani").show();
+      $svg.find(".SVG_sta").hide();
+      $svg.find(".SVG_alert").hide();
+    } else if (pointValue == 2) {
+      $svg.find(".SVG_ani").hide();
+      $svg.find(".SVG_sta").hide();
+      $svg.find(".SVG_alert").show();
+    }
   }
-
   event() {}
 }
 

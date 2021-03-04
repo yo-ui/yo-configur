@@ -1,82 +1,72 @@
 import bmCommon from "@/common/common";
 import Component from "@/core/Component";
-import "../../../../assets/less/components/component/basic/display.less";
-// 水管（水平）
+// import "../../../../assets/less/components/component/basic/display.less";
+// 新风控制器
 class Display extends Component {
   constructor(props) {
     super(props);
   }
-  init() {}
+  init() {
+    let { info = {} } = this;
+    // bmCommon.log("kg mounted=", content);
+    let { content = "" } = info || {};
+    if (content === "") {
+      content = false;
+    }
+    this.refresh();
+  }
 
   //组件样式
-  textStyle() {
+  descrStyle() {
     let { info = {} } = this;
-    let {
-      color = "",
-      textShadow = {},
-      textShadowable = false,
-      textAlign = "",
-      fontFamily = "",
-      fontSize = "",
-      fontWeight = "",
-      fontStyle = "",
-      textDecoration = "",
-
-      marginTop = 0,
-      marginBottom = 0,
-      marginLeft = 0,
-      marginRight = 0,
-      paddingTop = 0,
-      paddingBottom = 0,
-      paddingLeft = 0,
-      paddingRight = 0
-    } = info || {};
+    let { descrStyle = {} } = info || {};
+    let { color = "", left = "", top = "", fontSize = "", fontFamily = "" } =
+      descrStyle || {};
     let styles = {
-      margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
-      padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
+      transform: `matrix(1, 0, 0 ,1 ,${left},${top})`
     };
     if (color) {
-      styles["color"] = color;
+      styles["fill"] = color;
     }
     if (fontSize) {
       styles["font-size"] = `${fontSize}px`;
     }
     if (fontFamily) {
-      styles["font-family"] = `${fontFamily}`;
+      styles["font-family"] = fontFamily;
     }
-    if (fontWeight) {
-      styles["font-weight"] = fontWeight;
+    return styles || {};
+  }
+  valueStyle() {
+    let { info = {} } = this;
+    let { valueStyle = {} } = info || {};
+    let { color = "", left = "", top = "", fontSize = "", fontFamily = "" } =
+      valueStyle || {};
+    let styles = { transform: `matrix(1, 0, 0 ,1 ,${left},${top})` };
+    if (color) {
+      styles["fill"] = color;
     }
-    if (fontStyle) {
-      styles["font-style"] = fontStyle;
+    if (fontSize) {
+      styles["font-size"] = `${fontSize}px`;
     }
-    if (textAlign) {
-      styles["text-align"] = textAlign;
-      if (textAlign == "justify") {
-        styles["text-align-last"] = textAlign;
-      }
-    }
-    if (textDecoration) {
-      styles["text-decoration"] = textDecoration;
-    }
-    if (textShadowable) {
-      let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
-      styles["text-shadow"] = `${x}px ${y}px ${blur}px ${color}`;
+    if (fontFamily) {
+      styles["font-family"] = fontFamily;
     }
     return styles || {};
   }
   unitStyle() {
     let { info = {} } = this;
-    let { unitColor = "", unitFontFamily = "", unitFontSize = "" } = info || {};
-    let styles = {};
-    if (unitColor) {
-      styles["color"] = unitColor;
+    let { unitStyle = {} } = info || {};
+    let { color = "", left = "", top = "", fontSize = "", fontFamily = "" } =
+      unitStyle || {};
+    let styles = { transform: `matrix(1, 0, 0 ,1 ,${left},${top})` };
+    if (color) {
+      styles["fill"] = color;
     }
-    if (unitFontSize) {
-      styles["font-size"] = `${unitFontSize}px`;
+    if (fontSize) {
+      styles["font-size"] = `${fontSize}px`;
     }
-    if (unitFontFamily) {
-      styles["font-family"] = `${unitFontFamily}`;
+    if (fontFamily) {
+      styles["font-family"] = fontFamily;
     }
     return styles || {};
   }
@@ -86,81 +76,411 @@ class Display extends Component {
     return super.wrap(
       { info },
       `
-    <div class="bm-device-sg-h-com component"
+    <div class="bm-device-xfkzq-com component"
     style="${this.composeStyles(this.comStyle())}">
     ${this.renderSvg()}
   </div>
     `
     );
   }
-
   renderSvg() {
     let { info = {} } = this;
     let { id = "", width = 0, height = 0 } = info || {};
-    return `
-    <svg
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      viewBox="0 0 ${width} 10"
-      width="${width}"
-      height="${height}"
-      xml:space="preserve"
-      preserveAspectRatio="none"
-    >
-    <defs>
-    <linearGradient
-      id="sg_h_U_${id}"
-      gradientUnits="userSpaceOnUse"
-      x1="-149.4816"
-      y1="-983.9756"
-      x2="-149.4816"
-      y2="-989.9756"
-      gradientTransform="matrix(-1 0 0 -1 -144.4816 -981.9756)"
-    >
-      <stop offset="0" style="stop-color:#777C7F" />
-      <stop offset="0.5" style="stop-color:#FFFFFF" />
-      <stop offset="1" style="stop-color:#777C7F" />
-    </linearGradient>
-  </defs>
-  <rect
-    id="sg_h_551_"
-    x="0"
-    y="0"
-    style="fill:url(#sg_h_U_${id})"
+    return `<svg
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 85 58"
     width="${width}"
-    height="10"
+    height="${height}"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xml:space="preserve"
+  >
+    <defs><style type='text/css'>
+    .xfkzq-${id}-st0{fill:#D8D9D9;}
+    .xfkzq-${id}-st1{fill:url(#xfkzq_${id}_SVGID_1_);}
+    .xfkzq-${id}-st2{fill:#FFFFFF;}
+    .xfkzq-${id}-st3{fill:url(#xfkzq_${id}_SVGID_2_);}
+    .xfkzq-${id}-st4{opacity:0.3;}
+    .xfkzq-${id}-st5{fill:#E8E8E8;}
+    .xfkzq-${id}-st6{fill:url(#xfkzq_${id}_SVGID_3_);}
+    .xfkzq-${id}-st7{fill:url(#xfkzq_${id}_SVGID_4_);}
+    .xfkzq-${id}-st8{font-family:'OPPOSans-M';}
+    .xfkzq-${id}-st9{font-size:10px;}
+    .xfkzq-${id}-st10{font-family:'OPPOSans-H';}
+    .xfkzq-${id}-st11{font-size:19px;}
+    </style></defs>
+    ${this.renderSvgContent()}
+  </svg>`;
+  }
+  renderSvgContent() {
+    let { info = {} } = this;
+    let { id = "" } = info || {};
+    let text = `
+    <g class="SVG_ani" ><path
+    class="xfkzq-${id}-st0"
+    d="M85,53H0V3c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3V53z"
   />
-    </svg>
-    `;
+  <linearGradient
+    id="xfkzq_${id}_SVGID_3_"
+    gradientUnits="userSpaceOnUse"
+    x1="42.5"
+    y1="58"
+    x2="42.5"
+    y2="5"
+  >
+    <stop offset="0" style="stop-color:#D8D9D9" />
+    <stop offset="1" style="stop-color:#B1B1B2" />
+  </linearGradient>
+  <path
+    class="xfkzq-${id}-st6"
+    d="M82,58H3c-1.7,0-3-1.3-3-3V8c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3v47C85,56.7,83.7,58,82,58z"
+  />
+  <path
+    class="xfkzq-${id}-st2"
+    d="M60,54H7c-1.7,0-3-1.3-3-3V12c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C63,52.7,61.7,54,60,54z"
+  />
+  <linearGradient
+    id="xfkzq_${id}_SVGID_4_"
+    gradientUnits="userSpaceOnUse"
+    x1="33.5"
+    y1="52"
+    x2="33.5"
+    y2="9"
+  >
+    <stop offset="0" style="stop-color:#00BF81" />
+    <stop offset="1" style="stop-color:#007A7F" />
+  </linearGradient>
+  <path
+    class="xfkzq-${id}-st7"
+    d="M60,52H7c-1.7,0-3-1.3-3-3V10c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C63,50.7,61.7,52,60,52z"
+  />
+  <rect
+    x="68"
+    y="10"
+    class="xfkzq-${id}-st4"
+    width="17"
+    height="43"
+  />
+  <rect
+    x="69"
+    y="11"
+    class="xfkzq-${id}-st2"
+    width="15"
+    height="5"
+  />
+  <rect
+    x="69"
+    y="12"
+    class="xfkzq-${id}-st5"
+    width="15"
+    height="5"
+  />
+  <rect
+    x="69"
+    y="18"
+    class="xfkzq-${id}-st2"
+    width="15"
+    height="5"
+  />
+  <rect
+    x="69"
+    y="19"
+    class="xfkzq-${id}-st5"
+    width="15"
+    height="5"
+  />
+  <rect
+    x="69"
+    y="25"
+    class="xfkzq-${id}-st2"
+    width="15"
+    height="5"
+  />
+  <rect
+    x="69"
+    y="26"
+    class="xfkzq-${id}-st5"
+    width="15"
+    height="5"
+  />
+  <rect
+    x="69"
+    y="32"
+    class="xfkzq-${id}-st2"
+    width="15"
+    height="5"
+  />
+  <rect
+    x="69"
+    y="33"
+    class="xfkzq-${id}-st5"
+    width="15"
+    height="5"
+  />
+  <rect
+    x="69"
+    y="39"
+    class="xfkzq-${id}-st2"
+    width="15"
+    height="5"
+  />
+  <rect
+    x="69"
+    y="40"
+    class="xfkzq-${id}-st5"
+    width="15"
+    height="5"
+  />
+  <rect
+    x="69"
+    y="46"
+    class="xfkzq-${id}-st2"
+    width="15"
+    height="5"
+  />
+  <rect
+    x="69"
+    y="47"
+    class="xfkzq-${id}-st5"
+    width="15"
+    height="5"
+  />
+  </g>
+  <g class="SVG_sta"><path
+  class="xfkzq-${id}-st0"
+  d="M85,53H0V3c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3V53z"
+/>
+<linearGradient
+  id="xfkzq_${id}_SVGID_1_"
+  gradientUnits="userSpaceOnUse"
+  x1="42.5"
+  y1="58"
+  x2="42.5"
+  y2="5"
+>
+  <stop offset="0" style="stop-color:#D8D9D9" />
+  <stop offset="1" style="stop-color:#B1B1B2" />
+</linearGradient>
+<path
+  class="xfkzq-${id}-st1"
+  d="M82,58H3c-1.7,0-3-1.3-3-3V8c0-1.7,1.3-3,3-3h79c1.7,0,3,1.3,3,3v47C85,56.7,83.7,58,82,58z"
+/>
+<path
+  class="xfkzq-${id}-st2"
+  d="M60,54H7c-1.7,0-3-1.3-3-3V12c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C63,52.7,61.7,54,60,54z"
+/>
+<linearGradient
+  id="xfkzq_${id}_SVGID_2_"
+  gradientUnits="userSpaceOnUse"
+  x1="33.5"
+  y1="52"
+  x2="33.5"
+  y2="9"
+>
+  <stop offset="0" style="stop-color:#929CAD" />
+  <stop offset="1" style="stop-color:#697284" />
+</linearGradient>
+<path
+  class="xfkzq-${id}-st3"
+  d="M60,52H7c-1.7,0-3-1.3-3-3V10c0-0.6,0.4-1,1-1h55c1.7,0,3,1.3,3,3v37C63,50.7,61.7,52,60,52z"
+/>
+<rect
+  x="68"
+  y="10"
+  class="xfkzq-${id}-st4"
+  width="17"
+  height="43"
+/>
+<rect
+  x="69"
+  y="11"
+  class="xfkzq-${id}-st2"
+  width="15"
+  height="5"
+/>
+<rect
+  x="69"
+  y="12"
+  class="xfkzq-${id}-st5"
+  width="15"
+  height="5"
+/>
+<rect
+  x="69"
+  y="18"
+  class="xfkzq-${id}-st2"
+  width="15"
+  height="5"
+/>
+<rect
+  x="69"
+  y="19"
+  class="xfkzq-${id}-st5"
+  width="15"
+  height="5"
+/>
+<rect
+  x="69"
+  y="25"
+  class="xfkzq-${id}-st2"
+  width="15"
+  height="5"
+/>
+<rect
+  x="69"
+  y="26"
+  class="xfkzq-${id}-st5"
+  width="15"
+  height="5"
+/>
+<rect
+  x="69"
+  y="32"
+  class="xfkzq-${id}-st2"
+  width="15"
+  height="5"
+/>
+<rect
+  x="69"
+  y="33"
+  class="xfkzq-${id}-st5"
+  width="15"
+  height="5"
+/>
+<rect
+  x="69"
+  y="39"
+  class="xfkzq-${id}-st2"
+  width="15"
+  height="5"
+/>
+<rect
+  x="69"
+  y="40"
+  class="xfkzq-${id}-st5"
+  width="15"
+  height="5"
+/>
+<rect
+  x="69"
+  y="46"
+  class="xfkzq-${id}-st2"
+  width="15"
+  height="5"
+/>
+<rect
+  x="69"
+  y="47"
+  class="xfkzq-${id}-st5"
+  width="15"
+  height="5"
+/>
+  </g>
+  <g id="textContent">
+    ${this.renderTextContent()}
+  </g>`;
+    return text;
+  }
+
+  renderTextContent() {
+    let { info = {}, point = {} } = this;
+    let {
+      id = "",
+      content = false,
+      bindData = {},
+      descrStyle = {},
+      valueStyle = {}
+    } = info || {};
+    let { devicePoint = "" } = bindData || {};
+    let { showCode = "", formatNum = "" } = descrStyle || {};
+    let { decimal = "" } = valueStyle || {};
+    return `<text
+    transform="matrix(1 0 0 1 8 22)"
+    class="
+      xfkzq-${id}-st2 xfkzq-${id}-st8 xfkzq-${id}-st9
+    "
+    style="${this.composeStyles(this.descrStyle())}"
+  >
+    ${
+      showCode
+        ? devicePoint
+          ? point.id || point.point || ""
+          : "WS"
+        : $vm.$ellipsis(
+            devicePoint ? point.name || point.descr || "" : "风速",
+            formatNum,
+            0,
+            "..."
+          )
+    }}
+  </text>
+  <text
+    transform="matrix(1 0 0 1 27 44)"
+    class="xfkzq-${id}-st2 xfkzq-${id}-st10 xfkzq-${id}-st11
+    "
+    style="${this.composeStyles(this.valueStyle())}"
+  >
+    ${info.content ? $vm.$format(devicePoint ? point.value : 3, decimal) : "--"}
+  </text>
+  <text
+    transform="matrix(1 0 0 1 49 22)"
+    class="
+      xfkzq-${id}-st2 xfkzq-${id}-st8 xfkzq-${id}-st9
+    "
+    style="${this.composeStyles(this.unitStyle())}"
+  >
+    ${devicePoint ? point.unit : "档"}
+  </text>`;
+  }
+
+  //加载数据
+  loadData() {
+    this.loadDeviceInfo();
+  }
+
+  //刷新内容
+  refreshContent(data) {
+    let { info = {}, pointCode = "" } = this;
+    let { bindData = {} } = info || {};
+    let { devicePoint = "" } = bindData || {};
+    let { device } = data || {};
+    let { points: pointList = [] } = device || {};
+    pointList.forEach(item => {
+      let { id = "", value = "" } = item || {};
+      if (devicePoint == id) {
+        this.point = item || {};
+      } else if (id == pointCode) {
+        info.content = value == 1 ? true : false;
+      }
+    });
+    this.refresh();
+    // if (point) {
+    //   let { value = "" } = point || {};
+    //   this.pointValue = value;
+    //   this.refresh();
+    // }
   }
 
   refresh() {
     super.refresh();
     let { info = {} } = this;
     bmCommon.log(`${info.type}刷新 `);
-    let { id = "", width = 0, height = 0 } = info || {};
+    let { id = "", height = 0, width = 0, content = false } = info || {};
     let $container = $(`#${id}>.component`);
-    $container.find(`svg`).attr({ width, height, viewBox: `0 0 ${width} 10` });
-    $container.find("rect").attr({ width });
+    let $svg = $container.find("svg");
+    let $text = $container.find("#textContent");
+    $svg.attr({ width, height });
+    $text.html(this.renderTextContent());
+    if (content) {
+      $svg.find(".SVG_ani").show();
+      $svg.find(".SVG_sta").hide();
+      // $svg.find(".SVG_alert").hide();
+    } else {
+      $svg.find(".SVG_ani").hide();
+      $svg.find(".SVG_sta").show();
+      // $svg.find(".SVG_alert").hide();
+    }
   }
-
-  // //加载数据
-  // loadData() {
-  //   this.loadDeviceInfo();
-  // }
-
-  // //刷新内容
-  // refreshContent(data) {
-  //   let { info = {} } = this;
-  //   let { point } = data || {};
-  //   if (point) {
-  //     let { value = "", unit = "" } = point || {};
-  //     info.content = value;
-  //     info.unit = unit;
-  //     this.refresh();
-  //   }
-  // }
 
   event() {}
 }

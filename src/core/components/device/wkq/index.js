@@ -1,21 +1,83 @@
 import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
-// 电表
+// 温控器
 class Text extends Component {
+  point = {};
   constructor(props) {
     super(props);
   }
-  init() {}
+  init() {
+    let { info = {} } = this;
+    // bmCommon.log("kg mounted=", content);
+    let { content = "" } = info || {};
+    if (content === "") {
+      content = false;
+    }
+    this.refresh();
+  }
 
   //组件样式
+  descrStyle() {
+    let { info = {} } = this;
+    let { descrStyle = {} } = info || {};
+    let { color = "", left = "", top = "", fontSize = "", fontFamily = "" } =
+      descrStyle || {};
+    let styles = {
+      transform: `matrix(1, 0, 0 ,1 ,${left},${top})`
+    };
+    if (color) {
+      styles["fill"] = color;
+    }
+    if (fontSize) {
+      styles["font-size"] = `${fontSize}px`;
+    }
+    if (fontFamily) {
+      styles["font-family"] = fontFamily;
+    }
+    return styles || {};
+  }
+  valueStyle() {
+    let { info = {} } = this;
+    let { valueStyle = {} } = info || {};
+    let { color = "", left = "", top = "", fontSize = "", fontFamily = "" } =
+      valueStyle || {};
+    let styles = { transform: `matrix(1, 0, 0 ,1 ,${left},${top})` };
+    if (color) {
+      styles["fill"] = color;
+    }
+    if (fontSize) {
+      styles["font-size"] = `${fontSize}px`;
+    }
+    if (fontFamily) {
+      styles["font-family"] = fontFamily;
+    }
+    return styles || {};
+  }
+  unitStyle() {
+    let { info = {} } = this;
+    let { unitStyle = {} } = info || {};
+    let { color = "", left = "", top = "", fontSize = "", fontFamily = "" } =
+      unitStyle || {};
+    let styles = { transform: `matrix(1, 0, 0 ,1 ,${left},${top})` };
+    if (color) {
+      styles["fill"] = color;
+    }
+    if (fontSize) {
+      styles["font-size"] = `${fontSize}px`;
+    }
+    if (fontFamily) {
+      styles["font-family"] = fontFamily;
+    }
+    return styles || {};
+  }
 
   template() {
     let { info = {} } = this;
     return super.wrap(
       { info },
       `
-    <div class="bm-device-db-com component"
+    <div class="bm-device-wkq-com component"
     style="${this.composeStyles(this.comStyle())}">
     ${this.renderSvg()}
 
@@ -30,301 +92,290 @@ class Text extends Component {
     return `<svg
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 70 69"
+    viewBox="0 0 73 65"
     width="${width}"
     height="${height}"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xml:space="preserve"
   >
     <defs><style type='text/css'>
-    .db-${id}-st0 {
-        fill: url(#db_${id}_1_);
-      }
-      .db-${id}-st1 {
-        fill: #dfe3e8;
-      }
-      .db-${id}-st2 {
-        fill: url(#db_${id}_11_);
-      }
-      .db-${id}-st3 {
-        fill: #ffffff;
-      }
-      .db-${id}-st4 {
-        fill: #c2c8ce;
-      }
-      .db-${id}-st5 {
-        fill: #848776;
-      }
-      .db-${id}-st6 {
-        fill: #25282b;
-      }
-      .db-${id}-st7 {
-        fill: #8f9499;
-      }
-      .db-${id}-st8 {
-        fill: #5b280e;
-      }
-      .db-${id}-st9 {
-        fill: #f95d06;
-      }
-      .db-${id}-st10 {
-        fill: url(#db_${id}_12_);
-      }
-      .db-${id}-st11 {
-        opacity: 0.4;
-        fill: #ff0000;
-      }
+    .wkq-${id}-st0{fill:#D8D9D9;}
+    .wkq-${id}-st1{fill:url(#wkq_${id}_SVGID_1_);}
+    .wkq-${id}-st2{fill:#FFFFFF;}
+    .wkq-${id}-st3{fill:url(#wkq_${id}_SVGID_2_);}
+    .wkq-${id}-st4{fill:#E8E8E8;}
+    .wkq-${id}-st5{fill:url(#wkq_${id}_SVGID_3_);}
+    .wkq-${id}-st6{fill:url(#wkq_${id}_SVGID_4_);}
+    .wkq-${id}-st7{font-family:'OPPOSans-M';}
+    .wkq-${id}-st8{font-size:10px;}
+    .wkq-${id}-st9{font-family:'OPPOSans-H';}
+    .wkq-${id}-st10{font-size:19px;}
     </style></defs>
     ${this.renderSvgContent()}
   </svg>`;
   }
   renderSvgContent() {
-    let { info = {}, pointValue } = this;
+    let { info = {} } = this;
     let { id = "" } = info || {};
     let text = `
-  <g>
-    <linearGradient
-      id="db_${id}_1_"
-      gradientUnits="userSpaceOnUse"
-      x1="60.525"
-      y1="62.945"
-      x2="54.1179"
-      y2="57.8484"
-    >
-      <stop offset="0" style="stop-color:#C2C8CE" />
-      <stop offset="1" style="stop-color:#848689" />
-    </linearGradient>
+    <g class="SVG_ani" >
     <path
-      class="db-${id}-st0"
-      d="M67.73,41h-54.5v10.34c0,1.9,1.54,3.44,3.44,3.44h33.57l5.49,12.81l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69
-              l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73V41z"
-    />
-    <path
-      id="db_${id}_657_"
-      class="db-${id}-st1"
-      d="M56.5,55.08H2v10.34c0,1.9,1.54,3.44,3.44,3.44h47.62c1.9,0,3.44-1.54,3.44-3.44V55.08z"
+      class="wkq-${id}-st0"
+      d="M73,60H0V3c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3V60z"
     />
     <linearGradient
-      id="db_${id}_11_"
+      id="wkq_${id}_SVGID_3_"
       gradientUnits="userSpaceOnUse"
-      x1="29.2499"
-      y1="58.6952"
-      x2="29.2499"
-      y2="49.8142"
+      x1="36.5"
+      y1="65"
+      x2="36.5"
+      y2="5"
     >
-      <stop offset="0" style="stop-color:#000000;stop-opacity:0" />
-      <stop offset="1" style="stop-color:#000000" />
+      <stop offset="0" style="stop-color:#D8D9D9" />
+      <stop offset="1" style="stop-color:#B1B1B2" />
     </linearGradient>
-    <rect
-      id="db_${id}_658_"
-      x="2"
-      y="54.06"
-      class="db-${id}-st2"
-      width="54.5"
-      height="8.88"
-    />
-    <rect
-      id="db_${id}_656_"
-      x="1"
-      y="15.08"
-      class="db-${id}-st3"
-      width="56.5"
-      height="39"
+    <path
+      class="wkq-${id}-st5"
+      d="M70,65H3c-1.7,0-3-1.3-3-3V8c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3v54C73,63.7,71.7,65,70,65z"
     />
     <path
-      id="db_${id}_653_"
-      class="db-${id}-st1"
-      d="M58.5,55.08H0v-41h58.5V55.08z M2,53.08h54.5v-37H2V53.08z"
+      class="wkq-${id}-st2"
+      d="M66,54H7c-1.7,0-3-1.3-3-3V12c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,52.7,67.7,54,66,54z"
     />
-    <polygon
-      id="db_${id}_652_"
-      class="db-${id}-st4"
-      points="58.5,14.08 0,14.08 12.23,0 69.73,0 	"
+    <linearGradient
+      id="wkq_${id}_SVGID_4_"
+      gradientUnits="userSpaceOnUse"
+      x1="36.5"
+      y1="52"
+      x2="36.5"
+      y2="9"
+    >
+      <stop offset="0" style="stop-color:#0084E9" />
+      <stop offset="1" style="stop-color:#0052AA" />
+    </linearGradient>
+    <path
+      class="wkq-${id}-st6"
+      d="M66,52H7c-1.7,0-3-1.3-3-3V10c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,50.7,67.7,52,66,52z"
     />
-    <g id="db_${id}_647_">
+    <g>
       <rect
-        id="db_${id}_651_"
-        x="9.5"
-        y="21.5"
-        class="db-${id}-st5"
-        width="40"
-        height="12"
+        x="8"
+        y="57"
+        class="wkq-${id}-st2"
+        width="9"
+        height="4"
       />
-      <path
-        id="db_${id}_648_"
-        class="db-${id}-st6"
-        d="M50.5,34.5h-42v-14h42V34.5z M10.5,32.5h38v-10h-38V32.5z"
+      <rect
+        x="8"
+        y="58"
+        class="wkq-${id}-st4"
+        width="9"
+        height="4"
       />
     </g>
-    <circle
-      id="db_${id}_646_"
-      class="db-${id}-st7"
-      cx="11.97"
-      cy="63.16"
-      r="2.03"
-    />
-    <circle
-      id="db_${id}_645_"
-      class="db-${id}-st7"
-      cx="29.22"
-      cy="63.16"
-      r="2.03"
-    />
-    <circle
-      id="db_${id}_659_"
-      class="db-${id}-st7"
-      cx="46.22"
-      cy="63.16"
-      r="2.03"
-    />
-    <rect
-      id="db_${id}_644_"
-      x="9.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_643_"
-      x="19.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_635_"
-      x="29.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_634_"
-      x="39.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_6_"
-      x="8.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_5_"
-      x="18.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_4_"
-      x="28.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_2_"
-      x="38.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_632_"
-      x="9.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_552_"
-      x="19.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_551_"
-      x="29.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_9_"
-      x="8.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_8_"
-      x="18.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_7_"
-      x="28.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_550_"
-      x="8.48"
-      y="42.05"
-      class="db-${id}-st4"
-      width="36.74"
-      height="1"
+    <g>
+      <rect
+        x="24"
+        y="57"
+        class="wkq-${id}-st2"
+        width="9"
+        height="4"
+      />
+      <rect
+        x="24"
+        y="58"
+        class="wkq-${id}-st4"
+        width="9"
+        height="4"
+      />
+    </g>
+    <g>
+      <rect
+        x="40"
+        y="57"
+        class="wkq-${id}-st2"
+        width="9"
+        height="4"
+      />
+      <rect
+        x="40"
+        y="58"
+        class="wkq-${id}-st4"
+        width="9"
+        height="4"
+      />
+    </g>
+    <g>
+      <rect
+        x="56"
+        y="57"
+        class="wkq-${id}-st2"
+        width="9"
+        height="4"
+      />
+      <rect
+        x="56"
+        y="58"
+        class="wkq-${id}-st4"
+        width="9"
+        height="4"
+      />
+    </g>
+  </g>
+  <g class="SVG_sta">
+    <path
+      class="wkq-${id}-st0"
+      d="M73,60H0V3c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3V60z"
     />
     <linearGradient
-      id="db_${id}_12_"
+      id="wkq_${id}_SVGID_1_"
       gradientUnits="userSpaceOnUse"
-      x1="64.1155"
-      y1="55.0819"
-      x2="64.1155"
-      y2="0"
+      x1="36.5"
+      y1="65"
+      x2="36.5"
+      y2="5"
     >
-      <stop offset="0" style="stop-color:#C2C8CE" />
-      <stop offset="1" style="stop-color:#848689" />
+      <stop offset="0" style="stop-color:#D8D9D9" />
+      <stop offset="1" style="stop-color:#B1B1B2" />
     </linearGradient>
     <path
-      id="db_${id}_1_"
-      class="db-${id}-st10"
-      d="M69.73,41L58.5,55.08v-41L69.73,0V41z"
+      class="wkq-${id}-st1"
+      d="M70,65H3c-1.7,0-3-1.3-3-3V8c0-1.7,1.3-3,3-3h67c1.7,0,3,1.3,3,3v54C73,63.7,71.7,65,70,65z"
     />
-  </g>`;
-    if (pointValue == 2) {
-      text += `
-  <g class="SVG_alert" >
     <path
-      class="db-${id}-st11"
-      d="M69.73,0h-57.5L0,14.08v41h2v7.86v2.48c0,1.9,1.54,3.44,3.44,3.44h47.62c1.08,0,2.04-0.51,2.67-1.29
-              l0.01,0.01l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73v-7.84l2-2.51V0z"
+      class="wkq-${id}-st2"
+      d="M66,54H7c-1.7,0-3-1.3-3-3V12c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,52.7,67.7,54,66,54z"
     />
+    <linearGradient
+      id="wkq_${id}_SVGID_2_"
+      gradientUnits="userSpaceOnUse"
+      x1="36.5"
+      y1="52"
+      x2="36.5"
+      y2="9"
+    >
+      <stop offset="0" style="stop-color:#929CAD" />
+      <stop offset="1" style="stop-color:#697284" />
+    </linearGradient>
+    <path
+      class="wkq-${id}-st3"
+      d="M66,52H7c-1.7,0-3-1.3-3-3V10c0-0.6,0.4-1,1-1h61c1.7,0,3,1.3,3,3v37C69,50.7,67.7,52,66,52z"
+    />
+    <g>
+      <rect
+        x="8"
+        y="57"
+        class="wkq-${id}-st2"
+        width="9"
+        height="4"
+      />
+      <rect
+        x="8"
+        y="58"
+        class="wkq-${id}-st4"
+        width="9"
+        height="4"
+      />
+    </g>
+    <g>
+      <rect
+        x="24"
+        y="57"
+        class="wkq-${id}-st2"
+        width="9"
+        height="4"
+      />
+      <rect
+        x="24"
+        y="58"
+        class="wkq-${id}-st4"
+        width="9"
+        height="4"
+      />
+    </g>
+    <g>
+      <rect
+        x="40"
+        y="57"
+        class="wkq-${id}-st2"
+        width="9"
+        height="4"
+      />
+      <rect
+        x="40"
+        y="58"
+        class="wkq-${id}-st4"
+        width="9"
+        height="4"
+      />
+    </g>
+    <g>
+      <rect
+        x="56"
+        y="57"
+        class="wkq-${id}-st2"
+        width="9"
+        height="4"
+      />
+      <rect
+        x="56"
+        y="58"
+        class="wkq-${id}-st4"
+        width="9"
+        height="4"
+      />
+    </g>
+  </g>
+  <g id="textContent">
+    ${this.renderTextContent()}
   </g>`;
-    }
     return text;
+  }
+
+  renderTextContent() {
+    let { info = {}, point = {} } = this;
+    let {
+      id = "",
+      content = false,
+      bindData = {},
+      descrStyle = {},
+      valueStyle = {}
+    } = info || {};
+    let { devicePoint = "" } = bindData || {};
+    let { showCode = "", formatNum = "" } = descrStyle || {};
+    let { decimal = "" } = valueStyle || {};
+    return `<text
+    transform="matrix(1 0 0 1 10 22)"
+    style="${this.composeStyles(this.descrStyle())}"
+    class="wkq-${id}-st2 wkq-${id}-st7 wkq-${id}-st8"
+  >
+    ${
+      showCode
+        ? devicePoint
+          ? point.id || point.point || ""
+          : "Temp"
+        : $vm.$ellipsis(
+            devicePoint ? point.name || point.descr || "" : "温度",
+            formatNum,
+            0,
+            "..."
+          )
+    }
+  </text>
+  <text
+    transform="matrix(1 0 0 1 15 44)"
+    class="wkq-${id}-st2 wkq-${id}-st9 wkq-${id}-st10"
+    style="${this.composeStyles(this.valueStyle())}"
+  >
+    ${content ? $vm.$format(devicePoint ? point.value : 26.5, decimal) : "--"}
+  </text>
+  <text
+    transform="matrix(1 0 0 1 54 22)"
+    style="${this.composeStyles(this.unitStyle())}"
+    class="wkq-${id}-st2 wkq-${id}-st7 wkq-${id}-st8"
+  >
+    ${devicePoint ? point.unit : "℃"}
+  </text>`;
   }
 
   //加载数据
@@ -334,21 +385,46 @@ class Text extends Component {
 
   //刷新内容
   refreshContent(data) {
-    let { point } = data || {};
-    if (point) {
-      let { value = "" } = point || {};
-      this.pointValue = value;
-      this.refresh();
-    }
+    let { info = {}, pointCode = "" } = this;
+    let { bindData = {} } = info || {};
+    let { devicePoint = "" } = bindData || {};
+    let { device } = data || {};
+    let { points: pointList = [] } = device || {};
+    pointList.forEach(item => {
+      let { id = "", value = "" } = item || {};
+      if (devicePoint == id) {
+        this.point = item || {};
+      } else if (id == pointCode) {
+        info.content = value == 1 ? true : false;
+      }
+    });
+    this.refresh();
+    // if (point) {
+    //   let { value = "" } = point || {};
+    //   this.pointValue = value;
+    //   this.refresh();
+    // }
   }
 
   refresh() {
     super.refresh();
     let { info = {} } = this;
     bmCommon.log(`${info.type}刷新 `);
-    let { id = "" } = info || {};
+    let { id = "", height = 0, width = 0, content = false } = info || {};
     let $container = $(`#${id}>.component`);
-    $container.html(this.renderSvg());
+    let $svg = $container.find("svg");
+    let $text = $container.find("#textContent");
+    $svg.attr({ width, height });
+    $text.html(this.renderTextContent());
+    if (content) {
+      $svg.find(".SVG_ani").show();
+      $svg.find(".SVG_sta").hide();
+      // $svg.find(".SVG_alert").hide();
+    } else {
+      $svg.find(".SVG_ani").hide();
+      $svg.find(".SVG_sta").show();
+      // $svg.find(".SVG_alert").hide();
+    }
   }
 
   event() {}

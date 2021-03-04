@@ -3,6 +3,7 @@ import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
 // // 集水井
 class Text extends Component {
+  pointValue = "";
   constructor(props) {
     super(props);
   }

@@ -1,7 +1,7 @@
 import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
-// 电表
+// 集水器
 class Text extends Component {
   constructor(props) {
     super(props);
@@ -30,325 +30,845 @@ class Text extends Component {
     return `<svg
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 70 69"
+    viewBox="0 0 206 104"
     width="${width}"
     height="${height}"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xml:space="preserve"
   >
     <defs><style type='text/css'>
-    .db-${id}-st0 {
-        fill: url(#db_${id}_1_);
-      }
-      .db-${id}-st1 {
-        fill: #dfe3e8;
-      }
-      .db-${id}-st2 {
-        fill: url(#db_${id}_11_);
-      }
-      .db-${id}-st3 {
-        fill: #ffffff;
-      }
-      .db-${id}-st4 {
-        fill: #c2c8ce;
-      }
-      .db-${id}-st5 {
-        fill: #848776;
-      }
-      .db-${id}-st6 {
-        fill: #25282b;
-      }
-      .db-${id}-st7 {
-        fill: #8f9499;
-      }
-      .db-${id}-st8 {
-        fill: #5b280e;
-      }
-      .db-${id}-st9 {
-        fill: #f95d06;
-      }
-      .db-${id}-st10 {
-        fill: url(#db_${id}_12_);
-      }
-      .db-${id}-st11 {
-        opacity: 0.4;
-        fill: #ff0000;
-      }
+    .jsq-${id}-st0{fill:url(#jsq_1_);}
+          .jsq-${id}-st1{fill:url(#jsq_2_);}
+          .jsq-${id}-st2{fill:url(#jsq_3_);}
+          .jsq-${id}-st3{fill:url(#jsq_4_);}
+          .jsq-${id}-st4{fill:url(#jsq_5_);}
+          .jsq-${id}-st5{fill:#B3BED0;}
+          .jsq-${id}-st6{fill:url(#jsq_6_);}
+          .jsq-${id}-st7{fill:url(#jsq_7_);}
+          .jsq-${id}-st8{fill:url(#jsq_8_);}
+          .jsq-${id}-st9{fill:url(#jsq_9_);}
+          .jsq-${id}-st10{fill:url(#jsq_10_);}
+          .jsq-${id}-st11{fill:url(#jsq_11_);}
+          .jsq-${id}-st12{fill:url(#jsq_12_);}
+          .jsq-${id}-st13{fill:url(#jsq_13_);}
+          .jsq-${id}-st14{fill:url(#jsq_14_);}
+          .jsq-${id}-st15{fill:url(#jsq_15_);}
+          .jsq-${id}-st16{fill:url(#jsq_16_);}
+          .jsq-${id}-st17{fill:url(#jsq_17_);}
+          .jsq-${id}-st18{fill:url(#jsq_18_);}
+          .jsq-${id}-st19{fill:url(#jsq_19_);}
+          .jsq-${id}-st20{fill:url(#jsq_20_);}
+          .jsq-${id}-st21{fill:url(#jsq_21_);}
+          .jsq-${id}-st22{fill:url(#jsq_22_);}
+          .jsq-${id}-st23{fill:url(#jsq_23_);}
+          .jsq-${id}-st24{fill:url(#jsq_24_);}
+          .jsq-${id}-st25{fill:url(#jsq_25_);}
+          .jsq-${id}-st26{fill:url(#jsq_26_);}
+          .jsq-${id}-st27{fill:url(#jsq_27_);}
+          .jsq-${id}-st28{fill:url(#jsq_28_);}
+          .jsq-${id}-st29{fill:url(#jsq_29_);}
+          .jsq-${id}-st30{fill:url(#jsq_30_);}
+          .jsq-${id}-st31{fill:url(#jsq_31_);}
+          .jsq-${id}-st32{fill:url(#jsq_32_);}
+          .jsq-${id}-st33{fill:url(#jsq_33_);}
+          .jsq-${id}-st34{fill:url(#jsq_34_);}
+          .jsq-${id}-st35{fill:url(#jsq_35_);}
+          .jsq-${id}-st36{fill:url(#jsq_36_);}
+          .jsq-${id}-st37{fill:url(#jsq_37_);}
+          .jsq-${id}-st38{fill:url(#jsq_38_);}
+          .jsq-${id}-st39{opacity:0.4;}
+          .jsq-${id}-st40{fill:#FFFFFF;}
+          .jsq-${id}-st41{fill:#5F6675;}
+          .jsq-${id}-st42{fill:#484A49;}
     </style></defs>
     ${this.renderSvgContent()}
   </svg>`;
   }
   renderSvgContent() {
-    let { info = {}, pointValue } = this;
+    let { info = {} } = this;
     let { id = "" } = info || {};
     let text = `
+    <linearGradient
+    id="jsq_1_"
+    gradientUnits="userSpaceOnUse"
+    x1="-267.1655"
+    y1="248.5421"
+    x2="-195.2276"
+    y2="248.5421"
+    gradientTransform="matrix(0 1 -1 0 339.8212 290.1788)"
+  >
+    <stop offset="0" style="stop-color:#8EA1B0" />
+    <stop offset="0.3324" style="stop-color:#E3ECFF" />
+    <stop offset="0.7374" style="stop-color:#78828E" />
+    <stop offset="0.8058" style="stop-color:#757E8A" />
+    <stop offset="0.8795" style="stop-color:#6C737D" />
+    <stop offset="0.9555" style="stop-color:#5E6067" />
+    <stop offset="1" style="stop-color:#535257" />
+  </linearGradient>
+  <path
+    class="jsq-${id}-st0"
+    d="M182.56,23.01H21.1C12.13,23.01,0,39.12,0,58.98s12.13,35.97,21.1,35.97h161.46V23.01z"
+  />
+  <radialGradient
+    id="jsq_2_"
+    cx="-485.138"
+    cy="110.0239"
+    r="163.9701"
+    gradientTransform="matrix(0 0.6013 -0.5908 0 294.4867 332.3863)"
+    gradientUnits="userSpaceOnUse"
+  >
+    <stop offset="0" style="stop-color:#BAC7D9" />
+    <stop offset="0.3324" style="stop-color:#E0E9FC" />
+    <stop offset="0.7151" style="stop-color:#78828E" />
+    <stop offset="1" style="stop-color:#939CAA" />
+  </radialGradient>
+  <path
+    class="jsq-${id}-st1"
+    d="M182.56,94.95c-8.97,0-16.24-16.1-16.24-35.97s7.27-35.97,16.24-35.97s23.05,16.1,23.05,35.97
+        S191.53,94.95,182.56,94.95z"
+  />
+  <radialGradient
+    id="jsq_3_"
+    cx="-458.0744"
+    cy="324.2717"
+    r="93.5925"
+    gradientTransform="matrix(0 0.6013 -0.2529 0 105.7726 332.3863)"
+    gradientUnits="userSpaceOnUse"
+  >
+    <stop offset="0.6272" style="stop-color:#7E8894;stop-opacity:0" />
+    <stop offset="1" style="stop-color:#707A83" />
+  </radialGradient>
+  <path
+    class="jsq-${id}-st2"
+    d="M21.57,23.01H21.1C12.13,23.01,0,39.12,0,58.98s12.13,35.97,21.1,35.97h0.47V23.01z"
+  />
   <g>
-    <linearGradient
-      id="db_${id}_1_"
+    <radialGradient
+      id="jsq_4_"
+      cx="148.0405"
+      cy="95.285"
+      r="19.5111"
       gradientUnits="userSpaceOnUse"
-      x1="60.525"
-      y1="62.945"
-      x2="54.1179"
-      y2="57.8484"
     >
-      <stop offset="0" style="stop-color:#C2C8CE" />
-      <stop offset="1" style="stop-color:#848689" />
-    </linearGradient>
-    <path
-      class="db-${id}-st0"
-      d="M67.73,41h-54.5v10.34c0,1.9,1.54,3.44,3.44,3.44h33.57l5.49,12.81l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69
-              l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73V41z"
-    />
-    <path
-      id="db_${id}_657_"
-      class="db-${id}-st1"
-      d="M56.5,55.08H2v10.34c0,1.9,1.54,3.44,3.44,3.44h47.62c1.9,0,3.44-1.54,3.44-3.44V55.08z"
+      <stop offset="0.595" style="stop-color:#292A22;stop-opacity:0.5" />
+      <stop offset="1" style="stop-color:#292A22;stop-opacity:0" />
+    </radialGradient>
+    <polygon
+      class="jsq-${id}-st3"
+      points="143.83,73 120.61,94.95 141.83,95 	"
     />
     <linearGradient
-      id="db_${id}_11_"
+      id="jsq_5_"
       gradientUnits="userSpaceOnUse"
-      x1="29.2499"
-      y1="58.6952"
-      x2="29.2499"
-      y2="49.8142"
+      x1="142.9054"
+      y1="88.554"
+      x2="153.7762"
+      y2="88.554"
     >
-      <stop offset="0" style="stop-color:#000000;stop-opacity:0" />
-      <stop offset="1" style="stop-color:#000000" />
+      <stop offset="0" style="stop-color:#666A73" />
+      <stop offset="1" style="stop-color:#757D88" />
     </linearGradient>
-    <rect
-      id="db_${id}_658_"
-      x="2"
-      y="54.06"
-      class="db-${id}-st2"
-      width="54.5"
-      height="8.88"
-    />
-    <rect
-      id="db_${id}_656_"
-      x="1"
-      y="15.08"
-      class="db-${id}-st3"
-      width="56.5"
-      height="39"
-    />
     <path
-      id="db_${id}_653_"
-      class="db-${id}-st1"
-      d="M58.5,55.08H0v-41h58.5V55.08z M2,53.08h54.5v-37H2V53.08z"
+      class="jsq-${id}-st4"
+      d="M147.49,73.28c0,0,1.04,4.59,2.82,7.43c1.78,2.84,3.46,5.09,3.46,5.09v9.12l-10.87,8.9l2.21-25.3L147.49,73.28
+          z"
     />
     <polygon
-      id="db_${id}_652_"
-      class="db-${id}-st4"
-      points="58.5,14.08 0,14.08 12.23,0 69.73,0 	"
+      class="jsq-${id}-st5"
+      points="147.49,73.28 143.62,73.28 139.04,103.83 142.91,103.83 	"
     />
-    <g id="db_${id}_647_">
-      <rect
-        id="db_${id}_651_"
-        x="9.5"
-        y="21.5"
-        class="db-${id}-st5"
-        width="40"
-        height="12"
-      />
-      <path
-        id="db_${id}_648_"
-        class="db-${id}-st6"
-        d="M50.5,34.5h-42v-14h42V34.5z M10.5,32.5h38v-10h-38V32.5z"
-      />
-    </g>
-    <circle
-      id="db_${id}_646_"
-      class="db-${id}-st7"
-      cx="11.97"
-      cy="63.16"
-      r="2.03"
-    />
-    <circle
-      id="db_${id}_645_"
-      class="db-${id}-st7"
-      cx="29.22"
-      cy="63.16"
-      r="2.03"
-    />
-    <circle
-      id="db_${id}_659_"
-      class="db-${id}-st7"
-      cx="46.22"
-      cy="63.16"
-      r="2.03"
-    />
-    <rect
-      id="db_${id}_644_"
-      x="9.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_643_"
-      x="19.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_635_"
-      x="29.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_634_"
-      x="39.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_6_"
-      x="8.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_5_"
-      x="18.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_4_"
-      x="28.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_2_"
-      x="38.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_632_"
-      x="9.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_552_"
-      x="19.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_551_"
-      x="29.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_9_"
-      x="8.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_8_"
-      x="18.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_7_"
-      x="28.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_550_"
-      x="8.48"
-      y="42.05"
-      class="db-${id}-st4"
-      width="36.74"
-      height="1"
+  </g>
+  <g>
+    <radialGradient
+      id="jsq_6_"
+      cx="35.0405"
+      cy="95.285"
+      r="19.5111"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0.595" style="stop-color:#292A22;stop-opacity:0.5" />
+      <stop offset="1" style="stop-color:#292A22;stop-opacity:0" />
+    </radialGradient>
+    <polygon
+      class="jsq-${id}-st6"
+      points="30.83,73 7.61,94.95 28.83,95 	"
     />
     <linearGradient
-      id="db_${id}_12_"
+      id="jsq_7_"
       gradientUnits="userSpaceOnUse"
-      x1="64.1155"
-      y1="55.0819"
-      x2="64.1155"
-      y2="0"
+      x1="29.9054"
+      y1="88.554"
+      x2="40.7762"
+      y2="88.554"
     >
-      <stop offset="0" style="stop-color:#C2C8CE" />
-      <stop offset="1" style="stop-color:#848689" />
+      <stop offset="0" style="stop-color:#666A73" />
+      <stop offset="1" style="stop-color:#757D88" />
     </linearGradient>
     <path
-      id="db_${id}_1_"
-      class="db-${id}-st10"
-      d="M69.73,41L58.5,55.08v-41L69.73,0V41z"
+      class="jsq-${id}-st7"
+      d="M34.49,73.28c0,0,1.04,4.59,2.82,7.43c1.78,2.84,3.46,5.09,3.46,5.09v9.12l-10.87,8.9l2.21-25.3L34.49,73.28z"
     />
-  </g>`;
-    if (pointValue == 2) {
-      text += `
-  <g class="SVG_alert" >
+    <polygon
+      class="jsq-${id}-st5"
+      points="34.49,73.28 30.62,73.28 26.04,103.83 29.91,103.83 	"
+    />
+  </g>
+  <radialGradient
+    id="jsq_8_"
+    cx="-461.3518"
+    cy="162.0662"
+    r="81.9134"
+    gradientTransform="matrix(0 0.6013 -0.4064 0 245.3862 332.3863)"
+    gradientUnits="userSpaceOnUse"
+  >
+    <stop offset="0.6272" style="stop-color:#7E8894;stop-opacity:0" />
+    <stop offset="1" style="stop-color:#707A83" />
+  </radialGradient>
+  <path
+    class="jsq-${id}-st8"
+    d="M182.56,94.95c-8.97,0-16.24-16.1-16.24-35.97s7.27-35.97,16.24-35.97s23.05,16.1,23.05,35.97
+        S191.53,94.95,182.56,94.95z"
+  />
+  <g>
+    <linearGradient
+      id="jsq_9_"
+      gradientUnits="userSpaceOnUse"
+      x1="158.3202"
+      y1="17.5357"
+      x2="170.0414"
+      y2="17.5357"
+    >
+      <stop offset="0" style="stop-color:#8EA1B0" />
+      <stop offset="0.3324" style="stop-color:#E3ECFF" />
+      <stop offset="0.7374" style="stop-color:#78828E" />
+      <stop offset="0.8058" style="stop-color:#757E8A" />
+      <stop offset="0.8795" style="stop-color:#6C737D" />
+      <stop offset="0.9555" style="stop-color:#5E6067" />
+      <stop offset="1" style="stop-color:#535257" />
+    </linearGradient>
     <path
-      class="db-${id}-st11"
-      d="M69.73,0h-57.5L0,14.08v41h2v7.86v2.48c0,1.9,1.54,3.44,3.44,3.44h47.62c1.08,0,2.04-0.51,2.67-1.29
-              l0.01,0.01l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73v-7.84l2-2.51V0z"
+      class="jsq-${id}-st9"
+      d="M170.08,26.47c0,0-2.07,2.16-5.79,2.16s-5.97-2.16-5.97-2.16V6.44h11.76V26.47z"
     />
-  </g>`;
-    }
+
+    <radialGradient
+      id="jsq_10_"
+      cx="164.3856"
+      cy="8.0058"
+      r="16.9918"
+      gradientTransform="matrix(1 0 0 0.3105 0 5.5198)"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0.595" style="stop-color:#292A22;stop-opacity:0.5" />
+      <stop offset="1" style="stop-color:#292A22;stop-opacity:0" />
+    </radialGradient>
+    <rect
+      x="158.32"
+      y="6.28"
+      class="jsq-${id}-st10"
+      width="11.76"
+      height="9.71"
+    />
+    <linearGradient
+      id="jsq_11_"
+      gradientUnits="userSpaceOnUse"
+      x1="150.7933"
+      y1="7.0318"
+      x2="177.4801"
+      y2="7.0318"
+    >
+      <stop offset="0" style="stop-color:#8EA1B0" />
+      <stop offset="0.3324" style="stop-color:#E3ECFF" />
+      <stop offset="0.7374" style="stop-color:#78828E" />
+      <stop offset="0.8058" style="stop-color:#757E8A" />
+      <stop offset="0.8795" style="stop-color:#6C737D" />
+      <stop offset="0.9555" style="stop-color:#5E6067" />
+      <stop offset="1" style="stop-color:#535257" />
+    </linearGradient>
+    <path
+      class="jsq-${id}-st11"
+      d="M174.53,4.33c-2.43-0.99-6.15-1.62-10.33-1.62s-7.9,0.63-10.33,1.62h-2.91v2.7c0,2.39,5.93,4.33,13.24,4.33
+          c7.31,0,13.24-1.94,13.24-4.33v-2.7H174.53z"
+    />
+    <linearGradient
+      id="jsq_12_"
+      gradientUnits="userSpaceOnUse"
+      x1="161.4031"
+      y1="8.168"
+      x2="166.4442"
+      y2="1.2489"
+    >
+      <stop offset="0" style="stop-color:#B2C1D2" />
+      <stop offset="1" style="stop-color:#99A3B1" />
+    </linearGradient>
+    <ellipse
+      class="jsq-${id}-st12"
+      cx="164.2"
+      cy="4.33"
+      rx="13.24"
+      ry="4.33"
+    />
+    <linearGradient
+      id="jsq_13_"
+      gradientUnits="userSpaceOnUse"
+      x1="169.5701"
+      y1="3.7863"
+      x2="159.1381"
+      y2="3.7863"
+    >
+      <stop offset="0" style="stop-color:#484A49" />
+      <stop offset="0.3771" style="stop-color:#78828E" />
+      <stop offset="1" style="stop-color:#474B4C" />
+    </linearGradient>
+    <ellipse
+      class="jsq-${id}-st13"
+      cx="164.2"
+      cy="3.79"
+      rx="5.35"
+      ry="1.75"
+    />
+    <linearGradient
+      id="jsq_14_"
+      gradientUnits="userSpaceOnUse"
+      x1="177.4802"
+      y1="5.6649"
+      x2="151.1257"
+      y2="6.4954"
+    >
+      <stop offset="0.014" style="stop-color:#ACBBCC" />
+      <stop offset="0.5251" style="stop-color:#E3ECFF" />
+      <stop offset="1" style="stop-color:#C5D2E4" />
+    </linearGradient>
+    <path
+      class="jsq-${id}-st14"
+      d="M164.2,7.81c-6.88,0-12.53-1.71-13.17-3.91c-0.04,0.14-0.06,0.28-0.06,0.42c0,2.39,5.93,4.33,13.24,4.33
+          c7.31,0,13.24-1.94,13.24-4.33c0-0.14-0.02-0.28-0.06-0.42C176.73,6.1,171.08,7.81,164.2,7.81z"
+    />
+  </g>
+  <g>
+    <linearGradient
+      id="jsq_15_"
+      gradientUnits="userSpaceOnUse"
+      x1="124.5702"
+      y1="17.5357"
+      x2="136.2914"
+      y2="17.5357"
+    >
+      <stop offset="0" style="stop-color:#8EA1B0" />
+      <stop offset="0.3324" style="stop-color:#E3ECFF" />
+      <stop offset="0.7374" style="stop-color:#78828E" />
+      <stop offset="0.8058" style="stop-color:#757E8A" />
+      <stop offset="0.8795" style="stop-color:#6C737D" />
+      <stop offset="0.9555" style="stop-color:#5E6067" />
+      <stop offset="1" style="stop-color:#535257" />
+    </linearGradient>
+    <path
+      class="jsq-${id}-st15"
+      d="M136.33,26.47c0,0-2.07,2.16-5.79,2.16c-3.72,0-5.97-2.16-5.97-2.16V6.44h11.76V26.47z"
+    />
+
+    <radialGradient
+      id="jsq_16_"
+      cx="130.6356"
+      cy="8.0058"
+      r="16.9918"
+      gradientTransform="matrix(1 0 0 0.3105 0 5.5198)"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0.595" style="stop-color:#292A22;stop-opacity:0.5" />
+      <stop offset="1" style="stop-color:#292A22;stop-opacity:0" />
+    </radialGradient>
+    <rect
+      x="124.57"
+      y="6.28"
+      class="jsq-${id}-st16"
+      width="11.76"
+      height="9.71"
+    />
+    <linearGradient
+      id="jsq_17_"
+      gradientUnits="userSpaceOnUse"
+      x1="117.0433"
+      y1="7.0318"
+      x2="143.7301"
+      y2="7.0318"
+    >
+      <stop offset="0" style="stop-color:#8EA1B0" />
+      <stop offset="0.3324" style="stop-color:#E3ECFF" />
+      <stop offset="0.7374" style="stop-color:#78828E" />
+      <stop offset="0.8058" style="stop-color:#757E8A" />
+      <stop offset="0.8795" style="stop-color:#6C737D" />
+      <stop offset="0.9555" style="stop-color:#5E6067" />
+      <stop offset="1" style="stop-color:#535257" />
+    </linearGradient>
+    <path
+      class="jsq-${id}-st17"
+      d="M140.78,4.33c-2.43-0.99-6.15-1.62-10.33-1.62c-4.18,0-7.9,0.63-10.33,1.62h-2.91v2.7
+          c0,2.39,5.93,4.33,13.24,4.33c7.31,0,13.24-1.94,13.24-4.33v-2.7H140.78z"
+    />
+    <linearGradient
+      id="jsq_18_"
+      gradientUnits="userSpaceOnUse"
+      x1="127.6531"
+      y1="8.168"
+      x2="132.6942"
+      y2="1.2489"
+    >
+      <stop offset="0" style="stop-color:#B2C1D2" />
+      <stop offset="1" style="stop-color:#99A3B1" />
+    </linearGradient>
+    <ellipse
+      class="jsq-${id}-st18"
+      cx="130.45"
+      cy="4.33"
+      rx="13.24"
+      ry="4.33"
+    />
+    <linearGradient
+      id="jsq_19_"
+      gradientUnits="userSpaceOnUse"
+      x1="135.8201"
+      y1="3.7863"
+      x2="125.3881"
+      y2="3.7863"
+    >
+      <stop offset="0" style="stop-color:#484A49" />
+      <stop offset="0.3771" style="stop-color:#78828E" />
+      <stop offset="1" style="stop-color:#474B4C" />
+    </linearGradient>
+    <ellipse
+      class="jsq-${id}-st19"
+      cx="130.45"
+      cy="3.79"
+      rx="5.35"
+      ry="1.75"
+    />
+    <linearGradient
+      id="jsq_20_"
+      gradientUnits="userSpaceOnUse"
+      x1="143.7302"
+      y1="5.6649"
+      x2="117.3757"
+      y2="6.4954"
+    >
+      <stop offset="0.014" style="stop-color:#ACBBCC" />
+      <stop offset="0.5251" style="stop-color:#E3ECFF" />
+      <stop offset="1" style="stop-color:#C5D2E4" />
+    </linearGradient>
+    <path
+      class="jsq-${id}-st20"
+      d="M130.45,7.81c-6.88,0-12.53-1.71-13.17-3.91c-0.04,0.14-0.06,0.28-0.06,0.42c0,2.39,5.93,4.33,13.24,4.33
+          c7.31,0,13.24-1.94,13.24-4.33c0-0.14-0.02-0.28-0.06-0.42C142.98,6.1,137.33,7.81,130.45,7.81z"
+    />
+  </g>
+  <g>
+    <linearGradient
+      id="jsq_21_"
+      gradientUnits="userSpaceOnUse"
+      x1="90.8202"
+      y1="17.5357"
+      x2="102.5414"
+      y2="17.5357"
+    >
+      <stop offset="0" style="stop-color:#8EA1B0" />
+      <stop offset="0.3324" style="stop-color:#E3ECFF" />
+      <stop offset="0.7374" style="stop-color:#78828E" />
+      <stop offset="0.8058" style="stop-color:#757E8A" />
+      <stop offset="0.8795" style="stop-color:#6C737D" />
+      <stop offset="0.9555" style="stop-color:#5E6067" />
+      <stop offset="1" style="stop-color:#535257" />
+    </linearGradient>
+    <path
+      class="jsq-${id}-st21"
+      d="M102.58,26.47c0,0-2.07,2.16-5.79,2.16s-5.97-2.16-5.97-2.16V6.44h11.76V26.47z"
+    />
+
+    <radialGradient
+      id="jsq_22_"
+      cx="96.8856"
+      cy="8.0058"
+      r="16.9918"
+      gradientTransform="matrix(1 0 0 0.3105 0 5.5198)"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0.595" style="stop-color:#292A22;stop-opacity:0.5" />
+      <stop offset="1" style="stop-color:#292A22;stop-opacity:0" />
+    </radialGradient>
+    <rect
+      x="90.82"
+      y="6.28"
+      class="jsq-${id}-st22"
+      width="11.76"
+      height="9.71"
+    />
+    <linearGradient
+      id="jsq_23_"
+      gradientUnits="userSpaceOnUse"
+      x1="83.2933"
+      y1="7.0318"
+      x2="109.9801"
+      y2="7.0318"
+    >
+      <stop offset="0" style="stop-color:#8EA1B0" />
+      <stop offset="0.3324" style="stop-color:#E3ECFF" />
+      <stop offset="0.7374" style="stop-color:#78828E" />
+      <stop offset="0.8058" style="stop-color:#757E8A" />
+      <stop offset="0.8795" style="stop-color:#6C737D" />
+      <stop offset="0.9555" style="stop-color:#5E6067" />
+      <stop offset="1" style="stop-color:#535257" />
+    </linearGradient>
+    <path
+      class="jsq-${id}-st23"
+      d="M107.03,4.33C104.6,3.34,100.88,2.7,96.7,2.7s-7.9,0.63-10.33,1.62h-2.91v2.7c0,2.39,5.93,4.33,13.24,4.33
+          s13.24-1.94,13.24-4.33v-2.7H107.03z"
+    />
+    <linearGradient
+      id="jsq_24_"
+      gradientUnits="userSpaceOnUse"
+      x1="93.9031"
+      y1="8.168"
+      x2="98.9442"
+      y2="1.2489"
+    >
+      <stop offset="0" style="stop-color:#B2C1D2" />
+      <stop offset="1" style="stop-color:#99A3B1" />
+    </linearGradient>
+    <ellipse
+      class="jsq-${id}-st24"
+      cx="96.7"
+      cy="4.33"
+      rx="13.24"
+      ry="4.33"
+    />
+    <linearGradient
+      id="jsq_25_"
+      gradientUnits="userSpaceOnUse"
+      x1="102.0701"
+      y1="3.7863"
+      x2="91.6381"
+      y2="3.7863"
+    >
+      <stop offset="0" style="stop-color:#484A49" />
+      <stop offset="0.3771" style="stop-color:#78828E" />
+      <stop offset="1" style="stop-color:#474B4C" />
+    </linearGradient>
+    <ellipse
+      class="jsq-${id}-st25"
+      cx="96.7"
+      cy="3.79"
+      rx="5.35"
+      ry="1.75"
+    />
+    <linearGradient
+      id="jsq_26_"
+      gradientUnits="userSpaceOnUse"
+      x1="109.9802"
+      y1="5.6649"
+      x2="83.6257"
+      y2="6.4954"
+    >
+      <stop offset="0.014" style="stop-color:#ACBBCC" />
+      <stop offset="0.5251" style="stop-color:#E3ECFF" />
+      <stop offset="1" style="stop-color:#C5D2E4" />
+    </linearGradient>
+    <path
+      class="jsq-${id}-st26"
+      d="M96.7,7.81c-6.88,0-12.53-1.71-13.17-3.91c-0.04,0.14-0.06,0.28-0.06,0.42c0,2.39,5.93,4.33,13.24,4.33
+          s13.24-1.94,13.24-4.33c0-0.14-0.02-0.28-0.06-0.42C109.23,6.1,103.58,7.81,96.7,7.81z"
+    />
+  </g>
+  <g>
+    <linearGradient
+      id="jsq_27_"
+      gradientUnits="userSpaceOnUse"
+      x1="57.0702"
+      y1="17.5357"
+      x2="68.7914"
+      y2="17.5357"
+    >
+      <stop offset="0" style="stop-color:#8EA1B0" />
+      <stop offset="0.3324" style="stop-color:#E3ECFF" />
+      <stop offset="0.7374" style="stop-color:#78828E" />
+      <stop offset="0.8058" style="stop-color:#757E8A" />
+      <stop offset="0.8795" style="stop-color:#6C737D" />
+      <stop offset="0.9555" style="stop-color:#5E6067" />
+      <stop offset="1" style="stop-color:#535257" />
+    </linearGradient>
+    <path
+      class="jsq-${id}-st27"
+      d="M68.83,26.47c0,0-2.07,2.16-5.79,2.16s-5.97-2.16-5.97-2.16V6.44h11.76V26.47z"
+    />
+
+    <radialGradient
+      id="jsq_28_"
+      cx="63.1356"
+      cy="8.0058"
+      r="16.9918"
+      gradientTransform="matrix(1 0 0 0.3105 0 5.5198)"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0.595" style="stop-color:#292A22;stop-opacity:0.5" />
+      <stop offset="1" style="stop-color:#292A22;stop-opacity:0" />
+    </radialGradient>
+    <rect
+      x="57.07"
+      y="6.28"
+      class="jsq-${id}-st28"
+      width="11.76"
+      height="9.71"
+    />
+    <linearGradient
+      id="jsq_29_"
+      gradientUnits="userSpaceOnUse"
+      x1="49.5433"
+      y1="7.0318"
+      x2="76.2301"
+      y2="7.0318"
+    >
+      <stop offset="0" style="stop-color:#8EA1B0" />
+      <stop offset="0.3324" style="stop-color:#E3ECFF" />
+      <stop offset="0.7374" style="stop-color:#78828E" />
+      <stop offset="0.8058" style="stop-color:#757E8A" />
+      <stop offset="0.8795" style="stop-color:#6C737D" />
+      <stop offset="0.9555" style="stop-color:#5E6067" />
+      <stop offset="1" style="stop-color:#535257" />
+    </linearGradient>
+    <path
+      class="jsq-${id}-st29"
+      d="M73.28,4.33C70.85,3.34,67.13,2.7,62.95,2.7s-7.9,0.63-10.33,1.62h-2.91v2.7c0,2.39,5.93,4.33,13.24,4.33
+          s13.24-1.94,13.24-4.33v-2.7H73.28z"
+    />
+    <linearGradient
+      id="jsq_30_"
+      gradientUnits="userSpaceOnUse"
+      x1="60.1531"
+      y1="8.168"
+      x2="65.1942"
+      y2="1.2489"
+    >
+      <stop offset="0" style="stop-color:#B2C1D2" />
+      <stop offset="1" style="stop-color:#99A3B1" />
+    </linearGradient>
+    <ellipse
+      class="jsq-${id}-st30"
+      cx="62.95"
+      cy="4.33"
+      rx="13.24"
+      ry="4.33"
+    />
+    <linearGradient
+      id="jsq_31_"
+      gradientUnits="userSpaceOnUse"
+      x1="68.3201"
+      y1="3.7863"
+      x2="57.8881"
+      y2="3.7863"
+    >
+      <stop offset="0" style="stop-color:#484A49" />
+      <stop offset="0.3771" style="stop-color:#78828E" />
+      <stop offset="1" style="stop-color:#474B4C" />
+    </linearGradient>
+    <ellipse
+      class="jsq-${id}-st31"
+      cx="62.95"
+      cy="3.79"
+      rx="5.35"
+      ry="1.75"
+    />
+    <linearGradient
+      id="jsq_32_"
+      gradientUnits="userSpaceOnUse"
+      x1="76.2302"
+      y1="5.6649"
+      x2="49.8757"
+      y2="6.4954"
+    >
+      <stop offset="0.014" style="stop-color:#ACBBCC" />
+      <stop offset="0.5251" style="stop-color:#E3ECFF" />
+      <stop offset="1" style="stop-color:#C5D2E4" />
+    </linearGradient>
+    <path
+      class="jsq-${id}-st32"
+      d="M62.95,7.81c-6.88,0-12.53-1.71-13.17-3.91c-0.04,0.14-0.06,0.28-0.06,0.42c0,2.39,5.93,4.33,13.24,4.33
+          s13.24-1.94,13.24-4.33c0-0.14-0.02-0.28-0.06-0.42C75.48,6.1,69.83,7.81,62.95,7.81z"
+    />
+  </g>
+  <g>
+    <linearGradient
+      id="jsq_33_"
+      gradientUnits="userSpaceOnUse"
+      x1="23.3202"
+      y1="17.5357"
+      x2="35.0414"
+      y2="17.5357"
+    >
+      <stop offset="0" style="stop-color:#8EA1B0" />
+      <stop offset="0.3324" style="stop-color:#E3ECFF" />
+      <stop offset="0.7374" style="stop-color:#78828E" />
+      <stop offset="0.8058" style="stop-color:#757E8A" />
+      <stop offset="0.8795" style="stop-color:#6C737D" />
+      <stop offset="0.9555" style="stop-color:#5E6067" />
+      <stop offset="1" style="stop-color:#535257" />
+    </linearGradient>
+    <path
+      class="jsq-${id}-st33"
+      d="M35.08,26.47c0,0-2.07,2.16-5.79,2.16s-5.97-2.16-5.97-2.16V6.44h11.76V26.47z"
+    />
+
+    <radialGradient
+      id="jsq_34_"
+      cx="29.3856"
+      cy="8.0058"
+      r="16.9918"
+      gradientTransform="matrix(1 0 0 0.3105 0 5.5198)"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0.595" style="stop-color:#292A22;stop-opacity:0.5" />
+      <stop offset="1" style="stop-color:#292A22;stop-opacity:0" />
+    </radialGradient>
+    <rect
+      x="23.32"
+      y="6.28"
+      class="jsq-${id}-st34"
+      width="11.76"
+      height="9.71"
+    />
+    <linearGradient
+      id="jsq_35_"
+      gradientUnits="userSpaceOnUse"
+      x1="15.7933"
+      y1="7.0318"
+      x2="42.4801"
+      y2="7.0318"
+    >
+      <stop offset="0" style="stop-color:#8EA1B0" />
+      <stop offset="0.3324" style="stop-color:#E3ECFF" />
+      <stop offset="0.7374" style="stop-color:#78828E" />
+      <stop offset="0.8058" style="stop-color:#757E8A" />
+      <stop offset="0.8795" style="stop-color:#6C737D" />
+      <stop offset="0.9555" style="stop-color:#5E6067" />
+      <stop offset="1" style="stop-color:#535257" />
+    </linearGradient>
+    <path
+      class="jsq-${id}-st35"
+      d="M39.53,4.33C37.1,3.34,33.38,2.7,29.2,2.7s-7.9,0.63-10.33,1.62h-2.91v2.7c0,2.39,5.93,4.33,13.24,4.33
+          s13.24-1.94,13.24-4.33v-2.7H39.53z"
+    />
+    <linearGradient
+      id="jsq_36_"
+      gradientUnits="userSpaceOnUse"
+      x1="26.4031"
+      y1="8.168"
+      x2="31.4442"
+      y2="1.2489"
+    >
+      <stop offset="0" style="stop-color:#B2C1D2" />
+      <stop offset="1" style="stop-color:#99A3B1" />
+    </linearGradient>
+    <ellipse
+      class="jsq-${id}-st36"
+      cx="29.2"
+      cy="4.33"
+      rx="13.24"
+      ry="4.33"
+    />
+    <linearGradient
+      id="jsq_37_"
+      gradientUnits="userSpaceOnUse"
+      x1="34.5701"
+      y1="3.7863"
+      x2="24.1381"
+      y2="3.7863"
+    >
+      <stop offset="0" style="stop-color:#484A49" />
+      <stop offset="0.3771" style="stop-color:#78828E" />
+      <stop offset="1" style="stop-color:#474B4C" />
+    </linearGradient>
+    <ellipse
+      class="jsq-${id}-st37"
+      cx="29.2"
+      cy="3.79"
+      rx="5.35"
+      ry="1.75"
+    />
+    <linearGradient
+      id="jsq_38_"
+      gradientUnits="userSpaceOnUse"
+      x1="42.4802"
+      y1="5.6649"
+      x2="16.1257"
+      y2="6.4954"
+    >
+      <stop offset="0.014" style="stop-color:#ACBBCC" />
+      <stop offset="0.5251" style="stop-color:#E3ECFF" />
+      <stop offset="1" style="stop-color:#C5D2E4" />
+    </linearGradient>
+    <path
+      class="jsq-${id}-st38"
+      d="M29.2,7.81c-6.88,0-12.53-1.71-13.17-3.91c-0.04,0.14-0.06,0.28-0.06,0.42c0,2.39,5.93,4.33,13.24,4.33
+          s13.24-1.94,13.24-4.33c0-0.14-0.02-0.28-0.06-0.42C41.73,6.1,36.08,7.81,29.2,7.81z"
+    />
+  </g>
+  <g class="jsq-${id}-st39">
+    <path
+      class="jsq-${id}-st40"
+      d="M111.19,38.28H73.34c-3.4,0-6.35,2.37-7.04,5.7c-0.95,4.57-1.48,9.65-1.48,15.01c0,7.35,1,14.18,2.7,19.87
+          c0.75,2.49,3.08,4.17,5.68,4.17h37.14c4.59,0,7.98-4.24,7.03-8.73c-0.99-4.65-1.54-9.83-1.54-15.31c0-4.85,0.43-9.47,1.22-13.68
+          C117.71,41.65,114.91,38.28,111.19,38.28z"
+    />
+    <path
+      class="jsq-${id}-st41"
+      d="M110.33,83.52H73.19c-2.83,0-5.36-1.86-6.16-4.53c-1.78-5.94-2.72-12.86-2.72-20.01
+          c0-5.27,0.5-10.35,1.49-15.11c0.73-3.53,3.9-6.09,7.53-6.09h37.85c1.92,0,3.73,0.85,4.96,2.33c1.23,1.47,1.73,3.4,1.38,5.29
+          c-0.8,4.31-1.21,8.88-1.21,13.59c0,5.32,0.51,10.44,1.53,15.21c0.49,2.3-0.08,4.67-1.55,6.49
+          C114.83,82.49,112.66,83.52,110.33,83.52z M73.34,38.78c-3.16,0-5.92,2.23-6.55,5.3c-0.98,4.69-1.47,9.71-1.47,14.91
+          c0,7.06,0.93,13.88,2.68,19.73c0.67,2.25,2.81,3.81,5.2,3.81h37.14c2.03,0,3.92-0.9,5.19-2.47c1.28-1.59,1.78-3.65,1.35-5.65
+          c-1.03-4.84-1.55-10.03-1.55-15.42c0-4.77,0.41-9.4,1.23-13.78c0.3-1.59-0.13-3.22-1.16-4.47c-1.04-1.25-2.56-1.96-4.19-1.96H73.34
+          z"
+    />
+  </g>
+  <polygon
+    class="jsq-${id}-st42"
+    points="86.62,75.49 88.2,62.71 75.43,64.3 80.77,66.47 73.25,73.99 76.93,77.66 84.44,70.15 "
+  />
+  <polygon
+    class="jsq-${id}-st42"
+    points="105.27,56.83 92.5,58.42 94.08,45.64 96.25,50.98 103.77,43.47 107.45,47.14 99.93,54.66 "
+  />
+  <polygon
+    class="jsq-${id}-st42"
+    points="75.43,56.83 88.2,58.42 86.62,45.64 84.44,50.98 76.93,43.47 73.25,47.14 80.77,54.66 "
+  />
+  <polygon
+    class="jsq-${id}-st42"
+    points="94.08,75.49 92.5,62.71 105.27,64.3 99.93,66.47 107.45,73.99 103.77,77.66 96.25,70.15 "
+  />`;
     return text;
   }
 
-  //加载数据
-  loadData() {
-    this.loadDeviceInfo();
-  }
+  // //加载数据
+  // loadData() {
+  //   this.loadDeviceInfo();
+  // }
 
-  //刷新内容
-  refreshContent(data) {
-    let { point } = data || {};
-    if (point) {
-      let { value = "" } = point || {};
-      this.pointValue = value;
-      this.refresh();
-    }
-  }
+  // //刷新内容
+  // refreshContent(data) {
+  //   let { point } = data || {};
+  //   if (point) {
+  //     let { value = "" } = point || {};
+  //     this.pointValue = value;
+  //     this.refresh();
+  //   }
+  // }
 
   refresh() {
     super.refresh();
     let { info = {} } = this;
     bmCommon.log(`${info.type}刷新 `);
-    let { id = "" } = info || {};
+    let { id = "", width = 0, height = 0 } = info || {};
     let $container = $(`#${id}>.component`);
-    $container.html(this.renderSvg());
+    let $svg = $container.find(`svg`);
+    $svg.attr({ width, height });
   }
 
   event() {}

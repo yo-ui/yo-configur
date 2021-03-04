@@ -1713,6 +1713,7 @@ let componentLibrary = [
               ...baseData,
               // backgroundImage: "/static/img/svg/kg.svg",
               // backgroundImageOn: "/static/img/svg/kg-on.svg",
+              content: false,
               dataType: "device",
               infoType: "device",
               width: 43,
@@ -1728,6 +1729,7 @@ let componentLibrary = [
             data: {
               ...baseData,
               // backgroundImage: "/static/img/svg/dengg.svg",
+              content: false,
               dataType: "point",
               // infoType: "device",
               width: 164,
@@ -1743,6 +1745,7 @@ let componentLibrary = [
             data: {
               ...baseData,
               // backgroundImage: "/static/img/svg/dengp.svg",
+              content: false,
               dataType: "point",
               // infoType: "device", //显示详情组件前缀名
               width: 32,
@@ -1903,6 +1906,7 @@ let componentLibrary = [
             data: {
               ...baseData,
               dataType: "point",
+              content: false,
               infoType: "device", //显示详情组件前缀名
               width: 85,
               height: 58,
@@ -1950,6 +1954,7 @@ let componentLibrary = [
               infoType: "device", //显示详情组件前缀名
               width: 73,
               height: 65,
+              content: false,
               descrStyle: {
                 showCode: false, //是否显示代码
                 formatNum: 2, //显示字符位数

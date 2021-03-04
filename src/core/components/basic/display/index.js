@@ -117,8 +117,7 @@ class Display extends Component {
       xml:space="preserve"
       preserveAspectRatio="none"
     >
-      <defs>` +
-      `<style type='text/css'>
+      <defs><style type='text/css'>
         .display-${id}-st0 {
           fill: #ffffff;
         }
@@ -140,9 +139,7 @@ class Display extends Component {
         .display-${id}-st6 {
           fill: #25282b;
         }
-      </style>` +
-      `
-        "</defs>
+      </style></defs>
       <g>
         <rect
           id="display_656_"

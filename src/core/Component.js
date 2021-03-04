@@ -505,11 +505,14 @@ class Component {
   }
 
   loadDeviceInfo() {
-    let { info = {} } = this;
+    let { info = {}, pointCode = "" } = this;
     let { bindData = {} } = info || {};
     let { deviceId = "", devicePoint = "" } = bindData || {};
     if (!deviceId) {
       return;
+    }
+    if (!devicePoint) {
+      devicePoint = pointCode;
     }
     $vm.$emit("device", {
       deviceId,
@@ -535,14 +538,19 @@ class Component {
     });
   }
 
-  controlEvent(callback) {
-    const { info = {} } = this;
-    const { bindData = {}, pointValue: value = "" } = info || {};
+  controlEvent({ value, point } = {}, callback) {
+    const { info = {}, pointValue } = this;
+    const { bindData = {} } = info || {};
     const { deviceId = "", devicePoint = "" } = bindData || {};
     if (!deviceId) {
       return;
     }
-    const point = devicePoint;
+    if (!point) {
+      point = devicePoint;
+    }
+    if (!value) {
+      value = pointValue;
+    }
     $vm.$emit("control", {
       deviceId,
       point,

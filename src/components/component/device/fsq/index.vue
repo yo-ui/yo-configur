@@ -1,4 +1,4 @@
-// 壁挂式电表
+// 分水器
 <template>
   <div class="bm-device-fsq-com" :style="comStyle">
     <svg

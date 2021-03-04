@@ -1,8 +1,9 @@
 import bmCommon from "@/common/common";
 import Component from "@/core/Component";
-import "../../../../assets/less/components/component/basic/display.less";
+// import "../../../../assets/less/components/component/basic/display.less";
 // 生活水泵
 class Display extends Component {
+  pointValue = 1;
   constructor(props) {
     super(props);
   }
@@ -26,7 +27,7 @@ ${this.renderSvg()}
 
   renderSvg() {
     let { info = {} } = this;
-    let { id = "", width = 0, height = 0, color = "" } = info || {};
+    let { id = "", width = 0, height = 0 } = info || {};
     return ` <svg
   version="1.1"
   xmlns="http://www.w3.org/2000/svg"

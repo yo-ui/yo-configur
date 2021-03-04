@@ -1,7 +1,7 @@
 import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
-// 电表
+// 挂式空调
 class Text extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +15,7 @@ class Text extends Component {
     return super.wrap(
       { info },
       `
-    <div class="bm-device-db-com component"
+    <div class="bm-device-gskt-com component"
     style="${this.composeStyles(this.comStyle())}">
     ${this.renderSvg()}
 
@@ -30,325 +30,203 @@ class Text extends Component {
     return `<svg
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 70 69"
+    viewBox="0 0 163 64"
     width="${width}"
     height="${height}"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xml:space="preserve"
   >
     <defs><style type='text/css'>
-    .db-${id}-st0 {
-        fill: url(#db_${id}_1_);
-      }
-      .db-${id}-st1 {
-        fill: #dfe3e8;
-      }
-      .db-${id}-st2 {
-        fill: url(#db_${id}_11_);
-      }
-      .db-${id}-st3 {
-        fill: #ffffff;
-      }
-      .db-${id}-st4 {
-        fill: #c2c8ce;
-      }
-      .db-${id}-st5 {
-        fill: #848776;
-      }
-      .db-${id}-st6 {
-        fill: #25282b;
-      }
-      .db-${id}-st7 {
-        fill: #8f9499;
-      }
-      .db-${id}-st8 {
-        fill: #5b280e;
-      }
-      .db-${id}-st9 {
-        fill: #f95d06;
-      }
-      .db-${id}-st10 {
-        fill: url(#db_${id}_12_);
-      }
-      .db-${id}-st11 {
-        opacity: 0.4;
-        fill: #ff0000;
-      }
+    .gskt-${id}-st0{fill:#D0D4D8;}
+    .gskt-${id}-st1{fill:url(#gskt_2_);}
+    .gskt-${id}-st2{fill:url(#gskt_3_);}
+    .gskt-${id}-st3{fill:#FFFFFF;}
+    .gskt-${id}-st4{fill:#AFB6BB;}
+    .gskt-${id}-st5{fill:url(#gskt_4_);}
     </style></defs>
     ${this.renderSvgContent()}
   </svg>`;
   }
   renderSvgContent() {
-    let { info = {}, pointValue } = this;
+    let { info = {} } = this;
     let { id = "" } = info || {};
     let text = `
-  <g>
-    <linearGradient
-      id="db_${id}_1_"
-      gradientUnits="userSpaceOnUse"
-      x1="60.525"
-      y1="62.945"
-      x2="54.1179"
-      y2="57.8484"
-    >
-      <stop offset="0" style="stop-color:#C2C8CE" />
-      <stop offset="1" style="stop-color:#848689" />
-    </linearGradient>
     <path
-      class="db-${id}-st0"
-      d="M67.73,41h-54.5v10.34c0,1.9,1.54,3.44,3.44,3.44h33.57l5.49,12.81l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69
-              l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73V41z"
-    />
-    <path
-      id="db_${id}_657_"
-      class="db-${id}-st1"
-      d="M56.5,55.08H2v10.34c0,1.9,1.54,3.44,3.44,3.44h47.62c1.9,0,3.44-1.54,3.44-3.44V55.08z"
+      id="gskt_976_"
+      class="gskt-${id}-st0"
+      d="M155.8,63H6.2C2.8,63,0,60.2,0,56.8V18.6L4,6.2C5.3,2.9,7.8,0,11.2,0h139.6
+        c3.4,0,6.1,3,7.2,6.2l4,12.4v38.1C162,60.2,159.2,63,155.8,63z"
     />
     <linearGradient
-      id="db_${id}_11_"
+      id="gskt_2_"
       gradientUnits="userSpaceOnUse"
-      x1="29.2499"
-      y1="58.6952"
-      x2="29.2499"
-      y2="49.8142"
+      x1="0.7635"
+      y1="38.8724"
+      x2="161.2365"
+      y2="38.8724"
     >
-      <stop offset="0" style="stop-color:#000000;stop-opacity:0" />
-      <stop offset="1" style="stop-color:#000000" />
+      <stop offset="0" style="stop-color:#CDCFD1" />
+      <stop offset="4.000000e-002" style="stop-color:#FFFFFF" />
+      <stop offset="0.96" style="stop-color:#FFFFFF" />
+      <stop offset="1" style="stop-color:#CDCFD1" />
     </linearGradient>
-    <rect
-      id="db_${id}_658_"
-      x="2"
-      y="54.06"
-      class="db-${id}-st2"
-      width="54.5"
-      height="8.88"
-    />
-    <rect
-      id="db_${id}_656_"
-      x="1"
-      y="15.08"
-      class="db-${id}-st3"
-      width="56.5"
-      height="39"
-    />
     <path
-      id="db_${id}_653_"
-      class="db-${id}-st1"
-      d="M58.5,55.08H0v-41h58.5V55.08z M2,53.08h54.5v-37H2V53.08z"
+      id="gskt_993_"
+      class="gskt-${id}-st1"
+      d="M155.7,62.1H6.3c-3.1,0-5.6-2.5-5.6-5.6V21.2c0-3.1,2.5-5.6,5.6-5.6h149.4
+        c3.1,0,5.6,2.5,5.6,5.6v35.4C161.2,59.6,158.7,62.1,155.7,62.1z"
     />
-    <polygon
-      id="db_${id}_652_"
-      class="db-${id}-st4"
-      points="58.5,14.08 0,14.08 12.23,0 69.73,0 	"
+    <linearGradient
+      id="gskt_3_"
+      gradientUnits="userSpaceOnUse"
+      x1="81"
+      y1="49.7628"
+      x2="81"
+      y2="62.1319"
+    >
+      <stop offset="0" style="stop-color:#CDCFD1" />
+      <stop offset="8.518696e-003" style="stop-color:#CED0D2" />
+      <stop offset="0.2357" style="stop-color:#E4E5E6" />
+      <stop offset="0.4714" style="stop-color:#F4F4F5" />
+      <stop offset="0.7196" style="stop-color:#FDFDFD" />
+      <stop offset="1" style="stop-color:#FFFFFF" />
+    </linearGradient>
+    <path
+      id="gskt_996_"
+      class="gskt-${id}-st2"
+      d="M0.8,49.8v6.8c0,3.1,2.5,5.6,5.6,5.6h149.4c3.1,0,5.6-2.5,5.6-5.6v-6.8H0.8z"
     />
-    <g id="db_${id}_647_">
+    <g id="gskt_997_">
       <rect
-        id="db_${id}_651_"
-        x="9.5"
-        y="21.5"
-        class="db-${id}-st5"
-        width="40"
-        height="12"
+        id="gskt_990_"
+        x="36.7"
+        y="44.6"
+        class="gskt-${id}-st3"
+        width="1.3"
+        height="11.5"
       />
-      <path
-        id="db_${id}_648_"
-        class="db-${id}-st6"
-        d="M50.5,34.5h-42v-14h42V34.5z M10.5,32.5h38v-10h-38V32.5z"
+      <rect
+        id="gskt_994_"
+        x="80.4"
+        y="44.6"
+        class="gskt-${id}-st3"
+        width="1.3"
+        height="11.5"
+      />
+      <rect
+        id="gskt_995_"
+        x="124"
+        y="44.6"
+        class="gskt-${id}-st3"
+        width="1.3"
+        height="11.5"
       />
     </g>
-    <circle
-      id="db_${id}_646_"
-      class="db-${id}-st7"
-      cx="11.97"
-      cy="63.16"
-      r="2.03"
-    />
-    <circle
-      id="db_${id}_645_"
-      class="db-${id}-st7"
-      cx="29.22"
-      cy="63.16"
-      r="2.03"
-    />
-    <circle
-      id="db_${id}_659_"
-      class="db-${id}-st7"
-      cx="46.22"
-      cy="63.16"
-      r="2.03"
-    />
     <rect
-      id="db_${id}_644_"
-      x="9.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_643_"
-      x="19.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_635_"
-      x="29.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_634_"
-      x="39.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_6_"
-      x="8.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_5_"
-      x="18.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_4_"
-      x="28.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_2_"
-      x="38.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_632_"
-      x="9.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_552_"
-      x="19.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_551_"
-      x="29.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_9_"
-      x="8.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_8_"
-      x="18.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_7_"
-      x="28.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_550_"
-      x="8.48"
-      y="42.05"
-      class="db-${id}-st4"
-      width="36.74"
-      height="1"
+      id="gskt_998_"
+      x="6.8"
+      y="22"
+      class="gskt-${id}-st4"
+      width="14"
+      height="2"
     />
     <linearGradient
-      id="db_${id}_12_"
+      id="gskt_4_"
       gradientUnits="userSpaceOnUse"
-      x1="64.1155"
-      y1="55.0819"
-      x2="64.1155"
-      y2="0"
+      x1="81"
+      y1="43.8025"
+      x2="81"
+      y2="38.1893"
     >
-      <stop offset="0" style="stop-color:#C2C8CE" />
-      <stop offset="1" style="stop-color:#848689" />
+      <stop offset="0" style="stop-color:#515156" />
+      <stop offset="1" style="stop-color:#040000" />
     </linearGradient>
-    <path
-      id="db_${id}_1_"
-      class="db-${id}-st10"
-      d="M69.73,41L58.5,55.08v-41L69.73,0V41z"
+    <rect
+      id="gskt_999_"
+      x="72.5"
+      y="37.7"
+      class="gskt-${id}-st5"
+      width="17"
+      height="6.4"
     />
-  </g>`;
-    if (pointValue == 2) {
-      text += `
-  <g class="SVG_alert" >
-    <path
-      class="db-${id}-st11"
-      d="M69.73,0h-57.5L0,14.08v41h2v7.86v2.48c0,1.9,1.54,3.44,3.44,3.44h47.62c1.08,0,2.04-0.51,2.67-1.29
-              l0.01,0.01l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73v-7.84l2-2.51V0z"
+    <polygon
+      id="gskt_1006_"
+      class="gskt-${id}-st4"
+      points="107.1,5 152.8,5 152.2,3 107,3 "
     />
-  </g>`;
-    }
+    <polygon
+      id="gskt_1009_"
+      class="gskt-${id}-st4"
+      points="107.5,9 154,9 153.4,7 107.3,7 "
+    />
+    <polygon
+      id="gskt_1010_"
+      class="gskt-${id}-st4"
+      points="107.8,13 155.2,13 154.6,11 107.6,11 "
+    />
+    <g id="gskt_1007_">
+      <polygon
+        id="gskt_1012_"
+        class="gskt-${id}-st4"
+        points="54.1,11 7.6,11 7,13 53.9,13 	"
+      />
+      <polygon
+        id="gskt_1013_"
+        class="gskt-${id}-st4"
+        points="58.5,13 103.3,13 103.1,11 58.6,11 	"
+      />
+    </g>
+    <g id="gskt_1001_">
+      <polygon
+        id="gskt_1002_"
+        class="gskt-${id}-st4"
+        points="59.1,5 102.6,5 102.4,3 59.3,3 	"
+      />
+      <polygon
+        id="gskt_1004_"
+        class="gskt-${id}-st4"
+        points="54.8,3 10,3 9.4,5 54.6,5 	"
+      />
+    </g>
+    <g id="gskt_1003_">
+      <polygon
+        id="gskt_1005_"
+        class="gskt-${id}-st4"
+        points="58.8,9 102.9,9 102.8,7 59,7 	"
+      />
+      <polygon
+        id="gskt_1008_"
+        class="gskt-${id}-st4"
+        points="54.4,7 8.8,7 8.2,9 54.3,9 	"
+      />
+    </g>`;
+
     return text;
   }
 
-  //加载数据
-  loadData() {
-    this.loadDeviceInfo();
-  }
+  // //加载数据
+  // loadData() {
+  //   this.loadDeviceInfo();
+  // }
 
-  //刷新内容
-  refreshContent(data) {
-    let { point } = data || {};
-    if (point) {
-      let { value = "" } = point || {};
-      this.pointValue = value;
-      this.refresh();
-    }
-  }
+  // //刷新内容
+  // refreshContent(data) {
+  //   let { point } = data || {};
+  //   if (point) {
+  //     let { value = "" } = point || {};
+  //     this.pointValue = value;
+  //     this.refresh();
+  //   }
+  // }
 
   refresh() {
     super.refresh();
     let { info = {} } = this;
     bmCommon.log(`${info.type}刷新 `);
-    let { id = "" } = info || {};
+    let { id = "", width = 0, height = 0 } = info || {};
     let $container = $(`#${id}>.component`);
-    $container.html(this.renderSvg());
+    let $svg = $container.find("svg");
+    $svg.attr({ width, height });
   }
 
   event() {}
