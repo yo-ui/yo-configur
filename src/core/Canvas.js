@@ -272,9 +272,11 @@ class Canvas {
     if (id) {
       let _oldCom = $(`#${id}`);
       _oldCom.removeClass("active");
+      _oldCom.find(".cover").show();
     } else {
       let _oldCom = $("#canvas_content .bm-component-com.active");
       _oldCom.removeClass("active");
+      _oldCom.find(".cover").show();
     }
     window.bm_active_com_id = "";
 

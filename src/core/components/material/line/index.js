@@ -3,7 +3,7 @@ import Component from "@/core/Component";
 import Canvas from "../../../Canvas";
 import CanvasEvent from "../../../CanvasEvent";
 import "../../../../assets/less/components/component/material/line.less";
-
+// 直线
 class Text extends Component {
   constructor(props) {
     super(props);
@@ -18,32 +18,18 @@ class Text extends Component {
     info.boxW = width > 20 ? width : 20;
     info.boxH = height > 20 ? height : 20;
     gradientStyle.gradientId = bmCommon.uuid();
+    this.refresh();
   }
 
   //组件样式
   svgStyle() {
     let { info = {} } = this;
     let {
-      // width = "",
-      // height = "",
-      // color = "",
       gradientStyle = {},
       borderStyle = "",
       lineWidth = "",
-      // borderRadiusTopLeft = 0,
-      // borderRadiusTopRight = 0,
-      // borderRadiusBottomLeft = 0,
-      // borderRadiusBottomRight = 0,
       backgroundType = "",
-      //
-      // scale = "",
-      //
-      //
-      //
       backgroundColor = ""
-      // backgroundImage = "",
-      // backgroundRepeat = "",
-      // backgroundSize = ""
     } = info || {};
     let styles = {};
     if (borderStyle) {
@@ -78,25 +64,20 @@ class Text extends Component {
     if (backgroundType == "purity") {
       //纯色
       styles["stroke"] = backgroundColor;
-      // if (backgroundImage) {
-      //   styles["background-image"] = `url(${this.$loadImgUrl(
-      //     backgroundImage
-      //   )})`;
-      // }
     } else if (backgroundType == "gradient") {
       //渐变
-      // styles = { ...styles, ...gradientStyle };
       let { gradientId = "" } = gradientStyle || {};
       styles["stroke"] = `url(#${gradientId})`;
     }
     return styles;
   }
 
+  comStyle() {
+    let styles = {};
+    return styles || {};
+  }
   template() {
     let { info = {} } = this;
-
-    // <div class="bm-material-line-com  component"
-    // style="${this.composeStyles(this.comStyle())}">
     return super.wrap(
       { info },
       `
@@ -110,8 +91,26 @@ class Text extends Component {
 
   renderSvg() {
     let { info = {} } = this;
-    let { gradientStyle = {}, backgroundType = "", boxH = 0, boxW = 0 } =
-      info || {};
+    let { boxH = 0, boxW = 0 } = info || {};
+    return ` <svg
+    version="1.1"
+    viewBox="0 0 ${boxW} ${boxH}"
+  width="${boxW}"
+  height="${boxH}"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xml:space="preserve"
+  >
+    <defs>
+      ${this.renderDefs()}
+    </defs>
+    ${this.renderSvgContent()}
+  </svg>`;
+  }
+
+  renderDefs() {
+    let { info = {} } = this;
+    let { gradientStyle = {}, backgroundType = "" } = info || {};
     let {
       gradientId = "",
       angle = 0,
@@ -119,6 +118,7 @@ class Text extends Component {
       valueList = [],
       center = "50% 50%"
     } = gradientStyle || {};
+
     let gradientText = "";
     if (backgroundType == "gradient") {
       if (type == "linear") {
@@ -270,20 +270,7 @@ class Text extends Component {
       </radialGradient>`;
       }
     }
-    return ` <svg
-    version="1.1"
-    viewBox="0 0 ${boxW} ${boxH}"
-  width="${boxW}"
-  height="${boxH}"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    xml:space="preserve"
-  >
-    <defs>
-      ${gradientText}
-    </defs>
-    ${this.renderSvgContent()}
-  </svg>`;
+    return gradientText;
   }
   renderSvgContent() {
     let { info = {} } = this;
@@ -295,6 +282,7 @@ class Text extends Component {
       boxW = 0,
       boxH = 0,
       boxX = 0,
+      id = "",
       boxY = 0
     } = info || {};
     return `<line
@@ -317,6 +305,7 @@ class Text extends Component {
   ></rect>
   <rect
     class="rect rect1"
+    data-id="${id}"
     width="14"
     height="14"
     x="${x1 - 7}"
@@ -327,6 +316,7 @@ class Text extends Component {
   ></rect>
   <rect
     class="rect rect2"
+    data-id="${id}"
     width="14"
     height="14"
     x="${x2 - 7}"
@@ -355,12 +345,34 @@ class Text extends Component {
 
   refresh() {
     super.refresh();
+    this.reloadSize();
     let { info = {} } = this;
     bmCommon.log(`${info.type}刷新 `);
-    let { id = "" } = info || {};
+    let {
+      id = "",
+      boxH: height = 0,
+      boxW: width = 0,
+      x1 = 0,
+      x2 = 0,
+      y1 = 0,
+      y2 = 0,
+      boxX: x = 0,
+      boxY: y = 0
+    } = info || {};
     let $container = $(`#${id}>.bm-material-line-com`);
-    this.reloadSize();
-    $container.html(this.renderSvg());
+    let $svg = $container.find("svg");
+    let $defs = $svg.find("defs");
+    let $line = $svg.find(".line");
+    let $rect_box = $svg.find(".rect-box");
+    let $rect1 = $svg.find(".rect1");
+    let $rect2 = $svg.find(".rect2");
+    $rect1.attr({ x: x1 - 7, y: y1 - 7 });
+    $rect2.attr({ x: x2 - 7, y: y2 - 7 });
+    $line.attr({ x1, y1, x2, y2 }).css(this.svgStyle());
+    $rect_box.attr({ width, height, x, y });
+    $defs.html(this.renderDefs());
+    $svg.attr({ width, height, viewBox: `0 0 ${width} ${height}` });
+    // $container.html(this.renderSvg());
   }
 
   reloadSize() {
@@ -381,27 +393,24 @@ class Text extends Component {
     info.boxH = h > 20 ? h : 20;
     info.height = 0;
   }
-  leftClickEvent(e) {
+  static leftClickEvent(e) {
     e.stopPropagation();
     e.preventDefault();
-    let { info = {} } = this;
-    let { id = "" } = info || {};
-    CanvasEvent.selectComAction(id); //选中组件
-    this.mousedownEvent(e, "left");
+    // let { info = {} } = this;
+    // let { id = "" } = info || {};
+    // CanvasEvent.selectComAction(id); //选中组件
+    Text.mousedownEvent(e, "left");
   }
-  rightClickEvent(e) {
+  static rightClickEvent(e) {
     e.preventDefault();
     e.stopPropagation();
-    let { info = {} } = this;
-    let { id = "" } = info || {};
-    CanvasEvent.selectComAction(id); //选中组件
-    this.mousedownEvent(e, "right");
+    // let { info = {} } = this;
+    // let { id = "" } = info || {};
+    // CanvasEvent.selectComAction(id); //选中组件
+    Text.mousedownEvent(e, "right");
   }
-  mousedownEvent(e, direction) {
-    let { showType = "" } = this;
-    if (showType != "edit") {
-      return;
-    }
+  static mousedownEvent(e, direction) {
+    // let { showType = "" } = this;
     e.stopPropagation();
     e.preventDefault();
     // let { info = {} } = this;
@@ -414,9 +423,9 @@ class Text extends Component {
     //   top,
     //   rotate: originRotate = ""
     // } = info || {};
-    this.direction = direction;
-    this.startX = x;
-    this.startY = y;
+    Text.direction = direction;
+    Text.startX = x;
+    Text.startY = y;
     // this.initMove({
     //   startX: x,
     //   startY: y,
@@ -426,46 +435,50 @@ class Text extends Component {
     //   originWidth,
     //   originHeight
     // });
-    $(document).on("mousemove", this.mousemoveEvent);
-    $(document).on("mouseup", this.mouseupEvent);
+    $(document).on("mousemove", Text.mousemoveEvent);
+    $(document).on("mouseup", Text.mouseupEvent);
   }
-  mousemoveEvent(e) {
+  static mousemoveEvent(e) {
     e.stopPropagation();
     e.preventDefault();
     let pos = bmCommon.getMousePosition(e);
     let { x = "", y = "" } = pos || {};
-    let { direction = "" } = this;
-    this.resize({
+    let { direction = "" } = Text;
+    Text.resize({
       x,
       y,
       e,
       direction
     });
   }
-  mouseupEvent(e) {
-    $(document).off("mousemove", this.mousemoveEvent);
-    $(document).off("mouseup", this.mouseupEvent);
-    // this.stopMove();
+  static mouseupEvent() {
+    $(document).off("mousemove", Text.mousemoveEvent);
+    $(document).off("mouseup", Text.mouseupEvent);
+    Text.rotating = false;
+    let { id = "" } = Text;
+    Canvas.setActiveCom(id);
     CanvasEvent.createHistoryAction();
-    this.rotating = false;
   }
 
   // 调整元件尺寸
-  resize(item) {
+  static resize(item) {
     let { x, y, direction = "" } = item || {};
     let {
       startX,
       startY,
+      id = ""
       // originX,
       // originY,
       // widgetList = [],
-      zoom,
-      info
+      // zoom,
+      // info
       // originWidth,
       // originHeight,
       // originRotate
-    } = this;
-    zoom = Canvas.getZoom();
+    } = Text;
+    let zoom = Canvas.getZoom();
+    let obj = window.bm_widgetMap[id];
+    let { info = {} } = obj || {};
     let dx = x - startX;
     let dy = y - startY;
     let { x1 = 0, x2 = 0, y1 = 0, y2 = 0 } = info || {};
@@ -476,30 +489,40 @@ class Text extends Component {
       let __y2 = y2 + dy;
       info.x2 = __x2;
       info.y2 = __y2;
-      this.refresh();
+      obj.refresh();
     } else if (direction === "left") {
       let __x1 = x1 + dx;
       let __y1 = y1 + dy;
       info.x1 = __x1;
       info.y1 = __y1;
-      this.refresh();
+      obj.refresh();
     }
-    this.startX = x;
-    this.startY = y;
+    Text.startX = x;
+    Text.startY = y;
   }
 
   destroy() {}
 
   event() {
+    let showType = window.bm_show_type;
+    if (showType != "edit") {
+      return;
+    }
     let { info = {} } = this;
     let { id = "" } = info || {};
     let $container = $(`#${id}>.bm-material-line-com`);
-    let that = this;
-    $container.on("click", ".rect1", function(e) {
-      that.leftClickEvent(e);
+    // let that = this;
+    $container.on("mousedown", ".rect1", function(e) {
+      let $this = $(this);
+      let id = $this.data("id");
+      Text.id = id;
+      Text.leftClickEvent(e);
     });
-    $container.on("click", ".rect2", function(e) {
-      that.rightClickEvent(e);
+    $container.on("mousedown", ".rect2", function(e) {
+      let $this = $(this);
+      let id = $this.data("id");
+      Text.id = id;
+      Text.rightClickEvent(e);
     });
   }
 }

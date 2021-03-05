@@ -1,4 +1,4 @@
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
 // 板式换热器
@@ -12,7 +12,6 @@ class Text extends Component {
 
   template() {
     let { info = {} } = this;
-    let { content = "" } = info || {};
     return super.wrap(
       { info },
       `
@@ -2256,7 +2255,6 @@ class Text extends Component {
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let { id = "", height = 0, width = 0 } = info || {};
     let $container = $(`#${id}>.component`);
     let $svg = $container.find("svg");

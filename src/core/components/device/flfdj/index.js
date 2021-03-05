@@ -1,12 +1,16 @@
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
-// 电表
+// 风力发电机
 class Text extends Component {
   constructor(props) {
     super(props);
   }
-  init() {}
+  init() {
+    let { info = {} } = this;
+    info.content = 0;
+    this.refresh();
+  }
 
   //组件样式
 
@@ -15,7 +19,7 @@ class Text extends Component {
     return super.wrap(
       { info },
       `
-    <div class="bm-device-db-com component"
+    <div class="bm-device-flfdj-com component"
     style="${this.composeStyles(this.comStyle())}">
     ${this.renderSvg()}
 
@@ -30,300 +34,263 @@ class Text extends Component {
     return `<svg
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 70 69"
+    viewBox="0 0 292 307"
     width="${width}"
     height="${height}"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xml:space="preserve"
   >
     <defs><style type='text/css'>
-    .db-${id}-st0 {
-        fill: url(#db_${id}_1_);
-      }
-      .db-${id}-st1 {
-        fill: #dfe3e8;
-      }
-      .db-${id}-st2 {
-        fill: url(#db_${id}_11_);
-      }
-      .db-${id}-st3 {
-        fill: #ffffff;
-      }
-      .db-${id}-st4 {
-        fill: #c2c8ce;
-      }
-      .db-${id}-st5 {
-        fill: #848776;
-      }
-      .db-${id}-st6 {
-        fill: #25282b;
-      }
-      .db-${id}-st7 {
-        fill: #8f9499;
-      }
-      .db-${id}-st8 {
-        fill: #5b280e;
-      }
-      .db-${id}-st9 {
-        fill: #f95d06;
-      }
-      .db-${id}-st10 {
-        fill: url(#db_${id}_12_);
-      }
-      .db-${id}-st11 {
-        opacity: 0.4;
-        fill: #ff0000;
-      }
+    .flfdj-${id}-st0{fill:url(#flfdj_${id}_1_);}
+    .flfdj-${id}-st1{fill:url(#flfdj_${id}_2_);}
+    .flfdj-${id}-st2{opacity:0;fill:#FFFFFF;}
+    .flfdj-${id}-st3{fill:url(#flfdj_${id}_3_);}
+    .flfdj-${id}-st4{fill:#DDDDDD;}
+    .flfdj-${id}-st5{fill:url(#flfdj_${id}_4_);}
+    .flfdj-${id}-st6{fill:url(#flfdj_${id}_5_);}
+    .flfdj-${id}-st7{opacity:0.2;}
+    .flfdj-${id}-st8{fill:url(#flfdj_${id}_6_);}
+    .flfdj-${id}-st9{opacity:0.4;fill:#FF0000;}
     </style></defs>
     ${this.renderSvgContent()}
   </svg>`;
   }
   renderSvgContent() {
-    let { info = {}, pointValue } = this;
+    let { info = {} } = this;
     let { id = "" } = info || {};
     let text = `
-  <g>
-    <linearGradient
-      id="db_${id}_1_"
-      gradientUnits="userSpaceOnUse"
-      x1="60.525"
-      y1="62.945"
-      x2="54.1179"
-      y2="57.8484"
-    >
-      <stop offset="0" style="stop-color:#C2C8CE" />
-      <stop offset="1" style="stop-color:#848689" />
-    </linearGradient>
-    <path
-      class="db-${id}-st0"
-      d="M67.73,41h-54.5v10.34c0,1.9,1.54,3.44,3.44,3.44h33.57l5.49,12.81l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69
-              l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73V41z"
-    />
-    <path
-      id="db_${id}_657_"
-      class="db-${id}-st1"
-      d="M56.5,55.08H2v10.34c0,1.9,1.54,3.44,3.44,3.44h47.62c1.9,0,3.44-1.54,3.44-3.44V55.08z"
-    />
-    <linearGradient
-      id="db_${id}_11_"
-      gradientUnits="userSpaceOnUse"
-      x1="29.2499"
-      y1="58.6952"
-      x2="29.2499"
-      y2="49.8142"
-    >
-      <stop offset="0" style="stop-color:#000000;stop-opacity:0" />
-      <stop offset="1" style="stop-color:#000000" />
-    </linearGradient>
-    <rect
-      id="db_${id}_658_"
-      x="2"
-      y="54.06"
-      class="db-${id}-st2"
-      width="54.5"
-      height="8.88"
-    />
-    <rect
-      id="db_${id}_656_"
-      x="1"
-      y="15.08"
-      class="db-${id}-st3"
-      width="56.5"
-      height="39"
-    />
-    <path
-      id="db_${id}_653_"
-      class="db-${id}-st1"
-      d="M58.5,55.08H0v-41h58.5V55.08z M2,53.08h54.5v-37H2V53.08z"
-    />
-    <polygon
-      id="db_${id}_652_"
-      class="db-${id}-st4"
-      points="58.5,14.08 0,14.08 12.23,0 69.73,0 	"
-    />
-    <g id="db_${id}_647_">
-      <rect
-        id="db_${id}_651_"
-        x="9.5"
-        y="21.5"
-        class="db-${id}-st5"
-        width="40"
-        height="12"
-      />
-      <path
-        id="db_${id}_648_"
-        class="db-${id}-st6"
-        d="M50.5,34.5h-42v-14h42V34.5z M10.5,32.5h38v-10h-38V32.5z"
+
+    <g id="SVG_base1">
+    <g>
+      <linearGradient
+        id="flfdj_${id}_1_"
+        gradientUnits="userSpaceOnUse"
+        x1="-940.5"
+        y1="234.5"
+        x2="-921.5"
+        y2="234.5"
+        gradientTransform="matrix(-1 0 0 1 -785 0)"
+      >
+        <stop offset="0" style="stop-color:#899194" />
+        <stop offset="0.3533" style="stop-color:#CED1D2" />
+        <stop offset="0.5936" style="stop-color:#FFFFFF" />
+        <stop offset="0.6545" style="stop-color:#FAFBFB" />
+        <stop offset="0.7217" style="stop-color:#EDEEEF" />
+        <stop offset="0.7918" style="stop-color:#D7DADB" />
+        <stop offset="0.864" style="stop-color:#B8BDBF" />
+        <stop offset="0.937" style="stop-color:#91989B" />
+        <stop offset="1" style="stop-color:#697377" />
+      </linearGradient>
+      <polygon
+        class="flfdj-${id}-st0"
+        points="136.5,307 155.5,307 151.5,162 140.5,162 		"
       />
     </g>
-    <circle
-      id="db_${id}_646_"
-      class="db-${id}-st7"
-      cx="11.97"
-      cy="63.16"
-      r="2.03"
-    />
-    <circle
-      id="db_${id}_645_"
-      class="db-${id}-st7"
-      cx="29.22"
-      cy="63.16"
-      r="2.03"
-    />
-    <circle
-      id="db_${id}_659_"
-      class="db-${id}-st7"
-      cx="46.22"
-      cy="63.16"
-      r="2.03"
-    />
-    <rect
-      id="db_${id}_644_"
-      x="9.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_643_"
-      x="19.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_635_"
-      x="29.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_634_"
-      x="39.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_6_"
-      x="8.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_5_"
-      x="18.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_4_"
-      x="28.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_2_"
-      x="38.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_632_"
-      x="9.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_552_"
-      x="19.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_551_"
-      x="29.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_9_"
-      x="8.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_8_"
-      x="18.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_7_"
-      x="28.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_550_"
-      x="8.48"
-      y="42.05"
-      class="db-${id}-st4"
-      width="36.74"
-      height="1"
-    />
     <linearGradient
-      id="db_${id}_12_"
+      id="flfdj_${id}_2_"
       gradientUnits="userSpaceOnUse"
-      x1="64.1155"
-      y1="55.0819"
-      x2="64.1155"
-      y2="0"
+      x1="146.0573"
+      y1="172.0651"
+      x2="145.9558"
+      y2="128.5575"
     >
-      <stop offset="0" style="stop-color:#C2C8CE" />
-      <stop offset="1" style="stop-color:#848689" />
+      <stop offset="0" style="stop-color:#899194" />
+      <stop offset="0.5953" style="stop-color:#CED1D2" />
+      <stop offset="1" style="stop-color:#FFFFFF" />
     </linearGradient>
-    <path
-      id="db_${id}_1_"
-      class="db-${id}-st10"
-      d="M69.73,41L58.5,55.08v-41L69.73,0V41z"
+    <polygon
+      class="flfdj-${id}-st1"
+      points="136.1,133 132,137.1 132,157.9 136.1,162 155.9,162 160,157.9 160,137.1 155.9,133 	"
     />
-  </g>`;
-    if (pointValue == 2) {
-      text += `
+  </g>
+  <g class="SVG_ani">
+    <g>
+      <circle
+        class="flfdj-${id}-st2"
+        cx="146"
+        cy="145.9"
+        r="148.9"
+      />
+      <g>
+        <linearGradient
+          id="flfdj_${id}_3_"
+          gradientUnits="userSpaceOnUse"
+          x1="114.7949"
+          y1="72.5"
+          x2="147.5"
+          y2="72.5"
+        >
+          <stop offset="0" style="stop-color:#899194" />
+          <stop offset="0.5953" style="stop-color:#CED1D2" />
+          <stop offset="1" style="stop-color:#FFFFFF" />
+        </linearGradient>
+        <polygon
+          class="flfdj-${id}-st3"
+          points="150,0 150,145 144,145 131,109 145,3 			"
+        />
+        <polygon
+          class="flfdj-${id}-st4"
+          points="148,145 150,145 150,0 148,1.2 			"
+        />
+      </g>
+      <g>
+        <linearGradient
+          id="flfdj_${id}_4_"
+          gradientUnits="userSpaceOnUse"
+          x1="-946.0128"
+          y1="84.9576"
+          x2="-913.3076"
+          y2="84.9576"
+          gradientTransform="matrix(-0.5 -0.866 0.866 -0.5 -447.4491 -567.3348)"
+        >
+          <stop offset="0" style="stop-color:#899194" />
+          <stop offset="0.5953" style="stop-color:#CED1D2" />
+          <stop offset="1" style="stop-color:#FFFFFF" />
+        </linearGradient>
+        <polygon
+          class="flfdj-${id}-st5"
+          points="18.7,215.2 144.3,142.7 147.3,147.9 122.6,177.2 23.8,218 			"
+        />
+        <polygon
+          class="flfdj-${id}-st4"
+          points="145.3,144.5 144.3,142.7 18.7,215.2 20.8,216.4 			"
+        />
+      </g>
+      <g>
+        <linearGradient
+          id="flfdj_${id}_5_"
+          gradientUnits="userSpaceOnUse"
+          x1="-440.3976"
+          y1="-981.9575"
+          x2="-407.6924"
+          y2="-981.9575"
+          gradientTransform="matrix(-0.5 0.866 -0.866 -0.5 -845.0265 44.9593)"
+        >
+          <stop offset="0" style="stop-color:#899194" />
+          <stop offset="0.5953" style="stop-color:#CED1D2" />
+          <stop offset="1" style="stop-color:#FFFFFF" />
+        </linearGradient>
+        <polygon
+          class="flfdj-${id}-st6"
+          points="270.8,221.3 145.2,148.8 148.2,143.6 185.9,150.3 270.7,215.5 			"
+        />
+        <polygon
+          class="flfdj-${id}-st4"
+          points="146.2,147 145.2,148.8 270.8,221.3 270.7,218.9 			"
+        />
+      </g>
+
+      <animateTransform
+        attributeName="transform"
+        from="0 145 146"
+        to="360 145 146"
+        type="rotate"
+        begin="0s"
+        dur="8s"
+        repeatCount="indefinite"
+      ></animateTransform>
+    </g>
+  </g>
+  <g class="SVG_sta" >
+    <g>
+      <circle
+        class="flfdj-${id}-st2"
+        cx="146"
+        cy="145.9"
+        r="148.9"
+      />
+      <g>
+        <linearGradient
+          id="flfdj_${id}_3_"
+          gradientUnits="userSpaceOnUse"
+          x1="114.7949"
+          y1="72.5"
+          x2="147.5"
+          y2="72.5"
+        >
+          <stop offset="0" style="stop-color:#899194" />
+          <stop offset="0.5953" style="stop-color:#CED1D2" />
+          <stop offset="1" style="stop-color:#FFFFFF" />
+        </linearGradient>
+        <polygon
+          class="flfdj-${id}-st3"
+          points="150,0 150,145 144,145 131,109 145,3 			"
+        />
+        <polygon
+          class="flfdj-${id}-st4"
+          points="148,145 150,145 150,0 148,1.2 			"
+        />
+      </g>
+      <g>
+        <linearGradient
+          id="flfdj_${id}_4_"
+          gradientUnits="userSpaceOnUse"
+          x1="-946.0128"
+          y1="84.9576"
+          x2="-913.3076"
+          y2="84.9576"
+          gradientTransform="matrix(-0.5 -0.866 0.866 -0.5 -447.4491 -567.3348)"
+        >
+          <stop offset="0" style="stop-color:#899194" />
+          <stop offset="0.5953" style="stop-color:#CED1D2" />
+          <stop offset="1" style="stop-color:#FFFFFF" />
+        </linearGradient>
+        <polygon
+          class="flfdj-${id}-st5"
+          points="18.7,215.2 144.3,142.7 147.3,147.9 122.6,177.2 23.8,218 			"
+        />
+        <polygon
+          class="flfdj-${id}-st4"
+          points="145.3,144.5 144.3,142.7 18.7,215.2 20.8,216.4 			"
+        />
+      </g>
+      <g>
+        <linearGradient
+          id="flfdj_${id}_5_"
+          gradientUnits="userSpaceOnUse"
+          x1="-440.3976"
+          y1="-981.9575"
+          x2="-407.6924"
+          y2="-981.9575"
+          gradientTransform="matrix(-0.5 0.866 -0.866 -0.5 -845.0265 44.9593)"
+        >
+          <stop offset="0" style="stop-color:#899194" />
+          <stop offset="0.5953" style="stop-color:#CED1D2" />
+          <stop offset="1" style="stop-color:#FFFFFF" />
+        </linearGradient>
+        <polygon
+          class="flfdj-${id}-st6"
+          points="270.8,221.3 145.2,148.8 148.2,143.6 185.9,150.3 270.7,215.5 			"
+        />
+        <polygon
+          class="flfdj-${id}-st4"
+          points="146.2,147 145.2,148.8 270.8,221.3 270.7,218.9 			"
+        />
+      </g>
+    </g>
+  </g>
+  <g id="SVG_base2">
+    <circle class="flfdj-${id}-st7" cx="146" cy="145.9" r="10" />
+    <radialGradient
+      id="flfdj_${id}_6_"
+      cx="144.3989"
+      cy="144.3915"
+      r="9.7647"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0.3209" style="stop-color:#FFFFFF" />
+      <stop offset="1" style="stop-color:#C8CCCD" />
+    </radialGradient>
+    <circle class="flfdj-${id}-st8" cx="146" cy="145.9" r="8.6" />
+  </g>
   <g class="SVG_alert" >
-    <path
-      class="db-${id}-st11"
-      d="M69.73,0h-57.5L0,14.08v41h2v7.86v2.48c0,1.9,1.54,3.44,3.44,3.44h47.62c1.08,0,2.04-0.51,2.67-1.29
-              l0.01,0.01l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73v-7.84l2-2.51V0z"
+    <polygon
+      class="flfdj-${id}-st9"
+      points="270.8,221.3 270.7,215.5 185.9,150.3 160,145.7 160,137.1 155.9,133 150,133 150,0 145,3 131,109
+139.7,133 136.1,133 132,137.1 132,149.8 18.7,215.2 20.8,216.4 20.8,216.4 23.8,218 122.6,177.2 135.7,161.7 136.1,162 140.5,162
+136.5,307 155.5,307 151.5,162 155.9,162 160,157.9 160,157.3 	"
     />
   </g>`;
-    }
     return text;
   }
 
@@ -335,9 +302,10 @@ class Text extends Component {
   //刷新内容
   refreshContent(data) {
     let { point } = data || {};
+    let { info = {} } = this;
     if (point) {
       let { value = "" } = point || {};
-      this.pointValue = value;
+      info.content = value;
       this.refresh();
     }
   }
@@ -345,10 +313,23 @@ class Text extends Component {
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
-    let { id = "" } = info || {};
+    let { id = "", height = 0, width = 0, content = "" } = info || {};
     let $container = $(`#${id}>.component`);
-    $container.html(this.renderSvg());
+    let $svg = $container.find("svg");
+    $svg.attr({ width, height });
+    if (content == 0) {
+      $svg.find(".SVG_ani").hide();
+      $svg.find(".SVG_sta").show();
+      $svg.find(".SVG_alert").hide();
+    } else if (content == 1) {
+      $svg.find(".SVG_ani").show();
+      $svg.find(".SVG_sta").hide();
+      $svg.find(".SVG_alert").hide();
+    } else if (content == 2) {
+      $svg.find(".SVG_ani").hide();
+      $svg.find(".SVG_sta").hide();
+      $svg.find(".SVG_alert").show();
+    }
   }
 
   event() {}

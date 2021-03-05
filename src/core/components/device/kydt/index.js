@@ -1,12 +1,16 @@
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
-// 电表
+// 客用电梯
 class Text extends Component {
   constructor(props) {
     super(props);
   }
-  init() {}
+  init() {
+    let { info = {} } = this;
+    info.content = 0;
+    this.refresh();
+  }
 
   //组件样式
 
@@ -15,7 +19,7 @@ class Text extends Component {
     return super.wrap(
       { info },
       `
-    <div class="bm-device-db-com component"
+    <div class="bm-device-kydt-com component"
     style="${this.composeStyles(this.comStyle())}">
     ${this.renderSvg()}
 
@@ -30,300 +34,400 @@ class Text extends Component {
     return `<svg
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 70 69"
+    viewBox="0 0 230 290"
     width="${width}"
     height="${height}"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xml:space="preserve"
   >
     <defs><style type='text/css'>
-    .db-${id}-st0 {
-        fill: url(#db_${id}_1_);
-      }
-      .db-${id}-st1 {
-        fill: #dfe3e8;
-      }
-      .db-${id}-st2 {
-        fill: url(#db_${id}_11_);
-      }
-      .db-${id}-st3 {
-        fill: #ffffff;
-      }
-      .db-${id}-st4 {
-        fill: #c2c8ce;
-      }
-      .db-${id}-st5 {
-        fill: #848776;
-      }
-      .db-${id}-st6 {
-        fill: #25282b;
-      }
-      .db-${id}-st7 {
-        fill: #8f9499;
-      }
-      .db-${id}-st8 {
-        fill: #5b280e;
-      }
-      .db-${id}-st9 {
-        fill: #f95d06;
-      }
-      .db-${id}-st10 {
-        fill: url(#db_${id}_12_);
-      }
-      .db-${id}-st11 {
-        opacity: 0.4;
-        fill: #ff0000;
-      }
+    .kydt-${id}-st0 {
+      fill: #e7e7e5;
+    }
+    .kydt-${id}-st1 {
+      opacity: 0.3;
+    }
+    .kydt-${id}-st2 {
+      fill: #5b5e6f;
+    }
+    .kydt-${id}-st3 {
+      fill: #cbcbc9;
+    }
+    .kydt-${id}-st4 {
+      fill: url(#kydt_${id}_1_);
+    }
+    .kydt-${id}-st5 {
+      fill: url(#kydt_${id}_2_);
+    }
+    .kydt-${id}-st6 {
+      opacity: 0.6;
+    }
+    .kydt-${id}-st7 {
+      fill: #a5a9ac;
+    }
+    .kydt-${id}-st8 {
+      fill: #c3c3c1;
+    }
+    .kydt-${id}-st9 {
+      fill: url(#kydt_${id}_3_);
+    }
+    .kydt-${id}-st10 {
+      fill: #ffffff;
+    }
+    .kydt-${id}-st11 {
+      fill: #7a7e89;
+    }
+    .kydt-${id}-st12 {
+      fill: url(#kydt_${id}_4_);
+    }
+    .kydt-${id}-st13 {
+      fill: url(#kydt_${id}_5_);
+    }
+    .kydt-${id}-st14 {
+      fill: #ff0000;
+    }
+    .kydt-${id}-st15 {
+      fill: url(#kydt_${id}_6_);
+    }
+    .kydt-${id}-st16 {
+      opacity: 0.4;
+      fill: #ff0000;
+    }
+    .kydt-${id}-st17 {
+      fill: url(#kydt_${id}_7_);
+    }
+    .kydt-${id}-st18 {
+      opacity: 0.4;
+    }
+
+    .show {
+      display: default;
+    }
+    .hide {
+      display: none;
+    }
+    .f1 {
+      display: default;
+    }
+    .f2 {
+      display: none;
+    }
     </style></defs>
     ${this.renderSvgContent()}
   </svg>`;
   }
   renderSvgContent() {
-    let { info = {}, pointValue } = this;
+    let { info = {} } = this;
     let { id = "" } = info || {};
     let text = `
-  <g>
-    <linearGradient
-      id="db_${id}_1_"
-      gradientUnits="userSpaceOnUse"
-      x1="60.525"
-      y1="62.945"
-      x2="54.1179"
-      y2="57.8484"
-    >
-      <stop offset="0" style="stop-color:#C2C8CE" />
-      <stop offset="1" style="stop-color:#848689" />
-    </linearGradient>
-    <path
-      class="db-${id}-st0"
-      d="M67.73,41h-54.5v10.34c0,1.9,1.54,3.44,3.44,3.44h33.57l5.49,12.81l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69
-              l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73V41z"
-    />
-    <path
-      id="db_${id}_657_"
-      class="db-${id}-st1"
-      d="M56.5,55.08H2v10.34c0,1.9,1.54,3.44,3.44,3.44h47.62c1.9,0,3.44-1.54,3.44-3.44V55.08z"
-    />
-    <linearGradient
-      id="db_${id}_11_"
-      gradientUnits="userSpaceOnUse"
-      x1="29.2499"
-      y1="58.6952"
-      x2="29.2499"
-      y2="49.8142"
-    >
-      <stop offset="0" style="stop-color:#000000;stop-opacity:0" />
-      <stop offset="1" style="stop-color:#000000" />
-    </linearGradient>
+    <g>
     <rect
-      id="db_${id}_658_"
-      x="2"
-      y="54.06"
-      class="db-${id}-st2"
-      width="54.5"
-      height="8.88"
+      x="89.54"
+      y="2"
+      class="kydt-${id}-st0"
+      width="125"
+      height="234"
     />
-    <rect
-      id="db_${id}_656_"
-      x="1"
-      y="15.08"
-      class="db-${id}-st3"
-      width="56.5"
-      height="39"
-    />
-    <path
-      id="db_${id}_653_"
-      class="db-${id}-st1"
-      d="M58.5,55.08H0v-41h58.5V55.08z M2,53.08h54.5v-37H2V53.08z"
-    />
-    <polygon
-      id="db_${id}_652_"
-      class="db-${id}-st4"
-      points="58.5,14.08 0,14.08 12.23,0 69.73,0 	"
-    />
-    <g id="db_${id}_647_">
+    <g class="kydt-${id}-st1">
       <rect
-        id="db_${id}_651_"
-        x="9.5"
-        y="21.5"
-        class="db-${id}-st5"
-        width="40"
-        height="12"
-      />
-      <path
-        id="db_${id}_648_"
-        class="db-${id}-st6"
-        d="M50.5,34.5h-42v-14h42V34.5z M10.5,32.5h38v-10h-38V32.5z"
+        x="107.01"
+        y="2"
+        class="kydt-${id}-st2"
+        width="1.99"
+        height="33.27"
       />
     </g>
-    <circle
-      id="db_${id}_646_"
-      class="db-${id}-st7"
-      cx="11.97"
-      cy="63.16"
-      r="2.03"
+    <g class="kydt-${id}-st1">
+      <rect
+        x="111.01"
+        y="2"
+        class="kydt-${id}-st2"
+        width="1.99"
+        height="33.27"
+      />
+    </g>
+    <g class="kydt-${id}-st1">
+      <rect
+        x="115.01"
+        y="2"
+        class="kydt-${id}-st2"
+        width="1.99"
+        height="33.27"
+      />
+    </g>
+    <g class="kydt-${id}-st1">
+      <rect
+        x="185.01"
+        y="2"
+        class="kydt-${id}-st2"
+        width="1.99"
+        height="33.27"
+      />
+    </g>
+    <g class="kydt-${id}-st1">
+      <rect
+        x="189.01"
+        y="2"
+        class="kydt-${id}-st2"
+        width="1.99"
+        height="33.27"
+      />
+    </g>
+    <g class="kydt-${id}-st1">
+      <rect
+        x="193.01"
+        y="2"
+        class="kydt-${id}-st2"
+        width="1.99"
+        height="33.27"
+      />
+    </g>
+    <polygon
+      class="kydt-${id}-st3"
+      points="89.54,237.47 28.54,281.47 28.54,46 89.54,2 	"
     />
-    <circle
-      id="db_${id}_645_"
-      class="db-${id}-st7"
-      cx="29.22"
-      cy="63.16"
-      r="2.03"
+    <g>
+      <linearGradient
+        id="kydt_${id}_1_"
+        gradientUnits="userSpaceOnUse"
+        x1="88.5355"
+        y1="287"
+        x2="88.5355"
+        y2="48"
+      >
+        <stop offset="0" style="stop-color:#BDBDBD" />
+        <stop offset="0.5168" style="stop-color:#F4F4F4" />
+        <stop offset="0.6083" style="stop-color:#EEEFEF" />
+        <stop offset="0.728" style="stop-color:#DEDFE0" />
+        <stop offset="0.8632" style="stop-color:#C3C5C7" />
+        <stop offset="1" style="stop-color:#A0A4A7" />
+      </linearGradient>
+      <rect
+        x="22.54"
+        y="48"
+        class="kydt-${id}-st4"
+        width="132"
+        height="239"
+      />
+    </g>
+    <g>
+      <linearGradient
+        id="kydt_${id}_2_"
+        gradientUnits="userSpaceOnUse"
+        x1="154.5355"
+        y1="143.5"
+        x2="220.5355"
+        y2="143.5"
+      >
+        <stop offset="0" style="stop-color:#888E9A" />
+        <stop offset="1" style="stop-color:#5A5D6E" />
+      </linearGradient>
+      <polygon
+        class="kydt-${id}-st5"
+        points="154.54,287 220.54,239 220.54,0 154.54,48 		"
+      />
+    </g>
+    <g class="kydt-${id}-st6">
+      <polygon points="87.48,48 86.28,48 86.28,287 87.48,287 87.48,48 		" />
+    </g>
+    <g>
+      <g>
+        <path
+          class="kydt-${id}-st7"
+          d="M88.54,0l-66,48h132l66-48H88.54z M153.54,46h-125l61-44h125L153.54,46z"
+        />
+      </g>
+    </g>
+    <g>
+      <polygon
+        class="kydt-${id}-st8"
+        points="170.59,26.44 0,26.44 4.34,23.13 174.93,23.13 		"
+      />
+    </g>
+    <g>
+      <polygon
+        class="kydt-${id}-st2"
+        points="170.59,289 174.93,285.69 174.93,23.13 170.59,26.44 		"
+      />
+    </g>
+    <g>
+      <linearGradient
+        id="kydt_${id}_3_"
+        gradientUnits="userSpaceOnUse"
+        x1="85.2956"
+        y1="289"
+        x2="85.2956"
+        y2="26.4376"
+      >
+        <stop offset="0" style="stop-color:#959A9E" />
+        <stop offset="0.5168" style="stop-color:#E1E2DD" />
+        <stop offset="1" style="stop-color:#838793" />
+      </linearGradient>
+      <polygon
+        class="kydt-${id}-st9"
+        points="0,26.44 0,289 19,289 19,50 151,50 151,289 170.59,289 170.59,26.44 		"
+      />
+    </g>
+    <g>
+      <polygon
+        class="kydt-${id}-st2"
+        points="22.54,50 19,50 19,289 22.54,287 		"
+      />
+    </g>
+    <g>
+      <rect
+        x="66"
+        y="29.44"
+        class="kydt-${id}-st10"
+        width="40"
+        height="17.56"
+      />
+    </g>
+    <g>
+      <rect
+        x="153.93"
+        y="156.07"
+        class="kydt-${id}-st11"
+        width="14"
+        height="30.72"
+      />
+    </g>
+    <g class="kydt-${id}-st6">
+      <circle cx="161.32" cy="164.59" r="4.17" />
+    </g>
+    <g>
+      <rect x="68" y="31.44" width="36" height="13.56" />
+    </g>
+    <g>
+      <linearGradient
+        id="kydt_${id}_4_"
+        gradientUnits="userSpaceOnUse"
+        x1="158.9103"
+        y1="162.0714"
+        x2="161.7412"
+        y2="166.1156"
+      >
+        <stop offset="0" style="stop-color:#959A9E" />
+        <stop offset="1" style="stop-color:#E1E2DD" />
+      </linearGradient>
+      <circle
+        class="kydt-${id}-st12"
+        cx="160.94"
+        cy="164.97"
+        r="3.78"
+      />
+    </g>
+    <g class="kydt-${id}-st6">
+      <circle cx="161.32" cy="178.59" r="4.17" />
+    </g>
+    <g>
+      <linearGradient
+        id="kydt_${id}_5_"
+        gradientUnits="userSpaceOnUse"
+        x1="158.9103"
+        y1="176.0714"
+        x2="161.7412"
+        y2="180.1156"
+      >
+        <stop offset="0" style="stop-color:#959A9E" />
+        <stop offset="1" style="stop-color:#E1E2DD" />
+      </linearGradient>
+      <circle
+        class="kydt-${id}-st13"
+        cx="160.94"
+        cy="178.97"
+        r="3.78"
+      />
+    </g>
+  </g>
+  <g class="SVG_ani" >
+    <g class="f1">
+      <animate
+        values="show;hide"
+        dur="2s"
+        attributeName="class"
+        repeatCount="indefinite"
+      />
+      <polygon
+        class="kydt-${id}-st14"
+        points="97.72,35.27 94.27,41.16 90.81,35.27 	"
+      />
+
+      <radialGradient
+        id="kydt_${id}_6_"
+        cx="474.2651"
+        cy="408.2188"
+        r="6.7812"
+        gradientTransform="matrix(-1 0 0 -1 568.5302 446.4377)"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset="0" style="stop-color:#FF0000" />
+        <stop offset="1" style="stop-color:#FF0000;stop-opacity:0" />
+      </radialGradient>
+      <circle
+        class="kydt-${id}-st15"
+        cx="94.27"
+        cy="38.22"
+        r="6.78"
+      />
+      <polygon
+        class="kydt-${id}-st16"
+        points="73.81,41.16 77.27,35.27 80.72,41.16 	"
+      />
+    </g>
+    <g class="f2">
+      <animate
+        values="hide;show;"
+        dur="2s"
+        attributeName="class"
+        repeatCount="indefinite"
+      />
+      <polygon
+        class="kydt-${id}-st14"
+        points="73.81,41.16 77.27,35.27 80.72,41.16 	"
+      />
+      <radialGradient
+        id="kydt_${id}_7_"
+        cx="77.2651"
+        cy="38.2188"
+        r="6.7812"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop offset="0" style="stop-color:#FF0000" />
+        <stop offset="1" style="stop-color:#FF0000;stop-opacity:0" />
+      </radialGradient>
+      <circle
+        class="kydt-${id}-st17"
+        cx="77.27"
+        cy="38.22"
+        r="6.78"
+      />
+      <polygon
+        class="kydt-${id}-st16"
+        points="97.72,35.27 94.27,41.16 90.81,35.27 	"
+      />
+    </g>
+  </g>
+
+  <g class="SVG_sta">
+    <polygon
+      class="kydt-${id}-st16"
+      points="73.81,41.16 77.27,35.27 80.72,41.16 	"
     />
-    <circle
-      id="db_${id}_659_"
-      class="db-${id}-st7"
-      cx="46.22"
-      cy="63.16"
-      r="2.03"
+    <polygon
+      class="kydt-${id}-st16"
+      points="97.72,35.27 94.27,41.16 90.81,35.27 	"
     />
-    <rect
-      id="db_${id}_644_"
-      x="9.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_643_"
-      x="19.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_635_"
-      x="29.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_634_"
-      x="39.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_6_"
-      x="8.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_5_"
-      x="18.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_4_"
-      x="28.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_2_"
-      x="38.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_632_"
-      x="9.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_552_"
-      x="19.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_551_"
-      x="29.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_9_"
-      x="8.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_8_"
-      x="18.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_7_"
-      x="28.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_550_"
-      x="8.48"
-      y="42.05"
-      class="db-${id}-st4"
-      width="36.74"
-      height="1"
-    />
-    <linearGradient
-      id="db_${id}_12_"
-      gradientUnits="userSpaceOnUse"
-      x1="64.1155"
-      y1="55.0819"
-      x2="64.1155"
-      y2="0"
-    >
-      <stop offset="0" style="stop-color:#C2C8CE" />
-      <stop offset="1" style="stop-color:#848689" />
-    </linearGradient>
-    <path
-      id="db_${id}_1_"
-      class="db-${id}-st10"
-      d="M69.73,41L58.5,55.08v-41L69.73,0V41z"
-    />
-  </g>`;
-    if (pointValue == 2) {
-      text += `
+  </g>
   <g class="SVG_alert" >
-    <path
-      class="db-${id}-st11"
-      d="M69.73,0h-57.5L0,14.08v41h2v7.86v2.48c0,1.9,1.54,3.44,3.44,3.44h47.62c1.08,0,2.04-0.51,2.67-1.29
-              l0.01,0.01l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73v-7.84l2-2.51V0z"
-    />
+    <g class="kydt-${id}-st18">
+      <polygon
+        class="kydt-${id}-st14"
+        points="220.54,0 88.54,0 56.73,23.13 4.34,23.13 0,26.44 0,289 19,289 22.54,287 86.28,287 87.48,287
+                151,287 151,289 170.59,289 174.93,285.69 174.93,272.17 220.54,239 		"
+      />
+    </g>
   </g>`;
-    }
     return text;
   }
 
@@ -334,10 +438,11 @@ class Text extends Component {
 
   //刷新内容
   refreshContent(data) {
+    let { info = {} } = this;
     let { point } = data || {};
     if (point) {
       let { value = "" } = point || {};
-      this.pointValue = value;
+      info.content = value;
       this.refresh();
     }
   }
@@ -345,10 +450,23 @@ class Text extends Component {
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
-    let { id = "" } = info || {};
+    let { id = "", height = 0, width = 0, content = "" } = info || {};
     let $container = $(`#${id}>.component`);
-    $container.html(this.renderSvg());
+    let $svg = $container.find("svg");
+    $svg.attr({ width, height });
+    if (content == 0) {
+      $svg.find(".SVG_ani").hide();
+      $svg.find(".SVG_sta").show();
+      $svg.find(".SVG_alert").hide();
+    } else if (content == 1) {
+      $svg.find(".SVG_ani").show();
+      $svg.find(".SVG_sta").hide();
+      $svg.find(".SVG_alert").hide();
+    } else if (content == 2) {
+      $svg.find(".SVG_ani").hide();
+      $svg.find(".SVG_sta").hide();
+      $svg.find(".SVG_alert").show();
+    }
   }
 
   event() {}

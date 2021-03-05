@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import App from "./App";
-import "./registerServiceWorker";
+// import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 import bmCommon from "@/common/common";

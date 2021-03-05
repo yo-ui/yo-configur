@@ -22,20 +22,20 @@ const Routers = [
     component: () =>
       import(/* webpackChunkName: "not" */ "@/pages/common/NotFound")
   },
+  // {
+  //   path: RouterURL.index.path,
+  //   name: RouterURL.index.name,
+  //   meta: {
+  //     title: RouterURL.index.title
+  //     // requireAuth: routerAuth //是否需要登录
+  //   },
+  //   component: () => import(/* webpackChunkName: "bm-index" */ "@/pages/Index")
+  // },
   {
     path: RouterURL.index.path,
     name: RouterURL.index.name,
     meta: {
       title: RouterURL.index.title
-      // requireAuth: routerAuth //是否需要登录
-    },
-    component: () => import(/* webpackChunkName: "bm-index" */ "@/pages/Index")
-  },
-  {
-    path: RouterURL.homeIndex.path,
-    name: RouterURL.homeIndex.name,
-    meta: {
-      title: RouterURL.homeIndex.title
       // requireAuth: routerAuth //是否需要登录
     },
     component: () =>

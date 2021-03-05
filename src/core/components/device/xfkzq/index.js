@@ -1,4 +1,4 @@
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/display.less";
 // 新风控制器
@@ -384,13 +384,8 @@ class Display extends Component {
 
   renderTextContent() {
     let { info = {}, point = {} } = this;
-    let {
-      id = "",
-      content = false,
-      bindData = {},
-      descrStyle = {},
-      valueStyle = {}
-    } = info || {};
+    let { id = "", bindData = {}, descrStyle = {}, valueStyle = {} } =
+      info || {};
     let { devicePoint = "" } = bindData || {};
     let { showCode = "", formatNum = "" } = descrStyle || {};
     let { decimal = "" } = valueStyle || {};
@@ -464,7 +459,6 @@ class Display extends Component {
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let { id = "", height = 0, width = 0, content = false } = info || {};
     let $container = $(`#${id}>.component`);
     let $svg = $container.find("svg");

@@ -549,8 +549,8 @@ export default {
         comDisabled,
         id,
         alias,
-        left,
-        top
+        left: left + 30,
+        top: top + 30
       };
       // if (alias == "linkPoint") {
       //   this.setLinkPoint(item);

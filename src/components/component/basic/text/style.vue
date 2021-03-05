@@ -1163,7 +1163,7 @@
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {

@@ -401,7 +401,7 @@ let componentLibrary = [
         name: "表格",
         code: "table",
         icon: "/static/img/configur/visualtable.png",
-        comDisabled: true, // 组件是否可用
+        // comDisabled: true, // 组件是否可用
         data: {
           ...baseData,
           width: 800,
@@ -2261,43 +2261,43 @@ let componentLibrary = [
               height: 300,
               dataType: "point"
             }
-          },
-          {
-            name: "时序柱状图",
-            code: "sequenceBarChart",
-            icon: "/static/img/configur/curve.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "折线柱状图",
-            code: "lineBarChart",
-            icon: "/static/img/configur/curve.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "堆叠柱状图",
-            code: "pileBarChart",
-            icon: "/static/img/configur/curve.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
           }
+          // {
+          //   name: "时序柱状图",
+          //   code: "sequenceBarChart",
+          //   icon: "/static/img/configur/curve.png",
+          //   comDisabled: true, //组件不可用
+          //   data: {
+          //     ...baseData,
+          //     width: 400,
+          //     height: 300,
+          //     dataType: "device"
+          //   }
+          // },
+          // {
+          //   name: "折线柱状图",
+          //   code: "lineBarChart",
+          //   icon: "/static/img/configur/curve.png",
+          //   comDisabled: true, //组件不可用
+          //   data: {
+          //     ...baseData,
+          //     width: 400,
+          //     height: 300,
+          //     dataType: "device"
+          //   }
+          // },
+          // {
+          //   name: "堆叠柱状图",
+          //   code: "pileBarChart",
+          //   icon: "/static/img/configur/curve.png",
+          //   comDisabled: true, //组件不可用
+          //   data: {
+          //     ...baseData,
+          //     width: 400,
+          //     height: 300,
+          //     dataType: "device"
+          //   }
+          // }
         ]
       },
       {
@@ -2314,75 +2314,75 @@ let componentLibrary = [
               height: 300,
               dataType: "point"
             }
-          },
-          {
-            name: "统计面积图",
-            code: "statisticsAreaLineChart",
-            icon: "/static/img/configur/curve.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "时序折线图",
-            code: "sequenceLineChart",
-            icon: "/static/img/configur/curve.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "时序面积图",
-            code: "sequenceAreaLineChart",
-            icon: "/static/img/configur/curve.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
           }
+          // {
+          //   name: "统计面积图",
+          //   code: "statisticsAreaLineChart",
+          //   icon: "/static/img/configur/curve.png",
+          //   comDisabled: true, //组件不可用
+          //   data: {
+          //     ...baseData,
+          //     width: 400,
+          //     height: 300,
+          //     dataType: "device"
+          //   }
+          // },
+          // {
+          //   name: "时序折线图",
+          //   code: "sequenceLineChart",
+          //   icon: "/static/img/configur/curve.png",
+          //   comDisabled: true, //组件不可用
+          //   data: {
+          //     ...baseData,
+          //     width: 400,
+          //     height: 300,
+          //     dataType: "device"
+          //   }
+          // },
+          // {
+          //   name: "时序面积图",
+          //   code: "sequenceAreaLineChart",
+          //   icon: "/static/img/configur/curve.png",
+          //   comDisabled: true, //组件不可用
+          //   data: {
+          //     ...baseData,
+          //     width: 400,
+          //     height: 300,
+          //     dataType: "device"
+          //   }
+          // }
         ]
       },
-      {
-        groupName: "散点气泡图",
-        groupCode: "scatter-bubble-chart",
-        comList: [
-          {
-            name: "散点图",
-            code: "scatterChart",
-            icon: "/static/img/configur/curve.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "气泡图",
-            code: "bubbleChart",
-            icon: "/static/img/configur/curve.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          }
-        ]
-      },
+      // {
+      //   groupName: "散点气泡图",
+      //   groupCode: "scatter-bubble-chart",
+      //   comList: [
+      //     {
+      //       name: "散点图",
+      //       code: "scatterChart",
+      //       icon: "/static/img/configur/curve.png",
+      //       comDisabled: true, //组件不可用
+      //       data: {
+      //         ...baseData,
+      //         width: 400,
+      //         height: 300,
+      //         dataType: "device"
+      //       }
+      //     },
+      //     {
+      //       name: "气泡图",
+      //       code: "bubbleChart",
+      //       icon: "/static/img/configur/curve.png",
+      //       comDisabled: true, //组件不可用
+      //       data: {
+      //         ...baseData,
+      //         width: 400,
+      //         height: 300,
+      //         dataType: "device"
+      //       }
+      //     }
+      //   ]
+      // },
       {
         groupName: "单值图表",
         groupCode: "single-value-chart",
@@ -2397,51 +2397,51 @@ let componentLibrary = [
               height: 300,
               dataType: "device"
             }
-          },
-          {
-            name: "水球图",
-            code: "liquidfillChart",
-            icon: "/static/img/configur/meter.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
           }
+          // {
+          //   name: "水球图",
+          //   code: "liquidfillChart",
+          //   icon: "/static/img/configur/meter.png",
+          //   comDisabled: true, //组件不可用
+          //   data: {
+          //     ...baseData,
+          //     width: 400,
+          //     height: 300,
+          //     dataType: "device"
+          //   }
+          // }
         ]
       },
-      {
-        groupName: "雷达图",
-        groupCode: "radar-chart",
-        comList: [
-          {
-            name: "统计雷达图",
-            code: "statisticsRadarChart",
-            icon: "/static/img/configur/meter.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "面积雷达图",
-            code: "areaRadarChart",
-            icon: "/static/img/configur/meter.png",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 400,
-              height: 300,
-              dataType: "device"
-            }
-          }
-        ]
-      },
+      // {
+      //   groupName: "雷达图",
+      //   groupCode: "radar-chart",
+      //   comList: [
+      //     {
+      //       name: "统计雷达图",
+      //       code: "statisticsRadarChart",
+      //       icon: "/static/img/configur/meter.png",
+      //       comDisabled: true, //组件不可用
+      //       data: {
+      //         ...baseData,
+      //         width: 400,
+      //         height: 300,
+      //         dataType: "device"
+      //       }
+      //     },
+      //     {
+      //       name: "面积雷达图",
+      //       code: "areaRadarChart",
+      //       icon: "/static/img/configur/meter.png",
+      //       comDisabled: true, //组件不可用
+      //       data: {
+      //         ...baseData,
+      //         width: 400,
+      //         height: 300,
+      //         dataType: "device"
+      //       }
+      //     }
+      //   ]
+      // },
       {
         groupName: "饼图",
         groupCode: "pie-chart",
@@ -2456,135 +2456,135 @@ let componentLibrary = [
               height: 300,
               dataType: "device"
             }
-          },
-          {
-            name: "圆环图",
-            code: "ringChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "南丁格尔图",
-            code: "nightingalePieChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "南丁格尔环图",
-            code: "nightingaleRingChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
           }
-        ]
-      },
-      {
-        groupName: "条形图",
-        groupCode: "bar-type-chart",
-        comList: [
-          {
-            name: "统计条形图",
-            code: "statisticsBarTypeChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "堆叠条形图",
-            code: "pileBarTypeChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "时序条形图",
-            code: "sequenceBarTypeChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          }
-        ]
-      },
-      {
-        groupName: "混合图",
-        groupCode: "mix-chart",
-        comList: [
-          {
-            name: "双Y轴图",
-            code: "doubleYChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          }
-        ]
-      },
-      {
-        groupName: "三维图",
-        groupCode: "3d-chart",
-        comList: [
-          {
-            name: "三维柱状图",
-            code: "3dBarChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          },
-          {
-            name: "三维散点图",
-            code: "3dScatterChart",
-            icon: "/static/img/configur/piechart.jpg",
-            comDisabled: true, //组件不可用
-            data: {
-              ...baseData,
-              width: 500,
-              height: 300,
-              dataType: "device"
-            }
-          }
+          // {
+          //   name: "圆环图",
+          //   code: "ringChart",
+          //   icon: "/static/img/configur/piechart.jpg",
+          //   comDisabled: true, //组件不可用
+          //   data: {
+          //     ...baseData,
+          //     width: 500,
+          //     height: 300,
+          //     dataType: "device"
+          //   }
+          // },
+          // {
+          //   name: "南丁格尔图",
+          //   code: "nightingalePieChart",
+          //   icon: "/static/img/configur/piechart.jpg",
+          //   comDisabled: true, //组件不可用
+          //   data: {
+          //     ...baseData,
+          //     width: 500,
+          //     height: 300,
+          //     dataType: "device"
+          //   }
+          // },
+          // {
+          //   name: "南丁格尔环图",
+          //   code: "nightingaleRingChart",
+          //   icon: "/static/img/configur/piechart.jpg",
+          //   comDisabled: true, //组件不可用
+          //   data: {
+          //     ...baseData,
+          //     width: 500,
+          //     height: 300,
+          //     dataType: "device"
+          //   }
+          // }
         ]
       }
+      // {
+      //   groupName: "条形图",
+      //   groupCode: "bar-type-chart",
+      //   comList: [
+      //     {
+      //       name: "统计条形图",
+      //       code: "statisticsBarTypeChart",
+      //       icon: "/static/img/configur/piechart.jpg",
+      //       comDisabled: true, //组件不可用
+      //       data: {
+      //         ...baseData,
+      //         width: 500,
+      //         height: 300,
+      //         dataType: "device"
+      //       }
+      //     },
+      //     {
+      //       name: "堆叠条形图",
+      //       code: "pileBarTypeChart",
+      //       icon: "/static/img/configur/piechart.jpg",
+      //       comDisabled: true, //组件不可用
+      //       data: {
+      //         ...baseData,
+      //         width: 500,
+      //         height: 300,
+      //         dataType: "device"
+      //       }
+      //     },
+      //     {
+      //       name: "时序条形图",
+      //       code: "sequenceBarTypeChart",
+      //       icon: "/static/img/configur/piechart.jpg",
+      //       comDisabled: true, //组件不可用
+      //       data: {
+      //         ...baseData,
+      //         width: 500,
+      //         height: 300,
+      //         dataType: "device"
+      //       }
+      //     }
+      //   ]
+      // },
+      // {
+      //   groupName: "混合图",
+      //   groupCode: "mix-chart",
+      //   comList: [
+      //     {
+      //       name: "双Y轴图",
+      //       code: "doubleYChart",
+      //       icon: "/static/img/configur/piechart.jpg",
+      //       comDisabled: true, //组件不可用
+      //       data: {
+      //         ...baseData,
+      //         width: 500,
+      //         height: 300,
+      //         dataType: "device"
+      //       }
+      //     }
+      //   ]
+      // },
+      // {
+      //   groupName: "三维图",
+      //   groupCode: "3d-chart",
+      //   comList: [
+      //     {
+      //       name: "三维柱状图",
+      //       code: "3dBarChart",
+      //       icon: "/static/img/configur/piechart.jpg",
+      //       comDisabled: true, //组件不可用
+      //       data: {
+      //         ...baseData,
+      //         width: 500,
+      //         height: 300,
+      //         dataType: "device"
+      //       }
+      //     },
+      //     {
+      //       name: "三维散点图",
+      //       code: "3dScatterChart",
+      //       icon: "/static/img/configur/piechart.jpg",
+      //       comDisabled: true, //组件不可用
+      //       data: {
+      //         ...baseData,
+      //         width: 500,
+      //         height: 300,
+      //         dataType: "device"
+      //       }
+      //     }
+      //   ]
+      // }
     ]
   },
   {

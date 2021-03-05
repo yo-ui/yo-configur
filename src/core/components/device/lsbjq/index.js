@@ -1,7 +1,7 @@
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
-// 电表
+// 漏水报警器
 class Text extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +15,7 @@ class Text extends Component {
     return super.wrap(
       { info },
       `
-    <div class="bm-device-db-com component"
+    <div class="bm-device-lsbjq-com component"
     style="${this.composeStyles(this.comStyle())}">
     ${this.renderSvg()}
 
@@ -30,325 +30,186 @@ class Text extends Component {
     return `<svg
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 70 69"
+    viewBox="0 0 34 44"
     width="${width}"
     height="${height}"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xml:space="preserve"
   >
     <defs><style type='text/css'>
-    .db-${id}-st0 {
-        fill: url(#db_${id}_1_);
-      }
-      .db-${id}-st1 {
-        fill: #dfe3e8;
-      }
-      .db-${id}-st2 {
-        fill: url(#db_${id}_11_);
-      }
-      .db-${id}-st3 {
-        fill: #ffffff;
-      }
-      .db-${id}-st4 {
-        fill: #c2c8ce;
-      }
-      .db-${id}-st5 {
-        fill: #848776;
-      }
-      .db-${id}-st6 {
-        fill: #25282b;
-      }
-      .db-${id}-st7 {
-        fill: #8f9499;
-      }
-      .db-${id}-st8 {
-        fill: #5b280e;
-      }
-      .db-${id}-st9 {
-        fill: #f95d06;
-      }
-      .db-${id}-st10 {
-        fill: url(#db_${id}_12_);
-      }
-      .db-${id}-st11 {
-        opacity: 0.4;
-        fill: #ff0000;
-      }
+    .lsbjq-${id}-st0{fill:url(#lsbjq_${id}_2_);}
+    .lsbjq-${id}-st1{fill:#AEB4BA;}
+    .lsbjq-${id}-st2{opacity:0.5;}
+    .lsbjq-${id}-st3{fill:#3E8CCC;}
+    .lsbjq-${id}-st4{fill:#14527C;}
+    .lsbjq-${id}-st5{fill:#F2F5F9;}
     </style></defs>
     ${this.renderSvgContent()}
   </svg>`;
   }
   renderSvgContent() {
-    let { info = {}, pointValue } = this;
+    let { info = {} } = this;
     let { id = "" } = info || {};
     let text = `
-  <g>
     <linearGradient
-      id="db_${id}_1_"
-      gradientUnits="userSpaceOnUse"
-      x1="60.525"
-      y1="62.945"
-      x2="54.1179"
-      y2="57.8484"
-    >
-      <stop offset="0" style="stop-color:#C2C8CE" />
-      <stop offset="1" style="stop-color:#848689" />
-    </linearGradient>
-    <path
-      class="db-${id}-st0"
-      d="M67.73,41h-54.5v10.34c0,1.9,1.54,3.44,3.44,3.44h33.57l5.49,12.81l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69
-              l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73V41z"
-    />
-    <path
-      id="db_${id}_657_"
-      class="db-${id}-st1"
-      d="M56.5,55.08H2v10.34c0,1.9,1.54,3.44,3.44,3.44h47.62c1.9,0,3.44-1.54,3.44-3.44V55.08z"
-    />
-    <linearGradient
-      id="db_${id}_11_"
-      gradientUnits="userSpaceOnUse"
-      x1="29.2499"
-      y1="58.6952"
-      x2="29.2499"
-      y2="49.8142"
-    >
-      <stop offset="0" style="stop-color:#000000;stop-opacity:0" />
-      <stop offset="1" style="stop-color:#000000" />
-    </linearGradient>
-    <rect
-      id="db_${id}_658_"
-      x="2"
-      y="54.06"
-      class="db-${id}-st2"
-      width="54.5"
-      height="8.88"
-    />
-    <rect
-      id="db_${id}_656_"
-      x="1"
-      y="15.08"
-      class="db-${id}-st3"
-      width="56.5"
-      height="39"
-    />
-    <path
-      id="db_${id}_653_"
-      class="db-${id}-st1"
-      d="M58.5,55.08H0v-41h58.5V55.08z M2,53.08h54.5v-37H2V53.08z"
-    />
-    <polygon
-      id="db_${id}_652_"
-      class="db-${id}-st4"
-      points="58.5,14.08 0,14.08 12.23,0 69.73,0 	"
-    />
-    <g id="db_${id}_647_">
-      <rect
-        id="db_${id}_651_"
-        x="9.5"
-        y="21.5"
-        class="db-${id}-st5"
-        width="40"
-        height="12"
+    idlsbjq_${id}_2_"
+    gradientUnits="userSpaceOnUse"
+    x1="-6.943264e-007"
+    y1="25.1947"
+    x2="34"
+    y2="25.1947"
+  >
+    <stop offset="0" style="stop-color:#BCC6C9" />
+    <stop offset="0.1639" style="stop-color:#D0D8DB" />
+    <stop offset="0.358" style="stop-color:#E2E7EA" />
+    <stop offset="0.5" style="stop-color:#E8EDF0" />
+    <stop offset="0.6116" style="stop-color:#E2E7EA" />
+    <stop offset="0.7643" style="stop-color:#D0D7DB" />
+    <stop offset="0.9399" style="stop-color:#B4BDC1" />
+    <stop offset="1" style="stop-color:#A8B2B7" />
+  </linearGradient>
+  <path
+    idlsbjq_${id}_1517_"
+    class="lsbjq-${id}-st0"
+    d="M0,6.4v35.6C0,43.1,7.6,44,17,44c9.4,0,17-0.9,17-2.1V6.4H0z"
+  />
+  <path
+    idlsbjq_${id}_1516_"
+    class="lsbjq-${id}-st1"
+    d="M1.2,0.8L0,6.4c0,1.1,7.6,2.1,17,2.1c9.4,0,17-0.9,17-2.1l-1.2-5.6c-0.1-0.5-0.5-0.8-1-0.8
+      H2.2C1.7,0,1.3,0.3,1.2,0.8z"
+  />
+  <g idlsbjq_${id}_1530_" class="lsbjq-${id}-st2">
+    <g idlsbjq_${id}_1519_">
+      <path
+        idlsbjq_${id}_1520_"
+        d="M25.1,39.6v1.2c5.3-0.3,8.9-1,8.9-1.8v-1.2C34,38.5,30.4,39.2,25.1,39.6z"
       />
       <path
-        id="db_${id}_648_"
-        class="db-${id}-st6"
-        d="M50.5,34.5h-42v-14h42V34.5z M10.5,32.5h38v-10h-38V32.5z"
+        idlsbjq_${id}_1522_"
+        d="M8.9,39.6c-5.3-0.3-8.9-1-8.9-1.8v1.2c0,0.8,3.6,1.5,8.9,1.8V39.6z"
       />
     </g>
-    <circle
-      id="db_${id}_646_"
-      class="db-${id}-st7"
-      cx="11.97"
-      cy="63.16"
-      r="2.03"
-    />
-    <circle
-      id="db_${id}_645_"
-      class="db-${id}-st7"
-      cx="29.22"
-      cy="63.16"
-      r="2.03"
-    />
-    <circle
-      id="db_${id}_659_"
-      class="db-${id}-st7"
-      cx="46.22"
-      cy="63.16"
-      r="2.03"
-    />
-    <rect
-      id="db_${id}_644_"
-      x="9.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_643_"
-      x="19.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_635_"
-      x="29.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_634_"
-      x="39.74"
-      y="36.5"
-      class="db-${id}-st6"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_6_"
-      x="8.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_5_"
-      x="18.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_4_"
-      x="28.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_2_"
-      x="38.74"
-      y="37.5"
-      class="db-${id}-st7"
-      width="4.48"
-      height="2.5"
-    />
-    <rect
-      id="db_${id}_632_"
-      x="9.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_552_"
-      x="19.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_551_"
-      x="29.61"
-      y="44.98"
-      class="db-${id}-st8"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_9_"
-      x="8.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_8_"
-      x="18.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_7_"
-      x="28.61"
-      y="45.98"
-      class="db-${id}-st9"
-      width="6.72"
-      height="3.69"
-    />
-    <rect
-      id="db_${id}_550_"
-      x="8.48"
-      y="42.05"
-      class="db-${id}-st4"
-      width="36.74"
-      height="1"
-    />
-    <linearGradient
-      id="db_${id}_12_"
-      gradientUnits="userSpaceOnUse"
-      x1="64.1155"
-      y1="55.0819"
-      x2="64.1155"
-      y2="0"
-    >
-      <stop offset="0" style="stop-color:#C2C8CE" />
-      <stop offset="1" style="stop-color:#848689" />
-    </linearGradient>
-    <path
-      id="db_${id}_1_"
-      class="db-${id}-st10"
-      d="M69.73,41L58.5,55.08v-41L69.73,0V41z"
-    />
-  </g>`;
-    if (pointValue == 2) {
-      text += `
-  <g class="SVG_alert" >
-    <path
-      class="db-${id}-st11"
-      d="M69.73,0h-57.5L0,14.08v41h2v7.86v2.48c0,1.9,1.54,3.44,3.44,3.44h47.62c1.08,0,2.04-0.51,2.67-1.29
-              l0.01,0.01l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73v-7.84l2-2.51V0z"
-    />
-  </g>`;
-    }
+    <g idlsbjq_${id}_1518_">
+      <path
+        idlsbjq_${id}_1523_"
+        d="M25.1,36.6v1.2c5.3-0.3,8.9-1,8.9-1.8v-1.2C34,35.5,30.4,36.2,25.1,36.6z"
+      />
+      <path
+        idlsbjq_${id}_1521_"
+        d="M8.9,36.6c-5.3-0.3-8.9-1-8.9-1.8v1.2c0,0.8,3.6,1.5,8.9,1.8V36.6z"
+      />
+    </g>
+    <g idlsbjq_${id}_1524_">
+      <path
+        idlsbjq_${id}_1526_"
+        d="M25.1,33.6v1.2c5.3-0.3,8.9-1,8.9-1.8v-1.2C34,32.5,30.4,33.2,25.1,33.6z"
+      />
+      <path
+        idlsbjq_${id}_1525_"
+        d="M8.9,33.6c-5.3-0.3-8.9-1-8.9-1.8v1.2c0,0.8,3.6,1.5,8.9,1.8V33.6z"
+      />
+    </g>
+    <g idlsbjq_${id}_1527_">
+      <path
+        idlsbjq_${id}_1529_"
+        d="M25.1,30.6v1.2c5.3-0.3,8.9-1,8.9-1.8v-1.2C34,29.5,30.4,30.2,25.1,30.6z"
+      />
+      <path
+        idlsbjq_${id}_1528_"
+        d="M8.9,30.6c-5.3-0.3-8.9-1-8.9-1.8v1.2c0,0.8,3.6,1.5,8.9,1.8V30.6z"
+      />
+    </g>
+  </g>
+  <g idlsbjq_${id}_1531_" class="lsbjq-${id}-st2">
+    <g idlsbjq_${id}_1566_">
+      <path
+        idlsbjq_${id}_1568_"
+        d="M25.1,20.6v1.2c5.3-0.3,8.9-1,8.9-1.8v-1.2C34,19.5,30.4,20.2,25.1,20.6z"
+      />
+      <path
+        idlsbjq_${id}_1567_"
+        d="M8.9,20.6c-5.3-0.3-8.9-1-8.9-1.8v1.2c0,0.8,3.6,1.5,8.9,1.8V20.6z"
+      />
+    </g>
+    <g idlsbjq_${id}_1538_">
+      <path
+        idlsbjq_${id}_1565_"
+        d="M25.1,17.6v1.2c5.3-0.3,8.9-1,8.9-1.8v-1.2C34,16.5,30.4,17.2,25.1,17.6z"
+      />
+      <path
+        idlsbjq_${id}_1539_"
+        d="M8.9,17.6c-5.3-0.3-8.9-1-8.9-1.8v1.2c0,0.8,3.6,1.5,8.9,1.8V17.6z"
+      />
+    </g>
+    <g idlsbjq_${id}_1535_">
+      <path
+        idlsbjq_${id}_1537_"
+        d="M25.1,14.6v1.2c5.3-0.3,8.9-1,8.9-1.8v-1.2C34,13.5,30.4,14.2,25.1,14.6z"
+      />
+      <path
+        idlsbjq_${id}_1536_"
+        d="M8.9,14.6c-5.3-0.3-8.9-1-8.9-1.8v1.2c0,0.8,3.6,1.5,8.9,1.8V14.6z"
+      />
+    </g>
+    <g idlsbjq_${id}_1532_">
+      <path
+        idlsbjq_${id}_1534_"
+        d="M25.1,11.6v1.2c5.3-0.3,8.9-1,8.9-1.8V9.8C34,10.5,30.4,11.2,25.1,11.6z"
+      />
+      <path
+        idlsbjq_${id}_1533_"
+        d="M8.9,11.6C3.6,11.2,0,10.5,0,9.8v1.2c0,0.8,3.6,1.5,8.9,1.8V11.6z"
+      />
+    </g>
+  </g>
+  <path
+    idlsbjq_${id}_1571_"
+    class="lsbjq-${id}-st3"
+    d="M21.7,41.1h-9.4c-0.8,0-1.5-0.7-1.5-1.5v-26c0-0.8,0.7-1.5,1.5-1.5h9.4c0.8,0,1.5,0.7,1.5,1.5
+      v26C23.2,40.5,22.5,41.1,21.7,41.1z"
+  />
+  <ellipse
+    idlsbjq_${id}_1570_"
+    class="lsbjq-${id}-st4"
+    cx="17"
+    cy="20.2"
+    rx="4.4"
+    ry="3.9"
+  />
+  <ellipse
+    idlsbjq_${id}_1569_"
+    class="lsbjq-${id}-st5"
+    cx="17"
+    cy="20.7"
+    rx="3.9"
+    ry="3.4"
+  />`;
     return text;
   }
 
-  //加载数据
-  loadData() {
-    this.loadDeviceInfo();
-  }
+  // //加载数据
+  // loadData() {
+  //   this.loadDeviceInfo();
+  // }
 
-  //刷新内容
-  refreshContent(data) {
-    let { point } = data || {};
-    if (point) {
-      let { value = "" } = point || {};
-      this.pointValue = value;
-      this.refresh();
-    }
-  }
+  // //刷新内容
+  // refreshContent(data) {
+  //   let { point } = data || {};
+  //   if (point) {
+  //     let { value = "" } = point || {};
+  //     this.pointValue = value;
+  //     this.refresh();
+  //   }
+  // }
 
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
-    let { id = "" } = info || {};
+    let { id = "", width = 0, height = 0 } = info || {};
     let $container = $(`#${id}>.component`);
-    $container.html(this.renderSvg());
+    let $svg = $container.find(`svg`);
+    $svg.attr({ width, height });
   }
 
   event() {}

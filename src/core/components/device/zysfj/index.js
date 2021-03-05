@@ -105,7 +105,7 @@ class Display extends Component {
   }
 
   renderSvgContent() {
-    let { info = {}, pointValue } = this;
+    let { info = {} } = this;
     let { id = "" } = info || {};
     let text = `
 <g id="SVG_base1">

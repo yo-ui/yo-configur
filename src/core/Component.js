@@ -359,7 +359,7 @@ class Component {
       ? ""
       : `
     <i title="旋转" class="operate-btn el-icon-refresh-right" style="transform: scale(${1 /
-      zoom}) translate(-${zoom * 50}%, 0),
+      zoom}) translate(-${zoom * 50}%, 0);
     top: ${-50 / zoom}px"></i>
       <i title="旋转轴" class="operate-btn el-icon-axis" style="${
         {
@@ -373,7 +373,7 @@ class Component {
           "left bottom": " left: 0; top: 100% ",
           left: " left: 0; top: 50%"
         }[transformOrigin]
-      },transform: scale(${1 / zoom}) translate(-${zoom * 50}%, -${zoom *
+      };transform: scale(${1 / zoom}) translate(-${zoom * 50}%, -${zoom *
           50}%)"></i>
       <i title="左上角" class="operate-btn el-icon-top-left" style="transform: scale(${1 /
         zoom})"></i>
@@ -397,7 +397,7 @@ class Component {
         ? ""
         : `
     <i title="旋转" class="operate-btn el-icon-refresh-right"  style="transform: scale(${1 /
-      zoom}) translate(-${zoom * 50}%, 0),
+      zoom}) translate(-${zoom * 50}%, 0);
     top: ${-50 / zoom}px"></i>
       <i title="旋转轴" class="operate-btn el-icon-axis" style="${
         {
@@ -411,9 +411,9 @@ class Component {
           "left bottom": " left: 0; top: 100% ",
           left: " left: 0; top: 50%"
         }[info.transformOrigin]
-      },transform: scale(${1 / zoom}) translate(-${zoom * 50}%, -${zoom *
+      };transform: scale(${1 / zoom}) translate(-${zoom * 50}%, -${zoom *
             50}%)"></i>`;
-    } else if (type == "materialLine") {
+    } else if (type == "materialLine" || type == "materialCurveLine") {
       operate = "";
     }
 

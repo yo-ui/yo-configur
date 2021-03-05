@@ -10,6 +10,7 @@ module.exports = {
     "$vm":true,
     "localStorage": true,
     "window": true,
+    "AMap":true,
     "Vuex":true,
     "Vue":true,
     "moment":true,

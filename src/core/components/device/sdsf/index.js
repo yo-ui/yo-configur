@@ -59,7 +59,7 @@ class Text extends Component {
   </svg>`;
   }
   renderSvgContent() {
-    let { info = {}, pointValue } = this;
+    let { info = {} } = this;
     let { id = "" } = info || {};
     let text = `
     <linearGradient

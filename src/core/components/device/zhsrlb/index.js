@@ -1,6 +1,6 @@
 import bmCommon from "@/common/common";
 import Component from "@/core/Component";
-import "../../../../assets/less/components/component/basic/display.less";
+// import "../../../../assets/less/components/component/basic/display.less";
 // 组合式热量表
 class Display extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class Display extends Component {
 
   renderSvgContent() {
     let { info = {} } = this;
-    let { id = "", width = 0, height = 0 } = info || {};
+    let { id = "" } = info || {};
     return `<g id="zhsrlb_1_">
     <linearGradient
       id="zhsrlb_3_"

@@ -1,83 +1,128 @@
 import bmCommon from "@/common/common";
 import Component from "@/core/Component";
-import "../../../../assets/less/components/component/basic/display.less";
-// 水管（水平）
+// import "../../../../assets/less/components/component/basic/display.less";
+// 装饰1
+const points = [
+  [509.7, 63.4],
+  [506.7, 63.4],
+  [506.7, 79],
+  [501.8, 83.9],
+  [501.8, 100],
+  [10.8, 100],
+  [10.8, 68.4],
+  [5.5, 63.2],
+  [5.5, -0.1],
+  [2.5, -0.1],
+  [2.5, 5.6],
+  [-0.5, 8.6],
+  [-0.5, 25.5],
+  [2.5, 30.8],
+  [2.5, 103],
+  [181.2, 103],
+  [186.3, 108.1],
+  [247.4, 108.1],
+  [250.1, 103],
+  [509.7, 103]
+];
 class Display extends Component {
   constructor(props) {
     super(props);
   }
-  init() {}
+  init() {
+    let { info = {} } = this;
+    let { gradientStyle = {} } = info || {};
+    info.points = new SVG.PointArray(points);
+    gradientStyle.gradientId = bmCommon.uuid();
+  }
 
   //组件样式
-  textStyle() {
+  svgStyle() {
     let { info = {} } = this;
     let {
-      color = "",
-      textShadow = {},
-      textShadowable = false,
-      textAlign = "",
-      fontFamily = "",
-      fontSize = "",
-      fontWeight = "",
-      fontStyle = "",
-      textDecoration = "",
-
-      marginTop = 0,
-      marginBottom = 0,
-      marginLeft = 0,
-      marginRight = 0,
-      paddingTop = 0,
-      paddingBottom = 0,
-      paddingLeft = 0,
-      paddingRight = 0
+      width = "",
+      height = "",
+      // color = "",
+      borderColor = "",
+      gradientStyle = {},
+      borderStyle = "",
+      borderWidth = "",
+      // borderRadiusTopLeft = 0,
+      // borderRadiusTopRight = 0,
+      // borderRadiusBottomLeft = 0,
+      // borderRadiusBottomRight = 0,
+      backgroundType = "",
+      //
+      // scale = "",
+      //
+      //
+      //
+      backgroundColor = ""
+      // backgroundImage = "",
+      // backgroundRepeat = "",
+      // backgroundSize = ""
     } = info || {};
-    let styles = {
-      margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
-      padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
-    };
-    if (color) {
-      styles["color"] = color;
-    }
-    if (fontSize) {
-      styles["font-size"] = `${fontSize}px`;
-    }
-    if (fontFamily) {
-      styles["font-family"] = `${fontFamily}`;
-    }
-    if (fontWeight) {
-      styles["font-weight"] = fontWeight;
-    }
-    if (fontStyle) {
-      styles["font-style"] = fontStyle;
-    }
-    if (textAlign) {
-      styles["text-align"] = textAlign;
-      if (textAlign == "justify") {
-        styles["text-align-last"] = textAlign;
+    let styles = {};
+    styles["stroke"] = borderColor;
+    if (borderStyle) {
+      switch (borderStyle) {
+        case "none":
+          borderWidth = 0;
+          borderStyle = "";
+          break;
+        case "solid":
+          borderStyle = "";
+          break;
+        case "dotted":
+          // styles["stroke-linecap"] = "round";
+          borderStyle = `${borderWidth},${borderWidth}`;
+          break;
+        case "dashed":
+          borderStyle = `${borderWidth * 2},${borderWidth}`;
+          break;
+        // case "space-dashed":
+        //   borderStyle = `${borderWidth * 2},${borderWidth},${borderWidth /
+        //     2} ,${borderWidth / 2},${borderWidth}`;
+        //   break;
+
+        default:
+          break;
+      }
+      if (borderStyle) {
+        styles["stroke-dasharray"] = borderStyle;
       }
     }
-    if (textDecoration) {
-      styles["text-decoration"] = textDecoration;
+    styles["stroke-width"] = borderWidth;
+    info.points = new SVG.PointArray(points).size(
+      width - borderWidth * 2,
+      height - borderWidth * 2
+    );
+    if (backgroundType == "purity") {
+      //纯色
+      styles["fill"] = backgroundColor;
+      // if (backgroundImage) {
+      //   styles["background-image"] = `url(${this.$loadImgUrl(
+      //     backgroundImage
+      //   )})`;
+      // }
+    } else if (backgroundType == "gradient") {
+      //渐变
+      // styles = { ...styles, ...gradientStyle };
+      let { gradientId = "" } = gradientStyle || {};
+      styles["fill"] = `url(#${gradientId})`;
     }
-    if (textShadowable) {
-      let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
-      styles["text-shadow"] = `${x}px ${y}px ${blur}px ${color}`;
-    }
-    return styles || {};
+    return styles;
   }
-  unitStyle() {
+  comStyle() {
     let { info = {} } = this;
-    let { unitColor = "", unitFontFamily = "", unitFontSize = "" } = info || {};
+    let { width = "", height = "" } = info || {};
     let styles = {};
-    if (unitColor) {
-      styles["color"] = unitColor;
-    }
-    if (unitFontSize) {
-      styles["font-size"] = `${unitFontSize}px`;
-    }
-    if (unitFontFamily) {
-      styles["font-family"] = `${unitFontFamily}`;
-    }
+
+    // if (width) {
+    styles["width"] = `${width}px`;
+
+    // }
+    // if (height) {
+    styles["height"] = `${height}px`;
     return styles || {};
   }
 
@@ -86,63 +131,216 @@ class Display extends Component {
     return super.wrap(
       { info },
       `
-    <div class="bm-device-sg-h-com component"
+    <div class="bm-material-embellish-1-com component"
     style="${this.composeStyles(this.comStyle())}">
     ${this.renderSvg()}
-  </div>
-    `
+    </div>
+      `
     );
   }
 
   renderSvg() {
     let { info = {} } = this;
-    let { id = "", width = 0, height = 0 } = info || {};
-    return `
-    <svg
+    let { height = 0, width = 0 } = info || {};
+    return ` <svg
       version="1.1"
+      viewBox="0 0 ${width} ${height}"
+    width="${width}"
+    height="${height}"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
-      viewBox="0 0 ${width} 10"
-      width="${width}"
-      height="${height}"
       xml:space="preserve"
-      preserveAspectRatio="none"
     >
-    <defs>
-    <linearGradient
-      id="sg_h_U_${id}"
-      gradientUnits="userSpaceOnUse"
-      x1="-149.4816"
-      y1="-983.9756"
-      x2="-149.4816"
-      y2="-989.9756"
-      gradientTransform="matrix(-1 0 0 -1 -144.4816 -981.9756)"
-    >
-      <stop offset="0" style="stop-color:#777C7F" />
-      <stop offset="0.5" style="stop-color:#FFFFFF" />
-      <stop offset="1" style="stop-color:#777C7F" />
-    </linearGradient>
-  </defs>
-  <rect
-    id="sg_h_551_"
-    x="0"
-    y="0"
-    style="fill:url(#sg_h_U_${id})"
-    width="${width}"
-    height="10"
-  />
-    </svg>
-    `;
+      <defs>
+        ${this.renderDefs()}
+      </defs>
+      ${this.renderSvgContent()}
+    </svg>`;
+  }
+
+  renderDefs() {
+    let { info = {} } = this;
+    let { gradientStyle = {}, backgroundType = "" } = info || {};
+    let {
+      gradientId = "",
+      angle = 0,
+      type = "",
+      valueList = [],
+      center = "50% 50%"
+    } = gradientStyle || {};
+
+    let gradientText = "";
+    if (backgroundType == "gradient") {
+      if (type == "linear") {
+        let stopTexts = [];
+        let { length: len = 0 } = valueList || [];
+        let i = 0;
+        for (; i < len; i++) {
+          let item = valueList[i];
+          stopTexts.push(`
+          <stop
+            offset="${item.value}%"
+            style="stop-color:${item.code};stop-opacity:1"
+          />`);
+        }
+        gradientText = ` <linearGradient
+          gradientUnits="userSpaceOnUse"
+          id="${gradientId}"
+          x1="
+            ${
+              {
+                0: "0%",
+                45: "0%",
+                90: "0%",
+                135: "0%",
+                180: "100%",
+                225: "100%",
+                270: "100%",
+                315: "100%"
+              }[angle]
+            }
+          "
+          y1="
+            ${
+              {
+                0: "100%",
+                45: "100%",
+                90: "100%",
+                135: "0%",
+                180: "0%",
+                225: "0%",
+                270: "100%",
+                315: "100%"
+              }[angle]
+            }
+          "
+          x2="
+            ${
+              {
+                0: "0%",
+                45: "100%",
+                90: "100%",
+                135: "100%",
+                180: "100%",
+                225: "0%",
+                270: "0%",
+                315: "0%"
+              }[angle]
+            }
+          "
+          y2="
+            ${
+              {
+                0: "0%",
+                45: "0%",
+                90: "100%",
+                135: "100%",
+                180: "100%",
+                225: "100%",
+                270: "100%",
+                315: "0%"
+              }[angle]
+            }
+          "
+        >
+        ${stopTexts.join("")}
+        </linearGradient>`;
+      } else if (type == "radial") {
+        let stopTexts = [];
+        let { length: len = 0 } = valueList || [];
+        let i = 0;
+        for (; i < len; i++) {
+          let item = valueList[i];
+          stopTexts.push(`
+          <stop
+            offset="${item.value}%"
+            style="stop-color:${item.code};stop-opacity:1"
+          />`);
+        }
+        gradientText = `<radialGradient
+          gradientUnits="userSpaceOnUse"
+          id="${gradientId}"
+          cx="
+            ${
+              {
+                "50% 50%": "50%",
+                "0% 0%": "0%",
+                "100% 0%": "100%",
+                "0% 100%": "0%",
+                "100% 100%": "100%"
+              }[center]
+            }
+          "
+          cy="
+            ${
+              {
+                "50% 50%": "50%",
+                "0% 0%": "0%",
+                "100% 0%": "0%",
+                "0% 100%": "100%",
+                "100% 100%": "100%"
+              }[center]
+            }
+          "
+          r="
+          ${
+            {
+              "50% 50%": "50%",
+              "0% 0%": "160%",
+              "100% 0%": "150%",
+              "0% 100%": "150%",
+              "100% 100%": "140%"
+            }[center]
+          }
+          "
+          fx="
+          ${
+            {
+              "50% 50%": "50%",
+              "0% 0%": "0%",
+              "100% 0%": "100%",
+              "0% 100%": "0%",
+              "100% 100%": "100%"
+            }[center]
+          }
+          "
+          fy="
+          ${
+            {
+              "50% 50%": "50%",
+              "0% 0%": "0%",
+              "100% 0%": "0%",
+              "0% 100%": "100%",
+              "100% 100%": "100%"
+            }[center]
+          }
+          "
+        >
+         ${stopTexts.join("")}
+        </radialGradient>`;
+      }
+    }
+    return gradientText;
+  }
+  renderSvgContent() {
+    let { info = {} } = this;
+    let { points = [] } = info || {};
+    let text = `<polygon points="${points}"
+    style="${this.composeStyles(this.svgStyle())}"/>`;
+    return text;
   }
 
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
-    let { id = "", width = 0, height = 0 } = info || {};
+    let { id = "", width = 0, height = 0, points = [] } = info || {};
     let $container = $(`#${id}>.component`);
-    $container.find(`svg`).attr({ width, height, viewBox: `0 0 ${width} 10` });
-    $container.find("rect").attr({ width });
+    let $svg = $container.find(`svg`);
+    let $defs = $svg.find("defs");
+    let $polygon = $svg.find(`polygon`);
+    $defs.html(this.renderDefs());
+    $svg.attr({ width, height, viewBox: `0 0 ${width} ${height}` });
+    $polygon.attr({ points }).css(this.svgStyle());
   }
 
   // //加载数据

@@ -1,83 +1,154 @@
 import bmCommon from "@/common/common";
 import Component from "@/core/Component";
-import "../../../../assets/less/components/component/basic/display.less";
-// 水管（水平）
+import "../../../../assets/less/components/component/material/star.less";
+let points = [];
+// 星形
 class Display extends Component {
   constructor(props) {
     super(props);
   }
-  init() {}
+  init() {
+    let { info = {} } = this;
+    let { gradientStyle = {} } = info || {};
+    info.points = new SVG.PointArray(points);
+    // info.points1 = [];
+    // info.points2 = [];
+    // info.vBoxx = 0;
+    // info.vBoxy = 0;
+    gradientStyle.gradientId = bmCommon.uuid();
+  }
 
   //组件样式
-  textStyle() {
+  svgStyle() {
     let { info = {} } = this;
     let {
-      color = "",
-      textShadow = {},
-      textShadowable = false,
-      textAlign = "",
-      fontFamily = "",
-      fontSize = "",
-      fontWeight = "",
-      fontStyle = "",
-      textDecoration = "",
-
-      marginTop = 0,
-      marginBottom = 0,
-      marginLeft = 0,
-      marginRight = 0,
-      paddingTop = 0,
-      paddingBottom = 0,
-      paddingLeft = 0,
-      paddingRight = 0
+      width = "",
+      height = "",
+      borderColor = "",
+      gradientStyle = {},
+      borderStyle = "",
+      borderWidth = "",
+      cornerCount = 3, //角数
+      innerRadius = 50, //内切圆半径
+      backgroundType = "",
+      backgroundColor = ""
     } = info || {};
-    let styles = {
-      margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
-      padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
-    };
-    if (color) {
-      styles["color"] = color;
-    }
-    if (fontSize) {
-      styles["font-size"] = `${fontSize}px`;
-    }
-    if (fontFamily) {
-      styles["font-family"] = `${fontFamily}`;
-    }
-    if (fontWeight) {
-      styles["font-weight"] = fontWeight;
-    }
-    if (fontStyle) {
-      styles["font-style"] = fontStyle;
-    }
-    if (textAlign) {
-      styles["text-align"] = textAlign;
-      if (textAlign == "justify") {
-        styles["text-align-last"] = textAlign;
+    let styles = {};
+    styles["stroke"] = borderColor;
+    if (borderStyle) {
+      switch (borderStyle) {
+        case "none":
+          borderWidth = 0;
+          borderStyle = "";
+          break;
+        case "solid":
+          borderStyle = "";
+          break;
+        case "dotted":
+          // styles["stroke-linecap"] = "round";
+          borderStyle = `${borderWidth},${borderWidth}`;
+          break;
+        case "dashed":
+          borderStyle = `${borderWidth * 2},${borderWidth}`;
+          break;
+        // case "space-dashed":
+        //   borderStyle = `${borderWidth * 2},${borderWidth},${borderWidth /
+        //     2} ,${borderWidth / 2},${borderWidth}`;
+        //   break;
+
+        default:
+          break;
+      }
+      if (borderStyle) {
+        styles["stroke-dasharray"] = borderStyle;
       }
     }
-    if (textDecoration) {
-      styles["text-decoration"] = textDecoration;
+    styles["stroke-width"] = borderWidth;
+    let point = [width / 2, 0];
+    let innerPoint = new SVG.Point([
+      width / 2,
+      height / 2 - innerRadius
+    ]).transform(
+      {
+        rotate: 360 / (cornerCount * 2),
+        origin: {
+          x: width / 2,
+          y: height / 2
+        }
+      }
+      // new SVG.Matrix().rotate(360 / (cornerCount * 2)),
+      // width / 2,
+      // height / 2
+    ); //内切圆初始点
+    // bmCommon.log(width / 2, height / 2 - innerRadius, innerPoint);
+    let points = [];
+    // let points1 = [];
+    // let points2 = [];
+    // let xs = [],
+    //   ys = [];
+    for (let i = 0; i < cornerCount; i++) {
+      let _point = new SVG.Point(point).transform(
+        {
+          rotate: (360 / cornerCount) * i,
+          origin: { x: width / 2, y: height / 2 }
+        }
+        // new SVG.Matrix().rotate(
+        //   (360 / cornerCount) * i,
+        //   width / 2,
+        //   height / 2
+        // )
+      );
+      // bmCommon.log(points.toString());
+      // let { x: _x = 0, y: _y = 0 } = _point;
+      // xs.push(_x);
+      // ys.push(_y);
+      points.push(_point.toArray());
+      // points2.push(_point.toArray());
+
+      _point = new SVG.Point(innerPoint).transform(
+        {
+          rotate: (360 / cornerCount) * i,
+          origin: { x: width / 2, y: height / 2 }
+        }
+        // new SVG.Matrix().rotate(
+        //   (360 / cornerCount) * i,
+        //   width / 2,
+        //   height / 2
+        // )
+      );
+      // points1.push(_point.toArray());
+      // let { x = 0, y = 0 } = _point;
+      // xs.push(x);
+      // ys.push(y);
+      points.push(_point.toArray());
     }
-    if (textShadowable) {
-      let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
-      styles["text-shadow"] = `${x}px ${y}px ${blur}px ${color}`;
+    // bmCommon.log("内切 points", xs ,ys);
+    // info.vBoxx = Math.min.apply(null, xs);
+    // info.vBoxy = Math.min.apply(null, ys);
+    info.points = new SVG.PointArray(points)
+      .size(width - borderWidth * 2, height - borderWidth * 2)
+      .move(0, 0);
+    // info.points1 = new SVG.PointArray(points1);
+    // info.points2 = new SVG.PointArray(points2);
+    // info.points = points;
+    if (backgroundType == "purity") {
+      //纯色
+      styles["fill"] = backgroundColor;
+      // if (backgroundImage) {
+      //   styles["background-image"] = `url(${this.$loadImgUrl(
+      //     backgroundImage
+      //   )})`;
+      // }
+    } else if (backgroundType == "gradient") {
+      //渐变
+      // styles = { ...styles, ...gradientStyle };
+      let { gradientId = "" } = gradientStyle || {};
+      styles["fill"] = `url(#${gradientId})`;
     }
-    return styles || {};
+    return styles;
   }
-  unitStyle() {
-    let { info = {} } = this;
-    let { unitColor = "", unitFontFamily = "", unitFontSize = "" } = info || {};
+  comStyle() {
     let styles = {};
-    if (unitColor) {
-      styles["color"] = unitColor;
-    }
-    if (unitFontSize) {
-      styles["font-size"] = `${unitFontSize}px`;
-    }
-    if (unitFontFamily) {
-      styles["font-family"] = `${unitFontFamily}`;
-    }
     return styles || {};
   }
 
@@ -86,63 +157,222 @@ class Display extends Component {
     return super.wrap(
       { info },
       `
-    <div class="bm-device-sg-h-com component"
+    <div class="bm-material-star-com component"
     style="${this.composeStyles(this.comStyle())}">
     ${this.renderSvg()}
-  </div>
-    `
+    </div>
+      `
     );
   }
 
   renderSvg() {
     let { info = {} } = this;
-    let { id = "", width = 0, height = 0 } = info || {};
-    return `
-    <svg
+    let { borderWidth = 0, height = 0, width = 0 } = info || {};
+    return ` <svg
       version="1.1"
+      viewBox="-${borderWidth} ${borderWidth} ${width} ${height}"
+    width="${width}"
+    height="${height}"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink"
-      viewBox="0 0 ${width} 10"
-      width="${width}"
-      height="${height}"
       xml:space="preserve"
-      preserveAspectRatio="none"
     >
-    <defs>
-    <linearGradient
-      id="sg_h_U_${id}"
-      gradientUnits="userSpaceOnUse"
-      x1="-149.4816"
-      y1="-983.9756"
-      x2="-149.4816"
-      y2="-989.9756"
-      gradientTransform="matrix(-1 0 0 -1 -144.4816 -981.9756)"
-    >
-      <stop offset="0" style="stop-color:#777C7F" />
-      <stop offset="0.5" style="stop-color:#FFFFFF" />
-      <stop offset="1" style="stop-color:#777C7F" />
-    </linearGradient>
-  </defs>
-  <rect
-    id="sg_h_551_"
-    x="0"
-    y="0"
-    style="fill:url(#sg_h_U_${id})"
-    width="${width}"
-    height="10"
-  />
-    </svg>
-    `;
+      <defs>
+        ${this.renderDefs()}
+      </defs>
+      ${this.renderSvgContent()}
+    </svg>`;
+  }
+
+  renderDefs() {
+    let { info = {} } = this;
+    let { gradientStyle = {}, backgroundType = "" } = info || {};
+    let {
+      gradientId = "",
+      angle = 0,
+      type = "",
+      valueList = [],
+      center = "50% 50%"
+    } = gradientStyle || {};
+
+    let gradientText = "";
+    if (backgroundType == "gradient") {
+      if (type == "linear") {
+        let stopTexts = [];
+        let { length: len = 0 } = valueList || [];
+        let i = 0;
+        for (; i < len; i++) {
+          let item = valueList[i];
+          stopTexts.push(`
+          <stop
+            offset="${item.value}%"
+            style="stop-color:${item.code};stop-opacity:1"
+          />`);
+        }
+        gradientText = ` <linearGradient
+          gradientUnits="userSpaceOnUse"
+          id="${gradientId}"
+          x1="
+            ${
+              {
+                0: "0%",
+                45: "0%",
+                90: "0%",
+                135: "0%",
+                180: "100%",
+                225: "100%",
+                270: "100%",
+                315: "100%"
+              }[angle]
+            }
+          "
+          y1="
+            ${
+              {
+                0: "100%",
+                45: "100%",
+                90: "100%",
+                135: "0%",
+                180: "0%",
+                225: "0%",
+                270: "100%",
+                315: "100%"
+              }[angle]
+            }
+          "
+          x2="
+            ${
+              {
+                0: "0%",
+                45: "100%",
+                90: "100%",
+                135: "100%",
+                180: "100%",
+                225: "0%",
+                270: "0%",
+                315: "0%"
+              }[angle]
+            }
+          "
+          y2="
+            ${
+              {
+                0: "0%",
+                45: "0%",
+                90: "100%",
+                135: "100%",
+                180: "100%",
+                225: "100%",
+                270: "100%",
+                315: "0%"
+              }[angle]
+            }
+          "
+        >
+        ${stopTexts.join("")}
+        </linearGradient>`;
+      } else if (type == "radial") {
+        let stopTexts = [];
+        let { length: len = 0 } = valueList || [];
+        let i = 0;
+        for (; i < len; i++) {
+          let item = valueList[i];
+          stopTexts.push(`
+          <stop
+            offset="${item.value}%"
+            style="stop-color:${item.code};stop-opacity:1"
+          />`);
+        }
+        gradientText = `<radialGradient
+          gradientUnits="userSpaceOnUse"
+          id="${gradientId}"
+          cx="
+            ${
+              {
+                "50% 50%": "50%",
+                "0% 0%": "0%",
+                "100% 0%": "100%",
+                "0% 100%": "0%",
+                "100% 100%": "100%"
+              }[center]
+            }
+          "
+          cy="
+            ${
+              {
+                "50% 50%": "50%",
+                "0% 0%": "0%",
+                "100% 0%": "0%",
+                "0% 100%": "100%",
+                "100% 100%": "100%"
+              }[center]
+            }
+          "
+          r="
+          ${
+            {
+              "50% 50%": "50%",
+              "0% 0%": "160%",
+              "100% 0%": "150%",
+              "0% 100%": "150%",
+              "100% 100%": "140%"
+            }[center]
+          }
+          "
+          fx="
+          ${
+            {
+              "50% 50%": "50%",
+              "0% 0%": "0%",
+              "100% 0%": "100%",
+              "0% 100%": "0%",
+              "100% 100%": "100%"
+            }[center]
+          }
+          "
+          fy="
+          ${
+            {
+              "50% 50%": "50%",
+              "0% 0%": "0%",
+              "100% 0%": "0%",
+              "0% 100%": "100%",
+              "100% 100%": "100%"
+            }[center]
+          }
+          "
+        >
+         ${stopTexts.join("")}
+        </radialGradient>`;
+      }
+    }
+    return gradientText;
+  }
+  renderSvgContent() {
+    let { info = {} } = this;
+    let { points = [] } = info || {};
+    return `<polygon points="${points}"
+      style="${this.composeStyles(this.svgStyle())}"
+    />`;
   }
 
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
-    let { id = "", width = 0, height = 0 } = info || {};
+    let { id = "", width = 0, height = 0, borderWidth = 0 } = info || {};
     let $container = $(`#${id}>.component`);
-    $container.find(`svg`).attr({ width, height, viewBox: `0 0 ${width} 10` });
-    $container.find("rect").attr({ width });
+    let $svg = $container.find(`svg`);
+    let $defs = $svg.find("defs");
+    let $polygon = $svg.find("polygon");
+    $defs.html(this.renderDefs());
+    $svg.attr({
+      width,
+      height,
+      viewBox: `-${borderWidth} -${borderWidth} ${width} ${height}`
+    });
+    $polygon.css(this.svgStyle());
+    let { points = [] } = info || {};
+    $polygon.attr({ points });
   }
 
   // //加载数据

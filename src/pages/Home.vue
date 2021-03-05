@@ -132,7 +132,8 @@
             <!-- <div id="control_box" class="control-box"></div> -->
 
             <!-- <bm-lines ref="bmLines" v-if="canvas.alignLineable"></bm-lines>
-            <bm-rule-lines ref="bmRuleLines"></bm-rule-lines> -->
+            -->
+            <bm-rule-lines ref="bmRuleLines"></bm-rule-lines>
           </div>
           <div class="slider-box" @mousedown.stop>
             {{ $toBig(zoom, 0) + "%" }}
@@ -260,7 +261,7 @@ import Canvas from "@/core/Canvas";
 import bmHeader from "@/components/header";
 import bmNav from "@/components/nav";
 import bmWidgetList from "@/components/widget-list";
-// import bmInfo from "@/components/info";
+import bmInfo from "@/components/info";
 import bmFooter from "@/components/footer";
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -296,10 +297,10 @@ export default {
     //   ),
     // bmLines: () =>
     //   import(/* webpackChunkName: "iot-lines-com" */ "@/components/lines"),
-    // bmRuleLines: () =>
-    //   import(
-    //     /* webpackChunkName: "iot-rule-lines-com" */ "@/components/rule-lines"
-    //   ),
+    bmRuleLines: () =>
+      import(
+        /* webpackChunkName: "iot-rule-lines-com" */ "@/components/rule-lines"
+      ),
     // bmGroup: () =>
     //   import(/* webpackChunkName: "iot-group-com" */ "@/components/group"),
     // bmSelect: () =>
@@ -309,9 +310,9 @@ export default {
     bmFooter,
     // : () =>
     //   import(/* webpackChunkName: "iot-footer-com" */ "@/components/footer"),
-    bmInfo: () =>
-      import(/* webpackChunkName: "iot-info-com" */ "@/components/info"),
-    // bmInfo,
+    // bmInfo: () =>
+    //   import(/* webpackChunkName: "iot-info-com" */ "@/components/info"),
+    bmInfo,
     bmWidgetList,
     // bmCom: () =>
     //   import(

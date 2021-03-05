@@ -687,11 +687,11 @@ export default {
       centerList: Object.freeze(Constants.CENTERLIST),
       radialShapeList: Object.freeze(Constants.RADIALSHAPELIST),
       angelList: Object.freeze(Constants.ANGELLIST),
-      gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
+      gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST)
       // flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
-      fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
-      tileModeList: Object.freeze(Constants.TILEMODELIST)
+      // backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
+      // fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
+      // tileModeList: Object.freeze(Constants.TILEMODELIST)
     };
   },
   props: {

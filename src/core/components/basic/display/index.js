@@ -237,8 +237,11 @@ class Display extends Component {
       decimal = 1,
       unit = ""
     } = info || {};
-    $(`#${id} .component svg`).attr({ width, height });
-    $(`#${id} .component .text`)
+    let $container = $(`#${id}>.component`);
+    let $svg = $container.find(`svg`);
+    let $text = $container.find(`.text`);
+    $svg.attr({ width, height });
+    $text
       .css(this.textStyle())
       .html(
         `${$vm.$toBig(content, decimal)}<small  style="${this.composeStyles(

@@ -15,7 +15,7 @@ class Text extends Component {
     return super.wrap(
       { info },
       `
-    <div class="bm-device-db-com component"
+    <div class="bm-device-tynrsq-com component"
     style="${this.composeStyles(this.comStyle())}">
     ${this.renderSvg()}
 

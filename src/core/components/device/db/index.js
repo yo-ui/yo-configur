@@ -1,12 +1,15 @@
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
 // 电表
 class Text extends Component {
+  pointValue = "";
   constructor(props) {
     super(props);
   }
-  init() {}
+  init() {
+    this.refresh();
+  }
 
   //组件样式
 
@@ -79,7 +82,7 @@ class Text extends Component {
   </svg>`;
   }
   renderSvgContent() {
-    let { info = {}, pointValue } = this;
+    let { info = {} } = this;
     let { id = "" } = info || {};
     let text = `
   <g>
@@ -313,9 +316,7 @@ class Text extends Component {
       class="db-${id}-st10"
       d="M69.73,41L58.5,55.08v-41L69.73,0V41z"
     />
-  </g>`;
-    if (pointValue == 2) {
-      text += `
+  </g>
   <g class="SVG_alert" >
     <path
       class="db-${id}-st11"
@@ -323,7 +324,6 @@ class Text extends Component {
               l0.01,0.01l10.94-13.77c0.21-0.2,0.39-0.44,0.55-0.69l0.04-0.05l-0.01-0.01c0.3-0.51,0.48-1.1,0.48-1.73v-7.84l2-2.51V0z"
     />
   </g>`;
-    }
     return text;
   }
 
@@ -344,11 +344,18 @@ class Text extends Component {
 
   refresh() {
     super.refresh();
-    let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
-    let { id = "" } = info || {};
+    let { info = {}, pointValue } = this;
+    let { id = "", height = 0, width = 0 } = info || {};
     let $container = $(`#${id}>.component`);
-    $container.html(this.renderSvg());
+    let $svg = $container.find("svg");
+    $svg.attr({ width, height });
+    if (pointValue == 2) {
+      // $svg.find(".SVG_ani").hide();
+      // $svg.find(".SVG_sta").hide();
+      $svg.find(".SVG_alert").show();
+    } else {
+      $svg.find(".SVG_alert").hide();
+    }
   }
 
   event() {}

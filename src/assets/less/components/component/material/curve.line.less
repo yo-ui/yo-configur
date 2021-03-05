@@ -1,0 +1,35 @@
+@import (reference) "./../../../common.less";
+
+.active {
+  .bm-material-curve-line-com {
+    .rect {
+      .db;
+      &:hover {
+        opacity: 1;
+      }
+    }
+    .circle {
+      .db;
+      opacity: 1;
+    }
+  }
+}
+.bm-material-curve-line-com {
+  .posr;
+  pointer-events: none;
+  z-index: 1000;
+  .rect,
+  .circle {
+    .db(none);
+    opacity: 0.1;
+  }
+  svg {
+    overflow: inherit;
+    path,
+    rect,
+    circle {
+      cursor: move;
+      pointer-events: auto;
+    }
+  }
+}
