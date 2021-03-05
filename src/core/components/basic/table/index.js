@@ -151,10 +151,6 @@ class Text extends Component {
     );
   }
 
-  comStyle() {
-    return {};
-  }
-
   //加载数据
   loadData() {
     this.loadDeviceInfo();
@@ -232,10 +228,10 @@ class Text extends Component {
     // let $container = $(`#${id}>.component`);
     // let $selectBox = $container.find(".select-box");
     // $selectBox.html(this.renderSelect());
+    this.vue.info = info;
     this.vue.comStyle = this.comStyle();
     this.vue.tbodyStyle = this.tbodyStyle();
     this.vue.theaderStyle = this.theaderStyle();
-    this.vue.info = info;
   }
   selectPointEvent() {
     this.loadPointData();

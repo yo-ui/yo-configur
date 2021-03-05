@@ -208,7 +208,6 @@ ${this.renderSvgContent()}
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let { id = "", height = 0, width = 0 } = info || {};
     let $container = $(`#${id}>.component`);
     let $svg = $container.find("svg");

@@ -1,4 +1,4 @@
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 import "../../../../assets/less/components/component/basic/switch.less";
 
@@ -105,9 +105,9 @@ class Text extends Component {
       class="bm-basic-switch-com component"
       style="${this.composeStyles(this.comStyle())}"
     >
-    
+
     ${this.renderContentText()}
-    
+
   </div>
     `
     );
@@ -134,7 +134,7 @@ class Text extends Component {
 
       `;
     } else {
-      contentText = `<span class="btn-text btn-close-text"  
+      contentText = `<span class="btn-text btn-close-text"
       style="${this.composeStyles(this.closeTextStyle())}">${closeText}</span>
     <span
       class="btn-slider btn-close-slider"
@@ -188,7 +188,6 @@ class Text extends Component {
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let { id = "", content = "" } = info || {};
     let $container = $(`#${id}>.component`);
     $container.html(this.renderContentText());

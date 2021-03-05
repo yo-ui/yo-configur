@@ -229,8 +229,8 @@ class Text extends Component {
     // let $container = $(`#${id}>.component`);
     // let $selectBox = $container.find(".select-box");
     // $selectBox.html(this.renderSelect());
-    this.vue.comStyle = super.comStyle();
     this.vue.info = info;
+    this.vue.comStyle = super.comStyle();
   }
   selectPointEvent() {
     this.loadPointData();

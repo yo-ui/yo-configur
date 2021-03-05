@@ -347,7 +347,6 @@ class Text extends Component {
     super.refresh();
     this.reloadSize();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let {
       id = "",
       boxH: height = 0,

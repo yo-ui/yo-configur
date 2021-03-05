@@ -56,7 +56,6 @@ S19.4,25,12.5,25z M2,11.5h9.4V2C6.5,2.5,2.5,6.5,2,11.5z"
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let { id = "" } = info || {};
     let $container = $(`#${id}>.component`);
     $container.html(this.renderSvg());

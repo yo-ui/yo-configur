@@ -657,7 +657,6 @@ class Text extends Component {
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let { id = "", content = "", select = {}, arrow = {} } = info || {};
     let $container = $(`#${id}>.component`);
     let $float_box = $container.find(".float-box");

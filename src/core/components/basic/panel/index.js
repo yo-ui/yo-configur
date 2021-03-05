@@ -202,7 +202,7 @@ class Panel extends Component {
     return super.wrap(
       { info, showType },
       `
-      <div class="bm-basic-panel-com component" 
+      <div class="bm-basic-panel-com component"
       style="${this.composeStyles(this.comStyle())}">
   </div>
     `
@@ -212,7 +212,6 @@ class Panel extends Component {
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let { id = "" } = info || {};
     $(`#${id}>.component`).css(this.comStyle());
   }

@@ -36,7 +36,6 @@ class Text extends Component {
     let item = arguments[0];
     super.refresh(item);
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     if (!item) {
       let { id = "", content = "" } = info || {};
       let $container = $(`#${id}>.component`);

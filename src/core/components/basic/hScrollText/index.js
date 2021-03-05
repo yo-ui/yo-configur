@@ -359,7 +359,6 @@ class Text extends Component {
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let { id = "", contentList } = info || {};
     let $container = $(`#${id}>.component`);
     let $text = $container.find(".text-box");

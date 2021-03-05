@@ -270,7 +270,6 @@ class ImageStatus extends Component {
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let { id = "" } = info || {};
     $(`#${id} .image`).css(this.imageStyle());
   }

@@ -158,7 +158,6 @@ ${tag}
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let { id = "", content = "", showTag = false, showPercent = false } =
       info || {};
     let $container = $(`#${id}>.component`);

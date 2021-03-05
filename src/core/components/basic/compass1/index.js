@@ -126,7 +126,6 @@ class Text extends Component {
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let { id = "", width = 0, height = 0 } = info || {};
     let $container = $(`#${id}>.component`);
     $container.find("svg").css({ width, height });

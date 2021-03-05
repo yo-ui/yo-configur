@@ -321,7 +321,6 @@ class Text extends Component {
 
   event() {
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let { id = "" } = info || {};
     let $container = $(`#${id}>.component`);
     $container.on("click", e => {

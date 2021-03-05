@@ -61,7 +61,6 @@ C5.9,11,7,9.9,7,8.5C7,7.1,5.9,6,4.5,6z"
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let { id = "" } = info || {};
     let $container = $(`#${id}>.component`);
     $container.html(this.renderSvg());

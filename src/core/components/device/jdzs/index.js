@@ -76,7 +76,6 @@ ${this.renderSvg()}
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let { id = "" } = info || {};
     let $container = $(`#${id}>.component`);
     $container.html(this.renderSvg());

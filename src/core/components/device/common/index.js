@@ -29,7 +29,6 @@ class Text extends Component {
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let { id = "", width = 0, height = 0, content: src = "" } = info || {};
     let $container = $(`#${id}>.component`);
     $container.find("img").attr({ width, height, src });

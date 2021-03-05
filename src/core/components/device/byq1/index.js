@@ -88,7 +88,6 @@ C2,37.3,6.7,42,12.5,42C18.3,42,23,37.3,23,31.5C23,25.7,18.3,21,12.5,21z"
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let { id = "" } = info || {};
     let $container = $(`#${id}>.component`);
     $container.html(this.renderSvg());

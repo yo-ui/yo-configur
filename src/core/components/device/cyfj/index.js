@@ -1044,7 +1044,6 @@ class Text extends Component {
   refresh() {
     super.refresh();
     let { info = {}, pointValue } = this;
-    bmCommon.log(`${info.type}刷新 `);
     let { id = "", height = 0, width = 0 } = info || {};
     let $container = $(`#${id}>.component`);
     let $svg = $container.find("svg");
