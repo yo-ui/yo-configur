@@ -1,4 +1,4 @@
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
 // 温控器
@@ -367,14 +367,18 @@ class Text extends Component {
     class="wkq-${id}-st2 wkq-${id}-st9 wkq-${id}-st10"
     style="${this.composeStyles(this.valueStyle())}"
   >
-    ${content ? $vm.$format(devicePoint ? point.value : 26.5, decimal) : "--"}
+    ${
+      content
+        ? $vm.$format(devicePoint ? point.value || "0" : 26.5, decimal)
+        : "--"
+    }
   </text>
   <text
     transform="matrix(1 0 0 1 54 22)"
     style="${this.composeStyles(this.unitStyle())}"
     class="wkq-${id}-st2 wkq-${id}-st7 wkq-${id}-st8"
   >
-    ${devicePoint ? point.unit : "℃"}
+    ${devicePoint ? point.unit || "" : "℃"}
   </text>`;
   }
 

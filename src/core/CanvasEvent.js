@@ -10,32 +10,42 @@ class CanvasEvent {
 
   static init() {
     let _viewBox = $(".view-box");
-    // 注册鼠标事件
-    _viewBox.on("mousedown", CanvasEvent.viewBoxMousedownEvent);
-    // // 注册颜色框事件
-    // $(document).on("mousedown", ".el-color-picker__panel", e => {
-    //   e.stopPropagation();
-    // });
-    //滚动事件
-    _viewBox.on("mousewheel DOMMouseScroll", CanvasEvent.mouseScrollEvent);
-    // // 注册右键菜单事件
-    // _viewBox.on("contextmenu", CanvasEvent.viewBoxContextmenuEvent);
-    //注册按键键盘事件
-    $(document).on("keydown", CanvasEvent.keydownEvent);
-    $(document).on("keyup", CanvasEvent.keyupEvent);
-    $(window).on("resize", CanvasEvent.resizeCanvasSize);
-    if (process.env.NODE_ENV === "production") {
-      $(window).on("contextmenu", e => {
-        e.preventDefault();
-      });
-    }
 
-    CanvasEvent.selectComAction();
+    let bm_show_type = window.bm_show_type;
+    if (bm_show_type === Constants.SHOWTYPEMAP.EDIT) {
+      // 注册鼠标事件
+      _viewBox.on("mousedown", CanvasEvent.viewBoxMousedownEvent);
+      // // 注册颜色框事件
+      // $(document).on("mousedown", ".el-color-picker__panel", e => {
+      //   e.stopPropagation();
+      // });
+      // // 注册右键菜单事件
+      // _viewBox.on("contextmenu", CanvasEvent.viewBoxContextmenuEvent);
+      //注册按键键盘事件
+      $(document).on("keydown", CanvasEvent.keydownEvent);
+      $(document).on("keyup", CanvasEvent.keyupEvent);
+      $(window).on("resize", CanvasEvent.resizeCanvasSize);
+      if (process.env.NODE_ENV === "production") {
+        $(window).on("contextmenu", e => {
+          e.preventDefault();
+        });
+      }
+
+      CanvasEvent.selectComAction();
+      // _viewBox.on("mousewheel DOMMouseScroll", CanvasEvent.mouseScrollEvent);
+    } else {
+      // $(document).on("mousewheel DOMMouseScroll", CanvasEvent.mouseScrollEvent);
+    }
+    $(".content-box").on(
+      "mousewheel DOMMouseScroll",
+      CanvasEvent.mouseScrollEvent
+    );
+    //滚动事件
   }
 
   static mouseScrollEvent(e) {
     e.preventDefault();
-    // e.stopPropagation();
+    e.stopPropagation();
     let wheel = e.originalEvent.wheelDelta || -e.originalEvent.detail;
     let delta = Math.max(-1, Math.min(1, wheel));
     // let scrollTop=$(".content-box").scrollTop()
@@ -322,7 +332,7 @@ class CanvasEvent {
     // e.stopPropagation();
     bmCommon.log("index keydow", e);
     // let { activeComs = [], widgetList = [] } = this;
-    let copyCom = CanvasEvent.copyCom;
+    // let copyCom = CanvasEvent.copyCom;
     let bm_active_com_id = window.bm_active_com_id;
     let bm_active_com_ids = window.bm_active_com_ids;
     let { length = 0 } = bm_active_com_ids || [];
@@ -362,10 +372,12 @@ class CanvasEvent {
         for (let i in bm_widgetMap) {
           let obj = bm_widgetMap[i];
           let { info = {} } = obj || {};
-          let { id = "" } = info || {};
-          bm_active_com_ids.push(id);
-          if (!bm_active_com_id) {
-            bm_active_com_id = id;
+          let { id = "", parentId = "" } = info || {};
+          if (!parentId) {
+            bm_active_com_ids.push(id);
+            if (!bm_active_com_id) {
+              bm_active_com_id = id;
+            }
           }
         }
         // if (length > 0) {
@@ -806,16 +818,8 @@ class CanvasEvent {
   }
   //创建历史记录
   static createHistoryAction() {
-    let bm_widgetMap = window.bm_widgetMap;
     let canvas = Canvas.getCanvas();
-    let widgetList = [];
-    for (let i in bm_widgetMap) {
-      let obj = bm_widgetMap[i];
-      let { info = {} } = obj;
-      widgetList.push(info);
-    }
-    // historyList = [Object.freeze([...widgetList]), ...historyList];
-    // historyList.unshift(bmCommon.clone(widgetList));
+    let widgetList = Canvas.getWidgetList();
     Canvas.setHistoryList(widgetList);
     Canvas.setHistoryIndex(0);
     Canvas.setPreviewData({
@@ -824,15 +828,9 @@ class CanvasEvent {
     });
   }
   // 创建快照
-  static createRecord(item) {
+  static createRecordAction(item) {
     let { img = "" } = item || {};
-    let bm_widgetMap = window.bm_widgetMap;
-    let widgetList = [];
-    for (let i in bm_widgetMap) {
-      let obj = bm_widgetMap[i];
-      let { info = {} } = obj;
-      widgetList.push(info);
-    }
+    let widgetList = Canvas.getWidgetList();
     let date = moment();
     let time = date.valueOf();
     let id = bmCommon.uuid();

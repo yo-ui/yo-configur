@@ -138,33 +138,35 @@ class SelectBox {
       for (let i in bm_widgetMap) {
         let obj = bm_widgetMap[i];
         let { info = {} } = obj || {};
-        let { id = "", locked = false } = info || {};
-        bmCommon.log("-----select.vue", info);
-        let com = document.getElementById(id);
-        let rect = com?.getBoundingClientRect() || {};
-        let { left: x = 0, top: y = 0, width = 0, height = 0 } = rect || {};
-        let x1 = x + width;
-        let y1 = y + height;
-        //四点全在范围内
-        // if (
-        //   !locked &&
-        //   bmCommon.isInPolygon([x, y], points) &&
-        //   bmCommon.isInPolygon([x1, y], points) &&
-        //   bmCommon.isInPolygon([x, y1], points) &&
-        //   bmCommon.isInPolygon([x1, y1], points)
-        // ) {
-        // 只要有一点在范围内
-        if (
-          !locked &&
-          (bmCommon.isInPolygon([x, y], points) ||
-            bmCommon.isInPolygon([x1, y], points) ||
-            bmCommon.isInPolygon([x, y1], points) ||
-            bmCommon.isInPolygon([x1, y1], points))
-        ) {
-          if (bm_active_com_ids.indexOf(id) < 0) {
-            bm_active_com_ids.push(id);
+        let { id = "", locked = false, parentId = "" } = info || {};
+        if (!parentId) {
+          bmCommon.log("-----select.vue", info);
+          let com = document.getElementById(id);
+          let rect = com?.getBoundingClientRect() || {};
+          let { left: x = 0, top: y = 0, width = 0, height = 0 } = rect || {};
+          let x1 = x + width;
+          let y1 = y + height;
+          //四点全在范围内
+          // if (
+          //   !locked &&
+          //   bmCommon.isInPolygon([x, y], points) &&
+          //   bmCommon.isInPolygon([x1, y], points) &&
+          //   bmCommon.isInPolygon([x, y1], points) &&
+          //   bmCommon.isInPolygon([x1, y1], points)
+          // ) {
+          // 只要有一点在范围内
+          if (
+            !locked &&
+            (bmCommon.isInPolygon([x, y], points) ||
+              bmCommon.isInPolygon([x1, y], points) ||
+              bmCommon.isInPolygon([x, y1], points) ||
+              bmCommon.isInPolygon([x1, y1], points))
+          ) {
+            if (bm_active_com_ids.indexOf(id) < 0) {
+              bm_active_com_ids.push(id);
+            }
+            Canvas.active(id);
           }
-          Canvas.active(id);
         }
       }
       // window.bm_active_com_ids = bm_active_com_ids;

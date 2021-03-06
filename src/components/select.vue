@@ -228,44 +228,46 @@ export default {
           // let { left: x = 0, top: y = 0, width = 0, height = 0 } = item || {};
           let obj = bm_widgetMap[i];
           let { info = {} } = obj || {};
-          let { id = "", locked = false } = info || {};
+          let { id = "", locked = false, parentId = "" } = info || {};
           bmCommon.log("-----select.vue", info);
-          let com = document.getElementById(id);
-          let rect = com.getBoundingClientRect();
-          let { left: x = 0, top: y = 0, width = 0, height = 0 } = rect || {};
-          // x = x + left;
-          // y = y + top;
-          let x1 = x + width;
-          let y1 = y + height;
-          //四点全在范围内
-          // if (
-          //   !locked &&
-          //   bmCommon.isInPolygon([x, y], points) &&
-          //   bmCommon.isInPolygon([x1, y], points) &&
-          //   bmCommon.isInPolygon([x, y1], points) &&
-          //   bmCommon.isInPolygon([x1, y1], points)
-          // ) {
-          // 只要有一点在范围内
-          if (
-            !locked &&
-            (bmCommon.isInPolygon([x, y], points) ||
-              bmCommon.isInPolygon([x1, y], points) ||
-              bmCommon.isInPolygon([x, y1], points) ||
-              bmCommon.isInPolygon([x1, y1], points))
-          ) {
-            // ids.push(id);
-            // bmCommon.log(selectBoxShowStatus, "------",index);
-            // if (selectBoxShowStatus) {
-            //   // bmCommon.log(selectBoxShowStatus, "#######");
-            //   this.selectBoxShowStatus = false;
-            //   if (bm_active_com_id != id) {
-            //     // this.setActiveCom(info);
-            //     window.bm_active_com_id = id;
-            //   }
-            // }
-            // widgets.push(item);
-            bm_active_com_ids.push(id);
-            Canvas.active(id);
+          if (!parentId) {
+            let com = document.getElementById(id);
+            let rect = com.getBoundingClientRect();
+            let { left: x = 0, top: y = 0, width = 0, height = 0 } = rect || {};
+            // x = x + left;
+            // y = y + top;
+            let x1 = x + width;
+            let y1 = y + height;
+            //四点全在范围内
+            // if (
+            //   !locked &&
+            //   bmCommon.isInPolygon([x, y], points) &&
+            //   bmCommon.isInPolygon([x1, y], points) &&
+            //   bmCommon.isInPolygon([x, y1], points) &&
+            //   bmCommon.isInPolygon([x1, y1], points)
+            // ) {
+            // 只要有一点在范围内
+            if (
+              !locked &&
+              (bmCommon.isInPolygon([x, y], points) ||
+                bmCommon.isInPolygon([x1, y], points) ||
+                bmCommon.isInPolygon([x, y1], points) ||
+                bmCommon.isInPolygon([x1, y1], points))
+            ) {
+              // ids.push(id);
+              // bmCommon.log(selectBoxShowStatus, "------",index);
+              // if (selectBoxShowStatus) {
+              //   // bmCommon.log(selectBoxShowStatus, "#######");
+              //   this.selectBoxShowStatus = false;
+              //   if (bm_active_com_id != id) {
+              //     // this.setActiveCom(info);
+              //     window.bm_active_com_id = id;
+              //   }
+              // }
+              // widgets.push(item);
+              bm_active_com_ids.push(id);
+              Canvas.active(id);
+            }
           }
         }
         // if (bm_active_com_ids.length < 1) {

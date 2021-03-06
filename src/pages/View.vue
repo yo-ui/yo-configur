@@ -28,7 +28,8 @@
             :class="canvas.action"
           >
             <div class="bg" :style="bgStyle"></div>
-            <template v-for="(item, index) in widgetList">
+            <div id="canvas_content" class="canvas-content"></div>
+            <!-- <template v-for="(item, index) in widgetList">
               <bm-com
                 class="view"
                 :data-type="item.type"
@@ -49,7 +50,7 @@
                   </template>
                 </template>
               </bm-com>
-            </template>
+            </template> -->
           </div>
         </div>
       </div>
@@ -61,8 +62,11 @@
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
-import bmCom from "@/components/component";
-import { infos } from "@/widgets/index";
+import Core from "@/core/index";
+import CanvasEvent from "@/core/CanvasEvent";
+import Canvas from "@/core/Canvas";
+// import bmCom from "@/components/component";
+// import { infos } from "@/widgets/index";
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "bm-view-page",
@@ -82,8 +86,8 @@ export default {
   },
   props: ["canvasId", "type"],
   components: {
-    bmCom,
-    ...infos,
+    // bmCom,
+    // ...infos,
     bmControl: () =>
       import(/* webpackChunkName: "iot-control-com" */ "@/components/control"),
     bmCameraPreviewer: () =>
@@ -97,14 +101,14 @@ export default {
   },
   computed: {
     ...mapGetters({
-      widgetList: "canvas/getWidgetList", //组件列表
-      viewData: "canvas/getPreviewData", //组件列表
+      // widgetList: "canvas/getWidgetList", //组件列表
+      // viewData: "canvas/getPreviewData", //组件列表
       getZoom: "canvas/getZoom", //放大缩小
       boxZoom: "canvas/getBoxZoom", //放大缩小
       // leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
       // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
-      canvas: "canvas/getCanvas", //画布属性
-      deviceCacheMap: "device/getDeviceCacheMap" //设备缓存
+      canvas: "canvas/getCanvas" //画布属性
+      // deviceCacheMap: "device/getDeviceCacheMap" //设备缓存
       // selectBox: "canvas/getSelectBox", //选取框
       // activeComs: "canvas/getActiveComs", //选中对象
       // activeCom: "canvas/getActiveCom" //选中对象
@@ -251,15 +255,15 @@ export default {
     ...mapMutations({
       setZoom: "canvas/setZoom",
       setBoxZoom: "canvas/setBoxZoom", //放大缩小
-      setShowType: "canvas/setShowType",
-      setPlatform: "setPlatform",
-      setWidgetList: "canvas/setWidgetList", //设置组件列表
-      setCanvas: "canvas/setCanvas",
-      stopMove: "canvas/stopMove",
-      canvasMoving: "canvas/canvasMoving",
-      setDeviceCacheMap: "device/setDeviceCacheMap", //设备缓存
-      setAllDeviceCacheMap: "device/setAllDeviceCacheMap", //设备缓存
-      initMove: "canvas/initMove"
+      // setShowType: "canvas/setShowType",
+      // setPlatform: "setPlatform",
+      // setWidgetList: "canvas/setWidgetList", //设置组件列表
+      setCanvas: "canvas/setCanvas"
+      // stopMove: "canvas/stopMove",
+      // canvasMoving: "canvas/canvasMoving",
+      // setDeviceCacheMap: "device/setDeviceCacheMap", //设备缓存
+      // setAllDeviceCacheMap: "device/setAllDeviceCacheMap", //设备缓存
+      // initMove: "canvas/initMove"
     }),
     ...mapActions({
       initConfigWebsocketAction: "initConfigWebsocket",
@@ -281,9 +285,11 @@ export default {
         type = this.type;
       }
       let platform = type == 2 ? "service" : "manage";
-      this.setPlatform(platform); //type： 2 为应用平台过来  1为管理平台过来
+      // this.setPlatform(platform); //type： 2 为应用平台过来  1为管理平台过来
+      window.bm_platform = platform;
+      window.bm_show_type = Constants.SHOWTYPEMAP.VIEW;
       condition.canvasId = canvasId;
-      this.setShowType(Constants.SHOWTYPEMAP.VIEW);
+      // this.setShowType(Constants.SHOWTYPEMAP.VIEW);
       this.canvasGetFunc((detail = {}) => {
         let {
           name = "",
@@ -306,48 +312,61 @@ export default {
         canvas.left = 0;
         canvas.top = 0;
         this.setCanvas(canvas);
-        let widgets = [];
-        widgetList.forEach(item => {
-          let { alias = "", type = "", bindData = {} } = item || {};
-          if (!alias) {
-            alias = type;
-          }
-          let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
-          let { data = {} } = _item || {};
-          let {
-            infoType = "",
-            dataType = "",
-            bindData: _bindData = {},
-            styleCode = "",
-            dataCode = ""
-          } = data || {};
-          for (let i in data) {
-            if (!item[i]) {
-              item[i] = data[i];
-            }
-          }
-          item.bindData = { ..._bindData, ...bindData };
-          item.infoType = infoType;
-          item.dataType = dataType;
-          item.dataCode = dataCode;
-          item.styleCode = styleCode;
-          item.alias = alias;
-          if (type && type != "canvas") {
-            widgets.push(item);
-          }
+        // let widgets = [];
+        // widgetList.forEach(item => {
+        //   let { alias = "", type = "", bindData = {} } = item || {};
+        //   if (!alias) {
+        //     alias = type;
+        //   }
+        //   let _item = Constants.COMPONENTLIBRARYMAP[alias] || {};
+        //   let { data = {} } = _item || {};
+        //   let {
+        //     infoType = "",
+        //     dataType = "",
+        //     bindData: _bindData = {},
+        //     styleCode = "",
+        //     dataCode = ""
+        //   } = data || {};
+        //   for (let i in data) {
+        //     if (!item[i]) {
+        //       item[i] = data[i];
+        //     }
+        //   }
+        //   item.bindData = { ..._bindData, ...bindData };
+        //   item.infoType = infoType;
+        //   item.dataType = dataType;
+        //   item.dataCode = dataCode;
+        //   item.styleCode = styleCode;
+        //   item.alias = alias;
+        //   if (type && type != "canvas") {
+        //     widgets.push(item);
+        //   }
+        // });
+        // this.setWidgetList(widgets || []);
+        // this.resizeCanvasSize();
+        // this.loadWebsocketData(widgetList);
+        this.loadWebsocketData(widgetList, () => {
+          Core.init(widgetList, widgets => {
+            // $vm.$emit("info-data-init", {
+            //   count: widgets.length,
+            //   widgets
+            // });
+            CanvasEvent.resizeCanvasSize();
+          });
         });
-        this.setWidgetList(widgets || []);
-        this.resizeCanvasSize();
-        this.loadWebsocketData(widgetList);
       });
       // });
     },
     initEvent() {
-      $(window).on("resize", this.resizeCanvasSize);
-      //滚动事件
-      $(document).on("mousewheel DOMMouseScroll", this.mouseScrollEvent);
-      //注册画布移动事件
-      $(document).on("mousedown", this.mousedownEvent);
+      // $(window).on("resize", this.resizeCanvasSize);
+      // //滚动事件
+      // $(document).on("mousewheel DOMMouseScroll", this.mouseScrollEvent);
+      // //注册画布移动事件
+      // $(document).on("mousedown", this.mousedownEvent);
+      //注册显示控制处理事件
+      $vm.$on("zoom", item => {
+        this.zoomEvent(item);
+      });
       //注册显示控制处理事件
       $vm.$on("control", item => {
         this.$refs.bmControl.show(item);
@@ -401,58 +420,58 @@ export default {
         this.setBoxZoom(1);
       }
     },
-    mouseScrollEvent(e) {
-      // e.preventDefault();
-      // e.stopPropagation();
-      let wheel = e.originalEvent.wheelDelta || -e.originalEvent.detail;
-      let delta = Math.max(-1, Math.min(1, wheel));
-      // let scrollTop=$(".content-box").scrollTop()
-      // bmCommon.log();
-      if (delta < 0) {
-        //向下滚动
-        bmCommon.log("向下滚动");
-        this.zoomEvent(-3);
-      } else {
-        //向上滚动
-        bmCommon.log("向上滚动");
-        this.zoomEvent(3);
-      }
-      // return false;
-    },
-    mousedownEvent(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      let { canvas = {} } = this;
-      let pos = bmCommon.getMousePosition(e);
-      let { x = "", y = "" } = pos || {};
-      let { left, top, locked = false } = canvas || {};
-      bmCommon.log("view=>mousedownEvent");
-      if (locked) {
-        return;
-      }
-      this.initMove({
-        startX: x,
-        startY: y,
-        originX: left,
-        originY: top
-      });
+    // mouseScrollEvent(e) {
+    //   // e.preventDefault();
+    //   // e.stopPropagation();
+    //   let wheel = e.originalEvent.wheelDelta || -e.originalEvent.detail;
+    //   let delta = Math.max(-1, Math.min(1, wheel));
+    //   // let scrollTop=$(".content-box").scrollTop()
+    //   // bmCommon.log();
+    //   if (delta < 0) {
+    //     //向下滚动
+    //     bmCommon.log("向下滚动");
+    //     this.zoomEvent(-3);
+    //   } else {
+    //     //向上滚动
+    //     bmCommon.log("向上滚动");
+    //     this.zoomEvent(3);
+    //   }
+    //   // return false;
+    // },
+    // mousedownEvent(e) {
+    //   e.stopPropagation();
+    //   e.preventDefault();
+    //   let { canvas = {} } = this;
+    //   let pos = bmCommon.getMousePosition(e);
+    //   let { x = "", y = "" } = pos || {};
+    //   let { left, top, locked = false } = canvas || {};
+    //   bmCommon.log("view=>mousedownEvent");
+    //   if (locked) {
+    //     return;
+    //   }
+    //   this.initMove({
+    //     startX: x,
+    //     startY: y,
+    //     originX: left,
+    //     originY: top
+    //   });
 
-      $(document).on("mousemove", this.mousemoveEvent);
-      $(document).on("mouseup", this.mouseupEvent);
-    },
-    mousemoveEvent(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      let pos = bmCommon.getMousePosition(e);
-      let { x = "", y = "" } = pos || {};
-      this.canvasMoving({ x, y });
-    },
-    mouseupEvent(e) {
-      $(document).off("mousemove", this.mousemoveEvent);
-      $(document).off("mouseup", this.mouseupEvent);
-      this.stopMove();
-    },
-    loadWebsocketData(widgetList = []) {
+    //   $(document).on("mousemove", this.mousemoveEvent);
+    //   $(document).on("mouseup", this.mouseupEvent);
+    // },
+    // mousemoveEvent(e) {
+    //   e.stopPropagation();
+    //   e.preventDefault();
+    //   let pos = bmCommon.getMousePosition(e);
+    //   let { x = "", y = "" } = pos || {};
+    //   this.canvasMoving({ x, y });
+    // },
+    // mouseupEvent(e) {
+    //   $(document).off("mousemove", this.mousemoveEvent);
+    //   $(document).off("mouseup", this.mouseupEvent);
+    //   this.stopMove();
+    // },
+    loadWebsocketData(widgetList = [], callback) {
       let set = new Set();
       let deviceIdList = [];
       widgetList.forEach(item => {
@@ -474,12 +493,8 @@ export default {
       });
       deviceIdList = Array.from(set);
       this.commonDeviceListFunc(deviceIdList, (list = []) => {
-        // let map = {};
-        // list.forEach(item => {
-        //   let { id = "" } = item || {};
-        //   map[id] = item || {};
-        // });
-        // this.setAllDeviceCacheMap(map);
+        bmCommon.log("设备列表加载完成");
+        callback && callback();
       });
       this.pushFunc(deviceIdList, result => {
         bmCommon.log("postFunc", result);
@@ -526,40 +541,41 @@ export default {
         });
       });
     },
-    resizeCanvasSize() {
-      let $window = $(window);
-      // let w_height = $window.height();
-      let w_width = $window.width();
-      if (w_width < 800) {
-        w_width = 800;
-      }
-      let { canvas = {} } = this;
-      let { width = 0 } = canvas || {};
-      // let h_ratio = w_height / height;
-      let w_ratio = w_width / width;
-      let scale = w_ratio;
-      // let left = (w_width - width) / 2;
-      // let top = ((w_height - height) * scale) / 2;
-      // if (h_ratio > w_ratio) {
-      //   scale = h_ratio;
-      //   // left = ((w_width - width) * scale) / 2;
-      //   // top = (w_height - height) / 2;
-      // }
-      // canvas.left = left;
-      // canvas.top = top;
-      this.setZoom(scale);
-    },
-    showInfoEvent(info = {}) {
-      let { id = "" } = info || {};
-      let key = `bmInfoCom_${id}`;
-      this.$refs[key][0]?.show(info);
-    },
+    // resizeCanvasSize() {
+    //   let $window = $(window);
+    //   // let w_height = $window.height();
+    //   let w_width = $window.width();
+    //   if (w_width < 800) {
+    //     w_width = 800;
+    //   }
+    //   let { canvas = {} } = this;
+    //   let { width = 0 } = canvas || {};
+    //   // let h_ratio = w_height / height;
+    //   let w_ratio = w_width / width;
+    //   let scale = w_ratio;
+    //   // let left = (w_width - width) / 2;
+    //   // let top = ((w_height - height) * scale) / 2;
+    //   // if (h_ratio > w_ratio) {
+    //   //   scale = h_ratio;
+    //   //   // left = ((w_width - width) * scale) / 2;
+    //   //   // top = (w_height - height) / 2;
+    //   // }
+    //   // canvas.left = left;
+    //   // canvas.top = top;
+    //   this.setZoom(scale);
+    // },
+    // showInfoEvent(info = {}) {
+    //   let { id = "" } = info || {};
+    //   let key = `bmInfoCom_${id}`;
+    //   this.$refs[key][0]?.show(info);
+    // },
     // 设备点位参数
     commonDeviceListFunc(ids = [], callback) {
       let value = [];
       if (!(ids.length > 0)) {
         callback();
         this.dataLoadingStatus = false;
+        Canvas.setAllDeviceCacheMap({});
         return;
       }
       // this.commonDeviceListAction({ ids: JSON.stringify(ids) })
@@ -569,57 +585,40 @@ export default {
           let { code = "", result = [], message = "" } = data || {};
           if (code == Constants.CODES.SUCCESS) {
             value = result || [];
-            let map = {};
-            value.forEach(item => {
-              let { deviceId: id = "", configurDevicePointVoList = [] } =
-                item || {};
-              let points = [];
-              configurDevicePointVoList.forEach(_item => {
-                let {
-                  point: id = "",
-                  acqTime: time = "",
-                  descr: name = "",
-                  name: deviceName = "",
-                  unit = "",
-                  value = ""
-                } = _item || {};
-                points.push({ name, time, deviceName, id, unit, value });
-              });
-              delete item.configurDevicePointVoList;
-              item.points = points || [];
-              map[id] = item || {};
-            });
-            this.setAllDeviceCacheMap(map);
           } else {
             bmCommon.error(message);
           }
+          let map = {};
+          value.forEach(item => {
+            let { deviceId: id = "", configurDevicePointVoList = [] } =
+              item || {};
+            let points = [];
+            configurDevicePointVoList.forEach(_item => {
+              let {
+                point: id = "",
+                acqTime: time = "",
+                descr: name = "",
+                name: deviceName = "",
+                unit = "",
+                value = ""
+              } = _item || {};
+              points.push({ name, time, deviceName, id, unit, value });
+            });
+            delete item.configurDevicePointVoList;
+            item.points = points || [];
+            map[id] = item || {};
+          });
+          Canvas.setAllDeviceCacheMap(map);
           callback && callback(value || []);
           this.dataLoadingStatus = false;
         })
         .catch(err => {
           callback && callback(value || []);
+          Canvas.setAllDeviceCacheMap({});
           this.dataLoadingStatus = false;
           bmCommon.error("获取数据失败=>commonDeviceList", err);
         });
     },
-    // // 获取登录信息
-    // commonVerifyInfoFunc(callback) {
-    //   let value = {};
-    //   this.commonVerifyInfoAction()
-    //     .then(({ data }) => {
-    //       let { code = "", result = {}, message = "" } = data || {};
-    //       if (code == Constants.CODES.SUCCESS) {
-    //         value = result || {};
-    //       } else {
-    //         bmCommon.error(message);
-    //       }
-    //       callback && callback(value || {});
-    //     })
-    //     .catch(err => {
-    //       callback && callback(value || {});
-    //       bmCommon.error("获取数据失败=>commonVerifyInfo", err);
-    //     });
-    // },
     // 初始化websocket
     initConfigWebsocketFunc(callback) {
       let value = {};
@@ -688,17 +687,21 @@ export default {
         });
     },
     // 获取设备信息
-    commonGetDeviceFunc({ deviceId = "" }, callback) {
+    commonGetDeviceFunc({ deviceId = "", flag = true }, callback) {
       let value = {};
       if (!deviceId) {
         callback && callback(value || {});
         return;
       }
-      let { deviceCacheMap = {} } = this;
-      let { deviceId: id = "" } = deviceCacheMap(deviceId) || {};
-      if (id) {
-        callback(deviceCacheMap(deviceId));
-        return;
+      if (flag) {
+        let device = Canvas.getDeviceCacheMap(deviceId);
+        let { deviceId: id = "" } = device || {};
+        bmCommon.log("commonGetDeviceFunc==获取到缓存开始", device, deviceId);
+        if (id) {
+          bmCommon.log("commonGetDeviceFunc==获取到缓存", id);
+          callback(device);
+          return;
+        }
       }
       this.commonGetDeviceAction({ deviceId })
         .then(({ data }) => {
@@ -708,16 +711,12 @@ export default {
           } else {
             bmCommon.error(message);
           }
-          this.setDeviceCacheMap({ key: deviceId, value });
-          if (!id) {
-            callback && callback(value || {});
-          }
+          Canvas.setDeviceCacheMap({ key: deviceId, value });
+          callback && callback(value || {});
         })
         .catch(err => {
-          this.setDeviceCacheMap({ key: deviceId, value });
-          if (!id) {
-            callback && callback(value || {});
-          }
+          Canvas.setDeviceCacheMap({ key: deviceId, value });
+          callback && callback(value || {});
           bmCommon.error("获取数据失败=>commonGetDevice", err);
         });
     },
@@ -755,11 +754,11 @@ export default {
     this.init();
   },
   beforeDestroy() {
-    $(window).off("resize", this.resizeCanvasSize);
-    //滚动事件
-    $(document).off("mousewheel DOMMouseScroll", this.mouseScrollEvent);
-    //移动事件
-    $(document).off("mousedown", this.mousedownEvent);
+    // $(window).off("resize", this.resizeCanvasSize);
+    // //滚动事件
+    // $(document).off("mousewheel DOMMouseScroll", this.mouseScrollEvent);
+    // //移动事件
+    // $(document).off("mousedown", this.mousedownEvent);
   }
 };
 </script>

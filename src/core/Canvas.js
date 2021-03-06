@@ -32,7 +32,7 @@ class Canvas {
   // }
 
   static getDeviceCacheMap(key) {
-    return Canvas.deviceCacheMap[key] || [];
+    return Canvas.deviceCacheMap[key] || {};
   }
   static setDeviceCacheMap({ key = "", value = {} } = {}) {
     let { deviceCacheMap = {} } = Canvas;
@@ -100,13 +100,15 @@ class Canvas {
     return widgets;
   }
 
-  static append(item) {
+  static append(item, flag = true) {
     let $container = $("#canvas_content");
     let dom = Canvas.singleTemplate(item);
     $container.append(dom);
     WidgetList.append(item);
-    let { id = "" } = item || {};
-    CanvasEvent.selectComAction(id);
+    if (flag) {
+      let { id = "" } = item || {};
+      CanvasEvent.selectComAction(id);
+    }
   }
 
   static singleTemplate(item) {
@@ -482,8 +484,36 @@ class Canvas {
   }
 
   //获取组件列表
-  static getWidgetList() {
+  static getWidgetIndexList() {
     return $vm.$store.getters["canvas/getWidgetList"] || [];
+  }
+  static getWidgetList() {
+    // return $vm.$store.getters["canvas/getWidgetList"] || [];
+    let widgetList = [];
+    let bm_widgetMap = window.bm_widgetMap;
+    for (let i in bm_widgetMap) {
+      let obj = bm_widgetMap[i];
+      let { info = {} } = obj || {};
+      let { parentId = "" } = info || {};
+      if (!parentId) {
+        widgetList.push(info);
+      }
+    }
+    return widgetList;
+  }
+
+  static getOrders() {
+    let orders = [];
+    let bm_widgetMap = window.bm_widgetMap;
+    for (let i in bm_widgetMap) {
+      let obj = bm_widgetMap[i];
+      let { info = {} } = obj || {};
+      let { order = 1, parentId = "" } = info || {};
+      if (!parentId) {
+        orders.push(order);
+      }
+    }
+    return orders;
   }
 
   // static refresh(item) {

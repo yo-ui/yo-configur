@@ -4,7 +4,7 @@
  * ===== ===== =====
  */
 import canvas from "./canvas";
-import device from "./device";
+// import device from "./device";
 // import manufacturer from "./manufacturer";
 // import devicePoint from "./devicePoint";
 // import pointValue from "./pointValue";
@@ -18,7 +18,7 @@ import common from "./common";
 export default {
   canvas,
   // manufacturer,
-  device,
+  // device,
   // pointValue,
   // withdraw,
   // deviceSys,

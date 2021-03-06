@@ -32,6 +32,7 @@
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
+import Canvas from "@/core/Canvas";
 // const html2canvas = require("@/common/lib/html2canvas");
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -59,7 +60,7 @@ export default {
   methods: {
     ...mapMutations({
       // setActiveCom: "canvas/setActiveCom",
-      setRecordList: "canvas/setRecordList"
+      // setRecordList: "canvas/setRecordList"
       // setZoom: "canvas/setZoom",
       // setLeftMenuStatus: "canvas/setLeftMenuStatus",
       // setRightMenuStatus: "canvas/setRightMenuStatus"
@@ -75,13 +76,8 @@ export default {
     show() {
       this.showDialogStatus = true;
       let { condition, canvas = {} } = this;
-      let bm_widgetMap = window.bm_widgetMap;
-      let widgetList = [];
-      for (let i in bm_widgetMap) {
-        let obj = bm_widgetMap[i];
-        let { info = {} } = obj || {};
-        widgetList.push(info);
-      }
+      // let bm_widgetMap = window.bm_widgetMap;
+      let widgetList = Canvas.getWidgetList();
       this.selectComAction(); //选中组件
       condition.remark = JSON.stringify({
         canvas,
@@ -96,32 +92,6 @@ export default {
       let { remark: name = "" } = condition;
       let time = this.$moment().valueOf();
       let id = bmCommon.uuid();
-      // html2canvas($(".canvas-box")[0], {}).then(canvas => {
-      //   // window.open(canvas.toDataURL())
-      //   // bmCommon.log(canvas.toDataURL());
-      //   let blob = bmCommon.convertBase64ToBlob(canvas.toDataURL());
-      //   let formData = new FormData();
-      //   formData.append("files", blob, `${Date.now()}.png`);
-      //   formData.append("subDir", Constants.UPLOADDIR.FILE);
-      //   recordList = [...recordList];
-      //   this.upload2OssFunc(
-      //     {
-      //       formData
-      //     },
-      //     img => {
-      //       recordList.unshift({
-      //         id,
-      //         name,
-      //         time,
-      //         img,
-      //         type: "manual", //手动记录
-      //         widgetList
-      //       });
-      //       this.setRecordList(recordList);
-      //       this.showDialogStatus = false;
-      //     }
-      //   );
-      // });
     },
     //上传图片
     upload2OssFunc(options, callback) {

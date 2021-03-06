@@ -340,17 +340,17 @@ export default {
       leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
       rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
       canvas: "canvas/getCanvas", //画布属性
-      deviceCacheMap: "device/getDeviceCacheMap", //设备缓存
+      // deviceCacheMap: "device/getDeviceCacheMap", //设备缓存
       selectBox: "canvas/getSelectBox", //选取框
       activeComs: "canvas/getActiveComs", //选中对象
       activeCom: "canvas/getActiveCom" //选中对象
     }),
-    bottomOrder() {
-      let { widgetList = [] } = this;
-      let orders = widgetList.map(item => item.order);
-      let order = Math.min(...orders);
-      return order;
-    },
+    // bottomOrder() {
+    //   let { widgetList = [] } = this;
+    //   let orders = widgetList.map(item => item.order);
+    //   let order = Math.min(...orders);
+    //   return order;
+    // },
     // isSameGroup() {
     //   let { activeComs = [], widgetList = [], activeCom = {} } = this;
     //   let set = new Set();
@@ -378,12 +378,12 @@ export default {
     //     return widgets.length > 1;
     //   }
     // },
-    topOrder() {
-      let { widgetList = [] } = this;
-      let orders = widgetList.map(item => item.order);
-      let order = Math.max(...orders);
-      return order;
-    },
+    // topOrder() {
+    //   let { widgetList = [] } = this;
+    //   let orders = widgetList.map(item => item.order);
+    //   let order = Math.max(...orders);
+    //   return order;
+    // },
     pageStyle() {
       let { canvas = {}, gradientStyle } = this;
       let { pageColor = "", page = {} } = canvas || {};
@@ -633,13 +633,14 @@ export default {
           // this.setWidgetList(widgets || []);
 
           //创建组件列表
-          Core.init(widgetList, widgets => {
-            // $vm.$emit("info-data-init", {
-            //   count: widgets.length,
-            //   widgets
-            // });
-            CanvasEvent.resizeCanvasSize();
-            this.loadWebsocketData(widgets);
+          this.loadWebsocketData(widgetList, () => {
+            Core.init(widgetList, widgets => {
+              // $vm.$emit("info-data-init", {
+              //   count: widgets.length,
+              //   widgets
+              // });
+              CanvasEvent.resizeCanvasSize();
+            });
           });
           // //加载 info 数据初始化
           // $vm.$emit("info-data-init", {
@@ -772,7 +773,7 @@ export default {
       // this.selectComAction();
     },
 
-    loadWebsocketData(widgetList = []) {
+    loadWebsocketData(widgetList = [], callback) {
       let set = new Set();
       let deviceIdList = [];
       widgetList.forEach(item => {
@@ -801,6 +802,7 @@ export default {
         // });
         // this.setAllDeviceCacheMap(map);
         bmCommon.log("设备列表加载完成");
+        callback && callback();
         // widgetList.forEach(item => {
         //   item.showStatus = true;
         // });
@@ -892,11 +894,20 @@ export default {
         callback && callback(value || {});
         return;
       }
+      // bmCommon.log(
+      //   "commonGetDeviceFunc==",
+      //   deviceId,
+      //   flag,
+      //   Canvas.deviceCacheMap,
+      //   Canvas.getDeviceCacheMap(deviceId)
+      // );
       if (flag) {
-        let { deviceCacheMap = {} } = this;
-        let { id = "" } = deviceCacheMap(deviceId) || {};
+        let device = Canvas.getDeviceCacheMap(deviceId);
+        let { deviceId: id = "" } = device || {};
+        bmCommon.log("commonGetDeviceFunc==获取到缓存开始", device, deviceId);
         if (id) {
-          callback(deviceCacheMap(deviceId));
+          bmCommon.log("commonGetDeviceFunc==获取到缓存", id);
+          callback(device);
           return;
         }
       }
@@ -963,6 +974,7 @@ export default {
       if (!(ids.length > 0)) {
         callback();
         this.dataLoadingStatus = false;
+        Canvas.setAllDeviceCacheMap({});
         return;
       }
       // this.commonDeviceListAction({ ids: JSON.stringify(ids) })
@@ -972,36 +984,36 @@ export default {
           let { code = "", result = [], message = "" } = data || {};
           if (code == Constants.CODES.SUCCESS) {
             value = result || [];
-            let map = {};
-            value.forEach(item => {
-              let { deviceId: id = "", configurDevicePointVoList = [] } =
-                item || {};
-              let points = [];
-              configurDevicePointVoList.forEach(_item => {
-                let {
-                  point: id = "",
-                  acqTime: time = "",
-                  descr: name = "",
-                  name: deviceName = "",
-                  unit = "",
-                  value = ""
-                } = _item || {};
-                points.push({ name, time, deviceName, id, unit, value });
-              });
-              delete item.configurDevicePointVoList;
-              item.points = points || [];
-              map[id] = item || {};
-            });
-            this.setAllDeviceCacheMap(map);
           } else {
             bmCommon.error(message);
           }
+          let map = {};
+          value.forEach(item => {
+            let { deviceId: id = "", configurDevicePointVoList = [] } =
+              item || {};
+            let points = [];
+            configurDevicePointVoList.forEach(_item => {
+              let {
+                point: id = "",
+                acqTime: time = "",
+                descr: name = "",
+                name: deviceName = "",
+                unit = "",
+                value = ""
+              } = _item || {};
+              points.push({ name, time, deviceName, id, unit, value });
+            });
+            delete item.configurDevicePointVoList;
+            item.points = points || [];
+            map[id] = item || {};
+          });
+          Canvas.setAllDeviceCacheMap(map);
           callback && callback(value || []);
           this.dataLoadingStatus = false;
         })
         .catch(err => {
           callback && callback(value || []);
-          this.setAllDeviceCacheMap({});
+          Canvas.setAllDeviceCacheMap({});
           this.dataLoadingStatus = false;
           bmCommon.error("获取数据失败=>commonDeviceList", err);
         });

@@ -439,7 +439,7 @@ export default {
       this._saveTimeoutId = setTimeout(() => {
         clearTimeout(this._saveTimeoutId);
         let { canvas = {} } = this;
-        let bm_widgetMap = window.bm_widgetMap;
+        // let bm_widgetMap = window.bm_widgetMap;
         let { width = "", height = "", canvasId: id = "", name = "" } =
           canvas || {};
         // this.setCanvasData(data);
@@ -448,12 +448,7 @@ export default {
           return;
         }
         let data = {};
-        let widgetList = [];
-        for (let i in bm_widgetMap) {
-          let obj = bm_widgetMap[i];
-          let { info = {} } = obj || {};
-          widgetList.push(info);
-        }
+        let widgetList = Canvas.getWidgetList();
         data.canvasData = {
           widgetList,
           canvas
@@ -497,13 +492,7 @@ export default {
             return;
           }
         }
-        let orders = [];
-        for (let i in bm_widgetMap) {
-          let obj = bm_widgetMap[i];
-          let { info = {} } = obj || {};
-          let { order = 1 } = info || {};
-          orders.push(order);
-        }
+        let orders = Canvas.getOrders();
         // let _activeComs = [];
         let callback = item => {
           let id = bmCommon.uuid();
@@ -635,14 +624,8 @@ export default {
     },
     widgetsActiveComsEvent() {
       let bm_active_com_ids = window.bm_active_com_ids;
-      let bm_widgetMap = window.bm_widgetMap;
-      let widgetList = [];
-      for (let i in bm_widgetMap) {
-        let obj = bm_widgetMap[i];
-        let { info = {} } = obj || {};
-        let { id = "" } = info || {};
-        widgetList.push(id);
-      }
+      // let bm_widgetMap = window.bm_widgetMap;
+      let widgetList = Canvas.getWidgetIndexList();
       this.widgetList = widgetList;
       this.activeComs = bm_active_com_ids;
     },
@@ -686,21 +669,23 @@ export default {
     },
     //运行
     runEvent() {
-      this._navTimeoutId = setTimeout(() => {
-        clearTimeout(this._navTimeoutId);
+      this._runTimeoutId = setTimeout(() => {
+        clearTimeout(this._runTimeoutId);
         // this.$jumpPage(this.$RouterURL.preview.name);
-        let { widgetList = [], canvas = {} } = this;
-        this.setPreviewData({
-          widgetList,
-          canvas
+        let { canvas = {} } = this;
+        // let bm_widgetMap = window.bm_widgetMap;
+        let widgetList = Canvas.getWidgetList();
+        Canvas.setPreviewData({
+          widgetList: Object.freeze([...widgetList]),
+          canvas: Object.freeze({ ...canvas })
         });
         this.$refs.bmPreview?.show();
-        this.selectComAction(); //选中组件
+        // CanvasEvent.selectComAction(); //选中组件
         this.timeoutId = setTimeout(() => {
           clearTimeout(this.timeoutId);
           this.uploadImg((img = "") => {
             canvas.poster = img;
-            this.createRecordAction({ img });
+            CanvasEvent.createRecordAction({ img });
           });
         });
       }, 0);
@@ -1036,31 +1021,34 @@ export default {
         let {
           order = 1,
           type = "",
+          parentId = "",
           children: _children = [],
           left = 0,
           top = 0
         } = info || {};
-        orders.push(order);
-        if (bm_active_com_ids.indexOf(i) > -1) {
-          //若已经是组合则先打散
-          if (type === "panel") {
-            _children.forEach(_item => {
-              let obj = bmCommon.clone(_item);
-              obj.id = bmCommon.uuid();
-              obj.left += left;
-              obj.top += top;
-              delete obj.parentId;
-              children.push(obj);
-            });
-          } else {
-            children.push(bmCommon.clone(info));
-          }
+        if (!parentId) {
+          orders.push(order);
+          if (bm_active_com_ids.indexOf(i) > -1) {
+            //若已经是组合则先打散
+            if (type === "panel") {
+              _children.forEach(_item => {
+                let obj = bmCommon.clone(_item);
+                obj.id = bmCommon.uuid();
+                obj.left += left;
+                obj.top += top;
+                delete obj.parentId;
+                children.push(obj);
+              });
+            } else {
+              children.push(bmCommon.clone(info));
+            }
 
-          bmCommon.error("count=", info, children, JSON.stringify(info));
-          // if (index > -1) {
-          //   widgetList.splice(index, 1);
-          //   // count++;
-          // }
+            bmCommon.error("count=", info, children, JSON.stringify(info));
+            // if (index > -1) {
+            //   widgetList.splice(index, 1);
+            //   // count++;
+            // }
+          }
         }
       }
 
@@ -1143,13 +1131,7 @@ export default {
       let bm_widgetMap = window.bm_widgetMap;
       // let widgetList = [];
 
-      let orders = [];
-      for (let i in bm_widgetMap) {
-        let obj = bm_widgetMap[i];
-        let { info = {} } = obj || {};
-        let { order = 1 } = info || {};
-        orders.push(order);
-      }
+      let orders = Canvas.getOrders();
       let obj = bm_widgetMap[bm_active_com_id];
       let { info: activeCom = {} } = obj || {};
       // let widgets = [];
@@ -1173,7 +1155,7 @@ export default {
         item.order = index + order;
         delete item.parentId;
         // widgets.push(item);
-        Canvas.append(item);
+        Canvas.append(item, false);
       });
       // let index = widgetList.findIndex(item => id == item.id);
       // widgetList.splice(index, 1, ...widgets);
@@ -1583,11 +1565,8 @@ export default {
           let { children = [] } = parent || {};
           widgetList = children || [];
         } else {
-          for (let i in bm_widgetMap) {
-            let obj = bm_widgetMap[i];
-            let { info = {} } = obj || {};
-            widgetList.push(info);
-          }
+          // for (
+          widgetList = Canvas.getWidgetList();
         }
         let orders = widgetList.map(item => item.order).sort((a, b) => a - b);
         let _order = orders.find(item => item > order);
@@ -1599,16 +1578,7 @@ export default {
         info.order = order;
         obj?.refresh();
       } else {
-        // let activeComs = [];
-        for (let i in bm_widgetMap) {
-          let obj = bm_widgetMap[i];
-          let { info = {} } = obj || {};
-          widgetList.push(info);
-          // let { id = "" } = info || {};
-          // if (bm_active_com_ids.indexOf(id) > -1) {
-          //   activeComs.push(info);
-          // }
-        }
+        widgetList = Canvas.getWidgetList();
         // order = Math.min(...activeComs.map(item => item.order));
         let orders = widgetList.map(item => item.order).sort((a, b) => a - b);
         let _order = orders.find(item => item > order);
@@ -1637,11 +1607,9 @@ export default {
           let { children = [] } = parent || {};
           widgetList = children || [];
         } else {
-          for (let i in bm_widgetMap) {
-            let obj = bm_widgetMap[i];
-            let { info = {} } = obj || {};
-            widgetList.push(info);
-          }
+          // for (
+
+          widgetList = Canvas.getWidgetList();
         }
         // let obj = widgetList.find(item => order > item.order);
         // let { order: _order = "" } = obj || {};
@@ -1656,16 +1624,7 @@ export default {
         info.order = order;
         obj?.refresh();
       } else {
-        // let activeComs = [];
-        for (let i in bm_widgetMap) {
-          let obj = bm_widgetMap[i];
-          let { info = {} } = obj || {};
-          widgetList.push(info);
-          // let { id = "" } = info || {};
-          // if (bm_active_com_ids.indexOf(id) > -1) {
-          //   activeComs.push(info);
-          // }
-        }
+        widgetList = Canvas.getWidgetList();
         // order = Math.max(...activeComs.map(item => item.order));
         let orders = widgetList.map(item => item.order).sort((a, b) => b - a);
         let _order = orders.find(item => item < order);
@@ -1691,11 +1650,7 @@ export default {
         let { children = [] } = parent || {};
         widgetList = children || [];
       } else {
-        for (let i in bm_widgetMap) {
-          let obj = bm_widgetMap[i];
-          let { info = {} } = obj || {};
-          widgetList.push(info);
-        }
+        widgetList = Canvas.getWidgetList();
       }
       let orders = widgetList.map(item => item.order);
       let order = Math.min(...orders);
@@ -1720,11 +1675,7 @@ export default {
         let { children = [] } = parent || {};
         widgetList = children || [];
       } else {
-        for (let i in bm_widgetMap) {
-          let obj = bm_widgetMap[i];
-          let { info = {} } = obj || {};
-          widgetList.push(info);
-        }
+        widgetList = Canvas.getWidgetList();
       }
       let orders = widgetList.map(item => item.order);
       let order = Math.max(...orders);

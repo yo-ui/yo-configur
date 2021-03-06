@@ -11,26 +11,26 @@ export default {
   },
   getters: {
     //获取缓存数据对象
-    getDeviceCacheMap(state) {
-      let deviceCacheMap = state.deviceCacheMap || {};
-      return key => {
-        return deviceCacheMap[key] || [];
-      };
-    }
+    // getDeviceCacheMap(state) {
+    //   let deviceCacheMap = state.deviceCacheMap || {};
+    //   return key => {
+    //     return deviceCacheMap[key] || [];
+    //   };
+    // }
   },
   mutations: {
-    //设置缓存对象
-    setDeviceCacheMap(state, { key = "", value = {} } = {}) {
-      let deviceCacheMap = JSON.parse(
-        JSON.stringify(state.deviceCacheMap || {})
-      );
-      deviceCacheMap[key] = value || {};
-      state.deviceCacheMap = Object.freeze(deviceCacheMap);
-    },
-    //设置缓存对象
-    setAllDeviceCacheMap(state, item = {}) {
-      state.deviceCacheMap = Object.freeze(item || {});
-    }
+    // //设置缓存对象
+    // setDeviceCacheMap(state, { key = "", value = {} } = {}) {
+    //   let deviceCacheMap = JSON.parse(
+    //     JSON.stringify(state.deviceCacheMap || {})
+    //   );
+    //   deviceCacheMap[key] = value || {};
+    //   state.deviceCacheMap = Object.freeze(deviceCacheMap);
+    // },
+    // //设置缓存对象
+    // setAllDeviceCacheMap(state, item = {}) {
+    //   state.deviceCacheMap = Object.freeze(item || {});
+    // }
   },
   actions: {}
 };

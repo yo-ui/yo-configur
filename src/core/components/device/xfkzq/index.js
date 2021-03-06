@@ -415,7 +415,11 @@ class Display extends Component {
     "
     style="${this.composeStyles(this.valueStyle())}"
   >
-    ${info.content ? $vm.$format(devicePoint ? point.value : 3, decimal) : "--"}
+    ${
+      info.content
+        ? $vm.$format(devicePoint ? point.value || "0" : 3, decimal)
+        : "--"
+    }
   </text>
   <text
     transform="matrix(1 0 0 1 49 22)"
@@ -424,7 +428,7 @@ class Display extends Component {
     "
     style="${this.composeStyles(this.unitStyle())}"
   >
-    ${devicePoint ? point.unit : "档"}
+    ${devicePoint ? point.unit || "" : "档"}
   </text>`;
   }
 

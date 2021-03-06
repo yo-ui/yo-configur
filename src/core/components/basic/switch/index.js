@@ -188,7 +188,7 @@ class Text extends Component {
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    let { id = "", content = "" } = info || {};
+    let { id = "" } = info || {};
     let $container = $(`#${id}>.component`);
     $container.html(this.renderContentText());
   }

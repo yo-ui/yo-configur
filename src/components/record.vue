@@ -77,13 +77,8 @@ export default {
     },
     submitEvent() {
       let { condition } = this;
-      let bm_widgetMap = window.bm_widgetMap;
-      let widgetList = [];
-      for (let i in bm_widgetMap) {
-        let obj = bm_widgetMap[i];
-        let { info = {} } = obj || {};
-        widgetList.push(info);
-      }
+      // let bm_widgetMap = window.bm_widgetMap;
+      let widgetList = Canvas.getWidgetList();
 
       let { remark: name = "" } = condition;
       let time = moment().valueOf();

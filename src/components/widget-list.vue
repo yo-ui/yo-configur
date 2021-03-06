@@ -398,13 +398,7 @@ export default {
       let offset = $(".view-box").offset();
       let { dataTransfer = {} } = originalEvent;
       let data = dataTransfer.getData("data");
-      let widgetList = [];
-      let bm_widgetMap = window.bm_widgetMap;
-      for (let i in bm_widgetMap) {
-        let obj = bm_widgetMap[i];
-        let { info = {} } = obj || {};
-        widgetList.push(info);
-      }
+      let widgetList = Canvas.getWidgetList();
       // bmCommon.log("data=", data);
       if (data) {
         data = Object.freeze(typeof data === "string" ? JSON.parse(data) : {});
@@ -490,13 +484,7 @@ export default {
     clickEvent(item) {
       let { canvas = {}, activeIndex = "" } = this;
 
-      let widgetList = [];
-      let bm_widgetMap = window.bm_widgetMap;
-      for (let i in bm_widgetMap) {
-        let obj = bm_widgetMap[i];
-        let { info = {} } = obj || {};
-        widgetList.push(info);
-      }
+      let widgetList = Canvas.getWidgetList();
       //如果是自定义组件则另外处理
       if (activeIndex == "diy") {
         let { content = "" } = item || {};
