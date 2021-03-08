@@ -250,4 +250,8 @@ class WidgetList {
   }
 }
 
+if (process.env.NODE_ENV !== "production") {
+  window.WidgetList = WidgetList;
+}
+
 export default WidgetList;

@@ -2,7 +2,6 @@ import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 import Count from "@/core/info/count.js";
 import Canvas from "@/core/Canvas";
-import WidgetList from "@/core/info/widget-list";
 // import Control from "./Control";
 const state = {};
 class CanvasEvent {
@@ -815,12 +814,13 @@ class CanvasEvent {
   static createHistoryAction() {
     let canvas = Canvas.getCanvas();
     let widgetList = Canvas.getWidgetList();
-    Canvas.setHistoryList(widgetList);
     Canvas.setHistoryIndex(0);
-    Canvas.setPreviewData({
+    let historyData = {
       widgetList: [...widgetList],
       canvas: { ...canvas }
-    });
+    };
+    Canvas.setHistoryList(historyData);
+    Canvas.setPreviewData(historyData);
   }
   // 创建快照
   static createRecordAction(item) {
@@ -839,7 +839,7 @@ class CanvasEvent {
     };
     let recordList = Canvas.getRecordList();
     recordList.unshift(record);
-    Canvas.setRecordList(record);
+    Canvas.setRecordList(recordList);
   }
 
   // 上移一层
@@ -1029,6 +1029,9 @@ class CanvasEvent {
         bmCommon.error("停止摄像头移动失败=>canvasStop", err);
       });
   }
+}
+if (process.env.NODE_ENV !== "production") {
+  window.CanvasEvent = CanvasEvent;
 }
 
 export default CanvasEvent;

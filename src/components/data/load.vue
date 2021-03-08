@@ -34,6 +34,7 @@
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 import Canvas from "@/core/Canvas";
+import CanvasEvent from "@/core/CanvasEvent";
 import Core from "@/core/index";
 // const html2canvas = require("@/common/lib/html2canvas");
 const { mapActions, mapMutations, mapGetters } = Vuex;
@@ -51,41 +52,25 @@ export default {
   computed: {
     ...mapGetters({
       canvas: "canvas/getCanvas"
-      // zoom: "canvas/getZoom", //放大缩小
-      // leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
-      // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
-      // activeCom: "canvas/getActiveCom",
-      // activeComs: "canvas/getActiveComs",
-      // recordList: "canvas/getRecordList",
-      // widgetList: "canvas/getWidgetList"
     })
   },
   methods: {
     ...mapMutations({
-      // setActiveCom: "canvas/setActiveCom",
-      // setRecordList: "canvas/setRecordList"
       setCanvas: "canvas/setCanvas"
-      // setZoom: "canvas/setZoom",
-      // setLeftMenuStatus: "canvas/setLeftMenuStatus",
-      // setRightMenuStatus: "canvas/setRightMenuStatus"
     }),
     ...mapActions({
       selectComAction: "canvas/selectCom",
       upload2OssAction: "upload2Oss"
     }),
     // 初始化
-    init() {
-      // this.storeProductFunc();
-    },
+    init() {},
     show() {
       this.showDialogStatus = true;
       this.dataLoadingStatus = true;
       let { condition, canvas = {} } = this;
-      // let bm_widgetMap = window.bm_widgetMap;
       this._setTimeoutId = setTimeout(() => {
         clearTimeout(this._setTimeoutId);
         let widgetList = Canvas.getWidgetList();
-        // this.selectComAction(); //选中组件
         condition.remark = JSON.stringify({
           canvas,
           widgetList
@@ -97,16 +82,20 @@ export default {
       this.showDialogStatus = false;
     },
     submitEvent() {
-      let { condition } = this;
+      let { condition, canvas = {} } = this;
       let { remark = "" } = condition;
       if (!remark) {
         this.$$msgError("请输入加载内宾JSON");
         return;
       }
       remark = JSON.parse(remark);
-      let { widgetList = [], canvas = {} } = remark || {};
-      this.setCanvas(canvas);
+      let { canvasId = "" } = canvas || {};
+      let { widgetList = [], canvas: _canvas = {} } = remark || {};
+      this.setCanvas({ ..._canvas, canvasId });
       Core.init(widgetList);
+      Canvas.clearHistoryList();
+      Canvas.setHistoryIndex(0);
+      CanvasEvent.createHistoryAction();
       this.closeEvent();
     },
     //上传图片

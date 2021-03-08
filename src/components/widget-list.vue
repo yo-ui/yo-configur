@@ -189,17 +189,12 @@ export default {
     this.initEvent();
   },
   methods: {
-    ...mapMutations({
-      // setLinkPoint: "canvas/setLinkPoint", //设置连接点信息
-      // setDraging: "canvas/setDraging" //设置连接点信息
-    }),
+    ...mapMutations({}),
     ...mapActions({
-      // selectComAction: "canvas/selectCom",
       widgetCustomListAction: "widgetCustomList",
       widgetMaterialListAction: "widgetMaterialList",
       widgetCustomDelAction: "widgetCustomDel",
       widgetCustomUpdateAction: "widgetCustomUpdate"
-      // createHistoryAction: "canvas/createHistory"
     }),
     initEvent() {
       $(document).on("dragstart", this.dragstartEvent);
@@ -540,25 +535,9 @@ export default {
         left: left + 30,
         top: top + 30
       };
-      // if (alias == "linkPoint") {
-      //   this.setLinkPoint(item);
-      // }
-      // widgetList.push(_item);
       canvas.action = "select";
       Canvas.append(_item);
-      // let _canvas_content = $("#canvas_content");
-      // let obj = ComponentLibrary.getInstance(item);
-      // let dom = obj.template();
-      // if (dom) {
-      //   let _div = $(obj.template());
-      //   _canvas_content.append(_div[0]);
-      //   WidgetList.append(item);
-      // }
-      // window.bm_widgetMap[id] = obj;
       CanvasEvent.createHistoryAction();
-      // this.selectComAction(id);
-      // this.createRecordAction();
-      // this.uploadImg();
     },
     //获取素材列表
     widgetMaterialListFunc(options, callback) {

@@ -14,7 +14,6 @@
         </el-tab-pane>
       </template>
     </el-tabs>
-    <!-- {{ activeCom.type }}--{{ activeIndex }}--{{ styleCom }} -->
     <keep-alive>
       <component
         v-show="activeIndex == 'basicStyle'"
@@ -33,115 +32,21 @@
         :is="`${activeCom.dataCode || 'common'}DataCom`"
       ></component>
     </keep-alive>
-    <h3 class="com-count" id="info_com_count" v-show="activeIndex == 'element'">
-      <!-- {{ $lang("当前组件数量") }}
-      <span class="count" :class="{ red: widgetList.length > 200 }">{{
-        widgetList.length
-      }}</span> -->
-    </h3>
+    <h3
+      class="com-count"
+      id="info_com_count"
+      v-show="activeIndex == 'element'"
+    ></h3>
     <ul
       id="info_com_list_box"
       class="com-list-box"
       v-show="activeIndex == 'element'"
     ></ul>
-    <!-- <ul class="com-list-box" v-show="activeIndex == 'element'">
-      <li
-        v-for="(item, index) in widgetList"
-        @click.stop="selectComEvent(item)"
-        :key="item.id + index"
-        class="item"
-      >
-        <div class="title" :class="{ active: activeComId == item.id }">
-          {{ item.comName || "组合" }}
-          <span class="red">{{ item.show ? "已显示" : "已隐藏" }}</span>
-          <span class="count" v-if="item.type == 'panel'">
-            子组件数: {{ item.children.length }}
-          </span>
-          <span class="right">
-            <el-tooltip :content="$lang('删除')" placement="top" effect="dark">
-              <i class="el-icon-delete" @click.stop="deleteEvent(item)"></i>
-            </el-tooltip>
-            <el-tooltip
-              :content="$lang('隐藏/显示')"
-              placement="top"
-              effect="dark"
-            >
-              <i class="el-icon-view" @click.stop="showEvent(item)"></i>
-            </el-tooltip>
-            <template v-if="item.children && item.children.length > 0">
-              <i
-                :class="
-                  `
-                    ${
-                      { true: 'el-icon-plus', false: 'el-icon-minus' }[
-                        !widgetMap[item.id]
-                      ]
-                    }
-                  `
-                "
-                @click.stop="showChildEvent(item)"
-              ></i>
-            </template>
-            <el-tooltip
-              v-else
-              :content="$lang('添加绑定')"
-              placement="top"
-              effect="dark"
-            >
-              <i
-                v-if="item.dataType"
-                class="el-icon-link"
-                @click.stop="addEvent(item)"
-                :class="{ active: item.bindData && item.bindData.orgId }"
-              ></i> </el-tooltip
-          ></span>
-        </div>
-        <ul
-          v-if="item.children && item.children.length > 0"
-          v-show="!!widgetMap[item.id]"
-        >
-          <li
-            :class="{ active: activeComId == _item.id }"
-            v-for="(_item, _index) in item.children"
-            @click.stop="selectComEvent(_item)"
-            :key="_item.id + _index"
-            class="item"
-          >
-            <div class="title" :class="{ active: activeComId == _item.id }">
-              {{ _item.name }}
-              <span class="right">
-                <el-tooltip
-                  :content="$lang('删除')"
-                  placement="top"
-                  effect="dark"
-                >
-                  <i class="el-icon-delete" @click.stop="deleteEvent(item)"></i>
-                </el-tooltip>
-                <el-tooltip
-                  :content="$lang('添加绑定')"
-                  placement="top"
-                  effect="dark"
-                >
-                  <i
-                    v-if="_item.dataType"
-                    class="el-icon-link"
-                    @click.stop="addEvent(_item)"
-                    :class="{
-                      active: _item.bindData && _item.bindData.orgId
-                    }"
-                  ></i>
-                </el-tooltip>
-              </span>
-            </div>
-          </li>
-        </ul>
-      </li>
-    </ul> -->
   </div>
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 // import { Constants } from "@/common/env";
 import { styles, datas } from "@/widgets/index";
 import WidgetList from "@/core/info/widget-list";

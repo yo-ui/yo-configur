@@ -282,7 +282,7 @@
 <script>
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
-import Core from "@/core/index";
+// import Core from "@/core/index";
 import html2canvas from "html2canvas";
 import Canvg from "canvg";
 import CanvasEvent from "@/core/CanvasEvent";
@@ -574,31 +574,34 @@ export default {
         Canvas.setHistoryIndex(0);
         return;
       }
-      let widgetList = historyList[--historyIndex];
+      let historyData = historyList[--historyIndex];
       // this.setWidgetList(widgetList || []);
       // Core.init(widgetList);
-      Canvas.historyCompareOperate(widgetList);
+      Canvas.historyCompareOperate(historyData);
       Canvas.setHistoryIndex(historyIndex);
     },
     // 撤销
     cancelEvent() {
-      this._navTimeoutId = setTimeout(() => {
-        clearTimeout(this._navTimeoutId);
+      this._cancelTimeoutId = setTimeout(() => {
+        clearTimeout(this._cancelTimeoutId);
         let { historyIndex = 0 } = this;
         let historyList = Canvas.getHistoryList();
         let { length = 0 } = historyList || [];
+        bmCommon.error("1", length, historyIndex);
         if (historyIndex > length - 2) {
           return;
         }
         // let {  } = condition;
+        bmCommon.error("2", length, historyIndex);
         if (historyIndex > length - 1) {
           // condition.historyIndex = length - 1;
           Canvas.setHistoryIndex(length - 1);
           return;
         }
-        let widgetList = historyList[++historyIndex];
+        bmCommon.error("3", length, historyIndex);
+        let historyData = historyList[++historyIndex];
         // Core.init(widgetList);
-        Canvas.historyCompareOperate(widgetList);
+        Canvas.historyCompareOperate(historyData);
         Canvas.setHistoryIndex(historyIndex);
       }, 0);
     },
@@ -724,11 +727,6 @@ export default {
             formData
           },
           img => {
-            // let { poster = "" } = canvas || {};
-            // if (!poster) {
-            // canvas.poster = img;
-            // // }
-            // this.createRecordAction({ img });
             callback && callback(img);
           }
         );

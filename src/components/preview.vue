@@ -53,40 +53,18 @@ export default {
       }
     };
   },
-  components: {
-    // bmPreview: () => import(/* webpackChunkName: "iot-preview-com" */ "@/pages/Preview")
-  },
+  components: {},
   computed: {
-    ...mapGetters({
-      // canvas: "canvas/getCanvas",
-      // zoom: "canvas/getZoom", //放大缩小
-      // leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
-      // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
-      // activeCom: "canvas/getActiveCom",
-      // activeComs: "canvas/getActiveComs",
-      // recordList: "canvas/getRecordList",
-      // widgetList: "canvas/getWidgetList"
-    })
+    ...mapGetters({})
   },
   methods: {
-    ...mapMutations({
-      // setActiveCom: "canvas/setActiveCom",
-      // setRecordList: "canvas/setRecordList"
-      // setZoom: "canvas/setZoom",
-      // setLeftMenuStatus: "canvas/setLeftMenuStatus",
-      // setRightMenuStatus: "canvas/setRightMenuStatus"
-    }),
-    ...mapActions({
-      // selectComAction: "canvas/selectCom",
-      // upload2OssAction: "upload2Oss"
-    }),
+    ...mapMutations({}),
+    ...mapActions({}),
     loadEvent() {
       this.dataLoadingStatus = false;
     },
     // 初始化
-    init() {
-      // this.storeProductFunc();
-    },
+    init() {},
     show() {
       let { $route } = this;
       let { query = {} } = $route;
@@ -94,9 +72,6 @@ export default {
       this.iframeUrl = `${this.$RouterURL.preview.name}?canvasId=${canvasId}`;
       this.showDialogStatus = true;
       this.dataLoadingStatus = true;
-      // let { condition } = this;
-      // this.selectComAction(); //选中组件
-      // condition.remark = "";
     },
     closeEvent() {
       this.showDialogStatus = false;

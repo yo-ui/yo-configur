@@ -57,6 +57,7 @@
 // import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 import Canvas from "@/core/Canvas";
+import CanvasEvent from "@/core/CanvasEvent";
 import Core from "@/core/index";
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
@@ -101,6 +102,9 @@ export default {
       // this.setWidgetList(widgetList);
       let { widgetList = [] } = record || {};
       Core.init(widgetList);
+      Canvas.clearHistoryList();
+      Canvas.setHistoryIndex(0);
+      CanvasEvent.createHistoryAction();
       this.closeEvent();
     },
     deleteEvent(item) {

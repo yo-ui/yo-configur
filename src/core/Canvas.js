@@ -24,12 +24,13 @@ class Canvas {
     // );
     return $vm.$store.getters["canvas/getCanvas"] || {};
   }
+  //重设canvas
+  static setCanvas(canvas) {
+    $vm.$store.commit("canvas/setCanvas", canvas);
+  }
   static getUserInfo() {
     return $vm.$store.getters["getUserInfo"] || {};
   }
-  // static createHistoryAction() {
-  //   return $vm.$store.dispatch("canvas/createHistory");
-  // }
 
   static getDeviceCacheMap(key) {
     return Canvas.deviceCacheMap[key] || {};
@@ -366,6 +367,11 @@ class Canvas {
       historyList.map((item, index) => index)
     );
   }
+
+  static clearHistoryList() {
+    Canvas.historyList = [];
+    $vm.$store.commit("canvas/setHistoryList", []);
+  }
   //获取记录数
   static getRecord(id) {
     let { recordMap = {} } = Canvas;
@@ -532,18 +538,27 @@ class Canvas {
   }
 
   //历史记录比对 widgetList 需要和上一次比对的组件列表
-  static historyCompareOperate(widgetList) {
+  static historyCompareOperate(historyData) {
     // currentList.forEach()
     let widgetListMap = {};
     // widgetList.forEach(item => {
     //   let { id = "" } = item || {};
     //   widgetListMap[id] = item;
     // });
-
+    let { canvas = {}, widgetList = [] } = historyData || {};
+    // let { isNew = false } = canvas || {};
+    let currentCanvas = Canvas.getCanvas();
+    // let { isNew: currentIsNew = false } = currentCanvas || {};
     let bm_widgetMap = window.bm_widgetMap;
     let currentList = Canvas.getWidgetList();
     let { length = 0 } = currentList || []; //当前组件数
     let { length: len = 0 } = widgetList || []; //历史组件数
+    if (JSON.stringify(currentCanvas) !== JSON.stringify(canvas)) {
+      Canvas.setCanvas(canvas);
+    }
+    // // count 为0 说明组件全部为新的
+    // if (isNew === currentIsNew) {
+    // let count = 0;
     if (len > length) {
       widgetList.forEach(item => {
         let { id = "" } = item || {};
@@ -552,6 +567,7 @@ class Canvas {
         widgetListMap[id] = item;
         //存在
         if (info) {
+          // count++;
           if (JSON.stringify(info) !== JSON.stringify(item)) {
             //相等则不处理
             bmCommon.log("不相等,历史id=", item.id, "--当前id=", info.id);
@@ -575,6 +591,7 @@ class Canvas {
         let info = widgetListMap[id];
         //存在
         if (info) {
+          // count++;
           if (JSON.stringify(info) !== JSON.stringify(item)) {
             //相等则不处理
             bmCommon.log("不相等,历史id=", info.id, "--当前id=", item.id);
@@ -582,11 +599,19 @@ class Canvas {
             // Canvas.append(info);
           }
           return false;
+        } else {
+          // 与当前比 不存在则删除
+          Canvas.remove(id);
         }
-        // 与当前比 不存在则删除
-        Canvas.remove(id);
       });
     }
+    // }
+    // else {
+    //   Canvas.clear()
+    //   widgetList.forEach(item => {
+    //     Canvas.append(item);
+    //   });
+    // }
     // for (let i in bm_widgetMap) {
     //   let obj = bm_widgetMap[i];
     //   let { info = {} } = obj || {};
@@ -608,6 +633,10 @@ class Canvas {
   }
 
   static event() {}
+}
+
+if (process.env.NODE_ENV !== "production") {
+  window.Canvas = Canvas;
 }
 
 export default Canvas;
