@@ -304,7 +304,7 @@ class Canvas {
   // 激活选中
   static active(id, flag = true) {
     let _com = $(`#${id}`);
-    _com.addClass("active");
+    _com.removeClass("hide").addClass("active");
     let oldId = window.bm_active_com_id;
     if (oldId != id) {
       _com.find(".cover").show();
