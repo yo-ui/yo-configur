@@ -38,8 +38,7 @@ const Routers = [
       title: RouterURL.index.title
       // requireAuth: routerAuth //是否需要登录
     },
-    component: () =>
-      import(/* webpackChunkName: "bm-homeIndex" */ "@/pages/Home")
+    component: () => import(/* webpackChunkName: "bm-index" */ "@/pages/Index")
   },
   {
     path: RouterURL.preview.path,

@@ -230,7 +230,7 @@ class CanvasEvent {
     //   obj.info = { ...activeCom };
     // }
     clearInterval(CanvasEvent.setIntervalId);
-    window.requestAnimationFrame(() => {
+    window.setTimeout(() => {
       // $vm.$emit("info-data-active", { id, watched: false });
       Canvas.setActiveCom(id);
     });
@@ -365,8 +365,6 @@ class CanvasEvent {
       // ctrl+a 全选
       if (ctrlKey) {
         e.preventDefault();
-        // let [com = {}] = widgetList || [];
-        // let { length = 0 } = widgetList || [];
         bm_active_com_ids = [];
         bm_active_com_id = "";
         for (let i in bm_widgetMap) {
@@ -380,16 +378,9 @@ class CanvasEvent {
             }
           }
         }
-        // if (length > 0) {
-        // this.setActiveCom(com);
         CanvasEvent.selectComAction(bm_active_com_id);
         Canvas.actives(bm_active_com_ids);
-        // window.bm_active_com_ids = bm_active_com_ids;
         Canvas.setActiveComs(bm_active_com_ids);
-        // this.$nextTick(() => {
-        //   this.setActiveComs(widgetList);
-        // });
-        // }
       }
       return;
     } else if (keyCode == 189) {
@@ -645,7 +636,7 @@ class CanvasEvent {
   }
   //剪切
   static cutEvent() {
-    CanvasEvent._cutTimeoutId = window.requestAnimationFrame(() => {
+    CanvasEvent._cutTimeoutId = window.setTimeout(() => {
       clearTimeout(CanvasEvent._cutTimeoutId);
       let bm_active_com_ids = window.bm_active_com_ids;
       let { length = 0 } = bm_active_com_ids || [];
@@ -678,12 +669,13 @@ class CanvasEvent {
   }
   // 复制
   static copyEvent() {
-    CanvasEvent._copyTimeoutId = window.requestAnimationFrame(() => {
+    clearTimeout(this._setCopyPasteTimeoutId);
+    CanvasEvent._copyTimeoutId = window.setTimeout(() => {
       clearTimeout(this._copyTimeoutId);
       let bm_active_com_ids = window.bm_active_com_ids;
       let { length = 0 } = bm_active_com_ids || [];
       let id = window.bm_active_com_id;
-      if (!id) {
+      if (!(id || length > 0)) {
         return;
       }
       let obj = window.bm_widgetMap[id];
@@ -700,19 +692,20 @@ class CanvasEvent {
         copyCom = { ...info };
       }
       CanvasEvent.copyCom = copyCom;
+      bmCommon.log(CanvasEvent.copyCom, copyCom, bm_active_com_ids);
     }, 1);
   }
   // 粘贴
   static pasteEvent(e) {
-    CanvasEvent.selectComAction();
-    CanvasEvent._pasteTimeoutId = window.requestAnimationFrame(() => {
+    // CanvasEvent.selectComAction();
+    CanvasEvent._pasteTimeoutId = window.setTimeout(() => {
       clearTimeout(CanvasEvent._pasteTimeoutId);
       let copyCom = CanvasEvent.copyCom;
       if (!copyCom) {
         return;
       }
-      let bm_widgetMap = window.bm_widgetMap || {};
-      let widgetList = Canvas.getWidgetList();
+      // let bm_widgetMap = window.bm_widgetMap || {};
+      // let widgetList = Canvas.getWidgetList();
       let canvas = Canvas.getCanvas();
       let zoom = Canvas.getZoom();
       let { length = 0 } = copyCom || {};
@@ -726,12 +719,13 @@ class CanvasEvent {
       let pasteLeft = 0,
         pasteTop = 0;
       let callback = (item, index) => {
-        let orders = widgetList.map(item => {
-          let { id = "" } = item;
-          let obj = bm_widgetMap[id];
-          let { info = {} } = obj || {};
-          return info.order;
-        });
+        // let orders = widgetList.map(item => {
+        //   let { id = "" } = item;
+        //   let obj = bm_widgetMap[id];
+        //   let { info = {} } = obj || {};
+        //   return info.order;
+        // });
+        let orders = Canvas.getOrders();
         let order = Math.max(...orders);
         let { width = 0, height = 0, left = 0, top = 0 } = item || {};
         if (e) {
@@ -766,40 +760,41 @@ class CanvasEvent {
             item.id = bmCommon.uuid();
             item.parentId = id;
           });
-        Canvas.append(_item);
+        Canvas.append(_item, false);
         return _item;
       };
+
+      window.bm_active_com_ids = [];
+      window.bm_active_com_id = "";
+      Canvas.unactive();
       if (length > 1) {
-        copyCom.sort((a, b) => {
-          return a.order - b.order;
-        });
+        // copyCom.sort((a, b) => {
+        //   return a.order - b.order;
+        // });
         let arr = [];
         copyCom.forEach((item, index) => {
-          // //设置粘贴初始位置
-          // item.pasteLeft = item.left - minLeft;
-          // item.pasteTop = item.top - minTop;
           arr.push(callback(item, index));
         });
         CanvasEvent.copyCom = arr || [];
-        // this.setActiveComs(_activeComs);
-        // this.$nextTick(() => {
-        //   let [obj = {}] = _activeComs || [];
-        //   this.selectComAction((obj || {}).id); //选中组件
-        //   // this.setActiveCom(_activeCom);
-        // });
+        this._setCopyPasteTimeoutId = setTimeout(() => {
+          clearTimeout(this._setCopyPasteTimeoutId);
+          CanvasEvent.copyCom.forEach((item, index) => {
+            let { id = "" } = item || {};
+            if (index == 0) {
+              Canvas.setActiveCom(id);
+            }
+            CanvasEvent.selectComsAction(id);
+          });
+        }, 100);
       } else {
-        // let { type = "" } = copyCom || {};
-        // if (type == "canvas" || !type) {
-        //   return;
-        // }
         CanvasEvent.copyCom = callback(copyCom || {}, 0);
-        // this.$nextTick(() => {
-        //   // this.setActiveCom(_activeCom);
-        //   this.selectComAction((_activeCom || {}).id); //选中组件
-        // });
+        this._setCopyPasteTimeoutId = setTimeout(() => {
+          clearTimeout(this._setCopyPasteTimeoutId);
+          let { id = "" } = CanvasEvent.copyCom || {};
+          CanvasEvent.selectComAction(id);
+        }, 100);
       }
       CanvasEvent.createHistoryAction();
-      // CanvasEvent.showContextMenuStatus = false;
     }, 0);
   }
   // 删除
@@ -808,7 +803,7 @@ class CanvasEvent {
   }
   // 锁定/解锁
   static lockEvent(locked) {
-    this._lockTimeoutId = window.requestAnimationFrame(() => {
+    this._lockTimeoutId = window.setTimeout(() => {
       clearTimeout(this._lockTimeoutId);
       let bm_active_com_id = window.bm_active_com_id;
       let obj = window.bm_widgetMap[bm_active_com_id];
@@ -933,7 +928,6 @@ class CanvasEvent {
     // let _infoOldCom = $(`#info_com_list_box li.active`);
     // _infoOldCom.removeClass("active");
     Canvas.unactive();
-    WidgetList.unactive();
     bmCommon.log("当前组件数量为", Count.count);
     if (!id) {
       // activeCom = Constants.COMPONENTCANVAS;
@@ -955,11 +949,10 @@ class CanvasEvent {
       // let _infoCom = $(`#info_com_${id}`);
       // _infoCom.addClass("active");
       // _infoCom.length > 0 && _infoCom[0].scrollIntoView();
-      Canvas.active(id);
+      Canvas.active(id, flag);
       // Control.refresh(id);
-      WidgetList.active(id, flag);
 
-      // window.requestAnimationFrame(() => {
+      // window.setTimeout(() => {
       this.setTimeoutId = setTimeout(() => {
         clearTimeout(this.setTimeoutId);
 

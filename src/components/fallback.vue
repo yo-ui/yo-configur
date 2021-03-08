@@ -101,7 +101,7 @@ export default {
       // this.setWidgetList(widgetList);
       let { widgetList = [] } = record || {};
       Core.init(widgetList);
-      this.showDialogStatus = false;
+      this.closeEvent();
     },
     deleteEvent(item) {
       let { id = "" } = item || {};

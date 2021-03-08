@@ -358,21 +358,9 @@ export default {
   methods: {
     ...mapMutations({
       setUserInfo: "setUserInfo",
-      // setActiveCom: "canvas/setActiveCom",
-      // setActiveComs: "canvas/setActiveComs",
-      // setCanvasData: "canvas/setCanvasData",
       setZoom: "canvas/setZoom"
-      // setMoving: "canvas/setMoving",
-      // setHistoryIndex: "canvas/setHistoryIndex",
-      // setWidgetList: "canvas/setWidgetList",
-      // setLeftMenuStatus: "canvas/setLeftMenuStatus",
-      // setPreviewData: "canvas/setPreviewData",
-      // setRightMenuStatus: "canvas/setRightMenuStatus"
     }),
     ...mapActions({
-      // selectComAction: "canvas/selectCom",
-      // createRecordAction: "canvas/createRecord",
-      // createHistoryAction: "canvas/createHistory",
       canvasSaveAction: "canvasSave",
       widgetCustomAddAction: "widgetCustomAdd",
       upload2OssAction: "upload2Oss"
@@ -472,19 +460,12 @@ export default {
       }, 0);
     },
     copyEvent() {
-      this._navTimeoutId = setTimeout(() => {
-        clearTimeout(this._navTimeoutId);
-        // let {
-        //   activeCom = {},
-        //   // widgetList = [],
-        //   // activeComs = [],
-        //   // selectBox = {}
-        // } = this;
-        // selectBox.moving = true;
+      clearTimeout(this._setCopyPasteTimeoutId);
+      this._copyTimeoutId = setTimeout(() => {
+        clearTimeout(this._copyTimeoutId);
         let bm_active_com_ids = window.bm_active_com_ids;
         let bm_active_com_id = window.bm_active_com_id;
         let bm_widgetMap = window.bm_widgetMap;
-        // let { type = "" } = activeCom || {};
         let { length = 0 } = bm_active_com_ids || [];
         if (length < 2) {
           if (!bm_active_com_id) {
@@ -493,10 +474,8 @@ export default {
           }
         }
         let orders = Canvas.getOrders();
-        // let _activeComs = [];
         let callback = item => {
           let id = bmCommon.uuid();
-          // let orders = widgetList.map(item => item.order);
           let order = Math.max(...orders);
           order += 1;
           let _item = { ...item, id, order };
@@ -506,10 +485,6 @@ export default {
               item.id = id + bmCommon.uuid();
               item.parentId = id;
             });
-          // widgetList.push(_item);
-          // if (length > 1) {
-          //   _activeComs.push(_item);
-          // }
           Canvas.append(item);
         };
         if (length > 1) {
@@ -518,13 +493,22 @@ export default {
             let { info = {} } = obj || {};
             callback(info);
           });
-          // this.setActiveComs(_activeComs);
+          this._setCopyPasteTimeoutId = setTimeout(() => {
+            clearTimeout(this._setCopyPasteTimeoutId);
+            let [id = ""] = bm_active_com_ids || [];
+            CanvasEvent.selectComAction(id);
+          }, 100);
         } else {
           let obj = bm_widgetMap[bm_active_com_id];
           let { info = {} } = obj || {};
           callback(info || {});
-          // this.setActiveCom(activeCom);
-          window.bm_active_com_id = bm_active_com_id;
+          // window.bm_active_com_id = bm_active_com_id;
+
+          this._setCopyPasteTimeoutId = setTimeout(() => {
+            clearTimeout(this._setCopyPasteTimeoutId);
+            let { id = "" } = info || {};
+            CanvasEvent.selectComAction(id);
+          }, 100);
         }
       }, 0);
     },
@@ -592,7 +576,8 @@ export default {
       }
       let widgetList = historyList[--historyIndex];
       // this.setWidgetList(widgetList || []);
-      Core.init(widgetList);
+      // Core.init(widgetList);
+      Canvas.historyCompareOperate(widgetList);
       Canvas.setHistoryIndex(historyIndex);
     },
     // 撤销
@@ -612,10 +597,8 @@ export default {
           return;
         }
         let widgetList = historyList[++historyIndex];
-        Core.init(widgetList);
-        // this.setWidgetList(widgetList || []);
-        // this.selectComAction();
-        // condition.historyIndex = ++historyIndex;
+        // Core.init(widgetList);
+        Canvas.historyCompareOperate(widgetList);
         Canvas.setHistoryIndex(historyIndex);
       }, 0);
     },
@@ -1104,39 +1087,23 @@ export default {
       };
 
       bmCommon.error("composeEvent=", JSON.stringify(item));
-      // widgetList.push(item);
       Canvas.append(item);
 
       bm_active_com_ids.forEach(id => {
         Canvas.remove(id);
       });
-      // window.bm_active_com_ids = [];
-      // this.activeComs=[]
       Canvas.setActiveComs([]);
-      // canvas.action = "select";
-      // this.setWidgetList(widgetList);
       CanvasEvent.createHistoryAction();
-      // this.setMoving(true);
-      // this.$nextTick(() => {
       CanvasEvent.selectComAction(id);
-      // this.setMoving(false);
-      // });
-      // this.showContextMenuStatus = false;
     },
     // 打散
     unComposeEvent() {
-      // let { activeCom = {}, widgetList = [] } = this;
-      // let bm_active_com_ids = window.bm_active_com_ids;
       let bm_active_com_id = window.bm_active_com_id;
       let bm_widgetMap = window.bm_widgetMap;
-      // let widgetList = [];
-
       let orders = Canvas.getOrders();
       let obj = bm_widgetMap[bm_active_com_id];
       let { info: activeCom = {} } = obj || {};
-      // let widgets = [];
       let { children = [], left = 0, top = 0, id = "" } = activeCom || {};
-      // let orders = widgetList.map(item => item.order);
       let order = 1;
       if (orders && orders.length > 0) {
         order = Math.max(...orders);
@@ -1151,14 +1118,10 @@ export default {
         item.id = bmCommon.uuid();
         item.left += left;
         item.top += top;
-        // item.rotate -= rotate;
         item.order = index + order;
         delete item.parentId;
-        // widgets.push(item);
         Canvas.append(item, false);
       });
-      // let index = widgetList.findIndex(item => id == item.id);
-      // widgetList.splice(index, 1, ...widgets);
     },
     // 分布操作
     spreadCommandEvent(cmd) {

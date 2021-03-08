@@ -8,7 +8,6 @@ export default {
   home: { name: "home", path: "/", title: "重定向首页" },
   login: { name: "login", path: "/login", title: "登录" },
   index: { name: "index", path: "/index", title: "首页" },
-  homeIndex: { name: "homeIndex", path: "/home", title: "首页" },
   preview: { name: "preview", path: "/preview", title: "预览" },
   view: { name: "view", path: "/view", title: "查看" }
 };

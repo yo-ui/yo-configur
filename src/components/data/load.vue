@@ -10,6 +10,7 @@
     width="800px"
     @mousedown.native.stop
     @keydown.native.stop
+    v-loading="dataLoadingStatus"
   >
     <el-input
       v-model="condition.remark"
@@ -33,12 +34,14 @@
 import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 import Canvas from "@/core/Canvas";
+import Core from "@/core/index";
 // const html2canvas = require("@/common/lib/html2canvas");
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   data() {
     return {
       showDialogStatus: false,
+      dataLoadingStatus: true,
       condition: {
         remark: ""
       }
@@ -47,20 +50,21 @@ export default {
   components: {},
   computed: {
     ...mapGetters({
-      canvas: "canvas/getCanvas",
+      canvas: "canvas/getCanvas"
       // zoom: "canvas/getZoom", //放大缩小
       // leftMenuStatus: "canvas/getLeftMenuStatus", //获取左侧菜单栏状态
       // rightMenuStatus: "canvas/getRightMenuStatus", //获取右侧菜单栏状态
       // activeCom: "canvas/getActiveCom",
       // activeComs: "canvas/getActiveComs",
-      recordList: "canvas/getRecordList",
-      widgetList: "canvas/getWidgetList"
+      // recordList: "canvas/getRecordList",
+      // widgetList: "canvas/getWidgetList"
     })
   },
   methods: {
     ...mapMutations({
       // setActiveCom: "canvas/setActiveCom",
       // setRecordList: "canvas/setRecordList"
+      setCanvas: "canvas/setCanvas"
       // setZoom: "canvas/setZoom",
       // setLeftMenuStatus: "canvas/setLeftMenuStatus",
       // setRightMenuStatus: "canvas/setRightMenuStatus"
@@ -75,23 +79,35 @@ export default {
     },
     show() {
       this.showDialogStatus = true;
+      this.dataLoadingStatus = true;
       let { condition, canvas = {} } = this;
       // let bm_widgetMap = window.bm_widgetMap;
-      let widgetList = Canvas.getWidgetList();
-      this.selectComAction(); //选中组件
-      condition.remark = JSON.stringify({
-        canvas,
-        widgetList
-      });
+      this._setTimeoutId = setTimeout(() => {
+        clearTimeout(this._setTimeoutId);
+        let widgetList = Canvas.getWidgetList();
+        // this.selectComAction(); //选中组件
+        condition.remark = JSON.stringify({
+          canvas,
+          widgetList
+        });
+        this.dataLoadingStatus = false;
+      }, 10);
     },
     closeEvent() {
       this.showDialogStatus = false;
     },
     submitEvent() {
-      let { widgetList = [], condition, recordList = [] } = this;
-      let { remark: name = "" } = condition;
-      let time = this.$moment().valueOf();
-      let id = bmCommon.uuid();
+      let { condition } = this;
+      let { remark = "" } = condition;
+      if (!remark) {
+        this.$$msgError("请输入加载内宾JSON");
+        return;
+      }
+      remark = JSON.parse(remark);
+      let { widgetList = [], canvas = {} } = remark || {};
+      this.setCanvas(canvas);
+      Core.init(widgetList);
+      this.closeEvent();
     },
     //上传图片
     upload2OssFunc(options, callback) {

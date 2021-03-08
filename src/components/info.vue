@@ -153,28 +153,6 @@ const { mapActions, mapMutations, mapGetters } = Vuex;
 // };
 
 const watches = {};
-// for (let i in Constants.BASEDATA) {
-//   if (i != "id") {
-//     let key = `activeCom.${i}`;
-//     watches[key] = {
-//       handler(newVal, oldVal) {
-//         let { activeCom = {} } = this;
-//         let { parentId = "" } = activeCom || {};
-//         let { activeComs = [], moving = false, selectBox = {} } = this;
-//         let { moving: _moving = false } = selectBox || {};
-//         let { length = 0 } = activeComs || [];
-//         if (!(moving || _moving || parentId)) {
-//           if (length > 1) {
-//             activeComs.forEach(item => {
-//               item[i] = newVal;
-//             });
-//           }
-//         }
-//       },
-//       deep: true
-//     };
-//   }
-// }
 export default {
   data() {
     let tabList = Object.freeze([
@@ -205,24 +183,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      //widgetList: "canvas/getWidgetList"
-      // widgetList: [],
-      // canvas: "canvas/getCanvas", //画布属性
-      // getActiveCom: "canvas/getActiveCom", //选中对象
-      // selectBox: "canvas/getSelectBox", //选取框
       activeCom: "canvas/getActiveCom" //选中对象
-      // moving: "canvas/getMoving", //组件是否移动
-      // activeComs: "canvas/getActiveComs" //选中多选对象
     }),
-    // activeCom() {
-    //   let { activeComs = [], getActiveCom = {} } = this;
-    //   let { length = 0 } = activeComs || [];
-    //   if (length > 1) {
-    //     let [activeCom = {}] = activeComs || [];
-    //     return activeCom || {};
-    //   }
-    //   return getActiveCom || {};
-    // },
     styleCom() {
       let { activeComs = [], activeCom = {} } = this;
       let { type = "", styleCode = "" } = activeCom || {};
@@ -247,95 +209,21 @@ export default {
           // }
         }
       }
-      // else {
-      //   let set = new Set();
-      //   children.forEach(item => {
-      //     let { type = "", styleCode = "" } = item || {};
-      //     type = styleCode || type;
-      //     set.add(type);
-      //   });
-      //   let { size = 0 } = set || {};
-      //   if (size > 0) {
-      //     if (size == 1 && !set.has("")) {
-      //       [type = ""] = Array.from(set);
-      //       // com = `${type}StyleCom`;
-      //     } else {
-      //       type = "group";
-      //     }
-      //   }
-      // }
       com = `${type}StyleCom`;
-      bmCommon.log("panel==>", com);
+      // bmCommon.log("panel==>", com);
       return com;
-      // return `${
-      //   activeComs && length > 1
-      //     ? "group"
-      //     : activeCom.styleCode || activeCom.type
-      // }StyleCom`;
     }
-    // dragOptions() {
-    //   return {
-    //     animation: 0,
-    //     group: "description",
-    //     disabled: false,
-    //     ghostClass: "ghost"
-    //   };
-    // },
-    // comList: {
-    //   get(){
-    //     let { getWidgetList = [] } = this;
-    //     return bmCommon.clone(getWidgetList).sort((a, b) => {
-    //       return a.order - b.order;
-    //     });
-    //   },
-    //   set(val){
-    //     this.comList
-    //   }
-    // },
-    // widgetList: {
-    //   get() {
-    //     let { getWidgetList = [] } = this;
-    //     return bmCommon.clone(getWidgetList).sort((a, b) => {
-    //       return a.order - b.order;
-    //     });
-    //   },
-    //   set(value) {
-    //     this.setWidgetList(value);
-    //   }
-    // },
-    // activeComId() {
-    //   let { activeCom = {} } = this;
-    //   let { id = "" } = activeCom || {};
-    //   return id;
-    // }
   },
   mounted() {
     this.init();
-    // this.activeCom = this.canvas;
-    bmCommon.log("info style 初始化");
   },
   created() {},
   updated() {
-    bmCommon.log("info style update");
-    // vm.$watch("someObject", callback, {
-    //   deep: true
-    // });
     this.initWatches();
   },
   methods: {
-    ...mapMutations({
-      // setWidgetList: "canvas/setWidgetList"
-      // setActiveCom: "canvas/setActiveCom",
-    }),
-    ...mapActions({
-      // selectComAction: "canvas/selectCom",
-      // selectComsAction: "canvas/selectComs"
-    }),
-    // addWatches(item){
-    //   for (let i in item) {
-    //     let obj=
-    //   }
-    // },
+    ...mapMutations({}),
+    ...mapActions({}),
     tabClickEvent() {
       let { activeIndex } = this;
       if (activeIndex === "element") {
@@ -358,7 +246,7 @@ export default {
             watches[key]();
             this.setTimeoutId = setTimeout(() => {
               clearTimeout(this.setTimeoutId);
-              bmCommon.log("unWatches", key);
+              // bmCommon.log("unWatches", key);
             }, 1);
           }
           if (type === "canvas") {
@@ -370,33 +258,33 @@ export default {
           }
           this.setTimeoutId = setTimeout(() => {
             clearTimeout(this.setTimeoutId);
-            bmCommon.log(
-              "watches",
-              key,
-              typeof value,
-              typeof value === "object" && !Array.isArray(value)
-            );
+            // bmCommon.log(
+            //   "watches",
+            //   key,
+            //   typeof value,
+            //   typeof value === "object" && !Array.isArray(value)
+            // );
           }, 1);
           watches[key] = this.$watch(
             key,
             (newVal, oldVal) => {
               // let { children = [] } = getActiveCom || {};
               // let { parentId = "", id = "" } = activeCom || {};
-              let { activeCom = {}, _lastWatchType = "" } = this;
+              let { activeCom = {} } = this;
               if (
                 JSON.stringify(newVal) !== JSON.stringify(oldVal) ||
                 Array.isArray(value)
               ) {
                 this.setTimeoutId = setTimeout(() => {
                   clearTimeout(this.setTimeoutId);
-                  bmCommon.log(
-                    "刷新 处理",
-                    JSON.stringify(newVal) === JSON.stringify(oldVal),
-                    i,
-                    name,
-                    _lastWatchType,
-                    type
-                  );
+                  // bmCommon.log(
+                  //   "刷新 处理",
+                  //   JSON.stringify(newVal) === JSON.stringify(oldVal),
+                  //   i,
+                  //   name,
+                  //   _lastWatchType,
+                  //   type
+                  // );
                 }, 1);
                 let { id = "" } = activeCom || {};
                 let obj = window.bm_widgetMap[id];
@@ -422,135 +310,13 @@ export default {
     },
     initWatches() {
       let { activeCom = {} } = this;
-      // let { type = "" } = activeCom || {};
-      // this._lastWatchType = type;
       this.initWatch("activeCom", activeCom);
-      // for (let i in activeCom) {
-      //   if (i != "id" && i !== "type") {
-      //     let key = `activeCom.${i}`;
-      //     if (watches[key]) {
-      //       watches[key]();
-      //       bmCommon.log("unWatches", key);
-      //     }
-      //     if (type === "canvas") {
-      //       continue;
-      //     }
-      //     watches[key] = this.$watch(
-      //       key,
-      //       (newVal, oldVal) => {
-      //         // let { children = [] } = getActiveCom || {};
-      //         // let { parentId = "", id = "" } = activeCom || {};
-      //         let { activeCom = {}, _lastWatchType = "" } = this;
-      //         bmCommon.log(
-      //           "刷新 处理",
-      //           JSON.stringify(newVal) === JSON.stringify(oldVal),
-      //           i,
-      //           _lastWatchType,
-      //           type
-      //         );
-      //         if (
-      //           JSON.stringify(newVal) !== JSON.stringify(oldVal) &&
-      //           _lastWatchType == type
-      //         ) {
-      //           let { id = "" } = activeCom || {};
-      //           let obj = window.bm_widgetMap[id];
-      //           if (obj) {
-      //             // obj?.setInfo({ ...activeCom });
-      //             obj?.setInfo(Object.freeze({ ...activeCom }));
-      //             obj?.refresh();
-      //             if (i === "bindData") {
-      //               obj?.loadData();
-      //             }
-      //           }
-      //         }
-      //       },
-      //       {
-      //         deep: true,
-      //         immediate: false
-      //       }
-      //     );
-      //   }
-      // }
     },
-    // selectComEvent(item) {
-    //   // this.setActiveCom(item);
-    //   this.selectComsAction();
-    //   let { id = "" } = item || {};
-    //   this.selectComAction(id);
-    // },
-    // deleteEvent(item) {
-    //   this.selectComEvent(item);
-    //   $vm.$emit("delete-command");
-    // },
-    // showEvent(obj) {
-    //   let { getWidgetList = [] } = this;
-    //   let item = getWidgetList.find(item => item.id == obj.id);
-    //   item.show = !item.show;
-    // },
-    // changeEvent(item) {
-    //   // bmCommon.log(item);
-    //   let { moved } = item || {};
-    //   if (moved) {
-    //     let { widgetList = [] } = this;
-    //     let { newIndex = 0, oldIndex = 0 } = moved || {};
-    //     let newItem = widgetList[newIndex] || {};
-    //     let oldItem = widgetList[oldIndex] || {};
-    //     let { order: oldOrder } = oldItem || {};
-    //     let { order: newOrder } = newItem || {};
-    //     newItem.order = oldOrder;
-    //     oldItem.order = newOrder;
-    //   }
-    // },
     init() {
-      // this.loadComList();
-      // $vm.$on("info-data-init", (item = {}) => {
-      //   this.dataInit(item);
-      // });
-      //watched 是否添加监听器
-      // $vm.$on("info-data-active", (item = {}) => {
-      //   let { id = "", watched = true } = item || {};
-      //   let obj = window.bm_widgetMap[id];
-      //   let { info = {} } = obj || {};
-      //   let { canvas = {} } = this;
-      //   let { type = "" } = info || {};
-      //   if (!id) {
-      //     // info = Constants.COMPONENTCANVAS;
-      //     info = canvas;
-      //     // type = "canvas";
-      //   }
-      //   // activeCom.type = type;
-      //   // activeCom.id = id;
-      //   this.setTimeoutId = setTimeout(() => {
-      //     if (watched) {
-      //       this.initWatches(info);
-      //     }
-      //     this._lastWatchType = type;
-      //     this.activeCom = info;
-      //   }, 10);
-      // });
       this.setTimeoutId = setTimeout(() => {
         this.initWatches();
       }, 1);
     }
-    // dataInit(item) {
-    //   new WidgetList("#info_com_list_box", item);
-    // },
-    // showChildEvent(item) {
-    //   // bmCommon.log()
-    //   let { id = "" } = item || {};
-    //   let { widgetMap = {} } = this;
-    //   this.$set(widgetMap, id, !widgetMap[id]);
-    //   // bmCommon.log(widgetMap);
-    // },
-    // loadComList() {
-    //   let { widgetList = [] } = this;
-    //   this.comList = bmCommon.clone(widgetList).sort((a, b) => {
-    //     return b.order - a.order;
-    //   });
-    // },
-    // addEvent(item = {}) {
-    //   $vm.$emit("bind-device", item);
-    // }
   },
   watch: {
     "activeCom.type"(newVal, oldVal) {
@@ -561,13 +327,6 @@ export default {
         }
       }
     }
-    // activeCom: {
-    //   handler: () => {
-    //     bmCommon.log("变化");
-    //   },
-    //   deep: true
-    // }
-    // ...watches
   }
 };
 </script>

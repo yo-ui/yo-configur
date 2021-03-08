@@ -53,6 +53,16 @@ class Canvas {
   static remove(id) {
     // 加载组件绑定数据
     let obj = window.bm_widgetMap[id];
+    let { info = {} } = obj || {};
+    let { parentId = "", children = [] } = info || {};
+    if (!parentId) {
+      setTimeout(() => {
+        (children || []).forEach(item => {
+          let { id = "" } = item || {};
+          delete window.bm_widgetMap[id];
+        });
+      }, 10);
+    }
     if (obj) {
       if (obj.destory) {
         obj?.destory();
@@ -61,6 +71,7 @@ class Canvas {
         obj?.remove();
       }
     }
+
     WidgetList.remove(id);
     delete window.bm_widgetMap[id];
   }
@@ -100,6 +111,7 @@ class Canvas {
     return widgets;
   }
 
+  // 附加处理
   static append(item, flag = true) {
     let $container = $("#canvas_content");
     let dom = Canvas.singleTemplate(item);
@@ -111,6 +123,7 @@ class Canvas {
     }
   }
 
+  // 单个模板
   static singleTemplate(item) {
     let fregment = document.createDocumentFragment("div");
     let { children = [], id = "" } = item || {};
@@ -280,6 +293,7 @@ class Canvas {
       _oldCom.removeClass("active");
       _oldCom.find(".cover").show();
     }
+    WidgetList.unactive();
     window.bm_active_com_id = "";
 
     // let oldId = window.bm_active_com_id;
@@ -287,7 +301,7 @@ class Canvas {
     // $container.removeClass("active");
   }
   // 激活选中
-  static active(id) {
+  static active(id, flag = true) {
     let _com = $(`#${id}`);
     _com.addClass("active");
     let oldId = window.bm_active_com_id;
@@ -295,6 +309,7 @@ class Canvas {
       _com.find(".cover").show();
       `0`;
     }
+    WidgetList.active(id, flag);
   }
   // 激活选中
   static actives(ids) {
@@ -516,19 +531,81 @@ class Canvas {
     return orders;
   }
 
-  // static refresh(item) {
-  //   let $container = $("#canvas_content");
-  //   let { count = 0 } = item;
-  //   count = Canvas.count + count;
-  //   let $count = $container.find(".count");
-  //   if (count > 200) {
-  //     $count.addClass("red");
-  //   } else {
-  //     $count.removeClass("red");
-  //   }
-  //   $count.html(count);
-  //   Canvas.count = count;
-  // }
+  //历史记录比对 widgetList 需要和上一次比对的组件列表
+  static historyCompareOperate(widgetList) {
+    // currentList.forEach()
+    let widgetListMap = {};
+    // widgetList.forEach(item => {
+    //   let { id = "" } = item || {};
+    //   widgetListMap[id] = item;
+    // });
+
+    let bm_widgetMap = window.bm_widgetMap;
+    let currentList = Canvas.getWidgetList();
+    let { length = 0 } = currentList || []; //当前组件数
+    let { length: len = 0 } = widgetList || []; //历史组件数
+    if (len > length) {
+      widgetList.forEach(item => {
+        let { id = "" } = item || {};
+        let obj = bm_widgetMap[id];
+        let { info } = obj || {};
+        widgetListMap[id] = item;
+        //存在
+        if (info) {
+          if (JSON.stringify(info) !== JSON.stringify(item)) {
+            //相等则不处理
+            bmCommon.log("不相等,历史id=", item.id, "--当前id=", info.id);
+            Canvas.refresh(info);
+          }
+          return false;
+        } else {
+          Canvas.append(item);
+        }
+        // // 与当前比 不存在则删除
+        // Canvas.remove(id);
+      });
+      // window.bm_widgetMap = widgetListMap;
+    } else {
+      widgetList.forEach(item => {
+        let { id = "" } = item || {};
+        widgetListMap[id] = item;
+      });
+      currentList.forEach(item => {
+        let { id = "" } = item || {};
+        let info = widgetListMap[id];
+        //存在
+        if (info) {
+          if (JSON.stringify(info) !== JSON.stringify(item)) {
+            //相等则不处理
+            bmCommon.log("不相等,历史id=", info.id, "--当前id=", item.id);
+            Canvas.refresh(info);
+            // Canvas.append(info);
+          }
+          return false;
+        }
+        // 与当前比 不存在则删除
+        Canvas.remove(id);
+      });
+    }
+    // for (let i in bm_widgetMap) {
+    //   let obj = bm_widgetMap[i];
+    //   let { info = {} } = obj || {};
+    //   let { order = 1, parentId = "" ,id=""} = info || {};
+    //   if(widgetListMap[id]){
+    //     continue
+    //   }
+    //   if (!parentId) {
+    //   }
+    // }
+  }
+
+  static refresh(item) {
+    let { id = "" } = item || {};
+    let bm_widgetMap = window.bm_widgetMap;
+    let obj = bm_widgetMap[id];
+    obj?.setInfo(item);
+    obj?.refresh();
+  }
 
   static event() {}
 }

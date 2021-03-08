@@ -70,11 +70,7 @@ export default {
     $(document).off("mouseup", this.mouseupEvent);
   },
   methods: {
-    ...mapMutations({
-      // setSelectBox: "canvas/setSelectBox",
-      // setActiveComs: "canvas/setActiveComs",
-      // setActiveCom: "canvas/setActiveCom"
-    }),
+    ...mapMutations({}),
     ...mapActions(),
     init() {
       $(".content-box").on("mousedown", this.mousedownEvent);
