@@ -462,8 +462,7 @@ class Text extends Component {
     let { info = {} } = obj || {};
     let dx = x - startX;
     let dy = y - startY;
-    let { x1 = 0, x2 = 0, _x2 = 0, _y2 = 0, y1 = 0, y2 = 0, lineLong = 0 } =
-      info || {};
+    let { x1 = 0, x2 = 0, y1 = 0, y2 = 0 } = info || {};
     dx = Math.floor(dx / zoom);
     dy = Math.floor(dy / zoom);
     if (direction === "right") {

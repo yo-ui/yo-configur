@@ -3103,7 +3103,7 @@ let componentLibrary = [
           ...baseData,
           // styleCode: "material",
           backgroundColor: "#0075E7",
-          cornerCount: 3,
+          cornerCount: 5,
           width: 100,
           height: 100
           // dataType: "device",

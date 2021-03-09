@@ -1,7 +1,7 @@
 import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
-
+// 多边形
 class Text extends Component {
   constructor(props) {
     super(props);
@@ -140,13 +140,36 @@ class Text extends Component {
 
   renderSvg() {
     let { info = {} } = this;
-    let {
-      gradientStyle = {},
-      backgroundType = "",
-      width = 0,
-      height = 0,
-      borderWidth = 0
-    } = info || {};
+    let { width = 0, height = 0, borderWidth = 0 } = info || {};
+    return ` <svg
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="
+      ${0 - borderWidth} ${0 - borderWidth} ${width} ${height}
+    "
+    width="${width}"
+    height="${height}"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xml:space="preserve"
+  >
+    <defs>
+    ${this.renderDefs()}
+  </defs>
+    ${this.renderSvgContent()}
+  </svg>`;
+  }
+  renderSvgContent() {
+    let { info = {} } = this;
+    let { points = [] } = info || {};
+    return `
+
+  <polygon points="${points}"
+  style="${this.composeStyles(this.svgStyle())}"/>`;
+  }
+
+  renderDefs() {
+    let { info = {} } = this;
+    let { gradientStyle = {}, backgroundType = "" } = info || {};
     let {
       gradientId = "",
       angle = 0,
@@ -154,6 +177,7 @@ class Text extends Component {
       valueList = [],
       center = "50% 50%"
     } = gradientStyle || {};
+
     let gradientText = "";
     if (backgroundType == "gradient") {
       if (type == "linear") {
@@ -305,61 +329,26 @@ class Text extends Component {
       </radialGradient>`;
       }
     }
-    return ` <svg
-    version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="
-      ${0 - borderWidth} ${0 - borderWidth} ${width} ${height}
-    "
-    width="${width}"
-    height="${height}"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    xml:space="preserve"
-  >
-    <defs>
-      ${gradientText}
-    </defs>
-    ${this.renderSvgContent()}
-  </svg>`;
+    return gradientText;
   }
-  renderSvgContent() {
-    let { info = {} } = this;
-    let { points = [] } = info || {};
-    return `
-
-  <polygon points="${points}"
-  style="${this.composeStyles(this.svgStyle())}"/>`;
-  }
-
-  // renderSvg(){
-  //   return ``
-  // }
-  // renderSvgContent(){
-  // return ``
-  // }
-
-  // //加载数据
-  // loadData() {
-  //   this.loadDeviceInfo();
-  // }
-
-  // //刷新内容
-  // refreshContent(data) {
-  //   let { info = {} } = this;
-  //   let { point } = data || {};
-  //   if (point) {
-  //     let { value = "" } = point || {};
-  //     info.content = value;
-  //     this.refresh();
-  //   }
-  // }
 
   refresh() {
     super.refresh();
     let { info = {} } = this;
-    let { id = "" } = info || {};
+    let { id = "", width = 0, height = 0, borderWidth = 0 } = info || {};
     let $container = $(`#${id}>.component`);
-    $container.html(this.renderSvg());
+    let $svg = $container.find(`svg`);
+    let $defs = $svg.find("defs");
+    let $polygon = $svg.find("polygon");
+    $defs.html(this.renderDefs());
+    $svg.attr({
+      width,
+      height,
+      viewBox: `${0 - borderWidth} ${0 - borderWidth} ${width} ${height}`
+    });
+    $polygon.css(this.svgStyle());
+    let { points = [] } = info || {};
+    $polygon.attr({ points });
   }
 
   event() {}
