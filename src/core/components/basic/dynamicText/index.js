@@ -172,9 +172,7 @@ class DynamicText extends Component {
     if (unitFontSize) {
       styles["font-size"] = `${unitFontSize}px`;
     }
-    if (unitFontFamily) {
-      styles["font-family"] = `${unitFontFamily}`;
-    }
+    styles["font-family"] = `${unitFontFamily}`;
     return styles || {};
   }
 

@@ -51,7 +51,7 @@ let variablePool = {
 let common = {
   //是否为debug模式
   debugMode: (function() {
-    var flag = false;
+    var flag = true;
     if (process.env.NODE_ENV == "production") {
       flag = false;
     }

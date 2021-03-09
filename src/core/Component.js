@@ -322,9 +322,7 @@ class Component {
     if (fontSize) {
       styles["font-size"] = `${fontSize}px`;
     }
-    if (fontFamily) {
-      styles["font-family"] = `${fontFamily}`;
-    }
+    styles["font-family"] = `${fontFamily}`;
     if (fontWeight) {
       styles["font-weight"] = fontWeight;
     }

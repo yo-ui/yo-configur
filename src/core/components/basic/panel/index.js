@@ -10,47 +10,7 @@ class Panel extends Component {
   //组件样式
   comStyle() {
     let { info = {} } = this;
-    let {
-      width = "",
-      height = "",
-      // color = "",
-      // borderColor = "",
-      // borderStyle = "",
-      // borderWidth = "",
-      // borderRadiusTopLeft = 0,
-      // borderRadiusTopRight = 0,
-      // borderRadiusBottomLeft = 0,
-      // borderRadiusBottomRight = 0,
-      // backgroundType = "",
-      // // scale = "",
-      // marginTop = 0,
-      // marginBottom = 0,
-      // marginLeft = 0,
-      // marginRight = 0,
-      // borderTop = 0,
-      // borderBottom = 0,
-      // borderLeft = 0,
-      // borderRight = 0,
-      // paddingTop = 0,
-      // paddingBottom = 0,
-      // paddingLeft = 0,
-      // paddingRight = 0,
-      // shadow = {},
-      // shadowable = false,
-      // textShadow = {},
-      // textShadowable = false,
-      // textAlign = "",
-      // fontFamily = "",
-      // fontSize = "",
-      // fontWeight = "",
-      // fontStyle = "",
-      // textDecoration = "",
-      // backgroundColor = "",
-      // backgroundImage = "",
-      // backgroundRepeat = "",
-      // backgroundSize = "",
-      children = []
-    } = info || {};
+    let { width = "", height = "", children = [] } = info || {};
 
     let group1 = bmCommon.clone(children || []);
     let group2 = bmCommon.clone(children || []);

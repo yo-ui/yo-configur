@@ -57,9 +57,11 @@ class Canvas {
     let { info = {} } = obj || {};
     let { parentId = "", children = [] } = info || {};
     if (!parentId) {
+      children = bmCommon.clone(children);
       setTimeout(() => {
         (children || []).forEach(item => {
           let { id = "" } = item || {};
+          bmCommon.log("删除组件", id);
           delete window.bm_widgetMap[id];
         });
       }, 10);
@@ -130,6 +132,7 @@ class Canvas {
     let { children = [], id = "" } = item || {};
     let obj = ComponentLibrary.getInstance(item);
     window.bm_widgetMap[id] = obj;
+    bmCommon.log("append 组件", id, obj, window.bm_widgetMap[id]);
     let dom = obj.template();
     if (dom) {
       let _div = $(obj.template());

@@ -1120,6 +1120,7 @@ export default {
         delete item.parentId;
         Canvas.append(item, false);
       });
+      CanvasEvent.selectComAction();
     },
     // 分布操作
     spreadCommandEvent(cmd) {
