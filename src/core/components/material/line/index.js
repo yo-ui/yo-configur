@@ -392,12 +392,20 @@ class Text extends Component {
     info.boxH = h > 20 ? h : 20;
     info.height = 0;
   }
+  // lineLongEvent() {
+  //   let { info = {} } = this;
+  //   let { x1 = 0, y1 = 0, x2 = 0, y2 = 0, lineLong = 0 } = info || {};
+  //   //先求当前的弧度
+  //   let rad = Math.round(Math.atan2(y2 - y1, x2 - x1) / 45) * 45;
+  //   // let long = Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
+  //   let y = lineLong * Math.sin(rad) - y1; //对边长
+  //   let x = lineLong * Math.cos(rad) - x1; //余边长
+  //   info.x2 = x;
+  //   info.y2 = y;
+  // }
   static leftClickEvent(e) {
     e.stopPropagation();
     e.preventDefault();
-    // let { info = {} } = this;
-    // let { id = "" } = info || {};
-    // CanvasEvent.selectComAction(id); //选中组件
     Text.mousedownEvent(e, "left");
   }
   static rightClickEvent(e) {
@@ -413,27 +421,12 @@ class Text extends Component {
     e.stopPropagation();
     e.preventDefault();
     // let { info = {} } = this;
+    bmCommon.error("line mousedownEvent", e);
     let pos = bmCommon.getMousePosition(e);
     let { x = "", y = "" } = pos || {};
-    // let {
-    //   width: originWidth = "",
-    //   height: originHeight = "",
-    //   left,
-    //   top,
-    //   rotate: originRotate = ""
-    // } = info || {};
     Text.direction = direction;
     Text.startX = x;
     Text.startY = y;
-    // this.initMove({
-    //   startX: x,
-    //   startY: y,
-    //   originX: left,
-    //   originY: top,
-    //   originRotate,
-    //   originWidth,
-    //   originHeight
-    // });
     $(document).on("mousemove", Text.mousemoveEvent);
     $(document).on("mouseup", Text.mouseupEvent);
   }
@@ -461,37 +454,37 @@ class Text extends Component {
 
   // 调整元件尺寸
   static resize(item) {
-    let { x, y, direction = "" } = item || {};
-    let {
-      startX,
-      startY,
-      id = ""
-      // originX,
-      // originY,
-      // widgetList = [],
-      // zoom,
-      // info
-      // originWidth,
-      // originHeight,
-      // originRotate
-    } = Text;
+    let { x, y, direction = "", e } = item || {};
+    let { startX, startY, id = "" } = Text;
+    let { shiftKey = false } = e;
     let zoom = Canvas.getZoom();
     let obj = window.bm_widgetMap[id];
     let { info = {} } = obj || {};
     let dx = x - startX;
     let dy = y - startY;
-    let { x1 = 0, x2 = 0, y1 = 0, y2 = 0 } = info || {};
+    let { x1 = 0, x2 = 0, _x2 = 0, _y2 = 0, y1 = 0, y2 = 0, lineLong = 0 } =
+      info || {};
     dx = Math.floor(dx / zoom);
     dy = Math.floor(dy / zoom);
     if (direction === "right") {
       let __x2 = x2 + dx;
       let __y2 = y2 + dy;
+      if (shiftKey) {
+        let xya = bmCommon.snapToAngle(x1, y1, __x2, __y2);
+        __x2 = xya.x;
+        __y2 = xya.y;
+      }
       info.x2 = __x2;
       info.y2 = __y2;
       obj.refresh();
     } else if (direction === "left") {
       let __x1 = x1 + dx;
       let __y1 = y1 + dy;
+      if (shiftKey) {
+        let xya = bmCommon.snapToAngle(x2, y2, __x1, __y1);
+        __x1 = xya.x;
+        __y1 = xya.y;
+      }
       info.x1 = __x1;
       info.y1 = __y1;
       obj.refresh();

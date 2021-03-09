@@ -217,6 +217,36 @@ let common = {
       y: (y - offset.y) / offset.ratio
     };
   },
+  //获取锁定角度的点  默认45度
+  snapToAngle(x1, y1, x2, y2) {
+    const snap = Math.PI / 4; // 45 degrees
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const angle = Math.atan2(dy, dx);
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const snapangle = Math.round(angle / snap) * snap;
+
+    return {
+      x: x1 + dist * Math.cos(snapangle),
+      y: y1 + dist * Math.sin(snapangle),
+      a: snapangle
+    };
+  },
+  /**
+   * Round value to for snapping.
+   * @function module:utilities.snapToGrid
+   * @param {Float} value
+   * @returns {Integer}
+   */
+  snapToGrid(value, { stepSize = 10 }) {
+    // const unit = editorContext_.getBaseUnit();
+    // let stepSize = 10;
+    // if (unit !== "px") {
+    //   stepSize *= 1;
+    // }
+    value = Math.round(value / stepSize) * stepSize;
+    return value;
+  },
   isDragging: function(e) {
     var changed = e.changedTouches.length,
       touching = e.touches.length;
