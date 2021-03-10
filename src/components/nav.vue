@@ -4,7 +4,7 @@
       <div class="left">
         <el-button
           @click="cancelEvent"
-          :disabled="historyIndex > historyList.length - 2"
+          :disabled="historyIndex > historyList.length - 1"
         >
           <i class="el-icon-refresh-left" :title="$lang('撤销')"></i>
           {{ $lang("撤销") }}
@@ -587,18 +587,18 @@ export default {
         let { historyIndex = 0 } = this;
         let historyList = Canvas.getHistoryList();
         let { length = 0 } = historyList || [];
-        bmCommon.error("1", length, historyIndex);
+        // bmCommon.error("1", length, historyIndex);
         if (historyIndex > length - 2) {
           return;
         }
         // let {  } = condition;
-        bmCommon.error("2", length, historyIndex);
+        // bmCommon.error("2", length, historyIndex);
         if (historyIndex > length - 1) {
           // condition.historyIndex = length - 1;
           Canvas.setHistoryIndex(length - 1);
           return;
         }
-        bmCommon.error("3", length, historyIndex);
+        // bmCommon.error("3", length, historyIndex);
         let historyData = historyList[++historyIndex];
         // Core.init(widgetList);
         Canvas.historyCompareOperate(historyData);
@@ -1024,7 +1024,7 @@ export default {
               children.push(bmCommon.clone(info));
             }
 
-            bmCommon.error("count=", info, children, JSON.stringify(info));
+            // bmCommon.error("count=", info, children, JSON.stringify(info));
             // if (index > -1) {
             //   widgetList.splice(index, 1);
             //   // count++;
@@ -1084,7 +1084,7 @@ export default {
         children
       };
 
-      bmCommon.error("composeEvent=", JSON.stringify(item));
+      // bmCommon.error("composeEvent=", JSON.stringify(item));
       Canvas.append(item);
 
       bm_active_com_ids.forEach(id => {
@@ -1121,6 +1121,7 @@ export default {
         Canvas.append(item, false);
       });
       CanvasEvent.selectComAction();
+      CanvasEvent.createHistoryAction();
     },
     // 分布操作
     spreadCommandEvent(cmd) {

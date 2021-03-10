@@ -83,7 +83,7 @@ class SelectBox {
     $("#bm_select_com").hide();
     let bm_active_com_ids = window.bm_active_com_ids || [];
     let [bm_active_com_id = ""] = bm_active_com_ids || [];
-    bmCommon.log("select 鼠标松开", bm_active_com_ids, bm_active_com_id);
+    // bmCommon.log("select 鼠标松开", bm_active_com_ids, bm_active_com_id);
     SelectBox.mouseupSetTimeoutId = setTimeout(() => {
       clearTimeout(SelectBox.mouseupSetTimeoutId);
       Canvas.setActiveCom(bm_active_com_id);
@@ -138,12 +138,28 @@ class SelectBox {
       for (let i in bm_widgetMap) {
         let obj = bm_widgetMap[i];
         let { info = {} } = obj || {};
-        let { id = "", locked = false, parentId = "" } = info || {};
+        let { id = "", locked = false, parentId = "", type = "" } = info || {};
         if (!parentId) {
-          bmCommon.log("-----select.vue", info);
-          let com = document.getElementById(id);
-          let rect = com?.getBoundingClientRect() || {};
-          let { left: x = 0, top: y = 0, width = 0, height = 0 } = rect || {};
+          // bmCommon.log("-----select.vue", info);
+          let rect = null;
+          if (type === "materialLine") {
+            //如果为直线则特殊处理
+            let $container = $(`#${id}>.bm-material-line-com`);
+            let $rect_box = $container.find(".rect-box");
+            let com = $rect_box[0];
+            rect = com?.getBoundingClientRect() || {};
+            // let $canvas_content = $("#canvas_content");
+            // let parentBox = $canvas_content[0].getBoundingClientRect();
+            // let { x: _x = 0, y: _y = 0 } = parentBox || {};
+            // rect.x -= _x;
+            // rect.y -= _y;
+
+            // bmCommon.log("-----materialLine", rect, points, parentBox);
+          } else {
+            let com = document.getElementById(id);
+            rect = com?.getBoundingClientRect() || {};
+          }
+          let { x = 0, y = 0, width = 0, height = 0 } = rect || {};
           let x1 = x + width;
           let y1 = y + height;
           //四点全在范围内
@@ -172,11 +188,11 @@ class SelectBox {
       // window.bm_active_com_ids = bm_active_com_ids;
     }
 
-    bmCommon.log(
-      "-----鼠标移动select.vue",
-      window.bm_active_com_i,
-      window.bm_active_com_ids
-    );
+    // bmCommon.log(
+    //   "-----鼠标移动select.vue",
+    //   window.bm_active_com_i,
+    //   window.bm_active_com_ids
+    // );
   }
 }
 

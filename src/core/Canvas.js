@@ -131,9 +131,9 @@ class Canvas {
     let fregment = document.createDocumentFragment("div");
     let { children = [], id = "" } = item || {};
     let obj = ComponentLibrary.getInstance(item);
-    bmCommon.log("添加组件前", JSON.stringify(item));
+    // bmCommon.log("添加组件前", JSON.stringify(item));
     window.bm_widgetMap[id] = obj;
-    bmCommon.log("append 组件", id, obj, window.bm_widgetMap[id]);
+    // bmCommon.log("append 组件", id, obj, window.bm_widgetMap[id]);
     let dom = obj.template();
     if (dom) {
       let _div = $(obj.template());

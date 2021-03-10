@@ -310,7 +310,7 @@ class Event {
   }
   static coverEvent() {
     let { info = {} } = this;
-    bmCommon.error("dbclick");
+    // bmCommon.error("dbclick");
     info.showCoverStatus = false;
   }
   static mouseupEvent(e) {
