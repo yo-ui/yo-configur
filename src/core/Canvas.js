@@ -131,6 +131,7 @@ class Canvas {
     let fregment = document.createDocumentFragment("div");
     let { children = [], id = "" } = item || {};
     let obj = ComponentLibrary.getInstance(item);
+    bmCommon.log("添加组件前", JSON.stringify(item));
     window.bm_widgetMap[id] = obj;
     bmCommon.log("append 组件", id, obj, window.bm_widgetMap[id]);
     let dom = obj.template();
@@ -184,11 +185,12 @@ class Canvas {
         styleCode = "",
         dataCode = ""
       } = data || {};
-      for (let i in data) {
-        if (!item[i]) {
-          item[i] = data[i];
-        }
-      }
+      // for (let i in data) {
+      //   if (!item[i]) {
+      //     item[i] = data[i];
+      //   }
+      // }
+      item = { ...data, ...item };
       item.bindData = { ..._bindData, ...bindData };
 
       item.infoType = infoType;
@@ -207,8 +209,6 @@ class Canvas {
       let { length = 0 } = children || [];
       if (length > 0) {
         children.forEach(item => {
-          item.parentId = parentId;
-          item.id = parentId + bmCommon.uuid();
           let {
             alias = "",
             type = "",
@@ -229,11 +229,14 @@ class Canvas {
             styleCode = "",
             dataCode = ""
           } = data || {};
-          for (let i in data) {
-            if (!item[i]) {
-              item[i] = data[i];
-            }
-          }
+          item = { ...data, ...item };
+          item.parentId = parentId;
+          item.id = parentId + bmCommon.uuid();
+          // for (let i in data) {
+          //   // if (!item[i]) {
+          //     item[i] = data[i];
+          //   // }
+          // }
           item.bindData = { ..._bindData, ...bindData };
           item.infoType = infoType;
           item.dataType = dataType;
