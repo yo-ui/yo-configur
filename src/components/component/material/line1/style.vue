@@ -51,7 +51,7 @@
             <el-tooltip content="请输入宽度" placement="top" effect="dark">
               <el-input-number
                 controls-position="right"
-                clearable
+                :min="1"
                 v-model.number="info.width"
                 :placeholder="$lang('请输入宽度')"
               ></el-input-number>
@@ -64,6 +64,7 @@
           <el-slider
             v-if="info.scaleable"
             v-model="info.width"
+            :min="1"
             :max="4000"
             :format-tooltip="val => val"
           ></el-slider>
@@ -74,7 +75,7 @@
             <el-tooltip content="请输入高度" placement="top" effect="dark">
               <el-input-number
                 controls-position="right"
-                clearable
+                :min="1"
                 v-model.number="info.height"
                 :placeholder="$lang('请输入高度')"
               ></el-input-number>
@@ -87,6 +88,7 @@
           <el-slider
             v-if="info.scaleable"
             v-model="info.height"
+            :min="1"
             :max="4000"
             :format-tooltip="val => val"
           ></el-slider>
@@ -123,7 +125,7 @@
             :format-tooltip="val => val"
           ></el-slider>
         </p>
-        <!-- <p>
+        <p>
           <span class="label"> {{ $lang("旋转角度") }}:</span>
           <el-tooltip content="请输入旋转角度" placement="top" effect="dark">
             <el-input-number
@@ -142,8 +144,8 @@
             :max="360"
             :format-tooltip="val => val + ' deg'"
           ></el-slider>
-        </p> -->
-        <p>
+        </p>
+        <!-- <p>
           <span class="label"> {{ $lang("线长") }}:</span>
           <el-input-number
             controls-position="right"
@@ -163,7 +165,7 @@
             @change="lineLongEvent"
             :format-tooltip="val => val + ' px'"
           ></el-slider>
-        </p>
+        </p> -->
         <p>
           <span class="label"> {{ $lang("透明度") }}:</span>
           <el-tooltip content="请输入透明度" placement="top" effect="dark">
@@ -224,7 +226,7 @@
           </el-tooltip>
         </p>
       </el-collapse-item>
-      <el-collapse-item :title="$lang('内容')" name="content">
+      <!-- <el-collapse-item :title="$lang('内容')" name="content">
         <p>
           <span class="label"> {{ $lang("旋转角度") }}:</span>
           <el-tooltip content="请输入旋转角度" placement="top" effect="dark">
@@ -247,7 +249,7 @@
             :format-tooltip="val => val + ' deg'"
           ></el-slider>
         </p>
-      </el-collapse-item>
+      </el-collapse-item> -->
       <el-collapse-item :title="$lang('样式')" name="style">
         <!-- <p>
       <span class="label"> {{ $lang("背景图片") }}:</span>
@@ -852,8 +854,8 @@ export default {
       //先求当前的弧度
       let rad = Math.atan2(y2 - y1, x2 - x1);
       // let long = Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
-      let y = lineLong * Math.sin(rad) + y1; //对边长
-      let x = lineLong * Math.cos(rad) + x1; //余边长
+      let y = lineLong * Math.sin(rad) - y1; //对边长
+      let x = lineLong * Math.cos(rad) - x1; //余边长
       info.x2 = x;
       info.y2 = y;
     }

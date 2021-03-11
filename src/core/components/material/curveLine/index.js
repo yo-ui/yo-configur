@@ -396,6 +396,12 @@ class Text extends Component {
   static mousedownEvent(e, direction) {
     e.stopPropagation();
     e.preventDefault();
+    let canvas = Canvas.getCanvas();
+    let { action = "" } = canvas || {};
+    if (action == "move") {
+      //画布移动不能操作线
+      return;
+    }
     let pos = bmCommon.getMousePosition(e);
     let { x = "", y = "" } = pos || {};
     Text.direction = direction;

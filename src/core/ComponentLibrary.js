@@ -351,9 +351,15 @@ import deviceFlfdj from "@/core/components/device/flfdj/index";
 
 import materialCommon from "@/core/components/material/common/index";
 
+//直线
 import materialLine from "@/core/components/material/line/index";
+//新直线
+import materialLine1 from "@/core/components/material/line1/index";
 
+// 曲线
 import materialCurveLine from "@/core/components/material/curveLine/index";
+// 新曲线
+import materialCurveLine1 from "@/core/components/material/curveLine1/index";
 
 import materialRectangle from "@/core/components/material/rectangle/index";
 
@@ -727,8 +733,10 @@ const Library = {
   materialCommon,
 
   materialLine,
+  materialLine1,
 
   materialCurveLine,
+  materialCurveLine1,
 
   materialRectangle,
 

@@ -2,21 +2,17 @@ import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 import Canvas from "../../../Canvas";
 import CanvasEvent from "../../../CanvasEvent";
-import "../../../../assets/less/components/component/material/line.less";
-// 直线
+// import "../../../../assets/less/components/component/material/curve.line.less";
+// 曲线
 class Text extends Component {
   constructor(props) {
     super(props);
   }
   init() {
     let { info = {} } = this;
-    let { x1 = 0, y1 = 0, height = 0, width = 0, gradientStyle = {} } =
-      info || {};
-    info.lineLong = width;
-    info.boxX = x1;
-    info.boxY = y1;
-    info.boxW = width > 20 ? width : 20;
-    info.boxH = height > 20 ? height : 20;
+    let { gradientStyle = {} } = info || {};
+    // info.vboxX = x1;
+    // info.vboxY = y1;
     gradientStyle.gradientId = bmCommon.uuid();
     this.refresh();
   }
@@ -25,11 +21,26 @@ class Text extends Component {
   svgStyle() {
     let { info = {} } = this;
     let {
+      // width = "",
+      // height = "",
+      // color = "",
       gradientStyle = {},
       borderStyle = "",
       lineWidth = "",
+      // borderRadiusTopLeft = 0,
+      // borderRadiusTopRight = 0,
+      // borderRadiusBottomLeft = 0,
+      // borderRadiusBottomRight = 0,
       backgroundType = "",
+      //
+      // scale = "",
+      //
+      //
+      //
       backgroundColor = ""
+      // backgroundImage = "",
+      // backgroundRepeat = "",
+      // backgroundSize = ""
     } = info || {};
     let styles = {};
     if (borderStyle) {
@@ -64,8 +75,14 @@ class Text extends Component {
     if (backgroundType == "purity") {
       //纯色
       styles["stroke"] = backgroundColor;
+      // if (backgroundImage) {
+      //   styles["background-image"] = `url(${this.$loadImgUrl(
+      //     backgroundImage
+      //   )})`;
+      // }
     } else if (backgroundType == "gradient") {
       //渐变
+      // styles = { ...styles, ...gradientStyle };
       let { gradientId = "" } = gradientStyle || {};
       styles["stroke"] = `url(#${gradientId})`;
     }
@@ -73,27 +90,34 @@ class Text extends Component {
   }
 
   comStyle() {
-    let { info = {} } = this;
-    let { flipH = false, flipV = false, opacity = "", visible = true } =
-      info || {};
-    let styles = {};
-    styles["opacity"] = opacity / 100;
-    styles["visibility"] = `${visible ? "visible" : "hidden"}`;
-    let scale = `scale(${flipH ? -1 : 1},${flipV ? -1 : 1})`;
-    (styles["transform"] = `${scale}`),
-      (styles["-webkit-transform"] = `${scale}`),
-      (styles["-ms-transform"] = `${scale}`),
-      (styles["-o-transform"] = `${scale}`),
-      (styles["-moz-transform"] = `${scale}`);
+    // let { info = {} } = this;
+    let styles = super.comStyle();
+    delete styles["background-color"];
+    delete styles["border-color"];
+    delete styles["border-left-color"];
+    delete styles["border-top-color"];
+    delete styles["border-right-color"];
+    delete styles["border-bottom-color"];
+    delete styles["border-left-style"];
+    delete styles["border-top-style"];
+    delete styles["border-right-style"];
+    delete styles["border-bottom-style"];
+    delete styles["border-left-width"];
+    delete styles["border-top-width"];
+    delete styles["border-right-width"];
+    delete styles["border-bottom-width"];
+    delete styles["border-style"];
+    delete styles["background-image"];
+    // bmCommon.log("materailLine1 comStyle", styles);
     return styles || {};
   }
+
   template() {
     let { info = {} } = this;
     return super.wrap(
       { info },
       `
-    <div class="bm-material-line-com">
-
+    <div class="bm-material-curve-line1-com component">
     ${this.renderSvg()}
   </div>
     `
@@ -102,12 +126,12 @@ class Text extends Component {
 
   renderSvg() {
     let { info = {} } = this;
-    let { boxH = 0, boxW = 0 } = info || {};
+    let { height = 0, width = 0 } = info || {};
     return ` <svg
     version="1.1"
-    viewBox="0 0 ${boxW} ${boxH}"
-  width="${boxW}"
-  height="${boxH}"
+    viewBox="0 0 ${width} ${height}"
+  width="${width}"
+  height="${height}"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xml:space="preserve"
@@ -285,150 +309,66 @@ class Text extends Component {
   }
   renderSvgContent() {
     let { info = {} } = this;
-    let {
-      x1 = 0,
-      x2 = 0,
-      y1 = 0,
-      y2 = 0,
-      boxW = 0,
-      boxH = 0,
-      boxX = 0,
-      id = "",
-      boxY = 0
-    } = info || {};
-    return `<line
+    let { width = 0, height = 0, qx = 0, qy = 0, id = "" } = info || {};
+    return `<path
     class="line"
-    x1="${x1}"
-    y1="${y1}"
-    x2="${x2}"
-    y2="${y2}"
+    d="
+      M 0 0 Q ${qx} ${qy},${width} ${height}
+    "
+    fill="transparent"
     style="${this.composeStyles(this.svgStyle())}"
   />
-  <rect
-    class="rect-box"
-    width="${boxW}"
-    height="${boxH}"
-    x="${boxX}"
-    y="${boxY}"
-    stroke="#0075e7"
-    fill="transparent"
-    stroke-width="1"
-  ></rect>
-  <rect
-    class="rect rect1"
+  <circle
+    class="circle"
     data-id="${id}"
-    width="14"
-    height="14"
-    x="${x1 - 7}"
-    y="${y1 - 7}"
+    cx="${qx}"
+    cy="${qy}"
+    r="5"
     stroke="#0075e7"
-    fill="#fff"
+    fill="#ffa500"
     stroke-width="1"
-  ></rect>
-  <rect
-    class="rect rect2"
-    data-id="${id}"
-    width="14"
-    height="14"
-    x="${x2 - 7}"
-    fill="#fff"
-    y="${y2 - 7}"
-    stroke="#0075e7"
-    stroke-width="1"
-  ></rect>`;
+  />
+  `;
   }
-
-  // //加载数据
-  // loadData() {
-  //   this.loadDeviceInfo();
-  // }
-
-  // //刷新内容
-  // refreshContent(data) {
-  //   let { info = {} } = this;
-  //   let { point } = data || {};
-  //   if (point) {
-  //     let { value = "" } = point || {};
-  //     info.content = value;
-  //     this.refresh();
-  //   }
-  // }
 
   refresh() {
     super.refresh();
-    this.reloadSize();
+    // this.reloadSize();
     let { info = {} } = this;
-    let {
-      id = "",
-      boxH: height = 0,
-      boxW: width = 0,
-      x1 = 0,
-      x2 = 0,
-      y1 = 0,
-      y2 = 0,
-      boxX: x = 0,
-      boxY: y = 0
-    } = info || {};
-    let $container = $(`#${id}>.bm-material-line-com`);
+    let { qx = 0, qy = 0, id = "", width = 0, height = 0 } = info || {};
+    let $container = $(`#${id}>.component`);
     let $svg = $container.find("svg");
     let $defs = $svg.find("defs");
     let $line = $svg.find(".line");
-    let $rect_box = $svg.find(".rect-box");
-    let $rect1 = $svg.find(".rect1");
-    let $rect2 = $svg.find(".rect2");
-    $rect1.attr({ x: x1 - 7, y: y1 - 7 });
-    $rect2.attr({ x: x2 - 7, y: y2 - 7 });
-    $line.attr({ x1, y1, x2, y2 }).css(this.svgStyle());
-    $rect_box.attr({ width, height, x, y });
+    let $circle = $svg.find(".circle");
+    // let $rect1 = $svg.find(".rect1");
+    // let $rect2 = $svg.find(".rect2");
+    // $rect1.attr({ x: x1 - 5, y: y1 - 5 });
+    // $rect2.attr({ x: x2 - 5, y: y2 - 5 });
+    let d = `M 0 0 Q ${qx} ${qy},${width} ${height}`;
+    $line.attr({ d }).css(this.svgStyle());
+    $circle.attr({ cx: qx, cy: qy });
     $defs.html(this.renderDefs());
     $svg.attr({ width, height, viewBox: `0 0 ${width} ${height}` });
     // $container.html(this.renderSvg());
   }
 
-  reloadSize() {
-    let { info = {} } = this;
-    let { x1 = 0, y1 = 0, x2 = 0, y2 = 0, id = "" } = info || {};
-    let $container = $(`#${id}>.bm-material-line-com`);
-    let lineLong = Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
-    let line = SVG($container.find(".line")[0]);
-    let bbox = line.bbox();
-    // let bbox = line.bbox();
-    let { w = 0, h = 0, x = 0, y = 0 } = bbox || {};
-    info.boxX = x;
-    info.boxY = y;
-    info.lineLong = lineLong;
-    // bmCommon.warn("rbox=", info.vboxX,info.vboxY);
-    info.boxW = w > 20 ? w : 20;
-    info.width = 0;
-    info.boxH = h > 20 ? h : 20;
-    info.height = 0;
-  }
-  // lineLongEvent() {
-  //   let { info = {} } = this;
-  //   let { x1 = 0, y1 = 0, x2 = 0, y2 = 0, lineLong = 0 } = info || {};
-  //   //先求当前的弧度
-  //   let rad = Math.round(Math.atan2(y2 - y1, x2 - x1) / 45) * 45;
-  //   // let long = Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
-  //   let y = lineLong * Math.sin(rad) - y1; //对边长
-  //   let x = lineLong * Math.cos(rad) - x1; //余边长
-  //   info.x2 = x;
-  //   info.y2 = y;
+  // static leftClickEvent(e) {
+  //   e.stopPropagation();
+  //   e.preventDefault();
+  //   Text.mousedownEvent(e, "left");
   // }
-  static leftClickEvent(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    Text.mousedownEvent(e, "left");
-  }
-  static rightClickEvent(e) {
+  static centerClickEvent(e) {
     e.preventDefault();
     e.stopPropagation();
-    // let { info = {} } = this;
-    // let { id = "" } = info || {};
-    // CanvasEvent.selectComAction(id); //选中组件
-    Text.mousedownEvent(e, "right");
+    Text.mousedownEvent(e, "center");
   }
+  // static rightClickEvent(e) {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   Text.mousedownEvent(e, "right");
+  // }
   static mousedownEvent(e, direction) {
-    // let { showType = "" } = this;
     e.stopPropagation();
     e.preventDefault();
     let canvas = Canvas.getCanvas();
@@ -437,8 +377,6 @@ class Text extends Component {
       //画布移动不能操作线
       return;
     }
-    // let { info = {} } = this;
-    // bmCommon.error("line mousedownEvent", e);
     let pos = bmCommon.getMousePosition(e);
     let { x = "", y = "" } = pos || {};
     Text.direction = direction;
@@ -471,38 +409,41 @@ class Text extends Component {
 
   // 调整元件尺寸
   static resize(item) {
-    let { x, y, direction = "", e } = item || {};
+    let { x, y, direction = "" } = item || {};
     let { startX, startY, id = "" } = Text;
-    let { shiftKey = false } = e;
     let zoom = Canvas.getZoom();
     let obj = window.bm_widgetMap[id];
     let { info = {} } = obj || {};
     let dx = x - startX;
     let dy = y - startY;
     let { x1 = 0, x2 = 0, y1 = 0, y2 = 0 } = info || {};
-    dx = Math.floor(dx / zoom);
-    dy = Math.floor(dy / zoom);
+    dx = dx / zoom;
+    dy = dy / zoom;
     if (direction === "right") {
       let __x2 = x2 + dx;
       let __y2 = y2 + dy;
-      if (shiftKey) {
-        let xya = bmCommon.snapToAngle(x1, y1, __x2, __y2);
-        __x2 = xya.x;
-        __y2 = xya.y;
-      }
       info.x2 = __x2;
       info.y2 = __y2;
       obj.refresh();
     } else if (direction === "left") {
       let __x1 = x1 + dx;
       let __y1 = y1 + dy;
-      if (shiftKey) {
-        let xya = bmCommon.snapToAngle(x2, y2, __x1, __y1);
-        __x1 = xya.x;
-        __y1 = xya.y;
-      }
       info.x1 = __x1;
       info.y1 = __y1;
+      obj.refresh();
+    } else if (direction === "center") {
+      // dx = Math.floor((dx * 1) / zoom);
+      // dy = Math.floor((dy * 1) / zoom);
+
+      let $container = $(`#${id}>.component`);
+      let $svg = $container.find("svg");
+      let $line = $svg.find(".line");
+      let box = $line[0].getBoundingClientRect();
+      let { width = 0, height = 0 } = box || {};
+      info.qx += dx;
+      info.qy += dy;
+      info.width = width;
+      info.height = height;
       obj.refresh();
     }
     Text.startX = x;
@@ -518,20 +459,26 @@ class Text extends Component {
     }
     let { info = {} } = this;
     let { id = "" } = info || {};
-    let $container = $(`#${id}>.bm-material-line-com`);
+    let $container = $(`#${id}>.component`);
     // let that = this;
-    $container.on("mousedown", ".rect1", function(e) {
+    $container.on("mousedown", ".circle", function(e) {
       let $this = $(this);
       let id = $this.data("id");
       Text.id = id;
-      Text.leftClickEvent(e);
+      Text.centerClickEvent(e);
     });
-    $container.on("mousedown", ".rect2", function(e) {
-      let $this = $(this);
-      let id = $this.data("id");
-      Text.id = id;
-      Text.rightClickEvent(e);
-    });
+    // $container.on("mousedown", ".rect1", function(e) {
+    //   let $this = $(this);
+    //   let id = $this.data("id");
+    //   Text.id = id;
+    //   Text.leftClickEvent(e);
+    // });
+    // $container.on("mousedown", ".rect2", function(e) {
+    //   let $this = $(this);
+    //   let id = $this.data("id");
+    //   Text.id = id;
+    //   Text.rightClickEvent(e);
+    // });
   }
 }
 

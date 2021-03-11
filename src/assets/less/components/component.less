@@ -18,31 +18,33 @@
   // .pointer;
   white-space: nowrap;
 
-  &.materialLine{
+  &.materialLine,
+  &.materialCurveLine {
+    pointer-events: none !important;
     .squ(0);
   }
   //显示线框用
-  &.border{
+  &.border {
     .bor(1px solid red);
-    *{
+    * {
       .db(none);
       // visibility: hidden;
-      &:last-child{
+      &:last-child {
         .db;
-        visibility: hidden!important;
+        visibility: hidden !important;
       }
     }
   }
   &.materialLine,
   &.materialCurveLine,
   &.materialTriangle {
-    .bor(none)!important;
+    .bor(none) !important;
     .box-s(none) !important;
     .info {
       .db(none) !important;
     }
   }
-  svg{
+  svg {
     .db;
   }
   // &.materialTriangle {
@@ -64,17 +66,17 @@
   &.edit {
     &:hover {
       .bor(1px dashed @gray6);
-    //   // .bc(@grayE);
-    //   // .box-s(1px 1px 10px 5px #f9e38c);
-    //   // & > .info {
-    //   //   .db;
-    //   // }
-    //   // i {
-    //   //   opacity: 1;
-    //   // }
-    //   // .operate-btn{
-    //   //   .db;
-    //   // }
+      //   // .bc(@grayE);
+      //   // .box-s(1px 1px 10px 5px #f9e38c);
+      //   // & > .info {
+      //   //   .db;
+      //   // }
+      //   // i {
+      //   //   opacity: 1;
+      //   // }
+      //   // .operate-btn{
+      //   //   .db;
+      //   // }
     }
     &.active {
       // .borc(@themes);
@@ -90,7 +92,7 @@
         }
       }
     }
-    &.locked{
+    &.locked {
       & > .operate-btn {
         .db(none);
       }
@@ -99,7 +101,7 @@
   .operate-btn {
     // visibility: hidden;
     .db(none);
-    z-index: 2;
+    z-index: 3;
     .posa;
     // .borc(@themes);
     transform-origin: center;
@@ -176,8 +178,9 @@
     .tranf(translate(-50%, -50%));
     .squ(@circle-width);
     // .bor(1px solid @border);
+    pointer-events: none;
     .bc(orange);
-    z-index: 3;
+    z-index: 2;
     .br(50%);
   }
   .el-icon-top-left {

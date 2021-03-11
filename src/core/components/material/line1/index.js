@@ -2,7 +2,7 @@ import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 import Canvas from "../../../Canvas";
 import CanvasEvent from "../../../CanvasEvent";
-import "../../../../assets/less/components/component/material/line.less";
+// import "../../../../assets/less/components/component/material/line.less";
 // 直线
 class Text extends Component {
   constructor(props) {
@@ -10,13 +10,12 @@ class Text extends Component {
   }
   init() {
     let { info = {} } = this;
-    let { x1 = 0, y1 = 0, height = 0, width = 0, gradientStyle = {} } =
-      info || {};
-    info.lineLong = width;
-    info.boxX = x1;
-    info.boxY = y1;
-    info.boxW = width > 20 ? width : 20;
-    info.boxH = height > 20 ? height : 20;
+    let { gradientStyle = {} } = info || {};
+    // info.lineLong = width;
+    // info.boxX = x1;
+    // info.boxY = y1;
+    // info.boxW = width > 20 ? width : 20;
+    // info.boxH = height > 20 ? height : 20;
     gradientStyle.gradientId = bmCommon.uuid();
     this.refresh();
   }
@@ -73,18 +72,25 @@ class Text extends Component {
   }
 
   comStyle() {
-    let { info = {} } = this;
-    let { flipH = false, flipV = false, opacity = "", visible = true } =
-      info || {};
-    let styles = {};
-    styles["opacity"] = opacity / 100;
-    styles["visibility"] = `${visible ? "visible" : "hidden"}`;
-    let scale = `scale(${flipH ? -1 : 1},${flipV ? -1 : 1})`;
-    (styles["transform"] = `${scale}`),
-      (styles["-webkit-transform"] = `${scale}`),
-      (styles["-ms-transform"] = `${scale}`),
-      (styles["-o-transform"] = `${scale}`),
-      (styles["-moz-transform"] = `${scale}`);
+    // let { info = {} } = this;
+    let styles = super.comStyle();
+    delete styles["background-color"];
+    delete styles["border-color"];
+    delete styles["border-left-color"];
+    delete styles["border-top-color"];
+    delete styles["border-right-color"];
+    delete styles["border-bottom-color"];
+    delete styles["border-left-style"];
+    delete styles["border-top-style"];
+    delete styles["border-right-style"];
+    delete styles["border-bottom-style"];
+    delete styles["border-left-width"];
+    delete styles["border-top-width"];
+    delete styles["border-right-width"];
+    delete styles["border-bottom-width"];
+    delete styles["border-style"];
+    delete styles["background-image"];
+    // bmCommon.log("materailLine1 comStyle", styles);
     return styles || {};
   }
   template() {
@@ -92,7 +98,7 @@ class Text extends Component {
     return super.wrap(
       { info },
       `
-    <div class="bm-material-line-com">
+    <div class="bm-material-line1-com component">
 
     ${this.renderSvg()}
   </div>
@@ -102,12 +108,12 @@ class Text extends Component {
 
   renderSvg() {
     let { info = {} } = this;
-    let { boxH = 0, boxW = 0 } = info || {};
+    let { width = 0, height = 0 } = info || {};
     return ` <svg
     version="1.1"
-    viewBox="0 0 ${boxW} ${boxH}"
-  width="${boxW}"
-  height="${boxH}"
+    viewBox="0 0 ${width} ${height}"
+  width="${width}"
+  height="${height}"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     xml:space="preserve"
@@ -285,57 +291,16 @@ class Text extends Component {
   }
   renderSvgContent() {
     let { info = {} } = this;
-    let {
-      x1 = 0,
-      x2 = 0,
-      y1 = 0,
-      y2 = 0,
-      boxW = 0,
-      boxH = 0,
-      boxX = 0,
-      id = "",
-      boxY = 0
-    } = info || {};
+    let { width = 0, height = 0 } = info || {};
     return `<line
     class="line"
-    x1="${x1}"
-    y1="${y1}"
-    x2="${x2}"
-    y2="${y2}"
+    x1="${0}"
+    y1="${0}"
+    x2="${width}"
+    y2="${height}"
     style="${this.composeStyles(this.svgStyle())}"
   />
-  <rect
-    class="rect-box"
-    width="${boxW}"
-    height="${boxH}"
-    x="${boxX}"
-    y="${boxY}"
-    stroke="#0075e7"
-    fill="transparent"
-    stroke-width="1"
-  ></rect>
-  <rect
-    class="rect rect1"
-    data-id="${id}"
-    width="14"
-    height="14"
-    x="${x1 - 7}"
-    y="${y1 - 7}"
-    stroke="#0075e7"
-    fill="#fff"
-    stroke-width="1"
-  ></rect>
-  <rect
-    class="rect rect2"
-    data-id="${id}"
-    width="14"
-    height="14"
-    x="${x2 - 7}"
-    fill="#fff"
-    y="${y2 - 7}"
-    stroke="#0075e7"
-    stroke-width="1"
-  ></rect>`;
+  `;
   }
 
   // //加载数据
@@ -356,53 +321,53 @@ class Text extends Component {
 
   refresh() {
     super.refresh();
-    this.reloadSize();
+    // this.reloadSize();
     let { info = {} } = this;
     let {
       id = "",
-      boxH: height = 0,
-      boxW: width = 0,
-      x1 = 0,
-      x2 = 0,
-      y1 = 0,
-      y2 = 0,
-      boxX: x = 0,
-      boxY: y = 0
+      height = 0,
+      width = 0
+      // x1 = 0,
+      // x2 = 0,
+      // y1 = 0,
+      // y2 = 0,
+      // boxX: x = 0,
+      // boxY: y = 0
     } = info || {};
-    let $container = $(`#${id}>.bm-material-line-com`);
+    let $container = $(`#${id}>.component`);
     let $svg = $container.find("svg");
     let $defs = $svg.find("defs");
     let $line = $svg.find(".line");
-    let $rect_box = $svg.find(".rect-box");
-    let $rect1 = $svg.find(".rect1");
-    let $rect2 = $svg.find(".rect2");
-    $rect1.attr({ x: x1 - 7, y: y1 - 7 });
-    $rect2.attr({ x: x2 - 7, y: y2 - 7 });
-    $line.attr({ x1, y1, x2, y2 }).css(this.svgStyle());
-    $rect_box.attr({ width, height, x, y });
+    // let $rect_box = $svg.find(".rect-box");
+    // let $rect1 = $svg.find(".rect1");
+    // let $rect2 = $svg.find(".rect2");
+    // $rect1.attr({ x: x1 - 7, y: y1 - 7 });
+    // $rect2.attr({ x: x2 - 7, y: y2 - 7 });
+    $line.attr({ x1: 0, y1: 0, x2: width, y2: height }).css(this.svgStyle());
+    // $rect_box.attr({ width, height, x, y });
     $defs.html(this.renderDefs());
     $svg.attr({ width, height, viewBox: `0 0 ${width} ${height}` });
     // $container.html(this.renderSvg());
   }
 
-  reloadSize() {
-    let { info = {} } = this;
-    let { x1 = 0, y1 = 0, x2 = 0, y2 = 0, id = "" } = info || {};
-    let $container = $(`#${id}>.bm-material-line-com`);
-    let lineLong = Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
-    let line = SVG($container.find(".line")[0]);
-    let bbox = line.bbox();
-    // let bbox = line.bbox();
-    let { w = 0, h = 0, x = 0, y = 0 } = bbox || {};
-    info.boxX = x;
-    info.boxY = y;
-    info.lineLong = lineLong;
-    // bmCommon.warn("rbox=", info.vboxX,info.vboxY);
-    info.boxW = w > 20 ? w : 20;
-    info.width = 0;
-    info.boxH = h > 20 ? h : 20;
-    info.height = 0;
-  }
+  // reloadSize() {
+  //   let { info = {} } = this;
+  //   let { x1 = 0, y1 = 0, x2 = 0, y2 = 0, id = "" } = info || {};
+  //   let $container = $(`#${id}>.bm-material-line-com`);
+  //   let lineLong = Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
+  //   let line = SVG($container.find(".line")[0]);
+  //   let bbox = line.bbox();
+  //   // let bbox = line.bbox();
+  //   let { w = 0, h = 0, x = 0, y = 0 } = bbox || {};
+  //   info.boxX = x;
+  //   info.boxY = y;
+  //   info.lineLong = lineLong;
+  //   // bmCommon.warn("rbox=", info.vboxX,info.vboxY);
+  //   info.boxW = w > 20 ? w : 20;
+  //   info.width = 0;
+  //   info.boxH = h > 20 ? h : 20;
+  //   info.height = 0;
+  // }
   // lineLongEvent() {
   //   let { info = {} } = this;
   //   let { x1 = 0, y1 = 0, x2 = 0, y2 = 0, lineLong = 0 } = info || {};
@@ -512,26 +477,26 @@ class Text extends Component {
   destroy() {}
 
   event() {
-    let showType = window.bm_show_type;
-    if (showType != "edit") {
-      return;
-    }
-    let { info = {} } = this;
-    let { id = "" } = info || {};
-    let $container = $(`#${id}>.bm-material-line-com`);
+    // let showType = window.bm_show_type;
+    // if (showType != "edit") {
+    //   return;
+    // }
+    // let { info = {} } = this;
+    // let { id = "" } = info || {};
+    // let $container = $(`#${id}>.bm-material-line-com`);
     // let that = this;
-    $container.on("mousedown", ".rect1", function(e) {
-      let $this = $(this);
-      let id = $this.data("id");
-      Text.id = id;
-      Text.leftClickEvent(e);
-    });
-    $container.on("mousedown", ".rect2", function(e) {
-      let $this = $(this);
-      let id = $this.data("id");
-      Text.id = id;
-      Text.rightClickEvent(e);
-    });
+    // $container.on("mousedown", ".rect1", function(e) {
+    //   let $this = $(this);
+    //   let id = $this.data("id");
+    //   Text.id = id;
+    //   Text.leftClickEvent(e);
+    // });
+    // $container.on("mousedown", ".rect2", function(e) {
+    //   let $this = $(this);
+    //   let id = $this.data("id");
+    //   Text.id = id;
+    //   Text.rightClickEvent(e);
+    // });
   }
 }
 

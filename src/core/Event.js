@@ -140,7 +140,7 @@ class Event {
 
     if (direction === "right") {
       value = originWidth + Math.floor((dx * 1) / zoom);
-      if (value > 10) {
+      if (value > 0) {
         activeCom.width = value;
         if (equalScaleable) {
           activeCom.height = (originHeight * value) / originWidth;
@@ -153,9 +153,9 @@ class Event {
       }
     } else if (direction === "top") {
       height = originHeight - Math.floor((dy * 1) / zoom);
-      if (height > 10) {
+      if (height > 0) {
         activeCom.top -= height - activeCom.height;
-        activeCom.height = height > 10 ? height : 10;
+        activeCom.height = height; //> 10 ? height : 10;
         if (equalScaleable) {
           activeCom.width = (originWidth * value) / originHeight;
           obj.refresh({
@@ -172,8 +172,8 @@ class Event {
       }
     } else if (direction === "bottom") {
       value = originHeight + Math.floor((dy * 1) / zoom);
-      if (value > 10) {
-        activeCom.height = value > 10 ? value : 10;
+      if (value > 0) {
+        activeCom.height = value; //> 10 ? value : 10;
         if (equalScaleable) {
           activeCom.width = (originWidth * value) / originHeight;
           obj.refresh({ height: activeCom.height, width: activeCom.width });
@@ -183,9 +183,9 @@ class Event {
       }
     } else if (direction === "left") {
       width = originWidth - Math.floor((dx * 1) / zoom);
-      if (width > 10) {
+      if (width > 0) {
         activeCom.left -= width - activeCom.width;
-        activeCom.width = width > 10 ? width : 10;
+        activeCom.width = width; //> 10 ? width : 10;
         if (equalScaleable) {
           activeCom.height = (originHeight * width) / originWidth;
           obj.refresh({
@@ -210,11 +210,15 @@ class Event {
           width = (originWidth * height) / originHeight;
         }
       }
-      if (width > 10 && height > 10) {
-        activeCom.left -= (width - activeCom.width) / 2;
-        activeCom.top -= (height - activeCom.height) / 2;
-        activeCom.height = height > 10 ? height : 10;
-        activeCom.width = width > 10 ? width : 10;
+      if (width > 0 && height > 0) {
+        activeCom.left -= width - activeCom.width;
+        activeCom.top -= height - activeCom.height;
+        if (equalScaleable) {
+          activeCom.left -= (width - activeCom.width) / 2;
+          activeCom.top -= (height - activeCom.height) / 2;
+        }
+        activeCom.height = height; // > 10 ? height : 10;
+        activeCom.width = width; //> 10 ? width : 10;
         obj.refresh({
           top: activeCom.top,
           left: activeCom.left,
@@ -232,11 +236,15 @@ class Event {
           width = (originWidth * height) / originHeight;
         }
       }
-      if (width > 10 && height > 10) {
-        activeCom.left -= (width - activeCom.width) / 2;
-        activeCom.top -= (height - activeCom.height) / 2;
-        activeCom.height = height > 10 ? height : 10;
-        activeCom.width = width > 10 ? width : 10;
+      if (width > 0 && height > 0) {
+        activeCom.width = width;
+        activeCom.top -= height - activeCom.height;
+        if (equalScaleable) {
+          activeCom.left -= (width - activeCom.width) / 2;
+          activeCom.top -= (height - activeCom.height) / 2;
+        }
+        activeCom.height = height; // > 10 ? height : 10;
+        activeCom.width = width; // > 10 ? width : 10;
         obj.refresh({
           height: activeCom.height,
           top: activeCom.top,
@@ -254,11 +262,15 @@ class Event {
           width = (originWidth * height) / originHeight;
         }
       }
-      if (width > 10 && height > 10) {
-        activeCom.left -= Math.floor((width - activeCom.width) / 2);
-        activeCom.top -= Math.floor((height - activeCom.height) / 2);
-        activeCom.height = height > 10 ? height : 10;
-        activeCom.width = width > 10 ? width : 10;
+      if (width > 0 && height > 0) {
+        activeCom.left -= width - activeCom.width;
+        activeCom.height = height;
+        if (equalScaleable) {
+          activeCom.left -= Math.floor((width - activeCom.width) / 2);
+          activeCom.top -= Math.floor((height - activeCom.height) / 2);
+        }
+        activeCom.height = height; // > 10 ? height : 10;
+        activeCom.width = width; // > 10 ? width : 10;
         obj.refresh({
           height: activeCom.height,
           top: activeCom.top,
@@ -276,11 +288,15 @@ class Event {
           width = (originWidth * height) / originHeight;
         }
       }
-      if (width > 10 && height > 10) {
-        activeCom.left -= Math.floor((width - activeCom.width) / 2);
-        activeCom.top -= Math.floor((height - activeCom.height) / 2);
-        activeCom.height = height > 10 ? height : 10;
-        activeCom.width = width > 10 ? width : 10;
+      if (width > 0 && height > 0) {
+        activeCom.width = width;
+        activeCom.height = height;
+        if (equalScaleable) {
+          activeCom.left -= Math.floor((width - activeCom.width) / 2);
+          activeCom.top -= Math.floor((height - activeCom.height) / 2);
+        }
+        activeCom.height = height; //> 10 ? height : 10;
+        activeCom.width = width; //> 10 ? width : 10;
         obj.refresh({
           height: activeCom.height,
           top: activeCom.top,

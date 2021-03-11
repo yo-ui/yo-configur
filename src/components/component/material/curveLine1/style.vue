@@ -144,27 +144,6 @@
           ></el-slider>
         </p> -->
         <p>
-          <span class="label"> {{ $lang("线长") }}:</span>
-          <el-input-number
-            controls-position="right"
-            clearable
-            :min="0"
-            :max="3000"
-            @change="lineLongEvent"
-            :precision="2"
-            v-model.number="info.lineLong"
-            :placeholder="$lang('请输入线长')"
-          ></el-input-number>
-          px
-          <el-slider
-            v-model="info.lineLong"
-            :min="0"
-            :max="3000"
-            @change="lineLongEvent"
-            :format-tooltip="val => val + ' px'"
-          ></el-slider>
-        </p>
-        <p>
           <span class="label"> {{ $lang("透明度") }}:</span>
           <el-tooltip content="请输入透明度" placement="top" effect="dark">
             <el-input-number
@@ -222,30 +201,6 @@
               @click="info.flipH = !info.flipH"
             ></i>
           </el-tooltip>
-        </p>
-      </el-collapse-item>
-      <el-collapse-item :title="$lang('内容')" name="content">
-        <p>
-          <span class="label"> {{ $lang("旋转角度") }}:</span>
-          <el-tooltip content="请输入旋转角度" placement="top" effect="dark">
-            <el-input-number
-              controls-position="right"
-              clearable
-              :min="-360"
-              :max="360"
-              v-model.number="info.content"
-              @change="rotateChangeEvent"
-              :placeholder="$lang('请输入旋转角度')"
-            ></el-input-number>
-          </el-tooltip>
-          deg
-          <el-slider
-            v-model="info.content"
-            @change="rotateChangeEvent"
-            :min="-360"
-            :max="360"
-            :format-tooltip="val => val + ' deg'"
-          ></el-slider>
         </p>
       </el-collapse-item>
       <el-collapse-item :title="$lang('样式')" name="style">
@@ -672,14 +627,14 @@
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import { Constants } from "@/common/env";
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "materialLineStyleCom",
   data() {
     return {
-      activeNames: ["name", "content"],
+      activeNames: ["name"],
       animationDirectionList: Object.freeze(Constants.ANIMATIONDIRECTIONLIST),
       animateGroupList: Object.freeze(Constants.ANIMATEGROUPLIST),
       borderStyleList: Object.freeze(Constants.SVGBORDERSTYLELIST),
@@ -687,11 +642,11 @@ export default {
       centerList: Object.freeze(Constants.CENTERLIST),
       radialShapeList: Object.freeze(Constants.RADIALSHAPELIST),
       angelList: Object.freeze(Constants.ANGELLIST),
-      gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST)
+      gradientTypeList: Object.freeze(Constants.GRADIENTTYPELIST),
       // flipModeList: Object.freeze(Constants.FLIPMODELIST),
-      // backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
-      // fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
-      // tileModeList: Object.freeze(Constants.TILEMODELIST)
+      backgroundSizeList: Object.freeze(Constants.BACKGROUNDSIZELIST),
+      fontFamilyList: Object.freeze(Constants.FONTFAMILYLIST),
+      tileModeList: Object.freeze(Constants.TILEMODELIST)
     };
   },
   props: {
@@ -830,32 +785,6 @@ export default {
     },
     closeAll() {
       this.activeNames = ["name"];
-    },
-    rotateChangeEvent() {
-      let { info = {} } = this;
-      let { content = 0, x1 = 0, y1 = 0, x2 = 0, y2 = 0 } = info || {};
-      let point = { x: x2, y: y2 };
-      //先求当前的角度数
-      let angle = Math.atan2(y2 - y1, x2 - x1) * (180 / Math.PI);
-      bmCommon.log("当前角度为", angle);
-      let _point = new SVG.Point(point).transform({
-        rotate: content - angle,
-        origin: { x: x1, y: y1 }
-      });
-      let { x = 0, y = 0 } = _point || {};
-      info.x2 = x;
-      info.y2 = y;
-    },
-    lineLongEvent() {
-      let { info = {} } = this;
-      let { x1 = 0, y1 = 0, x2 = 0, y2 = 0, lineLong = 0 } = info || {};
-      //先求当前的弧度
-      let rad = Math.atan2(y2 - y1, x2 - x1);
-      // let long = Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
-      let y = lineLong * Math.sin(rad) + y1; //对边长
-      let x = lineLong * Math.cos(rad) + x1; //余边长
-      info.x2 = x;
-      info.y2 = y;
     }
     // setFontWeight() {
     //   let { info = {} } = this;

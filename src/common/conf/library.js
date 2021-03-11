@@ -2964,9 +2964,10 @@ let componentLibrary = [
     icon: "bomi bomi-shape",
     comList: [
       {
-        name: "直线",
+        name: "旧直线",
         code: "materialLine",
         icon: "/static/img/svg/line.svg",
+        // comDisabled: true,
         data: {
           ...baseData,
           // styleCode: "material",
@@ -2985,9 +2986,33 @@ let componentLibrary = [
         }
       },
       {
+        name: "直线",
+        code: "materialLine1",
+        icon: "/static/img/svg/line.svg",
+        data: {
+          ...baseData,
+          // styleCode: "materialLine",
+          backgroundColor: "#0075E7",
+          borderColor: "#0075E7",
+          borderStyle: "solid",
+          lineWidth: 1,
+          lineLong: 200,
+          // content: 0,
+          width: 200,
+          height: 80
+          // x1: 0,
+          // y1: 0,
+          // x2: 200,
+          // y2: 0,
+          // scaleable: false, //是否可缩放
+          // rotateable: false //是否可旋转
+        }
+      },
+      {
         name: "曲线",
         code: "materialCurveLine",
         icon: "/static/img/svg/curveLine.svg",
+        // comDisabled: true,
         data: {
           ...baseData,
           backgroundColor: "#0075E7",
@@ -3004,6 +3029,23 @@ let componentLibrary = [
           rotateable: false //是否可旋转
         }
       },
+      // {
+      //   name: "曲线",
+      //   code: "materialCurveLine1",
+      //   icon: "/static/img/svg/curveLine.svg",
+      //   data: {
+      //     ...baseData,
+      //     // styleCode: "materialCurveLine",
+      //     backgroundColor: "#0075E7",
+      //     borderColor: "#0075E7",
+      //     borderStyle: "solid",
+      //     lineWidth: 1,
+      //     qx: 50,
+      //     qy: 60
+      //     // scaleable: false, //是否可缩放
+      //     // rotateable: false //是否可旋转
+      //   }
+      // },
       {
         name: "矩形",
         code: "materialRectangle",

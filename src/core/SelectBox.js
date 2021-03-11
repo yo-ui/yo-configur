@@ -142,12 +142,15 @@ class SelectBox {
         if (!parentId) {
           // bmCommon.log("-----select.vue", info);
           let rect = null;
-          if (type === "materialLine") {
+          if (type === "materialLine" || type === "materialCurveLine") {
             //如果为直线则特殊处理
-            let $container = $(`#${id}>.bm-material-line-com`);
-            let $rect_box = $container.find(".rect-box");
-            let com = $rect_box[0];
+            let $container = $(`#${id}`);
+            let $line = $container.find(".line");
+            let com = $line[0];
             rect = com?.getBoundingClientRect() || {};
+            if (type === "materialCurveLine") {
+              bmCommon.log("-----select.vue", rect);
+            }
           } else {
             let com = document.getElementById(id);
             rect = com?.getBoundingClientRect() || {};
