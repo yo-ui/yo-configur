@@ -437,27 +437,9 @@ export default {
           left,
           top
         };
-        // if (alias == "linkPoint") {
-        //   this.setLinkPoint(item);
-        // }
-        // widgetList.push(item);
-        bmCommon.log(item);
-
-        // let _canvas_content = $("#canvas_content");
-        // let obj = ComponentLibrary.getInstance(item);
-        // let dom = obj.template();
-        // if (dom) {
-        //   let _div = $(obj.template());
-        //   _canvas_content.append(_div[0]);
-        //   WidgetList.append(item)
-        // }
-        // window.bm_widgetMap[id] = obj;
         Canvas.append(item);
         canvas.action = "select";
         CanvasEvent.createHistoryAction();
-        // this.$nextTick(() => {
-        // this.selectComAction(id);
-        // });
       }
       this.dragleaveEvent(e);
     },

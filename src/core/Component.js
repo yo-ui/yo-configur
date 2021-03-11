@@ -2,9 +2,6 @@ import bmCommon from "@/common/common"; // 静态文本
 import Canvas from "./Canvas";
 import "../assets/less/components/component.less";
 
-// const Library = {
-//   textCom
-// };
 class Component {
   info;
   pointCode = "SwSts";
@@ -15,7 +12,7 @@ class Component {
   }
 
   setInfo(info) {
-    this.info = { ...info };
+    this.info = { ...bmCommon.clone(info) };
   }
 
   getUserInfo() {

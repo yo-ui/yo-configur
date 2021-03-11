@@ -207,37 +207,27 @@ let componentLibrary = [
         icon: "/static/img/configur/text.png",
         data: {
           ...baseData,
-          // backgroundImage: "",
           dataType: "point",
-          // backgroundSize: "100% 100%",
-          // backgroundRepeat: "repeat",
-          // scale: "scale(1,1)",
-          // borderWidth: 0,
-          // borderStyle: "none",
-          // borderColor: "",
-          // borderRadius: 0,
           fontWeight: "bold",
           decimal: 1, //小数位
-          // textDecoration: "",
-          // fontStyle: "",
           fontSize: 24,
           fontFamily: "lcdD",
-          // originWidth: "", //原宽
-          // originHeight: "", //原高
           width: 100,
           height: 40,
-          // opacity: 100,
-          // left: 0,
-          // top: 0,
           content: "00.00",
+          showPointName: false, //显示点位名称
+          pNameFontFamily: "",
+          pNameFontSize: 14,
+          pNameColor: "#000",
+          pNameSymbol: ":",
+          // valueMarginTop: 0,
+          // valueMarginBottom: 0,
+          valueMarginRight: 0,
+          valueMarginLeft: 0,
           unit: "℃",
           unitFontFamily: "lcdD",
           unitFontSize: 10,
           unitColor: "#999"
-          // scaleable: false //是否可缩放操作
-          // rotateable: true, //是否可旋转操作
-          // editable: false, //内容是否可编辑
-          // locked: true //是否可拖动
         }
       },
       {

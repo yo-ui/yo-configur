@@ -4,12 +4,12 @@
       <div class="left">
         <el-button
           @click="cancelEvent"
-          :disabled="historyIndex > historyList.length - 1"
+          :disabled="historyIndex >= historyList.length - 1"
         >
           <i class="el-icon-refresh-left" :title="$lang('撤销')"></i>
           {{ $lang("撤销") }}
         </el-button>
-        <el-button @click="resumeEvent" :disabled="historyIndex < 1">
+        <el-button @click="resumeEvent" :disabled="historyIndex <= 0">
           <i class="el-icon-refresh-right" :title="$lang('恢复')"></i>
           {{ $lang("恢复") }}
         </el-button>
@@ -564,13 +564,14 @@ export default {
     resumeEvent() {
       let { historyIndex = 0 } = this;
       let historyList = Canvas.getHistoryList();
-      if (historyIndex < 1) {
-        return;
-      }
+      // if (historyIndex < 1) {
+      //   return;
+      // }
       // let { historyIndex = 0 } = condition;
       // let { length = 0 } = historyList || [];
-      if (historyIndex < 0) {
+      if (historyIndex <= 0) {
         // condition.historyIndex = 0;
+        this.$$msgWarn(this.$lang("不存在可还原的记录"));
         Canvas.setHistoryIndex(0);
         return;
       }
@@ -588,13 +589,13 @@ export default {
         let historyList = Canvas.getHistoryList();
         let { length = 0 } = historyList || [];
         // bmCommon.error("1", length, historyIndex);
-        if (historyIndex > length - 2) {
-          return;
-        }
+        // if (historyIndex > length - 1) {
+        //   return;
+        // }
         // let {  } = condition;
-        // bmCommon.error("2", length, historyIndex);
-        if (historyIndex > length - 1) {
+        if (historyIndex >= length - 1) {
           // condition.historyIndex = length - 1;
+          this.$$msgWarn(this.$lang("不存在可撤销的记录"));
           Canvas.setHistoryIndex(length - 1);
           return;
         }

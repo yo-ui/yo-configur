@@ -148,13 +148,6 @@ class SelectBox {
             let $rect_box = $container.find(".rect-box");
             let com = $rect_box[0];
             rect = com?.getBoundingClientRect() || {};
-            // let $canvas_content = $("#canvas_content");
-            // let parentBox = $canvas_content[0].getBoundingClientRect();
-            // let { x: _x = 0, y: _y = 0 } = parentBox || {};
-            // rect.x -= _x;
-            // rect.y -= _y;
-
-            // bmCommon.log("-----materialLine", rect, points, parentBox);
           } else {
             let com = document.getElementById(id);
             rect = com?.getBoundingClientRect() || {};

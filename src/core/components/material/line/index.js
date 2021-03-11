@@ -12,17 +12,6 @@ class Text extends Component {
     let { info = {} } = this;
     let { x1 = 0, y1 = 0, height = 0, width = 0, gradientStyle = {} } =
       info || {};
-    // let $container = $(`#${id}>.bm-material-line-com`);
-    // let $rect_box = $container.find(".rect-box");
-    // let $canvas_content = $("#canvas_content");
-    // let box = $rect_box[0].getBoundingClientRect();
-    // let parentBox = $canvas_content[0].getBoundingClientRect();
-    // let { x = 0, y = 0 } = box || {};
-    // let { x: _x = 0, y: _y = 0 } = parentBox || {};
-    // x = x - _x;
-    // y = y - _y;
-    // info.left1 = x;
-    // info.top1 = y;
     info.lineLong = width;
     info.boxX = x1;
     info.boxY = y1;

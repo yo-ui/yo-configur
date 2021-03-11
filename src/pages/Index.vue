@@ -615,49 +615,13 @@ export default {
           canvas.left = 0;
           canvas.top = 0;
           this.setCanvas(canvas);
-          // this.setWidgetList(widgets || []);
 
           //创建组件列表
           this.loadWebsocketData(widgetList, () => {
-            Core.init(widgetList, widgets => {
-              // $vm.$emit("info-data-init", {
-              //   count: widgets.length,
-              //   widgets
-              // });
+            Core.init(widgetList, () => {
               CanvasEvent.resizeCanvasSize();
             });
           });
-          // //加载 info 数据初始化
-          // $vm.$emit("info-data-init", {
-          //   count: widgets.length,
-          //   widgets: infoWidgets
-          //   // widgets.map(item => {
-          //   //   let {
-          //   //     children = [],
-          //   //     id = "",
-          //   //     comName = "",
-          //   //     type = "",
-          //   //     name = "",
-          //   //     dataType = "",
-          //   //     bindData = {}
-          //   //   } = item || {};
-          //   //   children = children.map(_item => {
-          //   //     return {
-          //   //       id: _item.id,
-          //   //       name: _item.name,
-          //   //       comName: _item.comName,
-          //   //       type: _item.type,
-          //   //       bindData: _item.bindData,
-          //   //       dataType: _item.dataType
-          //   //     };
-          //   //   });
-          //   //   return { id, comName, type, children, name, dataType, bindData };
-          //   // })
-          // });
-          // this.setCanvasData(data);
-          // CanvasEvent.resizeCanvasSize();
-          // // this.selectComAction();
-          // this.loadWebsocketData(widgetList);
         } else {
           //创建组件列表
           Core.init([], () => {
@@ -677,47 +641,9 @@ export default {
         CanvasEvent.createHistoryAction();
         // });
       });
-      this.orgStrucListByLevelFunc((list = []) => {
-        // let [org = {}] = list || [];
-        // let { id = "" } = org || {};
-        // // condition.orgId = id;
-        // // condition.orgName = name;
-        // this.defaultExpandedKeys = [id];
-        // // this.$nextTick(() => {
-        // //   this.$refs.tree?.setCurrentKey(id);
-        // // });
-        // // this.loadReportDeviceList();
-      });
+      this.orgStrucListByLevelFunc((list = []) => {});
     },
-    // setZoom(zoom) {
-    //   this.zoom = zoom;
-    // },
     initEvent() {
-      // let viewBox = this.$refs.viewBox;
-      // // 注册鼠标事件
-      // $(viewBox).on(
-      //   "mousedown",
-      //   ".bm-component-com",
-      //   this.viewBoxMousedownEvent
-      // );
-      // // 注册颜色框事件
-      // $(document).on("mousedown", ".el-color-picker__panel", e => {
-      //   e.stopPropagation();
-      // });
-      // //滚动事件
-      // $(viewBox).on("mousewheel DOMMouseScroll", this.mouseScrollEvent);
-      // // 注册右键菜单事件
-      // $(viewBox).on("contextmenu", this.viewBoxContextmenuEvent);
-      // //注册按键键盘事件
-      // $(document).on("keydown", this.keydownEvent);
-      // $(document).on("keyup", this.keyupEvent);
-      // $(window).on("resize", this.resizeCanvasSize);
-      // if (process.env.NODE_ENV === "production") {
-      //   $(window).on("contextmenu", e => {
-      //     e.preventDefault();
-      //   });
-      // }
-      // CanvasEvent.init();
       //注册绑定设备事件
       $vm.$on("bind-device", item => {
         this.addDataEvent(item);
@@ -808,21 +734,6 @@ export default {
           break;
       }
     },
-    //创建组件
-    // createComponents(widgets) {
-    //   Core.init(widgets);
-    //   // let canvas_content = document.getElementById("canvas_content");
-    //   // let fregment = document.createDocumentFragment("div");
-
-    //   // for (let i = 0, len = widgets.length; i < len; i++) {
-    //   //   let item = widgets[i];
-    //   //   let _div = $(ComponentLibrary.getInstance(item).template());
-    //   //   fregment.appendChild(_div[0]);
-    //   // }
-    //   // canvas_content.appendChild(fregment);
-    //   // //初始化事件
-    //   // Event.init();
-    // },
     // 获取画布信息
     canvasGetFunc(callback) {
       let value = {};

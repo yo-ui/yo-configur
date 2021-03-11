@@ -67,45 +67,6 @@ class CanvasEvent {
       clearTimeout(CanvasEvent.scrollSetTimeoutId);
     }, 30);
   }
-
-  // static viewBoxContextmenuEvent(e) {
-  //   e.stopPropagation();
-  //   e.preventDefault();
-  //   let { target, ctrlKey = false } = e;
-  //   if (ctrlKey) {
-  //     return;
-  //   }
-  //   CanvasEvent.closeContenxtMenuEvent();
-  //   let $parent = $(target).parents(".bm-component-com");
-  //   let type = $(target).attr("data-type");
-  //   let id = $(target).attr("data-id");
-  //   if (!type) {
-  //     type = $parent.attr("data-type");
-  //     id = $parent.attr("data-id");
-  //   }
-  //   if (type) {
-  //     CanvasEvent.showContextMenuType = 1;
-  //     CanvasEvent.selectComAction(id); //选中组件
-  //   } else {
-  //     CanvasEvent.showContextMenuType = 2;
-  //     // 取消选中组件
-  //     CanvasEvent.selectComAction(id);
-  //   }
-  //   // this.$nextTick(() => {
-  //   let pos = bmCommon.getMousePosition(e);
-  //   let { x = "", y = "" } = pos || {};
-  //   let contextMenuBox = this.$refs.contextMenuBox;
-  //   let { offsetHeight = 0, offsetWidth = 0 } = contextMenuBox || {};
-  //   let { innerHeight = 0 } = window;
-  //   y = y > innerHeight - offsetHeight + 5 ? innerHeight - offsetHeight : y;
-  //   x = x > innerWidth - offsetWidth + 5 ? innerWidth - offsetWidth : x;
-  //   this.contextMenuStyle = {
-  //     left: x - 5 + "px",
-  //     top: y - 5 + "px"
-  //   };
-  //   // });
-  // }
-
   static initMoveEvent(e, id) {
     e.stopPropagation();
     let obj = window.bm_widgetMap[id];
@@ -113,7 +74,6 @@ class CanvasEvent {
     // var activeCom = this.$vpd.state.activeElement
     let pos = bmCommon.getMousePosition(e);
     let { x = "", y = "" } = pos || {};
-    bmCommon.log("initMoveEvent==", x, y);
     // 设置移动状态初始值
     let { left, top, width, height, editable = false } = activeCom || {};
     if (!editable) {
@@ -133,24 +93,10 @@ class CanvasEvent {
     $(document).on("mouseup", CanvasEvent.mouseupEvent);
   }
 
-  // static loadRefreshScreen() {
-
-  // }
-
+  //鼠标移动事件
   static mousemoveEvent(e) {
     e.stopPropagation();
-    // e.preventDefault();
-    let {
-      startX,
-      startY,
-      // activeComs = [],
-      // activeCom = {},
-      id = "",
-      // zoom = 1,
-      moving = false
-      // originX,
-      // originY
-    } = state;
+    let { startX, startY, id = "", moving = false } = state;
     let zoom = Canvas.getZoom();
     if (moving) {
       return;
@@ -203,7 +149,7 @@ class CanvasEvent {
       state.moving = false;
     }, 30);
   }
-
+  // 鼠标松开事件
   static mouseupEvent() {
     let { originX = 0, originY = 0, id = "" } = state || {};
     let obj = window.bm_widgetMap[id];
@@ -224,20 +170,13 @@ class CanvasEvent {
     if (length > 1) {
       [id = ""] = bm_active_com_ids || [];
     }
-    // window.bm_widgetMap[id] = obj;
-    // if (obj) {
-    //   obj.info = { ...activeCom };
-    // }
     clearInterval(CanvasEvent.setIntervalId);
     window.setTimeout(() => {
-      // $vm.$emit("info-data-active", { id, watched: false });
       Canvas.setActiveCom(id);
     });
   }
 
   static viewBoxMousedownEvent(e) {
-    // e.stopPropagation();
-    // e.preventDefault();
     let _viewBox = $(".view-box");
     let {
       target,
@@ -261,21 +200,14 @@ class CanvasEvent {
     if (!type) {
       type = $parent.attr("type");
       id = $parent.attr("id");
-      // width = $parent.outerWidth();
-      // height = $parent.outerHeight();
     }
     if (type) {
       e.stopPropagation();
-      // CanvasEvent.showContextMenuType = 1;
       // 绑定移动事件：只有从属于 page 的，除背景图以外的元件才能移动
-      // let [item = {}] = activeComs || [];
       let obj = window.bm_widgetMap[id] || {};
       let { info: _activeCom = {} } = obj;
-      // let { id: _id = "" } = _activeCom || {};
-      // _activeCom.showCoverStatus = true;
       //如果 shift ctrl 被按住则进行 多选和取消选择
       if (shiftKey || ctrlKey) {
-        // let { locked = false } = activeCom || {};
         CanvasEvent.selectComsAction(id); //选中组件
       } else {
         let { length = 0 } = bm_active_com_ids || [];
@@ -286,8 +218,6 @@ class CanvasEvent {
             CanvasEvent.selectComAction(id); //选中组件
           }
         }
-        // if (length < 2 && !(bm_active_com_ids.indexOf(id) > -1)) {
-        // }
         //选择多个则必定可以移动
         if (length > 1) {
           locked = false;
@@ -301,18 +231,10 @@ class CanvasEvent {
       CanvasEvent.selectComAction(id);
       CanvasEvent.selectComsAction(id);
     }
-    // CanvasEvent.showContextMenuStatus = false;
   }
 
   static keyupEvent(e) {
-    let {
-      keyCode = ""
-      // shiftKey = false,
-      // ctrlKey = false,
-      // metaKey = false
-      // altKey = false
-    } = e;
-    // ctrlKey = ctrlKey || metaKey; //(ctrl(cmd))
+    let { keyCode = "" } = e;
     if (keyCode == 32) {
       // 空格
       $vm.$emit("canvas-action", "select");
@@ -328,10 +250,7 @@ class CanvasEvent {
       // altKey = false
     } = e;
     ctrlKey = ctrlKey || metaKey; //(ctrl(cmd))
-    // e.stopPropagation();
     bmCommon.log("index keydow", e);
-    // let { activeComs = [], widgetList = [] } = this;
-    // let copyCom = CanvasEvent.copyCom;
     let bm_active_com_id = window.bm_active_com_id;
     let bm_active_com_ids = window.bm_active_com_ids;
     let { length = 0 } = bm_active_com_ids || [];
@@ -816,8 +735,8 @@ class CanvasEvent {
     let widgetList = Canvas.getWidgetList();
     Canvas.setHistoryIndex(0);
     let historyData = {
-      widgetList: [...widgetList],
-      canvas: { ...canvas }
+      widgetList: [...bmCommon.clone(widgetList)],
+      canvas: { ...bmCommon.clone(canvas) }
     };
     Canvas.setHistoryList(historyData);
     Canvas.setPreviewData(historyData);
@@ -835,7 +754,7 @@ class CanvasEvent {
       time,
       img,
       type: "auto", //自动记录
-      widgetList: [...widgetList]
+      widgetList: [...bmCommon.clone(widgetList)]
     };
     let recordList = Canvas.getRecordList();
     recordList.unshift(record);
@@ -914,58 +833,24 @@ class CanvasEvent {
   }
 
   static selectComAction(id, flag = true) {
-    // let {
-    //   // widgetList = [],
-    //   // canvas = {},
-    //   activeCom = {},
-    //   activeComs = []
-    // } = state;
-    // activeCom.showCoverStatus = true;
     bmCommon.log("selectComAction", id);
-    // let _oldCom = $("#canvas_content .bm-component-com.active");
-    // _oldCom.removeClass("active");
-
-    // let _infoOldCom = $(`#info_com_list_box li.active`);
-    // _infoOldCom.removeClass("active");
     Canvas.unactive();
     bmCommon.log("当前组件数量为", Count.count);
     if (!id) {
-      // activeCom = Constants.COMPONENTCANVAS;
-
       this.setTimeoutId = setTimeout(() => {
         clearTimeout(this.setTimeoutId);
-        // $vm.$emit("info-data-active");
-        // $vm.$store.commit("canvas/setActiveCom", Canvas.getCanvas());
         Canvas.setActiveCom();
-        // Control.refresh();
         Canvas.unoptimize();
       }, 10);
     } else {
-      // let obj = window.bm_widgetMap[id];
-      // let { info: activeCom = {} } = obj || {};
-
-      // let _com = $(`#${id}`);
-      // _com.addClass("active");
-      // let _infoCom = $(`#info_com_${id}`);
-      // _infoCom.addClass("active");
-      // _infoCom.length > 0 && _infoCom[0].scrollIntoView();
       Canvas.active(id, flag);
-      // Control.refresh(id);
-
-      // window.setTimeout(() => {
       this.setTimeoutId = setTimeout(() => {
         clearTimeout(this.setTimeoutId);
-
-        // let obj = window.bm_widgetMap[id];
-        // let { info = {} } = obj || {};
-        // $vm.$emit("info-data-active", { id });
-        // $vm.$store.commit("canvas/setActiveCom", info);
         Canvas.setActiveCom(id);
         Canvas.optimize();
       }, 10);
     }
     window.bm_active_com_id = id;
-    // window.bm_active_com_ids = [id];
     Canvas.setActiveComs([id]);
   }
 

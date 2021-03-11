@@ -6,11 +6,7 @@ import CanvasEvent from "./CanvasEvent";
 
 class ContextMenu {
   // container;
-  constructor() {
-    // this.container = $(`${id}`);
-    // this.settings = { ...this.settings, ...options };
-    // this.init();
-  }
+  constructor() {}
   static init() {
     ContextMenu.render();
     ContextMenu.event();
