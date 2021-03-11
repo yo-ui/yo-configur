@@ -148,9 +148,9 @@ class SelectBox {
             let $line = $container.find(".line");
             let com = $line[0];
             rect = com?.getBoundingClientRect() || {};
-            if (type === "materialCurveLine") {
-              bmCommon.log("-----select.vue", rect);
-            }
+            // if (type === "materialCurveLine") {
+            // bmCommon.log("-----select.vue", rect);
+            // }
           } else {
             let com = document.getElementById(id);
             rect = com?.getBoundingClientRect() || {};

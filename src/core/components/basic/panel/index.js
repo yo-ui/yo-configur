@@ -15,11 +15,32 @@ class Panel extends Component {
     let group1 = bmCommon.clone(children || []);
     let group2 = bmCommon.clone(children || []);
     group1.sort((a, b) => a.left - b.left);
-    let max_left = Math.max(...group1.map(item => item.left + item.width));
+    let max_left = Math.max(
+      ...group1.map(item => {
+        let { type = "", left = 0, width = 0, _width = 0 } = item || {};
+        if (type === "materialLine" || type === "materialCurveLine") {
+          width = _width || 0;
+        }
+        return left + width;
+      })
+    );
     group2.sort((a, b) => a.top - b.top);
-    let max_top = Math.max(...group2.map(item => item.top + item.height));
+    let max_top = Math.max(
+      ...group2.map(item => {
+        let { type = "", top = 0, height = 0, _height = 0 } = item || {};
+        if (type === "materialLine" || type === "materialCurveLine") {
+          //如果为直线则特殊处理
+          height = _height || 0;
+        }
+        return top + height;
+      })
+    );
     let { left: minLeft = 0 } = group1[0] || {};
-    let { width: maxWidth = 0, left: maxLeft = 0 } = group1[length - 1] || {};
+    let { width: maxWidth = 0, left: maxLeft = 0, type = "", _width = 0 } =
+      group1[length - 1] || {};
+    if (type === "materialLine" || type === "materialCurveLine") {
+      maxWidth = _width || 0;
+    }
     // let minLeft = minLeft;
     maxLeft = maxLeft + maxWidth - minLeft;
     max_left = max_left - minLeft;
@@ -27,7 +48,11 @@ class Panel extends Component {
       maxLeft = max_left;
     }
     let { top: minTop = 0 } = group2[0] || {};
-    let { height: maxHeight = 0, top: maxTop = 0 } = group2[length - 1] || {};
+    let { height: maxHeight = 0, top: maxTop = 0, _height = 0 } =
+      group2[length - 1] || {};
+    if (type === "materialLine" || type === "materialCurveLine") {
+      maxHeight = _height || 0;
+    }
     // let minTop = minTop;
     maxTop = maxTop + maxHeight - minTop;
     max_top = max_top - minTop;

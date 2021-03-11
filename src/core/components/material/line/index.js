@@ -21,6 +21,18 @@ class Text extends Component {
     this.refresh();
   }
 
+  caculateBox() {
+    let { info = {} } = this;
+    let { id = "" } = info || {};
+    let $container = $(`#${id}`);
+    let $line = $container.find(".line");
+    let com = $line[0];
+    let rect = com?.getBoundingClientRect() || {};
+    let { width = 0, height = 0 } = rect || {};
+    info._width = width;
+    info._height = height;
+  }
+
   //组件样式
   svgStyle() {
     let { info = {} } = this;
@@ -357,6 +369,7 @@ class Text extends Component {
   refresh() {
     super.refresh();
     this.reloadSize();
+    this.caculateBox();
     let { info = {} } = this;
     let {
       id = "",
