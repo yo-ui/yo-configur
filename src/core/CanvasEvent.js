@@ -109,12 +109,16 @@ class CanvasEvent {
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
       bmCommon.log("mousemoveEvent组件移动", x, y, zoom);
+      state.startX = x;
+      state.startY = y;
       var dx = x - startX;
       var dy = y - startY;
       if (!(Math.abs(dx) > 1 || Math.abs(dy) > 1)) {
         state.moving = false;
         return;
       }
+      dx = dx / zoom;
+      dy = dy / zoom;
       let obj = window.bm_widgetMap[id];
       let { info: activeCom = {} } = obj || {};
       let { length = 0 } = bm_active_com_ids || [];
@@ -123,8 +127,8 @@ class CanvasEvent {
           let obj = window.bm_widgetMap[id];
           let { info = {} } = obj || {};
           let { left = 0, top = 0 } = info || {};
-          info.left = left + dx / zoom;
-          info.top = top + dy / zoom;
+          info.left = left + dx;
+          info.top = top + dy;
           obj?.refresh({
             left: info.left,
             top: info.top
@@ -132,8 +136,8 @@ class CanvasEvent {
         });
       } else {
         let { left = 0, top = 0 } = activeCom || {};
-        left = left + dx / zoom;
-        top = top + dy / zoom;
+        left = left + dx;
+        top = top + dy;
         activeCom.left = left;
         activeCom.top = top;
         obj?.refresh({
@@ -143,8 +147,6 @@ class CanvasEvent {
         // obj.setInfo(activeCom);
         // window.bm_widgetMap[id] = obj;
       }
-      state.startX = x;
-      state.startY = y;
       bmCommon.log("comMovingSetTimeoutId 定时器正在处理");
       state.moving = false;
     }, 30);
@@ -798,40 +800,19 @@ class CanvasEvent {
   }
 
   static selectComsAction(id) {
-    // let {
-    //   // widgetList = [],
-    //   // canvas = {},
-    //   // activeComs = [],
-    //   activeCom = {}
-    // } = state;
     let bm_active_com_ids = window.bm_active_com_ids;
-    // let fIndex = bm_active_com_ids.findIndex(item => item == id);
-    // if (fIndex > -1) {
-    //   bm_active_com_ids.splice(fIndex, 1);
-    // }
     if (!id) {
-      // window.bm_active_com_ids = [];
       Canvas.setActiveComs([]);
       Canvas.unactive();
       return;
     }
-    // let { id: _id = "" } = activeCom || {};
-    // let index=activeComs.findIndex(item=>item.id==_id)
-    // if (_id && index<0) {
-    //   activeComs.push(activeCom);
-    // }
     let index = bm_active_com_ids.findIndex(item => item == id);
-    // bmCommon.log(index, "-------");
     //如果在已选中组件内找到则移除
     if (index > -1) {
       bm_active_com_ids.splice(index, 1);
       Canvas.unactive(id);
     } else {
       //未找到则添加
-      // let activeCom = widgetList.find(item => item.id == id);
-      // if (activeCom) {
-      //   activeComs.push(activeCom);
-      // }
       bm_active_com_ids.push(id);
       Canvas.active(id);
     }
@@ -839,16 +820,13 @@ class CanvasEvent {
     if (length > 0) {
       [id = ""] = bm_active_com_ids || [];
     } else {
-      // activeCom = canvas;
       id = "";
       Canvas.setActiveCom();
     }
-    // context.commit("setActiveCom", activeCom);
-    // Canvas.setActiveCom(id);
   }
 
   static selectComAction(id, flag = true) {
-    bmCommon.log("selectComAction", id);
+    // bmCommon.log("selectComAction", id);
     Canvas.unactive();
     bmCommon.log("当前组件数量为", Count.count);
     if (!id) {

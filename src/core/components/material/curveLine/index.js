@@ -10,36 +10,35 @@ class Text extends Component {
   }
   init() {
     let { info = {} } = this;
-    let { gradientStyle = {} } = info || {};
-    // info.vboxX = x1;
-    // info.vboxY = y1;
+    let { gradientStyle = {}, x1 = 0, y1 = 0, width = 0, height = 0 } =
+      info || {};
+    info.boxX = x1 - 5;
+    info.boxY = y1 - 5;
+    info.boxW = width + 10;
+    info.boxH = height + 10;
     gradientStyle.gradientId = bmCommon.uuid();
     this.refresh();
-    // if (parentId) {
-    //   let obj = window.bm_widgetMap[parentId];
-    //   obj?.refresh();
-    // }
   }
 
-  caculateBox() {
-    let { info = {} } = this;
-    let { id = "" } = info || {};
-    let $container = $(`#${id}`);
-    let $line = $container.find(".line");
-    let com = $line[0];
-    let zoom = Canvas.getZoom();
-    let rect = com?.getBoundingClientRect() || {};
-    let { width = 0, height = 0, left = 0, top = 0 } = rect || {};
-    let canvas_content = document.getElementById("canvas_content");
-    let box = canvas_content?.getBoundingClientRect() || {};
-    let { x = 0, y = 0 } = box || {};
-    info._left = (left - x) / zoom;
-    info._top = (top - y) / zoom;
-    info._width = width / zoom;
-    info._height = height / zoom;
-    // bmCommon.log("获取到materiaCurvelLine", rect);
-    // window.bm_widgetMap[id] = this;
-  }
+  // caculateBox() {
+  //   let { info = {} } = this;
+  //   let { id = "" } = info || {};
+  //   let $container = $(`#${id}`);
+  //   let $line = $container.find(".line");
+  //   let com = $line[0];
+  //   let zoom = Canvas.getZoom();
+  //   let rect = com?.getBoundingClientRect() || {};
+  //   let { width = 0, height = 0, left = 0, top = 0 } = rect || {};
+  //   let canvas_content = document.getElementById("canvas_content");
+  //   let box = canvas_content?.getBoundingClientRect() || {};
+  //   let { x = 0, y = 0 } = box || {};
+  //   info._left = (left - x) / zoom;
+  //   info._top = (top - y) / zoom;
+  //   info._width = width / zoom;
+  //   info._height = height / zoom;
+  //   // bmCommon.log("获取到materiaCurvelLine", rect);
+  //   // window.bm_widgetMap[id] = this;
+  // }
 
   //组件样式
   svgStyle() {
@@ -326,8 +325,19 @@ class Text extends Component {
   }
   renderSvgContent() {
     let { info = {} } = this;
-    let { x1 = 0, x2 = 0, y1 = 0, y2 = 0, qx = 0, qy = 0, id = "" } =
-      info || {};
+    let {
+      x1 = 0,
+      x2 = 0,
+      y1 = 0,
+      y2 = 0,
+      qx = 0,
+      qy = 0,
+      id = "",
+      boxX = 0,
+      boxY = 0,
+      boxW: width = 0,
+      boxH: height = 0
+    } = info || {};
     return `<path
     class="line"
     d="
@@ -336,6 +346,15 @@ class Text extends Component {
     fill="transparent"
     style="${this.composeStyles(this.svgStyle())}"
   />
+  <rect
+    class="rect-box"
+    width="${width}"
+    height="${height}"
+    x="${boxX}"
+    y="${boxY}"
+    fill="transparent"
+    stroke-width="1"
+  ></rect>
   <circle
     class="circle"
     data-id="${id}"
@@ -372,7 +391,7 @@ class Text extends Component {
 
   refresh() {
     super.refresh();
-    // this.reloadSize();
+    this.reloadSize();
     // this.caculateBox();
     let { info = {} } = this;
     let {
@@ -383,24 +402,46 @@ class Text extends Component {
       qx = 0,
       qy = 0,
       id = "",
-      width = 0,
-      height = 0
+      boxX = 0,
+      boxY = 0,
+      boxW: width = 0,
+      boxH: height = 0
     } = info || {};
     let $container = $(`#${id}>.bm-material-curve-line-com`);
     let $svg = $container.find("svg");
     let $defs = $svg.find("defs");
     let $line = $svg.find(".line");
+    let $rect_box = $svg.find(".rect-box");
     let $circle = $svg.find(".circle");
     let $rect1 = $svg.find(".rect1");
     let $rect2 = $svg.find(".rect2");
     $rect1.attr({ x: x1 - 5, y: y1 - 5 });
     $rect2.attr({ x: x2 - 5, y: y2 - 5 });
     let d = `M ${x1} ${y1} Q ${qx} ${qy},${x2} ${y2}`;
+    $rect_box.attr({
+      width: width,
+      height: height,
+      x: boxX,
+      y: boxY
+    });
     $line.attr({ d }).css(this.svgStyle());
     $circle.attr({ cx: qx, cy: qy });
     $defs.html(this.renderDefs());
     $svg.attr({ width, height, viewBox: `0 0 ${width} ${height}` });
     // $container.html(this.renderSvg());
+  }
+
+  reloadSize() {
+    let { info = {} } = this;
+    let { id = "" } = info || {};
+    let $container = $(`#${id}>.bm-material-curve-line-com`);
+    let line = SVG($container.find(".line")[0]);
+    let bbox = line.bbox();
+    let { w = 0, h = 0, x = 0, y = 0 } = bbox || {};
+    info.boxX = x - 5;
+    info.boxY = y - 5;
+    info.boxW = w + 10;
+    info.boxH = h + 10;
   }
 
   static leftClickEvent(e) {
@@ -473,8 +514,13 @@ class Text extends Component {
     let dx = x - startX;
     let dy = y - startY;
     let { x1 = 0, x2 = 0, y1 = 0, y2 = 0 } = info || {};
-    dx = Math.floor(dx / zoom);
-    dy = Math.floor(dy / zoom);
+    //为了灵活，放置在前
+    Text.startX = x;
+    Text.startY = y;
+    dx = dx / zoom;
+    dy = dy / zoom;
+    // dx = Math.floor(dx / zoom);
+    // dy = Math.floor(dy / zoom);
     if (direction === "right") {
       let __x2 = x2 + dx;
       let __y2 = y2 + dy;
@@ -488,14 +534,14 @@ class Text extends Component {
       info.y1 = __y1;
       obj.refresh();
     } else if (direction === "center") {
-      dx = Math.floor((dx * 1) / zoom);
-      dy = Math.floor((dy * 1) / zoom);
+      // dx = Math.floor((dx * 1) / zoom);
+      // dy = Math.floor((dy * 1) / zoom);
       info.qx += dx;
       info.qy += dy;
       obj.refresh();
     }
-    Text.startX = x;
-    Text.startY = y;
+    // Text.startX = x;
+    // Text.startY = y;
   }
 
   destroy() {}

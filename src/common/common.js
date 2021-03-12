@@ -210,8 +210,8 @@ let common = {
     if (!offset.ratio) {
       offset.ratio = 1;
     }
-    var x = e.clientX || e.pageX;
-    var y = e.clientY || e.pageY;
+    var x = e.pageX || e.clientX;
+    var y = e.pageY || e.clientY;
     common.log("getMousePosition=", e.clientX, e.pageX, e.clientY, e.pageY);
     return {
       x: (x - offset.x) / offset.ratio,

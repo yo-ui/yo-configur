@@ -224,7 +224,7 @@ import materialStyleCom from "@/components/component/material/style.vue";
 import materialLineStyleCom from "@/components/component/material/line/style.vue";
 import materialLine1StyleCom from "@/components/component/material/line1/style.vue";
 import materialCurveLineStyleCom from "@/components/component/material/curveLine/style.vue";
-import materialCurveLine1StyleCom from "@/components/component/material/curveLine1/style.vue";
+// import materialCurveLine1StyleCom from "@/components/component/material/curveLine1/style.vue";
 import materialRectangleStyleCom from "@/components/component/material/rectangle/style.vue";
 import materialQuadrangleStyleCom from "@/components/component/material/quadrangle/style.vue";
 import materialStarStyleCom from "@/components/component/material/star/style.vue";
@@ -459,7 +459,7 @@ let styles = {
   materialLineStyleCom,
   materialLine1StyleCom,
   materialCurveLineStyleCom,
-  materialCurveLine1StyleCom,
+  // materialCurveLine1StyleCom,
   materialRectangleStyleCom,
   materialQuadrangleStyleCom,
   materialStarStyleCom,

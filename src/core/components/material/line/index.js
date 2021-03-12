@@ -13,10 +13,10 @@ class Text extends Component {
     let { x1 = 0, y1 = 0, height = 0, width = 0, gradientStyle = {} } =
       info || {};
     info.lineLong = width;
-    info.boxX = x1;
-    info.boxY = y1;
-    info.boxW = width > 14 ? width + 14 : 14;
-    info.boxH = height > 14 ? height + 14 : 14;
+    info.boxX = x1 - 5;
+    info.boxY = y1 - 5;
+    info.boxW = width + 10;
+    info.boxH = height + 10;
     gradientStyle.gradientId = bmCommon.uuid();
     this.refresh();
     // if (parentId) {
@@ -332,19 +332,18 @@ class Text extends Component {
     class="rect-box"
     width="${boxW}"
     height="${boxH}"
-    x="${boxX - 7}"
-    y="${boxY - 7}"
-    stroke="#0075e7"
+    x="${boxX}"
+    y="${boxY}"
     fill="transparent"
     stroke-width="1"
   ></rect>
   <rect
     class="rect rect1"
     data-id="${id}"
-    width="14"
-    height="14"
-    x="${x1 - 7}"
-    y="${y1 - 7}"
+    width="10"
+    height="10"
+    x="${x1 - 5}"
+    y="${y1 - 5}"
     stroke="#0075e7"
     fill="#fff"
     stroke-width="1"
@@ -352,11 +351,11 @@ class Text extends Component {
   <rect
     class="rect rect2"
     data-id="${id}"
-    width="14"
-    height="14"
-    x="${x2 - 7}"
+    width="10"
+    height="10"
+    x="${x2 - 5}"
     fill="#fff"
-    y="${y2 - 7}"
+    y="${y2 - 5}"
     stroke="#0075e7"
     stroke-width="1"
   ></rect>`;
@@ -401,14 +400,14 @@ class Text extends Component {
     let $rect_box = $svg.find(".rect-box");
     let $rect1 = $svg.find(".rect1");
     let $rect2 = $svg.find(".rect2");
-    $rect1.attr({ x: x1 - 7, y: y1 - 7 });
-    $rect2.attr({ x: x2 - 7, y: y2 - 7 });
+    $rect1.attr({ x: x1 - 5, y: y1 - 5 });
+    $rect2.attr({ x: x2 - 5, y: y2 - 5 });
     $line.attr({ x1, y1, x2, y2 }).css(this.svgStyle());
     $rect_box.attr({
       width: width,
       height: height,
-      x: x - 7,
-      y: y - 7
+      x: x,
+      y: y
     });
     $defs.html(this.renderDefs());
     $svg.attr({ width, height, viewBox: `0 0 ${width} ${height}` });
@@ -424,13 +423,13 @@ class Text extends Component {
     let bbox = line.bbox();
     // let bbox = line.bbox();
     let { w = 0, h = 0, x = 0, y = 0 } = bbox || {};
-    info.boxX = x;
-    info.boxY = y;
+    info.boxX = x - 5;
+    info.boxY = y - 5;
     info.lineLong = lineLong;
     // bmCommon.warn("rbox=", info.vboxX,info.vboxY);
-    info.boxW = w > 14 ? w + 14 : 14;
+    info.boxW = w + 10;
     info.width = 0;
-    info.boxH = h > 14 ? h + 14 : 14;
+    info.boxH = h + 10;
     info.height = 0;
   }
   // lineLongEvent() {
@@ -523,8 +522,10 @@ class Text extends Component {
     let dx = x - startX;
     let dy = y - startY;
     let { x1 = 0, x2 = 0, y1 = 0, y2 = 0 } = info || {};
-    dx = Math.floor(dx / zoom);
-    dy = Math.floor(dy / zoom);
+    Text.startX = x;
+    Text.startY = y;
+    dx = dx / zoom;
+    dy = dy / zoom;
     if (direction === "right") {
       let __x2 = x2 + dx;
       let __y2 = y2 + dy;
@@ -548,8 +549,6 @@ class Text extends Component {
       info.y1 = __y1;
       obj.refresh();
     }
-    Text.startX = x;
-    Text.startY = y;
   }
 
   destroy() {}

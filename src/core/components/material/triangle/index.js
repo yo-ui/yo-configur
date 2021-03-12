@@ -410,13 +410,13 @@ class Display extends Component {
 
     let canvas = Canvas.getCanvas();
     let { action = "" } = canvas || {};
-    bmCommon.log("curveline move==", action);
+    bmCommon.log("triangle move==", action);
     if (action != "select") {
       //画布移动不能操作线
       return;
     }
     let bm_active_com_id = window.bm_active_com_id;
-    let { id = "" } = Text;
+    let { id = "" } = Display;
     if (bm_active_com_id != id) {
       return;
     }
@@ -473,8 +473,9 @@ class Display extends Component {
     var dx = x - startX;
     // var dy = y - startY;
     // Display.startY = y;
+    Display.startX = x;
+    dx = dx / zoom;
     if (direction === "center") {
-      dx = Math.floor(dx / zoom);
       // dy = Math.floor((dy * 1) / zoom);
       qx += dx;
       if (qx > width) {
@@ -484,11 +485,9 @@ class Display extends Component {
       }
       info.qx = qx;
       // info.qy += dy;
-      bmCommon.log("info.qx=", info.qx);
+      // bmCommon.log("info.qx=", info.qx);
       obj?.refresh();
     }
-
-    Display.startX = x;
   }
   // //加载数据
   // loadData() {

@@ -61,7 +61,7 @@ class Component {
     info._height = height / zoom;
     info._right = (left - x + width) / zoom;
     info._bottom = (top - y + height) / zoom;
-    bmCommon.error("loadBBox=>", id, type, bbox);
+    // bmCommon.error("loadBBox=>", id, type, bbox);
     return bbox;
   }
 

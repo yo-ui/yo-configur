@@ -91,7 +91,7 @@ class SelectBox {
         Canvas.unactive();
       }
     }, 1);
-
+    window.bm_active_com_id = bm_active_com_id;
     Canvas.setActiveComs(bm_active_com_ids);
     $(document).off("mousemove", SelectBox.mousemoveEvent);
     $(document).off("mouseup", SelectBox.mouseupEvent);

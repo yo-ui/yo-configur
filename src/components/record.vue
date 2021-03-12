@@ -6,6 +6,8 @@
     :title="$lang('创建记录点')"
     :close-on-click-modal="false"
     :close-on-press-escape="false"
+    @mousedown.native.stop
+    @keydown.native.stop
     :visible.sync="showDialogStatus"
     width="800px"
   >

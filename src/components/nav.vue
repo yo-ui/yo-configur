@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-nav-com" @mousedown.stop.prevent @keydown.stop>
+  <div class="bm-nav-com" @mousedown.stop.prevent @keydown.stop.prevent>
     <div class="nav-box">
       <div class="left">
         <el-button

@@ -49,14 +49,14 @@ class StageEvent {
     let { startX, startY, originX, originY } = state;
     let zoom = Canvas.getZoom();
     let canvas = Canvas.getCanvas();
-    // var target = state.activeCom;
+    state.startX = x;
+    state.startY = y;
     var dx = x - startX;
     var dy = y - startY;
-    // var left = state.originX + Math.floor((dx * 100) / state.zoom);
-    // var top = state.originY + Math.floor((dy * 100) / state.zoom);
-    var left = originX + Math.floor(dx / zoom);
-    var top = originY + Math.floor(dy / zoom);
-    // bmCommon.log(left, top);
+    dx = dx / zoom;
+    dy = dy / zoom;
+    var left = originX + dx;
+    var top = originY + dy;
     if (left > 0) {
       left = 0;
     }

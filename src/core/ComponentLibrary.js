@@ -359,7 +359,7 @@ import materialLine1 from "@/core/components/material/line1/index";
 // 曲线
 import materialCurveLine from "@/core/components/material/curveLine/index";
 // 新曲线
-import materialCurveLine1 from "@/core/components/material/curveLine1/index";
+// import materialCurveLine1 from "@/core/components/material/curveLine1/index";
 
 import materialRectangle from "@/core/components/material/rectangle/index";
 
@@ -736,7 +736,7 @@ const Library = {
   materialLine1,
 
   materialCurveLine,
-  materialCurveLine1,
+  // materialCurveLine1,
 
   materialRectangle,
 
