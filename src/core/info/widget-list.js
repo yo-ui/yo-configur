@@ -91,7 +91,6 @@ class WidgetList {
     } = item || {};
     let { length = 0 } = children || [];
     let { orgId = "" } = bindData || {};
-    WidgetList.loadComData(id);
     let activeComId = window.bm_active_com_id;
     htmlArr.push(`<div class="title ${
       activeComId === id ? "active" : ""
@@ -140,11 +139,14 @@ class WidgetList {
         jLen = length;
       for (; j < jLen; j++) {
         let _item = children[j];
+        let { id = "" } = _item || {};
         htmlArr.push(`<li>${WidgetList.titleTemplate(_item)}`);
+        WidgetList.loadComData(id);
       }
       htmlArr.push(`</ul>`);
     }
     htmlArr.push(`</li>`);
+    WidgetList.loadComData(id);
     return htmlArr.join("");
   }
 
@@ -155,11 +157,19 @@ class WidgetList {
       if (obj.init) {
         obj?.init();
       }
+      if (obj.loadBBox) {
+        obj?.loadBBox();
+      }
       if (obj.loadData) {
         obj?.loadData();
       }
       if (obj.event) {
         obj?.event();
+      }
+      let { info = {} } = obj || {};
+      let { type = "" } = info || {};
+      if (type === "panel") {
+        obj?.refresh();
       }
     }
   }

@@ -1,5 +1,6 @@
 import bmCommon from "@/common/common";
 import Canvas from "@/core/Canvas";
+import { Constants } from "@/common/env";
 const state = {};
 class StageEvent {
   constructor() {}
@@ -10,10 +11,18 @@ class StageEvent {
   }
 
   static mousedownEvent(e) {
+    let canvas = Canvas.getCanvas();
+    let bm_show_type = window.bm_show_type;
+    if (bm_show_type === Constants.SHOWTYPEMAP.EDIT) {
+      let { action = "" } = canvas || {};
+      bmCommon.log("stage evemt move==", action);
+      if (action != "move") {
+        //画布不能移动则返回
+        return;
+      }
+    }
     e.stopPropagation();
     e.preventDefault();
-    // let { canvas = {} } = this;
-    let canvas = Canvas.getCanvas();
     let pos = bmCommon.getMousePosition(e);
     let { x = "", y = "" } = pos || {};
     let { left, top, locked = false, width, height } = canvas || {};

@@ -64,7 +64,7 @@
             :class="
               !(showEditId == _item.id && activeIndex == 'diy') ? 'click' : ''
             "
-            @contextmenu.prevent="contextMenuEvent($event, _item)"
+            @contextmenu.stop="contextMenuEvent($event, _item)"
             :key="`${item.code}_${_item.code}_${_index}`"
             @click.stop="clickEvent(_item)"
             :data-item="!_item.comDisabled ? `${index}-comList-${_index}` : ''"
@@ -100,7 +100,6 @@
     <ul
       class="context-menu"
       ref="contextMenuBox"
-      v-show="showContextMenuStatus"
       @mouseenter="showContenxtMenuEvent"
       @mouseleave="hideContextMenuEvent"
       :style="contextMenuStyle"
@@ -138,7 +137,7 @@ export default {
       activeIndex: tabList[0].code,
       showEditId: "",
       operateCom: null,
-      showContextMenuStatus: false,
+      // showContextMenuStatus: false,
       // shiftCtrlKeyDownStatus: false, //shit ctrl键被按下
       contextMenuStyle: {},
       condition: {
@@ -215,6 +214,7 @@ export default {
       e.preventDefault();
       let { ctrlKey = false } = e;
       let { activeIndex = "" } = this;
+      bmCommon.log("widgetlist contextMenu");
       if (ctrlKey) {
         return;
       }
@@ -236,16 +236,21 @@ export default {
         item.oldName = item.name;
         this.operateCom = item;
         this.contextMenuStyle = {
+          display: "block",
           left: x - 5 + "px",
           top: y - 5 + "px"
         };
       });
     },
     closeContenxtMenuEvent() {
-      this.showContextMenuStatus = true;
+      // this.showContextMenuStatus = true;
+      let contextMenuBox = this.$refs.contextMenuBox;
+      let $contextMenuBox = $(contextMenuBox);
+      $contextMenuBox.show();
       this._showContextMenuTimeoutId = setTimeout(() => {
         clearTimeout(this._showContextMenuTimeoutId);
-        this.showContextMenuStatus = false;
+        // this.showContextMenuStatus = false;
+        $contextMenuBox.hide();
       }, 1000);
     },
     showContenxtMenuEvent() {
@@ -253,7 +258,10 @@ export default {
     },
     hideContextMenuEvent() {
       clearTimeout(this._showContextMenuTimeoutId);
-      this.showContextMenuStatus = false;
+      // this.showContextMenuStatus = false;
+      let contextMenuBox = this.$refs.contextMenuBox;
+      let $contextMenuBox = $(contextMenuBox);
+      $contextMenuBox.hide();
     },
     dragendEvent(e) {
       e.stopPropagation();
@@ -286,7 +294,10 @@ export default {
     deleteEvent() {
       let { operateCom = {}, activeIndex = "", tabList = [] } = this;
       let { id = "" } = operateCom || {};
-      this.showContextMenuStatus = false;
+      // this.showContextMenuStatus = false;
+      let contextMenuBox = this.$refs.contextMenuBox;
+      let $contextMenuBox = $(contextMenuBox);
+      $contextMenuBox.hide();
       this.widgetCustomDelFunc({ id }, () => {
         this.tabClickEvent({
           name: activeIndex,
@@ -297,7 +308,10 @@ export default {
     renameEvent() {
       let { operateCom = {} } = this;
       let { id = "" } = operateCom || {};
-      this.showContextMenuStatus = false;
+      // this.showContextMenuStatus = false;
+      let contextMenuBox = this.$refs.contextMenuBox;
+      let $contextMenuBox = $(contextMenuBox);
+      $contextMenuBox.hide();
       this.showEditId = id;
     },
     dragstartEvent(e) {
@@ -421,8 +435,8 @@ export default {
         // bmCommon.log("释放当前元素", width, height, left, top, x, y);
         // left = x - left - _left - width / 2;
         // top = y - top - _top - height / 2;
-        left = x / zoom - _left / zoom - left / zoom - width / 2;
-        top = y / zoom - _top / zoom - top / zoom - height / 2;
+        left = x / zoom - _left / zoom - left / zoom - width / (zoom * 2);
+        top = y / zoom - _top / zoom - top / zoom - height / (zoom * 2);
         let orders = widgetList.map(item => item.order);
         let order = 1;
         if (orders && orders.length > 0) {

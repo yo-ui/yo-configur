@@ -19,40 +19,111 @@ class Component {
     return Canvas.getUserInfo();
   }
 
+  loadBBox() {
+    let { info = {} } = this;
+    let { id = "", type = "" } = info || {};
+    let bbox = {};
+    // let pbox = {};
+    // if (parentId) {
+    //   let com = document.getElementById(parentId);
+    //   pbox = com?.getBoundingClientRect() || {};
+    // }
+    if (type === "panel") {
+      return;
+    }
+    if (type === "materialLine" || type === "materialCurveLine") {
+      //如果为直线则特殊处理
+      let $container = $(`#${id}`);
+      let $line = $container.find(".line");
+      let com = $line[0];
+      bbox = com?.getBoundingClientRect() || {};
+    } else {
+      let com = document.getElementById(id);
+      bbox = com?.getBoundingClientRect() || {};
+    }
+    let canvas_content = document.getElementById("canvas_content");
+    let box = canvas_content?.getBoundingClientRect() || {};
+    let { x = 0, y = 0 } = box || {};
+    // let { x: pX = 0, y: pY = 0 } = pbox || {};
+    let zoom = Canvas.getZoom();
+    let { width = 0, height = 0, left = 0, top = 0 } = bbox || {};
+    //如果有父级则应减去父级的x y
+    // info._left = (left - x) / zoom;
+    // info._top = (top - y) / zoom;
+    // info._width = width / zoom;
+    // info._height = height / zoom;
+    // info._right = (left - x + width) / zoom;
+    // info._bottom = (top - y + height) / zoom;
+
+    info._left = (left - x) / zoom;
+    info._top = (top - y) / zoom;
+    info._width = width / zoom;
+    info._height = height / zoom;
+    info._right = (left - x + width) / zoom;
+    info._bottom = (top - y + height) / zoom;
+    bmCommon.error("loadBBox=>", id, type, bbox);
+    return bbox;
+  }
+
   boxStyle() {
     let { info = {} } = this;
     let {
       left = "",
       top = "",
+      id = "",
       animation = {},
       order: zIndex = "",
       rotate = "",
-      transformOrigin = "",
-      type = "",
-      children = []
+      transformOrigin = ""
+      // type = "",
+      // children = []
     } = info || {};
     let { direction = "", duration = "", iterationCount = 1 } = animation || {};
-    if (type == "panel") {
-      let group1 = bmCommon.clone(children || []);
-      let group2 = bmCommon.clone(children || []);
-      group1.sort((a, b) => a.left - b.left);
-      group2.sort((a, b) => a.top - b.top);
-      let { left: minLeft = 0 } = group1[0] || {};
-      let { top: minTop = 0 } = group2[0] || {};
-      left += minLeft;
-      top += minTop;
-      info.left = left;
-      info.top = top;
-      children.forEach(item => {
-        item.left -= minLeft;
-        item.top -= minTop;
-      });
-    }
+    // if (type == "panel") {
+    //   let minLeft = 0,
+    //     minTop = 0;
+    //   // let zoom = Canvas.getZoom();
+    //   children.forEach((item, index) => {
+    //     let { id = "" } = item || {};
+    //     let obj = window.bm_widgetMap[id];
+    //     if (obj) {
+    //       let { info = {} } = obj || {};
+    //       let {
+    //         _left: left = 0,
+    //         _top: top = 0,
+    //         _width: width = 0,
+    //         _height: height = 0
+    //       } = info || {};
+    //       item._left = left;
+    //       item._top = top;
+    //       item._width = width;
+    //       item._height = height;
+    //       if (index === 0) {
+    //         minLeft = left;
+    //         minTop = top;
+    //       }
+    //       if (minLeft > left) {
+    //         minLeft = left;
+    //         // minLeftId = id;
+    //       }
+    //       if (minTop > top) {
+    //         minTop = top;
+    //         // minTopId = id;
+    //       }
+    //     }
+    //     // childrenMap[id] = item;
+    //   });
+    //   info.left = minLeft;
+    //   info.top = minTop;
+    // }
+    let bm_active_com_id = window.bm_active_com_id;
+    let bm_active_com_ids = window.bm_active_com_ids;
+    let { length = 0 } = bm_active_com_ids || [];
     let transform = `rotate(${rotate}deg)`;
     let styles = {
       left: left + "px",
       top: top + "px",
-      "z-index": zIndex,
+      "z-index": length < 2 && bm_active_com_id == id ? 999999 : zIndex,
       transform: `${transform}`,
       "transform-origin": transformOrigin
     };
@@ -346,8 +417,13 @@ class Component {
 
   //组件包裹
   wrap({ info }, content = "") {
-    let { type = "", id = "", locked = false, transformOrigin = "" } =
-      info || {};
+    let {
+      type = "",
+      id = "",
+      locked = false,
+      order = 1,
+      transformOrigin = ""
+    } = info || {};
     let zoom = Canvas.getZoom();
     let showType = window.bm_show_type;
     let operate = locked
@@ -408,12 +484,16 @@ class Component {
         }[info.transformOrigin]
       };transform: scale(${1 / zoom}) translate(-${zoom * 50}%, -${zoom *
             50}%)"></i>`;
-    } else if (type == "materialLine" || type == "materialCurveLine") {
+    } else if (
+      type == "materialLine" ||
+      type == "materialCurveLine" ||
+      type === "panel"
+    ) {
       operate = "";
     }
 
     return `
-    <div id="${id}" type="${type}" class="bm-component-com ${showType} ${this.boxClasses()}" style="${this.composeStyles(
+    <div id="${id}" type="${type}" data-order="${order}" class="bm-component-com ${showType} ${this.boxClasses()}" style="${this.composeStyles(
       this.boxStyle()
     )}">
       ${
@@ -442,12 +522,12 @@ class Component {
   // 刷新数据
   refresh(item) {
     let { info = {} } = this;
-    let { id = "", locked = false, type = "" } = info || {};
+    let { id = "", locked = false, type = "", order = 1 } = info || {};
     let $container = $(`#${id}`);
     if (item) {
-      $container.css(item);
+      $container.css(item).data({ order });
     } else {
-      $container.css(this.boxStyle());
+      $container.css(this.boxStyle()).data({ order });
     }
     $(`#${id}>.component`).css(this.comStyle());
     if (locked) {
@@ -458,6 +538,8 @@ class Component {
       $container.removeClass("locked");
     }
     bmCommon.log(`${type}刷新 `);
+
+    this.loadBBox();
     // if (type === "panel") {
     //   $(`#${id}>.operate-btn:not(.el-icon-refresh-right,.el-icon-axis)`).hide();
     // }

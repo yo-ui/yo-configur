@@ -26,9 +26,10 @@ class Core {
         ContextMenu.init();
         //选择框
         SelectBox.init();
-      } else {
-        StageEvent.init();
       }
+      // else {
+      // }
+      StageEvent.init();
       Core.initEventStatus = true;
     }
   }

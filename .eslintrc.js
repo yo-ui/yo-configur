@@ -14,6 +14,7 @@ module.exports = {
     "Vuex":true,
     "Vue":true,
     "moment":true,
+    "ELEMENT":true,
     "SVG":true
   },
   extends: ["plugin:vue/essential", "eslint:recommended", "@vue/prettier"],

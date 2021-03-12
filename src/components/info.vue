@@ -46,7 +46,7 @@
 </template>
 
 <script>
-// import bmCommon from "@/common/common";
+import bmCommon from "@/common/common";
 // import { Constants } from "@/common/env";
 import { styles, datas } from "@/widgets/index";
 import WidgetList from "@/core/info/widget-list";
@@ -149,10 +149,10 @@ export default {
           let key = `${name}.${i}`;
           if (watches[key]) {
             watches[key]();
-            this.setTimeoutId = setTimeout(() => {
-              clearTimeout(this.setTimeoutId);
-              // bmCommon.log("unWatches", key);
-            }, 1);
+            // this.setTimeoutId = setTimeout(() => {
+            //   clearTimeout(this.setTimeoutId);
+            //   // bmCommon.log("unWatches", key);
+            // }, 1);
           }
           if (type === "canvas") {
             continue;
@@ -161,37 +161,37 @@ export default {
           if (typeof value === "object" && !Array.isArray(value)) {
             this.initWatch(`${name}.${i}`, value);
           }
-          this.setTimeoutId = setTimeout(() => {
-            clearTimeout(this.setTimeoutId);
-            // bmCommon.log(
-            //   "watches",
-            //   key,
-            //   typeof value,
-            //   typeof value === "object" && !Array.isArray(value)
-            // );
-          }, 1);
+          // this.setTimeoutId = setTimeout(() => {
+          //   clearTimeout(this.setTimeoutId);
+          //   // bmCommon.log(
+          //   //   "watches",
+          //   //   key,
+          //   //   typeof value,
+          //   //   typeof value === "object" && !Array.isArray(value)
+          //   // );
+          // }, 1);
           watches[key] = this.$watch(
             key,
             (newVal, oldVal) => {
               // let { children = [] } = getActiveCom || {};
               // let { parentId = "", id = "" } = activeCom || {};
               let { activeCom = {} } = this;
+              let { id = "", type: currentType = "" } = activeCom || {};
               if (
                 JSON.stringify(newVal) !== JSON.stringify(oldVal) ||
                 Array.isArray(value)
               ) {
-                this.setTimeoutId = setTimeout(() => {
-                  clearTimeout(this.setTimeoutId);
-                  // bmCommon.log(
-                  //   "刷新 处理",
-                  //   JSON.stringify(newVal) === JSON.stringify(oldVal),
-                  //   i,
-                  //   name,
-                  //   _lastWatchType,
-                  //   type
-                  // );
-                }, 1);
-                let { id = "" } = activeCom || {};
+                // this.setTimeoutId = setTimeout(() => {
+                //   clearTimeout(this.setTimeoutId);
+                //   // bmCommon.log(
+                //   //   "刷新 处理",
+                //   //   JSON.stringify(newVal) === JSON.stringify(oldVal),
+                //   //   i,
+                //   //   name,
+                //   //   _lastWatchType,
+                //   //   type
+                //   // );
+                // }, 1);
                 let obj = window.bm_widgetMap[id];
                 if (obj) {
                   // obj?.setInfo({ ...activeCom });
@@ -203,6 +203,10 @@ export default {
                     }
                   }
                 }
+              }
+              if (i == currentType) {
+                bmCommon.log("info watch ", i, currentType);
+                this._lastType = currentType;
               }
             },
             {

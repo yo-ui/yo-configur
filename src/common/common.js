@@ -212,6 +212,7 @@ let common = {
     }
     var x = e.clientX || e.pageX;
     var y = e.clientY || e.pageY;
+    common.log("getMousePosition=", e.clientX, e.pageX, e.clientY, e.pageY);
     return {
       x: (x - offset.x) / offset.ratio,
       y: (y - offset.y) / offset.ratio

@@ -1,35 +1,35 @@
 <template>
-  <div class="bm-nav-com" @mousedown.stop @keydown.stop>
+  <div class="bm-nav-com" @mousedown.stop.prevent @keydown.stop>
     <div class="nav-box">
       <div class="left">
         <el-button
-          @click="cancelEvent"
+          @click.stop="cancelEvent"
           :disabled="historyIndex >= historyList.length - 1"
         >
           <i class="el-icon-refresh-left" :title="$lang('撤销')"></i>
           {{ $lang("撤销") }}
         </el-button>
-        <el-button @click="resumeEvent" :disabled="historyIndex <= 0">
+        <el-button @click.stop="resumeEvent" :disabled="historyIndex <= 0">
           <i class="el-icon-refresh-right" :title="$lang('恢复')"></i>
           {{ $lang("恢复") }}
         </el-button>
-        <el-button @click="recordEvent">
+        <el-button @click.stop="recordEvent">
           <i class="el-icon-upload" :title="$lang('记录点')"></i>
           {{ $lang("记录点") }}
         </el-button>
-        <el-button @click="fallbackEvent">
+        <el-button @click.stop="fallbackEvent">
           <i class="el-icon-download" :title="$lang('回退')"></i>
           {{ $lang("回退") }}
         </el-button>
         <el-button-group>
-          <el-button @click="zoomEvent(-20)">
+          <el-button @click.stop="zoomEvent(-20)">
             <i class="el-icon-minus"></i>
           </el-button>
-          <el-button @click="zoomEvent(0)">
+          <el-button @click.stop="zoomEvent(0)">
             <i class="el-icon-search"></i>
             {{ parseInt(zoom * 100) }}%
           </el-button>
-          <el-button @click="zoomEvent(20)">
+          <el-button @click.stop="zoomEvent(20)">
             <i class="el-icon-plus"></i> </el-button
         ></el-button-group>
         <el-button-group>
@@ -38,6 +38,7 @@
             placement="bottom"
             width="auto"
             trigger="click"
+            @mousedown.native.stop
             v-model="showGroupPopoverStatus"
             :disabled="!(activeComs.length > 1 || activeCom.type == 'panel')"
           >
@@ -53,7 +54,7 @@
             ></el-button>
             <ul class="dropdown-list">
               <li
-                @click="groupCommandEvent('group')"
+                @click.stop="groupCommandEvent('group')"
                 :class="{
                   disabled: activeComs.length < 2
                 }"
@@ -61,7 +62,7 @@
                 <i class="bomi bomi-group"></i>{{ $lang("组合") }}
               </li>
               <li
-                @click="groupCommandEvent('ungroup')"
+                @click.stop="groupCommandEvent('ungroup')"
                 :class="{
                   disabled: activeCom.type != 'panel'
                 }"
@@ -77,6 +78,7 @@
             placement="bottom"
             width="auto"
             trigger="click"
+            @mousedown.native.stop
             v-model="showSpreadPopoverStatus"
             :disabled="activeComs.length < 3"
           >
@@ -91,10 +93,10 @@
               ><i class="el-icon-caret-bottom"></i
             ></el-button>
             <ul class="dropdown-list">
-              <li @click="spreadCommandEvent('h-center')">
+              <li @click.stop="spreadCommandEvent('h-center')">
                 <i class="bomi bomi-h-center"></i>{{ $lang("水平分布") }}
               </li>
-              <li @click="spreadCommandEvent('v-center')">
+              <li @click.stop="spreadCommandEvent('v-center')">
                 <i class="bomi bomi-v-center"></i>{{ $lang("垂直分布") }}
               </li>
             </ul>
@@ -104,6 +106,7 @@
             placement="bottom"
             width="auto"
             trigger="click"
+            @mousedown.native.stop
             v-model="showAlignPopoverStatus"
             :disabled="activeComs.length < 2"
           >
@@ -119,29 +122,29 @@
               <i class="el-icon-caret-bottom"></i>
             </el-button>
             <ul class="dropdown-list">
-              <li @click="alignCommandEvent('left')">
+              <li @click.stop="alignCommandEvent('left')">
                 <i class="bomi bomi-align-left"></i>{{ $lang("左对齐") }}
               </li>
-              <li @click="alignCommandEvent('h-center')">
+              <li @click.stop="alignCommandEvent('h-center')">
                 <i class="bomi bomi-align-h-center"></i>{{ $lang("水平居中") }}
               </li>
-              <li @click="alignCommandEvent('right')">
+              <li @click.stop="alignCommandEvent('right')">
                 <i class="bomi bomi-align-right"></i>{{ $lang("右对齐") }}
               </li>
-              <li @click="alignCommandEvent('left-right')">
+              <li @click.stop="alignCommandEvent('left-right')">
                 <i class="bomi bomi-align-left-right"></i
                 >{{ $lang("左右对齐") }}
               </li>
-              <li @click="alignCommandEvent('top')">
+              <li @click.stop="alignCommandEvent('top')">
                 <i class="bomi bomi-align-top"></i>{{ $lang("上对齐") }}
               </li>
-              <li @click="alignCommandEvent('v-center')">
+              <li @click.stop="alignCommandEvent('v-center')">
                 <i class="bomi bomi-align-v-center"></i>{{ $lang("垂直居中") }}
               </li>
-              <li @click="alignCommandEvent('bottom')">
+              <li @click.stop="alignCommandEvent('bottom')">
                 <i class="bomi bomi-align-bottom"></i>{{ $lang("下对齐") }}
               </li>
-              <li @click="alignCommandEvent('top-bottom')">
+              <li @click.stop="alignCommandEvent('top-bottom')">
                 <i class="bomi bomi-align-top-bottom"></i
                 >{{ $lang("上下对齐") }}
               </li>
@@ -151,6 +154,7 @@
             popper-class="popover-list"
             placement="bottom"
             width="auto"
+            @mousedown.native.stop
             v-model="showArrangePopoverStatus"
             trigger="click"
           >
@@ -166,25 +170,25 @@
             </el-button>
             <ul class="dropdown-list">
               <li
-                @click="orderCommandEvent('top')"
+                @click.stop="orderCommandEvent('top')"
                 :class="{ disabled: topOrder == activeCom.order }"
               >
                 <i class="bomi bomi-move-top"></i>{{ $lang("置顶") }}
               </li>
               <li
-                @click="orderCommandEvent('bottom')"
+                @click.stop="orderCommandEvent('bottom')"
                 :class="{ disabled: bottomOrder == activeCom.order }"
               >
                 <i class="bomi bomi-move-bottom"></i>{{ $lang("置底") }}
               </li>
               <li
-                @click="orderCommandEvent('up')"
+                @click.stop="orderCommandEvent('up')"
                 :class="{ disabled: topOrder == activeCom.order }"
               >
                 <i class="bomi bomi-move-up"></i>{{ $lang("前移") }}
               </li>
               <li
-                @click="orderCommandEvent('down')"
+                @click.stop="orderCommandEvent('down')"
                 :class="{ disabled: bottomOrder == activeCom.order }"
               >
                 <i class="bomi bomi-move-down"></i>{{ $lang("后移") }}
@@ -193,7 +197,7 @@
           </el-popover>
         </el-button-group>
         <el-button
-          @click="diyCommandEvent"
+          @click.stop="diyCommandEvent"
           :disabled="!(activeComs.length > 0 || activeCom.type != 'canvas')"
         >
           <i class="el-icon-fork-spoon" :title="$lang('添加到自定义')"></i>
@@ -204,6 +208,7 @@
             popper-class="popover-list"
             placement="bottom"
             width="auto"
+            @mousedown.native.stop
             v-model="showThemesPopoverStatus"
             trigger="click"
           >
@@ -215,57 +220,57 @@
               <i class="el-icon-caret-bottom"></i
             ></el-button>
             <ul class="dropdown-list">
-              <li @click="setThemesEvent('white')">
+              <li @click.stop="setThemesEvent('white')">
                 <i class="skin skin-white"></i>{{ $lang("简洁白") }}
               </li>
-              <li @click="setThemesEvent('black')">
+              <li @click.stop="setThemesEvent('black')">
                 <i class="skin skin-black"></i>{{ $lang("酷炫黑") }}
               </li>
-              <li @click="setThemesEvent('blue')">
+              <li @click.stop="setThemesEvent('blue')">
                 <i class="skin skin-blue"></i>{{ $lang("荧光蓝") }}
               </li>
             </ul>
           </el-popover>
         </el-button-group>
-        <el-button @click="leftMenuEvent">
+        <el-button @click.stop="leftMenuEvent">
           <i class="el-icon-s-fold"></i>
           {{ $lang(leftMenuStatus ? "收起左侧" : "展开左侧") }}
         </el-button>
-        <el-button @click="rightMenuEvent">
+        <el-button @click.stop="rightMenuEvent">
           <i class="el-icon-s-unfold"></i>
           {{ $lang(rightMenuStatus ? "收起右侧" : "展开右侧") }}
         </el-button>
-        <el-button @click="loadJsonEvent">
+        <el-button @click.stop="loadJsonEvent">
           <i class="el-icon-document"></i>
           {{ $lang("加载外部JSON") }}
         </el-button>
       </div>
       <div class="right">
-        <!-- <el-button @click="dataEvent">
+        <!-- <el-button @click.stop="dataEvent">
           <i class="el-icon-data-analysis"></i>
           数据表
         </el-button> -->
-        <el-button @click="clearEvent">
+        <el-button @click.stop="clearEvent">
           <i class="el-icon-toilet-paper"></i>
           {{ $lang("清缓存") }}
         </el-button>
-        <el-button @click="saveEvent">
+        <el-button @click.stop="saveEvent">
           <i class="bomi bomi-save"></i>
           {{ $lang("保存") }}
         </el-button>
-        <el-button @click="copyEvent">
+        <el-button @click.stop="copyEvent">
           <i class="el-icon-copy-document"></i>
           {{ $lang("复制") }}
         </el-button>
-        <el-button @click="deleteEvent">
+        <el-button @click.stop="deleteEvent">
           <i class="el-icon-delete"></i>
           {{ $lang("删除") }}
         </el-button>
-        <el-button @click="fullScreenEvent">
+        <el-button @click.stop="fullScreenEvent">
           <i class="el-icon-full-screen"></i>
           {{ $lang("全屏") }}
         </el-button>
-        <el-button @click="runEvent">
+        <el-button @click.stop="runEvent">
           <i class="bomi bomi-run"></i>
           {{ $lang("运行") }}
         </el-button>
@@ -368,6 +373,10 @@ export default {
     // 初始化
     init() {
       // this.storeProductFunc();
+      if (process.env.NODE_ENV !== "production") {
+        window.Canvg = Canvg;
+        window.html2canvas = html2canvas;
+      }
       //保存
       $vm.$on("save", () => {
         this.saveEvent();
@@ -385,7 +394,7 @@ export default {
         this._navTimeoutId = setTimeout(() => {
           clearTimeout(this._navTimeoutId);
           this.diyCommandEvent();
-        }, 0);
+        }, 1);
       });
       // //打散
       // $vm.$on("un-compose", () => {
@@ -706,19 +715,18 @@ export default {
           $(parentNode).prepend($(canvas));
         });
         $copyDom.css({ position: "fixed", left: 0, top: 0, zIndex: -1 });
-        $(".view-box").prepend($copyDom);
         // targetDom.hide();
+        $(".view-box").prepend($copyDom);
       }
+      // bmCommon.log("----------", $copyDom[0]);
       html2canvas($copyDom[0], {
         useCORS: true,
         allowTaint: true,
         // taintTest: false,
         logging: true
       }).then(_canvas => {
-        // html2canvas($(".canvas-box")[0], {}).then(_canvas => {
         // 将clone页面删除
         $copyDom.remove();
-        // targetDom.show();
         let blob = bmCommon.convertBase64ToBlob(_canvas.toDataURL());
         let formData = new FormData();
         formData.append("files", blob, `${Date.now()}.png`);
@@ -819,13 +827,15 @@ export default {
         data = {},
         name = "",
         code: type = "",
-        left = 0,
-        top = 0,
+        // left = 0,
+        // top = 0,
         comDisabled = false,
         alias = ""
       } = { ...(Constants.COMPONENTPANEL || {}) };
+      let loadingInstance = ELEMENT.Loading.service({ fullscreen: true });
       let { length = 0 } = bm_active_com_ids || [];
       if (length < 1) {
+        loadingInstance?.close();
         return;
       }
       let children = [];
@@ -833,43 +843,88 @@ export default {
         let obj = bm_widgetMap[id];
         let { info = {} } = obj || {};
         children.push(info);
-        // let index = widgetList.findIndex(_item => item.id == _item.id);
-        // while (index > -1) {
-        //   widgetList.splice(index, 1);
-        //   index = widgetList.findIndex(_item => item.id == _item.id);
-        // }
       });
-      // let orders = widgetList.map(item => item.order);
-      // let order = 1;
-      // if (orders && orders.length > 0) {
-      //   order = Math.max(...orders);
-      //   order += 1;
-      // }
       let [item = {}] = children || [];
-      bmCommon.log("diyCommandEvent");
-      let maxHeight = item.height;
-      let maxWidth = item.width;
+      // bmCommon.log("diyCommandEvent");
+      let { width = 0, height = 0 } = item || {};
+      // let w = item.height;
+      // let maxWidth = item.width;
       if (length > 1) {
-        // let id = bmCommon.uuid();
-        let group1 = bmCommon.clone(children || []);
-        let group2 = bmCommon.clone(children || []);
-        group1.sort((a, b) => a.left - b.left);
-        group2.sort((a, b) => a.top - b.top);
-        let { left: minLeft = 0 } = group1[0] || {};
-        let { top: minTop = 0 } = group2[0] || {};
-        left = minLeft;
-        top = minTop;
-        group1.sort((a, b) => b.left + b.width - (a.left + a.width));
-        group2.sort((a, b) => b.top + b.height - (a.top + a.height));
-        let { top: maxTop = 0, height: _maxHeight = 0 } = group2[0] || {};
-        let { left: maxLeft = 0, width: _maxWidth = 0 } = group1[0] || {};
-        maxHeight = maxTop + _maxHeight - minTop;
-        maxWidth = maxLeft + _maxWidth - minLeft;
+        let minLeft = 0,
+          minTop = 0,
+          maxLeft = 0,
+          maxTop = 0,
+          maxHeight = 0,
+          maxWidth = 0;
+        // 最大宽+left   高+top
+        let maxRight = 0,
+          maxBottom = 0,
+          pLeft = 0,
+          pTop = 0;
         children.forEach((item, index) => {
-          item.left -= left;
+          let { id = "" } = item || {};
+          let obj = window.bm_widgetMap[id];
+          let { info = {} } = obj || {};
+          let {
+            _left: left = 0,
+            _top: top = 0,
+            _width: width = 0,
+            _height: height = 0,
+            _right: right = 0,
+            _bottom: bottom = 0
+          } = info || {};
+          item._left = left;
+          item._top = top;
+          item._width = width;
+          item._height = height;
+          if (index === 0) {
+            minLeft = left;
+            maxLeft = left;
+            maxWidth = width;
+            maxHeight = height;
+            minTop = top;
+            maxTop = top;
+          }
+          if (minLeft > left) {
+            minLeft = left;
+          }
+          if (maxLeft < left) {
+            maxLeft = left;
+            maxWidth = width;
+          }
+          if (maxRight < right) {
+            maxRight = right - pLeft;
+          }
+          if (minTop > top) {
+            minTop = top;
+          }
+          if (maxTop < top) {
+            maxTop = top;
+            maxHeight = height;
+          }
+          if (maxBottom < bottom) {
+            maxBottom = bottom - pTop;
+          }
+        });
+        maxLeft = maxLeft + maxWidth - minLeft;
+        maxRight = maxRight - minLeft;
+
+        maxTop = maxTop + maxHeight - minTop;
+        maxBottom = maxBottom - minTop;
+
+        if (maxLeft < maxRight) {
+          maxLeft = maxRight;
+        }
+        if (maxTop < maxBottom) {
+          maxTop = maxBottom;
+        }
+        width = maxLeft || 10;
+        height = maxTop || 10;
+        children.forEach((item, index) => {
+          item.left -= minLeft;
           // item.parentId = id;
           //需要重新指定parentId
-          item.top -= top;
+          item.top -= minTop;
           item.order = index;
         });
         item = {
@@ -879,18 +934,22 @@ export default {
           // order,
           comDisabled,
           // id,
-          width: maxWidth,
-          height: maxHeight,
+          width,
+          height,
           alias,
-          left,
-          top,
+          left: 0,
+          top: 0,
           children
         };
       }
       // 转化成canvas
-      let targetDom = $(".canvas-box");
+      // let targetDom = $("div");
       // 将当前页面DOM克隆
-      let $copyDom = targetDom.clone();
+      let $copyDom = $("<div></div>");
+      children.forEach(item => {
+        let { id = "" } = item || {};
+        $copyDom.append($(`#${id}`).clone());
+      });
       $copyDom.find("svg").each(function(index, node) {
         let parentNode = node.parentNode;
         let svg = node.outerHTML.trim();
@@ -910,7 +969,7 @@ export default {
         $(parentNode).prepend($(canvas));
       });
       // let ids = children.map(item => `${item.id}`);
-      $copyDom.children().each((index, node) => {
+      $copyDom.children().each((_, node) => {
         let $item = $(node);
         let id = $item.attr("id");
         if (bm_active_com_ids.indexOf(id) > -1) {
@@ -923,16 +982,16 @@ export default {
               top: parseFloat(top) - parseFloat(item.top)
             })
             .show();
-          bmCommon.log(
-            "----显示left=",
-            parseFloat(left),
-            item.left,
-            parseFloat(left) - parseFloat(item.left),
-            "top=",
-            parseFloat(top),
-            item.top,
-            parseFloat(top) - parseFloat(item.top)
-          );
+          // bmCommon.log(
+          //   "----显示left=",
+          //   parseFloat(left),
+          //   item.left,
+          //   parseFloat(left) - parseFloat(item.left),
+          //   "top=",
+          //   parseFloat(top),
+          //   item.top,
+          //   parseFloat(top) - parseFloat(item.top)
+          // );
         } else {
           $item.hide();
         }
@@ -943,8 +1002,8 @@ export default {
         left: 0,
         top: 0,
         zIndex: -1,
-        width: maxWidth,
-        height: maxHeight
+        width,
+        height
       });
       $(".view-box").prepend($copyDom);
       this.uploadImg((img = "") => {
@@ -954,6 +1013,7 @@ export default {
           () => {
             //刷新自定义组件列表
             $vm.$emit("widget-list-diy");
+            loadingInstance.close();
           }
         );
       }, $copyDom);
@@ -961,7 +1021,6 @@ export default {
     //组合  打散操作
     groupCommandEvent(cmd) {
       this._groupCommandTimeoutId = setTimeout(() => {
-        clearTimeout(this._groupCommandTimeoutId);
         if (!cmd) {
           return;
         }
@@ -973,6 +1032,7 @@ export default {
             this.unComposeEvent();
             break;
         }
+        clearTimeout(this._groupCommandTimeoutId);
       }, 1);
       this.showGroupPopoverStatus = false;
     },
@@ -1050,13 +1110,27 @@ export default {
       //left 最大值 4
       let minLeft = Math.min(
         ...children.map(item => {
-          return item.left;
+          // let { type = "", id = "", left = 0 } = item || {};
+          // if (type === "materialLine" || type === "materialCurveLine") {
+          //   let obj = window.bm_widgetMap[id];
+          //   let { info = {} } = obj || {};
+          //   let { _left = 0 } = info || {};
+          //   left = _left || 0;
+          // }
+          return item._left;
         })
       );
       // top 最小值 1
       let minTop = Math.min(
         ...children.map(item => {
-          return item.top;
+          // let { type = "", id = "", _top = 0 } = item || {};
+          // if (type === "materialLine" || type === "materialCurveLine") {
+          //   let obj = window.bm_widgetMap[id];
+          //   let { info = {} } = obj || {};
+          //   let { _top = 0 } = info || {};
+          //   top = _top || 0;
+          // }
+          return item._top;
         })
       );
       // let { left: minLeft = 0 } = group1[0] || {};
@@ -1098,6 +1172,10 @@ export default {
     // 打散
     unComposeEvent() {
       let bm_active_com_id = window.bm_active_com_id;
+      let bm_active_com_ids = window.bm_active_com_ids;
+      if (!bm_active_com_id) {
+        [bm_active_com_id = ""] = bm_active_com_ids || [];
+      }
       let bm_widgetMap = window.bm_widgetMap;
       let orders = Canvas.getOrders();
       let obj = bm_widgetMap[bm_active_com_id];
@@ -1109,6 +1187,7 @@ export default {
         order += 1;
       }
       let { length = 0 } = children || [];
+      bmCommon.log("打散,length=", length);
       if (length < 1) {
         return;
       }

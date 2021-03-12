@@ -288,6 +288,10 @@ class Canvas {
     } else {
       let _oldCom = $("#canvas_content .bm-component-com.active");
       _oldCom.removeClass("active");
+      let order = _oldCom.data("order");
+      if (order !== undefined) {
+        _oldCom.css({ "z-index": order });
+      }
       _oldCom.find(".cover").show();
     }
     WidgetList.unactive();
@@ -306,6 +310,9 @@ class Canvas {
       _com.find(".cover").show();
       `0`;
     }
+    let order = _com.css("z-index");
+    _com.data("order", order);
+    _com.css({ "z-index": 999999 });
     WidgetList.active(id, flag);
   }
   // 激活选中

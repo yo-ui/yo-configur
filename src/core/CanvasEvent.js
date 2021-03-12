@@ -186,6 +186,13 @@ class CanvasEvent {
       // button = 0
     } = e;
     ctrlKey = ctrlKey || metaKey; //(ctrl(cmd))
+    let canvas = Canvas.getCanvas();
+    let { action = "" } = canvas || {};
+    bmCommon.log("component move==", action);
+    if (action != "select") {
+      //画布移动不能操作线
+      return;
+    }
     let $parent = $(target).parents(".bm-component-com");
     let type = $(target).attr("type");
     let id = $(target).attr("id");
@@ -250,7 +257,7 @@ class CanvasEvent {
       // altKey = false
     } = e;
     ctrlKey = ctrlKey || metaKey; //(ctrl(cmd))
-    bmCommon.log("index keydow", e);
+    // bmCommon.log("index keydow", e);
     let bm_active_com_id = window.bm_active_com_id;
     let bm_active_com_ids = window.bm_active_com_ids;
     let { length = 0 } = bm_active_com_ids || [];
@@ -346,11 +353,15 @@ class CanvasEvent {
             let obj = bm_widgetMap[id];
             let { info = {} } = obj || {};
             info.left -= dis;
-            obj?.refresh();
+            obj?.refresh({
+              left: info.left
+            });
           });
         } else {
           activeCom.left -= dis;
-          obj?.refresh();
+          obj?.refresh({
+            left: activeCom.left
+          });
         }
         // bmCommon.log("左", activeCom);
       } else if (keyCode === 38) {
@@ -365,11 +376,12 @@ class CanvasEvent {
             let obj = bm_widgetMap[id];
             let { info = {} } = obj || {};
             info.top -= dis;
+            obj?.refresh({ top: info.top });
           });
         } else {
           activeCom.top -= dis;
+          obj?.refresh({ top: activeCom.top });
         }
-        obj?.refresh();
         // bmCommon.log("上", activeCom);
       } else if (keyCode === 39) {
         e.preventDefault();
@@ -384,11 +396,12 @@ class CanvasEvent {
             let obj = bm_widgetMap[id];
             let { info = {} } = obj || {};
             info.left += dis;
+            obj?.refresh({ left: info.left });
           });
         } else {
           activeCom.left += dis;
+          obj?.refresh({ left: activeCom.left });
         }
-        obj?.refresh();
         // bmCommon.log("右", activeCom);
       } else if (keyCode === 40) {
         e.preventDefault();
@@ -402,11 +415,11 @@ class CanvasEvent {
             let obj = bm_widgetMap[id];
             let { info = {} } = obj || {};
             info.top += dis;
-            obj?.refresh();
+            obj?.refresh({ top: info.top });
           });
         } else {
           activeCom.top += dis;
-          obj?.refresh();
+          obj?.refresh({ top: activeCom.top });
         }
         // bmCommon.log("下", activeCom);
       }
@@ -463,7 +476,9 @@ class CanvasEvent {
       // 空格 space
       e.preventDefault();
       e.stopPropagation();
-      bmCommon.log("canvas-action", "move");
+      // bmCommon.log("canvas-action", "move");
+      const canvas = Canvas.getCanvas();
+      canvas.action = "move";
       $vm.$emit("canvas-action", "move");
     } else if (keyCode == 46) {
       // Delete
@@ -841,6 +856,7 @@ class CanvasEvent {
         clearTimeout(this.setTimeoutId);
         Canvas.setActiveCom();
         Canvas.unoptimize();
+        window.bm_active_com_ids = [];
       }, 10);
     } else {
       Canvas.active(id, flag);

@@ -823,8 +823,8 @@ export default {
       )
   },
   beforeDestroy() {
-    $(document).off("mousedown", this.mousedownEvent);
-    $(document).off("mousedown", this.mousedownCanvasPaintEvent);
+    // $(document).off("mousedown", this.mousedownEvent);
+    // $(document).off("mousedown", this.mousedownCanvasPaintEvent);
   },
   methods: {
     ...mapMutations({
@@ -864,37 +864,37 @@ export default {
         return;
       }
       info.action = item;
-      if (item == "move") {
-        this.unCanvasPaintEvent();
-        this.canvasMoveEvent();
-      } else if (item == "paint") {
-        this.unCanvasMoveEvent();
-        this.canvasPaintEvent();
-      } else {
-        this.unCanvasMoveEvent();
-        this.unCanvasPaintEvent();
-      }
+      // if (item == "move") {
+      //   this.unCanvasPaintEvent();
+      //   this.canvasMoveEvent();
+      // } else if (item == "paint") {
+      //   this.unCanvasMoveEvent();
+      //   this.canvasPaintEvent();
+      // } else {
+      //   this.unCanvasMoveEvent();
+      //   this.unCanvasPaintEvent();
+      // }
     },
 
-    initMove(item = {}) {
-      let {
-        startX,
-        startY,
-        originX,
-        originY,
-        originWidth,
-        originHeight,
-        originRotate
-      } = item || {};
-      state.startX = startX;
-      state.startY = startY;
-      state.originX = originX;
-      state.originY = originY;
-      state.originWidth = originWidth;
-      state.originRotate = originRotate;
-      state.originHeight = originHeight;
-      state.moving = true;
-    },
+    // initMove(item = {}) {
+    //   let {
+    //     startX,
+    //     startY,
+    //     originX,
+    //     originY,
+    //     originWidth,
+    //     originHeight,
+    //     originRotate
+    //   } = item || {};
+    //   state.startX = startX;
+    //   state.startY = startY;
+    //   state.originX = originX;
+    //   state.originY = originY;
+    //   state.originWidth = originWidth;
+    //   state.originRotate = originRotate;
+    //   state.originHeight = originHeight;
+    //   state.moving = true;
+    // },
     sliderChangeEvent(values, index) {
       let { info = {} } = this;
       let { gradientStyle = {} } = info || {};
@@ -993,349 +993,349 @@ export default {
         canvas.left = 0;
         canvas.top = 0;
       }
-    },
-    unCanvasMoveEvent() {
-      $(document).off("mousedown", this.mousedownEvent);
-    },
-    unCanvasPaintEvent() {
-      $(document).off("mousedown", this.mousedownCanvasPaintEvent);
-    },
-    canvasMoveEvent() {
-      $(document).on("mousedown", this.mousedownEvent);
-    },
-    canvasPaintEvent() {
-      $(document).on("mousedown", this.mousedownCanvasPaintEvent);
-    },
-    mousedownEvent(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      let { canvas = {} } = this;
-      let pos = bmCommon.getMousePosition(e);
-      let { x = "", y = "" } = pos || {};
-      let { left, top } = canvas || {};
-      bmCommon.log("canvas-style=>mousedownEvent");
-      this.initMove({
-        startX: x,
-        startY: y,
-        originX: left,
-        originY: top
-      });
-
-      $(document).on("mousemove", this.mousemoveEvent);
-      $(document).on("mouseup", this.mouseupEvent);
-    },
-    mousemoveEvent(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      let pos = bmCommon.getMousePosition(e);
-      let { x = "", y = "" } = pos || {};
-      this.canvasMoving({ x, y });
-    },
-
-    // 移动画布
-    canvasMoving(item) {
-      let { canvas = {}, zoom = 1 } = this;
-      let { x, y } = item || {};
-      let { startX, startY, originX, originY } = state;
-      // var target = state.activeCom;
-      var dx = x - startX;
-      var dy = y - startY;
-      // var left = state.originX + Math.floor((dx * 100) / state.zoom);
-      // var top = state.originY + Math.floor((dy * 100) / state.zoom);
-      var left = originX + Math.floor(dx / zoom);
-      var top = originY + Math.floor(dy / zoom);
-      // bmCommon.log(left, top);
-      if (left > 0) {
-        left = 0;
-      }
-      if (top > 0) {
-        top = 0;
-      }
-      canvas.left = left;
-      canvas.top = top;
-      // bmCommon.log(left, top, activeCom);
-    },
-    mouseupEvent(e) {
-      $(document).off("mousemove", this.mousemoveEvent);
-      $(document).off("mouseup", this.mouseupEvent);
-      // this.stopMove();
-    },
-
-    mousedownCanvasPaintEvent(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      let { widgetList = [], linkPoint, condition } = this;
-      let pos = bmCommon.getMousePosition(e);
-      let { x = "", y = "" } = pos || {};
-      bmCommon.log("canvas-style=>mousedownCanvasPaintEvent");
-      if (!linkPoint) {
-        this.$$msgError("请先创建连接点");
-        return;
-      }
-      let _offset = $(".view-box").offset();
-      let offset = $(".content-box").offset();
-      let { left: __left = 0, top: __top = 0 } = _offset || {};
-      let { left: _left = 0, top: _top = 0 } = offset || {};
-      let { left = 0, top = 0, width = 0, height = 0, alias = "" } =
-        linkPoint || {};
-      // let { left=0, top=0 } = canvas || {};
-      // this.initMove({
-      //   startX: x,
-      //   startY: y
-      //   // originX: left,
-      //   // originY: top
-      // });
-      // let angle = bmCommon.getAngles({
-      //   point1: { x: left, y: top },
-      //   point2: { x, y }
-      // });
-      condition.startX = x;
-      condition.startY = y;
-      // let dis = {
-      x = x - (left + _left + __left);
-      y = y - (top + _top + __top);
-      // };
-      // let x = changeX - startX;
-      // let y = changeY - startY;
-      let item = {};
-      let assist = "water_vertical"; //垂直
-      //   assist = "water_horizontal"; //水平
-      if (
-        (x > 0 && y < 0 && x > Math.abs(y)) ||
-        (x > 0 && y > 0 && x > y) ||
-        (x > 0 && y == 0)
-      ) {
-        //右移动
-        bmCommon.group("右移动");
-        // left = left + width;
-        // if (alias != "water_horizontal") {
-        assist = "water_horizontal";
-        // }
-        let obj = ASSISTMAP[assist];
-        let { data = {}, alias: _alias = "", name = "", code: type = "" } =
-          obj || {};
-        left = left + width;
-        if (alias != "linkPoint" && alias != "water_horizontal") {
-          top = top + height;
-        }
-        let id = bmCommon.uuid();
-        let orders = widgetList.map(item => item.order);
-        let order = Math.max(...orders);
-        order += 1;
-        item = {
-          ...data,
-          order,
-          type,
-          name,
-          alias: _alias,
-          id,
-          left,
-          top
-        };
-      } else if (
-        (y > 0 && x < 0 && y > Math.abs(x)) ||
-        (y > 0 && x > 0 && y > x) ||
-        (y > 0 && x == 0)
-      ) {
-        //下移动
-        bmCommon.group("下移动");
-        // if (alias != "water_vertical") {
-        assist = "water_vertical";
-        // }
-        let obj = ASSISTMAP[assist];
-        let { data = {}, alias: _alias = "", name = "", code: type = "" } =
-          obj || {};
-        top = top + height;
-        if (alias != "linkPoint" && alias != "water_vertical") {
-          left = left + width;
-        }
-        let id = bmCommon.uuid();
-        let orders = widgetList.map(item => item.order);
-        let order = Math.max(...orders);
-        order += 1;
-        item = {
-          ...data,
-          order,
-          type,
-          name,
-          alias: _alias,
-          id,
-          left,
-          top
-        };
-      } else if (
-        (x < 0 && y > 0 && Math.abs(x) > y) ||
-        (x < 0 && y < 0 && Math.abs(x) > Math.abs(y)) ||
-        (x < 0 && y == 0)
-      ) {
-        //左移动
-        bmCommon.group("左移动");
-        // if (alias != "water_horizontal") {
-        assist = "water_horizontal";
-        // }
-        let obj = ASSISTMAP[assist];
-        let {
-          data = {},
-          alias: _alias = "",
-          name = "",
-          code: type = "",
-          width: _width = ""
-        } = obj || {};
-        left = left - width - _width;
-        if (alias != "linkPoint" && alias != "water_horizontal") {
-          top = top + height;
-        }
-        let id = bmCommon.uuid();
-        let orders = widgetList.map(item => item.order);
-        let order = Math.max(...orders);
-        order += 1;
-        item = {
-          ...data,
-          order,
-          type,
-          name,
-          alias: _alias,
-          id,
-          left,
-          top
-        };
-      } else if (
-        (y < 0 && x < 0 && Math.abs(y) > Math.abs(x)) ||
-        (y < 0 && x > 0 && Math.abs(y) > x) ||
-        (y < 0 && x == 0)
-      ) {
-        //上移动
-        bmCommon.group("上移动");
-        // if (alias != "water_vertical") {
-        assist = "water_vertical";
-        // }
-        let obj = ASSISTMAP[assist];
-        let {
-          data = {},
-          alias: _alias = "",
-          name = "",
-          code: type = "",
-          height: _height = ""
-        } = obj || {};
-        top = top - height - _height;
-        if (alias != "linkPoint" && alias != "water_vertical") {
-          left = left + width;
-        }
-        let id = bmCommon.uuid();
-        let orders = widgetList.map(item => item.order);
-        let order = Math.max(...orders);
-        order += 1;
-        item = {
-          ...data,
-          order,
-          type,
-          name,
-          alias: _alias,
-          id,
-          left,
-          top
-        };
-      } else if (x == 0 && y == 0) {
-        bmCommon.group("位置没变");
-        return;
-      }
-      // let obj = ASSISTMAP[assist];
-      // let { data = {}, alias: _alias = "", name = "", code: type = "" } =
-      //   obj || {};
-      // let id = bmCommon.uuid();
-      // let orders = widgetList.map(item => item.order);
-      // let order = Math.max(...orders);
-      // order += 1;
-      // let item = {
-      //   ...data,
-      //   order,
-      //   type,
-      //   name,
-      //   alias: _alias,
-      //   id,
-      //   left,
-      //   top
-      // };
-      widgetList.push(item);
-      // this.setLinkPoint(item);
-      // bmCommon.log(dis, "paint");
-      // let assist = "water_vertical"; //垂直
-      // if (dis.x > dis.y) {
-      //   assist = "water_horizontal"; //水平
-      //   left = left + width;
-      // } else {
-      //   top = top + height;
-      // }
-      // let obj = ASSISTMAP[assist];
-      // let { data = {}, alias = "", name = "", code: type = "" } = obj || {};
-      // let id = bmCommon.uuid();
-      // let orders = widgetList.map(item => item.order);
-      // let order = Math.max(...orders);
-      // order += 1;
-      // let item = {
-      //   ...data,
-      //   order,
-      //   type,
-      //   name,
-      //   alias,
-      //   id,
-      //   left,
-      //   top
-      // };
-      // widgetList.push(item);
-      // this.setLinkPoint(item);
-      $(document).on("mousemove", this.mousemoveCanvasPaintEvent);
-      $(document).on("mouseup", this.mouseupCanvasPaintEvent);
-    },
-    mousemoveCanvasPaintEvent(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      // let { widgetList = [], linkPoint, condition } = this;
-      // let pos = bmCommon.getMousePosition(e);
-      // let { x: changeX = "", y: changeY = "" } = pos || {};
-      // let { startX = "", startY = "" } = condition;
-      // let x = changeX - startX;
-      // let y = changeY - startY;
-      // if (
-      //   (x > 0 && y < 0 && x > Math.abs(y)) ||
-      //   (x > 0 && y > 0 && x > y) ||
-      //   (x > 0 && y == 0)
-      // ) {
-      //   //右移动
-      //   bmCommon.group("右移动");
-      // } else if (
-      //   (y > 0 && x < 0 && y > Math.abs(x)) ||
-      //   (y > 0 && x > 0 && y > x) ||
-      //   (y > 0 && x == 0)
-      // ) {
-      //   //下移动
-      //   bmCommon.group("下移动");
-      // } else if (
-      //   (x < 0 && y > 0 && Math.abs(x) > y) ||
-      //   (x < 0 && y < 0 && Math.abs(x) > Math.abs(y)) ||
-      //   (x < 0 && y == 0)
-      // ) {
-      //   //左移动
-      //   bmCommon.group("左移动");
-      // } else if (
-      //   (y < 0 && x < 0 && Math.abs(y) > Math.abs(x)) ||
-      //   (y < 0 && x > 0 && Math.abs(y) > x) ||
-      //   (y < 0 && x == 0)
-      // ) {
-      //   //上移动
-      //   bmCommon.group("上移动");
-      // } else if (x == 0 && y == 0) {
-      //   bmCommon.group("位置没变");
-      // }
-      // this.canvasMoving({ x, y });
-      // condition.startX = changeX;
-      // condition.startY = changeY;
-    },
-    mouseupCanvasPaintEvent(e) {
-      $(document).off("mousemove", this.mousemoveCanvasPaintEvent);
-      $(document).off("mouseup", this.mouseupCanvasPaintEvent);
-      // this.stopMove();
     }
+    // unCanvasMoveEvent() {
+    //   $(document).off("mousedown", this.mousedownEvent);
+    // },
+    // unCanvasPaintEvent() {
+    //   $(document).off("mousedown", this.mousedownCanvasPaintEvent);
+    // },
+    // canvasMoveEvent() {
+    //   $(document).on("mousedown", this.mousedownEvent);
+    // },
+    // canvasPaintEvent() {
+    //   $(document).on("mousedown", this.mousedownCanvasPaintEvent);
+    // },
+    // mousedownEvent(e) {
+    //   e.stopPropagation();
+    //   e.preventDefault();
+    //   let { canvas = {} } = this;
+    //   let pos = bmCommon.getMousePosition(e);
+    //   let { x = "", y = "" } = pos || {};
+    //   let { left, top } = canvas || {};
+    //   bmCommon.log("canvas-style=>mousedownEvent");
+    //   this.initMove({
+    //     startX: x,
+    //     startY: y,
+    //     originX: left,
+    //     originY: top
+    //   });
+
+    //   $(document).on("mousemove", this.mousemoveEvent);
+    //   $(document).on("mouseup", this.mouseupEvent);
+    // },
+    // mousemoveEvent(e) {
+    //   e.stopPropagation();
+    //   e.preventDefault();
+    //   let pos = bmCommon.getMousePosition(e);
+    //   let { x = "", y = "" } = pos || {};
+    //   this.canvasMoving({ x, y });
+    // },
+
+    // // 移动画布
+    // canvasMoving(item) {
+    //   let { canvas = {}, zoom = 1 } = this;
+    //   let { x, y } = item || {};
+    //   let { startX, startY, originX, originY } = state;
+    //   // var target = state.activeCom;
+    //   var dx = x - startX;
+    //   var dy = y - startY;
+    //   // var left = state.originX + Math.floor((dx * 100) / state.zoom);
+    //   // var top = state.originY + Math.floor((dy * 100) / state.zoom);
+    //   var left = originX + Math.floor(dx / zoom);
+    //   var top = originY + Math.floor(dy / zoom);
+    //   // bmCommon.log(left, top);
+    //   if (left > 0) {
+    //     left = 0;
+    //   }
+    //   if (top > 0) {
+    //     top = 0;
+    //   }
+    //   canvas.left = left;
+    //   canvas.top = top;
+    //   // bmCommon.log(left, top, activeCom);
+    // },
+    // mouseupEvent(e) {
+    //   $(document).off("mousemove", this.mousemoveEvent);
+    //   $(document).off("mouseup", this.mouseupEvent);
+    //   // this.stopMove();
+    // },
+
+    // mousedownCanvasPaintEvent(e) {
+    //   e.stopPropagation();
+    //   e.preventDefault();
+    //   let { widgetList = [], linkPoint, condition } = this;
+    //   let pos = bmCommon.getMousePosition(e);
+    //   let { x = "", y = "" } = pos || {};
+    //   bmCommon.log("canvas-style=>mousedownCanvasPaintEvent");
+    //   if (!linkPoint) {
+    //     this.$$msgError("请先创建连接点");
+    //     return;
+    //   }
+    //   let _offset = $(".view-box").offset();
+    //   let offset = $(".content-box").offset();
+    //   let { left: __left = 0, top: __top = 0 } = _offset || {};
+    //   let { left: _left = 0, top: _top = 0 } = offset || {};
+    //   let { left = 0, top = 0, width = 0, height = 0, alias = "" } =
+    //     linkPoint || {};
+    //   // let { left=0, top=0 } = canvas || {};
+    //   // this.initMove({
+    //   //   startX: x,
+    //   //   startY: y
+    //   //   // originX: left,
+    //   //   // originY: top
+    //   // });
+    //   // let angle = bmCommon.getAngles({
+    //   //   point1: { x: left, y: top },
+    //   //   point2: { x, y }
+    //   // });
+    //   condition.startX = x;
+    //   condition.startY = y;
+    //   // let dis = {
+    //   x = x - (left + _left + __left);
+    //   y = y - (top + _top + __top);
+    //   // };
+    //   // let x = changeX - startX;
+    //   // let y = changeY - startY;
+    //   let item = {};
+    //   let assist = "water_vertical"; //垂直
+    //   //   assist = "water_horizontal"; //水平
+    //   if (
+    //     (x > 0 && y < 0 && x > Math.abs(y)) ||
+    //     (x > 0 && y > 0 && x > y) ||
+    //     (x > 0 && y == 0)
+    //   ) {
+    //     //右移动
+    //     bmCommon.group("右移动");
+    //     // left = left + width;
+    //     // if (alias != "water_horizontal") {
+    //     assist = "water_horizontal";
+    //     // }
+    //     let obj = ASSISTMAP[assist];
+    //     let { data = {}, alias: _alias = "", name = "", code: type = "" } =
+    //       obj || {};
+    //     left = left + width;
+    //     if (alias != "linkPoint" && alias != "water_horizontal") {
+    //       top = top + height;
+    //     }
+    //     let id = bmCommon.uuid();
+    //     let orders = widgetList.map(item => item.order);
+    //     let order = Math.max(...orders);
+    //     order += 1;
+    //     item = {
+    //       ...data,
+    //       order,
+    //       type,
+    //       name,
+    //       alias: _alias,
+    //       id,
+    //       left,
+    //       top
+    //     };
+    //   } else if (
+    //     (y > 0 && x < 0 && y > Math.abs(x)) ||
+    //     (y > 0 && x > 0 && y > x) ||
+    //     (y > 0 && x == 0)
+    //   ) {
+    //     //下移动
+    //     bmCommon.group("下移动");
+    //     // if (alias != "water_vertical") {
+    //     assist = "water_vertical";
+    //     // }
+    //     let obj = ASSISTMAP[assist];
+    //     let { data = {}, alias: _alias = "", name = "", code: type = "" } =
+    //       obj || {};
+    //     top = top + height;
+    //     if (alias != "linkPoint" && alias != "water_vertical") {
+    //       left = left + width;
+    //     }
+    //     let id = bmCommon.uuid();
+    //     let orders = widgetList.map(item => item.order);
+    //     let order = Math.max(...orders);
+    //     order += 1;
+    //     item = {
+    //       ...data,
+    //       order,
+    //       type,
+    //       name,
+    //       alias: _alias,
+    //       id,
+    //       left,
+    //       top
+    //     };
+    //   } else if (
+    //     (x < 0 && y > 0 && Math.abs(x) > y) ||
+    //     (x < 0 && y < 0 && Math.abs(x) > Math.abs(y)) ||
+    //     (x < 0 && y == 0)
+    //   ) {
+    //     //左移动
+    //     bmCommon.group("左移动");
+    //     // if (alias != "water_horizontal") {
+    //     assist = "water_horizontal";
+    //     // }
+    //     let obj = ASSISTMAP[assist];
+    //     let {
+    //       data = {},
+    //       alias: _alias = "",
+    //       name = "",
+    //       code: type = "",
+    //       width: _width = ""
+    //     } = obj || {};
+    //     left = left - width - _width;
+    //     if (alias != "linkPoint" && alias != "water_horizontal") {
+    //       top = top + height;
+    //     }
+    //     let id = bmCommon.uuid();
+    //     let orders = widgetList.map(item => item.order);
+    //     let order = Math.max(...orders);
+    //     order += 1;
+    //     item = {
+    //       ...data,
+    //       order,
+    //       type,
+    //       name,
+    //       alias: _alias,
+    //       id,
+    //       left,
+    //       top
+    //     };
+    //   } else if (
+    //     (y < 0 && x < 0 && Math.abs(y) > Math.abs(x)) ||
+    //     (y < 0 && x > 0 && Math.abs(y) > x) ||
+    //     (y < 0 && x == 0)
+    //   ) {
+    //     //上移动
+    //     bmCommon.group("上移动");
+    //     // if (alias != "water_vertical") {
+    //     assist = "water_vertical";
+    //     // }
+    //     let obj = ASSISTMAP[assist];
+    //     let {
+    //       data = {},
+    //       alias: _alias = "",
+    //       name = "",
+    //       code: type = "",
+    //       height: _height = ""
+    //     } = obj || {};
+    //     top = top - height - _height;
+    //     if (alias != "linkPoint" && alias != "water_vertical") {
+    //       left = left + width;
+    //     }
+    //     let id = bmCommon.uuid();
+    //     let orders = widgetList.map(item => item.order);
+    //     let order = Math.max(...orders);
+    //     order += 1;
+    //     item = {
+    //       ...data,
+    //       order,
+    //       type,
+    //       name,
+    //       alias: _alias,
+    //       id,
+    //       left,
+    //       top
+    //     };
+    //   } else if (x == 0 && y == 0) {
+    //     bmCommon.group("位置没变");
+    //     return;
+    //   }
+    //   // let obj = ASSISTMAP[assist];
+    //   // let { data = {}, alias: _alias = "", name = "", code: type = "" } =
+    //   //   obj || {};
+    //   // let id = bmCommon.uuid();
+    //   // let orders = widgetList.map(item => item.order);
+    //   // let order = Math.max(...orders);
+    //   // order += 1;
+    //   // let item = {
+    //   //   ...data,
+    //   //   order,
+    //   //   type,
+    //   //   name,
+    //   //   alias: _alias,
+    //   //   id,
+    //   //   left,
+    //   //   top
+    //   // };
+    //   widgetList.push(item);
+    //   // this.setLinkPoint(item);
+    //   // bmCommon.log(dis, "paint");
+    //   // let assist = "water_vertical"; //垂直
+    //   // if (dis.x > dis.y) {
+    //   //   assist = "water_horizontal"; //水平
+    //   //   left = left + width;
+    //   // } else {
+    //   //   top = top + height;
+    //   // }
+    //   // let obj = ASSISTMAP[assist];
+    //   // let { data = {}, alias = "", name = "", code: type = "" } = obj || {};
+    //   // let id = bmCommon.uuid();
+    //   // let orders = widgetList.map(item => item.order);
+    //   // let order = Math.max(...orders);
+    //   // order += 1;
+    //   // let item = {
+    //   //   ...data,
+    //   //   order,
+    //   //   type,
+    //   //   name,
+    //   //   alias,
+    //   //   id,
+    //   //   left,
+    //   //   top
+    //   // };
+    //   // widgetList.push(item);
+    //   // this.setLinkPoint(item);
+    //   $(document).on("mousemove", this.mousemoveCanvasPaintEvent);
+    //   $(document).on("mouseup", this.mouseupCanvasPaintEvent);
+    // },
+    // mousemoveCanvasPaintEvent(e) {
+    //   e.stopPropagation();
+    //   e.preventDefault();
+    //   // let { widgetList = [], linkPoint, condition } = this;
+    //   // let pos = bmCommon.getMousePosition(e);
+    //   // let { x: changeX = "", y: changeY = "" } = pos || {};
+    //   // let { startX = "", startY = "" } = condition;
+    //   // let x = changeX - startX;
+    //   // let y = changeY - startY;
+    //   // if (
+    //   //   (x > 0 && y < 0 && x > Math.abs(y)) ||
+    //   //   (x > 0 && y > 0 && x > y) ||
+    //   //   (x > 0 && y == 0)
+    //   // ) {
+    //   //   //右移动
+    //   //   bmCommon.group("右移动");
+    //   // } else if (
+    //   //   (y > 0 && x < 0 && y > Math.abs(x)) ||
+    //   //   (y > 0 && x > 0 && y > x) ||
+    //   //   (y > 0 && x == 0)
+    //   // ) {
+    //   //   //下移动
+    //   //   bmCommon.group("下移动");
+    //   // } else if (
+    //   //   (x < 0 && y > 0 && Math.abs(x) > y) ||
+    //   //   (x < 0 && y < 0 && Math.abs(x) > Math.abs(y)) ||
+    //   //   (x < 0 && y == 0)
+    //   // ) {
+    //   //   //左移动
+    //   //   bmCommon.group("左移动");
+    //   // } else if (
+    //   //   (y < 0 && x < 0 && Math.abs(y) > Math.abs(x)) ||
+    //   //   (y < 0 && x > 0 && Math.abs(y) > x) ||
+    //   //   (y < 0 && x == 0)
+    //   // ) {
+    //   //   //上移动
+    //   //   bmCommon.group("上移动");
+    //   // } else if (x == 0 && y == 0) {
+    //   //   bmCommon.group("位置没变");
+    //   // }
+    //   // this.canvasMoving({ x, y });
+    //   // condition.startX = changeX;
+    //   // condition.startY = changeY;
+    // },
+    // mouseupCanvasPaintEvent(e) {
+    //   $(document).off("mousemove", this.mousemoveCanvasPaintEvent);
+    //   $(document).off("mouseup", this.mouseupCanvasPaintEvent);
+    //   // this.stopMove();
+    // }
   }
 };
 </script>

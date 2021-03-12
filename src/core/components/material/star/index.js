@@ -150,8 +150,14 @@ class Display extends Component {
 
   comStyle() {
     let { info = {} } = this;
-    let { flipH = false, flipV = false, opacity = "", visible = true } =
-      info || {};
+    let {
+      width = "",
+      height = "",
+      flipH = false,
+      flipV = false,
+      opacity = "",
+      visible = true
+    } = info || {};
     let styles = {};
     styles["opacity"] = opacity / 100;
     styles["visibility"] = `${visible ? "visible" : "hidden"}`;
@@ -161,6 +167,8 @@ class Display extends Component {
       (styles["-ms-transform"] = `${scale}`),
       (styles["-o-transform"] = `${scale}`),
       (styles["-moz-transform"] = `${scale}`);
+    styles["width"] = `${width}px`;
+    styles["height"] = `${height}px`;
     return styles || {};
   }
 

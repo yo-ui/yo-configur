@@ -15,22 +15,34 @@ class Text extends Component {
     info.lineLong = width;
     info.boxX = x1;
     info.boxY = y1;
-    info.boxW = width > 20 ? width : 20;
-    info.boxH = height > 20 ? height : 20;
+    info.boxW = width > 14 ? width + 14 : 14;
+    info.boxH = height > 14 ? height + 14 : 14;
     gradientStyle.gradientId = bmCommon.uuid();
     this.refresh();
+    // if (parentId) {
+    //   let obj = window.bm_widgetMap[parentId];
+    //   obj?.refresh();
+    // }
   }
 
   caculateBox() {
     let { info = {} } = this;
     let { id = "" } = info || {};
     let $container = $(`#${id}`);
+    let zoom = Canvas.getZoom();
     let $line = $container.find(".line");
     let com = $line[0];
     let rect = com?.getBoundingClientRect() || {};
-    let { width = 0, height = 0 } = rect || {};
-    info._width = width;
-    info._height = height;
+    let { width = 0, height = 0, left = 0, top = 0 } = rect || {};
+    let canvas_content = document.getElementById("canvas_content");
+    let box = canvas_content?.getBoundingClientRect() || {};
+    let { x = 0, y = 0 } = box || {};
+    info._left = (left - x) / zoom;
+    info._top = (top - y) / zoom;
+    info._width = width / zoom;
+    info._height = height / zoom;
+    // bmCommon.log("获取到materialLine", rect);
+    // window.bm_widgetMap[id] = this;
   }
 
   //组件样式
@@ -320,8 +332,8 @@ class Text extends Component {
     class="rect-box"
     width="${boxW}"
     height="${boxH}"
-    x="${boxX}"
-    y="${boxY}"
+    x="${boxX - 7}"
+    y="${boxY - 7}"
     stroke="#0075e7"
     fill="transparent"
     stroke-width="1"
@@ -369,7 +381,7 @@ class Text extends Component {
   refresh() {
     super.refresh();
     this.reloadSize();
-    this.caculateBox();
+    // this.caculateBox();
     let { info = {} } = this;
     let {
       id = "",
@@ -392,7 +404,12 @@ class Text extends Component {
     $rect1.attr({ x: x1 - 7, y: y1 - 7 });
     $rect2.attr({ x: x2 - 7, y: y2 - 7 });
     $line.attr({ x1, y1, x2, y2 }).css(this.svgStyle());
-    $rect_box.attr({ width, height, x, y });
+    $rect_box.attr({
+      width: width,
+      height: height,
+      x: x - 7,
+      y: y - 7
+    });
     $defs.html(this.renderDefs());
     $svg.attr({ width, height, viewBox: `0 0 ${width} ${height}` });
     // $container.html(this.renderSvg());
@@ -411,9 +428,9 @@ class Text extends Component {
     info.boxY = y;
     info.lineLong = lineLong;
     // bmCommon.warn("rbox=", info.vboxX,info.vboxY);
-    info.boxW = w > 20 ? w : 20;
+    info.boxW = w > 14 ? w + 14 : 14;
     info.width = 0;
-    info.boxH = h > 20 ? h : 20;
+    info.boxH = h > 14 ? h + 14 : 14;
     info.height = 0;
   }
   // lineLongEvent() {
@@ -442,14 +459,27 @@ class Text extends Component {
   }
   static mousedownEvent(e, direction) {
     // let { showType = "" } = this;
-    e.stopPropagation();
-    e.preventDefault();
     let canvas = Canvas.getCanvas();
     let { action = "" } = canvas || {};
-    if (action == "move") {
+    bmCommon.log("line move==", action);
+    if (action != "select") {
       //画布移动不能操作线
       return;
     }
+
+    let bm_active_com_id = window.bm_active_com_id;
+    let { id = "" } = Text;
+    if (bm_active_com_id != id) {
+      return;
+    }
+    e.stopPropagation();
+    e.preventDefault();
+
+    const canvas_content = document.getElementById("canvas_content");
+    const box = canvas_content?.getBoundingClientRect() || {};
+    const { left = 0, top = 0 } = box || {};
+    Text.boxX = left;
+    Text.boxY = top;
     // let { info = {} } = this;
     // bmCommon.error("line mousedownEvent", e);
     let pos = bmCommon.getMousePosition(e);

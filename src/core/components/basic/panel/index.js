@@ -1,5 +1,6 @@
 import bmCommon from "@/common/common";
 import Component from "@/core/Component";
+// import Canvas from "@/core/Canvas";
 
 class Panel extends Component {
   constructor(props) {
@@ -10,172 +11,121 @@ class Panel extends Component {
   //组件样式
   comStyle() {
     let { info = {} } = this;
-    let { width = "", height = "", children = [] } = info || {};
-
-    let group1 = bmCommon.clone(children || []);
-    let group2 = bmCommon.clone(children || []);
-    group1.sort((a, b) => a.left - b.left);
-    let max_left = Math.max(
-      ...group1.map(item => {
-        let { type = "", left = 0, width = 0, _width = 0 } = item || {};
-        if (type === "materialLine" || type === "materialCurveLine") {
-          width = _width || 0;
-        }
-        return left + width;
-      })
-    );
-    group2.sort((a, b) => a.top - b.top);
-    let max_top = Math.max(
-      ...group2.map(item => {
-        let { type = "", top = 0, height = 0, _height = 0 } = item || {};
-        if (type === "materialLine" || type === "materialCurveLine") {
-          //如果为直线则特殊处理
-          height = _height || 0;
-        }
-        return top + height;
-      })
-    );
-    let { left: minLeft = 0 } = group1[0] || {};
-    let { width: maxWidth = 0, left: maxLeft = 0, type = "", _width = 0 } =
-      group1[length - 1] || {};
-    if (type === "materialLine" || type === "materialCurveLine") {
-      maxWidth = _width || 0;
-    }
-    // let minLeft = minLeft;
+    let {
+      width = "",
+      height = "",
+      children = []
+      // left: pLeft = 0,
+      // top: pTop = 0
+    } = info || {};
+    let pLeft = 0,
+      pTop = 0;
+    // let childrenMap = {};
+    let minLeft = 0,
+      minTop = 0,
+      maxLeft = 0,
+      maxTop = 0,
+      maxHeight = 0,
+      maxWidth = 0;
+    // 最大宽+left   高+top
+    let maxRight = 0,
+      maxBottom = 0;
+    children.forEach((item, index) => {
+      let { id = "" } = item || {};
+      let obj = window.bm_widgetMap[id];
+      let { info = {} } = obj || {};
+      let {
+        _left: left = 0,
+        _top: top = 0,
+        _width: width = 0,
+        _height: height = 0,
+        _right: right = 0,
+        _bottom: bottom = 0
+      } = info || {};
+      item._left = left;
+      item._top = top;
+      item._width = width;
+      item._height = height;
+      if (index === 0) {
+        minLeft = left;
+        maxLeft = left;
+        maxWidth = width;
+        maxHeight = height;
+        minTop = top;
+        maxTop = top;
+      }
+      if (minLeft > left) {
+        minLeft = left;
+      }
+      if (maxLeft < left) {
+        maxLeft = left;
+        maxWidth = width;
+      }
+      if (maxRight < right) {
+        maxRight = right - pLeft;
+      }
+      if (minTop > top) {
+        minTop = top;
+      }
+      if (maxTop < top) {
+        maxTop = top;
+        maxHeight = height;
+      }
+      if (maxBottom < bottom) {
+        maxBottom = bottom - pTop;
+      }
+    });
     maxLeft = maxLeft + maxWidth - minLeft;
-    max_left = max_left - minLeft;
-    if (maxLeft < max_left) {
-      maxLeft = max_left;
-    }
-    let { top: minTop = 0 } = group2[0] || {};
-    let { height: maxHeight = 0, top: maxTop = 0, _height = 0 } =
-      group2[length - 1] || {};
-    if (type === "materialLine" || type === "materialCurveLine") {
-      maxHeight = _height || 0;
-    }
-    // let minTop = minTop;
+    maxRight = maxRight - minLeft;
+
     maxTop = maxTop + maxHeight - minTop;
-    max_top = max_top - minTop;
-    if (maxTop < max_top) {
-      maxTop = max_top;
+    maxBottom = maxBottom - minTop;
+    // bmCommon.log(
+    //   "panel comStyle比较前",
+    //   minLeft,
+    //   minTop,
+    //   "maxLeft=",
+    //   maxLeft,
+    //   "maxTop=",
+    //   maxTop,
+    //   children.map(item => {
+    //     let {
+    //       id = "",
+    //       type = "",
+    //       _left = 0,
+    //       _top = 0,
+    //       _width = 0,
+    //       _height = 0,
+    //       _right = 0,
+    //       _bottom = 0
+    //     } = item || {};
+    //     return { id, type, _left, _top, _width, _height, _right, _bottom };
+    //   })
+    // );
+    if (maxLeft < maxRight) {
+      maxLeft = maxRight;
     }
-    width = maxLeft;
-    height = maxTop;
+    if (maxTop < maxBottom) {
+      maxTop = maxBottom;
+    }
+    width = maxLeft || 10;
+    height = maxTop || 10;
     let styles = {
       ...super.comStyle()
-      // margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px `,
-      // padding: `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px `
     };
     styles["width"] = `${width}px`;
     styles["height"] = `${height}px`;
-
-    // if (textAlign) {
-    //   styles["text-align"] = textAlign;
-    //   if (textAlign == "justify") {
-    //     styles["text-align-last"] = textAlign;
-    //   }
-    // }
-    // if (shadowable) {
-    //   let { x = 0, y = 0, color = "", type = "", spread = 0, blur = 0 } =
-    //     shadow || {};
-    //   styles[
-    //     "box-shadow"
-    //   ] = `${x}px ${y}px ${blur}px ${spread}px ${color} ${type}`;
-    // }
-    // if (textShadowable) {
-    //   let { x = 0, y = 0, color = "", blur = 0 } = textShadow || {};
-    //   styles["text-shadow"] = `${x}px ${y}px ${blur}px ${color}`;
-    // }
-    // // left = minLeft;
-    // // top = minTop;
-    // styles["width"] = `${width}px`;
-    // styles["height"] = `${height}px`;
-    // if (borderTop) {
-    //   if (borderStyle) {
-    //     styles["border-top-style"] = borderStyle;
-    //   }
-    //   styles["border-top-width"] = `${borderWidth}px`;
-    //   if (borderColor) {
-    //     styles["border-top-color"] = borderColor;
-    //   }
-    // } else {
-    //   styles["border-top"] = "none";
-    // }
-    // if (borderBottom) {
-    //   if (borderStyle) {
-    //     styles["border-bottom-style"] = borderStyle;
-    //   }
-    //   styles["border-bottom-width"] = `${borderWidth}px`;
-    //   if (borderColor) {
-    //     styles["border-bottom-color"] = borderColor;
-    //   }
-    // } else {
-    //   styles["border-bottom"] = "none";
-    // }
-    // if (borderLeft) {
-    //   if (borderStyle) {
-    //     styles["border-left-style"] = borderStyle;
-    //   }
-    //   styles["border-left-width"] = `${borderWidth}px`;
-    //   if (borderColor) {
-    //     styles["border-left-color"] = borderColor;
-    //   }
-    // } else {
-    //   styles["border-left"] = "none";
-    // }
-    // if (borderRight) {
-    //   if (borderStyle) {
-    //     styles["border-right-style"] = borderStyle;
-    //   }
-    //   styles["border-right-width"] = `${borderWidth}px`;
-    //   if (borderColor) {
-    //     styles["border-right-color"] = borderColor;
-    //   }
-    // } else {
-    //   styles["border-right"] = "none";
-    // }
-    // styles[
-    //   "border-radius"
-    // ] = `${borderRadiusTopLeft}px ${borderRadiusTopRight}px ${borderRadiusBottomRight}px ${borderRadiusBottomLeft}px`;
-
-    // if (color) {
-    //   styles["color"] = color;
-    // }
-    // if (fontSize) {
-    //   styles["font-size"] = `${fontSize}px`;
-    // }
-    // if (fontFamily) {
-    //   styles["font-family"] = `${fontFamily}`;
-    // }
-    // if (fontWeight) {
-    //   styles["font-weight"] = fontWeight;
-    // }
-    // if (fontStyle) {
-    //   styles["font-style"] = fontStyle;
-    // }
-    // if (textDecoration) {
-    //   styles["text-decoration"] = textDecoration;
-    // }
-    // if (backgroundType == "purity") {
-    //   //纯色
-    //   if (backgroundColor) {
-    //     styles["background-color"] = backgroundColor;
-    //   }
-    //   if (backgroundImage) {
-    //     styles["background-image"] = `url(${this.$loadImgUrl(
-    //       backgroundImage
-    //     )})`;
-    //     if (backgroundRepeat) {
-    //       styles["background-repeat"] = backgroundRepeat;
-    //     }
-    //     if (backgroundSize) {
-    //       styles["background-size"] = backgroundSize;
-    //     }
-    //   }
-    // } else if (backgroundType == "gradient") {
-    //   //渐变
-    //   styles = { ...styles, ...gradientStyle(info) };
-    // }
+    // bmCommon.log(
+    //   "panel comStyle比较后",
+    //   minLeft,
+    //   minTop,
+    //   "maxLeft=",
+    //   maxLeft,
+    //   "maxTop=",
+    //   maxTop
+    // );
+    // info.left = minLeft;
+    // info.top = minTop;
     return styles || {};
   }
 

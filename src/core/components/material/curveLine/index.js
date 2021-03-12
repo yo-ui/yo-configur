@@ -15,6 +15,10 @@ class Text extends Component {
     // info.vboxY = y1;
     gradientStyle.gradientId = bmCommon.uuid();
     this.refresh();
+    // if (parentId) {
+    //   let obj = window.bm_widgetMap[parentId];
+    //   obj?.refresh();
+    // }
   }
 
   caculateBox() {
@@ -23,10 +27,18 @@ class Text extends Component {
     let $container = $(`#${id}`);
     let $line = $container.find(".line");
     let com = $line[0];
+    let zoom = Canvas.getZoom();
     let rect = com?.getBoundingClientRect() || {};
-    let { width = 0, height = 0 } = rect || {};
-    info._width = width;
-    info._height = height;
+    let { width = 0, height = 0, left = 0, top = 0 } = rect || {};
+    let canvas_content = document.getElementById("canvas_content");
+    let box = canvas_content?.getBoundingClientRect() || {};
+    let { x = 0, y = 0 } = box || {};
+    info._left = (left - x) / zoom;
+    info._top = (top - y) / zoom;
+    info._width = width / zoom;
+    info._height = height / zoom;
+    // bmCommon.log("获取到materiaCurvelLine", rect);
+    // window.bm_widgetMap[id] = this;
   }
 
   //组件样式
@@ -361,7 +373,7 @@ class Text extends Component {
   refresh() {
     super.refresh();
     // this.reloadSize();
-    this.caculateBox();
+    // this.caculateBox();
     let { info = {} } = this;
     let {
       x1 = 0,
@@ -407,14 +419,20 @@ class Text extends Component {
     Text.mousedownEvent(e, "right");
   }
   static mousedownEvent(e, direction) {
-    e.stopPropagation();
-    e.preventDefault();
     let canvas = Canvas.getCanvas();
     let { action = "" } = canvas || {};
-    if (action == "move") {
+    bmCommon.log("curveline move==", action);
+    if (action != "select") {
       //画布移动不能操作线
       return;
     }
+    let bm_active_com_id = window.bm_active_com_id;
+    let { id = "" } = Text;
+    if (bm_active_com_id != id) {
+      return;
+    }
+    e.stopPropagation();
+    e.preventDefault();
     let pos = bmCommon.getMousePosition(e);
     let { x = "", y = "" } = pos || {};
     Text.direction = direction;

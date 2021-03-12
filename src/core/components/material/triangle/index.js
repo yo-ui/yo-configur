@@ -142,14 +142,8 @@ class Display extends Component {
       (styles["-ms-transform"] = `${scale}`),
       (styles["-o-transform"] = `${scale}`),
       (styles["-moz-transform"] = `${scale}`);
-
-    // if (width) {
     styles["width"] = `${width}px`;
-
-    // }
-    // if (height) {
     styles["height"] = `${height}px`;
-
     return styles || {};
   }
 
@@ -405,11 +399,7 @@ class Display extends Component {
     Display.mousedownEvent(e, "center");
   }
   static mousedownEvent(e, direction) {
-    e.stopPropagation();
-    e.preventDefault();
     // let { info = {} } = this;
-    let pos = bmCommon.getMousePosition(e);
-    let { x = "", y = "" } = pos || {};
     // let {
     //   width: originWidth = "",
     //   height: originHeight = "",
@@ -417,6 +407,23 @@ class Display extends Component {
     //   top,
     //   rotate: originRotate = ""
     // } = info || {};
+
+    let canvas = Canvas.getCanvas();
+    let { action = "" } = canvas || {};
+    bmCommon.log("curveline move==", action);
+    if (action != "select") {
+      //画布移动不能操作线
+      return;
+    }
+    let bm_active_com_id = window.bm_active_com_id;
+    let { id = "" } = Text;
+    if (bm_active_com_id != id) {
+      return;
+    }
+    e.stopPropagation();
+    e.preventDefault();
+    let pos = bmCommon.getMousePosition(e);
+    let { x = "", y = "" } = pos || {};
     Display.direction = direction;
     Display.startX = x;
     Display.startY = y;
