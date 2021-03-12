@@ -108,8 +108,8 @@ class Panel extends Component {
     if (maxTop < maxBottom) {
       maxTop = maxBottom;
     }
-    width = maxLeft || 10;
-    height = maxTop || 10;
+    width = maxLeft > 10 ? maxLeft : 10;
+    height = maxTop > 10 ? maxTop : 10;
     let styles = {
       ...super.comStyle()
     };
