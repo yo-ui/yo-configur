@@ -109,14 +109,15 @@ class CanvasEvent {
       let pos = bmCommon.getMousePosition(e);
       let { x = "", y = "" } = pos || {};
       bmCommon.log("mousemoveEvent组件移动", x, y, zoom);
-      state.startX = x;
-      state.startY = y;
       var dx = x - startX;
       var dy = y - startY;
       if (!(Math.abs(dx) > 1 || Math.abs(dy) > 1)) {
         state.moving = false;
         return;
       }
+      state.moving = false;
+      state.startX = x;
+      state.startY = y;
       dx = dx / zoom;
       dy = dy / zoom;
       let obj = window.bm_widgetMap[id];
@@ -148,7 +149,6 @@ class CanvasEvent {
         // window.bm_widgetMap[id] = obj;
       }
       bmCommon.log("comMovingSetTimeoutId 定时器正在处理");
-      state.moving = false;
     }, 30);
   }
   // 鼠标松开事件

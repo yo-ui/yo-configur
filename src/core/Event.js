@@ -133,8 +133,8 @@ class Event {
     let _com = $(`#${id}`);
     let bmComBox = _com[0];
     state.moving = false;
-    state.startX = x;
-    state.startY = y;
+    // state.startX = x;
+    // state.startY = y;
     var dx = x - startX;
     var dy = y - startY;
     dx = dx / zoom;
@@ -312,20 +312,16 @@ class Event {
       let rect = bmComBox?.getBoundingClientRect() || {};
       let { left = 0, top = 0, width = 0, height = 0 } = rect || {};
       let center = { x: left + width / 2, y: top + height / 2 };
-      // let pos = bmCommon.getMousePosition(e);
-      // let y0 = startY - center.y,
-      //   x0 = startX - center.x,
-      //   y = pos.y - center.y,
-      //   x = pos.x - center.x;
-      // state.startX = pos.x;
-      // state.startY = pos.y;
+      let pos = bmCommon.getMousePosition(e);
       let y0 = startY - center.y,
         x0 = startX - center.x,
-        y = y - center.y,
-        x = x - center.x;
+        y = pos.y - center.y,
+        x = pos.x - center.x;
       let deg = Math.atan2(y, x) - Math.atan2(y0, x0);
       let angle = (180 * deg) / Math.PI;
       rotate = (angle + originRotate) % 360;
+      state.startX = pos.x;
+      state.startY = pos.y;
       state.originRotate = rotate;
       activeCom.rotate = rotate;
       obj.refresh({ transform: `rotate(${rotate})` });
