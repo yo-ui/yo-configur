@@ -49,8 +49,8 @@ class StageEvent {
     let { startX, startY, originX, originY } = state;
     let zoom = Canvas.getZoom();
     let canvas = Canvas.getCanvas();
-    state.startX = x;
-    state.startY = y;
+    // state.startX = x;
+    // state.startY = y;
     var dx = x - startX;
     var dy = y - startY;
     dx = dx / zoom;
