@@ -537,8 +537,8 @@ class CanvasEvent {
     //   // left = ((w_width - width) * scale) / 2;
     //   // top = (w_height - height) / 2;
     // }
-    // canvas.left = left;
-    // canvas.top = top;
+    canvas.left = 0;
+    canvas.top = 0;
     Canvas.setZoom(scale);
     // });
   }

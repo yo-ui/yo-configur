@@ -702,10 +702,10 @@
 </template>
 
 <script>
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 // import {componentLibrary} from "@/common/conf/library";
 import { Constants } from "@/common/env";
-const ASSISTMAP = Constants.COMPONENTLIBRARYMAP;
+// const ASSISTMAP = Constants.COMPONENTLIBRARYMAP;
 // Constants.COMPONENTLIBRARY.forEach(item => {
 //   let { code = "", comList = [] } = item || {};
 //   if (code == "assist") {
@@ -715,7 +715,7 @@ const ASSISTMAP = Constants.COMPONENTLIBRARYMAP;
 //     });
 //   }
 // });
-const state = {};
+// const state = {};
 const { mapActions, mapMutations, mapGetters } = Vuex;
 export default {
   name: "canvasStyleCom",

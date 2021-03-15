@@ -1,4 +1,4 @@
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import Canvas from "@/core/Canvas";
 

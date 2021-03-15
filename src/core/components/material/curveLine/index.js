@@ -467,11 +467,12 @@ class Text extends Component {
       //画布移动不能操作线
       return;
     }
-    let bm_active_com_id = window.bm_active_com_id;
+    // let bm_active_com_id = window.bm_active_com_id;
     let { id = "" } = Text;
-    if (bm_active_com_id != id) {
-      return;
-    }
+    // if (bm_active_com_id != id) {
+    //   return;
+    // }
+    CanvasEvent.selectComAction(id);
     e.stopPropagation();
     e.preventDefault();
     let pos = bmCommon.getMousePosition(e);
