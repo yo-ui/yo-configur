@@ -154,6 +154,7 @@ class Canvas {
       len = widgetList.length;
     for (; i < len; i++) {
       let item = widgetList[i];
+      item.id = bmCommon.uuid();
       let {
         alias = "",
         type = "",
@@ -199,6 +200,8 @@ class Canvas {
       let { length = 0 } = children || [];
       if (length > 0) {
         children.forEach(item => {
+          item.parentId = parentId;
+          item.id = parentId + bmCommon.uuid();
           let {
             alias = "",
             type = "",
@@ -220,8 +223,6 @@ class Canvas {
             dataCode = ""
           } = data || {};
           item = { ...data, ...item };
-          item.parentId = parentId;
-          item.id = parentId + bmCommon.uuid();
           // for (let i in data) {
           //   // if (!item[i]) {
           //     item[i] = data[i];
@@ -281,6 +282,8 @@ class Canvas {
   }
   // 取消选中
   static unactive(id) {
+    // let bm_active_com_ids = window.bm_active_com_ids;
+    // let { length = 0 } = bm_active_com_ids || [];
     if (id) {
       let _oldCom = $(`#${id}`);
       _oldCom.removeClass("active");
@@ -288,10 +291,14 @@ class Canvas {
     } else {
       let _oldCom = $("#canvas_content .bm-component-com.active");
       _oldCom.removeClass("active");
-      let order = _oldCom.data("order");
-      if (order !== undefined) {
-        _oldCom.css({ "z-index": order });
-      }
+      // if (length < 2) {
+      _oldCom.each((_, item) => {
+        let order = $(item).data("order");
+        if (order !== undefined) {
+          $(item).css({ "z-index": order });
+        }
+      });
+      // }
       _oldCom.find(".cover").show();
     }
     WidgetList.unactive();
@@ -304,15 +311,25 @@ class Canvas {
   // 激活选中
   static active(id, flag = true) {
     let _com = $(`#${id}`);
+    let bm_active_com_ids = window.bm_active_com_ids;
+    let { length = 0 } = bm_active_com_ids || [];
     _com.removeClass("hide").addClass("active");
     let oldId = window.bm_active_com_id;
     if (oldId != id) {
       _com.find(".cover").show();
-      `0`;
+      if (oldId) {
+        let _oldCom = $(`#${oldId}`);
+        let order = _oldCom.data("order");
+        if (order !== undefined) {
+          _oldCom.css({ "z-index": order });
+        }
+      }
     }
     let order = _com.css("z-index");
     _com.data("order", order);
-    _com.css({ "z-index": 999999 });
+    if (length < 2) {
+      _com.css({ "z-index": 999999 });
+    }
     WidgetList.active(id, flag);
   }
   // 激活选中

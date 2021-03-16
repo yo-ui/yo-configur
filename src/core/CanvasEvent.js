@@ -215,6 +215,9 @@ class CanvasEvent {
       // 绑定移动事件：只有从属于 page 的，除背景图以外的元件才能移动
       let obj = window.bm_widgetMap[id] || {};
       let { info: _activeCom = {} } = obj;
+
+      //如果存在父级则选中的应该是父级
+
       //如果 shift ctrl 被按住则进行 多选和取消选择
       if (shiftKey || ctrlKey) {
         CanvasEvent.selectComsAction(id); //选中组件
