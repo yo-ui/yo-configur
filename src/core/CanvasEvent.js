@@ -753,7 +753,7 @@ class CanvasEvent {
   static createHistoryAction() {
     let canvas = Canvas.getCanvas();
     let widgetList = Canvas.getWidgetList();
-    Canvas.setHistoryIndex(0);
+    // Canvas.setHistoryIndex(0);
     let historyData = {
       widgetList: [...bmCommon.clone(widgetList)],
       canvas: { ...bmCommon.clone(canvas) }

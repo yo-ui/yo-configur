@@ -349,6 +349,10 @@ class Canvas {
   static setHistoryIndex(item) {
     $vm.$store.commit("canvas/setHistoryIndex", item);
   }
+  //获取历史记录索引
+  static getHistoryIndex() {
+    return $vm.$store.getters["canvas/getHistoryIndex"];
+  }
 
   static getHistoryList() {
     return Canvas.historyList || [];
@@ -380,11 +384,14 @@ class Canvas {
   }
   static setHistoryList(item) {
     let { historyList = [] } = Canvas;
+    let histroyIndex = Canvas.getHistoryIndex();
+    historyList = historyList.slice(histroyIndex, 20);
     historyList.unshift(item);
-    Canvas.historyList = historyList.slice(0, 20);
+    Canvas.historyList = historyList || [];
+    Canvas.setHistoryIndex(0);
     $vm.$store.commit(
       "canvas/setHistoryList",
-      historyList.map((item, index) => index)
+      historyList.map((_, index) => index)
     );
   }
 
@@ -596,7 +603,7 @@ class Canvas {
         if (JSON.stringify(info) !== JSON.stringify(item)) {
           //相等则不处理
           bmCommon.log("不相等,历史id=", item.id, "--当前id=", info.id);
-          Canvas.refresh(info);
+          Canvas.refresh(item);
         }
         return false;
       } else {
