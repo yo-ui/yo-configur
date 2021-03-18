@@ -212,7 +212,7 @@ let common = {
     }
     var x = e.pageX || e.clientX;
     var y = e.pageY || e.clientY;
-    common.log("getMousePosition=", e.clientX, e.pageX, e.clientY, e.pageY);
+    // common.log("getMousePosition=", e.clientX, e.pageX, e.clientY, e.pageY);
     return {
       x: (x - offset.x) / offset.ratio,
       y: (y - offset.y) / offset.ratio
@@ -220,16 +220,25 @@ let common = {
   },
   //获取锁定角度的点  默认45度
   snapToAngle(x1, y1, x2, y2) {
-    const snap = Math.PI / 4; // 45 degrees
+    // const snap = Math.PI / 4; // 45 degrees
+    const snap = 45; // 45 degrees
     const dx = x2 - x1;
     const dy = y2 - y1;
-    const angle = Math.atan2(dy, dx);
+    const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
     const dist = Math.sqrt(dx * dx + dy * dy);
     const snapangle = Math.round(angle / snap) * snap;
+    common.log(
+      "snapToAngle 当前角度=",
+      angle,
+      ",固定角度=",
+      snapangle,
+      "弧度=",
+      (snapangle * Math.PI) / 180
+    );
 
     return {
-      x: x1 + dist * Math.cos(snapangle),
-      y: y1 + dist * Math.sin(snapangle),
+      x: x1 + dist * Math.cos((snapangle * Math.PI) / 180),
+      y: y1 + dist * Math.sin((snapangle * Math.PI) / 180),
       a: snapangle
     };
   },

@@ -363,6 +363,8 @@ export default {
   methods: {
     ...mapMutations({
       setUserInfo: "setUserInfo",
+      setLeftMenuStatus: "canvas/setLeftMenuStatus",
+      setRightMenuStatus: "canvas/setRightMenuStatus",
       setZoom: "canvas/setZoom"
     }),
     ...mapActions({

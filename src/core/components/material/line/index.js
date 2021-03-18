@@ -485,6 +485,13 @@ class Text extends Component {
     Text.direction = direction;
     Text.startX = x;
     Text.startY = y;
+    let obj = window.bm_widgetMap[id];
+    let { info = {} } = obj || {};
+    let { x1 = 0, x2 = 0, y1 = 0, y2 = 0 } = info || {};
+    info._x1 = x1;
+    info._x2 = x2;
+    info._y1 = y1;
+    info._y2 = y2;
     $(document).on("mousemove", Text.mousemoveEvent);
     $(document).on("mouseup", Text.mouseupEvent);
   }
@@ -520,7 +527,8 @@ class Text extends Component {
     let { info = {} } = obj || {};
     let dx = x - startX;
     let dy = y - startY;
-    let { x1 = 0, x2 = 0, y1 = 0, y2 = 0 } = info || {};
+    let { x1 = 0, x2 = 0, y1 = 0, y2 = 0, _x1 = 0, _x2 = 0, _y1 = 0, _y2 = 0 } =
+      info || {};
     Text.startX = x;
     Text.startY = y;
     dx = dx / zoom;
@@ -529,7 +537,10 @@ class Text extends Component {
       let __x2 = x2 + dx;
       let __y2 = y2 + dy;
       if (shiftKey) {
-        let xya = bmCommon.snapToAngle(x1, y1, __x2, __y2);
+        info._x2 = _x2 + dx;
+        info._y2 = _y2 + dy;
+        // let xya = bmCommon.snapToAngle(x1, y1, __x2, __y2);
+        let xya = bmCommon.snapToAngle(x1, y1, _x2 + dx, _y2 + dy);
         __x2 = xya.x;
         __y2 = xya.y;
       }
@@ -540,7 +551,10 @@ class Text extends Component {
       let __x1 = x1 + dx;
       let __y1 = y1 + dy;
       if (shiftKey) {
-        let xya = bmCommon.snapToAngle(x2, y2, __x1, __y1);
+        info._x1 = _x1 + dx;
+        info._y1 = _y1 + dy;
+        // let xya = bmCommon.snapToAngle(x2, y2, __x1, __y1);
+        let xya = bmCommon.snapToAngle(x2, y2, _x1 + dx, _y1 + dy);
         __x1 = xya.x;
         __y1 = xya.y;
       }
