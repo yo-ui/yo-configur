@@ -1,4 +1,4 @@
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
 // 电表
@@ -6,7 +6,9 @@ class Text extends Component {
   constructor(props) {
     super(props);
   }
-  init() {}
+  init() {
+    super.initEvent();
+  }
 
   //组件样式
 
@@ -327,20 +329,20 @@ class Text extends Component {
     return text;
   }
 
-  //加载数据
-  loadData() {
-    this.loadDeviceInfo();
-  }
+  // //加载数据
+  // loadData() {
+  //   this.loadDeviceInfo();
+  // }
 
-  //刷新内容
-  refreshContent(data) {
-    let { point } = data || {};
-    if (point) {
-      let { value = "" } = point || {};
-      this.pointValue = value;
-      this.refresh();
-    }
-  }
+  // //刷新内容
+  // refreshContent(data) {
+  //   let { point } = data || {};
+  //   if (point) {
+  //     let { value = "" } = point || {};
+  //     this.pointValue = value;
+  //     this.refresh();
+  //   }
+  // }
 
   refresh() {
     super.refresh();

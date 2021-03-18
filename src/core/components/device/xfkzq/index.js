@@ -7,6 +7,8 @@ class Display extends Component {
     super(props);
   }
   init() {
+    super.initEvent();
+
     let { info = {} } = this;
     // bmCommon.log("kg mounted=", content);
     let { content = "" } = info || {};
@@ -407,7 +409,7 @@ class Display extends Component {
             0,
             "..."
           )
-    }}
+    }
   </text>
   <text
     transform="matrix(1 0 0 1 27 44)"

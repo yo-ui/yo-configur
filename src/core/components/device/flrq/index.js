@@ -1,4 +1,4 @@
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
 // 风冷热器 风冷热泵机组
@@ -8,6 +8,8 @@ class Text extends Component {
     super(props);
   }
   init() {
+    super.initEvent();
+
     this.refresh();
   }
 

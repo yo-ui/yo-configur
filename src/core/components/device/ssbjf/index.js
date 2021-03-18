@@ -1,4 +1,4 @@
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
 // 湿式报警阀
@@ -8,6 +8,8 @@ class Text extends Component {
     super(props);
   }
   init() {
+    super.initEvent();
+
     this.refresh();
   }
 

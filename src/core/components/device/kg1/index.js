@@ -1,4 +1,4 @@
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
 // 开关1
@@ -6,7 +6,9 @@ class Text extends Component {
   constructor(props) {
     super(props);
   }
-  init() {}
+  init() {
+    super.initEvent();
+  }
 
   //组件样式
 

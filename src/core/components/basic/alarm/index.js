@@ -1,4 +1,4 @@
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
 
@@ -6,13 +6,14 @@ class Text extends Component {
   constructor(props) {
     super(props);
   }
-  init() {}
+  init() {
+    super.initEvent();
+  }
 
   //组件样式
 
   template() {
     let { info = {} } = this;
-    let { id = "", width = 0, height = 0 } = info || {};
     return super.wrap(
       { info },
       `

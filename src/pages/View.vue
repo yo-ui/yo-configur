@@ -29,33 +29,12 @@
           >
             <div class="bg" :style="bgStyle"></div>
             <div id="canvas_content" class="canvas-content"></div>
-            <!-- <template v-for="(item, index) in widgetList">
-              <bm-com
-                class="view"
-                :data-type="item.type"
-                :data-id="item.id"
-                :info="item"
-                :key="item.id + index"
-              >
-                <template v-if="item.children && item.children.length > 0">
-                  <template v-for="(_item, _index) in item.children">
-                    <bm-com
-                      class="view"
-                      :data-type="_item.type"
-                      :data-id="_item.id"
-                      :info="_item"
-                      :key="_item.id + _index"
-                    >
-                    </bm-com>
-                  </template>
-                </template>
-              </bm-com>
-            </template> -->
           </div>
         </div>
       </div>
     </div>
     <bm-control ref="bmControl"></bm-control>
+    <bm-device-info ref="bmDeviceInfo"></bm-device-info>
     <bm-camera-previewer ref="bmCameraPreviewer"></bm-camera-previewer>
   </div>
 </template>
@@ -93,11 +72,11 @@ export default {
     bmCameraPreviewer: () =>
       import(
         /* webpackChunkName: "iot-camera-previewer-com" */ "@/components/camera-previewer"
+      ),
+    bmDeviceInfo: () =>
+      import(
+        /* webpackChunkName: "bm-device-info" */ "@/components/data/device-info.vue"
       )
-    // bmDeviceInfo: () =>
-    //   import(
-    //     /* webpackChunkName: "bm-device-info" */ "@/components/data/device-info.vue"
-    //   )
   },
   computed: {
     ...mapGetters({
@@ -370,6 +349,10 @@ export default {
       //注册显示控制处理事件
       $vm.$on("control", item => {
         this.$refs.bmControl.show(item);
+      });
+      //注册显示设备控制弹窗事件
+      $vm.$on("show-device-info", item => {
+        this.$refs.bmDeviceInfo.show(item);
       });
       //注册设备点位参数事件
       $vm.$on("deviceList", item => {

@@ -327,20 +327,20 @@ class Text extends Component {
     return text;
   }
 
-  //加载数据
-  loadData() {
-    this.loadDeviceInfo();
-  }
+  // //加载数据
+  // loadData() {
+  //   this.loadDeviceInfo();
+  // }
 
-  //刷新内容
-  refreshContent(data) {
-    let { point } = data || {};
-    if (point) {
-      let { value = "" } = point || {};
-      this.pointValue = value;
-      this.refresh();
-    }
-  }
+  // //刷新内容
+  // refreshContent(data) {
+  //   let { point } = data || {};
+  //   if (point) {
+  //     let { value = "" } = point || {};
+  //     this.pointValue = value;
+  //     this.refresh();
+  //   }
+  // }
 
   refresh() {
     super.refresh();

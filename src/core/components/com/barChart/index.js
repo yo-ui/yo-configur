@@ -15,6 +15,8 @@ class Text extends Component {
     //   theme: "macarons",
     //   initOptions: { renderer: "svg" }
     // });
+    super.initEvent();
+
     this.loadVueTemplate();
     let { info = {} } = this;
     let { bindData = {} } = info || {};

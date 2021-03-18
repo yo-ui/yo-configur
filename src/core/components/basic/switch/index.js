@@ -6,7 +6,9 @@ class Text extends Component {
   constructor(props) {
     super(props);
   }
-  init() {}
+  init() {
+    super.initEvent();
+  }
 
   //组件样式
 
@@ -144,30 +146,30 @@ class Text extends Component {
     return contentText;
   }
 
-  controlEvent() {
-    let { info = {}, pointCode = "" } = this;
-    let { content = false, bindData = {} } = info || {};
-    let { deviceId = "" } = bindData || {};
-    if (!deviceId) {
-      info.content = !content;
-      return;
-    }
-    let point = pointCode;
-    let value = !content ? 1 : 0;
-    $vm.$emit("control", {
-      deviceId,
-      point,
-      value,
-      callback: flag => {
-        if (flag) {
-          info.content = !content;
-        } else {
-          info.content = content; //如果取消则重置结果
-        }
-        this.refresh();
-      }
-    });
-  }
+  // controlEvent() {
+  //   let { info = {}, pointCode = "" } = this;
+  //   let { content = false, bindData = {} } = info || {};
+  //   let { deviceId = "" } = bindData || {};
+  //   if (!deviceId) {
+  //     info.content = !content;
+  //     return;
+  //   }
+  //   let point = pointCode;
+  //   let value = !content ? 1 : 0;
+  //   $vm.$emit("control", {
+  //     deviceId,
+  //     point,
+  //     value,
+  //     callback: flag => {
+  //       if (flag) {
+  //         info.content = !content;
+  //       } else {
+  //         info.content = content; //如果取消则重置结果
+  //       }
+  //       this.refresh();
+  //     }
+  //   });
+  // }
 
   //加载数据
   loadData() {

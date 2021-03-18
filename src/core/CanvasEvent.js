@@ -34,12 +34,30 @@ class CanvasEvent {
       // _viewBox.on("mousewheel DOMMouseScroll", CanvasEvent.mouseScrollEvent);
     } else {
       // $(document).on("mousewheel DOMMouseScroll", CanvasEvent.mouseScrollEvent);
+      _viewBox.on("mousedown", ".bm-component-com", CanvasEvent.clickEvent);
     }
     $(".content-box").on(
       "mousewheel DOMMouseScroll",
       CanvasEvent.mouseScrollEvent
     );
     //滚动事件
+  }
+
+  static clickEvent(e) {
+    // bmCommon.log("0---=--=clickEvent");
+    // let {
+    //   target
+    //   // button = 0
+    // } = e;
+    e.stopPropagation;
+    e.preventDefault();
+    let id = $(this).attr("id");
+    let obj = window.bm_widgetMap[id];
+    let { info = {} } = obj || {};
+    let { bindData = {}, infoType = "" } = info || {};
+    if (infoType == "device") {
+      $vm.$emit("show-device-info", { ...bindData, infoType });
+    }
   }
 
   static mouseScrollEvent(e) {

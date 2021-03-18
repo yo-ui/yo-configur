@@ -5,7 +5,9 @@ class DynamicText extends Component {
   constructor(props) {
     super(props);
   }
-  init() {}
+  init() {
+    super.initEvent();
+  }
 
   // //组件样式
   unitStyle() {

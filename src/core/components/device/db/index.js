@@ -8,6 +8,8 @@ class Text extends Component {
     super(props);
   }
   init() {
+    super.initEvent();
+
     this.refresh();
   }
 

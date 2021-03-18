@@ -8,6 +8,8 @@ class Text extends Component {
     super(props);
   }
   init() {
+    super.initEvent();
+
     let { info = {} } = this;
     // bmCommon.log("kg mounted=", content);
     let { content = "" } = info || {};

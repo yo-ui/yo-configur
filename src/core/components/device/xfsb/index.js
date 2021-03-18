@@ -1,4 +1,4 @@
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/display.less";
 // 消防水泵
@@ -8,6 +8,8 @@ class Display extends Component {
     super(props);
   }
   init() {
+    super.initEvent();
+
     this.refresh();
   }
 

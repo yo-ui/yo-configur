@@ -7,6 +7,8 @@ class Text extends Component {
     super(props);
   }
   init() {
+    super.initEvent();
+
     let { info = {} } = this;
     info.content = 0;
     this.refresh();

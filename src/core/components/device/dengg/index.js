@@ -1,4 +1,4 @@
-import bmCommon from "@/common/common";
+// import bmCommon from "@/common/common";
 import Component from "@/core/Component";
 // import "../../../../assets/less/components/component/basic/hScroll.less";
 // 灯管
@@ -7,6 +7,8 @@ class Text extends Component {
     super(props);
   }
   init() {
+    super.initEvent();
+
     let { info = {} } = this;
     info.content = false;
     this.refresh();
