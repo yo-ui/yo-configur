@@ -85,6 +85,7 @@ class DynamicText extends Component {
         unitText = unit;
       } else {
         text = $vm.$toBig(value || "", decimal);
+        unitText = unit;
       }
     }
     return super.wrap(
@@ -143,6 +144,7 @@ class DynamicText extends Component {
         unitText = unit;
       } else {
         text = $vm.$toBig(value || "", decimal);
+        unitText = unit;
       }
     }
     let $container = $(`#${id}>.component`);
