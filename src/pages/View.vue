@@ -515,7 +515,7 @@ export default {
             $vm.$emit(`devicePointEvent_${id}`, {
               device: {
                 deviceId,
-                pointList
+                points: pointList
               },
               point: pointObj
             });

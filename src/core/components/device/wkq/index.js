@@ -391,16 +391,23 @@ class Text extends Component {
 
   //刷新内容
   refreshContent(data) {
+    // let { info = {} } = this;
+    // let { point } = data || {};
+    // if (point) {
+    //   let { value = "" } = point || {};
+    //   info.content = value == 1 ? true : false;
+    //   this.refresh();
+    // }
     let { info = {}, pointCode = "" } = this;
     let { bindData = {} } = info || {};
     let { devicePoint = "" } = bindData || {};
     let { device } = data || {};
     let { points: pointList = [] } = device || {};
     pointList.forEach(item => {
-      let { id = "", value = "" } = item || {};
-      if (devicePoint == id) {
+      let { point = "", value = "" } = item || {};
+      if (devicePoint == point) {
         this.point = item || {};
-      } else if (id == pointCode) {
+      } else if (point == pointCode) {
         info.content = value == 1 ? true : false;
       }
     });

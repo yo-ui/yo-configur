@@ -567,13 +567,21 @@ class Component {
       if (!devicePoint) {
         return;
       }
-      $vm.$on(`devicePointEvent_${id}`, ({ point = {} }) => {
+      $vm.$on(`devicePointEvent_${id}`, ({ point = {}, device = {} }) => {
         bmCommon.log(
           `websock 接收设备信息devicePointEvent_${id}`,
           info.type,
           point
         );
-        this.refreshContent({ point });
+        //{
+        // 	"acqTime":"2021-03-18 12:39:02",
+        // 	"descr":"风机模式",
+        // 	"name":"综合楼K2F-6（空调温控器）",
+        // 	"point":"FM",
+        // 	"unit":"",
+        // 	"value":"0"
+        // }
+        this.refreshContent({ point, device });
         // let { value = "", unit = "" } = point || {};
         // info.content = value;
         // info.unit = unit;

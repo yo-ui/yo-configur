@@ -447,10 +447,10 @@ class Display extends Component {
     let { device } = data || {};
     let { points: pointList = [] } = device || {};
     pointList.forEach(item => {
-      let { id = "", value = "" } = item || {};
-      if (devicePoint == id) {
+      let { point = "", value = "" } = item || {};
+      if (devicePoint == point) {
         this.point = item || {};
-      } else if (id == pointCode) {
+      } else if (point == pointCode) {
         info.content = value == 1 ? true : false;
       }
     });
