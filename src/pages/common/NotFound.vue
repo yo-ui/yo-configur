@@ -1,6 +1,6 @@
 <template>
   <div class="bm-404-com">
-    <img src="/static/img/common/logo_iot.svg" class="logo" />
+    <!-- <img src="/static/img/common/logo_iot.svg" class="logo" /> -->
     <div class="circle"></div>
     <div class="picture" :class="{ error: pageType == 'error' }">
       <span v-if="pageType == 'error'">{{ $lang(errorCode) }}</span>

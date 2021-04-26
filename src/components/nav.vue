@@ -246,10 +246,10 @@
         </el-button>
       </div>
       <div class="right">
-        <!-- <el-button @click.stop="dataEvent">
+        <el-button @click.stop="dataEvent">
           <i class="el-icon-data-analysis"></i>
           数据表
-        </el-button> -->
+        </el-button>
         <el-button @click.stop="clearEvent">
           <i class="el-icon-toilet-paper"></i>
           {{ $lang("清缓存") }}

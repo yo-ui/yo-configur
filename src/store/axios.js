@@ -137,7 +137,7 @@ async function request(type, options, callback) {
             //管理平台跳转过来
             href = `${manageLogin}?redirecturl=${encodeURIComponent(href)}`;
           }
-          vm.$openPage(href);
+          // vm.$openPage(href);
           reject();
         } else if (code == Constants.CODES.REDIRECT) {
           // let url =

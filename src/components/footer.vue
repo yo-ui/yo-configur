@@ -1,6 +1,6 @@
 <template>
   <div class="bm-footer-com">
-    ©Copyright 2020 卜米物联
+    ©Copyright 2020 Eric
   </div>
 </template>
 
