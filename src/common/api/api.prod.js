@@ -13,13 +13,6 @@ module.exports = {
   // },
   routerMode: "history",
   axioTimeout: 1000 * 15, //超时时间为15s
-  imageServer: "//pic.energyiot.cn/",
-  wsServiceHost: "https://eiot.energyiot.cn/service", //后端websocket接口地址
-  wsManageHost: "https://m.energyiot.cn/manage", //后端websocket接口地址
-  serviceHost: "/service", //后端接口地址
-  manageHost: "/manage", //后端接口地址
-  serviceLogin: "https://eiot.energyiot.cn/login",
-  manageLogin: "https://m.energyiot.cn/login",
-  manageConfigur: "https://m.energyiot.cn/nav/configur",
+  imageServer: "//pic.xxx.cn/",
   debug: false
 };

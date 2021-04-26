@@ -81,7 +81,7 @@ router.beforeEach((to, from, next) => {
     $store.commit("setUserInfo", { ...userInfo, token });
   }
   if (docTitle) {
-    document.title = bmCommon.langKey(langObj, "能源云 | 组态平台"); //+langKey(langObj,docTitle)
+    document.title = bmCommon.langKey(langObj, "组态平台"); //+langKey(langObj,docTitle)
   }
   bmCommon.log("beforeEach,当前路由to=", to, ",from:", from);
   if (!RouterURL[name]) {

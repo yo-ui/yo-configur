@@ -197,7 +197,8 @@ export default {
     submitEvent() {
       this.$refs.ruleForm.validate((valid, msg) => {
         if (valid) {
-          this.loginAuthentFunc();
+          // this.loginAuthentFunc();
+          this.$jumpPage(this.$RouterURL.index.name);
         } else {
           if (msg) {
             for (let key in msg) {
@@ -210,61 +211,48 @@ export default {
           return false;
         }
       });
-    },
-    loginAuthentFunc() {
-      let { condition } = this;
-      if (this.loginAuthentStatus) {
-        return;
-      }
-      this.loginAuthentStatus = true;
-      this.loginAuthentAction({
-        loginName: condition.userName,
-        pwd: condition.password
-      })
-        .then(({ data }) => {
-          let { code = "", result = {}, message = "" } = data;
-          if (code == Constants.CODES.SUCCESS) {
-            let { user = {}, token = "" } = result || {};
-            // this.setRegisterUserInfo();
-            this.setUserInfo({ ...user, token });
-            let { $route = {} } = this;
-            // let { accountId = "" } = user || {};
-            let { query } = $route;
-            // this.accountMenuHandlerAction({
-            //   accountId,
-            //   navList: rolePermissionList
-            // });
-            // let accountSubMenuMap =
-            //   this.$store.getters["common/getAccountSubMenuMap"];
-            // let subMenuList = [];
-            // if (accountId) {
-            //   subMenuList = accountSubMenuMap(accountId);
-            //   if (!(subMenuList && subMenuList.length > 0)) {
-            //     subMenuList = accountSubMenuMap() || [];
-            //   }
-            // }
-            let { redirecturl = "" } = query;
-            redirecturl = decodeURIComponent(redirecturl);
-            if (redirecturl && redirecturl.indexOf("/login") != 0) {
-              this.$router.push(redirecturl);
-            } else {
-              //   if (subMenuList && subMenuList.length > 0) {
-              //     let item = subMenuList[0];
-              //     this.$jumpPage(item.url);
-              //   } else {
-              this.$jumpPage(this.$RouterURL.index.name);
-            }
-            // }
-          } else {
-            this.$$msgError(message || "登录失败");
-          }
-          this.loginAuthentStatus = false;
-        })
-        .catch(err => {
-          this.loginAuthentStatus = false;
-          bmCommon.error("登录失败！", err);
-        });
     }
+    // loginAuthentFunc() {
+    //   let { condition } = this;
+    //   if (this.loginAuthentStatus) {
+    //     return;
+    //   }
+    //   this.loginAuthentStatus = true;
+    //   this.loginAuthentAction({
+    //     loginName: condition.userName,
+    //     pwd: condition.password
+    //   })
+    //     .then(({ data }) => {
+    //       let { code = "", result = {}, message = "" } = data;
+    //       if (code == Constants.CODES.SUCCESS) {
+    //         let { user = {}, token = "" } = result || {};
+    //         // this.setRegisterUserInfo();
+    //         this.setUserInfo({ ...user, token });
+    //         let { $route = {} } = this;
+    //         // let { accountId = "" } = user || {};
+    //         let { query } = $route;
+    //         let { redirecturl = "" } = query;
+    //         redirecturl = decodeURIComponent(redirecturl);
+    //         if (redirecturl && redirecturl.indexOf("/login") != 0) {
+    //           this.$router.push(redirecturl);
+    //         } else {
+    //           //   if (subMenuList && subMenuList.length > 0) {
+    //           //     let item = subMenuList[0];
+    //           //     this.$jumpPage(item.url);
+    //           //   } else {
+    //           this.$jumpPage(this.$RouterURL.index.name);
+    //         }
+    //         // }
+    //       } else {
+    //         this.$$msgError(message || "登录失败");
+    //       }
+    //       this.loginAuthentStatus = false;
+    //     })
+    //     .catch(err => {
+    //       this.loginAuthentStatus = false;
+    //       bmCommon.error("登录失败！", err);
+    //     });
+    // }
   }
 };
 </script>

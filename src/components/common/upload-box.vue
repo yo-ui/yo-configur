@@ -186,9 +186,9 @@ export default {
       // let index = imageList.findIndex(_item => _item.id == item.id);
       // imageList.splice(index, 1);
       // this.setImageList(imageList);
-      this.entPicDelFunc({ id }, () => {
-        this.loadImageList();
-      });
+      // this.entPicDelFunc({ id }, () => {
+      //   this.loadImageList();
+      // });
     },
     cancelEvent() {
       this.showDialogStatus = false;
@@ -252,9 +252,9 @@ export default {
         bmCommon.log(imageList, fileName);
         // imageList.push(fileName);
         // this.setImageList(imageList);
-        this.entPicAddFunc({ picUrl: fileName }, () => {
-          this.loadImageList();
-        });
+        // this.entPicAddFunc({ picUrl: fileName }, () => {
+        //   this.loadImageList();
+        // });
       } else {
         this.$$msgError(message || "图片上传失败");
       }
@@ -368,7 +368,7 @@ export default {
           this.$$msgError("项目图片删除失败！");
           bmCommon.error("项目图片删除失败", err);
         });
-    },
+    }
     // //更新项目图片
     // entPicUpdateFunc(options, success, error) {
     //   let value = [];
@@ -399,34 +399,34 @@ export default {
     //     });
     // },
     //添加项目图片
-    entPicAddFunc(options, success, error) {
-      let value = [];
-      // let { condition } = this;
-      if (this._entPicAddStatus) {
-        return;
-      }
-      this._entPicAddStatus = true;
+    // entPicAddFunc(options, success, error) {
+    //   let value = [];
+    //   // let { condition } = this;
+    //   if (this._entPicAddStatus) {
+    //     return;
+    //   }
+    //   this._entPicAddStatus = true;
 
-      this.entPicAddAction(options)
-        .then(({ data }) => {
-          let { code = "", message = "" } = data || {};
-          if (code == Constants.CODES.SUCCESS) {
-            this.$$msgSuccess("项目图片更新成功！");
-            success && success(value);
-          } else {
-            this.$$msgError(message || "项目图片更新失败！");
-            // bmCommon.error(message || "项目图片更新失败");
-            error && error(value);
-          }
-          this._entPicAddStatus = false;
-        })
-        .catch(err => {
-          this._entPicAddStatus = false;
-          error && error(value);
-          this.$$msgError("项目图片更新失败！");
-          bmCommon.error("项目图片更新失败", err);
-        });
-    }
+    //   this.entPicAddAction(options)
+    //     .then(({ data }) => {
+    //       let { code = "", message = "" } = data || {};
+    //       if (code == Constants.CODES.SUCCESS) {
+    //         this.$$msgSuccess("项目图片更新成功！");
+    //         success && success(value);
+    //       } else {
+    //         this.$$msgError(message || "项目图片更新失败！");
+    //         // bmCommon.error(message || "项目图片更新失败");
+    //         error && error(value);
+    //       }
+    //       this._entPicAddStatus = false;
+    //     })
+    //     .catch(err => {
+    //       this._entPicAddStatus = false;
+    //       error && error(value);
+    //       this.$$msgError("项目图片更新失败！");
+    //       bmCommon.error("项目图片更新失败", err);
+    //     });
+    // }
   }
 };
 </script>
