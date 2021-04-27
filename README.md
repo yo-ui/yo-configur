@@ -27,4 +27,4 @@ npm run e2e
 npm test
 ```
 
-<img src="https://yo-ui.gitee.io/youi/static/images/configur.preview.png" style="max-width: 1000px"/>
+<img src="https://yo-ui.gitee.io/youi/images/configur.preview.png" style="max-width: 1000px"/>
